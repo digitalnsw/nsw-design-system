@@ -1,0 +1,8 @@
+// sass-lint:disable no-important
+@mixin spacing-modifiers($attribute: 'padding', $separator: '--') {
+  @each $modifier, $value in $spacing {
+    &#{$separator}#{$modifier} {
+      #{$attribute}: $value !important;
+    }
+  }
+}

@@ -1,0 +1,47 @@
+@mixin font($size, $weight: 'regular') {
+  @if $weight != 'regular' and $weight != 'heading' {
+    @error 'NSW-DS font mixin allows the following values for $weights: regular, heading';
+  }
+
+  @if $size != 'xs' and $size != 'sm' and $size != 'md' and $size != 'lg' and $size != 'xl' and $size != 'xxl' and $size != 'xxxl' {
+    @error 'NSW-DS font mixin allows the following values for $sizes: xs, sm, md, lg, xl, xxl, xxxl';
+  }
+
+  font-family: $font-stack;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: map-get($line-height, default);
+
+  @if $size {
+    $font-size: get-font-size($size, 'mobile');
+    $font-size-rem: rem($font-size);
+    font-size: $font-size-rem;
+
+    @include breakpoint($font-size-reponsive-breakpoint){
+      $font-size: get-font-size($size, 'desktop');
+      $font-size-rem: rem($font-size);
+      font-size: $font-size-rem;
+    }
+  }
+
+  @if $weight == 'regular' {
+    font-weight: $font-weight-regular
+  } @else if $weight == 'heading' {
+    font-weight: $font-weight-heading
+  }
+
+}
+
+@function get-font-size($size, $screen-size: 'mobile'){
+  @if $screen-size != 'mobile' and $screen-size != 'desktop' {
+    @error 'NSW-DS get-font-size function allows the following values for $screen-size: mobile, desktop';
+  }
+
+  $screen-size-value: if($screen-size == 'mobile', 1, 2);
+
+  @each $size-key, $size-value in $font-sizes  {
+    @if $size-key == $size{
+      @return nth($size-value, $screen-size-value);
+    }
+  }
+}

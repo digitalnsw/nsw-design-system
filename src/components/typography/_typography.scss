@@ -1,0 +1,37 @@
+$nsw-body--text-color: $dark80;
+$nsw-body--link-active-color: $nsw-primary-blue;
+$nsw-body--link-hover-color: rgba($nsw-tertiary-blue, 0.2);
+
+.nsw-content{
+  @include font('sm', 'regular');
+  margin: 0;
+  color: $nsw-body--text-color;
+
+  a {
+    color: $nsw-body--link-active-color;
+    text-decoration: underline;
+    text-decoration-skip-ink: auto;
+    position: relative;
+
+    &:hover{
+      background-color: $nsw-body--link-hover-color;
+      outline: 2px solid $nsw-body--link-hover-color;
+    }
+
+    &:focus{
+      outline: 2px solid $nsw-tertiary-blue;
+    }
+
+    // &:visited{
+    //   color: $nsw-body--link-visited-color
+    // }
+  }
+
+  p{
+    margin: 0;
+  }
+
+  * + p{
+    margin-top: 1rem;
+  }
+}

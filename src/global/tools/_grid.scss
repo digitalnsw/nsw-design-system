@@ -1,0 +1,17 @@
+@mixin grid-columns(){
+  .nsw-col {
+    flex: 0 0 100%;
+    max-width: 100%;
+
+    @each $breakpoint, $columns in $grid-col-sizes {
+      @include breakpoint($breakpoint){
+        @each $modifier, $size in $columns {
+          &--#{$modifier} {
+            flex: 0 0 $size;
+            max-width: $size;
+          }
+        }
+      }
+    }
+  }
+}
