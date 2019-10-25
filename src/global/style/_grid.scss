@@ -1,0 +1,28 @@
+.nsw-grid{
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: $grid-container-offset;
+  margin-right: $grid-container-offset;
+  align-items: stretch;
+
+  + .nsw-grid{
+    margin-top: 1rem;
+  }
+
+  & > .nsw-col{
+    padding-left: $grid-gutters;
+    padding-right: $grid-gutters;
+  }
+
+  &--no-gutters {
+    margin-left: 0;
+    margin-right: 0;
+
+    & > .nsw-col{
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+}
+
+@include grid-columns()

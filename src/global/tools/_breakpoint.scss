@@ -1,0 +1,17 @@
+@mixin breakpoint( $size ) {
+  @if type-of( $size ) != 'string' {
+    @error 'NSW-DS Breakpoint mixin accepts only strings';
+  }
+
+  @if $size != 'xs' and $size != 'sm' and $size != 'md' and $size != 'lg' {
+    @error 'NSW-DS Breakpoint mixin allows the following breakpoint sizes xs, sm, md, lg';
+  } @else {
+
+    $px-size: map-get($breakpoints, $size);
+    $em-size: em($px-size);
+
+    @media (min-width: $em-size) {
+      @content;
+    }
+  }
+}
