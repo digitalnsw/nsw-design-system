@@ -22,6 +22,9 @@ const discoverPartials = require('metalsmith-discover-partials');
 const dataLoader = require('metalsmith-data-loader');
 const debug = require('metalsmith-debug-ui');
 const discoverHelpers = require('metalsmith-discover-helpers');
+const rollup = require('gulp-better-rollup');
+const babel = require('rollup-plugin-babel');
+const commonjs = require("rollup-plugin-commonjs");
 
 sass.compiler = require('node-sass');
 
@@ -210,12 +213,32 @@ function metalsmithBuild(callback) {
   });
 }
 
+const jsConfig = {
+  src : dir.src + 'main.js',
+  watch : dir.src + '**/*.js',
+  build : dir.build + 'js/'
+}
+
+function compileJS(callback) {
+  return src(jsConfig.src)
+    .pipe(rollup({
+      plugins: [
+        babel()
+      ]
+    },{
+      name: 'NSW',
+      format: "umd"
+    }))
+    .pipe(dest(jsConfig.build));
+}
+
 const styles = series(lintStyles, buildStyles);
-const build = series(cleanUp, copyHtml, styles, compileSvg, surgeDeploy);
-const dev = series(copyHtml, metalsmithBuild, styles, compileSvg, watchFiles, browserSync)
+const build = series(cleanUp, metalsmithBuild, styles, compileJS, compileSvg, surgeDeploy);
+const dev = series(copyHtml, metalsmithBuild, styles, compileJS, compileSvg, watchFiles, browserSync)
 
 function watchFiles(done) {
   watch(scssConfig.watch, series(styles, reload));
+  watch(jsConfig.watch, series(compileJS, reload));
   watch(htmlConfig.watch, series(copyHtml, reload));
   watch(svgConfig.watch, series(compileSvg, reload));
   watch(metalsmithConfig.watch, series(metalsmithBuild, reload));
@@ -226,8 +249,9 @@ function watchFiles(done) {
 exports.scss = buildStyles; // $ gulp sass - compiles the sass
 exports.watch = watchFiles; // $ gulp watch - watches the files
 exports.lint = lintStyles; // $ gulp lint - lints the sass
-exports.svg = compileSvg; // $ gulp lint - lints the sass
+exports.svg = compileSvg; // $ gulp svg - creates svg sprite
 exports.build = build; // $ gulp build - builds the files
 exports.clean = cleanUp; // $ gulp clean - clean the dist directory
-exports.metal = metalsmithBuild;
+exports.metal = metalsmithBuild; // gulp metal - generates static site of components
+exports.js = compileJS; // gulp js - compiles the js
 exports.default = dev; // $ gulp - default gulp task

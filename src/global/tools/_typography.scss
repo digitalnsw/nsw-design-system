@@ -7,9 +7,7 @@
     @error 'NSW-DS font mixin allows the following values for $sizes: xs, sm, md, lg, xl, xxl, xxxl';
   }
 
-  font-family: $font-stack;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  @include get-font-stack($weight);
   line-height: map-get($line-height, default);
 
   @if $size {
@@ -23,13 +21,6 @@
       font-size: $font-size-rem;
     }
   }
-
-  @if $weight == 'regular' {
-    font-weight: $font-weight-regular
-  } @else if $weight == 'heading' {
-    font-weight: $font-weight-heading
-  }
-
 }
 
 @function get-font-size($size, $screen-size: 'mobile'){
@@ -43,5 +34,17 @@
     @if $size-key == $size{
       @return nth($size-value, $screen-size-value);
     }
+  }
+}
+
+@mixin get-font-stack($weight: 'regular') {
+  font-family: $font-stack;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  @if $weight == 'regular' {
+    font-weight: $font-weight-regular
+  } @else if $weight == 'heading' {
+    font-weight: $font-weight-heading
   }
 }

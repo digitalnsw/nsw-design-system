@@ -1,8 +1,19 @@
+.nsw-container{
+  max-width: rem($container-max-width);
+  margin: 0 rem($container-offset);
+  position: relative;
+
+  @include breakpoint(lg){
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
 .nsw-grid{
   display: flex;
   flex-wrap: wrap;
-  margin-left: $grid-container-offset;
-  margin-right: $grid-container-offset;
+  margin-left: rem($grid-container-offset);
+  margin-right: rem($grid-container-offset);
   align-items: stretch;
 
   + .nsw-grid{
@@ -10,8 +21,8 @@
   }
 
   & > .nsw-col{
-    padding-left: $grid-gutters;
-    padding-right: $grid-gutters;
+    padding-left: rem($grid-gutters);
+    padding-right: rem($grid-gutters);
   }
 
   &--no-gutters {
