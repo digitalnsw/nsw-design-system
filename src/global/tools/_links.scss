@@ -1,0 +1,16 @@
+@mixin text-link() {
+  &{
+    @include get-font-stack('heading');
+    color: $link-color;
+    text-decoration: none;;
+  }
+
+  &:hover{
+    @include nsw-hover;
+    outline: 2px solid $link-hover--outline-color;
+  }
+
+  &:focus{
+    @include nsw-focus;
+  }
+}
