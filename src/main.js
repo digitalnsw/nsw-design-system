@@ -1,20 +1,16 @@
-import SiteSearch from './components/header/header.js'
+import SiteSearch from './components/header/header'
 
-function initSite () {
+function initSite() {
+  const searchButton = document.querySelectorAll('.js-open-search')
+  const closeButton = document.querySelectorAll('.js-close-search')
 
-  const searchButton = document.querySelectorAll(".js-open-search");
-  const closeButton = document.querySelectorAll(".js-close-search");
-
-  searchButton.forEach(function(element) {
+  searchButton.forEach((element) => {
     new SiteSearch(element).init()
-  });
+  })
 
-  closeButton.forEach(function(element) {
+  closeButton.forEach((element) => {
     new SiteSearch(element).init()
-  });
+  })
 }
 
-export {
-  initSite,
-  SiteSearch
-}
+export { initSite, SiteSearch }
