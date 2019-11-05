@@ -13,17 +13,30 @@ git clone git@github.com:digitalnsw/nsw-design-system.git
 cd nsw-design-system
 ```
 
-### 3. Install dependencies (make sure nodejs with npm is installed on your machine)
+### 3. Install dependencies
+Make sure nodejs with npm is installed on your machine.
+
 ```
 npm install
 ```
 
-### 4. Run default task (will open browser window with live reload)
+### 4. Run default task
+This will open a browser window with live reload.
+
 ```
 npm run dev
 ```
 
-## 5. Build (will create a build folder)
+### 5. Build
+This will create a build of the website in the `dist` folder and deploy to surge.
+
 ```
 npm run build
+```
+
+### 5. Add Component Folder
+This will add a new component folder inside `src/components` and generate the base files required for components. This includes sass, handlebars, javascript and json.
+
+```
+npm run add [componet-name]
 ```
