@@ -1,0 +1,35 @@
+<nav class="nsw-main-nav">
+  <div class="nsw-container">
+    <ul>
+      {{#each navitems}}
+        <li><a href="{{url}}">{{text}}</a>
+        {{#if subnav}}
+          <div class="subnav">
+            <p>
+              <a href="{{url}}">
+                {{text}}
+                <svg class="nsw-icon" focusable="false" aria-hidden="true">
+                  <use xlink:href="#arrow"></use>
+                </svg>
+              </a>
+            </p>
+            <p>{{text}}</p>
+            <p>{{description}}</p>
+            <ul>
+              {{#each subnav}}
+                <li><a href="{{url}}">{{text}}</a>
+              {{/each}}
+            </ul>
+            <button type="button">
+              <svg class="nsw-icon nsw-icon--rotate-180" focusable="false" aria-hidden="true">
+                <use xlink:href="#chevron"></use>
+              </svg>
+              <span><span class="sr-only">Back to</span> Main menu</span>
+            </button>
+          </div>
+        {{/if}}
+        </li>
+      {{/each}}
+    </ul>
+  </div>
+</nav>
