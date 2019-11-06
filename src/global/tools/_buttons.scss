@@ -1,0 +1,12 @@
+@mixin button-variant($value){
+  color: map-get($value, color);
+  background-color: map-get($value, bg);
+  border-color: map-get($value, border);
+
+  &:hover,
+  &:active{
+    color: map-get($value, colorHover);
+    background-color: map-get($value, bgHover);
+    border-color: map-get($value, borderHover);
+  }
+}

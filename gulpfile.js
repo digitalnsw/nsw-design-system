@@ -158,12 +158,11 @@ function reload(done) {
   done()
 }
 
-function surgeDeploy(done) {
+function surgeDeploy() {
   return surge({
     project: dir.build,
     domain: 'nswdesignsystem.surge.sh',
   })
-  done()
 }
 
 function cleanUp() {
@@ -178,6 +177,8 @@ function cleanBuild(files, metalsmith, done) {
       file[0].indexOf('assets') > -1
       || file[0].indexOf('global') > -1
       || file[0].indexOf('partials') > -1
+      || file[0].indexOf('partials') > -1
+      || file[0].indexOf('_') > -1
     ) {
       delete files[path]
     }
