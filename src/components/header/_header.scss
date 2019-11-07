@@ -7,7 +7,7 @@ $header-button--text-color: $nsw-primary-blue;
 $search-input--text-color: $dark80;
 
 .nsw-skipto{
-  @include get-font-stack();
+  @include font-stack;
 
   &__link{
     background-color: $nsw-primary-blue;
@@ -40,7 +40,7 @@ $search-input--text-color: $dark80;
 }
 
 .nsw-infobar{
-  @include get-font-stack();
+  @include font-stack;
   background-color: $infobar--bg;
   color: $infobar--text-color;
   padding: rem(12px) 0;
@@ -137,7 +137,7 @@ $search-input--text-color: $dark80;
   }
 
   &__sub{
-    @include get-font-stack('heading');
+    @include font-stack('heading');
     font-size: rem(12px);
   }
 }
@@ -187,7 +187,8 @@ $search-input--text-color: $dark80;
   }
 
   &__input{
-    @include font('md');
+    @include font-stack;
+    @include font-size('md');
     background: none;
     padding: rem(8px) rem(72px) rem(8px) rem(16px);
     color: $search-input--text-color;
