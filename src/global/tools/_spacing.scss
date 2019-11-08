@@ -1,8 +1,10 @@
-// sass-lint:disable no-important
-@mixin spacing-modifiers($attribute: 'padding', $separator: '--') {
-  @each $modifier, $value in $spacing {
-    &#{$separator}#{$modifier} {
-      #{$attribute}: $value !important;
-    }
+// margin-size mixin - returns the margin-size based of the values in $margin-sizes map
+@mixin margin-size($size) {
+  @if $size != 'xs' and $size != 'sm' and $size != 'md' and $size != 'lg' and $size != 'xl' and $size != 'xxl' and $size != 'xxxl' and $size != 'xxxxl' {
+    @error 'NSW-DS margin-size mixin allows the following values for $sizes: xs, sm, md, lg, xl, xxl, xxxl, xxxxl';
+  }
+
+  @if $size {
+    margin-top: get-mapped-value($size, $margin-sizes);
   }
 }

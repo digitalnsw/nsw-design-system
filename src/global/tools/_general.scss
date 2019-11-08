@@ -1,0 +1,35 @@
+// sass-lint:disable no-important
+@function rem($value) {
+  @if (unitless($value)) {
+    $value: $value * 1px;
+  }
+
+  @return $value / $base-font-size * 1rem;
+}
+
+@function em($value) {
+  @if (unitless($value)) {
+    $value: $value * 1px;
+  }
+
+  @return $value / $base-font-size * 1em;
+}
+
+// generates modifer classes in the bem syntax
+@mixin helper-classes($attribute, $map) {
+
+  @each $modifier, $value in $map {
+    &--#{$modifier} {
+      #{$attribute}: get-mapped-value($modifier, $map) !important;
+    }
+  }
+}
+
+//gets mapped px values and returns it as rem
+@function get-mapped-value($key, $map){
+  @each $mapkey, $mapvalue in $map {
+    @if $mapkey == $key{
+      @return rem($mapvalue);
+    }
+  }
+}
