@@ -147,7 +147,7 @@ function browserSync(done) {
   server.init({
     server: {
       baseDir: dir.build,
-      index: 'index.html',
+      index: 'styleguide.html',
     },
   })
   done()
