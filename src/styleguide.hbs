@@ -2,9 +2,21 @@
 title: TESTING
 layout: layout.hbs
 ---
-<h1>Component Styleguide</h1>
+<h1>Styleguide</h1>
+<h2>Component</h2>
+{{#each collections}}
+  <h2>{{key}}</h2>
+{{/each}}
+
 <ul>
 {{#each collections.components}}
+  <li><a class="navigation-nav-item" href="{{change-extention path}}">{{title}}</a></li>
+{{/each}}
+</ul>
+
+<h2>Patterns</h2>
+<ul>
+{{#each collections.patterns}}
   <li><a class="navigation-nav-item" href="{{change-extention path}}">{{title}}</a></li>
 {{/each}}
 </ul>

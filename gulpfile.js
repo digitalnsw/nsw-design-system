@@ -20,7 +20,7 @@ const collections = require('metalsmith-collections')
 const ignore = require('metalsmith-ignore')
 const discoverPartials = require('metalsmith-discover-partials')
 const dataLoader = require('metalsmith-data-loader')
-// const debug = require('metalsmith-debug-ui')
+const debug = require('metalsmith-debug-ui')
 const discoverHelpers = require('metalsmith-discover-helpers')
 const rollup = require('gulp-better-rollup')
 const babel = require('rollup-plugin-babel')
@@ -83,7 +83,6 @@ const metalsmithConfig = {
     '**/*.json',
     '**/*.DS_Store',
     'global/**/*',
-    'patterns/**/*',
   ],
   helpers: {
     directory: './src/global/helpers',
@@ -98,6 +97,7 @@ const metalsmithConfig = {
   },
   collection: {
     components: ['components/**/*.hbs', '!components/**/_*.hbs'],
+    patterns: ['patterns/**/*.hbs', '!patterns/**/_*.hbs'],
   },
   inplace: {
     pattern: '**/*.hbs',
@@ -188,7 +188,7 @@ function cleanBuild(files, metalsmith, done) {
 
 function metalsmithBuild(callback) {
   const metalsmith = new Metalsmith(__dirname)
-  // debug.patch(metalsmith);
+  // debug.patch(metalsmith)
   metalsmith.metadata(metalsmithConfig.metadata)
   metalsmith.source(metalsmithConfig.src)
   metalsmith.destination(metalsmithConfig.build)
