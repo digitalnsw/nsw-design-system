@@ -9,14 +9,12 @@ NSW Digital Design system is a collection of reusable UI components used on the 
 
 ```
 git clone git@github.com:digitalnsw/nsw-design-system.git
-
 ```
 
 ### 2. Jump inside cloned repo
 
 ```
 cd nsw-design-system
-
 ```
 
 ### 3. Install dependencies
@@ -25,7 +23,6 @@ Make sure nodejs with npm is installed on your machine.
 
 ```
 npm install
-
 ```
 
 ### 4. Run default task
@@ -34,7 +31,6 @@ This will open a browser window with live reload.
 
 ```
 npm run dev
-
 ```
 
 ### 5. Run Build and Deploy task
@@ -43,7 +39,6 @@ This will create a build of the website in the `dist` folder and deploy to surge
 
 ```
 npm run build
-
 ```
 
 ### 5. Add Component/Pattern folder and files to source
@@ -52,7 +47,6 @@ npm run build
 
 ```
 npm run add
-
 ```
 
 You will then be asked a few questions:
