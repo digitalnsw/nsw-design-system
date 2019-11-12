@@ -98,6 +98,7 @@ const metalsmithConfig = {
   collection: {
     components: ['components/**/*.hbs', '!components/**/_*.hbs'],
     patterns: ['patterns/**/*.hbs', '!patterns/**/_*.hbs'],
+    styles: ['styles/**/*.hbs', '!styles/**/_*.hbs'],
   },
   inplace: {
     pattern: '**/*.hbs',
