@@ -1,0 +1,98 @@
+$hero-content--bg: rgba($white, 0.7);
+
+// .nsw-hero-banner{
+//   position: relative;
+
+//   @include breakpoint('sm'){
+//     height: 380px;
+//     overflow: hidden;
+//   }
+
+//   &__image-area{
+
+//   }
+
+//   &__image{
+//     width: 100%;
+//     height: auto;
+
+//     @include breakpoint('sm'){
+//       position: relative;
+//       top: 50%;
+//       transform: translateY(-50%);
+//     }
+//   }
+
+//   &__content-area{
+//     @include breakpoint('sm'){
+//       position: absolute;
+//       top: 0;
+//       left: 50%;
+//       width: 100%;
+//       height: 100%;
+//       transform: translateX(-50%);
+//     }
+//   }
+
+//   &__content{
+//     @include breakpoint('sm'){
+//       position: absolute;
+//       top: 50%;
+//       background-color: $hero-content--bg;
+//       transform: translateY(-50%);
+//       max-width: 600px;
+//     }
+//   }
+// }
+
+.nsw-hero-banner{
+  position: relative;
+
+
+  @include breakpoint('sm'){
+    height: 380px;
+    overflow: hidden;
+  }
+
+  &__image-area{
+    @include breakpoint('sm'){
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 380px;
+    }
+  }
+
+  &__image{
+    width: 100%;
+    height: auto;
+
+    @include breakpoint('sm'){
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
+  &__content-area{
+
+    @include breakpoint('sm'){
+      height: 380px;
+    }
+  }
+
+  &__content{
+
+    @include breakpoint('sm'){
+      position: relative;
+      top: 50%;
+      background-color: $hero-content--bg;
+      transform: translateY(-50%);
+      max-width: 600px;
+      padding: rem(24px);
+      left: rem(-16px);
+      border-top: solid 6px $nsw-primary-highlight;
+    }
+  }
+}
