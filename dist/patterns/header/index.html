@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NSW Digital Design System - Global Header</title>
+  <meta name="robots" content="noindex" />
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="stylesheet" href="/css/main.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/themes/prism.min.css" rel="stylesheet">
+  <script>
+    // SVG Sprite Loader
+    var svgAjax = new XMLHttpRequest(), svgDiv;
+    svgAjax.open("GET", "../../assets/svg/sprite.svg", true);
+    svgAjax.send();
+    svgAjax.onload = function(e) {
+      svgDiv = document.createElement("div");
+      svgDiv.innerHTML = svgAjax.responseText;
+      svgDiv.style.cssText = "display: block; width: 0; height: 0;";
+      document.body.insertBefore(svgDiv, document.body.childNodes[0]);
+    };
+    // Replace 'no-js' with 'js' on the html tag
+    (function(e){e.className=e.className.replace(/\bno-js\b/,'js')})(document.documentElement);
+  </script>
+</head>
+
+<body>
+  <nav class="nsw-skipto nsw-container" aria-label="Skip to links">
+  <a class="nsw-skipto__link" href="#nav"><span>Skip to navigation</span></a>
+  <a class="nsw-skipto__link" href="#content"><span>Skip to content</span></a>
+</nav>
+<div class="nsw-infobar">
+  <div class="nsw-container">
+    <p>A NSW Government website</p>
+  </div>
+</div>
+<header class="nsw-header">
+  <div class="nsw-container">
+    <div class="nsw-header__wrapper">
+      <div class="nsw-header__center">
+        <a href="#" class="nsw-header__logo-link">
+          <svg class="nsw-icon nsw-header__logo" focusable="false" aria-hidden="true">
+            <use xlink:href="#dpc-logo"></use>
+          </svg>
+          <span class="sr-only">NSW Department of Premier and Cabinet</span>
+        </a>
+      </div>
+      <div class="nsw-header__left">
+        <button type="button" class="nsw-header-btn nsw-header-btn--menu">
+          <svg class="nsw-icon nsw-header-btn__icon" focusable="false" aria-hidden="true">
+            <use xlink:href="#menu"></use>
+            <span class="nsw-header-btn__sub"><span class="sr-only">Open</span> Menu</span>
+          </svg>
+        </button>
+      </div>
+      <div class="nsw-header__right">
+        <button type="button" class="nsw-header-btn nsw-header-btn--search js-open-search" aria-expanded="false"
+          aria-controls="header-search">
+          <svg class="nsw-icon nsw-header-btn__icon" focusable="false" aria-hidden="true">
+            <use xlink:href="#search"></use>
+          </svg>
+          <span class="nsw-header-btn__sub"><span class="sr-only">Show</span> Search</span>
+        </button>
+      </div>
+    </div>
+    <div class="nsw-search">
+      <div id="header-search" class="nsw-search__area js-search-area" hidden>
+        <form role="search">
+          <label for="nsw-search__input" class="sr-only">Search site for:</label>
+          <input autocomplete="off" class="nsw-search__input js-search-input" id="nsw-search__input"
+            name="input-autocomplete" type="text">
+          <svg class="nsw-icon nsw-search__search-icon" focusable="false" aria-hidden="true">
+            <use xlink:href="#search"></use>
+          </svg>
+        </form>
+        <button class="nsw-search__close-btn js-close-search" aria-expanded="true" aria-controls="header-search">
+          <svg class="nsw-icon nsw-search__close-icon" focusable="false" aria-hidden="true">
+            <use xlink:href="#close"></use>
+          </svg>
+          <span class="sr-only">Close search</span>
+        </button>
+      </div>
+    </div>
+</header>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-core.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/autoloader/prism-autoloader.min.js"></script>
+  <script src="/js/main.js"></script>
+  <script>window.NSW.initSite()</script>
+</body>
+</html>

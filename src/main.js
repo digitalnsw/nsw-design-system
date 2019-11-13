@@ -1,4 +1,4 @@
-import SiteSearch from './components/header/header'
+import SiteSearch from './patterns/header/header'
 
 function initSite() {
   const searchButton = document.querySelectorAll('.js-open-search')

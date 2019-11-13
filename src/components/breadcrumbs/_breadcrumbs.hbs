@@ -1,0 +1,9 @@
+<nav aria-label="{{label}}" class="nsw-breadcrumb">
+  <ol class="nsw-breadcrumb__list">
+    {{#each breadcrumbItems}}
+      <li class="nsw-breadcrumb__item">
+        <a href="{{url}}" class="nsw-breadcrumb__link {{#if @last}}nsw-breadcrumb--current{{/if}}" {{#if @last}}aria-current="page"{{/if}}>{{text}}</a>
+      </li>
+    {{/each}}
+  </ol>
+</nav>

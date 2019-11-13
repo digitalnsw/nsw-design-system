@@ -1,0 +1,136 @@
+$nsw-body--text-color: $dark80;
+$nsw-body--link-active-color: $nsw-primary-blue;
+$nsw-body--link-hover-color: rgba($nsw-tertiary-blue, 0.2);
+
+.nsw-content{
+  @include font-stack;
+  @include font-size('sm');
+  color: $nsw-body--text-color;
+
+  a {
+    color: $nsw-body--link-active-color;
+    text-decoration: underline;
+    text-decoration-skip-ink: auto;
+
+    &:hover{
+      @include nsw-hover;
+      outline: 2px solid $nsw-body--link-hover-color;
+    }
+
+    &:focus{
+      @include nsw-focus;
+    }
+  }
+
+  p{
+    margin: 0;
+  }
+
+  * + p{
+    @include nsw-spacing(margin-top, md);
+  }
+
+  blockquote{
+    @include font-size('lg');
+    @include nsw-spacing(margin-top, md);
+    margin: 0;
+    border-left: solid 6px $nsw-primary-highlight;
+    padding: rem(20px) rem(24px);
+
+    @include breakpoint('sm'){
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 75%;
+    }
+  }
+
+  cite {
+    @include font-size('sm');
+    @include nsw-spacing(margin-top, md);
+    display: block;
+    font-style: normal;
+  }
+
+  cite::before {
+    content: '— ';
+  }
+}
+
+.nsw-content h1,
+.heading-xxxl,
+.nsw-content h2,
+.heading-xxl,
+.nsw-content h3,
+.heading-xl,
+.nsw-content h4,
+.heading-lg,
+.nsw-content h5,
+.nsw-content h6,
+.heading-md{
+  @include font-stack('heading');
+  margin: 0;
+}
+
+.body-xxxl,
+.body-xxl,
+.body-xl,
+.body-lg,
+.body-md{
+  @include font-stack();
+  margin: 0;
+}
+
+.nsw-content h1,
+.heading-xxxl,
+.body-xxxl{
+  @include font-size('xxxl')
+}
+
+.nsw-content h2,
+.heading-xxl,
+.body-xxl{
+  @include font-size('xxl')
+}
+
+.nsw-content h3,
+.heading-xl,
+.body-xl{
+  @include font-size('xl')
+}
+
+.nsw-content h4,
+.heading-lg,
+.body-lg{
+  @include font-size('lg')
+}
+
+.nsw-content h5,
+.nsw-content h6,
+.heading-md,
+.body-md{
+  @include font-size('md')
+}
+
+.nsw-content {
+  * + h1,
+  * + h2,
+  * + h3,
+  * + h4,
+  * + h5,
+  * + h6{
+    @include nsw-spacing(margin-top, md);
+  }
+}
+
+* + .heading-xxxl
+* + .body-xxxl,
+* + .heading-xxl,
+* + .body-xxl,
+* + .heading-xl,
+* + .body-xl,
+* + .heading-lg,
+* + .body-lg,
+* + .heading-md,
+* + .body-md{
+  @include nsw-spacing(margin-top, md);
+}

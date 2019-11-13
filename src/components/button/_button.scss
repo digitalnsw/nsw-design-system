@@ -1,0 +1,47 @@
+.nsw-button{
+  @include font-stack('heading');
+  @include font-size('sm');
+  border: solid 2px transparent;
+  border-radius: $border-radius;
+  line-height: 1.2;
+  white-space: nowrap;
+  text-decoration: none;
+  padding: rem(12.5px) rem(24px);
+  margin: 0;
+  cursor: pointer;
+  min-width: rem(124px);
+  -webkit-appearance: none;
+  text-decoration: none;
+  -webkit-font-smoothing: antialiased;
+  text-align: center;
+  vertical-align: middle;
+  user-select: none;
+  display: inline-block;
+
+  &:focus{
+    @include nsw-focus;
+  }
+
+  @each $color, $value in $button-variations {
+    &--#{$color} {
+      @include button-variant($value);
+    }
+  }
+
+  &:disabled,
+  &.disabled{
+    background-color: $dark70;
+    color: $light20;
+    border-color: $dark70;
+    cursor: not-allowed;
+  }
+}
+
+.nsw-button--block{
+  display: block;
+  width: 100%;
+
+  & + .nsw-button--block{
+    margin-bottom: 0;
+  }
+}

@@ -33,31 +33,21 @@ $line-height: (
 $transition-base:           all 0.25s ease-in-out !default;
 $border-radius:             4px !default;
 $border-width:              1px !default;
-$accent-width-small:        2px !default;
-$accent-width-large:        6px !default;
-$outline-width:             2px !default;
-$outline-width-borderless:  3px !default;
 
-$stroke-widths: (
-  xs: 8px,    //0.5rem
-  sm: 16px,   //1rem
-  md: 24px,   //1.5rem
-  lg: 36px,   //2.25rem
-) !default;
-
-// Spacing
-$spacing: (
-  none: 0,
-  xs:   8px,    //0.5rem
-  sm:   16px,   //1rem
-  md:   24px,   //1.5rem
-  lg:   36px,   //2.25rem
-  xl:   60px,   //3.75rem
-  xxl:  88px   //5.5rem
+// Spacing - Used with margin and padding
+$spacing-sizes: (
+  none:   0,    //0rem
+  xs:     8px,  //0.5rem
+  sm:     12px, //0.8rem
+  md:     16px, //1rem
+  lg:     24px, //1.5rem
+  xl:     32px, //2rem
+  xxl:    48px, //3rem
+  xxxl:   64px, //4rem
+  xxxxl:  80px  //5rem
 ) !default;
 
 // Predefined Colours and their names
-
 // Brand
 $nsw-primary-blue:      #002664 !default;
 $nsw-primary-highlight: #d7153a !default;
@@ -65,6 +55,7 @@ $nsw-secondary-blue:    #2e5299 !default;
 $nsw-tertiary-blue:     #00abe6 !default;
 
 // Shades
+$black:   #000000 !default;
 $dark80:  #333333 !default;
 $dark70: 	#4c4f55 !default;
 $dark60: 	#6d7079 !default;
@@ -79,12 +70,16 @@ $success-green:  #00a908 !default;
 $warning-orange: #dc5800 !default;
 $error-red:      #b81237 !default;
 
+//Focus and Hover
 $focus-color: $nsw-tertiary-blue !default;
 $hover-colour: rgba($nsw-tertiary-blue, 0.2);
 
 //Links
 $link-color: $nsw-primary-blue;
 $link-hover--outline-color: rgba($nsw-tertiary-blue, 0.2);
+
+$overlay-white: rgba($white, 0.8);
+$overlay-black: rgba($black, 0.8);
 
 // Breakpoints
 $breakpoints: (
@@ -131,4 +126,39 @@ $grid-col-sizes: (
     quarter: 25%,
     three-quarters: 75%
   )
-)
+);
+
+$button-variations: (
+  primary: (
+    color: $white,
+    colorHover: $white,
+    bg: $nsw-primary-blue,
+    bgHover: lighten($nsw-primary-blue, 5.88),
+    border: $nsw-primary-blue,
+    borderHover: lighten($nsw-primary-blue, 5.88)
+  ),
+  secondary: (
+    color: $white,
+    colorHover: $white,
+    bg: $nsw-primary-highlight,
+    bgHover: lighten($nsw-primary-highlight, 5.88),
+    border: $nsw-primary-highlight,
+    borderHover: lighten($nsw-primary-highlight, 5.88)
+  ),
+  outline: (
+    color: $dark80,
+    colorHover: $white,
+    bg: $white,
+    bgHover: $nsw-primary-blue,
+    border: $nsw-primary-blue,
+    borderHover: $nsw-primary-blue
+  ),
+  white: ( // sass-lint:disable-line no-color-keywords
+    color: $dark80,
+    colorHover: $dark80,
+    bg: $white,
+    bgHover: $light20,
+    border: $white,
+    borderHover: $light20
+  ),
+)  !default;
