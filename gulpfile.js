@@ -256,7 +256,7 @@ const build = series(
   styles,
   javascript,
   compileSvg,
-  // surgeDeploy,
+  surgeDeploy,
 )
 const dev = series(
   copyHtml,
