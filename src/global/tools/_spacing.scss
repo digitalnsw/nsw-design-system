@@ -1,10 +1,25 @@
-// margin-size mixin - returns the margin-size based of the values in $margin-sizes map
-@mixin margin-size($size) {
-  @if $size != 'xs' and $size != 'sm' and $size != 'md' and $size != 'lg' and $size != 'xl' and $size != 'xxl' and $size != 'xxxl' and $size != 'xxxxl' {
-    @error 'NSW-DS margin-size mixin allows the following values for $sizes: xs, sm, md, lg, xl, xxl, xxxl, xxxxl';
+@mixin nsw-spacing($type, $sizes){
+  $is-longhand: (str-index($type, '-top') != null or str-index($type, '-bottom') != null or str-index($type, '-left') != null or str-index($type, '-right') != null);
+  $has-multiple-values: length($sizes) > 1;
+  $longhand-values: ();
+
+  @if $is-longhand and $has-multiple-values {
+    @error 'Multiple size values should be used with the shorthand property, you have passed in "#{$type}". Usa a single value or use a shorthand property name.';
   }
 
-  @if $size {
-    margin-top: get-mapped-value($size, $margin-sizes);
+  @each $size in $sizes {
+
+    @if $size != 'none' and $size != 'xs' and $size != 'sm' and $size != 'md' and $size != 'lg' and $size != 'xl' and $size != 'xxl' and $size != 'xxxl' and $size != 'xxxxl' {
+      @error 'NSW-DS Spacing mixin allows the following spacing sizes: none, xs, sm, md, lg, xl, xxl, xxxl, xxxxl. You have used "#{$size}"';
+    }
+
+    @if $is-longhand{
+      #{$type}: get-mapped-value($sizes, $spacing-sizes);
+    } @else {
+      $value: get-mapped-value($size, $spacing-sizes);
+      $longhand-values: append($longhand-values, $value);
+
+      #{$type}: $longhand-values;
+    }
   }
 }
