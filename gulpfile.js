@@ -25,34 +25,10 @@ const discoverHelpers = require('metalsmith-discover-helpers')
 const rollup = require('gulp-better-rollup')
 const babel = require('rollup-plugin-babel')
 const eslint = require('gulp-eslint')
+const config = require('./config')
 
 const server = browsersync.create()
 sass.compiler = require('node-sass')
-
-const dir = {
-  src: './src/',
-  build: './dist/',
-}
-
-const svgConfig = {
-  src: `${dir.src}assets/svg/*.svg`,
-  watch: `${dir.src}assets/svg/*.svg`,
-  build: `${dir.build}assets/svg/`,
-  svgSprite: {
-    mode: {
-      defs: {
-        dest: '',
-        sprite: 'sprite.svg',
-      },
-    },
-  },
-}
-
-const scssConfig = {
-  src: `${dir.src}main.scss`,
-  watch: `${dir.src}**/*.scss`,
-  build: `${dir.build}css/`,
-}
 
 const postcssProcessors = [
   postcssNormalize({ forceImport: true }),
@@ -60,97 +36,34 @@ const postcssProcessors = [
   cssnano,
 ]
 
-const htmlConfig = {
-  src: `${dir.src}*.html`,
-  watch: `${dir.src}*.html`,
-  build: dir.build,
-}
-
-const metalsmithConfig = {
-  src: dir.src,
-  watch: `${dir.src}**/*.hbs`,
-  build: dir.build,
-  metadata: {
-    title: 'Digital NSW Design System',
-    description: 'Design system for Digital NSW',
-    generator: 'Metalsmith',
-    url: '',
-  },
-  ignoreFiles: [
-    'assets/**/*',
-    '**/*.scss',
-    '**/*.js',
-    '**/*.json',
-    '**/*.DS_Store',
-    'global/**/*',
-  ],
-  helpers: {
-    directory: './src/global/helpers',
-    pattern: /\.js$/,
-  },
-  partials: {
-    directory: './src/',
-    pattern: /\.hbs$/,
-  },
-  data: {
-    dataProperty: 'model',
-  },
-  collection: {
-    components: ['components/**/*.hbs', '!components/**/_*.hbs'],
-    patterns: ['patterns/**/*.hbs', '!patterns/**/_*.hbs'],
-    styles: ['styles/**/*.hbs', '!styles/**/_*.hbs'],
-  },
-  inplace: {
-    pattern: '**/*.hbs',
-    rename: true,
-    engine: 'handlebars',
-  },
-  layouts: {
-    engine: 'handlebars',
-    rename: true,
-    directory: './src/global/layouts',
-    default: 'layout.hbs',
-    pattern: '**/*.{hbs,md,html}',
-  },
-}
-
 function compileSvg() {
-  return src(svgConfig.src)
-    .pipe(svgSprite(svgConfig.svgSprite))
+  return src(config.svg.src)
+    .pipe(svgSprite(config.svg.svgSprite))
     .on('error', (error) => {
       console.log(error)
     })
-    .pipe(dest(svgConfig.build))
+    .pipe(dest(config.svg.build))
 }
 
 function buildStyles() {
-  return src(scssConfig.src)
+  return src(config.scss.src)
     .pipe(sourcemaps.init())
     .pipe(sassGlob())
     .pipe(sass().on('error', sass.logError))
     .pipe(postcss(postcssProcessors))
     .pipe(sourcemaps.write())
-    .pipe(dest(scssConfig.build))
+    .pipe(dest(config.scss.build))
 }
 
 function lintStyles() {
-  return src(scssConfig.watch)
+  return src(config.scss.watch)
     .pipe(sassLint())
     .pipe(sassLint.format())
     .pipe(sassLint.failOnError())
 }
 
-function copyHtml() {
-  return src(htmlConfig.src).pipe(dest(htmlConfig.build))
-}
-
 function browserSync(done) {
-  server.init({
-    server: {
-      baseDir: dir.build,
-      index: 'index.html',
-    },
-  })
+  server.init(config.browsersync)
   done()
 }
 
@@ -160,14 +73,11 @@ function reload(done) {
 }
 
 function surgeDeploy() {
-  return surge({
-    project: dir.build,
-    domain: 'nswdesignsystem.surge.sh',
-  })
+  return surge(config.surge)
 }
 
 function cleanUp() {
-  return del(`${dir.build}**`, { force: true })
+  return del(`${config.build}**`, { force: true })
 }
 
 function cleanBuild(files, metalsmith, done) {
@@ -190,19 +100,19 @@ function cleanBuild(files, metalsmith, done) {
 function metalsmithBuild(callback) {
   const metalsmith = new Metalsmith(__dirname)
   // debug.patch(metalsmith)
-  metalsmith.metadata(metalsmithConfig.metadata)
-  metalsmith.source(metalsmithConfig.src)
-  metalsmith.destination(metalsmithConfig.build)
-  metalsmith.use(ignore(metalsmithConfig.ignoreFiles))
+  metalsmith.metadata(config.metalSmith.metadata)
+  metalsmith.source(config.metalSmith.src)
+  metalsmith.destination(config.metalSmith.build)
+  metalsmith.use(ignore(config.metalSmith.ignoreFiles))
   metalsmith.clean(false)
-  metalsmith.use(discoverHelpers(metalsmithConfig.helpers))
-  metalsmith.use(discoverPartials(metalsmithConfig.partials))
-  metalsmith.use(dataLoader(metalsmithConfig.data))
-  metalsmith.use(collections(metalsmithConfig.collection))
-  metalsmith.use(inplace(metalsmithConfig.inplace))
-  metalsmith.use(layouts(metalsmithConfig.layouts))
+  metalsmith.use(discoverHelpers(config.metalSmith.helpers))
+  metalsmith.use(discoverPartials(config.metalSmith.partials))
+  metalsmith.use(dataLoader(config.metalSmith.data))
+  metalsmith.use(collections(config.metalSmith.collection))
+  metalsmith.use(inplace(config.metalSmith.inplace))
+  metalsmith.use(layouts(config.metalSmith.layouts))
   metalsmith.use(cleanBuild)
-  metalsmith.build((err, files) => {
+  metalsmith.build((err) => {
     if (err) {
       throw err
     }
@@ -210,14 +120,8 @@ function metalsmithBuild(callback) {
   })
 }
 
-const jsConfig = {
-  src: `${dir.src}main.js`,
-  watch: `${dir.src}**/*.js`,
-  build: `${dir.build}js/`,
-}
-
 function compileJS() {
-  return src(jsConfig.src)
+  return src(config.js.src)
     .pipe(
       rollup(
         {
@@ -229,11 +133,11 @@ function compileJS() {
         },
       ),
     )
-    .pipe(dest(jsConfig.build))
+    .pipe(dest(config.js.build))
 }
 
 function lintJavascript() {
-  return src(jsConfig.watch)
+  return src(config.js.watch)
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(eslint.failOnError())
@@ -243,11 +147,10 @@ const styles = series(lintStyles, buildStyles)
 const javascript = series(lintJavascript, compileJS)
 
 function watchFiles(done) {
-  watch(scssConfig.watch, series(styles, reload))
-  watch(jsConfig.watch, series(javascript, reload))
-  watch(htmlConfig.watch, series(copyHtml, reload))
-  watch(svgConfig.watch, series(compileSvg, reload))
-  watch(metalsmithConfig.watch, series(metalsmithBuild, reload))
+  watch(config.scss.watch, series(styles, reload))
+  watch(config.js.watch, series(javascript, reload))
+  watch(config.svg.watch, series(compileSvg, reload))
+  watch(config.metalSmith.watch, series(metalsmithBuild, reload))
   done()
 }
 
@@ -259,8 +162,9 @@ const build = series(
   compileSvg,
   surgeDeploy,
 )
+
 const dev = series(
-  copyHtml,
+  cleanUp,
   metalsmithBuild,
   styles,
   javascript,
@@ -274,7 +178,7 @@ exports.scss = buildStyles // $ gulp sass - compiles the sass
 exports.watch = watchFiles // $ gulp watch - watches the files
 exports.lint = lintStyles // $ gulp lint - lints the sass
 exports.svg = compileSvg // $ gulp svg - creates svg sprite
-exports.build = build // $ gulp build - builds the files
+exports.build = build // $ gulp build - builds the files and deploys
 exports.clean = cleanUp // $ gulp clean - clean the dist directory
 exports.metal = metalsmithBuild // gulp metal - generates static site of components
 exports.js = javascript // gulp js - compiles the js

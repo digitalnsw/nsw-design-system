@@ -1,0 +1,87 @@
+
+{
+  "dir": {
+    "src": "./src/",
+    "build": "./dist/"
+  },
+  "scss": {
+    "src": "./src/main.scss",
+    "watch": "./src/**/*.scss",
+    "build": "./dist/css/"
+  },
+  "js": {
+    "src": "./src/main.js",
+    "watch": "./src/**/*.js",
+    "build": "./dist/js/"
+  },
+  "svg": {
+    "src": "./src/assets/svg/*.svg",
+    "watch": "./src/assets/svg/*.svg",
+    "build": "./dist/assets/svg/",
+    "svgSprite": {
+      "mode": {
+        "defs": {
+          "dest": "",
+          "sprite": "sprite.svg"
+        }
+      }
+    }
+  },
+  "metalSmith": {
+    "src": "./src/",
+    "watch": "./src/**/*.hbs",
+    "build": "./dist/",
+    "metadata": {
+      "title": "Digital NSW Design System",
+      "description": "Design system for Digital NSW",
+      "generator": "Metalsmith",
+      "url": ""
+    },
+    "ignoreFiles": [
+      "assets/**/*",
+      "**/*.scss",
+      "**/*.js",
+      "**/*.json",
+      "**/*.DS_Store",
+      "global/**/*"
+    ],
+    "helpers": {
+      "directory": "./src/global/helpers",
+      "pattern": ".js"
+    },
+    "partials": {
+      "directory": "./src/",
+      "pattern": ".hbs"
+    },
+    "data": {
+      "dataProperty": "model"
+    },
+    "collection": {
+      "components": ["components/**/*.hbs", "!components/**/_*.hbs"],
+      "patterns": ["patterns/**/*.hbs", "!patterns/**/_*.hbs"],
+      "styles": ["styles/**/*.hbs", "!styles/**/_*.hbs"]
+    },
+    "inplace": {
+      "pattern": "**/*.hbs",
+      "rename": true,
+      "engine": "handlebars"
+    },
+    "layouts": {
+      "engine": "handlebars",
+      "rename": true,
+      "directory": "./src/global/layouts",
+      "default": "layout.hbs",
+      "pattern": "**/*.{hbs,md,html}"
+    }
+  },
+  "surge": {
+    "project": "./dist/",
+    "domain": "nswdesignsystem.surge.sh"
+  },
+  "browsersync": {
+    "server": {
+      "baseDir": "./dist/",
+      "index": "index.html"
+    }
+  }
+}
