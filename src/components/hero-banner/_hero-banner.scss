@@ -19,14 +19,9 @@
   }
 
   &__image{
+    @include breakOut;
     height: auto;
     display: block;
-    width: 100vw;
-    position: relative;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
 
     @include breakpoint('sm'){
       position: absolute;
@@ -37,20 +32,12 @@
   }
 
   &__content-area{
-    width: 100vw;
-    position: relative;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
+    @include breakOut;
 
     @include breakpoint('sm'){
+      @include breakOutReset;
       height: rem(380px);
       background-color: transparent;
-      margin-left: auto;
-      margin-right: auto;
-      left: auto;
-      right: auto;
       width: 100%;
     }
   }

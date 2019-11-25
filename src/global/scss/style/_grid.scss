@@ -1,11 +1,9 @@
 .nsw-container{
-  max-width: rem($container-max-width);
-  margin: 0 rem($container-offset);
-  position: relative;
+  @include container;
 
-  @include breakpoint(lg){
-    margin-left: auto;
-    margin-right: auto;
+  &--flush{
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 
