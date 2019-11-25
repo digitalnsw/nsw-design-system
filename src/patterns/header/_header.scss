@@ -11,10 +11,10 @@ $search-input--text-color: $dark80;
   position: relative;
 
   &__link{
+    @include nsw-spacing(padding, xs md);
     background-color: $nsw-primary-blue;
     color: $skip-tp--text-color;
     transform: translateY(-101%);
-    padding: rem(8px) 0;
     display: block;
     text-align: center;
     width: 100%;
@@ -42,9 +42,9 @@ $search-input--text-color: $dark80;
 
 .nsw-infobar{
   @include font-stack;
+  @include nsw-spacing(padding, sm none);
   background-color: $infobar--bg;
   color: $infobar--text-color;
-  padding: rem(12px) 0;
 
   p{
     margin: 0;
@@ -56,9 +56,13 @@ $search-input--text-color: $dark80;
   background-color: $header--bg;
   position: relative;
 
+  &__container{
+    @include container;
+    position: relative;
+  }
+
   &__wrapper{
-    padding-top: rem(12px);
-    padding-bottom: rem(12px);
+    @include nsw-spacing(padding, none sm);
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -123,7 +127,7 @@ $search-input--text-color: $dark80;
   padding: 0;
   text-align: center;
   position: relative;
-  border-radius: rem($border-radius);
+  border-radius: $border-radius;
 
   &:hover{
     @include nsw-hover;
@@ -197,9 +201,10 @@ $search-input--text-color: $dark80;
     }
 
     @include breakpoint('sm'){
+      @include nsw-spacing(padding, none md);
       height: rem(50px);
       padding: 0 rem(16px);
-      border-radius: rem($border-radius);
+      border-radius: $border-radius;
     }
   }
 
