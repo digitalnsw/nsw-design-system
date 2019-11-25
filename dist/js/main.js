@@ -379,13 +379,9 @@
     });
     closeSearchButton.forEach(element => {
       new SiteSearch(element).init();
-    }); // Hamburger Menu
+    }); // Navigation
 
-    const mainNavigation = document.getElementById('main-navigation');
-
-    if (mainNavigation) {
-      new Navigation().init();
-    }
+    new Navigation().init();
   }
 
   exports.SiteSearch = SiteSearch;
