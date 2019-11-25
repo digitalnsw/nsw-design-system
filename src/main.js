@@ -1,16 +1,37 @@
 import SiteSearch from './patterns/header/header'
+import Navigation from './components/main-navigation/main-navigation'
+
+if (!Element.prototype.closest) {
+  if (!Element.prototype.matches) {
+    Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector
+  }
+  Element.prototype.closest = function closest(s) {
+    const el = this
+    let ancestor = this
+    if (!document.documentElement.contains(el)) return null
+    do {
+      if (ancestor.matches(s)) return ancestor
+      ancestor = ancestor.parentElement
+    } while (ancestor !== null)
+    return null
+  }
+}
 
 function initSite() {
-  const searchButton = document.querySelectorAll('.js-open-search')
-  const closeButton = document.querySelectorAll('.js-close-search')
+  // Header Search
+  const openSearchButton = document.querySelectorAll('.js-open-search')
+  const closeSearchButton = document.querySelectorAll('.js-close-search')
 
-  searchButton.forEach((element) => {
+  openSearchButton.forEach((element) => {
     new SiteSearch(element).init()
   })
 
-  closeButton.forEach((element) => {
+  closeSearchButton.forEach((element) => {
     new SiteSearch(element).init()
   })
+
+  // Navigation
+  new Navigation().init()
 }
 
 export { initSite, SiteSearch }

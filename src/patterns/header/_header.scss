@@ -8,6 +8,7 @@ $search-input--text-color: $dark80;
 
 .nsw-skipto{
   @include font-stack;
+  position: relative;
 
   &__link{
     background-color: $nsw-primary-blue;
@@ -20,7 +21,7 @@ $search-input--text-color: $dark80;
     position: absolute;
     z-index: 2;
     top: 0;
-    left: auto;
+    left: 0;
     text-decoration: none;
 
     &:focus,
@@ -53,6 +54,7 @@ $search-input--text-color: $dark80;
 
 .nsw-header{
   background-color: $header--bg;
+  position: relative;
 
   &__wrapper{
     padding-top: rem(12px);
@@ -113,7 +115,6 @@ $search-input--text-color: $dark80;
 }
 
 .nsw-header-btn{
-  $parent: &;
   color: $header-button--text-color;
   width: rem(48px);
   height: rem(48px);
@@ -122,6 +123,7 @@ $search-input--text-color: $dark80;
   padding: 0;
   text-align: center;
   position: relative;
+  border-radius: rem($border-radius);
 
   &:hover{
     @include nsw-hover;
@@ -150,7 +152,6 @@ $search-input--text-color: $dark80;
 
 .nsw-header-btn--search{
   @include breakpoint('sm'){
-    border-radius: rem($border-radius);
 
     .nsw-header-btn__sub{
       @include sr-only;
@@ -166,21 +167,15 @@ $search-input--text-color: $dark80;
 .nsw-search{
 
   &__area{
+    @include breakOut(absolute);
     background: $light10;
-    width: 100vw;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
-    position: absolute;
     top: 0;
 
     @include breakpoint('sm'){
-      margin-left: auto;
-      margin-right: auto;
-      left: auto;
+      @include breakOutReset;
+      position: absolute;
       width: rem(394px);
-      right: 0;
+      right: rem(16px);
       top: 50%;
       transform: translateY(-50%);
     }
