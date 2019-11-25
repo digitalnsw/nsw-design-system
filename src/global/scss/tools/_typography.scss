@@ -20,9 +20,9 @@
   -moz-osx-font-smoothing: grayscale;
 
   @if $weight == 'regular' {
-    font-weight: $font-weight-regular
+    font-weight: map-get($font-weight, regular)
   } @else if $weight == 'heading' {
-    font-weight: $font-weight-heading
+    font-weight: map-get($font-weight, heading)
   }
 }
 

@@ -122,8 +122,10 @@
   }
 
   Navigation.prototype.init = function init() {
-    this.responsiveCheck(this.breakpoint);
-    this.breakpoint.addListener(e => this.responsiveCheck(e));
+    if (this.mainNavElement) {
+      this.responsiveCheck(this.breakpoint);
+      this.breakpoint.addListener(e => this.responsiveCheck(e));
+    }
   };
 
   Navigation.prototype.responsiveCheck = function responsiveCheck(e) {
