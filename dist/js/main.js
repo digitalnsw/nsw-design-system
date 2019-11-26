@@ -32,20 +32,16 @@
     }
   };
 
-  const getFocusableElement = el => {
-    const focusable = el.querySelectorAll(`a[href],button:not([disabled]),
-    area[href],input:not([disabled]):not([type=hidden]),
-    select:not([disabled]),textarea:not([disabled]),
-    iframe,object,embed,*:not(.is-draggabe)[tabindex],
-    *[contenteditable]`);
-    const slicedFocusable = Array.prototype.slice.call(focusable);
-    const focusableArray = [];
+  var getFocusableElement = function getFocusableElement(el) {
+    var focusable = el.querySelectorAll("a[href],button:not([disabled]),\n    area[href],input:not([disabled]):not([type=hidden]),\n    select:not([disabled]),textarea:not([disabled]),\n    iframe,object,embed,*:not(.is-draggabe)[tabindex],\n    *[contenteditable]");
+    var slicedFocusable = Array.prototype.slice.call(focusable);
+    var focusableArray = [];
 
-    for (let i = 0; i < slicedFocusable.length; i += 1) {
+    for (var i = 0; i < slicedFocusable.length; i += 1) {
       if (slicedFocusable[i].offsetHeight !== 0) focusableArray.push(slicedFocusable[i]);
     }
 
-    const focusableElement = {
+    var focusableElement = {
       all: focusableArray,
       first: focusableArray[0],
       last: focusableArray[focusableArray.length - 1],
@@ -53,11 +49,10 @@
     };
     return focusableElement;
   };
-  const trapTabKey = (event, container) => {
-    const {
-      activeElement
-    } = document;
-    const focusableElement = getFocusableElement(container);
+  var trapTabKey = function trapTabKey(event, container) {
+    var _document = document,
+        activeElement = _document.activeElement;
+    var focusableElement = getFocusableElement(container);
     if (event.keyCode !== 9) return false;
 
     if (focusableElement.length === 1) {
@@ -72,19 +67,23 @@
 
     return true;
   };
-  const whichTransitionEvent = () => {
-    const el = document.createElement('fakeelement');
-    const transitions = {
+  var whichTransitionEvent = function whichTransitionEvent() {
+    var el = document.createElement('fakeelement');
+    var transitions = {
       transition: 'transitionend',
       OTransition: 'oTransitionEnd',
       MozTransition: 'transitionend',
       WebkitTransition: 'webkitTransitionEnd'
     };
-    const found = Object.keys(transitions).find(key => el.style[key] !== undefined);
-    return transitions[found];
+    var found = Object.keys(transitions).filter(function (key) {
+      return el.style[key] !== undefined;
+    });
+    return transitions[found[0]];
   };
 
   function Navigation() {
+    var _this = this;
+
     this.openNavButton = document.querySelector('.js-open-navigation');
     this.closeNavButtons = document.querySelectorAll('.js-close-navigation');
     this.openSubnavButtons = document.querySelectorAll('.js-open-subnav');
@@ -93,27 +92,49 @@
     this.isMegaMenuElement = !!document.querySelector('.js-mega-menu');
     this.transitionEvent = whichTransitionEvent();
 
-    this.mobileToggleMainNavEvent = e => this.mobileToggleMainNav(e);
+    this.mobileToggleMainNavEvent = function (e) {
+      return _this.mobileToggleMainNav(e);
+    };
 
-    this.mobileToggleSubnavEvent = e => this.mobileToggleSubnav(e);
+    this.mobileToggleSubnavEvent = function (e) {
+      return _this.mobileToggleSubnav(e);
+    };
 
-    this.mobileShowMainTransitionEndEvent = e => this.mobileShowMainNav(e);
+    this.mobileShowMainTransitionEndEvent = function (e) {
+      return _this.mobileShowMainNav(e);
+    };
 
-    this.mobileHideMainTransitionEndEvent = e => this.mobileHideMainNav(e);
+    this.mobileHideMainTransitionEndEvent = function (e) {
+      return _this.mobileHideMainNav(e);
+    };
 
-    this.mobileShowSubNavTransitionEndEvent = e => this.mobileShowSubNav(e);
+    this.mobileShowSubNavTransitionEndEvent = function (e) {
+      return _this.mobileShowSubNav(e);
+    };
 
-    this.mobileTrapTabKeyEvent = e => trapTabKey(e, this.mainNavElement);
+    this.mobileTrapTabKeyEvent = function (e) {
+      return trapTabKey(e, _this.mainNavElement);
+    };
 
-    this.mobileSubNavTrapTabKeyEvent = e => trapTabKey(e, this.subNavControls.subNavElement);
+    this.mobileSubNavTrapTabKeyEvent = function (e) {
+      return trapTabKey(e, _this.subNavControls.subNavElement);
+    };
 
-    this.desktopButtonClickEvent = e => this.buttonClickDesktop(e);
+    this.desktopButtonClickEvent = function (e) {
+      return _this.buttonClickDesktop(e);
+    };
 
-    this.desktopButtonKeydownEvent = e => this.buttonKeydownDesktop(e);
+    this.desktopButtonKeydownEvent = function (e) {
+      return _this.buttonKeydownDesktop(e);
+    };
 
-    this.checkFocusEvent = e => this.checkIfContainsFocus(e);
+    this.checkFocusEvent = function (e) {
+      return _this.checkIfContainsFocus(e);
+    };
 
-    this.escapeCloseEvent = e => this.escapeClose(e);
+    this.escapeCloseEvent = function (e) {
+      return _this.escapeClose(e);
+    };
 
     this.subNavControls = {};
     this.openSubNavElements = {};
@@ -122,9 +143,13 @@
   }
 
   Navigation.prototype.init = function init() {
+    var _this2 = this;
+
     if (this.mainNavElement) {
       this.responsiveCheck(this.breakpoint);
-      this.breakpoint.addListener(e => this.responsiveCheck(e));
+      this.breakpoint.addListener(function (e) {
+        return _this2.responsiveCheck(e);
+      });
     }
   };
 
@@ -139,66 +164,74 @@
   };
 
   Navigation.prototype.setUpMobileNav = function setUpMobileNav() {
+    var _this3 = this;
+
     this.openNavButton.addEventListener('click', this.mobileToggleMainNavEvent, false);
-    this.closeNavButtons.forEach(element => {
-      element.addEventListener('click', this.mobileToggleMainNavEvent, false);
+    this.closeNavButtons.forEach(function (element) {
+      element.addEventListener('click', _this3.mobileToggleMainNavEvent, false);
     });
     this.mainNavElement.addEventListener('keydown', this.mobileTrapTabKeyEvent, false);
-    this.openSubnavButtons.forEach(element => {
-      element.addEventListener('click', this.mobileToggleSubnavEvent, false);
+    this.openSubnavButtons.forEach(function (element) {
+      element.addEventListener('click', _this3.mobileToggleSubnavEvent, false);
     });
-    this.closeSubnavButtons.forEach(element => {
-      element.addEventListener('click', this.mobileToggleSubnavEvent, false);
+    this.closeSubnavButtons.forEach(function (element) {
+      element.addEventListener('click', _this3.mobileToggleSubnavEvent, false);
     });
   };
 
   Navigation.prototype.teardownMobileNav = function teardownMobileNav() {
+    var _this4 = this;
+
     this.openNavButton.removeEventListener('click', this.mobileToggleMainNavEvent, false);
-    this.closeNavButtons.forEach(element => {
-      element.removeEventListener('click', this.mobileToggleMainNavEvent, false);
+    this.closeNavButtons.forEach(function (element) {
+      element.removeEventListener('click', _this4.mobileToggleMainNavEvent, false);
     });
     this.mainNavElement.removeEventListener('keydown', this.mobileTrapTabKeyEvent, false);
-    this.openSubnavButtons.forEach(element => {
-      element.removeEventListener('click', this.mobileToggleSubnavEvent, false);
+    this.openSubnavButtons.forEach(function (element) {
+      element.removeEventListener('click', _this4.mobileToggleSubnavEvent, false);
     });
-    this.closeSubnavButtons.forEach(element => {
-      element.removeEventListener('click', this.mobileToggleSubnavEvent, false);
+    this.closeSubnavButtons.forEach(function (element) {
+      element.removeEventListener('click', _this4.mobileToggleSubnavEvent, false);
     });
   };
 
   Navigation.prototype.setUpDesktopNav = function setUpDesktopNav() {
+    var _this5 = this;
+
     if (this.isMegaMenuElement) {
-      const tempListItems = this.mainNavElement.getElementsByTagName('ul')[0].children;
+      var tempListItems = this.mainNavElement.getElementsByTagName('ul')[0].children;
       this.megaMenuListItems = Array.prototype.slice.call(tempListItems);
-      this.megaMenuListItems.forEach(item => {
-        const submenu = item.querySelector('[id$=-subnav]');
-        const link = item.querySelector('a');
+      this.megaMenuListItems.forEach(function (item) {
+        var submenu = item.querySelector('[id$=-subnav]');
+        var link = item.querySelector('a');
 
         if (submenu) {
           link.setAttribute('role', 'button');
           link.setAttribute('aria-expanded', 'false');
           link.setAttribute('aria-controls', submenu.id);
-          link.addEventListener('click', this.desktopButtonClickEvent, false);
-          link.addEventListener('keydown', this.desktopButtonKeydownEvent, false);
-          document.addEventListener('keydown', this.escapeCloseEvent, false);
+          link.addEventListener('click', _this5.desktopButtonClickEvent, false);
+          link.addEventListener('keydown', _this5.desktopButtonKeydownEvent, false);
+          document.addEventListener('keydown', _this5.escapeCloseEvent, false);
         }
       });
     }
   };
 
   Navigation.prototype.teardownDesktopNav = function teardownDesktopNav() {
+    var _this6 = this;
+
     if (this.isMegaMenuElement) {
-      this.megaMenuListItems.forEach(item => {
-        const submenu = item.querySelector('[id$=-subnav]');
-        const link = item.querySelector('a');
+      this.megaMenuListItems.forEach(function (item) {
+        var submenu = item.querySelector('[id$=-subnav]');
+        var link = item.querySelector('a');
 
         if (submenu) {
           link.removeAttribute('role');
           link.removeAttribute('aria-expanded');
           link.removeAttribute('aria-controls');
-          link.removeEventListener('click', this.desktopButtonClickEvent, false);
-          link.removeEventListener('keydown', this.desktopButtonKeydownEvent, false);
-          document.removeEventListener('keydown', this.escapeCloseEvent, false);
+          link.removeEventListener('click', _this6.desktopButtonClickEvent, false);
+          link.removeEventListener('keydown', _this6.desktopButtonKeydownEvent, false);
+          document.removeEventListener('keydown', _this6.escapeCloseEvent, false);
         }
       });
     }
@@ -214,9 +247,7 @@
 
   Navigation.prototype.mobileHideMainNav = function mobileHideMainNav(e) {
     if (!e.propertyName === 'transform') return;
-    const {
-      subNavElement
-    } = this.subNavControls;
+    var subNavElement = this.subNavControls.subNavElement;
     this.mainNavElement.classList.remove('is-open');
     this.mainNavElement.classList.remove('is-closing');
 
@@ -230,10 +261,8 @@
   };
 
   Navigation.prototype.mobileToggleMainNav = function mobileToggleMainNav(e) {
-    const {
-      currentTarget
-    } = e;
-    const isExpanded = currentTarget.getAttribute('aria-expanded') === 'true';
+    var currentTarget = e.currentTarget;
+    var isExpanded = currentTarget.getAttribute('aria-expanded') === 'true';
 
     if (isExpanded) {
       this.openNavButton.focus();
@@ -246,15 +275,12 @@
   };
 
   Navigation.prototype.mobileToggleSubnav = function mobileToggleSubnav(e) {
-    const {
-      currentTarget
-    } = e;
-    const isExpanded = currentTarget.getAttribute('aria-expanded') === 'true';
+    var currentTarget = e.currentTarget;
+    var isExpanded = currentTarget.getAttribute('aria-expanded') === 'true';
     this.mobileSaveSubnavElements(currentTarget);
-    const {
-      subNavElement,
-      openButton
-    } = this.subNavControls;
+    var _this$subNavControls = this.subNavControls,
+        subNavElement = _this$subNavControls.subNavElement,
+        openButton = _this$subNavControls.openButton;
 
     if (isExpanded) {
       subNavElement.classList.remove('is-open');
@@ -268,7 +294,7 @@
   };
 
   Navigation.prototype.mobileSaveSubnavElements = function mobileSaveSubnavElements(element) {
-    const parentElement = element.closest('li');
+    var parentElement = element.closest('li');
     this.subNavControls = {
       subNavElement: document.getElementById(element.getAttribute('aria-controls')),
       openButton: parentElement.querySelector('.js-open-subnav')
@@ -276,9 +302,7 @@
   };
 
   Navigation.prototype.mobileShowSubNav = function mobileShowSubNav(e) {
-    const {
-      subNavElement
-    } = this.subNavControls;
+    var subNavElement = this.subNavControls.subNavElement;
     if (!e.propertyName === 'transform') return;
     getFocusableElement(subNavElement).all[2].focus();
     subNavElement.removeEventListener(this.transitionEvent, this.mobileShowSubNavTransitionEndEvent, false);
@@ -300,9 +324,7 @@
   };
 
   Navigation.prototype.escapeClose = function escapeClose(e) {
-    const {
-      isExpanded
-    } = this.openSubNavElements;
+    var isExpanded = this.openSubNavElements.isExpanded;
 
     if (e.key === 'Escape' && isExpanded) {
       this.toggleSubnavDesktop(true);
@@ -311,9 +333,7 @@
   };
 
   Navigation.prototype.saveElements = function saveElements(e) {
-    const {
-      currentTarget
-    } = e;
+    var currentTarget = e.currentTarget;
     this.openSubNavElements = {
       submenu: document.getElementById(currentTarget.getAttribute('aria-controls')),
       link: currentTarget,
@@ -323,11 +343,10 @@
   };
 
   Navigation.prototype.toggleSubnavDesktop = function toggleSubnavDesktop(close) {
-    const {
-      submenu,
-      link,
-      isExpanded
-    } = this.openSubNavElements;
+    var _this$openSubNavEleme = this.openSubNavElements,
+        submenu = _this$openSubNavEleme.submenu,
+        link = _this$openSubNavEleme.link,
+        isExpanded = _this$openSubNavEleme.isExpanded;
 
     if (isExpanded || close) {
       link.setAttribute('aria-expanded', false);
@@ -343,15 +362,17 @@
   };
 
   Navigation.prototype.checkIfContainsFocus = function checkIfContainsFocus() {
-    const {
-      linkParent
-    } = this.openSubNavElements;
-    const focusWithin = linkParent.contains(document.activeElement);
+    var linkParent = this.openSubNavElements.linkParent;
+    var focusWithin = linkParent.contains(document.activeElement);
 
     if (!focusWithin) {
       this.toggleSubnavDesktop(true);
     }
   };
+
+  if (window.NodeList && !NodeList.prototype.forEach) {
+    NodeList.prototype.forEach = Array.prototype.forEach;
+  }
 
   if (!Element.prototype.closest) {
     if (!Element.prototype.matches) {
@@ -359,8 +380,8 @@
     }
 
     Element.prototype.closest = function closest(s) {
-      const el = this;
-      let ancestor = this;
+      var el = this;
+      var ancestor = this;
       if (!document.documentElement.contains(el)) return null;
 
       do {
@@ -374,18 +395,19 @@
 
   function initSite() {
     // Header Search
-    const openSearchButton = document.querySelectorAll('.js-open-search');
-    const closeSearchButton = document.querySelectorAll('.js-close-search');
-    openSearchButton.forEach(element => {
+    var openSearchButton = document.querySelectorAll('.js-open-search');
+    var closeSearchButton = document.querySelectorAll('.js-close-search');
+    openSearchButton.forEach(function (element) {
       new SiteSearch(element).init();
     });
-    closeSearchButton.forEach(element => {
+    closeSearchButton.forEach(function (element) {
       new SiteSearch(element).init();
     }); // Navigation
 
     new Navigation().init();
   }
 
+  exports.Navigation = Navigation;
   exports.SiteSearch = SiteSearch;
   exports.initSite = initSite;
 

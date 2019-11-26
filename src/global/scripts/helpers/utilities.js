@@ -50,7 +50,7 @@ export const whichTransitionEvent = () => {
     MozTransition: 'transitionend',
     WebkitTransition: 'webkitTransitionEnd',
   }
-  const found = Object.keys(transitions).find((key) => el.style[key] !== undefined)
 
-  return transitions[found]
+  const found = Object.keys(transitions).filter((key) => el.style[key] !== undefined)
+  return transitions[found[0]]
 }
