@@ -1,6 +1,10 @@
 import SiteSearch from './patterns/header/header'
 import Navigation from './components/main-navigation/main-navigation'
 
+if (window.NodeList && !NodeList.prototype.forEach) {
+  NodeList.prototype.forEach = Array.prototype.forEach
+}
+
 if (!Element.prototype.closest) {
   if (!Element.prototype.matches) {
     Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector
@@ -34,4 +38,4 @@ function initSite() {
   new Navigation().init()
 }
 
-export { initSite, SiteSearch }
+export { initSite, SiteSearch, Navigation }
