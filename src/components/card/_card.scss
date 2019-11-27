@@ -1,7 +1,125 @@
 .nsw-card{
-  @include nsw-spacing(padding, md);
   @include font-stack();
   background-color: $white;
-  border-top: solid 6px $nsw-primary-highlight;
   box-shadow: map-get($shadows, card);
+  transition: map-get($transitions, base);
+  position: relative;
+  border-radius: $border-radius;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 100%;
+  max-width: rem(400px);
+
+  &:hover{
+    box-shadow: map-get($shadows, card-hover);
+  }
+
+  &:focus-within{
+    box-shadow: map-get($shadows, card-hover);
+
+    .nsw-card__link{
+      text-decoration: none;
+    }
+
+    .nsw-card__link::after{
+      @include nsw-focus(card);
+    }
+  }
+
+  &__title{
+    @include font-stack('heading');
+    @include font-size('md');
+    @include nsw-spacing(margin, none none sm none);
+  }
+
+  &__content{
+    @include font-size('sm');
+    @include nsw-spacing(padding, md);
+    border-top: solid 6px $nsw-primary-highlight;
+
+    @include breakpoint('md'){
+      @include nsw-spacing(padding, md xl);
+    }
+
+    p{
+      @include nsw-spacing(margin, none none sm none);
+    }
+  }
+
+  &__tag{
+    @include font-stack('heading');
+  }
+
+  &__tag,
+  &__date {
+    @include font-size('xs');
+  }
+
+  &__icon{
+    @include nsw-spacing(margin, md none none none);
+  }
+
+  &__link{
+    text-decoration: none;
+    color: $dark80;
+
+    &:hover{
+      text-decoration: underline;
+    }
+
+    &:focus{
+      outline: none;
+      text-decoration: underline;
+    }
+
+    &::after{
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+    }
+  }
+}
+
+.nsw-card--media{
+  .nsw-card__image-area{
+    order: 1;
+    height: rem(200px)
+  }
+
+  .nsw-card__content{
+    order: 2;
+    border-top: 0;
+  }
+
+  .nsw-card__image{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+}
+
+.nsw-card--news{
+  .nsw-card__content{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .nsw-card__tag{
+    order: 1
+  }
+
+  .nsw-card__date{
+    order: 2
+  }
+
+  .nsw-card__title,
+  .nsw-card__copy,
+  .nsw-card__icon{
+    order: 3
+  }
 }
