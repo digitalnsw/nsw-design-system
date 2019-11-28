@@ -1,6 +1,6 @@
-@mixin nsw-focus() {
+@mixin nsw-focus($type: default) {
   outline: 0;
-  box-shadow: 0 0 0 3px $focus-color;
+  box-shadow: map-get($focuses, $type);
 }
 
 @mixin nsw-hover {
