@@ -72,12 +72,18 @@ $success-green:  #00a908 !default;
 $warning-orange: #dc5800 !default;
 $error-red:      #b81237 !default;
 
+//Box Shadows
+$shadows: (
+  menu: 0 4px 9px -5px rgba($black, 0.4),
+  card: 0 4px 12px 0 rgba($black, 0.15),
+  card-hover: 2px 6px 12px 0 rgba($black, 0.25),
+) !default;
+
 //Focus and Hover
 $focus-color: $nsw-tertiary-blue !default;
 $focuses: (
   default: 0 0 0 3px $focus-color,
-  text: 0 0 0 2px $focus-color,
-  card: inset 0 0 0 6px $focus-color
+  card: (0 0 0 3px $focus-color, map-get($shadows, card-hover))
 ) !default;
 
 $hover-colour: rgba($nsw-tertiary-blue, 0.2);
@@ -170,9 +176,3 @@ $button-variations: (
     borderHover: $light20
   ),
 )  !default;
-
-$shadows: (
-  menu: 0 4px 9px -5px rgba($black, 0.4),
-  card: 0 4px 12px 0 rgba($black, 0.15),
-  card-hover: 2px 6px 12px 0 rgba($black, 0.25),
-)

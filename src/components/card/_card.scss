@@ -16,14 +16,10 @@
   }
 
   &:focus-within{
-    box-shadow: map-get($shadows, card-hover);
+    @include nsw-focus(card);
 
     .nsw-card__link{
       text-decoration: none;
-    }
-
-    .nsw-card__link::after{
-      @include nsw-focus(card);
     }
   }
 
@@ -92,7 +88,6 @@
 
   .nsw-card__content{
     order: 2;
-    border-top: 0;
   }
 
   .nsw-card__image{
@@ -121,5 +116,12 @@
   .nsw-card__copy,
   .nsw-card__icon{
     order: 3
+  }
+}
+
+
+.nsw-card--headline{
+  .nsw-card__title{
+    @include font-size('xl')
   }
 }
