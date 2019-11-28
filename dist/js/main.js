@@ -370,6 +370,36 @@
     }
   };
 
+  function ResponsiveTables(element) {
+    var _this = this;
+
+    // this.triggerButton = element
+    // this.originalButton = document.querySelector('.js-open-search')
+    // this.targetElement = document.getElementById(this.triggerButton.getAttribute('aria-controls'))
+    // this.searchInput = this.targetElement.querySelector('.js-search-input')
+    // this.pressed = this.triggerButton.getAttribute('aria-expanded') === 'true'
+    this.table = element;
+    this.tablehead = element.getElementsByTagName('thead');
+    this.thCells = this.tablehead[0].getElementsByTagName('th');
+    this.tablebody = element.getElementsByTagName('tbody');
+    this.tdCells = Array.prototype.slice.call(this.tablebody[0].getElementsByTagName('td'));
+    this.tdCells.forEach(function (cell) {
+      var theCell = cell;
+      var headingText = _this.thCells[cell.cellIndex].textContent; // const cellStuff = cell.innerHTML
+
+      var heading = document.createElement('strong');
+      heading.classList.add('nsw-table__heading');
+      heading.innerHTML = headingText;
+      theCell.appendChild(heading);
+      theCell.insertAdjacentElement('afterbegin', heading);
+      theCell.setAttribute('data-th', _this.thCells[cell.cellIndex].innerHTML);
+    }); // $('td').each (function() {
+    //   var th = $(this).closest('table').find('th').eq( this.cellIndex );
+    //   var thContent = $(th).html();
+    //   $(this).attr('data-th',thContent);
+    // });
+  } // ResponsiveTables.prototype.init = function init() {
+
   if (window.NodeList && !NodeList.prototype.forEach) {
     NodeList.prototype.forEach = Array.prototype.forEach;
   }
@@ -397,6 +427,7 @@
     // Header Search
     var openSearchButton = document.querySelectorAll('.js-open-search');
     var closeSearchButton = document.querySelectorAll('.js-close-search');
+    var responsiveTables = document.querySelectorAll('.js-responsive-table');
     openSearchButton.forEach(function (element) {
       new SiteSearch(element).init();
     });
@@ -405,9 +436,13 @@
     }); // Navigation
 
     new Navigation().init();
+    responsiveTables.forEach(function (element) {
+      new ResponsiveTables(element).init();
+    });
   }
 
   exports.Navigation = Navigation;
+  exports.ResponsiveTables = ResponsiveTables;
   exports.SiteSearch = SiteSearch;
   exports.initSite = initSite;
 

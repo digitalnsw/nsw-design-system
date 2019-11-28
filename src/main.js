@@ -1,5 +1,6 @@
 import SiteSearch from './patterns/header/header'
 import Navigation from './components/main-navigation/main-navigation'
+import ResponsiveTables from './styles/tables/tables'
 
 if (window.NodeList && !NodeList.prototype.forEach) {
   NodeList.prototype.forEach = Array.prototype.forEach
@@ -25,6 +26,7 @@ function initSite() {
   // Header Search
   const openSearchButton = document.querySelectorAll('.js-open-search')
   const closeSearchButton = document.querySelectorAll('.js-close-search')
+  const responsiveTables = document.querySelectorAll('.js-responsive-table')
 
   openSearchButton.forEach((element) => {
     new SiteSearch(element).init()
@@ -36,6 +38,13 @@ function initSite() {
 
   // Navigation
   new Navigation().init()
+
+
+  responsiveTables.forEach((element) => {
+    new ResponsiveTables(element).init()
+  })
 }
 
-export { initSite, SiteSearch, Navigation }
+export {
+  initSite, SiteSearch, Navigation, ResponsiveTables,
+}
