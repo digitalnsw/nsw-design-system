@@ -1,3 +1,24 @@
-<div class="nsw-content nsw-container">
-	<h1>Card</h1>      
+<div class="nsw-card {{#if theme}}nsw-card--{{theme}}{{/if}}">
+    <div class="nsw-card__content">
+        <h2 class="nsw-card__title">
+          <a href="#" class="nsw-card__link">{{heading}}</a>
+        </h2>
+        {{#if tag}}
+        <p class="nsw-card__tag">{{tag}}</p>
+        {{/if}}
+        {{#if date}}
+        <p class="nsw-card__date">
+          <time datetime="{{date.machine}}">{{date.human}}</time>
+        </p>
+        {{/if}}
+        <p class="nsw-card__copy">{{copy}}</p>
+        <svg class="nsw-icon nsw-card__icon" focusable="false" aria-hidden="true">
+          <use xlink:href="#arrow"></use>
+        </svg>
+    </div>
+    {{#if img}}
+    <div class="nsw-card__image-area">
+        <img src="{{img}}" alt="" class="nsw-card__image">
+    </div>
+    {{/if}}
 </div>
