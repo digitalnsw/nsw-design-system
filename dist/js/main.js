@@ -371,34 +371,40 @@
   };
 
   function ResponsiveTables(element) {
-    var _this = this;
-
-    // this.triggerButton = element
-    // this.originalButton = document.querySelector('.js-open-search')
-    // this.targetElement = document.getElementById(this.triggerButton.getAttribute('aria-controls'))
-    // this.searchInput = this.targetElement.querySelector('.js-search-input')
-    // this.pressed = this.triggerButton.getAttribute('aria-expanded') === 'true'
     this.table = element;
     this.tablehead = element.getElementsByTagName('thead');
     this.thCells = this.tablehead[0].getElementsByTagName('th');
     this.tablebody = element.getElementsByTagName('tbody');
     this.tdCells = Array.prototype.slice.call(this.tablebody[0].getElementsByTagName('td'));
+  }
+
+  ResponsiveTables.prototype.init = function init() {
+    this.table.classList.add('nsw-table--stacked');
+    this.addHeadingContent();
+    this.enhanceWithAria();
+  };
+
+  ResponsiveTables.prototype.addHeadingContent = function addHeadingContent() {
+    var _this = this;
+
     this.tdCells.forEach(function (cell) {
       var theCell = cell;
       var headingText = _this.thCells[cell.cellIndex].textContent; // const cellStuff = cell.innerHTML
 
       var heading = document.createElement('strong');
       heading.classList.add('nsw-table__heading');
-      heading.innerHTML = headingText;
-      theCell.appendChild(heading);
-      theCell.insertAdjacentElement('afterbegin', heading);
-      theCell.setAttribute('data-th', _this.thCells[cell.cellIndex].innerHTML);
-    }); // $('td').each (function() {
-    //   var th = $(this).closest('table').find('th').eq( this.cellIndex );
-    //   var thContent = $(th).html();
-    //   $(this).attr('data-th',thContent);
-    // });
-  } // ResponsiveTables.prototype.init = function init() {
+      heading.innerHTML = "".concat(headingText, ": ");
+      theCell.insertAdjacentElement('afterbegin', heading); // theCell.setAttribute('data-th', this.thCells[cell.cellIndex].innerHTML)
+    });
+  };
+
+  ResponsiveTables.prototype.enhanceWithAria = function enhanceWithAria() {
+    this.tdCells.forEach(function (cell) {
+      var rowElement = cell.parentNode;
+      rowElement.setAttribute('role', 'row');
+      cell.setAttribute('role', 'cell');
+    });
+  }; // ResponsiveTables.prototype.showHide = function showHide() {
 
   if (window.NodeList && !NodeList.prototype.forEach) {
     NodeList.prototype.forEach = Array.prototype.forEach;
