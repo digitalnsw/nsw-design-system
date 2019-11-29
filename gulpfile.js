@@ -33,7 +33,7 @@ sass.compiler = require('node-sass')
 const postcssProcessors = [
   postcssNormalize({ forceImport: true }),
   autoprefixer,
-  // cssnano,
+  cssnano,
 ]
 
 function compileSvg() {
@@ -47,11 +47,11 @@ function compileSvg() {
 
 function buildStyles() {
   return src(config.scss.src)
-    // .pipe(sourcemaps.init())
+    .pipe(sourcemaps.init())
     .pipe(sassGlob())
     .pipe(sass().on('error', sass.logError))
     .pipe(postcss(postcssProcessors))
-    // .pipe(sourcemaps.write())
+    .pipe(sourcemaps.write())
     .pipe(dest(config.scss.build))
 }
 
