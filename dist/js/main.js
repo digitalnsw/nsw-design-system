@@ -370,6 +370,42 @@
     }
   };
 
+  function ResponsiveTables(element) {
+    this.table = element;
+    this.tablehead = element.getElementsByTagName('thead');
+    this.thCells = this.tablehead[0].getElementsByTagName('th');
+    this.tablebody = element.getElementsByTagName('tbody');
+    this.tdCells = Array.prototype.slice.call(this.tablebody[0].getElementsByTagName('td'));
+  }
+
+  ResponsiveTables.prototype.init = function init() {
+    this.table.classList.add('nsw-table--stacked');
+    this.addHeadingContent();
+    this.enhanceWithAria();
+  };
+
+  ResponsiveTables.prototype.addHeadingContent = function addHeadingContent() {
+    var _this = this;
+
+    this.tdCells.forEach(function (cell) {
+      var theCell = cell;
+      var headingText = _this.thCells[cell.cellIndex].textContent; // const cellStuff = cell.innerHTML
+
+      var heading = document.createElement('strong');
+      heading.classList.add('nsw-table__heading');
+      heading.innerHTML = "".concat(headingText, ": ");
+      theCell.insertAdjacentElement('afterbegin', heading); // theCell.setAttribute('data-th', this.thCells[cell.cellIndex].innerHTML)
+    });
+  };
+
+  ResponsiveTables.prototype.enhanceWithAria = function enhanceWithAria() {
+    this.tdCells.forEach(function (cell) {
+      var rowElement = cell.parentNode;
+      rowElement.setAttribute('role', 'row');
+      cell.setAttribute('role', 'cell');
+    });
+  }; // ResponsiveTables.prototype.showHide = function showHide() {
+
   if (window.NodeList && !NodeList.prototype.forEach) {
     NodeList.prototype.forEach = Array.prototype.forEach;
   }
@@ -397,6 +433,7 @@
     // Header Search
     var openSearchButton = document.querySelectorAll('.js-open-search');
     var closeSearchButton = document.querySelectorAll('.js-close-search');
+    var responsiveTables = document.querySelectorAll('.js-responsive-table');
     openSearchButton.forEach(function (element) {
       new SiteSearch(element).init();
     });
@@ -405,9 +442,13 @@
     }); // Navigation
 
     new Navigation().init();
+    responsiveTables.forEach(function (element) {
+      new ResponsiveTables(element).init();
+    });
   }
 
   exports.Navigation = Navigation;
+  exports.ResponsiveTables = ResponsiveTables;
   exports.SiteSearch = SiteSearch;
   exports.initSite = initSite;
 
