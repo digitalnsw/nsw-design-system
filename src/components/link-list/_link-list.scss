@@ -1,0 +1,43 @@
+.nsw-link-list {
+  @include font-stack('heading');
+  @include font-size('md');
+
+  &__list {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  }
+
+  &__item{
+    border-top: 1px solid $light40;
+
+    &:last-child {
+      border-bottom: 1px solid $light40;
+      }    
+  }
+
+  &__link {
+    @include nsw-spacing(padding, md);
+    color: $dark80; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-decoration: none;
+    }
+
+  &__link:hover{
+    @include nsw-hover;
+    }
+
+  &__link:focus{
+    @include nsw-focus;
+    }
+
+  &__icon {
+    @include nsw-spacing(margin-left, md);
+    width: rem(24px);
+    height: rem(24px);
+    flex: none;
+    }
+
+}
