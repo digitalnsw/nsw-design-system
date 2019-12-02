@@ -33,3 +33,22 @@
     }
   }
 }
+
+// break out of the nsw-container class
+@mixin breakOut($position: relative) {
+  width: 100vw;
+  position: $position;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+
+@mixin breakOutReset {
+  width: auto;
+  position: static;
+  margin-left: auto;
+  margin-right: auto;
+  left: auto;
+  right: auto;
+}

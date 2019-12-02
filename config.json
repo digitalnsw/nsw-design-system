@@ -11,7 +11,7 @@
   },
   "js": {
     "src": "./src/main.js",
-    "watch": "./src/**/*.js",
+    "watch": ["./src/main.js", "./src/components/**/*.js", "./src/global/scripts/**/*.js", "./src/styles/**/*.js"],
     "build": "./dist/js/"
   },
   "svg": {
@@ -46,7 +46,7 @@
       "global/**/*"
     ],
     "helpers": {
-      "directory": "./src/global/helpers",
+      "directory": "./src/global/handlebars/helpers",
       "pattern": ".js"
     },
     "partials": {
@@ -69,7 +69,7 @@
     "layouts": {
       "engine": "handlebars",
       "rename": true,
-      "directory": "./src/global/layouts",
+      "directory": "./src/global/handlebars/layouts",
       "default": "layout.hbs",
       "pattern": "**/*.{hbs,md,html}"
     }

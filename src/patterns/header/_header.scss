@@ -8,19 +8,20 @@ $search-input--text-color: $dark80;
 
 .nsw-skipto{
   @include font-stack;
+  position: relative;
 
   &__link{
+    @include nsw-spacing(padding, xs md);
     background-color: $nsw-primary-blue;
     color: $skip-tp--text-color;
     transform: translateY(-101%);
-    padding: rem(8px) 0;
     display: block;
     text-align: center;
     width: 100%;
     position: absolute;
     z-index: 2;
     top: 0;
-    left: auto;
+    left: 0;
     text-decoration: none;
 
     &:focus,
@@ -41,9 +42,9 @@ $search-input--text-color: $dark80;
 
 .nsw-infobar{
   @include font-stack;
+  @include nsw-spacing(padding, sm none);
   background-color: $infobar--bg;
   color: $infobar--text-color;
-  padding: rem(12px) 0;
 
   p{
     margin: 0;
@@ -53,10 +54,15 @@ $search-input--text-color: $dark80;
 
 .nsw-header{
   background-color: $header--bg;
+  position: relative;
+
+  &__container{
+    @include container;
+    position: relative;
+  }
 
   &__wrapper{
-    padding-top: rem(12px);
-    padding-bottom: rem(12px);
+    @include nsw-spacing(padding, sm none);
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -113,7 +119,6 @@ $search-input--text-color: $dark80;
 }
 
 .nsw-header-btn{
-  $parent: &;
   color: $header-button--text-color;
   width: rem(48px);
   height: rem(48px);
@@ -122,6 +127,7 @@ $search-input--text-color: $dark80;
   padding: 0;
   text-align: center;
   position: relative;
+  border-radius: $border-radius;
 
   &:hover{
     @include nsw-hover;
@@ -150,7 +156,6 @@ $search-input--text-color: $dark80;
 
 .nsw-header-btn--search{
   @include breakpoint('sm'){
-    border-radius: rem($border-radius);
 
     .nsw-header-btn__sub{
       @include sr-only;
@@ -166,21 +171,15 @@ $search-input--text-color: $dark80;
 .nsw-search{
 
   &__area{
+    @include breakOut(absolute);
     background: $light10;
-    width: 100vw;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
-    position: absolute;
     top: 0;
 
     @include breakpoint('sm'){
-      margin-left: auto;
-      margin-right: auto;
-      left: auto;
+      @include breakOutReset;
+      position: absolute;
       width: rem(394px);
-      right: 0;
+      right: rem(16px);
       top: 50%;
       transform: translateY(-50%);
     }
@@ -202,9 +201,10 @@ $search-input--text-color: $dark80;
     }
 
     @include breakpoint('sm'){
+      @include nsw-spacing(padding, none md);
       height: rem(50px);
       padding: 0 rem(16px);
-      border-radius: rem($border-radius);
+      border-radius: $border-radius;
     }
   }
 

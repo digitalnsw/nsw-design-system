@@ -3,13 +3,12 @@
 // Base font size
 $base-font-size: 16px;
 
-// unit used for all type and grid calculations
-$unit: 4 !default;
-
 // primary font stack
 $font-stack: 'Montserrat', Arial, sans-serif !default;
-$font-weight-regular: 400 !default;
-$font-weight-heading: 600 !default;
+$font-weight: (
+  regular: 400,
+  heading: 600,
+) !default;
 
 //Font sizes presets (mobile, desktop)
 $font-sizes: (
@@ -30,9 +29,12 @@ $line-height: (
   default:  1.25,
 ) !default;
 
-$transition-base:           all 0.25s ease-in-out !default;
-$border-radius:             4px !default;
-$border-width:              1px !default;
+$transitions: (
+  base: all 0.25s ease-in-out,
+) !default;
+
+$border-radius: 4px !default;
+$border-width: 1px !default;
 
 // Spacing - Used with margin and padding
 $spacing-sizes: (
@@ -70,8 +72,20 @@ $success-green:  #00a908 !default;
 $warning-orange: #dc5800 !default;
 $error-red:      #b81237 !default;
 
+//Box Shadows
+$shadows: (
+  menu: 0 4px 9px -5px rgba($black, 0.4),
+  card: 0 4px 12px 0 rgba($black, 0.15),
+  card-hover: 2px 6px 12px 0 rgba($black, 0.25),
+) !default;
+
 //Focus and Hover
 $focus-color: $nsw-tertiary-blue !default;
+$focuses: (
+  default: 0 0 0 3px $focus-color,
+  card: (0 0 0 3px $focus-color, map-get($shadows, card-hover))
+) !default;
+
 $hover-colour: rgba($nsw-tertiary-blue, 0.2);
 
 //Links

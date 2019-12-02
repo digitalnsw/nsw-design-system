@@ -15,3 +15,16 @@
     }
   }
 }
+
+@mixin container($offset: $container-offset){
+  max-width: rem($container-max-width);
+  padding-left: rem($offset);
+  padding-right: rem($offset);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@mixin container-flush {
+  padding-left: 0;
+  padding-right: 0;
+}
