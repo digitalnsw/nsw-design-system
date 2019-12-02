@@ -389,12 +389,11 @@
 
     this.tdCells.forEach(function (cell) {
       var theCell = cell;
-      var headingText = _this.thCells[cell.cellIndex].textContent; // const cellStuff = cell.innerHTML
-
+      var headingText = _this.thCells[cell.cellIndex].textContent;
       var heading = document.createElement('strong');
       heading.classList.add('nsw-table__heading');
       heading.innerHTML = "".concat(headingText, ": ");
-      theCell.insertAdjacentElement('afterbegin', heading); // theCell.setAttribute('data-th', this.thCells[cell.cellIndex].innerHTML)
+      theCell.insertAdjacentElement('afterbegin', heading);
     });
   };
 
@@ -404,7 +403,7 @@
       rowElement.setAttribute('role', 'row');
       cell.setAttribute('role', 'cell');
     });
-  }; // ResponsiveTables.prototype.showHide = function showHide() {
+  };
 
   if (window.NodeList && !NodeList.prototype.forEach) {
     NodeList.prototype.forEach = Array.prototype.forEach;

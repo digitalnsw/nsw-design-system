@@ -16,12 +16,10 @@ ResponsiveTables.prototype.addHeadingContent = function addHeadingContent() {
   this.tdCells.forEach((cell) => {
     const theCell = cell
     const headingText = this.thCells[cell.cellIndex].textContent
-    // const cellStuff = cell.innerHTML
     const heading = document.createElement('strong')
     heading.classList.add('nsw-table__heading')
     heading.innerHTML = `${headingText}: `
     theCell.insertAdjacentElement('afterbegin', heading)
-    // theCell.setAttribute('data-th', this.thCells[cell.cellIndex].innerHTML)
   })
 }
 
@@ -32,18 +30,5 @@ ResponsiveTables.prototype.enhanceWithAria = function enhanceWithAria() {
     cell.setAttribute('role', 'cell')
   })
 }
-
-
-// ResponsiveTables.prototype.showHide = function showHide() {
-//   if (this.pressed) {
-//     this.targetElement.hidden = true
-//     this.originalButton.hidden = false
-//     this.originalButton.focus()
-//   } else {
-//     this.targetElement.hidden = false
-//     this.originalButton.hidden = true
-//     this.searchInput.focus()
-//   }
-// }
 
 export default ResponsiveTables
