@@ -1,0 +1,22 @@
+.nsw-tags-list {
+  @include font-stack('heading');
+
+  &__tag {
+    @include nsw-spacing(margin, none md md none);
+    @include nsw-spacing(padding, md);
+    @include font-size('md');
+    border: 2px solid $light40;
+  }
+
+  &__tag:hover{
+    @include nsw-hover;
+    }
+
+  &__tag:focus{
+    @include nsw-focus;
+    }
+
+  &__tag.selected{
+    @include nsw-focus;
+    }
+}
