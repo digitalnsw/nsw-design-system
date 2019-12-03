@@ -1,11 +1,14 @@
 .nsw-tags-list {
-  @include font-stack('heading');
+  @include nsw-spacing(margin, lg none );
 
   &__tag {
+    @include font-stack('body');
     @include nsw-spacing(margin, none md md none);
-    @include nsw-spacing(padding, md);
-    @include font-size('md');
+    @include nsw-spacing(padding, xs sm );
+    @include font-size('sm');
     border: 2px solid $light40;
+    border-radius: $border-radius;
+    background-color: $white;
   }
 
   &__tag:hover{
@@ -17,6 +20,8 @@
     }
 
   &__tag.selected{
-    @include nsw-focus;
+    background-color: $nsw-primary-blue;
+    border-color: $nsw-primary-blue;
+    color: $white;
     }
 }
