@@ -1,0 +1,25 @@
+.nsw-direction-link {
+	@include font-stack('heading');
+  	@include font-size('sm');
+	@include nsw-spacing(margin-right, md);
+	color: $dark80;
+	text-decoration: none;
+
+	.nsw-icon {
+	    width: rem(16px);
+   	 	height: rem(16px);
+		vertical-align: middle;
+
+		&.icon-back {
+			transform: rotate(-180deg);
+		}
+
+		&.icon-top {
+			transform: rotate(-90deg);
+		}
+
+		&.icon-bottom {
+			transform: rotate(90deg);
+		}
+	}
+}
