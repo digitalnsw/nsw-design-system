@@ -1,0 +1,24 @@
+.nsw-tag {
+  @include nsw-spacing(margin, lg none );
+  @include font-stack('body');
+  @include nsw-spacing(margin, none xs xs none);
+  @include nsw-spacing(padding, xs sm );
+  @include font-size('sm');
+  border: 2px solid $light40;
+  border-radius: $border-radius;
+  background-color: $white;
+
+  &:hover {
+    @include nsw-hover;
+  }
+
+  &:focus {
+    @include nsw-focus;
+  }
+
+  &.is-selected{
+    background-color: $nsw-secondary-blue;
+    border-color: $nsw-secondary-blue;
+    color: $white;
+  }
+}
