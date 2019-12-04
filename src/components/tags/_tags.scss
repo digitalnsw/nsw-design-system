@@ -1,28 +1,24 @@
-.nsw-tags-list {
+.nsw-tag {
   @include nsw-spacing(margin, lg none );
-  font-size: 0;
+  @include font-stack('body');
+  @include nsw-spacing(margin, none xs xs none);
+  @include nsw-spacing(padding, xs sm );
+  @include font-size('sm');
+  border: 2px solid $light40;
+  border-radius: $border-radius;
+  background-color: $white;
 
-  &__tag {
-    @include font-stack('body');
-    @include nsw-spacing(margin, none xs xs none);
-    @include nsw-spacing(padding, xs sm );
-    @include font-size('sm');
-    border: 2px solid $light40;
-    border-radius: $border-radius;
-    background-color: $white;
+  &:hover {
+    @include nsw-hover;
   }
 
-  &__tag:hover{
-    @include nsw-hover;
-    }
-
-  &__tag:focus{
+  &:focus {
     @include nsw-focus;
-    }
+  }
 
-  &__tag.selected{
+  &.selected{
     background-color: $nsw-secondary-blue;
     border-color: $nsw-secondary-blue;
     color: $white;
-    }
+  }
 }
