@@ -143,6 +143,11 @@ function lintJavascript() {
     .pipe(eslint.failOnError())
 }
 
+function copyFavicon() {
+  return src(config.favicon.src)
+    .pipe(dest(config.favicon.build))
+}
+
 const styles = series(lintStyles, buildStyles)
 const javascript = series(lintJavascript, compileJS)
 
@@ -156,6 +161,7 @@ function watchFiles(done) {
 
 const build = series(
   cleanUp,
+  copyFavicon,
   metalsmithBuild,
   styles,
   javascript,
@@ -165,6 +171,7 @@ const build = series(
 
 const dev = series(
   cleanUp,
+  copyFavicon,
   metalsmithBuild,
   styles,
   javascript,
