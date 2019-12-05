@@ -1,0 +1,82 @@
+.nsw-pagination{
+  @include font-stack('heading');
+  @include nsw-spacing(margin, lg none none none);
+  display: flex;
+  padding-left: 0;
+  list-style: none;
+
+  &__item{
+    @include nsw-spacing(margin, none none none xs);
+
+    &:nth-child(2){
+      @include nsw-spacing(margin-left, none);
+    }
+  }
+
+  &__link{
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    color: $dark80;
+    padding: rem(4px) rem(8px);
+    min-width: rem(24px);
+    position: relative;
+
+    &:hover{
+      @include nsw-hover
+    }
+
+    &:focus{
+      @include nsw-focus
+    }
+
+    &.is-current::after{
+      position: absolute;
+      content: '';
+      bottom: 0;
+      width: 80%;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 2px;
+      background-color: $nsw-primary-blue;
+    }
+
+    &.is-disabled{
+      color: $light40;
+      cursor: not-allowed;
+      background: none;
+    }
+  }
+
+  &__text{
+    vertical-align: middle;
+  }
+
+  &__arrows{
+    width: rem(16px);
+    height: rem(16px);
+    vertical-align: middle;
+
+    .is-disabled & {
+      fill: $light40;
+    }
+  }
+}
+
+.nsw-pagination__item--next-page{
+  @include nsw-spacing(margin, none none none md);
+
+  .nsw-pagination__arrows{
+    @include nsw-spacing(margin-left, xs);
+  }
+}
+
+.nsw-pagination__item--prev-page{
+  @include nsw-spacing(margin, none md none none);
+
+  .nsw-pagination__arrows{
+    @include nsw-spacing(margin-right, xs);
+    transform: rotate(180deg);
+  }
+}
