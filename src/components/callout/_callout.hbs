@@ -1,3 +1,11 @@
-<div class="nsw-content nsw-container">
-	<h1>Call out</h1>      
+<div class="nsw-callout">
+  {{#if icon}}<svg class="nsw-icon nsw-callout__icon" focusable="false" aria-hidden="true">
+    <use xlink:href="#{{icon}}"></use>
+  </svg>
+  {{/if}}
+  <div class="nsw-callout__content">
+    {{#if heading}}<h4 class="nsw-callout__title">{{heading}}</h4>{{/if}}
+    <p>{{copy}}</p>
+    {{#if link}}<a href="{{link.href}}" class="nsw-text-link">{{link.text}}</a>{{/if}}
+  </div>
 </div>
