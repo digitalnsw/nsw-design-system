@@ -1,0 +1,53 @@
+.nsw-notification{
+  @include nsw-spacing(padding, md);
+  background: $light10;
+  position: relative;
+  border-left: solid 6px $nsw-primary-blue;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+
+  @include breakpoint('sm'){
+    @include nsw-spacing(padding, lg lg lg md);
+  }
+
+  &__icon{
+    @include nsw-spacing(margin-right, md);
+    flex: 0 0 auto;
+    width: rem(24px);
+    height: rem(24px);
+
+    @include breakpoint('sm'){
+      width: rem(30px);
+      height: rem(30px);
+    }
+  }
+
+  &__content{
+    @include font-stack;
+
+    p{
+      @include nsw-spacing(margin, sm none none none)
+    }
+
+    .nsw-text-link{
+      @include nsw-spacing(margin-top, sm)
+    }
+  }
+
+  &__title{
+    @include font-stack('heading');
+    margin: 0;
+  }
+
+  @each $color, $variant in $notification {
+    &--#{$color} {
+      background-color: map-get($variant, bg);
+      border-color: map-get($variant, border);
+
+      .nsw-notification__icon{
+        fill: map-get($variant, fill);
+      }
+    }
+  }
+}
