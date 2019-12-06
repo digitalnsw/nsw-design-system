@@ -1,4 +1,21 @@
 ---
-title: Notification [INCOMPLETE]
+title: Notification
+model:
+  info: notification-info.json
+  error: notification-error.json
+  warning: notification-warning.json
+  success: notification-success.json
 ---
-{{>_notification}}
+
+<div class="nsw-container">
+	{{>_notification model.info}}
+</div>
+<div class="nsw-container">
+	{{>_notification model.error}}
+</div>
+<div class="nsw-container">
+	{{>_notification model.warning}}
+</div>
+<div class="nsw-container">
+	{{>_notification model.success}}
+</div>
