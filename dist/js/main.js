@@ -80,6 +80,11 @@
     });
     return transitions[found[0]];
   };
+  var popupWindow = function popupWindow(url, width, height) {
+    var y = window.top.outerHeight / 2 + window.top.screenY - height / 2;
+    var x = window.top.outerWidth / 2 + window.top.screenX - width / 2;
+    window.open(url, '', "toolbar=no,location=no,directories=no, status=no,\n    menubar=no, scrollbars=no, resizable=no, copyhistory=no,\n    width=".concat(width, ", height=").concat(height, ", top=").concat(y, ", left=").concat(x));
+  };
 
   function Navigation() {
     var _this = this;
@@ -405,6 +410,27 @@
     });
   };
 
+  function ShareThis() {
+    this.sharelinks = document.querySelectorAll('.js-share-this');
+  }
+
+  ShareThis.prototype.init = function init() {
+    this.controls();
+  };
+
+  ShareThis.prototype.controls = function controls() {
+    var _this = this;
+
+    this.sharelinks.forEach(function (element) {
+      element.addEventListener('click', _this.popup, false);
+    });
+  };
+
+  ShareThis.prototype.popup = function popup(e) {
+    e.preventDefault();
+    popupWindow(this.href, 600, 600);
+  };
+
   if (window.NodeList && !NodeList.prototype.forEach) {
     NodeList.prototype.forEach = Array.prototype.forEach;
   }
@@ -444,6 +470,7 @@
     responsiveTables.forEach(function (element) {
       new ResponsiveTables(element).init();
     });
+    new ShareThis().init();
   }
 
   exports.Navigation = Navigation;
