@@ -1,0 +1,58 @@
+---
+title: Full Width Page
+model:
+    nav-basic: ../../components/main-navigation/main-navigation.json
+    nav-mega: ../../components/main-navigation/mega-navigation.json
+    breadcrumbs: ../../components/breadcrumbs/breadcrumbs.json
+    footer: ../../patterns/footer/footer.json
+    hero-banner: ../../components/hero-banner/hero-banner.json
+    card-media: ../../components/card/card-media.json
+    link-list: ../../components/link-list/link-list.json
+
+---
+{{>_header}}
+{{>_main-navigation model.nav-basic}}
+
+<div class="nsw-wysiwyg-content nsw-container">
+  {{>_breadcrumbs model.breadcrumbs}}
+</div>
+
+{{>_hero-banner model.hero-banner}}
+<div class="nsw-wysiwyg-content nsw-container" style="border:1px solid red;">
+  <h1>Some WYSYIWYG Content</h1>
+  <p>Lorem ipsum dolor sit amet, <a href="#">consectetur adipiscing elit</a>, sed do eiusmod tempor incididunt ut <a href="#">labore et dolore magna</a> aliqua. Ut enim ad minim veniam, <a href="#">quis nostrud exercitation</a> ullamco laboris nisi ut aliquip ex ea c</p>
+  <p>Lorem ipsum dolor sit amet, <a href="#">consectetur adipiscing elit</a>, sed do eiusmod tempor incididunt ut <a href="#">labore et dolore magna</a> aliqua. Ut enim ad minim veniam, <a href="#">quis nostrud exercitation</a> ullamco laboris nisi ut aliquip ex ea c</p>
+  {{>_button type="submit" style="primary" text="Submit Button"}}
+  {{>_button type="submit" style="primary" text="Submit Button"}}
+  {{>_button-link url="#" style="white" text="Link"}}
+</div>
+<div class="nsw-wysiwyg-content nsw-container">
+  <div class="nsw-grid">
+    <div class="nsw-col nsw-col--quarter">{{>_card model.card-media}}</div>
+    <div class="nsw-col nsw-col--quarter">{{>_card model.card-media}}</div>
+    <div class="nsw-col nsw-col--quarter">{{>_card model.card-media}}</div>
+    <div class="nsw-col nsw-col--quarter">{{>_card model.card-media}}</div>
+  </div>
+  <div class="nsw-grid">
+    <div class="nsw-col nsw-col--quarter">{{>_card model.card-media}}</div>
+    <div class="nsw-col nsw-col--quarter">{{>_card model.card-media}}</div>
+    <div class="nsw-col nsw-col--quarter">{{>_card model.card-media}}</div>
+    <div class="nsw-col nsw-col--quarter">{{>_card model.card-media}}</div>
+  </div>
+  <div class="nsw-grid">
+    <div class="nsw-col nsw-col--quarter">{{>_card model.card-media}}</div>
+    <div class="nsw-col nsw-col--quarter">{{>_card model.card-media}}</div>
+    <div class="nsw-col nsw-col--quarter">{{>_card model.card-media}}</div>
+    <div class="nsw-col nsw-col--quarter">{{>_card model.card-media}}</div>
+  </div>
+
+  <div class="nsw-grid">
+    <div class="nsw-col nsw-col--half">{{>_link-list model.link-list}}</div>
+    <div class="nsw-col nsw-col--half">{{>_link-list model.link-list}}</div>
+  </div>
+  <div class="nsw-grid">
+    {{>_pagination}}
+  </div>
+</div>
+
+{{>_footer model.footer}}
