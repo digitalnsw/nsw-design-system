@@ -165,8 +165,7 @@ const build = series(
   metalsmithBuild,
   styles,
   javascript,
-  compileSvg,
-  surgeDeploy,
+  compileSvg
 )
 
 const dev = series(
@@ -180,12 +179,19 @@ const dev = series(
   browserSync,
 )
 
+const deploy = series(
+  build,
+  surgeDeploy
+)
+
+
 // Export commands.
 exports.scss = buildStyles // $ gulp sass - compiles the sass
 exports.watch = watchFiles // $ gulp watch - watches the files
 exports.lint = lintStyles // $ gulp lint - lints the sass
 exports.svg = compileSvg // $ gulp svg - creates svg sprite
-exports.build = build // $ gulp build - builds the files and deploys
+exports.build = build // $ gulp build - builds the files
+exports.surge = deploy // $ gulp surge - builds the files and deploys to surge
 exports.clean = cleanUp // $ gulp clean - clean the dist directory
 exports.metal = metalsmithBuild // gulp metal - generates static site of components
 exports.js = javascript // gulp js - compiles the js
