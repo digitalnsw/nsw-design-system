@@ -8,12 +8,12 @@ const askQuestions = () => {
       type: 'list',
       name: 'FOLDERTYPE',
       message: 'What are we creating?',
-      choices: ['component', 'pattern', 'style'],
+      choices: ['component', 'pattern', 'style', 'page'],
     },
     {
       name: 'FOLDERNAME',
       type: 'input',
-      message: 'What is the name of the component/pattern/style?',
+      message: 'What is the name of the component/pattern/style/page?',
     },
   ]
   return inquirer.prompt(questions)
