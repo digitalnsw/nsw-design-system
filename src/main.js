@@ -1,6 +1,7 @@
 import SiteSearch from './patterns/header/header'
 import Navigation from './components/main-navigation/main-navigation'
 import ResponsiveTables from './styles/tables/tables'
+import Accordion from './components/accordion/accordion'
 
 if (window.NodeList && !NodeList.prototype.forEach) {
   NodeList.prototype.forEach = Array.prototype.forEach
@@ -27,6 +28,7 @@ function initSite() {
   const openSearchButton = document.querySelectorAll('.js-open-search')
   const closeSearchButton = document.querySelectorAll('.js-close-search')
   const responsiveTables = document.querySelectorAll('.js-responsive-table')
+  const accordions = document.querySelectorAll('.js-accordion')
 
   openSearchButton.forEach((element) => {
     new SiteSearch(element).init()
@@ -43,8 +45,12 @@ function initSite() {
   responsiveTables.forEach((element) => {
     new ResponsiveTables(element).init()
   })
+
+  accordions.forEach((element) => {
+    new Accordion(element).init()
+  })
 }
 
 export {
-  initSite, SiteSearch, Navigation, ResponsiveTables,
+  initSite, SiteSearch, Navigation, ResponsiveTables, Accordion,
 }

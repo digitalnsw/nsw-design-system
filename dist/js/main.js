@@ -405,6 +405,78 @@
     });
   };
 
+  function Accordion(element) {
+    var _this = this;
+
+    this.accordion = element;
+    this.headings = element.querySelectorAll('h2');
+    this.buttons = [];
+    this.content = [];
+
+    this.showHideEvent = function (e) {
+      return _this.showHide(e);
+    };
+  }
+
+  Accordion.prototype.init = function init() {// this.setUpDom()
+    // this.controls()
+  };
+
+  Accordion.prototype.setUpDom = function setUpDom() {
+    var _this2 = this;
+
+    this.accordion.classList.add('js-ready');
+    this.headings.forEach(function (heading) {
+      var headingElem = heading;
+      var contentElem = heading.nextElementSibling;
+
+      var buttonFrag = _this2.createButtons(heading);
+
+      headingElem.textContent = '';
+      headingElem.appendChild(buttonFrag);
+      var buttonElem = headingElem.getElementsByTagName('button')[0];
+      contentElem.hidden = true;
+
+      _this2.content.push(contentElem);
+
+      _this2.buttons.push(buttonElem); // console.log(contentElem.querySelector('.nsw-accordion__body').offsetHeight)
+
+    });
+  };
+
+  Accordion.prototype.createButtons = function createButtons(heading) {
+    var fragment = document.createDocumentFragment();
+    var button = document.createElement('button');
+    button.textContent = heading.textContent;
+    button.setAttribute('type', 'button');
+    button.setAttribute('aria-expanded', 'false');
+    button.classList.add('nsw-accordion__button');
+    button.insertAdjacentHTML('beforeend', "\n  <svg class=\"nsw-icon nsw-accordion__icon\" focusable=\"false\" aria-hidden=\"true\">\n    <use xlink:href=\"#chevron\"></use>\n  </svg>\n  ");
+    fragment.appendChild(button);
+    return fragment;
+  };
+
+  Accordion.prototype.controls = function controls() {
+    var _this3 = this;
+
+    this.buttons.forEach(function (element) {
+      element.addEventListener('click', _this3.showHideEvent, false);
+    });
+  };
+
+  Accordion.prototype.showHide = function showHide(e) {
+    var currentTarget = e.currentTarget;
+    var currentIndex = this.buttons.indexOf(currentTarget);
+    var targetContent = this.content[currentIndex];
+    var isHidden = targetContent.hidden;
+
+    if (isHidden) {
+      targetContent.hidden = false;
+    } else {
+      targetContent.hidden = true;
+    }
+  };
+
   if (window.NodeList && !NodeList.prototype.forEach) {
     NodeList.prototype.forEach = Array.prototype.forEach;
   }
@@ -433,6 +505,7 @@
     var openSearchButton = document.querySelectorAll('.js-open-search');
     var closeSearchButton = document.querySelectorAll('.js-close-search');
     var responsiveTables = document.querySelectorAll('.js-responsive-table');
+    var accordions = document.querySelectorAll('.js-accordion');
     openSearchButton.forEach(function (element) {
       new SiteSearch(element).init();
     });
@@ -444,8 +517,12 @@
     responsiveTables.forEach(function (element) {
       new ResponsiveTables(element).init();
     });
+    accordions.forEach(function (element) {
+      new Accordion(element).init();
+    });
   }
 
+  exports.Accordion = Accordion;
   exports.Navigation = Navigation;
   exports.ResponsiveTables = ResponsiveTables;
   exports.SiteSearch = SiteSearch;
