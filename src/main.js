@@ -1,6 +1,7 @@
 import SiteSearch from './patterns/header/header'
 import Navigation from './components/main-navigation/main-navigation'
 import ResponsiveTables from './styles/tables/tables'
+import ShareThis from './components/social-bar/social-bar'
 
 if (window.NodeList && !NodeList.prototype.forEach) {
   NodeList.prototype.forEach = Array.prototype.forEach
@@ -43,6 +44,8 @@ function initSite() {
   responsiveTables.forEach((element) => {
     new ResponsiveTables(element).init()
   })
+
+  new ShareThis().init()
 }
 
 export {
