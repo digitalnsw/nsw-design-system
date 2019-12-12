@@ -80,6 +80,10 @@
     });
     return transitions[found[0]];
   };
+  var uniqueId = function uniqueId(prefix) {
+    var prefixValue = prefix === undefined ? 'nsw' : prefix;
+    return "".concat(prefixValue, "-").concat(Math.random().toString(36).substr(2, 16));
+  };
   var popupWindow = function popupWindow(url, width, height) {
     var y = window.top.outerHeight / 2 + window.top.screenY - height / 2;
     var x = window.top.outerWidth / 2 + window.top.screenX - width / 2;
@@ -410,6 +414,85 @@
     });
   };
 
+  function Accordion(element) {
+    var _this = this;
+
+    this.accordion = element;
+    this.headings = element.querySelectorAll('h2');
+    this.buttons = [];
+    this.content = [];
+
+    this.showHideEvent = function (e) {
+      return _this.showHide(e);
+    };
+  }
+
+  Accordion.prototype.init = function init() {
+    this.setUpDom();
+    this.controls();
+  };
+
+  Accordion.prototype.setUpDom = function setUpDom() {
+    var _this2 = this;
+
+    this.accordion.classList.add('js-ready');
+    this.headings.forEach(function (heading) {
+      var headingElem = heading;
+      var contentElem = heading.nextElementSibling;
+
+      var buttonFrag = _this2.createButtons(heading);
+
+      headingElem.textContent = '';
+      headingElem.appendChild(buttonFrag);
+      var buttonElem = headingElem.getElementsByTagName('button')[0];
+      contentElem.id = buttonElem.getAttribute('aria-controls');
+      contentElem.hidden = true;
+
+      _this2.content.push(contentElem);
+
+      _this2.buttons.push(buttonElem);
+    });
+  };
+
+  Accordion.prototype.createButtons = function createButtons(heading) {
+    var fragment = document.createDocumentFragment();
+    var button = document.createElement('button');
+    var uID = uniqueId('accordion');
+    button.textContent = heading.textContent;
+    button.setAttribute('type', 'button');
+    button.setAttribute('aria-expanded', 'false');
+    button.setAttribute('aria-controls', uID);
+    button.classList.add('nsw-accordion__button');
+    button.insertAdjacentHTML('beforeend', "\n  <svg class=\"nsw-icon nsw-accordion__icon\" focusable=\"false\" aria-hidden=\"true\">\n    <use xlink:href=\"#chevron\"></use>\n  </svg>\n  ");
+    fragment.appendChild(button);
+    return fragment;
+  };
+
+  Accordion.prototype.controls = function controls() {
+    var _this3 = this;
+
+    this.buttons.forEach(function (element) {
+      element.addEventListener('click', _this3.showHideEvent, false);
+    });
+  };
+
+  Accordion.prototype.showHide = function showHide(e) {
+    var currentTarget = e.currentTarget;
+    var currentIndex = this.buttons.indexOf(currentTarget);
+    var targetContent = this.content[currentIndex];
+    var isHidden = targetContent.hidden;
+
+    if (isHidden) {
+      currentTarget.classList.add('is-open');
+      currentTarget.setAttribute('aria-expanded', 'true');
+      targetContent.hidden = false;
+    } else {
+      currentTarget.classList.remove('is-open');
+      currentTarget.setAttribute('aria-expanded', 'false');
+      targetContent.hidden = true;
+    }
+  };
+
   function ShareThis() {
     this.sharelinks = document.querySelectorAll('.js-share-this');
   }
@@ -459,6 +542,7 @@
     var openSearchButton = document.querySelectorAll('.js-open-search');
     var closeSearchButton = document.querySelectorAll('.js-close-search');
     var responsiveTables = document.querySelectorAll('.js-responsive-table');
+    var accordions = document.querySelectorAll('.js-accordion');
     openSearchButton.forEach(function (element) {
       new SiteSearch(element).init();
     });
@@ -470,9 +554,13 @@
     responsiveTables.forEach(function (element) {
       new ResponsiveTables(element).init();
     });
+    accordions.forEach(function (element) {
+      new Accordion(element).init();
+    });
     new ShareThis().init();
   }
 
+  exports.Accordion = Accordion;
   exports.Navigation = Navigation;
   exports.ResponsiveTables = ResponsiveTables;
   exports.SiteSearch = SiteSearch;
