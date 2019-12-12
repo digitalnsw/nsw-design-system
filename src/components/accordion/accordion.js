@@ -1,3 +1,5 @@
+import { uniqueId } from '../../global/scripts/helpers/utilities'
+
 function Accordion(element) {
   this.accordion = element
   this.headings = element.querySelectorAll('h2')
@@ -7,8 +9,8 @@ function Accordion(element) {
 }
 
 Accordion.prototype.init = function init() {
-  // this.setUpDom()
-  // this.controls()
+  this.setUpDom()
+  this.controls()
 }
 
 Accordion.prototype.setUpDom = function setUpDom() {
@@ -22,22 +24,22 @@ Accordion.prototype.setUpDom = function setUpDom() {
 
     const buttonElem = headingElem.getElementsByTagName('button')[0]
 
+    contentElem.id = buttonElem.getAttribute('aria-controls')
     contentElem.hidden = true
 
     this.content.push(contentElem)
     this.buttons.push(buttonElem)
-
-
-    // console.log(contentElem.querySelector('.nsw-accordion__body').offsetHeight)
   })
 }
 
 Accordion.prototype.createButtons = function createButtons(heading) {
   const fragment = document.createDocumentFragment()
   const button = document.createElement('button')
+  const uID = uniqueId('accordion')
   button.textContent = heading.textContent
   button.setAttribute('type', 'button')
   button.setAttribute('aria-expanded', 'false')
+  button.setAttribute('aria-controls', uID)
   button.classList.add('nsw-accordion__button')
   button.insertAdjacentHTML('beforeend', `
   <svg class="nsw-icon nsw-accordion__icon" focusable="false" aria-hidden="true">
@@ -63,8 +65,12 @@ Accordion.prototype.showHide = function showHide(e) {
   const isHidden = targetContent.hidden
 
   if (isHidden) {
+    currentTarget.classList.add('is-open')
+    currentTarget.setAttribute('aria-expanded', 'true')
     targetContent.hidden = false
   } else {
+    currentTarget.classList.remove('is-open')
+    currentTarget.setAttribute('aria-expanded', 'false')
     targetContent.hidden = true
   }
 }

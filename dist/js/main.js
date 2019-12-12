@@ -80,6 +80,10 @@
     });
     return transitions[found[0]];
   };
+  var uniqueId = function uniqueId(prefix) {
+    var prefixValue = prefix === undefined ? 'nsw' : prefix;
+    return "".concat(prefixValue, "-").concat(Math.random().toString(36).substr(2, 16));
+  };
 
   function Navigation() {
     var _this = this;
@@ -418,8 +422,9 @@
     };
   }
 
-  Accordion.prototype.init = function init() {// this.setUpDom()
-    // this.controls()
+  Accordion.prototype.init = function init() {
+    this.setUpDom();
+    this.controls();
   };
 
   Accordion.prototype.setUpDom = function setUpDom() {
@@ -435,21 +440,23 @@
       headingElem.textContent = '';
       headingElem.appendChild(buttonFrag);
       var buttonElem = headingElem.getElementsByTagName('button')[0];
+      contentElem.id = buttonElem.getAttribute('aria-controls');
       contentElem.hidden = true;
 
       _this2.content.push(contentElem);
 
-      _this2.buttons.push(buttonElem); // console.log(contentElem.querySelector('.nsw-accordion__body').offsetHeight)
-
+      _this2.buttons.push(buttonElem);
     });
   };
 
   Accordion.prototype.createButtons = function createButtons(heading) {
     var fragment = document.createDocumentFragment();
     var button = document.createElement('button');
+    var uID = uniqueId('accordion');
     button.textContent = heading.textContent;
     button.setAttribute('type', 'button');
     button.setAttribute('aria-expanded', 'false');
+    button.setAttribute('aria-controls', uID);
     button.classList.add('nsw-accordion__button');
     button.insertAdjacentHTML('beforeend', "\n  <svg class=\"nsw-icon nsw-accordion__icon\" focusable=\"false\" aria-hidden=\"true\">\n    <use xlink:href=\"#chevron\"></use>\n  </svg>\n  ");
     fragment.appendChild(button);
@@ -471,8 +478,12 @@
     var isHidden = targetContent.hidden;
 
     if (isHidden) {
+      currentTarget.classList.add('is-open');
+      currentTarget.setAttribute('aria-expanded', 'true');
       targetContent.hidden = false;
     } else {
+      currentTarget.classList.remove('is-open');
+      currentTarget.setAttribute('aria-expanded', 'false');
       targetContent.hidden = true;
     }
   };

@@ -54,3 +54,9 @@ export const whichTransitionEvent = () => {
   const found = Object.keys(transitions).filter((key) => el.style[key] !== undefined)
   return transitions[found[0]]
 }
+
+export const uniqueId = (prefix) => {
+  const prefixValue = (prefix === undefined ? 'nsw' : prefix)
+  return `${prefixValue}-${Math.random().toString(36)
+    .substr(2, 16)}`
+}
