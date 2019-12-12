@@ -60,3 +60,16 @@ export const uniqueId = (prefix) => {
   return `${prefixValue}-${Math.random().toString(36)
     .substr(2, 16)}`
 }
+
+export const popupWindow = (url, width, height) => {
+  const y = window.top.outerHeight / 2 + window.top.screenY - (height / 2)
+  const x = window.top.outerWidth / 2 + window.top.screenX - (width / 2)
+
+  window.open(
+    url,
+    '',
+    `toolbar=no,location=no,directories=no, status=no,
+    menubar=no, scrollbars=no, resizable=no, copyhistory=no,
+    width=${width}, height=${height}, top=${y}, left=${x}`,
+  )
+}

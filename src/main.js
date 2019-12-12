@@ -2,6 +2,7 @@ import SiteSearch from './patterns/header/header'
 import Navigation from './components/main-navigation/main-navigation'
 import ResponsiveTables from './styles/tables/tables'
 import Accordion from './components/accordion/accordion'
+import ShareThis from './components/social-bar/social-bar'
 
 if (window.NodeList && !NodeList.prototype.forEach) {
   NodeList.prototype.forEach = Array.prototype.forEach
@@ -49,6 +50,8 @@ function initSite() {
   accordions.forEach((element) => {
     new Accordion(element).init()
   })
+
+  new ShareThis().init()
 }
 
 export {
