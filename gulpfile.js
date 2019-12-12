@@ -165,7 +165,7 @@ const build = series(
   metalsmithBuild,
   styles,
   javascript,
-  compileSvg
+  compileSvg,
 )
 
 const dev = series(
@@ -181,7 +181,7 @@ const dev = series(
 
 const deploy = series(
   build,
-  surgeDeploy
+  surgeDeploy,
 )
 
 
