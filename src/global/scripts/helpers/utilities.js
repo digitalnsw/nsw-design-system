@@ -55,6 +55,12 @@ export const whichTransitionEvent = () => {
   return transitions[found[0]]
 }
 
+export const uniqueId = (prefix) => {
+  const prefixValue = (prefix === undefined ? 'nsw' : prefix)
+  return `${prefixValue}-${Math.random().toString(36)
+    .substr(2, 16)}`
+}
+
 export const popupWindow = (url, width, height) => {
   const y = window.top.outerHeight / 2 + window.top.screenY - (height / 2)
   const x = window.top.outerWidth / 2 + window.top.screenX - (width / 2)
