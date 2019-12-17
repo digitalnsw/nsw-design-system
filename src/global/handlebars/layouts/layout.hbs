@@ -13,14 +13,15 @@
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap" rel="stylesheet">
   <script>
     // SVG Sprite Loader
-    var svgAjax = new XMLHttpRequest(), svgDiv;
+    var svgAjax = new XMLHttpRequest();
     svgAjax.open("GET", "../../assets/svg/sprite.svg", true);
     svgAjax.send();
     svgAjax.onload = function(e) {
-      svgDiv = document.createElement("div");
-      svgDiv.innerHTML = svgAjax.responseText;
-      svgDiv.style.cssText = "display: block; width: 0; height: 0;";
-      document.body.insertBefore(svgDiv, document.body.childNodes[0]);
+      var fragment = document.createRange().createContextualFragment(svgAjax.responseText);
+      var svg = fragment.querySelector('svg')
+      svg.setAttribute('aria-hidden', true);
+      svg.style.cssText = 'position: absolute; width: 0; height: 0; overflow: hidden;'
+      document.body.insertBefore(fragment, document.body.childNodes[0]);
     };
     // Replace 'no-js' with 'js' on the html tag
     (function(e){e.className=e.className.replace(/\bno-js\b/,'js')})(document.documentElement);
