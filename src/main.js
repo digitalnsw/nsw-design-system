@@ -3,6 +3,7 @@ import Navigation from './components/main-navigation/main-navigation'
 import ResponsiveTables from './styles/tables/tables'
 import Accordion from './components/accordion/accordion'
 import ShareThis from './components/social-bar/social-bar'
+import Tabs from './components/tab-navigation/tab-navigation'
 
 if (window.NodeList && !NodeList.prototype.forEach) {
   NodeList.prototype.forEach = Array.prototype.forEach
@@ -30,6 +31,7 @@ function initSite() {
   const closeSearchButton = document.querySelectorAll('.js-close-search')
   const responsiveTables = document.querySelectorAll('.js-responsive-table')
   const accordions = document.querySelectorAll('.js-accordion')
+  const tabs = document.querySelectorAll('.js-tabs')
 
   openSearchButton.forEach((element) => {
     new SiteSearch(element).init()
@@ -51,9 +53,13 @@ function initSite() {
     new Accordion(element).init()
   })
 
+  tabs.forEach((element) => {
+    new Tabs(element).init()
+  })
+
   new ShareThis().init()
 }
 
 export {
-  initSite, SiteSearch, Navigation, ResponsiveTables, Accordion,
+  initSite, SiteSearch, Navigation, ResponsiveTables, Accordion, Tabs,
 }

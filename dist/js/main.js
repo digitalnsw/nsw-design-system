@@ -514,6 +514,60 @@
     popupWindow(this.href, 600, 600);
   };
 
+  function Tabs(element) {
+    var _this = this;
+
+    this.tab = element;
+    this.tabList = element.querySelector('ul');
+    this.tabItems = this.tabList.querySelectorAll('li');
+    this.tabContents = [];
+    this.selectedTab = null;
+
+    this.showHideEvent = function (e) {
+      return _this.showHide(e);
+    };
+  }
+
+  Tabs.prototype.init = function init() {
+    this.setUpDom(); // this.controls()
+  };
+
+  Tabs.prototype.setUpDom = function setUpDom() {
+    var _this2 = this;
+
+    this.tab.classList.add('is-ready');
+    this.tabList.setAttribute('role', 'tablist');
+    this.tabItems.forEach(function (item, index) {
+      var itemElem = item;
+      var itemLink = item.querySelector('a');
+
+      var content = _this2.tab.querySelector(itemLink.hash);
+
+      var uID = uniqueId('accordion');
+      item.classList.toggle('is-selected', index === 0);
+      itemElem.setAttribute('role', 'presentation');
+      itemLink.setAttribute('role', 'tab');
+      itemLink.setAttribute('id', uID);
+      itemLink.setAttribute('tabindex', '-1');
+      itemLink.setAttribute('aria-selected', index === 0);
+      if (index === 0) _this2.selectedTab = itemLink;
+      content.setAttribute('role', 'tabpanel');
+      content.setAttribute('role', 'tabpanel');
+      content.setAttribute('aria-labelledBy', uID);
+      content.setAttribute('tabindex', '-1');
+      content.hidden = index !== 0;
+    });
+  };
+
+  Tabs.prototype.changeTabs = function changeTabs(e) {
+    var clickedTab = e.currentTarget;
+    clickedTab.focus();
+    clickedTab.removeAttrubute('tabindex');
+    clickedTab.setAttribute('aria-selected', true);
+    this.selectedTab.removeAttrubute('aria-selected');
+    this.selectedTab.setAttribute('tabindex', '-1');
+  };
+
   if (window.NodeList && !NodeList.prototype.forEach) {
     NodeList.prototype.forEach = Array.prototype.forEach;
   }
@@ -543,6 +597,7 @@
     var closeSearchButton = document.querySelectorAll('.js-close-search');
     var responsiveTables = document.querySelectorAll('.js-responsive-table');
     var accordions = document.querySelectorAll('.js-accordion');
+    var tabs = document.querySelectorAll('.js-tabs');
     openSearchButton.forEach(function (element) {
       new SiteSearch(element).init();
     });
@@ -557,6 +612,9 @@
     accordions.forEach(function (element) {
       new Accordion(element).init();
     });
+    tabs.forEach(function (element) {
+      new Tabs(element).init();
+    });
     new ShareThis().init();
   }
 
@@ -564,6 +622,7 @@
   exports.Navigation = Navigation;
   exports.ResponsiveTables = ResponsiveTables;
   exports.SiteSearch = SiteSearch;
+  exports.Tabs = Tabs;
   exports.initSite = initSite;
 
   Object.defineProperty(exports, '__esModule', { value: true });
