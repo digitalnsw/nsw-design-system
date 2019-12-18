@@ -1,0 +1,69 @@
+.nsw-tabs{
+  @include nsw-spacing(margin-top, md);
+
+  &__list{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    position: relative;
+
+    &::after{
+      content: '';
+      width: 100%;
+      height: 2px;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      background-color: $light20;
+      z-index: 0;
+    }
+  }
+
+  // &__list-item{
+
+  // }
+
+  &__link{
+    @include nsw-spacing(padding, sm md);
+    @include font-stack;
+    display: block;
+    position: relative;
+    text-decoration: none;
+    color: $dark80;
+    z-index: 2;
+
+    &:hover{
+      @include nsw-hover;
+    }
+
+    &:focus{
+      @include nsw-focus;
+    }
+
+    .is-selected &{
+      text-shadow: 1px 0 0 $dark80, 0 0 1px $dark80;
+
+      &::after{
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background-color: $nsw-primary-blue;
+      }
+    }
+  }
+
+  &__content{
+    @include nsw-spacing(padding, lg md);
+    border-bottom: solid 1px $light20;
+
+    &:focus{
+      @include nsw-focus;
+      position: relative;
+      z-index: 2;
+    }
+  }
+}

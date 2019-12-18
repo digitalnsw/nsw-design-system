@@ -514,6 +514,157 @@
     popupWindow(this.href, 600, 600);
   };
 
+  function Tabs(element, showTab) {
+    var _this = this;
+
+    this.tablistClass = '.nsw-tabs__list';
+    this.tablistItemClass = '.nsw-tabs__list-item';
+    this.tablistLinkClass = '.nsw-tabs__link';
+    this.tab = element;
+    this.showTab = showTab;
+    this.tabList = element.querySelector(this.tablistClass);
+    this.tabItems = this.tabList.querySelectorAll(this.tablistItemClass);
+    this.allowedKeys = [35, 36, 37, 39, 40];
+    this.tabLinks = [];
+    this.tabPanel = [];
+    this.selectedTab = null;
+
+    this.clickTabEvent = function (e) {
+      return _this.clickTab(e);
+    };
+
+    this.arrowKeysEvent = function (e) {
+      return _this.arrowKeys(e);
+    };
+  }
+
+  Tabs.prototype.init = function init() {
+    this.setUpDom();
+    this.controls();
+    this.setInitalTab();
+  };
+
+  Tabs.prototype.setUpDom = function setUpDom() {
+    var _this2 = this;
+
+    this.tab.classList.add('is-ready');
+    this.tabList.setAttribute('role', 'tablist');
+    this.tabItems.forEach(function (item) {
+      var itemElem = item;
+      var itemLink = item.querySelector(_this2.tablistLinkClass);
+
+      var panel = _this2.tab.querySelector(itemLink.hash);
+
+      var uID = uniqueId('tab');
+      itemElem.setAttribute('role', 'presentation');
+
+      _this2.enhanceTabLink(itemLink, uID);
+
+      _this2.enhanceTabPanel(panel, uID);
+    });
+  };
+
+  Tabs.prototype.enhanceTabLink = function enhanceTabLink(link, id) {
+    link.setAttribute('role', 'tab');
+    link.setAttribute('id', id);
+    link.setAttribute('aria-selected', false);
+    link.setAttribute('tabindex', '-1');
+    this.tabLinks.push(link);
+  };
+
+  Tabs.prototype.enhanceTabPanel = function enhanceTabPanel(panel, id) {
+    var panelElem = panel;
+    panelElem.setAttribute('role', 'tabpanel');
+    panelElem.setAttribute('role', 'tabpanel');
+    panelElem.setAttribute('aria-labelledBy', id);
+    panelElem.setAttribute('tabindex', '0');
+    panelElem.hidden = true;
+    this.tabPanel.push(panelElem);
+  };
+
+  Tabs.prototype.setInitalTab = function setInitalTab() {
+    var tabItems = this.tabItems,
+        tabLinks = this.tabLinks,
+        tabPanel = this.tabPanel,
+        showTab = this.showTab;
+    var index = showTab === undefined ? 0 : showTab;
+    var selectedLink = tabLinks[index];
+    tabItems[index].classList.add('is-selected');
+    selectedLink.removeAttribute('tabindex');
+    selectedLink.setAttribute('aria-selected', true);
+    tabPanel[index].hidden = false;
+    this.selectedTab = selectedLink;
+  };
+
+  Tabs.prototype.clickTab = function clickTab(e) {
+    e.preventDefault();
+    this.switchTabs(e.currentTarget);
+  };
+
+  Tabs.prototype.switchTabs = function switchTabs(elem) {
+    var clickedTab = elem;
+
+    if (clickedTab !== this.selectedTab) {
+      clickedTab.focus();
+      clickedTab.removeAttribute('tabindex');
+      clickedTab.setAttribute('aria-selected', true);
+      this.selectedTab.setAttribute('aria-selected', false);
+      this.selectedTab.setAttribute('tabindex', '-1');
+      var clickedTabIndex = this.tabLinks.indexOf(clickedTab);
+      var selectedTabIndex = this.tabLinks.indexOf(this.selectedTab);
+      this.tabItems[clickedTabIndex].classList.add('is-selected');
+      this.tabItems[selectedTabIndex].classList.remove('is-selected');
+      this.tabPanel[clickedTabIndex].hidden = false;
+      this.tabPanel[selectedTabIndex].hidden = true;
+      this.selectedTab = clickedTab;
+    }
+  };
+
+  Tabs.prototype.arrowKeys = function arrowKeys(e) {
+    var linkLength = this.tabLinks.length - 1;
+    var index = this.tabLinks.indexOf(this.selectedTab);
+    var down = false;
+
+    if (this.allowedKeys.indexOf(e.which) !== -1) {
+      switch (e.which) {
+        case 35:
+          index = linkLength;
+          break;
+
+        case 36:
+          index = 0;
+          break;
+
+        case 37:
+          index = index === 0 ? linkLength : index -= 1;
+          break;
+
+        case 39:
+          index = index === linkLength ? 0 : index += 1;
+          break;
+
+        case 40:
+          down = true;
+          break;
+      }
+
+      if (down) {
+        this.tabPanel[index].focus();
+      } else {
+        this.switchTabs(this.tabLinks[index]);
+      }
+    }
+  };
+
+  Tabs.prototype.controls = function controls() {
+    var _this3 = this;
+
+    this.tabLinks.forEach(function (link) {
+      link.addEventListener('click', _this3.clickTabEvent, false);
+      link.addEventListener('keydown', _this3.arrowKeysEvent, false);
+    });
+  };
+
   if (window.NodeList && !NodeList.prototype.forEach) {
     NodeList.prototype.forEach = Array.prototype.forEach;
   }
@@ -543,6 +694,7 @@
     var closeSearchButton = document.querySelectorAll('.js-close-search');
     var responsiveTables = document.querySelectorAll('.js-responsive-table');
     var accordions = document.querySelectorAll('.js-accordion');
+    var tabs = document.querySelectorAll('.js-tabs');
     openSearchButton.forEach(function (element) {
       new SiteSearch(element).init();
     });
@@ -557,13 +709,22 @@
     accordions.forEach(function (element) {
       new Accordion(element).init();
     });
+
+    if (tabs) {
+      tabs.forEach(function (element) {
+        new Tabs(element).init();
+      });
+    }
+
     new ShareThis().init();
   }
 
   exports.Accordion = Accordion;
   exports.Navigation = Navigation;
   exports.ResponsiveTables = ResponsiveTables;
+  exports.ShareThis = ShareThis;
   exports.SiteSearch = SiteSearch;
+  exports.Tabs = Tabs;
   exports.initSite = initSite;
 
   Object.defineProperty(exports, '__esModule', { value: true });
