@@ -1,8 +1,9 @@
 import { uniqueId } from '../../global/scripts/helpers/utilities'
 
 function Accordion(element) {
+  this.accordionHeadingClass = '.nsw-accordion__title'
   this.accordion = element
-  this.headings = element.querySelectorAll('h2')
+  this.headings = element.querySelectorAll(this.accordionHeadingClass)
   this.buttons = []
   this.content = []
   this.showHideEvent = (e) => this.showHide(e)
@@ -14,7 +15,7 @@ Accordion.prototype.init = function init() {
 }
 
 Accordion.prototype.setUpDom = function setUpDom() {
-  this.accordion.classList.add('js-ready')
+  this.accordion.classList.add('is-ready')
   this.headings.forEach((heading) => {
     const headingElem = heading
     const contentElem = heading.nextElementSibling

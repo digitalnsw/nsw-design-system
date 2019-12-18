@@ -417,8 +417,9 @@
   function Accordion(element) {
     var _this = this;
 
+    this.accordionHeadingClass = '.nsw-accordion__title';
     this.accordion = element;
-    this.headings = element.querySelectorAll('h2');
+    this.headings = element.querySelectorAll(this.accordionHeadingClass);
     this.buttons = [];
     this.content = [];
 
@@ -435,7 +436,7 @@
   Accordion.prototype.setUpDom = function setUpDom() {
     var _this2 = this;
 
-    this.accordion.classList.add('js-ready');
+    this.accordion.classList.add('is-ready');
     this.headings.forEach(function (heading) {
       var headingElem = heading;
       var contentElem = heading.nextElementSibling;
