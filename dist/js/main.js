@@ -514,22 +514,34 @@
     popupWindow(this.href, 600, 600);
   };
 
-  function Tabs(element) {
+  function Tabs(element, showTab) {
     var _this = this;
 
+    this.tablistClass = '.nsw-tabs__list';
+    this.tablistItemClass = '.nsw-tabs__list-item';
+    this.tablistLinkClass = '.nsw-tabs__link';
     this.tab = element;
-    this.tabList = element.querySelector('ul');
-    this.tabItems = this.tabList.querySelectorAll('li');
-    this.tabContents = [];
+    this.showTab = showTab;
+    this.tabList = element.querySelector(this.tablistClass);
+    this.tabItems = this.tabList.querySelectorAll(this.tablistItemClass);
+    this.allowedKeys = [35, 36, 37, 39, 40];
+    this.tabLinks = [];
+    this.tabPanel = [];
     this.selectedTab = null;
 
-    this.showHideEvent = function (e) {
-      return _this.showHide(e);
+    this.clickTabEvent = function (e) {
+      return _this.clickTab(e);
+    };
+
+    this.arrowKeysEvent = function (e) {
+      return _this.arrowKeys(e);
     };
   }
 
   Tabs.prototype.init = function init() {
-    this.setUpDom(); // this.controls()
+    this.setUpDom();
+    this.controls();
+    this.setInitalTab();
   };
 
   Tabs.prototype.setUpDom = function setUpDom() {
@@ -537,35 +549,120 @@
 
     this.tab.classList.add('is-ready');
     this.tabList.setAttribute('role', 'tablist');
-    this.tabItems.forEach(function (item, index) {
+    this.tabItems.forEach(function (item) {
       var itemElem = item;
-      var itemLink = item.querySelector('a');
+      var itemLink = item.querySelector(_this2.tablistLinkClass);
 
-      var content = _this2.tab.querySelector(itemLink.hash);
+      var panel = _this2.tab.querySelector(itemLink.hash);
 
-      var uID = uniqueId('accordion');
-      item.classList.toggle('is-selected', index === 0);
+      var uID = uniqueId('tab');
       itemElem.setAttribute('role', 'presentation');
-      itemLink.setAttribute('role', 'tab');
-      itemLink.setAttribute('id', uID);
-      itemLink.setAttribute('tabindex', '-1');
-      itemLink.setAttribute('aria-selected', index === 0);
-      if (index === 0) _this2.selectedTab = itemLink;
-      content.setAttribute('role', 'tabpanel');
-      content.setAttribute('role', 'tabpanel');
-      content.setAttribute('aria-labelledBy', uID);
-      content.setAttribute('tabindex', '-1');
-      content.hidden = index !== 0;
+
+      _this2.enhanceTabLink(itemLink, uID);
+
+      _this2.enhanceTabPanel(panel, uID);
     });
   };
 
-  Tabs.prototype.changeTabs = function changeTabs(e) {
-    var clickedTab = e.currentTarget;
-    clickedTab.focus();
-    clickedTab.removeAttrubute('tabindex');
-    clickedTab.setAttribute('aria-selected', true);
-    this.selectedTab.removeAttrubute('aria-selected');
-    this.selectedTab.setAttribute('tabindex', '-1');
+  Tabs.prototype.enhanceTabLink = function enhanceTabLink(link, id) {
+    link.setAttribute('role', 'tab');
+    link.setAttribute('id', id);
+    link.setAttribute('aria-selected', false);
+    link.setAttribute('tabindex', '-1');
+    this.tabLinks.push(link);
+  };
+
+  Tabs.prototype.enhanceTabPanel = function enhanceTabPanel(panel, id) {
+    var panelElem = panel;
+    panelElem.setAttribute('role', 'tabpanel');
+    panelElem.setAttribute('role', 'tabpanel');
+    panelElem.setAttribute('aria-labelledBy', id);
+    panelElem.setAttribute('tabindex', '0');
+    panelElem.hidden = true;
+    this.tabPanel.push(panelElem);
+  };
+
+  Tabs.prototype.setInitalTab = function setInitalTab() {
+    var tabItems = this.tabItems,
+        tabLinks = this.tabLinks,
+        tabPanel = this.tabPanel,
+        showTab = this.showTab;
+    var index = showTab === undefined ? 0 : showTab;
+    var selectedLink = tabLinks[index];
+    tabItems[index].classList.add('is-selected');
+    selectedLink.removeAttribute('tabindex');
+    selectedLink.setAttribute('aria-selected', true);
+    tabPanel[index].hidden = false;
+    this.selectedTab = selectedLink;
+  };
+
+  Tabs.prototype.clickTab = function clickTab(e) {
+    e.preventDefault();
+    this.switchTabs(e.currentTarget);
+  };
+
+  Tabs.prototype.switchTabs = function switchTabs(elem) {
+    var clickedTab = elem;
+
+    if (clickedTab !== this.selectedTab) {
+      clickedTab.focus();
+      clickedTab.removeAttribute('tabindex');
+      clickedTab.setAttribute('aria-selected', true);
+      this.selectedTab.setAttribute('aria-selected', false);
+      this.selectedTab.setAttribute('tabindex', '-1');
+      var clickedTabIndex = this.tabLinks.indexOf(clickedTab);
+      var selectedTabIndex = this.tabLinks.indexOf(this.selectedTab);
+      this.tabItems[clickedTabIndex].classList.add('is-selected');
+      this.tabItems[selectedTabIndex].classList.remove('is-selected');
+      this.tabPanel[clickedTabIndex].hidden = false;
+      this.tabPanel[selectedTabIndex].hidden = true;
+      this.selectedTab = clickedTab;
+    }
+  };
+
+  Tabs.prototype.arrowKeys = function arrowKeys(e) {
+    var linkLength = this.tabLinks.length - 1;
+    var index = this.tabLinks.indexOf(this.selectedTab);
+    var down = false;
+
+    if (this.allowedKeys.indexOf(e.which) !== -1) {
+      switch (e.which) {
+        case 35:
+          index = linkLength;
+          break;
+
+        case 36:
+          index = 0;
+          break;
+
+        case 37:
+          index = index === 0 ? linkLength : index -= 1;
+          break;
+
+        case 39:
+          index = index === linkLength ? 0 : index += 1;
+          break;
+
+        case 40:
+          down = true;
+          break;
+      }
+
+      if (down) {
+        this.tabPanel[index].focus();
+      } else {
+        this.switchTabs(this.tabLinks[index]);
+      }
+    }
+  };
+
+  Tabs.prototype.controls = function controls() {
+    var _this3 = this;
+
+    this.tabLinks.forEach(function (link) {
+      link.addEventListener('click', _this3.clickTabEvent, false);
+      link.addEventListener('keydown', _this3.arrowKeysEvent, false);
+    });
   };
 
   if (window.NodeList && !NodeList.prototype.forEach) {
@@ -612,15 +709,20 @@
     accordions.forEach(function (element) {
       new Accordion(element).init();
     });
-    tabs.forEach(function (element) {
-      new Tabs(element).init();
-    });
+
+    if (tabs) {
+      tabs.forEach(function (element) {
+        new Tabs(element).init();
+      });
+    }
+
     new ShareThis().init();
   }
 
   exports.Accordion = Accordion;
   exports.Navigation = Navigation;
   exports.ResponsiveTables = ResponsiveTables;
+  exports.ShareThis = ShareThis;
   exports.SiteSearch = SiteSearch;
   exports.Tabs = Tabs;
   exports.initSite = initSite;

@@ -53,13 +53,15 @@ function initSite() {
     new Accordion(element).init()
   })
 
-  tabs.forEach((element) => {
-    new Tabs(element).init()
-  })
+  if (tabs) {
+    tabs.forEach((element) => {
+      new Tabs(element).init()
+    })
+  }
 
   new ShareThis().init()
 }
 
 export {
-  initSite, SiteSearch, Navigation, ResponsiveTables, Accordion, Tabs,
+  initSite, SiteSearch, Navigation, ResponsiveTables, Accordion, ShareThis, Tabs,
 }
