@@ -70,11 +70,15 @@ $white:   #ffffff !default;
 $info-blue:      #2e5299 !default;
 $info-blue-light10: #eaedf4 !default;
 $success-green:  #00a908 !default;
-$info-green-light10: #e5f6e6 !default;
+$success-green-light10: #e5f6e6 !default;
 $warning-orange: #dc5800 !default;
-$info-orange-light10: #fbeee5 !default;
+$warning-orange-light10: #fbeee5 !default;
 $error-red:      #b81237 !default;
-$info-red-light10: #f7e7eb !default;
+$error-red-light10: #f7e7eb !default;
+
+// sitewide message
+$default-blue10: #e6e9ef;
+$alert-yellow: #ffcb2d;
 
 // Notification variations
 $notification: (
@@ -85,17 +89,17 @@ $notification: (
   ),
   success: (
     border: $success-green,
-    bg: $info-green-light10,
+    bg: $success-green-light10,
     fill: $success-green,
   ),
   warning: (
     border: $warning-orange,
-    bg: $info-orange-light10,
+    bg: $warning-orange-light10,
     fill: $warning-orange,
   ),
   error: (
     border: $error-red,
-    bg: $info-red-light10,
+    bg: $error-red-light10,
     fill: $error-red,
   ),
 ) !default;
@@ -203,5 +207,20 @@ $button-variations: (
     bgHover: $light20,
     border: $white,
     borderHover: $light20
+  ),
+)  !default;
+
+$sitewide-message: (
+  default: (
+    color: $dark80,
+    bg: $default-blue10,
+  ),
+  dark: (
+    color: $white,
+    bg: $dark80,
+  ),
+  alert: (
+    color: $dark80,
+    bg: $alert-yellow,
   ),
 )  !default;

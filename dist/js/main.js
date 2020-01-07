@@ -666,6 +666,64 @@
     });
   };
 
+  function _classCallCheck(instance, Constructor) {
+    if (!(instance instanceof Constructor)) {
+      throw new TypeError("Cannot call a class as a function");
+    }
+  }
+
+  function _defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];
+      descriptor.enumerable = descriptor.enumerable || false;
+      descriptor.configurable = true;
+      if ("value" in descriptor) descriptor.writable = true;
+      Object.defineProperty(target, descriptor.key, descriptor);
+    }
+  }
+
+  function _createClass(Constructor, protoProps, staticProps) {
+    if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+    if (staticProps) _defineProperties(Constructor, staticProps);
+    return Constructor;
+  }
+
+  var SitewideMessage =
+  /*#__PURE__*/
+  function () {
+    function SitewideMessage(element) {
+      var _this = this;
+
+      _classCallCheck(this, SitewideMessage);
+
+      this.messageElement = element;
+      this.closeButton = element.querySelector('.nsw-sitewide-message__close');
+
+      this.closeMessageEvent = function (e) {
+        return _this.closeMessage(e);
+      };
+    }
+
+    _createClass(SitewideMessage, [{
+      key: "init",
+      value: function init() {
+        this.controls();
+      }
+    }, {
+      key: "controls",
+      value: function controls() {
+        this.closeButton.addEventListener('click', this.closeMessageEvent, false);
+      }
+    }, {
+      key: "closeMessage",
+      value: function closeMessage() {
+        this.messageElement.hidden = true;
+      }
+    }]);
+
+    return SitewideMessage;
+  }();
+
   if (window.NodeList && !NodeList.prototype.forEach) {
     NodeList.prototype.forEach = Array.prototype.forEach;
   }
@@ -696,6 +754,7 @@
     var responsiveTables = document.querySelectorAll('.js-responsive-table');
     var accordions = document.querySelectorAll('.js-accordion');
     var tabs = document.querySelectorAll('.js-tabs');
+    var siteMessages = document.querySelectorAll('.js-sitewide-message');
     openSearchButton.forEach(function (element) {
       new SiteSearch(element).init();
     });
@@ -718,6 +777,12 @@
     }
 
     new ShareThis().init();
+
+    if (siteMessages) {
+      siteMessages.forEach(function (element) {
+        new SitewideMessage(element).init();
+      });
+    }
   }
 
   exports.Accordion = Accordion;
@@ -725,6 +790,7 @@
   exports.ResponsiveTables = ResponsiveTables;
   exports.ShareThis = ShareThis;
   exports.SiteSearch = SiteSearch;
+  exports.SitewideMessage = SitewideMessage;
   exports.Tabs = Tabs;
   exports.initSite = initSite;
 
