@@ -1,3 +1,21 @@
-<div class="nsw-wysiwyg-content nsw-container">
-	<h1>Site wide message</h1>      
+<div class="nsw-sitewide-message {{#if type}}nsw-sitewide-message--{{type}}{{/if}} js-sitewide-message" role="alert">
+  <div class="nsw-sitewide-message__wrapper">
+    <div class="nsw-sitewide-message__content">
+      <h2 class="nsw-sitewide-message__title">{{title}}</h2>
+      {{{content}}}
+    </div>
+    {{#if ctaText}}
+      {{#if ctaHref}}
+      <a href="{{ctaHref}}" class="nsw-button">{{ctaText}}</a>
+      {{else}}
+      <button type="button" class="nsw-button">{{ctaText}}</button>
+      {{/if}}
+    {{/if}}
+    <button type="button" class="nsw-sitewide-message__close">
+      <svg class="nsw-icon " focusable="false" aria-hidden="true">
+        <use xlink:href="#close"></use>
+      </svg>
+      <span class="sr-only">Close message</span>
+    </button>
+  </div>
 </div>

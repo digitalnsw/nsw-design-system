@@ -4,6 +4,7 @@ import ResponsiveTables from './styles/tables/tables'
 import Accordion from './components/accordion/accordion'
 import ShareThis from './components/social-bar/social-bar'
 import Tabs from './components/tab-navigation/tab-navigation'
+import SitewideMessage from './components/site-wide-message/site-wide-message'
 
 if (window.NodeList && !NodeList.prototype.forEach) {
   NodeList.prototype.forEach = Array.prototype.forEach
@@ -32,6 +33,7 @@ function initSite() {
   const responsiveTables = document.querySelectorAll('.js-responsive-table')
   const accordions = document.querySelectorAll('.js-accordion')
   const tabs = document.querySelectorAll('.js-tabs')
+  const siteMessages = document.querySelectorAll('.js-sitewide-message')
 
   openSearchButton.forEach((element) => {
     new SiteSearch(element).init()
@@ -60,8 +62,14 @@ function initSite() {
   }
 
   new ShareThis().init()
+
+  if (siteMessages) {
+    siteMessages.forEach((element) => {
+      new SitewideMessage(element).init()
+    })
+  }
 }
 
 export {
-  initSite, SiteSearch, Navigation, ResponsiveTables, Accordion, ShareThis, Tabs,
+  initSite, SiteSearch, Navigation, ResponsiveTables, Accordion, ShareThis, Tabs, SitewideMessage,
 }
