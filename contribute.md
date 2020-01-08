@@ -29,7 +29,7 @@ Wherever you are, and whatever your discipline is, you are invited to contribute
 
 ## Contributing a new component
 
-The NSW Design System was created for you, we are just caretakers and publishers of the design system. To help us with the up keep we need a few things from newly proposed component contributions. One of our goals is to ensure a welcoming environment for all contributors to our projects. If you’re unsure about anything, just ask us via the Digital NSW Community where the entire team will engage with you. 
+The NSW Design System was created for you as a toolkit of style, patterns, standards and guidance for everyone creating distinctly NSW digital products and services. We are just caretakers and publishers of the design system. To help us with the up keep we need a few things from newly proposed component contributions. One of our goals is to ensure a welcoming environment for all contributors to our projects. If you’re unsure about anything, just ask us via the Digital NSW Community where the entire team will engage with you. 
 
 We appreciate all well intended contributions.
 
