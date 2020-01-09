@@ -66,7 +66,7 @@ This may be in the form of a code snippet, screenshots, sketch files or written 
 
 ### Useful
 
-**This is for everyone.** We can’t accept components that are for just one project or one specific use-case. 
+**This is for everyone.** We can’t accept components that are for just one project or one specific use-case.
 
 If a component is going to be added into the system it must be designed with the intention of being reusable in a variety of circumstances by many teams or departments.
 
@@ -92,7 +92,7 @@ If a component is similar in function consider extending it rather than duplicat
 
 ### Distinctly New South Wales
 
-We would like NSW Government website users to feel like they are on a NSW Government websitem, to ensure this is the case all suggested patterns and components must be aligned to the distinctly NSW look and feel. Download the latest Design System Sketch UI kit from [our site](https://www.digital.nsw.gov.au/design-system/patterns).
+We would like NSW Government website users to feel like they are on a NSW Government website, to ensure this is the case all suggested patterns and components must be aligned to the distinctly NSW look and feel. Download the latest Design System Sketch UI kit from [our site](https://www.digital.nsw.gov.au/design-system/patterns).
 
 **[⬆ back to top](#contents)**
 
