@@ -176,11 +176,11 @@ Provide rationale; the more the better. We aim to explain design and code decisi
 
 ## Reporting Bugs, Asking Questions, Sending Suggestions
 
-Sign up to the [Digital NSW Community](https://community.nswdesignsystem.com/) to get started.  Once signed up, you will be able to raise bugs, suggest patterns and generally contribute to the Design System as a whole. 
+Sign up to the [Digital NSW Community](https://community.digital.nsw.gov.au/) to get started.  Once signed up, you will be able to raise bugs, suggest patterns and generally contribute to the Design System as a whole. 
 
-For issues and bugs, Search our issues tracker on Github to see if the same bug has already been raised.  If not, raise the bug directly in the [Report a bug](https://community.nswdesignsystem.com/c/components/report-a-bug/27) section of the community platform. Please provide specific steps to reproduce the bug and what your expected behaviour is.
+For issues and bugs, Search our issues tracker on Github to see if the same bug has already been raised.  If not, raise the bug directly in the [Report a bug](https://community.digital.nsw.gov.au/c/components/report-a-bug/27) section of the community platform. Please provide specific steps to reproduce the bug and what your expected behaviour is.
 
-You can also suggest a pattern via the Digital NSW Community platform in [Suggest a pattern](https://community.nswdesignsystem.com/c/components/suggest-a-component/9). 
+You can also suggest a pattern via the Digital NSW Community platform in [Suggest a pattern](https://community.digital.nsw.gov.au/c/components/suggest-a-component/9). 
 
 
 -------------------------------------------------------------------------------------------------
