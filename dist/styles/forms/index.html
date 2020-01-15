@@ -32,7 +32,6 @@
   <div class="nsw-container">
   <div class="nsw-forms">
     <label for="f1" class="nsw-form-label">Single-line text input field:</label>
-    <span class="nsw-form-helper">This is helper text</span>
     <input id="f1" name="text" class="nsw-form-input">
     <label for="t1" class="nsw-form-label">Multi-line text area:</label>
     <textarea class="nsw-form-input" name="textarea" id="t1">Value</textarea>
@@ -60,28 +59,14 @@
   
   <div class="nsw-forms">
     <label for="f1-error" class="nsw-form-label">Single-line text input field:</label>
-    <input id="f1-error" name="text" class="nsw-form-input" aria-invalid="true">
-    <span class="nsw-form-helper nsw-form-helper--error">There was an error with the input above.</span>
-    <label for="t1-error" class="nsw-form-label">Multi-line text area:</label>
-    <textarea class="nsw-form-input" name="textarea" id="t1-error" aria-invalid="true">Value</textarea>
-    <span class="nsw-form-helper nsw-form-helper--error">There was an error with the input above.</span>
-    <label for="s1-error" class="nsw-form-label">Select:</label>
-    <select id="s1-error" class="nsw-form-select" aria-invalid="true">
-      <option value="">Please select</option>
-      <option value="1">Option 1</option>
-      <option value="2">Option 2</option>
-      <option value="3">Option 3</option>
-    </select>
-    <span class="nsw-form-helper nsw-form-helper--error">There was an error with the input above.</span>
-    <fieldset aria-invalid="true" class="nsw-form-fieldset">
-      <legend>Fieldset</legend>
-      <div class="nsw-form-checkbox">
-        <input class="nsw-form-checkbox__input" type="checkbox" name="checkbox" id="c1-error">
-        <label class="nsw-form-checkbox__label" for="c1-error">I agree to all terms and conditions</label>
-        <input class="nsw-form-checkbox__input" type="checkbox" name="checkbox" id="c2-error">
-        <label class="nsw-form-checkbox__label" for="c2-error">I agree to all terms and conditions</label>
-      </div>
-    </fieldset>
+    <input id="f1-error" name="text" class="nsw-form-input" aria-invalid="true" aria-describedby="f1-error-text">
+    <span id="f1-error-text" class="nsw-form-helper nsw-form-helper--error">There was an error with the input above.</span>
+  </div>
+  
+  <div class="nsw-forms">
+    <label for="f1-helper" class="nsw-form-label">Single-line text input field:</label>
+    <span id="f1-helper-text" class="nsw-form-helper">This is helper text</span>
+    <input id="f1-helper" name="text" class="nsw-form-input" aria-describedby="f1-helper-text">
   </div>
 </div>
 

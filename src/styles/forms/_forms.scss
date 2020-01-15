@@ -18,8 +18,8 @@
   @include nsw-spacing(padding, sm md);
   background-color: $white;
   color: $dark80;
-  border-radius: $border-radius;
-  border: 1px solid $dark70;
+  border-radius: rem($border-radius);
+  border: $border-width solid $dark70;
   vertical-align: middle;
   appearance: none;
   width: 100%;
@@ -41,25 +41,28 @@
   }
 
 
-  &[aria-invalid='true']{
+  &[aria-invalid='true'],
+  &.has-error{
     border-color: $error-red;
   }
 }
 
 .nsw-form-select{
   @include background-svg(chevron-down, $nsw-primary-blue);
+  @include nsw-spacing(padding-right, xxl);
   background-repeat: no-repeat;
-  background-position: right 1rem center;
-  background-size: 1rem auto;
-  padding-right: 3rem;
+  background-position: right rem(16px) center;
+  background-size: rem(16px) auto;
 }
 
 .nsw-form-checkbox,
 .nsw-form-radio{
   @include nsw-spacing(margin-top, lg);
 
-  [aria-invalid='true'] &{
+  [aria-invalid='true'] &,
+  .has-error &{
     border: solid 2px $error-red;
+    border-radius: 9px;
   }
 
   &__input{
@@ -104,8 +107,11 @@
   &__label{
     @include font-stack;
     @include font-size('sm');
-    @include nsw-spacing(margin-top, lg);
     display: block;
+  }
+
+  &__label + &__input + &__label{
+    @include nsw-spacing(margin-top, lg);
   }
 }
 
@@ -114,16 +120,16 @@
   position: relative;
 
   &::before {
+    @include nsw-spacing(margin-right, md);
     left: 0;
     content: '';
     width: rem(32px);
     height: rem(32px);
-    border: 1px $dark70 solid;
+    border: $border-width $dark70 solid;
     background: $white;
     top: -2px;
     display: inline-block;
     vertical-align: middle;
-    margin-right: 1rem;
     background-color: $white;
     position: relative;
   }
@@ -135,7 +141,7 @@
     height: rem(22px);
     background-repeat: no-repeat;
     background-position: center center;
-    background-size: 1rem auto;
+    background-size: rem(16px) auto;
     left: rem(5px);
     top: 50%;
     transform: translateY(-50%);
@@ -181,7 +187,7 @@
 }
 
 .nsw-form-fieldset{
-  @include nsw-spacing(margin, none);
+  @include nsw-spacing(margin, lg none none);
   @include nsw-spacing(padding, none);
   border: 0;
 
