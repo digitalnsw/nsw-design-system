@@ -8,6 +8,7 @@ const cssnano = require('cssnano')
 const sourcemaps = require('gulp-sourcemaps')
 const browsersync = require('browser-sync')
 const surge = require('gulp-surge')
+const zip = require('gulp-zip')
 const sassLint = require('gulp-sass-lint')
 const svgSprite = require('gulp-svg-sprite')
 const del = require('del')
@@ -159,6 +160,12 @@ function watchFiles(done) {
   done()
 }
 
+function zipDistFolder() {
+  return src('./dist/**')
+        .pipe(zip('HTMLstarterkit.zip'))
+        .pipe(dest('./'));
+}
+
 const build = series(
   cleanUp,
   copyFavicon,
@@ -166,6 +173,7 @@ const build = series(
   styles,
   javascript,
   compileSvg,
+  zipDistFolder,
 )
 
 const dev = series(
