@@ -1,5 +1,5 @@
 .nsw-card{
-  @include font-stack();
+  @include font-stack;
   @include nsw-spacing(margin-top, md);
   background-color: $white;
   box-shadow: map-get($shadows, card);
@@ -58,6 +58,7 @@
   }
 
   &__link{
+    @include pseudoClickableBlock;
     text-decoration: none;
     color: $dark80;
 
@@ -68,15 +69,6 @@
     &:focus{
       outline: none;
       text-decoration: underline;
-    }
-
-    &::after{
-      content: '';
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
     }
   }
 }

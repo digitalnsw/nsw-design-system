@@ -36,6 +36,11 @@
 
 // break out of the nsw-container class
 @mixin breakOut($position: relative) {
+
+  @if $position != 'relative' and $position != 'absolute' {
+    @error 'NSW-DS breakout mixin allows the following values for $position: relative, absolute. You have used "#{$position}"';
+  }
+
   width: 100vw;
   position: $position;
   left: 50%;
@@ -51,4 +56,15 @@
   margin-right: auto;
   left: auto;
   right: auto;
+}
+
+@mixin pseudoClickableBlock {
+  &::after{
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
 }

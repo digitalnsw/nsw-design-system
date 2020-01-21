@@ -43,7 +43,7 @@
   }
 
   &__content{
-    @include font-stack();
+    @include font-stack;
     @include font-size('md');
     @include nsw-spacing(padding, md);
     background-color: $light20;
@@ -53,7 +53,7 @@
       @include nsw-spacing(padding, md lg);
       position: relative;
       top: 50%;
-      background-color: $overlay-white;
+      background-color: map-get($overlays, light);
       transform: translateY(-50%);
       max-width: rem(600px);
       left: rem(-16px);
@@ -87,6 +87,7 @@
   }
 
   &__link{
+    @include pseudoClickableBlock;
     text-decoration: none;
     color: $dark80;
 
@@ -98,15 +99,6 @@
       outline: none;
       text-decoration: underline;
     }
-
-    &::after{
-      content: '';
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-    }
   }
 
   &--dark{
@@ -116,7 +108,7 @@
       background-color: $dark80;
 
       @include breakpoint('sm'){
-        background-color: $overlay-black;
+        background-color: map-get($overlays, dark);;
       }
     }
 
