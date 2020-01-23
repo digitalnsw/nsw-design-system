@@ -1,4 +1,4 @@
-// sass-lint:disable no-important
+/* stylelint-disable declaration-no-important  */
 @function rem($value) {
   @if (unitless($value)) {
     $value: $value * 1px;
@@ -17,7 +17,6 @@
 
 // generates modifer classes in the bem syntax
 @mixin helper-classes($attribute, $map) {
-
   @each $modifier, $value in $map {
     &--#{$modifier} {
       #{$attribute}: get-mapped-value($modifier, $map) !important;
@@ -26,17 +25,16 @@
 }
 
 //gets mapped px values and returns it as rem
-@function get-mapped-value($key, $map){
+@function get-mapped-value($key, $map) {
   @each $mapkey, $mapvalue in $map {
-    @if $mapkey == $key{
+    @if $mapkey == $key {
       @return rem($mapvalue);
     }
   }
 }
 
 // break out of the nsw-container class
-@mixin breakOut($position: relative) {
-
+@mixin break-out($position: relative) {
   @if $position != 'relative' and $position != 'absolute' {
     @error 'NSW-DS breakout mixin allows the following values for $position: relative, absolute. You have used "#{$position}"';
   }
@@ -49,7 +47,7 @@
   margin-right: -50vw;
 }
 
-@mixin breakOutReset {
+@mixin break-out-reset {
   width: auto;
   position: static;
   margin-left: auto;
@@ -58,8 +56,8 @@
   right: auto;
 }
 
-@mixin pseudoClickableBlock {
-  &::after{
+@mixin pseudo-clickable-block {
+  &::after {
     content: '';
     position: absolute;
     top: 0;

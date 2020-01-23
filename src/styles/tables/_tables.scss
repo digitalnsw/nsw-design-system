@@ -1,4 +1,4 @@
-.nsw-table{
+.nsw-table {
   @include font-stack;
   @include font-size('sm');
   border-collapse: collapse;
@@ -13,7 +13,7 @@
   }
 
   th,
-  td{
+  td {
     @include nsw-spacing(padding, sm xs);
     text-align: left;
     vertical-align: baseline;
@@ -23,21 +23,21 @@
   th,
   thead td,
   tfoot td {
-    @include font-stack('heading')
+    @include font-stack('heading');
   }
 
-  thead{
+  thead {
     border-bottom: solid 2px $dark80;
   }
 }
 
-.nsw-table--caption-top{
+.nsw-table--caption-top {
   caption-side: top;
 }
 
 .nsw-table--striped {
   th,
-  td{
+  td {
     border-bottom: solid 1px $light20;
   }
 
@@ -49,47 +49,47 @@
 
 .nsw-table--bordered {
   th,
-  td{
+  td {
     border: solid 1px $dark70;
   }
 }
 
-.nsw-table-responsive{
+.nsw-table-responsive {
   display: block;
   width: 100%;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 
-  &:focus{
+  &:focus {
     @include nsw-focus;
   }
 }
 
-.nsw-table--stacked{
-  .nsw-table__heading{
+.nsw-table--stacked {
+  .nsw-table__heading {
     display: none;
   }
 
-  @include breakpoint('sm', max-width){
+  @include breakpoint('sm', max-width) {
     border-top: solid 2px $dark80;
 
-    thead{
+    thead {
       @include sr-only;
     }
 
-    tbody tr{
+    tbody tr {
       display: block;
       border-bottom: solid 1px $dark80;
     }
 
     th,
-    td{
+    td {
       display: block;
       border: 0;
       border-bottom: solid 1px $light40;
     }
 
-    .nsw-table__heading{
+    .nsw-table__heading {
       display: block;
     }
   }

@@ -1,14 +1,14 @@
-.nsw-tabs{
+.nsw-tabs {
   @include nsw-spacing(margin-top, md);
 
-  &__list{
+  &__list {
     margin: 0;
     padding: 0;
     list-style: none;
     display: flex;
     position: relative;
 
-    &::after{
+    &::after {
       content: '';
       width: 100%;
       height: 2px;
@@ -20,11 +20,11 @@
     }
   }
 
-  // &__list-item{
+  // &__list-item {
 
   // }
 
-  &__link{
+  &__link {
     @include nsw-spacing(padding, sm md);
     @include font-stack;
     display: block;
@@ -33,18 +33,18 @@
     color: $dark80;
     z-index: 2;
 
-    &:hover{
+    &:hover {
       @include nsw-hover;
     }
 
-    &:focus{
+    &:focus {
       @include nsw-focus;
     }
 
-    .is-selected &{
+    .is-selected & {
       @include font-stack(heading);
 
-      &::after{
+      &::after {
         content: '';
         position: absolute;
         bottom: 0;
@@ -56,11 +56,11 @@
     }
   }
 
-  &__content{
+  &__content {
     @include nsw-spacing(padding, lg md);
     border-bottom: solid 1px $light20;
 
-    &:focus{
+    &:focus {
       @include nsw-focus;
       position: relative;
       z-index: 2;

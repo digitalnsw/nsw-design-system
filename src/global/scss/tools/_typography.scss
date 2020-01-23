@@ -7,7 +7,7 @@
   @if $size {
     font-size: get-font-size($size, 'mobile');
 
-    @include breakpoint($font-size-reponsive-breakpoint){
+    @include breakpoint($font-size-reponsive-breakpoint) {
       font-size: get-font-size($size, 'desktop');;
     }
   }
@@ -24,23 +24,24 @@
   -moz-osx-font-smoothing: grayscale;
 
   @if $weight == 'regular' {
-    font-weight: map-get($font-weight, regular)
+    font-weight: map-get($font-weight, regular);
   } @else if $weight == 'heading' {
-    font-weight: map-get($font-weight, heading)
+    font-weight: map-get($font-weight, heading);
   }
 }
 
 // Function to get the font size from $font-sizes map and convert values to rem
-@function get-font-size($size, $screen-size: 'mobile'){
+@function get-font-size($size, $screen-size: 'mobile') {
   @if $screen-size != 'mobile' and $screen-size != 'desktop' {
     @error 'NSW-DS get-font-size function allows the following values for $screen-size: mobile, desktop';
   }
 
   $screen-size-value: if($screen-size == 'mobile', 1, 2);
 
-  @each $size-key, $size-value in $font-sizes  {
-    @if $size-key == $size{
+  @each $size-key, $size-value in $font-sizes {
+    @if $size-key == $size {
       $font-size: nth($size-value, $screen-size-value);
+
       @return rem($font-size);
     }
   }

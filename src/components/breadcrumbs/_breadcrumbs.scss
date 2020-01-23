@@ -3,16 +3,16 @@
   @include font-size('xs');
   @include nsw-spacing(margin-top, md);
 
-  &__list{
+  &__list {
     margin: 0;
     padding-left: 0;
     list-style: none;
   }
 
-  &__item{
+  &__item {
     display: none;
 
-    & + &::before{
+    & + &::before {
       content: '';
       display: inline-block;
       border-right: 2px solid currentColor;
@@ -26,31 +26,31 @@
       position: relative;
     }
 
-    @include breakpoint('sm'){
+    @include breakpoint('sm') {
       display: inline;
     }
   }
 
   &__item:nth-last-child(2),
-  &__item:last-child{
+  &__item:last-child {
     display: inline;
   }
 
-  &__item:nth-last-child(2){
-    &::before{
+  &__item:nth-last-child(2) {
+    &::before {
       display: none;
 
-      @include breakpoint('sm'){
+      @include breakpoint('sm') {
         display: inline-block;
       }
     }
   }
 
-  &__link{
-    @include text-link
+  &__link {
+    @include text-link;
   }
 
-  &--current{
+  &--current {
     text-decoration: none;
     pointer-events: none;
     color: $dark80;

@@ -1,15 +1,15 @@
-.nsw-hero-banner{
+.nsw-hero-banner {
   $parent: &;
   position: relative;
 
-  @include breakpoint('sm'){
+  @include breakpoint('sm') {
     height: rem(380px);
     overflow: hidden;
   }
 
-  &__image-area{
+  &__image-area {
 
-    @include breakpoint('sm'){
+    @include breakpoint('sm') {
       position: absolute;
       top: 0;
       left: 0;
@@ -18,12 +18,12 @@
     }
   }
 
-  &__image{
-    @include breakOut;
+  &__image {
+    @include break-out;
     height: auto;
     display: block;
 
-    @include breakpoint('sm'){
+    @include breakpoint('sm') {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
@@ -31,25 +31,25 @@
     }
   }
 
-  &__content-area{
-    @include breakOut;
+  &__content-area {
+    @include break-out;
 
-    @include breakpoint('sm'){
-      @include breakOutReset;
+    @include breakpoint('sm') {
+      @include break-out-reset;
       height: rem(380px);
       background-color: transparent;
       width: 100%;
     }
   }
 
-  &__content{
+  &__content {
     @include font-stack;
     @include font-size('md');
     @include nsw-spacing(padding, md);
     background-color: $light20;
     border-top: solid 6px $nsw-primary-highlight;
 
-    @include breakpoint('sm'){
+    @include breakpoint('sm') {
       @include nsw-spacing(padding, md lg);
       position: relative;
       top: 50%;
@@ -59,64 +59,63 @@
       left: rem(-16px);
     }
 
-    p{
+    p {
       margin: 0;
     }
 
-    * + p{
+    * + p {
       @include nsw-spacing(margin-top, md);
     }
 
-    &:focus-within{
+    &:focus-within {
       @include nsw-focus;
 
-      .nsw-hero-banner__link{
+      .nsw-hero-banner__link {
         text-decoration: none;
       }
     }
   }
 
-  &__title{
+  &__title {
     @include font-stack('heading');
     @include font-size('xxl');
     @include nsw-spacing(margin, none);
   }
 
-  &__icon{
+  &__icon {
     @include nsw-spacing(margin, md none none none);
   }
 
-  &__link{
-    @include pseudoClickableBlock;
+  &__link {
+    @include pseudo-clickable-block;
     text-decoration: none;
     color: $dark80;
 
-    &:hover{
+    &:hover {
       text-decoration: underline;
     }
 
-    &:focus{
+    &:focus {
       outline: none;
       text-decoration: underline;
     }
   }
 
-  &--dark{
-
-    #{ $parent }__content {
+  &--dark {
+    #{$parent}__content {
       color: $white;
       background-color: $dark80;
 
-      @include breakpoint('sm'){
+      @include breakpoint('sm') {
         background-color: map-get($overlays, dark);;
       }
     }
 
-    #{ $parent }__link {
+    #{$parent}__link {
       color: $white;
     }
 
-    #{ $parent }__icon {
+    #{$parent}__icon {
       fill: $white;
     }
   }
