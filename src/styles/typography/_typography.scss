@@ -1,20 +1,16 @@
-$nsw-body--text-color: $dark80;
-$nsw-body--link-active-color: $nsw-primary-blue;
-$nsw-body--link-hover-color: rgba($nsw-tertiary-blue, 0.2);
-
 .nsw-wysiwyg-content {
   @include font-stack;
   @include font-size('sm');
-  color: $nsw-body--text-color;
+  color: $dark80;
 
   a:not(.nsw-button):not(.nsw-tag) {
-    color: $nsw-body--link-active-color;
+    color: $nsw-primary-blue;
     text-decoration: underline;
     text-decoration-skip-ink: auto;
 
     &:hover {
       @include nsw-hover;
-      outline: 2px solid $nsw-body--link-hover-color;
+      outline: 2px solid rgba($nsw-tertiary-blue, 0.2);
     }
 
     &:focus {

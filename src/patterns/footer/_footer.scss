@@ -1,12 +1,6 @@
-$footer--border-color: $light20;
-$footer-upper--bg: $white;
-$footer-lower--bg: $dark80;
-$footer--text-color: $white;
-$footer-hr--bg: $dark60;
-
 .nsw-footer {
   @include font-stack;
-  border: solid 1px $footer--border-color;
+  border: solid 1px $light20;
 
   p {
     margin: 0 0 rem(16px) 0;
@@ -15,24 +9,24 @@ $footer-hr--bg: $dark60;
   hr {
     height: 1px;
     border: 0;
-    color: $footer-hr--bg;
-    background-color: $footer-hr--bg;
+    color: $dark60;
+    background-color: $dark60;
     margin: rem(16px) 0;
   }
 
   &__upper {
-    background-color: $footer-upper--bg;
+    background-color: $white;
     padding: rem(28px) 0 0;
   }
 
   &__lower {
-    background-color: $footer-lower--bg;
-    color: $footer--text-color;
+    background-color: $dark80;
+    color: $white;
     padding: rem(28px) 0;
     font-size: rem(12px);
 
     a {
-      color: $footer--text-color;
+      color: $white;
     }
   }
 }
