@@ -1,6 +1,6 @@
 .nsw-wysiwyg-content {
   @include font-stack;
-  @include font-size('sm');
+  @include font-size('sm', paragraph);
   color: $dark80;
 
   a:not(.nsw-button):not(.nsw-tag) {
@@ -16,16 +16,6 @@
     &:focus {
       @include nsw-focus;
     }
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    @include font-stack('heading');
-    margin: 0;
   }
 
   p {
