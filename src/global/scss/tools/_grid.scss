@@ -1,11 +1,11 @@
-@mixin grid-columns(){
+@mixin grid-columns() {
   .nsw-col {
     flex: 0 0 100%;
     max-width: 100%;
     height: 100%;
 
     @each $breakpoint, $columns in $grid-col-sizes {
-      @include breakpoint($breakpoint){
+      @include breakpoint($breakpoint) {
         @each $modifier, $size in $columns {
           &--#{$modifier} {
             flex: 0 0 $size;
@@ -17,7 +17,7 @@
   }
 }
 
-@mixin container($offset: $container-offset){
+@mixin container($offset: $container-offset) {
   max-width: rem($container-max-width);
   padding-left: rem($offset);
   padding-right: rem($offset);

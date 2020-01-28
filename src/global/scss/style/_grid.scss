@@ -1,20 +1,20 @@
-.nsw-container{
+.nsw-container {
   @include container;
 
-  &--flush{
+  &--flush {
     padding-left: 0;
     padding-right: 0;
   }
 }
 
-.nsw-grid{
+.nsw-grid {
   display: flex;
   flex-wrap: wrap;
   margin-left: rem($grid-container-offset);
   margin-right: rem($grid-container-offset);
   align-items: stretch;
 
-  & > .nsw-col{
+  > .nsw-col {
     padding-left: rem($grid-gutters);
     padding-right: rem($grid-gutters);
   }
@@ -23,11 +23,11 @@
     margin-left: 0;
     margin-right: 0;
 
-    & > .nsw-col{
+    > .nsw-col {
       margin-left: 0;
       margin-right: 0;
     }
   }
 }
 
-@include grid-columns()
+@include grid-columns

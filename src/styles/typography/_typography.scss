@@ -1,23 +1,19 @@
-$nsw-body--text-color: $dark80;
-$nsw-body--link-active-color: $nsw-primary-blue;
-$nsw-body--link-hover-color: rgba($nsw-tertiary-blue, 0.2);
-
-.nsw-wysiwyg-content{
+.nsw-wysiwyg-content {
   @include font-stack;
   @include font-size('sm');
-  color: $nsw-body--text-color;
+  color: $dark80;
 
-  a:not(.nsw-button):not(.nsw-tag){
-    color: $nsw-body--link-active-color;
+  a:not(.nsw-button):not(.nsw-tag) {
+    color: $nsw-primary-blue;
     text-decoration: underline;
     text-decoration-skip-ink: auto;
 
-    &:hover{
+    &:hover {
       @include nsw-hover;
-      outline: 2px solid $nsw-body--link-hover-color;
+      outline: 2px solid rgba($nsw-tertiary-blue, 0.2);
     }
 
-    &:focus{
+    &:focus {
       @include nsw-focus;
     }
   }
@@ -27,41 +23,41 @@ $nsw-body--link-hover-color: rgba($nsw-tertiary-blue, 0.2);
   h3,
   h4,
   h5,
-  h6{
+  h6 {
     @include font-stack('heading');
     margin: 0;
   }
 
-  p{
+  p {
     margin: 0;
 
-    & + p{
+    + p {
       margin-top: 1rem;
     }
   }
 
-  * + p{
+  * + p {
     @include nsw-spacing(margin-top, xs);
   }
 
   ul + p,
-  ol + p{
+  ol + p {
     margin-top: 1rem;
   }
 
   ul,
-  ol{
+  ol {
     @include nsw-spacing(margin, md none none none);
   }
 
 
-  blockquote{
+  blockquote {
     @include font-size('lg');
     @include nsw-spacing(margin-top, md);
     border-left: solid 6px $nsw-primary-highlight;
     padding: rem(20px) rem(24px);
 
-    @include breakpoint('sm'){
+    @include breakpoint('sm') {
       margin-left: auto;
       margin-right: auto;
       max-width: 75%;
@@ -80,7 +76,6 @@ $nsw-body--link-hover-color: rgba($nsw-tertiary-blue, 0.2);
   }
 }
 
-// Heading Styles
 .nsw-wysiwyg-content {
   h1,
   h2,
@@ -93,44 +88,44 @@ $nsw-body--link-hover-color: rgba($nsw-tertiary-blue, 0.2);
   }
 
   h1 {
-    @include font-size('xxxl')
+    @include font-size('xxxl');
   }
 
   h2 {
-    @include font-size('xxl')
+    @include font-size('xxl');
   }
 
   h3 {
-    @include font-size('xl')
+    @include font-size('xl');
   }
 
   h4 {
-    @include font-size('lg')
+    @include font-size('lg');
   }
 
   h5,
   h6 {
-    @include font-size('md')
+    @include font-size('md');
   }
 
   * + h2,
-  * + h3{
+  * + h3 {
     @include nsw-spacing(margin-top, xxl);
   }
 
-  * + h4{
+  * + h4 {
     @include nsw-spacing(margin-top, xl);
   }
 
-  * + h5{
+  * + h5 {
     @include nsw-spacing(margin-top, lg);
   }
 
-  * + h6{
+  * + h6 {
     @include nsw-spacing(margin-top, md);
   }
 }
 
-.nsw-text-link{
+.nsw-text-link {
   @include text-link;
 }

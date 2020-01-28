@@ -9,7 +9,6 @@ const sourcemaps = require('gulp-sourcemaps')
 const browsersync = require('browser-sync')
 const surge = require('gulp-surge')
 const zip = require('gulp-zip')
-const sassLint = require('gulp-sass-lint')
 const svgSprite = require('gulp-svg-sprite')
 const del = require('del')
 const postcssNormalize = require('postcss-normalize')
@@ -26,6 +25,7 @@ const discoverHelpers = require('metalsmith-discover-helpers')
 const rollup = require('gulp-better-rollup')
 const babel = require('rollup-plugin-babel')
 const eslint = require('gulp-eslint')
+const gulpStylelint = require('gulp-stylelint')
 const config = require('./config')
 
 const server = browsersync.create()
@@ -58,9 +58,11 @@ function buildStyles() {
 
 function lintStyles() {
   return src(config.scss.watch)
-    .pipe(sassLint())
-    .pipe(sassLint.format())
-    .pipe(sassLint.failOnError())
+    .pipe(gulpStylelint({
+      reporters: [
+        { formatter: 'string', console: true },
+      ],
+    }))
 }
 
 function browserSync(done) {
@@ -162,8 +164,8 @@ function watchFiles(done) {
 
 function zipDistFolder() {
   return src('./dist/**')
-        .pipe(zip('HTMLstarterkit.zip'))
-        .pipe(dest('./'));
+    .pipe(zip('HTMLstarterkit.zip'))
+    .pipe(dest('./'))
 }
 
 const build = series(

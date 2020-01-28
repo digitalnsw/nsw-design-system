@@ -1,12 +1,12 @@
-.nsw-sitewide-message{
+.nsw-sitewide-message {
   @include nsw-spacing(padding, lg none);
   position: relative;
 
   @each $color, $variant in $sitewide-message {
-    @if($color == default){
+    @if($color == default) {
       background-color: map-get($variant, bg);
       color: map-get($variant, color);
-    } @else{
+    } @else {
       &--#{$color} {
         background-color: map-get($variant, bg);
         color: map-get($variant, color);
@@ -14,7 +14,7 @@
     }
   }
 
-  &__close{
+  &__close {
     position: absolute;
     top: rem(-12px);
     right: rem(8px);
@@ -24,55 +24,55 @@
     height: rem(40px);
     padding: 0;
 
-    &:hover{
+    &:hover {
       @include nsw-hover;
     }
 
-    &:focus{
+    &:focus {
       @include nsw-focus;
     }
   }
 
-  &__wrapper{
-    @include container();
+  &__wrapper {
+    @include container;
     position: relative;
   }
 
-  &__title{
+  &__title {
     @include font-stack('heading');
     @include font-size('md');
     @include nsw-spacing(margin-top, none);
   }
 
-  &__content{
-    @include font-stack();
+  &__content {
+    @include font-stack;
     @include nsw-spacing(margin-right, xxl);
 
-    p{
+    p {
       margin: 0;
     }
 
-    * + p{
+    * + p {
       @include nsw-spacing(margin-top, md);
     }
   }
 
-  .nsw-button{
+  .nsw-button {
     @include button-variant(map-get($button-variations, primary));
     display: block;
     margin-right: 0;
 
-    @include breakpoint('sm'){
+    @include breakpoint('sm') {
       display: inline-block;
     }
   }
 
-  &--dark{
-    .nsw-button{
+  &--dark {
+    .nsw-button {
       @include button-variant(map-get($button-variations, white));
     }
 
-    .nsw-sitewide-message__close .nsw-icon{
+    .nsw-sitewide-message__close .nsw-icon {
       fill: $white;
     }
 

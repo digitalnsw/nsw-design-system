@@ -51,29 +51,29 @@ $spacing-sizes: (
 
 // Predefined Colours and their names
 // Brand
-$nsw-primary-blue:      #002664 !default;
+$nsw-primary-blue: #002664 !default;
 $nsw-primary-highlight: #d7153a !default;
-$nsw-highlight-blue:    #2e5299 !default;
-$nsw-tertiary-blue:     #00abe6 !default;
+$nsw-highlight-blue: #2e5299 !default;
+$nsw-tertiary-blue: #00abe6 !default;
 
 // Shades
-$black:   #000000 !default;
-$dark80:  #333333 !default;
-$dark70: 	#4c4f55 !default;
-$dark60: 	#6d7079 !default;
+$black: #000000 !default;
+$dark80: #333333 !default;
+$dark70: #4c4f55 !default;
+$dark60: #6d7079 !default;
 $light40: #a0a5ae !default;
 $light20: #e4e4e6 !default;
 $light10: #f4f4f7 !default;
-$white:   #ffffff !default;
+$white: #ffffff !default;
 
 // Notifications
-$info-blue:      #2e5299 !default;
+$info-blue: #2e5299 !default;
 $info-blue-light10: #eaedf4 !default;
-$success-green:  #00a908 !default;
+$success-green: #00a908 !default;
 $success-green-light10: #e5f6e6 !default;
 $warning-orange: #dc5800 !default;
 $warning-orange-light10: #fbeee5 !default;
-$error-red:      #b81237 !default;
+$error-red: #b81237 !default;
 $error-red-light10: #f7e7eb !default;
 
 // sitewide message
@@ -123,10 +123,13 @@ $hover-colour: rgba($nsw-tertiary-blue, 0.2);
 
 //Links
 $link-color: $nsw-primary-blue;
-$link-hover--outline-color: rgba($nsw-tertiary-blue, 0.2);
+$link-hover-outline-color: rgba($nsw-tertiary-blue, 0.2);
 
-$overlay-white: rgba($white, 0.8);
-$overlay-black: rgba($black, 0.8);
+// Overlays
+$overlays: (
+  light: rgba($white, 0.8),
+  dark: rgba($black, 0.8)
+) !default;
 
 // Breakpoints
 $breakpoints: (
@@ -158,7 +161,6 @@ $grid-margins: (
   lg: 32px,
 );
 $grid-margin-top: 16px;
-
 $grid-col-sizes: (
   xs: (
     half: 50%,
@@ -200,7 +202,7 @@ $button-variations: (
     border: $nsw-primary-blue,
     borderHover: $nsw-primary-blue
   ),
-  white: ( // sass-lint:disable-line no-color-keywords
+  white: (
     color: $dark80,
     colorHover: $dark80,
     bg: $white,
@@ -208,7 +210,7 @@ $button-variations: (
     border: $white,
     borderHover: $light20
   ),
-)  !default;
+) !default;
 
 $sitewide-message: (
   default: (
@@ -223,4 +225,4 @@ $sitewide-message: (
     color: $dark80,
     bg: $alert-yellow,
   ),
-)  !default;
+) !default;

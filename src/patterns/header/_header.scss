@@ -1,22 +1,14 @@
-$infobar--bg: $nsw-primary-blue;
-$infobar--text-color: $white;
-$skip-to--bg: $nsw-primary-blue;
-$skip-tp--text-color: $white;
-$header--bg: $white;
-$header-button--text-color: $nsw-primary-blue;
-$search-input--text-color: $dark80;
-
-.nsw-skipto{
+.nsw-skipto {
   @include font-stack;
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
 
-  &__link{
+  &__link {
     @include nsw-spacing(padding, xs md);
     background-color: $nsw-primary-blue;
-    color: $skip-tp--text-color;
+    color: $white;
     transform: translateY(-101%);
     display: block;
     text-align: center;
@@ -28,43 +20,43 @@ $search-input--text-color: $dark80;
     text-decoration: none;
 
     &:focus,
-    &:active{
+    &:active {
       transform: translateY(0);
       outline: none;
 
-      span{
+      span {
         @include nsw-focus;
       }
     }
 
-    @include breakpoint('sm'){
+    @include breakpoint('sm') {
       text-align: left;
     }
   }
 }
 
-.nsw-infobar{
+.nsw-infobar {
   @include font-stack;
   @include nsw-spacing(padding, sm none);
-  background-color: $infobar--bg;
-  color: $infobar--text-color;
+  background-color: $nsw-primary-blue;
+  color: $white;
 
-  p{
+  p {
     margin: 0;
     font-size: rem(12px);
   }
 }
 
-.nsw-header{
-  background-color: $header--bg;
+.nsw-header {
+  background-color: $white;
   position: relative;
 
-  &__container{
+  &__container {
     @include container;
     position: relative;
   }
 
-  &__wrapper{
+  &__wrapper {
     @include nsw-spacing(padding, sm none);
     display: flex;
     flex-direction: row;
@@ -73,56 +65,56 @@ $search-input--text-color: $dark80;
     align-items: center;
     height: rem(72px);
 
-    @include breakpoint('sm'){
+    @include breakpoint('sm') {
       justify-content: unset;
       height: rem(94px);
     }
   }
 
-  &__center{
+  &__center {
     order: 2;
 
-    @include breakpoint('sm'){
+    @include breakpoint('sm') {
       order: 0;
     }
   }
 
-  &__left{
+  &__left {
     order: 1;
     margin-left: rem(-6px);
   }
 
-  &__right{
+  &__right {
     order: 3;
     margin-right: rem(-4px);
 
-    @include breakpoint('sm'){
+    @include breakpoint('sm') {
       margin-left: auto;
       margin-right: 0;
     }
   }
 
-  &__logo-link{
+  &__logo-link {
     display: block;
 
-    &:focus{
+    &:focus {
       @include nsw-focus;
     }
   }
 }
 
-.nsw-header__logo{
+.nsw-header__logo {
   width: rem(141px);
   height: rem(46px);
 
-  @include breakpoint('sm'){
+  @include breakpoint('sm') {
     width: rem(168px);
     height: rem(55px);
   }
 }
 
-.nsw-header-btn{
-  color: $header-button--text-color;
+.nsw-header-btn {
+  color: $nsw-primary-blue;
   width: rem(48px);
   height: rem(48px);
   background: none;
@@ -132,54 +124,52 @@ $search-input--text-color: $dark80;
   position: relative;
   border-radius: $border-radius;
 
-  &:hover{
+  &:hover {
     @include nsw-hover;
   }
 
-  &:focus{
+  &:focus {
     @include nsw-focus;
   }
 
-  &__icon{
+  &__icon {
     height: rem(16px);
     width: rem(16px);
   }
 
-  &__sub{
+  &__sub {
     @include font-stack('heading');
     font-size: rem(12px);
   }
 }
 
-.nsw-header-btn--menu{
-  @include breakpoint('sm'){
+.nsw-header-btn--menu {
+  @include breakpoint('sm') {
     display: none;
   }
 }
 
-.nsw-header-btn--search{
-  @include breakpoint('sm'){
-
-    .nsw-header-btn__sub{
+.nsw-header-btn--search {
+  @include breakpoint('sm') {
+    .nsw-header-btn__sub {
       @include sr-only;
     }
 
-    .nsw-header-btn__icon{
+    .nsw-header-btn__icon {
       width: rem(32px);
       height: rem(32px);
     }
   }
 }
 
-.nsw-search{
-
-  &__area{
-    @include breakOut(absolute);
+.nsw-search {
+  &__area {
+    @include break-out(absolute);
     background: $light10;
     top: 0;
 
-    @include breakpoint('sm'){
-      @include breakOutReset;
+    @include breakpoint('sm') {
+      @include break-out-reset;
       position: absolute;
       width: rem(394px);
       right: rem(16px);
@@ -188,22 +178,22 @@ $search-input--text-color: $dark80;
     }
   }
 
-  &__input{
+  &__input {
     @include font-stack;
     @include font-size('md');
     background: none;
     padding: rem(8px) rem(72px) rem(8px) rem(16px);
-    color: $search-input--text-color;
+    color: $dark80;
     width: 100%;
     appearance: none;
     border: 0;
     height: rem(72px);
 
-    &:focus{
+    &:focus {
       @include nsw-focus;
     }
 
-    @include breakpoint('sm'){
+    @include breakpoint('sm') {
       @include nsw-spacing(padding, none md);
       height: rem(50px);
       padding: 0 rem(16px);
@@ -211,7 +201,7 @@ $search-input--text-color: $dark80;
     }
   }
 
-  &__search-icon{
+  &__search-icon {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -220,12 +210,12 @@ $search-input--text-color: $dark80;
     height: rem(24px);
     display: none;
 
-    @include breakpoint('sm'){
+    @include breakpoint('sm') {
       display: inline-block;
     }
   }
 
-  &__close-btn{
+  &__close-btn {
     width: rem(48px);
     height: rem(48px);
     background: none;
@@ -237,20 +227,20 @@ $search-input--text-color: $dark80;
     transform: translateY(-50%);
     right: rem(16px);
 
-    &:hover{
+    &:hover {
       @include nsw-hover;
     }
 
-    &:focus{
+    &:focus {
       @include nsw-focus;
     }
 
-    @include breakpoint('sm'){
+    @include breakpoint('sm') {
       display: none;
     }
   }
 
-  &__close-icon{
+  &__close-icon {
     width: rem(24px);
     height: rem(24px);
   }

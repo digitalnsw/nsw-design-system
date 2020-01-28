@@ -1,5 +1,5 @@
-.nsw-navigation{
-  @include font-stack();
+.nsw-navigation {
+  @include font-stack;
   width: 100%;
   position: absolute;
   left: 0;
@@ -11,16 +11,16 @@
   outline: none;
 
   &.is-opening,
-  &.is-open{
+  &.is-open {
     transform: translateX(0);
     visibility: visible;
   }
 
-  &.is-closing{
+  &.is-closing {
     transform: translateX(-100%);
   }
 
-  @include breakpoint('sm'){
+  @include breakpoint('sm') {
     @include font-stack('heading');
     position: relative;
     transform: none;
@@ -32,7 +32,7 @@
     border-top: solid 1px $light40;
   }
 
-  &__close{
+  &__close {
     width: rem(40px);
     height: rem(40px);
     background: none;
@@ -41,29 +41,29 @@
     text-align: center;
     border-radius: rem($border-radius);
 
-    &:hover{
+    &:hover {
       @include nsw-hover;
     }
 
-    &:focus{
+    &:focus {
       @include nsw-focus;
     }
 
-    .icon{
+    .icon {
       height: rem(20px);
       width: rem(20px);
     }
 
-    @include breakpoint('sm'){
+    @include breakpoint('sm') {
       display: none;
     }
   }
 
-  &__link-text{
+  &__link-text {
     flex: 1 1 auto;
   }
 
-  &__subbtn{
+  &__subbtn {
     width: rem(52px);
     height: rem(52px);
     background: none;
@@ -72,20 +72,20 @@
     text-align: center;
     border-left: solid 1px $light20;
 
-    &:hover{
+    &:hover {
       @include nsw-hover;
     }
 
-    &:focus{
+    &:focus {
       @include nsw-focus;
     }
 
-    .nsw-icon{
+    .nsw-icon {
       width: rem(16px);
       height: rem(16px);
     }
 
-    @include breakpoint('sm'){
+    @include breakpoint('sm') {
       display: none;
     }
   }
@@ -93,13 +93,13 @@
 }
 
 .nsw-navigation__list,
-.nsw-subnavigation__list{
+.nsw-subnavigation__list {
   list-style: none;
   padding: 0;
   margin-top: 0;
   margin-bottom: 0;
 
-  @include breakpoint('sm'){
+  @include breakpoint('sm') {
     @include container(0);
     display: flex;
     flex-direction: row;
@@ -109,8 +109,8 @@
   }
 }
 
-.nsw-subnavigation__list{
-  @include breakpoint('sm'){
+.nsw-subnavigation__list {
+  @include breakpoint('sm') {
     @include nsw-spacing(margin-top, xl);
     display: flex;
     justify-content: space-between;
@@ -118,32 +118,32 @@
 }
 
 .nsw-navigation__list-item,
-.nsw-subnavigation__list-item{
+.nsw-subnavigation__list-item {
   border-bottom: solid 1px $light20;
   display: flex;
   flex-direction: row;
   align-items: stretch;
   flex-wrap: nowrap;
 
-  @include breakpoint('sm'){
+  @include breakpoint('sm') {
     border-bottom: 0;
   }
 }
 
-.nsw-subnavigation__list-item{
+.nsw-subnavigation__list-item {
 
-  @include breakpoint('sm'){
+  @include breakpoint('sm') {
     width: 32%;
     border-top: solid 1px $light40;
 
-    &:nth-last-child(-n+3){
+    &:nth-last-child(-n+3) {
       border-bottom: solid 1px $light40;
     }
   }
 }
 
 .nsw-navigation__link,
-.nsw-subnavigation__link{
+.nsw-subnavigation__link {
   flex: 1 1 auto;
   padding: 16px;
   color: $dark80;
@@ -153,25 +153,25 @@
   align-items: stretch;
   flex-wrap: nowrap;
 
-  @include breakpoint('sm'){
+  @include breakpoint('sm') {
     position: relative;
     z-index: 2;
   }
 
-  &:hover{
+  &:hover {
     @include nsw-hover;
   }
 
-  &:focus{
+  &:focus {
     @include nsw-focus;
   }
 
-  &.is-open{
+  &.is-open {
     background-color: $white;
   }
 }
 
-.nsw-navigation__link-icon{
+.nsw-navigation__link-icon {
   position: relative;
   top: 50%;
   transform: translateY(-50%) rotate(90deg);
@@ -180,16 +180,16 @@
   margin-left: rem(10px);
   display: none;
 
-  @include breakpoint('sm'){
+  @include breakpoint('sm') {
     display: block;
   }
 
-  .is-open &{
+  .is-open & {
     transform: translateY(-50%) rotate(270deg);
   }
 }
 
-.nsw-subnavigation{
+.nsw-subnavigation {
   position: absolute;
   top: 0;
   background-color: $white;
@@ -201,12 +201,12 @@
   z-index: 1;
   left: 0;
 
-  &.is-open{
+  &.is-open {
     transform: translateX(0);
     visibility: visible;
   }
 
-  @include breakpoint('sm'){
+  @include breakpoint('sm') {
     @include container;
     @include nsw-spacing(padding-top, lg);
     @include nsw-spacing(padding-bottom, lg);
@@ -216,20 +216,20 @@
     transition: none;
     transform: none;
 
-    &.is-open{
+    &.is-open {
       left: 50%;
       transform: translateX(-50%);
     }
   }
 
-  @include breakpoint('md'){
+  @include breakpoint('md') {
     @include nsw-spacing(padding-top, xxl);
     @include nsw-spacing(padding-bottom, xxl);
   }
 }
 
 .nsw-navigation__header,
-.nsw-subnavigation__header{
+.nsw-subnavigation__header {
   @include font-stack('heading');
   @include font-size('md');
   @include container;
@@ -242,23 +242,23 @@
   padding-bottom: rem(10px);
   position: relative;
 
-  h2{
+  h2 {
     margin: 0;
     flex: 1 1 auto;
   }
 }
 
-.nsw-navigation__header{
-  @include breakpoint('sm'){
+.nsw-navigation__header {
+  @include breakpoint('sm') {
     display: none;
   }
 }
 
-.nsw-subnavigation__header{
+.nsw-subnavigation__header {
   justify-content: space-between;
 
-  @include breakpoint('sm'){
-    @include font-stack();
+  @include breakpoint('sm') {
+    @include font-stack;
     @include font-size('sm');
     border-bottom: 0;
     display: block;
@@ -266,7 +266,7 @@
   }
 }
 
-.nsw-subnavigation__back-btn{
+.nsw-subnavigation__back-btn {
   @include font-stack('heading');
   @include font-size('md');
   background: none;
@@ -275,36 +275,36 @@
   padding: rem(4px) 0;
   line-height: 1;
 
-  &:hover{
+  &:hover {
     @include nsw-hover;
   }
 
-  &:focus{
+  &:focus {
     @include nsw-focus;
   }
 
-  .nsw-icon{
+  .nsw-icon {
     width: rem(16px);
     height: rem(16px);
     margin-right: rem(6px);
   }
 
-  @include breakpoint('sm'){
+  @include breakpoint('sm') {
     display: none;
   }
 }
 
-.nsw-subnavigation__title{
+.nsw-subnavigation__title {
   @include font-stack('heading');
   @include font-size('lg');
   display: none;
 
-  @include breakpoint('sm'){
+  @include breakpoint('sm') {
     display: inline-block;
   }
 }
 
-.nsw-subnavigation__title-link{
+.nsw-subnavigation__title-link {
   color: $nsw-primary-blue;
   text-decoration: none;
   display: inline-flex;
@@ -313,15 +313,15 @@
   align-items: stretch;
   flex-wrap: nowrap;
 
-  &:hover{
+  &:hover {
     @include nsw-hover;
   }
 
-  &:focus{
+  &:focus {
     @include nsw-focus;
   }
 
-  .nsw-icon{
+  .nsw-icon {
     @include nsw-spacing(margin-left, sm);
     margin-top: rem(4px);
     width: rem(24px);
@@ -329,11 +329,11 @@
   }
 }
 
-.nsw-subnavigation__description{
+.nsw-subnavigation__description {
   @include nsw-spacing(margin-top, sm);
   display: none;
 
-  @include breakpoint('sm'){
+  @include breakpoint('sm') {
     display: block;
   }
 }

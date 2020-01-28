@@ -1,5 +1,5 @@
-.nsw-card{
-  @include font-stack();
+.nsw-card {
+  @include font-stack;
   @include nsw-spacing(margin-top, md);
   background-color: $white;
   box-shadow: map-get($shadows, card);
@@ -11,40 +11,41 @@
   overflow: hidden;
   height: 100%;
   max-width: rem(400px);
+  border: 0;
 
-  &:hover{
+  &:hover {
     box-shadow: map-get($shadows, card-hover);
   }
 
-  &:focus-within{
+  &:focus-within {
     @include nsw-focus(card);
 
-    .nsw-card__link{
+    .nsw-card__link {
       text-decoration: none;
     }
   }
 
-  &__title{
+  &__title {
     @include font-stack('heading');
     @include font-size('md');
     @include nsw-spacing(margin, none none sm none);
   }
 
-  &__content{
+  &__content {
     @include font-size('sm');
     @include nsw-spacing(padding, md);
     border-top: solid 6px $nsw-primary-highlight;
 
-    @include breakpoint('md'){
+    @include breakpoint('md') {
       @include nsw-spacing(padding, md xl);
     }
 
-    p{
+    p {
       @include nsw-spacing(margin, none none sm none);
     }
   }
 
-  &__tag{
+  &__tag {
     @include font-stack('heading');
   }
 
@@ -53,45 +54,37 @@
     @include font-size('xs');
   }
 
-  &__icon{
+  &__icon {
     @include nsw-spacing(margin, md none none none);
   }
 
-  &__link{
+  &__link {
+    @include pseudo-clickable-block;
     text-decoration: none;
     color: $dark80;
 
-    &:hover{
+    &:hover {
       text-decoration: underline;
     }
 
-    &:focus{
+    &:focus {
       outline: none;
       text-decoration: underline;
-    }
-
-    &::after{
-      content: '';
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
     }
   }
 }
 
-.nsw-card--media{
-  .nsw-card__image-area{
+.nsw-card--media {
+  .nsw-card__image-area {
     order: 1;
-    height: rem(200px)
+    height: rem(200px);
   }
 
-  .nsw-card__content{
+  .nsw-card__content {
     order: 2;
   }
 
-  .nsw-card__image{
+  .nsw-card__image {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -99,30 +92,30 @@
 
 }
 
-.nsw-card--news{
-  .nsw-card__content{
+.nsw-card--news {
+  .nsw-card__content {
     display: flex;
     flex-direction: column;
   }
 
-  .nsw-card__tag{
-    order: 1
+  .nsw-card__tag {
+    order: 1;
   }
 
-  .nsw-card__date{
-    order: 2
+  .nsw-card__date {
+    order: 2;
   }
 
   .nsw-card__title,
   .nsw-card__copy,
-  .nsw-card__icon{
-    order: 3
+  .nsw-card__icon {
+    order: 3;
   }
 }
 
 
-.nsw-card--headline{
-  .nsw-card__title{
-    @include font-size('xl')
+.nsw-card--headline {
+  .nsw-card__title {
+    @include font-size('xl');
   }
 }
