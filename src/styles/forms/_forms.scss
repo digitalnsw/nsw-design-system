@@ -1,18 +1,18 @@
-.nsw-form-label{
+.nsw-form-label {
   @include font-stack;
   @include font-size('sm');
   @include nsw-spacing(margin-top, lg);
   display: block;
 
-  & + input,
+  + input,
   + textarea,
-  + select{
-    margin-top: rem(4px)
+  + select {
+    margin-top: rem(4px);
   }
 }
 
 .nsw-form-input,
-.nsw-form-select{
+.nsw-form-select {
   @include font-stack;
   @include font-size('sm');
   @include nsw-spacing(padding, sm md);
@@ -24,16 +24,16 @@
   appearance: none;
   width: 100%;
 
-  &:hover{
+  &:hover {
     @include nsw-hover;
   }
 
-  &:focus{
+  &:focus {
     @include nsw-focus;
-    border-color: $nsw-tertiary-blue
+    border-color: $nsw-tertiary-blue;
   }
 
-  &:disabled{
+  &:disabled {
     background-color: $light10;
     border-color: $light40;
     color: $light40;
@@ -42,12 +42,12 @@
 
 
   &[aria-invalid='true'],
-  &.has-error{
+  &.has-error {
     border-color: $error-red;
   }
 }
 
-.nsw-form-select{
+.nsw-form-select {
   @include background-svg(chevron-down, $nsw-primary-blue);
   @include nsw-spacing(padding-right, xxl);
   background-repeat: no-repeat;
@@ -56,67 +56,67 @@
 }
 
 .nsw-form-checkbox,
-.nsw-form-radio{
+.nsw-form-radio {
   @include nsw-spacing(margin-top, lg);
 
   [aria-invalid='true'] &,
-  .has-error &{
+  .has-error & {
     border: solid 2px $error-red;
     border-radius: 9px;
   }
 
-  &__input{
+  &__input {
     position: absolute;
     opacity: 0;
 
 
     &:hover + .nsw-form-checkbox__label::before,
-    &:hover + .nsw-form-radio__label::before{
+    &:hover + .nsw-form-radio__label::before {
       @include nsw-hover;
     }
 
-    &:checked + .nsw-form-checkbox__label::after{
+    &:checked + .nsw-form-checkbox__label::after {
       @include background-svg(tick, $white);
       background-color: $nsw-primary-blue;
     }
 
-    &:checked + .nsw-form-radio__label::after{
+    &:checked + .nsw-form-radio__label::after {
       background-color: $nsw-primary-blue;
     }
 
-    &:disabled{
-      & + .nsw-form-checkbox__label::before,
-      & + .nsw-form-radio__label::before{
+    &:disabled {
+      .nsw-form-checkbox__label::before,
+      .nsw-form-radio__label::before {
         border-color: $light40;
         background-color: $white;
         cursor: not-allowed;
       }
 
       &:checked + .nsw-form-checkbox__label::after,
-      &:checked + .nsw-form-radio__label::after{
+      &:checked + .nsw-form-radio__label::after {
         background-color: $light40;
       }
     }
 
     &:focus + .nsw-form-checkbox__label::before,
-    &:focus + .nsw-form-radio__label::before{
+    &:focus + .nsw-form-radio__label::before {
       @include nsw-focus;
     }
   }
 
-  &__label{
+  &__label {
     @include font-stack;
     @include font-size('sm');
     display: block;
   }
 
-  &__label + &__input + &__label{
+  &__label + &__input + &__label {
     @include nsw-spacing(margin-top, lg);
   }
 }
 
 .nsw-form-checkbox__label,
-.nsw-form-radio__label{
+.nsw-form-radio__label {
   position: relative;
 
   &::before {
@@ -145,11 +145,11 @@
     left: rem(5px);
     top: 50%;
     transform: translateY(-50%);
-    margin-top: rem(-2px)
+    margin-top: rem(-2px);
   }
 }
 
-.nsw-form-checkbox__label{
+.nsw-form-checkbox__label {
   &::before {
     border-radius: 2px;
   }
@@ -159,7 +159,7 @@
   }
 }
 
-.nsw-form-radio__label{
+.nsw-form-radio__label {
   &::before {
     border-radius: 50%;
   }
@@ -169,12 +169,12 @@
   }
 }
 
-.nsw-form-helper{
+.nsw-form-helper {
   @include font-stack;
   @include font-size('xs');
   display: block;
 
-  &--error{
+  &--error {
     @include font-stack(heading);
     @include background-svg(error, $error-red);
     @include nsw-spacing(padding, xs md xs xl);
@@ -186,14 +186,14 @@
   }
 }
 
-.nsw-form-fieldset{
+.nsw-form-fieldset {
   @include nsw-spacing(margin, lg none none);
   @include nsw-spacing(padding, none);
   border: 0;
 
 }
 
-.nsw-form-group{
+.nsw-form-group {
   @include nsw-spacing(padding, none md);
   border: 0;
 }

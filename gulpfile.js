@@ -8,7 +8,7 @@ const cssnano = require('cssnano')
 const sourcemaps = require('gulp-sourcemaps')
 const browsersync = require('browser-sync')
 const surge = require('gulp-surge')
-const sassLint = require('gulp-sass-lint')
+const zip = require('gulp-zip')
 const svgSprite = require('gulp-svg-sprite')
 const del = require('del')
 const postcssNormalize = require('postcss-normalize')
@@ -20,11 +20,12 @@ const collections = require('metalsmith-collections')
 const ignore = require('metalsmith-ignore')
 const discoverPartials = require('metalsmith-discover-partials')
 const dataLoader = require('metalsmith-data-loader')
-const debug = require('metalsmith-debug-ui')
+// const debug = require('metalsmith-debug-ui')
 const discoverHelpers = require('metalsmith-discover-helpers')
 const rollup = require('gulp-better-rollup')
 const babel = require('rollup-plugin-babel')
 const eslint = require('gulp-eslint')
+const gulpStylelint = require('gulp-stylelint')
 const config = require('./config')
 
 const server = browsersync.create()
@@ -57,9 +58,11 @@ function buildStyles() {
 
 function lintStyles() {
   return src(config.scss.watch)
-    .pipe(sassLint())
-    .pipe(sassLint.format())
-    .pipe(sassLint.failOnError())
+    .pipe(gulpStylelint({
+      reporters: [
+        { formatter: 'string', console: true },
+      ],
+    }))
 }
 
 function browserSync(done) {
@@ -91,6 +94,7 @@ function cleanBuild(files, metalsmith, done) {
       || file[0].indexOf('partials') > -1
       || file[0].indexOf('_') > -1
     ) {
+      // eslint-disable-next-line no-param-reassign
       delete files[path]
     }
   })
@@ -159,6 +163,12 @@ function watchFiles(done) {
   done()
 }
 
+function zipDistFolder() {
+  return src('./dist/**')
+    .pipe(zip('HTMLstarterkit.zip'))
+    .pipe(dest('./'))
+}
+
 const build = series(
   cleanUp,
   copyFavicon,
@@ -166,6 +176,7 @@ const build = series(
   styles,
   javascript,
   compileSvg,
+  zipDistFolder,
 )
 
 const dev = series(

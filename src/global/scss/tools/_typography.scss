@@ -1,43 +1,64 @@
 // Font-size mixin - returns the font size for mobile and desktop based of the values in $font-sizes map
-@mixin font-size($size) {
+@mixin font-size($size, $line-height: default) {
   @if $size != 'xs' and $size != 'sm' and $size != 'md' and $size != 'lg' and $size != 'xl' and $size != 'xxl' and $size != 'xxxl' {
-    @error 'NSW-DS font mixin allows the following values for $sizes: xs, sm, md, lg, xl, xxl, xxxl. You have used "#{$size}"';
+    @error 'NSW-DS font-size mixin allows the following values for $sizes: xs, sm, md, lg, xl, xxl, xxxl. You have used "#{$size}"';
+  }
+
+  @if $line-height != 'nospace' and $line-height != 'default' and $line-height != 'paragraph' {
+    @error 'NSW-DS font-size mixin allows the following values for $line-height: nospace, default, paragraph. You have used "#{$line-height}"';
   }
 
   @if $size {
     font-size: get-font-size($size, 'mobile');
+    line-height: get-line-height($line-height);
 
-    @include breakpoint($font-size-reponsive-breakpoint){
-      font-size: get-font-size($size, 'desktop');;
+    @include breakpoint($font-size-reponsive-breakpoint) {
+      font-size: get-font-size($size, 'desktop');
     }
   }
 }
 
 // Font-stack mixin - returns the font stack also applies specific weighting if heading or not
 @mixin font-stack($weight: 'regular') {
+  @if $weight != 'regular' and $weight != 'heading' {
+    @error 'NSW-DS font-stack mixin allows the following values for $weight: regular, heading. You have used "#{$weight}"';
+  }
+
   font-family: $font-stack;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
   @if $weight == 'regular' {
-    font-weight: map-get($font-weight, regular)
+    font-weight: map-get($font-weight, regular);
   } @else if $weight == 'heading' {
-    font-weight: map-get($font-weight, heading)
+    font-weight: map-get($font-weight, heading);
   }
 }
 
 // Function to get the font size from $font-sizes map and convert values to rem
-@function get-font-size($size, $screen-size: 'mobile'){
+@function get-font-size($size, $screen-size: 'mobile') {
   @if $screen-size != 'mobile' and $screen-size != 'desktop' {
     @error 'NSW-DS get-font-size function allows the following values for $screen-size: mobile, desktop';
   }
 
   $screen-size-value: if($screen-size == 'mobile', 1, 2);
 
-  @each $size-key, $size-value in $font-sizes  {
-    @if $size-key == $size{
+  @each $size-key, $size-value in $font-sizes {
+    @if $size-key == $size {
       $font-size: nth($size-value, $screen-size-value);
+
       @return rem($font-size);
     }
+  }
+}
+
+// Line-height mixin - returns the line-height from $line-height map
+@function get-line-height($type: default) {
+  @if $type != 'nospace' and $type != 'default' and $type != 'paragraph' {
+    @error 'NSW-DS get-line-height function allows the following values for $type: nospace, default, paragraph. You have used "#{$type}"';
+  }
+
+  @if $type {
+    @return map-get($line-height, $type);
   }
 }

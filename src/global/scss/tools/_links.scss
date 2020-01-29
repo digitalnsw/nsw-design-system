@@ -1,17 +1,15 @@
 @mixin text-link() {
-  &{
-    @include font-stack('heading');
-    color: $link-color;
-    text-decoration: none;
-    display: inline-block;
-  }
+  @include font-stack('heading');
+  color: $link-color;
+  text-decoration: none;
+  display: inline-block;
 
-  &:hover{
+  &:hover {
     @include nsw-hover;
-    outline: 4px solid $link-hover--outline-color;
+    outline: 4px solid $link-hover-outline-color;
   }
 
-  &:focus{
+  &:focus {
     @include nsw-focus;
   }
 }

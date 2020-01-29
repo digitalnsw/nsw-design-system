@@ -1,5 +1,8 @@
 @mixin nsw-focus($type: default) {
-  outline: 0;
+  @if $type != 'default' and $type != 'card' {
+    @error 'NSW-DS nsw-focus mixin allows the following values for $type: default, card. You have used "#{$type}"';
+  }
+  outline: none;
   box-shadow: map-get($focuses, $type);
 }
 
