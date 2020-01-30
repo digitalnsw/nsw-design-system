@@ -1,7 +1,6 @@
 .nsw-form-label {
   @include font-stack;
   @include font-size('sm');
-  @include nsw-spacing(margin-top, lg);
   display: block;
 
   + input,
@@ -9,6 +8,10 @@
   + select {
     margin-top: rem(4px);
   }
+}
+
+*:not(legend) + .nsw-form-label {
+  @include nsw-spacing(margin-top, md);
 }
 
 .nsw-form-input,
@@ -30,7 +33,6 @@
 
   &:focus {
     @include nsw-focus;
-    border-color: $nsw-tertiary-blue;
   }
 
   &:disabled {
@@ -44,6 +46,11 @@
   &[aria-invalid='true'],
   &.has-error {
     border-color: $error-red;
+    border-width: 2px;
+
+    &:hover {
+      background-color: $error-red-light10;
+    }
   }
 }
 
@@ -53,70 +60,74 @@
   background-repeat: no-repeat;
   background-position: right rem(16px) center;
   background-size: rem(16px) auto;
+
+
+  &:disabled {
+    @include background-svg(chevron-down, $light40);
+  }
 }
 
-.nsw-form-checkbox,
-.nsw-form-radio {
-  @include nsw-spacing(margin-top, lg);
+.nsw-form-checkbox__input,
+.nsw-form-radio__input {
+  position: absolute;
+  opacity: 0;
 
-  [aria-invalid='true'] &,
-  .has-error & {
-    border: solid 2px $error-red;
-    border-radius: 9px;
+  &:hover + .nsw-form-checkbox__label::before,
+  &:hover + .nsw-form-radio__label::before {
+    @include nsw-hover;
   }
 
-  &__input {
-    position: absolute;
-    opacity: 0;
+  &:checked + .nsw-form-checkbox__label::after {
+    @include background-svg(tick, $white);
+    background-color: $nsw-primary-blue;
+  }
 
+  &:checked + .nsw-form-radio__label::after {
+    background-color: $nsw-primary-blue;
+  }
 
-    &:hover + .nsw-form-checkbox__label::before,
-    &:hover + .nsw-form-radio__label::before {
-      @include nsw-hover;
+  &:disabled {
+    + .nsw-form-checkbox__label,
+    + .nsw-form-radio__label {
+      cursor: not-allowed;
     }
 
-    &:checked + .nsw-form-checkbox__label::after {
-      @include background-svg(tick, $white);
-      background-color: $nsw-primary-blue;
+    + .nsw-form-checkbox__label::before,
+    + .nsw-form-radio__label::before {
+      border-color: $light40;
+      background-color: $light10;
     }
 
+    &:checked + .nsw-form-checkbox__label::after,
     &:checked + .nsw-form-radio__label::after {
-      background-color: $nsw-primary-blue;
-    }
-
-    &:disabled {
-      .nsw-form-checkbox__label::before,
-      .nsw-form-radio__label::before {
-        border-color: $light40;
-        background-color: $white;
-        cursor: not-allowed;
-      }
-
-      &:checked + .nsw-form-checkbox__label::after,
-      &:checked + .nsw-form-radio__label::after {
-        background-color: $light40;
-      }
-    }
-
-    &:focus + .nsw-form-checkbox__label::before,
-    &:focus + .nsw-form-radio__label::before {
-      @include nsw-focus;
+      background-color: $light40;
     }
   }
 
-  &__label {
-    @include font-stack;
-    @include font-size('sm');
-    display: block;
+  &:focus + .nsw-form-checkbox__label::before,
+  &:focus + .nsw-form-radio__label::before {
+    @include nsw-focus;
   }
 
-  &__label + &__input + &__label {
-    @include nsw-spacing(margin-top, lg);
+  &[aria-invalid='true'] + .nsw-form-checkbox__label,
+  &.has-error + .nsw-form-checkbox__label {
+    &:hover::before {
+      background-color: $error-red-light10;
+    }
+
+    &::before {
+      border-width: 2px;
+      border-color: $error-red;
+    }
   }
 }
 
 .nsw-form-checkbox__label,
 .nsw-form-radio__label {
+  @include font-stack;
+  @include font-size('sm');
+  @include nsw-spacing(margin-top, md);
+  display: block;
   position: relative;
 
   &::before {
@@ -187,13 +198,62 @@
 }
 
 .nsw-form-fieldset {
-  @include nsw-spacing(margin, lg none none);
-  @include nsw-spacing(padding, none);
+  @include nsw-spacing(margin, none);
+  @include nsw-spacing(padding, md none);
   border: 0;
+  position: relative;
 
+  legend {
+    @include nsw-spacing(padding, none none md none);
+    width: 100%;
+    display: block;
+    float: left;
+  }
+
+  &::after {
+    content: none;
+    width: calc(100% + 18px);
+    height: 100%;
+    border: solid 2px $error-red;
+    position: absolute;
+    top: 0;
+    left: -9px;
+    border-radius: $border-radius;
+    z-index: -1;
+  }
+
+  &[aria-invalid='true'],
+  &.has-error {
+    &::after {
+      content: '';
+    }
+  }
+
+  @include breakpoint('sm') {
+    &[aria-invalid='true'],
+    &.has-error {
+      @include nsw-spacing(padding, md);
+
+      &::after {
+        content: '';
+      }
+    }
+
+    &::after {
+      width: 100%;
+      left: 0;
+    }
+  }
 }
 
-.nsw-form-group {
-  @include nsw-spacing(padding, none md);
+.nsw-form-legend-text {
+  @include font-stack(heading);
+  @include font-size('lg');
+  width: 100%;
+  display: block;
+}
+
+* + .nsw-form-group {
+  @include nsw-spacing(margin-top, xxl);
   border: 0;
 }

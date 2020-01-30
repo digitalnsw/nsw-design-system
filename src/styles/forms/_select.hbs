@@ -1,0 +1,9 @@
+<label for="{{id}}" class="nsw-form-label">{{label}}</label>
+{{#if helper-text}}<span id="{{id}}-helper-text" class="nsw-form-helper">{{helper-text}}</span>{{/if}}
+<select id="{{id}}" class="nsw-form-select"  aria-describedby="{{id}}-helper-text {{id}}-error-text" {{#if error-text}}aria-invalid="true"{{/if}}>
+  <option value="">Please select</option>
+  <option value="1">Option 1</option>
+  <option value="2">Option 2</option>
+  <option value="3">Option 3</option>
+</select>
+{{#if error-text}}<span id="{{id}}-error-text" class="nsw-form-helper nsw-form-helper--error">{{error-text}}</span>{{/if}}

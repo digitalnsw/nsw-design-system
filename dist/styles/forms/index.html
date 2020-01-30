@@ -29,44 +29,190 @@
 </head>
 
 <body>
-  <div class="nsw-container">
+  <div class="nsw-container nsw-wysiwyg-content">
+  <h1>Forms</h1>
+  <h2>Default Fields</h2>
   <div class="nsw-forms">
-    <label for="f1" class="nsw-form-label">Single-line text input field:</label>
-    <input id="f1" name="text" class="nsw-form-input">
-    <label for="t1" class="nsw-form-label">Multi-line text area:</label>
-    <textarea class="nsw-form-input" name="textarea" id="t1">Value</textarea>
-    <label for="s1" class="nsw-form-label">Select:</label>
-    <select id="s1" class="nsw-form-select">
-      <option value="">Please select</option>
-      <option value="1">Option 1</option>
-      <option value="2">Option 2</option>
-      <option value="3">Option 3</option>
-    </select>
-    <div class="nsw-form-checkbox">
-      <input class="nsw-form-checkbox__input" type="checkbox" name="checkbox" id="c1">
-      <label class="nsw-form-checkbox__label" for="c1">I agree to all terms and conditions</label>
-      <input class="nsw-form-checkbox__input" type="checkbox" name="checkbox" id="c2">
-      <label class="nsw-form-checkbox__label" for="c2">I agree to all terms and conditions</label>
+    <div class="nsw-form-group">
+      <label for="txt1" class="nsw-form-label">Single-line text input:</label>
+      
+      <input id="txt1" name="text" class="nsw-form-input" aria-describedby="txt1-helper-text txt1-error-text" >
+      
+
+      <label for="txta1" class="nsw-form-label">Multi-line text input:</label>
+      
+      <textarea class="nsw-form-input" name="textarea" id="txta1" aria-describedby="txta1-helper-text txta1-error-text" ></textarea>
+      
+
+      <label for="select1" class="nsw-form-label">Select dropdown:</label>
+      
+      <select id="select1" class="nsw-form-select"  aria-describedby="select1-helper-text select1-error-text" >
+        <option value="">Please select</option>
+        <option value="1">Option 1</option>
+        <option value="2">Option 2</option>
+        <option value="3">Option 3</option>
+      </select>
+      
+
+      <div class="nsw-form-checkbox">
+        <input class="nsw-form-checkbox__input" type="checkbox" name="single-checkbox" id="check1" aria-describedby="check1-error-text" >
+        <label class="nsw-form-checkbox__label" for="check1">Single checkbox:</label>
+        
+      </div>
     </div>
-  
-    <div class="nsw-form-radio">
-      <input class="nsw-form-radio__input" type="radio" name="radio" id="r1">
-      <label class="nsw-form-radio__label" for="r1">Radio 1</label>
-      <input class="nsw-form-radio__input" type="radio" name="radio" id="r2">
-      <label class="nsw-form-radio__label" for="r2">Radio 2</label>
+
+    <div class="nsw-form-group">
+      <fieldset class="nsw-form-fieldset">
+        <legend>
+          <span class="nsw-form-legend-text">Multiple Radio</span>
+        </legend>
+        <div class="nsw-form-radio">
+          <input class="nsw-form-radio__input" type="radio" name="defaultradio" id="radio1" aria-describedby="radio1-error-text" >
+          <label class="nsw-form-radio__label" for="radio1">Radio Option 1</label>
+          
+          <input class="nsw-form-radio__input" type="radio" name="defaultradio" id="radio2" aria-describedby="radio2-error-text" >
+          <label class="nsw-form-radio__label" for="radio2">Radio Option 2</label>
+          
+        </div>
+      </fieldset>
+    </div>
+
+    <div class="nsw-form-group">
+      <fieldset class="nsw-form-fieldset">
+        <legend>
+          <span class="nsw-form-legend-text">Multiple Checkbox</span>
+        </legend>
+        <div class="nsw-form-checkbox">
+          <input class="nsw-form-checkbox__input" type="checkbox" name="defaultcheck" id="checkbox1a" aria-describedby="checkbox1a-error-text" >
+          <label class="nsw-form-checkbox__label" for="checkbox1a">Checkbox Option 1</label>
+          
+          <input class="nsw-form-checkbox__input" type="checkbox" name="defaultcheck" id="checkbox2a" aria-describedby="checkbox2a-error-text" >
+          <label class="nsw-form-checkbox__label" for="checkbox2a">Checkbox Option 2</label>
+          
+        </div>
+      </fieldset>
     </div>
   </div>
-  
+
+  <h2>Fields with Helper text</h2>
   <div class="nsw-forms">
-    <label for="f1-error" class="nsw-form-label">Single-line text input field:</label>
-    <input id="f1-error" name="text" class="nsw-form-input" aria-invalid="true" aria-describedby="f1-error-text">
-    <span id="f1-error-text" class="nsw-form-helper nsw-form-helper--error">There was an error with the input above.</span>
+    <div class="nsw-form-group">
+      <label for="txt2help" class="nsw-form-label">Single-line text input field:</label>
+      <span id="txt2help-helper-text" class="nsw-form-helper">This is helper text</span>
+      <input id="txt2help" name="text" class="nsw-form-input" aria-describedby="txt2help-helper-text txt2help-error-text" >
+      
+
+      <label for="txta1help" class="nsw-form-label">Multi-line text input:</label>
+      <span id="txta1help-helper-text" class="nsw-form-helper">This is helper text</span>
+      <textarea class="nsw-form-input" name="textarea" id="txta1help" aria-describedby="txta1help-helper-text txta1help-error-text" ></textarea>
+      
+
+      <label for="select1help" class="nsw-form-label">Select dropdown:</label>
+      <span id="select1help-helper-text" class="nsw-form-helper">This is helper text</span>
+      <select id="select1help" class="nsw-form-select"  aria-describedby="select1help-helper-text select1help-error-text" >
+        <option value="">Please select</option>
+        <option value="1">Option 1</option>
+        <option value="2">Option 2</option>
+        <option value="3">Option 3</option>
+      </select>
+      
+    </div>
+    <div class="nsw-form-group">
+      <fieldset class="nsw-form-fieldset">
+        <legend>
+          <span class="nsw-form-legend-text">Multiple Radio</span>
+          <span class="nsw-form-helper">This is helper text</span>
+        </legend>
+        <div class="nsw-form-radio">
+          <input class="nsw-form-radio__input" type="radio" name="radiohelper" id="radio1helper" aria-describedby="radio1helper-error-text" >
+          <label class="nsw-form-radio__label" for="radio1helper">Radio Option 1</label>
+          
+          <input class="nsw-form-radio__input" type="radio" name="radiohelper" id="radio2helper" aria-describedby="radio2helper-error-text" >
+          <label class="nsw-form-radio__label" for="radio2helper">Radio Option 2</label>
+          
+        </div>
+      </fieldset>
+    </div>
+    <div class="nsw-form-group">
+      <fieldset class="nsw-form-fieldset">
+        <legend>
+          <span class="nsw-form-legend-text">Multiple Checkbox</span>
+          <span class="nsw-form-helper">This is helper text</span>
+        </legend>
+        <div class="nsw-form-checkbox">
+          <input class="nsw-form-checkbox__input" type="checkbox" name="checkhelper" id="checkbox1helper" aria-describedby="checkbox1helper-error-text" >
+          <label class="nsw-form-checkbox__label" for="checkbox1helper">Checkbox Option 1</label>
+          
+          <input class="nsw-form-checkbox__input" type="checkbox" name="checkhelper" id="checkbox2helper" aria-describedby="checkbox2helper-error-text" >
+          <label class="nsw-form-checkbox__label" for="checkbox2helper">Checkbox Option 2</label>
+          
+        </div>
+      </fieldset>
+    </div>
   </div>
-  
+
+  <h2>Fields with Errors</h2>
   <div class="nsw-forms">
-    <label for="f1-helper" class="nsw-form-label">Single-line text input field:</label>
-    <span id="f1-helper-text" class="nsw-form-helper">This is helper text</span>
-    <input id="f1-helper" name="text" class="nsw-form-input" aria-describedby="f1-helper-text">
+    <div class="nsw-form-group">
+      <label for="txt3error" class="nsw-form-label">Single-line text input field:</label>
+      
+      <input id="txt3error" name="text" class="nsw-form-input" aria-describedby="txt3error-helper-text txt3error-error-text" aria-invalid="true">
+      <span id="txt3error-error-text" class="nsw-form-helper nsw-form-helper--error">There was an error with the input above</span>
+
+      <label for="txta1error" class="nsw-form-label">Multi-line text input:</label>
+      
+      <textarea class="nsw-form-input" name="textarea" id="txta1error" aria-describedby="txta1error-helper-text txta1error-error-text" aria-invalid="true"></textarea>
+      <span id="txta1error-error-text" class="nsw-form-helper nsw-form-helper--error">There was an error with the input above</span>
+
+      <label for="select1error" class="nsw-form-label">Select dropdown:</label>
+      
+      <select id="select1error" class="nsw-form-select"  aria-describedby="select1error-helper-text select1error-error-text" aria-invalid="true">
+        <option value="">Please select</option>
+        <option value="1">Option 1</option>
+        <option value="2">Option 2</option>
+        <option value="3">Option 3</option>
+      </select>
+      <span id="select1error-error-text" class="nsw-form-helper nsw-form-helper--error">There was an error with the input above</span>
+
+      <div class="nsw-form-checkbox">
+        <input class="nsw-form-checkbox__input" type="checkbox" name="single-checkbox-error" id="check1error" aria-describedby="check1error-error-text" aria-invalid="true">
+        <label class="nsw-form-checkbox__label" for="check1error">Single checkbox:</label>
+        <span id="check1error-error-text" class="nsw-form-helper nsw-form-helper--error">There was an error with the input above</span>
+      </div>
+    </div>
+    <div class="nsw-form-group">
+      <fieldset class="nsw-form-fieldset" aria-invalid="true">
+        <legend>
+          <span class="nsw-form-legend-text">Multiple Radio</span>
+          <span class="nsw-form-helper nsw-form-helper--error">Please select at least one option</span>
+        </legend>
+        <div class="nsw-form-radio">
+          <input class="nsw-form-radio__input" type="radio" name="radiocheck" id="radio1error" aria-describedby="radio1error-error-text" >
+          <label class="nsw-form-radio__label" for="radio1error">Radio Option 1</label>
+          
+          <input class="nsw-form-radio__input" type="radio" name="radiocheck" id="radio2error" aria-describedby="radio2error-error-text" >
+          <label class="nsw-form-radio__label" for="radio2error">Radio Option 2</label>
+          
+        </div>
+      </fieldset>
+    </div>
+
+    <div class="nsw-form-group">
+      <fieldset class="nsw-form-fieldset" aria-invalid="true">
+        <legend>
+          <span class="nsw-form-legend-text">Multiple Checkbox</span>
+          <span class="nsw-form-helper nsw-form-helper--error">Please select at least one option</span>
+        </legend>
+        <div class="nsw-form-checkbox">
+          <input class="nsw-form-checkbox__input" type="checkbox" name="errorcheck" id="checkbox1error" aria-describedby="checkbox1error-error-text" >
+          <label class="nsw-form-checkbox__label" for="checkbox1error">Checkbox Option 1</label>
+          
+          <input class="nsw-form-checkbox__input" type="checkbox" name="errorcheck" id="checkbox2error" aria-describedby="checkbox2error-error-text" >
+          <label class="nsw-form-checkbox__label" for="checkbox2error">Checkbox Option 2</label>
+          
+        </div>
+      </fieldset>
+    </div>
   </div>
 </div>
 

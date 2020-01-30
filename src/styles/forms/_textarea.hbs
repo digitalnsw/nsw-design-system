@@ -1,0 +1,4 @@
+<label for="{{id}}" class="nsw-form-label">{{label}}</label>
+{{#if helper-text}}<span id="{{id}}-helper-text" class="nsw-form-helper">{{helper-text}}</span>{{/if}}
+<textarea class="nsw-form-input" name="textarea" id="{{id}}" aria-describedby="{{id}}-helper-text {{id}}-error-text" {{#if error-text}}aria-invalid="true"{{/if}}></textarea>
+{{#if error-text}}<span id="{{id}}-error-text" class="nsw-form-helper nsw-form-helper--error">{{error-text}}</span>{{/if}}
