@@ -20,7 +20,7 @@ const collections = require('metalsmith-collections')
 const ignore = require('metalsmith-ignore')
 const discoverPartials = require('metalsmith-discover-partials')
 const dataLoader = require('metalsmith-data-loader')
-const debug = require('metalsmith-debug-ui')
+// const debug = require('metalsmith-debug-ui')
 const discoverHelpers = require('metalsmith-discover-helpers')
 const rollup = require('gulp-better-rollup')
 const babel = require('rollup-plugin-babel')
@@ -94,6 +94,7 @@ function cleanBuild(files, metalsmith, done) {
       || file[0].indexOf('partials') > -1
       || file[0].indexOf('_') > -1
     ) {
+      // eslint-disable-next-line no-param-reassign
       delete files[path]
     }
   })
