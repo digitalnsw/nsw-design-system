@@ -52,7 +52,7 @@ function buildStyles() {
     .pipe(sassGlob())
     .pipe(sass().on('error', sass.logError))
     .pipe(postcss(postcssProcessors))
-    .pipe(sourcemaps.write())
+    .pipe(sourcemaps.write('.'))
     .pipe(dest(config.scss.build))
 }
 
