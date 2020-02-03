@@ -1,4 +1,5 @@
-.nsw-sitewide-message {
+.nsw-sitewide-message,
+.nsw-global-alert {
   @include nsw-spacing(padding, lg none);
   position: relative;
 
@@ -31,6 +32,10 @@
     &:focus {
       @include nsw-focus;
     }
+
+    .nsw-icon {
+      fill: $white;
+    }
   }
 
   &__wrapper {
@@ -58,7 +63,7 @@
   }
 
   .nsw-button {
-    @include button-variant(map-get($button-variations, primary));
+    @include button-variant(map-get($button-variations, white));
     display: block;
     margin-right: 0;
 
@@ -76,5 +81,16 @@
       fill: $white;
     }
 
+  }
+
+  &--light,
+  &--alert {
+    .nsw-button {
+      @include button-variant(map-get($button-variations, primary));
+    }
+
+    .nsw-sitewide-message__close .nsw-icon {
+      fill: $nsw-primary-blue;
+    }
   }
 }
