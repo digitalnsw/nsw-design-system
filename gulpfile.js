@@ -101,6 +101,14 @@ function cleanBuild(files, metalsmith, done) {
   done(null, files)
 }
 
+function sortByAlpha(a, b) {
+  const nameA = a.title.toLowerCase()
+  const nameB = b.title.toLowerCase()
+  if (nameA < nameB) { return -1 }
+  if (nameA > nameB) { return 1 }
+  return 0
+}
+
 function metalsmithBuild(callback) {
   const metalsmith = new Metalsmith(__dirname)
   // debug.patch(metalsmith)
@@ -112,7 +120,24 @@ function metalsmithBuild(callback) {
   metalsmith.use(discoverHelpers(config.metalSmith.helpers))
   metalsmith.use(discoverPartials(config.metalSmith.partials))
   metalsmith.use(dataLoader(config.metalSmith.data))
-  metalsmith.use(collections(config.metalSmith.collection))
+  metalsmith.use(collections({
+    components: {
+      pattern: config.metalSmith.collection.components.pattern,
+      sortBy: sortByAlpha,
+    },
+    patterns: {
+      pattern: config.metalSmith.collection.patterns.pattern,
+      sortBy: sortByAlpha,
+    },
+    styles: {
+      pattern: config.metalSmith.collection.styles.pattern,
+      sortBy: sortByAlpha,
+    },
+    pages: {
+      pattern: config.metalSmith.collection.pages.pattern,
+      sortBy: sortByAlpha,
+    },
+  }))
   metalsmith.use(inplace(config.metalSmith.inplace))
   metalsmith.use(layouts(config.metalSmith.layouts))
   metalsmith.use(cleanBuild)
