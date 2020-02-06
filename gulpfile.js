@@ -27,6 +27,8 @@ const babel = require('rollup-plugin-babel')
 const eslint = require('gulp-eslint')
 const gulpStylelint = require('gulp-stylelint')
 const replace = require('gulp-replace')
+const inject = require('gulp-inject-string')
+const fs = require('fs')
 const config = require('./config')
 
 const server = browsersync.create()
@@ -185,7 +187,7 @@ function zipDistFolder() {
 }
 
 function copyDist() {
-  return src(`${config.dir.temp}**`)
+  return src(`${config.dir.build}**/*`)
     .pipe(dest(config.dir.temp))
 }
 
@@ -204,6 +206,19 @@ function renamePath() {
 
 function deleteTemp() {
   return del(config.dir.temp, { force: true })
+}
+
+function injectSVG() {
+  const fileContent = fs.readFileSync('./dist/assets/svg/sprite.svg')
+
+  return src(`${config.dir.temp}**/*.html`)
+    .pipe(inject.after('<body>', fileContent))
+    .pipe(dest(config.dir.temp))
+    .pipe(inject.after(
+      'xmlns:xlink="http://www.w3.org/1999/xlink"',
+      ' aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;"',
+    ))
+    .pipe(dest(config.dir.temp))
 }
 
 const styles = series(lintStyles, buildStyles)
@@ -226,6 +241,7 @@ const build = series(
   compileSvg,
   copyDist,
   renamePath,
+  injectSVG,
   zipDistFolder,
   deleteTemp,
 )
