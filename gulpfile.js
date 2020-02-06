@@ -26,6 +26,7 @@ const rollup = require('gulp-better-rollup')
 const babel = require('rollup-plugin-babel')
 const eslint = require('gulp-eslint')
 const gulpStylelint = require('gulp-stylelint')
+const replace = require('gulp-replace')
 const config = require('./config')
 
 const server = browsersync.create()
@@ -80,7 +81,7 @@ function surgeDeploy() {
 }
 
 function cleanUp() {
-  return del(`${config.build}**`, { force: true })
+  return del([`${config.build}**`, `./${config.zipfile.filename}`, config.dir.temp], { force: true })
 }
 
 function cleanBuild(files, metalsmith, done) {
@@ -177,6 +178,34 @@ function copyFavicon() {
     .pipe(dest(config.favicon.build))
 }
 
+function zipDistFolder() {
+  return src(config.zipfile.src)
+    .pipe(zip(config.zipfile.filename))
+    .pipe(dest(config.zipfile.build))
+}
+
+function copyDist() {
+  return src(`${config.dir.temp}**`)
+    .pipe(dest(config.dir.temp))
+}
+
+function renamePath() {
+  return src(`${config.dir.temp}index.html`)
+    .pipe(replace('/css/main.css', './css/main.css'))
+    .pipe(replace('/js/main.js', './js/main.js'))
+    .pipe(replace('/favicon.ico', './favicon.ico'))
+    .pipe(dest(config.dir.temp))
+    .pipe(src([`${config.dir.temp}**/*.html`, `!${config.dir.temp}index.html`]))
+    .pipe(replace('/css/main.css', '../../css/main.css'))
+    .pipe(replace('/js/main.js', '../../js/main.js'))
+    .pipe(replace('/favicon.ico', '../../favicon.ico'))
+    .pipe(dest(config.dir.temp))
+}
+
+function deleteTemp() {
+  return del(config.dir.temp, { force: true })
+}
+
 const styles = series(lintStyles, buildStyles)
 const javascript = series(lintJavascript, compileJS)
 
@@ -188,12 +217,6 @@ function watchFiles(done) {
   done()
 }
 
-function zipDistFolder() {
-  return src('./dist/**')
-    .pipe(zip('HTMLstarterkit.zip'))
-    .pipe(dest('./'))
-}
-
 const build = series(
   cleanUp,
   copyFavicon,
@@ -201,7 +224,10 @@ const build = series(
   styles,
   javascript,
   compileSvg,
+  copyDist,
+  renamePath,
   zipDistFolder,
+  deleteTemp,
 )
 
 const dev = series(
