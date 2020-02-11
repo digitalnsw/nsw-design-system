@@ -27,11 +27,16 @@
     }
   }
 
+  &:active {
+    @include nsw-active;
+    border-color: $nsw-tertiary-blue;
+  }
+
   &:disabled,
   &.disabled {
-    background-color: $dark70;
-    color: $light20;
-    border-color: $dark70;
+    background-color: $light10;
+    color: $light40;
+    border-color: $light10;
     cursor: not-allowed;
   }
 }
