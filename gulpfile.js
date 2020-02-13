@@ -85,7 +85,7 @@ function surgeDeploy() {
 }
 
 function cleanUp() {
-  return del([`${config.build}**`, `./${config.zipfile.filename}`, config.dir.temp], { force: true })
+  return del([config.dir.build, config.dir.temp], { force: true })
 }
 
 function cleanBuild(files, metalsmith, done) {
