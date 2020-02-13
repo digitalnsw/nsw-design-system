@@ -33,9 +33,9 @@ This will open a browser window with live reload.
 npm run dev
 ```
 
-### 5. Run Build and Deploy task
+### 5. Run build to Starter kit zip file
 
-This will create a build of the website in the `dist` folder and deploy to surge.
+This will create a build of the website in the `dist` folder and create a zip file of the dist folder.
 
 ```
 npm run build
