@@ -3,7 +3,7 @@
   @include nsw-spacing(margin-top, md);
   background-color: $white;
   box-shadow: map-get($shadows, card);
-  transition: map-get($transitions, base);
+  transition: map-get($transitions, card);
   position: relative;
   border-radius: rem($border-radius);
   display: flex;
@@ -18,7 +18,7 @@
   }
 
   &:focus-within {
-    @include nsw-focus(card);
+    @include nsw-focus($color: $nsw-primary-highlight);
 
     .nsw-card__link {
       text-decoration: none;

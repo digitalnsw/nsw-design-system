@@ -26,10 +26,6 @@
 
     a {
       color: $white;
-
-      &:hover {
-        text-decoration: underline;
-      }
     }
   }
 }
@@ -58,8 +54,12 @@
   &__link {
     text-decoration: none;
 
+    &:hover {
+      text-decoration: underline;
+    }
+
     &:focus {
-      @include nsw-focus;
+      @include nsw-focus($color: $white);
     }
   }
 }

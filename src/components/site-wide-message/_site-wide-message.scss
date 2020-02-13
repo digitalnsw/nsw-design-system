@@ -30,7 +30,7 @@
     }
 
     &:focus {
-      @include nsw-focus;
+      @include nsw-focus($color: $white);
     }
 
     .nsw-icon {
@@ -67,6 +67,10 @@
     display: block;
     margin-right: 0;
 
+    &:focus {
+      @include nsw-focus($color: $white);
+    }
+
     @include breakpoint('sm') {
       display: inline-block;
     }
@@ -87,10 +91,20 @@
   &--alert {
     .nsw-button {
       @include button-variant(map-get($button-variations, primary));
+
+      &:focus {
+        @include nsw-focus();
+      }
     }
 
-    .nsw-sitewide-message__close .nsw-icon {
-      fill: $nsw-primary-blue;
+    .nsw-sitewide-message__close {
+      &:focus {
+        @include nsw-focus();
+      }
+
+      .nsw-icon {
+        fill: $nsw-primary-blue;
+      }
     }
   }
 }

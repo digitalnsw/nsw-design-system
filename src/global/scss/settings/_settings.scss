@@ -32,6 +32,7 @@ $line-height: (
 
 $transitions: (
   base: all 0.25s ease-in-out,
+  card: box-shadow 0.25s ease-in-out
 ) !default;
 
 $border-radius: 4px !default;
@@ -55,7 +56,7 @@ $spacing-sizes: (
 $nsw-primary-blue: #002664 !default;
 $nsw-primary-highlight: #d7153a !default;
 $nsw-secondary-blue: #2e5299 !default;
-$nsw-tertiary-blue: #00abe6 !default;
+$nsw-tertiary-blue: #0085b3 !default;
 
 // Shades
 $black: #000000 !default;
@@ -89,10 +90,7 @@ $shadows: (
 
 //Focus and Hover
 $focus-color: $nsw-tertiary-blue !default;
-$focuses: (
-  default: 0 0 0 3px $focus-color,
-  card: (0 0 0 3px $focus-color, map-get($shadows, card-hover))
-) !default;
+$focus-offset: 3px;
 
 $hover-colour: rgba($nsw-tertiary-blue, 0.2);
 
