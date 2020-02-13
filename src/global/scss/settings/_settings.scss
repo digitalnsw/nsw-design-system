@@ -68,7 +68,7 @@ $light10: #f4f4f7 !default;
 $white: #ffffff !default;
 
 // Notifications
-$info-blue: #2e5299 !default;
+$info-blue: $nsw-secondary-blue !default;
 $info-blue-light10: #eaedf4 !default;
 $success-green: #00a908 !default;
 $success-green-light10: #e5f6e6 !default;
@@ -78,33 +78,7 @@ $error-red: #b81237 !default;
 $error-red-light10: #f7e7eb !default;
 
 // sitewide message
-$default-blue10: #e6e9ef;
 $alert-yellow: #ffcb2d;
-
-// Notification variations
-$notification: (
-  info: (
-    border: $info-blue,
-    bg: $info-blue-light10,
-    fill: $info-blue,
-  ),
-  success: (
-    border: $success-green,
-    bg: $success-green-light10,
-    fill: $success-green,
-  ),
-  warning: (
-    border: $warning-orange,
-    bg: $warning-orange-light10,
-    fill: $warning-orange,
-  ),
-  error: (
-    border: $error-red,
-    bg: $error-red-light10,
-    fill: $error-red,
-  ),
-) !default;
-
 
 //Box Shadows
 $shadows: (
@@ -125,12 +99,7 @@ $hover-colour: rgba($nsw-tertiary-blue, 0.2);
 //Links
 $link-color: $nsw-primary-blue;
 $link-hover-outline-color: rgba($nsw-tertiary-blue, 0.2);
-
-// Overlays
-$overlays: (
-  light: rgba($white, 0.8),
-  dark: rgba($black, 0.8)
-) !default;
+$link-visited: #551a8b;
 
 // Breakpoints
 $breakpoints: (
@@ -150,14 +119,6 @@ $z-index: (
   below: -1,
   bottom: -9001,
 );
-
-$icon-colors: (
-  error: $error-red,
-  success: $success-green,
-  info: $info-blue,
-  warning: $warning-orange,
-  default: $nsw-primary-blue,
-) !default;
 
 // Container
 $container-offset: 16px;
@@ -188,6 +149,44 @@ $grid-col-sizes: (
     three-quarters: 75%
   )
 );
+
+// Notification variations
+$notification: (
+  info: (
+    border: $info-blue,
+    bg: $info-blue-light10,
+    fill: $info-blue,
+  ),
+  success: (
+    border: $success-green,
+    bg: $success-green-light10,
+    fill: $success-green,
+  ),
+  warning: (
+    border: $warning-orange,
+    bg: $warning-orange-light10,
+    fill: $warning-orange,
+  ),
+  error: (
+    border: $error-red,
+    bg: $error-red-light10,
+    fill: $error-red,
+  ),
+) !default;
+
+// Overlays
+$overlays: (
+  light: rgba($white, 0.8),
+  dark: rgba($black, 0.8)
+) !default;
+
+$icon-colors: (
+  error: $error-red,
+  success: $success-green,
+  info: $info-blue,
+  warning: $warning-orange,
+  default: $nsw-primary-blue,
+) !default;
 
 $button-variations: (
   primary: (
@@ -231,7 +230,7 @@ $sitewide-message: (
   ),
   light: (
     color: $dark80,
-    bg: $default-blue10,
+    bg: $info-blue-light10,
   ),
   critical: (
     color: $white,
