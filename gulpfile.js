@@ -29,6 +29,8 @@ const gulpStylelint = require('gulp-stylelint')
 const replace = require('gulp-replace')
 const inject = require('gulp-inject-string')
 const fs = require('fs')
+const { argv } = require('yargs')
+const bump = require('gulp-bump')
 const config = require('./config')
 
 const server = browsersync.create()
@@ -186,39 +188,36 @@ function zipDistFolder() {
     .pipe(dest(config.zipfile.build))
 }
 
-function copyDist() {
-  return src(`${config.dir.build}**/*`)
-    .pipe(dest(config.dir.temp))
-}
-
 function renamePath() {
-  return src(`${config.dir.temp}index.html`)
+  return src(`${config.dir.build}index.html`)
     .pipe(replace('/css/main.css', './css/main.css'))
     .pipe(replace('/js/main.js', './js/main.js'))
     .pipe(replace('/favicon.ico', './favicon.ico'))
-    .pipe(dest(config.dir.temp))
-    .pipe(src([`${config.dir.temp}**/*.html`, `!${config.dir.temp}index.html`]))
+    .pipe(dest(config.dir.build))
+    .pipe(src([`${config.dir.build}**/*.html`, `!${config.dir.build}index.html`]))
     .pipe(replace('/css/main.css', '../../css/main.css'))
     .pipe(replace('/js/main.js', '../../js/main.js'))
     .pipe(replace('/favicon.ico', '../../favicon.ico'))
-    .pipe(dest(config.dir.temp))
+    .pipe(dest(config.dir.build))
 }
 
-function deleteTemp() {
-  return del(config.dir.temp, { force: true })
+function bumping() {
+  return src('./config.json')
+    .pipe(bump({ type: argv.type }))
+    .pipe(dest('./'))
 }
 
 function injectSVG() {
   const fileContent = fs.readFileSync('./dist/assets/svg/sprite.svg')
 
-  return src(`${config.dir.temp}**/*.html`)
+  return src(`${config.dir.build}**/*.html`)
     .pipe(inject.after('<body>', fileContent))
-    .pipe(dest(config.dir.temp))
+    .pipe(dest(config.dir.build))
     .pipe(inject.after(
       'xmlns:xlink="http://www.w3.org/1999/xlink"',
       ' aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;"',
     ))
-    .pipe(dest(config.dir.temp))
+    .pipe(dest(config.dir.build))
 }
 
 const styles = series(lintStyles, buildStyles)
@@ -239,11 +238,9 @@ const build = series(
   styles,
   javascript,
   compileSvg,
-  copyDist,
   renamePath,
   injectSVG,
   zipDistFolder,
-  deleteTemp,
 )
 
 const dev = series(
@@ -264,13 +261,14 @@ const deploy = series(
 
 
 // Export commands.
-exports.scss = buildStyles // $ gulp sass - compiles the sass
-exports.watch = watchFiles // $ gulp watch - watches the files
-exports.lint = lintStyles // $ gulp lint - lints the sass
-exports.svg = compileSvg // $ gulp svg - creates svg sprite
-exports.build = build // $ gulp build - builds the files
-exports.surge = deploy // $ gulp surge - builds the files and deploys to surge
-exports.clean = cleanUp // $ gulp clean - clean the dist directory
+exports.scss = buildStyles // gulp sass - compiles the sass
+exports.watch = watchFiles // gulp watch - watches the files
+exports.lint = lintStyles // gulp lint - lints the sass
+exports.svg = compileSvg // gulp svg - creates svg sprite
+exports.build = build // gulp build - builds the files
+exports.surge = deploy // gulp surge - builds the files and deploys to surge
+exports.clean = cleanUp // gulp clean - clean the dist directory
 exports.metal = metalsmithBuild // gulp metal - generates static site of components
 exports.js = javascript // gulp js - compiles the js
-exports.default = dev // $ gulp - default gulp task
+exports.bumping = bumping // gulp bump - bumps the version number in specific files - used for releases
+exports.default = dev // gulp - default gulp task
