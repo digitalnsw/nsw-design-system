@@ -112,9 +112,12 @@
     }
   }
 
-  &:focus + .nsw-form-checkbox__label::before,
-  &:focus + .nsw-form-radio__label::before {
+  &:focus + .nsw-form-checkbox__label::before {
     @include nsw-focus;
+  }
+
+  &:focus + .nsw-form-radio__label::before {
+    box-shadow: 0 0 0 3px $white, 0 0 0 6px $focus-color;
   }
 
   &[aria-invalid='true'] + .nsw-form-checkbox__label,
