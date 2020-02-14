@@ -1,0 +1,10 @@
+<div class="nsw-notification {{#if type}}nsw-notification--{{type}}{{/if}}" {{#if isAlert}}role="alert"{{/if}}>
+  {{#if icon}}<svg class="nsw-icon nsw-notification__icon" focusable="false" aria-hidden="true">
+    <use xlink:href="#{{icon}}"></use>
+  </svg>
+  {{/if}}
+  <div class="nsw-notification__content">
+    <h4 class="nsw-notification__title">{{heading}}</h4>
+    <p>{{copy}}</p>
+  </div>
+</div>

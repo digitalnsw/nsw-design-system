@@ -1,0 +1,49 @@
+.nsw-callout {
+  @include nsw-spacing(padding, md);
+  @include nsw-spacing(margin-top, md);
+  background: $light10;
+  position: relative;
+  border-left: solid 6px $nsw-primary-blue;
+
+  @include breakpoint('sm') {
+    @include nsw-spacing(padding, lg lg lg md);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+
+  &__icon {
+    width: rem(24px);
+    height: rem(24px);
+
+    @include breakpoint('sm') {
+      @include nsw-spacing(margin-right, md);
+      flex: 0 0 auto;
+      width: rem(30px);
+      height: rem(30px);
+    }
+  }
+
+  &__content {
+    @include font-stack;
+    @include nsw-spacing(margin-top, md);
+
+    @include breakpoint('sm') {
+      @include nsw-spacing(margin-top, none);
+    }
+
+    p {
+      @include nsw-spacing(margin, sm none none none);
+    }
+
+    .nsw-text-link {
+      @include nsw-spacing(margin-top, sm);
+    }
+  }
+
+  &__title {
+    @include font-stack('heading');
+    @include font-size('md');
+    margin: 0;
+  }
+}

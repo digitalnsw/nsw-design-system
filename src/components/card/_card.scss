@@ -1,0 +1,121 @@
+.nsw-card {
+  @include font-stack;
+  @include nsw-spacing(margin-top, md);
+  background-color: $white;
+  box-shadow: map-get($shadows, card);
+  transition: map-get($transitions, card);
+  position: relative;
+  border-radius: rem($border-radius);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 100%;
+  max-width: rem(400px);
+  border: 0;
+
+  &:hover {
+    box-shadow: map-get($shadows, card-hover);
+  }
+
+  &:focus-within {
+    @include nsw-focus;
+
+    .nsw-card__link {
+      text-decoration: none;
+    }
+  }
+
+  &__title {
+    @include font-stack('heading');
+    @include font-size('md');
+    @include nsw-spacing(margin, none none sm none);
+  }
+
+  &__content {
+    @include font-size('sm');
+    @include nsw-spacing(padding, md);
+    border-top: solid 6px $nsw-primary-highlight;
+
+    @include breakpoint('md') {
+      @include nsw-spacing(padding, md xl);
+    }
+
+    p {
+      @include nsw-spacing(margin, none none sm none);
+    }
+  }
+
+  &__tag {
+    @include font-stack('heading');
+  }
+
+  &__tag,
+  &__date {
+    @include font-size('xs');
+  }
+
+  &__icon {
+    @include nsw-spacing(margin, md none none none);
+  }
+
+  &__link {
+    @include pseudo-clickable-block;
+    text-decoration: none;
+    color: $dark80;
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &:focus {
+      outline: none;
+      text-decoration: underline;
+    }
+  }
+}
+
+.nsw-card--media {
+  .nsw-card__image-area {
+    order: 1;
+    height: rem(200px);
+  }
+
+  .nsw-card__content {
+    order: 2;
+  }
+
+  .nsw-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+}
+
+.nsw-card--news {
+  .nsw-card__content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .nsw-card__tag {
+    order: 1;
+  }
+
+  .nsw-card__date {
+    order: 2;
+  }
+
+  .nsw-card__title,
+  .nsw-card__copy,
+  .nsw-card__icon {
+    order: 3;
+  }
+}
+
+
+.nsw-card--headline {
+  .nsw-card__title {
+    @include font-size('xl');
+  }
+}

@@ -1,0 +1,255 @@
+// sass-lint:disable no-color-hex
+
+// Base font size
+$base-font-size: 16px;
+
+// primary font stack
+$font-stack: 'Montserrat', Arial, sans-serif !default;
+$font-weight: (
+  regular: 400,
+  heading: 600,
+) !default;
+
+//Font sizes presets (mobile, desktop)
+$font-sizes: (
+  xs:   (14px, 14px),
+  sm:   (16px, 16px),
+  md:   (18px, 20px),
+  lg:   (20px, 24px),
+  xl:   (24px, 28px),
+  xxl:  (26px, 32px),
+  xxxl: (32px, 56px)
+) !default;
+
+$font-size-reponsive-breakpoint: 'md';
+
+// Lineheight mapping
+$line-height: (
+  nospace: 1,
+  default: 1.25,
+  paragraph: 1.5,
+) !default;
+
+$transitions: (
+  base: all 0.25s ease-in-out,
+  card: box-shadow 0.25s ease-in-out
+) !default;
+
+$border-radius: 4px !default;
+$border-width: 1px !default;
+
+// Spacing - Used with margin and padding
+$spacing-sizes: (
+  none:   0,    //0rem
+  xs:     8px,  //0.5rem
+  sm:     12px, //0.8rem
+  md:     16px, //1rem
+  lg:     24px, //1.5rem
+  xl:     32px, //2rem
+  xxl:    48px, //3rem
+  xxxl:   64px, //4rem
+  xxxxl:  80px  //5rem
+) !default;
+
+// Predefined Colours and their names
+// Brand
+$nsw-primary-blue: #002664 !default;
+$nsw-primary-highlight: #d7153a !default;
+$nsw-secondary-blue: #2e5299 !default;
+$nsw-tertiary-blue: #0085b3 !default;
+
+// Shades
+$black: #000000 !default;
+$dark80: #333333 !default;
+$dark70: #4c4f55 !default;
+$dark60: #6d7079 !default;
+$light40: #a0a5ae !default;
+$light20: #e4e4e6 !default;
+$light10: #f4f4f7 !default;
+$white: #ffffff !default;
+
+// Notifications
+$info-blue: $nsw-secondary-blue !default;
+$info-blue-light10: #eaedf4 !default;
+$success-green: #00a908 !default;
+$success-green-light10: #e5f6e6 !default;
+$warning-orange: #dc5800 !default;
+$warning-orange-light10: #fbeee5 !default;
+$error-red: #b81237 !default;
+$error-red-light10: #f7e7eb !default;
+
+// sitewide message
+$alert-yellow: #ffcb2d;
+
+//Box Shadows
+$shadows: (
+  menu: 0 4px 9px -5px rgba($black, 0.4),
+  card: 0 4px 12px 0 rgba($black, 0.15),
+  card-hover: 2px 6px 12px 0 rgba($black, 0.25),
+) !default;
+
+//Focus and Hover
+$focus-color: $nsw-tertiary-blue !default;
+$focus-offset: 3px;
+
+$hover-colour: rgba($nsw-tertiary-blue, 0.2);
+
+//Links
+$link-color: $nsw-primary-blue;
+$link-hover-outline-color: rgba($nsw-tertiary-blue, 0.2);
+$link-visited: #551a8b;
+
+// Breakpoints
+$breakpoints: (
+  xs: 576px,
+  sm: 768px,
+  md: 992px,
+  lg: 1200px,
+) !default;
+
+// z-index
+
+$z-index: (
+  top: 9001,
+  middle: 2,
+  low: 1,
+  default: 0,
+  below: -1,
+  bottom: -9001,
+);
+
+// Container
+$container-offset: 16px;
+$container-max-width: 1200px;
+
+// Grid
+$grid-gutters: 8px;
+$grid-container-offset: -($grid-gutters);
+$grid-margins: (
+  xs: 8px,
+  sm: 8px,
+  md: 8px,
+  lg: 32px,
+);
+$grid-margin-top: 16px;
+$grid-col-sizes: (
+  xs: (
+    half: 50%,
+  ),
+  sm: (
+    third: 33.3%,
+    two-thirds: 66.6%,
+    quarter: 50%,
+    three-quarters: 50%
+  ),
+  md: (
+    quarter: 25%,
+    three-quarters: 75%
+  )
+);
+
+// Notification variations
+$notification: (
+  info: (
+    border: $info-blue,
+    bg: $info-blue-light10,
+    fill: $info-blue,
+  ),
+  success: (
+    border: $success-green,
+    bg: $success-green-light10,
+    fill: $success-green,
+  ),
+  warning: (
+    border: $warning-orange,
+    bg: $warning-orange-light10,
+    fill: $warning-orange,
+  ),
+  error: (
+    border: $error-red,
+    bg: $error-red-light10,
+    fill: $error-red,
+  ),
+) !default;
+
+// Overlays
+$overlays: (
+  light: rgba($white, 0.8),
+  dark: rgba($black, 0.8)
+) !default;
+
+$icon-colors: (
+  error: $error-red,
+  success: $success-green,
+  info: $info-blue,
+  warning: $warning-orange,
+  default: $nsw-primary-blue,
+) !default;
+
+$button-variations: (
+  primary: (
+    color: $white,
+    colorHover: $white,
+    bg: $nsw-primary-blue,
+    bgHover: lighten($nsw-primary-blue, 5.88),
+    border: $nsw-primary-blue,
+    borderHover: lighten($nsw-primary-blue, 5.88)
+  ),
+  highlight: (
+    color: $white,
+    colorHover: $white,
+    bg: $nsw-primary-highlight,
+    bgHover: lighten($nsw-primary-highlight, 5.88),
+    border: $nsw-primary-highlight,
+    borderHover: lighten($nsw-primary-highlight, 5.88)
+  ),
+  outline: (
+    color: $dark80,
+    colorHover: $white,
+    bg: $white,
+    bgHover: $nsw-primary-blue,
+    border: $nsw-primary-blue,
+    borderHover: $nsw-primary-blue
+  ),
+  white: (
+    color: $dark80,
+    colorHover: $dark80,
+    bg: $white,
+    bgHover: $light20,
+    border: $white,
+    borderHover: $light20
+  ),
+) !default;
+
+$sitewide-message: (
+  default: (
+    color: $white,
+    bg: $nsw-secondary-blue,
+  ),
+  light: (
+    color: $dark80,
+    bg: $info-blue-light10,
+  ),
+  critical: (
+    color: $white,
+    bg: $error-red,
+  ),
+  // DO NOT USE: dark & alert to be removed in the future
+  alert: (
+    color: $dark80,
+    bg: $alert-yellow,
+  ),
+  dark: (
+    color: $white,
+    bg: $dark80,
+  ),
+) !default;
+
+$icons: (
+  chevron-right: '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="20" height="32" viewBox="0 0 20 32"><path d="M20 16l-16-16-4 4 12 12-12 12 4 4 16-16z"></path></svg>',
+  chevron-down: '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path d="M16 26l16-16-4-4-12 12-12-12-4 4 16 16z"></path></svg>',
+  chevron-left: '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="20" height="32" viewBox="0 0 20 32"><path d="M0 16l16-16 4 4-12 12 12 12-4 4-16-16z"></path></svg>',
+  chevron-up: '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path d="M16 6l16 16-4 4-12-12-12 12-4-4 16-16z"></path></svg>',
+  tick: '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path d="M29.362 3.742l-18.867 19.204-7.857-7.997-2.638 2.685 9.175 9.34 1.319 1.284 1.318-1.284 20.187-20.547z"></path></svg>',
+  error: '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path d="M16 32c4.243 0 8.313-1.686 11.314-4.686 3-3.001 4.686-7.070 4.686-11.314s-1.686-8.313-4.686-11.314c-3.001-3-7.070-4.686-11.314-4.686s-8.313 1.686-11.314 4.686c-3 3.001-4.686 7.070-4.686 11.314s1.686 8.313 4.686 11.314c3.001 3 7.070 4.686 11.314 4.686zM16 7c0.809 0 1.538 0.487 1.848 1.234s0.138 1.608-0.434 2.18c-0.572 0.572-1.432 0.744-2.18 0.434s-1.234-1.039-1.234-1.848c0-1.104 0.896-2 2-2zM14 14h4v11h-4v-11z"></path></svg>'
+) !default;

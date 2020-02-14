@@ -1,0 +1,25 @@
+---
+title: Card
+model:
+  basic: card.json
+  media: card-media.json
+  news: card-news.json
+  headline: card-headline.json
+---
+<style>
+  .nsw-card{
+    margin-top: 2rem;
+  }
+</style>
+<div class="nsw-container">
+  {{>_card model.basic}}
+</div>
+<div class="nsw-container">
+  {{>_card model.news}}
+</div>
+<div class="nsw-container">
+  {{>_card model.media}}
+</div>
+<div class="nsw-container">
+  {{>_card model.headline}}
+</div>

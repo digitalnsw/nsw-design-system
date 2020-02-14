@@ -1,0 +1,51 @@
+.nsw-button {
+  @include font-stack('heading');
+  @include font-size('sm');
+  @include nsw-spacing(margin, lg md none none);
+  border: solid 2px transparent;
+  border-radius: rem($border-radius);
+  white-space: nowrap;
+  text-decoration: none;
+  padding: rem(12px) rem(24px);
+  cursor: pointer;
+  min-width: rem(124px);
+  -webkit-appearance: none; /* stylelint-disable-line property-no-vendor-prefix */
+  text-decoration: none;
+  -webkit-font-smoothing: antialiased;
+  text-align: center;
+  vertical-align: middle;
+  user-select: none;
+  display: inline-block;
+
+  &:focus {
+    @include nsw-focus;
+  }
+
+  @each $color, $value in $button-variations {
+    &--#{$color} {
+      @include button-variant($value);
+    }
+  }
+
+  &:active {
+    @include nsw-active;
+    border-color: $nsw-tertiary-blue;
+  }
+
+  &:disabled,
+  &.disabled {
+    background-color: $light10;
+    color: $light40;
+    border-color: $light10;
+    cursor: not-allowed;
+  }
+}
+
+.nsw-button--block {
+  display: block;
+  width: 100%;
+
+  + .nsw-button--block {
+    margin-bottom: 0;
+  }
+}

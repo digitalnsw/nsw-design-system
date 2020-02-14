@@ -1,0 +1,25 @@
+@mixin nsw-focus($offset: true, $color: $focus-color) {
+  @if type-of($offset) != bool {
+    @error 'NSW-DS nsw-focus mixin allows a boolean for $offset: You have used a type of "#{type-of($offset)}" and a value of "#{$offset}"';
+  }
+
+  @if $color != $nsw-tertiary-blue and $color != $white {
+    @warn 'NSW-DS nsw-focus mixin it is suggested to use the following values for $color: "#{$white}", "#{$nsw-tertiary-blue}".'
+      + 'These have been tested against the DS background colors and comply to WCAG color contrast guidlines';
+  }
+
+  outline: solid 3px $color;
+
+  @if $offset == true {
+    outline-offset: $focus-offset;
+  }
+}
+
+@mixin nsw-hover {
+  background-color: $hover-colour;
+}
+
+@mixin nsw-active {
+  background-color: $nsw-tertiary-blue;
+  color: $white;
+}

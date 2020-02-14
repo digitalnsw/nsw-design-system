@@ -1,0 +1,16 @@
+---
+title: Styleguide
+layout: layout.hbs
+---
+
+<div class="nsw-wysiwyg-content nsw-container">
+<h1>Styleguide</h1>
+{{#each collections as |child|}}
+  <h2>{{capitalize @key}}</h2>
+  <ul>
+  {{#each child}}
+    <li><a class="navigation-nav-item" href="{{change-extention path}}" target="_blank">{{title}}</a></li>
+  {{/each}}
+  </ul>
+{{/each}}
+</div>

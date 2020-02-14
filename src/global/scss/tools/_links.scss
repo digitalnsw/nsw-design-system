@@ -1,0 +1,19 @@
+@mixin text-link {
+  @include font-stack('heading');
+  color: $link-color;
+  text-decoration: none;
+  display: inline-block;
+
+  &:hover {
+    @include nsw-hover;
+    outline: 4px solid $link-hover-outline-color;
+  }
+
+  &:focus {
+    @include nsw-focus($offset: false);
+  }
+
+  &:active {
+    @include nsw-active;
+  }
+}

@@ -1,0 +1,58 @@
+.nsw-breadcrumb {
+  @include font-stack('heading');
+  @include font-size('xs');
+  @include nsw-spacing(margin-top, md);
+
+  &__list {
+    margin: 0;
+    padding-left: 0;
+    list-style: none;
+  }
+
+  &__item {
+    display: none;
+
+    & + &::before {
+      content: '';
+      display: inline-block;
+      border-right: 2px solid currentColor;
+      border-bottom: 2px solid currentColor;
+      width: rem(6px);
+      height: rem(6px);
+      transform: rotate(-45deg);
+      margin-right: rem(16px);
+      margin-left: rem(4px);
+      top: -1px;
+      position: relative;
+    }
+
+    @include breakpoint('sm') {
+      display: inline;
+    }
+  }
+
+  &__item:nth-last-child(2),
+  &__item:last-child {
+    display: inline;
+  }
+
+  &__item:nth-last-child(2) {
+    &::before {
+      display: none;
+
+      @include breakpoint('sm') {
+        display: inline-block;
+      }
+    }
+  }
+
+  &__link {
+    @include text-link;
+  }
+
+  &--current {
+    text-decoration: none;
+    pointer-events: none;
+    color: $dark80;
+  }
+}

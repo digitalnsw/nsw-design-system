@@ -1,0 +1,30 @@
+<footer class="nsw-footer">
+  <div class="nsw-footer__upper">
+    <div class="nsw-container section-links">
+      {{#each sectionLinks}}
+        <div class="section-links__group">
+          <h3 class="section-links__heading"><a href="{{url}}">{{title}}</a></h3>
+          <ul class="section-links__list">
+            {{#each links}}
+              <li class="section-links__item"><a href="{{url}}">{{text}}</a></li>
+            {{/each}}
+          </ul>
+        </div>
+      {{/each}}
+    </div>
+  </div>
+  <div class="nsw-footer__lower">
+    <div class="nsw-container">
+      <p>{{respectText}}</p>
+      <hr>
+      <ul class="nsw-footer-links">
+        {{#each footerLinks}}
+          <li class="nsw-footer-links__item">
+            <a href="{{url}}" class="nsw-footer-links__link">{{text}}</a>
+          </li>
+        {{/each}}
+      </ul>
+      <p>{{copyright}}</p>
+    </div>
+  </div>
+</footer>

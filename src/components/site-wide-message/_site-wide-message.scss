@@ -1,0 +1,110 @@
+.nsw-sitewide-message,
+.nsw-global-alert {
+  @include nsw-spacing(padding, lg none);
+  position: relative;
+
+  @each $color, $variant in $sitewide-message {
+    @if($color == default) {
+      background-color: map-get($variant, bg);
+      color: map-get($variant, color);
+    } @else {
+      &--#{$color} {
+        background-color: map-get($variant, bg);
+        color: map-get($variant, color);
+      }
+    }
+  }
+
+  &__close {
+    position: absolute;
+    top: rem(-12px);
+    right: rem(8px);
+    background: none;
+    border: 0;
+    width: rem(40px);
+    height: rem(40px);
+    padding: 0;
+
+    &:hover {
+      @include nsw-hover;
+    }
+
+    &:focus {
+      @include nsw-focus($color: $white);
+    }
+
+    .nsw-icon {
+      fill: $white;
+    }
+  }
+
+  &__wrapper {
+    @include container;
+    position: relative;
+  }
+
+  &__title {
+    @include font-stack('heading');
+    @include font-size('md');
+    @include nsw-spacing(margin-top, none);
+  }
+
+  &__content {
+    @include font-stack;
+    @include nsw-spacing(margin-right, xxl);
+
+    p {
+      margin: 0;
+    }
+
+    * + p {
+      @include nsw-spacing(margin-top, md);
+    }
+  }
+
+  .nsw-button {
+    @include button-variant(map-get($button-variations, white));
+    display: block;
+    margin-right: 0;
+
+    &:focus {
+      @include nsw-focus($color: $white);
+    }
+
+    @include breakpoint('sm') {
+      display: inline-block;
+    }
+  }
+
+  &--dark {
+    .nsw-button {
+      @include button-variant(map-get($button-variations, white));
+    }
+
+    .nsw-sitewide-message__close .nsw-icon {
+      fill: $white;
+    }
+
+  }
+
+  &--light,
+  &--alert {
+    .nsw-button {
+      @include button-variant(map-get($button-variations, primary));
+
+      &:focus {
+        @include nsw-focus;
+      }
+    }
+
+    .nsw-sitewide-message__close {
+      &:focus {
+        @include nsw-focus;
+      }
+
+      .nsw-icon {
+        fill: $nsw-primary-blue;
+      }
+    }
+  }
+}
