@@ -13,7 +13,7 @@
     "bump:major": "gulp bumping --type major",
     "bump:minor": "gulp bumping --type minor",
     "bump:patch": "gulp bumping --type patch",
-    "commit": "git add . && git commit -m 'Built HTMLstarterkit and updated CHANGELOG.md'",
+    "commit": "git add . && git commit -m 'Built HTMLstarterkit and updated CHANGELOG.md' && git push origin",
     "release:major": "npm run bump:major && redrun starterkit:build changelog:build commit git-tag -s",
     "release:minor": "npm run bump:minor && redrun starterkit:build changelog:build commit git-tag -s",
     "release:patch": "npm run bump:patch && redrun starterkit:build changelog:build commit git-tag -s"
