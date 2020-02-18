@@ -34,10 +34,6 @@
     }
   }
 
-  * + p {
-    @include nsw-spacing(margin-top, xs);
-  }
-
   ul + p,
   ol + p {
     margin-top: 1rem;
@@ -94,16 +90,16 @@
   }
 
   h3 {
-    @include font-size('xl');
+    @include font-size('lg');
   }
 
   h4 {
-    @include font-size('lg');
+    @include font-size('md');
   }
 
   h5,
   h6 {
-    @include font-size('md');
+    @include font-size('sm');
   }
 
   * + h2,
@@ -122,6 +118,13 @@
   * + h6 {
     @include nsw-spacing(margin-top, md);
   }
+
+  h2 + h3,
+  h3 + h4,
+  h4 + h5 {
+    margin-top: 0;
+  }
+
 }
 
 .nsw-text-link {
