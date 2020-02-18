@@ -1,6 +1,5 @@
 .nsw-card {
   @include font-stack;
-  @include nsw-spacing(margin-top, md);
   background-color: $white;
   box-shadow: map-get($shadows, card);
   transition: map-get($transitions, card);
@@ -33,11 +32,12 @@
 
   &__content {
     @include font-size('sm');
-    @include nsw-spacing(padding, md);
+    @include nsw-spacing(padding, md md xxxl md);
     border-top: solid 6px $nsw-primary-highlight;
 
+
     @include breakpoint('md') {
-      @include nsw-spacing(padding, md xl);
+      @include nsw-spacing(padding, md xl xxxl xl);
     }
 
     p {
@@ -56,12 +56,14 @@
 
   &__icon {
     @include nsw-spacing(margin, md none none none);
+    @include nsw-spacing(bottom, md);
+    position: absolute;
   }
 
   &__link {
     @include pseudo-clickable-block;
     text-decoration: none;
-    color: $dark80;
+    color: $nsw-primary-blue;
 
     &:hover {
       text-decoration: underline;
@@ -70,6 +72,10 @@
     &:focus {
       outline: none;
       text-decoration: underline;
+    }
+
+    &:visited {
+      color: $link-visited;
     }
   }
 }
