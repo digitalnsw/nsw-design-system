@@ -1,53 +1,79 @@
 .nsw-footer {
   @include font-stack;
-
-  p {
-    margin: 0 0 rem(16px) 0;
-  }
+  border-top: solid 1px $light40;
 
   hr {
+    @include nsw-spacing(margin, md none md none);
     height: 1px;
     border: 0;
     color: $light40;
     background-color: $light40;
-    margin: rem(16px) 0;
   }
 
   &__upper {
+    @include nsw-spacing(padding-top, lg);
     background-color: $white;
-    padding: rem(28px) 0 0;
   }
 
   &__lower {
+    @include nsw-spacing(padding, md none lg none);
     background-color: $dark80;
     color: $white;
-    padding: rem(28px) 0;
     font-size: rem(12px);
 
     a {
       color: $white;
+
+      &:focus {
+        @include nsw-focus($color: $white);
+      }
+    }
+  }
+
+  &__info {
+
+    @include breakpoint('sm') {
+      display: flex;
+      flex-wrap: nowrap;
+    }
+  }
+
+  &__copyright {
+    flex: 1 1 auto;
+  }
+
+  &__built {
+
+    flex: 0 0 rem(200px);
+
+    a:hover {
+      text-decoration: none;
+    }
+
+    @include breakpoint('sm') {
+      text-align: right;
     }
   }
 }
 
 .nsw-footer-links {
   @include font-stack('heading');
-  margin: 0 0 rem(8px) 0;
-  padding: 0;
+  @include nsw-spacing(margin, md none none none);
+  @include nsw-spacing(padding, none);
   list-style: none;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 
   &__item {
+    @include nsw-spacing(margin, none none md none);
     flex: 1 0 50%;
     max-width: 50%;
-    margin-bottom: rem(16px);
 
     @include breakpoint('sm') {
+      @include nsw-spacing(margin-right, lg);
       flex: 0 0 auto;
       max-width: none;
-      margin-right: rem(24px);
     }
   }
 
@@ -65,7 +91,9 @@
 }
 
 .section-links {
-  @include font-stack('heading');
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 
   @include breakpoint('sm') {
     display: flex;
@@ -74,34 +102,55 @@
   }
 
   a {
-    @include text-link;
+    color: $nsw-primary-blue;
+    text-decoration: none;
+
+    &:hover {
+      @include nsw-hover;
+      outline: 2px solid rgba($nsw-tertiary-blue, 0.2);
+    }
+
+    &:focus {
+      @include nsw-focus($offset: false);
+    }
+
+    &:visited {
+      color: $link-visited;
+    }
+
+    &:active {
+      @include nsw-active;
+    }
   }
 
   &__group {
-    margin-bottom: rem(24px);
+    @include nsw-spacing(padding-bottom, lg);
+    flex: 1 0 auto;
+    min-width: rem(256px);
+    max-width: 50%;
 
     @include breakpoint('sm') {
-      flex: 1 0 50%;
-      max-width: 50%;
+      flex-basis: 50%;
+      min-width: auto;
     }
 
     @include breakpoint('md') {
-      flex: 1 0 25%;
-      max-width: 25%;
+      flex-basis: 25%;
     }
   }
 
   &__heading {
-    margin: 0 0 rem(16px) 0;
+    @include nsw-spacing(margin, none);
+    @include font-stack('heading');
   }
 
   &__list {
-    margin: 0 0 rem(8px) 0;
-    padding: 0;
+    @include nsw-spacing(margin, xs none none none);
+    @include nsw-spacing(padding, none);
     list-style: none;
   }
 
   &__item {
-    margin: 0 0 rem(8px) 0;
+    margin-top: rem(4px);
   }
 }
