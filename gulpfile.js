@@ -202,7 +202,7 @@ function renamePath() {
 }
 
 function bumping() {
-  return src('./config.json')
+  return src('./package.json')
     .pipe(bump({ type: argv.type }))
     .pipe(dest('./'))
 }
