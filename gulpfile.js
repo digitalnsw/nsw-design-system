@@ -255,7 +255,6 @@ const dev = series(
 )
 
 const deploy = series(
-  build,
   surgeDeploy,
 )
 

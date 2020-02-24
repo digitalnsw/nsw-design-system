@@ -9,14 +9,14 @@
     "surge": "gulp surge",
     "add": "node add-component.js",
     "git-tag": "git tag v$npm_package_version && git push origin v$npm_package_version",
-    "changelog:build": "auto-changelog --unreleased  --commit-limit false",
+    "changelog:build": "auto-changelog -p --commit-limit false",
     "bump:major": "gulp bumping --type major",
     "bump:minor": "gulp bumping --type minor",
     "bump:patch": "gulp bumping --type patch",
     "commit": "git add . && git commit -m 'Built HTMLstarterkit and updated CHANGELOG.md' && git push origin",
-    "release:major": "npm run bump:major && redrun starterkit:build changelog:build commit git-tag -s",
-    "release:minor": "npm run bump:minor && redrun starterkit:build changelog:build commit git-tag -s",
-    "release:patch": "npm run bump:patch && redrun starterkit:build changelog:build commit git-tag -s"
+    "release:major": "npm run bump:major && redrun starterkit:build surge changelog:build commit git-tag -s",
+    "release:minor": "npm run bump:minor && redrun starterkit:build surge changelog:build commit git-tag -s",
+    "release:patch": "npm run bump:patch && redrun starterkit:build surge changelog:build commit git-tag -s"
   },
   "keywords": [
     "design system"
