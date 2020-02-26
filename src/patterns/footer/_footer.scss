@@ -114,10 +114,6 @@
       @include nsw-focus($offset: false);
     }
 
-    &:visited {
-      color: $link-visited;
-    }
-
     &:active {
       @include nsw-active;
     }
@@ -145,12 +141,13 @@
   }
 
   &__list {
-    @include nsw-spacing(margin, xs none none none);
+    @include nsw-spacing(margin, none);
     @include nsw-spacing(padding, none);
     list-style: none;
+    margin-top: rem(4px);
   }
 
-  &__item {
-    margin-top: rem(4px);
+  &__item:not(:first-child) {
+    @include nsw-spacing(margin-top, xs);
   }
 }
