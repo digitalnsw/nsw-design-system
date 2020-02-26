@@ -29,9 +29,9 @@
     "bump:minor": "gulp bumping --type minor",
     "bump:patch": "gulp bumping --type patch",
     "commit": "git add . && git commit -m 'Built HTMLstarterkit and updated CHANGELOG.md' && git push origin",
-    "release:major": "npm run bump:major && redrun starterkit:build surge changelog:build commit git-tag -s",
-    "release:minor": "npm run bump:minor && redrun starterkit:build surge changelog:build commit git-tag -s",
-    "release:patch": "npm run bump:patch && redrun starterkit:build surge changelog:build commit git-tag -s"
+    "release:major": "npm run bump:major && redrun starterkit:build surge changelog:build commit git-tag npm publish -s",
+    "release:minor": "npm run bump:minor && redrun starterkit:build surge changelog:build commit git-tag npm publish -s",
+    "release:patch": "npm run bump:patch && redrun starterkit:build surge changelog:build commit git-tag npm publish -s"
   },
   "keywords": [
     "design system"

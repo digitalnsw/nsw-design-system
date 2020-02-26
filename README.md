@@ -22,7 +22,7 @@ How you use the NSW Design System depends on your team's capabilities. We recomm
 4.  Add  `nsw-design-system`  to your project’s  `package.json`:
     - `npm install --save nsw-design-system`
 
-The NSW Design System is now installed as a dependancy of your project, check out how to import in to your project build.
+The NSW Design System is now installed as a dependancy of your project, check out how to [import styles](#importing-styles-into-your-project) , [javascript](#importing-javascript-into-your-project) and [svg assets](#importing-svg-assets-into-your-project) in to your project build.
 
 ### Download starter kit
 You can download the compiled design system assets (HTML, CSS, JavaScript) in the [HTMLStarterkit zip file](https://github.com/digitalnsw/nsw-design-system/blob/master/HTMLstarterkit.zip) from the latest release.
@@ -31,5 +31,19 @@ You can download the compiled design system assets (HTML, CSS, JavaScript) in th
 The NSW Design System styles need to be added to the main Sass file in your project.  
 Use the below snippet to import the NSW Design System (ideally placed before any other imports or sass):
 ```
-@import  'node_modules/nsw-design-system/src/main';
+@import 'node_modules/nsw-design-system/src/main';
 ```
+
+### Importing javascript into your project
+Some of the NSW Design System components require javascript to provide advanced functionality.  To ensure the page is ready for javascript to run, include the follow scripts tags at the end of the html document.
+```
+    <script src="node_modules/nsw-design-system/src/main.js"></script>
+    <script>window.NSW.initSite()</script>
+  </body>
+</html>
+```
+You might wish to copy the file into your project or reference it from  `node_modules`, this will depend on your build setup.
+
+## Getting updates
+
+To be notified when there’s a new release, you can either join the [NSW Design System community](https://community.digital.nsw.gov.au/) or [watch the NSW Design System Github](https://github.com/digitalnsw/nsw-design-system)
