@@ -1,5 +1,5 @@
 .nsw-breadcrumb {
-  @include font-stack('heading');
+  @include font-stack;
   @include font-size('xs');
   @include nsw-spacing(margin-top, md);
 
@@ -47,7 +47,21 @@
   }
 
   &__link {
-    @include text-link;
+    color: $nsw-primary-blue;
+    text-decoration: underline;
+    text-decoration-skip-ink: auto;
+
+    &:hover {
+      @include nsw-hover;
+    }
+
+    &:focus {
+      @include nsw-focus($offset: false);
+    }
+
+    &:active {
+      @include nsw-active;
+    }
   }
 
   &--current {

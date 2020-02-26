@@ -58,6 +58,13 @@
     @include nsw-spacing(margin, md none none none);
     @include nsw-spacing(bottom, md);
     position: absolute;
+    width: rem(16px);
+    height: rem(16px);
+
+    @include breakpoint('sm') {
+      width: rem(20px);
+      height: rem(20px);
+    }
   }
 
   &__link {
@@ -72,10 +79,6 @@
     &:focus {
       outline: none;
       text-decoration: underline;
-    }
-
-    &:visited {
-      color: $link-visited;
     }
   }
 }
