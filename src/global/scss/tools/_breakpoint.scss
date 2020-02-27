@@ -3,7 +3,7 @@
     @error 'NSW-DS Breakpoint mixin accepts only strings';
   }
 
-  @if $size != 'xs' and $size != 'sm' and $size != 'md' and $size != 'lg' {
+  @if $size != 'xs' and $size != 'sm' and $size != 'md' and $size != 'lg' and $size != 'xl' {
     @error 'NSW-DS Breakpoint mixin allows the following breakpoint sizes xs, sm, md, lg';
   } @else {
     $px-size: map-get($breakpoints, $size);

@@ -32,7 +32,7 @@
 
   &__info {
 
-    @include breakpoint('sm') {
+    @include breakpoint('md') {
       display: flex;
       flex-wrap: nowrap;
     }
@@ -50,7 +50,7 @@
       text-decoration: none;
     }
 
-    @include breakpoint('sm') {
+    @include breakpoint('md') {
       text-align: right;
     }
   }
@@ -70,7 +70,7 @@
     flex: 1 0 50%;
     max-width: 50%;
 
-    @include breakpoint('sm') {
+    @include breakpoint('md') {
       @include nsw-spacing(margin-right, lg);
       flex: 0 0 auto;
       max-width: none;
@@ -95,7 +95,7 @@
   flex-direction: row;
   flex-wrap: wrap;
 
-  @include breakpoint('sm') {
+  @include breakpoint('md') {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -125,12 +125,12 @@
     min-width: rem(256px);
     max-width: 50%;
 
-    @include breakpoint('sm') {
+    @include breakpoint('md') {
       flex-basis: 50%;
       min-width: auto;
     }
 
-    @include breakpoint('md') {
+    @include breakpoint('lg') {
       flex-basis: 25%;
     }
   }
@@ -138,11 +138,13 @@
   &__heading {
     @include nsw-spacing(margin, none);
     @include font-stack('heading');
+    @include font-size('sm');
   }
 
   &__list {
     @include nsw-spacing(margin, none);
     @include nsw-spacing(padding, none);
+    @include font-size('xs');
     list-style: none;
     margin-top: rem(4px);
   }
