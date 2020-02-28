@@ -2,7 +2,22 @@
   "name": "nsw-design-system",
   "version": "1.1.1",
   "description": "Design system for Digital NSW",
-  "main": "index.js",
+  "main": "dist/main.js",
+  "style": "dist/main.css",
+  "files": [
+    "dist/{css,js,assets/svg}/*.{css,js,svg}",
+    "src/{components,patterns,styles}/**/*.{scss,js}",
+    "src/global/{scripts,scss}/**/*.{scss,js}",
+    "src/main.{scss,js}"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/digitalnsw/nsw-design-system.git"
+  },
+  "bugs": {
+    "url": "https://github.com/digitalnsw/nsw-design-system/issues"
+  },
+  "homepage": "https://www.digital.nsw.gov.au/digital-design-system",
   "scripts": {
     "dev": "gulp",
     "starterkit:build": "gulp build",
@@ -14,9 +29,9 @@
     "bump:minor": "gulp bumping --type minor",
     "bump:patch": "gulp bumping --type patch",
     "commit": "git add . && git commit -m 'Built HTMLstarterkit and updated CHANGELOG.md' && git push origin",
-    "release:major": "npm run bump:major && redrun starterkit:build surge changelog:build commit git-tag -s",
-    "release:minor": "npm run bump:minor && redrun starterkit:build surge changelog:build commit git-tag -s",
-    "release:patch": "npm run bump:patch && redrun starterkit:build surge changelog:build commit git-tag -s"
+    "release:major": "npm run bump:major && redrun starterkit:build surge changelog:build commit git-tag npm publish -s",
+    "release:minor": "npm run bump:minor && redrun starterkit:build surge changelog:build commit git-tag npm publish -s",
+    "release:patch": "npm run bump:patch && redrun starterkit:build surge changelog:build commit git-tag npm publish -s"
   },
   "keywords": [
     "design system"
