@@ -22,7 +22,7 @@ How you use the NSW Design System depends on your team's capabilities. We recomm
 4.  Add  `nsw-design-system`  to your project’s  `package.json`:
     - `npm install --save nsw-design-system`
 
-The NSW Design System is now installed as a dependancy of your project, check out how to [import styles](#importing-styles-into-your-project) , [javascript](#importing-javascript-into-your-project) and [svg assets](#importing-svg-assets-into-your-project) in to your project build.
+The NSW Design System is now installed as a dependancy of your project, check out how to [import styles](#importing-styles-into-your-project) and [javascript](#importing-javascript-into-your-project) in to your project build.
 
 ### Download starter kit
 You can download the compiled design system assets (HTML, CSS, JavaScript) in the [HTMLStarterkit zip file](https://github.com/digitalnsw/nsw-design-system/blob/master/HTMLstarterkit.zip) from the latest release.
