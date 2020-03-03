@@ -142,7 +142,7 @@
   position: relative;
 
   &::before {
-    @include nsw-spacing(margin-right, md);
+    @include nsw-spacing(margin-right, sm);
     left: 0;
     content: '';
     width: rem(32px);
@@ -173,11 +173,7 @@
 
 .nsw-form-checkbox__label {
   &::before {
-    border-radius: 2px;
-  }
-
-  &::after {
-    border-radius: 1px;
+    border-radius: rem($border-radius);
   }
 }
 
