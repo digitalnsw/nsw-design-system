@@ -6,21 +6,35 @@ model:
   news: card-news.json
   headline: card-headline.json
 ---
+<div class="nsw-container nsw-wysiwyg-content">
+  <h2>Headline only</h2>
+</div>
+<div class="nsw-container">
+  {{>_card model.headline}}
+</div>
+<br />
+<div class="nsw-container nsw-wysiwyg-content">
+  <h2>Headline and Copy</h2>
+</div>
 <div class="nsw-container">
   {{>_card model.basic}}
 </div>
 <br />
+<div class="nsw-container nsw-wysiwyg-content">
+  <h2>All options</h2>
+</div>
 <div class="nsw-container">
   {{>_card model.news}}
 </div>
 <br />
+<div class="nsw-container nsw-wysiwyg-content">
+  <h2>With image</h2>
+</div>
 <div class="nsw-container">
   {{>_card model.media}}
 </div>
 <br />
-<div class="nsw-container">
-  {{>_card model.headline}}
-</div>
+
 
 <br />
 <div class="nsw-container nsw-wysiwyg-content">
@@ -32,10 +46,10 @@ model:
       {{>_card model.basic}}
     </div>
     <div class="nsw-col nsw-col--third">
-      {{>_card model.news}}
+      {{>_card model.basic}}
     </div>
     <div class="nsw-col nsw-col--third">
-      {{>_card model.headline}}
+      {{>_card model.basic}}
     </div>
   </div>
 </div>
