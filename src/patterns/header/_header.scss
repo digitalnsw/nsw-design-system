@@ -50,6 +50,11 @@
 .nsw-header {
   background-color: $white;
   position: relative;
+  border-bottom: solid 1px $light20;
+
+  @include breakpoint('sm') {
+    border-bottom: 0;
+  }
 
   &__container {
     @include container;
