@@ -138,22 +138,25 @@
   @include font-stack;
   @include font-size('sm');
   @include nsw-spacing(margin-top, md);
+  @include nsw-spacing(padding-left, xxl);
+  @include nsw-spacing(padding-top, xs);
+  min-height: rem(32px);
   display: block;
   position: relative;
 
   &::before {
-    @include nsw-spacing(margin-right, sm);
-    left: 0;
+    @include nsw-spacing(margin-right, md);
     content: '';
     width: rem(32px);
     height: rem(32px);
     border: $border-width $dark70 solid;
     background: $white;
-    top: -2px;
+    top: 0;
+    left: 0;
     display: inline-block;
     vertical-align: middle;
     background-color: $white;
-    position: relative;
+    position: absolute;
   }
 
   &::after {
@@ -165,7 +168,7 @@
     background-position: center center;
     background-size: rem(16px) auto;
     left: rem(5px);
-    top: 50%;
+    top: rem(18px);
     transform: translateY(-50%);
     margin-top: rem(-2px);
   }

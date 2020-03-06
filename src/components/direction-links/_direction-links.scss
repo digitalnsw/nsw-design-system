@@ -1,13 +1,10 @@
 .nsw-direction-link {
   @include font-stack('heading');
-  @include nsw-spacing(margin-right, md);
   position: relative;
-  display: inline-block;
-  text-align: center;
+  display: inline-flex;
   text-decoration: none;
+  vertical-align: middle;
   padding: rem(4px) rem(8px);
-  min-width: rem(24px);
-  position: relative;
   color: $dark80;
 
   &:hover {
@@ -18,25 +15,31 @@
     @include nsw-focus($offset: false);
   }
 
-  &__icon-back {
-    transform: rotate(-180deg);
-  }
-
-  &__icon-top {
-    transform: rotate(-90deg);
-  }
-
-  &__icon-bottom {
-    transform: rotate(90deg);
-  }
-
-  &__icon-next {
-    transform: rotate(0deg);
-  }
-
   .nsw-icon {
     width: rem(16px);
     height: rem(16px);
-    vertical-align: middle;
+    align-self: center;
+
+    + .nsw-direction-link__text {
+      @include nsw-spacing(margin-left, xs);
+    }
+  }
+
+  &__text {
+    align-self: center;
+
+    + .nsw-icon {
+      @include nsw-spacing(margin-left, xs);
+    }
+  }
+
+  &.is-disabled {
+    color: $light40;
+    cursor: not-allowed;
+    background: none;
+
+    .nsw-icon {
+      fill: $light40;
+    }
   }
 }
