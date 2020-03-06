@@ -1,11 +1,11 @@
 .nsw-pagination {
   @include font-stack('heading');
   @include nsw-spacing(margin, sm none none none);
+  @include nsw-spacing(padding-left, none);
   display: flex;
   align-items: flex-start;
   flex-wrap: wrap;
   justify-content: center;
-  padding-left: 0;
   list-style: none;
 
   &__item {
@@ -18,13 +18,13 @@
 
   &__link {
     position: relative;
-    display: inline-block;
-    text-align: center;
+    display: inline-flex;
     text-decoration: none;
-    color: $dark80;
+    vertical-align: middle;
     padding: rem(4px) rem(8px);
+    color: $dark80;
+    text-align: center;
     min-width: rem(24px);
-    position: relative;
 
     &:hover {
       @include nsw-hover;
@@ -44,42 +44,17 @@
       height: 2px;
       background-color: $nsw-primary-blue;
     }
-
-    &.is-disabled {
-      color: $light40;
-      cursor: not-allowed;
-      background: none;
-    }
   }
 
   &__text {
     vertical-align: middle;
   }
-
-  &__arrows {
-    width: rem(16px);
-    height: rem(16px);
-    vertical-align: middle;
-
-    .is-disabled & {
-      fill: $light40;
-    }
-  }
 }
 
 .nsw-pagination__item--next-page {
   @include nsw-spacing(margin, none none none md);
-
-  .nsw-pagination__arrows {
-    @include nsw-spacing(margin-left, xs);
-  }
 }
 
 .nsw-pagination__item--prev-page {
   @include nsw-spacing(margin, none md none none);
-
-  .nsw-pagination__arrows {
-    @include nsw-spacing(margin-right, xs);
-    transform: rotate(180deg);
-  }
 }
