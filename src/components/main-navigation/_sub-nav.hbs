@@ -1,0 +1,34 @@
+<div class="nsw-subnavigation" id="{{id}}-subnav" role="region" aria-label="{{text}} Submenu">
+  {{>_subnav-header}}
+  <ul class="nsw-subnavigation__list">
+    {{#each subnav}}
+      <li class="nsw-subnavigation__list-item">
+        <a href="{{url}}" class="nsw-subnavigation__link">
+          <span class="nsw-navigation__link-text">{{text}}</span>
+          {{#if subnav}}
+          <svg class="nsw-icon nsw-navigation__link-icon" focusable="false" aria-hidden="true">
+            <use xlink:href="#chevron"></use>
+          </svg>
+          {{/if}}
+        </a>
+        <div class="nsw-subnavigation" id="{{id}}-subnav" role="region" aria-label="{{text}} Submenu">
+          {{>_subnav-header}}
+          <ul class="nsw-subnavigation__list">
+            {{#each subnav}}
+              <li class="nsw-subnavigation__list-item">
+                <a href="{{url}}" class="nsw-subnavigation__link">
+                  <span class="nsw-navigation__link-text">{{text}}</span>
+                  {{#if subnav}}
+                  <svg class="nsw-icon nsw-navigation__link-icon" focusable="false" aria-hidden="true">
+                    <use xlink:href="#chevron"></use>
+                  </svg>
+                  {{/if}}
+                </a>
+              </li>
+            {{/each}}
+          </ul>
+        </div>
+      </li>
+    {{/each}}
+  </ul>
+</div>

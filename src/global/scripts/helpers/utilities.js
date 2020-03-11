@@ -1,11 +1,20 @@
+export const focusObjectGenerator = (arr) => {
+  const focusableElement = {
+    all: arr,
+    first: arr[0],
+    last: arr[arr.length - 1],
+    length: arr.length,
+  }
+
+  return focusableElement
+}
+
 export const getFocusableElement = (el) => {
-  const focusable = el.querySelectorAll(
-    `a[href],button:not([disabled]),
-    area[href],input:not([disabled]):not([type=hidden]),
-    select:not([disabled]),textarea:not([disabled]),
-    iframe,object,embed,*:not(.is-draggabe)[tabindex],
-    *[contenteditable]`,
-  )
+  const focusable = el.querySelectorAll(`a[href],button:not([disabled]),
+  area[href],input:not([disabled]):not([type=hidden]),
+  select:not([disabled]),textarea:not([disabled]),
+  iframe,object,embed,*:not(.is-draggabe)[tabindex],
+  *[contenteditable]`)
   const slicedFocusable = Array.prototype.slice.call(focusable)
   const focusableArray = []
 
@@ -13,15 +22,23 @@ export const getFocusableElement = (el) => {
     if (slicedFocusable[i].offsetHeight !== 0) focusableArray.push(slicedFocusable[i])
   }
 
-  const focusableElement = {
-    all: focusableArray,
-    first: focusableArray[0],
-    last: focusableArray[focusableArray.length - 1],
-    length: focusableArray.length,
-  }
-
-  return focusableElement
+  return focusObjectGenerator(focusableArray)
 }
+
+export const getFocusableElementImmediate = (el) => {
+  // const focusableStrings = `a[href],button:not([disabled]),
+  // area[href],input:not([disabled]):not([type=hidden]),
+  // select:not([disabled]),textarea:not([disabled]),
+  // iframe,object,embed,*:not(.is-draggabe)[tabindex],
+  // *[contenteditable]`
+  const slicedFocusable = Array.prototype.filter.call(el.children, (child) => child.matches('a[href],button:not([disabled])'))
+  console.log('#main-navigation * > a')
+  console.log(el.querySelectorAll('> ul > li > a'))
+
+  return focusObjectGenerator(slicedFocusable)
+}
+
+export const childrenMatches = (elem, selector) => Array.prototype.filter.call(elem.children, (child) => child.matches(selector))
 
 export const trapTabKey = (event, container) => {
   const { activeElement } = document
