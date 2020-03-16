@@ -7,17 +7,6 @@
     list-style: none;
     display: flex;
     position: relative;
-
-    &::after {
-      content: '';
-      width: 100%;
-      height: 2px;
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      background-color: $light20;
-      z-index: 0;
-    }
   }
 
   &__link {
@@ -47,8 +36,8 @@
         bottom: 0;
         left: 0;
         width: 100%;
-        height: 4px;
-        background-color: $nsw-primary-highlight;
+        height: 0;
+        border-bottom: solid 4px $nsw-primary-highlight;
       }
     }
   }
@@ -56,11 +45,11 @@
   &__content {
     @include nsw-spacing(padding, lg md);
     border-bottom: solid 1px $light20;
+    border-top: solid 2px $light20;
+    margin-top: -2px;
 
     &:focus {
       @include nsw-focus;
-      position: relative;
-      z-index: 2;
     }
   }
 }

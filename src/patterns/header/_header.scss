@@ -29,7 +29,7 @@
       }
     }
 
-    @include breakpoint('sm') {
+    @include breakpoint('md') {
       text-align: left;
     }
   }
@@ -52,7 +52,7 @@
   position: relative;
   border-bottom: solid 1px $light20;
 
-  @include breakpoint('sm') {
+  @include breakpoint('md') {
     border-bottom: 0;
   }
 
@@ -70,7 +70,7 @@
     align-items: center;
     height: rem(72px);
 
-    @include breakpoint('sm') {
+    @include breakpoint('md') {
       justify-content: unset;
       height: rem(94px);
     }
@@ -79,7 +79,7 @@
   &__center {
     order: 2;
 
-    @include breakpoint('sm') {
+    @include breakpoint('md') {
       order: 0;
     }
   }
@@ -93,7 +93,7 @@
     order: 3;
     margin-right: rem(-4px);
 
-    @include breakpoint('sm') {
+    @include breakpoint('md') {
       margin-left: auto;
       margin-right: 0;
     }
@@ -112,13 +112,14 @@
   width: rem(141px);
   height: rem(46px);
 
-  @include breakpoint('sm') {
+  @include breakpoint('md') {
     width: rem(168px);
     height: rem(55px);
   }
 }
 
 .nsw-header-btn {
+  @include border-radius;
   color: $nsw-primary-blue;
   width: rem(48px);
   height: rem(48px);
@@ -127,7 +128,6 @@
   padding: 0;
   text-align: center;
   position: relative;
-  border-radius: rem($border-radius);
 
   &:hover {
     @include nsw-hover;
@@ -149,13 +149,13 @@
 }
 
 .nsw-header-btn--menu {
-  @include breakpoint('sm') {
+  @include breakpoint('md') {
     display: none;
   }
 }
 
 .nsw-header-btn--search {
-  @include breakpoint('sm') {
+  @include breakpoint('md') {
     .nsw-header-btn__sub {
       @include sr-only;
     }
@@ -173,7 +173,7 @@
     background: $light10;
     top: 0;
 
-    @include breakpoint('sm') {
+    @include breakpoint('md') {
       @include break-out-reset;
       position: absolute;
       width: rem(394px);
@@ -198,11 +198,11 @@
       @include nsw-focus($offset: false);
     }
 
-    @include breakpoint('sm') {
+    @include breakpoint('md') {
       @include nsw-spacing(padding, none md);
+      @include border-radius;
       height: rem(50px);
       padding: 0 rem(16px);
-      border-radius: rem($border-radius);
     }
   }
 
@@ -215,7 +215,7 @@
     height: rem(24px);
     display: none;
 
-    @include breakpoint('sm') {
+    @include breakpoint('md') {
       display: inline-block;
     }
   }
@@ -240,7 +240,7 @@
       @include nsw-focus;
     }
 
-    @include breakpoint('sm') {
+    @include breakpoint('md') {
       display: none;
     }
   }

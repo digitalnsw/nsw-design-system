@@ -2,8 +2,8 @@
   @include font-stack('heading');
   @include font-size('sm');
   @include nsw-spacing(margin, lg md none none);
+  @include border-radius;
   border: solid 2px transparent;
-  border-radius: rem($border-radius);
   white-space: nowrap;
   text-decoration: none;
   padding: rem(12px) rem(24px);
@@ -29,7 +29,7 @@
 
   &:active {
     @include nsw-active;
-    border-color: $nsw-tertiary-blue;
+    border-color: $focus-color;
   }
 
   &:disabled,

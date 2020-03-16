@@ -35,6 +35,12 @@ $transitions: (
   card: box-shadow 0.25s ease-in-out
 ) !default;
 
+$border-radii: (
+  none: 0,
+  default: 4px,
+  round: 50%,
+) !default;
+
 $border-radius: 4px !default;
 $border-width: 1px !default;
 
@@ -56,7 +62,6 @@ $spacing-sizes: (
 $nsw-primary-blue: #002664 !default;
 $nsw-primary-highlight: #d7153a !default;
 $nsw-secondary-blue: #2e5299 !default;
-$nsw-tertiary-blue: #0085b3 !default;
 
 // Shades
 $black: #000000 !default;
@@ -68,18 +73,21 @@ $light20: #e4e4e6 !default;
 $light10: #f4f4f7 !default;
 $white: #ffffff !default;
 
-// Notifications
-$info-blue: $nsw-secondary-blue !default;
-$info-blue-light10: #eaedf4 !default;
-$success-green: #00a908 !default;
-$success-green-light10: #e5f6e6 !default;
-$warning-orange: #dc5800 !default;
-$warning-orange-light10: #fbeee5 !default;
-$error-red: #b81237 !default;
-$error-red-light10: #f7e7eb !default;
+// Utility colors
+$info: $nsw-secondary-blue !default;
+$info-background: #eaedf4 !default;
+$success: #00a908 !default;
+$success-background: #e5f6e6 !default;
+$warning: #dc5800 !default;
+$warning-background: #fbeee5 !default;
+$critical: #b81237 !default;
+$critical-background: #f7e7eb !default;
+$focus-color: #0085b3 !default;
+$hover-colour: rgba($focus-color, 0.2);
+$link-color: $nsw-primary-blue;
+$link-visited: #551a8b;
 
-// sitewide message
-$alert-yellow: #ffcb2d;
+$focus-offset: 3px;
 
 //Box Shadows
 $shadows: (
@@ -88,27 +96,16 @@ $shadows: (
   card-hover: 2px 6px 12px 0 rgba($black, 0.25),
 ) !default;
 
-//Focus and Hover
-$focus-color: $nsw-tertiary-blue !default;
-$focus-offset: 3px;
-
-$hover-colour: rgba($nsw-tertiary-blue, 0.2);
-
-//Links
-$link-color: $nsw-primary-blue;
-$link-hover-outline-color: rgba($nsw-tertiary-blue, 0.2);
-$link-visited: #551a8b;
-
 // Breakpoints
 $breakpoints: (
-  xs: 576px,
-  sm: 768px,
-  md: 992px,
-  lg: 1200px,
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
 ) !default;
 
 // z-index
-
 $z-index: (
   top: 9001,
   middle: 2,
@@ -130,19 +127,20 @@ $grid-margins: (
   sm: 8px,
   md: 8px,
   lg: 32px,
+  xl: 32px,
 );
 $grid-margin-top: 16px;
 $grid-col-sizes: (
-  xs: (
+  sm: (
     half: 50%,
   ),
-  sm: (
+  md: (
     third: 33.3%,
     two-thirds: 66.6%,
     quarter: 50%,
     three-quarters: 50%
   ),
-  md: (
+  lg: (
     quarter: 25%,
     three-quarters: 75%
   )
@@ -151,24 +149,24 @@ $grid-col-sizes: (
 // Notification variations
 $notification: (
   info: (
-    border: $info-blue,
-    bg: $info-blue-light10,
-    fill: $info-blue,
+    border: $info,
+    bg: $info-background,
+    fill: $info,
   ),
   success: (
-    border: $success-green,
-    bg: $success-green-light10,
-    fill: $success-green,
+    border: $success,
+    bg: $success-background,
+    fill: $success,
   ),
   warning: (
-    border: $warning-orange,
-    bg: $warning-orange-light10,
-    fill: $warning-orange,
+    border: $warning,
+    bg: $warning-background,
+    fill: $warning,
   ),
   error: (
-    border: $error-red,
-    bg: $error-red-light10,
-    fill: $error-red,
+    border: $critical,
+    bg: $critical-background,
+    fill: $critical,
   ),
 ) !default;
 
@@ -179,10 +177,10 @@ $overlays: (
 ) !default;
 
 $icon-colors: (
-  error: $error-red,
-  success: $success-green,
-  info: $info-blue,
-  warning: $warning-orange,
+  error: $critical,
+  success: $success,
+  info: $info,
+  warning: $warning,
   default: $nsw-primary-blue,
 ) !default;
 
@@ -228,20 +226,11 @@ $sitewide-message: (
   ),
   light: (
     color: $dark80,
-    bg: $info-blue-light10,
+    bg: $info-background,
   ),
   critical: (
     color: $white,
-    bg: $error-red,
-  ),
-  // DO NOT USE: dark & alert to be removed in the future
-  alert: (
-    color: $dark80,
-    bg: $alert-yellow,
-  ),
-  dark: (
-    color: $white,
-    bg: $dark80,
+    bg: $critical,
   ),
 ) !default;
 

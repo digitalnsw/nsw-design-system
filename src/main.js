@@ -1,6 +1,5 @@
 import SiteSearch from './patterns/header/header'
 import Navigation from './components/main-navigation/main-navigation'
-import ResponsiveTables from './styles/tables/tables'
 import Accordion from './components/accordion/accordion'
 import ShareThis from './components/social-bar/social-bar'
 import Tabs from './components/tab-navigation/tab-navigation'
@@ -30,7 +29,6 @@ function initSite() {
   // Header Search
   const openSearchButton = document.querySelectorAll('.js-open-search')
   const closeSearchButton = document.querySelectorAll('.js-close-search')
-  const responsiveTables = document.querySelectorAll('.js-responsive-table')
   const accordions = document.querySelectorAll('.js-accordion')
   const tabs = document.querySelectorAll('.js-tabs')
   const siteMessages = document.querySelectorAll('.js-sitewide-message')
@@ -45,11 +43,6 @@ function initSite() {
 
   // Navigation
   new Navigation().init()
-
-
-  responsiveTables.forEach((element) => {
-    new ResponsiveTables(element).init()
-  })
 
   accordions.forEach((element) => {
     new Accordion(element).init()
@@ -71,5 +64,5 @@ function initSite() {
 }
 
 export {
-  initSite, SiteSearch, Navigation, ResponsiveTables, Accordion, ShareThis, Tabs, SitewideMessage,
+  initSite, SiteSearch, Navigation, Accordion, ShareThis, Tabs, SitewideMessage,
 }

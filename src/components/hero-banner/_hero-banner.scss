@@ -2,14 +2,14 @@
   $parent: &;
   position: relative;
 
-  @include breakpoint('sm') {
+  @include breakpoint('md') {
     height: rem(380px);
     overflow: hidden;
   }
 
   &__image-area {
 
-    @include breakpoint('sm') {
+    @include breakpoint('md') {
       position: absolute;
       top: 0;
       left: 0;
@@ -23,7 +23,7 @@
     height: auto;
     display: block;
 
-    @include breakpoint('sm') {
+    @include breakpoint('md') {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
@@ -34,10 +34,9 @@
   &__content-area {
     @include break-out;
 
-    @include breakpoint('sm') {
+    @include breakpoint('md') {
       @include break-out-reset;
       height: rem(380px);
-      background-color: transparent;
       width: 100%;
     }
   }
@@ -49,7 +48,7 @@
     background-color: $light20;
     border-top: solid 6px $nsw-primary-highlight;
 
-    @include breakpoint('sm') {
+    @include breakpoint('md') {
       @include nsw-spacing(padding, md lg);
       position: relative;
       top: 50%;
@@ -106,7 +105,7 @@
       color: $white;
       background-color: $dark80;
 
-      @include breakpoint('sm') {
+      @include breakpoint('md') {
         background-color: map-get($overlays, dark);;
       }
     }
