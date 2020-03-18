@@ -176,11 +176,7 @@
 
 .nsw-form-checkbox__label {
   &::before {
-    border-radius: 2px;
-  }
-
-  &::after {
-    border-radius: 1px;
+    border-radius: rem($border-radius);
   }
 }
 
@@ -243,7 +239,7 @@
     }
   }
 
-  @include breakpoint('sm') {
+  @include breakpoint('md') {
     &[aria-invalid='true'],
     &.has-error {
       @include nsw-spacing(padding, md);

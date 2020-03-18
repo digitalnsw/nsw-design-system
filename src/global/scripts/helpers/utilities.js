@@ -1,31 +1,38 @@
-export const getFocusableElement = (el) => {
-  const focusable = el.querySelectorAll(
-    `a[href],button:not([disabled]),
-    area[href],input:not([disabled]):not([type=hidden]),
-    select:not([disabled]),textarea:not([disabled]),
-    iframe,object,embed,*:not(.is-draggabe)[tabindex],
-    *[contenteditable]`,
-  )
-  const slicedFocusable = Array.prototype.slice.call(focusable)
-  const focusableArray = []
-
-  for (let i = 0; i < slicedFocusable.length; i += 1) {
-    if (slicedFocusable[i].offsetHeight !== 0) focusableArray.push(slicedFocusable[i])
+export const focusObjectGenerator = (arr) => {
+  const focusableElements = {
+    all: arr,
+    first: arr[0],
+    last: arr[arr.length - 1],
+    length: arr.length,
   }
 
-  const focusableElement = {
-    all: focusableArray,
-    first: focusableArray[0],
-    last: focusableArray[focusableArray.length - 1],
-    length: focusableArray.length,
-  }
-
-  return focusableElement
+  return focusableElements
 }
 
-export const trapTabKey = (event, container) => {
+export const getFocusableElement = (el) => {
+  const elementArr = [].slice.call(el.querySelectorAll(`a[href],button:not([disabled]),
+  area[href],input:not([disabled]):not([type=hidden]),
+  select:not([disabled]),textarea:not([disabled]),
+  iframe,object,embed,*:not(.is-draggabe)[tabindex],
+  *[contenteditable]`))
+
+  return focusObjectGenerator(elementArr)
+}
+
+export const getFocusableElementBySelector = (id, selectorArr) => {
+  const elements = []
+  for (let i = 0; i < selectorArr.length; i += 1) {
+    elements.push([].slice.call(document.querySelectorAll(`#${id} ${selectorArr[i]}`)))
+  }
+
+  const mergedElementArr = [].concat(...elements)
+
+  return focusObjectGenerator(mergedElementArr)
+}
+
+export const trapTabKey = (event, focusObject) => {
   const { activeElement } = document
-  const focusableElement = getFocusableElement(container)
+  const focusableElement = focusObject
 
   if (event.keyCode !== 9) return false
 

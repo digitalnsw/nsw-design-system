@@ -1,7 +1,13 @@
 ---
 title: Callout
-model: callout.json
+model:
+  default: callout.json
+  all: callout-all.json
 ---
 <div class="nsw-container">
-  {{>_callout model}}
+  {{>_callout model.default}}
+</div>
+
+<div class="nsw-container">
+  {{>_callout model.all}}
 </div>
