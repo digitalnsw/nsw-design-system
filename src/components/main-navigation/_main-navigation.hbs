@@ -20,50 +20,7 @@
           {{/if}}
         </a>
         {{#if subnav}}
-        <button type="button" class="nsw-navigation__subbtn js-open-subnav" aria-controls="{{id}}-subnav" aria-expanded="false">
-          <svg class="nsw-icon" focusable="false" aria-hidden="true">
-            <use xlink:href="#chevron"></use>
-          </svg>
-          <span class="sr-only">Show {{text}} Submenu</span>
-        </button>
-        {{/if}}
-        {{#if subnav}}
-          <div class="nsw-subnavigation" id="{{id}}-subnav" role="region" aria-label="{{text}} Submenu">
-            <div class="nsw-subnavigation__header">
-              <button type="button" class="nsw-subnavigation__back-btn js-close-subnav" aria-controls="{{id}}-subnav" aria-expanded="true">
-                <svg class="nsw-icon nsw-icon--rotate-180" focusable="false" aria-hidden="true">
-                  <use xlink:href="#chevron"></use>
-                </svg>
-                <span><span class="sr-only">Back to</span> {{text}}</span>
-              </button>
-
-              <h2 class="nsw-subnavigation__title">
-                <a href="{{url}}" class="nsw-subnavigation__title-link">
-                  {{text}}
-                  <svg class="nsw-icon" focusable="false" aria-hidden="true">
-                    <use xlink:href="#arrow"></use>
-                  </svg>
-                </a>
-              </h2>
-              <p class="nsw-subnavigation__description">{{description}}</p>
-
-              <button type="button" class="nsw-navigation__close js-close-navigation" aria-expanded="true">
-                <svg class="nsw-icon icon" focusable="false" aria-hidden="true">
-                  <use xlink:href="#close"></use>
-                </svg>
-                <span class="sr-only">Close Menu</span>
-              </button>
-            </div>
-            <ul class="nsw-subnavigation__list">
-              {{#each subnav}}
-                <li class="nsw-subnavigation__list-item">
-                  <a href="{{url}}" class="nsw-subnavigation__link">
-                    {{text}}
-                  </a>
-                </li>
-              {{/each}}
-            </ul>
-          </div>
+          {{>_sub-nav}}
         {{/if}}
       </li>
     {{/each}}

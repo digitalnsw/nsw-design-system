@@ -35,7 +35,8 @@
   }
 }
 
-.nsw-infobar {
+.nsw-infobar,
+.nsw-masthead {
   @include font-stack;
   @include nsw-spacing(padding, sm none);
   background-color: $nsw-primary-blue;
@@ -140,6 +141,8 @@
   &__icon {
     height: rem(16px);
     width: rem(16px);
+    position: relative;
+    top: 1px;
   }
 
   &__sub {
@@ -161,8 +164,8 @@
     }
 
     .nsw-header-btn__icon {
-      width: rem(32px);
-      height: rem(32px);
+      width: rem(24px);
+      height: rem(24px);
     }
   }
 }
@@ -210,7 +213,7 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    right: rem(16px);
+    right: rem(12px);
     width: rem(24px);
     height: rem(24px);
     display: none;

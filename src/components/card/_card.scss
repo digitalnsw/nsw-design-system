@@ -34,9 +34,12 @@
     @include font-size('sm');
     @include nsw-spacing(padding, md md xxxl md);
     border-top: solid 6px $nsw-primary-highlight;
+    display: flex;
+    flex-direction: column;
+    order: 2;
 
 
-    @include breakpoint('md') {
+    @include breakpoint('lg') {
       @include nsw-spacing(padding, md xl xxxl xl);
     }
 
@@ -47,11 +50,22 @@
 
   &__tag {
     @include font-stack('heading');
+    order: 1;
+  }
+
+  &__date {
+    order: 2;
   }
 
   &__tag,
   &__date {
     @include font-size('xs');
+  }
+
+  &__title,
+  &__copy,
+  &__icon {
+    order: 3;
   }
 
   &__icon {
@@ -81,47 +95,18 @@
       text-decoration: underline;
     }
   }
-}
 
-.nsw-card--media {
-  .nsw-card__image-area {
+  &__image-area {
     order: 1;
     height: rem(200px);
   }
 
-  .nsw-card__content {
-    order: 2;
-  }
-
-  .nsw-card__image {
+  &__image {
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
-
 }
-
-.nsw-card--news {
-  .nsw-card__content {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .nsw-card__tag {
-    order: 1;
-  }
-
-  .nsw-card__date {
-    order: 2;
-  }
-
-  .nsw-card__title,
-  .nsw-card__copy,
-  .nsw-card__icon {
-    order: 3;
-  }
-}
-
 
 .nsw-card--headline {
   .nsw-card__title {

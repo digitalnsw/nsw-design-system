@@ -16,17 +16,24 @@
     width: rem(24px);
     height: rem(24px);
 
+    + .nsw-callout__content {
+      @include nsw-spacing(margin-top, md);
+    }
+
     @include breakpoint('md') {
       @include nsw-spacing(margin-right, md);
       flex: 0 0 auto;
       width: rem(30px);
       height: rem(30px);
+
+      + .nsw-callout__content {
+        @include nsw-spacing(margin-top, none);
+      }
     }
   }
 
   &__content {
     @include font-stack;
-    @include nsw-spacing(margin-top, md);
 
     @include breakpoint('md') {
       @include nsw-spacing(margin-top, none);
