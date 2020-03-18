@@ -1,5 +1,5 @@
 import {
-  getFocusableElement, trapTabKey, whichTransitionEvent, getFocusableElementImmediate,
+  trapTabKey, whichTransitionEvent, getFocusableElementBySelector,
 } from '../../global/scripts/helpers/utilities'
 
 class Navigation {
@@ -16,7 +16,7 @@ class Navigation {
     this.mobileShowMainTransitionEndEvent = (e) => this.mobileShowMainNav(e)
     this.mobileHideMainTransitionEndEvent = (e) => this.mobileHideMainNav(e)
     this.showSubNavTransitionEndEvent = (e) => this.showSubNav(e)
-    this.mobileTrapTabKeyEvent = (e) => trapTabKey(e, this.mainNavElement)
+    this.mobileTrapTabKeyEvent = (e) => this.mobileMainNavTrapTabs(e)
     this.mobileSubNavTrapTabKeyEvent = (e) => this.trapkeyEventStuff(e)
     this.desktopButtonClickEvent = (e) => this.buttonClickDesktop(e)
     this.desktopButtonKeydownEvent = (e) => this.buttonKeydownDesktop(e)
@@ -24,26 +24,45 @@ class Navigation {
     this.escapeCloseEvent = (e) => this.escapeClose(e)
     this.openSubNavElements = []
     this.breakpoint = window.matchMedia('(min-width: 48em)')
+    this.body = document.body
   }
 
   init() {
     if (this.mainNavElement) {
-      this.setUpNavControls()
       this.setUpMobileControls()
-      // this.responsiveCheck(this.breakpoint)
-      // this.breakpoint.addListener((e) => this.responsiveCheck(e))
+      this.responsiveCheck(this.breakpoint)
+      this.breakpoint.addListener((e) => this.responsiveCheck(e))
     }
   }
 
-  // responsiveCheck({ matches }) {
-  //   if (matches) {
-  //     // this.teardownMobileNav()
-  //     // this.setUpDesktopNav()
-  //   } else {
-  //     this.setUpMobileNav()
-  //     // this.teardownDesktopNav()
-  //   }
-  // }
+  responsiveCheck(e) {
+    let megaMenuListItems = []
+    if (e.matches) {
+      megaMenuListItems = [].slice.call(this.mainNavElement.querySelectorAll('.nsw-navigation__list > li'))
+      this.body.classList.remove('navigation-open')
+    } else {
+      megaMenuListItems = [].slice.call(this.mainNavElement.querySelectorAll('li'))
+    }
+    this.tearDownNavControls()
+    this.setUpNavControls(megaMenuListItems)
+  }
+
+  tearDownNavControls() {
+    if (this.isMegaMenuElement) {
+      const listItems = [].slice.call(this.mainNavElement.querySelectorAll('li'))
+      listItems.forEach((item) => {
+        const submenu = item.querySelector('[id^=subnav-]')
+        const link = item.querySelector('a')
+        if (submenu) {
+          link.removeAttribute('role')
+          link.removeAttribute('aria-expanded')
+          link.removeAttribute('aria-controls')
+          link.removeEventListener('click', this.desktopButtonClickEvent, false)
+          link.removeEventListener('keydown', this.desktopButtonKeydownEvent, false)
+        }
+      })
+    }
+  }
 
   setUpMobileControls() {
     this.openNavButton.addEventListener('click', this.mobileToggleMainNavEvent, false)
@@ -52,20 +71,20 @@ class Navigation {
       element.addEventListener('click', this.mobileToggleMainNavEvent, false)
     })
 
-    this.mainNavElement.addEventListener('keydown', this.mobileTrapTabKeyEvent, false)
-
     this.closeSubnavButtons.forEach((element) => {
       element.addEventListener('click', this.mobileToggleSubnavEvent, false)
     })
   }
 
-  setUpNavControls() {
-    if (this.isMegaMenuElement) {
-      const tempListItems = this.mainNavElement.querySelectorAll('li')
-      const megaMenuListItems = Array.prototype.slice.call(tempListItems)
+  mobileMainNavTrapTabs(e) {
+    const elemObj = getFocusableElementBySelector(this.mainNavElement.id, ['> div button', '> ul > li > a'])
+    trapTabKey(e, elemObj)
+  }
 
-      megaMenuListItems.forEach((item) => {
-        const submenu = item.querySelector('[id$=-subnav]')
+  setUpNavControls(listItems) {
+    if (this.isMegaMenuElement) {
+      listItems.forEach((item) => {
+        const submenu = item.querySelector('[id^=subnav-]')
         const link = item.querySelector('a')
         if (submenu) {
           link.setAttribute('role', 'button')
@@ -81,11 +100,11 @@ class Navigation {
 
   mobileShowMainNav({ propertyName }) {
     if (!propertyName === 'transform') return
-    console.log(getFocusableElementImmediate(this.mainNavElement))
-    getFocusableElement(this.mainNavElement).all[1].focus()
+    getFocusableElementBySelector(this.mainNavElement.id, ['> div button', '> ul > li > a']).all[1].focus()
     this.mainNavElement.classList.add('is-open')
     this.mainNavElement.classList.remove('is-opening')
     this.mainNavElement.removeEventListener(this.transitionEvent, this.mobileShowMainTransitionEndEvent, false)
+    this.mainNavElement.addEventListener('keydown', this.mobileTrapTabKeyEvent, false)
   }
 
   mobileHideMainNav({ propertyName }) {
@@ -101,16 +120,19 @@ class Navigation {
       this.openSubNavElements.pop()
     }
     this.mainNavElement.removeEventListener(this.transitionEvent, this.mobileHideMainTransitionEndEvent, false)
+    this.mainNavElement.removeEventListener('keydown', this.mobileTrapTabKeyEvent, false)
   }
 
   mobileToggleMainNav(e) {
     const { currentTarget } = e
     const isExpanded = currentTarget.getAttribute('aria-expanded') === 'true'
     if (isExpanded) {
+      this.body.classList.remove('navigation-open')
       this.openNavButton.focus()
       this.mainNavElement.classList.add('is-closing')
       this.mainNavElement.addEventListener(this.transitionEvent, this.mobileHideMainTransitionEndEvent, false)
     } else {
+      this.body.classList.add('navigation-open')
       this.mainNavElement.classList.add('is-opening')
       this.mainNavElement.addEventListener(this.transitionEvent, this.mobileShowMainTransitionEndEvent, false)
     }
@@ -123,19 +145,22 @@ class Navigation {
   }
 
   buttonKeydownDesktop(e) {
-    this.saveElements(e)
     if (e.key === ' ' || e.key === 'Enter' || e.key === 'Spacebar') {
+      this.saveElements(e)
       this.toggleSubnavDesktop()
       e.preventDefault()
     }
   }
 
   escapeClose(e) {
-    const { isExpanded, link } = this.whichSubNavLatest()
-    if (e.key === 'Escape' && isExpanded) {
-      this.toggleSubnavDesktop(true)
-      e.preventDefault()
-      link.focus()
+    if (e.key === 'Escape') {
+      const { link } = this.whichSubNavLatest()
+      const isExpanded = link.getAttribute('aria-expanded') === 'true'
+      if (isExpanded) {
+        this.toggleSubnavDesktop(true)
+        e.preventDefault()
+        link.focus()
+      }
     }
   }
 
@@ -144,7 +169,6 @@ class Navigation {
     const temp = {
       submenu: document.getElementById(currentTarget.getAttribute('aria-controls')),
       link: currentTarget,
-      isExpanded: currentTarget.getAttribute('aria-expanded') === 'true',
       linkParent: currentTarget.parentNode,
     }
 
@@ -154,7 +178,7 @@ class Navigation {
   showSubNav({ propertyName }) {
     const { submenu } = this.whichSubNavLatest()
     if (!propertyName === 'transform') return
-    getFocusableElement(submenu).all[2].focus()
+    getFocusableElementBySelector(submenu.id, ['> div button', '> h2 a', '> ul > li > a']).all[2].focus()
     submenu.removeEventListener(this.transitionEvent, this.showSubNavTransitionEndEvent, false)
   }
 
@@ -186,7 +210,8 @@ class Navigation {
   }
 
   toggleSubnavDesktop() {
-    const { isExpanded } = this.whichSubNavLatest()
+    const { link } = this.whichSubNavLatest()
+    const isExpanded = link.getAttribute('aria-expanded') === 'true'
     if (isExpanded) {
       this.closeSubnav()
     } else {
@@ -209,7 +234,8 @@ class Navigation {
 
   trapkeyEventStuff(e) {
     const { submenu } = this.whichSubNavLatest()
-    trapTabKey(e, submenu)
+    const elemObj = getFocusableElementBySelector(submenu.id, ['> div button', '> ul > li > a'])
+    trapTabKey(e, elemObj)
   }
 }
 

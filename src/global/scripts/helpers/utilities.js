@@ -1,48 +1,38 @@
 export const focusObjectGenerator = (arr) => {
-  const focusableElement = {
+  const focusableElements = {
     all: arr,
     first: arr[0],
     last: arr[arr.length - 1],
     length: arr.length,
   }
 
-  return focusableElement
+  return focusableElements
 }
 
 export const getFocusableElement = (el) => {
-  const focusable = el.querySelectorAll(`a[href],button:not([disabled]),
+  const elementArr = [].slice.call(el.querySelectorAll(`a[href],button:not([disabled]),
   area[href],input:not([disabled]):not([type=hidden]),
   select:not([disabled]),textarea:not([disabled]),
   iframe,object,embed,*:not(.is-draggabe)[tabindex],
-  *[contenteditable]`)
-  const slicedFocusable = Array.prototype.slice.call(focusable)
-  const focusableArray = []
+  *[contenteditable]`))
 
-  for (let i = 0; i < slicedFocusable.length; i += 1) {
-    if (slicedFocusable[i].offsetHeight !== 0) focusableArray.push(slicedFocusable[i])
+  return focusObjectGenerator(elementArr)
+}
+
+export const getFocusableElementBySelector = (id, selectorArr) => {
+  const elements = []
+  for (let i = 0; i < selectorArr.length; i += 1) {
+    elements.push([].slice.call(document.querySelectorAll(`#${id} ${selectorArr[i]}`)))
   }
 
-  return focusObjectGenerator(focusableArray)
+  const mergedElementArr = [].concat(...elements)
+
+  return focusObjectGenerator(mergedElementArr)
 }
 
-export const getFocusableElementImmediate = (el) => {
-  // const focusableStrings = `a[href],button:not([disabled]),
-  // area[href],input:not([disabled]):not([type=hidden]),
-  // select:not([disabled]),textarea:not([disabled]),
-  // iframe,object,embed,*:not(.is-draggabe)[tabindex],
-  // *[contenteditable]`
-  const slicedFocusable = Array.prototype.filter.call(el.children, (child) => child.matches('a[href],button:not([disabled])'))
-  console.log('#main-navigation * > a')
-  console.log(el.querySelectorAll('> ul > li > a'))
-
-  return focusObjectGenerator(slicedFocusable)
-}
-
-export const childrenMatches = (elem, selector) => Array.prototype.filter.call(elem.children, (child) => child.matches(selector))
-
-export const trapTabKey = (event, container) => {
+export const trapTabKey = (event, focusObject) => {
   const { activeElement } = document
-  const focusableElement = getFocusableElement(container)
+  const focusableElement = focusObject
 
   if (event.keyCode !== 9) return false
 
