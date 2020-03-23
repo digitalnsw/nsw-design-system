@@ -145,3 +145,16 @@
     z-index: map-get($z-index, low);
   }
 }
+
+// Border-radius - returns a border-radius from $border-radii map
+@mixin border-radius($type: default) {
+  @if $type != 'none' and $type != 'default' and $type != 'round' {
+    @error 'NSW-DS get-border-radius mixin allows the following values for $type: none, default, round. You have used "#{$type}"';
+  }
+
+  @if $type == 'round' {
+    border-radius: map-get($border-radii, $type);
+  } @else {
+    border-radius: rem(map-get($border-radii, $type));
+  }
+}

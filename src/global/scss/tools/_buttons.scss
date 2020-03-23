@@ -1,15 +1,15 @@
 @mixin button-variant($property-map) {
   @if type-of($property-map) != 'map' {
-    @error 'NSW-DS button-variant mixin accepts a map of values consisting of the following keys: color, colorHover, bg, bgHover, border, borderHover.';
+    @error 'NSW-DS button-variant mixin accepts a map of values consisting of the following keys: text-color, text-color-hover, background, background-hover, border, border-hover.';
   }
 
-  color: map-get($property-map, color);
-  background-color: map-get($property-map, bg);
+  color: map-get($property-map, text-color);
+  background-color: map-get($property-map, background);
   border-color: map-get($property-map, border);
 
   &:hover {
-    color: map-get($property-map, colorHover);
-    background-color: map-get($property-map, bgHover);
-    border-color: map-get($property-map, borderHover);
+    color: map-get($property-map, text-color-hover);
+    background-color: map-get($property-map, background-hover);
+    border-color: map-get($property-map, border-hover);
   }
 }

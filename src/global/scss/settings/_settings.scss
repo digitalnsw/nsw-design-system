@@ -35,6 +35,12 @@ $transitions: (
   card: box-shadow 0.25s ease-in-out
 ) !default;
 
+$border-radii: (
+  none: 0,
+  default: 4px,
+  round: 50%,
+) !default;
+
 $border-radius: 4px !default;
 $border-width: 1px !default;
 
@@ -56,7 +62,6 @@ $spacing-sizes: (
 $nsw-primary-blue: #002664 !default;
 $nsw-primary-highlight: #d7153a !default;
 $nsw-secondary-blue: #2e5299 !default;
-$nsw-tertiary-blue: #0085b3 !default;
 
 // Shades
 $black: #000000 !default;
@@ -68,18 +73,21 @@ $light20: #e4e4e6 !default;
 $light10: #f4f4f7 !default;
 $white: #ffffff !default;
 
-// Notifications
-$info-blue: #2e5299 !default;
-$info-blue-light10: #eaedf4 !default;
-$success-green: #00a908 !default;
-$success-green-light10: #e5f6e6 !default;
-$warning-orange: #dc5800 !default;
-$warning-orange-light10: #fbeee5 !default;
-$error-red: #b81237 !default;
-$error-red-light10: #f7e7eb !default;
+// Utility colors
+$info: $nsw-secondary-blue !default;
+$info-background: #eaedf4 !default;
+$success: #00a908 !default;
+$success-background: #e5f6e6 !default;
+$warning: #dc5800 !default;
+$warning-background: #fbeee5 !default;
+$critical: #b81237 !default;
+$critical-background: #f7e7eb !default;
+$focus-color: #0085b3 !default;
+$hover-colour: rgba($focus-color, 0.2);
+$link-color: $nsw-primary-blue;
+$link-visited: #551a8b;
 
-// sitewide message
-$alert-yellow: #ffcb2d;
+$focus-offset: 3px;
 
 //Box Shadows
 $shadows: (
@@ -87,17 +95,6 @@ $shadows: (
   card: 0 4px 12px 0 rgba($black, 0.15),
   card-hover: 2px 6px 12px 0 rgba($black, 0.25),
 ) !default;
-
-//Focus and Hover
-$focus-color: $nsw-tertiary-blue !default;
-$focus-offset: 3px;
-
-$hover-colour: rgba($nsw-tertiary-blue, 0.2);
-
-//Links
-$link-color: $nsw-primary-blue;
-$link-hover-outline-color: rgba($nsw-tertiary-blue, 0.2);
-$link-visited: #551a8b;
 
 // Breakpoints
 $breakpoints: (
@@ -109,7 +106,6 @@ $breakpoints: (
 ) !default;
 
 // z-index
-
 $z-index: (
   top: 9001,
   middle: 2,
@@ -153,24 +149,24 @@ $grid-col-sizes: (
 // Notification variations
 $notification: (
   info: (
-    border: $info-blue,
-    bg: $info-blue-light10,
-    fill: $info-blue,
+    border: $info,
+    background: $info-background,
+    fill: $info,
   ),
   success: (
-    border: $success-green,
-    bg: $success-green-light10,
-    fill: $success-green,
+    border: $success,
+    background: $success-background,
+    fill: $success,
   ),
   warning: (
-    border: $warning-orange,
-    bg: $warning-orange-light10,
-    fill: $warning-orange,
+    border: $warning,
+    background: $warning-background,
+    fill: $warning,
   ),
   error: (
-    border: $error-red,
-    bg: $error-red-light10,
-    fill: $error-red,
+    border: $critical,
+    background: $critical-background,
+    fill: $critical,
   ),
 ) !default;
 
@@ -181,69 +177,60 @@ $overlays: (
 ) !default;
 
 $icon-colors: (
-  error: $error-red,
-  success: $success-green,
-  info: $info-blue,
-  warning: $warning-orange,
+  error: $critical,
+  success: $success,
+  info: $info,
+  warning: $warning,
   default: $nsw-primary-blue,
 ) !default;
 
 $button-variations: (
   primary: (
-    color: $white,
-    colorHover: $white,
-    bg: $nsw-primary-blue,
-    bgHover: lighten($nsw-primary-blue, 5.88),
+    text-color: $white,
+    text-color-hover: $white,
+    background: $nsw-primary-blue,
+    background-hover: lighten($nsw-primary-blue, 5.88),
     border: $nsw-primary-blue,
-    borderHover: lighten($nsw-primary-blue, 5.88)
+    border-hover: lighten($nsw-primary-blue, 5.88)
   ),
   highlight: (
-    color: $white,
-    colorHover: $white,
-    bg: $nsw-primary-highlight,
-    bgHover: lighten($nsw-primary-highlight, 5.88),
+    text-color: $white,
+    text-color-hover: $white,
+    background: $nsw-primary-highlight,
+    background-hover: lighten($nsw-primary-highlight, 5.88),
     border: $nsw-primary-highlight,
-    borderHover: lighten($nsw-primary-highlight, 5.88)
+    border-hover: lighten($nsw-primary-highlight, 5.88)
   ),
   outline: (
-    color: $dark80,
-    colorHover: $white,
-    bg: $white,
-    bgHover: $nsw-primary-blue,
+    text-color: $dark80,
+    text-color-hover: $white,
+    background: $white,
+    background-hover: $nsw-primary-blue,
     border: $nsw-primary-blue,
-    borderHover: $nsw-primary-blue
+    border-hover: $nsw-primary-blue
   ),
   white: (
-    color: $dark80,
-    colorHover: $dark80,
-    bg: $white,
-    bgHover: $light20,
+    text-color: $dark80,
+    text-color-hover: $dark80,
+    background: $white,
+    background-hover: $light20,
     border: $white,
-    borderHover: $light20
+    border-hover: $light20
   ),
 ) !default;
 
 $sitewide-message: (
   default: (
-    color: $white,
-    bg: $nsw-secondary-blue,
+    text-color: $white,
+    background: $nsw-secondary-blue,
   ),
   light: (
-    color: $dark80,
-    bg: $info-blue-light10,
+    text-color: $dark80,
+    background: $info-background,
   ),
   critical: (
-    color: $white,
-    bg: $error-red,
-  ),
-  // DO NOT USE: dark & alert to be removed in the future
-  alert: (
-    color: $dark80,
-    bg: $alert-yellow,
-  ),
-  dark: (
-    color: $white,
-    bg: $dark80,
+    text-color: $white,
+    background: $critical,
   ),
 ) !default;
 

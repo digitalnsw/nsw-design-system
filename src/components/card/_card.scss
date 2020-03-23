@@ -1,10 +1,10 @@
 .nsw-card {
   @include font-stack;
+  @include border-radius;
   background-color: $white;
   box-shadow: map-get($shadows, card);
   transition: map-get($transitions, card);
   position: relative;
-  border-radius: rem($border-radius);
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -72,8 +72,13 @@
     @include nsw-spacing(margin, md none none none);
     @include nsw-spacing(bottom, md);
     position: absolute;
-    width: rem(20px);
-    height: rem(20px);
+    width: rem(16px);
+    height: rem(16px);
+
+    @include breakpoint('md') {
+      width: rem(20px);
+      height: rem(20px);
+    }
   }
 
   &__link {

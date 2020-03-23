@@ -120,6 +120,7 @@
 }
 
 .nsw-header-btn {
+  @include border-radius;
   color: $nsw-primary-blue;
   width: rem(48px);
   height: rem(48px);
@@ -128,7 +129,6 @@
   padding: 0;
   text-align: center;
   position: relative;
-  border-radius: rem($border-radius);
 
   &:hover {
     @include nsw-hover;
@@ -203,9 +203,9 @@
 
     @include breakpoint('md') {
       @include nsw-spacing(padding, none md);
+      @include border-radius;
       height: rem(50px);
       padding: 0 rem(16px);
-      border-radius: rem($border-radius);
     }
   }
 

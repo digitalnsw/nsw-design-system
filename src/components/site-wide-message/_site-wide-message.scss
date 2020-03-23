@@ -5,12 +5,12 @@
 
   @each $color, $variant in $sitewide-message {
     @if($color == default) {
-      background-color: map-get($variant, bg);
-      color: map-get($variant, color);
+      background-color: map-get($variant, background);
+      color: map-get($variant, text-color);
     } @else {
       &--#{$color} {
-        background-color: map-get($variant, bg);
-        color: map-get($variant, color);
+        background-color: map-get($variant, background);
+        color: map-get($variant, text-color);
       }
     }
   }

@@ -19,9 +19,9 @@
   @include font-stack;
   @include font-size('sm');
   @include nsw-spacing(padding, sm md);
+  @include border-radius;
   background-color: $white;
   color: $dark80;
-  border-radius: rem($border-radius);
   border: $border-width solid $dark70;
   vertical-align: middle;
   appearance: none;
@@ -45,11 +45,11 @@
 
   &[aria-invalid='true'],
   &.has-error {
-    border-color: $error-red;
+    border-color: $critical;
     border-width: 2px;
 
     &:hover {
-      background-color: $error-red-light10;
+      background-color: $critical-background;
     }
   }
 }
@@ -123,12 +123,12 @@
   &[aria-invalid='true'] + .nsw-form-checkbox__label,
   &.has-error + .nsw-form-checkbox__label {
     &:hover::before {
-      background-color: $error-red-light10;
+      background-color: $critical-background;
     }
 
     &::before {
       border-width: 2px;
-      border-color: $error-red;
+      border-color: $critical;
     }
   }
 }
@@ -176,17 +176,17 @@
 
 .nsw-form-checkbox__label {
   &::before {
-    border-radius: rem($border-radius);
+    @include border-radius;
   }
 }
 
 .nsw-form-radio__label {
   &::before {
-    border-radius: 50%;
+    @include border-radius('round');
   }
 
   &::after {
-    border-radius: 50%;
+    @include border-radius('round');
   }
 }
 
@@ -197,13 +197,13 @@
 
   &--error {
     @include font-stack(heading);
-    @include background-svg(error, $error-red);
+    @include background-svg(error, $critical);
     @include nsw-spacing(padding, xs md xs xl);
     @include nsw-spacing(margin-top, xs);
     background-repeat: no-repeat;
     background-position: left rem(8px) center;
     background-size: 1rem auto;
-    background-color: $error-red-light10;
+    background-color: $critical-background;
   }
 }
 
@@ -221,14 +221,14 @@
   }
 
   &::after {
+    @include border-radius;
     content: none;
     width: calc(100% + 18px);
     height: 100%;
-    border: solid 2px $error-red;
+    border: solid 2px $critical;
     position: absolute;
     top: 0;
     left: -9px;
-    border-radius: $border-radius;
     z-index: -1;
   }
 
