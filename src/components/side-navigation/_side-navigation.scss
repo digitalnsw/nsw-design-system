@@ -1,0 +1,66 @@
+.nsw-sidenav {
+  &__header {
+    border-bottom: solid 2px $nsw-primary-blue;
+  }
+
+  &__heading {
+    @include nsw-spacing(margin, none);
+    @include font-stack('heading');
+    @include font-size('sm');
+  }
+
+  &__list {
+    @include nsw-spacing(margin, none);
+    @include nsw-spacing(padding-left, none);
+    list-style: none;
+  }
+
+  &__list-item {
+    @include font-stack;
+    border-top: solid 1px $light20;
+  }
+
+  &__heading-link,
+  &__link {
+    @include nsw-spacing(padding, md);
+    display: block;
+    color: $dark80;
+    text-decoration: none;
+    background-color: $white;
+
+    &:hover {
+      @include nsw-hover;
+    }
+
+    &:focus {
+      @include nsw-focus($offset: false);
+    }
+  }
+
+  &__link {
+    .has-active-children > &,
+    &.is-current {
+      @include font-stack('heading');
+      background-color: $light10;
+    }
+
+    .nsw-sidenav__list--level-2 & {
+      @include nsw-spacing(padding-left, lg);
+    }
+
+    .nsw-sidenav__list--level-3 & {
+      @include nsw-spacing(padding-left, xl);
+    }
+
+    .nsw-sidenav__list--level-4 & {
+      @include nsw-spacing(padding-left, xxl);
+    }
+  }
+
+  .nsw-sidenav__list--level-1 {
+    > .has-active-children {
+      border-left: solid 2px $nsw-primary-highlight;
+    }
+  }
+
+}
