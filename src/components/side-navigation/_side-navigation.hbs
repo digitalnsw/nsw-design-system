@@ -5,7 +5,7 @@
   </div>
   <ul class="nsw-sidenav__list nsw-sidenav__list--level-1">
     {{#each navitems}}
-      <li class="nsw-sidenav__list-item {{#if navitems}}has-active-children{{/if}}">
+      <li class="nsw-sidenav__list-item {{#if (or currentPage navitems) }}has-active-children{{/if}}">
         <a href="{{url}}" class="nsw-sidenav__link {{#if currentPage}}is-current{{/if}}" {{#if currentPage}}aria-current="page"{{/if}}>
           {{text}}
         </a>
