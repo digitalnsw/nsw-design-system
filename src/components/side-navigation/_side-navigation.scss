@@ -38,10 +38,13 @@
   }
 
   &__link {
-    .has-active-children > &,
-    &.is-current {
+    .has-active-children > & {
       @include font-stack('heading');
       background-color: $light10;
+
+      &:hover {
+        @include nsw-hover;
+      }
     }
 
     .nsw-sidenav__list--level-2 & {
