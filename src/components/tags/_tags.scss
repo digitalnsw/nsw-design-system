@@ -1,17 +1,21 @@
-.nsw-tag {
-  @include nsw-spacing(margin, lg none );
+.nsw-tag:not(.nsw-tag--checkbox),
+.nsw-tag label {
   @include font-stack;
-  @include nsw-spacing(margin, md xs xs none);
-  @include nsw-spacing(padding, xs sm );
-  @include font-size('sm');
-  @include border-radius;
-  border: 2px solid $light40;
-  background-color: $white;
-  display: inline-block;
+  @include font-size('xs');
+  @include border-radius('tag');
+  @include nsw-spacing(padding-left, md);
+  @include nsw-spacing(padding-right, md);
+  border: solid 1px $nsw-secondary-blue;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  color: $nsw-secondary-blue;
   text-decoration: none;
-  cursor: default;
-  color: $dark80;
+  display: inline-block;
+  background-color: $white;
+}
 
+a.nsw-tag,
+button.nsw-tag {
   &:hover {
     @include nsw-hover;
   }
@@ -19,10 +23,33 @@
   &:focus {
     @include nsw-focus;
   }
+}
 
-  &.is-selected {
+.button.nsw-tag {
+  .is-selected {
     background-color: $nsw-secondary-blue;
-    border-color: $nsw-secondary-blue;
     color: $white;
+  }
+}
+
+.nsw-tag--checkbox {
+  display: inline-block;
+
+  input {
+    position: absolute;
+    opacity: 0;
+
+    &:hover + label {
+      @include nsw-hover;
+    }
+
+    &:focus + label {
+      @include nsw-focus;
+    }
+
+    &:checked + label {
+      background-color: $nsw-secondary-blue;
+      color: $white;
+    }
   }
 }

@@ -148,8 +148,8 @@
 
 // Border-radius - returns a border-radius from $border-radii map
 @mixin border-radius($type: default) {
-  @if $type != 'none' and $type != 'default' and $type != 'round' {
-    @error 'NSW-DS get-border-radius mixin allows the following values for $type: none, default, round. You have used "#{$type}"';
+  @if $type != 'none' and $type != 'default' and $type != 'round' and $type != 'tag' {
+    @error 'NSW-DS get-border-radius mixin allows the following values for $type: none, default, round, tag. You have used "#{$type}"';
   }
 
   @if $type == 'round' {

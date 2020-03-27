@@ -1,9 +1,8 @@
-<div class="nsw-wysiwyg-content nsw-container">
-	<h1>Tags</h1>
-  <button type="button" class="nsw-tag" aria-pressed="false">Tag</button>
-  <button type="button" class="nsw-tag" aria-pressed="false">LongTag</button>
-  <button type="button" class="nsw-tag" aria-pressed="false">Tag</button>
-  <button type="button" class="nsw-tag" aria-pressed="false">Tag</button>
-  <button type="button" class="nsw-tag" aria-pressed="false">Tag</button>
-  <button type="button" class="nsw-tag is-selected" aria-pressed="true">Selected Tag</button>
+{{#if-equals type "link"}}<a href="#" class="nsw-tag">Link</a>{{/if-equals}}
+{{#if-equals type "text"}}<span class="nsw-tag">Text</span>{{/if-equals}}
+{{#if-equals type "checkbox"}}
+<div class="nsw-tag nsw-tag--checkbox">
+  <input type="checkbox" id="skljhs789js" name="tagInput">
+  <label for="skljhs789js">Checkbox</label>
 </div>
+{{/if-equals}}
