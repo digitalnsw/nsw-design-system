@@ -20,9 +20,8 @@
     border-top: solid 1px $light20;
   }
 
-  &__heading-link,
-  &__link {
-    @include nsw-spacing(padding, md);
+  &__heading-link {
+    @include nsw-spacing(padding, xs xs xs none);
     display: block;
     color: $dark80;
     text-decoration: none;
@@ -38,9 +37,26 @@
   }
 
   &__link {
+    @include nsw-spacing(padding, md);
+    display: block;
+    color: $dark80;
+    text-decoration: none;
+    background-color: $white;
+
+    &:hover {
+      @include nsw-hover;
+    }
+
+    &:focus {
+      @include nsw-focus($offset: false);
+    }
+
+    &.is-current {
+      background-color: $light10;
+    }
+
     .has-active-children > & {
       @include font-stack('heading');
-      background-color: $light10;
 
       &:hover {
         @include nsw-hover;
