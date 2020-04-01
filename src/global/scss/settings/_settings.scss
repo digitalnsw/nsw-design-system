@@ -40,8 +40,13 @@ $border-radii: (
   round: 50%,
 ) !default;
 
-$border-radius: 4px !default;
-$border-width: 1px !default;
+$border-width: (
+  none: 0,
+  sm: 1px,
+  md: 2px,
+  lg: 4px,
+  highlight: 6px,
+) !default;
 
 // Spacing - Used with margin and padding
 $spacing-sizes: (
@@ -88,6 +93,14 @@ $link-visited: #551a8b;
 
 $focus-offset: 3px;
 
+$border-colors: (
+  brand: $nsw-primary-blue,
+  light: $light20,
+  medium: $light40,
+  dark: $dark80,
+  highlight: $nsw-primary-highlight,
+) !default;
+
 //Box Shadows
 $shadows: (
   menu: 0 4px 9px -5px rgba($black, 0.4),
@@ -106,13 +119,13 @@ $breakpoints: (
 
 // z-index
 $z-index: (
-  top: 9001,
-  middle: 2,
-  low: 1,
-  default: 0,
-  below: -1,
-  bottom: -9001,
-);
+  top: 900,
+  upper: 300,
+  middle: 200,
+  base: 100,
+  below: -100,
+) !default;
+
 
 // Container
 $container-offset: 16px;
@@ -128,7 +141,6 @@ $grid-margins: (
   lg: 32px,
   xl: 32px,
 );
-$grid-margin-top: 16px;
 $grid-col-sizes: (
   sm: (
     half: 50%,

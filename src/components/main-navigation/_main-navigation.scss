@@ -3,6 +3,7 @@
 }
 
 .nsw-navigation {
+  @include z-index('middle');
   width: 100%;
   position: absolute;
   left: 0;
@@ -12,7 +13,6 @@
   transform: translateX(-100%);
   visibility: hidden;
   outline: none;
-  z-index: map-get($z-index, middle);
   height: 100%;
   overflow-y: auto;
 
@@ -40,6 +40,7 @@
   }
 
   &__close {
+    @include border-radius;
     width: rem(40px);
     height: rem(40px);
     background: none;
@@ -49,7 +50,6 @@
     right: rem(-10px);
     top: 0;
     text-align: center;
-    border-radius: rem($border-radius);
 
     &:hover {
       @include nsw-hover;
@@ -180,8 +180,8 @@
   flex-wrap: nowrap;
 
   @include breakpoint('md') {
+    @include z-index('middle');
     position: relative;
-    z-index: 2;
   }
 
   &:hover {
@@ -218,15 +218,14 @@
 }
 
 .nsw-subnavigation {
+  @include z-index;
   position: absolute;
   top: 0;
   background-color: $white;
   width: 100%;
-  z-index: 1;
   transition: map-get($transitions, base);
   transform: translateX(-100%);
   visibility: hidden;
-  z-index: 1;
   left: 0;
   height: 100%;
   overflow-y: auto;
@@ -287,9 +286,9 @@
   @include font-stack('heading');
   @include font-size('md');
   @include nsw-spacing(padding, none xs);
+  @include border-radius;
   background: none;
   border: 0;
-  border-radius: rem($border-radius);
   display: inline-flex;
   text-decoration: none;
   vertical-align: middle;
