@@ -1,33 +1,31 @@
 .nsw-accordion {
   @include nsw-spacing(margin, md none none);
 
-  &__title {
+  &__title,
+  &__button {
     @include font-stack('heading');
     @include font-size('sm');
     @include nsw-spacing(margin, xs none none);
-    background-color: $light10;
+    @include nsw-spacing(padding, md);
     border-left: solid 4px $nsw-primary-blue;
-    padding: 1rem;
+    background-color: $light10;
+    display: block;
+    width: 100%;
+    text-align: left;
+    position: relative;
+  }
 
+  &__title {
     .is-ready & {
-      padding: 0;
       border-left: 0;
+      padding: 0;
       margin-top: 0;
     }
   }
 
   &__button {
-    @include font-stack('heading');
-    @include font-size('sm');
-    @include nsw-spacing(margin, xs none none);
-    background-color: $light10;
-    padding: 1rem;
-    display: block;
-    width: 100%;
-    text-align: left;
     border: 0;
     border-left: solid 4px $nsw-primary-blue;
-    position: relative;
 
     &:hover {
       @include nsw-hover;
@@ -35,7 +33,7 @@
 
     &:focus {
       @include nsw-focus;
-      z-index: 1;
+      @include z-index;
       position: relative;
     }
   }
@@ -46,7 +44,7 @@
     width: rem(16px);
     position: absolute;
     top: 50%;
-    right: 1rem;
+    right: rem(16px);
 
     .is-open & {
       transform: translateY(-50%) rotate(270deg);
@@ -54,7 +52,7 @@
   }
 
   &__content {
-    padding: 1rem;
+    @include nsw-spacing(padding, md);
     border-left: solid 4px $nsw-primary-blue;
   }
 }

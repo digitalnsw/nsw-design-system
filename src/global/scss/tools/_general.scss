@@ -136,13 +136,13 @@
 
 @mixin pseudo-clickable-block {
   &::after {
+    @include z-index;
     content: '';
     position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-    z-index: map-get($z-index, low);
   }
 }
 
@@ -156,5 +156,34 @@
     border-radius: map-get($border-radii, $type);
   } @else {
     border-radius: rem(map-get($border-radii, $type));
+  }
+}
+
+// Z-index
+@mixin z-index($index: 'base') {
+
+  @if map-has-key($z-index, $index) == false {
+    @error 'NSW-DS z-index mixin allows the following values for $index: #{map-keys($z-index)}. You have used "#{$index}"';
+  }
+  @else {
+    z-index: map-get($z-index, $index);
+  }
+}
+
+@mixin border($direction: null, $width: sm, $color: $nsw-primary-blue) {
+  @if map-has-key($border-width, $width) == false {
+    @error 'NSW-DS border mixin allows the following values for $width: #{map-keys($border-width)}. You have used "#{$width}"';
+  }
+  @if $direction != null and $direction != 'left' and $direction != 'top' and $direction != 'bottom' and $direction != 'right' {
+    @error 'NSW-DS border mixin allows the following values for $direction: left, top, bottom, right. You have used "#{$direction}"';
+  }
+
+  $properties: if($width == 'none', map-get($border-width, $width), solid map-get($border-width, $width) $color);
+
+  @if $direction == null {
+    border: $properties;
+  }
+  @else {
+    border-#{$direction}: $properties;
   }
 }

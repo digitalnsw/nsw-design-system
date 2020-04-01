@@ -22,7 +22,7 @@
   @include border-radius;
   background-color: $white;
   color: $dark80;
-  border: $border-width solid $dark70;
+  border: 1px solid $dark70;
   vertical-align: middle;
   appearance: none;
   width: 100%;
@@ -149,7 +149,7 @@
     content: '';
     width: rem(32px);
     height: rem(32px);
-    border: $border-width $dark70 solid;
+    border: 1px $dark70 solid;
     background: $white;
     top: 0;
     left: 0;
@@ -222,6 +222,7 @@
 
   &::after {
     @include border-radius;
+    @include z-index('below');
     content: none;
     width: calc(100% + 18px);
     height: 100%;
@@ -229,7 +230,6 @@
     position: absolute;
     top: 0;
     left: -9px;
-    z-index: -1;
   }
 
   &[aria-invalid='true'],
