@@ -1,0 +1,27 @@
+<div class="hero-search">
+  <div class="nsw-container">
+    <div class="hero-search__content nsw-body-content">
+      <h1 class="hero-search__title">{{title}}</h1>
+      {{{copy}}}
+      <form role="search" class="hero-search__form">
+        <div class="nsw-form-search">
+          <label for="hero-search-input" class="sr-only">{{searchLabel}}</label>
+          <input autocomplete="off" class="nsw-form-search__input" id="hero-search-input" name="hero-search" type="text">
+          <button class="nsw-form-search__submit" type="submit">
+            <svg class="nsw-icon" focusable="false" aria-hidden="true">
+              <use xlink:href="#search"></use>
+            </svg>
+            <span class="sr-only">Search</span>
+          </button>
+        </div>
+      </form>
+      <div class="hero-search__suggested">
+        <ul>
+          {{#each suggestSearches}}
+            <li><a href="{{url}}">{{text}}</a></li>
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
