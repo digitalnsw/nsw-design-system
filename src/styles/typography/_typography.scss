@@ -1,4 +1,5 @@
-.nsw-wysiwyg-content {
+.nsw-wysiwyg-content,
+.nsw-body-content {
   @include font-stack;
   @include font-size('sm', paragraph);
   color: $dark80;
@@ -125,6 +126,12 @@
     margin-top: 0;
   }
 
+}
+
+.nsw-body-content {
+  * + p {
+    margin-top: 1rem;
+  }
 }
 
 .nsw-text-link {

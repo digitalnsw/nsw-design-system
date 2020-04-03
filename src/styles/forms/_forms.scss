@@ -267,3 +267,52 @@
   @include nsw-spacing(margin-top, xxl);
   border: 0;
 }
+
+.nsw-form-search {
+  display: flex;
+  position: relative;
+
+  &__input {
+    @include font-stack;
+    @include font-size('sm');
+    @include nsw-spacing(padding, sm md);
+    @include border-radius;
+    background-color: $white;
+    color: $dark80;
+    border: 1px solid $dark70;
+    border-right: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    vertical-align: middle;
+    appearance: none;
+    width: 100%;
+
+    &:focus {
+      @include nsw-focus($offset: false);
+      @include z-index;
+    }
+
+    &:hover {
+      @include nsw-hover;
+    }
+  }
+
+  &__submit {
+    @include border-radius;
+    @include nsw-spacing(padding, none sm);
+    border: 1px solid $dark70;
+    border-left: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    display: flex;
+    align-items: center;
+
+    &:focus {
+      @include nsw-focus($offset: false);
+    }
+
+    &:hover {
+      @include nsw-hover;
+    }
+  }
+}
