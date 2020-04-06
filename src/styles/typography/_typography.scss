@@ -43,8 +43,26 @@
   ul,
   ol {
     @include nsw-spacing(margin, md none none none);
+    @include nsw-spacing(padding, none none none lg);
+
+    li {
+      @include nsw-spacing(margin-top, xs);
+    }
   }
 
+  dt {
+    @include nsw-spacing(margin-top, xs);
+  }
+
+  small {
+    @include font-size('xs');
+  }
+
+  abbr,
+  acronym {
+    text-decoration: none;
+    border-bottom: 1px $nsw-primary-blue dashed;
+  }
 
   blockquote {
     @include font-size('lg');
