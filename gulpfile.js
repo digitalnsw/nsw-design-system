@@ -38,7 +38,7 @@ sass.compiler = require('node-sass')
 
 const postcssProcessors = [
   postcssNormalize({ forceImport: true }),
-  autoprefixer,
+  autoprefixer({ grid: true }),
   cssnano,
 ]
 
@@ -136,6 +136,10 @@ function metalsmithBuild(callback) {
     },
     styles: {
       pattern: config.metalSmith.collection.styles.pattern,
+      sortBy: sortByAlpha,
+    },
+    layouts: {
+      pattern: config.metalSmith.collection.layouts.pattern,
       sortBy: sortByAlpha,
     },
     pages: {

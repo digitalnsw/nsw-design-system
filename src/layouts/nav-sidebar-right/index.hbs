@@ -1,0 +1,28 @@
+---
+title: Two column - Side navigation right align (nav hides on mobile)
+model:
+    nav-basic: ../../components/main-navigation/main-navigation.json
+    nav-mega: ../../components/main-navigation/mega-navigation.json
+    breadcrumbs: ../../components/breadcrumbs/breadcrumbs.json
+    footer: ../../patterns/footer/footer.json
+example: true
+---
+{{>_header}}
+{{>_main-navigation model.nav-mega}}
+<div class="nsw-container">
+  {{>_breadcrumbs model.breadcrumbs}}
+</div>
+<div class="nsw-container nsw-layout nsw-layout--sidebar-right">
+  <main class="nsw-layout__content">
+    <!-- ### START OF MAIN CONTENT AREA - REPLACE CODE BELOW ### -->
+    <div data-placeholder="( Main content area )" class="replace-code"></div>
+    <!-- ### END OF MAIN CONTENT AREA ### -->
+  </main>
+  <div class="nsw-layout__sidebar nsw-layout__sidebar--nav">
+    <!-- ### START OF SIDEBAR CONTENT AREA - REPLACE CODE BELOW ### -->
+    <div data-placeholder="( Side navigation area )" class="replace-code"></div>
+    <!-- ### END OF SIDEBAR CONTENT AREA ### -->
+  </div>
+</div>
+
+{{>_footer model.footer}}

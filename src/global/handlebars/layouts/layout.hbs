@@ -10,6 +10,23 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="icon" href="/favicon.ico">
   <link rel="stylesheet" href="/css/main.css">
+  {{#if example}}
+  <style>
+    .replace-code:empty {
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 50vh;
+      width: 100%;
+      background-color: #ccc;
+    }
+
+    .replace-code:empty::before {
+      content: attr(data-placeholder);
+    }
+  </style>
+  {{/if}}
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap" rel="stylesheet">
   <script>
     // SVG Sprite Loader
