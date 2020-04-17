@@ -138,8 +138,8 @@ function metalsmithBuild(callback) {
       pattern: config.metalSmith.collection.styles.pattern,
       sortBy: sortByAlpha,
     },
-    layouts: {
-      pattern: config.metalSmith.collection.layouts.pattern,
+    templates: {
+      pattern: config.metalSmith.collection.templates.pattern,
       sortBy: sortByAlpha,
     },
     pages: {
