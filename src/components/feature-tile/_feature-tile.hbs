@@ -1,0 +1,23 @@
+<div class="nsw-feature-tile">
+  {{>_feature-tile-title}}
+  <div class="nsw-body-content">
+    {{{copy}}}
+  </div>
+  <div class="nsw-feature-tile__cards-group">
+    {{#each card-group}}
+    <div class="nsw-feature-tile__card">
+      <img src="{{img}}" alt="" class="nsw-feature-tile__card-img" />
+      <p class="nsw-feature-tile__card-text">{{text}}</p>
+    </div>
+    {{/each}}
+  </div>
+  <div class="nsw-feature-tile__links-group nsw-body-content">
+    <ul>
+    {{#each linklist}}
+      {{#if-equals @index "5"}}</ul><ul>{{/if-equals}}
+      <li><a href="{{url}}">{{text}}</a></li>
+    {{/each}}
+    </ul>
+  </div>
+  <a href="{{call-to-action.url}}" class="nsw-feature-tile__cta nsw-text-link">{{call-to-action.text}}</a>
+</div>
