@@ -93,6 +93,8 @@
 
   &__links-group {
     @include nsw-spacing(margin-top, md);
+    @include font-stack;
+    @include font-size('sm', paragraph);
 
     @include breakpoint('md') {
       display: flex;
@@ -109,9 +111,36 @@
     }
   }
 
-  &__new {
+  &__link {
+    text-decoration: none;
+    color: $nsw-primary-blue;
+
+    &:hover {
+      @include nsw-hover;
+      outline: 2px solid $hover-colour;
+    }
+
+    &:focus {
+      @include nsw-focus($offset: false);
+    }
+
+    &:visited {
+      color: $link-visited;
+    }
+
+    &:active {
+      @include nsw-active;
+    }
+  }
+
+  .new-text {
     color: $nsw-primary-highlight;
     text-decoration: none;
+  }
+
+  .link-text {
+    text-decoration: underline;
+    text-decoration-skip-ink: auto;
   }
 
   &__cta {
