@@ -11,8 +11,17 @@
   &__item {
     @include nsw-spacing(margin, none none none xs);
 
-    &:nth-child(2) {
-      @include nsw-spacing(margin-left, none);
+    &--next-page {
+      @include nsw-spacing(margin, none none none md);
+
+    }
+
+    &--prev-page {
+      @include nsw-spacing(margin, none md none none);
+
+      + .nsw-pagination__item {
+        @include nsw-spacing(margin-left, none);
+      }
     }
   }
 
@@ -49,12 +58,4 @@
   &__text {
     vertical-align: middle;
   }
-}
-
-.nsw-pagination__item--next-page {
-  @include nsw-spacing(margin, none none none md);
-}
-
-.nsw-pagination__item--prev-page {
-  @include nsw-spacing(margin, none md none none);
 }
