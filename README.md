@@ -48,7 +48,6 @@ Some of the NSW Design System components require javascript to provide advanced 
 ```
 You might wish to copy the file into your project or reference it from  `node_modules`, this will depend on your build setup.
 
-
 ### Using JSDelivr CDN
 ```
 <!-- CSS -->
