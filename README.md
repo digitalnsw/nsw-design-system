@@ -49,14 +49,23 @@ Some of the NSW Design System components require javascript to provide advanced 
 You might wish to copy the file into your project or reference it from  `node_modules`, this will depend on your build setup.
 
 ### Using JSDelivr CDN
-```
-<!-- CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" crossorigin="anonymous">
+The bundled css and js files are also hosted in [JSDelivr](https://www.jsdelivr.com).
 
-<!-- JS -->
-<script src="https://cdn.jsdelivr.net/npm/nsw-design-system@2.3.0/dist/js/main.js"></script>
-<script>window.NSW.initSite()</script>
+Add the files to your main document
 ```
+<html>
+  <head>
+    ...
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nsw-design-system@2/dist/css/main.css">
+  </head>
+  <body>
+    ...
+    <script src="https://cdn.jsdelivr.net/npm/nsw-design-system@2/dist/js/main.min.js"></script>
+    <script>window.NSW.initSite()</script>
+  </body>
+</html>
+```
+
 ## Getting updates
 
 To be notified when there’s a new release, you can either join the [NSW Design System community](https://community.digital.nsw.gov.au/) or [watch the NSW Design System Github](https://github.com/digitalnsw/nsw-design-system)
