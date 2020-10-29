@@ -1,5 +1,9 @@
 # NSW Design System
 
+[![npm version](https://badge.fury.io/js/nsw-design-system.svg)](https://badge.fury.io/js/nsw-design-system)
+[![](https://data.jsdelivr.com/v1/package/npm/nsw-design-system/badge)](https://www.jsdelivr.com/package/npm/nsw-design-system)
+
+
 NSW Design system is a collection of reusable UI components used on the NSW goverment websites.
 
 See live examples of NSW Digital Design system components and guidance on how to use them on you website at [NSW Design System](https://www.digital.nsw.gov.au/digital-design-system).
@@ -9,7 +13,7 @@ See live examples of NSW Digital Design system components and guidance on how to
 How you use the NSW Design System depends on your team's capabilities. We recommend using `npm` but also provide a downloadable starter kit which includes all the compiled assets.
 
  1. [Installing with NPM](#installing-with-npm)
- 2. [Download starter kit](#download-starterkit)
+ 2. [Download starter kit](#download-starter-kit)
 
 ### Installing with NPM
 `npm` is a package manager for Node-based projects. We recommend `npm` packages because it makes it easy to update and install the design system from the command line.
@@ -44,6 +48,16 @@ Some of the NSW Design System components require javascript to provide advanced 
 ```
 You might wish to copy the file into your project or reference it from  `node_modules`, this will depend on your build setup.
 
+
+### Using JSDelivr CDN
+```
+<!-- CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" crossorigin="anonymous">
+
+<!-- JS -->
+<script src="https://cdn.jsdelivr.net/npm/nsw-design-system@2.3.0/dist/js/main.js"></script>
+<script>window.NSW.initSite()</script>
+```
 ## Getting updates
 
 To be notified when there’s a new release, you can either join the [NSW Design System community](https://community.digital.nsw.gov.au/) or [watch the NSW Design System Github](https://github.com/digitalnsw/nsw-design-system)
