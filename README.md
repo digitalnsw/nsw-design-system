@@ -52,7 +52,7 @@ You might wish to copy the file into your project or reference it from  `node_mo
 ### Using JSDelivr CDN
 The bundled css and js files are also hosted in [JSDelivr](https://www.jsdelivr.com).
 
-Add the files to your main document
+You can add the files to your main html document
 ```
 <html>
   <head>
