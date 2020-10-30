@@ -14,6 +14,7 @@ How you use the NSW Design System depends on your team's capabilities. We recomm
 
  1. [Installing with NPM](#installing-with-npm)
  2. [Download starter kit](#download-starter-kit)
+ 3. [Using JSDelivr CDN](#using-jsdelivr-cdn)
 
 ### Installing with NPM
 `npm` is a package manager for Node-based projects. We recommend `npm` packages because it makes it easy to update and install the design system from the command line.
