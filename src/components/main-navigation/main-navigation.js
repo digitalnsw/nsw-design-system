@@ -23,7 +23,7 @@ class Navigation {
     this.checkFocusEvent = (e) => this.checkIfContainsFocus(e)
     this.escapeCloseEvent = (e) => this.escapeClose(e)
     this.openSubNavElements = []
-    this.breakpoint = window.matchMedia('(min-width: 48em)')
+    this.breakpoint = window.matchMedia('(min-width: 62em)')
     this.body = document.body
   }
 
