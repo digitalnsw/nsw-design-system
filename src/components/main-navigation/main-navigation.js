@@ -139,6 +139,7 @@ class Navigation {
   }
 
   buttonClickDesktop(e) {
+    console.log('button click')
     this.saveElements(e)
     this.toggleSubnavDesktop()
     e.preventDefault()
@@ -147,6 +148,7 @@ class Navigation {
   buttonKeydownDesktop(e) {
     if (e.key === ' ' || e.key === 'Enter' || e.key === 'Spacebar') {
       this.saveElements(e)
+      console.log('keydown')
       this.toggleSubnavDesktop()
       e.preventDefault()
     }
@@ -158,6 +160,7 @@ class Navigation {
       const isExpanded = link.getAttribute('aria-expanded') === 'true'
       if (isExpanded) {
         this.toggleSubnavDesktop(true)
+        console.log('escape')
         e.preventDefault()
         link.focus()
       }
@@ -202,6 +205,8 @@ class Navigation {
       link.setAttribute('aria-expanded', true)
       link.classList.add('is-open')
       this.mainNavElement.addEventListener('focus', this.checkFocusEvent, true)
+      // fix: workaround for safari because it doesn't support focus event
+      this.mainNavElement.addEventListener('mousedown', this.checkFocusEvent, true)
     } else {
       submenu.addEventListener('keydown', this.mobileSubNavTrapTabKeyEvent, false)
       submenu.addEventListener(this.transitionEvent, this.showSubNavTransitionEndEvent, false)
