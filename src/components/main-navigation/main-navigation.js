@@ -191,6 +191,8 @@ class Navigation {
       link.setAttribute('aria-expanded', false)
       link.classList.remove('is-open')
       this.mainNavElement.removeEventListener('focus', this.checkFocusEvent, true)
+      // fix: workaround for safari because it doesn't support focus event
+      this.mainNavElement.removeEventListener('mousedown', this.checkFocusEvent, true)
     } else {
       link.focus()
       submenu.removeEventListener('keydown', this.mobileSubNavTrapTabKeyEvent, false)
