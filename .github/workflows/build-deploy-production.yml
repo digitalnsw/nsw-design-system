@@ -31,4 +31,4 @@ jobs:
           name: dist
           path: |
             dist
-      - run: surge ./dist ${{ secrets.SURGE_DOMAIN_PRODUCTION }} --token ${{ secrets.SURGE_TOKEN }}
+      - run: surge ./dist ${{ secrets.SURGE_DOMAIN_STAGING }} --token ${{ secrets.SURGE_TOKEN }}
