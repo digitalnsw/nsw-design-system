@@ -22,6 +22,5 @@ jobs:
           npm install
           npm run release:${{ github.event.inputs.semver }}
           git config --global user.name ${{ github.actor }}
-          npm run && npm run commit && npm run git-tag
+          npm run commit && npm run git-tag
           npm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
-      - run: npm publish
