@@ -26,3 +26,4 @@ jobs:
           git config --global user.name ${{ github.actor }}
           npm run changelog:build && npm run commit && npm run git-tag
           npm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
+       - run: npm publish
