@@ -1,0 +1,29 @@
+name: publish-package
+on:
+  workflow_dispatch:
+    branches:
+      - main
+      - master
+    inputs:
+      semver:
+        description: 'major, minor or patch'
+        required: true
+        default: 'patch'
+jobs:
+  publish-npm:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 8
+      - run: . ./build-script/verify-branch.sh ${GITHUB_REF##*/}
+      - run: echo event name ${{ github.event_name }} even action ${{ github.event_action }} event pr merged ${{ github.event.pull_request.merged }}
+      - run:  |
+          npm install
+          npm run release:${{ github.event.inputs.semver }}
+          npm run starterkit:build
+          git config --global user.name ${{ github.actor }}
+#          npm run changelog:build && npm run commit && npm run git-tag
+          npm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
+#      - run: npm publish
