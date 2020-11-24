@@ -21,8 +21,7 @@ jobs:
       - run:  |
           npm install
           npm run release:${{ github.event.inputs.semver }}
-          npm run starterkit:build
           git config --global user.name ${{ github.actor }}
-          npm run changelog:build && npm run commit && npm run git-tag
+          npm run && npm run commit && npm run git-tag
           npm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
       - run: npm publish
