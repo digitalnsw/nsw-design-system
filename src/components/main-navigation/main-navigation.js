@@ -139,7 +139,6 @@ class Navigation {
   }
 
   buttonClickDesktop(e) {
-    console.log('button click')
     this.saveElements(e)
     this.toggleSubnavDesktop()
     e.preventDefault()
@@ -148,7 +147,6 @@ class Navigation {
   buttonKeydownDesktop(e) {
     if (e.key === ' ' || e.key === 'Enter' || e.key === 'Spacebar') {
       this.saveElements(e)
-      console.log('keydown')
       this.toggleSubnavDesktop()
       e.preventDefault()
     }
@@ -160,7 +158,6 @@ class Navigation {
       const isExpanded = link.getAttribute('aria-expanded') === 'true'
       if (isExpanded) {
         this.toggleSubnavDesktop(true)
-        console.log('escape')
         e.preventDefault()
         link.focus()
       }

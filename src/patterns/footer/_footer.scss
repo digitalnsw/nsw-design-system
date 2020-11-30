@@ -22,12 +22,19 @@
     color: $white;
     font-size: rem(12px);
 
+    .nsw-footer-links__link,
     a {
       color: $white;
+      text-decoration: underline;
 
       &:focus {
         @include nsw-focus($color: $white);
       }
+
+      &:hover {
+        text-decoration: none;
+      }
+
     }
   }
 
@@ -78,7 +85,8 @@
     }
   }
 
-  &__link {
+  &__link,
+  a {
     text-decoration: none;
 
     &:hover {
@@ -106,7 +114,8 @@
     color: $nsw-primary-blue;
 
     &:hover {
-      //@include nsw-hover;
+      @include nsw-hover;
+      outline: 2px solid rgba($focus-color, 0.2);
     }
 
     &:focus {
