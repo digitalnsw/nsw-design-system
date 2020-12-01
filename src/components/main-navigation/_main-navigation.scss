@@ -236,8 +236,7 @@
 
   @include breakpoint('lg') {
     @include container;
-    @include nsw-spacing(padding-top, lg);
-    @include nsw-spacing(padding-bottom, lg);
+    padding: rem(48) rem(40);
     top: 100%;
     background: $white;
     box-shadow: map-get($shadows, menu);
@@ -322,6 +321,17 @@
   @include breakpoint('lg') {
     @include font-size('lg');
     display: inline-block;
+  }
+
+  .nsw-card__icon {
+    margin: 0 0 0 1rem;
+    position: relative;
+    top: rem(3);
+    display: none;
+
+    @include breakpoint('lg') {
+      display: inline;
+    }
   }
 }
 

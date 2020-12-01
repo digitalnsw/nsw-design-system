@@ -11,12 +11,12 @@
   }
 
   &__form {
-    @include nsw-spacing(margin-top, lg);
+    @include nsw-spacing(margin, lg none);
   }
 
   &__content {
     @include break-out;
-    @include nsw-spacing(padding, md);
+    @include nsw-spacing(padding, xl md);
     @include border-radius;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
@@ -25,8 +25,19 @@
     text-align: center;
 
     @include breakpoint('md') {
-      @include nsw-spacing(padding, lg xxxxl);
+      @include nsw-spacing(padding, xl xxxxl);
       @include break-out-reset;
+    }
+
+    > * {
+      max-width: rem(700);
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    p {
+      margin-left: auto;
+      margin-right: auto;
     }
   }
 
@@ -35,6 +46,7 @@
       @include nsw-spacing(padding-left, none);
       list-style: none;
       text-align: center;
+      margin-top: rem(-8);
     }
 
     li {
