@@ -109,12 +109,20 @@
 
   h3 {
     @include font-size('lg');
-    line-height: 1.33;
+    line-height: 1.25;
+
+    @include breakpoint($font-size-reponsive-breakpoint) {
+      line-height: 1.33;
+    }
   }
 
   h4 {
     @include font-size('md');
-    line-height: 1.4;
+    line-height: 1.33;
+
+    @include breakpoint($font-size-reponsive-breakpoint) {
+      line-height: 1.4;
+    }
   }
 
   h5,
