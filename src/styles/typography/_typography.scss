@@ -1,7 +1,7 @@
 .nsw-wysiwyg-content,
 .nsw-body-content {
   @include font-stack;
-  @include font-size('sm', paragraph);
+  @include font-size('sm');
   color: $dark80;
 
   a:not(.nsw-button):not(.nsw-tag) {
@@ -54,7 +54,6 @@
 
   small {
     @include font-size('xs');
-    line-height: 1.35;
   }
 
   abbr,
@@ -109,31 +108,19 @@
 
   h3 {
     @include font-size('lg');
-    line-height: 1.25;
-
-    @include breakpoint($font-size-reponsive-breakpoint) {
-      line-height: 1.33;
-    }
   }
 
   h4 {
     @include font-size('md');
-    line-height: 1.33;
-
-    @include breakpoint($font-size-reponsive-breakpoint) {
-      line-height: 1.4;
-    }
   }
 
   h5,
   h6 {
     @include font-size('sm');
-    line-height: 1.5;
   }
 
   .nsw-intro {
     @include font-size('md');
-    line-height: 1.4;
   }
 
   * + h1 {
