@@ -1,7 +1,7 @@
 .nsw-wysiwyg-content,
 .nsw-body-content {
   @include font-stack;
-  @include font-size('sm', paragraph);
+  @include font-size('sm');
   color: $dark80;
 
   a:not(.nsw-button):not(.nsw-tag) {
@@ -27,24 +27,22 @@
     }
   }
 
-  p {
+  p,
+  ul,
+  ol,
+  dl {
     margin: 0;
-
-    + p {
-      margin-top: 1rem;
-    }
   }
 
-  ul + p,
-  ol + p {
+  * + p,
+  * + ul,
+  * + ol,
+  * + dl {
     margin-top: 1rem;
   }
 
   ul,
   ol {
-    @include nsw-spacing(margin, md none none none);
-    @include nsw-spacing(padding, none none none lg);
-
     li {
       @include nsw-spacing(margin-top, xs);
     }
@@ -121,29 +119,27 @@
     @include font-size('sm');
   }
 
-  * + h2,
-  * + h3 {
+  .nsw-intro {
+    @include font-size('md');
+  }
+
+  * + h1 {
+    @include nsw-spacing(margin-top, xxxl);
+  }
+
+  * + h2 {
     @include nsw-spacing(margin-top, xxl);
   }
 
-  * + h4 {
+  * + h3 {
     @include nsw-spacing(margin-top, xl);
   }
 
-  * + h5 {
+  * + h4,
+  * + h5,
+  * + h6 {
     @include nsw-spacing(margin-top, lg);
   }
-
-  * + h6 {
-    @include nsw-spacing(margin-top, md);
-  }
-
-  h2 + h3,
-  h3 + h4,
-  h4 + h5 {
-    margin-top: 0;
-  }
-
 }
 
 .nsw-body-content {

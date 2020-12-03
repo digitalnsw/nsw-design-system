@@ -27,12 +27,12 @@
   &__title {
     @include font-stack('heading');
     @include font-size('md');
-    @include nsw-spacing(margin, none none sm none);
+    margin: 0;
   }
 
   &__content {
     @include font-size('sm');
-    @include nsw-spacing(padding, md md xxxl md);
+    @include nsw-spacing(padding, md);
     border-top: solid 6px $nsw-primary-highlight;
     display: flex;
     flex-direction: column;
@@ -40,21 +40,27 @@
 
 
     @include breakpoint('lg') {
-      @include nsw-spacing(padding, md xl xxxl xl);
+      @include nsw-spacing(padding, xl);
     }
+  }
 
-    p {
-      @include nsw-spacing(margin, none none sm none);
-    }
+  &__copy {
+    margin: 1rem 0 0;
   }
 
   &__tag {
     @include font-stack('heading');
     order: 1;
+    margin: 0 0 1rem;
+
+    + .nsw-card__date {
+      margin-top: rem(-8);
+    }
   }
 
   &__date {
     order: 2;
+    margin: 0 0 1rem;
   }
 
   &__tag,
@@ -70,14 +76,16 @@
 
   &__icon {
     @include nsw-spacing(margin, md none none none);
-    @include nsw-spacing(bottom, md);
-    position: absolute;
-    width: rem(16px);
-    height: rem(16px);
+    width: rem(24px);
+    height: rem(24px);
 
     @include breakpoint('md') {
-      width: rem(20px);
-      height: rem(20px);
+      width: rem(24px);
+      height: rem(24px);
+    }
+
+    @include breakpoint('lg') {
+      @include nsw-spacing(margin, xl none none none);
     }
   }
 
@@ -110,6 +118,6 @@
 
 .nsw-card--headline {
   .nsw-card__title {
-    @include font-size('xl');
+    @include font-size('lg');
   }
 }
