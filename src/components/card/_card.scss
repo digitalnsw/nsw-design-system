@@ -32,15 +32,14 @@
 
   &__content {
     @include font-size('sm');
-    @include nsw-spacing(padding, md);
+    @include nsw-spacing(padding, md md xxxxl md);
     border-top: solid 6px $nsw-primary-highlight;
     display: flex;
     flex-direction: column;
     order: 2;
 
-
     @include breakpoint('lg') {
-      @include nsw-spacing(padding, xl);
+      @include nsw-spacing(padding, xl xl xxxxl xl);
     }
   }
 
@@ -76,13 +75,10 @@
 
   &__icon {
     @include nsw-spacing(margin, md none none none);
+    @include nsw-spacing(bottom, xl);
+    position: absolute;
     width: rem(24px);
     height: rem(24px);
-
-    @include breakpoint('md') {
-      width: rem(24px);
-      height: rem(24px);
-    }
 
     @include breakpoint('lg') {
       @include nsw-spacing(margin, xl none none none);
