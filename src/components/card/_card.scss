@@ -75,12 +75,13 @@
 
   &__icon {
     @include nsw-spacing(margin, md none none none);
-    @include nsw-spacing(bottom, xl);
+    @include nsw-spacing(bottom, md);
     position: absolute;
     width: rem(24px);
     height: rem(24px);
 
     @include breakpoint('lg') {
+      @include nsw-spacing(bottom, xl);
       @include nsw-spacing(margin, xl none none none);
     }
   }
