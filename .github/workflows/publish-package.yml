@@ -14,9 +14,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v1
         with:
           node-version: 8
+      - run: . ./build-script/verify-branch.sh ${GITHUB_REF##*/}
       - run:  |
           npm install
           npm run release:${{ github.event.inputs.semver }}
