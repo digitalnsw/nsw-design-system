@@ -10,9 +10,14 @@
 .nsw-grid {
   display: flex;
   flex-wrap: wrap;
-  margin-left: rem($grid-container-offset);
-  margin-right: rem($grid-container-offset);
+  margin-left: rem(-$grid-gutters);
+  margin-right: rem(-$grid-gutters);
   align-items: stretch;
+
+  @include breakpoint('md') {
+    margin-left: rem(-$grid-gutters*2);
+    margin-right: rem(-$grid-gutters*2);
+  }
 
   > .nsw-col {
     padding: rem($grid-gutters);
