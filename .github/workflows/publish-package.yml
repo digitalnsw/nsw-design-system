@@ -14,12 +14,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v1
         with:
           node-version: 8
+      - run: . ./build-script/verify-branch.sh ${GITHUB_REF##*/}
       - run:  |
           npm install
           npm run release:${{ github.event.inputs.semver }}
           git config --global user.name ${{ github.actor }}
           npm run commit && npm run git-tag
           npm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
+          npm publish
