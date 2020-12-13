@@ -93,6 +93,11 @@ You can add the files to your main html document
 ### Download starter kit
 You can download the compiled design system assets (HTML, CSS, JavaScript) in the [HTMLStarterkit zip file](https://github.com/digitalnsw/nsw-design-system/blob/master/HTMLstarterkit.zip) from the latest release.
 
+
+## Design System Figma UI kit
+Get access to the latest Design System UI patterns and styles via the [Design System Figma UI kit](https://www.digital.nsw.gov.au/design-system/getting-started/design-system-figma-ui-kit).
+
+
 ## Getting updates
 
 To be notified when there’s a new release, you can either join the [NSW Design System community](https://community.digital.nsw.gov.au/) or [watch the NSW Design System Github](https://github.com/digitalnsw/nsw-design-system)
