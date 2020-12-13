@@ -1,11 +1,11 @@
 ---
-title: Two column - Sidebar right align
+title: Two column - Side navigation right align (nav hides on mobile)
 model:
     nav-basic: ../../components/main-navigation/main-navigation.json
     nav-mega: ../../components/main-navigation/mega-navigation.json
     breadcrumbs: ../../components/breadcrumbs/breadcrumbs.json
+    side-navigation: ../../components/side-navigation/side-navigation.json
     card-media: ../../components/card/card-simple.json
-    link-list: ../../components/link-list/link-list.json
     footer: ../../patterns/footer/footer.json
 ---
 
@@ -14,6 +14,7 @@ model:
 <div class="nsw-container">
   {{>_breadcrumbs model.breadcrumbs}}
 </div>
+
 <div class="nsw-container nsw-layout nsw-layout--sidebar-right">
   <main class="nsw-layout__content">
     <div class="nsw-wysiwyg-content">
@@ -39,8 +40,8 @@ model:
       </div>
     </div>
   </main>
-  <div class="nsw-layout__sidebar">
-    {{>_link-list model.link-list}}
+  <div class="nsw-layout__sidebar nsw-layout__sidebar--nav">
+    {{>_side-navigation model.side-navigation}}
   </div>
 </div>
 
