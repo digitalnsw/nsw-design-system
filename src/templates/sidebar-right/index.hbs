@@ -4,9 +4,11 @@ model:
     nav-basic: ../../components/main-navigation/main-navigation.json
     nav-mega: ../../components/main-navigation/mega-navigation.json
     breadcrumbs: ../../components/breadcrumbs/breadcrumbs.json
+    card-media: ../../components/card/card-simple.json
+    link-list: ../../components/link-list/link-list.json
     footer: ../../patterns/footer/footer.json
-example: true
 ---
+
 {{>_header}}
 {{>_main-navigation model.nav-basic}}
 <div class="nsw-container">
@@ -14,14 +16,31 @@ example: true
 </div>
 <div class="nsw-container nsw-layout nsw-layout--sidebar-right">
   <main class="nsw-layout__content">
-    <!-- ### START OF MAIN CONTENT AREA - REPLACE CODE BELOW ### -->
-    Sidebar content area
-    <!-- ### END OF MAIN CONTENT AREA ### -->
+    <div class="nsw-wysiwyg-content">
+      <h1>Lorem Ipsum.</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum pharetra consequat massa, nec ullamcorper dolor tincidunt laoreet. Quisque at dolor vel eros vulputate mollis. Nunc massa nisi, mattis ac posuere a, efficitur quis libero. Ut ornare mauris vel diam accumsan dapibus. Curabitur congue porta dignissim. Nulla <a href="#">aliquet augue nec</a> posuere viverra. Mauris gravida augue sit amet sapien imperdiet, at fermentum felis fermentum. Curabitur interdum elit sit amet blandit iaculis. Mauris vulputate auctor leo et lobortis. Curabitur id neque vel ex efficitur pretium eget non odio.</p>
+    </div>
+
+    <div class="nsw-grid nsw-mt-md">
+      <div class="nsw-col nsw-col--third">{{>_card model.card-media}}</div>
+      <div class="nsw-col nsw-col--third">{{>_card model.card-media}}</div>
+      <div class="nsw-col nsw-col--third">{{>_card model.card-media}}</div>
+    </div>
+
+    <div class="nsw-wysiwyg-content nsw-mt-md nsw-mb-md">
+      <h2>Curabitur congue porta dignissim.</h2>
+      <p>Nunc massa nisi, mattis ac posuere a, efficitur quis libero. Ut ornare mauris vel diam accumsan dapibus. Curabitur congue porta dignissim. Nulla <a href="#">aliquet augue nec</a> posuere viverra. Mauris gravida augue sit amet sapien imperdiet, at fermentum felis fermentum. Curabitur interdum elit sit amet blandit iaculis. Mauris vulputate auctor leo et lobortis. Curabitur id neque vel ex efficitur pretium eget non odio.</p>
+    </div>
+
+    <div class="nsw-callout">
+      <div class="nsw-callout__content">
+      <h4 class="nsw-callout__title">Callout Heading</h4>
+      <p>Filium morte multavit si sine causa, nollem me tamen laudandis maioribus meis corrupisti nec voluptas sit, amet, consectetur, adipisci velit.</p>
+      </div>
+    </div>
   </main>
   <div class="nsw-layout__sidebar">
-    <!-- ### START OF SIDEBAR CONTENT AREA - REPLACE CODE BELOW ### -->
-    Sidebar content area
-    <!-- ### END OF SIDEBAR CONTENT AREA ### -->
+    {{>_link-list model.link-list}}
   </div>
 </div>
 
