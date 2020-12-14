@@ -13,7 +13,7 @@ Wherever you are, and whatever your discipline is, you are invited to contribute
   * [Suggested components](#suggested-components)
     * [Useful](#useful)
     * [Unique](#unique)
-    * [Distinctly New South Wales](#distinctlynsw)
+    * [Distinctly New South Wales](#distinctly-new-south-wales)
   * [Before publication](#before-publication)
     * [Usable](#usable)
     * [Consistent](#consistent)
@@ -21,7 +21,7 @@ Wherever you are, and whatever your discipline is, you are invited to contribute
     * [Coded](#coded)
     * [Tested](#tested)
     * [Considered](#considered)
-* [Reporting Bugs, Sending Suggestions](#reporting-bugs)
+* [Reporting Bugs, Sending Suggestions](#reporting-bugs-asking-questions-sending-suggestions)
 
 
 -------------------------------------------------------------------------------------------------
@@ -41,7 +41,7 @@ To be considered for inclusion in the design system, components and patterns mus
 |---|---|
 | [Useful](#useful) | It addresses a user need that’s shared by multiple services or products |
 | [Unique](#unique) | It doesn’t duplicate something which already exists in the design system, unless it’s intended to replace it. |
-| [Distinctly New South Wales](#distinctlynsw) | Suggested patterns and components must be aligned to the distinctly NSW look and feel.  Download the latest Design System Sketch UI kit from [our site](https://www.digital.nsw.gov.au/design-system/patterns). |
+| [Distinctly New South Wales](#distinctly-new-south-wales) | Suggested patterns and components must be aligned to the distinctly NSW look and feel.  Download the latest [NSW Design System Figma UI kit](https://www.digital.nsw.gov.au/design-system/getting-started/design-system-figma-ui-kit). |
 
 
 ### Before publication
@@ -60,7 +60,7 @@ Before new components and patterns are published into the design system, the tea
 ### Supporting evidence
 When making a new component, we would be very grateful if you post the research, design decisions and use cases for the component. Accessibility considerations should be documented before submitting a pull request.
 
-This may be in the form of a code snippet, screenshots, sketch files or written text on your research with references. This gives a chance for members of the community to respond and share any work they may have done in the past on a similar pattern or component.
+This may be in the form of a code snippet, screenshots, sketch/figma files or written text on your research with references. This gives a chance for members of the community to respond and share any work they may have done in the past on a similar pattern or component.
 
 -------------------------------------------------------------------------------------------------
 
@@ -92,7 +92,7 @@ If a component is similar in function consider extending it rather than duplicat
 
 ### Distinctly New South Wales
 
-We would like NSW Government website users to feel like they are on a NSW Government website, to ensure this is the case all suggested patterns and components must be aligned to the distinctly NSW look and feel. Download the latest Design System Sketch UI kit from [our site](https://www.digital.nsw.gov.au/design-system/patterns).
+We would like NSW Government website users to feel like they are on a NSW Government website, to ensure this is the case all suggested patterns and components must be aligned to the distinctly NSW look and feel. Download the latest [NSW Design System Figma UI kit](https://www.digital.nsw.gov.au/design-system/getting-started/design-system-figma-ui-kit).
 
 **[⬆ back to top](#contents)**
 
