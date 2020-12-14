@@ -5,136 +5,42 @@ model:
     nav-mega: ../../components/main-navigation/mega-navigation.json
     hero-banner: ../../components/hero-banner/hero-banner.json
     breadcrumbs: ../../components/breadcrumbs/breadcrumbs.json
+    card-media: ../../components/card/card-media.json
     footer: ../../patterns/footer/footer.json
-example: true
 ---
+
 {{>_header}}
 {{>_main-navigation model.nav-basic}}
-{{>_hero-banner model.hero-banner}}
-<main>
-  <div class="nsw-container">
-    <div class="nsw-grid">
-      <div class="nsw-col">
-        <!-- ### START OF CONTENT AREA - REPLACE CODE BELOW ### -->
-        full width content area
-        <!-- ### END OF CONTENT AREA ### -->
-      </div>
-    </div>
-  </div>
-  <div class="nsw-container">
-    <div class="nsw-grid">
-      <div class="nsw-col nsw-col--half">
-        <!-- ### START OF GRID CONTENT AREA - REPLACE CODE BELOW ### -->
-        half content area
-        <!-- ### END OF GRID CONTENT AREA ### -->
-      </div>
-      <div class="nsw-col nsw-col--half">
-        <!-- ### START OF GRID CONTENT AREA - REPLACE CODE BELOW ### -->
-        half content area
-        <!-- ### END OF GRID CONTENT AREA ### -->
-      </div>
-    </div>
-  </div>
-  <div class="nsw-container">
-    <div class="nsw-grid">
-      <div class="nsw-col nsw-col--two-thirds">
-        <!-- ### START OF GRID CONTENT AREA - REPLACE CODE BELOW ### -->
-        two thirds content area
-        <!-- ### END OF GRID CONTENT AREA ### -->
-      </div>
-      <div class="nsw-col nsw-col--third">
-        <!-- ### START OF GRID CONTENT AREA - REPLACE CODE BELOW ### -->
-        one third content area
-        <!-- ### END OF GRID CONTENT AREA ### -->
-      </div>
-    </div>
-  </div>
-  <div class="nsw-container">
-    <div class="nsw-grid">
-      <div class="nsw-col nsw-col--third">
-        <!-- ### START OF GRID CONTENT AREA - REPLACE CODE BELOW ### -->
-        one third content area
-        <!-- ### END OF GRID CONTENT AREA ### -->
-      </div>
-      <div class="nsw-col nsw-col--two-thirds">
-        <!-- ### START OF GRID CONTENT AREA - REPLACE CODE BELOW ### -->
-        two thirds content area
-        <!-- ### END OF GRID CONTENT AREA ### -->
-      </div>
-    </div>
-  </div>
-  <div class="nsw-container">
-    <div class="nsw-grid">
-      <div class="nsw-col nsw-col--third">
-        <!-- ### START OF GRID CONTENT AREA - REPLACE CODE BELOW ### -->
-        one third content area
-        <!-- ### END OF GRID CONTENT AREA ### -->
-      </div>
-      <div class="nsw-col nsw-col--third">
-        <!-- ### START OF GRID CONTENT AREA - REPLACE CODE BELOW ### -->
-        one third content area
-        <!-- ### END OF GRID CONTENT AREA ### -->
-      </div>
-      <div class="nsw-col nsw-col--third">
-        <!-- ### START OF GRID CONTENT AREA - REPLACE CODE BELOW ### -->
-        one third content area
-        <!-- ### END OF GRID CONTENT AREA ### -->
-      </div>
-    </div>
-  </div>
-  <div class="nsw-container">
-    <div class="nsw-grid">
-      <div class="nsw-col nsw-col--three-quarters">
-        <!-- ### START OF GRID CONTENT AREA - REPLACE CODE BELOW ### -->
-        three quarter content area
-        <!-- ### END OF GRID CONTENT AREA ### -->
-      </div>
-      <div class="nsw-col nsw-col--quarter">
-        <!-- ### START OF GRID CONTENT AREA - REPLACE CODE BELOW ### -->
-        one quarter content area
-        <!-- ### END OF GRID CONTENT AREA ### -->
-      </div>
-    </div>
-  </div>
-  <div class="nsw-container">
-    <div class="nsw-grid">
-      <div class="nsw-col nsw-col--quarter">
-        <!-- ### START OF GRID CONTENT AREA - REPLACE CODE BELOW ### -->
-        one quarter content area
-        <!-- ### END OF GRID CONTENT AREA ### -->
-      </div>
-      <div class="nsw-col nsw-col--three-quarters">
-        <!-- ### START OF GRID CONTENT AREA - REPLACE CODE BELOW ### -->
-        three quarter content area
-        <!-- ### END OF GRID CONTENT AREA ### -->
-      </div>
-    </div>
-  </div>
-  <div class="nsw-container">
-    <div class="nsw-grid">
-      <div class="nsw-col nsw-col--quarter">
-        <!-- ### START OF GRID CONTENT AREA - REPLACE CODE BELOW ### -->
-        one quarter content area
-        <!-- ### END OF GRID CONTENT AREA ### -->
-      </div>
-      <div class="nsw-col nsw-col--quarter">
-        <!-- ### START OF GRID CONTENT AREA - REPLACE CODE BELOW ### -->
-        one quarter content area
-        <!-- ### END OF GRID CONTENT AREA ### -->
-      </div>
-      <div class="nsw-col nsw-col--quarter">
-        <!-- ### START OF GRID CONTENT AREA - REPLACE CODE BELOW ### -->
-        one quarter content area
-        <!-- ### END OF GRID CONTENT AREA ### -->
-      </div>
-      <div class="nsw-col nsw-col--quarter">
-        <!-- ### START OF GRID CONTENT AREA - REPLACE CODE BELOW ### -->
-        one quarter content area
-        <!-- ### END OF GRID CONTENT AREA ### -->
-      </div>
-    </div>
-  </div>
 
+{{>_hero-banner model.hero-banner}}
+
+<main>
+  <div class="nsw-container nsw-layout">
+    <div class="nsw-layout__content">
+      <div class="nsw-wysiwyg-content">
+        <h1>Lorem Ipsum.</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum pharetra consequat massa, nec ullamcorper dolor tincidunt laoreet. Quisque at dolor vel eros vulputate mollis. Nunc massa nisi, mattis ac posuere a, efficitur quis libero. Ut ornare mauris vel diam accumsan dapibus. Curabitur congue porta dignissim. Nulla <a href="#">aliquet augue nec</a> posuere viverra. Mauris gravida augue sit amet sapien imperdiet, at fermentum felis fermentum. Curabitur interdum elit sit amet blandit iaculis. Mauris vulputate auctor leo et lobortis. Curabitur id neque vel ex efficitur pretium eget non odio.</p>
+      </div>
+
+      <div class="nsw-grid nsw-mt-md">
+        <div class="nsw-col nsw-col--third">{{>_card model.card-media}}</div>
+        <div class="nsw-col nsw-col--third">{{>_card model.card-media}}</div>
+        <div class="nsw-col nsw-col--third">{{>_card model.card-media}}</div>
+      </div>
+
+      <div class="nsw-wysiwyg-content nsw-mt-md nsw-mb-md">
+        <h2>Curabitur congue porta dignissim.</h2>
+        <p>Nunc massa nisi, mattis ac posuere a, efficitur quis libero. Ut ornare mauris vel diam accumsan dapibus. Curabitur congue porta dignissim. Nulla <a href="#">aliquet augue nec</a> posuere viverra. Mauris gravida augue sit amet sapien imperdiet, at fermentum felis fermentum. Curabitur interdum elit sit amet blandit iaculis. Mauris vulputate auctor leo et lobortis. Curabitur id neque vel ex efficitur pretium eget non odio.</p>
+      </div>
+
+      <div class="nsw-callout">
+        <div class="nsw-callout__content">
+        <h4 class="nsw-callout__title">Callout Heading</h4>
+        <p>Filium morte multavit si sine causa, nollem me tamen laudandis maioribus meis corrupisti nec voluptas sit, amet, consectetur, adipisci velit.</p>
+        </div>
+      </div>
+    </div>
+  </div>  
 </main>
 
 {{>_footer model.footer}}
