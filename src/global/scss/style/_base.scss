@@ -1,4 +1,5 @@
 html {
+  @include font-stack;
   font-size: 100%;
   line-height: $base-line-height;
   box-sizing: border-box;
@@ -14,23 +15,12 @@ body {
   margin: 0;
 }
 
-.nsw-ds-example .nsw-col,
-.nsw-ds-example [class^='nsw-layout__'] {
-  @include font-stack;
-  @include font-size('sm');
-  background: $light10;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  text-align: center;
-  border: solid 1px $light40;
-  color: $dark80;
+.nsw-ds-example-box {
+  background: $light40;
+  min-height: rem(56);
 }
 
-.nsw-ds-example [class^='nsw-layout__'] {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 50vh;
+.nsw-ds-example-container {
+  background: $light10;
   width: 100%;
-  font-size: 1.5rem;
 }
