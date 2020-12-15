@@ -1,0 +1,36 @@
+name: build-deploy-staging
+on:
+  push:
+    branches:
+      - 'develop'
+      - 'feature/*'
+      - '!master'
+jobs:
+  build-staging:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 8
+      - run: npm install
+      - run: npm run starterkit:build
+      - uses: actions/upload-artifact@v2
+        with:
+          name: dist
+          path: |
+            dist
+
+  deploy-staging:
+    needs: build-staging
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+      - run: npm install -g surge
+      - uses: actions/download-artifact@v2
+        with:
+          name: dist
+          path: |
+            dist
+      - run: surge ./dist ${{ secrets.SURGE_DOMAIN_STAGING }} --token ${{ secrets.SURGE_TOKEN }}

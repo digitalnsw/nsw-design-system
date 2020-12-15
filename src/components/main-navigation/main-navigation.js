@@ -188,6 +188,8 @@ class Navigation {
       link.setAttribute('aria-expanded', false)
       link.classList.remove('is-open')
       this.mainNavElement.removeEventListener('focus', this.checkFocusEvent, true)
+      // fix: workaround for safari because it doesn't support focus event
+      this.mainNavElement.removeEventListener('mousedown', this.checkFocusEvent, true)
     } else {
       link.focus()
       submenu.removeEventListener('keydown', this.mobileSubNavTrapTabKeyEvent, false)
@@ -202,6 +204,8 @@ class Navigation {
       link.setAttribute('aria-expanded', true)
       link.classList.add('is-open')
       this.mainNavElement.addEventListener('focus', this.checkFocusEvent, true)
+      // fix: workaround for safari because it doesn't support focus event
+      this.mainNavElement.addEventListener('mousedown', this.checkFocusEvent, true)
     } else {
       submenu.addEventListener('keydown', this.mobileSubNavTrapTabKeyEvent, false)
       submenu.addEventListener(this.transitionEvent, this.showSubNavTransitionEndEvent, false)

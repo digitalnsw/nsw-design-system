@@ -141,11 +141,7 @@ function metalsmithBuild(callback) {
     templates: {
       pattern: config.metalSmith.collection.templates.pattern,
       sortBy: sortByAlpha,
-    },
-    pages: {
-      pattern: config.metalSmith.collection.pages.pattern,
-      sortBy: sortByAlpha,
-    },
+    }
   }))
   metalsmith.use(inplace(config.metalSmith.inplace))
   metalsmith.use(layouts(config.metalSmith.layouts))
