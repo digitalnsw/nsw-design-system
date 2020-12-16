@@ -4,7 +4,9 @@ on:
     branches:
       - 'develop'
       - 'feature/*'
+      - 'release-*'
       - '!master'
+
 jobs:
   build-staging:
     runs-on: ubuntu-latest
@@ -21,8 +23,21 @@ jobs:
           path: |
             dist
 
-  deploy-staging:
+  test-staging:
     needs: build-staging
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+      - uses: actions/download-artifact@v2
+        with:
+          name: dist
+          path: |
+            dist
+      - run: npx percy snapshot dist/
+
+  deploy-staging:
+    needs: test-staging
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
