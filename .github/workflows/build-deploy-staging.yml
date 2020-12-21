@@ -2,6 +2,9 @@ name: build-deploy-staging
 on:
   pull_request:
     types: [assigned, opened, synchronize, reopened]
+    branches:
+      - 'feature/*'
+      - 'release-*'
 jobs:
   build-staging:
     runs-on: ubuntu-latest
