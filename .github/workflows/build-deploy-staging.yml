@@ -3,8 +3,11 @@ on:
   push:
     branches:
       - 'develop'
-      - 'feature/*'
       - '!master'
+  pull_request:
+    branches:
+      - 'feature/*'
+      - 'release-*'
 jobs:
   build-staging:
     runs-on: ubuntu-latest
@@ -21,8 +24,26 @@ jobs:
           path: |
             dist
 
-  deploy-staging:
+  test-staging:
     needs: build-staging
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+      - uses: actions/download-artifact@v2
+        with:
+          name: dist
+          path: |
+            dist
+      - name: Visual test
+        uses: percy/snapshot-action@v0.1.2
+        with:
+          build-directory: "dist"
+        env:
+          PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
+
+  deploy-staging:
+    needs: test-staging
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
