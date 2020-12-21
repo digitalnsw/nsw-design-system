@@ -5,9 +5,7 @@ on:
       - 'develop'
       - '!master'
   pull_request:
-    branches:
-      - 'feature/*'
-      - 'release-*'
+    types: [assigned, opened, synchronize, reopened]
 jobs:
   build-staging:
     runs-on: ubuntu-latest
