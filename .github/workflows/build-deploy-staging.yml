@@ -3,10 +3,11 @@ on:
   push:
     branches:
       - 'develop'
+      - '!master'
+  pull_request:
+    branches:
       - 'feature/*'
       - 'release-*'
-      - '!master'
-
 jobs:
   build-staging:
     runs-on: ubuntu-latest
