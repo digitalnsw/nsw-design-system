@@ -39,7 +39,10 @@ jobs:
           build-directory: "dist"
         env:
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
-
+      #pa11y threshold set to 20
+      - run: |
+          npm install -g pa11y-ci
+          pa11y-ci ./dist/{components,patterns,styles,templates}/**/*.html -T 20
   deploy-staging:
     needs: test-staging
     runs-on: ubuntu-latest
