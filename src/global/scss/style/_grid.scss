@@ -8,23 +8,10 @@
 }
 
 .nsw-grid {
-  display: flex;
-  flex-wrap: wrap;
-  margin-left: rem(-$grid-gutters);
-  margin-right: rem(-$grid-gutters);
-  align-items: stretch;
-
-  @include breakpoint('md') {
-    margin-left: rem(-$grid-gutters*2);
-    margin-right: rem(-$grid-gutters*2);
-  }
+  @include create-grid();
 
   > .nsw-col {
-    padding: rem($grid-gutters);
-
-    @include breakpoint('md') {
-      padding: rem($grid-gutters*2);
-    }
+    @include grid-column;
   }
 
   &--no-gutters {
@@ -38,7 +25,58 @@
   }
 }
 
+.nsw-row {
+  @include create-row();
+
+  > .nsw-col {
+    @include grid-column;
+  }
+}
+
 @include grid-columns;
+@include grid-columns-generator;
+
+
+.nsw-page-layout {
+  @include create-grid();
+
+  &__main {
+    @include create-column-default();
+
+    &:not(:first-child) {
+      @include create-column(8, $desktop-breakpoint);
+    }
+
+    &:not(:last-child) {
+      @include create-column(8, $desktop-breakpoint);
+    }
+  }
+
+  &__sidebar {
+    @include create-column-default();
+    @include create-column(4, $desktop-breakpoint);
+
+    &:first-child {
+      @include breakpoint('lg') {
+        padding-right: rem($grid-gutters*2 + $layout-gap);
+      }
+    }
+
+    &:last-child {
+      @include breakpoint($desktop-breakpoint) {
+        padding-left: rem($grid-gutters*2 + $layout-gap);
+      }
+    }
+
+    &--desktop {
+      display: none;
+      
+      @include breakpoint($desktop-breakpoint) {
+        display: block;
+      }
+    }
+  }
+}
 
 .nsw-layout {
   display: block;
