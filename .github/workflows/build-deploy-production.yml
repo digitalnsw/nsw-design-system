@@ -32,3 +32,9 @@ jobs:
           path: |
             dist
       - run: surge ./dist ${{ secrets.SURGE_DOMAIN_PRODUCTION }} --token ${{ secrets.SURGE_TOKEN }}
+      - name: Visual test
+        uses: percy/snapshot-action@v0.1.2
+        with:
+          build-directory: "dist"
+        env:
+          PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}

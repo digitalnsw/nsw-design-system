@@ -18,12 +18,14 @@ jobs:
           fetch-depth: 0
       - uses: actions/setup-node@v1
         with:
-          node-version: 8
+          node-version: '10.x'
+          registry-url: 'https://registry.npmjs.org'
       - run: . ./build-script/verify-branch.sh ${GITHUB_REF##*/}
       - run:  |
           npm install
           npm run release:${{ github.event.inputs.semver }}
           git config --global user.name ${{ github.actor }}
           npm run commit && npm run git-tag
-          npm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
-          npm publish
+      - run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

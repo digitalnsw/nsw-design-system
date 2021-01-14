@@ -2,7 +2,7 @@
 
 [![npm version](https://badge.fury.io/js/nsw-design-system.svg)](https://badge.fury.io/js/nsw-design-system)
 [![](https://data.jsdelivr.com/v1/package/npm/nsw-design-system/badge)](https://www.jsdelivr.com/package/npm/nsw-design-system)
-
+[![This project is using Percy.io for visual regression testing.](https://percy.io/static/images/percy-badge.svg)](https://percy.io/b183fe4d/nsw-design-system)
 
 NSW Design system is a collection of reusable UI components used on the NSW government websites.
 
@@ -64,7 +64,7 @@ The design system icons use sprite SVG, add this line of code inside the `<head>
 ### Importing javascript into your project
 Some of the NSW Design System components require javascript to provide advanced functionality. To ensure the page is ready for javascript to run, include the follow scripts tags at the end of the html document.
 ```
-    <script src="node_modules/nsw-design-system/src/main.js"></script>
+    <script src="path/to/main.js"></script>
     <script>window.NSW.initSite()</script>
   </body>
 </html>
