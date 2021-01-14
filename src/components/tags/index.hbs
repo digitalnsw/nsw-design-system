@@ -1,11 +1,18 @@
 ---
 title: Tags
+model:
+  link: tags-link.json
+  text: tags-text.json
+  checkbox: tags-checkbox.json
 ---
 
 <div class="nsw-container">
-  <div style="padding: 1rem">
-    {{>_tags type="link"}}
-    {{>_tags type="text"}}
-    {{>_tags type="checkbox"}}
-  </div>
+	<h2>Links</h2>
+    {{>_tags model.link}}
+
+	<h2>Text</h2>
+    {{>_tags model.text}}
+
+	<h2>Checkboxes</h2>
+    {{>_tags model.checkbox}}
 </div>
