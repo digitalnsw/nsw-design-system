@@ -1,22 +1,22 @@
 ---
 title: Side navigation
 model:
-  singlelevel: side-navigation.json
-  secondlevel: side-navigation-level2.json
-  fourthlevel: side-navigation-level4.json
+  single-level: side-navigation.json
+  two-level: side-navigation-level-2.json
+  four-level: side-navigation-level-4.json
 ---
 
 <div style="max-width: 300px; float: left; padding: 2rem;">
-  <h1>Level 2 no child pages</h1>
-  {{>_side-navigation model.singlelevel}}
+  <h1>Single level</h1>
+  {{>_side-navigation model.single-level}}
 </div>
 
 <div style="max-width: 300px; float: left; padding: 2rem;">
-  <h1>Level 2 with child pages</h1>
-  {{>_side-navigation model.secondlevel}}
+  <h1>Two levels</h1>
+  {{>_side-navigation model.two-level}}
 </div>
 
 <div style="max-width: 300px; float: left; padding: 2rem;">
-  <h1>Level 4 with child pages</h1>
-  {{>_side-navigation model.fourthlevel}}
+  <h1>Four levels</h1>
+  {{>_side-navigation model.four-level}}
 </div>
