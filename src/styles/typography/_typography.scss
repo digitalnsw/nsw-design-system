@@ -151,3 +151,42 @@
 .nsw-text-link {
   @include text-link;
 }
+
+h1,
+h2,
+h3,
+h4 {
+  &.nsw-section-title {
+    @include font-stack('heading');
+    margin: 0;      
+    padding-top: rem($grid-gutters);
+
+    @include breakpoint('md') {
+      padding-top: rem($grid-gutters*2);
+    }
+  }
+}
+
+h1 {
+  &.nsw-section-title {
+    @include font-size('xxxl');
+  }
+}
+
+h2 {
+  &.nsw-section-title {
+    @include font-size('xxl');
+  }
+}
+
+h3 {
+  &.nsw-section-title {
+    @include font-size('lg');
+  }
+}
+
+h4 {
+  &.nsw-section-title {
+    @include font-size('md');
+  }
+}

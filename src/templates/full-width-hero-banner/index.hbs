@@ -5,7 +5,16 @@ model:
     nav-mega: ../../components/main-navigation/mega-navigation.json
     hero-banner: ../../components/hero-banner/hero-banner.json
     breadcrumbs: ../../components/breadcrumbs/breadcrumbs.json
-    card-media: ../../components/card/card-media.json
+    card-media-1: ../../components/card/card-media-1.json
+    card-media-2: ../../components/card/card-media-2.json
+    card-media-3: ../../components/card/card-media-3.json
+    card-simple-1: ../../components/card/card-simple-1.json
+    card-simple-2: ../../components/card/card-simple-2.json
+    card-simple-3: ../../components/card/card-simple-3.json
+    card-simple-4: ../../components/card/card-simple-4.json
+    card-news-1: ../../components/card/card-news-1.json
+    card-news-2: ../../components/card/card-news-2.json
+    card-news-3: ../../components/card/card-news-3.json
     footer: ../../patterns/footer/footer.json
 ---
 
@@ -15,32 +24,70 @@ model:
 {{>_hero-banner model.hero-banner}}
 
 <main>
-  <div class="nsw-container nsw-layout">
-    <div class="nsw-layout__content">
-      <div class="nsw-wysiwyg-content">
-        <h1>Lorem Ipsum.</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum pharetra consequat massa, nec ullamcorper dolor tincidunt laoreet. Quisque at dolor vel eros vulputate mollis. Nunc massa nisi, mattis ac posuere a, efficitur quis libero. Ut ornare mauris vel diam accumsan dapibus. Curabitur congue porta dignissim. Nulla <a href="#">aliquet augue nec</a> posuere viverra. Mauris gravida augue sit amet sapien imperdiet, at fermentum felis fermentum. Curabitur interdum elit sit amet blandit iaculis. Mauris vulputate auctor leo et lobortis. Curabitur id neque vel ex efficitur pretium eget non odio.</p>
-      </div>
-
-      <div class="nsw-grid nsw-mt-md">
-        <div class="nsw-col nsw-col--third">{{>_card model.card-media}}</div>
-        <div class="nsw-col nsw-col--third">{{>_card model.card-media}}</div>
-        <div class="nsw-col nsw-col--third">{{>_card model.card-media}}</div>
-      </div>
-
-      <div class="nsw-wysiwyg-content nsw-mt-md nsw-mb-md">
-        <h2>Curabitur congue porta dignissim.</h2>
-        <p>Nunc massa nisi, mattis ac posuere a, efficitur quis libero. Ut ornare mauris vel diam accumsan dapibus. Curabitur congue porta dignissim. Nulla <a href="#">aliquet augue nec</a> posuere viverra. Mauris gravida augue sit amet sapien imperdiet, at fermentum felis fermentum. Curabitur interdum elit sit amet blandit iaculis. Mauris vulputate auctor leo et lobortis. Curabitur id neque vel ex efficitur pretium eget non odio.</p>
-      </div>
-
-      <div class="nsw-callout">
-        <div class="nsw-callout__content">
-        <h4 class="nsw-callout__title">Callout Heading</h4>
-        <p>Filium morte multavit si sine causa, nollem me tamen laudandis maioribus meis corrupisti nec voluptas sit, amet, consectetur, adipisci velit.</p>
+  <div class="nsw-bg-white">
+    <div class="nsw-container">
+      <div class="nsw-page-layout">
+        <div class="nsw-page-layout__main">
+          <div class="nsw-grid">
+            <div class="nsw-col nsw-col-md-4">
+              {{>_card model.card-media-1}}
+            </div>
+            <div class="nsw-col nsw-col-md-4">
+              {{>_card model.card-media-2}}
+            </div>
+            <div class="nsw-col nsw-col-md-4">
+              {{>_card model.card-media-3}}
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>  
+  </div>
+
+  <div class="nsw-bg-light-10">
+    <div class="nsw-container">
+      <div class="nsw-page-layout">
+        <div class="nsw-page-layout__main">
+          <h2 class="nsw-section-title">Energy and utilities</h2>
+          <div class="nsw-grid">
+            <div class="nsw-col nsw-col-md-6 nsw-col-lg-3">
+              {{>_card model.card-simple-1}}
+            </div>
+            <div class="nsw-col nsw-col-md-6 nsw-col-lg-3">
+              {{>_card model.card-simple-2}}
+            </div>
+            <div class="nsw-col nsw-col-md-6 nsw-col-lg-3">
+              {{>_card model.card-simple-3}}
+            </div>
+            <div class="nsw-col nsw-col-md-6 nsw-col-lg-3">
+              {{>_card model.card-simple-4}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="nsw-bg-white">
+    <div class="nsw-container">
+      <div class="nsw-page-layout">
+        <div class="nsw-page-layout__main">
+          <h2 class="nsw-section-title">Energy and utilities</h2>
+          <div class="nsw-grid">
+            <div class="nsw-col nsw-col-md-4">
+              {{>_card model.card-news-1}}
+            </div>
+            <div class="nsw-col nsw-col-md-4">
+              {{>_card model.card-news-2}}
+            </div>
+            <div class="nsw-col nsw-col-md-4">
+              {{>_card model.card-news-3}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </main>
 
 {{>_footer model.footer}}
