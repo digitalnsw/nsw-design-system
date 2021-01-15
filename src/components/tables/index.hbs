@@ -1,26 +1,35 @@
 ---
 title: Tables
-model:
-  basic: tables.json
+model: tables.json
 ---
 
-<div class="nsw-container nsw-layout nsw-wysiwyg-content">
-  <div class="nsw-layout__content">
-    <h1>Tables</h1>
+<main>
+  <div class="nsw-bg-white">
+    <div class="nsw-container">
+      <div class="nsw-page-layout">
+        <div class="nsw-page-layout__main">
+          <div class="nsw-grid">
+            <div class="nsw-col nsw-col-lg-8 nsw-offset-lg-2">
+              <div class="nsw-wysiwyg-content">
+                <h2>Responsive Tables (scroll on mobile)</h2>
+                {{>_tables model}}
 
-    <h2>Responsive Tables (scroll on mobile)</h2>
-    {{>_tables model.basic}}
+                <h2>Striped</h2>
+                {{>_tables model striped="true"}}
 
-    <h2>Striped</h2>
-    {{>_tables model.basic striped="true"}}
+                <h2>Caption Top</h2>
+                {{>_tables model captionTop="true"}}
 
-    <h2>Caption Top</h2>
-    {{>_tables model.basic captionTop="true"}}
+                <h2>Bordered</h2>
+                {{>_tables model bordered="true"}}
 
-    <h2>Bordered</h2>
-    {{>_tables model.basic bordered="true"}}
-
-    <h2>Stripe and Bordered</h2>
-    {{>_tables model.basic striped="true" bordered="true"}}
+                <h2>Stripe and Bordered</h2>
+                {{>_tables model striped="true" bordered="true"}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
+
