@@ -9,7 +9,7 @@ model:
     footer: ../../patterns/footer/footer.json
 ---
 
-{{>_header}}
+{{>_header content="#content" nav="#main-navigation"}}
 {{>_main-navigation model.nav-basic}}
 <div class="nsw-container">
   {{>_breadcrumbs model.breadcrumbs}}
@@ -20,7 +20,7 @@ model:
     {{>_side-navigation model.side-navigation}}
   </div>
   <main class="nsw-layout__content">
-    <div class="nsw-wysiwyg-content">
+    <div id="content" class="nsw-wysiwyg-content">
       <h1>Lorem Ipsum.</h1>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum pharetra consequat massa, nec ullamcorper dolor tincidunt laoreet. Quisque at dolor vel eros vulputate mollis. Nunc massa nisi, mattis ac posuere a, efficitur quis libero. Ut ornare mauris vel diam accumsan dapibus. Curabitur congue porta dignissim. Nulla <a href="#">aliquet augue nec</a> posuere viverra. Mauris gravida augue sit amet sapien imperdiet, at fermentum felis fermentum. Curabitur interdum elit sit amet blandit iaculis. Mauris vulputate auctor leo et lobortis. Curabitur id neque vel ex efficitur pretium eget non odio.</p>
     </div>
