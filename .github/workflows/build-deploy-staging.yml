@@ -35,7 +35,7 @@ jobs:
             dist
       - run: |
           npm install -g pa11y-ci
-          pa11y-ci ./dist/{components,patterns,styles,templates}/**/*.html
+          pa11y-ci ./dist/{components,styles,templates}/**/*.html
       - name: Visual test
         uses: percy/snapshot-action@v0.1.2
         with:
