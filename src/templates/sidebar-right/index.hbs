@@ -13,7 +13,7 @@ model:
     footer: ../../components/footer/footer.json
 ---
 
-{{>_header}}
+{{>_header content="#content" nav="#main-navigation"}}
 {{>_main-navigation model.nav-basic}}
 <div class="nsw-container nsw-p-bottom-xs">
   {{>_breadcrumbs model.breadcrumbs}}
@@ -21,7 +21,7 @@ model:
 
 <div class="nsw-container nsw-p-top-sm">
   <div class="nsw-page-layout">  
-    <main class="nsw-page-layout__main">
+    <main id="content" class="nsw-page-layout__main">
       <div class="nsw-wysiwyg-content">
         <h1>Scaling a design system</h1>
         <p>

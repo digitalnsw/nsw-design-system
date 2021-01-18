@@ -12,7 +12,7 @@ model:
     footer: ../../components/footer/footer.json
 ---
 
-{{>_header}}
+{{>_header content="#content" nav="#main-navigation"}}
 {{>_main-navigation model.nav-basic}}
 <div class="nsw-container nsw-p-bottom-xs">
   {{>_breadcrumbs model.breadcrumbs}}
@@ -25,7 +25,7 @@ model:
         {{>_side-navigation model.side-navigation}}
       </div>
     </div>
-    <main class="nsw-page-layout__main">
+    <main id="content" class="nsw-page-layout__main">
       <div class="nsw-wysiwyg-content">
         <h1>Content design</h1>
         <p>Content designers create patterns of content to guide the user and help them achieve their goal.</p>

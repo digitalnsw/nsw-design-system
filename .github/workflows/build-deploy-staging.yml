@@ -33,13 +33,15 @@ jobs:
           name: dist
           path: |
             dist
+      - run: |
+          npm install -g pa11y-ci
+          pa11y-ci ./dist/{components,patterns,styles,templates}/**/*.html
       - name: Visual test
         uses: percy/snapshot-action@v0.1.2
         with:
           build-directory: "dist"
         env:
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
-
   deploy-staging:
     needs: test-staging
     runs-on: ubuntu-latest

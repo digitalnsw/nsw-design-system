@@ -1,6 +1,6 @@
 <nav class="nsw-skipto nsw-container" aria-label="Skip to links">
-  <a class="nsw-skipto__link" href="#nav"><span>Skip to navigation</span></a>
-  <a class="nsw-skipto__link" href="#content"><span>Skip to content</span></a>
+  <a class="nsw-skipto__link" href="{{#if nav}}{{nav}}{{/if}}"><span>Skip to navigation</span></a>
+  <a class="nsw-skipto__link" href="{{#if content}}{{content}}{{/if}}"><span>Skip to content</span></a>
 </nav>
 <div class="nsw-masthead">
   <div class="nsw-container">
@@ -43,9 +43,11 @@
           <label for="nsw-search__input" class="sr-only">Search site for:</label>
           <input autocomplete="off" class="nsw-search__input js-search-input" id="nsw-search__input"
             name="input-autocomplete" type="text">
+          <button class="nsw-search__submit" type="submit" aria-label="search">
           <svg class="nsw-icon nsw-search__search-icon" focusable="false" aria-hidden="true">
             <use xlink:href="#search"></use>
           </svg>
+          </button>
         </form>
         <button class="nsw-search__close-btn js-close-search" aria-expanded="true" aria-controls="header-search">
           <svg class="nsw-icon nsw-search__close-icon" focusable="false" aria-hidden="true">
