@@ -1,4 +1,5 @@
 .nsw-feature-tile {
+  @include component-spacing();
   @include nsw-spacing(padding, md none);
   border-top: solid 6px $nsw-primary-highlight;
   max-width: 500px;
@@ -146,5 +147,10 @@
   &__cta {
     @include nsw-spacing(margin-top, xl);
     text-decoration: underline;
+  }
+
+  &__double-list {
+    column-count: 2;
+    column-gap: rem(16);
   }
 }

@@ -6,53 +6,65 @@ model:
   links: json/feature-tile-links.json
   five-links: json/feature-tile-five-links.json
 ---
-<div class="nsw-container nsw-wysiwyg-content">
-  <h2>All tile options</h2>
-</div>
-<br />
-<div class="nsw-container">
-  {{>_feature-tile model.all}}
-</div>
 
-<br />
-<div class="nsw-container nsw-wysiwyg-content">
-  <h2>CTA and Images</h2>
-</div>
-<br />
-<div class="nsw-container">
-  {{>_feature-tile model.cta}}
-</div>
-
-<br />
-<div class="nsw-container nsw-wysiwyg-content">
-  <h2>Single column list of links (less then 6)</h2>
-</div>
-<br />
-<div class="nsw-container">
-  {{>_feature-tile model.five-links}}
-</div>
-
-<br />
-<div class="nsw-container nsw-wysiwyg-content">
-  <h2>Two column list of links (6 or more)</h2>
-</div>
-<br />
-<div class="nsw-container">
-  {{>_feature-tile model.links}}
-</div>
-
-<br />
-<div class="nsw-container nsw-wysiwyg-content">
-  <h2>Multiple in grid</h2>
-</div>
-<br />
-<div class="nsw-container">
-  <div class="nsw-grid">
-    <div class="nsw-col nsw-col--half">
-      {{>_feature-tile model.cta}}
-    </div>
-    <div class="nsw-col nsw-col--half">
-      {{>_feature-tile model.cta}}
+<main>
+  <div class="nsw-bg-white">
+    <div class="nsw-container">
+      <div class="nsw-page-layout">
+        <div class="nsw-page-layout__main">
+          <div class="nsw-grid">
+            <div class="nsw-col nsw-col-lg-8 nsw-offset-lg-2">
+              <h2 class="nsw-section-title">Links list (less then 6)</h2>
+              {{>_feature-tile model.five-links}}
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</div>
+
+  <div class="nsw-bg-light-10">
+    <div class="nsw-container">
+      <div class="nsw-page-layout">
+        <div class="nsw-page-layout__main">
+          <div class="nsw-grid">
+            <div class="nsw-col nsw-col-lg-8 nsw-offset-lg-2">
+              <h2 class="nsw-section-title">Links list (more then 6)</h2>
+              {{>_feature-tile model.links}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="nsw-bg-white">
+    <div class="nsw-container">
+      <div class="nsw-page-layout">
+        <div class="nsw-page-layout__main">
+          <div class="nsw-grid">
+            <div class="nsw-col nsw-col-lg-8 nsw-offset-lg-2">
+              <h2 class="nsw-section-title">CTA and Images</h2>
+              {{>_feature-tile model.cta}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="nsw-bg-light-10">
+    <div class="nsw-container">
+      <div class="nsw-page-layout">
+        <div class="nsw-page-layout__main">
+          <div class="nsw-grid">
+            <div class="nsw-col nsw-col-lg-8 nsw-offset-lg-2">
+              <h2 class="nsw-section-title">All options</h2>
+              {{>_feature-tile model.all}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

@@ -6,13 +6,33 @@ model:
   checkbox: json/tags-checkbox.json
 ---
 
-<div class="nsw-container">
-	<h2>Links</h2>
-    {{>_tags model.link}}
-
-	<h2>Text</h2>
-    {{>_tags model.text}}
-
-	<h2>Checkboxes</h2>
-    {{>_tags model.checkbox}}
-</div>
+<main>
+  <div class="nsw-bg-white">
+    <div class="nsw-container">
+      <div class="nsw-page-layout">
+        <div class="nsw-page-layout__main">
+          <div class="nsw-grid">
+          	<div class="nsw-row">
+	            <div class="nsw-col nsw-col-lg-8 nsw-offset-lg-2">
+	            	<h2 class="section-title">Links</h2>
+								{{>_tags model.link}}
+	            </div>
+	          </div>
+          	<div class="nsw-row">
+	            <div class="nsw-col nsw-col-lg-8 nsw-offset-lg-2">
+	            	<h2 class="section-title">Text</h2>
+								{{>_tags model.text}}
+	            </div>
+	          </div>
+          	<div class="nsw-row">
+	            <div class="nsw-col nsw-col-lg-8 nsw-offset-lg-2">
+	            	<h2 class="section-title">Checkboxes</h2>
+								{{>_tags model.checkbox}}
+	            </div>
+	          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

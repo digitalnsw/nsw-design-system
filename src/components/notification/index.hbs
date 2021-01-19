@@ -7,15 +7,35 @@ model:
   success: json/notification-success.json
 ---
 
-<div class="nsw-container">
-	{{>_notification model.info}}
-</div>
-<div class="nsw-container">
-	{{>_notification model.error}}
-</div>
-<div class="nsw-container">
-	{{>_notification model.warning}}
-</div>
-<div class="nsw-container">
-	{{>_notification model.success}}
-</div>
+<main>
+  <div class="nsw-bg-white">
+    <div class="nsw-container">
+      <div class="nsw-page-layout">
+        <div class="nsw-page-layout__main">
+          <div class="nsw-grid">
+          	<div class="nsw-row">
+            	<div class="nsw-col nsw-col-lg-8 nsw-offset-lg-2">
+	  						{{>_notification model.info}}
+	  					</div>
+	  				</div>
+          	<div class="nsw-row">
+            	<div class="nsw-col nsw-col-lg-8 nsw-offset-lg-2">
+	  						{{>_notification model.error}}
+	  					</div>
+	  				</div>
+          	<div class="nsw-row">
+            	<div class="nsw-col nsw-col-lg-8 nsw-offset-lg-2">
+	  						{{>_notification model.warning}}
+	  					</div>
+	  				</div>
+          	<div class="nsw-row">
+            	<div class="nsw-col nsw-col-lg-8 nsw-offset-lg-2">
+	  						{{>_notification model.success}}
+	  					</div>
+	  				</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

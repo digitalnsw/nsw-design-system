@@ -4,10 +4,25 @@ model:
   default: json/callout.json
   all: json/callout-all.json
 ---
-<div class="nsw-container">
-  {{>_callout model.default}}
-</div>
 
-<div class="nsw-container">
-  {{>_callout model.all}}
-</div>
+<main>
+  <div class="nsw-bg-white">
+    <div class="nsw-container">
+      <div class="nsw-page-layout">
+        <div class="nsw-page-layout__main">
+          <div class="nsw-grid">
+          	<div class="nsw-row">
+            	<div class="nsw-col nsw-col-lg-8 nsw-offset-lg-2">
+	  						{{>_callout model.default}}
+	  					</div>
+	  				</div>
+            	<div class="nsw-col nsw-col-lg-8 nsw-offset-lg-2">
+	  						{{>_callout model.all}}
+	  					</div>
+	  				</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

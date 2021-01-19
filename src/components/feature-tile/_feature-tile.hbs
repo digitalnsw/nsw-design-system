@@ -12,13 +12,13 @@
     {{/each}}
   </div>
   <div class="nsw-feature-tile__links-group">
-    <ul>
-    {{#each linklist}}
-      {{#if-equals @index "5"}}</ul><ul>{{/if-equals}}
+    <ul {{#if double}}class="nsw-feature-tile__double-list"{{/if}}>
+    {{#each linklist}}      
       <li>
         <a href="{{url}}" class="nsw-feature-tile__link">
           <span class="link-text">{{text}}</span>{{#if new}} <sup class="new-text">NEW</sup>{{/if}}
-        </a></li>
+        </a>
+      </li>
     {{/each}}
     </ul>
   </div>
