@@ -1,8 +1,7 @@
-.nsw-bg-image,
-.nsw-bg-white,
-.nsw-bg-light-10,
-.nsw-bg-light-20,
-.nsw-bg-light-40 {
+.nsw-section--white,
+.nsw-section--light-10,
+.nsw-section--light-20,
+.nsw-section--light-40 {
   padding: rem($grid-gutters*2) 0;
 
   @include breakpoint('md') {
@@ -10,24 +9,28 @@
   }
 }
 
-.nsw-bg-image {
+.nsw-section--image {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+
+  @include breakpoint('md') {
+    padding: rem($grid-gutters*4) 0;
+  }
 }
 
-.nsw-bg-white {
+.nsw-section--white {
   background-color: $white;
 }
 
-.nsw-bg-light-10 {
+.nsw-section--light-10 {
   background-color: $light10;
 }
 
-.nsw-bg-light-20 {
+.nsw-section--light-20 {
   background-color: $light20;
 }
 
-.nsw-bg-light-40 {
+.nsw-section--light-40 {
   background-color: $light40;
 }
