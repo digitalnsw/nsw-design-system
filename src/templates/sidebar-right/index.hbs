@@ -1,46 +1,82 @@
 ---
 title: Two column - Sidebar right align
 model:
-    nav-basic: ../../components/main-navigation/main-navigation.json
-    nav-mega: ../../components/main-navigation/mega-navigation.json
-    breadcrumbs: ../../components/breadcrumbs/breadcrumbs.json
-    card-media: ../../components/card/card-simple.json
-    link-list: ../../components/link-list/link-list.json
-    footer: ../../patterns/footer/footer.json
+  nav-basic: ../../components/main-navigation/json/main-navigation.json
+  nav-mega: ../../components/main-navigation/json/mega-navigation.json
+  breadcrumbs: ../../components/breadcrumbs/json/breadcrumbs.json
+  tags: ../../components/tags/json/tags-link.json
+  callout: ../../components/callout/json/callout-all-2.json
+  link-list: ../../components/link-list/json/link-list-3.json
+  card-blog-1: ../../components/card/json/card-blog-1.json
+  card-blog-2: ../../components/card/json/card-blog-2.json
+  card-blog-3: ../../components/card/json/card-blog-3.json
+  footer: ../../components/footer/json/footer.json
 ---
 
 {{>_header content="#content" nav="#main-navigation"}}
 {{>_main-navigation model.nav-basic}}
-<div class="nsw-container">
+<div class="nsw-container nsw-p-bottom-xs">
   {{>_breadcrumbs model.breadcrumbs}}
 </div>
-<div class="nsw-container nsw-layout nsw-layout--sidebar-right">
-  <main id="content" class="nsw-layout__content">
-    <div class="nsw-wysiwyg-content">
-      <h1>Lorem Ipsum.</h1>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum pharetra consequat massa, nec ullamcorper dolor tincidunt laoreet. Quisque at dolor vel eros vulputate mollis. Nunc massa nisi, mattis ac posuere a, efficitur quis libero. Ut ornare mauris vel diam accumsan dapibus. Curabitur congue porta dignissim. Nulla <a href="#">aliquet augue nec</a> posuere viverra. Mauris gravida augue sit amet sapien imperdiet, at fermentum felis fermentum. Curabitur interdum elit sit amet blandit iaculis. Mauris vulputate auctor leo et lobortis. Curabitur id neque vel ex efficitur pretium eget non odio.</p>
-    </div>
 
-    <div class="nsw-grid nsw-m-top-md">
-      <div class="nsw-col nsw-col--third">{{>_card model.card-media}}</div>
-      <div class="nsw-col nsw-col--third">{{>_card model.card-media}}</div>
-      <div class="nsw-col nsw-col--third">{{>_card model.card-media}}</div>
-    </div>
+<div class="nsw-container nsw-p-top-sm nsw-p-bottom-lg">
+  <div class="nsw-page-layout">  
+    <main id="content" class="nsw-page-layout__main">
+      <div class="nsw-wysiwyg-content nsw-block">
+        <h1>Scaling a design system</h1>
+        <p>
+          16 Sep 2020<br>
+          <strong>Design System Team</strong>
+        </p>
+        <hr>
+        <div class="nsw-m-bottom-md">
+          {{>_tags model.tags}}
+        </div>
 
-    <div class="nsw-wysiwyg-content nsw-m-top-md nsw-m-bottom-md">
-      <h2>Curabitur congue porta dignissim.</h2>
-      <p>Nunc massa nisi, mattis ac posuere a, efficitur quis libero. Ut ornare mauris vel diam accumsan dapibus. Curabitur congue porta dignissim. Nulla <a href="#">aliquet augue nec</a> posuere viverra. Mauris gravida augue sit amet sapien imperdiet, at fermentum felis fermentum. Curabitur interdum elit sit amet blandit iaculis. Mauris vulputate auctor leo et lobortis. Curabitur id neque vel ex efficitur pretium eget non odio.</p>
-    </div>
+        <p>When we launched the public beta of the NSW Design System in December 2018, we had no idea that what we delivered as a test-and-learn product would become one of the most talked about whole of government projects in NSW. </p>
+        <p>Our upcoming plans for scaling the NSW Design System are addressing the following friction points our users are facing when delivering digital products and services.</p>
 
-    <div class="nsw-callout">
-      <div class="nsw-callout__content">
-      <h4 class="nsw-callout__title">Callout Heading</h4>
-      <p>Filium morte multavit si sine causa, nollem me tamen laudandis maioribus meis corrupisti nec voluptas sit, amet, consectetur, adipisci velit.</p>
+        <ol>
+          <li>Teams with less digital experience within government that are thirsty for knowledge, guidance and a community to help support them delivering digital things.</li>
+          <li>High digital capability teams who wanted to share what they’ve learned, collaborate and contribute back to reduce design and development time and cost as teams build the same components over and over.</li>
+          <li>External service providers delivering products and services for government agencies needing direction and approval on style, brand, templates, patterns and reusable components.</li>
+        </ol>
+
+        <blockquote>
+          Our upcoming plans for scaling the NSW Design System are addressing the following friction points our users are facing when delivering digital products and services. Watch this space, there’s more to come.
+          <cite>The Design System Team</cite>
+        </blockquote>
+
+        <p>Our research has shown what is possible in the delivery of digital products and services across whole of government. We’re excited to take these learnings to the next stage of service delivery. Watch this space!</p>
+      </div>
+
+      {{>_callout model.callout}}
+
+    </main>
+    <div class="nsw-page-layout__sidebar">
+      {{>_link-list model.link-list}}
+    </div>
+  </div>
+</div>
+
+<div class="nsw-section--light-10">
+  <div class="nsw-container">
+    <div class="nsw-page-layout">
+      <div class="nsw-page-layout__main">
+        <h3 class="nsw-section-title">Similar blog posts</h3>
+        <div class="nsw-grid">
+          <div class="nsw-col nsw-col-md-4">
+            {{>_card model.card-blog-1}}
+          </div>
+          <div class="nsw-col nsw-col-md-4">
+            {{>_card model.card-blog-2}}
+          </div>
+          <div class="nsw-col nsw-col-md-4">
+            {{>_card model.card-blog-3}}
+          </div>
+        </div>
       </div>
     </div>
-  </main>
-  <div class="nsw-layout__sidebar">
-    {{>_link-list model.link-list}}
   </div>
 </div>
 

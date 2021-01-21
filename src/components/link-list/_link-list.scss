@@ -1,6 +1,15 @@
 .nsw-link-list {
   @include font-stack('heading');
-  @include nsw-spacing(margin-top, md);
+  @include component-spacing();
+
+  &__title {
+    @include font-size('lg');
+    @include nsw-spacing(padding-bottom, md);
+    
+    @include breakpoint('md') {
+      @include nsw-spacing(padding-bottom, lg);
+    }
+  }
 
   &__list {
     margin: 0;

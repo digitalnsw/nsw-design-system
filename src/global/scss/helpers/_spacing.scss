@@ -2,6 +2,10 @@
   @include helper-classes(margin-top, $spacing-sizes);
 }
 
+.nsw-block {
+  @include component-spacing();  
+}
+
 @each $prop, $abbrev in (margin: nsw-m, padding: nsw-p) {
   @each $size, $lengths in $spacers {
     $length-mobile: rem(map-get($lengths, mobile));

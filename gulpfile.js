@@ -130,10 +130,6 @@ function metalsmithBuild(callback) {
       pattern: config.metalSmith.collection.components.pattern,
       sortBy: sortByAlpha,
     },
-    patterns: {
-      pattern: config.metalSmith.collection.patterns.pattern,
-      sortBy: sortByAlpha,
-    },
     styles: {
       pattern: config.metalSmith.collection.styles.pattern,
       sortBy: sortByAlpha,

@@ -1,4 +1,4 @@
-import SiteSearch from './patterns/header/header'
+import SiteSearch from './components/header/header'
 import Navigation from './components/main-navigation/main-navigation'
 import Accordion from './components/accordion/accordion'
 import ShareThis from './components/social-bar/social-bar'

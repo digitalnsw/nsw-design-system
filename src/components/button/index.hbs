@@ -1,51 +1,86 @@
 ---
 title: Buttons
 ---
-<div style="padding: 1rem">
-  {{>_button-link url="#" style="primary" text="Link"}}
-  {{>_button type="button" style="primary" text="Button"}}
-  {{>_button type="submit" style="primary" text="Submit Button"}}
-  {{>_button type="reset" style="primary" text="Reset Button"}}
-  {{>_button-input type="button" style="primary" text="Input Button"}}
-  {{>_button-input type="submit" style="primary" text="Input Submit Button"}}
-  {{>_button-input type="reset" style="primary" text="Input Reset Button"}}
-</div>
-<div style="padding: 1rem">
-  {{>_button-link url="#" style="highlight" text="Link"}}
-  {{>_button type="button" style="highlight" text="Button"}}
-  {{>_button type="submit" style="highlight" text="Submit Button"}}
-  {{>_button type="reset" style="highlight" text="Reset Button"}}
-  {{>_button-input type="button" style="highlight" text="Input Button"}}
-  {{>_button-input type="submit" style="highlight" text="Input Submit Button"}}
-  {{>_button-input type="reset" style="highlight" text="Input Reset Button"}}
-</div>
-<div style="padding: 1rem">
-  {{>_button-link url="#" style="outline" text="Link"}}
-  {{>_button type="button" style="outline" text="Button"}}
-  {{>_button type="submit" style="outline" text="Submit Button"}}
-  {{>_button type="reset" style="outline" text="Reset Button"}}
-  {{>_button-input type="button" style="outline" text="Input Button"}}
-  {{>_button-input type="submit" style="outline" text="Input Submit Button"}}
-  {{>_button-input type="reset" style="outline" text="Input Reset Button"}}
-</div>
-<div style="padding: 1rem; background: #f4f4f7">
-  {{>_button-link url="#" style="white" text="Link"}}
-  {{>_button type="button" style="white" text="Button"}}
-  {{>_button type="submit" style="white" text="Submit Button"}}
-  {{>_button type="reset" style="white" text="Reset Button"}}
-  {{>_button-input type="button" style="white" text="Input Button"}}
-  {{>_button-input type="submit" style="white" text="Input Submit Button"}}
-  {{>_button-input type="reset" style="white" text="Input Reset Button"}}
-</div>
-<div style="padding: 1rem;">
-  {{>_button type="button" style="primary" text="Button" isDisabled=true}}
-  {{>_button type="submit" style="primary" text="Submit Button" isDisabled=true}}
-  {{>_button type="reset" style="primary" text="Reset Button" isDisabled=true}}
-  {{>_button-input type="button" style="primary" text="Input Button" isDisabled=true}}
-  {{>_button-input type="submit" style="primary" text="Input Submit Button" isDisabled=true}}
-  {{>_button-input type="reset" style="primary" text="Input Reset Button" isDisabled=true}}
-</div>
-<div style="padding: 1rem;">
-  Note: Its not possible to disable links, a class of .disable can be applied for the visual look<br />
-  but that doesnt prevent click or keyboard events. Suggestion is to not disable links
-</div>
+
+<main>
+  <div class="nsw-section--white">
+    <div class="nsw-container">
+      <div class="nsw-page-layout">
+        <div class="nsw-page-layout__main">
+          <div class="nsw-grid">
+            <div class="nsw-col">
+              <h2 class="nsw-section-title">Primary</h2>
+              {{>_button-link url="#" style="primary" text="Link"}}
+              {{>_button type="button" style="primary" text="Button"}}
+              {{>_button type="submit" style="primary" text="Submit Button"}}
+              {{>_button type="reset" style="primary" text="Reset Button"}}
+              {{>_button-input type="button" style="primary" text="Input"}}
+              {{>_button-input type="submit" style="primary" text="Input Submit"}}
+              {{>_button-input type="reset" style="primary" text="Input Reset"}}
+            </div>
+            <div class="nsw-col">
+              <h2 class="nsw-section-title">Highlight</h2>
+              {{>_button-link url="#" style="highlight" text="Link"}}
+              {{>_button type="button" style="highlight" text="Button"}}
+              {{>_button type="submit" style="highlight" text="Submit Button"}}
+              {{>_button type="reset" style="highlight" text="Reset Button"}}
+              {{>_button-input type="button" style="highlight" text="Input"}}
+              {{>_button-input type="submit" style="highlight" text="Input Submit"}}
+              {{>_button-input type="reset" style="highlight" text="Input Reset"}}
+            </div>
+            <div class="nsw-col">
+              <h2 class="nsw-section-title">Outline</h2>
+              {{>_button-link url="#" style="outline" text="Link"}}
+              {{>_button type="button" style="outline" text="Button"}}
+              {{>_button type="submit" style="outline" text="Submit Button"}}
+              {{>_button type="reset" style="outline" text="Reset Button"}}
+              {{>_button-input type="button" style="outline" text="Input"}}
+              {{>_button-input type="submit" style="outline" text="Input Submit"}}
+              {{>_button-input type="reset" style="outline" text="Input Reset"}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="nsw-section--light-40">
+    <div class="nsw-container">
+      <div class="nsw-page-layout">
+        <div class="nsw-page-layout__main">
+          <div class="nsw-grid">
+            <div class="nsw-col">
+              <h2 class="nsw-section-title">White</h2>
+              {{>_button-link url="#" style="white" text="Link"}}
+              {{>_button type="button" style="white" text="Button"}}
+              {{>_button type="submit" style="white" text="Submit Button"}}
+              {{>_button type="reset" style="white" text="Reset Button"}}
+              {{>_button-input type="button" style="white" text="Input"}}
+              {{>_button-input type="submit" style="white" text="Input Submit"}}
+              {{>_button-input type="reset" style="white" text="Input Reset"}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="nsw-section--white">
+    <div class="nsw-container">
+      <div class="nsw-page-layout">
+        <div class="nsw-page-layout__main">
+          <div class="nsw-grid">
+            <div class="nsw-col">
+              <h2 class="nsw-section-title">Disabled</h2>
+              <p><strong>Note:</strong> Its not possible to disable links, a class of .disable should only be applied to buttons and inputs</p>
+              {{>_button type="button" style="primary" text="Button" isDisabled=true}}
+              {{>_button type="submit" style="primary" text="Submit Button" isDisabled=true}}
+              {{>_button type="reset" style="primary" text="Reset Button" isDisabled=true}}
+              {{>_button-input type="button" style="primary" text="Input" isDisabled=true}}
+              {{>_button-input type="submit" style="primary" text="Input Submit" isDisabled=true}}
+              {{>_button-input type="reset" style="primary" text="Input Reset" isDisabled=true}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

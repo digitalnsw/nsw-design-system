@@ -3,16 +3,50 @@ title: Styleguide
 layout: layout.hbs
 ---
 
-<div class="nsw-container nsw-layout nsw-wysiwyg-content">
-  <div class="nsw-layout__content nsw-m-bottom-lg">
-		<h1>Styleguide</h1>
-		{{#each collections as |child|}}
-	  <h2>{{capitalize @key}}</h2>
-	  <ul>
-	  {{#each child}}
-	    <li><a class="navigation-nav-item" href="{{change-extention path}}" target="_blank">{{title}}</a></li>
-	  {{/each}}
-	  </ul>
-		{{/each}}
-	</div>
-</div>
+{{>_header-digital}}
+
+<main>
+  <div class="nsw-section--white">
+    <div class="nsw-container">
+      <div class="nsw-page-layout">
+        <div class="nsw-page-layout__main">
+        	<div class="nsw-wysiwyg-content">
+						<div class="nsw-grid">
+						  <div class="nsw-row nsw-m-bottom-sm">
+						    <div class="nsw-col">
+								<h1>NSW Digital Design System</h1>
+						    </div>
+						  </div>
+
+						  <div class="nsw-row">
+						    <div class="nsw-col nsw-col-md-6">
+									<h2>Components</h2>
+									<ul>
+										{{#each collections.components}}
+										<li><a class="navigation-nav-item" href="{{change-extention path}}" target="_blank">{{title}}</a></li>
+										{{/each}}
+									</ul>
+							    </div>
+							    <div class="nsw-col nsw-col-md-6">
+									<h2>Styles</h2>
+									<ul>
+										{{#each collections.styles}}
+										<li><a class="navigation-nav-item" href="{{change-extention path}}" target="_blank">{{title}}</a></li>
+										{{/each}}
+									</ul>
+
+									<h2>Demo pages</h2>
+									<ul>
+										{{#each collections.templates}}
+										<li><a class="navigation-nav-item" href="{{change-extention path}}" target="_blank">{{title}}</a></li>
+										{{/each}}
+									</ul>
+						    </div>
+						  </div>
+						</div>
+					</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

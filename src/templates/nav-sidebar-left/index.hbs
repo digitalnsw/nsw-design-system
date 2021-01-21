@@ -1,48 +1,74 @@
 ---
 title: Two column - Side navigation left align (nav hides on mobile)
 model:
-    nav-basic: ../../components/main-navigation/main-navigation.json
-    nav-mega: ../../components/main-navigation/mega-navigation.json
-    breadcrumbs: ../../components/breadcrumbs/breadcrumbs.json
-    side-navigation: ../../components/side-navigation/side-navigation.json
-    card-media: ../../components/card/card-simple.json
-    footer: ../../patterns/footer/footer.json
+  nav-basic: ../../components/main-navigation/json/main-navigation.json
+  breadcrumbs: ../../components/breadcrumbs/json/breadcrumbs.json
+  side-navigation: ../../components/side-navigation/json/side-navigation-level-2.json
+  in-page-navigation: ../../components/in-page-navigation/json/in-page-navigation-2.json
+  accordion: ../../components/accordion/json/accordion-2.json
+  callout: ../../components/callout/json/callout-icon.json
+  tab-navigation: ../../components/tab-navigation/json/tab-navigation-2.json
+  link-list: ../../components/link-list/json/link-list-2.json
+  footer: ../../components/footer/json/footer.json
 ---
 
 {{>_header content="#content" nav="#main-navigation"}}
 {{>_main-navigation model.nav-basic}}
-<div class="nsw-container">
+<div class="nsw-container nsw-p-bottom-xs">
   {{>_breadcrumbs model.breadcrumbs}}
 </div>
 
-<div class="nsw-container nsw-layout nsw-layout--sidebar-left">
-  <div class="nsw-layout__sidebar nsw-layout__sidebar--nav">
-    {{>_side-navigation model.side-navigation}}
-  </div>
-  <main class="nsw-layout__content">
-    <div id="content" class="nsw-wysiwyg-content">
-      <h1>Lorem Ipsum.</h1>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum pharetra consequat massa, nec ullamcorper dolor tincidunt laoreet. Quisque at dolor vel eros vulputate mollis. Nunc massa nisi, mattis ac posuere a, efficitur quis libero. Ut ornare mauris vel diam accumsan dapibus. Curabitur congue porta dignissim. Nulla <a href="#">aliquet augue nec</a> posuere viverra. Mauris gravida augue sit amet sapien imperdiet, at fermentum felis fermentum. Curabitur interdum elit sit amet blandit iaculis. Mauris vulputate auctor leo et lobortis. Curabitur id neque vel ex efficitur pretium eget non odio.</p>
+<div class="nsw-container nsw-p-top-sm nsw-p-bottom-lg">
+  <div class="nsw-page-layout">
+    <div class="nsw-page-layout__sidebar nsw-page-layout__sidebar--desktop">
+      {{>_side-navigation model.side-navigation}}
     </div>
-
-    <div class="nsw-grid nsw-m-top-md">
-      <div class="nsw-col nsw-col--third">{{>_card model.card-media}}</div>
-      <div class="nsw-col nsw-col--third">{{>_card model.card-media}}</div>
-      <div class="nsw-col nsw-col--third">{{>_card model.card-media}}</div>
-    </div>
-
-    <div class="nsw-wysiwyg-content nsw-m-top-md nsw-m-bottom-md">
-      <h2>Curabitur congue porta dignissim.</h2>
-      <p>Nunc massa nisi, mattis ac posuere a, efficitur quis libero. Ut ornare mauris vel diam accumsan dapibus. Curabitur congue porta dignissim. Nulla <a href="#">aliquet augue nec</a> posuere viverra. Mauris gravida augue sit amet sapien imperdiet, at fermentum felis fermentum. Curabitur interdum elit sit amet blandit iaculis. Mauris vulputate auctor leo et lobortis. Curabitur id neque vel ex efficitur pretium eget non odio.</p>
-    </div>
-
-    <div class="nsw-callout">
-      <div class="nsw-callout__content">
-      <h4 class="nsw-callout__title">Callout Heading</h4>
-      <p>Filium morte multavit si sine causa, nollem me tamen laudandis maioribus meis corrupisti nec voluptas sit, amet, consectetur, adipisci velit.</p>
+    <main id="content" class="nsw-page-layout__main">
+      <div class="nsw-wysiwyg-content nsw-block">
+        <h1>Content design</h1>
+        <p class="nsw-intro">Content designers create patterns of content to guide the user and help them achieve their goal.</p>
       </div>
-    </div>
-  </main>
+
+      {{>_in-page-navigation model.in-page-navigation}}
+
+      <div class="nsw-wysiwyg-content nsw-block">
+        <h2 id="ways-of-working">Ways of working</h2>
+        <p>Content design is not copy writing. It may not even be about writing a lot of words. It’s a way of working that starts with the problem you need to resolve for users.</p>
+
+        <h3>Building relationships</h3>
+        <p>Work with others to understand the problem you need to address on behalf of the user. Other people in your team may already be doing that.</p>
+        <p>A content person comes in many guises and you may not be a part of the <a href="#">multidisciplinary product team</a>. While you're gathering evidence about the user, try to build relationships across that product team.</p>
+      </div>
+
+      {{>_accordion model.accordion}}
+
+      <div class="nsw-wysiwyg-content nsw-block">
+        <h2 id="core-skills">Core skills</h2>
+        <p>You may have come to content design from a variety of backgrounds – such as communications, marketing, web editing, copywriting, technical writing, journalism.</p>
+
+        <h3>Plain language</h3>
+        <p>Content designers need to know the basics of <a href="#">good readability</a>. They’re aware how readers scan content. There’s a skill involved in improving content for ease of use. They will know how to create signposts for users, mix up the length of sentences and use active language. They work hard to make the meaning succinct and clear.</p>
+      </div>
+
+      {{>_callout model.callout}}
+
+      <div class="nsw-wysiwyg-content nsw-block">
+        <h2 id="content-design-for-transactions">Content design for transactions</h2>
+        <p>As a content designer, your task is to get the user from A to B in the transaction. </p>
+        <p>When designing content for transactions:  </p>
+        <ul>
+          <li>minimise the user’s chance of error  </li>
+          <li>maximise collaborative teamwork </li>
+          <li>balance business and user needs.  </li>
+        </ul>
+        <p>In this guide we’ve used Service NSW examples. </p>
+      </div>
+
+      {{>_tab-navigation model.tab-navigation}}
+
+      {{>_link-list model.link-list}}
+    </main>
+  </div>
 </div>
 
 {{>_footer model.footer}}

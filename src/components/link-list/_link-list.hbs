@@ -1,15 +1,16 @@
-<div class="nsw-container">
-	  <div class="nsw-link-list">
-      <ul class="nsw-link-list__list">
-         {{#each linkList}}
-            <li class="nsw-link-list__item" >
-              <a class="nsw-link-list__link" href="{{url}}">{{text}}
-                <svg class="nsw-icon nsw-link-list__icon" focusable="false" aria-hidden="true">
-                  <use xlink:href="#arrow"></use>
-                </svg>
-              </a>
-            </li>
-        {{/each}}
-      </ul>
-    </div>
+<div class="nsw-link-list">
+  {{#if title}}
+  <div class="nsw-link-list__title">{{title}}</div>
+  {{/if}}
+  <ul class="nsw-link-list__list">
+     {{#each linkList}}
+        <li class="nsw-link-list__item" >
+          <a class="nsw-link-list__link" href="{{url}}">{{text}}
+            <svg class="nsw-icon nsw-link-list__icon" focusable="false" aria-hidden="true">
+              <use xlink:href="#arrow"></use>
+            </svg>
+          </a>
+        </li>
+    {{/each}}
+  </ul>
 </div>
