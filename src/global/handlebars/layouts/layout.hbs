@@ -28,18 +28,23 @@
     // Replace 'no-js' with 'js' on the html tag
     (function(e){e.className=e.className.replace(/\bno-js\b/,'js')})(document.documentElement);
   </script>
+  <style>
+    .nsw-container {position: relative;} /* to align grid overlay */
+  </style>
 </head>
 
 <body {{#if example}}class="nsw-ds-example"{{/if}}>
   {{>_header-digital-full}}
-  <div class="nsw-grid nsw-m-none" style="margin:0;">
+  <div class="nsw-grid nsw-m-none" style="margin:0; /* helpers don't override grid */">
     <div class="nsw-col-3 nsw-col">
       {{>_side-navigation-docs}}
     </div>
-    <div class="nsw-p-none nsw-col-9 nsw-col" style="padding:0;">
+    <div class="nsw-p-none nsw-col-9 nsw-col" style="padding:0; /* helpers don't override grid */">
       <div class="nsw-docs-content-header nsw-bg--light-10 nsw-p-x-md nsw-p-y-xs">
           <h1>{{ title }}</h1>
-          <p>Testing description</p>
+          {{#if component.description}}
+            <p>{{ component.description }}</p>
+          {{/if}}
       </div>
       <div>
         {{>_tabbed-content-docs}}
