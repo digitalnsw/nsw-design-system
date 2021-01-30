@@ -141,7 +141,6 @@ function metalsmithBuild(callback) {
   }))
   metalsmith.use(inplace(config.metalSmith.inplace))
   metalsmith.use(dataLoader(config.metalSmith.tabsData))
-  metalsmith.use(dataLoader(config.metalSmith.docsData))
   metalsmith.use(layouts(config.metalSmith.layouts))
   metalsmith.use(cleanBuild)
   metalsmith.build((err) => {
