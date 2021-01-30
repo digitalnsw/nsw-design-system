@@ -11,9 +11,7 @@
   <link rel="icon" href="/favicon.ico">
   <link rel="stylesheet" href="/css/main.css">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/default.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/xml.min.js"></script>  <script>
+  <script>
     // SVG Sprite Loader
     var svgAjax = new XMLHttpRequest();
     svgAjax.open("GET", "../../assets/svg/sprite.svg", true);
@@ -31,25 +29,8 @@
 </head>
 
 <body {{#if example}}class="nsw-ds-example"{{/if}}>
-  {{>_header-digital-full}}
-  <div class="nsw-grid nsw-m-none" style="margin:0;">
-    <div class="nsw-col-3 nsw-col">
-      {{>_side-navigation-docs}}
-    </div>
-    <div class="nsw-p-none nsw-col-9 nsw-col" style="padding:0;">
-      <div class="nsw-docs-content-header nsw-bg--light-10 nsw-p-x-md nsw-p-y-xs">
-          <h1>{{ title }}</h1>
-          <p>Testing description</p>
-      </div>
-      <div>
-        {{>_tabbed-content-docs}}
-      </div>
-    </div>
-  </div>
+  {{{ contents }}}
   <script src="/js/main.js"></script>
-  <script>
-    window.NSW.initSite()
-    hljs.initHighlightingOnLoad();
-</script>
+  <script>window.NSW.initSite()</script>
 </body>
 </html>

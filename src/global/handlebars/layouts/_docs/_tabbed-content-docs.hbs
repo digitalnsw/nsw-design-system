@@ -1,0 +1,28 @@
+<div class="nsw-tabs js-tabs">
+  <div class="nsw-p-left-md nsw-bg--light-10">
+    <ul class="nsw-tabs__list">
+      <li class="nsw-tabs__list-item">
+        <a href="#demosection" class="nsw-tabs__link">Interactive demo</a>
+      </li>
+      <li class="nsw-tabs__list-item">
+        <a href="#codesection" class="nsw-tabs__link">Code</a>
+      </li>
+      {{#each tabitems}}
+      <li class="nsw-tabs__list-item">
+        <a href="#{{urlHash}}" class="nsw-tabs__link">{{title}}</a>
+      </li>
+      {{/each}}
+    </ul>
+  </div>
+  <section id="demosection" class="nsw-tabs__content">
+    {{{contents}}}
+  </section>
+  <section id="codesection" class="nsw-tabs__content">
+    <pre><code class="html">{{contents}}</code></pre>
+  </section>
+  {{#each tabitems}}
+  <section id="{{urlHash}}" class="nsw-tabs__content">
+    {{{content}}}
+  </section>
+  {{/each}}
+</div>
