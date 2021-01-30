@@ -1,4 +1,4 @@
-name: build-deploy-staging
+name: build-deploy-gh-pages
 on:
   push:
     branches:
@@ -7,7 +7,7 @@ on:
   pull_request:
     types: [assigned, opened, synchronize, reopened]
 jobs:
-  build-staging:
+  build-docs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -22,8 +22,8 @@ jobs:
           path: |
             dist
 
-  test-staging:
-    needs: build-staging
+  test-docs:
+    needs: build-docs
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -42,8 +42,8 @@ jobs:
           build-directory: "dist"
         env:
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
-  deploy-staging:
-    needs: test-staging
+  deploy-docs:
+    needs: test-docs
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
