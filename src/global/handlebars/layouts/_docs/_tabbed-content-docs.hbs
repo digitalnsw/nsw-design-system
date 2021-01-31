@@ -1,9 +1,9 @@
 <div class="nsw-tabs js-tabs">
   <div class="nsw-p-left-md nsw-bg--light-10">
     <ul class="nsw-tabs__list">
-      {{#each tabs}}
+      {{#each (lookup tabcontent component.folder)}}
       <li class="nsw-tabs__list-item">
-        <a href="#{{@key}}Section" class="nsw-tabs__link">{{@key}}</a>
+        <a href="#section{{stats.ino}}" class="nsw-tabs__link">{{label}}</a>
       </li>
       {{/each}}
       <li class="nsw-tabs__list-item">
@@ -14,9 +14,9 @@
       </li>
     </ul>
   </div>
-  {{#each tabs}}
-  <section id="{{@key}}Section" class="nsw-tabs__content">
-    {{{ this }}}
+  {{#each (lookup tabcontent component.folder)}}
+  <section id="section{{stats.ino}}" class="nsw-tabs__content">
+    {{{contents}}}
   </section>
   {{/each}}
   <section id="demosection" class="nsw-tabs__content">

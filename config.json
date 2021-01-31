@@ -35,7 +35,7 @@
   },
   "metalSmith": {
     "src": "./src/",
-    "watch": ["./src/**/*.hbs", "./src/**/*.json", "./src/**/*.yml"],
+    "watch": ["./src/**/*.hbs", "./src/**/*.json", "./src/**/*.md"],
     "build": "./dist/",
     "metadata": {
       "title": "Digital NSW Design System",
@@ -80,6 +80,9 @@
       },
       "pages": {
         "pattern": ["pages/**/*.hbs", "!pages/**/_*.hbs"]
+      },
+      "tabcontent": {
+        "pattern": "**/:item/content/*"
       }
     },
     "inplace": {
