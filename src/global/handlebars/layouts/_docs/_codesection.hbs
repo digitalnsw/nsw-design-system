@@ -1,0 +1,23 @@
+<div class="code-section" style="border:1px solid red;">
+  <div class="ui-demo">
+    {{> @partial-block }}
+  </div>
+  <div class="ui-dev-demo">
+      <code class="html" id="thecode">
+
+      </code>
+  </div>
+
+</div>
+<script>
+function escapeHtml(unsafe) {
+  return unsafe
+       .replace(/&/g, "&amp;")
+       .replace(/</g, "&lt;")
+       .replace(/>/g, "&gt;")
+       .replace(/"/g, "&quot;")
+       .replace(/'/g, "&#039;");
+}
+var x = document.getElementById("thecode");
+x.innerHTML = escapeHtml({{> @partial-block }});
+</script>
