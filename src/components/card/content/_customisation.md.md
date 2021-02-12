@@ -5,20 +5,10 @@ layout: partial.hbs
 title: _customisation.md
 
 ---
-# Customisation
+## Customisation
 
-Content TBD
+By default the colour of the highlight bar of the Card pattern is NSW Primary Red. The highlight bar can be changed to your brand colour, if brand exemption has been approved. Ensure your colour meet accessibility contrast ratio requirements, you can colour checkers to Test Accessibility.
 
-Do:
+You will need to change the nsw-primary-highlight colour in the _settings.scss file. Once an override colour is selected in the Design System, the NSW Primary Red will be replaced with the colour selected.
 
-* Check it's use with the design system
-* Modify the pattern if there's a user need
-* Test with the simplest version first
-
-Do not:
-
-* Use the pattern without testing it first
-
-## Accessibility
-
-Content TBD
+\** Add example **
