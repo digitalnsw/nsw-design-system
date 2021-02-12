@@ -1,20 +1,27 @@
 ---
 label: Guidance
-order: 1
+order: "1"
 layout: partial.hbs
+
 ---
-# Using this pattern
+## Guidance
 
-Content TBD
+Direction links show users how to navigate through a page or process. The direction of the arrow provides a visual cue as to the direction, which is supported by the text.
 
-Do:
-- Check it's use with the design system
-- Modify the pattern if there's a user need
-- Test with the simplest version first
+### When to use this component 
 
-Do not:
-- Use the pattern without testing it first
+Use direction links to suggest the direction:
+
+* up or down a page
+* through a process
+* back to main content
+
+### How this component works
+
+Direction links have arrows to help users quickly understand what will happen when they click on a link. They help support the mental model the user has of moving through a flow, or around a page.
+
+Direction links comprise of bold text and an arrow indicating the direction.
 
 ## Accessibility
 
-Content TBD
+All components are responsive and meet WCAG 2.1 AA accessibility guidelines.
