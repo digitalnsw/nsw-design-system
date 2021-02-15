@@ -10,9 +10,9 @@ Tables provide a structured way to display information in rows and columns that 
 
 ### When to use this component
 
-Use tables to display large data sets that share common attributes and to logically structure content and make it easier to scan, sort and compare.
+Use tables to display large data sets that share common attributes to make it easier for users to scan, sort and compare.
 
-Do: 
+Do:
 
 * Left align table contents with the exception of numerical data, to facilitate easy scanning.
 * Right align numerical data and apply mono-spacing for easier scanning and comparison.
@@ -20,7 +20,7 @@ Do:
 * Use a caption to describe the table's contents. The caption may be displayed at the top if required.
 * Use borders to increase readability of content-dense tables.
 * Favour wrapping over truncating content. Multiple items starting with the same word may appear the same when truncated.
-* Customise the table width for greater legibility. Tables with sparse, widely separated data are hard to scan and read. 
+* Customise the table width for greater legibility. Tables with sparse, widely separated data are hard to scan and read.
 
 ### When not to use this component
 
