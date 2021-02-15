@@ -1,6 +1,6 @@
 ---
 label: Guidance
-order: "1"
+order: "4"
 layout: partial.hbs
 
 ---
