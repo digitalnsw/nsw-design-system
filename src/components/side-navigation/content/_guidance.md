@@ -1,20 +1,19 @@
 ---
 label: Guidance
-order: 1
+order: "1"
 layout: partial.hbs
+
 ---
-# Using this pattern
+## Guidance
 
 Content TBD
 
-Do:
-- Check it's use with the design system
-- Modify the pattern if there's a user need
-- Test with the simplest version first
+When to use this component
 
-Do not:
-- Use the pattern without testing it first
+When not to use this component
+
+How this component works
 
 ## Accessibility
 
-Content TBD
+All components are responsive and meet WCAG 2.1 AA accessibility guidelines.
