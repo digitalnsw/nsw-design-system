@@ -10,7 +10,7 @@ Breadcrumbs show the location of a page, in relation to its parent pages, and al
 
 ### When to use this pattern
 
-Use breadcrumbs to give users context and a progressive sense of place. This helps the user to understand the site structure and facilitates discovery if they’ve landed on the page using search.
+Breadcrumbs are a complementary way to navigate back through the site architecture. Use breadcrumbs to give users context and a progressive sense of place. This helps the user to understand the site structure and facilitates discovery if they’ve landed on the page using search.
 
 Do:
 
@@ -24,12 +24,10 @@ Do not use for progressive flows such as wizards.
 
 ### How this component works
 
-Breadcrumbs show the current page location in the context of its parent pages, starting with the home link. The parent pages use link styling and can be used to navigate a user back to a parent page. The label of the user’s current page is not a link to indicate that user's current location. 
+Breadcrumbs show the current page location in the context of its parent pages, starting with the home link. The parent pages use link styling and can be used to navigate a user back to a parent page. The label of the user’s current page is not a link to indicate the user's current location.
 
 For mobile resolutions (under 768px) the breadcrumb shows a link to the immediate parent and current page only.
 
 ## Accessibility
 
-Content TBD
-
-Breadcrumbs are a complementary way to navigate back through the site architecture.
+All components are responsive and meet WCAG 2.1 AA accessibility guidelines.
