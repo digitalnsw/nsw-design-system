@@ -20,13 +20,16 @@ Use tags to:
 
 Users often confuse tags as buttons. Conduct user testing to make sure the way you use them is not causing confusion.
 
+### When not to use this component
+
+Do not:
+
+* Use to initiate an action, consider buttons
+* Use to link to page content, consider text links
+
 ### How this component works
 
-Tags are designed to look button-like, but are visually distinct from regular buttons. 
-
-Each tag links users to a listing of all the content, or filters content, with that specific keyword or phrase. 
-
-Clicking on a tag takes the user to a list page of all items tagged with that keyword or phrase. Tags can also be used to filter content on a page.
+Each tag links users to a listing of all the content, or filters content, with that specific keyword or phrase.
 
 ## Accessibility
 
