@@ -20,11 +20,11 @@ Do:
 
 ### When not to use this component
 
-Global alerts are purposefully created not initiated by a user interaction or system event. 
+Do not display in response to an action initiated by a user interaction or system event.
 
 ### How this component works
 
-Global alerts are designed to capture the attention of the user in a deliberately intrusive way.  They persist over a session, contain the alert text and optional buttons, and are dismissible by the user by clicking the close icon.  
+Global alerts are designed to capture the attention of the user in a deliberately intrusive way. They persist over a session, contain the alert text with an optional call to action, and are dismissible by the user by clicking the close icon.
 
 ## Accessibility
 
