@@ -1,22 +1,16 @@
 ---
-label: Guidance
+label: Customisation
 order: "1"
 layout: partial.hbs
 title: _customisation
 
 ---
-## Guidance
+## Customisation
 
-The in-page nav (or page contents as it is sometimes called) is placed above main content of a page and provides navigation to individual anchor links located in the main content.
+The highlight bar can be changed to your brand colour, if brand exemption has been approved.
 
-### When to use this component
+You will need to change the nsw-primary-highlight colour in the _settings.scss file.
 
-Use when there are multiple section on a page to helps users scan the section names and navigate to different sections of the page.
+    $nsw-primary-highlight: #D7153A !default;
 
-### How this component works
-
-Place at the top of the page before the main content. The lefthand highlight is intended to visually separate the component from the actual content on a page and bind the elements together.
-
-## Accessibility
-
-All components are responsive and meet WCAG 2.1 AA accessibility guidelines.
+\** Add example**
