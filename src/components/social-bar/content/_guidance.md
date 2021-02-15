@@ -1,20 +1,26 @@
 ---
 label: Guidance
-order: 1
+order: "1"
 layout: partial.hbs
+
 ---
-# Using this pattern
+## Guidance
 
-Content TBD
+The social bar allow users to share something of interest via social media.
 
-Do:
-- Check it's use with the design system
-- Modify the pattern if there's a user need
-- Test with the simplest version first
+### When to use this component
 
-Do not:
-- Use the pattern without testing it first
+Use to encourage users to share links to pages that may be of interest to their social network.
+
+Do: 
+
+* Ensure URLs are shareable and will return the user to the relevant page.
+* Make sure the shareable web address is readable and reflects to the content.
+
+### How this component works
+
+The social bar encourages users to share links to pages via 3 popular social mediums and email. Easily recognisable icons are used to show users how they can share the page they are currently on.
 
 ## Accessibility
 
-Content TBD
+All components are responsive and meet WCAG 2.1 AA accessibility guidelines.
