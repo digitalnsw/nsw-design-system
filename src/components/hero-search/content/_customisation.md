@@ -1,22 +1,14 @@
 ---
-label: Guidance
+label: Customisation
 order: "1"
 layout: partial.hbs
 title: _customisation
 
 ---
-# Using this pattern
+## Customisation
 
-Content TBD
+The highlight bar is customisable with your brand colour, where a brand exemption has been approved.
 
-Do:
-- Check it's use with the design system
-- Modify the pattern if there's a user need
-- Test with the simplest version first
+You will need to change the nsw-primary-highlight colour in the _settings.scss file.
 
-Do not:
-- Use the pattern without testing it first
-
-## Accessibility
-
-Content TBD
+    $nsw-primary-highlight: #d7153a !default;
