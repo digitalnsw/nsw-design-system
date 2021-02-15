@@ -6,9 +6,11 @@ layout: partial.hbs
 ---
 ## Guidance
 
-Direction links show users how to navigate through a page or process. The direction of the arrow provides a visual cue as to the direction, which is supported by the text.
+Direction links show users how to navigate through a page or process.
 
-### When to use this component 
+### When to use this component
+
+Direction links have arrows to help users quickly understand what will happen when they click on a link. They help support the mental model the user has of moving through a flow, or around a page.
 
 Use direction links to suggest the direction:
 
@@ -18,9 +20,7 @@ Use direction links to suggest the direction:
 
 ### How this component works
 
-Direction links have arrows to help users quickly understand what will happen when they click on a link. They help support the mental model the user has of moving through a flow, or around a page.
-
-Direction links comprise of bold text and an arrow indicating the direction.
+Direction links comprise of bold text and an arrow indicating the direction. The direction of the arrow provides a visual cue as to the direction, which is supported by the text.
 
 ## Accessibility
 
