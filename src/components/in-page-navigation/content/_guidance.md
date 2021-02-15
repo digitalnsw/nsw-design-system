@@ -1,20 +1,21 @@
 ---
 label: Guidance
-order: 1
+order: "1"
 layout: partial.hbs
+
 ---
-# Using this pattern
+## Guidance
 
-Content TBD
+The in-page nav (or page contents as it is sometimes called) is placed above main content of a page and provides navigation to individual anchor links located in the main content.
 
-Do:
-- Check it's use with the design system
-- Modify the pattern if there's a user need
-- Test with the simplest version first
+### When to use this component
 
-Do not:
-- Use the pattern without testing it first
+Use when there are multiple section on a page to helps users scan the section names and navigate to different sections of the page.
+
+### How this component works
+
+Place at the top of the page before the main content. The lefthand highlight is intended to visually separate the component from the actual content on a page and bind the elements together.
 
 ## Accessibility
 
-Content TBD
+All components are responsive and meet WCAG 2.1 AA accessibility guidelines.
