@@ -41,16 +41,16 @@ There are X ways to use the accordion component. You can use HTML or, if you’r
 
 The accordion requires JavaScript to function. If JavaScript is not available, the content is displayed linearly as headings and content.
 
-**Use clear labels  
-   
-**Accordions hide content, so the labels need to be clear. Ensure the headings used are brief and explicit about what is contained in the hidden panel. Intuitive headings help the user build a clear mental model of the content.
+**Use clear labels**
+
+Accordions hide content, so the labels need to be clear. Ensure the headings used are brief and explicit about what is contained in the hidden panel. Intuitive headings help the user build a clear mental model of the content.
 
 **Do not disable sections**
 
 Accordions can be set open or closed. They can be configured to only allow 1 panel to be open at a time. Do not use with only 1 panel allowed to be open at once, if people need to compare items in different panels.
 
-Disabling controls is normally confusing for users. If there is no content for a section, either remove the section or, if this would be confusing for your users, explain why there is no content when the section is opened.  
-   
+Disabling controls is normally confusing for users. If there is no content for a section, either remove the section or, if this would be confusing for your users, explain why there is no content when the section is opened.
+
 Consider tabs if the user would likely need to flick between content sections.
 
 **Direct the user**
