@@ -1,22 +1,18 @@
 ---
-label: Guidance
+label: Customisation
 order: "1"
 layout: partial.hbs
 title: _customisation
 
 ---
-## Guidance
+## Customisation
 
-Displays across the top of all NSW Government sites.
+### Logos
 
-### When to use this component
+By default, the lock-up is a co-brand of the NSW Government logo and and the department or agency name. If using the default, ensure the NSW Government logo remains the same size and your logo does not exceed 60px in height. The lock-up between the NSW Government logo and your logo must remain the same. See the [logo placement page](https://www.digital.nsw.gov.au/digital-design-system/style/logo) for more details.
 
-The header contains the NSW Government network header, the NSW Government logo, a site name and optional search. To be used for all NSW Government websites, products and services.
+If you have a brand exemption, replace the logo with your own. You need to use a maximum height of 60px.
 
-### How this component works
+### Search
 
-The consistent placement of the network header helps our customers easily trust and identify our websites. The logo further reinforces this and helps to identify which department or agency they're interacting with. The search displays on the right hand side where users expect it to be.
-
-## Accessibility
-
-All components are responsive and meet WCAG 2.1 AA accessibility guidelines.
+The optional search can be omitted if it's not required.
