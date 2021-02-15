@@ -14,7 +14,11 @@ The header contains the NSW Government network header, the NSW Government logo, 
 
 ### How this component works
 
-The consistent placement of the network header helps our customers easily trust and identify our websites. The logo further reinforces this and helps to identify which department or agency they're interacting with. The search displays on the right hand side where users expect it to be.
+The consistent placement of the network header helps our customers easily trust and identify our websites. The logo further reinforces this and helps to identify which department or agency they're interacting with. 
+
+**Search**
+
+The search displays on the right hand side where users expect it to be. The optional search can be omitted if it's not required.
 
 ## Accessibility
 
