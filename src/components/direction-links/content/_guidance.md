@@ -4,11 +4,9 @@ order: "1"
 layout: partial.hbs
 
 ---
-## Guidance
-
 Direction links show users how to navigate through a page or process.
 
-### When to use this component
+### Using direction links
 
 Direction links have arrows to help users quickly understand what will happen when they click on a link. They help support the mental model the user has of moving through a flow, or around a page.
 
