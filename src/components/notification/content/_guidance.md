@@ -8,7 +8,7 @@ In-page notifications are used to contextually inform users of important informa
 
 ## Using in-page notifications
 
-Use In-page notifications to attract the user's attention. Notifications are often displayed following a user interaction or system event. The level of attention is dependent on the notifications importance, the notification types are:
+Use in-page notifications to attract the user's attention. Notifications are often displayed following a user interaction or system event. The level of attention is dependent on the notifications importance, the notification types are:
 
 **Information notification**
 
