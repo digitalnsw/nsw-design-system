@@ -4,11 +4,9 @@ order: "1"
 layout: partial.hbs
 
 ---
-## Guidance
-
 Cards group related content or tasks to make it easier for users to scan, read, and find information.
 
-### When to use this component/pattern
+## Using cards
 
 Use card layouts to present a high-level summary of content related to a single topic.
 
@@ -29,7 +27,7 @@ Do not:
 * Add inline text links, the card itself is clickable and should link to a single piece of information, consider using content blocks in this instance
 * Use a single card component on its own
 
-### When not to use this component/pattern
+### When to avoid
 
 Cards should only display enough information to give a user context. Do not use a card layout:
 
