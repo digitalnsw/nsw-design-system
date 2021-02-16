@@ -4,11 +4,9 @@ order: "4"
 layout: partial.hbs
 
 ---
-## Guidance
-
 Tabs are a form of secondary in-page navigation, helping to group different types of content in a limited space.
 
-### When to use this component
+## Using tabs
 
 Tabs allow users to focus on specific content whilst remaining clear on the overall context of the screen. Use tabs to split long content into manageable chunks to avoid overwhelming the user.
 
@@ -25,7 +23,7 @@ Don't:
 * Use tabs within tabs.
 * Display disabled tabs.
 
-### When not to use this component
+### When to avoid
 
 Do not:
 
