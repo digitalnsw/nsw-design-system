@@ -4,11 +4,9 @@ order: "1"
 layout: partial.hbs
 
 ---
-## Guidance
-
 In-page notifications are used to contextually inform users of important information or status of an interaction.
 
-### When to use this component
+## Using in-page notifications
 
 Use In-page notifications to attract the user's attention. Notifications are often displayed following a user interaction or system event. The level of attention is dependent on the notifications importance, the notification types are:
 
@@ -16,7 +14,7 @@ Use In-page notifications to attract the user's attention. Notifications are oft
 
 Designed to be less intrusive or interruptive that the other 3 levels of notification:
 
-* Use for information the user should know, but is not critical. 
+* Use for information the user should know, but is not critical.
 * Use for tips or information which the user can benefit from.
 * Use for messages which don't require too much attention or action.
 * Don't use in response to a user action.
@@ -39,7 +37,7 @@ Designed to be less intrusive or interruptive that the other 3 levels of notific
 * Provide sufficient information on the issue and resolution to fix the issue.
 * Don't use for validation or validation summary.
 
-Do: 
+Do:
 
 * use clear, concise easy to understand language, to minimise cognitive load.
 * display the notifications in context and at an appropriate time.
