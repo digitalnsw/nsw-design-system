@@ -4,11 +4,9 @@ order: "1"
 layout: partial.hbs
 
 ---
-## Guidance
-
 Tables provide a structured way to display information in rows and columns that make it easier for users to scan, sort and compare information.
 
-### When to use this component
+## Using tables
 
 Use tables to display large data sets that share common attributes to make it easier for users to scan, sort and compare.
 
@@ -22,7 +20,7 @@ Do:
 * Favour wrapping over truncating content. Multiple items starting with the same word may appear the same when truncated.
 * Customise the table width for greater legibility. Tables with sparse, widely separated data are hard to scan and read.
 
-### When not to use this component
+### When to avoid
 
 Don’t use the tables to layout content on a page. You can combine other patterns for displaying your content.
 
