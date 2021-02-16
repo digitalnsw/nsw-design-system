@@ -4,11 +4,9 @@ order: "1"
 layout: partial.hbs
 
 ---
-## Guidance
-
 A tag is an interactive element containing a keyword or phrase used to categorise content.
 
-### When to use this component
+## Using tags
 
 Tags help classify content for your users using keywords or phrases. They can also help users search for and find related content quickly and easily.
 
@@ -20,7 +18,7 @@ Use tags to:
 
 Users often confuse tags as buttons. Conduct user testing to make sure the way you use them is not causing confusion.
 
-### When not to use this component
+### When to avoid
 
 Do not:
 
