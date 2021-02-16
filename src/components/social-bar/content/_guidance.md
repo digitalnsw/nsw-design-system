@@ -4,11 +4,9 @@ order: "1"
 layout: partial.hbs
 
 ---
-## Guidance
-
 The social bar allow users to share something of interest via social media.
 
-### When to use this component
+### Using social bar
 
 Use to encourage users to share links to pages that may be of interest to their social network.
 
