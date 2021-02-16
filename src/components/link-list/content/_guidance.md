@@ -4,20 +4,20 @@ order: "1"
 layout: partial.hbs
 
 ---
-# Using link links
+Tagline TBD
+
+## Using link links
 
 Content TBD
 
-Do:
+### When to avoid
 
-* Check it's use with the design system
-* Modify the pattern if there's a user need
-* Test with the simplest version first
+Content TBD
 
-Do not:
+### How this component works
 
-* Use the pattern without testing it first
+Content TBD
 
 ## Accessibility
 
-Content TBD
+All components are responsive and meet WCAG 2.1 AA accessibility guidelines.
