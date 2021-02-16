@@ -4,11 +4,9 @@ order: "1"
 layout: partial.hbs
 
 ---
-## Guidance
+Forms are used to capture data from users.
 
-Forms are used to capture data from users. 
-
-### How this component works
+## Using forms
 
 Forms comprise of the form itself and multiple form inputs. Each form is broken down into one or more fieldsets that groups the form elements into logical chunks that make sense to the user, for example, a delivery address. Form elements are split into two key input types: freeform and selection.
 
@@ -41,7 +39,7 @@ Do
 * **Keep it one column,** multiple columns easily disrupt a user’s vertical momentum
 * **Use field length input constraints,** employ this for fields that have a defined character count like phone numbers and postcodes
 * **Mark required vs. optional form fields,** you should always mark your form fields as “required” or “optional”. You can do this by writing “required” or “optional” in a small font next to your field, or by placing an asterisk next to your required fields
-* **Use top align labels,** users complete top aligned labeled forms at a much higher rate than left-aligned labels. Top aligned labels also translate well on mobile. 
+* **Use top align labels,** users complete top aligned labeled forms at a much higher rate than left-aligned labels. Top aligned labels also translate well on mobile.
 * **Make CTAs descriptive,** state the intent of the action
 * **Specify errors inline,** show the user where the error occurred and provide a reason.
 
