@@ -4,11 +4,9 @@ order: "1"
 layout: partial.hbs
 
 ---
-## Guidance
-
 The main navigation shows users the key areas of your site and helps them to find what they are looking for.
 
-### When to use this component
+## Using main navigation
 
 Use the main navigation to show the top-level detail of your Information Architecture (IA).
 
@@ -20,7 +18,7 @@ You can use the main navigation without the mega menu. In this instance the side
 
 On sites with more than 1 level of navigation, you can provide more context with a mega menu. The mega menu allows you to expand the selected navigation item to show its child pages. If you are using the mega menu, an additional level of your IA is displayed. A chevron indicates when a mega menu is available.
 
-Do: 
+Do:
 
 * make sure labels are clear, logical and predictable.
 
