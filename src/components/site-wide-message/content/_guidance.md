@@ -4,11 +4,9 @@ order: "1"
 layout: partial.hbs
 
 ---
-## Guidance
-
 Global alerts display across the top of the entire site to convey important information to the users.
 
-### When to use this component
+## Using global alerts
 
 Use Global Alerts to attract the attention of the user for important messages, or to encourage an action. They can also be used for messages or actions that are relevant to the entire product or system, not just a feature or page.
 
@@ -18,7 +16,7 @@ Do:
 * Use at the upper most part of the screen, before the masthead.
 * **Reserve the use of the critical alert for circumstances which warrant it.**
 
-### When not to use this component
+### When to avoid
 
 Do not display in response to an action initiated by a user interaction or system event.
 
