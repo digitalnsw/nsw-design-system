@@ -4,18 +4,18 @@ order: "1"
 layout: partial.hbs
 
 ---
-## Guidance
+An accordion is a series of expandable vertical panels, designed to save space on a page by hiding content and revealing it as required. 
 
-An accordion is a series of expandable vertical panels, designed to save space on a page by hiding content and revealing it as required. It is useful for the display of simple content and links. Accordions can work well for people who use a service regularly; who need to perform familiar tasks quickly.
+## Using accordions
 
-### When to use this component
+Accordions can work well for people who use a service regularly, or who need to perform familiar tasks quickly.
 
 Only use an accordion if there’s evidence it’s helpful for users to:
 
 * see an overview of multiple, related sections of content
 * show and hide those sections as needed
 
-### When not to use this component
+### When to avoid
 
 Test your content without an accordion first. Consider if it’s better to:
 
@@ -36,10 +36,6 @@ Do not:
 * use an accordion to shorten a page.
 
 ### How this component works
-
-There are X ways to use the accordion component. You can use HTML or, if you’re using the NSW Design System UI Kit, you can use the Figma library.
-
-The accordion requires JavaScript to function. If JavaScript is not available, the content is displayed linearly as headings and content.
 
 **Use clear labels**
 
