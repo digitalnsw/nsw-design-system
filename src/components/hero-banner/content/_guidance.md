@@ -4,11 +4,9 @@ order: "1"
 layout: partial.hbs
 
 ---
-## Guidance
+The hero pattern uses a simple tagline and description, as well as imagery to call out specific information, or promote an area of the site.
 
-The hero pattern allows you to use a simple tagline and description, as well as imagery to call out specific information, or promote an area of the site.
-
-### When to use this component
+## Using hero banner
 
 Use the hero pattern to promote a product, service or special event, keeping the title and description brief and to the point.
 
@@ -20,12 +18,12 @@ The dark hero is used with light images, to ensure sufficient contrast.
 
 The light hero is used with dark images, to ensure sufficient contrast.
 
-Do: 
+Do:
 
 * ensure the image has the focal point on the right.
 * check that you retain a 'safe space' on the left of the image as you resize your browser through a full range of sizes.
 
-### When not to use this component
+### When to avoid
 
 Do not use for sites or products:
 
