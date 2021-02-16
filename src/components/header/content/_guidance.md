@@ -4,17 +4,19 @@ order: "1"
 layout: partial.hbs
 
 ---
-## Guidance
-
 Displays across the top of all NSW Government sites.
 
-### When to use this component
+## Using header
 
-The header contains the NSW Government network header, the NSW Government logo, a site name and optional search. To be used for all NSW Government websites, products and services.
+To be used for all NSW Government websites, products and services.
+
+The header contains the NSW Government network header, the NSW Government logo, a site name and optional search. 
 
 ### How this component works
 
-The consistent placement of the network header helps our customers easily trust and identify our websites. The logo further reinforces this and helps to identify which department or agency they're interacting with. 
+**Easily identifiable**
+
+The consistent placement of the network header helps our customers easily trust and identify our websites. The logo further reinforces this and helps to identify which department or agency they're interacting with.
 
 **Search**
 
