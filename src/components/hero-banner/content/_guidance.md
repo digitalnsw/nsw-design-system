@@ -10,13 +10,8 @@ The hero pattern uses a simple tagline and description, as well as imagery to ca
 
 Use the hero pattern to promote a product, service or special event, keeping the title and description brief and to the point.
 
-**Dark hero pattern**
-
-The dark hero is used with light images, to ensure sufficient contrast.
-
-**Light hero pattern**
-
-The light hero is used with dark images, to ensure sufficient contrast.
+* **Dark hero pattern** - The dark hero is used with light images, to ensure sufficient contrast.
+* **Light hero pattern** - The light hero is used with dark images, to ensure sufficient contrast.
 
 Do:
 
