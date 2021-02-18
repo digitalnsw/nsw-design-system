@@ -12,8 +12,8 @@ Breadcrumbs are a complementary way to navigate back through the site architectu
 
 Do:
 
-* display in the top left of the main content area above the page title.
-* ensure you use the same labels and casing as the main IA.
+* display in the top left of the main content area above the page title
+* ensure you use the same labels and casing as the main IA
 * use for large deep websites.
 
 ### When to avoid
