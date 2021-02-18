@@ -8,20 +8,20 @@ In-page notifications are used to contextually inform users of important informa
 
 ## Using in-page notifications
 
-Use in-page notifications to attract the user's attention. Notifications are often displayed following a user interaction or system event. The level of attention is dependent on the notifications importance, the notification types are:
+Use in-page notifications to attract the user's attention. Notifications are often displayed following a user interaction or system event. The level of attention is dependent on the importance of the notification. Notification types are:
 
 **Information notification**
 
-Designed to be less intrusive or interruptive that the other 3 levels of notification:
+Designed to be less intrusive or interruptive than other 3 levels of notification:
 
-* Use for information the user should know, but is not critical.
-* Use for tips or information which the user can benefit from.
-* Use for messages which don't require too much attention or action.
-* Don't use in response to a user action.
+* use for information the user should know, but is not critical
+* use for tips or information which the user can benefit from
+* use for messages which don't require too much attention or action
+* don't use in response to a user action.
 
 **Success notification**
 
-* Use to inform the user that an action was performed successfully (e.g. submitting a form or registering an account).
+* use to inform the user that an action was performed successfully (e.g. submitting a form or registering an account).
 
 **Warning notification**
 
