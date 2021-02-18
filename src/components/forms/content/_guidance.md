@@ -34,7 +34,7 @@ Checkbox lists provide the user with a list of available items to choose from. T
 
 Radio lists provide the user with a list of all available items from which a single selection is made. Radio lists are wrapped in a fieldset to make them one logical group.
 
-Do
+##### Do:
 
 * **Keep it one column,** multiple columns easily disrupt a user’s vertical momentum
 * **Use field length input constraints,** employ this for fields that have a defined character count like phone numbers and postcodes
@@ -45,19 +45,19 @@ Do
 
 Do not:
 
-* **Use all caps**
-* **Hide helper text**
+* Use all caps
+* Hide helper text
 
-## How this component works
-
-**Help text**
+##### How this component works  
+  
+Help text
 
 Help text allows form designers to provide users with help to fill in a form element. Use help text to provide additional context, information or as an example to complete a field input.
 
 **Validation**
 
-Validation is used to let the user know when there is an issue with the data they have input. The validation that you input needs to clearly explain to the user what the issue is and what they need to do to address the error.
-
+Validation is used to let the user know when there is an issue with the data they have input. The validation that you input needs to clearly explain to the user what the issue is and what they need to do to address the error.  
+  
 **Organising form elements**
 
 * Differentiate primary from secondary actions
