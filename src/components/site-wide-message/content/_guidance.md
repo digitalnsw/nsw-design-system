@@ -8,9 +8,9 @@ Global alerts display across the top of an entire site to convey important infor
 
 ## Using global alerts
 
-* Global alerts are designed to capture the attention of the user in a deliberately intrusive way
-* Global alerts persist over a session but are user dismissible
-* Global alerts are purposefully created and not initiated by a user interaction or system event
+* global alerts are designed to capture the attention of the user in a deliberately intrusive way
+* global alerts persist over a session but are user dismissible
+* global alerts are purposefully created and not initiated by a user interaction or system event
 
 ### Global alert states
 
