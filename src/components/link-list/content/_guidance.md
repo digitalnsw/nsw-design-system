@@ -6,7 +6,7 @@ layout: partial.hbs
 ---
 Link lists let users navigate to related content.
 
-## Using link links
+## Using link lists
 
 Use link lists to display a list of navigation items to provide a quick way for users to navigate to a content area.
 
@@ -17,7 +17,7 @@ Do:
 
 ## When to avoid
 
-Do not 
+Do not
 
 * use a link list for pages which aren't related as this is likely confuse users.
 * use a link list in a transactional service or a form.
