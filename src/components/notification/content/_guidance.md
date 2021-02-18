@@ -12,7 +12,7 @@ Use in-page notifications to attract the user's attention. Notifications are oft
 
 **Information notification**
 
-Designed to be less intrusive or interruptive than other 3 levels of notification:
+Designed to be less intrusive or interruptive than other levels of notification:
 
 * use for information the user should know, but is not critical
 * use for tips or information which the user can benefit from
