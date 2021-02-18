@@ -4,16 +4,16 @@ order: "1"
 layout: partial.hbs
 
 ---
-The social bar allow users to share something of interest via social media.
+The social bar allows users to share something of interest via social media.
 
 ## Using social bar
 
-Use to encourage users to share links to pages that may be of interest to their social network.
+Use to encourage the sharing of links to pages that may be of interest to the user's social network.
 
 Do:
 
-* Ensure URLs are shareable and will return the user to the relevant page.
-* Make sure the shareable web address is readable and reflects to the content.
+* ensure URLs are shareable and will return the user to the relevant page
+* make sure the shareable web address is readable and reflects the content.
 
 ## How this component works
 
