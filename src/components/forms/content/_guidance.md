@@ -15,23 +15,23 @@ Form elements are split into two key input types:
 * **Freeform inputs** - Free form text inputs are the most used components in forms. Use text fields and text areas for freeform entry. Text fields are used to input a short (single line) amount of freeform text. Text areas are used to input multiple lines of text, for example, a comments field. Use text areas when you expect longer entries.
 * **Selection inputs** - Selection inputs are used to select an option from a predefined list of available options. Selection options may be single-select or multi-select. Use a radio button list or dropdowns for single selections and checkboxes for multi-selections.
 
-#### Dropdown
+### Dropdown
 
 The dropdown pattern, also referred to as a drop list or select list, allows users to select a single option from a list of available options.
 
-#### Single checkbox
+### Single checkbox
 
 Single checkboxes are used to confirm a user's selection or preference like agreeing to terms and conditions or registering for an option.
 
-#### Checkbox list
+### Checkbox list
 
 Checkbox lists provide the user with a list of available items to choose from. The number of items a user can select should be indicated to the user on the page. Checkbox lists are used where multiple selections are permitted. Checkbox lists are wrapped in a fieldset to make them one logical group.
 
-#### Radio list
+### Radio list
 
 Radio lists provide the user with a list of all available items from which a single selection is made. Radio lists are wrapped in a fieldset to make them one logical group.
 
-##### Do:
+Do:
 
 * **Keep it one column,** multiple columns easily disrupt a user’s vertical momentum
 * **Use field length input constraints,** employ this for fields that have a defined character count like phone numbers and postcodes
@@ -45,7 +45,7 @@ Do not:
 * Use all caps
 * Hide helper text
 
-##### How this component works
+## How this component works
 
 Help text
 
