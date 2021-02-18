@@ -15,7 +15,7 @@ Do:
 * display in the top left of the main content area above the page title
 * ensure you use the same labels and casing as the main IA
 
-### When to avoid
+## When to avoid
 
 Do not use the breadcrumbs component on websites with a flat structure, or to show progress through a linear journey or transaction.
 
@@ -23,7 +23,7 @@ Breadcrumb navigation should be regarded as an extra feature and shouldn’t rep
 
 If you’re using other navigational elements on the page, such as a sidebar, consider whether your users need the additional support of breadcrumbs.
 
-### How this component works
+## How this component works
 
 Breadcrumbs are a navigational aid that display a user's location on a website as a row of links, usually located at the top of the page.
 
