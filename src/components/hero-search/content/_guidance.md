@@ -33,19 +33,19 @@ Do not use on very small sites, consider hero banner.
 
 **Placement**
 
-The hero search is placed in a prominent position at the top of the page and provides the user with easy access to a targeted search. An easily recognised search icon is used to help users comprehend the search area. 
+The hero search is placed in a prominent position at the top of the page and provides the user with easy access to a targeted search. An easily recognised search icon is used to help users comprehend the search area.
 
 **Search results**
 
-* Present the most relevant results first.
-* For searches with many results use the pagination pattern and indicate how many results were found.
-* Display a clear message when no results are found and offer other search suggestions whenever possible.
-* Keep the original text in the input field. This facilitates the user's action if they want to make a new search with some modifications in the input.
-* Have smart algorithms that can search for similar terms or can search even with misspelled words.
-* Where appropriate, highlight the search terms in the results.
-* Categorise the search results if they come from different areas (eg. docs, services, apps, tutorials, blogs).
-* Give the user control over their viewing options and ability to sort results (eg. relevancy, popularity, ratings, date).
-* Include enough of a description in the results for users to make a judgement as to whether that particular result is relevant.
+* present the most relevant results first
+* for searches with many results use the pagination pattern and indicate how many results were found
+* display a clear message when no results are found and offer other search suggestions whenever possible.
+* keep the original text in the input field. This facilitates the user's action if they want to make a new search with some modifications in the input.
+* have smart algorithms that can search for similar terms or can search even with misspelled words.
+* where appropriate, highlight the search terms in the results.
+* categorise the search results if they come from different areas (eg. docs, services, apps, tutorials, blogs).
+* give the user control over their viewing options and the ability to sort results (eg. relevancy, popularity, ratings, date).
+* include enough of a description in the results for users to make a judgement as to whether that particular result is relevant.
 
 ## Accessibility
 
