@@ -16,7 +16,7 @@ Use direction links to suggest the direction:
 * through a process
 * back to main content
 
-### How this component works
+## How this component works
 
 Direction links have arrows to help users quickly understand what will happen when they click on a link. They help support the mental model the user has of moving through a flow, or around a page.
 
