@@ -15,7 +15,7 @@ Only use an accordion if there’s evidence it’s helpful for users to:
 * see an overview of multiple, related sections of content
 * show and hide those sections as needed
 
-### When to avoid
+## When to avoid
 
 Test your content without an accordion first. Consider if it’s better to:
 
@@ -35,7 +35,7 @@ Do not:
 * use where important information can be hidden and missed
 * use an accordion to shorten a page.
 
-### How this component works
+## How this component works
 
 **Use clear labels**
 
