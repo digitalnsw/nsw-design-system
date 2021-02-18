@@ -4,11 +4,9 @@ order: "1"
 layout: partial.hbs
 
 ---
-## Guidance
-
 A vertical list of links that shows the user their current position in the site hierarchy and enables them to navigate to other pages.
 
-### When to use this component
+## Using side navigation
 
 Use the side navigation to allow users to find other pages within a section of a site. This will enable the user to see related pages and click though without having to go back.
 
@@ -20,9 +18,9 @@ Single level (or sibling) navigation shows only the pages on the same level of c
 
 If you would like to allow the user to navigate down multiple levels of navigation in the same place, use this pattern. When a new section is selected, the new page will load with any child pages displaying within the hierarchy of the menu.
 
-### How this component works
+## How this component works
 
-The side nav can be used to show multiple levels of navigation. By default it supports three levels of nesting along with an accompanying heading. 
+The side nav can be used to show multiple levels of navigation. By default it supports three levels of nesting along with an accompanying heading.
 
 For visual hierarchy, each level of nesting is indented 16px.
 
