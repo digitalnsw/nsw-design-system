@@ -14,7 +14,7 @@ Cards group information into meaningful sections, providing concise information 
 
 Do:
 
-* Consider and choose text and visual elements carefully. Test your cards with the minimal content and only add additional content or graphics where they give needed context to the user
+* Consider and choose text and visual elements carefully. Test your cards with minimal content and only add additional content or graphics where they give needed context to the user
 * Use headlines that set clear expectations about the content being linked to
 * Use one style of card per module, don't mix and match
 * Feature one piece of information per card
@@ -47,16 +47,16 @@ Cards allow users to scan content in order to find their required information qu
 
 **Content elements**
 
-Consider and choose content elements carefully. Test your cards with the minimal content and only add additional content where they give needed context to the user. Content types in cards include:
+Consider and choose content elements carefully. Test your cards with minimal content and only add additional content where they give needed context to the user. Content types in cards include:
 
-* Headline - Provides snapshot of the content.
+* Headline - Provides a snapshot of the content.
 * Copy - Provides further details where the headline alone may not be sufficient.
 * Date - Indicates how old the content is when this information is important to the user.
-* Tags - Indicates the category of a topic or theme when a user needs to further group content. For example, departments, agencies or services.
+* Tags - Indicates the category of a topic or theme when a user needs to further group content. For example, departments, agencies, or services.
 
 **Images**
 
-Using images in cards allow for different content to stand out and provide additional context. It helps users visualise different pieces of information and quickly distinguish between content to find information easily.
+Using images in cards allows for different content to stand out and provide additional context. It helps users visualise different pieces of information and quickly distinguish between content to find information easily.
 
 Test your visual elements carefully:
 
