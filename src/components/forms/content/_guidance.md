@@ -8,8 +8,23 @@ Forms are used to capture data from users.
 
 ## Using forms
 
-Forms comprise of the form itself and multiple form inputs. Each form is broken down into one or more fieldsets that groups the form elements into logical chunks that make sense to the user, for example, a delivery address.
+Forms comprise of the form itself and multiple form inputs. Each form is broken down into one or more fieldsets that groups the form elements into logical chunks that make sense to the user, for example, a delivery address.  
+  
+Do:
 
+* **Keep it one column,** multiple columns easily disrupt a user’s vertical momentum
+* **Use field length input constraints,** employ this for fields that have a defined character count like phone numbers and postcodes
+* **Mark required vs. optional form fields,** you should always mark your form fields as “required” or “optional”. You can do this by writing “required” or “optional” in a small font next to your field, or by placing an asterisk next to your required fields
+* **Use top align labels,** users complete top aligned labeled forms at a much higher rate than left-aligned labels. Top aligned labels also translate well on mobile.
+* **Make CTAs descriptive,** state the intent of the action
+* **Specify errors inline,** show the user where the error occurred and provide a reason.
+
+Do not:
+
+* Use all caps
+* Hide helper text
+
+  
 Form elements are split into two key input types:
 
 * **Freeform inputs** - Free form text inputs are the most used components in forms. Use text fields and text areas for freeform entry. Text fields are used to input a short (single line) amount of freeform text. Text areas are used to input multiple lines of text, for example, a comments field. Use text areas when you expect longer entries.
@@ -47,20 +62,6 @@ Validation is used to let the user know when there is an issue with the data the
 * Group related information to ensure the user makes sense of the form faster
 * Enable autofill and autocorrect based on common attributes or responses, such as name and email, previously provided on the site or in the browser
 * Use multi-step forms in situations where there are multiple form fields, several of which could be split up into categories (such as “personal”, “shipping”, “billing”, and “payment review”).
-
-**Do:**
-
-* **Keep it one column,** multiple columns easily disrupt a user’s vertical momentum
-* **Use field length input constraints,** employ this for fields that have a defined character count like phone numbers and postcodes
-* **Mark required vs. optional form fields,** you should always mark your form fields as “required” or “optional”. You can do this by writing “required” or “optional” in a small font next to your field, or by placing an asterisk next to your required fields
-* **Use top align labels,** users complete top aligned labeled forms at a much higher rate than left-aligned labels. Top aligned labels also translate well on mobile.
-* **Make CTAs descriptive,** state the intent of the action
-* **Specify errors inline,** show the user where the error occurred and provide a reason.
-
-**Do not:**
-
-* Use all caps
-* Hide helper text
 
 ## Accessibility
 
