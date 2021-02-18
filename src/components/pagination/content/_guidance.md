@@ -1,20 +1,21 @@
 ---
 label: Guidance
-order: 1
+order: "1"
 layout: partial.hbs
+
 ---
-# Using this pattern
+Pagination indicates to a user that a list of items has been split in to multiple pages.
 
-Content TBD
+## Using pagination
 
-Do:
-- Check it's use with the design system
-- Modify the pattern if there's a user need
-- Test with the simplest version first
+Use pagination to separate large lists of content, such as search results or an index, into smaller lists that are easier to interact with.
 
-Do not:
-- Use the pattern without testing it first
+## How this component works
+
+Pagination allows users to see how many pages there are, which page you are currently viewing, and how to navigate to other pages. Users can click the next and back links to navigate. Clicking on a page number will take you to the selected page.
+
+The pattern provides the visual assets required for pagination. The business rules required to display the content will be defined by the individual technology the product or service is being delivered through.
 
 ## Accessibility
 
-Content TBD
+All components are responsive and meet WCAG 2.1 AA accessibility guidelines.
