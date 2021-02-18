@@ -6,9 +6,9 @@ layout: partial.hbs
 ---
 Breadcrumbs help users to understand where they are within a website’s structure.
 
-## Using breadcrumbs
+## Using Breadcrumbs
 
-Use the breadcrumbs component when you need to help users understand and move between the multiple levels of a website.
+Use the Breadcrumbs component when you need to help users understand and move between the multiple levels of a website.
 
 Do:
 
