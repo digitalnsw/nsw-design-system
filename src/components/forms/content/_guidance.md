@@ -10,25 +10,25 @@ Forms are used to capture data from users.
 
 Forms comprise of the form itself and multiple form inputs. Each form is broken down into one or more fieldsets that groups the form elements into logical chunks that make sense to the user, for example, a delivery address.  
   
+Form elements are split into two key input types:
+
+**Freeform inputs** - Free form text inputs are the most used components in forms. Use text fields and text areas for freeform entry. Text fields are used to input a short (single line) amount of freeform text. Text areas are used to input multiple lines of text, for example, a comments field. Use text areas when you expect longer entries.
+
+**Selection inputs** - Selection inputs are used to select an option from a predefined list of available options. Selection options may be single-select or multi-select. Use a radio button list or dropdowns for single selections and checkboxes for multi-selections.  
+  
 Do:
 
-* **Keep it one column,** multiple columns easily disrupt a user’s vertical momentum
-* **Use field length input constraints,** employ this for fields that have a defined character count like phone numbers and postcodes
-* **Mark required vs. optional form fields,** you should always mark your form fields as “required” or “optional”. You can do this by writing “required” or “optional” in a small font next to your field, or by placing an asterisk next to your required fields
-* **Use top align labels,** users complete top aligned labeled forms at a much higher rate than left-aligned labels. Top aligned labels also translate well on mobile.
-* **Make CTAs descriptive,** state the intent of the action
-* **Specify errors inline,** show the user where the error occurred and provide a reason.
+* keep it one column -multiple columns easily disrupt a user’s vertical momentum
+* use field length input constraints - employ this for fields that have a defined character count like phone numbers and postcodes
+* mark required vs. optional form fields - you should always mark your form fields as “required” or “optional”. You can do this by writing “required” or “optional” in a small font next to your field, or by placing an asterisk next to your required fields
+* use top align labels - users complete top aligned labeled forms at a much higher rate than left-aligned labels. Top aligned labels also translate well on mobile.
+* make CTAs descriptive, state the intent of the action
+* specify errors inline, show the user where the error occurred and provide a reason.
 
 Do not:
 
-* Use all caps
-* Hide helper text
-
-  
-Form elements are split into two key input types:
-
-* **Freeform inputs** - Free form text inputs are the most used components in forms. Use text fields and text areas for freeform entry. Text fields are used to input a short (single line) amount of freeform text. Text areas are used to input multiple lines of text, for example, a comments field. Use text areas when you expect longer entries.
-* **Selection inputs** - Selection inputs are used to select an option from a predefined list of available options. Selection options may be single-select or multi-select. Use a radio button list or dropdowns for single selections and checkboxes for multi-selections.
+* use all caps
+* hide helper text
 
 ### Dropdown
 
