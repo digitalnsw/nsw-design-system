@@ -10,11 +10,11 @@ The main navigation shows users the key areas of your site and helps them to fin
 
 Use the main navigation to show the top-level detail of your Information Architecture (IA).
 
-**Default Main Navigation**
+**Default main navigation**
 
 You can use the main navigation without the mega menu. In this instance the side navigation should also be used on sites greater than 1 level deep. This will allow your users to find what they are looking for beyond the top level.
 
-**Mega Menu**
+**Mega menu**
 
 On sites with more than 1 level of navigation, you can provide more context with a mega menu. The mega menu allows you to expand the selected navigation item to show its child pages. If you are using the mega menu, an additional level of your IA is displayed. A chevron indicates when a mega menu is available.
 
