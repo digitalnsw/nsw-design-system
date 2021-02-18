@@ -18,7 +18,7 @@ Do:
 * ensure the image has the focal point on the right.
 * check that you retain a 'safe space' on the left of the image as you resize your browser through a full range of sizes.
 
-### When to avoid
+## When to avoid
 
 Do not use for sites or products:
 
@@ -26,7 +26,7 @@ Do not use for sites or products:
 * where the primary navigation of your users is via search, consider Hero Search
 * when research has shown that users prefer to search rather than browse by navigation, consider Hero Search
 
-### How this component works
+## How this component works
 
 **Placement**
 
