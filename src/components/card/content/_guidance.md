@@ -6,7 +6,7 @@ layout: partial.hbs
 ---
 Cards group related content or tasks to make it easier for users to scan, read, and find information.
 
-## When to use cards
+## Using cards
 
 Use card layouts to present a high-level summary of content related to a single topic.
 
