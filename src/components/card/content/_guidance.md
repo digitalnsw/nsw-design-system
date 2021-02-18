@@ -27,7 +27,7 @@ Do not:
 * Add inline text links, the card itself is clickable and should link to a single piece of information, consider using content blocks in this instance
 * Use a single card component on its own
 
-### When to avoid
+## When to avoid
 
 Cards should only display enough information to give a user context. Do not use a card layout:
 
@@ -35,7 +35,7 @@ Cards should only display enough information to give a user context. Do not use 
 * When the content requires in-line or multiple links
 * When a large amount of text is needed to give users context
 
-### How this component works
+## How this component works
 
 **User interaction**
 
