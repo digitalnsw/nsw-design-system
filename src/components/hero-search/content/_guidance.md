@@ -8,13 +8,13 @@ The hero search allows users to easily and quickly go to the area they are inter
 
 ## Using hero search
 
-Today, people rely more and more on search engines and search to find exactly what they want, without having to learn how an organisation has arranged it's information architecture.
+Today, people rely more and more on search engines and search to find exactly what they want, without having to learn how an organisation has arranged its information architecture.
 
 Use the hero search:
 
-* for product or website homepages, on the top of directories, libraries or lists.
-* for sites or products with large volumes of content.
-* where the primary navigation of your users is via search.
+* for product or website homepages, on the top of directories, libraries, or lists
+* for sites or products with large volumes of content
+* where the primary navigation of your users is via search
 * when research has shown that users prefer to search rather than browse by navigation.
 
 Do:
@@ -33,14 +33,14 @@ Do not use on very small sites, consider hero banner.
 
 **Placement**
 
-The hero search is placed in a prominent position at the top of the page and provides the user with easy access to a targetted search. An easily recognised search icon is used to help users comprehend the search.
+The hero search is placed in a prominent position at the top of the page and provides the user with easy access to a targeted search. An easily recognised search icon is used to help users comprehend the search area. 
 
 **Search results**
 
 * Present the most relevant results first.
 * For searches with many results use the pagination pattern and indicate how many results were found.
 * Display a clear message when no results are found and offer other search suggestions whenever possible.
-* Keep the original text in the input field. This facilitates the user's action if they wants to make a new search with some modifications in the input.
+* Keep the original text in the input field. This facilitates the user's action if they want to make a new search with some modifications in the input.
 * Have smart algorithms that can search for similar terms or can search even with misspelled words.
 * Where appropriate, highlight the search terms in the results.
 * Categorise the search results if they come from different areas (eg. docs, services, apps, tutorials, blogs).
