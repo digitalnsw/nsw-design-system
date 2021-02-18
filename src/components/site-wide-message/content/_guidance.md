@@ -16,9 +16,9 @@ Global alerts display across the top of an entire site to convey important infor
 
 Global alerts are styled according to their purpose:
 
-* **Default alert** - Used to convey non-critical important information
-* **Critical alert** - Used to convey critical information
-* **Light alert** - Used as an alternative to the blue default on sites where blue features prominently
+* **Default alert** - used to convey non-critical important information
+* **Critical alert** - used to convey critical information
+* **Light alert** - used as an alternative to the blue default on sites where blue features prominently.
 
 ### When to use global alerts:
 
