@@ -23,7 +23,7 @@ Don't:
 * Use tabs within tabs.
 * Display disabled tabs.
 
-### When to avoid
+## When to avoid
 
 Do not:
 
@@ -31,7 +31,7 @@ Do not:
 * Use for very long content where the physical tabs become lost, consider breaking content into separate pages
 * Use for content where users are likely to want to compare information across multiple tabs, consider an [accordion](https://www.digital.nsw.gov.au/design-system/component-library/accordion)
 
-### How this component works
+## How this component works
 
 The tab metaphor is based on filing cabinet tabs which are familiar to many users. They allow users to switch between different blocks of content and declutter the UI through progressive disclosure.
 
