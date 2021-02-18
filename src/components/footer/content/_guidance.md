@@ -17,7 +17,7 @@ Do:
 * Only use option section links where they assist the user, otherwise they can be hidden
 * Use a copyright statement that is specific to your agency.
 
-### How this component works
+## How this component works
 
 **Optional Section Links**
 
