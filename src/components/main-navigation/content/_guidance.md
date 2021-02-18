@@ -22,7 +22,7 @@ Do:
 
 * make sure labels are clear, logical and predictable.
 
-### How this component works
+## How this component works
 
 The main navigation is horizontal. It displays at the top of your site. Users can navigate between related sections of content, showing one section at a time. Because the main navigation is a horizontal list, it won’t support a large number of items. When defining your IA, this will need to be taken into consideration.
 
