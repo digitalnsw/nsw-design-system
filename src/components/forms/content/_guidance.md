@@ -48,7 +48,7 @@ Do not:
 * **Use all caps**
 * **Hide helper text**
 
-### How this component works
+## How this component works
 
 **Help text**
 
