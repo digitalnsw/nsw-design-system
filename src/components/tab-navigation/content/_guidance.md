@@ -12,30 +12,30 @@ Tabs allow users to focus on specific content whilst remaining clear on the over
 
 Do:
 
-* Use to conserve space on busy pages.
-* Use to split related but discrete content within a single screen.
-* Use between 2-5 tabs.
-* Use short (preferably single word), easily scannable, unique titles.
-* Order the tabs by importance/relevance to the user, from left to right.
+* use to conserve space on busy pages
+* use to split related but discrete content within a single screen
+* use between 2-5 tabs
+* Use short (preferably single word), easily scannable, unique titles
+* order the tabs by importance/relevance to the user, from left to right.
 
 Don't:
 
-* Use tabs within tabs.
-* Display disabled tabs.
+* use tabs within tabs
+* display disabled tabs.
 
 ## When to avoid
 
 Do not:
 
-* Use for very small (1 paragraph or equivalent) content, consider paragraphs
-* Use for very long content where the physical tabs become lost, consider breaking content into separate pages
-* Use for content where users are likely to want to compare information across multiple tabs, consider an [accordion](https://www.digital.nsw.gov.au/design-system/component-library/accordion)
+* use for very small (1 paragraph or equivalent) content, consider paragraphs
+* use for very long content where the physical tabs become lost, consider breaking content into separate pages
+* use for content where users are likely to want to compare information across multiple tabs, consider an [accordion](https://www.digital.nsw.gov.au/design-system/component-library/accordion)
 
 ## How this component works
 
 The tab metaphor is based on filing cabinet tabs which are familiar to many users. They allow users to switch between different blocks of content and declutter the UI through progressive disclosure.
 
-By default the first tab is selected.
+By default, the first tab is selected.
 
 ## Accessibility
 
