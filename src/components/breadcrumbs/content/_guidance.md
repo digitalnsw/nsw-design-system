@@ -4,29 +4,36 @@ order: "1"
 layout: partial.hbs
 
 ---
-Breadcrumbs show the location of a page, in relation to its parent pages, and allow users to navigate back through these pages with ease.
+Breadcrumbs help users to understand where they are within a website’s structure.
 
 ## Using breadcrumbs
 
-Breadcrumbs are a complementary way to navigate back through the site architecture. Use breadcrumbs to give users context and a progressive sense of place. This helps the user to understand the site structure and facilitates discovery if they’ve landed on the page using search.
+Use the breadcrumbs component when you need to help users understand and move between the multiple levels of a website.
 
 Do:
 
 * display in the top left of the main content area above the page title
 * ensure you use the same labels and casing as the main IA
-* use for large deep websites.
 
 ### When to avoid
 
-Do not use for progressive flows such as wizards.
+Do not use the breadcrumbs component on websites with a flat structure, or to show progress through a linear journey or transaction.
+
+Breadcrumb navigation should be regarded as an extra feature and shouldn’t replace effective primary navigation menus.
+
+If you’re using other navigational elements on the page, such as a sidebar, consider whether your users need the additional support of breadcrumbs.
 
 ### How this component works
 
-**Showing a users location**
+Breadcrumbs are a navigational aid that display a user's location on a website as a row of links, usually located at the top of the page.
 
-Breadcrumbs show the current page location in the context of its parent pages, starting with the home link. The parent pages use link styling and can be used to navigate a user back to a parent page. The label of the user’s current page is not a link to indicate the user's current location.
+Breadcrumbs should:
 
-For mobile resolutions (under 768px) the breadcrumb shows a link to the immediate parent and current page only.
+* start with your ‘home’ page and end with the parent section of the current page
+* display in the top left of the screen’s content area, above the page title
+* reflect the section names of the IA and use chevrons between the names to suggest a visual hierarchy.
+
+For mobile resolutions (under 768px), the breadcrumb shows a link to the immediate parent and current page only.
 
 ## Accessibility
 
