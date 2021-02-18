@@ -4,15 +4,13 @@ order: "1"
 layout: partial.hbs
 
 ---
-## Guidance
-
 The hero search allows users to easily and quickly go to the area they are interested in.
 
-### When to use this component
+## Using hero search
 
 Today, people rely more and more on search engines and search to find exactly what they want, without having to learn how an organisation has arranged it's information architecture.
 
-Use the hero search: 
+Use the hero search:
 
 * for product or website homepages, on the top of directories, libraries or lists.
 * for sites or products with large volumes of content.
@@ -27,11 +25,11 @@ Do not:
 
 * use infield placeholder text.
 
-### When not to use this component
+## When to avoid
 
-Do not use on very small sites. 
+Do not use on very small sites, consider hero banner.
 
-### How this component works
+## How this component works
 
 **Placement**
 
