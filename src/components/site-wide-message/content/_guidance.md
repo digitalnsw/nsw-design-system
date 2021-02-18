@@ -4,17 +4,24 @@ order: "1"
 layout: partial.hbs
 
 ---
-Global alerts display across the top of the entire site to convey important information to the users.
+Global alerts display across the top of an entire site to convey important information to users. 
 
 ## Using global alerts
 
-Use Global Alerts to attract the attention of the user for important messages, or to encourage an action. They can also be used for messages or actions that are relevant to the entire product or system, not just a feature or page.
+Global alerts capture the attention of the user in a deliberately intrusive way. They persist over a session but are user dismissible.
+
+· global alerts are purposefully created and not initiated by a user interaction or system event
+
+Use: 
+
+* to attract the attention of the user for important messages, or to encourage an action
+* for messages or actions that are relevant to the entire product or system, not just a feature or page
 
 Do:
 
 * Use clear, concise easy to understand language, to minimise cognitive load.
 * Use at the upper most part of the screen, before the masthead.
-* **Reserve the use of the critical alert for circumstances which warrant it.**
+* Reserve the use of the critical alert for circumstances which warrant it.
 
 ### When to avoid
 
