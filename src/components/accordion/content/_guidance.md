@@ -4,7 +4,7 @@ order: "1"
 layout: partial.hbs
 
 ---
-An accordion is a series of expandable vertical panels, designed to save space on a page by hiding content and revealing it as required. 
+An accordion is a series of expandable vertical panels, designed to save space on a page by hiding content and revealing it as required.
 
 ## Using accordions
 
