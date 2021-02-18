@@ -8,15 +8,12 @@ Forms are used to capture data from users.
 
 ## Using forms
 
-Forms comprise of the form itself and multiple form inputs. Each form is broken down into one or more fieldsets that groups the form elements into logical chunks that make sense to the user, for example, a delivery address. Form elements are split into two key input types: freeform and selection.
+Forms comprise of the form itself and multiple form inputs. Each form is broken down into one or more fieldsets that groups the form elements into logical chunks that make sense to the user, for example, a delivery address. 
 
-**Freeform inputs**
+Form elements are split into two key input types:
 
-Free form text inputs are the most used components in forms. Use text fields and text areas for freeform entry. Text fields are used to input a short (single line) amount of freeform text. Text areas are used to input multiple lines of text, for example, a comments field. Use text areas when you expect longer entries.
-
-**Selection inputs**
-
-Selection inputs are used to select an option from a predefined list of available options. Selection options may be single-select or multi-select. Use a radio button list or dropdowns for single selections and checkboxes for multi-selections.
+* **Freeform inputs** - Free form text inputs are the most used components in forms. Use text fields and text areas for freeform entry. Text fields are used to input a short (single line) amount of freeform text. Text areas are used to input multiple lines of text, for example, a comments field. Use text areas when you expect longer entries.
+* **Selection inputs** - Selection inputs are used to select an option from a predefined list of available options. Selection options may be single-select or multi-select. Use a radio button list or dropdowns for single selections and checkboxes for multi-selections.
 
 #### Dropdown
 
@@ -48,16 +45,16 @@ Do not:
 * Use all caps
 * Hide helper text
 
-##### How this component works  
-  
+##### How this component works
+
 Help text
 
 Help text allows form designers to provide users with help to fill in a form element. Use help text to provide additional context, information or as an example to complete a field input.
 
 **Validation**
 
-Validation is used to let the user know when there is an issue with the data they have input. The validation that you input needs to clearly explain to the user what the issue is and what they need to do to address the error.  
-  
+Validation is used to let the user know when there is an issue with the data they have input. The validation that you input needs to clearly explain to the user what the issue is and what they need to do to address the error.
+
 **Organising form elements**
 
 * Differentiate primary from secondary actions
