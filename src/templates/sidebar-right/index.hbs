@@ -1,5 +1,5 @@
 ---
-title: Two column - Sidebar right align
+title: Two column - Sidebar on the right
 model:
   nav-basic: ../../components/main-navigation/json/main-navigation.json
   nav-mega: ../../components/main-navigation/json/mega-navigation.json
@@ -54,6 +54,31 @@ model:
 
     </main>
     <div class="nsw-page-layout__sidebar">
+      <div class="nsw-section--box">
+        <form class="nsw-form" action="#">
+          <h4 class="nsw-section-title">Want to stay in touch?</h4>
+          <p>Find out about work happening across NSW Government in the digital space. </p>
+          {{>_text-input
+            id="subscribe-full-name"
+            label="Full name"
+            required=true
+          }}
+          {{>_text-input
+            id="subscribe-email"
+            label="Email"
+            required=true
+          }}
+          <div class="nsw-form-checkbox">
+            {{>_checkbox
+              id="subscribe-tc"
+              name="single-checkbox"
+              label="I have read the information regarding <a href='#'>privacy policy</a>"
+            }}
+          </div>
+          {{>_button-input type="submit" style="primary" text="Submit"}}
+        </form>
+      </div>
+
       {{>_link-list model.link-list}}
     </div>
   </div>
