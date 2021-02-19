@@ -5,6 +5,7 @@ const sass = require('gulp-sass')
 const postcss = require('gulp-postcss')
 const autoprefixer = require('autoprefixer')
 const cssnano = require('cssnano')
+const clear_collections = require("./clear_collections");
 const sourcemaps = require('gulp-sourcemaps')
 const browsersync = require('browser-sync')
 const surge = require('gulp-surge')
@@ -136,6 +137,7 @@ function metalsmithBuild(callback) {
   metalsmith.use(discoverHelpers(config.metalSmith.helpers))
   metalsmith.use(discoverPartials(config.metalSmith.partials))
   metalsmith.use(dataLoader(config.metalSmith.data))
+  metalsmith.use(clear_collections(["components", "patterns", "styles", "templates", "pages"]))
   metalsmith.use(collections({
     components: {
       pattern: config.metalSmith.collection.components.pattern,
@@ -153,6 +155,16 @@ function metalsmithBuild(callback) {
   metalsmith.use(dynamicCollections({
     tabcontent: {
       pattern: config.metalSmith.collection.tabcontent.pattern,
+      refer: false,
+      sortBy: sortByOrder
+    },
+    componentsnav: {
+      pattern: config.metalSmith.collection.componentsnav.pattern,
+      refer: false,
+      sortBy: sortByOrder
+    },
+    stylesnav: {
+      pattern: config.metalSmith.collection.stylesnav.pattern,
       refer: false,
       sortBy: sortByOrder
     }

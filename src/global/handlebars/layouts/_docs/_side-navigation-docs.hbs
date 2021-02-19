@@ -4,7 +4,7 @@
       <span class="nsw-sidenav__heading-link" aria-controls="nav-default">Components</span></h2>
   </div>
   <ul class="nsw-sidenav__list nsw-sidenav__list--level-1">
-    {{#each collections.components}}
+    {{#each collections.componentsnav}}
       <li class="nsw-sidenav__list-item {{#if (or currentPage navitems) }}has-active-children{{/if}}">
         <a href="/{{change-extention path}}" class="nsw-sidenav__link {{#if currentPage}}is-current{{/if}}" {{#if currentPage}}aria-current="page"{{/if}}>
           {{title}}
@@ -17,7 +17,7 @@
       <span class="nsw-sidenav__heading-link" aria-controls="nav-default">Styles</span></h2>
   </div>
   <ul class="nsw-sidenav__list nsw-sidenav__list--level-1">
-    {{#each collections.styles}}
+    {{#each collections.stylesnav}}
       <li class="nsw-sidenav__list-item {{#if (or currentPage navitems) }}has-active-children{{/if}}">
         <a href="/{{change-extention path}}" class="nsw-sidenav__link" {{#if currentPage}}aria-current="page"{{/if}}>
           {{title}}
@@ -25,7 +25,7 @@
       </li>
     {{/each}}
   </ul>
-  <div class="nsw-sidenav__header">
+  <!-- <div class="nsw-sidenav__header">
     <h2 id="templatesTitle" class="nsw-sidenav__heading">
       <span class="nsw-sidenav__heading-link" aria-controls="nav-default">Templates</span></h2>
   </div>
@@ -37,5 +37,5 @@
         </a>
       </li>
     {{/each}}
-  </ul>
+  </ul> -->
 </nav>
