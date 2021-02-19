@@ -156,11 +156,6 @@ function metalsmithBuild(callback) {
       refer: false,
       sortBy: sortByOrder,
     },
-    samplecode: {
-      pattern: config.metalSmith.collection.samplecode.pattern,
-      refer: false,
-      sortBy: sortByAlpha,
-    },
   }))
   metalsmith.use(inplace(config.metalSmith.inplace))
   metalsmith.use(dataLoader(config.metalSmith.tabsData))
