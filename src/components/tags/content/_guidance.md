@@ -1,20 +1,34 @@
 ---
 label: Guidance
-order: 1
+order: "1"
 layout: partial.hbs
+
 ---
-# Using this pattern
+A tag is an interactive element containing a keyword or phrase used to categorise content.
 
-Content TBD
+## Using tags
 
-Do:
-- Check it's use with the design system
-- Modify the pattern if there's a user need
-- Test with the simplest version first
+Tags help classify content for your users using keywords or phrases. They can also help users search for and find related content quickly and easily.
+
+Use tags to:
+
+* categorise content
+* link to related content
+* filter results
+
+Users often confuse tags as buttons. Conduct user testing to make sure the way you use them is not causing confusion.
+
+### When to avoid
 
 Do not:
-- Use the pattern without testing it first
+
+* Use to initiate an action, consider buttons
+* Use to link to page content, consider text links
+
+### How this component works
+
+Each tag links users to a listing of all the content, or filters content, with that specific keyword or phrase.
 
 ## Accessibility
 
-Content TBD
+All components are responsive and meet WCAG 2.1 AA accessibility guidelines.

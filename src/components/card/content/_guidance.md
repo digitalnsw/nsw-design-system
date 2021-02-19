@@ -4,11 +4,9 @@ order: "1"
 layout: partial.hbs
 
 ---
-## Guidance
-
 Cards group related content or tasks to make it easier for users to scan, read, and find information.
 
-### When to use this component/pattern
+## Using cards
 
 Use card layouts to present a high-level summary of content related to a single topic.
 
@@ -16,28 +14,29 @@ Cards group information into meaningful sections, providing concise information 
 
 Do:
 
-* Consider and choose text and visual elements carefully. Test your cards with the minimal content and only add additional content or graphics where they give needed context to the user
-* Use headlines that set clear expectations about the content being linked to
-* Use one style of card per module, don't mix and match
-* Feature one piece of information per card
-* Outline the main idea with the minimal possible information, don't overload with information as the card links to more detail
+* consider and choose text and visual elements carefully. Test your cards with minimal content and only add additional content or graphics where they give needed context to the user
+* use headlines that set clear expectations about the content being linked to
+* use one style of card per module, don't mix and match
+* feature one piece of information per card
+* outline the main idea with the minimal possible information, don't overload with information as the card links to more detail. 
 
 Do not:
 
-* Mix card styles within the same module
-* Overload with information as the card links to more detail
-* Add inline text links, the card itself is clickable and should link to a single piece of information, consider using content blocks in this instance
-* Use a single card component on its own
+* mix card styles within the same module
 
-### When not to use this component/pattern
+  overload with information as the card links to more detail
+* add inline text links, the card itself is clickable and should link to a single piece of information, consider using content blocks in this instance
+* use a single card component on its own. 
+
+## When to avoid
 
 Cards should only display enough information to give a user context. Do not use a card layout:
 
-* To highlight a solo piece of information
-* When the content requires in-line or multiple links
-* When a large amount of text is needed to give users context
+* to highlight a solo piece of information
+* when the content requires in-line or multiple links
+* when a large amount of text is needed to give users context. 
 
-### How this component works
+## How this component works
 
 **User interaction**
 
@@ -49,24 +48,24 @@ Cards allow users to scan content in order to find their required information qu
 
 **Content elements**
 
-Consider and choose content elements carefully. Test your cards with the minimal content and only add additional content where they give needed context to the user. Content types in cards include:
+Consider and choose content elements carefully. Test your cards with minimal content and only add additional content where they give needed context to the user. Content types in cards include:
 
-* Headline - Provides snapshot of the content.
+* Headline - Provides a snapshot of the content.
 * Copy - Provides further details where the headline alone may not be sufficient.
 * Date - Indicates how old the content is when this information is important to the user.
-* Tags - Indicates the category of a topic or theme when a user needs to further group content. For example, departments, agencies or services.
+* Tags - Indicates the category of a topic or theme when a user needs to further group content. For example, departments, agencies, or services.
 
 **Images**
 
-Using images in cards allow for different content to stand out and provide additional context. It helps users visualise different pieces of information and quickly distinguish between content to find information easily.
+Using images in cards allows for different content to stand out and provide additional context. It helps users visualise different pieces of information and quickly distinguish between content to find information easily.
 
 Test your visual elements carefully:
 
-* Only use images where it supports and re-enforces the content to the user
-* Only use images when they can clearly show the difference between content and can be easily identified
-* Do not use images that are not easily identifiable or do not effectively communicate the difference between content
-* Do not use for decorative purposes only
-* Make sure all graphics are readable by screen readers
+* only use images where it supports and re-enforces the content to the user
+* only use images when they can clearly show the difference between content and can be easily identified
+* do not use images that are not easily identifiable or do not effectively communicate the difference between content
+* do not use for decorative purposes only
+* make sure all graphics are readable by screen readers. 
 
 ## Accessibility
 

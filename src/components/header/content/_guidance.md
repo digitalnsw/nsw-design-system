@@ -1,20 +1,15 @@
 ---
 label: Guidance
-order: 1
+order: "1"
 layout: partial.hbs
+
 ---
-# Using this pattern
+The NSW Government network header displays across the top of all NSW Government sites. It helps users see which service they are using.
 
-Content TBD
+## Using header
 
-Do:
-- Check it's use with the design system
-- Modify the pattern if there's a user need
-- Test with the simplest version first
-
-Do not:
-- Use the pattern without testing it first
+The NSW Government network header should be used at the top of all NSW Government websites, products and services. The consistent placement of the network header helps our customers easily trust and identify our websites. The logo further reinforces this and helps to identify which department or agency they're interacting with. The search displays on the right-hand side where users expect it to be.
 
 ## Accessibility
 
-Content TBD
+All components are responsive and meet WCAG 2.1 AA accessibility guidelines.

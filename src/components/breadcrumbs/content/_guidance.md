@@ -4,36 +4,37 @@ order: "1"
 layout: partial.hbs
 
 ---
-## Guidance
+Breadcrumbs help users to understand where they are within a website’s structure.
 
-The breadcrumb shows the location of a page, in relation to its parent pages. It allows users to navigate back through these pages with ease.
+## Using breadcrumbs
 
-### When to use this pattern
-
-Use breadcrumbs to give users context and a progressive sense of place. This helps the user to understand the site structure and facilitates discovery if they’ve landed on the page using search.
+Use the breadcrumbs component when you need to help users understand and move between the multiple levels of a website.
 
 Do:
 
-* Display in the top left of the main content area above the page title.
-* Ensure you use the same labels and casing as the main IA.
-* Use for large deep websites.
+* display in the top left of the main content area above the page title
+* ensure you use the same labels and casing as the main IA
 
-### When not to use this pattern
+## When to avoid
 
-Do not:
+Do not use the breadcrumbs component on websites with a flat structure, or to show progress through a linear journey or transaction.
 
-* Use for progressive flows such as wizards.
+Breadcrumb navigation should be regarded as an extra feature and shouldn’t replace effective primary navigation menus.
 
-### How this component works
+If you’re using other navigational elements on the page, such as a sidebar, consider whether your users need the additional support of breadcrumbs.
 
-Breadcrumbs show the current page location in the context of its parent pages, starting with the home link. 
+## How this component works
 
-Parent pages are visually treated to be easily understood as links. The label of the user’s current page is not a link. Chevrons are used between the labels to suggest a visual hierarchy.
+Breadcrumbs are a navigational aid that display a user's location on a website as a row of links, usually located at the top of the page.
 
-For mobile resolutions (under 768px) the breadcrumb shows a link to the immediate parent and current page only.
+Breadcrumbs should:
+
+* start with your ‘home’ page and end with the parent section of the current page
+* display in the top left of the screen’s content area, above the page title
+* reflect the section names of the IA and use chevrons between the names to suggest a visual hierarchy.
+
+For mobile resolutions (under 768px), the breadcrumb shows a link to the immediate parent and current page only.
 
 ## Accessibility
 
-Content TBD
-
-Breadcrumbs are a complementary way to navigate back through the site architecture.
+All components are responsive and meet WCAG 2.1 AA accessibility guidelines.

@@ -1,6 +1,6 @@
 ---
 label: Customisation
-order: "2"
+order: "4"
 layout: partial.hbs
 title: _customisation.md
 
