@@ -51,6 +51,17 @@
     }
   }
 
+  &__arrow {
+    transform: translateY(-50%) rotate(90deg);
+    position: absolute;
+    top: 50%;
+    right: rem(9px);
+
+    .is-open & {
+      transform: translateY(-50%) rotate(270deg);
+    }
+  }
+
   &__content {
     @include nsw-spacing(padding, md);
     border-left: solid 4px $nsw-primary-blue;

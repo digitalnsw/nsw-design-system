@@ -13,6 +13,7 @@ function createButtons({ textContent }) {
   <svg class="nsw-icon nsw-accordion__icon" focusable="false" aria-hidden="true">
     <use xlink:href="#chevron"></use>
   </svg>
+        <i class="material-icons nsw-accordion__arrow" focusable="false" aria-hidden="true">keyboard_arrow_right</i>
   `)
 
   fragment.appendChild(button)

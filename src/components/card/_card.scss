@@ -68,7 +68,8 @@
 
   &__title,
   &__copy,
-  &__icon {
+  &__icon,
+  &__arrow {
     order: 3;
   }
 
@@ -82,6 +83,19 @@
     @include breakpoint('lg') {
       @include nsw-spacing(bottom, xl);
       @include nsw-spacing(margin, xl none none none);
+    }
+  }
+
+  &__arrow {
+    @include nsw-spacing(margin, md none none none);
+    position: absolute;
+    bottom: rem(13px);
+    left: rem(13px);
+
+    @include breakpoint('lg') {
+      @include nsw-spacing(margin, xl none none none);
+      bottom: rem(29px);
+      left: rem(28px);
     }
   }
 
