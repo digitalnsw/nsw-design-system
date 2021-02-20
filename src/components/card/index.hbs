@@ -15,6 +15,7 @@ model:
   card-news-3: ../../components/card/json/card-news-3.json
 component:
   folder: card
+  description: Cards group related content or tasks to make it easier for users to scan, read, and find information.
 ---
 
 <main>
@@ -23,7 +24,7 @@ component:
       <div class="nsw-page-layout">
         <div class="nsw-page-layout__main">
           <h2 class="nsw-section-title">Headline only</h2>
-          <div class="nsw-grid">
+          {{#> _codesection }}<div class="nsw-grid">
             <div class="nsw-col nsw-col-md-4">
               {{>_card model.card-headline-1}}
             </div>
@@ -33,7 +34,7 @@ component:
             <div class="nsw-col nsw-col-md-4">
               {{>_card model.card-headline-3}}
             </div>
-          </div>
+          </div>{{/_codesection }}
         </div>
       </div>
     </div>
@@ -44,7 +45,7 @@ component:
       <div class="nsw-page-layout">
         <div class="nsw-page-layout__main">
           <h2 class="nsw-section-title">Headline and Copy</h2>
-          <div class="nsw-grid">
+          {{#> _codesection }}<div class="nsw-grid">
             <div class="nsw-col nsw-col-md-4">
               {{>_card model.card-simple-1}}
             </div>
@@ -54,7 +55,7 @@ component:
             <div class="nsw-col nsw-col-md-4">
               {{>_card model.card-simple-3}}
             </div>
-          </div>
+          </div>{{/_codesection }}
         </div>
       </div>
     </div>
@@ -65,7 +66,7 @@ component:
       <div class="nsw-page-layout">
         <div class="nsw-page-layout__main">
           <h2 class="nsw-section-title">With image</h2>
-          <div class="nsw-grid">
+          {{#> _codesection }}<div class="nsw-grid">
             <div class="nsw-col nsw-col-md-4">
               {{>_card model.card-media-1}}
             </div>
@@ -75,7 +76,7 @@ component:
             <div class="nsw-col nsw-col-md-4">
               {{>_card model.card-media-3}}
             </div>
-          </div>
+          </div>{{/_codesection }}
         </div>
       </div>
     </div>
@@ -86,7 +87,7 @@ component:
       <div class="nsw-page-layout">
         <div class="nsw-page-layout__main">
           <h2 class="nsw-section-title">All options</h2>
-          <div class="nsw-grid">
+          {{#> _codesection }}<div class="nsw-grid">
             <div class="nsw-col nsw-col-md-4">
               {{>_card model.card-news-1}}
             </div>
@@ -96,7 +97,7 @@ component:
             <div class="nsw-col nsw-col-md-4">
               {{>_card model.card-news-3}}
             </div>
-          </div>
+          </div>{{/_codesection }}
         </div>
       </div>
     </div>

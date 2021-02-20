@@ -3,6 +3,7 @@ title: Breadcrumbs
 model: json/breadcrumbs.json
 component:
   folder: breadcrumbs
+  description: Breadcrumbs help users to understand where they are within a website’s structure.
 ---
 <div class="nsw-container">
 </div>
@@ -13,10 +14,14 @@ component:
 	    <div class="nsw-page-layout__main">
 	      <div class="nsw-grid">
 	        <div class="nsw-col">
-						{{>_breadcrumbs model}}
+						{{#> _codesection}}{{>_breadcrumbs model}}{{/_codesection}}
 	        </div>
 	      </div>
 	    </div>
 	  </div>
 	</div>
 </div>
+
+<!--sample
+  {{>_breadcrumbs model}}
+endsample-->

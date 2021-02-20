@@ -1,23 +1,20 @@
-<div class="code-section" style="border:1px solid red;">
+<div class="code-section">
   <div class="ui-demo">
     {{> @partial-block }}
   </div>
-  <div class="ui-dev-demo">
-      <code class="html" id="thecode">
-
-      </code>
+  <div class="ui-dev-demo nsw-wysiwyg-content nsw-m-top-sm">
+    <a href="#" class="showHTML nsw-p-xs nsw-m-top-xs nsw-bg--light-10">Show HTML</a>
+    <pre><code class="html"><script>
+    function escapeHtml(unsafe) {
+      return unsafe
+           .replace(/&/g, "&amp;")
+           .replace(/</g, "&lt;")
+           .replace(/>/g, "&gt;")
+           .replace(/"/g, "&quot;")
+           .replace(/'/g, "&#039;");
+    }
+    document.write(escapeHtml(`{{> @partial-block }}`));
+</script></code></pre>
   </div>
 
 </div>
-<script>
-function escapeHtml(unsafe) {
-  return unsafe
-       .replace(/&/g, "&amp;")
-       .replace(/</g, "&lt;")
-       .replace(/>/g, "&gt;")
-       .replace(/"/g, "&quot;")
-       .replace(/'/g, "&#039;");
-}
-var x = document.getElementById("thecode");
-x.innerHTML = escapeHtml({{> @partial-block }});
-</script>

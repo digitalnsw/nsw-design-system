@@ -3,12 +3,14 @@ title: Buttons
 component:
   description: Buttons provide users with the ability to submit an action.
   folder: button
+  figma: https://www.figma.com/file/PVrERKnckLTlJSPk12gbtS/NSW-Digital-Design-System?node-id=0%3A1127
 ---
 <main>
   <div class="nsw-section--white">
     <div class="nsw-grid">
       <div class="nsw-col nsw-m-left-md">
         <h2 class="nsw-section-title">Primary</h2>
+        {{#> _codesection }}
         {{>_button-link url="#" style="primary" text="Link"}}
         {{>_button type="button" style="primary" text="Button"}}
         {{>_button type="submit" style="primary" text="Submit Button"}}
@@ -16,9 +18,11 @@ component:
         {{>_button-input type="button" style="primary" text="Input"}}
         {{>_button-input type="submit" style="primary" text="Input Submit"}}
         {{>_button-input type="reset" style="primary" text="Input Reset"}}
+        {{/_codesection}}
       </div>
       <div class="nsw-col nsw-m-left-md">
         <h2 class="nsw-section-title">Highlight</h2>
+        {{#> _codesection }}
         {{>_button-link url="#" style="highlight" text="Link"}}
         {{>_button type="button" style="highlight" text="Button"}}
         {{>_button type="submit" style="highlight" text="Submit Button"}}
@@ -26,9 +30,11 @@ component:
         {{>_button-input type="button" style="highlight" text="Input"}}
         {{>_button-input type="submit" style="highlight" text="Input Submit"}}
         {{>_button-input type="reset" style="highlight" text="Input Reset"}}
+        {{/_codesection}}
       </div>
       <div class="nsw-col nsw-m-left-md">
         <h2 class="nsw-section-title">Outline</h2>
+        {{#> _codesection }}
         {{>_button-link url="#" style="outline" text="Link"}}
         {{>_button type="button" style="outline" text="Button"}}
         {{>_button type="submit" style="outline" text="Submit Button"}}
@@ -36,6 +42,7 @@ component:
         {{>_button-input type="button" style="outline" text="Input"}}
         {{>_button-input type="submit" style="outline" text="Input Submit"}}
         {{>_button-input type="reset" style="outline" text="Input Reset"}}
+        {{/_codesection}}
       </div>
     </div>
   </div>
@@ -43,6 +50,7 @@ component:
     <div class="nsw-grid">
       <div class="nsw-col nsw-m-left-md">
         <h2 class="nsw-section-title">White</h2>
+        {{#> _codesection }}
         {{>_button-link url="#" style="white" text="Link"}}
         {{>_button type="button" style="white" text="Button"}}
         {{>_button type="submit" style="white" text="Submit Button"}}
@@ -50,6 +58,7 @@ component:
         {{>_button-input type="button" style="white" text="Input"}}
         {{>_button-input type="submit" style="white" text="Input Submit"}}
         {{>_button-input type="reset" style="white" text="Input Reset"}}
+        {{/_codesection}}
       </div>
     </div>
   </div>
@@ -57,6 +66,7 @@ component:
     <div class="nsw-grid">
       <div class="nsw-col nsw-m-left-md">
         <h2 class="nsw-section-title">Disabled</h2>
+        {{#> _codesection }}
         <p><strong>Note:</strong> Its not possible to disable links, a class of .disable should only be applied to buttons and inputs</p>
         {{>_button type="button" style="primary" text="Button" isDisabled=true}}
         {{>_button type="submit" style="primary" text="Submit Button" isDisabled=true}}
@@ -64,7 +74,18 @@ component:
         {{>_button-input type="button" style="primary" text="Input" isDisabled=true}}
         {{>_button-input type="submit" style="primary" text="Input Submit" isDisabled=true}}
         {{>_button-input type="reset" style="primary" text="Input Reset" isDisabled=true}}
+        {{/_codesection}}
       </div>
     </div>
   </div>
 </main>
+
+<!--sample
+  {{>_button style="primary" text="Link"}}
+
+  {{>_button style="outline" text="Link"}}
+
+  {{>_button style="white" text="Link"}}
+
+  {{>_button type="button" style="primary" text="Button" isDisabled=true}}
+endsample-->

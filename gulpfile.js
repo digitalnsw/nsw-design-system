@@ -150,7 +150,7 @@ function metalsmithBuild(callback) {
     templates: {
       pattern: config.metalSmith.collection.templates.pattern,
       sortBy: sortByAlpha,
-    }
+    },
   }))
   metalsmith.use(dynamicCollections({
     tabcontent: {
@@ -171,6 +171,7 @@ function metalsmithBuild(callback) {
   }))
   metalsmith.use(inplace(config.metalSmith.inplace))
   metalsmith.use(dataLoader(config.metalSmith.tabsData))
+
   metalsmith.use(layouts(config.metalSmith.layouts))
   metalsmith.use(cleanBuild)
   metalsmith.build((err) => {

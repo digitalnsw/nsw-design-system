@@ -11,7 +11,7 @@
   <link rel="icon" href="/favicon.ico">
   <link rel="stylesheet" href="/css/main.css">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/default.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/atom-one-light.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/xml.min.js"></script>  <script>
     // SVG Sprite Loader
@@ -29,7 +29,9 @@
     (function(e){e.className=e.className.replace(/\bno-js\b/,'js')})(document.documentElement);
   </script>
   <style>
-    .nsw-container {position: relative;} /* to align grid overlay */
+    .ui-dev-demo pre {
+      display: none;
+    }
   </style>
 </head>
 
@@ -47,7 +49,7 @@
           {{/if}}
       </div>
       <div>
-        {{>_tabbed-content-docs}}
+{{>_tabbed-content-docs}}
       </div>
     </div>
   </div>
@@ -56,6 +58,13 @@
   <script>
     window.NSW.initSite()
     hljs.initHighlightingOnLoad();
+    document.addEventListener('click', function (event) {
+      if (!event.target.matches('.showHTML')) return;
+      event.preventDefault();
+      console.log(event.target);
+      event.target.nextElementSibling.style.display = 'block';
+      event.target.style.display = 'none';
+    }, false)
 </script>
 </body>
 </html>

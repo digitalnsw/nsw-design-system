@@ -1,10 +1,3 @@
-<button
-  {{#if type}}
-    type="{{type}}"
-  {{else}}
-    type="button"
-  {{/if}}
-  class="nsw-button nsw-button--{{style}}"
-  {{#if isDisabled}}disabled{{/if}}>
+<button {{#if isDisabled}}disabled{{/if}} {{#if type}}type="{{type}}"{{else}}type="button"{{/if}} class="nsw-button nsw-button--{{style}}">
   {{text}}
 </button>

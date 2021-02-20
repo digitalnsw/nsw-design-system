@@ -9,9 +9,16 @@
       <li class="nsw-tabs__list-item">
         <a href="#demosection" class="nsw-tabs__link">Interactive demo</a>
       </li>
+      {{#if codesection }}
       <li class="nsw-tabs__list-item">
         <a href="#codesection" class="nsw-tabs__link">Code</a>
       </li>
+      {{/if}}
+      {{#if component.figma }}
+      <li class="nsw-tabs__list-item">
+        <a href="#figmapreview" class="nsw-tabs__link">Figma</a>
+      </li>
+      {{/if}}
     </ul>
   </div>
   {{#each (lookup tabcontent component.folder)}}
@@ -22,7 +29,21 @@
   <section id="demosection" class="nsw-tabs__content">
     {{{contents}}}
   </section>
+  {{#if codesection }}
   <section id="codesection" class="nsw-tabs__content">
-    <pre><code class="html">{{contents}}</code></pre>
+    <pre><code class="html">{{sample contents}}</code>
+    </pre>
   </section>
+  {{/if}}
+  {{#if component.figma }}
+  <section id="figmapreview" class="nsw-tabs__content">
+    <iframe
+      height="450"
+      width="100%"
+      style="border:0;"
+      src="https://www.figma.com/embed?embed_host=astra&url={{component.figma}}"
+      allowfullscreen
+    ></iframe>
+  </section>
+  {{/if}}
 </div>
