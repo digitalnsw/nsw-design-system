@@ -1,14 +1,12 @@
 <h2 class="nsw-feature-tile__title">
 {{#if icon}}
-  <svg class="nsw-icon" focusable="false" aria-hidden="true">
-    <use xlink:href="#{{icon}}"></use>
-  </svg>
+  <i class="material-icons" focusable="false" aria-hidden="true">{{icon}}</i>
 {{/if}}
 {{#if call-to-action}}
   <a href="{{call-to-action.url}}" class="nsw-feature-tile__title-link">
   {{title}}
   </a>
 {{else}}
-  {{title}}
+  <span>{{title}}</span>
 {{/if}}
 </h2>
