@@ -17,27 +17,27 @@ component:
                 <br>
                 <div class="nsw-forms">
                   <div class="nsw-form-group">
-                    {{>_text-input
+                    {{#> _codesection }}{{>_text-input
                       id="txt1"
                       label="Single-line text input:"
-                    }}
+                    }}{{/ _codesection }}
 
-                    {{>_textarea
+                    {{#> _codesection }}{{>_textarea
                       id="txta1"
                       label="Multi-line text input:"
-                    }}
+                    }}{{/_codesection }}
 
-                    {{>_select
+                    {{#> _codesection }}{{>_select
                       id="select1"
                       label="Select dropdown:"
-                    }}
+                    }}{{/_codesection }}
 
                     <div class="nsw-form-checkbox">
-                      {{>_checkbox
+                      {{#> _codesection }}{{>_checkbox
                         id="check1"
                         name="single-checkbox"
                         label="Single checkbox:"
-                      }}
+                      }}{{/_codesection }}
                     </div>
                   </div>
 
@@ -47,7 +47,7 @@ component:
                         <span class="nsw-form-legend-text">Multiple Radio</span>
                       </legend>
                       <div class="nsw-form-radio">
-                        {{>_radio
+                        {{#> _codesection }}{{>_radio
                           id="radio1"
                           name="defaultradio"
                           label="Radio Option 1"
@@ -56,7 +56,7 @@ component:
                           id="radio2"
                           name="defaultradio"
                           label="Radio Option 2"
-                        }}
+                        }}{{/_codesection }}
                       </div>
                     </fieldset>
                   </div>
@@ -67,7 +67,7 @@ component:
                         <span class="nsw-form-legend-text">Multiple Checkbox</span>
                       </legend>
                       <div class="nsw-form-checkbox">
-                        {{>_checkbox
+                        {{#> _codesection }}{{>_checkbox
                           id="checkbox1a"
                           name="defaultcheck"
                           label="Checkbox Option 1"
@@ -76,7 +76,7 @@ component:
                           id="checkbox2a"
                           name="defaultcheck"
                           label="Checkbox Option 2"
-                        }}
+                        }}{{/_codesection }}
                       </div>
                     </fieldset>
                   </div>
@@ -86,23 +86,23 @@ component:
                 <br>
                 <div class="nsw-forms">
                   <div class="nsw-form-group">
-                    {{>_text-input
+                    {{#> _codesection }}{{>_text-input
                       id="txt2help"
                       label="Single-line text input field:"
                       helper-text="This is helper text"
-                    }}
+                    }}{{/_codesection }}
 
-                    {{>_textarea
+                    {{#> _codesection }}{{>_textarea
                       id="txta1help"
                       label="Multi-line text input:"
                       helper-text="This is helper text"
-                    }}
+                    }}{{/_codesection }}
 
-                    {{>_select
+                    {{#> _codesection }}{{>_select
                       id="select1help"
                       label="Select dropdown:"
                       helper-text="This is helper text"
-                    }}
+                    }}{{/_codesection }}
                   </div>
                   <div class="nsw-form-group">
                     <fieldset class="nsw-form-fieldset">
@@ -111,16 +111,16 @@ component:
                         <span class="nsw-form-helper">This is helper text</span>
                       </legend>
                       <div class="nsw-form-radio">
-                        {{>_radio
+                        {{#> _codesection }}{{>_radio
                           id="radio1helper"
                           name="radiohelper"
                           label="Radio Option 1"
-                        }}
-                        {{>_radio
+                        }}{{/_codesection }}
+                        {{#> _codesection }}{{>_radio
                           id="radio2helper"
                           name="radiohelper"
                           label="Radio Option 2"
-                        }}
+                        }}{{/_codesection }}
                       </div>
                     </fieldset>
                   </div>
@@ -131,16 +131,16 @@ component:
                         <span class="nsw-form-helper">This is helper text</span>
                       </legend>
                       <div class="nsw-form-checkbox">
-                        {{>_checkbox
+                        {{#> _codesection }}{{>_checkbox
                           id="checkbox1helper"
                           name="checkhelper"
                           label="Checkbox Option 1"
-                        }}
-                        {{>_checkbox
+                        }}{{/_codesection }}
+                        {{#> _codesection }}{{>_checkbox
                           id="checkbox2helper"
                           name="checkhelper"
                           label="Checkbox Option 2"
-                        }}
+                        }}{{/_codesection }}
                       </div>
                     </fieldset>
                   </div>
@@ -150,31 +150,31 @@ component:
                 <br>
                 <div class="nsw-forms">
                   <div class="nsw-form-group">
-                    {{>_text-input
+                    {{#> _codesection }}{{>_text-input
                       id="txt3error"
                       label="Single-line text input field:"
                       error-text="There was an error with the input above"
-                    }}
+                    }}{{/_codesection }}
 
-                    {{>_textarea
+                    {{#> _codesection }}{{>_textarea
                       id="txta1error"
                       label="Multi-line text input:"
                       error-text="There was an error with the input above"
-                    }}
+                    }}{{/_codesection }}
 
-                    {{>_select
+                    {{#> _codesection }}{{>_select
                       id="select1error"
                       label="Select dropdown:"
                       error-text="There was an error with the input above"
-                    }}
+                    }}{{/_codesection }}
 
                     <div class="nsw-form-checkbox">
-                      {{>_checkbox
+                      {{#> _codesection }}{{>_checkbox
                         id="check1error"
                         name="single-checkbox-error"
                         label="Single checkbox:"
                         error-text="There was an error with the input above"
-                      }}
+                      }}{{/_codesection }}
                     </div>
                   </div>
                   <div class="nsw-form-group">
@@ -184,16 +184,16 @@ component:
                         <span class="nsw-form-helper nsw-form-helper--error">Please select at least one option</span>
                       </legend>
                       <div class="nsw-form-radio">
-                        {{>_radio
+                        {{#> _codesection }}{{>_radio
                           id="radio1error"
                           name="radiocheck"
                           label="Radio Option 1"
-                        }}
-                        {{>_radio
+                        }}{{/_codesection }}
+                        {{#> _codesection }}{{>_radio
                           id="radio2error"
                           name="radiocheck"
                           label="Radio Option 2"
-                        }}
+                        }}{{/_codesection }}
                       </div>
                     </fieldset>
                   </div>
@@ -205,16 +205,16 @@ component:
                         <span class="nsw-form-helper nsw-form-helper--error">Please select at least one option</span>
                       </legend>
                       <div class="nsw-form-checkbox">
-                        {{>_checkbox
+                        {{#> _codesection }}{{>_checkbox
                           id="checkbox1error"
                           name="errorcheck"
                           label="Checkbox Option 1"
-                        }}
-                        {{>_checkbox
+                        }}{{/_codesection }}
+                        {{#> _codesection }}{{>_checkbox
                           id="checkbox2error"
                           name="errorcheck"
                           label="Checkbox Option 2"
-                        }}
+                        }}{{/_codesection }}
                       </div>
                     </fieldset>
                   </div>
