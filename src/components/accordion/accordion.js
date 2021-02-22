@@ -10,10 +10,7 @@ function createButtons({ textContent }) {
   button.setAttribute('aria-controls', uID)
   button.classList.add('nsw-accordion__button')
   button.insertAdjacentHTML('beforeend', `
-  <svg class="nsw-icon nsw-accordion__icon" focusable="false" aria-hidden="true">
-    <use xlink:href="#chevron"></use>
-  </svg>
-        <i class="material-icons nsw-accordion__arrow" focusable="false" aria-hidden="true">keyboard_arrow_right</i>
+  <i class="material-icons nsw-accordion__icon" focusable="false" aria-hidden="true">keyboard_arrow_right</i>
   `)
 
   fragment.appendChild(button)

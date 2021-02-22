@@ -25,11 +25,24 @@
     }
   }
 
+  .material-icons {
+    font-size: rem(20px);
+    align-self: center;
+
+    + .nsw-direction-link__text {
+      margin-left: rem(4px);
+    }
+  }
+
   &__text {
     align-self: center;
 
     + .nsw-icon {
       @include nsw-spacing(margin-left, xs);
+    }
+
+    + .material-icons {
+      margin-left: rem(4px);
     }
   }
 
@@ -40,6 +53,10 @@
 
     .nsw-icon {
       fill: $light40;
+    }
+
+    .material-icons {
+      color: $light40;
     }
   }
 }
