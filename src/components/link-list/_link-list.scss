@@ -23,28 +23,44 @@
     &:last-child {
       border-bottom: 1px solid $light20;
     }
-  }
 
-  &__link {
-    @include nsw-spacing(padding, md);
-    color: $nsw-primary-blue;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+    a {
+      @include nsw-spacing(padding, md);
+      color: $nsw-primary-blue;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-decoration: none;
 
-  &__link:hover {
-    @include nsw-hover;
-  }
+      &:hover {
+        @include nsw-hover;
+      }
 
-  &__link:focus {
-    @include nsw-focus;
+      &:focus {
+        @include nsw-focus;
+      }
+
+      span {
+        text-decoration: underline;
+      }
+    }
+
+    .nsw-link-list__link {
+      text-decoration: underline;
+    }
   }
 
   &__icon {
     @include nsw-spacing(margin-left, md);
-    width: rem(16px);
-    height: rem(16px);
     flex: none;
+    font-size: rem(20px);
+    position: relative;
+    right: -2px;
+
+    &.nsw-icon {
+      width: rem(16px);
+      height: rem(16px);
+      position: static;
+    }
   }
 }
