@@ -18,15 +18,14 @@ Do:
 * use headlines that set clear expectations about the content being linked to
 * use one style of card per module, don't mix and match
 * feature one piece of information per card
-* outline the main idea with the minimal possible information, don't overload with information as the card links to more detail. 
+* outline the main idea with the minimal possible information, don't overload with information as the card links to more detail.
 
 Do not:
 
 * mix card styles within the same module
-
-  overload with information as the card links to more detail
+* overload with information as the card links to more detail
 * add inline text links, the card itself is clickable and should link to a single piece of information, consider using content blocks in this instance
-* use a single card component on its own. 
+* use a single card component on its own.
 
 ## When to avoid
 
@@ -34,7 +33,7 @@ Cards should only display enough information to give a user context. Do not use 
 
 * to highlight a solo piece of information
 * when the content requires in-line or multiple links
-* when a large amount of text is needed to give users context. 
+* when a large amount of text is needed to give users context.
 
 ## How this component works
 
@@ -65,7 +64,7 @@ Test your visual elements carefully:
 * only use images when they can clearly show the difference between content and can be easily identified
 * do not use images that are not easily identifiable or do not effectively communicate the difference between content
 * do not use for decorative purposes only
-* make sure all graphics are readable by screen readers. 
+* make sure all graphics are readable by screen readers.
 
 ## Accessibility
 
