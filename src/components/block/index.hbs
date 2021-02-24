@@ -1,0 +1,30 @@
+---
+title: Content blocks
+model:
+  block-1: ../../components/block/json/block-1.json
+  block-2: ../../components/block/json/block-2.json
+  block-3: ../../components/block/json/block-3.json
+---
+
+<main>
+  <div class="nsw-section--white">
+    <div class="nsw-container">
+      <div class="nsw-page-layout">
+        <div class="nsw-page-layout__main">
+          <h2 class="nsw-section-title">Image blocks</h2>
+          <div class="nsw-grid">
+            <div class="nsw-col nsw-col-md-4">
+              {{>_block model.block-1}}
+            </div>
+            <div class="nsw-col nsw-col-md-4">
+              {{>_block model.block-2}}
+            </div>
+            <div class="nsw-col nsw-col-md-4">
+              {{>_block model.block-3}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
