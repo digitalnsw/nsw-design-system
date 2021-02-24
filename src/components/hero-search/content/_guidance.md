@@ -10,7 +10,7 @@ The hero search allows users to easily and quickly go to the area they are inter
 
 Today, people rely more and more on search engines and search to find exactly what they want, without having to learn how an organisation has arranged its information architecture.
 
-Use the hero search:
+Use hero search:
 
 * for product or website homepages, on the top of directories, libraries, or lists
 * for sites or products with large volumes of content
