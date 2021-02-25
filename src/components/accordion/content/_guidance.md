@@ -34,6 +34,7 @@ Do not:
 * use an accordion to shorten a page.
 
 ## 
+
 ## Principles
 
 **Use clear labels**
@@ -49,19 +50,29 @@ Disabling controls is normally confusing for users. If there is no content for a
 Consider tabs if the user would likely need to flick between content sections.
 
 ## 
+
 ## Anatomy
 
-![](/uploads/accordion-anatomy.png)
+![](/uploads/accordion-anatomy-1.png)
 
-**Panel**
+**Container**
 
-Contains accordion headline and content. The panel hover state lets the user know the entire element is clickable.
+Contains accordion headline and content. The headline panel hover state lets the user know the entire element is clickable.
+
+**Headline**
+
+Headline builds a clear mental model of the hidden content.
+
+**Content**
+
+Information that is contained in your accordion.
 
 **Icon**
 
-A directional arrow indicates that the panel is expandable or collapsible.
+A directional arrow that indicates the panel is expandable or collapsible.
 
 ## 
+
 ## Accessibility
 
 All components are responsive and meet WCAG 2.1 AA accessibility guidelines.
