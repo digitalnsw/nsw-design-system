@@ -10,12 +10,12 @@ Use card layouts to present a high-level summary of content related to a single 
 
 Cards group information into meaningful sections, providing concise information in a condensed space to allow users to distinguish between content and find information easily. The information in a card outlines the main idea of a product, service, or piece of information, allowing a user to click through for further information.
 
-#### Card types
+### Card types
 
 * **Highlight cards** - Use to highlight important content of a related topic or area. For example, to draw attention to priority or key content on a Homepage.
 * **Content cards** - Use to display all or larger groups of content options to your user. For example, on landing pages where it is used to show all content areas within that section of the site.
 
-#### How to use
+### How to use
 
 Do:
 
@@ -32,7 +32,7 @@ Do not:
 * add inline text links, the card itself is clickable and should link to a single piece of information, consider using content blocks in this instance
 * use a single card component on its own.
 
-#### When to avoid
+### When to avoid
 
 Cards should only display enough information to give a user context. Do not use a card layout:
 
