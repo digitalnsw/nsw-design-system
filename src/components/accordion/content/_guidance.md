@@ -14,7 +14,7 @@ Only use an accordion if there’s evidence it’s helpful for users to:
 * show and hide those sections as needed
 * 
 
-#### When to avoid
+### When to avoid
 
 Test your content without an accordion first. Consider if it’s better to:
 
@@ -34,7 +34,7 @@ Do not:
 * use where important information can be hidden and missed
 * use an accordion to shorten a page.
 
----
+***
 
 ## Principles
 
@@ -50,7 +50,7 @@ Disabling controls is normally confusing for users. If there is no content for a
 
 Consider tabs if the user would likely need to flick between content sections.
 
----
+***
 
 ## Anatomy
 
@@ -62,9 +62,9 @@ Contains accordion headline and content. The panel hover state lets the user kno
 
 **Icon**
 
-A directional arrow indicates that the panel is expandable or collapsible. 
+A directional arrow indicates that the panel is expandable or collapsible.
 
----
+***
 
 ## Accessibility
 
