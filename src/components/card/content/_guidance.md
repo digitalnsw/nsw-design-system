@@ -40,7 +40,7 @@ Cards should only display enough information to give a user context. Do not use 
 * when the content requires in-line or multiple links
 * when a large amount of text is needed to give users context.
 
-***
+## 
 
 ## Principles
 
@@ -48,7 +48,7 @@ Cards should only display enough information to give a user context. Do not use 
 
 Cards allow users to scan content in order to find their required information quickly, therefore it is important to make the content concise. Ensure the headlines are brief and explicit about the content the cards link to. Intuitive headlines and copy help the user build a clear mental model of the content.
 
-***
+## 
 
 ## Anatomy
 
@@ -94,13 +94,13 @@ Provides further details where the headline alone may not be sufficient.
 
 Arrow used to indicate a clickable component.
 
-***
+## 
 
 ## Behavior
 
 When a user interacts with a card the headline becomes underlined and the card shadow darkens to indicate to the user which card they are currently focused on and reinforces the clickable area.
 
-***
+## 
 
 ## Accessibility
 
