@@ -1,0 +1,14 @@
+<div aria-label="Step {{active}} of {{steps.length}} {{steps.1.title}}"
+     class="nsw-progress-indicator" tabindex="0">
+  <div class="nsw-progress-indicator__count">Step {{active}} of {{steps.length}}</div>
+  <div class="nsw-progress-indicator__bar">
+    {{#each steps}}
+      {{#if this.complete}}
+        <div class="nsw-progress-indicator__step nsw-progress-indicator__step--active"></div>
+      {{else}}
+        <div class="nsw-progress-indicator__step"></div>
+      {{/if}}
+    {{/each }}
+  </div>
+  <div class="nsw-progress-indicator__label">{{steps.1.title}}</div>
+</div>
