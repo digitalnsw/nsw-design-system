@@ -47,6 +47,8 @@
     @include nsw-spacing(padding, md);
     background-color: $light20;
     border-top: solid 6px $nsw-primary-highlight;
+    display: flex;
+    flex-direction: column;
 
     @include breakpoint('md') {
       @include nsw-spacing(padding, md lg);
@@ -76,6 +78,11 @@
     .nsw-icon {
       width: rem(32);
       height: rem(32);
+    }
+
+    .nsw-material-icons {
+      font-size: 40px;
+      line-height: 38px;
     }
   }
 
@@ -120,6 +127,7 @@
 
     #{$parent}__icon {
       fill: $white;
+      color: $white;
     }
   }
 }

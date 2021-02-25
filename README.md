@@ -37,28 +37,11 @@ Use the below snippet to import the NSW Design System (ideally placed before any
 @import 'node_modules/nsw-design-system/src/main';
 ```
 
-#### Adding the font
-In your main html document add this line of code inside the `<head>` tag
+#### Adding the font and the icons
+In your main html document add this line of code inside the `<head>` tag. Make sure that it's placed before the NSW Design System styles import.
 ```
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap" rel="stylesheet">
-```
-
-#### Using the icons
-The design system icons use sprite SVG, add this line of code inside the `<head>` tag in your main html document
-```
-  <script>
-    // SVG Sprite Loader
-    var svgAjax = new XMLHttpRequest();
-    svgAjax.open("GET", "https://cdn.jsdelivr.net/npm/nsw-design-system/dist/assets/svg/sprite.svg", true);
-    svgAjax.send();
-    svgAjax.onload = function(e) {
-      var fragment = document.createRange().createContextualFragment(svgAjax.responseText);
-      var svg = fragment.querySelector('svg')
-      svg.setAttribute('aria-hidden', true);
-      svg.style.cssText = 'position: absolute; width: 0; height: 0; overflow: hidden;'
-      document.body.insertBefore(fragment, document.body.childNodes[0]);
-    };
-  </script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 ```
 
 ### Importing javascript into your project
