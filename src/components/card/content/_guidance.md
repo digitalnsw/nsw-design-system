@@ -56,13 +56,11 @@ The only required elements of a card are it's container, headline and icon. Cons
 
 ![Anatomy of card component](/uploads/cards-anatomy-1.png "Anatomy of card component")
 
-**Container**
+**Container  
+**Contains all elements and uses drop shadow to signify the whole card is clickable.
 
-Contains all elements and uses drop shadow to signify the whole card is clickable.
-
-**Image (optional)**
-
-Using images in cards allows for different content to stand out and provide additional context. It helps users visualise different pieces of information and quickly distinguish between content to find information easily.
+**Image (optional)  
+**Using images in cards allows for different content to stand out and provide additional context. It helps users visualise different pieces of information and quickly distinguish between content to find information easily.
 
 Test your visual elements carefully:
 
@@ -70,29 +68,23 @@ Test your visual elements carefully:
 * only use images when they can clearly show the difference between content and can be easily identified
 * do not use for decorative purposes only
 
-**Highlight bar (optional)**
+**Highlight bar (optional)  
+**Use to highlight important content of a related topic or area.
 
-Use to highlight important content of a related topic or area.
+**Tag (optional)  
+**Indicates the category of a topic or theme when a user needs to further group content. For example, departments, agencies, or services.
 
-**Tag (optional)**
+**Date (optional)  
+**Indicates how old the content is when this information is important to the user.
 
-Indicates the category of a topic or theme when a user needs to further group content. For example, departments, agencies, or services.
+**Headline  
+**Provides a snapshot of the content.
 
-**Date (optional)**
+**Description (optional)  
+**Provides further details where the headline alone may not be sufficient.
 
-Indicates how old the content is when this information is important to the user.
-
-**Headline**
-
-Provides a snapshot of the content.
-
-**Description (optional)**
-
-Provides further details where the headline alone may not be sufficient.
-
-**Icon**
-
-Arrow used to indicate a clickable component.
+**Icon  
+**Arrow used to indicate a clickable component.
 
 ## 
 
