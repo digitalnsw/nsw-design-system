@@ -55,21 +55,17 @@ Consider tabs if the user would likely need to flick between content sections.
 
 ![](/uploads/accordion-anatomy-1.png)
 
-**Container**
+**Container  
+**Contains accordion headline and content. The headline panel hover state lets the user know the entire element is clickable.
 
-Contains accordion headline and content. The headline panel hover state lets the user know the entire element is clickable.
+**Headline  
+**Headline builds a clear mental model of the hidden content.
 
-**Headline**
+**Content  
+**Information that is contained in your accordion.
 
-Headline builds a clear mental model of the hidden content.
-
-**Content**
-
-Information that is contained in your accordion.
-
-**Icon**
-
-A directional arrow that indicates the panel is expandable or collapsible.
+**Icon  
+**A directional arrow that indicates the panel is expandable or collapsible.
 
 ## 
 
