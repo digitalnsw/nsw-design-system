@@ -4,8 +4,6 @@ order: "1"
 layout: partial.hbs
 
 ---
-Breadcrumbs help users to understand where they are within a website’s structure.
-
 ## Usage
 
 Use the breadcrumbs component when you need to help users understand and move between the multiple levels of a website.
