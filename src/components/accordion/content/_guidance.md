@@ -4,9 +4,7 @@ order: "1"
 layout: partial.hbs
 
 ---
-An accordion is a series of expandable vertical panels, designed to save space on a page by hiding content and revealing it as required.
-
-## Using accordions
+## Usage
 
 Accordions can work well for people who use a service regularly, or who need to perform familiar tasks quickly.
 
@@ -14,8 +12,9 @@ Only use an accordion if there’s evidence it’s helpful for users to:
 
 * see an overview of multiple, related sections of content
 * show and hide those sections as needed
+* 
 
-## When to avoid
+#### When to avoid
 
 Test your content without an accordion first. Consider if it’s better to:
 
@@ -35,7 +34,9 @@ Do not:
 * use where important information can be hidden and missed
 * use an accordion to shorten a page.
 
-## How this component works
+---
+
+## Principles
 
 **Use clear labels**
 
@@ -49,9 +50,21 @@ Disabling controls is normally confusing for users. If there is no content for a
 
 Consider tabs if the user would likely need to flick between content sections.
 
-**Direct the user**
+---
 
-A directional arrow indicates that the panel is expandable or collapsible. This is further suggested by a hover state which lets the user know the entire title bar is clickable.
+## Anatomy
+
+![](/uploads/accordion-anatomy.png)
+
+**Panel**
+
+Contains accordion headline and content. The panel hover state lets the user know the entire element is clickable.
+
+**Icon**
+
+A directional arrow indicates that the panel is expandable or collapsible. 
+
+---
 
 ## Accessibility
 
