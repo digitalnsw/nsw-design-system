@@ -118,6 +118,7 @@ $light10: #f4f4f7 !default;
 $white: #ffffff !default;
 
 // Utility colors
+$danger: #d7153a !default;
 $info: $nsw-secondary-blue !default;
 $info-background: #eaedf4 !default;
 $success: #00a908 !default;
@@ -246,13 +247,21 @@ $button-variations: (
     border: $nsw-primary-blue,
     border-hover: lighten($nsw-primary-blue, 5.88)
   ),
-  highlight: (
+  secondary: (
+    text-color: $dark80,
+    text-color-hover: $white,
+    background: $white,
+    background-hover: $nsw-primary-blue,
+    border: $nsw-primary-blue,
+    border-hover: $nsw-primary-blue
+  ),
+  danger: (
     text-color: $white,
     text-color-hover: $white,
-    background: $nsw-primary-highlight,
-    background-hover: lighten($nsw-primary-highlight, 5.88),
-    border: $nsw-primary-highlight,
-    border-hover: lighten($nsw-primary-highlight, 5.88)
+    background: $danger,
+    background-hover: lighten($danger, 5.88),
+    border: $danger,
+    border-hover: lighten($danger, 5.88)
   ),
   outline: (
     text-color: $dark80,
@@ -261,6 +270,14 @@ $button-variations: (
     background-hover: $nsw-primary-blue,
     border: $nsw-primary-blue,
     border-hover: $nsw-primary-blue
+  ),
+  highlight: (
+    text-color: $white,
+    text-color-hover: $white,
+    background: $nsw-primary-highlight,
+    background-hover: lighten($nsw-primary-highlight, 5.88),
+    border: $nsw-primary-highlight,
+    border-hover: lighten($nsw-primary-highlight, 5.88)
   ),
   white: (
     text-color: $dark80,

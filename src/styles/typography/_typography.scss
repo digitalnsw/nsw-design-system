@@ -5,26 +5,7 @@
   color: $dark80;
 
   a:not(.nsw-button):not(.nsw-tag) {
-    color: $nsw-primary-blue;
-    text-decoration: underline;
-    text-decoration-skip-ink: auto;
-
-    &:hover {
-      @include nsw-hover;
-      outline: 2px solid $hover-colour;
-    }
-
-    &:focus {
-      @include nsw-focus($offset: false);
-    }
-
-    &:visited {
-      color: $link-visited;
-    }
-
-    &:active {
-      @include nsw-active;
-    }
+    @include link;
   }
 
   p,
