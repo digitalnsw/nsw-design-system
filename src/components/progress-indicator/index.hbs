@@ -1,6 +1,8 @@
 ---
 title: Progress Indicator
-model: json/progress-indicator.json
+model:
+  heading: ../../components/progress-indicator/json/progress-indicator.json
+  noheading: json/progress-indicator-no-heading.json
 ---
 
 <main>
@@ -10,7 +12,58 @@ model: json/progress-indicator.json
         <div class="nsw-page-layout__main">
           <div class="nsw-grid">
             <div class="nsw-col nsw-col-lg-8 nsw-offset-lg-1">
-              {{>_progress-indicator model}}
+              <p>Option 1: Default</p>
+              {{>_progress-indicator model.heading}}
+              <div class="nsw-form-group">
+                {{>_text-input
+                        id="contact-first-name"
+                        label="First name"
+                }}
+                {{>_text-input
+                        id="contact-last-name"
+                        label="Last name"
+                }}
+                {{>_text-input
+                        id="contact-email"
+                        type="email"
+                        label="Email address"
+                }}
+                {{>_text-input
+                        id="contact-phone"
+                        type="tel"
+                        label="Phone number (optional)"
+                }}
+                {{>_button-input type="submit" style="primary" text="Next: Payment"}}
+              </div>
+              </form>
+            </div>
+
+            <div class="nsw-col nsw-col-lg-8 nsw-offset-lg-1">
+              <p>Option 2: No header</p>
+              {{>_progress-indicator model.noheading}}
+              <div class="nsw-form-group">
+                <h2>Personal Details</h2>
+                {{>_text-input
+                        id="contact-first-name"
+                        label="First name"
+                }}
+                {{>_text-input
+                        id="contact-last-name"
+                        label="Last name"
+                }}
+                {{>_text-input
+                        id="contact-email"
+                        type="email"
+                        label="Email address"
+                }}
+                {{>_text-input
+                        id="contact-phone"
+                        type="tel"
+                        label="Phone number (optional)"
+                }}
+                {{>_button-input type="submit" style="primary" text="Next: Payment"}}
+              </div>
+              </form>
             </div>
           </div>
         </div>
