@@ -13,14 +13,25 @@
   }
 
   &__icon {
-    @include nsw-spacing(margin-right, md);
     flex: 0 0 auto;
-    width: rem(24px);
-    height: rem(24px);
+    font-size: rem(38px);
+    position: relative;
+    top: rem(-3px);
+    left: rem(-3px);
+    margin-right: rem(10px);
+
+    &.nsw-icon {
+      @include nsw-spacing(margin-right, md);
+      width: rem(24px);
+      height: rem(24px);
+      position: static;
+    }
 
     @include breakpoint('md') {
-      width: rem(32px);
-      height: rem(32px);
+      &.nsw-icon {
+        width: rem(32px);
+        height: rem(32px);
+      }
     }
   }
 
@@ -47,7 +58,7 @@
       border-color: map-get($variant, border);
 
       .nsw-notification__icon {
-        fill: map-get($variant, fill);
+        color: map-get($variant, fill);
       }
     }
   }

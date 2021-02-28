@@ -1,3 +1,9 @@
+.nsw-form {
+  a {
+    @include link;
+  }
+}
+
 .nsw-form-label {
   @include font-stack(heading);
   @include font-size('sm');
@@ -12,6 +18,13 @@
 
 *:not(legend) + .nsw-form-label {
   @include nsw-spacing(margin-top, md);
+}
+
+.nsw-form-required {
+  &::after {
+    content: ' *';
+    color: $nsw-primary-highlight;
+  }
 }
 
 .nsw-form-input,
@@ -140,6 +153,7 @@
   @include nsw-spacing(margin-top, md);
   @include nsw-spacing(padding-left, xxl);
   @include nsw-spacing(padding-top, xs);
+  @include nsw-spacing(padding-bottom, xs);
   min-height: rem(32px);
   display: block;
   position: relative;
@@ -151,7 +165,8 @@
     height: rem(32px);
     border: 1px $dark70 solid;
     background: $white;
-    top: 0;
+    top: 50%;
+    margin-top: rem(-16px);
     left: 0;
     display: inline-block;
     vertical-align: middle;
@@ -168,9 +183,8 @@
     background-position: center center;
     background-size: rem(16px) auto;
     left: rem(5px);
-    top: rem(18px);
-    transform: translateY(-50%);
-    margin-top: rem(-2px);
+    top: 50%;
+    margin-top: rem(-11px);
   }
 }
 

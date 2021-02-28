@@ -8,12 +8,26 @@
     @include font-stack('heading');
     @include font-size('xxl');
     @include nsw-spacing(margin, none);
+    position: relative;
 
     .nsw-icon {
       @include nsw-spacing(margin-right, md);
       height: rem(46px);
       width: rem(46px);
       vertical-align: middle;
+    }
+
+    .nsw-material-icons {
+      position: absolute;
+      left: rem(-5px);
+      top: rem(-5px);
+      font-size: rem(56px);
+
+      + span,
+      + a {
+        margin-left: 70px;
+        line-height: rem(46px);
+      }
     }
   }
 
