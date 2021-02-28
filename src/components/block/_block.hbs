@@ -1,7 +1,7 @@
 <div class="nsw-block">
   <div class="nsw-block__content">
     <h2 class="nsw-block__title">{{heading}}</h2>
-    {{#if copy}}<p class="nsw-block__copy">{{copy}}</p>{{/if}}
+    {{#if copy}}<p class="nsw-block__copy">{{{copy}}}</p>{{/if}}
     {{#if list}}
     <ul class="nsw-block__list">
       {{#each list}}
@@ -14,6 +14,11 @@
   {{#if img}}
   <div class="nsw-block__image-area">
       <img src="{{img}}" alt="" class="nsw-block__image">
+  </div>
+  {{/if}}
+  {{#if icon}}
+  <div class="nsw-block__image-area">
+      <div class="nsw-block__icon">{{{icon}}}</div>
   </div>
   {{/if}}
 </div>

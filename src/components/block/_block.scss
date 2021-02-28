@@ -9,7 +9,7 @@
 
   &__title {
     @include font-stack('heading');
-    @include font-size('md');
+    @include font-size('lg');
     margin: 0;
   }
 
@@ -22,26 +22,47 @@
     a {
       @include text-link;
     }
-
-    ul {
-      a {
-        font-weight: normal;
-      }
-    }
   }
 
   &__copy {
-    margin: 1rem 0 0;
+    margin: rem(16px) 0 0 0;
+
+    a {
+      font-weight: normal;
+    }
+  }
+
+  &__list {
+    margin: rem(16px) 0 0 0;
+    padding-left: rem(18px);
+
+    li {
+      padding: rem(8px) 0;
+    }
+
+    a {
+      font-weight: normal;
+    }
+  }
+
+  &__link {
+    margin: rem(16px) 0 0 0;
   }
 
   &__image-area {
     order: 1;
-    height: rem(200px);
+    max-height: rem(200px);
+    margin-bottom: rem(24px);
   }
 
   &__image {
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+
+  &__icon {
+    max-width: rem(64px);
+    max-height: rem(64px);
   }
 }
