@@ -13,6 +13,9 @@ model:
   block-content-1: ../../components/block/json/block-content-1.json
   block-content-2: ../../components/block/json/block-content-2.json
   block-content-3: ../../components/block/json/block-content-3.json
+  block-content-4: ../../components/block/json/block-content-4.json
+  block-content-5: ../../components/block/json/block-content-5.json
+  block-content-6: ../../components/block/json/block-content-6.json
 ---
 
 <main>
@@ -83,15 +86,37 @@ model:
     <div class="nsw-container">
       <div class="nsw-page-layout">
         <div class="nsw-page-layout__main">
+          <h2 class="nsw-section-title">Text block [without list]</h2>
           <div class="nsw-grid">
-            <div class="nsw-col nsw-col-md-4">
+            <div class="nsw-col nsw-col-md-6">
               {{>_block model.block-content-1}}
             </div>
-            <div class="nsw-col nsw-col-md-4">
+            <div class="nsw-col nsw-col-md-6">
               {{>_block model.block-content-2}}
             </div>
-            <div class="nsw-col nsw-col-md-4">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="nsw-section--white">
+    <div class="nsw-container">
+      <div class="nsw-page-layout">
+        <div class="nsw-page-layout__main">
+          <h2 class="nsw-section-title">Text block [without link]</h2>
+          <div class="nsw-grid">
+            <div class="nsw-col nsw-col-md-3">
               {{>_block model.block-content-3}}
+            </div>
+            <div class="nsw-col nsw-col-md-3">
+              {{>_block model.block-content-4}}
+            </div>
+            <div class="nsw-col nsw-col-md-3">
+              {{>_block model.block-content-5}}
+            </div>
+            <div class="nsw-col nsw-col-md-3">
+              {{>_block model.block-content-6}}
             </div>
           </div>
         </div>
