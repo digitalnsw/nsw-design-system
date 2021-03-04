@@ -1,0 +1,26 @@
+.nsw-progress-indicator {
+  @include component-spacing();
+
+  &__count {
+    @include font-size('sm');
+  }
+
+  &__bar {
+    display: flex;
+
+    @include nsw-spacing(margin-top, xs);
+  }
+
+  &__step {
+    border-top: 4px solid $light20;
+    width: 100%;
+
+    &--active {
+      border-top: 4px solid $nsw-primary-highlight;
+    }
+
+    &:not(:first-child) {
+      margin-left: rem(4px);
+    }
+  }
+}
