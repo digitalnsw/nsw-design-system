@@ -1,0 +1,24 @@
+<div class="nsw-content-block">
+  <div class="nsw-content-block__content">
+    <h2 class="nsw-content-block__title">{{heading}}</h2>
+    {{#if copy}}<p class="nsw-content-block__copy">{{{copy}}}</p>{{/if}}
+    {{#if list}}
+    <ul class="nsw-content-block__list">
+      {{#each list}}
+      <li><a href="#">{{this}}</a></li>
+      {{/each}}
+    </ul>
+    {{/if}}
+    {{#if link}}<div class="nsw-content-block__link"><a href="#">View more</a></div>{{/if}}
+  </div>
+  {{#if img}}
+  <div class="nsw-content-block__image-area">
+      <img src="{{img}}" alt="" class="nsw-content-block__image">
+  </div>
+  {{/if}}
+  {{#if icon}}
+  <div class="nsw-content-block__image-area">
+      <div class="nsw-content-block__icon">{{{icon}}}</div>
+  </div>
+  {{/if}}
+</div>
