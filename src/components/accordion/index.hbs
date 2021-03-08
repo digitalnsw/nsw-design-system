@@ -1,6 +1,10 @@
 ---
 title: Accordion
 model: json/accordion.json
+component:
+  folder: accordion
+  description: An accordion is a series of expandable vertical panels, designed to save space on a page by hiding content and revealing it as required.
+  figma: https://www.figma.com/file/PVrERKnckLTlJSPk12gbtS/NSW-Digital-Design-System?node-id=0%3A1176
 ---
 
 <main>
@@ -10,7 +14,7 @@ model: json/accordion.json
         <div class="nsw-page-layout__main">
           <div class="nsw-grid">
             <div class="nsw-col nsw-col-lg-8 nsw-offset-lg-2">
-							{{>_accordion model}}
+							{{#> _codesection }}{{>_accordion model}}{{/ _codesection }}
             </div>
           </div>
         </div>
@@ -18,3 +22,7 @@ model: json/accordion.json
     </div>
   </div>
 </main>
+
+<!--sample
+  {{>_accordion model}}
+endsample-->

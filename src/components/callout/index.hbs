@@ -3,6 +3,8 @@ title: Callout
 model:
   default: json/callout.json
   all: json/callout-all.json
+component:
+  folder: callout
 ---
 
 <main>
@@ -13,14 +15,11 @@ model:
           <div class="nsw-grid">
           	<div class="nsw-row">
             	<div class="nsw-col nsw-col-lg-8 nsw-offset-lg-2">
-	  						{{>_callout model.default}}
+                {{#> _codesection }}{{>_callout model.default}}{{/ _codesection }}
+	  				  </div>
+            	<div class="nsw-col nsw-col-lg-8 nsw-offset-lg-2">
+	  						{{>_callout model.all}}
 	  					</div>
-	  				</div>
-            <div class="nsw-row">
-              <div class="nsw-col nsw-col-lg-8 nsw-offset-lg-2">
-                {{>_callout model.all}}
-              </div>
-            </div>
 	  				</div>
           </div>
         </div>

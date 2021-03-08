@@ -15,8 +15,47 @@
 </head>
 
 <body {{#if example}}class="nsw-ds-example"{{/if}}>
-  {{{ contents }}}
+  {{>_header-digital-full}}
+  <div class="nsw-grid nsw-m-none" style="margin:0; /* helpers don't override grid */">
+    <div class="nsw-col-3 nsw-col nsw-show-lg">
+      {{>_side-navigation-docs}}
+    </div>
+    <div class="nsw-col-12 nsw-hide-lg nsw-bg--light-10 nsw-p-left-md">
+      <p>
+        <a class="nsw-direction-link" href="#">
+          <svg class="nsw-icon nsw-icon--rotate-180" focusable="false" aria-hidden="true">
+            <use xlink:href="#arrow"></use>
+          </svg>
+          <span class="nsw-direction-link__text">
+            Back <span class="sr-only">to home screen</span>
+          </span>
+        </a>
+      </p>
+    </div>
+    <div class="nsw-p-none nsw-col-12 nsw-col-lg-9 nsw-col " style="padding:0; /* helpers don't override grid */">
+      <div class="nsw-docs-content-header nsw-bg--light-10 nsw-p-x-md nsw-p-y-xs">
+          <h1>{{ title }}</h1>
+          {{#if component.description}}
+            <p>{{ component.description }}</p>
+          {{/if}}
+      </div>
+      <div>
+{{>_tabbed-content-docs}}
+      </div>
+    </div>
+  </div>
+  {{>_footer-docs}}
   <script src="/js/main.js"></script>
-  <script>window.NSW.initSite()</script>
+  <script>
+    window.NSW.initSite()
+    hljs.initHighlightingOnLoad();
+    document.addEventListener('click', function (event) {
+      if (!event.target.matches('.showHTML')) return;
+      event.preventDefault();
+      console.log(event.target);
+      event.target.nextElementSibling.style.display = 'block';
+      event.target.style.display = 'none';
+    }, false)
+</script>
 </body>
 </html>

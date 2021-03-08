@@ -5,6 +5,7 @@ const sass = require('gulp-sass')
 const postcss = require('gulp-postcss')
 const autoprefixer = require('autoprefixer')
 const cssnano = require('cssnano')
+const clear_collections = require("./clear_collections");
 const sourcemaps = require('gulp-sourcemaps')
 const browsersync = require('browser-sync')
 const surge = require('gulp-surge')
@@ -20,8 +21,10 @@ const collections = require('metalsmith-collections')
 const ignore = require('metalsmith-ignore')
 const discoverPartials = require('metalsmith-discover-partials')
 const dataLoader = require('metalsmith-data-loader')
+const dynamicCollections = require('metalsmith-dynamic-collections')
 // const debug = require('metalsmith-debug-ui')
 const discoverHelpers = require('metalsmith-discover-helpers')
+const markdown = require('metalsmith-markdown')
 const rollup = require('gulp-better-rollup')
 const babel = require('rollup-plugin-babel')
 const eslint = require('gulp-eslint')
@@ -114,6 +117,14 @@ function sortByAlpha(a, b) {
   return 0
 }
 
+function sortByOrder(a, b) {
+  const tabA = a.order
+  const tabB = b.order
+  if (tabA < tabB) { return -1 }
+  if (tabA > tabB) { return 1 }
+  return 0
+}
+
 function metalsmithBuild(callback) {
   const metalsmith = new Metalsmith(__dirname)
   // debug.patch(metalsmith)
@@ -122,9 +133,11 @@ function metalsmithBuild(callback) {
   metalsmith.destination(config.metalSmith.build)
   metalsmith.use(ignore(config.metalSmith.ignoreFiles))
   metalsmith.clean(false)
+  metalsmith.use(markdown())
   metalsmith.use(discoverHelpers(config.metalSmith.helpers))
   metalsmith.use(discoverPartials(config.metalSmith.partials))
   metalsmith.use(dataLoader(config.metalSmith.data))
+  metalsmith.use(clear_collections(["components", "patterns", "styles", "templates", "pages"]))
   metalsmith.use(collections({
     components: {
       pattern: config.metalSmith.collection.components.pattern,
@@ -137,9 +150,28 @@ function metalsmithBuild(callback) {
     templates: {
       pattern: config.metalSmith.collection.templates.pattern,
       sortBy: sortByAlpha,
+    },
+  }))
+  metalsmith.use(dynamicCollections({
+    tabcontent: {
+      pattern: config.metalSmith.collection.tabcontent.pattern,
+      refer: false,
+      sortBy: sortByOrder
+    },
+    componentsnav: {
+      pattern: config.metalSmith.collection.componentsnav.pattern,
+      refer: false,
+      sortBy: sortByOrder
+    },
+    stylesnav: {
+      pattern: config.metalSmith.collection.stylesnav.pattern,
+      refer: false,
+      sortBy: sortByOrder
     }
   }))
   metalsmith.use(inplace(config.metalSmith.inplace))
+  metalsmith.use(dataLoader(config.metalSmith.tabsData))
+
   metalsmith.use(layouts(config.metalSmith.layouts))
   metalsmith.use(cleanBuild)
   metalsmith.build((err) => {

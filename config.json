@@ -35,7 +35,7 @@
   },
   "metalSmith": {
     "src": "./src/",
-    "watch": ["./src/**/*.hbs", "./src/**/*.json"],
+    "watch": ["./src/**/*.hbs", "./src/**/*.json", "./src/**/*.md"],
     "build": "./dist/",
     "metadata": {
       "title": "Digital NSW Design System",
@@ -62,9 +62,12 @@
     "data": {
       "dataProperty": "model"
     },
+    "tabsData": {
+      "dataProperty": "tabs"
+    },
     "collection": {
       "components": {
-        "pattern": ["components/**/*.hbs", "!components/**/_*.hbs"]
+        "pattern": ["components/**/*/index.hbs", "!components/**/_*.hbs"]
       },
       "patterns": {
         "pattern": ["patterns/**/*.hbs", "!patterns/**/_*.hbs"]
@@ -77,6 +80,15 @@
       },
       "pages": {
         "pattern": ["pages/**/*.hbs", "!pages/**/_*.hbs"]
+      },
+      "tabcontent": {
+        "pattern": "**/:item/content/*"
+      },
+      "componentsnav": {
+        "pattern": "components/**/index.hbs"
+      },
+      "stylesnav": {
+        "pattern": "styles/**/index.hbs"
       }
     },
     "inplace": {
