@@ -1,0 +1,69 @@
+.nsw-hero-cta {
+  border-bottom: 1px solid $light20;
+  position: relative;
+
+  &--dark {
+    background-color: $nsw-primary-blue;
+    color: $white;
+  }
+
+  &__container {
+    @include container;
+  }
+
+  &__wrapper {
+    @include create-grid();
+  }
+
+  &__content {
+    @include create-column-default();
+    @include create-column(7, md);
+    padding-top: rem(32px);
+    padding-bottom: rem(32px);
+
+    @include breakpoint('md') { 
+      padding-top: rem(64px);
+      padding-bottom: rem(64px);
+    }
+
+    .nsw-button {
+      margin: rem(24px) 0 0 0;
+    }
+  }
+
+  &__heading {
+    @include font-stack('heading');
+    @include font-size('xxxl');
+    margin: 0;
+  }
+
+  &__text {
+    margin: rem(8px) 0 0 0;
+
+    @include breakpoint('md') {
+      margin-top: rem(16px);
+    }
+  }
+
+  &__box {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 50%;
+    padding-left: rem($container-max-width/6+$grid-gutters*2);
+
+    @include breakpoint('md') {
+      display: flex;
+    }
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+}
