@@ -12,6 +12,9 @@
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/atom-one-light.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/xml.min.js"></script> <script>
 </head>
 
 <body {{#if example}}class="nsw-ds-example"{{/if}}>
@@ -21,16 +24,13 @@
       {{>_side-navigation-docs}}
     </div>
     <div class="nsw-col-12 nsw-hide-lg nsw-bg--light-10 nsw-p-left-md">
-      <p>
         <a class="nsw-direction-link" href="#">
           <svg class="nsw-icon nsw-icon--rotate-180" focusable="false" aria-hidden="true">
             <use xlink:href="#arrow"></use>
           </svg>
-          <span class="nsw-direction-link__text">
-            Back <span class="sr-only">to home screen</span>
+          <span class="nsw-direction-link__text">Back <span class="sr-only">to home screen</span>
           </span>
         </a>
-      </p>
     </div>
     <div class="nsw-p-none nsw-col-12 nsw-col-lg-9 nsw-col " style="padding:0; /* helpers don't override grid */">
       <div class="nsw-docs-content-header nsw-bg--light-10 nsw-p-x-md nsw-p-y-xs">
@@ -39,23 +39,17 @@
             <p>{{ component.description }}</p>
           {{/if}}
       </div>
-      <div>
+    <div>
 {{>_tabbed-content-docs}}
       </div>
     </div>
   </div>
   {{>_footer-docs}}
   <script src="/js/main.js"></script>
+  <script src="/docs/js/docs.js"></script>
   <script>
     window.NSW.initSite()
     hljs.initHighlightingOnLoad();
-    document.addEventListener('click', function (event) {
-      if (!event.target.matches('.showHTML')) return;
-      event.preventDefault();
-      console.log(event.target);
-      event.target.nextElementSibling.style.display = 'block';
-      event.target.style.display = 'none';
-    }, false)
-</script>
+    </script>
 </body>
 </html>
