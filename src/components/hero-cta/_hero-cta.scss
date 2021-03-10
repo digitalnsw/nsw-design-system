@@ -18,6 +18,7 @@
   &__content {
     @include create-column-default();
     @include create-column(7, md);
+    @include create-column(6, xl);
     padding-top: rem(32px);
     padding-bottom: rem(32px);
 
@@ -51,11 +52,16 @@
     right: 0;
     top: 0;
     bottom: 0;
-    width: 50%;
-    padding-left: rem($container-max-width/6+$grid-gutters*2);
+    width: percentage(5 / $grid-columns);
+    padding-left: rem($grid-gutters*2);
 
     @include breakpoint('md') {
       display: flex;
+    }
+
+    @include breakpoint('xl') {
+      width: 50%;
+      padding-left: rem($container-max-width/12+$grid-gutters*2);
     }
   }
 

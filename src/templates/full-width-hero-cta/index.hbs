@@ -1,0 +1,100 @@
+---
+title: Full width - Hero call to action
+model:
+  nav-basic: ../../components/main-navigation/json/main-navigation.json
+  nav-mega: ../../components/main-navigation/json/mega-navigation.json
+  hero-cta: ../../components/hero-cta/json/hero-cta.json
+  breadcrumbs: ../../components/breadcrumbs/json/breadcrumbs.json
+  card-simple-4: ../../components/card/json/card-simple-4.json
+  card-simple-5: ../../components/card/json/card-simple-5.json
+  card-simple-6: ../../components/card/json/card-simple-6.json
+  card-simple-7: ../../components/card/json/card-simple-7.json
+  card-simple-8: ../../components/card/json/card-simple-8.json
+  card-simple-9: ../../components/card/json/card-simple-9.json
+  card-news-1: ../../components/card/json/card-news-1.json
+  card-news-2: ../../components/card/json/card-news-2.json
+  card-news-3: ../../components/card/json/card-news-3.json
+  content-block-icon-1: ../../components/content-block/json/content-block-icon-1.json
+  content-block-icon-2: ../../components/content-block/json/content-block-icon-2.json
+  content-block-icon-3: ../../components/content-block/json/content-block-icon-3.json
+  footer: ../../components/footer/json/footer.json
+---
+
+{{>_header content="#content" nav="#main-navigation"}}
+{{>_main-navigation model.nav-basic}}
+
+{{>_hero-cta model.hero-cta}}
+
+<main id="content">
+  <section class="nsw-section--white">
+    <div class="nsw-container">
+      <div class="nsw-page-layout">
+        <div class="nsw-page-layout__main">
+          <div class="nsw-grid">
+            <div class="nsw-col nsw-col-md-4">
+              {{>_card model.card-simple-4}}
+            </div>
+            <div class="nsw-col nsw-col-md-4">
+              {{>_card model.card-simple-5}}
+            </div>
+            <div class="nsw-col nsw-col-md-4">
+              {{>_card model.card-simple-6}}
+            </div>
+            <div class="nsw-col nsw-col-md-4">
+              {{>_card model.card-simple-7}}
+            </div>
+            <div class="nsw-col nsw-col-md-4">
+              {{>_card model.card-simple-8}}
+            </div>
+            <div class="nsw-col nsw-col-md-4">
+              {{>_card model.card-simple-9}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="nsw-section--light-10">
+    <div class="nsw-container">
+      <div class="nsw-page-layout">
+        <div class="nsw-page-layout__main">
+          <div class="nsw-grid">
+            <div class="nsw-col nsw-col-md-4">
+              {{>_content-block model.content-block-icon-1}}
+            </div>
+            <div class="nsw-col nsw-col-md-4">
+              {{>_content-block model.content-block-icon-2}}
+            </div>
+            <div class="nsw-col nsw-col-md-4">
+              {{>_content-block model.content-block-icon-3}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="nsw-section--white">
+    <div class="nsw-container">
+      <div class="nsw-page-layout">
+        <div class="nsw-page-layout__main">
+          <h2 class="nsw-section-title">Latest updates</h2>
+          <div class="nsw-grid">
+            <div class="nsw-col nsw-col-md-4">
+              {{>_card model.card-news-1}}
+            </div>
+            <div class="nsw-col nsw-col-md-4">
+              {{>_card model.card-news-2}}
+            </div>
+            <div class="nsw-col nsw-col-md-4">
+              {{>_card model.card-news-3}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+{{>_footer model.footer}}
