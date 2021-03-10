@@ -4,7 +4,11 @@
 
   &--dark {
     background-color: $nsw-primary-blue;
-    color: $white;
+
+    h1,
+    .nsw-intro {
+      color: $white;
+    }
   }
 
   &__container {
@@ -19,30 +23,42 @@
     @include create-column-default();
     @include create-column(7, md);
     @include create-column(6, xl);
-    padding-top: rem(32px);
-    padding-bottom: rem(32px);
+
+    @include breakpoint('xs') { 
+      padding-top: rem(32px);
+      padding-bottom: rem(32px);
+    }
 
     @include breakpoint('md') { 
       padding-top: rem(64px);
       padding-bottom: rem(64px);
     }
 
+    .nsw-hero-cta--wide & {
+      @include create-column(8, md);
+      @include create-column(7, xl);      
+    } 
+
+    h1 {
+      .nsw-hero-cta--dark & {
+        color: $white; 
+      }   
+    }
+
     .nsw-button {
       margin: rem(24px) 0 0 0;
     }
-  }
 
-  &__heading {
-    @include font-stack('heading');
-    @include font-size('xxxl');
-    margin: 0;
-  }
+    .nsw-intro {
+      margin: rem(8px) 0 0 0;
 
-  &__text {
-    margin: rem(8px) 0 0 0;
+      @include breakpoint('md') {
+        margin-top: rem(16px);
+      }    
 
-    @include breakpoint('md') {
-      margin-top: rem(16px);
+      .nsw-hero-cta--dark & {
+        color: $white; 
+      }   
     }
   }
 
@@ -71,5 +87,25 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+  }
+
+  &__bg {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    color: $light20;
+
+    .nsw-hero-cta--dark & {
+      color: $white;
+      opacity: 0.2;   
+    } 
+
+    svg {
+      width: 100%;
+      max-width: rem(270px);
+      position: absolute;
+      right: 0;
+      bottom: 0;
+    }
   }
 }
