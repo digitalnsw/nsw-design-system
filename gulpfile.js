@@ -198,6 +198,17 @@ function compileJS() {
     .pipe(dest(config.js.build))
 }
 
+function compileDocsJS() {
+  return src(config.jsDocs.src)
+    .pipe(
+      rollup(
+        {
+          plugins: [babel()],
+        },
+      ),
+    )
+    .pipe(dest(config.jsDocs.build))
+}
 function lintJavascript() {
   return src(config.js.watch)
     .pipe(eslint())
@@ -249,7 +260,7 @@ function injectSVG() {
 }
 
 const styles = series(lintStyles, buildStyles)
-const javascript = series(lintJavascript, compileJS)
+const javascript = series(lintJavascript, compileJS, compileDocsJS)
 
 function watchFiles(done) {
   watch(config.scss.watch, series(styles, reload))
