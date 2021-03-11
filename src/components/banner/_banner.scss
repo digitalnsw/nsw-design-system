@@ -70,6 +70,7 @@
     bottom: 0;
     width: percentage(5 / $grid-columns);
     padding-left: rem($grid-gutters*2);
+    overflow: hidden;
 
     @include breakpoint('md') {
       display: flex;
@@ -84,9 +85,8 @@
   &__image {
     width: 100%;
     height: 100%;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    object-fit: cover;
+    object-position: center;
   }
 
   &__bg {
