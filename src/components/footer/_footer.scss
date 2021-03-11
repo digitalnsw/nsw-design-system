@@ -122,8 +122,12 @@
     flex-wrap: wrap;
   }
 
-  a {
+  a:not([class]) {
     color: $nsw-primary-blue;
+
+    &:visited {
+      color: $nsw-primary-blue;
+    }
 
     &:hover {
       @include nsw-hover;
