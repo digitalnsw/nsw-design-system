@@ -2,10 +2,22 @@
   <div class="nsw-banner__container">
     <div class="nsw-banner__wrapper">
       <div class="nsw-banner__content nsw-wysiwyg-content">
-          <h1>{{heading}}</h1>
-          {{#if copy}}<p class="nsw-intro">{{copy}}</p>{{/if}}
-          {{#if cta}}<a href="#" class="nsw-button {{#if dark}}nsw-button--white{{else}}nsw-button--primary{{/if}}">{{cta}}</a>{{/if}}
+        <h1>{{heading}}</h1>
+        {{#if copy}}<p class="nsw-intro">{{copy}}</p>{{/if}}
+        {{#if cta}}<a href="#" class="nsw-button {{#if dark}}nsw-button--white{{else}}nsw-button--primary{{/if}}">{{cta}}</a>{{/if}}
       </div>
+
+      {{#if links}}
+      <div class="nsw-banner__links nsw-wysiwyg-content">
+        <div class="nsw-banner__list">
+          {{#if links-title}}<div class="nsw-banner__sub-title">{{links-title}}</div>{{/if}}
+          {{#each links}}
+          <li><a href="#">{{this}}</a></li>
+          {{/each}}
+        </div>
+      </div>
+      {{/if}}
+
       <div class="nsw-banner__box" role="presentation">
         {{#if img}}
         <img class="nsw-banner__image" src="{{img}}" alt="" />

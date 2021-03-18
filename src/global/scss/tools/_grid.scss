@@ -94,15 +94,23 @@
   max-width: 100%;
 }
 
-@mixin create-column($size, $breakpoint: null) {
+@mixin create-column($size, $breakpoint: null, $offset: null) {
   @if ($breakpoint) {
     @include breakpoint($breakpoint) {
       flex: 0 0 percentage($size / $grid-columns);
       max-width: percentage($size / $grid-columns);
+
+      @if ($offset) {
+        margin-left: percentage($offset / $grid-columns);
+      }
     }   
   } @else {
     flex: 0 0 percentage($size / $grid-columns);
     max-width: percentage($size / $grid-columns);
+
+    @if ($offset) {
+      margin-left: percentage($offset / $grid-columns);
+    }
   }
 }
 

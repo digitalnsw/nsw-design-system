@@ -30,8 +30,8 @@
     }
 
     @include breakpoint('md') { 
-      padding-top: rem(64px);
-      padding-bottom: rem(64px);
+      padding-top: rem(88px);
+      padding-bottom: rem(88px);
     }
 
     .nsw-banner--wide & {
@@ -60,6 +60,57 @@
         color: $white; 
       }   
     }
+  }
+
+  &__links {
+    @include create-column-default();
+    @include create-column(4, md);
+    @include create-column(4, xl, 1);
+
+    @include breakpoint('xs') { 
+      margin-top: rem(-8px);
+      padding-top: 0;
+      padding-bottom: rem(32px);
+    }
+
+    @include breakpoint('md') { 
+      margin-top: 0;
+      padding-top: rem(88px);
+      padding-bottom: rem(88px);
+    }
+  }
+
+  &__list {
+    border-left: solid 4px $nsw-primary-highlight;
+    padding-left: rem(16px);
+    position: relative;
+    z-index: 1;
+
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    li {
+      @include nsw-spacing(margin-top, md);
+      display: block;
+
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+
+    a {
+      @include text-link;
+    }
+  }
+
+  &__sub-title {
+    @include nsw-spacing(margin, none);
+    @include font-stack(heading);
+    @include font-size(md);
+    @include nsw-spacing(margin-bottom, md);
   }
 
   &__box {
@@ -93,7 +144,8 @@
     width: 100%;
     height: 100%;
     overflow: hidden;
-    color: $light20;
+    color: $nsw-primary-blue;
+    opacity: 0.1;
 
     .nsw-banner--dark & {
       color: $white;
