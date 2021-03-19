@@ -107,11 +107,25 @@
   }
 
   &__logo-link {
-    display: flex;
+    display: block;
 
     &:focus {
       @include nsw-focus;
     }
+
+    .nsw-header__logo {
+      width: rem(141px);
+      height: rem(46px);
+
+      @include breakpoint('lg') {
+        width: rem(168px);
+        height: rem(55px);
+      }
+    }
+  }
+
+  &__logo-image {
+    display: flex;
 
     svg {
       width: auto;
