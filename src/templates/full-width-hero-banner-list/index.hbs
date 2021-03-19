@@ -1,6 +1,7 @@
 ---
 title: Full width - Hero banner [list]
 model:
+  header: ../../components/header/json/header-customer-service.json
   nav-basic: ../../components/main-navigation/json/main-navigation.json
   nav-mega: ../../components/main-navigation/json/mega-navigation.json
   banner: ../../components/banner/json/banner.json
@@ -8,7 +9,7 @@ model:
   footer: ../../components/footer/json/footer.json
 ---
 
-{{>_header content="#content" nav="#main-navigation"}}
+{{>_header model.header}}
 {{>_main-navigation model.nav-basic}}
 
 {{>_banner 
@@ -61,7 +62,7 @@ model:
           <div class="nsw-grid">
             <div class="nsw-col nsw-col-md-6 nsw-col-lg-3">
               {{>_card 
-                heading="Health "
+                heading="Health"
                 content=true
               }}
             </div>

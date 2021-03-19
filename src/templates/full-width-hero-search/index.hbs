@@ -1,6 +1,7 @@
 ---
 title: Full width - Hero search
 model:
+  header: ../../components/header/json/header-nsw.json
   nav-basic: ../../components/main-navigation/json/main-navigation.json
   nav-mega: ../../components/main-navigation/json/mega-navigation.json
   hero-search: ../../components/hero-search/json/hero-search.json
@@ -8,7 +9,7 @@ model:
   footer: ../../components/footer/json/footer.json
 ---
 
-{{>_header content="#content" nav="#main-navigation"}}
+{{>_header model.header}}
 {{>_main-navigation model.nav-mega}}
 
 <section class="nsw-section--image" style="background-image: url(https://picsum.photos/id/1057/2000/1250);">
@@ -30,13 +31,13 @@ model:
             <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
               {{>_card 
                 heading= "Education and training"
-                copy="Year 12 school leavers can access free Summer Skills training courses across  and get a head start on 2021. "
+                copy="Year 12 school leavers can access free Summer Skills training courses across  and get a head start on 2021."
               }}
             </div>
             <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
               {{>_card 
                 heading= "Roads and transport"
-                copy="Find out about NSW driving and boating licences, vehicle or vessel registration. "
+                copy="Find out about NSW driving and boating licences, vehicle or vessel registration."
               }}
             </div>
             <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
