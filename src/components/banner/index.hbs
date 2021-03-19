@@ -1,6 +1,5 @@
 ---
 title: Hero banner
-model: ../../components/banner/json/banner-links.json
 ---
 
 
@@ -68,4 +67,11 @@ model: ../../components/banner/json/banner-links.json
   img="https://picsum.photos/id/237/2000/1250"
 }}
 
-{{>_banner model}}
+{{>_banner 
+	wide=false 
+	dark=false 
+	heading="Helping you deliver great government services" 
+	copy="Find the building blocks for creating user-centred digital services, as well as policy, tools and guidance"
+  links-title="Key coronavirus links"
+  links=(split "COVIDSafe App;Current COVID-19 case locations;Travel to and from NSW;Health and wellbeing;Business and work;COVID-19 testing centres")
+}}
