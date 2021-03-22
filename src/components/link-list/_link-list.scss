@@ -30,7 +30,6 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      text-decoration: none;
 
       &:hover {
         @include nsw-hover;
@@ -42,6 +41,19 @@
 
       span {
         text-decoration: underline;
+      }
+    }
+
+    a:not([class]) {
+      text-decoration: none;
+
+      &:visited {
+        color: $nsw-primary-blue;
+      }
+
+      &:active {
+        background-color: $hover-colour;
+        color: $nsw-primary-blue;
       }
     }
 
