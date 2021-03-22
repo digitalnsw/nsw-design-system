@@ -20,55 +20,53 @@ model:
 <div class="nsw-container nsw-p-top-sm nsw-p-bottom-lg">
   <div class="nsw-page-layout">  
     <main id="content" class="nsw-page-layout__main">
-      <div class="nsw-wysiwyg-content">
-        <form class="nsw-form">
-          <h1>Contact us</h1>
-          <p>We welcome your feedback, questions, comments and <a href="#">complaints</a>. We keep customers at the heart of what we do, and use your feedback to improve what we do and how we do it.</p>
-          <p>Including all the information requested will allow us to respond to your query more quickly and accurately.</p>
-          <p>Answer all questions unless they are marked as (optional).</p>
+      <form class="nsw-form">
+        <h1>Contact us</h1>
+        <p>We welcome your feedback, questions, comments and <a href="#">complaints</a>. We keep customers at the heart of what we do, and use your feedback to improve what we do and how we do it.</p>
+        <p>Including all the information requested will allow us to respond to your query more quickly and accurately.</p>
+        <p>Answer all questions unless they are marked as (optional).</p>
 
-          <div class="nsw-form-group">
-            {{>_select
-              id="contact-type"
-              label="Type of feedback:"
-              helper-text="Choose the category that best suits your feedback"
-              option-1="Complaints"
-              option-2="Compliments"
-              option-3="Other enquiry"
-            }}
-            
-            {{>_textarea
-              id="contact-feedback"
-              label="Give us your feedback:"
-              helper-text="The more information you provide, the better we'll be able to action your feedback"
-            }}
-          </div>
+        <div class="nsw-form-group">
+          {{>_select
+            id="contact-type"
+            label="Type of feedback:"
+            helper-text="Choose the category that best suits your feedback"
+            option-1="Complaints"
+            option-2="Compliments"
+            option-3="Other enquiry"
+          }}
+          
+          {{>_textarea
+            id="contact-feedback"
+            label="Give us your feedback:"
+            helper-text="The more information you provide, the better we'll be able to action your feedback"
+          }}
+        </div>
 
-          <h2>Personal details</h2>
+        <h2>Personal details</h2>
 
-          <div class="nsw-form-group">
-            {{>_text-input
-              id="contact-first-name"
-              label="First name"
-            }}
-            {{>_text-input
-              id="contact-last-name"
-              label="Last name"
-            }}
-            {{>_text-input
-              id="contact-email"
-              type="email"
-              label="Email address"
-            }}
-            {{>_text-input
-              id="contact-phone"
-              type="tel"
-              label="Phone number (optional)"
-            }}
-          {{>_button-input type="submit" style="primary" text="Submit"}}
-          </div>
-        </form>
-      </div>
+        <div class="nsw-form-group">
+          {{>_text-input
+            id="contact-first-name"
+            label="First name"
+          }}
+          {{>_text-input
+            id="contact-last-name"
+            label="Last name"
+          }}
+          {{>_text-input
+            id="contact-email"
+            type="email"
+            label="Email address"
+          }}
+          {{>_text-input
+            id="contact-phone"
+            type="tel"
+            label="Phone number (optional)"
+          }}
+        {{>_button-input type="submit" style="primary" text="Submit"}}
+        </div>
+      </form>
     </main>
     <div class="nsw-page-layout__sidebar">
     </div>

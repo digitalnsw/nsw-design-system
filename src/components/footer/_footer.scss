@@ -28,6 +28,10 @@
         @include nsw-focus($color: $white);
       }
     }
+
+    p:not([class]) {
+      margin: rem(12px) 0;
+    }
   }
 
   &__info {
@@ -43,11 +47,28 @@
   }
 
   &__built {
-
     flex: 0 0 rem(200px);
 
-    a:hover {
-      text-decoration: none;
+    a:not([class]) {
+      color: $white;
+
+      &:hover {
+        background-color: transparent;
+        outline: none;
+        text-decoration: none;
+      }
+
+      &:focus {
+        @include nsw-focus($offset: false, $color: $white);
+      }
+
+      &:visited {
+        color: $white;
+      }
+
+      &:active {
+        background-color: transparent;
+      }
     }
 
     @include breakpoint('md') {
@@ -101,8 +122,12 @@
     flex-wrap: wrap;
   }
 
-  a {
+  a:not([class]) {
     color: $nsw-primary-blue;
+
+    &:visited {
+      color: $nsw-primary-blue;
+    }
 
     &:hover {
       @include nsw-hover;

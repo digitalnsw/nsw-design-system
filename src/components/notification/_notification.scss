@@ -38,7 +38,7 @@
   &__content {
     @include font-stack;
 
-    p {
+    p:not([class]) {
       @include nsw-spacing(margin, sm none none none);
     }
 
@@ -59,6 +59,10 @@
 
       .nsw-notification__icon {
         color: map-get($variant, fill);
+
+        &.nsw-icon {
+          fill: map-get($variant, fill);
+        }        
       }
     }
   }

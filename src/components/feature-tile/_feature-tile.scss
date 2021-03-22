@@ -118,11 +118,16 @@
       flex-wrap: nowrap;
     }
 
-    ul {
+    ul:not([class]),
+    .nsw-feature-tile__double-list {
       @include nsw-spacing(padding, none);
       @include nsw-spacing(margin, none);
       list-style: none;
       flex: 1 0 50%;
+
+      li {
+        margin: 0;
+      }
     }
   }
 
