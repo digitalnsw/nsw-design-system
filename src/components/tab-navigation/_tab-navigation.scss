@@ -1,12 +1,24 @@
 .nsw-tabs {
   @include component-spacing();
 
+  &__list-wrapper {
+    overflow: hidden;
+    height: rem(48px);
+    background-color: $light10;
+
+    @include breakpoint('md') {
+      background-color: transparent;
+    }
+  }
+
   &__list {
     margin: 0;
-    padding: 0;
+    padding: 0 0 rem(20px) 0;
     list-style: none;
     display: flex;
     position: relative;
+    overflow-x: auto;
+    white-space: nowrap;
   }
 
   &__link {
@@ -17,6 +29,7 @@
     position: relative;
     text-decoration: none;
     color: $nsw-primary-blue;
+    height: 100%;
 
     &:hover {
       @include nsw-hover;
