@@ -32,11 +32,22 @@
     @include breakpoint('md') { 
       padding-top: rem(88px);
       padding-bottom: rem(88px);
+      min-height: rem(350px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
     .nsw-banner--wide & {
       @include create-column(8, md);
       @include create-column(7, xl);      
+    } 
+
+    .nsw-banner--featured & {
+      @include breakpoint('md') { 
+        min-height: 0;
+        display: block;
+      }   
     } 
 
     h1 {
