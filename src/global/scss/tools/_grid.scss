@@ -99,14 +99,19 @@
     @include breakpoint($breakpoint) {
       flex: 0 0 percentage($size / $grid-columns);
       max-width: percentage($size / $grid-columns);
-    }   
+
+      @if ($offset) {
+        margin-left: percentage($offset / $grid-columns);
+      }
+    }
+
   } @else {
     flex: 0 0 percentage($size / $grid-columns);
     max-width: percentage($size / $grid-columns);
-  }
 
-  @if ($offset) {
-    margin-left: percentage($offset / $grid-columns);
+    @if ($offset) {
+      margin-left: percentage($offset / $grid-columns);
+    }
   }
 }
 
