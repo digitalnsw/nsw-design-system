@@ -25,6 +25,11 @@ class Tabs {
   }
 
   setUpDom() {
+    const tabListWrapper = document.createElement('div')
+    tabListWrapper.classList.add('nsw-tabs__list-wrapper')
+    this.tab.prepend(tabListWrapper)
+    tabListWrapper.prepend(this.tabList)
+
     this.tab.classList.add('is-ready')
     this.tabList.setAttribute('role', 'tablist')
     this.tabItems.forEach((item) => {
@@ -90,6 +95,7 @@ class Tabs {
       this.tabPanel[clickedTabIndex].hidden = false
       this.tabPanel[selectedTabIndex].hidden = true
       this.selectedTab = clickedTab
+      this.selectedTab.scrollIntoView()
     }
   }
 
@@ -107,10 +113,10 @@ class Tabs {
           index = 0
           break
         case 37:
-          index = (index === 0) ? linkLength : index -= 1
+          index = (index === 0) ? -1 : index -= 1
           break
         case 39:
-          index = (index === linkLength) ? 0 : index += 1
+          index = (index === linkLength) ? -1 : index += 1
           break
         case 40:
           down = true
@@ -119,10 +125,12 @@ class Tabs {
           break
       }
 
-      if (down) {
-        this.tabPanel[index].focus()
-      } else {
-        this.switchTabs(this.tabLinks[index])
+      if (index > -1) {
+        if (down) {
+          this.tabPanel[index].focus()
+        } else {
+          this.switchTabs(this.tabLinks[index])
+        }
       }
     }
   }
