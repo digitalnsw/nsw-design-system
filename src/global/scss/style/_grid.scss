@@ -24,6 +24,26 @@
     }
   }
 
+  &--spaced {
+    margin-top: rem(-$grid-gutters);
+    margin-bottom: rem(-$grid-gutters);
+
+    @include breakpoint('md') {
+      margin-top: rem(-$grid-gutters*2);
+      margin-bottom: rem(-$grid-gutters*2);
+    }
+
+    > .nsw-col {
+      padding-top: rem($grid-gutters*2);
+      padding-bottom: rem($grid-gutters*2);
+
+      @include breakpoint('md') {
+        padding-top: rem($grid-gutters*4);
+        padding-bottom: rem($grid-gutters*4);
+      }
+    }
+  }
+
   &-overlay {
     .nsw-container {
       position: absolute;

@@ -1,42 +1,78 @@
 ---
 title: Full width - Hero banner
 model:
-  nav-basic: ../../components/main-navigation/json/main-navigation.json
-  nav-mega: ../../components/main-navigation/json/mega-navigation.json
+  nav: ../../components/main-navigation/json/mega-navigation-digital-nsw.json
   hero-banner: ../../components/hero-banner/json/hero-banner.json
   breadcrumbs: ../../components/breadcrumbs/json/breadcrumbs.json
-  card-media-1: ../../components/card/json/card-media-1.json
-  card-media-2: ../../components/card/json/card-media-2.json
-  card-media-3: ../../components/card/json/card-media-3.json
-  card-simple-1: ../../components/card/json/card-simple-1.json
-  card-simple-2: ../../components/card/json/card-simple-2.json
-  card-simple-3: ../../components/card/json/card-simple-3.json
-  card-simple-4: ../../components/card/json/card-simple-4.json
-  card-news-1: ../../components/card/json/card-news-1.json
-  card-news-2: ../../components/card/json/card-news-2.json
-  card-news-3: ../../components/card/json/card-news-3.json
   footer: ../../components/footer/json/footer.json
 ---
 
 {{>_header content="#content" nav="#main-navigation"}}
-{{>_main-navigation model.nav-basic}}
+{{>_main-navigation model.nav}}
 
-{{>_hero-banner model.hero-banner}}
+{{>_banner 
+  wide=true 
+  dark=true 
+  heading="Helping you deliver great government services" 
+  copy="Find the building blocks for creating user-centred digital services, as well as policy, tools and guidance"
+  cta="View Digital Service Toolkit"
+}}
 
 <main id="content">
   <section class="nsw-section--white">
     <div class="nsw-container">
       <div class="nsw-page-layout">
         <div class="nsw-page-layout__main">
+          <h2 class="nsw-section-title">Fast track to</h2>
           <div class="nsw-grid">
-            <div class="nsw-col nsw-col-md-4">
-              {{>_card model.card-media-1}}
+            <div class="nsw-col nsw-col-md-6 nsw-col-lg-3">
+              {{>_card 
+                heading="Digital styles"
+              }}
             </div>
-            <div class="nsw-col nsw-col-md-4">
-              {{>_card model.card-media-2}}
+            <div class="nsw-col nsw-col-md-6 nsw-col-lg-3">
+              {{>_card 
+                heading="Component library"
+              }}
             </div>
-            <div class="nsw-col nsw-col-md-4">
-              {{>_card model.card-media-3}}
+            <div class="nsw-col nsw-col-md-6 nsw-col-lg-3">
+              {{>_card 
+                heading="Solutions marketplace"
+              }}
+            </div>
+            <div class="nsw-col nsw-col-md-6 nsw-col-lg-3">
+              {{>_card 
+                heading="Community"
+              }}
+            </div>
+          </div>
+
+          <hr class="nsw-section-separator" />
+
+          <div class="nsw-grid nsw-grid--spaced">
+            <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+              {{>_content-block 
+                heading="Design Standards"
+                copy="Building great government services starts with solid foundations. Teams use the Design Standards to make and run effective services that meet customers needs."
+                link="Meet the standards"
+                icon="<svg viewBox='0 0 64 64' fill='none' xmlns='http://www.w3.org/2000/svg'><rect x='3' y='10' width='58' height='43.818' rx='1' stroke='#333' stroke-width='2'/><rect x='3' y='10' width='58' height='8.313' rx='1' stroke='#333' stroke-width='2'/><path d='M22.563 27.75c0 2.48-2.204 4.625-5.094 4.625s-5.094-2.145-5.094-4.625 2.204-4.625 5.094-4.625 5.093 2.145 5.093 4.625zM7.925 45.453c.363-2.767 1.178-5.313 2.664-7.15 1.45-1.79 3.605-2.99 6.88-2.99s5.429 1.2 6.879 2.99c1.486 1.837 2.301 4.383 2.665 7.15.197 1.498-1.06 2.86-2.763 2.86H10.687c-1.703 0-2.96-1.362-2.762-2.86z' stroke='#333' stroke-width='2'/><path stroke='#0085B3' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' d='M33 25.813h20.5M33 32.375h20.5M33 38.938h20.5'/></svg>"
+              }}
+            </div>
+            <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+              {{>_content-block 
+                heading="Resources"
+                copy="Practical ways to help you adopt a human-centred design approach. Discover a collection of agile methodologies, tools, kits, journey maps, processes and guides unique to delivering NSW Government services."
+                link="Get the tools and templates"
+                icon="<svg viewBox='0 0 64 64' fill='none' xmlns='http://www.w3.org/2000/svg'><circle cx='22.248' cy='16.831' r='9.83' stroke='#333' stroke-width='2'/><path d='M3.121 53.864c.377-5.925 1.682-11.782 4.62-16.133 2.896-4.287 7.426-7.187 14.507-7.187 7.082 0 11.611 2.9 14.507 7.187 2.939 4.35 4.244 10.208 4.62 16.133.101 1.585-1.202 2.934-2.878 2.934H6c-1.676 0-2.98-1.349-2.879-2.934z' stroke='#333' stroke-width='2'/><circle cx='48.01' cy='28.552' r='6.483' stroke='#0085B3' stroke-width='2'/><path d='M60.924 52.86l-.997.073.997-.074zM44.38 55.856a1 1 0 100 2v-2zm-3.297-16.99a1 1 0 10.943 1.764l-.943-1.764zm6.927.41c4.58 0 7.346 1.613 9.076 4.007 1.78 2.461 2.563 5.88 2.841 9.649l1.995-.148c-.288-3.887-1.107-7.758-3.215-10.673-2.157-2.984-5.566-4.834-10.697-4.834v2zm-3.63 18.58h12.678v-2H44.38v2zM42.026 40.63c1.586-.847 3.548-1.353 5.984-1.353v-2c-2.72 0-5.014.567-6.927 1.59l.943 1.763zm17.901 12.302c.116 1.57-1.186 2.924-2.869 2.924v2c2.736 0 5.073-2.235 4.864-5.072l-1.995.148z' fill='#0085B3'/></svg>"
+              }}
+            </div>
+            <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+              {{>_content-block 
+                heading="Design System"
+                copy="The NSW Government Design System contains reusable design, HTML and CSS UI components that help you create consistent, user-focused customer experiences."
+                link="Start building"
+                icon="<svg viewBox='0 0 57 64' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M44.2 28.297c0 2.61-.907 4.581-2.275 6.58-.601.877-1.278 1.742-2.009 2.675l-.344.44c-.854 1.094-1.759 2.275-2.62 3.608-.554.858-.894 1.9-1.131 2.918-.23.985-.379 2.022-.512 2.945l-.015.111c-.142.983-.264 1.794-.437 2.39-.086.296-.168.477-.233.577a.653.653 0 01-.02.03c-.646.182-1.706.28-2.903.322-.97.034-1.949.03-2.748.028h-1.106c-.8.003-1.778.006-2.748-.028-1.196-.043-2.255-.14-2.9-.321a.67.67 0 01-.02-.03c-.065-.1-.146-.28-.232-.577-.171-.598-.291-1.41-.431-2.395l-.012-.084c-.133-.931-.282-1.98-.515-2.975-.238-1.019-.582-2.062-1.145-2.918-.864-1.313-1.77-2.484-2.623-3.572l-.247-.316c-.767-.977-1.477-1.881-2.103-2.8-1.366-2.006-2.27-3.997-2.27-6.608 0-8.663 7.067-15.697 15.8-15.697 8.731 0 15.8 7.034 15.8 15.697zm-9.616 22.298l.001-.002a.021.021 0 01-.001.002zm-12.366.001l-.001-.001.001.001z' stroke='#333' stroke-width='2'/><path d='M22.16 53.84l5.857.45c.255.02.511.02.767 0l5.856-.45M23.12 57.68l4.827.439c.302.027.605.027.906 0l4.827-.44M24.08 61.52l3.768.419c.367.04.737.04 1.104 0l3.768-.419' stroke='#333' stroke-width='2' stroke-linecap='round'/><path stroke='#0085B3' stroke-width='2' stroke-linecap='round' d='M27.88 8.68V3M53.8 27h-5.68M8.68 27H3M11.094 8.72l4.017 4.016M41.36 13.134l4.016-4.016M42.774 40.4l4.016 4.016M9.68 44.416l4.017-4.016'/><path d='M17.327 27.803a1 1 0 101.986.234l-1.986-.234zm9.817-8.5a1 1 0 10-.368-1.966l.368 1.966zm-7.831 8.734c.143-1.213.714-3.163 1.96-4.928 1.231-1.745 3.1-3.287 5.871-3.806l-.368-1.966c-3.374.633-5.665 2.531-7.137 4.619-1.459 2.066-2.135 4.34-2.312 5.847l1.986.234z' fill='#333'/></svg>"
+              }}
             </div>
           </div>
         </div>
@@ -48,40 +84,35 @@ model:
     <div class="nsw-container">
       <div class="nsw-page-layout">
         <div class="nsw-page-layout__main">
-          <h2 class="nsw-section-title">Energy and utilities</h2>
+          <h2 class="nsw-section-title">Latest stories</h2>
+          <p class="nsw-section-text">The latest in the digital space.</p>
           <div class="nsw-grid">
-            <div class="nsw-col nsw-col-md-6 nsw-col-lg-3">
-              {{>_card model.card-simple-1}}
+            <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+              {{>_card 
+                heading= "Celebrating International Women’s Day"
+                img="https://picsum.photos/id/838/400/200"
+                tag="DCS Women in Technology Network"
+                date="8 Mar 2021"
+                date-machine="2021-03-08"
+              }}
             </div>
-            <div class="nsw-col nsw-col-md-6 nsw-col-lg-3">
-              {{>_card model.card-simple-2}}
+            <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+              {{>_card 
+                heading= "Cyber Security NSW - 2020 year in review"
+                img="https://picsum.photos/id/3/400/200"
+                tag="Cyber Security"
+                date="21 Jan 2021"
+                date-machine="2021-01-21"
+              }}
             </div>
-            <div class="nsw-col nsw-col-md-6 nsw-col-lg-3">
-              {{>_card model.card-simple-3}}
-            </div>
-            <div class="nsw-col nsw-col-md-6 nsw-col-lg-3">
-              {{>_card model.card-simple-4}}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="nsw-section--white">
-    <div class="nsw-container">
-      <div class="nsw-page-layout">
-        <div class="nsw-page-layout__main">
-          <h2 class="nsw-section-title">Latest updates</h2>
-          <div class="nsw-grid">
-            <div class="nsw-col nsw-col-md-4">
-              {{>_card model.card-news-1}}
-            </div>
-            <div class="nsw-col nsw-col-md-4">
-              {{>_card model.card-news-2}}
-            </div>
-            <div class="nsw-col nsw-col-md-4">
-              {{>_card model.card-news-3}}
+            <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+              {{>_card 
+                heading= "Transforming transportnsw.info"
+                img="https://picsum.photos/id/524/400/200"
+                tag="Transport for NSW"
+                date="28 Nov 2020"
+                date-machine="2020-11-28"
+              }}
             </div>
           </div>
         </div>

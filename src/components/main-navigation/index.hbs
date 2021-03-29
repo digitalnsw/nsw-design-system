@@ -1,8 +1,9 @@
 ---
 title: Main navigation
 model:
+  header: ../header/json/header-premier-and-cabinet.json
   basic: json/main-navigation.json
   mega: json/mega-navigation.json
 ---
-{{>_header}}
+{{>_header model.header content="#" nav="#main-navigation"}}
 {{>_main-navigation model.mega}}

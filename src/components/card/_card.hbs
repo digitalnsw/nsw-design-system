@@ -8,7 +8,7 @@
       {{/if}}
       {{#if date}}
       <p class="nsw-card__date">
-        <time datetime="{{date.machine}}">{{date.human}}</time>
+        <time{{#if date-machine}} datetime="{{date-machine}}"{{/if}}>{{date}}</time>
       </p>
       {{/if}}
       {{#if copy}}<p class="nsw-card__copy">{{copy}}</p>{{/if}}

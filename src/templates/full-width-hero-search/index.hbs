@@ -1,29 +1,17 @@
 ---
 title: Full width - Hero search
 model:
-  nav-basic: ../../components/main-navigation/json/main-navigation.json
-  nav-mega: ../../components/main-navigation/json/mega-navigation.json
+  header: ../../components/header/json/header-nsw.json
+  nav: ../../components/main-navigation/json/main-navigation-nsw.json
   hero-search: ../../components/hero-search/json/hero-search.json
   breadcrumbs: ../../components/breadcrumbs/json/breadcrumbs.json
-  card-headline-1: ../../components/card/json/card-headline-1.json
-  card-headline-2: ../../components/card/json/card-headline-2.json
-  card-headline-3: ../../components/card/json/card-headline-3.json
-  card-headline-4: ../../components/card/json/card-headline-4.json
-  card-headline-5: ../../components/card/json/card-headline-5.json
-  card-headline-6: ../../components/card/json/card-headline-6.json
-  card-simple-1: ../../components/card/json/card-simple-1.json
-  card-simple-2: ../../components/card/json/card-simple-2.json
-  card-simple-3: ../../components/card/json/card-simple-3.json
-  card-news-1: ../../components/card/json/card-news-1.json
-  card-news-2: ../../components/card/json/card-news-2.json
-  card-news-3: ../../components/card/json/card-news-3.json
   footer: ../../components/footer/json/footer.json
 ---
 
-{{>_header content="#content" nav="#main-navigation"}}
-{{>_main-navigation model.nav-mega}}
+{{>_header model.header}}
+{{>_main-navigation model.nav}}
 
-<section class="nsw-section--image" style="background-image: url(https://picsum.photos/id/199/2000/1250);">
+<section class="nsw-section--image" style="background-image: url(https://picsum.photos/id/1057/2000/1250);">
   {{>_hero-search model.hero-search}}
 </section>
 
@@ -33,63 +21,82 @@ model:
       <div class="nsw-page-layout">
         <div class="nsw-page-layout__main">
           <div class="nsw-grid nsw-m-bottom-md">
-            <div class="nsw-col nsw-col-md-4">
-              {{>_card model.card-headline-1}}
+            <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+              {{>_card 
+                heading= "Working and business"
+                copy="Start or grow a business, export or import goods, or find information on employment and jobs, industries and doing business in NSW."
+              }}
             </div>
-            <div class="nsw-col nsw-col-md-4">
-              {{>_card model.card-headline-2}}
+            <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+              {{>_card 
+                heading= "Education and training"
+                copy="Year 12 school leavers can access free Summer Skills training courses across  and get a head start on 2021."
+              }}
             </div>
-            <div class="nsw-col nsw-col-md-4">
-              {{>_card model.card-headline-3}}
+            <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+              {{>_card 
+                heading= "Roads and transport"
+                copy="Find out about NSW driving and boating licences, vehicle or vessel registration."
+              }}
             </div>
-            <div class="nsw-col nsw-col-md-4">
-              {{>_card model.card-headline-4}}
+            <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+              {{>_card 
+                heading= "Housing and property"
+                copy="Diverse housing, economic activities, public spaces, sustainable water services for NSW."
+              }}
             </div>
-            <div class="nsw-col nsw-col-md-4">
-              {{>_card model.card-headline-5}}
+            <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+              {{>_card 
+                heading= "Environment and energy"
+                copy="Working with the community, we care for and protect NSW’s environment and energy."
+              }}
             </div>
-            <div class="nsw-col nsw-col-md-4">
-              {{>_card model.card-headline-6}}
+            <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+              {{>_card 
+                heading= "Water"
+                copy="Diverse economic activities, public spaces, sustainable and resilient water services for NSW."
+              }}
             </div>
           </div>
 
-          <h2 class="nsw-section-title">Energy and utilities</h2>
-          <div class="nsw-grid">
-            <div class="nsw-col nsw-col-md-4">
-              {{>_card model.card-simple-1}}
+          <hr class="nsw-section-separator" />
+
+          <h2 class="nsw-section-title">Supporting the community</h2>
+          <p class="nsw-section-text">Advice and support to help you make the right decisions for you.</p>
+
+          <div class="nsw-grid nsw-grid--spaced">
+            <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+              {{>_content-block 
+                heading="COVID-19 (coronavirus)"
+                copy="Stay up to date with news, rules and case locations. Find a testing clinics and make your business COVID Safe"
+                img="https://picsum.photos/id/820/400/200"
+                link="View more"
+                list=(split "Current COVID-19 case locations;COVID-19 testing clincs;Health and wellbeing;Latest rules and regulation updates")
+              }}
             </div>
-            <div class="nsw-col nsw-col-md-4">
-              {{>_card model.card-simple-2}}
+            <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+              {{>_content-block 
+                heading="Bushfire customer care"
+                copy="Delivering bushfire recovery assistance to help people and businesses impacted by bushfires."
+                img="https://picsum.photos/id/1028/400/200"
+                link="View more"
+                list=(split "Customer care plan;Business support;Mobile service centres;NSW Rural Fire Service (RFS)")
+              }}
             </div>
-            <div class="nsw-col nsw-col-md-4">
-              {{>_card model.card-simple-3}}
+            <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+              {{>_content-block 
+                heading="Wellbeing support program"
+                copy="Support is available if you’re affected by COVID-19 and experiencing financial difficulty."
+                img="https://picsum.photos/id/338/400/200"
+                link="View more"
+                list=(split "Pandemic Leave Disaster Payment;If you're unemployed because of COVID-19;Help for renters and homeowners;Government payments, services and support")
+              }}
             </div>
           </div>
         </div>
       </div>
     </div>
   </section>
-
-  <section class="nsw-section--light-10">
-    <div class="nsw-container">
-      <div class="nsw-page-layout">
-        <div class="nsw-page-layout__main">
-          <h2 class="nsw-section-title">Latest updates</h2>
-          <div class="nsw-grid">
-            <div class="nsw-col nsw-col-md-4">
-              {{>_card model.card-news-1}}
-            </div>
-            <div class="nsw-col nsw-col-md-4">
-              {{>_card model.card-news-2}}
-            </div>
-            <div class="nsw-col nsw-col-md-4">
-              {{>_card model.card-news-3}}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 </main>
 
 {{>_footer model.footer}}

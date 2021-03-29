@@ -112,16 +112,24 @@
     &:focus {
       @include nsw-focus;
     }
+
+    .nsw-header__logo {
+      width: rem(141px);
+      height: rem(46px);
+
+      @include breakpoint('lg') {
+        width: rem(168px);
+        height: rem(55px);
+      }
+    }
   }
-}
 
-.nsw-header__logo {
-  width: rem(141px);
-  height: rem(46px);
+  &__logo-image {
+    display: flex;
 
-  @include breakpoint('lg') {
-    width: rem(168px);
-    height: rem(55px);
+    svg {
+      display: block;
+    }
   }
 }
 
