@@ -3,46 +3,42 @@ title: Styleguide
 page: true
 ---
 
-{{>_header simple=true}}
+{{>_header simple=true link="https://www.digital.nsw.gov.au/"}}
 
 <main>
   <div class="nsw-section--white">
     <div class="nsw-container">
       <div class="nsw-page-layout">
         <div class="nsw-page-layout__main">
-					<div class="nsw-grid">
-					  <div class="nsw-row nsw-m-bottom-sm">
-					    <div class="nsw-col">
-							<h1>NSW Digital Design System</h1>
-					    </div>
-					  </div>
+					<h2>NSW Digital Design System</h2>
+					<p>NSW Design system is a collection of reusable UI components used on the NSW government websites.</p>
 
-					  <div class="nsw-row">
-					    <div class="nsw-col nsw-col-md-6">
-								<h2>Components</h2>
-								<ul>
-									{{#each collections.components}}
-									<li><a class="navigation-nav-item" href="{{change-extention path}}" target="_blank">{{title}}</a></li>
-									{{/each}}
-								</ul>
-						    </div>
-						    <div class="nsw-col nsw-col-md-6">
-								<h2>Styles</h2>
-								<ul>
-									{{#each collections.styles}}
-									<li><a class="navigation-nav-item" href="{{change-extention path}}" target="_blank">{{title}}</a></li>
-									{{/each}}
-								</ul>
+					<h3>Components</h3>
+					<ul class="nsw-docs__list nsw-docs__list--4">
+						{{#each collections.componentsnav}}
+						<li><a href="{{change-extention path}}">{{title}}</a></li>
+						{{/each}}
+					</ul>
 
-								<h2>Demo pages</h2>
-								<ul>
-									{{#each collections.templates}}
-									<li><a class="navigation-nav-item" href="{{change-extention path}}" target="_blank">{{title}}</a></li>
-									{{/each}}
-								</ul>
-					    </div>
-					  </div>
-					</div>
+					<h3>Styles</h3>
+					<ul class="nsw-docs__list nsw-docs__list--4">
+						{{#each collections.stylesnav}}
+						<li><a href="{{change-extention path}}">{{title}}</a></li>
+						{{/each}}
+					</ul>
+
+					<h3>Demo pages</h3>
+					<ul class="nsw-docs__list nsw-docs__list--2">
+						{{#each collections.templatesnav}}
+						<li><a target="_blank" href="{{change-extention path}}">{{title}}</a></li>
+						{{/each}}
+					</ul>
+
+					<h3>Design System Figma UI kit</h3>
+					<p>Get access to the latest Design System UI patterns and styles via the <a target="_blank" href="https://www.digital.nsw.gov.au/design-system/getting-started/design-system-figma-ui-kit">Design System Figma UI kit</a>.</p>
+
+					<h3>Getting updates</h3>
+					<p>To be notified when there’s a new release, you can either join the <a target="_blank" href="https://community.digital.nsw.gov.au/">NSW Design System community</a> or <a target="_blank" href="https://github.com/digitalnsw/nsw-design-system">watch the NSW Design System Github</a></p>
         </div>
       </div>
     </div>

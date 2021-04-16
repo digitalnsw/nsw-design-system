@@ -20,6 +20,7 @@ const collections = require('metalsmith-collections')
 const ignore = require('metalsmith-ignore')
 const discoverPartials = require('metalsmith-discover-partials')
 const dataLoader = require('metalsmith-data-loader')
+const dynamicCollections = require('metalsmith-dynamic-collections')
 // const debug = require('metalsmith-debug-ui')
 const discoverHelpers = require('metalsmith-discover-helpers')
 const rollup = require('gulp-better-rollup')
@@ -143,6 +144,23 @@ function metalsmithBuild(callback) {
       pattern: config.metalSmith.collection.templates.pattern,
       sortBy: sortByAlpha,
     }
+  }))
+  metalsmith.use(dynamicCollections({
+    componentsnav: {
+      pattern: config.metalSmith.collection.componentsnav.pattern,
+      refer: false,
+      sortBy: sortByAlpha,
+    },
+    stylesnav: {
+      pattern: config.metalSmith.collection.stylesnav.pattern,
+      refer: false,
+      sortBy: sortByAlpha,
+    },
+    templatesnav: {
+      pattern: config.metalSmith.collection.templatesnav.pattern,
+      refer: false,
+      sortBy: sortByAlpha,
+    },
   }))
   metalsmith.use(inplace(config.metalSmith.inplace))
   metalsmith.use(layouts(config.metalSmith.layouts))

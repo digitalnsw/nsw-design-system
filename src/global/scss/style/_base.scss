@@ -81,10 +81,7 @@ body {
     width: 100%;
     background-color: $light10;
     padding: 0 rem(16px);
-
-    @include breakpoint('lg') {
-      min-height: 100vh;
-    }
+    min-height: 100vh;
   }
 
   &__top {
@@ -104,13 +101,32 @@ body {
   }
 
   &__content {
+    padding-bottom: rem(32px);
+
     @include breakpoint('lg') {
       padding: rem(32px) rem(52px) rem(48px);
     }
+
+    > h3 {
+      padding: rem(16px) 0;
+
+      &:first-child {
+        padding-top: 0;
+      }
+
+      + p {
+        margin-top: rem(-12px);
+        padding-bottom: rem(16px);
+      }
+    }
   }
 
-  &__links {
+  &__back {
     display: flex;
+
+    @include breakpoint('lg') {
+      display: none;
+    }
 
     a {
       @include font-stack('heading');
@@ -120,7 +136,42 @@ body {
       text-decoration: none;
       display: flex;
       align-items: center;
-      margin-top: rem(24px);
+      margin: rem(24px) 0 0;
+      cursor: pointer;
+      padding: 0;
+
+      &:hover {
+        @include nsw-hover;
+      }
+
+      &:focus {
+        @include nsw-focus;
+      }
+
+      span {
+        text-decoration: underline;
+      }
+
+      i {
+        font-size: rem(16px);
+        margin-right: rem(4px);
+      }      
+    }
+  }
+
+  &__links {
+    display: flex;
+    margin: 0 rem(-8px);
+
+    a {
+      @include font-stack('heading');
+      font-size: rem(14px);
+      color: $nsw-primary-blue;
+      border: 0;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      margin: rem(24px) rem(8px) 0;
       cursor: pointer;
       padding: 0;
 
@@ -140,6 +191,32 @@ body {
         font-size: rem(16px);
         margin-left: rem(4px);
       }      
+    }
+  }
+
+  &__list {
+    margin: rem(16px) 0 0 0;
+    padding: 0;
+    list-style-type: none;
+
+    &--4 {
+      column-gap: rem(36px);
+      column-count: 2;
+
+      @include breakpoint('lg') {
+        column-count: 4;
+      }
+    }
+
+    &--2 {
+      @include breakpoint('lg') {
+        column-gap: rem(36px);
+        column-count: 2;
+      }
+    }
+
+    li {
+      padding: rem(2px) 0;
     }
   }
 }
@@ -237,6 +314,16 @@ body {
     max-width: rem(800px);
     padding: rem(16px);
     background-color: $white;
+  }
+
+  &--wide {
+    max-width: rem($container-max-width);
+    padding: rem(16px);
+    background-color: $white;
+  }
+
+  &--dark {
+    background-color: $light40;
   }
 }
 

@@ -29,6 +29,12 @@
         {{>_docs-side-navigation}}
       </div>
       <div class="nsw-docs__main">
+        <div class="nsw-docs__back">
+          <a href="/" class="nsw-docs__link">
+            <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_left</i>
+            <span>Home</span>
+          </a>
+        </div>
         <div class="nsw-docs__top">
           <div class="nsw-docs__intro">
             <h1>{{ title }}</h1>
@@ -36,6 +42,12 @@
               {{#if guidance}}
                 <a target="_blank" href="{{guidance}}" class="nsw-docs__link">
                   <span>Guidance</span>
+                  <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">description</i>
+                </a>
+              {{/if}}
+              {{#if blank}}
+                <a target="_blank" href="blank.html" class="nsw-docs__link">
+                  <span>View in new window</span>
                   <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">launch</i>
                 </a>
               {{/if}}
