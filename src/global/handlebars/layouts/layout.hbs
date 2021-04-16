@@ -19,7 +19,7 @@
 {{/unless}}
 </head>
 
-<body class="nsw-body-content{{#if example}} nsw-ds-example{{/if}}">
+<body class="nsw-body-content">
 {{#if page}}
 {{{contents}}}
 {{else}}
@@ -28,7 +28,7 @@
       <div class="nsw-docs__nav">
         {{>_docs-side-navigation}}
       </div>
-      <div class="nsw-docs__main">
+      <div class="nsw-docs__main{{#if style}} nsw-docs__main--white{{/if}}">
         <div class="nsw-docs__back">
           <a href="/" class="nsw-docs__link">
             <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_left</i>
