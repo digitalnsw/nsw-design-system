@@ -12,11 +12,52 @@
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="/css/main.css">
+{{#unless page}}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/atom-one-light.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/xml.min.js"></script>
+{{/unless}}
 </head>
 
 <body class="nsw-body-content{{#if example}} nsw-ds-example{{/if}}">
-  {{{ contents }}}
+{{#if page}}
+{{{contents}}}
+{{else}}
+  <div class="nsw-docs">
+    <div class="nsw-docs__wrapper">
+      <div class="nsw-docs__nav">
+        {{>_docs-side-navigation}}
+      </div>
+      <div class="nsw-docs__main">
+        <div class="nsw-docs__top">
+          <div class="nsw-docs__intro">
+            <h1>{{ title }}</h1>
+            <div class="nsw-docs__links">
+              {{#if guidance}}
+                <a target="_blank" href="{{guidance}}" class="nsw-docs__link">
+                  <span>Guidance</span>
+                  <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">launch</i>
+                </a>
+              {{/if}}
+            </div>
+          </div>
+        </div>
+        <div class="nsw-docs__content">
+{{{contents}}}
+        </div>
+      </div>
+    </div>
+  </div>
+{{/if}}
   <script src="/js/main.js"></script>
-  <script>window.NSW.initSite()</script>
+  <script>
+    window.NSW.initSite()
+  </script>
+{{#unless page}}
+  <script src="/docs/js/docs.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
+{{/unless}}
 </body>
 </html>
