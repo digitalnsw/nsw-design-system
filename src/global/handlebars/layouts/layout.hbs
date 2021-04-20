@@ -28,34 +28,26 @@
       <div class="nsw-docs__nav">
         {{>_docs-side-navigation}}
       </div>
-      <div class="nsw-docs__main{{#if style}} nsw-docs__main--white{{/if}}">
-        <div class="nsw-docs__back">
-          <a href="/" class="nsw-docs__link">
-            <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_left</i>
-            <span>Home</span>
-          </a>
-        </div>
-        <div class="nsw-docs__top">
+      <div class="nsw-docs__main{{#if style}} nsw-docs__main--white{{/if}}{{#if-equals width "narrow"}} nsw-docs__main--narrow{{/if-equals}}{{#if-equals width "wide"}} nsw-docs__main--wide{{/if-equals}}"">
+        <div class="nsw-docs__container">
+          <div class="nsw-docs__back">
+            <a href="/" class="nsw-docs__link">
+              <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_left</i>
+              <span>Home</span>
+            </a>
+          </div>
           <div class="nsw-docs__intro">
             <h1>{{ title }}</h1>
-            <div class="nsw-docs__links">
-              {{#if guidance}}
-                <a target="_blank" href="{{guidance}}" class="nsw-docs__link">
-                  <span>Guidance</span>
-                  <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">description</i>
-                </a>
-              {{/if}}
-              {{#if blank}}
-                <a target="_blank" href="blank.html" class="nsw-docs__link">
-                  <span>View in new window</span>
-                  <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">launch</i>
-                </a>
-              {{/if}}
-            </div>
+            {{#if guidance}}
+            <a target="_blank" href="{{guidance}}" class="nsw-docs__guidance">
+              <span>Guidance</span>
+              <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">description</i>
+            </a>
+            {{/if}}
           </div>
-        </div>
-        <div class="nsw-docs__content">
+          <div class="nsw-docs__content">
 {{{contents}}}
+          </div>
         </div>
       </div>
     </div>

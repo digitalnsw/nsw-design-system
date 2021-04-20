@@ -1,20 +1,21 @@
 ---
 title: Direction links
+width: narrow
+guidance: https://digitalnsw.github.io/nsw-design-system-docs/components/direction-links/index.html
 ---
 
-<main>
-  <div class="nsw-section--white">
-    <div class="nsw-container">
-      <div class="nsw-page-layout">
-        <div class="nsw-page-layout__main">
-          <div class="nsw-grid">
-            <div class="nsw-col nsw-col-lg-8 nsw-offset-lg-2">
-							{{>_direction-links}}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</main>
+<h3>Regular</h3>
+{{#>_docs-example}}
+{{>_direction-links type="back"}}
+{{>_direction-links type="bottom"}}
+{{>_direction-links type="top"}}
+{{>_direction-links type="next"}}
+{{/_docs-example}}
 
+<h3>Disabled</h3>
+{{#>_docs-example}}
+{{>_direction-links type="back" disabled="true"}}
+{{>_direction-links type="bottom" disabled="true"}}
+{{>_direction-links type="top" disabled="true"}}
+{{>_direction-links type="next" disabled="true"}}
+{{/_docs-example}}

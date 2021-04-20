@@ -2,7 +2,7 @@
   {{>_feature-tile-title}}
   <div class="nsw-feature-tile__text">
     {{{copy}}}
-  </div>
+  </div>{{#if card-group}}
   <div class="nsw-feature-tile__cards-group">
     {{#each card-group}}
     <div class="nsw-feature-tile__card">
@@ -10,10 +10,10 @@
       <p class="nsw-feature-tile__card-text">{{text}}</p>
     </div>
     {{/each}}
-  </div>
+  </div>{{/if}}{{#if linklist}}
   <div class="nsw-feature-tile__links-group">
-    <ul {{#if double}}class="nsw-feature-tile__double-list"{{/if}}>
-    {{#each linklist}}      
+    <ul{{#if double}} class="nsw-feature-tile__double-list"{{/if}}>
+    {{#each linklist}}   
       <li>
         <a href="{{url}}" class="nsw-feature-tile__link">
           <span class="link-text">{{text}}</span>{{#if new}} <sup class="new-text">NEW</sup>{{/if}}
@@ -21,6 +21,6 @@
       </li>
     {{/each}}
     </ul>
-  </div>
-  {{#if call-to-action}}<a href="{{call-to-action.url}}" class="nsw-feature-tile__cta nsw-text-link">{{call-to-action.text}}</a>{{/if}}
+  </div>{{/if}}{{#if call-to-action}}
+  <a href="{{call-to-action.url}}" class="nsw-feature-tile__cta nsw-text-link">{{call-to-action.text}}</a>{{/if}}
 </div>

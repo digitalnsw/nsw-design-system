@@ -1,5 +1,7 @@
 ---
 title: Cards
+width: wide
+guidance: https://digitalnsw.github.io/nsw-design-system-docs/components/card/index.html
 model:
   card-headline-1: ../../components/card/json/card-headline-1.json
   card-headline-2: ../../components/card/json/card-headline-2.json
@@ -15,172 +17,118 @@ model:
   card-news-3: ../../components/card/json/card-news-3.json
 ---
 
-<main>
-  <div class="nsw-section--white">
-    <div class="nsw-container">
-      <div class="nsw-page-layout">
-        <div class="nsw-page-layout__main">
-          <h2 class="nsw-section-title">Headline only</h2>
-          <div class="nsw-grid">
-            <div class="nsw-col nsw-col-md-4">
-              {{>_card model.card-headline-1}}
-            </div>
-            <div class="nsw-col nsw-col-md-4">
-              {{>_card model.card-headline-2}}
-            </div>
-            <div class="nsw-col nsw-col-md-4">
-              {{>_card model.card-headline-3}}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+<h3>Headline only</h3>
+{{#>_docs-example}}
+<div class="nsw-grid">
+  <div class="nsw-col nsw-col-md-4">
+    {{>_card model.card-headline-1}}
   </div>
+  <div class="nsw-col nsw-col-md-4">
+    {{>_card model.card-headline-2}}
+  </div>
+  <div class="nsw-col nsw-col-md-4">
+    {{>_card model.card-headline-3}}
+  </div>
+</div>
+{{/_docs-example}}
 
-  <div class="nsw-section--light-10">
-    <div class="nsw-container">
-      <div class="nsw-page-layout">
-        <div class="nsw-page-layout__main">
-          <h2 class="nsw-section-title">Headline and copy</h2>
-          <div class="nsw-grid">
-            <div class="nsw-col nsw-col-md-4">
-              {{>_card model.card-simple-1}}
-            </div>
-            <div class="nsw-col nsw-col-md-4">
-              {{>_card model.card-simple-2}}
-            </div>
-            <div class="nsw-col nsw-col-md-4">
-              {{>_card model.card-simple-3}}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+{{#> _docs-example separated="true"}}
+<div class="nsw-grid">
+  <div class="nsw-col nsw-col-md-4">
+    {{>_card model.card-headline-1 content=true}}
   </div>
+  <div class="nsw-col nsw-col-md-4">
+    {{>_card model.card-headline-2 content=true}}
+  </div>
+  <div class="nsw-col nsw-col-md-4">
+    {{>_card model.card-headline-3 content=true}}
+  </div>
+</div>
+{{/_docs-example}}
 
-  <div class="nsw-section--white">
-    <div class="nsw-container">
-      <div class="nsw-page-layout">
-        <div class="nsw-page-layout__main">
-          <h2 class="nsw-section-title">Label and date</h2>
-          <div class="nsw-grid">
-            <div class="nsw-col nsw-col-md-4">
-              {{>_card model.card-content-1}}
-            </div>
-            <div class="nsw-col nsw-col-md-4">
-              {{>_card model.card-content-2}}
-            </div>
-            <div class="nsw-col nsw-col-md-4">
-              {{>_card model.card-content-3}}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+<h3>Headline and copy</h3>
+{{#>_docs-example}}
+<div class="nsw-grid">
+  <div class="nsw-col nsw-col-md-4">
+    {{>_card model.card-simple-1}}
   </div>
+  <div class="nsw-col nsw-col-md-4">
+    {{>_card model.card-simple-2}}
+  </div>
+  <div class="nsw-col nsw-col-md-4">
+    {{>_card model.card-simple-3}}
+  </div>
+</div>
+{{/_docs-example}}
 
-  <div class="nsw-section--light-10">
-    <div class="nsw-container">
-      <div class="nsw-page-layout">
-        <div class="nsw-page-layout__main">
-          <h2 class="nsw-section-title">Image</h2>
-          <div class="nsw-grid">
-            <div class="nsw-col nsw-col-md-4">
-              {{>_card model.card-news-1}}
-            </div>
-            <div class="nsw-col nsw-col-md-4">
-              {{>_card model.card-news-2}}
-            </div>
-            <div class="nsw-col nsw-col-md-4">
-              {{>_card model.card-news-3}}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+{{#>_docs-example separated="true"}}
+<div class="nsw-grid">
+  <div class="nsw-col nsw-col-md-4">
+    {{>_card model.card-simple-1 content=true}}
   </div>
-  
-  <div class="nsw-section--white">
-    <div class="nsw-container">
-      <div class="nsw-page-layout">
-        <div class="nsw-page-layout__main">
-          <h2 class="nsw-section-title">Headline only</h2>
-          <div class="nsw-grid">
-            <div class="nsw-col nsw-col-md-4">
-              {{>_card model.card-headline-1 content=true}}
-            </div>
-            <div class="nsw-col nsw-col-md-4">
-              {{>_card model.card-headline-2 content=true}}
-            </div>
-            <div class="nsw-col nsw-col-md-4">
-              {{>_card model.card-headline-3 content=true}}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div class="nsw-col nsw-col-md-4">
+    {{>_card model.card-simple-2 content=true}}
   </div>
+  <div class="nsw-col nsw-col-md-4">
+    {{>_card model.card-simple-3 content=true}}
+  </div>
+</div>
+{{/_docs-example}}
 
-  <div class="nsw-section--light-10">
-    <div class="nsw-container">
-      <div class="nsw-page-layout">
-        <div class="nsw-page-layout__main">
-          <h2 class="nsw-section-title">Headline and copy</h2>
-          <div class="nsw-grid">
-            <div class="nsw-col nsw-col-md-4">
-              {{>_card model.card-simple-1 content=true}}
-            </div>
-            <div class="nsw-col nsw-col-md-4">
-              {{>_card model.card-simple-2 content=true}}
-            </div>
-            <div class="nsw-col nsw-col-md-4">
-              {{>_card model.card-simple-3 content=true}}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+<h3>Label and date</h3>
+{{#>_docs-example}}
+<div class="nsw-grid">
+  <div class="nsw-col nsw-col-md-4">
+    {{>_card model.card-content-1}}
   </div>
+  <div class="nsw-col nsw-col-md-4">
+    {{>_card model.card-content-2}}
+  </div>
+  <div class="nsw-col nsw-col-md-4">
+    {{>_card model.card-content-3}}
+  </div>
+</div>
+{{/_docs-example}}
 
-  <div class="nsw-section--white">
-    <div class="nsw-container">
-      <div class="nsw-page-layout">
-        <div class="nsw-page-layout__main">
-          <h2 class="nsw-section-title">Label and date</h2>
-          <div class="nsw-grid">
-            <div class="nsw-col nsw-col-md-4">
-              {{>_card model.card-content-1 content=true}}
-            </div>
-            <div class="nsw-col nsw-col-md-4">
-              {{>_card model.card-content-2 content=true}}
-            </div>
-            <div class="nsw-col nsw-col-md-4">
-              {{>_card model.card-content-3 content=true}}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+{{#>_docs-example separated="true"}}
+<div class="nsw-grid">
+  <div class="nsw-col nsw-col-md-4">
+    {{>_card model.card-content-1 content=true}}
   </div>
+  <div class="nsw-col nsw-col-md-4">
+    {{>_card model.card-content-2 content=true}}
+  </div>
+  <div class="nsw-col nsw-col-md-4">
+    {{>_card model.card-content-3 content=true}}
+  </div>
+</div>
+{{/_docs-example}}
 
-  <div class="nsw-section--light-10">
-    <div class="nsw-container">
-      <div class="nsw-page-layout">
-        <div class="nsw-page-layout__main">
-          <h2 class="nsw-section-title">Image</h2>
-          <div class="nsw-grid">
-            <div class="nsw-col nsw-col-md-4">
-              {{>_card model.card-news-1 content=true}}
-            </div>
-            <div class="nsw-col nsw-col-md-4">
-              {{>_card model.card-news-2 content=true}}
-            </div>
-            <div class="nsw-col nsw-col-md-4">
-              {{>_card model.card-news-3 content=true}}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+<h3>Image</h3>
+{{#>_docs-example}}
+<div class="nsw-grid">
+  <div class="nsw-col nsw-col-md-4">
+    {{>_card model.card-news-1}}
   </div>
-</main>
+  <div class="nsw-col nsw-col-md-4">
+    {{>_card model.card-news-2}}
+  </div>
+  <div class="nsw-col nsw-col-md-4">
+    {{>_card model.card-news-3}}
+  </div>
+</div>
+{{/_docs-example}}
+
+{{#>_docs-example separated="true"}}
+<div class="nsw-grid">
+  <div class="nsw-col nsw-col-md-4">
+    {{>_card model.card-news-1 content=true}}
+  </div>
+  <div class="nsw-col nsw-col-md-4">
+    {{>_card model.card-news-2 content=true}}
+  </div>
+  <div class="nsw-col nsw-col-md-4">
+    {{>_card model.card-news-3 content=true}}
+  </div>
+</div>
+{{/_docs-example}}

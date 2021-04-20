@@ -1,5 +1,6 @@
 ---
 title: Feature tile
+width: narrow
 model:
   all: json/feature-tile.json
   cta: json/feature-tile-cta.json
@@ -7,64 +8,14 @@ model:
   five-links: json/feature-tile-five-links.json
 ---
 
-<main>
-  <div class="nsw-section--white">
-    <div class="nsw-container">
-      <div class="nsw-page-layout">
-        <div class="nsw-page-layout__main">
-          <div class="nsw-grid">
-            <div class="nsw-col nsw-col-lg-8 nsw-offset-lg-2">
-              <h2 class="nsw-section-title">Links list (fewer than 6)</h2>
-              {{>_feature-tile model.five-links}}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+<h3>Links list (fewer than 6)</h3>
+{{#>_docs-example}}{{>_feature-tile model.five-links}}{{/_docs-example}}
 
-  <div class="nsw-section--light-10">
-    <div class="nsw-container">
-      <div class="nsw-page-layout">
-        <div class="nsw-page-layout__main">
-          <div class="nsw-grid">
-            <div class="nsw-col nsw-col-lg-8 nsw-offset-lg-2">
-              <h2 class="nsw-section-title">Links list (more than 6)</h2>
-              {{>_feature-tile model.links}}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+<h3>Links list (more than 6)</h3>
+{{#>_docs-example}}{{>_feature-tile model.links}}{{/_docs-example}}
 
-  <div class="nsw-section--white">
-    <div class="nsw-container">
-      <div class="nsw-page-layout">
-        <div class="nsw-page-layout__main">
-          <div class="nsw-grid">
-            <div class="nsw-col nsw-col-lg-8 nsw-offset-lg-2">
-              <h2 class="nsw-section-title">CTA and Images</h2>
-              {{>_feature-tile model.cta}}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+<h3>CTA and Images</h3>
+{{#>_docs-example}}{{>_feature-tile model.cta}}{{/_docs-example}}
 
-  <div class="nsw-section--light-10">
-    <div class="nsw-container">
-      <div class="nsw-page-layout">
-        <div class="nsw-page-layout__main">
-          <div class="nsw-grid">
-            <div class="nsw-col nsw-col-lg-8 nsw-offset-lg-2">
-              <h2 class="nsw-section-title">All options</h2>
-              {{>_feature-tile model.all}}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</main>
+<h3>All options</h3>
+{{#>_docs-example}}{{>_feature-tile model.all}}{{/_docs-example}}
