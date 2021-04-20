@@ -65,7 +65,6 @@
     }
 
     .nsw-docs__external {
-      bottom: auto;
       top: rem(16px);
 
       @include breakpoint('lg') {
@@ -98,8 +97,6 @@
   }
 
   &__example {
-    position: relative;
-
     &.nsw-docs__example--dark {
       background-color: $light40;  
     }
@@ -181,7 +178,7 @@
     align-items: center;
     cursor: pointer;
     position: absolute;
-    bottom: rem(-45px);
+    top: 0;
     right: 0;
 
     &:hover {
@@ -230,6 +227,8 @@
 }
 
 .nsw-docs-code {
+  position: relative;
+
   &__button {
     @include link;
     @include font-stack('heading');
