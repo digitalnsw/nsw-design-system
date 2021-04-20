@@ -1,5 +1,7 @@
 ---
 title: In-page notification
+width: narrow
+guidance: https://digitalnsw.github.io/nsw-design-system-docs/components/notification/index.html
 model:
   info: json/notification-info.json
   error: json/notification-error.json
@@ -7,35 +9,14 @@ model:
   success: json/notification-success.json
 ---
 
-<main>
-  <div class="nsw-section--white">
-    <div class="nsw-container">
-      <div class="nsw-page-layout">
-        <div class="nsw-page-layout__main">
-          <div class="nsw-grid">
-          	<div class="nsw-row">
-            	<div class="nsw-col nsw-col-lg-8 nsw-offset-lg-2">
-	  						{{>_notification model.info}}
-	  					</div>
-	  				</div>
-          	<div class="nsw-row">
-            	<div class="nsw-col nsw-col-lg-8 nsw-offset-lg-2">
-	  						{{>_notification model.error}}
-	  					</div>
-	  				</div>
-          	<div class="nsw-row">
-            	<div class="nsw-col nsw-col-lg-8 nsw-offset-lg-2">
-	  						{{>_notification model.warning}}
-	  					</div>
-	  				</div>
-          	<div class="nsw-row">
-            	<div class="nsw-col nsw-col-lg-8 nsw-offset-lg-2">
-	  						{{>_notification model.success}}
-	  					</div>
-	  				</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</main>
+<h3>Information</h3>
+{{#>_docs-example}}{{>_notification model.info}}{{/_docs-example}}
+
+<h3>Error</h3>
+{{#>_docs-example}}{{>_notification model.error}}{{/_docs-example}}
+
+<h3>Warning</h3>
+{{#>_docs-example}}{{>_notification model.warning}}{{/_docs-example}}
+
+<h3>Success</h3>
+{{#>_docs-example}}{{>_notification model.success}}{{/_docs-example}}

@@ -1,4 +1,4 @@
-<nav id="main-navigation" class="nsw-navigation {{#if mega-menu}}js-mega-menu{{/if}}" aria-label="Main menu">
+<nav id="main-navigation" class="nsw-navigation{{#if mega-menu}} js-mega-menu{{/if}}" aria-label="Main menu">
   <div class="nsw-navigation__header">
     <h2 id="nsw-navigation">Menu</h2>
     <button type="button" class="nsw-navigation__close js-close-navigation" aria-expanded="true">
@@ -8,17 +8,16 @@
   </div>
   <ul class="nsw-navigation__list">
     {{#each navitems}}
-      <li class="nsw-navigation__list-item">
-        <a href="{{url}}" class="nsw-navigation__link">
-          <span class="nsw-navigation__link-text">{{text}}</span>
-          {{#if subnav}}
-          <i class="material-icons nsw-material-icons nsw-navigation__link-icon" focusable="false" aria-hidden="true">keyboard_arrow_right</i>
-          {{/if}}
-        </a>
+    <li class="nsw-navigation__list-item">
+      <a href="{{url}}" class="nsw-navigation__link">
+        <span class="nsw-navigation__link-text">{{text}}</span>
         {{#if subnav}}
-          {{>_sub-nav}}
+        <i class="material-icons nsw-material-icons nsw-navigation__link-icon" focusable="false" aria-hidden="true">keyboard_arrow_right</i>
         {{/if}}
-      </li>
+      </a>{{#if subnav}}
+      {{>_sub-nav}}
+      {{/if}}
+    </li>
     {{/each}}
   </ul>
 </nav>
