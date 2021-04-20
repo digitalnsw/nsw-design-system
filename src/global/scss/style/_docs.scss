@@ -63,6 +63,15 @@
     @include breakpoint('lg') {
       padding-bottom: rem(48px);
     }
+
+    .nsw-docs__external {
+      bottom: auto;
+      top: rem(16px);
+
+      @include breakpoint('lg') {
+        top: rem(24px);
+      }
+    }
   }
 
   &__content {
@@ -77,6 +86,14 @@
         margin-top: rem(-12px);
         padding-bottom: rem(16px);
       }
+
+      + h4 {
+        padding-top: 0;
+      }
+    }
+
+    > h4 {
+      padding: rem(16px) 0;
     }
   }
 
