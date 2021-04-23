@@ -21,7 +21,7 @@ model:
 </div>
 
 <div class="nsw-container nsw-p-top-sm nsw-p-bottom-lg">
-  <div class="nsw-page-layout">  
+  <div class="nsw-page-layout">
     <main id="content" class="nsw-page-layout__main">
       <div class="nsw-block">
         <h1>Scaling a design system</h1>
@@ -59,16 +59,20 @@ model:
         <form class="nsw-form" action="#">
           <h4 class="nsw-section-title">Want to stay in touch?</h4>
           <p>Find out about work happening across NSW Government in the digital space. </p>
-          {{>_text-input
-            id="subscribe-full-name"
-            label="Full name"
-            required=true
-          }}
-          {{>_text-input
-            id="subscribe-email"
-            label="Email"
-            required=true
-          }}
+          <div class="nsw-form-group">
+            {{>_text-input
+                    id="subscribe-full-name"
+                    label="Full name"
+                    required=true
+            }}
+          </div>
+          <div class="nsw-form-group">
+            {{>_text-input
+                    id="subscribe-email"
+                    label="Email"
+                    required=true
+            }}
+          </div>
           <div class="nsw-form-checkbox">
             {{>_checkbox
               id="subscribe-tc"
