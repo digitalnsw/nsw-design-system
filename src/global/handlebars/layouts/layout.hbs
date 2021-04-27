@@ -19,10 +19,13 @@
 {{/unless}}
 </head>
 
-<body class="nsw-body-content{{#unless page}} nsw-docs{{/unless}}">
+<body class="nsw-body-content{{#unless page}} nsw-docs{{/unless}}{{#if home}} nsw-docs--home{{/if}}">
 {{#if page}}
 {{{contents}}}
 {{else}}
+  {{#if home}}
+  {{>_header simple=true link="https://www.digital.nsw.gov.au/"}}
+  {{/if}}
   <div class="nsw-docs">
     <div class="nsw-docs__wrapper">
       <div class="nsw-docs__nav">

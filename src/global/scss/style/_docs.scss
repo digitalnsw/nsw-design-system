@@ -3,6 +3,46 @@ $docs-bg: lighten($light20, 3);
 .nsw-docs {
   background-color: $docs-bg;
 
+  &--home {
+    .nsw-header,
+    .nsw-masthead {
+      @include breakpoint('lg') {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 300;
+      }
+    }
+
+    .nsw-container,
+    .nsw-header__container {
+      margin: 0;
+    }
+
+    .nsw-header {
+      @include breakpoint('lg') {
+        top: rem(42px);
+        border-bottom: solid 1px $light20;
+      }
+    }
+
+    .nsw-docs-nav {
+      top: rem(137px);
+    }
+
+    .nsw-table {
+      td,
+      th {
+        text-align: center;
+
+        &:first-child {
+          text-align: left;
+        }
+      }
+    }
+  }
+
   &__wrapper {
     @include breakpoint('lg') {
       display: flex;
