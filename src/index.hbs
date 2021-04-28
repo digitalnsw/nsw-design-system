@@ -7,96 +7,71 @@ style: true
 	<div class="nsw-section">
 		<h2>NSW Digital Design System</h2>
 		<p>NSW Design system is a collection of reusable UI components used on the NSW government websites.</p>
+		<p>All of our components come with <a href="https://digitalnsw.github.io/nsw-design-system-docs/" target="_blank">guidance</a> on how they can be used, as well as a complete set of UI designs in <a href="https://www.figma.com/file/PVrERKnckLTlJSPk12gbtS/NSW-Digital-Design-System?node-id=0%3A1" target="_blank">Figma</a>.</p>
 	</div>
 
 	<div class="nsw-section nsw-m-top-lg">
 		<h3>Components</h3>
-		<p>All components are supported by written guidance on how they behave, what they look like, and contain interactive demos and coded examples. </p>
+		<p>All components are supported by written guidance on how they behave, what they look like, and contain interactive demos and code examples. </p>
 
-		<div class="nsw-table-responsive">
-		  <table class="nsw-table nsw-table--striped">
-		    <thead>
-		      <tr>
-		        <th width="40%">Component</th>
-		        <th width="15%">Guidance</th>
-		        <th width="15%">Figma</th>
-		        <th width="15%">CSS/HTML</th>
-		        <th width="15%">React</th>
-		      </tr>
-		    </thead>
-		    <tbody>
-					{{#each collections.componentsnav}}
-		      <tr>
-		        <td><a href="{{change-extention path}}">{{title}}</a></td>
-		        <td><i class="material-icons nsw-material-icons nsw-material-icons--success" focusable="false" aria-hidden="true">done</i></td>
-		        <td><i class="material-icons nsw-material-icons nsw-material-icons--success" focusable="false" aria-hidden="true">done</i></td>
-		        <td><i class="material-icons nsw-material-icons nsw-material-icons--success" focusable="false" aria-hidden="true">done</i></td>
-		        <td><i class="material-icons nsw-material-icons nsw-material-icons--success" focusable="false" aria-hidden="true">done</i></td>
-		      </tr>
-					{{/each}}
-		    </tbody>
-		  </table>
-		</div>
+		<ul class="nsw-docs__list nsw-docs__list--4">
+			{{#each collections.componentsnav}}
+			<li><a href="{{change-extention path}}">{{title}}</a></li>
+			{{/each}}
+		</ul>
 	</div>
 
 	<div class="nsw-section nsw-m-top-lg">
 		<h3>Styles</h3>
-		<div class="nsw-table-responsive">
-		  <table class="nsw-table nsw-table--striped">
-		    <thead>
-		      <tr>
-		        <th width="40%">Style</th>
-		        <th width="15%">Guidance</th>
-		        <th width="15%">Figma</th>
-		        <th width="15%">CSS/HTML</th>
-		        <th width="15%">React</th>
-		      </tr>
-		    </thead>
-		    <tbody>
-					{{#each collections.stylesnav}}
-		      <tr>
-		        <td><a href="{{change-extention path}}">{{title}}</a></td>
-		        <td><i class="material-icons nsw-material-icons nsw-material-icons--success" focusable="false" aria-hidden="true">done</i></td>
-		        <td><i class="material-icons nsw-material-icons nsw-material-icons--success" focusable="false" aria-hidden="true">done</i></td>
-		        <td><i class="material-icons nsw-material-icons nsw-material-icons--success" focusable="false" aria-hidden="true">done</i></td>
-		        <td></td>
-		      </tr>
-					{{/each}}
-		    </tbody>
-		  </table>
-		</div>
+		<p>Our base styles sample sentence goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum sed turpis eget commodo. Fusce eu ligula vitae dolor aliquet consequat non vel enim.</p>
+
+		<ul>
+			{{#each collections.stylesnav}}
+			<li><a href="{{change-extention path}}">{{title}}</a></li>
+			{{/each}}
+		</ul>
 	</div>
 
 	<div class="nsw-section nsw-m-top-lg">
 		<h3>Demo pages</h3>
 		<p>Examples of page types, layouts and universal page components.</p>
+		<ul class="nsw-docs__list nsw-docs__list--2">
+			{{#each collections.templatesnav}}
+			<li><a target="_blank" href="{{change-extention path}}">{{title}}</a></li>
+			{{/each}}
+		</ul>
+
+		<h3>Backlog</h3>
+		<p>Our backlog contains components and patterns that have been requested by our community. We also include elements that the Design System team have identified for potential use by digital creators. </p>
 		<div class="nsw-table-responsive">
 		  <table class="nsw-table nsw-table--striped">
 		    <thead>
 		      <tr>
-		        <th width="40%">Style</th>
-		        <th width="15%">Guidance</th>
-		        <th width="15%">Figma</th>
-		        <th width="15%">CSS/HTML</th>
-		        <th width="15%">React</th>
+		        <th width="30%">Component</th>
+		        <th width="30%">Status</th>
+		        <th width="40%">Contribute</th>
 		      </tr>
 		    </thead>
 		    <tbody>
-					{{#each collections.templatesnav}}
 		      <tr>
-		        <td><a href="{{change-extention path}}">{{title}}</a></td>
-		        <td></td>
-		        <td><i class="material-icons nsw-material-icons nsw-material-icons--success" focusable="false" aria-hidden="true">done</i></td>
-		        <td><i class="material-icons nsw-material-icons nsw-material-icons--success" focusable="false" aria-hidden="true">done</i></td>
-		        <td></td>
+		        <td>Graphs</td>
+		        <td><span class="nsw-tag">Not started</span></td>
+		        <td><a target="_blank" href="#">Start the discussion</a></td>
 		      </tr>
-					{{/each}}
+		      <tr>
+		        <td>Maps</td>
+		        <td><span class="nsw-tag">In progress</span></td>
+		        <td><a target="_blank" href="#">Join the Community thread</a></td>
+		      </tr>
+		      <tr>
+		        <td>Search template</td>
+		        <td><span class="nsw-tag">In progress</span></td>
+		        <td><a target="_blank" href="#">Join the Community thread</a></td>
+		      </tr>
 		    </tbody>
 		  </table>
 		</div>
 
-		<h3>Design System Figma UI kit</h3>
-		<p>Get access to the latest Design System UI patterns and styles via the <a target="_blank" href="https://www.digital.nsw.gov.au/design-system/getting-started/design-system-figma-ui-kit">Design System Figma UI kit</a>.</p>
 
 		<h3>Getting updates</h3>
 		<p>To be notified when there’s a new release, you can either join the <a target="_blank" href="https://community.digital.nsw.gov.au/">NSW Design System community</a> or <a target="_blank" href="https://github.com/digitalnsw/nsw-design-system">watch the NSW Design System Github</a></p>
