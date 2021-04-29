@@ -3,10 +3,24 @@ $docs-bg: lighten($light20, 3);
 .nsw-docs {
   background-color: $docs-bg;
 
+  &--style {
+    background-color: $white;
+
+    .nsw-docs__intro {
+      @include breakpoint('md') {
+        padding-right: rem(190px);
+      }
+    }
+
+    .nsw-docs__example {
+      padding: 0;
+    }
+  }
+
   &--home {
     .nsw-header,
     .nsw-masthead {
-      @include breakpoint('lg') {
+      @include breakpoint('xl') {
         position: fixed;
         top: 0;
         left: 0;
@@ -21,7 +35,7 @@ $docs-bg: lighten($light20, 3);
     }
 
     .nsw-header {
-      @include breakpoint('lg') {
+      @include breakpoint('xl') {
         top: rem(42px);
         border-bottom: solid 1px $light20;
       }
@@ -30,10 +44,16 @@ $docs-bg: lighten($light20, 3);
     .nsw-docs-nav {
       top: rem(137px);
     }
+
+    .nsw-docs__content {
+      @include breakpoint('xl') {
+        padding-top: rem(137px);
+      }      
+    }
   }
 
   &__wrapper {
-    @include breakpoint('lg') {
+    @include breakpoint('xl') {
       display: flex;
     }
   }
@@ -43,7 +63,7 @@ $docs-bg: lighten($light20, 3);
     min-width: rem(300px);
     max-width: rem(300px);
 
-    @include breakpoint('lg') {
+    @include breakpoint('xl') {
       display: block;
     }
   }
@@ -53,16 +73,8 @@ $docs-bg: lighten($light20, 3);
     padding: rem(24px) rem(16px);
     min-height: 100vh;
 
-    @include breakpoint('lg') {
+    @include breakpoint('xl') {
       padding: rem(48px) rem(52px);
-    }
-
-    &--white {
-      background-color: $white;
-
-      .nsw-docs__example {
-        padding: 0;
-      }
     }
 
     &--narrow {
@@ -104,17 +116,23 @@ $docs-bg: lighten($light20, 3);
   }
 
   &__intro {
-    padding: 0 rem(124px) rem(24px) 0;
+    padding: 0 0 rem(24px) 0;
     position: relative;
 
-    @include breakpoint('lg') {
+    @include breakpoint('md') {
+      padding-right: rem(124px);
+    }
+
+    @include breakpoint('xl') {
       padding-bottom: rem(48px);
     }
 
     .nsw-docs__external {
-      top: rem(16px);
+      @include breakpoint('md') {
+        top: rem(16px);
+      }
 
-      @include breakpoint('lg') {
+      @include breakpoint('xl') {
         top: rem(24px);
       }
     }
@@ -153,7 +171,7 @@ $docs-bg: lighten($light20, 3);
     display: flex;
     padding-bottom: rem(24px);
 
-    @include breakpoint('lg') {
+    @include breakpoint('xl') {
       display: none;
     }
 
@@ -186,6 +204,22 @@ $docs-bg: lighten($light20, 3);
     }
   }
 
+  &__buttons {
+    display: flex;
+    margin-top: rem(8px);
+
+    @include breakpoint('md') {
+      position: absolute;
+      top: rem(3px);
+      right: 0;
+      margin-top: 0;
+    }
+
+    @include breakpoint('xl') {
+      top: rem(10px);
+    }
+  }
+
   &__guidance {
     @include font-stack('heading');
     @include border-radius;
@@ -195,14 +229,7 @@ $docs-bg: lighten($light20, 3);
     text-decoration: none;
     display: flex;
     align-items: center;
-    position: absolute;
-    top: rem(3px);
-    right: 0;
     padding: rem(8px);
-
-    @include breakpoint('lg') {
-      top: rem(10px);
-    }
 
     &:focus {
       @include nsw-focus;
@@ -224,9 +251,15 @@ $docs-bg: lighten($light20, 3);
     display: flex;
     align-items: center;
     cursor: pointer;
-    position: absolute;
-    top: 0;
-    right: 0;
+    white-space: nowrap;
+    margin-top: rem(8px);
+
+    @include breakpoint('md') {
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin-top: 0;
+    }
 
     &:hover {
       @include nsw-hover;
