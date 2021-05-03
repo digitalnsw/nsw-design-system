@@ -1,60 +1,9 @@
-<div class="nsw-container">
-  <a class="nsw-direction-link" href="#">
-    <i class="material-icons nsw-material-icons nsw-material-icons--rotate-180" focusable="false" aria-hidden="true">east</i>
-    <span class="nsw-direction-link__text">
-      Back <span class="sr-only">a page</span>
-    </span>
-  </a>
-
-  <a class="nsw-direction-link" href="#">
-    <span class="nsw-direction-link__text">
-      Bottom <span class="sr-only">of page</span>
-    </span>
-    <i class="material-icons nsw-material-icons nsw-material-icons--rotate-90" focusable="false" aria-hidden="true">east</i>
-  </a>
-
-  <a class="nsw-direction-link" href="#">
-    <span class="nsw-direction-link__text">
-      Top <span class="sr-only">of page</span>
-    </span>
-    <i class="material-icons nsw-material-icons nsw-material-icons--rotate-270" focusable="false" aria-hidden="true">east</i>
-  </a>
-
-  <a class="nsw-direction-link" href="#">
-    <span class="nsw-direction-link__text">
-      Next <span class="sr-only">page</span>
-    </span>
-    <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</i>
-  </a>
-</div>
-
-<div class="nsw-container">
-  <span class="nsw-direction-link nsw-direction-link--icon-left is-disabled">
-    <i class="material-icons nsw-material-icons nsw-material-icons--rotate-180" focusable="false" aria-hidden="true">east</i>
-    <span class="nsw-direction-link__text">
-      Back <span class="sr-only">a page</span>
-    </span>
-  </span>
-
-  <span class="nsw-direction-link is-disabled">
-    <span class="nsw-direction-link__text">
-      Bottom <span class="sr-only">of page</span>
-    </span>
-    <i class="material-icons nsw-material-icons nsw-material-icons--rotate-90" focusable="false" aria-hidden="true">east</i>
-  </span>
-
-  <span class="nsw-direction-link is-disabled">
-    <span class="nsw-direction-link__text">
-      Top <span class="sr-only">of page</span>
-    </span>
-    <i class="material-icons nsw-material-icons nsw-material-icons--rotate-270" focusable="false" aria-hidden="true">east</i>
-  </span>
-
-  <span class="nsw-direction-link is-disabled">
-    <span class="nsw-direction-link__text">
-      Next <span class="sr-only">page</span>
-    </span>
-    <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</i>
-  </span>
-</div>
-
+<a class="nsw-direction-link{{#if-equals type "back"}} nsw-direction-link--icon-left{{/if-equals}}{{#if disabled}} is-disabled{{/if}}" href="#">{{#if-equals type "back"}}
+  <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">west</i>{{/if-equals}}
+  <span class="nsw-direction-link__text">
+    {{#if-equals type "back"}}Back <span class="sr-only">a page</span>{{/if-equals}}{{#if-equals type "next"}}Next <span class="sr-only">page</span>{{/if-equals}}{{#if-equals type "top"}}Top <span class="sr-only">of page</span>{{/if-equals}}{{#if-equals type "bottom"}}Bottom <span class="sr-only">of page</span>{{/if-equals}}
+  </span>{{#if-equals type "next"}}
+  <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</i>{{/if-equals}}{{#if-equals type "top"}}
+  <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">north</i>{{/if-equals}}{{#if-equals type "bottom"}}
+  <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">south</i>{{/if-equals}}
+</a>

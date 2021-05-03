@@ -16,6 +16,16 @@
     "watch": ["./src/main.js", "./src/components/**/*.js", "./src/global/scripts/**/*.js", "./src/styles/**/*.js"],
     "build": "./dist/js/"
   },
+  "jsDocs": {
+    "src": "./src/docs.js",
+    "watch": ["./src/docs.js"],
+    "build": "./dist/docs/js/"
+  },
+  "images": {
+    "src": "./src/assets/images/*.*",
+    "watch": "./src/assets/images/*.*",
+    "build": "./dist/assets/images/"
+  },
   "svg": {
     "src": "./src/assets/svg/*.svg",
     "watch": "./src/assets/svg/*.svg",
@@ -77,6 +87,15 @@
       },
       "pages": {
         "pattern": ["pages/**/*.hbs", "!pages/**/_*.hbs"]
+      },
+      "componentsnav": {
+        "pattern": "components/**/index.hbs"
+      },
+      "stylesnav": {
+        "pattern": "styles/**/index.hbs"
+      },
+      "templatesnav": {
+        "pattern": "templates/**/index.hbs"
       }
     },
     "inplace": {

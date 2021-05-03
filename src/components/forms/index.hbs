@@ -1,225 +1,292 @@
 ---
 title: Forms
+width: narrow
+guidance: https://digitalnsw.github.io/nsw-design-system-docs/components/forms/index.html
 ---
 
-<main>
-  <div class="nsw-section--white">
-    <div class="nsw-container">
-      <div class="nsw-page-layout">
-        <div class="nsw-page-layout__main">
-          <div class="nsw-grid">
-            <div class="nsw-col nsw-col-lg-8 nsw-offset-lg-2">
-              <h1>Forms</h1>
-              <h2>Default Fields</h2>
-              <br>
-              <div class="nsw-forms">
-                <div class="nsw-form-group">
-                  {{>_text-input
-                    id="txt1"
-                    label="Single-line text input:"
-                  }}
+<h3>Text Fields</h3>
 
-                  {{>_textarea
-                    id="txta1"
-                    label="Multi-line text input:"
-                  }}
+<h4>Default</h4>
+{{#>_docs-example}}
+<div class="nsw-forms">
+  <div class="nsw-form-group">
+    {{>_text-input
+      id="txt1"
+      label="Single-line text input:"
+    }}
 
-                  {{>_select
-                    id="select1"
-                    label="Select dropdown:"
-                  }}
+    {{>_textarea
+      id="txta1"
+      label="Multi-line text input:"
+    }}
+  </div>
+</div>
+{{/_docs-example}}
 
-                  <div class="nsw-form-checkbox">
-                    {{>_checkbox
-                      id="check1"
-                      name="single-checkbox"
-                      label="Single checkbox:"
-                    }}
-                  </div>
-                </div>
+<h4>Helper text</h4>
+{{#>_docs-example}}
+<div class="nsw-forms">
+  <div class="nsw-form-group">
+    {{>_text-input
+      id="txt2"
+      label="Single-line text input:"
+      helper-text="This is helper text"
+    }}
 
-                <div class="nsw-form-group">
-                  <fieldset class="nsw-form-fieldset">
-                    <legend>
-                      <span class="nsw-form-legend-text">Multiple Radio</span>
-                    </legend>
-                    <div class="nsw-form-radio">
-                      {{>_radio
-                        id="radio1"
-                        name="defaultradio"
-                        label="Radio Option 1"
-                      }}
-                      {{>_radio
-                        id="radio2"
-                        name="defaultradio"
-                        label="Radio Option 2"
-                      }}
-                    </div>
-                  </fieldset>
-                </div>
+    {{>_textarea
+      id="txta2"
+      label="Multi-line text input:"
+      helper-text="This is helper text"
+    }}
+  </div>
+</div>
+{{/_docs-example}}
 
-                <div class="nsw-form-group">
-                  <fieldset class="nsw-form-fieldset">
-                    <legend>
-                      <span class="nsw-form-legend-text">Multiple Checkbox</span>
-                    </legend>
-                    <div class="nsw-form-checkbox">
-                      {{>_checkbox
-                        id="checkbox1a"
-                        name="defaultcheck"
-                        label="Checkbox Option 1"
-                      }}
-                      {{>_checkbox
-                        id="checkbox2a"
-                        name="defaultcheck"
-                        label="Checkbox Option 2"
-                      }}
-                    </div>
-                  </fieldset>
-                </div>
-              </div>
+<h4>Error</h4>
+{{#>_docs-example}}
+<div class="nsw-forms">
+  <div class="nsw-form-group">
+    {{>_text-input
+      id="txt3"
+      label="Single-line text input:"
+      error-text="There was an error with the input above"
+    }}
 
-              <h2>Fields with Helper text</h2>
-              <br>
-              <div class="nsw-forms">
-                <div class="nsw-form-group">
-                  {{>_text-input
-                    id="txt2help"
-                    label="Single-line text input field:"
-                    helper-text="This is helper text"
-                  }}
+    {{>_textarea
+      id="txta3"
+      label="Multi-line text input:"
+      error-text="There was an error with the input above"
+    }}
+  </div>
+</div>
+{{/_docs-example}}
 
-                  {{>_textarea
-                    id="txta1help"
-                    label="Multi-line text input:"
-                    helper-text="This is helper text"
-                  }}
+<h3>Dropdown</h3>
 
-                  {{>_select
-                    id="select1help"
-                    label="Select dropdown:"
-                    helper-text="This is helper text"
-                  }}
-                </div>
-                <div class="nsw-form-group">
-                  <fieldset class="nsw-form-fieldset">
-                    <legend>
-                      <span class="nsw-form-legend-text">Multiple Radio</span>
-                      <span class="nsw-form-helper">This is helper text</span>
-                    </legend>
-                    <div class="nsw-form-radio">
-                      {{>_radio
-                        id="radio1helper"
-                        name="radiohelper"
-                        label="Radio Option 1"
-                      }}
-                      {{>_radio
-                        id="radio2helper"
-                        name="radiohelper"
-                        label="Radio Option 2"
-                      }}
-                    </div>
-                  </fieldset>
-                </div>
-                <div class="nsw-form-group">
-                  <fieldset class="nsw-form-fieldset">
-                    <legend>
-                      <span class="nsw-form-legend-text">Multiple Checkbox</span>
-                      <span class="nsw-form-helper">This is helper text</span>
-                    </legend>
-                    <div class="nsw-form-checkbox">
-                      {{>_checkbox
-                        id="checkbox1helper"
-                        name="checkhelper"
-                        label="Checkbox Option 1"
-                      }}
-                      {{>_checkbox
-                        id="checkbox2helper"
-                        name="checkhelper"
-                        label="Checkbox Option 2"
-                      }}
-                    </div>
-                  </fieldset>
-                </div>
-              </div>
+<h4>Default</h4>
+{{#>_docs-example}}
+<div class="nsw-forms">
+  <div class="nsw-form-group">
+    {{>_select
+      id="select1"
+      label="Select dropdown:"
+    }}
+  </div>
+</div>
+{{/_docs-example}}
 
-              <h2>Fields with Errors</h2>
-              <br>
-              <div class="nsw-forms">
-                <div class="nsw-form-group">
-                  {{>_text-input
-                    id="txt3error"
-                    label="Single-line text input field:"
-                    error-text="There was an error with the input above"
-                  }}
+<h4>Helper text</h4>
+{{#>_docs-example}}
+<div class="nsw-forms">
+  <div class="nsw-form-group">
+    {{>_select
+      id="select2"
+      label="Select dropdown:"
+      helper-text="This is helper text"
+    }}
+  </div>
+</div>
+{{/_docs-example}}
 
-                  {{>_textarea
-                    id="txta1error"
-                    label="Multi-line text input:"
-                    error-text="There was an error with the input above"
-                  }}
+<h4>Error</h4>
+{{#>_docs-example}}
+<div class="nsw-forms">
+  <div class="nsw-form-group">
+    {{>_select
+      id="select3"
+      label="Select dropdown:"
+      error-text="There was an error with the input above"
+    }}
+  </div>
+</div>
+{{/_docs-example}}
 
-                  {{>_select
-                    id="select1error"
-                    label="Select dropdown:"
-                    error-text="There was an error with the input above"
-                  }}
+<h3>Checkboxes</h3>
 
-                  <div class="nsw-form-checkbox">
-                    {{>_checkbox
-                      id="check1error"
-                      name="single-checkbox-error"
-                      label="Single checkbox:"
-                      error-text="There was an error with the input above"
-                    }}
-                  </div>
-                </div>
-                <div class="nsw-form-group">
-                  <fieldset class="nsw-form-fieldset" aria-invalid="true">
-                    <legend>
-                      <span class="nsw-form-legend-text">Multiple Radio</span>
-                      <span class="nsw-form-helper nsw-form-helper--error">Please select at least one option</span>
-                    </legend>
-                    <div class="nsw-form-radio">
-                      {{>_radio
-                        id="radio1error"
-                        name="radiocheck"
-                        label="Radio Option 1"
-                      }}
-                      {{>_radio
-                        id="radio2error"
-                        name="radiocheck"
-                        label="Radio Option 2"
-                      }}
-                    </div>
-                  </fieldset>
-                </div>
-
-                <div class="nsw-form-group">
-                  <fieldset class="nsw-form-fieldset" aria-invalid="true">
-                    <legend>
-                      <span class="nsw-form-legend-text">Multiple Checkbox</span>
-                      <span class="nsw-form-helper nsw-form-helper--error">Please select at least one option</span>
-                    </legend>
-                    <div class="nsw-form-checkbox">
-                      {{>_checkbox
-                        id="checkbox1error"
-                        name="errorcheck"
-                        label="Checkbox Option 1"
-                      }}
-                      {{>_checkbox
-                        id="checkbox2error"
-                        name="errorcheck"
-                        label="Checkbox Option 2"
-                      }}
-                    </div>
-                  </fieldset>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+<h4>Default</h4>
+{{#>_docs-example}}
+<div class="nsw-forms">
+  <div class="nsw-form-group">
+    <div class="nsw-form-checkbox">
+      {{>_checkbox
+        id="check1"
+        name="single-checkbox"
+        label="Single checkbox:"
+      }}
     </div>
   </div>
-</main>
+
+  <div class="nsw-form-group">
+    <fieldset class="nsw-form-fieldset">
+      <legend>
+        <span class="nsw-form-legend-text">Multiple Checkbox</span>
+      </legend>
+      <div class="nsw-form-checkbox">
+        {{>_checkbox
+          id="checkbox1a"
+          name="defaultcheck"
+          label="Checkbox Option 1"
+        }}
+        {{>_checkbox
+          id="checkbox1b"
+          name="defaultcheck"
+          label="Checkbox Option 2"
+        }}
+      </div>
+    </fieldset>
+  </div>
+</div>
+{{/_docs-example}}
+
+<h4>Helper text</h4>
+{{#>_docs-example}}
+<div class="nsw-forms">
+  <div class="nsw-form-group">
+    <div class="nsw-form-checkbox">
+      {{>_checkbox
+        id="check2"
+        name="single-checkbox"
+        label="Single checkbox:"
+      }}
+    </div>
+    <span class="nsw-form-helper">This is helper text</span>
+  </div>
+
+  <div class="nsw-form-group">
+    <fieldset class="nsw-form-fieldset">
+      <legend>
+        <span class="nsw-form-legend-text">Multiple Checkbox</span>
+        <span class="nsw-form-helper">This is helper text</span>
+      </legend>
+      <div class="nsw-form-checkbox">
+        {{>_checkbox
+          id="checkbox2a"
+          name="defaultcheck"
+          label="Checkbox Option 1"
+        }}
+        {{>_checkbox
+          id="checkbox2b"
+          name="defaultcheck"
+          label="Checkbox Option 2"
+        }}
+      </div>
+    </fieldset>
+  </div>
+</div>
+{{/_docs-example}}
+
+<h4>Error</h4>
+{{#>_docs-example}}
+<div class="nsw-forms">
+  <div class="nsw-form-group">
+    <div class="nsw-form-checkbox">
+      {{>_checkbox
+        id="check3"
+        name="single-checkbox"
+        label="Single checkbox:"
+      }}
+    </div>
+    <span class="nsw-form-helper nsw-form-helper--error">Please check the box</span>
+  </div>
+
+  <div class="nsw-form-group">
+    <fieldset class="nsw-form-fieldset">
+      <legend>
+        <span class="nsw-form-legend-text">Multiple Checkbox</span>
+        <span class="nsw-form-helper nsw-form-helper--error">Please select at least one option</span>
+      </legend>
+      <div class="nsw-form-checkbox">
+        {{>_checkbox
+          id="checkbox3a"
+          name="defaultcheck"
+          label="Checkbox Option 1"
+        }}
+        {{>_checkbox
+          id="checkbox3b"
+          name="defaultcheck"
+          label="Checkbox Option 2"
+        }}
+      </div>
+    </fieldset>
+  </div>
+</div>
+{{/_docs-example}}
+
+<h3>Radio buttons</h3>
+
+<h4>Default</h4>
+{{#>_docs-example}}
+<div class="nsw-forms">
+  <div class="nsw-form-group">
+    <fieldset class="nsw-form-fieldset">
+      <legend>
+        <span class="nsw-form-legend-text">Multiple Radio</span>
+      </legend>
+      <div class="nsw-form-radio">
+        {{>_radio
+          id="radio1a"
+          name="defaultradio"
+          label="Radio Option 1"
+        }}
+        {{>_radio
+          id="radio1b"
+          name="defaultradio"
+          label="Radio Option 2"
+        }}
+      </div>
+    </fieldset>
+  </div>
+</div>
+{{/_docs-example}}
+
+<h4>Helper text</h4>
+{{#>_docs-example}}
+<div class="nsw-forms">
+  <div class="nsw-form-group">
+    <fieldset class="nsw-form-fieldset">
+      <legend>
+        <span class="nsw-form-legend-text">Multiple Radio</span>
+        <span class="nsw-form-helper">This is helper text</span>
+      </legend>
+      <div class="nsw-form-radio">
+        {{>_radio
+          id="radio2a"
+          name="defaultradio"
+          label="Radio Option 1"
+        }}
+        {{>_radio
+          id="radio2b"
+          name="defaultradio"
+          label="Radio Option 2"
+        }}
+      </div>
+    </fieldset>
+  </div>
+</div>
+{{/_docs-example}}
+
+<h4>Error</h4>
+{{#>_docs-example}}
+<div class="nsw-forms">
+  <div class="nsw-form-group">
+    <fieldset class="nsw-form-fieldset">
+      <legend>
+        <span class="nsw-form-legend-text">Multiple Radio</span>
+        <span class="nsw-form-helper nsw-form-helper--error">Please select at least one option</span>
+      </legend>
+      <div class="nsw-form-radio">
+        {{>_radio
+          id="radio3a"
+          name="defaultradio"
+          label="Radio Option 1"
+        }}
+        {{>_radio
+          id="radio3b"
+          name="defaultradio"
+          label="Radio Option 2"
+        }}
+      </div>
+    </fieldset>
+  </div>
+</div>
+{{/_docs-example}}
