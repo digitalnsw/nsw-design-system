@@ -24,7 +24,7 @@
   &__link {
     @include nsw-spacing(padding, sm md);
     @include font-stack;
-    @include z-index('middle');
+    z-index: 1;
     display: block;
     position: relative;
     text-decoration: none;
@@ -37,6 +37,7 @@
 
     &:focus {
       @include nsw-focus;
+      outline-offset: -3px;
     }
 
     .is-selected & {
