@@ -13,7 +13,16 @@ $docs-bg: lighten($light20, 3);
     }
 
     .nsw-docs__example {
-      padding: 0;
+      &.nsw-docs__example--simple {
+        padding: rem(16px) 0 0 0;
+      }
+    }
+
+    .nsw-docs-code__wrapper {
+      background-color: $light10;
+      min-height: rem(68px);
+      display: flex;
+      align-items: center;
     }
   }
 
@@ -162,8 +171,20 @@ $docs-bg: lighten($light20, 3);
   }
 
   &__example {
+    &--hidden {
+      display: none;
+    }
+
     &.nsw-docs__example--dark {
       background-color: $light40;  
+    }
+  }
+
+  &__component {
+    &::after {
+      content: '';
+      clear: both;
+      display: table;
     }
   }
 

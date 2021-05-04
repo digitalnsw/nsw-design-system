@@ -1,0 +1,100 @@
+
+.nsw-media {
+  width: 100%;
+  margin: rem(16px) auto;
+
+  @include breakpoint('md') {
+    margin-top: rem(32px);
+    margin-bottom: rem(32px);
+
+    &--90 {
+      width: 90%;
+    }
+
+    &--80 {
+      width: 80%;
+    }
+
+    &--70 {
+      width: 70%;
+    }
+
+    &--60 {
+      width: 60%;
+    }
+
+    &--left-50,
+    &--left-40,
+    &--left-30 {
+      margin-left: 0;
+      padding-right: rem(16px);
+      margin-right: rem(16px);
+      float: left;
+    }
+
+    &--right-50,
+    &--right-40,
+    &--right-30 {
+      padding-left: rem(16px);
+      margin-left: rem(16px);
+      margin-right: 0;
+      float: right;
+    }
+
+    &--right-50,
+    &--left-50 {
+      width: 50%;
+    }
+
+    &--right-40,
+    &--left-40 {
+      width: 40%;
+    }
+
+    &--right-30,
+    &--left-30 {
+      width: 30%;
+    }
+  }
+
+  &__video {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+
+    &::after {
+      content: '';
+      display: block;
+      padding-top: 56.25%;
+    }
+
+    iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  img {
+    display: block;
+    border: 0;
+    width: 100%;
+  }
+
+  figcaption {
+    @include font-size('xs');
+    background-color: $light10;
+    padding: rem(16px);
+  }
+
+  &--transparent {
+    figcaption {
+      background-color: transparent;
+      padding-left: 0;
+      padding-right: 0;
+      padding-bottom: 0;
+    }
+  }
+}
