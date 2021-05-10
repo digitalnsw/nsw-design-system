@@ -1,10 +1,21 @@
 ---
 title: Layout
-style: true
 width: wide
 blank: true
 ---
 
-<div class="nsw-docs-example nsw-docs-example--wide">
-	{{>_layout}}
-</div>
+<h3>Full width - Main content area</h3>
+{{#>_docs-example}}
+{{>_layout}}
+{{/_docs-example}}
+
+<h3>Two column - Left side desktop only</h3>
+{{#>_docs-example}}
+{{>_layout side="left" desktop="true"}}
+{{/_docs-example}}
+
+
+<h3>Two column - Right side</h3>
+{{#>_docs-example}}
+{{>_layout side="right"}}
+{{/_docs-example}}

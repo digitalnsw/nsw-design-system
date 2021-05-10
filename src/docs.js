@@ -23,7 +23,6 @@ function initDocs() {
 
   copyButtons.forEach((button) => {
     const code = button.closest('.nsw-docs-code').previousElementSibling.querySelector('.nsw-docs__component')
-    console.log(code.classList)
     const text = button.querySelector('span')
 
     button.addEventListener('click', (event) => {
