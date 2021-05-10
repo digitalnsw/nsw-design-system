@@ -1,10 +1,41 @@
 ---
 title: Grid
-style: true
 width: wide
 blank: true
 ---
 
-<div class="nsw-docs-example nsw-docs-example--wide">
-	{{>_grid}}
-</div>
+<h3>Whole</h3>
+{{#>_docs-example}}
+{{>_grid
+  simple=true 
+  cols=(split "col")
+}}
+{{/_docs-example}}
+
+<h3>Half</h3>
+{{#>_docs-example}}
+{{>_grid
+  cols=(split "nsw-col-sm-6;nsw-col-sm-6")
+}}
+{{/_docs-example}}
+
+<h3>Third</h3>
+{{#>_docs-example}}
+{{>_grid
+  cols=(split "nsw-col-md-6 nsw-col-lg-4;nsw-col-md-6 nsw-col-lg-4;nsw-col-md-6 nsw-col-lg-4")
+}}
+{{/_docs-example}}
+
+<h3>Quarter</h3>
+{{#>_docs-example}}
+{{>_grid
+  cols=(split "nsw-col-md-6 nsw-col-lg-3;nsw-col-md-6 nsw-col-lg-3;nsw-col-md-6 nsw-col-lg-3;nsw-col-md-6 nsw-col-lg-3")
+}}
+{{/_docs-example}}
+
+<h3>Custom</h3>
+{{#>_docs-example}}
+{{>_grid
+  cols=(split "nsw-col-lg-3 nsw-show-lg;nsw-col-12 nsw-col-lg-4 nsw-offset-lg-1;nsw-col-lg-3 nsw-offset-lg-1 nsw-show-lg")
+}}
+{{/_docs-example}}

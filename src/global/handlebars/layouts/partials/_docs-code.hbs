@@ -1,10 +1,11 @@
 <div class="nsw-docs-code">
+{{#unless open}}
 	<button class="nsw-docs-code__button">
 		<span>Show code</span>
 		<i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</i>
 	</button>
-
-	<div class="nsw-docs-code__content">
+{{/unless}}
+	<div class="nsw-docs-code__content{{#if open}} is-open{{/if}}">
 		<button class="nsw-docs-code__copy">
 			<span>Copy</span>
 			<i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</i>

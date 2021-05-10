@@ -1,28 +1,21 @@
 <div class="nsw-page-layout">
-  <main class="nsw-page-layout__main">
-    <p>Full width - Main content area</p>
-    <div class="nsw-ds-example-container"></div>
-  </main>
-</div>
-
-<div class="nsw-page-layout">  
-  <div class="nsw-page-layout__sidebar nsw-page-layout__sidebar--desktop">
-    <p>Side nav area</p>
-    <div class="nsw-ds-example-container"></div>
+  {{#if-equals side "left"}}
+  <div class="nsw-page-layout__sidebar{{#if desktop}} nsw-page-layout__sidebar--desktop{{/if}}">
+    <!-- START: Left sidebar content -->
+    <div class="nsw-docs__box nsw-docs__box--large"></div>
+    <!-- END: Left sidebar content -->
   </div>
+  {{/if-equals}}
   <main class="nsw-page-layout__main">
-    <p>Two column - Main content area</p>
-    <div class="nsw-ds-example-container"></div>
+    <!-- START: Main content -->
+    <div class="nsw-docs__box nsw-docs__box--large"></div>
+    <!-- END: Main content -->
   </main>
-</div>
-
-<div class="nsw-page-layout">  
-  <main class="nsw-page-layout__main">
-    <p>Two column - Main content area</p>
-    <div class="nsw-ds-example-container"></div>
-  </main>
-  <div class="nsw-page-layout__sidebar">
-    <p>Sidebar area</p>
-    <div class="nsw-ds-example-container"></div>
+  {{#if-equals side "right"}}
+  <div class="nsw-page-layout__sidebar{{#if desktop}} nsw-page-layout__sidebar--desktop{{/if}}">
+    <!-- START: Right sidebar content -->
+    <div class="nsw-docs__box nsw-docs__box--large"></div>
+    <!-- END: Right sidebar content -->
   </div>
+  {{/if-equals}}
 </div>

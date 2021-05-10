@@ -5,7 +5,28 @@ page: true
 
 <main>
     <div class="nsw-container">
-		{{>_grid}}
+		{{>_grid
+		  simple=true 
+		  cols=(split "col")
+		}}
+
+		{{>_grid
+		  cols=(split "nsw-col-sm-6;nsw-col-sm-6")
+		}}
+
+		{{>_grid
+		  cols=(split "nsw-col-md-4;nsw-col-md-4;nsw-col-md-4")
+		}}
+
+		{{>_grid
+		  cols=(split "nsw-col-md-6 nsw-col-lg-3;nsw-col-md-6 nsw-col-lg-3;nsw-col-md-6 nsw-col-lg-3;nsw-col-md-6 nsw-col-lg-3")
+		}}
+
+		{{>_grid
+		  cols=(split "nsw-col-lg-3 nsw-show-lg;nsw-col-12 nsw-col-lg-4 nsw-offset-lg-1;nsw-col-lg-3 nsw-offset-lg-1 nsw-show-lg")
+		}}
+		
 		{{>_grid-overlay}}
 	</div>
 </main>
+
