@@ -1,0 +1,42 @@
+<nav class="nsw-docs-nav">
+  <div class="nsw-docs-nav__wrapper">
+    <div class="nsw-docs-nav__title">
+      <a class="nsw-docs-nav__title-link" href="/">NSW Digital Design System</a>
+    </div>
+    <div class="nsw-docs-nav__title">
+      <button>
+        <span>Components</span>
+        <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</i>
+      </button>
+    </div>
+    <ul class="nsw-docs-nav__list">
+      {{#each collections.componentsnav}}
+      <li><a class="nsw-docs-nav__list-link" href="/{{change-extention path}}">{{title}}</a></li>
+      {{/each}}
+    </ul>
+
+    <div class="nsw-docs-nav__title">
+      <button>
+        <span>Styles</span>
+        <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</i>
+      </button>
+    </div>
+    <ul class="nsw-docs-nav__list">
+      {{#each collections.stylesnav}}
+      <li><a class="nsw-docs-nav__list-link" href="/{{change-extention path}}">{{title}}</a></li>
+      {{/each}}
+    </ul>
+
+    <div class="nsw-docs-nav__title">
+      <button>
+        <span>Demo pages</span>
+        <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</i>
+      </button>
+    </div>
+    <ul class="nsw-docs-nav__list">
+      {{#each collections.templatesnav}}
+      <li><a target="_blank" class="nsw-docs-nav__list-link" href="/{{change-extention path}}">{{title}}</a></li>
+      {{/each}}
+    </ul>
+  </div>
+</nav>

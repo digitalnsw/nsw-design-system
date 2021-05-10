@@ -2,11 +2,7 @@
   <div class="nsw-progress-indicator__count">Step {{active}} of {{steps.length}}</div>
   <div class="nsw-progress-indicator__bar">
     {{#each steps}}
-      {{#if this.complete}}
-        <div class="nsw-progress-indicator__step nsw-progress-indicator__step--active"></div>
-      {{else}}
-        <div class="nsw-progress-indicator__step"></div>
-      {{/if}}
+    <div class="nsw-progress-indicator__step{{#if this.complete}} nsw-progress-indicator__step--active{{/if}}"></div>
     {{/each }}
   </div>
 </div>

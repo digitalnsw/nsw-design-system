@@ -1,0 +1,509 @@
+$docs-bg: lighten($light20, 3);
+
+.nsw-docs {
+  background-color: $docs-bg;
+
+  &--style {
+    background-color: $white;
+
+    .nsw-docs__intro {
+      @include breakpoint('md') {
+        padding-right: rem(190px);
+      }
+    }
+
+    .nsw-docs__example {
+      padding: 0;
+    }
+  }
+
+  &--home {
+    .nsw-header,
+    .nsw-masthead {
+      @include breakpoint('xl') {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 300;
+      }
+    }
+
+    .nsw-container,
+    .nsw-header__container {
+      margin: 0;
+    }
+
+    .nsw-header {
+      @include breakpoint('xl') {
+        top: rem(42px);
+        border-bottom: solid 1px $light20;
+      }
+    }
+
+    .nsw-docs-nav {
+      top: rem(137px);
+    }
+
+    .nsw-docs__content {
+      @include breakpoint('xl') {
+        padding-top: rem(137px);
+      }      
+    }
+  }
+
+  &__wrapper {
+    @include breakpoint('xl') {
+      display: flex;
+    }
+  }
+
+  &__nav {
+    display: none;
+    min-width: rem(300px);
+    max-width: rem(300px);
+
+    @include breakpoint('xl') {
+      display: block;
+    }
+  }
+
+  &__main {
+    width: 100%;
+    padding: rem(24px) rem(16px);
+    min-height: 100vh;
+
+    @include breakpoint('xl') {
+      padding: rem(48px) rem(52px);
+    }
+
+    &--narrow {
+      .nsw-docs__container {
+        max-width: rem(800px);
+      }
+
+      .nsw-docs__example {
+        padding: rem(16px);
+        background-color: $white;        
+      }
+    }
+
+    &--wide {
+      .nsw-docs__container {
+        max-width: rem($container-max-width);
+      }
+
+      .nsw-docs__example {
+        padding: rem(16px);
+        background-color: $white;        
+      }
+    }
+
+    &--menu {
+      .nsw-docs__container {
+        max-width: rem(800px);
+      }
+
+      .nsw-docs__component {
+        max-width: rem(336px);
+      }
+
+      .nsw-docs__example {
+        padding: rem(16px);
+        background-color: $white;        
+      }
+    }
+  }
+
+  &__intro {
+    padding: 0 0 rem(24px) 0;
+    position: relative;
+
+    @include breakpoint('md') {
+      padding-right: rem(124px);
+    }
+
+    @include breakpoint('xl') {
+      padding-bottom: rem(48px);
+    }
+
+    .nsw-docs__external {
+      @include breakpoint('md') {
+        top: rem(16px);
+      }
+
+      @include breakpoint('xl') {
+        top: rem(24px);
+      }
+    }
+  }
+
+  &__content {
+    > h3 {
+      padding: rem(16px) 0;
+
+      &:first-child {
+        padding-top: 0;
+      }
+
+      + p {
+        margin-top: rem(-12px);
+        padding-bottom: rem(16px);
+      }
+
+      + h4 {
+        padding-top: 0;
+      }
+    }
+
+    > h4 {
+      padding: rem(16px) 0;
+    }
+  }
+
+  &__example {
+    &.nsw-docs__example--dark {
+      background-color: $light40;  
+    }
+  }
+
+  &__back {
+    display: flex;
+    padding-bottom: rem(24px);
+
+    @include breakpoint('xl') {
+      display: none;
+    }
+
+    a {
+      @include font-stack('heading');
+      font-size: rem(14px);
+      color: $nsw-primary-blue;
+      border: 0;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+
+      &:hover {
+        @include nsw-hover;
+      }
+
+      &:focus {
+        @include nsw-focus;
+      }
+
+      span {
+        text-decoration: underline;
+      }
+
+      i {
+        font-size: rem(16px);
+        margin-right: rem(4px);
+      }      
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    margin-top: rem(8px);
+
+    @include breakpoint('md') {
+      position: absolute;
+      top: rem(3px);
+      right: 0;
+      margin-top: 0;
+    }
+
+    @include breakpoint('xl') {
+      top: rem(10px);
+    }
+  }
+
+  &__guidance {
+    @include font-stack('heading');
+    @include border-radius;
+    @include button-variant(map-get($button-variations, primary));
+    font-size: rem(14px);
+    border: 1px solid $nsw-primary-blue;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    padding: rem(8px);
+
+    &:focus {
+      @include nsw-focus;
+    }
+
+    i {
+      font-size: rem(16px);
+      margin-right: rem(4px);
+      color: $white;
+    }
+  }
+
+  &__external {
+    @include font-stack('heading');
+    font-size: rem(14px);
+    color: $nsw-primary-blue;
+    border: 0;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    white-space: nowrap;
+    margin-top: rem(8px);
+
+    @include breakpoint('md') {
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin-top: 0;
+    }
+
+    &:hover {
+      @include nsw-hover;
+    }
+
+    &:focus {
+      @include nsw-focus;
+    }
+
+    span {
+      text-decoration: underline;
+    }
+
+    i {
+      font-size: rem(16px);
+      margin-left: rem(4px);
+    }   
+  }
+
+  &__list {
+    margin: rem(16px) 0 0 0;
+    padding: 0;
+    list-style-type: none;
+
+    &--4 {
+      column-gap: rem(36px);
+      column-count: 2;
+
+      @include breakpoint('lg') {
+        column-count: 4;
+      }
+    }
+
+    &--2 {
+      @include breakpoint('lg') {
+        column-gap: rem(36px);
+        column-count: 2;
+      }
+    }
+
+    li {
+      padding: rem(2px) 0;
+    }
+  }
+}
+
+.nsw-docs-code {
+  position: relative;
+
+  &__button {
+    @include link;
+    @include font-stack('heading');
+    font-size: rem(14px);
+    background: transparent;
+    border: 0;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    margin-top: rem(24px);
+    cursor: pointer;
+    padding: 0;
+
+    span {
+      text-decoration: underline;
+    }
+
+    i {
+      font-size: rem(20px);
+      margin-left: rem(2px);
+    }
+
+    &.is-open {
+      i {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  &__content {
+    position: relative;
+    display: none;
+    margin-top: rem(24px);
+    max-width: rem(800px);
+
+    &.is-open {
+      display: block;
+    }
+
+    pre {
+      margin: 0;
+    }
+
+    .hljs {
+      padding: rem(16px);
+      overflow: visible;
+      background-color: transparent;
+    }
+  }
+
+  &__wrapper {
+    max-width: rem(800px);
+    max-height: rem(400px);
+    overflow: auto;
+    background-color: $white;      
+  }
+
+  &__copy {
+    @include font-stack('heading');
+    @include border-radius;
+    font-size: rem(14px);
+    background: $white;
+    color: $nsw-primary-blue;
+    border: 1px solid $nsw-primary-blue;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: rem(16px);
+    right: rem(16px);
+    padding: rem(8px);
+
+    &:hover {
+      background-color: $light20;
+    }
+
+    &:focus {
+      @include nsw-focus;
+    }
+
+    i {
+      font-size: rem(16px);
+      margin-left: rem(4px);
+    }
+  }
+}
+
+.nsw-docs-nav {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: rem(300px);
+  overflow-y: auto;
+  border-right: 1px solid $light20;
+  background: $white;
+  z-index: 300;
+
+  &__logo {
+    padding-bottom: rem(40px);
+
+    img {
+      max-width: rem(168px);
+      max-height: rem(55px);
+    }
+  }
+
+  &__wrapper {
+    padding: rem(30px) rem($container-offset);
+  }
+
+  &__title {
+    a,
+    button {
+      @include font-stack();
+      @include font-size('sm');
+      background: transparent;
+      border: 0;
+      border-bottom: solid 1px $light20;
+      display: block;
+      width: 100%;
+      padding: rem(8px);
+      text-align: left;
+      color: $black;
+      text-decoration: none;
+
+      &:hover {
+        @include nsw-hover;
+      }
+
+      &:focus {
+        @include nsw-focus;
+      }
+
+      &.is-active {
+        @include font-stack('heading');
+        border-bottom: solid 2px $nsw-primary-blue;
+      }
+    }
+
+    button {
+      display: flex;
+      align-items: center;
+
+      &.is-open {
+        .nsw-material-icons {
+          transform: rotate(180deg);
+        }
+      }
+
+      &.is-active {
+        @include font-stack('heading');
+      }
+
+      span {
+        width: 100%;
+      }
+    }
+  }
+
+  &__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: none;
+
+    &.is-open {
+      display: block;
+    }
+
+    li {
+      padding: 0;
+      margin: 0;
+    }
+
+    a {
+      display: block;
+      color: $dark80;
+      text-decoration: none;
+      padding: rem(8px);
+      border-left: rem(4px) solid transparent;
+
+      &:hover,
+      &.is-active {
+        background-color: $light10;
+        border-color: $nsw-primary-highlight;
+      }
+    }
+  }
+
+  &__link {
+    @include nsw-spacing(padding, md);
+    display: block;
+    color: $dark80;
+    text-decoration: none;
+    background-color: $white;
+  }
+}

@@ -20,6 +20,7 @@ const collections = require('metalsmith-collections')
 const ignore = require('metalsmith-ignore')
 const discoverPartials = require('metalsmith-discover-partials')
 const dataLoader = require('metalsmith-data-loader')
+const dynamicCollections = require('metalsmith-dynamic-collections')
 // const debug = require('metalsmith-debug-ui')
 const discoverHelpers = require('metalsmith-discover-helpers')
 const rollup = require('gulp-better-rollup')
@@ -41,6 +42,11 @@ const postcssProcessors = [
   autoprefixer({ grid: true }),
   cssnano,
 ]
+
+function moveImages() {
+  return src(config.images.src)
+    .pipe(dest(config.images.build))
+}
 
 function compileSvg() {
   return src(config.svg.src)
@@ -139,6 +145,23 @@ function metalsmithBuild(callback) {
       sortBy: sortByAlpha,
     }
   }))
+  metalsmith.use(dynamicCollections({
+    componentsnav: {
+      pattern: config.metalSmith.collection.componentsnav.pattern,
+      refer: false,
+      sortBy: sortByAlpha,
+    },
+    stylesnav: {
+      pattern: config.metalSmith.collection.stylesnav.pattern,
+      refer: false,
+      sortBy: sortByAlpha,
+    },
+    templatesnav: {
+      pattern: config.metalSmith.collection.templatesnav.pattern,
+      refer: false,
+      sortBy: sortByAlpha,
+    },
+  }))
   metalsmith.use(inplace(config.metalSmith.inplace))
   metalsmith.use(layouts(config.metalSmith.layouts))
   metalsmith.use(cleanBuild)
@@ -164,6 +187,18 @@ function compileJS() {
       ),
     )
     .pipe(dest(config.js.build))
+}
+
+function compileDocsJS() {
+  return src(config.jsDocs.src)
+    .pipe(
+      rollup(
+        {
+          plugins: [babel()],
+        },
+      ),
+    )
+    .pipe(dest(config.jsDocs.build))
 }
 
 function lintJavascript() {
@@ -217,11 +252,13 @@ function injectSVG() {
 }
 
 const styles = series(lintStyles, buildStyles)
-const javascript = series(lintJavascript, compileJS)
+const javascript = series(lintJavascript, compileJS, compileDocsJS)
 
 function watchFiles(done) {
   watch(config.scss.watch, series(styles, reload))
   watch(config.js.watch, series(javascript, reload))
+  watch(config.jsDocs.watch, series(javascript, reload))
+  watch(config.images.watch, series(moveImages, reload))
   watch(config.svg.watch, series(compileSvg, reload))
   watch(config.metalSmith.watch, series(metalsmithBuild, reload))
   done()
@@ -233,6 +270,7 @@ const build = series(
   metalsmithBuild,
   styles,
   javascript,
+  moveImages,
   compileSvg,
   renamePath,
   injectSVG,
@@ -245,6 +283,7 @@ const dev = series(
   metalsmithBuild,
   styles,
   javascript,
+  moveImages,
   compileSvg,
   watchFiles,
   browserSync,
@@ -260,6 +299,7 @@ exports.scss = buildStyles // gulp sass - compiles the sass
 exports.watch = watchFiles // gulp watch - watches the files
 exports.lint = lintStyles // gulp lint - lints the sass
 exports.svg = compileSvg // gulp svg - creates svg sprite
+exports.images = moveImages // gulp images - moves images
 exports.build = build // gulp build - builds the files
 exports.surge = deploy // gulp surge - builds the files and deploys to surge
 exports.clean = cleanUp // gulp clean - clean the dist directory
