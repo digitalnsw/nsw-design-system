@@ -56,6 +56,20 @@
     @include nsw-spacing(margin-top, none);
   }
 
+  &__link {
+    @include font-stack('heading');
+    color: $white;
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+
+    &:focus {
+      @include nsw-focus($color: $white);
+    }
+  }
+
   &__content {
     @include font-stack;
     @include nsw-spacing(margin-right, xxl);
@@ -95,7 +109,6 @@
     .nsw-sitewide-message__close .nsw-material-icons {
       color: $white;
     }
-
   }
 
   &--light,
@@ -119,6 +132,16 @@
 
       .nsw-material-icons {
         color: $nsw-primary-blue;
+      }
+    }
+  }
+
+  &--light {
+    .nsw-sitewide-message__link {
+      color: $nsw-primary-blue;
+
+      &:focus {
+        @include nsw-focus();
       }
     }
   }
