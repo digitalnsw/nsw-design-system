@@ -6,7 +6,7 @@
 
 NSW Design system is a collection of reusable UI components used on the NSW government websites.
 
-See live examples of NSW Digital Design system components and guidance on how to use them on you website at [NSW Design System](https://www.digital.nsw.gov.au/digital-service-toolkit/design-system).
+See live examples of NSW Digital Design system components and guidance on how to use them on you website at [NSW Design System](https://nswdesignsystem.surge.sh).
 
 ## Using the design system
 
