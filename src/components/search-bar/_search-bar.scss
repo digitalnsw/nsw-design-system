@@ -24,14 +24,25 @@
     right: 0;
     left: 0;
     z-index: 1;
+    overflow: hidden;
 
     li {
-      padding: rem(10px);
+      padding: 0;
       margin: 0;
     }
 
     a:not([class]) {
+      display: block;
+      padding: rem(10px);
       color: $dark80;
+
+      &:hover {
+        outline: none;
+      }
+
+      &:focus {
+        outline-offset: -3px;
+      }
 
       span {
         font-weight: bolder;

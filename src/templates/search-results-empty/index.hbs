@@ -1,5 +1,5 @@
 ---
-title: Search results
+title: Search results - No results
 page: true
 model:
   nav: ../../components/main-navigation/json/mega-navigation-digital-nsw.json
@@ -20,23 +20,21 @@ model:
       <h1>Search</h1>
       
       {{>_search-bar model}}
-      {{>_results-bar}}
-
-      <div class="nsw-search-results">
-        {{>_list-item model.list-item}}
-        {{>_list-item model.list-item}}
-        {{>_list-item model.list-item}}
-        {{>_list-item model.list-item}}
-        {{>_list-item model.list-item}}
-        {{>_list-item model.list-item}}
-        {{>_list-item model.list-item}}
-        {{>_list-item model.list-item}}
-        {{>_list-item model.list-item}}
-        {{>_list-item model.list-item}}
-      </div>
+      {{>_results-bar empty="true"}}
 
       <div class="nsw-block">
-        {{>_pagination}}
+        <hr>
+        <br>
+        <h4>Didn’t find what you were looking for?</h4>
+        <ul>
+          <li>Try using different or fewer keywords </li>
+          <li>Check your spelling</li>
+          <li>Try broader or general search terms</li>
+        </ul>
+
+        <br>
+        <h4>Contact us</h4>
+        <p>Call 13 33 33 to find your local office or email <a href="mailto:help@customerservice.nsw.gov.au">help@customerservice.nsw.gov.au</a>. </p>
       </div>
     </main>
     <div class="nsw-page-layout__sidebar">
