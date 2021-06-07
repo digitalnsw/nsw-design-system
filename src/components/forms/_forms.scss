@@ -38,8 +38,8 @@
   @include nsw-spacing(padding, sm md);
   @include border-radius;
   background-color: $white;
-  color: $dark80;
-  border: 1px solid $dark70;
+  color: $black;
+  border: 1px solid $black;
   vertical-align: middle;
   appearance: none;
   -webkit-appearance: none; /* stylelint-disable-line property-no-vendor-prefix */
@@ -73,7 +73,7 @@
 }
 
 .nsw-form-select {
-  @include background-svg(chevron-down, $nsw-primary-blue);
+  @include background-svg(chevron-down, $nsw-primary-dark);
   @include nsw-spacing(padding-right, xxl);
   background-repeat: no-repeat;
   background-position: right rem(16px) center;
@@ -105,11 +105,11 @@
 
   &:checked + .nsw-form-checkbox__label::after {
     @include background-svg(tick, $white);
-    background-color: $nsw-primary-blue;
+    background-color: $nsw-primary-dark;
   }
 
   &:checked + .nsw-form-radio__label::after {
-    background-color: $nsw-primary-blue;
+    background-color: $nsw-primary-dark;
   }
 
   &:disabled {
@@ -168,7 +168,7 @@
     content: '';
     width: rem(32px);
     height: rem(32px);
-    border: 1px $dark70 solid;
+    border: 1px $black solid;
     background: $white;
     top: 50%;
     margin-top: rem(-16px);
@@ -299,7 +299,7 @@
     @include border-radius;
     background-color: $white;
     color: $dark80;
-    border: 1px solid $dark70;
+    border: 1px solid $black;
     border-right: 0;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
@@ -320,7 +320,7 @@
   &__submit {
     @include border-radius;
     @include nsw-spacing(padding, none sm);
-    border: 1px solid $dark70;
+    border: 1px solid $black;
     border-left: 0;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;

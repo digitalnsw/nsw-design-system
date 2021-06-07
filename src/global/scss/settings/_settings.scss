@@ -3,7 +3,7 @@ $base-font-size: 16px;
 $base-line-height: 1.5;
 
 // primary font stack
-$font-stack: 'Montserrat', Arial, sans-serif !default;
+$font-stack: 'Public Sans', Arial, sans-serif !default;
 $font-weight: (
   regular: 400,
   heading: 600,
@@ -43,6 +43,7 @@ $border-radii: (
   default: 4px,
   tag: 13px,
   round: 50%,
+  card: 4px,
 ) !default;
 
 $border-width: (
@@ -98,24 +99,25 @@ $spacers: (
 //Spacing in between components
 $components-spacing: (
   mobile: 24px,
-  desktop: 32px  
+  desktop: 32px
 );
 
 // Predefined Colours and their names
 // Brand
-$nsw-primary-blue: #002664 !default;
+$nsw-primary-dark: #002664 !default;
 $nsw-primary-highlight: #d7153a !default;
 $nsw-secondary-blue: #2e5299 !default;
 
 // Shades
 $black: #000000 !default;
-$dark80: #333333 !default;
-$dark70: #4c4f55 !default;
-$dark60: #6d7079 !default;
-$light40: #a0a5ae !default;
-$light20: #e4e4e6 !default;
-$light10: #f4f4f7 !default;
 $white: #ffffff !default;
+
+$dark80: lighten($black, 20) !default;
+$dark70: lighten($black, 30) !default;
+$dark60: lighten($black, 40) !default;
+$light40: darken($white, 13) !default;
+$light20: darken($white, 9) !default;
+$light10: darken($white, 5) !default;
 
 // Utility colors
 $danger: #d7153a !default;
@@ -129,13 +131,18 @@ $critical: #b81237 !default;
 $critical-background: #f7e7eb !default;
 $focus-color: #0085b3 !default;
 $hover-colour: rgba($focus-color, 0.2);
-$link-color: $nsw-primary-blue;
+$link-color: $nsw-primary-dark;
 $link-visited: #551a8b;
+
+// Usage specific Colours
+$nsw-text-colour: $black !default;
+$header-text-colour: $nsw-primary-dark !default;
+$nav-link-color: $black !default;
 
 $focus-offset: 3px;
 
 $border-colors: (
-  brand: $nsw-primary-blue,
+  brand: $nsw-primary-dark,
   light: $light20,
   medium: $light40,
   dark: $dark80,
@@ -235,25 +242,41 @@ $icon-colors: (
   success: $success,
   info: $info,
   warning: $warning,
-  default: $nsw-primary-blue,
+  default: $nsw-primary-dark,
 ) !default;
 
 $button-variations: (
   primary: (
     text-color: $white,
     text-color-hover: $white,
-    background: $nsw-primary-blue,
-    background-hover: lighten($nsw-primary-blue, 5.88),
-    border: $nsw-primary-blue,
-    border-hover: lighten($nsw-primary-blue, 5.88)
+    background: $nsw-primary-dark,
+    background-hover: lighten($nsw-primary-dark, 5.88),
+    border: $nsw-primary-dark,
+    border-hover: lighten($nsw-primary-dark, 5.88)
   ),
   secondary: (
-    text-color: $dark80,
+    text-color: $black,
+    text-color-hover: $black,
+    background: $nsw-primary-light,
+    background-hover: darken($nsw-primary-light, 5.88),
+    border: $nsw-primary-light,
+    border-hover: $nsw-primary-light
+  ),
+  outline: (
+    text-color: $black,
     text-color-hover: $white,
-    background: $white,
-    background-hover: $nsw-primary-blue,
-    border: $nsw-primary-blue,
-    border-hover: $nsw-primary-blue
+    background: transparent,
+    background-hover: $nsw-primary-dark,
+    border: $nsw-primary-dark,
+    border-hover: $nsw-primary-dark
+  ),
+  outline-light: (
+    text-color: $nsw-primary-light,
+    text-color-hover: $black,
+    background: transparent,
+    background-hover: $nsw-primary-light,
+    border: $nsw-primary-light,
+    border-hover: $nsw-primary-light
   ),
   danger: (
     text-color: $white,
@@ -262,14 +285,6 @@ $button-variations: (
     background-hover: lighten($danger, 5.88),
     border: $danger,
     border-hover: lighten($danger, 5.88)
-  ),
-  outline: (
-    text-color: $dark80,
-    text-color-hover: $white,
-    background: $white,
-    background-hover: $nsw-primary-blue,
-    border: $nsw-primary-blue,
-    border-hover: $nsw-primary-blue
   ),
   highlight: (
     text-color: $white,
@@ -280,23 +295,42 @@ $button-variations: (
     border-hover: lighten($nsw-primary-highlight, 5.88)
   ),
   white: (
-    text-color: $dark80,
-    text-color-hover: $dark80,
+    text-color: $black,
+    text-color-hover: $black,
     background: $white,
-    background-hover: $light20,
+    background-hover: $light10,
     border: $white,
-    border-hover: $light20
+    border-hover: $light10
+  ),
+) !default;
+
+$card-variations: (
+  white: (
+    text-color: $nsw-text-colour,
+    background: $white,
+  ),
+  light: (
+    text-color: $black,
+    background: $nsw-primary-light,
+  ),
+  dark: (
+    text-color: $white,
+    background: $nsw-primary-dark,
   ),
 ) !default;
 
 $sitewide-message: (
   default: (
     text-color: $white,
-    background: $nsw-secondary-blue,
+    background: $info,
   ),
   light: (
-    text-color: $dark80,
-    background: $info-background,
+    text-color: $black,
+    background: $nsw-primary-light,
+  ),
+  dark: (
+    text-color: $white,
+    background: $nsw-primary-dark,
   ),
   critical: (
     text-color: $white,

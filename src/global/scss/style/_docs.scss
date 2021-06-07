@@ -1,4 +1,4 @@
-$docs-bg: lighten($light20, 3);
+$docs-bg: darken($white, 3);
 
 .nsw-docs {
   background-color: $docs-bg;
@@ -45,19 +45,18 @@ $docs-bg: lighten($light20, 3);
 
     .nsw-header {
       @include breakpoint('xl') {
-        top: rem(42px);
         border-bottom: solid 1px $light20;
       }
     }
 
     .nsw-docs-nav {
-      top: rem(137px);
+      top: rem(95px);
     }
 
     .nsw-docs__content {
       @include breakpoint('xl') {
-        padding-top: rem(137px);
-      }      
+        padding-top: rem(95px);
+      }
     }
   }
 
@@ -93,7 +92,7 @@ $docs-bg: lighten($light20, 3);
 
       .nsw-docs__example {
         padding: rem(16px);
-        background-color: $white;        
+        background-color: $white;
       }
     }
 
@@ -104,7 +103,7 @@ $docs-bg: lighten($light20, 3);
 
       .nsw-docs__example {
         padding: rem(16px);
-        background-color: $white;        
+        background-color: $white;
       }
     }
 
@@ -119,7 +118,7 @@ $docs-bg: lighten($light20, 3);
 
       .nsw-docs__example {
         padding: rem(16px);
-        background-color: $white;        
+        background-color: $white;
       }
     }
   }
@@ -176,7 +175,7 @@ $docs-bg: lighten($light20, 3);
     }
 
     &.nsw-docs__example--dark {
-      background-color: $light40;  
+      background-color: $nsw-primary-dark;
     }
   }
 
@@ -199,7 +198,7 @@ $docs-bg: lighten($light20, 3);
     a {
       @include font-stack('heading');
       font-size: rem(14px);
-      color: $nsw-primary-blue;
+      color: $nsw-primary-dark;
       border: 0;
       text-decoration: none;
       display: flex;
@@ -221,7 +220,7 @@ $docs-bg: lighten($light20, 3);
       i {
         font-size: rem(16px);
         margin-right: rem(4px);
-      }      
+      }
     }
   }
 
@@ -246,7 +245,7 @@ $docs-bg: lighten($light20, 3);
     @include border-radius;
     @include button-variant(map-get($button-variations, primary));
     font-size: rem(14px);
-    border: 1px solid $nsw-primary-blue;
+    border: 1px solid $nsw-primary-dark;
     text-decoration: none;
     display: flex;
     align-items: center;
@@ -266,7 +265,7 @@ $docs-bg: lighten($light20, 3);
   &__external {
     @include font-stack('heading');
     font-size: rem(14px);
-    color: $nsw-primary-blue;
+    color: $nsw-primary-dark;
     border: 0;
     text-decoration: none;
     display: flex;
@@ -297,7 +296,7 @@ $docs-bg: lighten($light20, 3);
     i {
       font-size: rem(16px);
       margin-left: rem(4px);
-    }   
+    }
   }
 
   &__list {
@@ -393,7 +392,7 @@ $docs-bg: lighten($light20, 3);
     max-width: rem(800px);
     max-height: rem(400px);
     overflow: auto;
-    background-color: $white;      
+    background-color: $white;
   }
 
   &__copy {
@@ -401,8 +400,8 @@ $docs-bg: lighten($light20, 3);
     @include border-radius;
     font-size: rem(14px);
     background: $white;
-    color: $nsw-primary-blue;
-    border: 1px solid $nsw-primary-blue;
+    color: $nsw-primary-dark;
+    border: 1px solid $nsw-primary-dark;
     text-decoration: none;
     display: flex;
     align-items: center;
@@ -475,7 +474,7 @@ $docs-bg: lighten($light20, 3);
 
       &.is-active {
         @include font-stack('heading');
-        border-bottom: solid 2px $nsw-primary-blue;
+        border-bottom: solid 2px $nsw-primary-dark;
       }
     }
 

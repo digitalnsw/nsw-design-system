@@ -148,7 +148,7 @@
 
 // Border-radius - returns a border-radius from $border-radii map
 @mixin border-radius($type: default) {
-  @if $type != 'none' and $type != 'default' and $type != 'round' and $type != 'tag' {
+  @if $type != 'none' and $type != 'default' and $type != 'round' and $type != 'tag' and $type != 'card' {
     @error 'NSW-DS get-border-radius mixin allows the following values for $type: none, default, round, tag. You have used "#{$type}"';
   }
 
@@ -170,7 +170,7 @@
   }
 }
 
-@mixin border($direction: null, $width: sm, $color: $nsw-primary-blue) {
+@mixin border($direction: null, $width: sm, $color: $nsw-primary-dark) {
   @if map-has-key($border-width, $width) == false {
     @error 'NSW-DS border mixin allows the following values for $width: #{map-keys($border-width)}. You have used "#{$width}"';
   }

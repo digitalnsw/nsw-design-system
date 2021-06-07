@@ -8,7 +8,7 @@
   &__link {
     @include nsw-spacing(padding, xs md);
     @include z-index('middle');
-    background-color: $nsw-primary-blue;
+    background-color: $nsw-primary-dark;
     color: $white;
     transform: translateY(-101%);
     display: block;
@@ -39,7 +39,7 @@
 .nsw-masthead {
   @include font-stack;
   @include nsw-spacing(padding, sm none);
-  background-color: $nsw-primary-blue;
+  background-color: $nsw-primary-dark;
   color: $white;
 
   p {
@@ -108,6 +108,7 @@
 
   &__logo-link {
     display: block;
+    text-decoration: none;
 
     &:focus {
       @include nsw-focus;
@@ -124,6 +125,13 @@
     }
   }
 
+  &__logo-text {
+
+    @include font-size(xxl);
+    color: $header-text-colour;
+    display: flex;
+  }
+
   &__logo-image {
     display: flex;
 
@@ -135,7 +143,7 @@
 
 .nsw-header-btn {
   @include border-radius;
-  color: $nsw-primary-blue;
+  color: $nsw-primary-dark;
   width: rem(48px);
   height: rem(48px);
   background: none;
