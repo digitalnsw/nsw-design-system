@@ -223,11 +223,10 @@ class Navigation {
     }
   }
 
-  checkIfContainsFocus() {
+  checkIfContainsFocus(e) {
     const { linkParent } = this.whichSubNavLatest()
-    const focusWithin = linkParent.contains(document.activeElement)
-    const isNavLinkActive = document.activeElement.getAttribute('class').indexOf('nsw-navigation__link') > -1
-    if (!focusWithin && isNavLinkActive) {
+    const focusWithin = linkParent.contains(e.target)
+    if (!focusWithin) {
       this.toggleSubnavDesktop()
     }
   }
