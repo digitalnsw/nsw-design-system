@@ -22,7 +22,7 @@
   }
 
   @each $color, $value in $button-variations {
-    &--#{$color} {
+    &--#{"" + $color} {
       @include button-variant($value);
     }
   }
