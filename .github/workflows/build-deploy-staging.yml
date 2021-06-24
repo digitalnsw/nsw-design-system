@@ -38,7 +38,7 @@ jobs:
           npm install -g pa11y-ci
           pa11y-ci ./dist/{components,styles,templates}/**/*.html
       - name: Visual test
-        run: npx percy snapshot dist/
+        run: npx percy snapshot dist/{components,styles,templates}/**/*.html
         env:
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
   deploy-staging:
