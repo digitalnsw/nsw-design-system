@@ -7,12 +7,19 @@ model:
   two-level: json/side-navigation-level-2.json
   four-level: json/side-navigation-level-4.json
 ---
-
-<h3>Single level</h3>
-{{>_side-navigation model.single-level}}
-
-<h3>Two levels</h3>
-{{>_side-navigation model.two-level}}
-
-<h3>Four levels</h3>
-{{>_side-navigation model.four-level}}
+{{#>_layout-container}}
+  <div class="nsw-grid">
+    <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+      <h3>Single level</h3>
+        {{>_side-navigation model.single-level}}
+    </div>
+    <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+      <h3>Two levels</h3>
+        {{>_side-navigation model.two-level}}
+    </div>
+    <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+      <h3>Four levels</h3>
+        {{>_side-navigation model.four-level}}
+    </div>
+  </div>
+{{/_layout-container}}
