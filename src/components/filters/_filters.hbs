@@ -1,0 +1,96 @@
+<form class="nsw-filters{{#if js}} nsw-filters--fixed js-filters{{/if}}{{#if instant}} nsw-filters--instant{{/if}}">
+  {{#if js}}
+  <div class="nsw-filters__controls{{#if results}} nsw-filters__controls--active{{/if}}">
+    <button>
+      <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">tune</i>
+      <span>{{#if name}}{{name}}{{else}}Filter results{{/if}}{{#if results}}  ({{results}}){{/if}}</span>
+    </button>
+  </div>
+  {{/if}}
+  <div class="nsw-filters__wrapper">
+    {{#if js}}
+    <div class="nsw-filters__back">
+      <button>
+        <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_left</i>
+        <span>Back</span>
+      </button>
+    </div>
+    {{/if}}
+    <div class="nsw-filters__title">{{#if name}}{{name}}{{else}}Filter results{{/if}}</div>
+    <div class="nsw-filters__list">
+      {{#if input}}
+      <div class="nsw-filters__item">
+        <label for="{{input.id}}" class="nsw-form-label">{{input.name}}</label>
+        <input type="text" id="{{input.id}}" name="filters-keyword" class="nsw-form-input"{{#if value}} value="{{input.value}}"{{/if}}>
+      </div>
+      {{/if}}
+      {{#if select}}
+      <div class="nsw-filters__item">
+        <label for="{{select.id}}" class="nsw-form-label">{{select.name}}</label>
+        <select id="{{select.id}}" class="nsw-form-select">
+          <option value="">Please select</option>  
+          {{#each select.list}}
+          <option value="{{this}}">{{this}}</option>
+          {{/each}}
+        </select>
+      </div>
+      {{/if}}
+      {{#if checkboxes}}
+      <div class="nsw-filters__item">
+        <fieldset class="nsw-form-fieldset">
+          <legend class="nsw-form-label">{{checkboxes.name}}</legend>
+          <div class="nsw-form-checkbox">
+            {{#each checkboxes.list}}
+            <input class="nsw-form-checkbox__input" type="checkbox" name="filters-categories" id="{{id}}"{{#if checked}} checked{{/if}}>
+            <label class="nsw-form-checkbox__label" for="{{id}}">{{title}}</label>
+            {{/each}}
+            {{#if checkboxes.all}}
+            <div class="nsw-filters__all hidden">
+              {{#each checkboxes.all}}
+              <input class="nsw-form-checkbox__input" type="checkbox" name="filters-categories" id="{{id}}"{{#if checked}} checked{{/if}}>
+              <label class="nsw-form-checkbox__label" for="{{id}}">{{title}}</label>
+              {{/each}}
+            </div>
+            <button class="nsw-filters__more">{{#if checkboxes.more}}{{checkboxes.more}}{{else}}Show all{{/if}}{{#if checkboxes.count}} ({{checkboxes.count}}){{/if}}</button>
+            <button class="nsw-filters__less hidden">{{#if checkboxes.less}}{{checkboxes.less}}{{else}}Show less{{/if}}</button>
+            {{/if}}
+          </div>
+        </fieldset>
+      </div>
+      {{/if}}
+      {{#if dates}}
+      <div class="nsw-filters__item">
+        {{#each dates.list}}
+        <div class="nsw-form-group">
+          <fieldset class="nsw-form-date">
+            <legend class="nsw-form-label">{{title}}</legend>
+            <div class="nsw-form-date-wrapper">
+              <div class="nsw-form-date-small">
+                <label for="{{id}}-day" class="nsw-form-label nsw-form-label-small">Day</label>
+                <input type="text" maxlength="2" id="{{id}}-day" name="{{id}}-day" class="nsw-form-input">
+              </div>
+              <div class="nsw-form-date-small">
+                <label for="{{id}}-month" class="nsw-form-label nsw-form-label-small">Month</label>
+                <input type="text" maxlength="2" id="{{id}}-month" name="{{id}}-month" class="nsw-form-input">
+              </div>
+              <div class="nsw-form-date-large">
+                <label for="{{id}}-year" class="nsw-form-label nsw-form-label-small">Year</label>
+                <input type="text" maxlength="4" id="{{id}}-year" name="{{id}}-year" class="nsw-form-input">
+              </div>
+            </div>
+          </fieldset>
+        </div>
+        {{/each}}
+      </div>
+      {{/if}}    
+    </div>
+    {{#unless instant}}
+    <div class="nsw-filters__accept">
+      <button type="submit" class="nsw-button nsw-button--primary nsw-button--full-width"{{#unless active}} disabled{{/unless}}>Apply filters</button>
+    </div>
+    {{/unless}}
+    <div class="nsw-filters__cancel">
+      <button type="reset">Clear all filters</button>
+    </div>
+  </div>
+</form>

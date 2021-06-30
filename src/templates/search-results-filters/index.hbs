@@ -1,10 +1,12 @@
 ---
-title: Search results
+title: Search results - Filters
 page: true
 model:
   nav: ../../components/main-navigation/json/mega-navigation-digital-nsw.json
   breadcrumbs: ../../components/breadcrumbs/json/breadcrumbs-search.json
-  list-item: ../../components/list-item/json/list-item.json
+  results-bar: ../../components/results-bar/json/results-bar.json
+  list-item: ../../components/list-item/json/list-item-label-date.json
+  filters: ../../components/filters/json/filters-page.json
   footer: ../../components/footer/json/footer.json
 ---
 
@@ -14,13 +16,22 @@ model:
   {{>_breadcrumbs model.breadcrumbs}}
 </div>
 
-<div class="nsw-container nsw-p-top-sm nsw-p-bottom-lg">
+<main id="content" class="nsw-container nsw-p-top-sm nsw-p-bottom-lg">
   <div class="nsw-page-layout">
-    <main id="content" class="nsw-page-layout__main">
+    <div class="nsw-page-layout__main">
       <h1>Search</h1>
+      <p class="nsw-intro">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
       
       {{>_search-bar model}}
-      {{>_results-bar}}
+    </div>
+    <div class="nsw-page-layout__sidebar nsw-page-layout__sidebar--desktop"></div>
+  </div>
+  <div class="nsw-page-layout">
+    <div class="nsw-page-layout__sidebar">
+      {{>_filters model.filters}}
+    </div>
+    <div class="nsw-page-layout__main">
+      {{>_results-bar model.results-bar}}
 
       <div class="nsw-search-results">
         {{>_list-item model.list-item}}
@@ -38,10 +49,8 @@ model:
       <div class="nsw-block">
         {{>_pagination}}
       </div>
-    </main>
-    <div class="nsw-page-layout__sidebar nsw-page-layout__sidebar--desktop">
     </div>
   </div>
-</div>
+</main>
 
 {{>_footer model.footer}}

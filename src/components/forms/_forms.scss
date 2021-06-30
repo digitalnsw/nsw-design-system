@@ -13,6 +13,10 @@
   @include font-size('sm');
   display: block;
 
+  &-small {
+    font-weight: normal;
+  }
+
   + input,
   + textarea,
   + select {
@@ -69,6 +73,31 @@
     &:hover {
       background-color: $critical-background;
     }
+  }
+}
+
+.nsw-form-date {
+  padding: 0;
+  margin: 0;
+  border: 0;
+
+  &-wrapper {
+    display: flex;
+    float: left;
+    width: 100%;
+    margin: 0 rem(-8px);
+
+    > div {
+      padding: 0 rem(8px);
+    }
+  }
+
+  &-small {
+    width: rem(74px);
+  }
+
+  &-large {
+    width: rem(116px);
   }
 }
 
