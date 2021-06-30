@@ -53,7 +53,7 @@
   }
 
   @each $color, $variant in $notification {
-    &--#{$color} {
+    &--#{"" + $color} {
       background-color: map-get($variant, background);
       border-color: map-get($variant, border);
 
@@ -62,7 +62,7 @@
 
         &.nsw-icon {
           fill: map-get($variant, fill);
-        }        
+        }
       }
     }
   }
