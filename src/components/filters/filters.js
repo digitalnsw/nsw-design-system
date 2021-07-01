@@ -6,11 +6,9 @@ class Filters {
     this.all = element.querySelectorAll('.nsw-filters__all')
     this.allBlocks = Array.prototype.slice.call(this.all)
     this.showMoreButtons = Array.prototype.slice.call(element.querySelectorAll('.nsw-filters__more'))
-    this.showLessButtons = Array.prototype.slice.call(element.querySelectorAll('.nsw-filters__less'))
     this.showEvent = (e) => this.showFilters(e)
     this.hideEvent = (e) => this.hideFilters(e)
     this.showMoreEvent = (e) => this.showMore(e)
-    this.showLessEvent = (e) => this.showLess(e)
     this.body = document.body
   }
 
@@ -54,22 +52,9 @@ class Filters {
     e.preventDefault()
     const currentShowMore = e.target
     const currentIndex = this.showMoreButtons.indexOf(currentShowMore)
-    const currentShowLess = this.showLessButtons[currentIndex]
     const currentAll = this.allBlocks[currentIndex]
     currentAll.classList.remove('hidden')
-    currentShowLess.classList.remove('hidden')
     currentShowMore.classList.add('hidden')
-  }
-
-  showLess(e) {
-    e.preventDefault()
-    const currentShowLess = e.target
-    const currentIndex = this.showLessButtons.indexOf(currentShowLess)
-    const currentShowMore = this.showMoreButtons[currentIndex]
-    const currentAll = this.allBlocks[currentIndex]
-    currentAll.classList.add('hidden')
-    currentShowLess.classList.add('hidden')
-    currentShowMore.classList.remove('hidden')
   }
 }
 

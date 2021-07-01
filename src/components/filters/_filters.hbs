@@ -21,13 +21,13 @@
       {{#if input}}
       <div class="nsw-filters__item">
         <label for="{{input.id}}" class="nsw-form-label">{{input.name}}</label>
-        <input type="text" id="{{input.id}}" name="filters-keyword" class="nsw-form-input"{{#if value}} value="{{input.value}}"{{/if}}>
+        <input type="text" id="{{input.id}}" name="filters-keyword" class="nsw-form-input"{{#if input.value}} value="{{input.value}}"{{/if}}>
       </div>
       {{/if}}
       {{#if select}}
       <div class="nsw-filters__item">
         <label for="{{select.id}}" class="nsw-form-label">{{select.name}}</label>
-        <select id="{{select.id}}" class="nsw-form-select">
+        <select id="{{select.id}}" name="{{select.id}}" class="nsw-form-select">
           <option value="">Please select</option>  
           {{#each select.list}}
           <option value="{{this}}">{{this}}</option>
@@ -41,18 +41,17 @@
           <legend class="nsw-form-label">{{checkboxes.name}}</legend>
           <div class="nsw-form-checkbox">
             {{#each checkboxes.list}}
-            <input class="nsw-form-checkbox__input" type="checkbox" name="filters-categories" id="{{id}}"{{#if checked}} checked{{/if}}>
+            <input class="nsw-form-checkbox__input" type="checkbox" name="{{name}}" value="{{title}}" id="{{id}}"{{#if checked}} checked{{/if}}>
             <label class="nsw-form-checkbox__label" for="{{id}}">{{title}}</label>
             {{/each}}
             {{#if checkboxes.all}}
             <div class="nsw-filters__all hidden">
               {{#each checkboxes.all}}
-              <input class="nsw-form-checkbox__input" type="checkbox" name="filters-categories" id="{{id}}"{{#if checked}} checked{{/if}}>
+              <input class="nsw-form-checkbox__input" type="checkbox" name="{{name}}" value="{{title}}" id="{{id}}"{{#if checked}} checked{{/if}}>
               <label class="nsw-form-checkbox__label" for="{{id}}">{{title}}</label>
               {{/each}}
             </div>
             <button class="nsw-filters__more">{{#if checkboxes.more}}{{checkboxes.more}}{{else}}Show all{{/if}}{{#if checkboxes.count}} ({{checkboxes.count}}){{/if}}</button>
-            <button class="nsw-filters__less hidden">{{#if checkboxes.less}}{{checkboxes.less}}{{else}}Show less{{/if}}</button>
             {{/if}}
           </div>
         </fieldset>
