@@ -1,0 +1,10 @@
+<label class="nsw-form__label{{#if required}} nsw-form__required{{/if}}" for="{{id}}">{{label}}{{#if required}}<span class="sr-only"> (required)</span>{{/if}}</label>{{#if helper-text}}
+<span class="nsw-form__helper" id="{{id}}-helper-text">{{helper-text}}</span>{{/if}}
+<select class="nsw-form__select" id="{{id}}"{{#if helper-text}} aria-describedby="{{#if helper-text}}{{id}}-helper-text{{/if}}"{{/if}}{{#if error-text}} aria-invalid="true"{{/if}}>
+  <option value="">Please select</option>  
+  <option value="1">{{#if option-1}}{{option-1}}{{else}}Option 1{{/if}}</option>
+  <option value="2">{{#if option-2}}{{option-2}}{{else}}Option 2{{/if}}</option>
+  <option value="3">{{#if option-3}}{{option-3}}{{else}}Option 3{{/if}}</option>
+</select>{{#if error-text}}
+<span id="{{id}}-error-text" class="nsw-form__helper nsw-form__helper--error">{{error-text}}</span>{{/if}}{{#if valid-text}}
+<span id="{{id}}-valid-text" class="nsw-form__helper nsw-form__helper--valid">{{valid-text}}</span>{{/if}}
