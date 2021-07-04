@@ -30,9 +30,7 @@ class Filters {
 
     this.all.forEach((element) => {
       const showMoreButton = element.nextElementSibling
-      const showLessButton = showMoreButton.nextElementSibling
       showMoreButton.addEventListener('click', this.showMoreEvent, false)
-      showLessButton.addEventListener('click', this.showLessEvent, false)
     })
   }
 

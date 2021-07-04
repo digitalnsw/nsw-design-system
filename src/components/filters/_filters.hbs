@@ -1,4 +1,4 @@
-<form class="nsw-filters{{#if js}} nsw-filters--fixed js-filters{{/if}}{{#if instant}} nsw-filters--instant{{/if}}">
+<{{#if instant}}div{{else}}form{{/if}} class="nsw-filters{{#if js}} nsw-filters--fixed js-filters{{/if}}{{#if instant}} nsw-filters--instant{{/if}}">
   {{#if js}}
   <div class="nsw-filters__controls{{#if results}} nsw-filters__controls--active{{/if}}">
     <button>
@@ -90,4 +90,4 @@
       <button type="reset">Clear all filters</button>
     </div>
   </div>
-</form>
+</{{#if instant}}div{{else}}form{{/if}}>
