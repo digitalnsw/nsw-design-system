@@ -1,0 +1,357 @@
+.nsw-form-label {
+  @include font-stack(heading);
+  @include font-size('sm');
+  display: block;
+
+  &-small {
+    font-weight: normal;
+  }
+
+  + input,
+  + textarea,
+  + select {
+    margin-top: rem(4px);
+  }
+}
+
+*:not(legend) + .nsw-form-label {
+  @include nsw-spacing(margin-top, md);
+}
+
+.nsw-form-required {
+  &::after {
+    content: ' *';
+    color: $nsw-primary-highlight;
+  }
+}
+
+.nsw-form-input,
+.nsw-form-select {
+  @include font-stack;
+  @include font-size('sm');
+  @include nsw-spacing(padding, sm md);
+  @include border-radius;
+  background-color: $white;
+  color: $dark80;
+  border: 1px solid $dark70;
+  vertical-align: middle;
+  appearance: none;
+  -webkit-appearance: none; /* stylelint-disable-line property-no-vendor-prefix */
+  width: 100%;
+
+  &:hover {
+    @include nsw-hover;
+  }
+
+  &:focus {
+    @include nsw-focus;
+  }
+
+  &:disabled {
+    background-color: $light10;
+    border-color: $light40;
+    color: $light40;
+    cursor: not-allowed;
+  }
+
+
+  &[aria-invalid='true'],
+  &.has-error {
+    border-color: $critical;
+    border-width: 2px;
+
+    &:hover {
+      background-color: $critical-background;
+    }
+  }
+}
+
+.nsw-form-date {
+  padding: 0;
+  margin: 0;
+  border: 0;
+
+  &-wrapper {
+    display: flex;
+    float: left;
+    width: 100%;
+    margin: 0 rem(-8px);
+
+    > div {
+      padding: 0 rem(8px);
+    }
+  }
+
+  &-small {
+    width: rem(74px);
+  }
+
+  &-large {
+    width: rem(116px);
+  }
+}
+
+.nsw-form-select {
+  @include background-svg(chevron-down, $nsw-primary-blue);
+  @include nsw-spacing(padding-right, xxl);
+  background-repeat: no-repeat;
+  background-position: right rem(16px) center;
+  background-size: rem(16px) auto;
+
+  &:disabled {
+    @include background-svg(chevron-down, $light40);
+  }
+
+  option {
+    background-color: $white;
+  }
+}
+
+.nsw-form-checkbox,
+.nsw-form-radio {
+  clear: left;
+}
+
+.nsw-form-checkbox__input,
+.nsw-form-radio__input {
+  position: absolute;
+  opacity: 0;
+
+  &:hover + .nsw-form-checkbox__label::before,
+  &:hover + .nsw-form-radio__label::before {
+    @include nsw-hover;
+  }
+
+  &:checked + .nsw-form-checkbox__label::after {
+    @include background-svg(tick, $white);
+    background-color: $nsw-primary-blue;
+  }
+
+  &:checked + .nsw-form-radio__label::after {
+    background-color: $nsw-primary-blue;
+  }
+
+  &:disabled {
+    + .nsw-form-checkbox__label,
+    + .nsw-form-radio__label {
+      cursor: not-allowed;
+    }
+
+    + .nsw-form-checkbox__label::before,
+    + .nsw-form-radio__label::before {
+      border-color: $light40;
+      background-color: $light10;
+    }
+
+    &:checked + .nsw-form-checkbox__label::after,
+    &:checked + .nsw-form-radio__label::after {
+      background-color: $light40;
+    }
+  }
+
+  &:focus + .nsw-form-checkbox__label::before {
+    @include nsw-focus;
+  }
+
+  &:focus + .nsw-form-radio__label::before {
+    box-shadow: 0 0 0 3px $white, 0 0 0 6px $focus-color;
+  }
+
+  &[aria-invalid='true'] + .nsw-form-checkbox__label,
+  &.has-error + .nsw-form-checkbox__label {
+    &:hover::before {
+      background-color: $critical-background;
+    }
+
+    &::before {
+      border-width: 2px;
+      border-color: $critical;
+    }
+  }
+}
+
+.nsw-form-checkbox__label,
+.nsw-form-radio__label {
+  @include font-stack;
+  @include font-size('sm');
+  @include nsw-spacing(margin-top, md);
+  @include nsw-spacing(padding-left, xxl);
+  @include nsw-spacing(padding-top, xs);
+  @include nsw-spacing(padding-bottom, xs);
+  min-height: rem(32px);
+  display: block;
+  position: relative;
+
+  &::before {
+    @include nsw-spacing(margin-right, md);
+    content: '';
+    width: rem(32px);
+    height: rem(32px);
+    border: 1px $dark70 solid;
+    background: $white;
+    top: 50%;
+    margin-top: rem(-16px);
+    left: 0;
+    display: inline-block;
+    vertical-align: middle;
+    background-color: $white;
+    position: absolute;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: rem(22px);
+    height: rem(22px);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: rem(16px) auto;
+    left: rem(5px);
+    top: 50%;
+    margin-top: rem(-11px);
+  }
+}
+
+.nsw-form-checkbox__label {
+  &::before {
+    @include border-radius;
+  }
+}
+
+.nsw-form-radio__label {
+  &::before {
+    @include border-radius('round');
+  }
+
+  &::after {
+    @include border-radius('round');
+  }
+}
+
+.nsw-form-helper {
+  @include font-stack;
+  @include font-size('xs');
+  display: block;
+  margin-bottom: rem(4);
+
+  &--error {
+    @include font-stack(heading);
+    @include background-svg(error, $critical);
+    @include nsw-spacing(padding, xs md xs xl);
+    @include nsw-spacing(margin-top, xs);
+    background-repeat: no-repeat;
+    background-position: left rem(8px) center;
+    background-size: 1rem auto;
+    background-color: $critical-background;
+  }
+}
+
+.nsw-form-fieldset {
+  @include nsw-spacing(margin, none);
+  @include nsw-spacing(padding, md none);
+  border: 0;
+  position: relative;
+
+  legend {
+    @include nsw-spacing(padding, none none md none);
+    width: 100%;
+    display: block;
+    float: left;
+  }
+
+  &::after {
+    @include border-radius;
+    @include z-index('below');
+    content: none;
+    width: calc(100% + 18px);
+    height: 100%;
+    border: solid 2px $critical;
+    position: absolute;
+    top: 0;
+    left: -9px;
+  }
+
+  &[aria-invalid='true'],
+  &.has-error {
+    &::after {
+      content: '';
+    }
+  }
+
+  @include breakpoint('md') {
+    &[aria-invalid='true'],
+    &.has-error {
+      @include nsw-spacing(padding, md);
+
+      &::after {
+        content: '';
+      }
+    }
+
+    &::after {
+      width: 100%;
+      left: 0;
+    }
+  }
+}
+
+.nsw-form-legend-text {
+  @include font-stack(heading);
+  @include font-size('lg');
+  width: 100%;
+  display: block;
+}
+
+* + .nsw-form-group {
+  @include nsw-spacing(margin-top, md);
+  border: 0;
+}
+
+.nsw-form-search {
+  display: flex;
+  position: relative;
+
+  &__input {
+    @include font-stack;
+    @include font-size('sm');
+    @include nsw-spacing(padding, sm md);
+    @include border-radius;
+    background-color: $white;
+    color: $dark80;
+    border: 1px solid $dark70;
+    border-right: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    vertical-align: middle;
+    appearance: none;
+    width: 100%;
+
+    &:focus {
+      @include nsw-focus($offset: false);
+      @include z-index;
+    }
+
+    &:hover {
+      @include nsw-hover;
+    }
+  }
+
+  &__submit {
+    @include border-radius;
+    @include nsw-spacing(padding, none sm);
+    border: 1px solid $dark70;
+    border-left: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    display: flex;
+    align-items: center;
+
+    &:focus {
+      @include nsw-focus($offset: false);
+    }
+
+    &:hover {
+      @include nsw-hover;
+    }
+  }
+}
