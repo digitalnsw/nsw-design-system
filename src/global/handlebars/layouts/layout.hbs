@@ -41,6 +41,14 @@
         </div>
         <div class="nsw-docs__intro">
           <h1>{{ title }}</h1>
+          {{#unless no-blank}}
+          <div class="nsw-docs__external-link">
+            <a target="_blank" href="blank.html" class="nsw-docs__external">
+              <span>View in new window</span>
+              <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">launch</i>
+            </a>
+          </div>
+          {{/unless}} 
           {{#if guidance}}
           <div class="nsw-docs__buttons">
             <a target="_blank" href="{{guidance}}" class="nsw-docs__guidance">
@@ -48,7 +56,7 @@
               <span>Guidance</span>
             </a>
           </div>
-          {{/if}}            
+          {{/if}}           
           {{#if style}}{{#if blank}}
           <a target="_blank" href="blank.html" class="nsw-docs__external">
             <span>View in new window</span>

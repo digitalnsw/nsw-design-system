@@ -1,7 +1,7 @@
 ---
 title: Cards
 width: wide
-guidance: https://digitalnsw.github.io/nsw-design-system-docs/components/card/index.html
+page: true
 model:
   card-headline-1: ../../components/card/json/card-headline-1.json
   card-headline-2: ../../components/card/json/card-headline-2.json
@@ -16,9 +16,7 @@ model:
   card-news-2: ../../components/card/json/card-news-2.json
   card-news-3: ../../components/card/json/card-news-3.json
 ---
-
-<h3>Headline only</h3>
-{{#>_docs-example}}
+{{#>_layout-container}}
 <div class="nsw-grid">
   <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
     {{>_card model.card-headline-1}}
@@ -30,9 +28,7 @@ model:
     {{>_card model.card-headline-3}}
   </div>
 </div>
-{{/_docs-example}}
 
-{{#> _docs-example separated="true"}}
 <div class="nsw-grid">
   <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
     {{>_card model.card-headline-1 content=true}}
@@ -44,10 +40,7 @@ model:
     {{>_card model.card-headline-3 content=true}}
   </div>
 </div>
-{{/_docs-example}}
 
-<h3>Headline and copy</h3>
-{{#>_docs-example}}
 <div class="nsw-grid">
   <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
     {{>_card model.card-simple-1}}
@@ -59,9 +52,7 @@ model:
     {{>_card model.card-simple-3}}
   </div>
 </div>
-{{/_docs-example}}
 
-{{#>_docs-example separated="true"}}
 <div class="nsw-grid">
   <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
     {{>_card model.card-simple-1 content=true}}
@@ -73,10 +64,7 @@ model:
     {{>_card model.card-simple-3 content=true}}
   </div>
 </div>
-{{/_docs-example}}
 
-<h3>Label and date</h3>
-{{#>_docs-example}}
 <div class="nsw-grid">
   <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
     {{>_card model.card-content-1}}
@@ -88,9 +76,7 @@ model:
     {{>_card model.card-content-3}}
   </div>
 </div>
-{{/_docs-example}}
 
-{{#>_docs-example separated="true"}}
 <div class="nsw-grid">
   <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
     {{>_card model.card-content-1 content=true}}
@@ -102,10 +88,7 @@ model:
     {{>_card model.card-content-3 content=true}}
   </div>
 </div>
-{{/_docs-example}}
 
-<h3>Image</h3>
-{{#>_docs-example}}
 <div class="nsw-grid">
   <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
     {{>_card model.card-news-1}}
@@ -117,9 +100,7 @@ model:
     {{>_card model.card-news-3}}
   </div>
 </div>
-{{/_docs-example}}
 
-{{#>_docs-example separated="true"}}
 <div class="nsw-grid">
   <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
     {{>_card model.card-news-1 content=true}}
@@ -131,4 +112,4 @@ model:
     {{>_card model.card-news-3 content=true}}
   </div>
 </div>
-{{/_docs-example}}
+{{/_layout-container}}
