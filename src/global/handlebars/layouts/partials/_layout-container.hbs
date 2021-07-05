@@ -1,3 +1,8 @@
-<div class="nsw-container">
-  {{> @partial-block }}
+<div class="nsw-container nsw-p-top-sm nsw-p-bottom-lg">
+  <div class="nsw-page-layout">
+    <main class="nsw-page-layout__main">
+  		{{> @partial-block }}
+  	</main>
+  	{{#if-equals width "narrow"}}<div class="nsw-page-layout__sidebar nsw-page-layout__sidebar--desktop"></div>{{/if-equals}}
+  </div>
 </div>

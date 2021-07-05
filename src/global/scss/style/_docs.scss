@@ -135,16 +135,6 @@ $docs-bg: lighten($light20, 3);
     @include breakpoint('xl') {
       padding-bottom: rem(48px);
     }
-
-    .nsw-docs__external {
-      @include breakpoint('md') {
-        top: rem(16px);
-      }
-
-      @include breakpoint('xl') {
-        top: rem(24px);
-      }
-    }
   }
 
   &__content {
@@ -263,6 +253,11 @@ $docs-bg: lighten($light20, 3);
     }
   }
 
+  &__external-link {
+    padding-top: rem(8px);
+    display: flex;
+  }
+
   &__external {
     @include font-stack('heading');
     font-size: rem(14px);
@@ -273,14 +268,6 @@ $docs-bg: lighten($light20, 3);
     align-items: center;
     cursor: pointer;
     white-space: nowrap;
-    margin-top: rem(8px);
-
-    @include breakpoint('md') {
-      position: absolute;
-      top: 0;
-      right: 0;
-      margin-top: 0;
-    }
 
     &:hover {
       @include nsw-hover;
@@ -332,6 +319,14 @@ $docs-bg: lighten($light20, 3);
 
     &--large {
       min-height: rem(150);
+    }
+  }
+
+  &__section {
+    &--dark {      
+      background-color: $light40;
+      padding: rem(8px);
+      margin: rem(8px) rem(-8px) 0 rem(-8px);
     }
   }
 }
