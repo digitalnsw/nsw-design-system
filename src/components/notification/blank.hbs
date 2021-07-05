@@ -9,15 +9,8 @@ model:
   success: json/notification-success.json
 ---
 {{#>_layout-container}}
-<h3>Information</h3>
 {{>_notification model.info}}
-
-<h3>Critical</h3>
 {{>_notification model.error}}
-
-<h3>Warning</h3>
 {{>_notification model.warning}}
-
-<h3>Success</h3>
 {{>_notification model.success}}
 {{/_layout-container}}
