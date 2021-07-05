@@ -1,0 +1,20 @@
+---
+title: Tags
+width: narrow
+page: true
+model:
+  link: json/tags-link.json
+  text: json/tags-text.json
+  checkbox: json/tags-checkbox.json
+---
+{{#>_layout-container}}
+<div class="nsw-docs__section nsw-docs__section--spaced"> 
+{{>_tags model.link}}
+</div>
+<div class="nsw-docs__section nsw-docs__section--spaced"> 
+{{>_tags model.text}}
+</div>
+<div class="nsw-docs__section nsw-docs__section--spaced"> 
+{{>_tags model.checkbox}}
+</div>
+{{/_layout-container}}
