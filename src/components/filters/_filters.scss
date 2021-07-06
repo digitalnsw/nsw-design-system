@@ -35,6 +35,14 @@
       padding: 0;
       color: $nsw-primary-blue;
 
+      &:hover {
+        @include nsw-hover;
+      }
+
+      &:focus {
+        @include nsw-focus;
+      }
+
       span {
         @include font-stack('heading');
         @include font-size('sm');
@@ -59,11 +67,11 @@
   }
 
   &__back {
+    @include z-index('upper');
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    z-index: 11;
     background-color: $white;
     padding: rem(24px) rem(16px);
     border-bottom: 1px solid $light20;
@@ -104,6 +112,7 @@
 
   &__wrapper {
     .nsw-filters--fixed & {
+      @include z-index('middle');
       display: none;
       position: fixed;
       top: 0;
@@ -113,7 +122,6 @@
       overflow-y: auto;
       background-color: $white;
       padding: rem(73px) rem(16px) rem(101px) rem(16px);
-      z-index: 10;
 
       @include breakpoint('lg') {
         display: block;
@@ -147,11 +155,11 @@
     border-top: 1px solid $light20;
 
     .nsw-filters--fixed & {
+      @include z-index('upper');
       position: fixed;
       bottom: 0;
       left: 0;
       right: 0;
-      z-index: 11;
       background-color: $white;
       padding: rem(24px) rem(16px);
 
