@@ -1,0 +1,21 @@
+---
+title: Filters
+page: true
+width: menu
+model:
+  instant: ../../components/filters/json/filters-instant.json
+  batch: ../../components/filters/json/filters-batch.json
+  all: ../../components/filters/json/filters-all.json
+---
+
+{{#>_layout-container}}
+<div class="nsw-docs__section nsw-docs__section--spaced"> 
+{{>_filters model.instant}}
+</div>
+<div class="nsw-docs__section nsw-docs__section--spaced"> 
+{{>_filters model.batch}}
+</div>
+<div class="nsw-docs__section nsw-docs__section--spaced"> 
+{{>_filters model.all}}
+</div>
+{{/_layout-container}}

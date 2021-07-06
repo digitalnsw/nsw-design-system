@@ -30,11 +30,11 @@ $docs-bg: lighten($light20, 3);
     .nsw-header,
     .nsw-masthead {
       @include breakpoint('xl') {
+        @include z-index('upper');
         position: fixed;
         top: 0;
         left: 0;
         right: 0;
-        z-index: 300;
       }
     }
 
@@ -426,6 +426,7 @@ $docs-bg: lighten($light20, 3);
 }
 
 .nsw-docs-nav {
+  @include z-index('upper');
   position: fixed;
   top: 0;
   bottom: 0;
@@ -434,7 +435,6 @@ $docs-bg: lighten($light20, 3);
   overflow-y: auto;
   border-right: 1px solid $light20;
   background: $white;
-  z-index: 300;
 
   &__logo {
     padding-bottom: rem(40px);
