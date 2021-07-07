@@ -8,7 +8,6 @@
   text-decoration: none;
   padding: rem(12px) rem(24px);
   cursor: pointer;
-  min-width: rem(124px);
   -webkit-appearance: none; /* stylelint-disable-line property-no-vendor-prefix */
   text-decoration: none;
   -webkit-font-smoothing: antialiased;
@@ -16,6 +15,10 @@
   vertical-align: middle;
   user-select: none;
   display: inline-block;
+
+  &:not(.nsw-button--flex) {
+    min-width: rem(124px);
+  }
 
   &:focus {
     @include nsw-focus;

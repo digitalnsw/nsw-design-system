@@ -1,0 +1,173 @@
+<h3>Default</h3>
+
+<h4>Text Fields</h4>
+{{#>_docs-example}}
+<div class="nsw-form">
+  <div class="nsw-form__group">
+    {{>_text-input
+      id="form-text-1"
+      label="Name"
+    }}
+  </div>
+  <div class="nsw-form__group">
+    {{>_textarea
+      id="form-textarea-1"
+      label="Comment"
+    }}
+  </div>
+</div>
+{{/_docs-example}}
+
+<h4>Input groups</h4>
+{{#>_docs-example}}
+<div class="nsw-form">
+  <div class="nsw-form__group">
+    {{>_input-group
+      id="form-input-group-1"
+      label="Search"
+    }}
+  </div>
+  <div class="nsw-form__group">
+    {{>_input-group
+      id="form-input-group-icon-1"
+      label="Search"
+      icon="search"
+      large=true
+    }}
+  </div>
+</div>
+{{/_docs-example}}
+
+<h4>Predictive list</h4>
+{{#>_docs-example}}
+<div class="nsw-form">
+  <div class="nsw-form__group">
+    <label class="nsw-form__label" for="form-predictive-text-1">Suburb</label>
+    <div class="nsw-form__predictive">
+      <input class="nsw-form__input" type="text" id="form-predictive-text-1" name="form-predictive-text-1" value="Horn" aria-autocomplete="list" autocomplete="off">
+      <ul class="nsw-form__predictive-list">
+        <li><a href="#"><span>Horn</span>sby</a></li>
+        <li><a href="#"><span>Horn</span>sby Heights</a></li>
+        <li><a href="#"><span>Horn</span>ingsea Park</a></li>
+      </ul>
+    </div>
+  </div>
+  <br><br><br><br><br><br>
+  <div class="nsw-form__group">
+    <div class="nsw-form__predictive">
+      {{>_input-group
+        id="form-predictive-group-1"
+        label="Search"
+        value="Tran"
+        predictive=true
+      }}
+      <ul class="nsw-form__predictive-list">
+        <li><a href="#"><span>Tran</span>sport</a></li>
+        <li><a href="#">Road <span>Tran</span>sport</a></li>
+        <li><a href="#">Public <span>Tran</span>sport</a></li>
+      </ul>
+    </div>
+  </div>
+  <br><br><br><br><br><br>
+  <div class="nsw-form__group">
+    <div class="nsw-form__predictive">
+      {{>_input-group
+        id="form-predictive-group-icon-1"
+        label="Search"
+        value="Govern"
+        icon="search"
+        large=true
+        predictive=true
+      }}
+      <ul class="nsw-form__predictive-list nsw-form__predictive-list--large">
+        <li><a href="#"><span>Govern</span>ment</a></li>
+        <li><a href="#"><span>Govern</span>ment payments</a></li>
+        <li><a href="#"><span>Govern</span>ance</a></li>
+      </ul>
+    </div>
+  </div>
+  <br><br><br><br><br><br>
+</div>
+{{/_docs-example}}
+
+<h4>Date</h4>
+{{#>_docs-example}}
+<div class="nsw-form">
+  <div class="nsw-form__group">
+    {{>_date
+      id="form-date-1"
+      label="Date of birth"
+    }}
+  </div>
+</div>
+{{/_docs-example}}
+
+<h4>Dropdown</h4>
+{{#>_docs-example}}
+<div class="nsw-form">
+  <div class="nsw-form__group">
+    {{>_select
+      id="form-select-1"
+      label="Region"
+      option-1="Central Coast"
+      option-2="North Coast"
+      option-3="New England & North West"
+    }}
+  </div>
+</div>
+{{/_docs-example}}
+
+<h4>Checkboxes</h4>
+{{#>_docs-example}}
+<div class="nsw-form">
+  <div class="nsw-form__group">
+    {{>_checkbox
+      id="form-checkbox-1"
+      name="form-checkbox-1"
+      label="I agree to terms and conditions"
+    }}
+  </div>
+  <div class="nsw-form__group">
+    <fieldset class="nsw-form__fieldset">
+      <legend>
+        <span class="nsw-form__legend">Category</span>
+      </legend>
+      {{>_checkbox
+        id="form-checkbox-multi-1-a"
+        name="form-checkbox-multi"
+        label="Customer Service"
+      }}
+      {{>_checkbox
+        id="form-checkbox-multi-1-b"
+        name="form-checkbox-multi"
+        label="Communities and Justice"
+        checked=true
+      }}
+    </fieldset>
+  </div>
+</div>
+{{/_docs-example}}
+
+<h4>Radio buttons</h4>
+{{#>_docs-example}}
+<div class="nsw-form">
+  <div class="nsw-form__group">
+    <fieldset class="nsw-form__fieldset">
+      <legend>
+        <span class="nsw-form__legend">Topic</span>
+      </legend>
+      {{>_radio
+        id="form-radio-1-a"
+        name="form-radio"
+        label="NSW Government"
+        checked=true
+      }}
+      {{>_radio
+        id="form-radio-1-b"
+        name="form-radio"
+        label="Business and Economy"
+      }}
+    </fieldset>
+  </div>
+</div>
+{{/_docs-example}}

@@ -3,6 +3,19 @@
     <div class="nsw-docs-nav__title">
       <a class="nsw-docs-nav__title-link" href="/">NSW Digital Design System</a>
     </div>
+
+    <div class="nsw-docs-nav__title">
+      <button>
+        <span>Core styles</span>
+        <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</i>
+      </button>
+    </div>
+    <ul class="nsw-docs-nav__list">
+      {{#each collections.stylesnav}}
+      <li><a class="nsw-docs-nav__list-link" href="/{{change-extention path}}">{{title}}</a></li>
+      {{/each}}
+    </ul>
+
     <div class="nsw-docs-nav__title">
       <button>
         <span>Components</span>
@@ -17,19 +30,7 @@
 
     <div class="nsw-docs-nav__title">
       <button>
-        <span>Styles</span>
-        <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</i>
-      </button>
-    </div>
-    <ul class="nsw-docs-nav__list">
-      {{#each collections.stylesnav}}
-      <li><a class="nsw-docs-nav__list-link" href="/{{change-extention path}}">{{title}}</a></li>
-      {{/each}}
-    </ul>
-
-    <div class="nsw-docs-nav__title">
-      <button>
-        <span>Demo pages</span>
+        <span>Example pages</span>
         <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</i>
       </button>
     </div>

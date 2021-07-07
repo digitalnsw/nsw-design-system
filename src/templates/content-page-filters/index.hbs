@@ -1,0 +1,55 @@
+---
+title: Content page - Filtering
+order: 24
+page: true
+model:
+  nav: ../../components/main-navigation/json/mega-navigation-digital-nsw.json
+  breadcrumbs: ../../components/breadcrumbs/json/breadcrumbs-filtering.json
+  results-bar: ../../components/results-bar/json/results-bar.json
+  list-item: ../../components/list-item/json/list-item-label-tags.json
+  filters: ../../components/filters/json/filters-all.json
+  footer: ../../components/footer/json/footer.json
+---
+
+{{>_header content="#content" nav="#main-navigation"}}
+{{>_main-navigation model.nav}}
+<div class="nsw-container nsw-p-bottom-xs">
+  {{>_breadcrumbs model.breadcrumbs}}
+</div>
+
+<main id="content" class="nsw-container nsw-p-top-sm nsw-p-bottom-lg">
+  <div class="nsw-page-layout">
+    <div class="nsw-page-layout__main">
+      <h1>Filtering</h1>
+      <p class="nsw-intro">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    </div>
+    <div class="nsw-page-layout__sidebar nsw-page-layout__sidebar--desktop"></div>
+  </div>
+  <div class="nsw-page-layout">
+    <div class="nsw-page-layout__sidebar">
+      {{>_filters model.filters}}
+    </div>
+    <div class="nsw-page-layout__main">
+      {{>_results-bar model.results-bar}}
+
+      <div class="nsw-search-results">
+        {{>_list-item model.list-item}}
+        {{>_list-item model.list-item}}
+        {{>_list-item model.list-item}}
+        {{>_list-item model.list-item}}
+        {{>_list-item model.list-item}}
+        {{>_list-item model.list-item}}
+        {{>_list-item model.list-item}}
+        {{>_list-item model.list-item}}
+        {{>_list-item model.list-item}}
+        {{>_list-item model.list-item}}
+      </div>
+
+      <div class="nsw-block">
+        {{>_pagination}}
+      </div>
+    </div>
+  </div>
+</main>
+
+{{>_footer model.footer}}

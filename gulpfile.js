@@ -154,12 +154,12 @@ function metalsmithBuild(callback) {
     stylesnav: {
       pattern: config.metalSmith.collection.stylesnav.pattern,
       refer: false,
-      sortBy: sortByAlpha,
+      sortBy: 'order',
     },
     templatesnav: {
       pattern: config.metalSmith.collection.templatesnav.pattern,
       refer: false,
-      sortBy: sortByAlpha,
+      sortBy: 'order',
     },
   }))
   metalsmith.use(inplace(config.metalSmith.inplace))

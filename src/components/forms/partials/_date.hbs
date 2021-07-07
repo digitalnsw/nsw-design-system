@@ -1,0 +1,25 @@
+<fieldset class="nsw-form__date">
+  <legend>
+    <span class="nsw-form__label{{#if required}} nsw-form__required{{/if}}">{{label}}{{#if required}}<span class="sr-only"> (required)</span>{{/if}}{{#if helper-text}}
+    <span id="{{id}}-helper-text" class="nsw-form__helper">{{helper-text}}</span>{{/if}}
+  </legend>
+  <div class="nsw-form__date-wrapper">
+    <div class="nsw-form__date-input">
+      <label for="{{id}}-day" class="nsw-form__label nsw-form__label--small">Day</label>
+      <input type="text" maxlength="2" id="{{id}}-day" name="{{id}}-day" class="nsw-form__input"{{#if error-text}} aria-invalid="true"{{/if}}>
+    </div>
+    <div class="nsw-form__date-input">
+      <label for="{{id}}-month" class="nsw-form__label nsw-form__label--small">Month</label>
+      <input type="text" maxlength="2" id="{{id}}-month" name="{{id}}-month" class="nsw-form__input"{{#if error-text}} aria-invalid="true"{{/if}}>
+    </div>
+    <div class="nsw-form__date-input nsw-form__date-input--large">
+      <label for="{{id}}-year" class="nsw-form__label nsw-form__label--small">Year</label>
+      <input type="text" maxlength="4" id="{{id}}-year" name="{{id}}-year" class="nsw-form__input"{{#if error-text}} aria-invalid="true"{{/if}}>
+    </div>
+  </div>
+</fieldset>
+{{#if error-text}}
+<span id="{{id}}-error-text" class="nsw-form__helper nsw-form__helper--error">{{error-text}}</span>
+{{/if}}{{#if valid-text}}
+<span id="{{id}}-valid-text" class="nsw-form__helper nsw-form__helper--valid">{{valid-text}}</span>
+{{/if}}

@@ -1,0 +1,228 @@
+.nsw-filters {
+  .nsw-page-layout__sidebar & {
+    margin: rem(-8px) 0 rem(-16px) 0;
+
+    @include breakpoint('lg') {
+      margin: 0;
+    }
+  }
+
+  &__title {
+    @include font-size('lg');
+    font-weight: var(--nsw-font-bold);
+    padding: rem(24px) 0;
+
+    @include breakpoint('lg') {
+      @include font-size('md');
+      margin-top: rem(24px);
+    }
+  }
+
+  &__controls {
+    padding: rem(24px) 0;
+    border-bottom: 1px solid $light20;
+
+    @include breakpoint('lg') {
+      display: none;
+    }
+
+    button {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      background-color: transparent;
+      border: 0;
+      padding: 0;
+      color: $nsw-primary-blue;
+
+      &:hover {
+        @include nsw-hover;
+        outline: 4px solid $hover-colour;
+      }
+
+      &:focus {
+        @include nsw-focus;
+      }
+
+      span {
+        @include font-size('sm');
+        font-weight: var(--nsw-font-bold);
+        text-decoration: underline;
+        padding-left: rem(8px);
+      }
+    }
+
+    .nsw-material-icons {
+      @include border-radius;
+      font-size: rem(24px);
+      padding: rem(1px);
+      border: 2px solid $nsw-primary-blue;
+    }
+
+    &--active {
+      .nsw-material-icons {
+        background-color: $nsw-primary-blue;
+        color: $white;        
+      }
+    }
+  }
+
+  &__back {
+    @include z-index('upper');
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: $white;
+    padding: rem(24px) rem(16px);
+    border-bottom: 1px solid $light20;
+
+    @include breakpoint('lg') {
+      display: none;
+    }
+
+    button {
+      background-color: transparent;
+      border: 0;
+      padding: 0;
+      color: $nsw-primary-blue;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+
+      &:hover {
+        @include nsw-hover;
+      }
+
+      &:focus {
+        @include nsw-focus;
+      }
+
+      span {
+        @include font-size('sm');
+        font-weight: var(--nsw-font-bold);
+        text-decoration: underline;
+      }
+
+      i {
+        font-size: rem(24px);
+        margin-right: rem(4px);
+      }      
+    }
+  }
+
+  &__wrapper {
+    .nsw-filters--fixed & {
+      @include z-index('middle');
+      display: none;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      overflow-y: auto;
+      background-color: $white;
+      padding: rem(73px) rem(16px) rem(101px) rem(16px);
+
+      @include breakpoint('lg') {
+        display: block;
+        position: static;
+        background-color: transparent;
+        padding: 0;
+        overflow-y: visible;
+      }
+    }
+
+    .nsw-filters--fixed.nsw-filters--instant & {
+      padding-bottom: 0;
+    }
+
+    .active & {
+      display: block;
+    }
+  }
+
+  &__item {
+    padding: rem(24px) 0;
+    border-top: 1px solid $light20;
+  }
+
+  &__all {
+    padding-top: rem(16px);
+  }
+
+  &__accept {
+    padding: rem(32px) 0;
+    border-top: 1px solid $light20;
+
+    .nsw-filters--fixed & {
+      @include z-index('upper');
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: $white;
+      padding: rem(24px) rem(16px);
+
+      @include breakpoint('lg') {
+        position: static;
+        padding: rem(32px) 0;
+      }
+    }
+
+    button {
+      margin: 0;
+    }
+  }
+
+  &__cancel {   
+    padding-bottom: rem(32px);
+
+    .nsw-filters--fixed & {
+      border-top: 1px solid $light20;
+      padding: rem(32px) 0;
+
+      @include breakpoint('lg') {
+        padding-top: 0;
+        border: 0;
+      }
+    }
+
+    .nsw-filters--instant & {
+      border-top: 1px solid $light20;
+      padding: rem(32px) 0;
+    }
+
+    button {
+      @include text-link;
+      @include font-size('sm');
+      font-weight: normal;
+      text-decoration: underline;
+      cursor: pointer;
+      background-color: transparent;
+      border: 0;
+      padding: 0;
+    }
+  }
+
+  &__more,
+  &__less {
+    @include text-link;
+    @include font-size('sm');
+    font-weight: normal;
+    text-decoration: underline;
+    cursor: pointer;
+    background-color: transparent;
+    border: 0;
+    padding: 0;
+    margin-top: rem(24px);
+  }
+
+  .hidden {
+    display: none;
+  }
+}
+
+.filters-open {
+  overflow: hidden;
+}

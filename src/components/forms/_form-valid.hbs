@@ -1,0 +1,106 @@
+<h3>Validation</h3>
+
+<h4>Text Fields</h4>
+{{#>_docs-example}}
+<div class="nsw-form">
+  <div class="nsw-form__group">
+    {{>_text-input
+      id="form-text-4"
+      label="Name"
+      valid-text="This field has been validated"
+    }}
+  </div>
+  <div class="nsw-form__group">
+    {{>_textarea
+      id="form-textarea-4"
+      label="Comment"
+      valid-text="This field has been validated"
+    }}
+  </div>
+</div>
+{{/_docs-example}}
+
+<h4>Date</h4>
+{{#>_docs-example}}
+<div class="nsw-form">
+  <div class="nsw-form__group">
+    {{>_date
+      id="form-date-4"
+      label="Date of birth"
+      valid-text="This field has been validated"
+    }}
+  </div>
+</div>
+{{/_docs-example}}
+
+<h4>Dropdown</h4>
+{{#>_docs-example}}
+<div class="nsw-form">
+  <div class="nsw-form__group">
+    {{>_select
+      id="form-select-4"
+      label="Region"
+      option-1="Central Coast"
+      option-2="North Coast"
+      option-3="New England & North West"
+      valid-text="This field has been validated"
+    }}
+  </div>
+</div>
+{{/_docs-example}}
+
+<h4>Checkboxes</h4>
+{{#>_docs-example}}
+<div class="nsw-form">
+  <div class="nsw-form__group">
+    {{>_checkbox
+      id="form-checkbox-4"
+      name="form-checkbox-4"
+      label="I agree to terms and conditions"
+      valid-text="This field has been validated"
+    }}
+  </div>
+  <div class="nsw-form__group">
+    <fieldset class="nsw-form__fieldset">
+      <legend>
+        <span class="nsw-form__legend">Category</span>
+        <span class="nsw-form__helper nsw-form__helper--valid">This field has been validated</span>
+      </legend>
+      {{>_checkbox
+        id="form-checkbox-multi-4-a"
+        name="form-checkbox-multi"
+        label="Customer Service"
+      }}
+      {{>_checkbox
+        id="form-checkbox-multi-4-b"
+        name="form-checkbox-multi"
+        label="Communities and Justice"
+      }}
+    </fieldset>
+  </div>
+</div>
+{{/_docs-example}}
+
+<h4>Radio buttons</h4>
+{{#>_docs-example}}
+<div class="nsw-form">
+  <div class="nsw-form__group">
+    <fieldset class="nsw-form__fieldset">
+      <legend>
+        <span class="nsw-form__legend">Topic</span>
+        <span class="nsw-form__helper nsw-form__helper--valid">This field has been validated</span>
+      </legend>
+      {{>_radio
+        id="form-radio-4-a"
+        name="form-radio"
+        label="NSW Government"
+      }}
+      {{>_radio
+        id="form-radio-4-b"
+        name="form-radio"
+        label="Business and Economy"
+      }}
+    </fieldset>
+  </div>
+</div>
+{{/_docs-example}}
