@@ -5,8 +5,8 @@
 
   &__heading {
     @include nsw-spacing(margin, none);
-    @include font-stack('heading');
     @include font-size('sm');
+    font-weight: var(--nsw-font-bold);
   }
 
   &__list {
@@ -16,7 +16,6 @@
   }
 
   &__list-item {
-    @include font-stack;
     border-top: solid 1px $light20;
   }
 
@@ -56,7 +55,7 @@
     }
 
     .has-active-children > & {
-      @include font-stack('heading');
+      font-weight: var(--nsw-font-bold);
 
       &:hover {
         @include nsw-hover;

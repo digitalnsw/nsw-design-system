@@ -9,7 +9,7 @@
   left: 0;
   top: 0;
   background: $white;
-  transition: map-get($transitions, base);
+  transition: all 0.25s ease-in-out;
   transform: translateX(-100%);
   visibility: hidden;
   outline: none;
@@ -146,10 +146,8 @@
 
 .nsw-navigation__list-item,
 .nsw-subnavigation__list-item {
-  @include font-stack;
-
   @include breakpoint($desktop-breakpoint) {
-    @include font-stack('heading');
+    font-weight: var(--nsw-font-bold);
     border-bottom: 0;
   }
 }
@@ -253,7 +251,7 @@
   top: 0;
   background-color: $white;
   width: 100%;
-  transition: map-get($transitions, base);
+  transition: all 0.25s ease-in-out;
   transform: translateX(-100%);
   visibility: hidden;
   left: 0;
@@ -299,9 +297,9 @@
   justify-content: space-between;
 
   h2 {
-    @include font-stack('heading');
     @include nsw-spacing(margin, none);
     @include font-size('md');
+    font-weight: var(--nsw-font-bold);
     flex: 1 1 auto;
     align-self: center;
   }
@@ -312,10 +310,10 @@
 }
 
 .nsw-subnavigation__back-btn {
-  @include font-stack('heading');
   @include font-size('md');
   @include nsw-spacing(padding, none xs);
   @include border-radius;
+  font-weight: var(--nsw-font-bold);
   background: none;
   border: 0;
   display: inline-flex;
@@ -350,9 +348,9 @@
 }
 
 .nsw-subnavigation__title {
-  @include font-stack('heading');
   @include font-size('md');
   @include nsw-spacing(margin, none);
+  font-weight: var(--nsw-font-bold);
 
   @include breakpoint($desktop-breakpoint) {
     @include font-size('lg');
@@ -385,7 +383,6 @@
 }
 
 .nsw-subnavigation__description {
-  @include font-stack;
   @include nsw-spacing(margin-top, md);
   @include font-size('xs');
   display: none;

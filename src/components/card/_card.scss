@@ -1,9 +1,8 @@
 .nsw-card {
-  @include font-stack;
   @include border-radius;
   background-color: $white;
   box-shadow: map-get($shadows, card);
-  transition: map-get($transitions, card);
+  transition: box-shadow 0.25s ease-in-out;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -24,8 +23,8 @@
   }
 
   &__title {
-    @include font-stack('heading');
     @include font-size('md');
+    font-weight: var(--nsw-font-bold);
     margin: 0;
   }
 
@@ -51,7 +50,7 @@
   }
 
   &__tag {
-    @include font-stack('heading');
+    font-weight: var(--nsw-font-bold);
     order: 1;
     margin: 0 0 1rem;
 

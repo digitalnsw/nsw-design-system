@@ -1,5 +1,4 @@
 .nsw-skipto {
-  @include font-stack;
   position: absolute;
   top: 0;
   left: 0;
@@ -37,7 +36,6 @@
 
 .nsw-infobar,
 .nsw-masthead {
-  @include font-stack;
   @include nsw-spacing(padding, sm none);
   background-color: $nsw-primary-blue;
   color: $white;
@@ -170,7 +168,7 @@
   }
 
   &__sub {
-    @include font-stack('heading');
+    font-weight: var(--nsw-font-bold);
     font-size: rem(12px);
   }
 }
@@ -216,7 +214,6 @@
   }
 
   &__input {
-    @include font-stack;
     @include font-size('md');
     background: none;
     padding: rem(8px) rem(72px) rem(8px) rem(16px);

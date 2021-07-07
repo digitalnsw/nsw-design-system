@@ -56,8 +56,6 @@
   }
 
   &__content {
-    @include font-stack;
-
     @include breakpoint('md') {
       @include nsw-spacing(margin-top, none);
     }
@@ -76,8 +74,8 @@
   }
 
   &__title {
-    @include font-stack('heading');
     @include font-size('md');
+    font-weight: var(--nsw-font-bold);
     margin: 0;
   }
 }

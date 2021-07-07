@@ -51,15 +51,15 @@
   }
 
   &__title {
-    @include font-stack('heading');
     @include font-size('md');
     @include nsw-spacing(margin-top, none);
+    font-weight: var(--nsw-font-bold);
   }
 
   &__link {
-    @include font-stack('heading');
     color: $white;
     text-decoration: underline;
+    font-weight: var(--nsw-font-bold);
 
     &:hover {
       text-decoration: none;
@@ -71,7 +71,6 @@
   }
 
   &__content {
-    @include font-stack;
     @include nsw-spacing(margin-right, xxl);
 
     p {

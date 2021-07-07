@@ -9,8 +9,8 @@
 }
 
 .nsw-form-label {
-  @include font-stack(heading);
   @include font-size('sm');
+  font-weight: var(--nsw-font-bold);
   display: block;
 
   + input,
@@ -33,7 +33,6 @@
 
 .nsw-form-input,
 .nsw-form-select {
-  @include font-stack;
   @include font-size('sm');
   @include nsw-spacing(padding, sm md);
   @include border-radius;
@@ -153,7 +152,6 @@
 
 .nsw-form-checkbox__label,
 .nsw-form-radio__label {
-  @include font-stack;
   @include font-size('sm');
   @include nsw-spacing(margin-top, md);
   @include nsw-spacing(padding-left, xxl);
@@ -210,16 +208,15 @@
 }
 
 .nsw-form-helper {
-  @include font-stack;
   @include font-size('xs');
   display: block;
   margin-bottom: rem(4);
 
   &--error {
-    @include font-stack(heading);
     @include background-svg(error, $critical);
     @include nsw-spacing(padding, xs md xs xl);
     @include nsw-spacing(margin-top, xs);
+    font-weight: var(--nsw-font-bold);
     background-repeat: no-repeat;
     background-position: left rem(8px) center;
     background-size: 1rem auto;
@@ -277,8 +274,8 @@
 }
 
 .nsw-form-legend-text {
-  @include font-stack(heading);
   @include font-size('lg');
+  font-weight: var(--nsw-font-bold);
   width: 100%;
   display: block;
 }
@@ -293,7 +290,6 @@
   position: relative;
 
   &__input {
-    @include font-stack;
     @include font-size('sm');
     @include nsw-spacing(padding, sm md);
     @include border-radius;

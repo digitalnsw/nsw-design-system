@@ -23,7 +23,6 @@
 
   &__link {
     @include nsw-spacing(padding, sm md);
-    @include font-stack;
     z-index: 1;
     display: block;
     position: relative;
@@ -41,7 +40,7 @@
     }
 
     .is-selected & {
-      @include font-stack(heading);
+      font-weight: var(--nsw-font-bold);
       color: $dark80;
 
       &::after {

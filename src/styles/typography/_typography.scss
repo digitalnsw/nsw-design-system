@@ -1,8 +1,15 @@
 .nsw-wysiwyg-content,
 .nsw-body-content {
-  @include font-stack;
   @include font-size('sm');
+  font-family: var(--nsw-font-family);
+  font-weight: var(--nsw-font-normal);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   color: $dark80;
+
+  *:not(i) {
+    font-family: var(--nsw-font-family);
+  }
 
   a:not([class]) {
     @include link;
@@ -89,20 +96,20 @@
   h5,
   h6 {
     &:not([class]) {
-      @include font-stack('heading');
+      font-weight: var(--nsw-font-bold);
       margin: 0;
     }
   }
 
   h1 {
     &:not([class]) {
-      @include font-size('xxxl');
+      @include font-size('xxl');
     }
   }
 
   h2 {
     &:not([class]) {
-      @include font-size('xxl');
+      @include font-size('xl');
     }
   }
 
@@ -166,7 +173,7 @@ h2,
 h3,
 h4 {
   &.nsw-section-title {
-    @include font-stack('heading');
+    font-weight: var(--nsw-font-bold);
     margin: 0;
     padding-top: rem($grid-gutters);
     padding-bottom: rem(8px);
@@ -179,13 +186,13 @@ h4 {
 
 h1 {
   &.nsw-section-title {
-    @include font-size('xxxl');
+    @include font-size('xxl');
   }
 }
 
 h2 {
   &.nsw-section-title {
-    @include font-size('xxl');
+    @include font-size('xl');
   }
 }
 

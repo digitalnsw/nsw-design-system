@@ -187,7 +187,7 @@ $docs-bg: lighten($light20, 3);
     }
 
     a {
-      @include font-stack('heading');
+      font-weight: var(--nsw-font-bold);
       font-size: rem(14px);
       color: $nsw-primary-blue;
       border: 0;
@@ -232,9 +232,9 @@ $docs-bg: lighten($light20, 3);
   }
 
   &__guidance {
-    @include font-stack('heading');
     @include border-radius;
     @include button-variant(map-get($button-variations, primary));
+    font-weight: var(--nsw-font-bold);
     font-size: rem(14px);
     border: 1px solid $nsw-primary-blue;
     text-decoration: none;
@@ -259,7 +259,7 @@ $docs-bg: lighten($light20, 3);
   }
 
   &__external {
-    @include font-stack('heading');
+    font-weight: var(--nsw-font-bold);
     font-size: rem(14px);
     color: $nsw-primary-blue;
     border: 0;
@@ -340,7 +340,7 @@ $docs-bg: lighten($light20, 3);
 
   &__button {
     @include link;
-    @include font-stack('heading');
+    font-weight: var(--nsw-font-bold);
     font-size: rem(14px);
     background: transparent;
     border: 0;
@@ -396,8 +396,8 @@ $docs-bg: lighten($light20, 3);
   }
 
   &__copy {
-    @include font-stack('heading');
     @include border-radius;
+    font-weight: var(--nsw-font-bold);
     font-size: rem(14px);
     background: $white;
     color: $nsw-primary-blue;
@@ -452,7 +452,6 @@ $docs-bg: lighten($light20, 3);
   &__title {
     a,
     button {
-      @include font-stack();
       @include font-size('sm');
       background: transparent;
       border: 0;
@@ -473,7 +472,7 @@ $docs-bg: lighten($light20, 3);
       }
 
       &.is-active {
-        @include font-stack('heading');
+        font-weight: var(--nsw-font-bold);
         border-bottom: solid 2px $nsw-primary-blue;
       }
     }
@@ -489,7 +488,7 @@ $docs-bg: lighten($light20, 3);
       }
 
       &.is-active {
-        @include font-stack('heading');
+        font-weight: var(--nsw-font-bold);
       }
 
       span {
