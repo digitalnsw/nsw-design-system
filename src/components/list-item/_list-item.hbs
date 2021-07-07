@@ -1,0 +1,23 @@
+<div class="nsw-list-item{{#if reversed}} nsw-list-item--reversed{{/if}}">
+  <div class="nsw-list-item__content">{{#if label}}
+    <div class="nsw-list-item__label">{{label}}</div>{{/if}}{{#if date}}
+    <div class="nsw-list-item__info">{{date}}</div>{{/if}}
+    <h3 class="nsw-list-item__title">
+      <a href="#"{{#if block}} class="nsw-list-item__link"{{/if}}>{{heading}}</a>
+    </h3>{{#if url}}
+    <div class="nsw-list-item__info">{{url}}</div>{{/if}}
+    <p class="nsw-list-item__copy">{{copy}}</p>{{#if tags}}
+    <div class="nsw-list-item__tags">
+      <div class="nsw-tags">
+        {{#each tags}}
+        <span class="nsw-tag">{{this}}</span>
+        {{/each}}
+      </div>
+    </div>{{/if}}
+  </div>
+  {{#if img}}
+  <div class="nsw-list-item__image-area">
+    <img src="{{img}}" alt="" class="nsw-list-item__image">
+  </div>
+  {{/if}}
+</div>

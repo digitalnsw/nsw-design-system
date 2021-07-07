@@ -1,0 +1,21 @@
+---
+title: List items
+width: narrow
+page: true
+model:
+  list-item: ../../components/list-item/json/list-item.json
+  list-item-url: ../../components/list-item/json/list-item-url.json
+  list-item-label-date: ../../components/list-item/json/list-item-label-date.json
+  list-item-label-tags: ../../components/list-item/json/list-item-label-tags.json
+  list-item-image: ../../components/list-item/json/list-item-image.json
+---
+
+{{#>_layout-container}}
+{{>_list-item model.list-item}}
+{{>_list-item model.list-item block="true"}}
+{{>_list-item model.list-item-url block="true"}}
+{{>_list-item model.list-item-label-date}}
+{{>_list-item model.list-item-label-tags}}
+{{>_list-item model.list-item-image block="true"}}
+{{>_list-item model.list-item-image block="true" reversed="true"}}
+{{/_layout-container}}

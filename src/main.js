@@ -1,6 +1,7 @@
 import SiteSearch from './components/header/header'
 import Navigation from './components/main-navigation/main-navigation'
 import Accordion from './components/accordion/accordion'
+import Filters from './components/filters/filters'
 import ShareThis from './components/social-bar/social-bar'
 import Tabs from './components/tab-navigation/tab-navigation'
 import SitewideMessage from './components/site-wide-message/site-wide-message'
@@ -30,6 +31,7 @@ function initSite() {
   const openSearchButton = document.querySelectorAll('.js-open-search')
   const closeSearchButton = document.querySelectorAll('.js-close-search')
   const accordions = document.querySelectorAll('.js-accordion')
+  const filters = document.querySelectorAll('.js-filters')
   const tabs = document.querySelectorAll('.js-tabs')
   const siteMessages = document.querySelectorAll('.js-sitewide-message')
 
@@ -47,6 +49,12 @@ function initSite() {
   accordions.forEach((element) => {
     new Accordion(element).init()
   })
+
+  if (filters) {
+    filters.forEach((element) => {
+      new Filters(element).init()
+    })
+  }
 
   if (tabs) {
     tabs.forEach((element) => {

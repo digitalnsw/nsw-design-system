@@ -1,0 +1,30 @@
+.nsw-results-bar {
+  margin: rem(24px) 0;
+
+  @include breakpoint('lg') {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  &__sorting {
+    display: flex;
+    align-items: center;
+    padding-top: rem(24px);
+
+    @include breakpoint('lg') {
+      padding-top: 0;
+    }
+
+    label {
+      white-space: nowrap;
+      margin-right: rem(8px);
+    }
+
+    select {
+      margin-top: 0;
+      min-width: rem(200px);
+    }
+  }
+}

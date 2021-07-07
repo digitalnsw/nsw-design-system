@@ -1,0 +1,31 @@
+---
+title: List items
+width: narrow
+model:
+  list-item: ../../components/list-item/json/list-item.json
+  list-item-url: ../../components/list-item/json/list-item-url.json
+  list-item-label-date: ../../components/list-item/json/list-item-label-date.json
+  list-item-label-tags: ../../components/list-item/json/list-item-label-tags.json
+  list-item-image: ../../components/list-item/json/list-item-image.json
+---
+
+<h3>Title and copy - with title link</h3>
+{{#>_docs-example}}{{>_list-item model.list-item}}{{/_docs-example}}
+
+<h3>Title and copy - with block link</h3>
+{{#>_docs-example}}{{>_list-item model.list-item block="true"}}{{/_docs-example}}
+
+<h3>URL - with block link</h3>
+{{#>_docs-example}}{{>_list-item model.list-item-url block="true"}}{{/_docs-example}}
+
+<h3>Label and Date - with title link</h3>
+{{#>_docs-example}}{{>_list-item model.list-item-label-date}}{{/_docs-example}}
+
+<h3>Multiple categories - with title link</h3>
+{{#>_docs-example}}{{>_list-item model.list-item-label-tags}}{{/_docs-example}}
+
+<h3>Image - with block link</h3>
+{{#>_docs-example}}{{>_list-item model.list-item-image block="true"}}{{/_docs-example}}
+
+<h3>Image on the left - with block link</h3>
+{{#>_docs-example}}{{>_list-item model.list-item-image block="true" reversed="true"}}{{/_docs-example}}
