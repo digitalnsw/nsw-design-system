@@ -1,5 +1,6 @@
 .nsw-accordion {
   @include component-spacing();
+  font-family: var(--nsw-font-family);
 
   &__title,
   &__button {
@@ -7,7 +8,7 @@
     @include nsw-spacing(margin, xs none none);
     @include nsw-spacing(padding, md xxl md md);
     font-weight: var(--nsw-font-bold);
-    border-left: solid 4px $nsw-primary-blue;
+    border-left: solid 4px var(--nsw-primary-dark);
     background-color: $light10;
     display: block;
     width: 100%;
@@ -24,8 +25,9 @@
   }
 
   &__button {
+    font-family: var(--nsw-font-family);
     border: 0;
-    border-left: solid 4px $nsw-primary-blue;
+    border-left: solid 4px var(--nsw-primary-dark);
 
     &:hover {
       @include nsw-hover;
@@ -57,6 +59,6 @@
 
   &__content {
     @include nsw-spacing(padding, md);
-    border-left: solid 4px $nsw-primary-blue;
+    border-left: solid 4px var(--nsw-primary-dark);
   }
 }

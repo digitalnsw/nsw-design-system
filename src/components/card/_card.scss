@@ -1,7 +1,8 @@
 .nsw-card {
   @include border-radius;
+  font-family: var(--nsw-font-family);
   background-color: $white;
-  box-shadow: map-get($shadows, card);
+  box-shadow: 0 4px 12px 0 rgba($black, 0.15);
   transition: box-shadow 0.25s ease-in-out;
   position: relative;
   display: flex;
@@ -11,7 +12,7 @@
   border: 0;
 
   &:hover {
-    box-shadow: map-get($shadows, card-hover);
+    box-shadow: 2px 6px 12px 0 rgba($black, 0.25);
   }
 
   &:focus-within {
@@ -31,7 +32,7 @@
   &__content {
     @include font-size('sm');
     @include nsw-spacing(padding, md md xxxxl md);
-    border-top: solid 6px $nsw-primary-highlight;
+    border-top: solid 6px var(--nsw-primary-accent);
     display: flex;
     flex-direction: column;
     order: 2;
@@ -102,7 +103,7 @@
   &__link {
     @include pseudo-clickable-block;
     text-decoration: none;
-    color: $nsw-primary-blue;
+    color: var(--nsw-primary-dark);
 
     &:hover {
       text-decoration: underline;

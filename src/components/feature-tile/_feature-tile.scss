@@ -1,7 +1,8 @@
 .nsw-feature-tile {
   @include component-spacing();
   @include nsw-spacing(padding, md none);
-  border-top: solid 6px $nsw-primary-highlight;
+  font-family: var(--nsw-font-family);
+  border-top: solid 6px var(--nsw-primary-accent);
   max-width: 500px;
 
   &__title {
@@ -131,7 +132,7 @@
 
   &__link {
     text-decoration: none;
-    color: $nsw-primary-blue;
+    color: var(--nsw-primary-dark);
 
     &:hover {
       @include nsw-hover;
@@ -152,7 +153,7 @@
   }
 
   .new-text {
-    color: $nsw-primary-highlight;
+    color: var(--nsw-primary-accent);
     text-decoration: none;
   }
 

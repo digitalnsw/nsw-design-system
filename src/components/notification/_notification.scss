@@ -1,6 +1,31 @@
+//Variations
+$notification: (
+  info: (
+    border: var(--nsw-notification-info-blue),
+    background: var(--nsw-notification-info-blue-bg),
+    fill: var(--nsw-notification-info-blue),
+  ),
+  success: (
+    border: var(--nsw-notification-success-green),
+    background: var(--nsw-notification-success-green-bg),
+    fill: var(--nsw-notification-success-green),
+  ),
+  warning: (
+    border: var(--nsw-notification-warning-orange),
+    background: var(--nsw-notification-warning-orange-bg),
+    fill: var(--nsw-notification-warning-orange),
+  ),
+  error: (
+    border: var(--nsw-notification-error-red),
+    background: var(--nsw-notification-error-red-bg),
+    fill: var(--nsw-notification-error-red),
+  ),
+);
+
 .nsw-notification {
   @include component-spacing();
   @include nsw-spacing(padding, md);
+  font-family: var(--nsw-font-family);
   background: transparent;
   position: relative;
   border-left: solid 6px transparent;

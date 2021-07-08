@@ -16,7 +16,7 @@
 }
 
 @mixin link() {
-  color: $nsw-primary-blue;
+  color: var(--nsw-primary-dark);
   text-decoration: underline;
   text-decoration-skip-ink: auto;
 
@@ -27,10 +27,6 @@
 
   &:focus {
     @include nsw-focus($offset: false);
-  }
-
-  &:visited {
-    color: $link-visited;
   }
 
   &:active {

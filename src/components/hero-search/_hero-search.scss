@@ -1,4 +1,5 @@
 .hero-search {
+  font-family: var(--nsw-font-family);
 
   @include breakpoint('md') {
     @include nsw-spacing(padding, xl none);
@@ -26,7 +27,7 @@
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
     background-color: $light10;
-    border-bottom: solid 6px $nsw-primary-highlight;
+    border-bottom: solid 6px var(--nsw-primary-accent);
     text-align: center;
 
     @include breakpoint('md') {
@@ -58,6 +59,10 @@
     li {
       @include nsw-spacing(margin, none md);
       display: inline-block;
+    }
+
+    a {
+      @include link;
     }
   }
 }

@@ -1,4 +1,10 @@
 .nsw-filters {
+  font-family: var(--nsw-font-family);
+
+  button {
+    font-family: var(--nsw-font-family);
+  }
+  
   .nsw-page-layout__sidebar & {
     margin: rem(-8px) 0 rem(-16px) 0;
 
@@ -33,7 +39,7 @@
       background-color: transparent;
       border: 0;
       padding: 0;
-      color: $nsw-primary-blue;
+      color: var(--nsw-primary-dark);
 
       &:hover {
         @include nsw-hover;
@@ -56,12 +62,12 @@
       @include border-radius;
       font-size: rem(24px);
       padding: rem(1px);
-      border: 2px solid $nsw-primary-blue;
+      border: 2px solid var(--nsw-primary-dark);
     }
 
     &--active {
       .nsw-material-icons {
-        background-color: $nsw-primary-blue;
+        background-color: var(--nsw-primary-dark);
         color: $white;        
       }
     }
@@ -85,7 +91,7 @@
       background-color: transparent;
       border: 0;
       padding: 0;
-      color: $nsw-primary-blue;
+      color: var(--nsw-primary-dark);
       display: flex;
       align-items: center;
       cursor: pointer;

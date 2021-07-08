@@ -1,5 +1,6 @@
 .nsw-link-list {
   @include component-spacing();
+  font-family: var(--nsw-font-family);
   font-weight: var(--nsw-font-bold);
 
   &__title {
@@ -26,7 +27,7 @@
 
     a {
       @include nsw-spacing(padding, md);
-      color: $nsw-primary-blue;
+      color: var(--nsw-primary-dark);
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -48,12 +49,12 @@
       text-decoration: none;
 
       &:visited {
-        color: $nsw-primary-blue;
+        color: var(--nsw-primary-dark);
       }
 
       &:active {
         background-color: $hover-colour;
-        color: $nsw-primary-blue;
+        color: var(--nsw-primary-dark);
       }
     }
 

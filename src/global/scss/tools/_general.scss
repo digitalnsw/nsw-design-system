@@ -170,7 +170,7 @@
   }
 }
 
-@mixin border($direction: null, $width: sm, $color: $nsw-primary-blue) {
+@mixin border($direction: null, $width: sm, $color: var(--nsw-primary-dark)) {
   @if map-has-key($border-width, $width) == false {
     @error 'NSW-DS border mixin allows the following values for $width: #{map-keys($border-width)}. You have used "#{$width}"';
   }

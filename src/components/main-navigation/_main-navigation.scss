@@ -4,6 +4,7 @@
 
 .nsw-navigation {
   @include z-index('middle');
+  font-family: var(--nsw-font-family);
   width: 100%;
   position: absolute;
   left: 0;
@@ -37,6 +38,10 @@
     border-top: solid 1px $light40;
     overflow-y: visible;
     height: auto;
+  }
+
+  button {
+    font-family: var(--nsw-font-family);
   }
 
   &__close {
@@ -201,7 +206,7 @@
 
 .nsw-subnavigation__link {
   @include breakpoint($desktop-breakpoint) {
-    color: $nsw-primary-blue;
+    color: var(--nsw-primary-dark);
   }
 }
 
@@ -268,7 +273,7 @@
     padding: rem(48) rem(40);
     top: 100%;
     background: $white;
-    box-shadow: map-get($shadows, menu);
+    box-shadow: 0 4px 9px -5px rgba($black, 0.4);
     transition: none;
     transform: none;
     height: auto;
@@ -291,7 +296,7 @@
   @include nsw-spacing(padding-top, xs);
   @include nsw-spacing(padding-bottom, xs);
   @include container;
-  border-bottom: solid 2px $nsw-primary-blue;
+  border-bottom: solid 2px var(--nsw-primary-dark);
   display: flex;
   align-items: stretch;
   justify-content: space-between;
@@ -378,7 +383,7 @@
 .nsw-subnavigation__title-link {
   @include breakpoint($desktop-breakpoint) {
     @include nsw-spacing(padding, none);
-    color: $nsw-primary-blue;
+    color: var(--nsw-primary-dark);
   }
 }
 

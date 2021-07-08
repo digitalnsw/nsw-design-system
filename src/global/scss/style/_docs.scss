@@ -1,6 +1,7 @@
 $docs-bg: lighten($light20, 3);
 
 .nsw-docs {
+  font-family: var(--nsw-font-family);
   background-color: $docs-bg;
 
   &--style {
@@ -59,6 +60,10 @@ $docs-bg: lighten($light20, 3);
         padding-top: rem(137px);
       }      
     }
+  }
+
+  button {
+    font-family: var(--nsw-font-family);
   }
 
   &__wrapper {
@@ -189,7 +194,7 @@ $docs-bg: lighten($light20, 3);
     a {
       font-weight: var(--nsw-font-bold);
       font-size: rem(14px);
-      color: $nsw-primary-blue;
+      color: var(--nsw-primary-dark);
       border: 0;
       text-decoration: none;
       display: flex;
@@ -236,7 +241,7 @@ $docs-bg: lighten($light20, 3);
     @include button-variant(map-get($button-variations, primary));
     font-weight: var(--nsw-font-bold);
     font-size: rem(14px);
-    border: 1px solid $nsw-primary-blue;
+    border: 1px solid var(--nsw-primary-dark);
     text-decoration: none;
     display: flex;
     align-items: center;
@@ -261,7 +266,7 @@ $docs-bg: lighten($light20, 3);
   &__external {
     font-weight: var(--nsw-font-bold);
     font-size: rem(14px);
-    color: $nsw-primary-blue;
+    color: var(--nsw-primary-dark);
     border: 0;
     text-decoration: none;
     display: flex;
@@ -400,8 +405,8 @@ $docs-bg: lighten($light20, 3);
     font-weight: var(--nsw-font-bold);
     font-size: rem(14px);
     background: $white;
-    color: $nsw-primary-blue;
-    border: 1px solid $nsw-primary-blue;
+    color: var(--nsw-primary-dark);
+    border: 1px solid var(--nsw-primary-dark);
     text-decoration: none;
     display: flex;
     align-items: center;
@@ -427,6 +432,7 @@ $docs-bg: lighten($light20, 3);
 
 .nsw-docs-nav {
   @include z-index('upper');
+  font-family: var(--nsw-font-family);
   position: fixed;
   top: 0;
   bottom: 0;
@@ -435,6 +441,10 @@ $docs-bg: lighten($light20, 3);
   overflow-y: auto;
   border-right: 1px solid $light20;
   background: $white;
+
+  button {
+    font-family: var(--nsw-font-family);
+  }
 
   &__logo {
     padding-bottom: rem(40px);
@@ -473,7 +483,7 @@ $docs-bg: lighten($light20, 3);
 
       &.is-active {
         font-weight: var(--nsw-font-bold);
-        border-bottom: solid 2px $nsw-primary-blue;
+        border-bottom: solid 2px var(--nsw-primary-dark);
       }
     }
 
@@ -522,7 +532,7 @@ $docs-bg: lighten($light20, 3);
       &:hover,
       &.is-active {
         background-color: $light10;
-        border-color: $nsw-primary-highlight;
+        border-color: var(--nsw-primary-accent);
       }
     }
   }

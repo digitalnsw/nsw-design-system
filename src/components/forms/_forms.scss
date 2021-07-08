@@ -1,8 +1,17 @@
 .nsw-form {
   @include nsw-spacing(margin-top, xxl);
+  font-family: var(--nsw-font-family);
 
   &:first-child {
     margin-top: 0;
+  }
+
+  button,
+  input,
+  textarea,
+  textfield,
+  select {
+    font-family: var(--nsw-font-family);
   }
 
   a {
@@ -33,13 +42,13 @@
     }
 
     &--error {
-      @include background-svg(error, $critical);
-      background-color: $critical-background;
+      @include background-svg(error, var(--nsw-notification-error-red));
+      background-color: var(--nsw-notification-error-red-bg);
     }
 
     &--valid {
-      @include background-svg(tick, $info);
-      background-color: $info-background;
+      @include background-svg(tick, var(--nsw-notification-info-blue));
+      background-color: var(--nsw-notification-info-blue-bg);
     }
   }
 
@@ -62,7 +71,7 @@
   &__required {
     &::after {
       content: ' *';
-      color: $nsw-primary-highlight;
+      color: var(--nsw-notification-error-red);
     }
   }
 
@@ -71,6 +80,7 @@
     @include font-size('sm');
     @include nsw-spacing(padding, sm md);
     @include border-radius;
+    font-family: var(--nsw-font-family);
     background-color: $white;
     color: $dark80;
     border: 1px solid $dark70;
@@ -97,17 +107,17 @@
 
     &[aria-invalid='true'],
     &.has-error {
-      border-color: $critical;
+      border-color: var(--nsw-notification-error-red);
       border-width: 2px;
 
       &:hover {
-        background-color: $critical-background;
+        background-color: var(--nsw-notification-error-red-bg);
       }
     }
   }
 
   &__select {
-    @include background-svg(chevron-down, $nsw-primary-blue);
+    @include background-svg(chevron-down, var(--nsw-primary-dark));
     @include nsw-spacing(padding-right, xxl);
     background-repeat: no-repeat;
     background-position: right rem(16px) center;
@@ -145,7 +155,7 @@
 
     .nsw-material-icons {
       display: block;
-      color: $nsw-primary-blue;
+      color: var(--nsw-primary-dark);
     }
 
     &--icon {
@@ -182,7 +192,7 @@
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     background-color: $white;
-    box-shadow: map-get($shadows, card);
+    box-shadow: 0 4px 12px 0 rgba($black, 0.15);
     list-style-type: none;
     padding: 0;
     margin: 0;
@@ -283,11 +293,11 @@
 
     &:checked + .nsw-form__checkbox-label::after {
       @include background-svg(tick, $white);
-      background-color: $nsw-primary-blue;
+      background-color: var(--nsw-primary-dark);
     }
 
     &:checked + .nsw-form__radio-label::after {
-      background-color: $nsw-primary-blue;
+      background-color: var(--nsw-primary-dark);
     }
 
     &:disabled {
@@ -319,12 +329,12 @@
     &[aria-invalid='true'] + .nsw-form__checkbox-label,
     &.has-error + .nsw-form__checkbox-label {
       &:hover::before {
-        background-color: $critical-background;
+        background-color: var(--nsw-notification-error-red-bg);
       }
 
       &::before {
         border-width: 2px;
-        border-color: $critical;
+        border-color: var(--nsw-notification-error-red);
       }
     }
   }

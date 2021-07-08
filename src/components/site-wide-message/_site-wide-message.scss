@@ -1,6 +1,7 @@
 .nsw-sitewide-message,
 .nsw-global-alert {
   @include nsw-spacing(padding, lg none);
+  font-family: var(--nsw-font-family);
   position: relative;
 
   @each $color, $variant in $sitewide-message {
@@ -126,18 +127,18 @@
       }
 
       .nsw-icon {
-        fill: $nsw-primary-blue;
+        fill: var(--nsw-primary-dark);
       }
 
       .nsw-material-icons {
-        color: $nsw-primary-blue;
+        color: var(--nsw-primary-dark);
       }
     }
   }
 
   &--light {
     .nsw-sitewide-message__link {
-      color: $nsw-primary-blue;
+      color: var(--nsw-primary-dark);
 
       &:focus {
         @include nsw-focus();

@@ -1,4 +1,5 @@
 .nsw-list-item {
+  font-family: var(--nsw-font-family);
   background-color: $white;
   position: relative;
   display: flex;
@@ -23,6 +24,10 @@
     .nsw-card__link {
       text-decoration: none;
     }
+  }
+
+  a:not([class]) {
+    @include link;
   }
 
   &__title {
@@ -59,7 +64,7 @@
   &__link {
     @include pseudo-clickable-block;
     text-decoration: underline;
-    color: $nsw-primary-blue;
+    color: var(--nsw-primary-dark);
 
     &:hover {
       text-decoration: none;

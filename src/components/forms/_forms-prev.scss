@@ -21,7 +21,7 @@
 .nsw-form-required {
   &::after {
     content: ' *';
-    color: $nsw-primary-highlight;
+    color: var(--nsw-notification-error-red);
   }
 }
 
@@ -30,6 +30,7 @@
   @include font-size('sm');
   @include nsw-spacing(padding, sm md);
   @include border-radius;
+  font-family: var(--nsw-font-family);
   background-color: $white;
   color: $dark80;
   border: 1px solid $dark70;
@@ -56,11 +57,11 @@
 
   &[aria-invalid='true'],
   &.has-error {
-    border-color: $critical;
+    border-color: var(--nsw-notification-error-red);
     border-width: 2px;
 
     &:hover {
-      background-color: $critical-background;
+      background-color: var(--nsw-notification-error-red-bg);
     }
   }
 }
@@ -91,7 +92,7 @@
 }
 
 .nsw-form-select {
-  @include background-svg(chevron-down, $nsw-primary-blue);
+  @include background-svg(chevron-down, var(--nsw-primary-dark));
   @include nsw-spacing(padding-right, xxl);
   background-repeat: no-repeat;
   background-position: right rem(16px) center;
@@ -123,11 +124,11 @@
 
   &:checked + .nsw-form-checkbox__label::after {
     @include background-svg(tick, $white);
-    background-color: $nsw-primary-blue;
+    background-color: var(--nsw-primary-dark);
   }
 
   &:checked + .nsw-form-radio__label::after {
-    background-color: $nsw-primary-blue;
+    background-color: var(--nsw-primary-dark);
   }
 
   &:disabled {
@@ -159,12 +160,12 @@
   &[aria-invalid='true'] + .nsw-form-checkbox__label,
   &.has-error + .nsw-form-checkbox__label {
     &:hover::before {
-      background-color: $critical-background;
+      background-color: var(--nsw-notification-error-red-bg);
     }
 
     &::before {
       border-width: 2px;
-      border-color: $critical;
+      border-color: var(--nsw-notification-error-red);
     }
   }
 }
@@ -232,14 +233,14 @@
   margin-bottom: rem(4px);
 
   &--error {
-    @include background-svg(error, $critical);
+    @include background-svg(error, var(--nsw-notification-error-red));
     @include nsw-spacing(padding, xs md xs xl);
     @include nsw-spacing(margin-top, xs);
     font-weight: var(--nsw-font-bold);
     background-repeat: no-repeat;
     background-position: left rem(8px) center;
     background-size: 1rem auto;
-    background-color: $critical-background;
+    background-color: var(--nsw-notification-error-red-bg);
   }
 }
 
@@ -262,7 +263,7 @@
     content: none;
     width: calc(100% + 18px);
     height: 100%;
-    border: solid 2px $critical;
+    border: solid 2px var(--nsw-notification-error-red);
     position: absolute;
     top: 0;
     left: -9px;
