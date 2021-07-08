@@ -9,7 +9,7 @@
   position: absolute;
   left: 0;
   top: 0;
-  background: $white;
+  background-color: var(--nsw-shade-light);
   transition: all 0.25s ease-in-out;
   transform: translateX(-100%);
   visibility: hidden;
@@ -30,12 +30,12 @@
   @include breakpoint($desktop-breakpoint) {
     position: relative;
     transform: none;
-    background-color: $light10;
+    background-color: var(--nsw-shade-light-5);
     top: auto;
     left: auto;
     transition: none;
     visibility: visible;
-    border-top: solid 1px $light40;
+    border-top: solid 1px var(--nsw-shade-light-20);
     overflow-y: visible;
     height: auto;
   }
@@ -45,7 +45,7 @@
   }
 
   &__close {
-    @include border-radius;
+    border-radius: var(--nsw-border-radius);
     width: rem(40px);
     height: rem(40px);
     background: none;
@@ -89,7 +89,7 @@
     border: 0;
     padding: 0;
     text-align: center;
-    border-left: solid 1px $light20;
+    border-left: solid 1px var(--nsw-shade-light-10);
 
     &:hover {
       @include nsw-hover;
@@ -138,7 +138,7 @@
 .nsw-navigation__list-item,
 .nsw-subnavigation__list-item,
 .nsw-subnavigation__title {
-  border-bottom: solid 1px $light20;
+  border-bottom: solid 1px var(--nsw-shade-light-10);
   display: flex;
   flex-direction: row;
   align-items: stretch;
@@ -161,7 +161,7 @@
 
   @include breakpoint($desktop-breakpoint) {
     width: 32%;
-    border-top: solid 1px $light20;
+    border-top: solid 1px var(--nsw-shade-light-10);
 
     &:nth-child(3n+2) {
       margin-left: 2%;
@@ -169,7 +169,7 @@
     }
 
     &:nth-last-child(-n+3) {
-      border-bottom: solid 1px $light20;
+      border-bottom: solid 1px var(--nsw-shade-light-10);
     }
   }
 }
@@ -179,7 +179,7 @@
 .nsw-subnavigation__title-link {
   flex: 1 1 auto;
   padding: 16px;
-  color: $dark80;
+  color: var(--nsw-text-dark);
   text-decoration: none;
   display: flex;
   flex-direction: row;
@@ -200,7 +200,7 @@
   }
 
   &.is-open {
-    background-color: $white;
+    background-color: var(--nsw-shade-light);
   }
 }
 
@@ -254,7 +254,7 @@
   @include z-index;
   position: absolute;
   top: 0;
-  background-color: $white;
+  background-color: var(--nsw-shade-light);
   width: 100%;
   transition: all 0.25s ease-in-out;
   transform: translateX(-100%);
@@ -272,8 +272,8 @@
     @include container;
     padding: rem(48) rem(40);
     top: 100%;
-    background: $white;
-    box-shadow: 0 4px 9px -5px rgba($black, 0.4);
+    background-color: var(--nsw-shade-light);
+    box-shadow: 0 4px 9px -5px rgba(var(--nsw-shade-dark-rgb), 0.4);
     transition: none;
     transform: none;
     height: auto;
@@ -317,7 +317,7 @@
 .nsw-subnavigation__back-btn {
   @include font-size('md');
   @include nsw-spacing(padding, none xs);
-  @include border-radius;
+  border-radius: var(--nsw-border-radius);
   font-weight: var(--nsw-font-bold);
   background: none;
   border: 0;

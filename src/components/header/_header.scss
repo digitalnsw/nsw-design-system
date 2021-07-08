@@ -9,7 +9,7 @@
     @include nsw-spacing(padding, xs md);
     @include z-index('middle');
     background-color: var(--nsw-primary-dark);
-    color: $white;
+    color: var(--nsw-text-light);
     transform: translateY(-101%);
     display: block;
     text-align: center;
@@ -25,7 +25,7 @@
       outline: none;
 
       span {
-        @include nsw-focus($color: $white);
+        @include nsw-focus($color: var(--nsw-text-light));
       }
     }
 
@@ -40,7 +40,7 @@
   @include nsw-spacing(padding, sm none);
   font-family: var(--nsw-font-family);
   background-color: var(--nsw-primary-dark);
-  color: $white;
+  color: var(--nsw-text-light);
 
   p {
     margin: 0;
@@ -50,9 +50,9 @@
 
 .nsw-header {
   font-family: var(--nsw-font-family);
-  background-color: $white;
+  background-color: var(--nsw-shade-light);
   position: relative;
-  border-bottom: solid 1px $light20;
+  border-bottom: solid 1px var(--nsw-shade-light-10);
 
   button {    
     font-family: var(--nsw-font-family);
@@ -64,7 +64,7 @@
 
   &--simple {
     @include breakpoint('lg') {
-      border-bottom: solid 1px $light40;
+      border-bottom: solid 1px var(--nsw-shade-light-20);
     }
   }
 
@@ -139,7 +139,7 @@
 }
 
 .nsw-header-btn {
-  @include border-radius;
+  border-radius: var(--nsw-border-radius);
   color: var(--nsw-primary-dark);
   width: rem(48px);
   height: rem(48px);
@@ -207,7 +207,7 @@
 .nsw-search {
   &__area {
     @include break-out(absolute);
-    background: $light10;
+    background: var(--nsw-shade-light-5);
     top: 0;
 
     @include breakpoint('lg') {
@@ -225,7 +225,7 @@
     font-family: var(--nsw-font-family);
     background: none;
     padding: rem(8px) rem(72px) rem(8px) rem(16px);
-    color: $dark80;
+    color: var(--nsw-text-dark);
     width: 100%;
     appearance: none;
     border: 0;
@@ -237,7 +237,7 @@
 
     @include breakpoint('lg') {
       @include nsw-spacing(padding, none md);
-      @include border-radius;
+      border-radius: var(--nsw-border-radius);
       height: rem(50px);
       padding: 0 rem(16px);
     }

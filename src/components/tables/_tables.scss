@@ -1,6 +1,6 @@
 .nsw-table {
   @include font-size('sm');
-  @include border-radius('none');
+  border-radius: 0;
   font-family: var(--nsw-font-family);
   border-collapse: collapse;
   width: 100%;
@@ -17,7 +17,7 @@
     @include nsw-spacing(padding, sm xs);
     text-align: left;
     vertical-align: baseline;
-    border-bottom: solid 1px $dark80;
+    border-bottom: solid 1px var(--nsw-shade-dark-20);
   }
 
   th,
@@ -27,7 +27,7 @@
   }
 
   thead {
-    border-bottom: solid 2px $dark80;
+    border-bottom: solid 2px var(--nsw-shade-dark-20);
   }
 }
 
@@ -42,7 +42,7 @@
   }
 
   tbody tr:nth-of-type(even) {
-    background-color: $light10;
+    background-color: var(--nsw-shade-light-5);
   }
 }
 
@@ -50,7 +50,7 @@
 .nsw-table--bordered {
   th,
   td {
-    border: solid 1px $dark80;
+    border: solid 1px var(--nsw-shade-dark-20);
   }
 }
 

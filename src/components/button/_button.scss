@@ -1,7 +1,7 @@
 .nsw-button {
   @include font-size('sm');
   @include nsw-spacing(margin, lg md none none);
-  @include border-radius;
+  border-radius: var(--nsw-border-radius);
   font-family: var(--nsw-font-family);
   font-weight: var(--nsw-font-bold);
   border: solid 2px transparent;
@@ -33,14 +33,14 @@
 
   &:active {
     @include nsw-active;
-    border-color: $focus-color;
+    border-color: var(--nsw-text-active);
   }
 
   &:disabled,
   &.disabled {
-    background-color: $light10;
-    color: $light40;
-    border-color: $light10;
+    background-color: var(--nsw-shade-light-5);
+    color: var(--nsw-shade-light-20);
+    border-color: var(--nsw-shade-light-5);
     cursor: not-allowed;
   }
 }

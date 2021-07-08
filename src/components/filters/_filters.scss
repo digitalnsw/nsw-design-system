@@ -26,7 +26,7 @@
 
   &__controls {
     padding: rem(24px) 0;
-    border-bottom: 1px solid $light20;
+    border-bottom: 1px solid var(--nsw-shade-light-10);
 
     @include breakpoint('lg') {
       display: none;
@@ -43,7 +43,7 @@
 
       &:hover {
         @include nsw-hover;
-        outline: 4px solid $hover-colour;
+        outline: 4px solid var(--nsw-text-hover-bg);
       }
 
       &:focus {
@@ -59,7 +59,7 @@
     }
 
     .nsw-material-icons {
-      @include border-radius;
+      border-radius: var(--nsw-border-radius);
       font-size: rem(24px);
       padding: rem(1px);
       border: 2px solid var(--nsw-primary-dark);
@@ -68,7 +68,7 @@
     &--active {
       .nsw-material-icons {
         background-color: var(--nsw-primary-dark);
-        color: $white;        
+        color: var(--nsw-text-light);        
       }
     }
   }
@@ -79,9 +79,9 @@
     top: 0;
     left: 0;
     right: 0;
-    background-color: $white;
+    background-color: var(--nsw-shade-light);
     padding: rem(24px) rem(16px);
-    border-bottom: 1px solid $light20;
+    border-bottom: 1px solid var(--nsw-shade-light-10);
 
     @include breakpoint('lg') {
       display: none;
@@ -127,7 +127,7 @@
       left: 0;
       right: 0;
       overflow-y: auto;
-      background-color: $white;
+      background-color: var(--nsw-shade-light);
       padding: rem(73px) rem(16px) rem(101px) rem(16px);
 
       @include breakpoint('lg') {
@@ -150,7 +150,7 @@
 
   &__item {
     padding: rem(24px) 0;
-    border-top: 1px solid $light20;
+    border-top: 1px solid var(--nsw-shade-light-10);
   }
 
   &__all {
@@ -159,7 +159,7 @@
 
   &__accept {
     padding: rem(32px) 0;
-    border-top: 1px solid $light20;
+    border-top: 1px solid var(--nsw-shade-light-10);
 
     .nsw-filters--fixed & {
       @include z-index('upper');
@@ -167,7 +167,7 @@
       bottom: 0;
       left: 0;
       right: 0;
-      background-color: $white;
+      background-color: var(--nsw-shade-light);
       padding: rem(24px) rem(16px);
 
       @include breakpoint('lg') {
@@ -185,7 +185,7 @@
     padding-bottom: rem(32px);
 
     .nsw-filters--fixed & {
-      border-top: 1px solid $light20;
+      border-top: 1px solid var(--nsw-shade-light-10);
       padding: rem(32px) 0;
 
       @include breakpoint('lg') {
@@ -195,7 +195,7 @@
     }
 
     .nsw-filters--instant & {
-      border-top: 1px solid $light20;
+      border-top: 1px solid var(--nsw-shade-light-10);
       padding: rem(32px) 0;
     }
 

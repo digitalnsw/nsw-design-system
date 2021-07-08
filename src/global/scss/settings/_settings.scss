@@ -1,36 +1,27 @@
-// Base font size - used to calculate rems
-$base-font-size: 16px;
-
-$font-size-reponsive-breakpoint: 'lg';
-
-$border-radii: (
-  none: 0,
-  default: 4px,
-  tag: 13px,
-  round: 50%,
+// Breakpoints
+$breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
 ) !default;
 
-$border-width: (
-  none: 0,
-  sm: 1px,
-  md: 2px,
-  lg: 4px,
-  highlight: 6px,
-) !default;
+//Breakpoint to switch to desktop view (Layout and Navigation)
+$desktop-breakpoint: lg;
 
 // Spacing - Used with margin and padding
 $spacing-sizes: (
-  none:   0,    //0rem
-  xs:     8px,  //0.5rem
-  sm:     12px, //0.8rem
-  md:     16px, //1rem
-  lg:     24px, //1.5rem
-  xl:     32px, //2rem
-  xxl:    48px, //3rem
-  xxxl:   64px, //4rem
-  xxxxl:  80px  //5rem
+  none:   0,
+  xs:     8px,
+  sm:     12px,
+  md:     16px,
+  lg:     24px,
+  xl:     32px,
+  xxl:    48px,
+  xxxl:   64px,
+  xxxxl:  80px
 ) !default;
-
 
 // Spacers - Used for added paddings and margins between components
 $spacers: (
@@ -65,44 +56,6 @@ $components-spacing: (
   mobile: 24px,
   desktop: 32px  
 );
-
-// Predefined Colours and their names
-// Brand
-$nsw-primary-blue: #002664 !default;
-$nsw-primary-highlight: #d7153a !default;
-$nsw-secondary-blue: #2e5299 !default;
-
-// Shades
-$black: #000000 !default;
-$dark80: #333333 !default;
-$dark70: #4c4f55 !default;
-$dark60: #6d7079 !default;
-$light40: #a0a5ae !default;
-$light20: #e4e4e6 !default;
-$light10: #f4f4f7 !default;
-$white: #ffffff !default;
-
-// Utility colors
-$danger: #d7153a !default;
-
-$focus-color: #0085b3 !default;
-$hover-colour: rgba($focus-color, 0.2);
-$link-color: $nsw-primary-blue;
-$link-visited: #551a8b;
-
-$focus-offset: 3px;
-
-// Breakpoints
-$breakpoints: (
-  xs: 0,
-  sm: 576px,
-  md: 768px,
-  lg: 992px,
-  xl: 1200px,
-) !default;
-
-//Breakpoint to switch to desktop view (Layout and Navigation)
-$desktop-breakpoint: lg;
 
 // z-index
 $z-index: (
@@ -143,87 +96,64 @@ $grid-col-sizes: (
 
 $grid-columns: 12;
 
+// Font
+$base-font-size: 16px !default;
+$font-size-reponsive-breakpoint: lg !default;
 
+//Utilities
+$focus-offset: 3px !default;
 
-// Overlays
-$overlays: (
-  light: rgba($white, 0.8),
-  dark: rgba($black, 0.8)
-) !default;
-
-$icon-colors: (
-  error: var(--nsw-notification-error-red),
-  success: var(--nsw-notification-success-green),
-  info: var(--nsw-notification-info-blue),
-  warning: var(--nsw-notification-warning-orange),
-  default: $nsw-primary-blue,
-) !default;
-
+//Buttons settings are used across multiple components
 $button-variations: (
   primary: (
-    text-color: $white,
-    text-color-hover: $white,
-    background: $nsw-primary-blue,
-    background-hover: lighten($nsw-primary-blue, 10),
-    border: $nsw-primary-blue,
-    border-hover: lighten($nsw-primary-blue, 10)
+    text-color: var(--nsw-text-light),
+    text-color-hover: var(--nsw-text-light),
+    background: var(--nsw-primary-dark),
+    background-hover: var(--nsw-primary-dark-lighten),
+    border: transparent,
+    border-hover: transparent
   ),
   secondary: (
-    text-color: $dark80,
-    text-color-hover: $white,
-    background: $white,
-    background-hover: $nsw-primary-blue,
-    border: $nsw-primary-blue,
-    border-hover: $nsw-primary-blue
-  ),
-  danger: (
-    text-color: $white,
-    text-color-hover: $white,
-    background: #b81237,
-    background-hover: lighten(#b81237, 10),
-    border: #b81237,
-    border-hover: lighten(#b81237, 10)
+    text-color: var(--nsw-text-dark),
+    text-color-hover: var(--nsw-text-light),
+    background: var(--nsw-shade-light),
+    background-hover: var(--nsw-primary-dark),
+    border: var(--nsw-primary-dark),
+    border-hover: transparent
   ),
   outline: (
-    text-color: $dark80,
-    text-color-hover: $white,
-    background: $white,
-    background-hover: $nsw-primary-blue,
-    border: $nsw-primary-blue,
-    border-hover: $nsw-primary-blue
+    text-color: var(--nsw-text-dark),
+    text-color-hover: var(--nsw-text-light),
+    background: var(--nsw-shade-light),
+    background-hover: var(--nsw-primary-dark),
+    border: var(--nsw-primary-dark),
+    border-hover: transparent
   ),
   highlight: (
-    text-color: $white,
-    text-color-hover: $white,
-    background: $nsw-primary-highlight,
-    background-hover: lighten($nsw-primary-highlight, 10),
-    border: $nsw-primary-highlight,
-    border-hover: lighten($nsw-primary-highlight, 10)
+    text-color: var(--nsw-text-light),
+    text-color-hover: var(--nsw-text-light),
+    background: var(--nsw-notification-error-red),
+    background-hover: var(--nsw-notification-error-red-lighten),
+    border: transparent,
+    border-hover: transparent
+  ),
+  danger: (
+    text-color: var(--nsw-text-light),
+    text-color-hover: var(--nsw-text-light),
+    background: var(--nsw-notification-error-red),
+    background-hover: var(--nsw-notification-error-red-lighten),
+    border: transparent,
+    border-hover: transparent
   ),
   white: (
-    text-color: $dark80,
-    text-color-hover: $dark80,
-    background: $white,
-    background-hover: $light20,
-    border: $white,
-    border-hover: $light20
+    text-color: var(--nsw-text-dark),
+    text-color-hover: var(--nsw-text-dark),
+    background: var(--nsw-shade-light),
+    background-hover: var(--nsw-text-hover-bg),
+    border: transparent,
+    border-hover: transparent
   ),
-) !default;
-
-$sitewide-message: (
-  default: (
-    text-color: $white,
-    background: $nsw-secondary-blue,
-  ),
-  light: (
-    text-color: $dark80,
-    background: var(--nsw-notification-info-blue-bg),
-  ),
-  critical: (
-    text-color: $white,
-    background: var(--nsw-notification-error-red),
-  ),
-) !default;
+);
 
 $icons: (
   chevron-right: '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="20" height="32" viewBox="0 0 20 32"><path d="M20 16l-16-16-4 4 12 12-12 12 4 4 16-16z"></path></svg>',

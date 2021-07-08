@@ -1,17 +1,17 @@
 .nsw-tag:not(.nsw-tag--checkbox),
 .nsw-tag label {
   @include font-size('xs');
-  @include border-radius('tag');
   @include nsw-spacing(padding-left, md);
   @include nsw-spacing(padding-right, md);  
   font-family: var(--nsw-font-family);
   border: solid 1px var(--nsw-primary-dark);
+  border-radius: rem(13px);
   padding-top: 2px;
   padding-bottom: 2px;
   color: var(--nsw-primary-dark);
   text-decoration: none;
   display: inline-block;
-  background-color: $white;
+  background-color: var(--nsw-shade-light);
 }
 
 a.nsw-tag,
@@ -32,7 +32,7 @@ button.nsw-tag {
 
   .is-selected {
     background-color: var(--nsw-primary-dark);
-    color: $white;
+    color: var(--nsw-text-light);
   }
 }
 
@@ -53,7 +53,7 @@ button.nsw-tag {
 
     &:checked + label {
       background-color: var(--nsw-primary-dark);
-      color: $white;
+      color: var(--nsw-text-light);
     }
   }
 }

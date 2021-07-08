@@ -1,10 +1,25 @@
+$nsw-global-alert: (
+  default: (
+    text-color: var(--nsw-text-light),
+    background: var(--nsw-notification-info-blue),
+  ),
+  light: (
+    text-color: var(--nsw-text-dark),
+    background: var(--nsw-notification-info-blue-bg),
+  ),
+  critical: (
+    text-color: var(--nsw-text-light),
+    background: var(--nsw-notification-error-red),
+  )
+);
+
 .nsw-sitewide-message,
 .nsw-global-alert {
   @include nsw-spacing(padding, lg none);
   font-family: var(--nsw-font-family);
   position: relative;
 
-  @each $color, $variant in $sitewide-message {
+  @each $color, $variant in $nsw-global-alert {
     @if($color == default) {
       background-color: map-get($variant, background);
       color: map-get($variant, text-color);
@@ -31,17 +46,17 @@
     }
 
     &:focus {
-      @include nsw-focus($color: $white);
+      @include nsw-focus($color: var(--nsw-text-light));
     }
 
     .nsw-icon {
-      fill: $white;
+      fill: var(--nsw-text-light);
       width: rem(24px);
       height: rem(24px);
     }
 
     .nsw-material-icons {
-      color: $white;
+      color: var(--nsw-text-light);
       font-size: 40px;
     }
   }
@@ -58,7 +73,7 @@
   }
 
   &__link {
-    color: $white;
+    color: var(--nsw-text-light);
     text-decoration: underline;
     font-weight: var(--nsw-font-bold);
 
@@ -67,7 +82,7 @@
     }
 
     &:focus {
-      @include nsw-focus($color: $white);
+      @include nsw-focus($color: var(--nsw-text-light));
     }
   }
 
@@ -89,7 +104,7 @@
     margin-right: 0;
 
     &:focus {
-      @include nsw-focus($color: $white);
+      @include nsw-focus($color: var(--nsw-text-light));
     }
 
     @include breakpoint('md') {
@@ -103,11 +118,11 @@
     }
 
     .nsw-sitewide-message__close .nsw-icon {
-      fill: $white;
+      fill: var(--nsw-text-light);
     }
 
     .nsw-sitewide-message__close .nsw-material-icons {
-      color: $white;
+      color: var(--nsw-text-light);
     }
   }
 

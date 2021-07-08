@@ -22,11 +22,15 @@
 
   &:hover {
     @include nsw-hover;
-    outline: 2px solid $hover-colour;
+    outline: 2px solid var(--nsw-text-hover-bg);
   }
 
   &:focus {
     @include nsw-focus($offset: false);
+  }
+
+  &:visited {
+    color: var(--nsw-text-visited);
   }
 
   &:active {

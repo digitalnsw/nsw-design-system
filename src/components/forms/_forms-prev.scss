@@ -29,11 +29,11 @@
 .nsw-form-select {
   @include font-size('sm');
   @include nsw-spacing(padding, sm md);
-  @include border-radius;
+  border-radius: var(--nsw-border-radius);
   font-family: var(--nsw-font-family);
-  background-color: $white;
-  color: $dark80;
-  border: 1px solid $dark70;
+  background-color: var(--nsw-shade-light);
+  color: var(--nsw-text-dark);
+  border: 1px solid var(--nsw-shade-dark-20);
   vertical-align: middle;
   appearance: none;
   -webkit-appearance: none; /* stylelint-disable-line property-no-vendor-prefix */
@@ -48,9 +48,9 @@
   }
 
   &:disabled {
-    background-color: $light10;
-    border-color: $light40;
-    color: $light40;
+    background-color: var(--nsw-shade-light-5);
+    border-color: var(--nsw-shade-light-20);
+    color: var(--nsw-shade-light-20);
     cursor: not-allowed;
   }
 
@@ -99,11 +99,11 @@
   background-size: rem(16px) auto;
 
   &:disabled {
-    @include background-svg(chevron-down, $light40);
+    @include background-svg(chevron-down, var(--nsw-shade-light-20));
   }
 
   option {
-    background-color: $white;
+    background-color: var(--nsw-shade-light);
   }
 }
 
@@ -123,7 +123,7 @@
   }
 
   &:checked + .nsw-form-checkbox__label::after {
-    @include background-svg(tick, $white);
+    @include background-svg(tick, var(--nsw-text-light));
     background-color: var(--nsw-primary-dark);
   }
 
@@ -139,13 +139,13 @@
 
     + .nsw-form-checkbox__label::before,
     + .nsw-form-radio__label::before {
-      border-color: $light40;
-      background-color: $light10;
+      border-color: var(--nsw-shade-light-20);
+      background-color: var(--nsw-shade-light-5);
     }
 
     &:checked + .nsw-form-checkbox__label::after,
     &:checked + .nsw-form-radio__label::after {
-      background-color: $light40;
+      background-color: var(--nsw-shade-light-20);
     }
   }
 
@@ -154,7 +154,7 @@
   }
 
   &:focus + .nsw-form-radio__label::before {
-    box-shadow: 0 0 0 3px $white, 0 0 0 6px $focus-color;
+    box-shadow: 0 0 0 3px var(--nsw-text-light), 0 0 0 6px var(--nsw-text-active);
   }
 
   &[aria-invalid='true'] + .nsw-form-checkbox__label,
@@ -186,14 +186,14 @@
     content: '';
     width: rem(32px);
     height: rem(32px);
-    border: 1px $dark70 solid;
-    background: $white;
+    border: 1px var(--nsw-shade-dark-20) solid;
+    background-color: var(--nsw-shade-light);
     top: 50%;
     margin-top: rem(-16px);
     left: 0;
     display: inline-block;
     vertical-align: middle;
-    background-color: $white;
+    background-color: var(--nsw-shade-light);
     position: absolute;
   }
 
@@ -213,17 +213,17 @@
 
 .nsw-form-checkbox__label {
   &::before {
-    @include border-radius;
+    border-radius: var(--nsw-border-radius);
   }
 }
 
 .nsw-form-radio__label {
   &::before {
-    @include border-radius('round');
+    border-radius: 50%;
   }
 
   &::after {
-    @include border-radius('round');
+    border-radius: 50%;
   }
 }
 
@@ -258,8 +258,8 @@
   }
 
   &::after {
-    @include border-radius;
     @include z-index('below');
+    border-radius: var(--nsw-border-radius);
     content: none;
     width: calc(100% + 18px);
     height: 100%;
@@ -312,10 +312,10 @@
   &__input {
     @include font-size('sm');
     @include nsw-spacing(padding, sm md);
-    @include border-radius;
-    background-color: $white;
-    color: $dark80;
-    border: 1px solid $dark70;
+    border-radius: var(--nsw-border-radius);
+    background-color: var(--nsw-shade-light);
+    color: var(--nsw-text-dark);
+    border: 1px solid var(--nsw-shade-dark-20);
     border-right: 0;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
@@ -334,9 +334,9 @@
   }
 
   &__submit {
-    @include border-radius;
     @include nsw-spacing(padding, none sm);
-    border: 1px solid $dark70;
+    border-radius: var(--nsw-border-radius);
+    border: 1px solid var(--nsw-shade-dark-20);
     border-left: 0;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;

@@ -1,31 +1,31 @@
 .nsw-footer {
-  border-top: solid 1px $light40;
+  border-top: solid 1px var(--nsw-shade-light-20);
   font-family: var(--nsw-font-family);
 
   hr {
     @include nsw-spacing(margin, md none md none);
     height: 1px;
     border: 0;
-    color: $light40;
-    background-color: $light40;
+    color: var(--nsw-shade-light-20);
+    background-color: var(--nsw-shade-light-20);
   }
 
   &__upper {
     @include nsw-spacing(padding-top, lg);
-    background-color: $white;
+    background-color: var(--nsw-shade-light);
   }
 
   &__lower {
     @include nsw-spacing(padding, md none lg none);
-    background-color: $dark80;
-    color: $white;
+    background-color: var(--nsw-text-dark);
+    color: var(--nsw-text-light);
     font-size: rem(12px);
 
     a {
-      color: $white;
+      color: var(--nsw-text-light);
 
       &:focus {
-        @include nsw-focus($color: $white);
+        @include nsw-focus($color: var(--nsw-text-light));
       }
     }
 
@@ -50,7 +50,7 @@
     flex: 0 0 rem(200px);
 
     a:not([class]) {
-      color: $white;
+      color: var(--nsw-text-light);
 
       &:hover {
         background-color: transparent;
@@ -59,11 +59,11 @@
       }
 
       &:focus {
-        @include nsw-focus($offset: false, $color: $white);
+        @include nsw-focus($offset: false, $color: var(--nsw-text-light));
       }
 
       &:visited {
-        color: $white;
+        color: var(--nsw-text-light);
       }
 
       &:active {
@@ -106,7 +106,7 @@
     }
 
     &:focus {
-      @include nsw-focus($color: $white);
+      @include nsw-focus($color: var(--nsw-text-light));
     }
   }
 }
@@ -131,7 +131,7 @@
 
     &:hover {
       @include nsw-hover;
-      outline: 2px solid $hover-colour;
+      outline: 2px solid var(--nsw-text-hover-bg);
     } 
 
     &:focus {

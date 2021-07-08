@@ -56,20 +56,11 @@
   right: auto;
 }
 
-//
-// Function to create an optimized svg url
-// Version: 1.0.6
 @function svg-url($svg) {
-  //
-  // Add missing namespace
-  //
   @if not str-index($svg,xmlns) {
     $svg: str-replace($svg, '<svg', '<svg xmlns="http://www.w3.org/2000/svg"');
   }
-  //
-  // Chunk up string in order to avoid
-  // "stack level too deep" error
-  //
+
   $encoded: '';
   $slice: 2000;
   $index: 0;
@@ -77,9 +68,6 @@
 
   @for $i from 1 through $loops {
     $chunk: str-slice($svg, $index, $index + $slice - 1);
-    //
-    // Encode
-    //
     $chunk: str-replace($chunk, '"', '\'');
     $chunk: str-replace($chunk, '%', '%25');
     $chunk: str-replace($chunk, '#', '%23');
@@ -87,23 +75,6 @@
     $chunk: str-replace($chunk, '}', '%7D');
     $chunk: str-replace($chunk, '<', '%3C');
     $chunk: str-replace($chunk, '>', '%3E');
-    //
-    // The maybe list
-    //
-    // Keep size and compile time down
-    // ... only add on documented fail
-    //
-    // $chunk: str-replace($chunk, '&', '%26');
-    // $chunk: str-replace($chunk, '|', '%7C');
-    // $chunk: str-replace($chunk, '[', '%5B');
-    // $chunk: str-replace($chunk, ']', '%5D');
-    // $chunk: str-replace($chunk, '^', '%5E');
-    // $chunk: str-replace($chunk, '`', '%60');
-    // $chunk: str-replace($chunk, ';', '%3B');
-    // $chunk: str-replace($chunk, '?', '%3F');
-    // $chunk: str-replace($chunk, ':', '%3A');
-    // $chunk: str-replace($chunk, '@', '%40');
-    // $chunk: str-replace($chunk, '=', '%3D');
     $encoded: #{$encoded}#{$chunk};
     $index: $index + $slice;
   }
@@ -146,19 +117,6 @@
   }
 }
 
-// Border-radius - returns a border-radius from $border-radii map
-@mixin border-radius($type: default) {
-  @if $type != 'none' and $type != 'default' and $type != 'round' and $type != 'tag' {
-    @error 'NSW-DS get-border-radius mixin allows the following values for $type: none, default, round, tag. You have used "#{$type}"';
-  }
-
-  @if $type == 'round' {
-    border-radius: map-get($border-radii, $type);
-  } @else {
-    border-radius: rem(map-get($border-radii, $type));
-  }
-}
-
 // Z-index
 @mixin z-index($index: 'base') {
 
@@ -167,23 +125,5 @@
   }
   @else {
     z-index: map-get($z-index, $index);
-  }
-}
-
-@mixin border($direction: null, $width: sm, $color: var(--nsw-primary-dark)) {
-  @if map-has-key($border-width, $width) == false {
-    @error 'NSW-DS border mixin allows the following values for $width: #{map-keys($border-width)}. You have used "#{$width}"';
-  }
-  @if $direction != null and $direction != 'left' and $direction != 'top' and $direction != 'bottom' and $direction != 'right' {
-    @error 'NSW-DS border mixin allows the following values for $direction: left, top, bottom, right. You have used "#{$direction}"';
-  }
-
-  $properties: if($width == 'none', map-get($border-width, $width), solid map-get($border-width, $width) $color);
-
-  @if $direction == null {
-    border: $properties;
-  }
-  @else {
-    border-#{$direction}: $properties;
   }
 }

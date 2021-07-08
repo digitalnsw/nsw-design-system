@@ -5,7 +5,7 @@
   &__list-wrapper {
     overflow: hidden;
     height: rem(48px);
-    background-color: $light10;
+    background-color: var(--nsw-shade-light-5);
 
     @include breakpoint('md') {
       background-color: transparent;
@@ -42,7 +42,7 @@
 
     .is-selected & {
       font-weight: var(--nsw-font-bold);
-      color: $dark80;
+      color: var(--nsw-text-dark);
 
       &::after {
         content: '';
@@ -58,8 +58,8 @@
 
   &__content {
     @include nsw-spacing(padding, lg md);
-    border-bottom: solid 1px $light20;
-    border-top: solid 2px $light20;
+    border-bottom: solid 1px var(--nsw-shade-light-10);
+    border-top: solid 2px var(--nsw-shade-light-10);
     margin-top: -2px;
 
     &:focus {

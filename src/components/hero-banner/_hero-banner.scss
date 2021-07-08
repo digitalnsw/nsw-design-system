@@ -1,3 +1,10 @@
+
+// Overlays
+$overlays: (
+  light: rgba(#ffffff, 0.8),
+  dark: rgba(#000000, 0.8)
+) !default;
+
 .nsw-hero-banner {
   $parent: &;
   position: relative;
@@ -45,7 +52,7 @@
   &__content {
     @include font-size('md');
     @include nsw-spacing(padding, md);
-    background-color: $light20;
+    background-color: var(--nsw-shade-light-10);
     border-top: solid 6px var(--nsw-primary-accent);
     display: flex;
     flex-direction: column;
@@ -99,7 +106,7 @@
   &__link {
     @include pseudo-clickable-block;
     text-decoration: none;
-    color: $dark80;
+    color: var(--nsw-text-dark);
 
     &:hover {
       text-decoration: underline;
@@ -113,21 +120,21 @@
 
   &--dark {
     #{$parent}__content {
-      color: $white;
-      background-color: $dark80;
+      color: var(--nsw-text-light);
+      background-color: var(--nsw-text-dark);
 
       @include breakpoint('md') {
-        background-color: map-get($overlays, dark);;
+        background-color: map-get($overlays, dark);
       }
     }
 
     #{$parent}__link {
-      color: $white;
+      color: var(--nsw-text-light);
     }
 
     #{$parent}__icon {
-      fill: $white;
-      color: $white;
+      fill: var(--nsw-text-light);
+      color: var(--nsw-text-light);
     }
   }
 }
