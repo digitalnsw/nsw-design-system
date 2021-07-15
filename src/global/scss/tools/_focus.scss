@@ -1,10 +1,10 @@
-@mixin nsw-focus($offset: true, $color: $focus-color) {
+@mixin nsw-focus($offset: true, $color: var(--nsw-text-active)) {
   @if type-of($offset) != bool {
     @error 'NSW-DS nsw-focus mixin allows a boolean for $offset: You have used a type of "#{type-of($offset)}" and a value of "#{$offset}"';
   }
 
-  @if $color != $focus-color and $color != $white {
-    @warn 'NSW-DS nsw-focus mixin it is suggested to use the following values for $color: "#{$white}", "#{$focus-color}".'
+  @if $color != var(--nsw-text-active) and $color != var(--nsw-text-light) {
+    @warn 'NSW-DS nsw-focus mixin it is suggested to use the following values for $color: "#{var(--nsw-text-light)}", "#{var(--nsw-text-active)}".'
       + 'These have been tested against the DS background colors and comply to WCAG color contrast guidlines';
   }
 
@@ -17,10 +17,10 @@
 }
 
 @mixin nsw-hover {
-  background-color: $hover-colour;
+  background-color: var(--nsw-text-hover-bg);
 }
 
 @mixin nsw-active {
-  background-color: $focus-color;
-  color: $white;
+  background-color: var(--nsw-text-active);
+  color: var(--nsw-text-light);
 }

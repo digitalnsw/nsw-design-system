@@ -1,15 +1,15 @@
 .nsw-list-item {
-  @include font-stack;
-  background-color: $white;
+  font-family: var(--nsw-font-family);
+  background-color: var(--nsw-shade-light);
   position: relative;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   padding: rem(24px) 0;
-  border-bottom: 1px solid $light20;
+  border-bottom: 1px solid var(--nsw-shade-light-10);
 
   &:first-child {
-    border-top: 1px solid $light20;
+    border-top: 1px solid var(--nsw-shade-light-10);
   }
 
   &:hover {
@@ -26,9 +26,13 @@
     }
   }
 
+  a:not([class]) {
+    @include link;
+  }
+
   &__title {
-    @include font-stack('heading');
     @include font-size('md');
+    font-weight: var(--nsw-font-bold);
   }
 
   &__content {
@@ -60,7 +64,7 @@
   &__link {
     @include pseudo-clickable-block;
     text-decoration: underline;
-    color: $nsw-primary-blue;
+    color: var(--nsw-primary-dark);
 
     &:hover {
       text-decoration: none;

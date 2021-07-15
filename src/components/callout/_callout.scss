@@ -1,9 +1,10 @@
 .nsw-callout {
   @include nsw-spacing(padding, md);
   @include component-spacing();
-  background: $light10;
+  font-family: var(--nsw-font-family);
+  background: var(--nsw-shade-light-5);
   position: relative;
-  border-left: solid 6px $nsw-primary-blue;
+  border-left: solid 6px var(--nsw-primary-dark);
 
   @include breakpoint('md') {
     @include nsw-spacing(padding, lg lg lg md);
@@ -56,8 +57,6 @@
   }
 
   &__content {
-    @include font-stack;
-
     @include breakpoint('md') {
       @include nsw-spacing(margin-top, none);
     }
@@ -76,8 +75,8 @@
   }
 
   &__title {
-    @include font-stack('heading');
     @include font-size('md');
+    font-weight: var(--nsw-font-bold);
     margin: 0;
   }
 }

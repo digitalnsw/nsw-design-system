@@ -1,6 +1,7 @@
 .nsw-link-list {
-  @include font-stack('heading');
   @include component-spacing();
+  font-family: var(--nsw-font-family);
+  font-weight: var(--nsw-font-bold);
 
   &__title {
     @include font-size('lg');
@@ -18,15 +19,15 @@
   }
 
   &__item {
-    border-top: 1px solid $light20;
+    border-top: 1px solid var(--nsw-shade-light-10);
 
     &:last-child {
-      border-bottom: 1px solid $light20;
+      border-bottom: 1px solid var(--nsw-shade-light-10);
     }
 
     a {
       @include nsw-spacing(padding, md);
-      color: $nsw-primary-blue;
+      color: var(--nsw-primary-dark);
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -48,12 +49,12 @@
       text-decoration: none;
 
       &:visited {
-        color: $nsw-primary-blue;
+        color: var(--nsw-primary-dark);
       }
 
       &:active {
-        background-color: $hover-colour;
-        color: $nsw-primary-blue;
+        background-color: var(--nsw-text-hover-bg);
+        color: var(--nsw-primary-dark);
       }
     }
 

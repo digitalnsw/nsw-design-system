@@ -1,9 +1,9 @@
 .nsw-card {
-  @include font-stack;
-  @include border-radius;
-  background-color: $white;
-  box-shadow: map-get($shadows, card);
-  transition: map-get($transitions, card);
+  border-radius: var(--nsw-border-radius);
+  font-family: var(--nsw-font-family);
+  background-color: var(--nsw-shade-light);
+  box-shadow: 0 4px 12px 0 rgba(var(--nsw-shade-dark-rgb), 0.15);
+  transition: box-shadow 0.25s ease-in-out;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -12,7 +12,7 @@
   border: 0;
 
   &:hover {
-    box-shadow: map-get($shadows, card-hover);
+    box-shadow: 2px 6px 12px 0 rgba(var(--nsw-shade-dark-rgb), 0.25);
   }
 
   &:focus-within {
@@ -24,15 +24,15 @@
   }
 
   &__title {
-    @include font-stack('heading');
     @include font-size('md');
+    font-weight: var(--nsw-font-bold);
     margin: 0;
   }
 
   &__content {
     @include font-size('sm');
     @include nsw-spacing(padding, md md xxxxl md);
-    border-top: solid 6px $nsw-primary-highlight;
+    border-top: solid 6px var(--nsw-primary-accent);
     display: flex;
     flex-direction: column;
     order: 2;
@@ -51,7 +51,7 @@
   }
 
   &__tag {
-    @include font-stack('heading');
+    font-weight: var(--nsw-font-bold);
     order: 1;
     margin: 0 0 1rem;
 
@@ -103,7 +103,7 @@
   &__link {
     @include pseudo-clickable-block;
     text-decoration: none;
-    color: $nsw-primary-blue;
+    color: var(--nsw-primary-dark);
 
     &:hover {
       text-decoration: underline;
@@ -125,10 +125,27 @@
     height: 100%;
     object-fit: cover;
   }
-}
 
-.nsw-card--headline {
-  .nsw-card__title {
-    @include font-size('lg');
+  &--headline {
+    .nsw-card__title {
+      @include font-size('lg');
+    }    
+  }
+
+  &--light {
+    background-color: var(--nsw-primary-light);
+  }
+
+  &--dark {
+    background-color: var(--nsw-primary-dark);
+    color: var(--nsw-text-light);
+
+    .nsw-card__link {
+      color: var(--nsw-text-light);
+    }
+
+    .nsw-material-icons {
+      color: var(--nsw-text-light);
+    }
   }
 }

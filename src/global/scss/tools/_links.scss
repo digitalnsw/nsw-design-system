@@ -1,11 +1,11 @@
 @mixin text-link {
-  @include font-stack('heading');
-  color: $link-color;
+  font-weight: var(--nsw-font-bold);
+  color: var(--nsw-primary-dark);
   display: inline-block;
 
   &:hover {
     @include nsw-hover;
-    outline: 2px solid $hover-colour;
+    outline: 2px solid var(--nsw-text-hover-bg);
   }
 
   &:focus {

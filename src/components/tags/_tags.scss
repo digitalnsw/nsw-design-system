@@ -1,21 +1,23 @@
 .nsw-tag:not(.nsw-tag--checkbox),
 .nsw-tag label {
-  @include font-stack;
   @include font-size('xs');
-  @include border-radius('tag');
   @include nsw-spacing(padding-left, md);
-  @include nsw-spacing(padding-right, md);
-  border: solid 1px $nsw-secondary-blue;
+  @include nsw-spacing(padding-right, md);  
+  font-family: var(--nsw-font-family);
+  border: solid 1px var(--nsw-primary-dark);
+  border-radius: rem(13px);
   padding-top: 2px;
   padding-bottom: 2px;
-  color: $nsw-secondary-blue;
+  color: var(--nsw-primary-dark);
   text-decoration: none;
   display: inline-block;
-  background-color: $white;
+  background-color: var(--nsw-shade-light);
 }
 
 a.nsw-tag,
 button.nsw-tag {
+  font-family: var(--nsw-font-family);
+
   &:hover {
     @include nsw-hover;
   }
@@ -26,9 +28,11 @@ button.nsw-tag {
 }
 
 .button.nsw-tag {
+  font-family: var(--nsw-font-family);
+
   .is-selected {
-    background-color: $nsw-secondary-blue;
-    color: $white;
+    background-color: var(--nsw-primary-dark);
+    color: var(--nsw-text-light);
   }
 }
 
@@ -48,13 +52,14 @@ button.nsw-tag {
     }
 
     &:checked + label {
-      background-color: $nsw-secondary-blue;
-      color: $white;
+      background-color: var(--nsw-primary-dark);
+      color: var(--nsw-text-light);
     }
   }
 }
 
 .nsw-tags {
+  font-family: var(--nsw-font-family);
   display: flex;
   flex-wrap: wrap;
   margin: rem(-16px) rem(-8px) 0 0;

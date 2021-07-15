@@ -1,10 +1,9 @@
-$docs-bg: lighten($light20, 3);
-
 .nsw-docs {
-  background-color: $docs-bg;
+  font-family: var(--nsw-font-family);
+  background-color: var(--nsw-shade-light-10);
 
   &--style {
-    background-color: $white;
+    background-color: var(--nsw-shade-light);
 
     .nsw-docs__intro {
       @include breakpoint('md') {
@@ -19,7 +18,7 @@ $docs-bg: lighten($light20, 3);
     }
 
     .nsw-docs-code__wrapper {
-      background-color: $light10;
+      background-color: var(--nsw-shade-light-5);
       min-height: rem(68px);
       display: flex;
       align-items: center;
@@ -46,7 +45,7 @@ $docs-bg: lighten($light20, 3);
     .nsw-header {
       @include breakpoint('xl') {
         top: rem(42px);
-        border-bottom: solid 1px $light20;
+        border-bottom: solid 1px var(--nsw-shade-light-10);
       }
     }
 
@@ -59,6 +58,10 @@ $docs-bg: lighten($light20, 3);
         padding-top: rem(137px);
       }      
     }
+  }
+
+  button {
+    font-family: var(--nsw-font-family);
   }
 
   &__wrapper {
@@ -93,7 +96,7 @@ $docs-bg: lighten($light20, 3);
 
       .nsw-docs__example {
         padding: rem(16px);
-        background-color: $white;        
+        background-color: var(--nsw-shade-light);        
       }
     }
 
@@ -104,7 +107,7 @@ $docs-bg: lighten($light20, 3);
 
       .nsw-docs__example {
         padding: rem(16px);
-        background-color: $white;        
+        background-color: var(--nsw-shade-light);        
       }
     }
 
@@ -119,7 +122,7 @@ $docs-bg: lighten($light20, 3);
 
       .nsw-docs__example {
         padding: rem(16px);
-        background-color: $white;        
+        background-color: var(--nsw-shade-light);        
       }
     }
   }
@@ -166,7 +169,7 @@ $docs-bg: lighten($light20, 3);
     }
 
     &.nsw-docs__example--dark {
-      background-color: $light40;  
+      background-color: var(--nsw-shade-dark-20);  
     }
   }
 
@@ -187,9 +190,9 @@ $docs-bg: lighten($light20, 3);
     }
 
     a {
-      @include font-stack('heading');
+      font-weight: var(--nsw-font-bold);
       font-size: rem(14px);
-      color: $nsw-primary-blue;
+      color: var(--nsw-primary-dark);
       border: 0;
       text-decoration: none;
       display: flex;
@@ -232,11 +235,11 @@ $docs-bg: lighten($light20, 3);
   }
 
   &__guidance {
-    @include font-stack('heading');
-    @include border-radius;
     @include button-variant(map-get($button-variations, primary));
+    border-radius: var(--nsw-border-radius);
+    font-weight: var(--nsw-font-bold);
     font-size: rem(14px);
-    border: 1px solid $nsw-primary-blue;
+    border: 1px solid var(--nsw-primary-dark);
     text-decoration: none;
     display: flex;
     align-items: center;
@@ -249,7 +252,7 @@ $docs-bg: lighten($light20, 3);
     i {
       font-size: rem(16px);
       margin-right: rem(4px);
-      color: $white;
+      color: var(--nsw-text-light);
     }
   }
 
@@ -259,9 +262,9 @@ $docs-bg: lighten($light20, 3);
   }
 
   &__external {
-    @include font-stack('heading');
+    font-weight: var(--nsw-font-bold);
     font-size: rem(14px);
-    color: $nsw-primary-blue;
+    color: var(--nsw-primary-dark);
     border: 0;
     text-decoration: none;
     display: flex;
@@ -314,7 +317,7 @@ $docs-bg: lighten($light20, 3);
   }
 
   &__box {
-    background-color: $light40;
+    background-color: var(--nsw-shade-light-20);
     min-height: rem(56);
 
     &--large {
@@ -324,7 +327,7 @@ $docs-bg: lighten($light20, 3);
 
   &__section {
     &--dark {      
-      background-color: $light40;
+      background-color: var(--nsw-shade-dark-20);
       padding: rem(8px);
       margin: rem(8px) rem(-8px) 0 rem(-8px);
     }
@@ -340,7 +343,7 @@ $docs-bg: lighten($light20, 3);
 
   &__button {
     @include link;
-    @include font-stack('heading');
+    font-weight: var(--nsw-font-bold);
     font-size: rem(14px);
     background: transparent;
     border: 0;
@@ -392,16 +395,16 @@ $docs-bg: lighten($light20, 3);
     max-width: rem(800px);
     max-height: rem(400px);
     overflow: auto;
-    background-color: $white;      
+    background-color: var(--nsw-shade-light);      
   }
 
   &__copy {
-    @include font-stack('heading');
-    @include border-radius;
+    border-radius: var(--nsw-border-radius);
+    font-weight: var(--nsw-font-bold);
     font-size: rem(14px);
-    background: $white;
-    color: $nsw-primary-blue;
-    border: 1px solid $nsw-primary-blue;
+    background-color: var(--nsw-shade-light);
+    color: var(--nsw-primary-dark);
+    border: 1px solid var(--nsw-primary-dark);
     text-decoration: none;
     display: flex;
     align-items: center;
@@ -411,7 +414,7 @@ $docs-bg: lighten($light20, 3);
     padding: rem(8px);
 
     &:hover {
-      background-color: $light20;
+      background-color: var(--nsw-shade-light-10);
     }
 
     &:focus {
@@ -427,14 +430,19 @@ $docs-bg: lighten($light20, 3);
 
 .nsw-docs-nav {
   @include z-index('upper');
+  font-family: var(--nsw-font-family);
   position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
   width: rem(300px);
   overflow-y: auto;
-  border-right: 1px solid $light20;
-  background: $white;
+  border-right: 1px solid var(--nsw-shade-light-10);
+  background-color: var(--nsw-shade-light);
+
+  button {
+    font-family: var(--nsw-font-family);
+  }
 
   &__logo {
     padding-bottom: rem(40px);
@@ -452,16 +460,15 @@ $docs-bg: lighten($light20, 3);
   &__title {
     a,
     button {
-      @include font-stack();
       @include font-size('sm');
       background: transparent;
       border: 0;
-      border-bottom: solid 1px $light20;
+      border-bottom: solid 1px var(--nsw-shade-light-10);
       display: block;
       width: 100%;
       padding: rem(8px);
       text-align: left;
-      color: $black;
+      color: var(--nsw-text-dark);
       text-decoration: none;
 
       &:hover {
@@ -473,14 +480,15 @@ $docs-bg: lighten($light20, 3);
       }
 
       &.is-active {
-        @include font-stack('heading');
-        border-bottom: solid 2px $nsw-primary-blue;
+        font-weight: var(--nsw-font-bold);
+        border-bottom: solid 2px var(--nsw-primary-dark);
       }
     }
 
     button {
       display: flex;
       align-items: center;
+      color: var(--nsw-text-dark);
 
       &.is-open {
         .nsw-material-icons {
@@ -489,7 +497,7 @@ $docs-bg: lighten($light20, 3);
       }
 
       &.is-active {
-        @include font-stack('heading');
+        font-weight: var(--nsw-font-bold);
       }
 
       span {
@@ -515,15 +523,15 @@ $docs-bg: lighten($light20, 3);
 
     a {
       display: block;
-      color: $dark80;
+      color: var(--nsw-text-dark);
       text-decoration: none;
       padding: rem(8px);
       border-left: rem(4px) solid transparent;
 
       &:hover,
       &.is-active {
-        background-color: $light10;
-        border-color: $nsw-primary-highlight;
+        background-color: var(--nsw-shade-light-5);
+        border-color: var(--nsw-primary-accent);
       }
     }
   }
@@ -531,8 +539,8 @@ $docs-bg: lighten($light20, 3);
   &__link {
     @include nsw-spacing(padding, md);
     display: block;
-    color: $dark80;
+    color: var(--nsw-text-dark);
     text-decoration: none;
-    background-color: $white;
+    background-color: var(--nsw-shade-light);
   }
 }

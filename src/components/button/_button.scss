@@ -1,8 +1,9 @@
 .nsw-button {
-  @include font-stack('heading');
   @include font-size('sm');
   @include nsw-spacing(margin, lg md none none);
-  @include border-radius;
+  border-radius: var(--nsw-border-radius);
+  font-family: var(--nsw-font-family);
+  font-weight: var(--nsw-font-bold);
   border: solid 2px transparent;
   white-space: normal;
   text-decoration: none;
@@ -32,14 +33,12 @@
 
   &:active {
     @include nsw-active;
-    border-color: $focus-color;
+    border-color: var(--nsw-text-active);
   }
 
   &:disabled,
   &.disabled {
-    background-color: $light10;
-    color: $light40;
-    border-color: $light10;
+    opacity: 0.38;
     cursor: not-allowed;
   }
 }

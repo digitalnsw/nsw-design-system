@@ -1,31 +1,31 @@
 .nsw-footer {
-  @include font-stack;
-  border-top: solid 1px $light40;
+  border-top: solid 1px var(--nsw-shade-light-20);
+  font-family: var(--nsw-font-family);
 
   hr {
     @include nsw-spacing(margin, md none md none);
     height: 1px;
     border: 0;
-    color: $light40;
-    background-color: $light40;
+    color: var(--nsw-shade-light-20);
+    background-color: var(--nsw-shade-light-20);
   }
 
   &__upper {
     @include nsw-spacing(padding-top, lg);
-    background-color: $white;
+    background-color: var(--nsw-shade-light);
   }
 
   &__lower {
     @include nsw-spacing(padding, md none lg none);
-    background-color: $dark80;
-    color: $white;
-    font-size: rem(12px);
+    @include font-size('xxs');
+    background-color: var(--nsw-shade-dark-20);
+    color: var(--nsw-text-light);
 
     a {
-      color: $white;
+      color: var(--nsw-text-light);
 
       &:focus {
-        @include nsw-focus($color: $white);
+        @include nsw-focus($color: var(--nsw-text-light));
       }
     }
 
@@ -50,7 +50,7 @@
     flex: 0 0 rem(200px);
 
     a:not([class]) {
-      color: $white;
+      color: var(--nsw-text-light);
 
       &:hover {
         background-color: transparent;
@@ -59,11 +59,11 @@
       }
 
       &:focus {
-        @include nsw-focus($offset: false, $color: $white);
+        @include nsw-focus($offset: false, $color: var(--nsw-text-light));
       }
 
       &:visited {
-        color: $white;
+        color: var(--nsw-text-light);
       }
 
       &:active {
@@ -78,21 +78,30 @@
 }
 
 .nsw-footer-links {
-  @include font-stack('heading');
   @include nsw-spacing(margin, md none none none);
   @include nsw-spacing(padding, none);
+  font-weight: var(--nsw-font-bold);
   list-style: none;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  margin-left: rem(-8px);
+  margin-right: rem(-8px);
+
+  @include breakpoint('md') {
+    margin-left: 0;
+    margin-right: 0;
+  }
 
   &__item {
     @include nsw-spacing(margin, none none md none);
     flex: 1 0 50%;
     max-width: 50%;
+    padding: 0 rem(8px);
 
     @include breakpoint('md') {
       @include nsw-spacing(margin-right, lg);
+      padding: 0;
       flex: 0 0 auto;
       max-width: none;
     }
@@ -106,32 +115,33 @@
     }
 
     &:focus {
-      @include nsw-focus($color: $white);
+      @include nsw-focus($color: var(--nsw-text-light));
     }
   }
 }
 
 .section-links {
+  @include nsw-spacing(padding-left, xs);
+  @include nsw-spacing(padding-right, xs);
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 
-  @include breakpoint('md') {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+  @include breakpoint('lg') {
+    padding-left: 0;
+    padding-right: 0;
   }
 
   a:not([class]) {
-    color: $nsw-primary-blue;
+    color: var(--nsw-primary-dark);
 
     &:visited {
-      color: $nsw-primary-blue;
+      color: var(--nsw-primary-dark);
     }
 
     &:hover {
       @include nsw-hover;
-      outline: 2px solid $hover-colour;
+      outline: 2px solid var(--nsw-text-hover-bg);
     } 
 
     &:focus {
@@ -144,7 +154,7 @@
   }
 
   &__group {
-    @include nsw-spacing(padding-bottom, lg);
+    @include nsw-spacing(padding, none xs md xs);
     flex: 1 0 auto;
     min-width: rem(256px);
     max-width: 50%;
@@ -155,14 +165,15 @@
     }
 
     @include breakpoint('lg') {
+      @include nsw-spacing(padding, none md lg md);
       flex-basis: 25%;
     }
   }
 
   &__heading {
     @include nsw-spacing(margin, none);
-    @include font-stack('heading');
     @include font-size('sm');
+    font-weight: var(--nsw-font-bold);
   }
 
   &__list {

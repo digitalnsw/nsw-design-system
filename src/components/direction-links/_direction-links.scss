@@ -1,11 +1,12 @@
 .nsw-direction-link {
-  @include font-stack('heading');
+  font-family: var(--nsw-font-family);
+  font-weight: var(--nsw-font-bold);
   position: relative;
   display: inline-flex;
   text-decoration: none;
   vertical-align: middle;
   padding: rem(4px) rem(8px);
-  color: $dark80;
+  color: var(--nsw-text-dark);
 
   &:hover {
     @include nsw-hover;
@@ -47,16 +48,16 @@
   }
 
   &.is-disabled {
-    color: $light40;
+    color: var(--nsw-shade-light-20);
     cursor: not-allowed;
     background: none;
 
     .nsw-icon {
-      fill: $light40;
+      fill: var(--nsw-shade-light-20);
     }
 
     .nsw-material-icons {
-      color: $light40;
+      color: var(--nsw-shade-light-20);
     }
   }
 }

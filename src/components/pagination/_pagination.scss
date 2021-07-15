@@ -1,7 +1,8 @@
 .nsw-pagination {
-  @include font-stack('heading');
   @include component-spacing();
   @include nsw-spacing(padding-left, none);
+  font-family: var(--nsw-font-family);
+  font-weight: var(--nsw-font-bold);
   display: flex;
   align-items: flex-start;
   flex-wrap: wrap;
@@ -30,7 +31,7 @@
     text-decoration: none;
     vertical-align: middle;
     padding: rem(4px) rem(8px);
-    color: $dark80;
+    color: var(--nsw-text-dark);
     text-align: center;
     min-width: rem(24px);
 
@@ -50,7 +51,7 @@
       left: 50%;
       transform: translateX(-50%);
       height: 2px;
-      background-color: $nsw-primary-blue;
+      background-color: var(--nsw-primary-dark);
     }
   }
 

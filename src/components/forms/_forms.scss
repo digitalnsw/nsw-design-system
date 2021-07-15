@@ -1,8 +1,17 @@
 .nsw-form {
   @include nsw-spacing(margin-top, xxl);
+  font-family: var(--nsw-font-family);
 
   &:first-child {
     margin-top: 0;
+  }
+
+  button,
+  input,
+  textarea,
+  textfield,
+  select {
+    font-family: var(--nsw-font-family);
   }
 
   a {
@@ -18,39 +27,38 @@
   }
 
   &__helper {
-    @include font-stack;
     @include font-size('xs');
     display: block;
     margin-bottom: rem(4px);
 
     &--error,
     &--valid {
-      @include font-stack(heading);
       @include nsw-spacing(padding, xs md xs xl);
       @include nsw-spacing(margin-top, xs);
+      font-weight: var(--nsw-font-bold);
       background-repeat: no-repeat;
       background-position: left rem(8px) top rem(8px);
       background-size: 1rem auto;
     }
 
     &--error {
-      @include background-svg(error, $critical);
-      background-color: $critical-background;
+      @include background-svg(error, var(--nsw-notification-error-red));
+      background-color: var(--nsw-notification-error-red-bg);
     }
 
     &--valid {
-      @include background-svg(tick, $info);
-      background-color: $info-background;
+      @include background-svg(tick, var(--nsw-notification-info-blue));
+      background-color: var(--nsw-notification-info-blue-bg);
     }
   }
 
   &__label {
-    @include font-stack(heading);
     @include font-size('sm');
+    font-weight: var(--nsw-font-bold);
     display: block;
 
     &--small {
-      font-weight: normal;
+      font-weight: var(--nsw-font-normal);
     }
 
     + input,
@@ -63,19 +71,19 @@
   &__required {
     &::after {
       content: ' *';
-      color: $nsw-primary-highlight;
+      color: var(--nsw-notification-error-red);
     }
   }
 
   &__input,
   &__select {
-    @include font-stack;
     @include font-size('sm');
     @include nsw-spacing(padding, sm md);
-    @include border-radius;
-    background-color: $white;
-    color: $dark80;
-    border: 1px solid $dark70;
+    border-radius: var(--nsw-border-radius);
+    font-family: var(--nsw-font-family);
+    background-color: var(--nsw-shade-light);
+    color: var(--nsw-text-dark);
+    border: 1px solid var(--nsw-shade-dark-20);
     vertical-align: middle;
     appearance: none;
     -webkit-appearance: none; /* stylelint-disable-line property-no-vendor-prefix */
@@ -90,37 +98,37 @@
     }
 
     &:disabled {
-      background-color: $light10;
-      border-color: $light40;
-      color: $light40;
+      background-color: var(--nsw-shade-light-5);
+      border-color: var(--nsw-shade-light-20);
+      color: var(--nsw-shade-light-20);
       cursor: not-allowed;
     }
 
 
     &[aria-invalid='true'],
     &.has-error {
-      border-color: $critical;
+      border-color: var(--nsw-notification-error-red);
       border-width: 2px;
 
       &:hover {
-        background-color: $critical-background;
+        background-color: var(--nsw-notification-error-red-bg);
       }
     }
   }
 
   &__select {
-    @include background-svg(chevron-down, $nsw-primary-blue);
+    @include background-svg(chevron-down, var(--nsw-primary-dark));
     @include nsw-spacing(padding-right, xxl);
     background-repeat: no-repeat;
     background-position: right rem(16px) center;
     background-size: rem(16px) auto;
 
     &:disabled {
-      @include background-svg(chevron-down, $light40);
+      @include background-svg(chevron-down, var(--nsw-shade-light-20));
     }
 
     option {
-      background-color: $white;
+      background-color: var(--nsw-shade-light);
     }
   }
 
@@ -147,14 +155,14 @@
 
     .nsw-material-icons {
       display: block;
-      color: $nsw-primary-blue;
+      color: var(--nsw-primary-dark);
     }
 
     &--icon {
       .nsw-button {
         padding: 0;
         min-width: rem(50px);
-        border-color: $dark70;
+        border-color: var(--nsw-shade-dark-20);
         border-left-width: 0;
 
         &:hover {
@@ -179,12 +187,12 @@
   }
 
   &__predictive-list {
-    @include border-radius;
     @include z-index;
+    border-radius: var(--nsw-border-radius);
     border-top-left-radius: 0;
     border-top-right-radius: 0;
-    background-color: $white;
-    box-shadow: map-get($shadows, card);
+    background-color: var(--nsw-shade-light);
+    box-shadow: 0 4px 12px 0 rgba(var(--nsw-shade-dark-rgb), 0.15);
     list-style-type: none;
     padding: 0;
     margin: 0;
@@ -206,7 +214,7 @@
     a:not([class]) {
       display: block;
       padding: rem(10px);
-      color: $dark80;
+      color: var(--nsw-text-dark);
 
       &:hover {
         outline: none;
@@ -217,7 +225,7 @@
       }
 
       span {
-        font-weight: bolder;
+        font-weight: var(--nsw-font-bold);
       }
     }
   }
@@ -262,8 +270,8 @@
   }
 
   &__legend {
-    @include font-stack(heading);
     @include font-size('sm');
+    font-weight: var(--nsw-font-bold);
     width: 100%;
     display: block;
   }
@@ -284,12 +292,12 @@
     }
 
     &:checked + .nsw-form__checkbox-label::after {
-      @include background-svg(tick, $white);
-      background-color: $nsw-primary-blue;
+      @include background-svg(tick, var(--nsw-text-light));
+      background-color: var(--nsw-primary-dark);
     }
 
     &:checked + .nsw-form__radio-label::after {
-      background-color: $nsw-primary-blue;
+      background-color: var(--nsw-primary-dark);
     }
 
     &:disabled {
@@ -300,13 +308,13 @@
 
       + .nsw-form__checkbox-label::before,
       + .nsw-form__radio-label::before {
-        border-color: $light40;
-        background-color: $light10;
+        border-color: var(--nsw-shade-light-20);
+        background-color: var(--nsw-shade-light-5);
       }
 
       &:checked + .nsw-form__checkbox-label::after,
       &:checked + .nsw-form__radio-label::after {
-        background-color: $light40;
+        background-color: var(--nsw-shade-light-20);
       }
     }
 
@@ -315,25 +323,24 @@
     }
 
     &:focus + .nsw-form__radio-label::before {
-      box-shadow: 0 0 0 3px $white, 0 0 0 6px $focus-color;
+      box-shadow: 0 0 0 3px var(--nsw-text-light), 0 0 0 6px var(--nsw-text-active);
     }
 
     &[aria-invalid='true'] + .nsw-form__checkbox-label,
     &.has-error + .nsw-form__checkbox-label {
       &:hover::before {
-        background-color: $critical-background;
+        background-color: var(--nsw-notification-error-red-bg);
       }
 
       &::before {
         border-width: 2px;
-        border-color: $critical;
+        border-color: var(--nsw-notification-error-red);
       }
     }
   }
 
   &__checkbox-label,
   &__radio-label {
-    @include font-stack;
     @include font-size('sm');
     @include nsw-spacing(margin, md none none none);
     padding: rem(4px) 0 rem(4px) rem(48px);
@@ -346,13 +353,13 @@
       content: '';
       width: rem(32px);
       height: rem(32px);
-      border: 1px $dark70 solid;
-      background: $white;
+      border: 1px var(--nsw-shade-dark-20) solid;
+      background-color: var(--nsw-shade-light);
       top: 0;
       left: 0;
       display: inline-block;
       vertical-align: middle;
-      background-color: $white;
+      background-color: var(--nsw-shade-light);
       position: absolute;
     }
 
@@ -371,17 +378,17 @@
 
   &__checkbox-label {
     &::before {
-      @include border-radius;
+      border-radius: var(--nsw-border-radius);
     }
   }
 
   &__radio-label {
     &::before {
-      @include border-radius('round');
+      border-radius: 50%;
     }
 
     &::after {
-      @include border-radius('round');
+      border-radius: 50%;
     }
   }
 }

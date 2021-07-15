@@ -1,7 +1,7 @@
-
 .nsw-media {
   width: 100%;
   margin: rem(16px) auto;
+  font-family: var(--nsw-font-family);
 
   @include breakpoint('md') {
     margin-top: rem(32px);
@@ -85,8 +85,21 @@
 
   figcaption {
     @include font-size('xs');
-    background-color: $light10;
+    background-color: var(--nsw-shade-light-5);
     padding: rem(16px);
+  }
+
+  &--light {
+    figcaption {
+      background-color: var(--nsw-primary-light);
+    }
+  }
+
+  &--dark {
+    figcaption {
+      background-color: var(--nsw-primary-dark);
+      color: var(--nsw-text-light);
+    }
   }
 
   &--transparent {
