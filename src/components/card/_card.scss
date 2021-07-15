@@ -125,10 +125,27 @@
     height: 100%;
     object-fit: cover;
   }
-}
 
-.nsw-card--headline {
-  .nsw-card__title {
-    @include font-size('lg');
+  &--headline {
+    .nsw-card__title {
+      @include font-size('lg');
+    }    
+  }
+
+  &--light {
+    background-color: var(--nsw-primary-light);
+  }
+
+  &--dark {
+    background-color: var(--nsw-primary-dark);
+    color: var(--nsw-text-light);
+
+    .nsw-card__link {
+      color: var(--nsw-text-light);
+    }
+
+    .nsw-material-icons {
+      color: var(--nsw-text-light);
+    }
   }
 }
