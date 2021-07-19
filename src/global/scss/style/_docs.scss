@@ -69,7 +69,6 @@ $content-width: 768px;
 
     &--wide {
       .nsw-docs__demo {
-      .nsw-docs__demo {
         max-width: rem($container-max-width + 32px);
 
         @include breakpoint('xl') {
@@ -128,7 +127,19 @@ $content-width: 768px;
     @include breakpoint('xl') {
       padding: rem(48px) rem(52px);
     }
+  }
 
+  &__example {
+    &--hidden {
+      display: none;
+    }
+
+    &.nsw-docs__example--dark {
+      background-color: var(--nsw-shade-dark-20);  
+    }
+  }
+
+  &__demo { 
     > h3 {
       padding: rem(16px) 0;
 
@@ -148,16 +159,6 @@ $content-width: 768px;
 
     > h4 {
       padding: rem(16px) 0;
-    }
-  }
-
-  &__example {
-    &--hidden {
-      display: none;
-    }
-
-    &.nsw-docs__example--dark {
-      background-color: var(--nsw-shade-dark-20);  
     }
   }
 
@@ -528,4 +529,3 @@ $content-width: 768px;
     padding: 0 0 rem(24px) 0;
   }
 }
-
