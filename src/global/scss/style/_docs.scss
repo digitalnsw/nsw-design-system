@@ -1,3 +1,5 @@
+$content-width: 768px;
+
 .nsw-docs {
   font-family: var(--nsw-font-family);
 
@@ -54,42 +56,41 @@
       background-color: var(--nsw-shade-light);        
     }
 
-    &--narrow {
-      .nsw-docs__container {
-        max-width: rem(800px);
-      }
+    &--narrow,
+    &--menu {
+      .nsw-docs__demo {
+        max-width: rem($content-width + 32px);
 
-      .nsw-docs__example {
-        padding: rem(16px);
-        background-color: var(--nsw-shade-light);        
+        @include breakpoint('xl') {
+          max-width: rem($content-width + 104px);
+        }   
       }
     }
 
     &--wide {
-      .nsw-docs__container {
-        max-width: rem($container-max-width);
-      }
+      .nsw-docs__demo {
+      .nsw-docs__demo {
+        max-width: rem($container-max-width + 32px);
 
-      .nsw-docs__example {
-        padding: rem(16px);
-        background-color: var(--nsw-shade-light);        
+        @include breakpoint('xl') {
+          max-width: rem($container-max-width + 104px);
+        }
       }
     }
 
     &--menu {
-      .nsw-docs__container {
-        max-width: rem(800px);
-      }
-
       .nsw-docs__component {
         max-width: rem(336px);
       }
-
-      .nsw-docs__example {
-        padding: rem(16px);
-        background-color: var(--nsw-shade-light);        
-      }
     }
+  }
+
+  &__container {
+    max-width: rem($content-width + 32px);
+
+    @include breakpoint('xl') {
+      max-width: rem($content-width + 104px);
+    }    
   }
 
   &__intro {
@@ -513,7 +514,8 @@
       outline: none;
     }
 
-    .nsw-docs__container {
+    .nsw-docs__container,
+    .nsw-docs__demo {
       padding: rem(24px) rem(16px);
 
       @include breakpoint('xl') {
