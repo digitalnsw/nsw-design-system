@@ -35,7 +35,7 @@ jobs:
             dist
       - run: |
           npm install -g pa11y-ci
-          pa11y-ci ./dist/{components,styles,templates}/**/index.html
+          pa11y-ci ./dist/{components,styles,templates}/**/index.html ./dist/{components,styles}/**/blank.html
       - name: Visual test
         run: npx percy snapshot dist/ --ignore-files "{components,styles}/**/index.html"
         env:
