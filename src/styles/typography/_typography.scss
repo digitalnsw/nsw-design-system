@@ -172,6 +172,25 @@
   @include text-link;
 }
 
+.nsw-icon-link {
+  @include text-link;
+
+  > span {
+    display: flex;
+    align-items: center;
+  }
+
+  svg {
+    &:first-child {
+      margin-right: rem(8px);
+    }
+  }
+
+  + .nsw-icon-link {
+    margin-left: rem(16);
+  }
+}
+
 h1,
 h2,
 h3,

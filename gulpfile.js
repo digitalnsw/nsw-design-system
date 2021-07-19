@@ -151,8 +151,8 @@ function metalsmithBuild(callback) {
       refer: false,
       sortBy: sortByAlpha,
     },
-    componentsblank: {
-      pattern: config.metalSmith.collection.componentsblank.pattern,
+    componentsguidance: {
+      pattern: config.metalSmith.collection.componentsguidance.pattern,
       refer: false,
       sortBy: sortByAlpha,
     },

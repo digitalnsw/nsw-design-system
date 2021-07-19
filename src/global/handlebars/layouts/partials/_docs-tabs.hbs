@@ -1,0 +1,32 @@
+<div class="nsw-docs__tabs">
+  <div class="nsw-tabs js-tabs nsw-docs-tabs">
+    <ul class="nsw-tabs__list">
+      <li class="nsw-tabs__list-item">
+        <a href="#section-guidance" class="nsw-tabs__link js-tabs-fixed">Guidance</a>
+      </li>
+      <li class="nsw-tabs__list-item">
+        <a href="#section-interactive-demo" class="nsw-tabs__link js-tabs-fixed">Interactive demo</a>
+      </li>
+    </ul>
+    <section id="section-guidance" class="nsw-tabs__content">
+      <div class="nsw-docs__container">
+      {{#each (lookup componentsguidance directory)}}
+        {{{contents}}}
+      {{/each}}
+      </div>
+    </section>
+    <section id="section-interactive-demo" class="nsw-tabs__content">
+      <div class="nsw-docs__container">        
+        {{#unless no-blank}}
+        <div class="nsw-docs__external-link">
+          <a target="_blank" href="blank.html" class="nsw-docs__external">
+            <span>View in new window</span>
+            <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">launch</i>
+          </a>
+        </div>
+        {{/unless}}
+{{{contents}}}
+      </div>
+    </section>
+  </div>
+</div>

@@ -1,16 +1,7 @@
 .nsw-docs {
   font-family: var(--nsw-font-family);
-  background-color: var(--nsw-shade-light-10);
 
   &--style {
-    background-color: var(--nsw-shade-light);
-
-    .nsw-docs__intro {
-      @include breakpoint('md') {
-        padding-right: rem(190px);
-      }
-    }
-
     .nsw-docs__example {
       &.nsw-docs__example--simple {
         padding: rem(16px) 0 0 0;
@@ -25,38 +16,9 @@
     }
   }
 
-  &--home {
-    .nsw-header,
-    .nsw-masthead {
-      @include breakpoint('xl') {
-        @include z-index('upper');
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-      }
-    }
-
-    .nsw-container,
-    .nsw-header__container {
-      margin: 0;
-    }
-
-    .nsw-header {
-      @include breakpoint('xl') {
-        top: rem(42px);
-        border-bottom: solid 1px var(--nsw-shade-light-10);
-      }
-    }
-
-    .nsw-docs-nav {
-      top: rem(137px);
-    }
-
-    .nsw-docs__content {
-      @include breakpoint('xl') {
-        padding-top: rem(137px);
-      }      
+  &--light {
+    .nsw-docs__main {
+      background-color: var(--nsw-shade-light);
     }
   }
 
@@ -82,11 +44,14 @@
 
   &__main {
     width: 100%;
-    padding: rem(24px) rem(16px);
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--nsw-shade-light-5);
 
-    @include breakpoint('xl') {
-      padding: rem(48px) rem(52px);
+    .nsw-docs__example {
+      padding: rem(16px);
+      background-color: var(--nsw-shade-light);        
     }
 
     &--narrow {
@@ -128,19 +93,41 @@
   }
 
   &__intro {
-    padding: 0 0 rem(24px) 0;
-    position: relative;
+    background-color: var(--nsw-shade-light);
 
-    @include breakpoint('md') {
-      padding-right: rem(124px);
+    .nsw-docs__container {
+      padding: rem(24px) rem(16px);
+
+      @include breakpoint('xl') {
+        padding: rem(48px) rem(52px);
+      }
     }
 
-    @include breakpoint('xl') {
-      padding-bottom: rem(48px);
+    &--tabs {
+      margin-bottom: rem(-48px);
+
+      .nsw-docs__container {
+        padding-bottom: rem(78px);
+
+        @include breakpoint('xl') {
+          padding-bottom: rem(88px);
+        } 
+      }     
     }
   }
 
+  &__tabs {
+    flex-grow: 1;
+  }
+
   &__content {
+    padding: rem(24px) rem(16px);
+    flex-grow: 1;
+
+    @include breakpoint('xl') {
+      padding: rem(48px) rem(52px);
+    }
+
     > h3 {
       padding: rem(16px) 0;
 
@@ -183,7 +170,7 @@
 
   &__back {
     display: flex;
-    padding-bottom: rem(24px);
+    padding: rem(24px) rem(16px);
 
     @include breakpoint('xl') {
       display: none;
@@ -215,44 +202,6 @@
         font-size: rem(16px);
         margin-right: rem(4px);
       }      
-    }
-  }
-
-  &__buttons {
-    display: flex;
-    margin-top: rem(8px);
-
-    @include breakpoint('md') {
-      position: absolute;
-      top: rem(3px);
-      right: 0;
-      margin-top: 0;
-    }
-
-    @include breakpoint('xl') {
-      top: rem(10px);
-    }
-  }
-
-  &__guidance {
-    @include button-variant(map-get($button-variations, primary));
-    border-radius: var(--nsw-border-radius);
-    font-weight: var(--nsw-font-bold);
-    font-size: rem(14px);
-    border: 1px solid var(--nsw-primary-dark);
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    padding: rem(8px);
-
-    &:focus {
-      @include nsw-focus;
-    }
-
-    i {
-      font-size: rem(16px);
-      margin-right: rem(4px);
-      color: var(--nsw-text-light);
     }
   }
 
@@ -544,3 +493,37 @@
     background-color: var(--nsw-shade-light);
   }
 }
+
+.nsw-docs-tabs {
+  >.nsw-tabs__list-wrapper {
+    background-color: transparent;
+    padding: 0 rem(16px);
+
+    @include breakpoint('xl') {
+      padding: 0 rem(52px);
+    } 
+  }
+
+  >.nsw-tabs__content {
+    padding: 0;
+    border-bottom: 0;
+    border-color: var(--nsw-shade-light-5);
+
+    &:focus {
+      outline: none;
+    }
+
+    .nsw-docs__container {
+      padding: rem(24px) rem(16px);
+
+      @include breakpoint('xl') {
+        padding: rem(48px) rem(52px);
+      }      
+    }
+  }
+
+  .nsw-docs__external-link {
+    padding: 0 0 rem(24px) 0;
+  }
+}
+

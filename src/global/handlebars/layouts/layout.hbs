@@ -22,56 +22,40 @@
 {{/unless}}
 </head>
 
-<body class="nsw-body-content{{#unless page}} nsw-docs{{/unless}}{{#if style}} nsw-docs--style{{/if}}{{#if home}} nsw-docs--home{{/if}}">
+<body class="nsw-body-content{{#unless page}} nsw-docs{{#if light}} nsw-docs--light{{/if}}{{/unless}}">
 {{#if page}}
 {{{contents}}}
 {{else}}
-  {{#if home}}
-  {{>_header simple=true link="https://www.digital.nsw.gov.au/"}}
-  {{/if}}
   <div class="nsw-docs__wrapper">
     <div class="nsw-docs__nav">
       {{>_docs-side-navigation}}
     </div>
-    <div class="nsw-docs__main{{#if-equals width "narrow"}} nsw-docs__main--narrow{{/if-equals}}{{#if-equals width "wide"}} nsw-docs__main--wide{{/if-equals}}{{#if-equals width "menu"}} nsw-docs__main--menu{{/if-equals}}">
-      <div class="nsw-docs__container">
-        {{#unless home}}
-        <div class="nsw-docs__back">
-          <a href="/" class="nsw-docs__link">
-            <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_left</i>
-            <span>Home</span>
-          </a>
-        </div>
-        <div class="nsw-docs__intro">
-          <h1>{{ title }}</h1>
-          {{#unless no-blank}}
-          <div class="nsw-docs__external-link">
-            <a target="_blank" href="blank.html" class="nsw-docs__external">
-              <span>View in new window</span>
-              <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">launch</i>
-            </a>
-          </div>
-          {{/unless}} 
-          {{#if guidance}}
-          <div class="nsw-docs__buttons">
-            <a target="_blank" href="{{guidance}}" class="nsw-docs__guidance">
-              <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">description</i>
-              <span>Guidance</span>
-            </a>
-          </div>
-          {{/if}}           
-          {{#if style}}{{#if blank}}
-          <a target="_blank" href="blank.html" class="nsw-docs__external">
-            <span>View in new window</span>
-            <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">launch</i>
-          </a>
-          {{/if}}{{/if}}
-        </div>
-        {{/unless}}
-        <div class="nsw-docs__content">
+    <div class="nsw-docs__main{{#if width}} nsw-docs__main--{{width}}{{/if}}">
+      {{#unless home}}
+      <div class="nsw-docs__back">
+        <a href="/" class="nsw-docs__link">
+          <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_left</i>
+          <span>Home</span>
+        </a>
+      </div>
+      {{>_docs-intro}}
+      {{/unless}}
+      {{#if tabs}}
+{{>_docs-tabs}}
+      {{else}}
+      <div class="nsw-docs__content">
+        <div class="nsw-docs__container">
 {{{contents}}}
         </div>
       </div>
+      {{/if}}
+      <footer class="nsw-footer nsw-docs-footer">
+        <div class="nsw-footer__lower">
+          <div class="nsw-container">
+            <p>We pay respect to the Traditional Custodians and First Peoples of NSW, and acknowledge their continued connection to their country and culture.</p>
+          </div>
+        </div>
+      </footer>
     </div>
   </div>
 {{/if}}
