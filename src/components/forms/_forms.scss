@@ -1,3 +1,6 @@
+$nsw-svg-light: #ffffff;
+$nsw-svg-dark: #333333;
+
 .nsw-form {
   @include nsw-spacing(margin-top, xxl);
   font-family: var(--nsw-font-family);
@@ -33,22 +36,36 @@
 
     &--error,
     &--valid {
-      @include nsw-spacing(padding, xs md xs xl);
+      @include nsw-spacing(padding, xs);
       @include nsw-spacing(margin-top, xs);
       font-weight: var(--nsw-font-bold);
       background-repeat: no-repeat;
       background-position: left rem(8px) top rem(8px);
       background-size: 1rem auto;
+      display: flex;
+      align-items: center;
+
+      .nsw-material-icons {
+        font-size: rem(20px);
+        margin-right: rem(4px);
+        color: var(--nsw-text-dark);
+      }
     }
 
     &--error {
-      @include background-svg(error, var(--nsw-status-error-red));
       background-color: var(--nsw-status-error-red-bg);
+
+      .nsw-material-icons {
+        color: var(--nsw-status-error-red);
+      }
     }
 
     &--valid {
-      @include background-svg(tick, var(--nsw-status-info-blue));
-      background-color: var(--nsw-status-info-blue-bg);
+      background-color: var(--nsw-status-success-green-bg);
+
+      .nsw-material-icons {
+        color: var(--nsw-status-success-green);
+      }
     }
   }
 
@@ -117,14 +134,14 @@
   }
 
   &__select {
-    @include background-svg(chevron-down, var(--nsw-primary-dark));
+    @include background-svg(chevron-down, $nsw-svg-dark);
     @include nsw-spacing(padding-right, xxl);
     background-repeat: no-repeat;
     background-position: right rem(16px) center;
     background-size: rem(16px) auto;
 
     &:disabled {
-      @include background-svg(chevron-down, var(--nsw-shade-light-20));
+      @include background-svg(chevron-down, $nsw-svg-dark);
     }
 
     option {
@@ -292,7 +309,7 @@
     }
 
     &:checked + .nsw-form__checkbox-label::after {
-      @include background-svg(tick, var(--nsw-text-light));
+      @include background-svg(tick, $nsw-svg-light);
       background-color: var(--nsw-primary-dark);
     }
 
