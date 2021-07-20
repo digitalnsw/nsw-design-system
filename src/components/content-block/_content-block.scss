@@ -36,16 +36,18 @@
     list-style-type: none;
 
     li {
-      padding: rem(8px) 0 rem(8px) rem(18px);
+      padding: rem(8px) 0 rem(8px) rem(14px);
       position: relative;
 
       &::before {
-        content: '•';
+        content: '';
         position: absolute;
-        top: 0;
+        width: rem(4px);
+        height: rem(4px);
+        border-radius: 100%;
+        background-color: var(--nsw-text-dark);
+        top: rem(18px);
         left: 0;
-        font-size: rem(34px);
-        line-height: rem(34px);
       }
     }
 

@@ -42,13 +42,13 @@
     }
 
     &--error {
-      @include background-svg(error, var(--nsw-notification-error-red));
-      background-color: var(--nsw-notification-error-red-bg);
+      @include background-svg(error, var(--nsw-status-error-red));
+      background-color: var(--nsw-status-error-red-bg);
     }
 
     &--valid {
-      @include background-svg(tick, var(--nsw-notification-info-blue));
-      background-color: var(--nsw-notification-info-blue-bg);
+      @include background-svg(tick, var(--nsw-status-info-blue));
+      background-color: var(--nsw-status-info-blue-bg);
     }
   }
 
@@ -71,7 +71,7 @@
   &__required {
     &::after {
       content: ' *';
-      color: var(--nsw-notification-error-red);
+      color: var(--nsw-status-error-red);
     }
   }
 
@@ -107,11 +107,11 @@
 
     &[aria-invalid='true'],
     &.has-error {
-      border-color: var(--nsw-notification-error-red);
+      border-color: var(--nsw-status-error-red);
       border-width: 2px;
 
       &:hover {
-        background-color: var(--nsw-notification-error-red-bg);
+        background-color: var(--nsw-status-error-red-bg);
       }
     }
   }
@@ -329,12 +329,12 @@
     &[aria-invalid='true'] + .nsw-form__checkbox-label,
     &.has-error + .nsw-form__checkbox-label {
       &:hover::before {
-        background-color: var(--nsw-notification-error-red-bg);
+        background-color: var(--nsw-status-error-red-bg);
       }
 
       &::before {
         border-width: 2px;
-        border-color: var(--nsw-notification-error-red);
+        border-color: var(--nsw-status-error-red);
       }
     }
   }
