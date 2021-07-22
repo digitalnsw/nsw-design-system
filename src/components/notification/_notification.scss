@@ -1,5 +1,5 @@
 //Variations
-$notification: (
+$nsw-notifications: (
   info: (
     border: var(--nsw-status-info-blue),
     background: var(--nsw-status-info-blue-bg),
@@ -75,7 +75,7 @@ $notification: (
     margin: 0;
   }
 
-  @each $color, $variant in $notification {
+  @each $color, $variant in $nsw-notifications {
     &--#{"" + $color} {
       background-color: map-get($variant, background);
       border-color: map-get($variant, border);

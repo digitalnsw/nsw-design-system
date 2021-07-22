@@ -151,11 +151,6 @@ function metalsmithBuild(callback) {
       refer: false,
       sortBy: sortByAlpha,
     },
-    componentsguidance: {
-      pattern: config.metalSmith.collection.componentsguidance.pattern,
-      refer: false,
-      sortBy: sortByAlpha,
-    },
     stylesnav: {
       pattern: config.metalSmith.collection.stylesnav.pattern,
       refer: false,
@@ -166,6 +161,11 @@ function metalsmithBuild(callback) {
       refer: false,
       sortBy: 'order',
     },
+    guidancetab: {
+      pattern: config.metalSmith.collection.guidancetab.pattern,
+      refer: false,
+      sortBy: sortByAlpha,
+    }
   }))
   metalsmith.use(inplace(config.metalSmith.inplace))
   metalsmith.use(layouts(config.metalSmith.layouts))

@@ -1,0 +1,135 @@
+//Variations
+$nsw-sections: (
+  primary-dark: (
+    background: var(--nsw-primary-dark),
+    color: var(--nsw-text-light)
+  ),
+  shade-dark: (
+    background: var(--nsw-shade-dark),
+    color: var(--nsw-text-light)
+  ),
+  shade-dark-5: (
+    background: var(--nsw-shade-dark-5),
+    color: var(--nsw-text-light)
+  ),
+  shade-dark-10: (
+    background: var(--nsw-shade-dark-10),
+    color: var(--nsw-text-light)
+  ),
+  shade-dark-20: (
+    background: var(--nsw-shade-dark-20),
+    color: var(--nsw-text-light),
+  ),
+  primary-light: (
+    background: var(--nsw-primary-light),
+    color: var(--nsw-text-dark)
+  ),
+  shade-light: (
+    background: var(--nsw-shade-light),
+    color: var(--nsw-text-dark)
+  ),
+  shade-light-5: (
+    background: var(--nsw-shade-light-5),
+    color: var(--nsw-text-dark)
+  ),
+  shade-light-10: (
+    background: var(--nsw-shade-light-10),
+    color: var(--nsw-text-dark)
+  ),
+  shade-light-20: (
+    background: var(--nsw-shade-light-20),
+    color: var(--nsw-text-dark)
+  )
+);
+
+.nsw-section {
+  padding: rem($grid-gutters*2) 0;
+
+  @include breakpoint('md') {
+    padding: rem($grid-gutters*4) 0;
+  }
+
+  &--half-padding {
+    padding: 0;
+
+    @include breakpoint('md') {
+      padding: rem($grid-gutters*2) 0;
+    }    
+  }
+
+  &--no-padding {
+    padding: 0;
+
+    @include breakpoint('md') {
+      padding: 0;
+    }    
+  }
+
+  &--image {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 0;
+
+    @include breakpoint('md') {
+      padding: rem($grid-gutters*4) 0;
+    }
+  }
+
+  &--box {
+    border-radius: var(--nsw-border-radius);
+    border: 1px solid var(--nsw-shade-light-10);
+    padding: rem(24px);
+
+    @include breakpoint('md') {
+      padding: rem(24px);
+    }
+  }
+
+  @each $name, $variant in $nsw-sections {
+    &--#{$name} {
+      background-color: map-get($variant, background);
+      color: map-get($variant, color);
+    }
+  }
+}
+
+/* Legacy start */
+
+.nsw-section--white,
+.nsw-section--light-10,
+.nsw-section--light-20,
+.nsw-section--light-40 {
+  padding: rem($grid-gutters*2) 0;
+
+  @include breakpoint('md') {
+    padding: rem($grid-gutters*4) 0;
+  }
+}
+
+.nsw-section--short {
+  padding: 0;
+
+  @include breakpoint('md') {
+    padding: rem($grid-gutters*2) 0;
+  }
+}
+
+.nsw-section--white {
+  background-color: var(--nsw-shade-light);
+}
+
+.nsw-section--light-10 {
+  background-color: var(--nsw-shade-light-5);
+}
+
+.nsw-section--light-20 {
+  background-color: var(--nsw-shade-light-10);
+}
+
+.nsw-section--light-40 {
+  background-color: var(--nsw-shade-light-20);
+}
+
+/* Legacy end */
+
