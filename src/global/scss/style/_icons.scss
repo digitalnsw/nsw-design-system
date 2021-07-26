@@ -1,11 +1,11 @@
-$icon-colors: (
+$nsw-icon-colors: (
   error: var(--nsw-status-error-red),
   success: var(--nsw-status-success-green),
   info: var(--nsw-status-info-blue),
   warning: var(--nsw-status-warning-orange)
 );
 
-$icon-angles: (90, 180, 270);
+$nsw-icon-angles: (90, 180, 270);
 
 .nsw-icon {
   display: inline-block;
@@ -13,13 +13,13 @@ $icon-angles: (90, 180, 270);
   height: 2em;
   fill: var(--nsw-primary-dark);
 
-  @each $color, $variant in $icon-colors {
+  @each $color, $variant in $nsw-icon-colors {
     &--#{"" + $color} {
-      fill: map-get($icon-colors, $color);
+      fill: map-get($nsw-icon-colors, $color);
     }
   }
 
-  @each $angle, $variant in $icon-angles {
+  @each $angle, $variant in $nsw-icon-angles {
     &--rotate-#{"" + $angle} {
       transform: rotate(#{$angle}deg);
     }
@@ -30,13 +30,13 @@ $icon-angles: (90, 180, 270);
   color: var(--nsw-primary-dark);
   font-size: rem(30px);
 
-  @each $color, $variant in $icon-colors {
+  @each $color, $variant in $nsw-icon-colors {
     &--#{"" + $color} {
-      color: map-get($icon-colors, $color);
+      color: map-get($nsw-icon-colors, $color);
     }
   }
 
-  @each $angle, $variant in $icon-angles {
+  @each $angle, $variant in $nsw-icon-angles {
     &--rotate-#{"" + $angle} {
       transform: rotate(#{$angle}deg);
     }
