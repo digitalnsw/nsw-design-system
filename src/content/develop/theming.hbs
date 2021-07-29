@@ -1,0 +1,155 @@
+---
+title: Theming
+home: true
+width: narrow
+order: 3
+---
+<div class="nsw-docs-example nsw-docs-example--narrow">
+  <div class="nsw-section">
+    <h2>Theming the NSW design System</h2>
+    <p>NSW Design System supports multiple levels of customisation depending on
+      your branding requirements.</p>
+    <h3>Variables</h3>
+    <p>CSS variables allow easy and on the fly customisation whether you have a
+      build setup or a vanilla css implementation. These variables allow
+      customising the following:</p>
+    <ul>
+      <li>Colour Variables</li>
+      <li>Font family</li>
+      <li>Font size and line height</li>
+      <li>Border radius</li>
+    </ul>
+    <p>To theme the NSW Design System, make sure to <a
+            href="/content/develop/getting-started.html">install</a> or <a
+            href="https://github.com/digitalnsw/nsw-design-system/blob/master/HTMLstarterkit.zip">download</a>
+      the NSW
+      Design System.</p>
+    <p>Below are the exposed variables for the NSW Design System’s base theme.
+      Simply copy the variables and update the values to match your theming
+      requirements. Please refer <a href="/styles/colour/index.html">here</a>
+      for the available theme colours.</p>
+    {{#>_docs-example hidden="true" open="true" code="language-css"}}
+:root {
+/* Colours */
+--nsw-primary-dark: #002664;
+--nsw-primary-light: #ffffff;
+--nsw-primary-accent: #d7153a;
+
+--nsw-text-dark: #333333;
+--nsw-text-light: #ffffff;
+--nsw-text-active: #0085b3;
+--nsw-text-hover-bg: rgba(0,133,179,0.2);
+--nsw-text-visited: #551a8b;
+
+--nsw-shade-dark: #000000;
+--nsw-shade-dark-5: #0d0d0d;
+--nsw-shade-dark-10: #1a1a1a;
+--nsw-shade-dark-20: #333333;
+
+--nsw-shade-light: #ffffff;
+--nsw-shade-light-5: #f2f2f2;
+--nsw-shade-light-10: #e5e5e5;
+--nsw-shade-light-20: #cccccc;
+
+--nsw-status-info-blue: #2e5299;
+--nsw-status-info-blue-bg: #eaedf4;
+--nsw-status-success-green: #00a908;
+--nsw-status-success-green-bg: #e5f6e6;
+--nsw-status-warning-orange: #dc5800;
+--nsw-status-warning-orange-bg: #fbeee5;
+--nsw-status-error-red: #b81237;
+--nsw-status-error-red-bg: #f7e7eb;
+
+--nsw-primary-dark-lighten: #003a99;
+--nsw-notification-error-red-lighten: #e81745;
+--nsw-shade-dark-rgb: 0, 0, 0;
+
+/* Font */
+--nsw-font-family: 'Public Sans', sans-serif;
+--nsw-font-size: 16px;
+--nsw-line-height: 1.5;
+--nsw-font-normal: 400;
+--nsw-font-bold: 700;
+
+--nsw-font-size-xxs-mobile: 12px;
+--nsw-font-size-xxs-desktop: 12px;
+--nsw-line-height-xxs-mobile: 1.5;
+--nsw-line-height-xxs-desktop: 1.5;
+
+--nsw-font-size-xs-mobile: 14px;
+--nsw-font-size-xs-desktop: 14px;
+--nsw-line-height-xs-mobile: 1.35;
+--nsw-line-height-xs-desktop: 1.35;
+
+--nsw-font-size-sm-mobile: 16px;
+--nsw-font-size-sm-desktop: 16px;
+--nsw-line-height-sm-mobile: 1.5;
+--nsw-line-height-sm-desktop: 1.5;
+
+--nsw-font-size-md-mobile: 18px;
+--nsw-font-size-md-desktop: 20px;
+--nsw-line-height-md-mobile: 1.33;
+--nsw-line-height-md-desktop: 1.4;
+
+--nsw-font-size-lg-mobile: 22px;
+--nsw-font-size-lg-desktop: 24px;
+--nsw-line-height-lg-mobile: 1.25;
+--nsw-line-height-lg-desktop: 1.33;
+
+--nsw-font-size-xl-mobile: 28px;
+--nsw-font-size-xl-desktop: 32px;
+--nsw-line-height-xl-mobile: 1.25;
+--nsw-line-height-xl-desktop: 1.25;
+
+--nsw-font-size-xxl-mobile: 36px;
+--nsw-font-size-xxl-desktop: 48px;
+--nsw-line-height-xxl-mobile: 1.25;
+--nsw-line-height-xxl-desktop: 1.25;
+
+/* Borders */
+--nsw-border-radius: 4px;
+    {{/_docs-example}}
+    <h3>With CSS</h3>
+    <p>Enclose the CSS variables in <code>style</code> tag in your html page
+      after the head tag.</p>
+    {{#>_docs-example hidden="true" open="true" code="language-css"}}
+<style>
+  :root {
+    /* Colours */
+    --nsw-primary-dark: #002664;
+    --nsw-primary-light: #ffffff;
+    --nsw-primary-accent: #d7153a;
+  . . .
+
+  }
+</style>
+    {{/_docs-example}}
+
+    <h3>With SCSS</h3>
+    <p>The NSW Design System has a <code>theme.scss</code> file that defines its
+      look and feel.</p>
+    <p>Create your own theme file and import it in your
+      <code>main.scss</code>
+      file</p>
+    {{#>_docs-example hidden="true" open="true" code="language-scss"}}
+// Base styles
+@import
+'node_modules/nsw-design-system/src/global/scss/settings/settings';
+@import 'node_modules/nsw-design-system/src/global/scss/tools/all';
+@import 'node_modules/nsw-design-system/src/global/scss/helpers/all';
+@import 'node_modules/nsw-design-system/src/global/scss/style/all';
+@import 'node_modules/nsw-design-system/src/styles/typography/typography';
+
+// Add your custom theme file here or alernatively drop all the variables
+here
+@import './path/to/myTheme';
+
+// Components
+@import 'node_modules/nsw-design-system/src/components/card/card';
+@import
+'node_modules/nsw-design-system/src/components/notification/notification';
+@import
+'node_modules/nsw-design-system/src/components/accordion/accordion';
+    {{/_docs-example}}
+  </div>
+</div>
