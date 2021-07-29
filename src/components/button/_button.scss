@@ -41,7 +41,19 @@
     opacity: 0.38;
     cursor: not-allowed;
   }
+
+  &--full-width {
+    display: block;
+    width: 100%;
+
+    @include breakpoint($desktop-breakpoint) {
+      display: inline-block;
+      width: auto;
+    }
+  }
 }
+
+/* Legacy start */
 
 .nsw-button--block {
   display: block;
@@ -52,12 +64,4 @@
   }
 }
 
-.nsw-button--full-width {
-  display: block;
-  width: 100%;
-
-  @include breakpoint($desktop-breakpoint) {
-    display: inline-block;
-    width: auto;
-  }
-}
+/* Legacy end */
