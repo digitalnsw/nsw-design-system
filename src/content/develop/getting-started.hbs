@@ -1,0 +1,121 @@
+---
+title: Getting Started
+home: true
+width: narrow
+order: 1
+---
+<div class="nsw-docs-example nsw-docs-example--narrow">
+  <div class="nsw-section">
+    <h2>Getting Started</h2>
+    <h3>Using the design system</h3>
+    <p>How you use the NSW Design System depends on your team's capabilities. We
+      recommend using <code>npm</code> but also provided in a CDN, and a
+      downloadable starter kit which includes all the compiled assets.</p>
+    <nav class="nsw-page-nav" aria-labelledby="in-page-nav">
+      <h2 id="in-page-nav" class="nsw-page-nav__title">On this page</h2>
+      <ul class="nsw-page-nav__list">
+        <li class="nsw-page-nav__list-item">
+          <a href="#npm" class="nsw-page-nav__link">Installing with NPM</a>
+        </li>
+        <li class="nsw-page-nav__list-item">
+          <a href="#style" class="nsw-page-nav__link">Import styles</a>
+        </li>
+        <li class="nsw-page-nav__list-item">
+          <a href="#fonticon" class="nsw-page-nav__link">Adding the font and icons</a>
+        </li>
+        <li class="nsw-page-nav__list-item">
+          <a href="#javascript" class="nsw-page-nav__link">Importing javascript into your project</a>
+        </li>
+        <li class="nsw-page-nav__list-item">
+          <a href="#cdn" class="nsw-page-nav__link">Using JSDelivr CDN</a>
+        </li>
+        <li class="nsw-page-nav__list-item">
+          <a href="#starter-kit" class="nsw-page-nav__link">Download starter kit</a>
+        </li>
+      </ul>
+    </nav>
+    <h3 id="npm">Installing with NPM</h3>
+    <ol>
+      <li>Install `Node/npm`.
+          <ul>
+            <li>More information can be found via the <a href="https://nodejs.org/en/download/">nodejs</a></li>
+          </ul>
+      </li>
+      <li>Generate a `package.json` file using the `npm init` command in the terminal. You will be prompted to enter several pieces of information, like the name of your application, version, description etc.</li>
+      <li>Add  `nsw-design-system`  to your project’s  `package.json`:
+        <ul>
+          <li><code>npm install --save nsw-design-system</code></li>
+        </ul>
+      </li>
+    </ol>
+    <h3 id="style">Import all styles</h3>
+    <p>The NSW Design System styles need to be added to the main Sass file in your project.
+      Use the below snippet to import the NSW Design System (ideally placed before any other imports or sass):</p>
+    {{#>_docs-example hidden="true" open="true" code="language-scss"}}
+@import 'node_modules/nsw-design-system/src/main';
+    {{/_docs-example}}
+    <h3>Import core and certain components</h3>
+    <p>The core library includes the design system's base theme, typography,
+    mixins and helper functions. You can import this and take advantage of
+    our variables and scss tools.</p>
+    <p>In your own main Sass file, you can import NSW Design System’s
+      core library.</p>
+    {{#>_docs-example hidden="true" open="true" code="language-scss"}}
+// Core libraries
+@import 'node_modules/nsw-design-system/src/global/scss/settings/settings';
+@import 'node_modules/nsw-design-system/src/global/scss/tools/all';
+@import 'node_modules/nsw-design-system/src/global/scss/helpers/all';
+@import 'node_modules/nsw-design-system/src/global/scss/style/all';
+@import 'node_modules/nsw-design-system/src/styles/typography/typography';
+    {{/_docs-example}}
+    <p>You can choose to import components as you need it. In the same file,
+      import
+      the sass files of each component</p>
+    {{#>_docs-example hidden="true" open="true" code="language-scss"}}
+// Components
+@import 'node_modules/nsw-design-system/src/components/card/card';
+@import 'node_modules/nsw-design-system/src/components/notification/notification';
+@import 'node_modules/nsw-design-system/src/components/accordion/accordion';
+    {{/_docs-example}}
+    <p>With this setup you can also start theming with a few set of variable changes. Get started <a href="/content/develop/theming.html">here</a>.</p>
+    <h3 id="fonticon">Adding the fonts and the icons</h3>
+    <p>In your main html document add this line of code inside the <code><head></code> tag. Make sure that it's placed before the NSW Design System styles import. Or install <a href="https://www.npmjs.com/package/material-icons" target="_blank">icon</a> and <a href="https://www.npmjs.com/package/@fontsource/montserrat" target="_blank">font</a> from npm.</p>
+    {{#>_docs-example hidden="true" open="true" code="language-html"}}
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    {{/_docs-example}}
+    <p>Another way is to import it in css:</p>
+    {{#>_docs-example hidden="true" open="true" code="language-html"}}
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+    {{/_docs-example}}
+    <h3 id="javascript">Importing javascript into your project</h3>
+<p>Some of the NSW Design System components require javascript to provide advanced functionality. To ensure the page is ready for javascript to run, include the follow scripts tags at the end of the html document.</p>
+    {{#>_docs-example hidden="true" open="true" code="language-html"}}
+  ...
+  <script src="path/to/main.js"> <\/script>
+  <script>window.NSW.initSite()<\/script>
+</body>
+</html>
+    {{/_docs-example}}
+
+  <p>Depending on your project set up, you might wish to copy the file into your project from `node_modules` or add the reference to your build workflow.</p>
+<h3 id="cdn">Using JSDelivr CDN</h3>
+  <p>You can add the files to your main html document</p>
+    {{#>_docs-example hidden="true" open="true" code="language-html"}}
+<head>
+  ...
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nsw-design-system@2/dist/css/main.css">
+</head>
+<body>
+...
+  <script src="https://cdn.jsdelivr.net/npm/nsw-design-system@2/dist/js/main.min.js"><\/script>
+  <script>window.NSW.initSite()<\/script>
+</body>
+    {{/_docs-example}}
+  <h3 id="starter-kit"}>Download starter kit</h3>
+  <p>You can download the compiled design system assets (HTML, CSS, JavaScript) in the <a href="https://github.com/digitalnsw/nsw-design-system/blob/master/HTMLstarterkit.zip">HTMLStarterkit zip file</a> from the latest release.</p>
+  <h3>Getting updates</h3>
+  <p>To be notified when there’s a new release, you can either join the <a href="https://community.digital.nsw.gov.au/">Design System community</a> or <a href="https://github.com/digitalnsw/nsw-design-system">watch the NSW Design System Github</a></p>
+  </div>
+</div>

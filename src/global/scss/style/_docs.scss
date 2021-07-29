@@ -3,6 +3,12 @@ $content-width: 768px;
 .nsw-docs {
   font-family: var(--nsw-font-family);
 
+  :not(pre) code {
+    padding: 0.2rem;
+    background: var(--nsw-shade-light-10);
+    border-radius: var(--nsw-border-radius);
+  }
+
   &--light {
     .nsw-docs__main {
       background-color: var(--nsw-shade-light);
@@ -38,7 +44,7 @@ $content-width: 768px;
 
     .nsw-docs__example {
       padding: rem(16px);
-      background-color: var(--nsw-shade-light);        
+      background-color: var(--nsw-shade-light);
     }
 
     &--narrow,
@@ -48,7 +54,7 @@ $content-width: 768px;
 
         @include breakpoint('xl') {
           max-width: rem($content-width + 104px);
-        }   
+        }
       }
     }
 
@@ -74,7 +80,7 @@ $content-width: 768px;
 
     @include breakpoint('xl') {
       max-width: rem($content-width + 104px);
-    }    
+    }
   }
 
   &__intro {
@@ -96,8 +102,8 @@ $content-width: 768px;
 
         @include breakpoint('xl') {
           padding-bottom: rem(88px);
-        } 
-      }     
+        }
+      }
     }
   }
 
@@ -120,11 +126,11 @@ $content-width: 768px;
     }
 
     &.nsw-docs__example--dark {
-      background-color: var(--nsw-shade-dark-20);  
+      background-color: var(--nsw-shade-dark-20);
     }
   }
 
-  &__demo { 
+  &__demo {
     > h3 {
       padding: rem(16px) 0;
 
@@ -188,7 +194,7 @@ $content-width: 768px;
       i {
         font-size: rem(16px);
         margin-right: rem(4px);
-      }      
+      }
     }
   }
 
@@ -223,7 +229,7 @@ $content-width: 768px;
     i {
       font-size: rem(16px);
       margin-left: rem(4px);
-    }   
+    }
   }
 
   &__list {
@@ -262,13 +268,13 @@ $content-width: 768px;
   }
 
   &__section {
-    &--dark {      
+    &--dark {
       background-color: var(--nsw-shade-dark-20);
       padding: rem(8px);
       margin: rem(8px) rem(-8px) 0 rem(-8px);
     }
 
-    &--spaced {      
+    &--spaced {
       @include component-spacing();
     }
   }
@@ -332,7 +338,7 @@ $content-width: 768px;
     max-width: rem(800px);
     max-height: rem(400px);
     overflow: auto;
-    background-color: var(--nsw-shade-light);      
+    background-color: var(--nsw-shade-light);
   }
 
   &__copy {
@@ -497,7 +503,7 @@ $content-width: 768px;
 
     @include breakpoint('xl') {
       padding: 0 rem(52px);
-    } 
+    }
   }
 
   >.nsw-tabs__content {
@@ -515,7 +521,7 @@ $content-width: 768px;
 
       @include breakpoint('xl') {
         padding: rem(48px) rem(52px);
-      }      
+      }
     }
   }
 
