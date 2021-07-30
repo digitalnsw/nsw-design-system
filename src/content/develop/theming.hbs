@@ -110,7 +110,7 @@ order: 3
 --nsw-border-radius: 4px;
     {{/_docs-example}}
     <h3>With CSS</h3>
-    <p>Enclose the CSS variables in <code>style</code> tag in your html page
+    <p>Enclose the CSS variables in style tag in your html page
       after the head tag.</p>
     {{#>_docs-example hidden="true" open="true" code="language-css"}}
 <style>
@@ -124,7 +124,8 @@ order: 3
   }
 </style>
     {{/_docs-example}}
-
+    <p>For a more local scope, use a selector to target instead of <code>:root</code>.
+      Read more on custom properties <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/--*#css">here</a>.</p>
     <h3>With SCSS</h3>
     <p>The NSW Design System has a <code>theme.scss</code> file that defines its
       look and feel.</p>
@@ -140,8 +141,7 @@ order: 3
 @import 'node_modules/nsw-design-system/src/global/scss/style/all';
 @import 'node_modules/nsw-design-system/src/styles/typography/typography';
 
-// Add your custom theme file here or alernatively drop all the variables
-here
+// Add your custom theme file here or drop all the variables here
 @import './path/to/myTheme';
 
 // Components
