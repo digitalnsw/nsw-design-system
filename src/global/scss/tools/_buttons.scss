@@ -13,7 +13,11 @@
     border-color: map-get($property-map, border-hover);
     @if map-get($property-map, brightness) != null {
       filter: brightness(map-get($property-map, brightness));
-    }    
+    }  
+
+    .nsw-material-icons {
+      color: map-get($property-map, text-color-hover);
+    }  
   }
   
   &:disabled,
@@ -22,5 +26,9 @@
     background-color: map-get($property-map, background);
     border-color: map-get($property-map, border);
     filter: brightness(1);
+  }
+
+  .nsw-material-icons {
+    color: map-get($property-map, text-color);
   }
 }

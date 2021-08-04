@@ -1,3 +1,26 @@
+@mixin link() {
+  color: var(--nsw-primary-dark);
+  text-decoration: underline;
+  text-decoration-skip-ink: auto;
+
+  &:hover {
+    @include nsw-hover;
+    outline: 2px solid var(--nsw-text-hover-bg);
+  }
+
+  &:focus {
+    @include nsw-focus($offset: false);
+  }
+
+  &:visited {
+    color: var(--nsw-text-visited);
+  }
+
+  &:active {
+    @include nsw-active;
+  }
+}
+
 @mixin text-link {
   font-weight: var(--nsw-font-bold);
   color: var(--nsw-primary-dark);
