@@ -11,9 +11,12 @@
     color: map-get($property-map, text-color-hover);
     background-color: map-get($property-map, background-hover);
     border-color: map-get($property-map, border-hover);
-    @if map-get($property-map, brightness) != null {
-      filter: brightness(map-get($property-map, brightness));
-    }  
+    @if map-get($property-map, hover) == white {
+      background-image: linear-gradient(rgba(var(--nsw-shade-light-rgb), 0.15), rgba(var(--nsw-shade-light-rgb), 0.15));
+    }
+    @if map-get($property-map, hover) == black {
+      background-image: linear-gradient(rgba(var(--nsw-shade-dark-rgb), 0.05), rgba(var(--nsw-shade-dark-rgb), 0.05));
+    } 
 
     .nsw-material-icons {
       color: map-get($property-map, text-color-hover);
@@ -25,7 +28,6 @@
     color: map-get($property-map, text-color);
     background-color: map-get($property-map, background);
     border-color: map-get($property-map, border);
-    filter: brightness(1);
   }
   
   .nsw-material-icons {
