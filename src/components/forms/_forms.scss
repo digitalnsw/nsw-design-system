@@ -53,18 +53,18 @@ $nsw-svg-dark: #333333;
     }
 
     &--error {
-      background-color: var(--nsw-status-error-red-bg);
+      background-color: var(--nsw-status-error-bg);
 
       .nsw-material-icons {
-        color: var(--nsw-status-error-red);
+        color: var(--nsw-status-error);
       }
     }
 
     &--valid {
-      background-color: var(--nsw-status-success-green-bg);
+      background-color: var(--nsw-status-success-bg);
 
       .nsw-material-icons {
-        color: var(--nsw-status-success-green);
+        color: var(--nsw-status-success);
       }
     }
   }
@@ -88,7 +88,7 @@ $nsw-svg-dark: #333333;
   &__required {
     &::after {
       content: ' *';
-      color: var(--nsw-status-error-red);
+      color: var(--nsw-status-error);
     }
   }
 
@@ -124,11 +124,11 @@ $nsw-svg-dark: #333333;
 
     &[aria-invalid='true'],
     &.has-error {
-      border-color: var(--nsw-status-error-red);
+      border-color: var(--nsw-status-error);
       border-width: 2px;
 
       &:hover {
-        background-color: var(--nsw-status-error-red-bg);
+        background-color: var(--nsw-status-error-bg);
       }
     }
   }
@@ -340,18 +340,18 @@ $nsw-svg-dark: #333333;
     }
 
     &:focus + .nsw-form__radio-label::before {
-      box-shadow: 0 0 0 3px var(--nsw-text-light), 0 0 0 6px var(--nsw-text-active);
+      box-shadow: 0 0 0 3px var(--nsw-text-light), 0 0 0 6px var(---nsw-focus);
     }
 
     &[aria-invalid='true'] + .nsw-form__checkbox-label,
     &.has-error + .nsw-form__checkbox-label {
       &:hover::before {
-        background-color: var(--nsw-status-error-red-bg);
+        background-color: var(--nsw-status-error-bg);
       }
 
       &::before {
         border-width: 2px;
-        border-color: var(--nsw-status-error-red);
+        border-color: var(--nsw-status-error);
       }
     }
   }

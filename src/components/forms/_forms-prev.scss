@@ -24,7 +24,7 @@ $nsw-svg-dark: #333333;
 .nsw-form-required {
   &::after {
     content: ' *';
-    color: var(--nsw-status-error-red);
+    color: var(--nsw-status-error);
   }
 }
 
@@ -60,11 +60,11 @@ $nsw-svg-dark: #333333;
 
   &[aria-invalid='true'],
   &.has-error {
-    border-color: var(--nsw-status-error-red);
+    border-color: var(--nsw-status-error);
     border-width: 2px;
 
     &:hover {
-      background-color: var(--nsw-status-error-red-bg);
+      background-color: var(--nsw-status-error-bg);
     }
   }
 }
@@ -157,18 +157,18 @@ $nsw-svg-dark: #333333;
   }
 
   &:focus + .nsw-form-radio__label::before {
-    box-shadow: 0 0 0 3px var(--nsw-text-light), 0 0 0 6px var(--nsw-text-active);
+    box-shadow: 0 0 0 3px var(--nsw-text-light), 0 0 0 6px var(---nsw-focus);
   }
 
   &[aria-invalid='true'] + .nsw-form-checkbox__label,
   &.has-error + .nsw-form-checkbox__label {
     &:hover::before {
-      background-color: var(--nsw-status-error-red-bg);
+      background-color: var(--nsw-status-error-bg);
     }
 
     &::before {
       border-width: 2px;
-      border-color: var(--nsw-status-error-red);
+      border-color: var(--nsw-status-error);
     }
   }
 }
@@ -242,7 +242,7 @@ $nsw-svg-dark: #333333;
     background-repeat: no-repeat;
     background-position: left rem(8px) center;
     background-size: 1rem auto;
-    background-color: var(--nsw-status-error-red-bg);
+    background-color: var(--nsw-status-error-bg);
   }
 }
 
@@ -265,7 +265,7 @@ $nsw-svg-dark: #333333;
     content: none;
     width: calc(100% + 18px);
     height: 100%;
-    border: solid 2px var(--nsw-status-error-red);
+    border: solid 2px var(--nsw-status-error);
     position: absolute;
     top: 0;
     left: -9px;
