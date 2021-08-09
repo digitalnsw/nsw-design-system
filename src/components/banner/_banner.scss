@@ -1,8 +1,18 @@
 .nsw-banner {
   background-color: var(--nsw-shade-light);
-  border-bottom: 1px solid rgba(var(--nsw-shade-dark-rgb), 0.1);
   position: relative;
   font-family: var(--nsw-font-family);
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: rgba(var(--nsw-shade-dark-rgb), 0.1);
+  }
 
   &__container {
     @include container;
