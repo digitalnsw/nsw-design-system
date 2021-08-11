@@ -113,8 +113,8 @@ $button-variations: (
   white: (
     text-color: var(--nsw-text-dark),
     text-color-hover: var(--nsw-text-dark),
-    background: var(--nsw-shade-light),
-    background-hover: var(--nsw-shade-light),
+    background: var(--nsw-white),
+    background-hover: var(--nsw-white),
     border: transparent,
     border-hover: transparent,
     hover: black
@@ -122,8 +122,8 @@ $button-variations: (
   danger: (
     text-color: var(--nsw-text-light),
     text-color-hover: var(--nsw-text-light),
-    background: var(--nsw-status-error-red),
-    background-hover: var(--nsw-status-error-red),
+    background: var(--nsw-status-error),
+    background-hover: var(--nsw-status-error),
     border: transparent,
     border-hover: transparent,
     hover: white
@@ -156,8 +156,8 @@ $button-variations: (
   highlight: (
     text-color: var(--nsw-text-light),
     text-color-hover: var(--nsw-text-light),
-    background: var(--nsw-status-error-red),
-    background-hover: var(--nsw-status-error-red),
+    background: var(--nsw-status-error),
+    background-hover: var(--nsw-status-error),
     border: transparent,
     border-hover: transparent,
     hover: white
@@ -230,34 +230,40 @@ $border-width: (
 
 // Predefined Colours and their names
 // Brand
-$nsw-primary-blue: #002664 !default;
-$nsw-primary-highlight: #d7153a !default;
-$nsw-secondary-blue: #2e5299 !default;
+$nsw-primary-blue: var(--nsw-brand-dark) !default;
+$nsw-primary-highlight: var(--nsw-brand-accent) !default;
+$nsw-secondary-blue: var(--nsw-brand-supplementary) !default;
 
 // Shades
-$black: #000000 !default;
-$dark80: #333333 !default;
-$dark70: #4c4f55 !default;
-$dark60: #6d7079 !default;
-$light40: #a0a5ae !default;
-$light20: #e4e4e6 !default;
-$light10: #f4f4f7 !default;
-$white: #ffffff !default;
+$black: var(--nsw-black) !default;
+$dark80: var(--nsw-grey-01) !default;
+$dark70: var(--nsw-grey-02) !default;
+$dark60: var(--nsw-grey-02) !default;
+
+$light40: var(--nsw-grey-03) !default;
+$light20: var(--nsw-grey-04) !default;
+$light10: var(--nsw-off-white) !default;
+$white: var(--nsw-white) !default;
 
 // Utility colors
-$danger: #d7153a !default;
-$info: $nsw-secondary-blue !default;
-$info-background: #eaedf4 !default;
-$success: #00a908 !default;
-$success-background: #e5f6e6 !default;
-$warning: #dc5800 !default;
-$warning-background: #fbeee5 !default;
-$critical: #b81237 !default;
-$critical-background: #f7e7eb !default;
-$focus-color: #0085b3 !default;
-$hover-colour: rgba($focus-color, 0.2);
-$link-color: $nsw-primary-blue;
-$link-visited: #551a8b;
+$danger: var(--nsw-status-error) !default;
+
+$info: var(--nsw-status-info) !default;
+$info-background: var(--nsw-status-info-bg) !default;
+
+$success: var(--nsw-status-success) !default;
+$success-background: var(--nsw-status-success-bg) !default;
+
+$warning: var(--nsw-status-warning) !default;
+$warning-background: var(--nsw-status-warning-bg) !default;
+
+$critical: var(--nsw-status-error) !default;
+$critical-background: var(--nsw-status-error-bg) !default;
+
+$focus-color: var(--nsw-focus) !default;
+$hover-colour: var(--nsw-text-hover);
+$link-color: var(--nsw-brand-dark);
+$link-visited: var(--nsw-text-visited);
 
 $border-colors: (
   brand: $nsw-primary-blue,

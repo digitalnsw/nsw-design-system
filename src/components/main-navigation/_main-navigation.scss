@@ -9,7 +9,7 @@
   position: absolute;
   left: 0;
   top: 0;
-  background-color: var(--nsw-shade-light);
+  background-color: var(--nsw-white);
   transition: all 0.25s ease-in-out;
   transform: translateX(-100%);
   visibility: hidden;
@@ -30,12 +30,12 @@
   @include breakpoint($desktop-breakpoint) {
     position: relative;
     transform: none;
-    background-color: var(--nsw-shade-light-5);
+    background-color: var(--nsw-off-white);
     top: auto;
     left: auto;
     transition: none;
     visibility: visible;
-    border-top: solid 1px var(--nsw-shade-light-20);
+    border-top: solid 1px var(--nsw-grey-03);
     overflow-y: visible;
     height: auto;
   }
@@ -89,7 +89,7 @@
     border: 0;
     padding: 0;
     text-align: center;
-    border-left: solid 1px var(--nsw-shade-light-10);
+    border-left: solid 1px var(--nsw-grey-04);
 
     &:hover {
       @include nsw-hover;
@@ -138,7 +138,7 @@
 .nsw-navigation__list-item,
 .nsw-subnavigation__list-item,
 .nsw-subnavigation__title {
-  border-bottom: solid 1px var(--nsw-shade-light-10);
+  border-bottom: solid 1px var(--nsw-grey-04);
   display: flex;
   flex-direction: row;
   align-items: stretch;
@@ -161,7 +161,7 @@
 
   @include breakpoint($desktop-breakpoint) {
     width: 32%;
-    border-top: solid 1px var(--nsw-shade-light-10);
+    border-top: solid 1px var(--nsw-grey-04);
 
     &:nth-child(3n+2) {
       margin-left: 2%;
@@ -169,7 +169,7 @@
     }
 
     &:nth-last-child(-n+3) {
-      border-bottom: solid 1px var(--nsw-shade-light-10);
+      border-bottom: solid 1px var(--nsw-grey-04);
     }
   }
 }
@@ -200,7 +200,7 @@
   }
 
   &.is-open {
-    background-color: var(--nsw-shade-light);
+    background-color: var(--nsw-white);
   }
 }
 
@@ -254,7 +254,7 @@
   @include z-index;
   position: absolute;
   top: 0;
-  background-color: var(--nsw-shade-light);
+  background-color: var(--nsw-white);
   width: 100%;
   transition: all 0.25s ease-in-out;
   transform: translateX(-100%);
@@ -272,8 +272,8 @@
     @include container;
     padding: rem(48) rem(40);
     top: 100%;
-    background-color: var(--nsw-shade-light);
-    box-shadow: 0 4px 9px -5px rgba(var(--nsw-shade-dark-rgb), 0.4);
+    background-color: var(--nsw-white);
+    box-shadow: 0 4px 9px -5px rgba(var(--nsw-black-rgb), 0.4);
     transition: none;
     transform: none;
     height: auto;
