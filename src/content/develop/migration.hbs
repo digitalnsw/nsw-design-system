@@ -1,0 +1,68 @@
+---
+title: Migration
+home: true
+width: narrow
+order: 3
+---
+
+<h2>Font Migration
+</h2>
+
+<p>The NSW Design System is rebranding and changing its typeface from <a href="https://fonts.google.com/specimen/Montserrat">Montserrat</a>
+  to <a href="https://fonts.google.com/specimen/Public+Sans">Public Sans</a>.</p>
+
+<p>To use Public Sans, switch your existing imports</p>
+
+<p>HTML</p>
+
+{{#>_docs-example hidden="true" open="true" code="language-html"}}
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+{{/_docs-example}}
+
+<p>CSS</p>
+
+{{#>_docs-example hidden="true" open="true" code="language-css"}}
+  url('https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,700;1,400&amp;display=swap');
+{{/_docs-example}}
+
+<p>Make sure to upgrade to 2.14.X or later</p>
+
+{{#>_docs-example hidden="true" open="true" code="language-bash"}}
+  npm install nsw-design-system@2.14.X
+{{/_docs-example}}
+
+<p>In your <code>theme.scss</code>
+  file, update the <code>--nsw-font-family</code>
+  custom property</p>
+{{#>_docs-example hidden="true" open="true" code="language-bash"}}
+  --nsw-font-family: 'Public Sans', Arial, sans-serif;
+{{/_docs-example}}
+
+<p>If you’re importing with the compiled CSS,
+  make sure you to add <code>--nsw-font-family</code>
+  custom property AFTER the import.</p>
+
+{{#>_docs-example hidden="true" open="true" code="language-scss"}}
+  @import 'node_modules/nsw-design-system/dist/css/main';
+
+  :root {
+  --nsw-font-family: 'Public Sans', Arial, sans-serif;
+  }
+{{/_docs-example}}
+
+<p>If your are using JSDelivr, upgrade to
+  version 2.14.0 and update the <code>--nsw-font-family</code>
+  custom property:</p>
+
+{{#>_docs-example hidden="true" open="true" code="language-html"}}
+  <html>
+  <head>
+    ...
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nsw-design-system@2.14.0/dist/css/main.css">
+  </head>
+  <style>
+    :root {
+      --nsw-font-family: 'Public Sans', Arial, sans-serif;
+    }
+  </style>
+{{/_docs-example}}
