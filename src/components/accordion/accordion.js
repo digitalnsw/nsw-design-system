@@ -23,9 +23,11 @@ class Accordion {
     this.accordionHeadingClass = '.nsw-accordion__title'
     this.accordion = element
     this.headings = element.querySelectorAll(this.accordionHeadingClass)
+    this.toggleButtons = element.querySelectorAll('.nsw-accordion__toggle button')
     this.buttons = []
     this.content = []
     this.showHideEvent = (e) => this.showHide(e)
+    this.toggleAllEvent = (e) => this.toggleAll(e)
   }
 
   init() {
@@ -56,22 +58,46 @@ class Accordion {
     this.buttons.forEach((element) => {
       element.addEventListener('click', this.showHideEvent, false)
     })
+    this.toggleButtons.forEach((element) => {
+      element.addEventListener('click', this.toggleAllEvent, false)
+    })
   }
 
-  showHide(e) {
-    const { currentTarget } = e
-    const currentIndex = this.buttons.indexOf(currentTarget)
+  toggle(element) {
+    const currentIndex = this.buttons.indexOf(element)
     const targetContent = this.content[currentIndex]
     const isHidden = targetContent.hidden
 
     if (isHidden) {
-      currentTarget.classList.add('is-open')
-      currentTarget.setAttribute('aria-expanded', 'true')
+      element.classList.add('is-open')
+      element.setAttribute('aria-expanded', 'true')
       targetContent.hidden = false
     } else {
-      currentTarget.classList.remove('is-open')
-      currentTarget.setAttribute('aria-expanded', 'false')
+      element.classList.remove('is-open')
+      element.setAttribute('aria-expanded', 'false')
       targetContent.hidden = true
+    }
+  }
+
+  showHide(e) {
+    const { currentTarget } = e
+    this.toggle(currentTarget)
+  }
+
+  toggleAll() {
+    this.buttons.forEach((element) => {
+      this.toggle(element)
+    })
+    const isExpand = this.toggleButtons[0]
+    const isCollapse = this.toggleButtons[1]
+
+    const isExpandDisabled = isExpand.disabled
+    if (isExpandDisabled) {
+      isExpand.disabled = false
+      isCollapse.disabled = true
+    } else {
+      isExpand.disabled = true
+      isCollapse.disabled = false
     }
   }
 }
