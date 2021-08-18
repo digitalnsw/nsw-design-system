@@ -14,21 +14,11 @@
     text-align: left;
     position: relative;
 
-    .is-open {
+    .is-open,
+    &:hover & {
       background-color: var(--nsw-brand-dark);
       color: var(--nsw-text-light);
-
-      .nsw-material-icons {
-        color: var(--nsw-text-light);
-      }
-    }
-
-    &:hover {
-      .nsw-accordion__button {
-        background-color: var(--nsw-brand-dark);
-        color: var(--nsw-text-light);
-        transition: 0.2s;
-      }
+      transition: map-get($transitions, base);
 
       .nsw-material-icons {
         color: var(--nsw-text-light);
@@ -84,11 +74,10 @@
     position: absolute;
     top: 50%;
     right: rem(9px);
-    transition: 0.2s;
+    transition: map-get($transitions, base);
 
     .is-open & {
       transform: translateY(-50%) rotate(270deg);
-      transition: 0.2s;
     }
 
     &.nsw-icon {
