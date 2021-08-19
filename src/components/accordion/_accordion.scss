@@ -13,12 +13,12 @@
     width: 100%;
     text-align: left;
     position: relative;
+    transition: map-get($transitions, hover);
 
     .is-open,
     &:hover & {
       background-color: var(--nsw-brand-dark);
       color: var(--nsw-text-light);
-      transition: map-get($transitions, base);
 
       .nsw-material-icons {
         color: var(--nsw-text-light);
@@ -36,10 +36,11 @@
       @include font-size('sm');
       font-weight: var(--nsw-font-bold);
       border: 0;
+      padding: 0;
       background: none;
 
       &:first-child {
-        @include nsw-spacing(margin, none md none none);
+        @include nsw-spacing(margin, none lg none none);
       }
 
       &:disabled {

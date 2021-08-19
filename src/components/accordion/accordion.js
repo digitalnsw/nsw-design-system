@@ -70,10 +70,6 @@ class Accordion {
     }
   }
 
-  isAccordionItemsOpen() {
-    return this.content.every((item) => item.hidden === false)
-  }
-
   getTargetContent(element) {
     const currentIndex = this.buttons.indexOf(element)
     return this.content[currentIndex]
@@ -105,9 +101,8 @@ class Accordion {
     }
 
     if (this.expandAllBtn && this.collapseAllBtn) {
-      const isOpen = this.isAccordionItemsOpen()
-      this.expandAllBtn.disabled = isOpen
-      this.collapseAllBtn.disabled = !isOpen
+      this.expandAllBtn.disabled = this.content.every((item) => item.hidden === false)
+      this.collapseAllBtn.disabled = this.content.every((item) => item.hidden === true)
     }
   }
 
