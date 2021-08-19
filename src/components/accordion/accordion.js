@@ -66,6 +66,10 @@ class Accordion {
     this.collapseAllBtn.addEventListener('click', this.closeAllEvent, false)
   }
 
+  checkAccordionItemsOpen() {
+    return this.content.every((item) => item.hidden === false)
+  }
+
   getTargetContent(element) {
     const currentIndex = this.buttons.indexOf(element)
     return this.content[currentIndex]
@@ -95,6 +99,8 @@ class Accordion {
     } else {
       this.setAccordionState(currentTarget, 'close')
     }
+    this.expandAllBtn.disabled = this.checkAccordionItemsOpen()
+    this.collapseAllBtn.disabled = !this.checkAccordionItemsOpen()
   }
 
   openAll() {
