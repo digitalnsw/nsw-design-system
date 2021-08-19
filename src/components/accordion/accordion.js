@@ -40,7 +40,9 @@ class Accordion {
 
   setUpDom() {
     this.accordion.classList.add('is-ready')
-    this.collapseAllBtn.disabled = true
+    if (this.collapseAllBtn) {
+      this.collapseAllBtn.disabled = true
+    }
     this.headings.forEach((heading) => {
       const headingElem = heading
       const contentElem = heading.nextElementSibling
@@ -62,8 +64,10 @@ class Accordion {
     this.buttons.forEach((element) => {
       element.addEventListener('click', this.toggleEvent, false)
     })
-    this.expandAllBtn.addEventListener('click', this.expandAllEvent, false)
-    this.collapseAllBtn.addEventListener('click', this.collapseAllEvent, false)
+    if (this.expandAllBtn && this.collapseAllBtn) {
+      this.expandAllBtn.addEventListener('click', this.expandAllEvent, false)
+      this.collapseAllBtn.addEventListener('click', this.collapseAllEvent, false)
+    }
   }
 
   isAccordionItemsOpen() {
@@ -100,9 +104,11 @@ class Accordion {
       this.setAccordionState(currentTarget, 'close')
     }
 
-    const isOpen = this.isAccordionItemsOpen()
-    this.expandAllBtn.disabled = isOpen
-    this.collapseAllBtn.disabled = !isOpen
+    if (this.expandAllBtn && this.collapseAllBtn) {
+      const isOpen = this.isAccordionItemsOpen()
+      this.expandAllBtn.disabled = isOpen
+      this.collapseAllBtn.disabled = !isOpen
+    }
   }
 
   expandAll() {
