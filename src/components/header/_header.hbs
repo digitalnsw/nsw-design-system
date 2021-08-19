@@ -46,7 +46,7 @@
       </div>
       <div class="nsw-header__search">
         <button type="button" class="nsw-header-btn nsw-header-btn--search js-open-search" aria-expanded="false"
-          aria-controls="header-search">
+          aria-controls="header-search{{#if header-id}}-{{header-id}}{{/if}}">
           <i class="material-icons nsw-material-icons nsw-header-btn__icon" focusable="false" aria-hidden="true">search</i>
           <span class="nsw-header-btn__sub"><span class="sr-only">Show</span> Search</span>
         </button>
@@ -56,10 +56,10 @@
 
     {{#unless simple}}
     <div class="nsw-search">
-      <div id="header-search" class="nsw-search__area js-search-area" hidden>
+      <div id="header-search{{#if header-id}}-{{header-id}}{{/if}}" class="nsw-search__area js-search-area" hidden>
         <form role="search">
-          <label for="nsw-search__input" class="sr-only">Search site for:</label>
-          <input autocomplete="off" class="nsw-search__input js-search-input" id="nsw-search__input"
+          <label for="nsw-search__input{{#if header-id}}-{{header-id}}{{/if}}" class="sr-only">Search site for:</label>
+          <input autocomplete="off" class="nsw-search__input js-search-input" id="nsw-search__input{{#if header-id}}-{{header-id}}{{/if}}"
             name="input-autocomplete" type="text">
           <button class="nsw-search__submit" type="submit" aria-label="search">
             <i class="material-icons nsw-material-icons nsw-search__search-icon" focusable="false" aria-hidden="true">search</i>
