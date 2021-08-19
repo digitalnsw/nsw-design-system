@@ -5,7 +5,18 @@ directory: header
 intro: The NSW Government network header displays across the top of all NSW Government sites. It helps users see which service they are using. 
 figma: https://www.figma.com/file/PVrERKnckLTlJSPk12gbtS/NSW-Digital-Design-System?node-id=0%3A1824
 react: https://digitalnsw.github.io/nsw-design-system-react/?path=/docs/templates-header--without-search
-model: json/header-premier-and-cabinet.json
+model: json/header-seniors-card.json
 ---
 
+<h3>Default</h3>
+{{#>_docs-example}}{{>_header content="#" nav="#"}}{{/_docs-example}}
+<h3>Name only - light masthead</h3>
+{{#>_docs-example}}{{>_header content="#" nav="#" masthead-theme="light" header-title="Department of Customer Service"}}{{/_docs-example}}
+<h3>Name and description</h3>
+{{#>_docs-example}}{{>_header content="#" nav="#" header-title="digital.nsw" header-description="Department of Customer Service"}}{{/_docs-example}}
+<h3>Long name and description - light masthead</h3>
+{{#>_docs-example}}{{>_header content="#" nav="#" masthead-theme="light" header-title="Northern Sydney Local Health District " header-description="NSW Health"}}{{/_docs-example}}
+<h3>With logo</h3>
 {{#>_docs-example}}{{>_header model content="#" nav="#"}}{{/_docs-example}}
+<h3>With inline logo - light masthead</h3>
+{{#>_docs-example}}{{>_header model content="#" nav="#" header-inline="true" masthead-theme="light"}}{{/_docs-example}}
