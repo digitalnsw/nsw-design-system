@@ -29,8 +29,8 @@ class Accordion {
     this.buttons = []
     this.content = []
     this.toggleEvent = (e) => this.toggle(e)
-    this.openAllEvent = (e) => this.openAll(e)
-    this.closeAllEvent = (e) => this.closeAll(e)
+    this.expandAllEvent = (e) => this.expandAll(e)
+    this.collapseAllEvent = (e) => this.collapseAll(e)
   }
 
   init() {
@@ -62,11 +62,11 @@ class Accordion {
     this.buttons.forEach((element) => {
       element.addEventListener('click', this.toggleEvent, false)
     })
-    this.expandAllBtn.addEventListener('click', this.openAllEvent, false)
-    this.collapseAllBtn.addEventListener('click', this.closeAllEvent, false)
+    this.expandAllBtn.addEventListener('click', this.expandAllEvent, false)
+    this.collapseAllBtn.addEventListener('click', this.collapseAllEvent, false)
   }
 
-  checkAccordionItemsOpen() {
+  isAccordionItemsOpen() {
     return this.content.every((item) => item.hidden === false)
   }
 
@@ -99,11 +99,13 @@ class Accordion {
     } else {
       this.setAccordionState(currentTarget, 'close')
     }
-    this.expandAllBtn.disabled = this.checkAccordionItemsOpen()
-    this.collapseAllBtn.disabled = !this.checkAccordionItemsOpen()
+
+    const isOpen = this.isAccordionItemsOpen()
+    this.expandAllBtn.disabled = isOpen
+    this.collapseAllBtn.disabled = !isOpen
   }
 
-  openAll() {
+  expandAll() {
     this.buttons.forEach((element) => {
       this.setAccordionState(element, 'open')
     })
@@ -111,7 +113,7 @@ class Accordion {
     this.collapseAllBtn.disabled = false
   }
 
-  closeAll() {
+  collapseAll() {
     this.buttons.forEach((element) => {
       this.setAccordionState(element, 'close')
     })
