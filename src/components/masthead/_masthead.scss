@@ -1,3 +1,8 @@
+$masthead-brand-dark: #002664;
+$masthead-off-white: #f2f2f2;
+$masthead-text-dark: #22272b;
+$masthead-text-light: #ffffff;
+
 .nsw-skipto {
   font-family: var(--nsw-font-family);
   position: absolute;
@@ -8,8 +13,8 @@
   &__link {
     @include nsw-spacing(padding, xs md);
     @include z-index('middle');
-    background-color: var(--nsw-brand-dark);
-    color: var(--nsw-text-light);
+    background-color: $masthead-brand-dark;
+    color: $masthead-text-light;
     transform: translateY(-101%);
     display: block;
     text-align: center;
@@ -24,7 +29,7 @@
       outline: none;
 
       span {
-        @include nsw-focus($color: var(--nsw-text-light));
+        @include nsw-focus($color: $masthead-text-light);
       }
     }
 
@@ -35,8 +40,8 @@
 
   &--light {
     .nsw-skipto__link {
-      background-color: var(--nsw-off-white);
-      color: var(--nsw-text-dark);
+      background-color: $masthead-off-white;
+      color: $masthead-text-dark;
 
       &:focus span {
         @include nsw-focus();
@@ -49,8 +54,8 @@
 .nsw-masthead {
   @include nsw-spacing(padding, xs none);
   font-family: var(--nsw-font-family);
-  background-color: var(--nsw-brand-dark);
-  color: var(--nsw-text-light);
+  background-color: $masthead-brand-dark;
+  color: $masthead-text-light;
 
   p {
     @include font-size('xxs');
@@ -58,7 +63,7 @@
   }
 
   &--light {
-    background-color: var(--nsw-off-white);
-    color: var(--nsw-text-dark);
+    background-color: $masthead-off-white;
+    color: $masthead-text-dark;
   }
 }
