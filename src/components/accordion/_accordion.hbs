@@ -1,10 +1,12 @@
 <div class="nsw-accordion js-accordion">
+  {{#if toggle}}
   <div class="nsw-accordion__toggle">
     <button type="button">Expand all</button>
     <button type="button">Collapse all</button>
   </div>
+  {{/if}}
   {{#each accordionitems}}
-  <h2 class="nsw-accordion__title">{{title}}</h2>
+  <div class="nsw-accordion__title">{{title}}</div>
   <div class="nsw-accordion__content">
     <div class="nsw-wysiwyg-content">
       {{{content}}}
