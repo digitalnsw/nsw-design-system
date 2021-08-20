@@ -3,11 +3,6 @@
     @error 'NSW-DS nsw-focus mixin allows a boolean for $offset: You have used a type of "#{type-of($offset)}" and a value of "#{$offset}"';
   }
 
-  @if $color != var(--nsw-focus) and $color != var(--nsw-text-light) {
-    @warn 'NSW-DS nsw-focus mixin it is suggested to use the following values for $color: "#{var(--nsw-text-light)}", "#{var(--nsw-focus)}".'
-      + 'These have been tested against the DS background colors and comply to WCAG color contrast guidlines';
-  }
-
   outline: solid 3px $color;
   outline-offset: 0;
 

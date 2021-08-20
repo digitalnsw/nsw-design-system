@@ -4,16 +4,50 @@
 
   &__title,
   &__button {
-    @include font-size('sm');
+    @include font-size('md');
     @include nsw-spacing(margin, xs none none);
     @include nsw-spacing(padding, md xxl md md);
     font-weight: var(--nsw-font-bold);
-    border-left: solid 4px var(--nsw-brand-dark);
     background-color: var(--nsw-off-white);
     display: block;
     width: 100%;
     text-align: left;
     position: relative;
+    transition: map-get($transitions, hover);
+
+    .is-open,
+    &:hover & {
+      background-color: var(--nsw-brand-dark);
+      color: var(--nsw-text-light);
+
+      .nsw-material-icons {
+        color: var(--nsw-text-light);
+      }
+    }
+  }
+
+  &__toggle {
+    @include nsw-spacing(margin, none none md none);
+    display: flex;
+    justify-content: flex-end;
+
+    button {
+      @include link;
+      @include font-size('sm');
+      font-weight: var(--nsw-font-bold);
+      border: 0;
+      padding: 0;
+      background: none;
+
+      &:first-child {
+        @include nsw-spacing(margin, none lg none none);
+      }
+
+      &:disabled {
+        opacity: 0.38;
+        cursor: not-allowed;
+      }
+    }
   }
 
   &__title {
@@ -27,12 +61,7 @@
   &__button {
     font-family: var(--nsw-font-family);
     border: 0;
-    border-left: solid 4px var(--nsw-brand-dark);
     color: var(--nsw-text-dark);
-
-    &:hover {
-      @include nsw-hover;
-    }
 
     &:focus {
       @include nsw-focus;
@@ -46,6 +75,7 @@
     position: absolute;
     top: 50%;
     right: rem(9px);
+    transition: map-get($transitions, base);
 
     .is-open & {
       transform: translateY(-50%) rotate(270deg);
@@ -54,12 +84,11 @@
     &.nsw-icon {
       height: rem(16px);
       width: rem(16px);
-      right: rem(16px);     
+      right: rem(16px);
     }
   }
 
   &__content {
     @include nsw-spacing(padding, md);
-    border-left: solid 4px var(--nsw-brand-dark);
   }
 }

@@ -21,7 +21,8 @@
       border-color: transparent;
 
       &::after {
-        display: none;
+        transition: map-get($transitions, hover);
+        background-color: transparent;
       }
     }
 
@@ -60,10 +61,12 @@
     flex-direction: column;
     order: 2;
     height: 100%;
+    transition: map-get($transitions, hover);
 
     &::before {
       content: '';
       height: 6px;
+      transition: map-get($transitions, hover);
     }
 
     &::after {
@@ -74,6 +77,7 @@
       right: 0;
       height: 6px;
       background-color: var(--nsw-brand-accent);
+      transition: map-get($transitions, hover);
     }
 
     @include breakpoint('lg') {
@@ -116,6 +120,7 @@
     position: absolute;
     bottom: rem(13px);
     left: rem(13px);
+    transition: map-get($transitions, hover);
 
     &.nsw-icon {
       @include nsw-spacing(bottom, md);
@@ -139,6 +144,7 @@
     @include pseudo-clickable-block;
     text-decoration: none;
     color: var(--nsw-text-dark);
+    transition: map-get($transitions, hover);
 
     &:focus {
       outline: none;
@@ -160,6 +166,7 @@
       right: 0;
       height: 6px;
       background-color: var(--nsw-brand-accent);
+      transition: map-get($transitions, hover);
     }
   }
 
@@ -172,7 +179,7 @@
   &--headline {
     .nsw-card__title {
       @include font-size('lg');
-    }    
+    }
   }
 
   &--light {
