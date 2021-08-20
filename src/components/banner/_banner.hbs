@@ -19,7 +19,8 @@
       </div>
       {{/if}}
       <div class="nsw-banner__box"{{#unless img}} role="presentation"{{/unless}}>{{#if img}}
-        <img class="nsw-banner__image" src="{{img}}" alt="" />{{else}}
+        <img class="nsw-banner__image" src="{{img}}" alt="" />{{else if graphic}}
+        <div class="nsw-banner__graphic{{#if transparent}} nsw-banner__graphic--transparent{{/if}}">{{{graphic}}}</div>{{else}}
         <div class="nsw-banner__bg"></div>{{/if}}
       </div>
     </div>
