@@ -168,6 +168,56 @@
   }
 }
 
+.nsw-h1,
+.nsw-h2,
+.nsw-h3,
+.nsw-h4,
+.nsw-h5,
+.nsw-h6 {
+  font-weight: var(--nsw-font-bold);
+  margin: 0;
+}
+
+.nsw-h1 {
+  @include font-size('xxl');
+}
+
+.nsw-h2 {
+  @include font-size('xl');
+}
+
+.nsw-h3 {
+  @include font-size('lg');
+}
+
+.nsw-h4 {
+  @include font-size('md');
+}
+
+.nsw-h5,
+.nsw-h6 {
+  @include font-size('sm');
+}
+
+* + .nsw-h1 {
+  @include nsw-spacing(margin-top, xxxl);
+}
+
+* + .nsw-h2 {
+  @include nsw-spacing(margin-top, xxl);
+}
+
+* + .nsw-h3 {
+  @include nsw-spacing(margin-top, xl);
+}
+
+* + .nsw-h4,
+* + .nsw-h5,
+* + .nsw-h6 {
+  @include nsw-spacing(margin-top, lg);
+}
+
+
 .nsw-link {
   @include link;
 
