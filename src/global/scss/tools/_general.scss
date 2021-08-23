@@ -127,37 +127,3 @@
     z-index: map-get($z-index, $index);
   }
 }
-
-/* Legacy start */
-
-@mixin border-radius($type: default) {
-  @if $type != 'none' and $type != 'default' and $type != 'round' and $type != 'tag' {
-    @error 'NSW-DS get-border-radius mixin allows the following values for $type: none, default, round, tag. You have used "#{$type}"';
-  }
-
-  @if $type == 'round' {
-    border-radius: map-get($border-radii, $type);
-  } @else {
-    border-radius: rem(map-get($border-radii, $type));
-  }
-}
-
-@mixin border($direction: null, $width: sm, $color: $nsw-primary-blue) {
-  @if map-has-key($border-width, $width) == false {
-    @error 'NSW-DS border mixin allows the following values for $width: #{map-keys($border-width)}. You have used "#{$width}"';
-  }
-  @if $direction != null and $direction != 'left' and $direction != 'top' and $direction != 'bottom' and $direction != 'right' {
-    @error 'NSW-DS border mixin allows the following values for $direction: left, top, bottom, right. You have used "#{$direction}"';
-  }
-
-  $properties: if($width == 'none', map-get($border-width, $width), solid map-get($border-width, $width) $color);
-
-  @if $direction == null {
-    border: $properties;
-  }
-  @else {
-    border-#{$direction}: $properties;
-  }
-}
-
-/* Legacy end */
