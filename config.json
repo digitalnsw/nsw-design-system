@@ -11,13 +11,18 @@
     "watch": "./src/**/*.scss",
     "build": "./dist/css/"
   },
+  "scssDocs": {
+    "src": "./src/docs/docs.scss",
+    "watch": ["./src/global/scss/docs/*.scss"],
+    "build": "./dist/docs/css/"
+  },
   "js": {
     "src": "./src/main.js",
     "watch": ["./src/main.js", "./src/components/**/*.js", "./src/global/scripts/**/*.js", "./src/styles/**/*.js"],
     "build": "./dist/js/"
   },
   "jsDocs": {
-    "src": "./src/docs.js",
+    "src": "./src/docs/docs.js",
     "watch": ["./src/docs.js"],
     "build": "./dist/docs/js/"
   },
@@ -98,11 +103,11 @@
         "pattern": "templates/**/index.hbs"
       },
       "guidancetab": {
-        "pattern": "**/:item/guidance.hbs"
+        "pattern": "**/:item/_guidance.hbs"
       },
       "contentnav": {
-        "develop": "content/develop/*.hbs",
-        "design": "content/design/*.hbs"
+        "develop": "docs/content/develop/*.hbs",
+        "design": "docs/content/design/*.hbs"
       }
     },
     "inplace": {
