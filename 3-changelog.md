@@ -10,3 +10,6 @@ Manual list of 3.0 breaking changes
 - Removed CSS for old Header structure
 - Removed unused SCSS variables and mixins
 - Removed old Section classes
+
+
+- Tabs: updated component name and removed li/a classes

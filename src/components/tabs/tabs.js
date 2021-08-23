@@ -3,8 +3,8 @@ import { uniqueId } from '../../global/scripts/helpers/utilities'
 class Tabs {
   constructor(element, showTab) {
     this.tablistClass = '.nsw-tabs__list'
-    this.tablistItemClass = '.nsw-tabs__list-item'
-    this.tablistLinkClass = '.nsw-tabs__link'
+    this.tablistItemClass = 'li'
+    this.tablistLinkClass = 'a'
 
     this.tab = element
     this.showTab = showTab
@@ -64,11 +64,11 @@ class Tabs {
 
   setInitalTab() {
     const {
-      tabItems, tabLinks, tabPanel, showTab,
+      tabLinks, tabPanel, showTab,
     } = this
     const index = (showTab === undefined) ? 0 : showTab
     const selectedLink = tabLinks[index]
-    tabItems[index].classList.add('is-selected')
+    selectedLink.classList.add('is-selected')
     selectedLink.removeAttribute('tabindex')
     selectedLink.setAttribute('aria-selected', true)
     tabPanel[index].hidden = false
@@ -86,12 +86,12 @@ class Tabs {
       clickedTab.focus()
       clickedTab.removeAttribute('tabindex')
       clickedTab.setAttribute('aria-selected', true)
+      clickedTab.classList.add('is-selected')
       this.selectedTab.setAttribute('aria-selected', false)
       this.selectedTab.setAttribute('tabindex', '-1')
+      this.selectedTab.classList.remove('is-selected')
       const clickedTabIndex = this.tabLinks.indexOf(clickedTab)
       const selectedTabIndex = this.tabLinks.indexOf(this.selectedTab)
-      this.tabItems[clickedTabIndex].classList.add('is-selected')
-      this.tabItems[selectedTabIndex].classList.remove('is-selected')
       this.tabPanel[clickedTabIndex].hidden = false
       this.tabPanel[selectedTabIndex].hidden = true
       this.selectedTab = clickedTab

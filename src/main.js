@@ -3,7 +3,7 @@ import Navigation from './components/main-navigation/main-navigation'
 import Accordion from './components/accordion/accordion'
 import Filters from './components/filters/filters'
 import ShareThis from './components/social-bar/social-bar'
-import Tabs from './components/tab-navigation/tab-navigation'
+import Tabs from './components/tabs/tabs'
 import SitewideMessage from './components/site-wide-message/site-wide-message'
 
 if (window.NodeList && !NodeList.prototype.forEach) {
