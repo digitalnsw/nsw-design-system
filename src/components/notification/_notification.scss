@@ -44,20 +44,6 @@ $nsw-notifications: (
     top: rem(-3px);
     left: rem(-3px);
     margin-right: rem(10px);
-
-    &.nsw-icon {
-      @include nsw-spacing(margin-right, md);
-      width: rem(24px);
-      height: rem(24px);
-      position: static;
-    }
-
-    @include breakpoint('md') {
-      &.nsw-icon {
-        width: rem(32px);
-        height: rem(32px);
-      }
-    }
   }
 
   &__content {
@@ -82,10 +68,6 @@ $nsw-notifications: (
 
       .nsw-notification__icon {
         color: map-get($variant, fill);
-
-        &.nsw-icon {
-          fill: map-get($variant, fill);
-        }
       }
     }
   }

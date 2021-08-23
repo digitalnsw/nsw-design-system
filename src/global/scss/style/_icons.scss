@@ -7,25 +7,6 @@ $nsw-icon-colors: (
 
 $nsw-icon-angles: (90, 180, 270);
 
-.nsw-icon {
-  display: inline-block;
-  width: 2em;
-  height: 2em;
-  fill: var(--nsw-brand-dark);
-
-  @each $color, $variant in $nsw-icon-colors {
-    &--#{"" + $color} {
-      fill: map-get($nsw-icon-colors, $color);
-    }
-  }
-
-  @each $angle, $variant in $nsw-icon-angles {
-    &--rotate-#{"" + $angle} {
-      transform: rotate(#{$angle}deg);
-    }
-  }
-}
-
 .nsw-material-icons {
   color: var(--nsw-brand-dark);
   font-size: rem(30px);

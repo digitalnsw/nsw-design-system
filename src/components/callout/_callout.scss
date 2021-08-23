@@ -14,6 +14,10 @@
   }
 
   &__icon {
+    position: relative;
+    top: -3px;
+    left: -3px;
+
     + .nsw-callout__content {
       margin-top: 10px;
     }
@@ -24,34 +28,6 @@
 
       + .nsw-callout__content {
         margin-top: 0;
-      }
-
-      &.nsw-icon {
-        width: rem(32px);
-        height: rem(32px);     
-      }
-    }
-
-    &.nsw-material-icons {
-      position: relative;
-      top: -3px;
-      left: -3px;
-    }
-
-    &.nsw-icon {
-      width: rem(24px);
-      height: rem(24px);
-
-      + .nsw-callout__content {
-        @include nsw-spacing(margin-top, md);
-      }
-
-      @include breakpoint('md') {
-        @include nsw-spacing(margin-right, md);
-
-        + .nsw-callout__content {
-          @include nsw-spacing(margin-top, none);
-        }
       }
     }
   }
