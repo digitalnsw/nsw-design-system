@@ -1,191 +1,85 @@
+$nsw-helper-bg-colours: (
+  brand-dark: var(--nsw-brand-dark),
+  brand-light: var(--nsw-brand-light),
+  brand-supplementary: var(--nsw-brand-supplementary)
+);
+
+$nsw-helper-svg-colours: (
+  brand-dark: var(--nsw-brand-dark),
+  brand-light: var(--nsw-brand-light),
+  brand-supplementary: var(--nsw-brand-supplementary),
+  brand-accent: var(--nsw-brand-accent),
+  black: var(--nsw-black),
+  white: var(--nsw-white),
+  off-white: var(--nsw-off-white),
+  grey-01: var(--nsw-grey-01),
+  grey-02: var(--nsw-grey-02),
+  grey-03: var(--nsw-grey-03),
+  grey-04: var(--nsw-grey-04)
+);
+
+$nsw-helper-text-colours: (
+  text-dark: var(--nsw-text-dark),
+  text-light: var(--nsw-text-light),
+  brand-dark: var(--nsw-brand-dark),
+  brand-light: var(--nsw-brand-light),
+  brand-supplementary: var(--nsw-brand-supplementary)
+);
+
+$nsw-helper-border-colours: (
+  brand-dark: var(--nsw-brand-dark),
+  brand-light: var(--nsw-brand-light),
+  brand-supplementary: var(--nsw-brand-supplementary),
+  brand-accent: var(--nsw-brand-accent),
+  black: var(--nsw-black),
+  white: var(--nsw-white),
+  off-white: var(--nsw-off-white),
+  grey-01: var(--nsw-grey-01),
+  grey-02: var(--nsw-grey-02),
+  grey-03: var(--nsw-grey-03),
+  grey-04: var(--nsw-grey-04)
+);
+
 /* stylelint-disable declaration-no-important */
 
-/* bg colour utilities */
-/* ✅ Dark            */
-/* ✅ Light           */
-/* ✅ Supplementary   */
-/* ❌ Accent          */
-/**********************/
+@each $name, $color in $nsw-helper-bg-colours {
+  .nsw-bg--#{"" + $name} {
+    background-color: $color !important;
+  }
 
-.nsw-bg-brand-dark {
-  background-color: var(--nsw-brand-dark) !important;
+  .hover\:nsw-bg--#{"" + $name}:hover {
+    background-color: $color !important;
+  }
 }
 
-.nsw-bg-brand-light {
-  background-color: var(--nsw-brand-light) !important;
+@each $name, $color in $nsw-helper-text-colours {
+  .nsw-text--#{"" + $name} {
+    color: $color !important;
+  }
+
+  .hover\:nsw-text--#{"" + $name}:hover {
+    color: $color !important;
+  }
 }
 
-.nsw-bg-brand-supplementary {
-  background-color: var(--nsw-brand-supplementary) !important;
+@each $name, $color in $nsw-helper-border-colours {
+  .nsw-border--#{"" + $name} {
+    border-color: $color !important;
+  }
+
+  .hover\:nsw-border--#{"" + $name}:hover {
+    border-color: $color !important;
+  }
 }
 
-/* bg hover utilities */
-/* ✅ Dark            */
-/* ✅ Light           */
-/* ✅ Supplementary   */
-/* ❌ Accent          */
-/**********************/
+@each $name, $color in $nsw-helper-svg-colours {
+  .nsw-fill--#{"" + $name} {
+    fill: $color !important;
+  }
 
-.hover\:nsw-bg-brand-dark:hover {
-  background-color: var(--nsw-brand-dark) !important;
+  .nsw-stroke--#{"" + $name} {
+    stroke: $color !important;
+  }
 }
 
-.hover\:nsw-bg-brand-light:hover {
-  background-color: var(--nsw-brand-light) !important;
-}
-
-.hover\:nsw-bg-brand-supplementary:hover {
-  background-color: var(--nsw-brand-supplementary) !important;
-}
-
-/* SVG fill utilities */
-/* ✅ Dark            */
-/* ✅ Light           */
-/* ✅ Supplementary   */
-/* ✅ Accent          */
-/* ✅ White           */
-/**********************/
-
-.nsw-fill-brand-dark {
-  fill: var(--nsw-brand-dark) !important;
-}
-
-.nsw-fill-brand-light {
-  fill: var(--nsw-brand-light) !important;
-}
-
-.nsw-fill-brand-supplementary {
-  fill: var(--nsw-brand-supplementary) !important;
-}
-
-.nsw-fill-brand-accent {
-  fill: var(--nsw-brand-accent) !important;
-}
-
-.nsw-fill-white {
-  fill: var(--nsw-white) !important;
-}
-
-/* SVG stroke utilities */
-/* ✅ Dark              */
-/* ✅ Light             */
-/* ✅ Supplementary     */
-/* ✅ Accent            */
-/* ✅ White             */
-/************************/
-
-.nsw-stroke-brand-dark {
-  stroke: var(--nsw-brand-dark) !important;
-}
-
-.nsw-stroke-brand-light {
-  stroke: var(--nsw-brand-light) !important;
-}
-
-.nsw-stroke-brand-supplementary {
-  stroke: var(--nsw-brand-supplementary) !important;
-}
-
-.nsw-stroke-brand-accent {
-  stroke: var(--nsw-brand-accent) !important;
-}
-
-.nsw-stroke-white {
-  stroke: var(--nsw-white) !important;
-}
-
-/* Text colour utilities */
-/* ✅ Dark               */
-/* ✅ Light              */
-/* ✅ Supplementary      */
-/* ✅ Accent             */
-/*************************/
-
-.nsw-text-brand-dark {
-  color: var(--nsw-brand-dark) !important;
-}
-
-.nsw-text-brand-light {
-  color: var(--nsw-brand-light) !important;
-}
-
-.nsw-text-brand-supplementary {
-  color: var(--nsw-brand-supplementary) !important;
-}
-
-.nsw-text-brand-accent {
-  color: var(--nsw-brand-accent) !important;
-}
-
-.nsw-text-white {
-  color: var(--nsw-white) !important;
-}
-
-/* Text colour hover utilities */
-/* ✅ Dark                     */
-/* ✅ Light                    */
-/* ✅ Supplementary            */
-/* ✅ Accent                   */
-/*******************************/
-
-.hover\:nsw-text-brand-dark:hover {
-  color: var(--nsw-brand-dark) !important;
-}
-
-.hover\:nsw-text-brand-light:hover {
-  color: var(--nsw-brand-light) !important;
-}
-
-.hover\:nsw-text-brand-supplementary:hover {
-  color: var(--nsw-brand-supplementary) !important;
-}
-
-.hover\:nsw-text-brand-accent:hover {
-  color: var(--nsw-brand-supplementary) !important;
-}
-
-/* border colour utilities */
-/* ✅ Dark                 */
-/* ✅ Light                */
-/* ✅ Supplementary        */
-/* ✅ Accent               */
-/***************************/
-
-.nsw-border-brand-dark {
-  border-color: var(--nsw-brand-dark) !important;
-}
-
-.nsw-border-brand-light {
-  border-color: var(--nsw-brand-light) !important;
-}
-
-.nsw-border-brand-supplementary {
-  border-color: var(--nsw-brand-supplementary) !important;
-}
-
-.nsw-border-brand-accent {
-  border-color: var(--nsw-brand-accent) !important;
-}
-
-/* border hover utilities */
-/* ✅ Dark                */
-/* ✅ Light               */
-/* ✅ Supplementary       */
-/* ✅ Accent              */
-/**************************/
-
-.hover\:nsw-border-brand-dark:hover {
-  border-color: var(--nsw-brand-dark) !important;
-}
-
-.hover\:nsw-border-brand-light:hover {
-  border-color: var(--nsw-brand-light) !important;
-}
-
-.hover\:nsw-border-brand-supplementary:hover {
-  border-color: var(--nsw-brand-supplementary) !important;
-}
-
-.hover\:nsw-border-brand-accent:hover {
-  border-color: var(--nsw-brand-accent) !important;
-}
+/* stylelint-enable declaration-no-important */
