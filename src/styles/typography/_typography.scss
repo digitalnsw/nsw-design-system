@@ -1,173 +1,92 @@
-.nsw-wysiwyg-content,
-.nsw-body-content {
+body {
   @include font-size('sm');
   font-family: var(--nsw-font-family);
   font-weight: var(--nsw-font-normal);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: var(--nsw-text-dark);
+  color: var(--nsw-text-dark);  
+}
 
-  button,
-  input,
-  textarea,
-  textfield,
-  select {
-    font-family: var(--nsw-font-family);
-  }
+button,
+input,
+textarea,
+textfield,
+select {
+  font-family: var(--nsw-font-family);
+}
 
-  a:not([class]) {
-    @include link;
-  }
+p,
+ul,
+ol,
+dl {
+  margin: 0;
+}
 
-  p,
-  ul,
-  ol,
-  dl {
-    &:not([class]) {
-      margin: 0;
-    }
-  }
+* + p,
+* + ul,
+* + ol,
+* + dl {
+  margin-top: rem(16px);
+}
 
-  * + p,
-  * + ul,
-  * + ol,
-  * + dl {
-    &:not([class]) {
-      margin-top: rem(16px);
-    }
-  }
-
-  ul,
-  ol {
-    &:not([class]) {
-      li {
-        @include nsw-spacing(margin-top, xs);
-      }
-    }
-  }
-
-  dt {
-    &:not([class]) {
-      @include nsw-spacing(margin-top, xs);
-    }
-  }
-
-  small {
-    @include font-size('xs');
-  }
-
-  abbr,
-  acronym {
-    text-decoration: none;
-    border-bottom: 1px var(--nsw-brand-dark) dashed;
-  }
-
-  blockquote {
-    @include font-size('lg');
-    @include nsw-spacing(margin, md none none none);
-    border-left: solid 6px var(--nsw-brand-accent);
-    padding: rem(20px) rem(24px);
-
-    @include breakpoint('md') {
-      margin-left: auto;
-      margin-right: auto;
-      max-width: 75%;
-    }
-  }
-
-  cite {
-    @include font-size('sm');
-    @include nsw-spacing(margin-top, md);
-    display: block;
-    font-style: normal;
-  }
-
-  cite::before {
-    content: '— ';
-  }
-
-  hr {
-    border: 0;
-    height: 1px;
-    background-color: var(--nsw-grey-04);
-    margin: rem(16) 0;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    &:not([class]) {
-      font-weight: var(--nsw-font-bold);
-      margin: 0;
-    }
-  }
-
-  h1 {
-    &:not([class]) {
-      @include font-size('xxl');
-    }
-  }
-
-  h2 {
-    &:not([class]) {
-      @include font-size('xl');
-    }
-  }
-
-  h3 {
-    &:not([class]) {
-      @include font-size('lg');
-    }
-  }
-
-  h4 {
-    &:not([class]) {
-      @include font-size('md');
-    }
-  }
-
-  h5,
-  h6 {
-    &:not([class]) {
-      @include font-size('sm');
-    }
-  }
-
-  * + h1 {
-    &:not([class]) {
-      @include nsw-spacing(margin-top, xxxl);
-    }
-  }
-
-  * + h2 {
-    &:not([class]) {
-      @include nsw-spacing(margin-top, xxl);
-    }
-  }
-
-  * + h3 {
-    &:not([class]) {
-      @include nsw-spacing(margin-top, xl);
-    }
-  }
-
-  * + h4,
-  * + h5,
-  * + h6 {
-    &:not([class]) {
-      @include nsw-spacing(margin-top, lg);
-    }
-  }
-
-  .nsw-intro {
-    @include font-size('md');
-    margin: rem(16px) 0 0 0;
+ul,
+ol {
+  li {
+    @include nsw-spacing(margin-top, xs);
   }
 }
 
+dt {
+  @include nsw-spacing(margin-top, xs);
+}
+
+small {
+  @include font-size('xs');
+}
+
+abbr,
+acronym {
+  text-decoration: none;
+  border-bottom: 1px var(--nsw-brand-dark) dashed;
+}
+
+blockquote {
+  @include font-size('lg');
+  @include nsw-spacing(margin, md none none none);
+  border-left: solid 6px var(--nsw-brand-accent);
+  padding: rem(20px) rem(24px);
+
+  @include breakpoint('md') {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 75%;
+  }
+}
+
+cite {
+  @include font-size('sm');
+  @include nsw-spacing(margin-top, md);
+  display: block;
+  font-style: normal;
+}
+
+cite::before {
+  content: '— ';
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background-color: var(--nsw-grey-04);
+  margin: rem(16) 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
 .nsw-h1,
 .nsw-h2,
 .nsw-h3,
@@ -176,51 +95,82 @@
 .nsw-h6 {
   font-weight: var(--nsw-font-bold);
   margin: 0;
+
+  &.nsw-section-title {
+    font-family: var(--nsw-font-family);
+    font-weight: var(--nsw-font-bold);
+    margin: 0;
+    padding-top: rem($grid-gutters);
+    padding-bottom: rem(8px);
+
+    @include breakpoint('md') {
+      padding-top: rem($grid-gutters*2);
+    }
+  }
 }
 
+h1,
 .nsw-h1 {
   @include font-size('xxl');
 }
 
+h2,
 .nsw-h2 {
   @include font-size('xl');
 }
 
+h3,
 .nsw-h3 {
   @include font-size('lg');
 }
 
+h4,
 .nsw-h4 {
   @include font-size('md');
 }
 
+h5,
+h6,
 .nsw-h5,
 .nsw-h6 {
   @include font-size('sm');
 }
 
+* + h1
 * + .nsw-h1 {
   @include nsw-spacing(margin-top, xxxl);
 }
 
+* + h2
 * + .nsw-h2 {
   @include nsw-spacing(margin-top, xxl);
 }
 
+* + h3,
 * + .nsw-h3 {
   @include nsw-spacing(margin-top, xl);
 }
 
+* + h4,
+* + h5,
+* + h6,
 * + .nsw-h4,
 * + .nsw-h5,
 * + .nsw-h6 {
   @include nsw-spacing(margin-top, lg);
 }
 
+.nsw-intro {
+  @include font-size('md');
+  margin: rem(16px) 0 0 0;
+}
+
+
+a {
+  @include link;
+}
 
 .nsw-link {
-  @include link;
-
   &--icon {
     display: inline-block;
     font-weight: var(--nsw-font-bold);
@@ -242,6 +192,8 @@
     }
   }
 }
+
+/* TO DO - figure out what those links are used for and remove */
 
 .nsw-text-link {
   @include text-link;
@@ -266,46 +218,7 @@
   }
 }
 
-h1,
-h2,
-h3,
-h4 {
-  &.nsw-section-title {
-    font-family: var(--nsw-font-family);
-    font-weight: var(--nsw-font-bold);
-    margin: 0;
-    padding-top: rem($grid-gutters);
-    padding-bottom: rem(8px);
-
-    @include breakpoint('md') {
-      padding-top: rem($grid-gutters*2);
-    }
-  }
-}
-
-h1 {
-  &.nsw-section-title {
-    @include font-size('xxl');
-  }
-}
-
-h2 {
-  &.nsw-section-title {
-    @include font-size('xl');
-  }
-}
-
-h3 {
-  &.nsw-section-title {
-    @include font-size('lg');
-  }
-}
-
-h4 {
-  &.nsw-section-title {
-    @include font-size('md');
-  }
-}
+/* TO DO END */
 
 .nsw-section-separator {    
   border: 0;
@@ -319,7 +232,6 @@ h4 {
 }
 
 .nsw-section-text {
-  margin: 0;
   margin-top: rem(-8px);
   padding-bottom: rem(8px);
 }
