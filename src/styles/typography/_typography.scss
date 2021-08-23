@@ -168,6 +168,56 @@
   }
 }
 
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  font-weight: var(--nsw-font-bold);
+  margin: 0;
+}
+
+.h1 {
+  @include font-size('xxl');
+}
+
+.h2 {
+  @include font-size('xl');
+}
+
+.h3 {
+  @include font-size('lg');
+}
+
+.h4 {
+  @include font-size('md');
+}
+
+.h5,
+.h6 {
+  @include font-size('sm');
+}
+
+* + .h1 {
+  @include nsw-spacing(margin-top, xxxl);
+}
+
+* + .h2 {
+  @include nsw-spacing(margin-top, xxl);
+}
+
+* + .h3 {
+  @include nsw-spacing(margin-top, xl);
+}
+
+* + .h4,
+* + .h5,
+* + .h6 {
+  @include nsw-spacing(margin-top, lg);
+}
+
+
 .nsw-link {
   @include link;
 
@@ -272,24 +322,4 @@ h4 {
   margin: 0;
   margin-top: rem(-8px);
   padding-bottom: rem(8px);
-}
-
-.nsw-text-xxl {
-  @include font-size('xxl');
-}
-
-.nsw-text-xl {
-  @include font-size('xl');
-}
-
-.nsw-text-lg {
-  @include font-size('lg');
-}
-
-.nsw-text-md {
-  @include font-size('md');
-}
-
-.nsw-text-sm {
-  @include font-size('sm');
 }
