@@ -29,12 +29,6 @@
       display: inline;
     }
 
-    &:first-child {
-      &::before {
-        display: none;
-      }
-    }
-
     &:nth-last-child(2),
     &:last-child {
       display: inline;
@@ -49,9 +43,21 @@
         }
       }
     }
+
+    &:first-child {
+      &::before {
+        display: none;
+
+        @include breakpoint('md') {
+          display: none;
+        }
+      }
+    }
   }
 
   a {
+    font-weight: var(--nsw-font-normal);
+
     &.current {
       text-decoration: none;
       pointer-events: none;
