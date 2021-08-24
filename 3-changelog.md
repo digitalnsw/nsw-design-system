@@ -23,3 +23,5 @@ Manual list of 3.0 breaking changes
 - Buttons: descrease padding
 - Callout: updates spacing, classes cleanup
 - Card: component code rewrite, changed default card to be content
+- Global alert: styling/classes update
+- Footer: cleaned up classes, changed to single component BEM
