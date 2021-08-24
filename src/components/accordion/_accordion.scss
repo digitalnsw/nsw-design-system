@@ -32,12 +32,23 @@
     justify-content: flex-end;
 
     button {
-      @include link;
       @include font-size('sm');
+      color: var(--nsw-brand-dark);
+      text-decoration: underline;
+      text-decoration-skip-ink: auto;
       font-weight: var(--nsw-font-bold);
       border: 0;
       padding: 0;
       background: none;
+
+      &:hover:enabled {
+        @include nsw-hover;
+        outline: 2px solid var(--nsw-text-hover);
+      }
+
+      &:focus {
+        @include nsw-focus($offset: false);
+      }
 
       &:first-child {
         @include nsw-spacing(margin, none lg none none);
