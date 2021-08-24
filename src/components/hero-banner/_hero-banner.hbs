@@ -1,0 +1,28 @@
+<div class="nsw-hero-banner{{#if theme}} nsw-hero-banner--{{theme}}{{/if}}{{#if wide}} nsw-hero-banner--wide{{/if}}{{#if featured}} nsw-hero-banner--featured{{/if}}">
+  <div class="nsw-hero-banner__container">
+    <div class="nsw-hero-banner__wrapper">
+      <div class="nsw-hero-banner__content">
+        <h1>{{heading}}</h1>{{#if copy}}
+        <p class="nsw-intro">{{copy}}</p>{{/if}}{{#if cta}}
+        <div class="nsw-hero-banner__button"><a href="#" class="nsw-button {{#if-equals theme "dark"}}nsw-button--white{{else}}nsw-button--dark{{/if-equals}}">{{cta}}</a></div>{{/if}}
+      </div>
+      {{#if links}}
+      <div class="nsw-hero-banner__links">
+        <div class="nsw-hero-banner__list">
+          {{#if links-title}}<div class="nsw-hero-banner__sub-title">{{links-title}}</div>{{/if}}
+          <ul>
+            {{#each links}}
+            <li><a href="#">{{this}}</a></li>
+            {{/each}}
+          </ul>
+        </div>
+      </div>
+      {{/if}}
+      <div class="nsw-hero-banner__box">{{#if img}}
+        <img class="nsw-hero-banner__image" src="{{img}}" alt="" />{{else if graphic}}
+        <div class="nsw-hero-banner__graphic{{#if transparent}} nsw-hero-banner__graphic--transparent{{/if}}">{{{graphic}}}</div>{{else}}
+        <div class="nsw-hero-banner__bg"></div>{{/if}}
+      </div>
+    </div>
+  </div>
+</div>

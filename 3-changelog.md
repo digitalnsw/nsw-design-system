@@ -12,7 +12,9 @@ Manual list of 3.0 breaking changes
 - Removed old Section classes
 - Removed old icon implementation
 
+- Renamed banner to hero-banner
 
+
+- Icons: added sizing and colour options, removed default size and colour, updated positioning inside components
 - Tabs: updated component name and removed li/a classes
-
 
