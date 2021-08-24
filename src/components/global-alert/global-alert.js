@@ -1,7 +1,7 @@
-class SitewideMessage {
+class GlobalAlert {
   constructor(element) {
     this.messageElement = element
-    this.closeButton = element.querySelector('.nsw-sitewide-message__close')
+    this.closeButton = element.querySelector('.nsw-global-alert__close')
     this.closeMessageEvent = (e) => this.closeMessage(e)
   }
 
@@ -18,4 +18,4 @@ class SitewideMessage {
   }
 }
 
-export default SitewideMessage
+export default GlobalAlert

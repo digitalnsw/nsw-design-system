@@ -1,0 +1,15 @@
+<div class="nsw-global-alert{{#if type}} nsw-global-alert--{{type}}{{/if}} js-sitewide-message" role="alert">
+  <div class="nsw-global-alert__wrapper">
+    <div class="nsw-global-alert__content">
+      <h2 class="nsw-global-alert__title">{{title}}</h2>
+      <p>{{{content}}}{{#if link}}{{#if ctaHref}} <a href="{{ctaHref}}" class="nsw-global-alert__link">{{ctaText}}</a>{{/if}}{{/if}}</p>
+    </div>{{#unless link}}{{#if ctaText}}{{#if ctaHref}}
+    <a href="{{ctaHref}}" class="nsw-button">{{ctaText}}</a>{{else}}
+    <button type="button" class="nsw-button">{{ctaText}}</button>
+    {{/if}}{{/if}}{{/unless}}
+    <button type="button" class="nsw-global-alert__close">
+      <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">close</i>
+      <span class="sr-only">Close message</span>
+    </button>
+  </div>
+</div>

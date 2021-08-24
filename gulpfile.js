@@ -110,7 +110,6 @@ function cleanBuild(files, metalsmith, done) {
     const file = path.split('.')
     if (
       file[0].indexOf('assets') > -1
-      || file[0].indexOf('global') > -1
       || file[0].indexOf('partials') > -1
       || file[0].indexOf('partials') > -1
       || file[0].indexOf('_') > -1

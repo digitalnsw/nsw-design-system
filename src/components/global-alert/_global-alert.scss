@@ -13,7 +13,6 @@ $nsw-global-alert: (
   )
 );
 
-.nsw-sitewide-message,
 .nsw-global-alert {
   @include nsw-spacing(padding, lg none);
   font-family: var(--nsw-font-family);
@@ -111,7 +110,7 @@ $nsw-global-alert: (
       @include button-variant(map-get($button-variations, white));
     }
 
-    .nsw-sitewide-message__close .nsw-material-icons {
+    .nsw-global-alert__close .nsw-material-icons {
       color: var(--nsw-text-light);
     }
   }
@@ -126,7 +125,7 @@ $nsw-global-alert: (
       }
     }
 
-    .nsw-sitewide-message__close {
+    .nsw-global-alert__close {
       &:focus {
         @include nsw-focus;
       }
@@ -138,7 +137,7 @@ $nsw-global-alert: (
   }
 
   &--light {
-    .nsw-sitewide-message__link {
+    .nsw-global-alert__link {
       color: var(--nsw-brand-dark);
 
       &:focus {
