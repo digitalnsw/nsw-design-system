@@ -20,3 +20,5 @@ Manual list of 3.0 breaking changes
 - Accordion: cleaned up classes, changed hbs setup
 - Breadcrumbs: changed nsw-breadcrumb to nsw-breadcrumbs, cleaned up classes, changed hbs setup
 - Buttons: descrease padding
+- Callout: updates spacing, classes cleanup
+- Card: component code rewrite, changed default card to be content

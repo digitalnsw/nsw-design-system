@@ -1,20 +1,15 @@
 .nsw-card {
-  font-family: var(--nsw-font-family);
   position: relative;
   display: flex;
   flex-direction: column;
   overflow: hidden;
   height: 100%;
-  border: 0;
+  color: var(--nsw-text-dark);
   border-top-left-radius: var(--nsw-border-radius);
   border-top-right-radius: var(--nsw-border-radius);
 
   &:hover {
     color: var(--nsw-text-light);
-
-    .nsw-card__link {
-      color: var(--nsw-text-light);
-    }
 
     .nsw-card__content {
       background-color: var(--nsw-brand-dark);
@@ -25,10 +20,14 @@
       }
     }
 
-    .nsw-card__image-area {
+    .nsw-card__image {
       &::after {
-        background-color: var(--nsw-brand-dark);
+        background-color: transparent;
       }
+    }
+
+    a {
+      color: var(--nsw-text-light);
     }
 
     .nsw-material-icons {
@@ -39,135 +38,101 @@
   &:focus-within {
     @include nsw-focus;
 
-    .nsw-card__link {
+    a {
       text-decoration: none;
+    }
+  }
+
+  &__content {
+    @include font-size('sm');
+    padding: rem(16px) rem(16px) rem(62px) rem(16px);
+    background-color: var(--nsw-white);
+    border-radius: var(--nsw-border-radius);
+    border: 1px solid var(--nsw-grey-03);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: background $transition-duration, border $transition-duration;
+
+    @include breakpoint('lg') {
+      padding: rem(32px) rem(32px) rem(94px) rem(32px);
     }
   }
 
   &__title {
     @include font-size('md');
     font-weight: var(--nsw-font-bold);
-    margin: 0;
-  }
 
-  &__content {
-    @include font-size('sm');
-    @include nsw-spacing(padding, md md xxxxl md);
-    background-color: var(--nsw-white);
-    border-radius: var(--nsw-border-radius);
-    border: 1px solid var(--nsw-grey-03);
-    display: flex;
-    flex-direction: column;
-    order: 2;
-    height: 100%;
-    transition: background $transition-duration, border $transition-duration;
+    a {      
+      @include pseudo-clickable-block;
+      text-decoration: none;
+      color: var(--nsw-text-dark);
+      transition: color $transition-duration;
 
-    &::before {
-      content: '';
-      height: 6px;
-    }
+      &:focus {
+        outline: none;
+      }
 
-    &::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 6px;
-      background-color: var(--nsw-brand-accent);
-      transition: background $transition-duration;
-    }
-
-    @include breakpoint('lg') {
-      @include nsw-spacing(padding, xl xl xxxxl xl);
+      &:hover {
+        background-color: transparent;
+        outline: none;
+      }
     }
   }
 
   &__copy {
-    margin: rem(16px) 0 0;
+    margin-top: rem(16px);
     transition: color $transition-duration;
-  }
-
-  &__tag {
-    font-weight: var(--nsw-font-bold);
-    order: 1;
-    margin: 0 0 1rem;
-
-    + .nsw-card__date {
-      margin-top: rem(-8);
-    }
-  }
-
-  &__date {
-    order: 2;
-    margin: 0 0 1rem;
   }
 
   &__tag,
   &__date {
     @include font-size('xs');
     transition: color $transition-duration;
+    margin-bottom: rem(16px);
   }
 
-  &__title,
-  &__copy,
-  &__icon {
-    order: 3;
+  &__tag {
+    font-weight: var(--nsw-font-bold);
+
+    + .nsw-card__date {
+      margin-top: rem(-8);
+    }
   }
 
-  &__icon {
-    @include nsw-spacing(margin, md none none none);
+  .nsw-material-icons {
+    font-size: rem(map-get($nsw-icon-sizes, 30));
+    color: var(--nsw-brand-dark);
     position: absolute;
-    bottom: rem(13px);
-    left: rem(13px);
+    bottom: rem(16px);
+    left: rem(16px);
     transition: color $transition-duration;
 
     @include breakpoint('lg') {
-      @include nsw-spacing(margin, xl none none none);
-      bottom: rem(29px);
-      left: rem(28px);
-    }
-  }
-
-  &__link {
-    @include pseudo-clickable-block;
-    text-decoration: none;
-    color: var(--nsw-text-dark);
-    transition: color $transition-duration;
-
-    &:focus {
-      outline: none;
-      text-decoration: underline;
-    }
-  }
-
-  &__image-area {
-    order: 1;
-    height: rem(200px);
-    position: relative;
-    background-color: var(--nsw-white);
-
-    &::after {
-      content: '';
-      position: absolute;
-      bottom: -6px;
-      left: 0;
-      right: 0;
-      height: 6px;
-      background-color: var(--nsw-brand-accent);
-      transition: background $transition-duration, border $transition-duration;
+      bottom: rem(32px);
+      left: rem(32px);
     }
   }
 
   &__image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
+    min-height: rem(200px);
+    height: rem(200px);
+    position: relative;
 
-  &--headline {
-    .nsw-card__title {
-      @include font-size('lg');
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;      
+    }
+
+    + .nsw-card__content {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      border-top-width: 0;
+
+      &::after {
+        display: none;
+      }
     }
   }
 
@@ -175,10 +140,17 @@
     .nsw-card__content {
       background-color: var(--nsw-brand-light);
       border-color: transparent;
+
+      &::before,
+      &::after {
+        display: none;
+      }
     }
 
-    .nsw-card__image-area {
-      background-color: var(--nsw-brand-light);
+    .nsw-card__image {
+      &::after {
+        display: none;
+      }
     }
   }
 
@@ -191,19 +163,9 @@
       .nsw-card__content {
         background-color: var(--nsw-white);
         border-color: var(--nsw-grey-03);
-
-        &::after {
-          display: block;
-        }
       }
 
-      .nsw-card__image-area {
-        &::after {
-          background-color: var(--nsw-brand-accent);
-        }
-      }
-
-      .nsw-card__link {
+      .nsw-card__title a {
         color: var(--nsw-text-dark);
       }
 
@@ -212,16 +174,23 @@
       }
     }
 
-    .nsw-card__image-area {
-      background-color: var(--nsw-brand-dark);
-    }
-
     .nsw-card__content {
       background-color: var(--nsw-brand-dark);
       border-color: transparent;
+
+      &::before,
+      &::after {
+        display: none;
+      }
     }
 
-    .nsw-card__link {
+    .nsw-card__image {
+      &::after {
+        display: none;
+      }
+    }
+
+    .nsw-card__title a {
       color: var(--nsw-text-light);
     }
 
@@ -230,60 +199,41 @@
     }
   }
 
-  &--content {
+  &--headline {
+    .nsw-card__title {
+      @include font-size('lg');
+    }
+  }
+
+  &--highlight {
     .nsw-card__content {
-      &::before,
+      &::before {
+        content: '';
+        height: 6px;
+      }
+
       &::after {
-        display: none;
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 6px;
+        background-color: var(--nsw-brand-accent);
+        transition: background $transition-duration;
       }
     }
 
-    .nsw-card__image-area {
+    .nsw-card__image {
       &::after {
-        background-color: var(--nsw-white);
-        border-left: 1px solid var(--nsw-grey-03);
-        border-right: 1px solid var(--nsw-grey-03);
-      }
-    }
-
-    &:hover {
-      .nsw-card__content {
-        &::after {
-          display: none;
-        }
-      }
-
-      .nsw-card__image-area::after {
-        background-color: var(--nsw-brand-dark);
-        border-color: transparent;
-      }
-
-      &.nsw-card--light {
-        .nsw-card__image-area::after {
-          background-color: var(--nsw-brand-dark);
-          border-color: transparent;
-        }
-      }
-
-      &.nsw-card--dark {
-        .nsw-card__image-area::after {
-          background-color: var(--nsw-white);
-          border-color: var(--nsw-grey-03);
-        }
-      }
-    }
-
-    &.nsw-card--light {
-      .nsw-card__image-area::after {
-        background-color: var(--nsw-brand-light);
-        border-color: transparent;
-      }
-    }
-
-    &.nsw-card--dark {
-      .nsw-card__image-area::after {
-        background-color: var(--nsw-brand-dark);
-        border-color: transparent;
+        content: '';
+        position: absolute;
+        bottom: -6px;
+        left: 0;
+        right: 0;
+        height: 6px;
+        background-color: var(--nsw-brand-accent);
+        transition: background $transition-duration;
       }
     }
   }

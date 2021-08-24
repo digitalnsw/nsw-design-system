@@ -1,18 +1,18 @@
-<div class="nsw-card{{#if headline}} nsw-card--headline{{/if}}{{#if content}} nsw-card--content{{/if}}{{#if theme}} nsw-card--{{theme}}{{/if}}">
-  <div class="nsw-card__content">
-    <h2 class="nsw-card__title">
-      <a href="#" class="nsw-card__link">{{heading}}</a>
-    </h2>{{#if tag}}
-    <p class="nsw-card__tag">{{tag}}</p>{{/if}}{{#if date}}
-    <p class="nsw-card__date">
-      <time{{#if date-machine}} datetime="{{date-machine}}"{{/if}}>{{date}}</time>
-    </p>{{/if}}{{#if copy}}
-    <p class="nsw-card__copy">{{copy}}</p>{{/if}}
-    <i class="material-icons nsw-material-icons nsw-card__icon" focusable="false" aria-hidden="true">east</i>
-  </div>
+<div class="nsw-card{{#if headline}} nsw-card--headline{{/if}}{{#if highlight}} nsw-card--highlight{{/if}}{{#if theme}} nsw-card--{{theme}}{{/if}}">
   {{#if img}}
-  <div class="nsw-card__image-area">
-    <img src="{{img}}" alt="" class="nsw-card__image">
+  <div class="nsw-card__image">
+    <img src="{{img}}" alt="{{heading}}">
   </div>
   {{/if}}
+  <div class="nsw-card__content">{{#if tag}}
+    <div class="nsw-card__tag">{{tag}}</div>{{/if}}{{#if date}}
+    <div class="nsw-card__date">
+      <time{{#if date-machine}} datetime="{{date-machine}}"{{/if}}>{{date}}</time>
+    </div>{{/if}}
+    <div class="nsw-card__title">
+      <a href="#">{{heading}}</a>
+    </div>{{#if copy}}
+    <div class="nsw-card__copy">{{copy}}</div>{{/if}}
+    <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</i>
+  </div>
 </div>
