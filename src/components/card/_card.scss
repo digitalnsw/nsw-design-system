@@ -21,7 +21,7 @@
       border-color: transparent;
 
       &::after {
-        display: none;
+        background-color: transparent;
       }
     }
 
@@ -60,6 +60,7 @@
     flex-direction: column;
     order: 2;
     height: 100%;
+    transition: background $transition-duration, border $transition-duration;
 
     &::before {
       content: '';
@@ -74,6 +75,7 @@
       right: 0;
       height: 6px;
       background-color: var(--nsw-brand-accent);
+      transition: background $transition-duration;
     }
 
     @include breakpoint('lg') {
@@ -82,7 +84,8 @@
   }
 
   &__copy {
-    margin: 1rem 0 0;
+    margin: rem(16px) 0 0;
+    transition: color $transition-duration;
   }
 
   &__tag {
@@ -103,6 +106,7 @@
   &__tag,
   &__date {
     @include font-size('xs');
+    transition: color $transition-duration;
   }
 
   &__title,
@@ -116,6 +120,7 @@
     position: absolute;
     bottom: rem(13px);
     left: rem(13px);
+    transition: color $transition-duration;
 
     &.nsw-icon {
       @include nsw-spacing(bottom, md);
@@ -139,6 +144,7 @@
     @include pseudo-clickable-block;
     text-decoration: none;
     color: var(--nsw-text-dark);
+    transition: color $transition-duration;
 
     &:focus {
       outline: none;
@@ -160,6 +166,7 @@
       right: 0;
       height: 6px;
       background-color: var(--nsw-brand-accent);
+      transition: background $transition-duration, border $transition-duration;
     }
   }
 
@@ -172,7 +179,7 @@
   &--headline {
     .nsw-card__title {
       @include font-size('lg');
-    }    
+    }
   }
 
   &--light {
@@ -271,7 +278,8 @@
 
       &.nsw-card--dark {
         .nsw-card__image-area::after {
-          background-color: var(--nsw-brand-accent);
+          background-color: var(--nsw-white);
+          border-color: var(--nsw-grey-03);
         }
       }
     }

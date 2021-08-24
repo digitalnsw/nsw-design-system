@@ -1,52 +1,3 @@
-.nsw-skipto {
-  font-family: var(--nsw-font-family);
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-
-  &__link {
-    @include nsw-spacing(padding, xs md);
-    @include z-index('middle');
-    background-color: var(--nsw-brand-dark);
-    color: var(--nsw-text-light);
-    transform: translateY(-101%);
-    display: block;
-    text-align: center;
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    text-decoration: none;
-
-    &:focus {
-      transform: translateY(0);
-      outline: none;
-
-      span {
-        @include nsw-focus($color: var(--nsw-text-light));
-      }
-    }
-
-    @include breakpoint('lg') {
-      text-align: left;
-    }
-  }
-}
-
-.nsw-infobar,
-.nsw-masthead {
-  @include nsw-spacing(padding, sm none);
-  font-family: var(--nsw-font-family);
-  background-color: var(--nsw-brand-dark);
-  color: var(--nsw-text-light);
-
-  p {
-    @include font-size('xxs');
-    margin: 0;
-  }
-}
-
 .nsw-header {
   font-family: var(--nsw-font-family);
   background-color: var(--nsw-white);
@@ -71,6 +22,128 @@
     @include container;
     position: relative;
   }
+
+  &__inner {
+    position: relative;
+
+    @include breakpoint('lg') {
+      display: flex;
+    }
+  }
+
+  &__menu {
+    position: absolute;
+    top: rem(12px);
+    left: rem(-6px);
+  }
+
+  &__search {
+    position: absolute;
+    top: rem(12px);
+    right: rem(-4px);
+
+    @include breakpoint('lg') {
+      right: 0;
+      top: 50%;
+      margin-top: rem(-24px);
+    }
+  }
+
+  &__main {
+    @include breakpoint('lg') {
+      position: relative;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      margin: rem(12px) rem(72px) rem(12px) 0;
+
+      &:focus-within {
+        @include nsw-focus;
+      }
+    }
+  }
+
+  &__waratah {
+    padding: rem(12px) rem(48px);
+    display: flex;
+    justify-content: center;
+
+    @include breakpoint('lg') {
+      padding: 0;
+    }
+
+    svg {
+      height: rem(48px);
+      display: block;
+
+      @include breakpoint('lg') {
+        height: rem(76px);
+      }
+    }
+  }
+
+  &__waratah-link {
+    display: flex;
+
+    &:focus {
+      @include nsw-focus;
+
+      @include breakpoint('lg') {
+        outline: none;
+      }
+    }
+
+    @include breakpoint('lg') {
+      @include pseudo-clickable-block;
+    }
+
+    svg:not(:first-child) {
+      margin-left: rem(24px);
+
+      @include breakpoint('lg') {
+        margin-left: rem(48px);
+      }
+    }
+  }
+
+  &__name {
+    padding: rem(12px) 0;
+
+    @include breakpoint('lg') {
+      padding: 0;
+      margin-left: rem(32px);
+    }
+  }
+
+  &__title {
+    @include font-size('lg');
+    font-weight: var(--nsw-font-bold);
+  }
+
+  &__description {
+    @include font-size('xs');
+  }
+
+  &__logo {
+    display: flex;
+    justify-content: center;
+
+    @include breakpoint('lg') {
+      padding-left: rem(16px);
+      justify-content: flex-start;
+    }
+
+    svg {
+      height: rem(48px);
+      display: block;
+
+      @include breakpoint('lg') {
+        height: rem(76px);
+      }
+    }
+  }
+
+  /* Legacy code start */
 
   &__wrapper {
     @include nsw-spacing(padding, sm none);
@@ -110,14 +183,14 @@
     }
   }
 
-  &__logo-link {
+  &__main-link {
     display: block;
 
     &:focus {
       @include nsw-focus;
     }
 
-    .nsw-header__logo {
+    .nsw-header__main {
       width: rem(141px);
       height: rem(46px);
 
@@ -128,13 +201,15 @@
     }
   }
 
-  &__logo-image {
+  &__main-image {
     display: flex;
 
     svg {
       display: block;
     }
   }
+
+  /* Legacy code end */
 }
 
 .nsw-header-btn {

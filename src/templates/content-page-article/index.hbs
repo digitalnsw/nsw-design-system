@@ -3,7 +3,6 @@ title: Content page - Article
 order: 22
 page: true
 model:
-  header: ../../components/header/json/header-premier-and-cabinet.json
   nav-basic: ../../components/main-navigation/json/main-navigation.json
   nav-mega: ../../components/main-navigation/json/mega-navigation.json
   breadcrumbs: ../../components/breadcrumbs/json/breadcrumbs.json
@@ -16,7 +15,8 @@ model:
   footer: ../../components/footer/json/footer.json
 ---
 
-{{>_header model.header}}
+{{>_masthead content="#content" nav="#main-navigation"}}
+{{>_header header-title="Premier & Cabinet"}}
 {{>_main-navigation model.nav-basic}}
 <div class="nsw-container nsw-p-bottom-xs">
   {{>_breadcrumbs model.breadcrumbs}}

@@ -5,7 +5,12 @@ directory: header
 intro: The NSW Government network header displays across the top of all NSW Government sites. It helps users see which service they are using. 
 figma: https://www.figma.com/file/PVrERKnckLTlJSPk12gbtS/NSW-Digital-Design-System?node-id=0%3A1824
 react: https://digitalnsw.github.io/nsw-design-system-react/?path=/docs/templates-header--without-search
-model: json/header-premier-and-cabinet.json
+model: json/header-seniors-card.json
 ---
 
-{{#>_docs-example}}{{>_header model content="#" nav="#"}}{{/_docs-example}}
+<h3>Masterbrand</h3>
+{{#>_docs-example}}{{>_header header-title="digital.nsw" header-description="Department of Customer Service"}}{{/_docs-example}}
+<h3>Co-brand - vertical stacked</h3>
+{{#>_docs-example}}{{>_header model header-id="1"}}{{/_docs-example}}
+<h3>Co-brand - horizontal stacked</h3>
+{{#>_docs-example}}{{>_header model header-id="2" header-inline="true"}}{{/_docs-example}}

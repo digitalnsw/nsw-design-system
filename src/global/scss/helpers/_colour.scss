@@ -1,0 +1,85 @@
+$nsw-helper-bg-colours: (
+  brand-dark: var(--nsw-brand-dark),
+  brand-light: var(--nsw-brand-light),
+  brand-supplementary: var(--nsw-brand-supplementary)
+);
+
+$nsw-helper-svg-colours: (
+  brand-dark: var(--nsw-brand-dark),
+  brand-light: var(--nsw-brand-light),
+  brand-supplementary: var(--nsw-brand-supplementary),
+  brand-accent: var(--nsw-brand-accent),
+  black: var(--nsw-black),
+  white: var(--nsw-white),
+  off-white: var(--nsw-off-white),
+  grey-01: var(--nsw-grey-01),
+  grey-02: var(--nsw-grey-02),
+  grey-03: var(--nsw-grey-03),
+  grey-04: var(--nsw-grey-04)
+);
+
+$nsw-helper-text-colours: (
+  text-dark: var(--nsw-text-dark),
+  text-light: var(--nsw-text-light),
+  brand-dark: var(--nsw-brand-dark),
+  brand-light: var(--nsw-brand-light),
+  brand-supplementary: var(--nsw-brand-supplementary)
+);
+
+$nsw-helper-border-colours: (
+  brand-dark: var(--nsw-brand-dark),
+  brand-light: var(--nsw-brand-light),
+  brand-supplementary: var(--nsw-brand-supplementary),
+  brand-accent: var(--nsw-brand-accent),
+  black: var(--nsw-black),
+  white: var(--nsw-white),
+  off-white: var(--nsw-off-white),
+  grey-01: var(--nsw-grey-01),
+  grey-02: var(--nsw-grey-02),
+  grey-03: var(--nsw-grey-03),
+  grey-04: var(--nsw-grey-04)
+);
+
+/* stylelint-disable declaration-no-important */
+
+@each $name, $color in $nsw-helper-bg-colours {
+  .nsw-bg--#{"" + $name} {
+    background-color: $color !important;
+  }
+
+  .hover\:nsw-bg--#{"" + $name}:hover {
+    background-color: $color !important;
+  }
+}
+
+@each $name, $color in $nsw-helper-text-colours {
+  .nsw-text--#{"" + $name} {
+    color: $color !important;
+  }
+
+  .hover\:nsw-text--#{"" + $name}:hover {
+    color: $color !important;
+  }
+}
+
+@each $name, $color in $nsw-helper-border-colours {
+  .nsw-border--#{"" + $name} {
+    border-color: $color !important;
+  }
+
+  .hover\:nsw-border--#{"" + $name}:hover {
+    border-color: $color !important;
+  }
+}
+
+@each $name, $color in $nsw-helper-svg-colours {
+  .nsw-fill--#{"" + $name} {
+    fill: $color !important;
+  }
+
+  .nsw-stroke--#{"" + $name} {
+    stroke: $color !important;
+  }
+}
+
+/* stylelint-enable declaration-no-important */
