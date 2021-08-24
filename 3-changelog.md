@@ -13,6 +13,7 @@ Manual list of 3.0 breaking changes
 - Removed old icon implementation
 
 - Renamed banner to hero-banner
+- Renamed site-wide-message to global-alert
 
 
 - Icons: added sizing and colour options, removed default size and colour, updated positioning inside components

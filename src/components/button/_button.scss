@@ -1,3 +1,64 @@
+$nsw-buttons: (
+  dark: (
+    text-color: var(--nsw-text-light),
+    text-color-hover: var(--nsw-text-light),
+    background: var(--nsw-brand-dark),
+    background-hover: var(--nsw-brand-dark),
+    border: transparent,
+    border-hover: transparent,
+    focus: var(--nsw-focus),
+    hover: white
+  ),
+  dark-outline: (
+    text-color: var(--nsw-text-dark),
+    text-color-hover: var(--nsw-text-light),
+    background: transparent,
+    background-hover: var(--nsw-brand-dark),
+    border: var(--nsw-brand-dark),
+    focus: var(--nsw-focus),
+    border-hover: transparent
+  ),
+  light: (
+    text-color: var(--nsw-text-dark),
+    text-color-hover: var(--nsw-text-dark),
+    background: var(--nsw-brand-light),
+    background-hover: var(--nsw-brand-light),
+    border: transparent,
+    border-hover: transparent,
+    focus: var(--nsw-focus),
+    hover: black
+  ),
+  light-outline: (
+    text-color: var(--nsw-text-light),
+    text-color-hover: var(--nsw-text-dark),
+    background: transparent,
+    background-hover: var(--nsw-brand-light),
+    border: var(--nsw-brand-light),
+    focus: var(--nsw-focus),
+    border-hover: transparent
+  ),
+  white: (
+    text-color: var(--nsw-text-dark),
+    text-color-hover: var(--nsw-text-dark),
+    background: var(--nsw-white),
+    background-hover: var(--nsw-white),
+    border: transparent,
+    border-hover: transparent,
+    focus: var(--nsw-white),
+    hover: black
+  ),
+  danger: (
+    text-color: var(--nsw-text-light),
+    text-color-hover: var(--nsw-text-light),
+    background: var(--nsw-status-error),
+    background-hover: var(--nsw-status-error),
+    border: transparent,
+    border-hover: transparent,
+    focus: var(--nsw-focus),
+    hover: white
+  )
+);
+
 .nsw-button {
   @include font-size('sm');
   @include nsw-spacing(margin, lg md none none);
@@ -20,11 +81,15 @@
     min-width: rem(124px);
   }
 
+  &:hover {
+    outline: none;
+  }
+
   &:focus {
     @include nsw-focus;
   }
 
-  @each $color, $value in $button-variations {
+  @each $color, $value in $nsw-buttons {
     &--#{"" + $color} {
       @include button-variant($value);
     }

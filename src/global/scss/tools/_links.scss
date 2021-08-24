@@ -17,6 +17,40 @@
   }
 }
 
+@mixin link-dark() {
+  color: var(--nsw-brand-dark);
+
+  &:hover {
+    background-color: var(--nsw-text-hover);
+    outline-color: var(--nsw-text-hover);
+  }
+
+  &:focus {
+    outline-color: var(--nsw-focus);
+  }
+
+  &:visited {
+    color: var(--nsw-text-visited);
+  }
+}
+
+@mixin link-light() {
+  color: var(--nsw-text-light);
+
+  &:hover {
+    background-color: var(--nsw-text-hover-light);
+    outline-color: var(--nsw-text-hover-light);
+  }
+
+  &:focus {
+    outline-color: var(--nsw-white);
+  }
+
+  &:visited {
+    color: var(--nsw-text-light);
+  }
+}
+
 @mixin text-link {
   font-weight: var(--nsw-font-bold);
   color: var(--nsw-brand-dark);

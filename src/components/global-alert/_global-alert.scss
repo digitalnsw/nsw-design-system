@@ -1,47 +1,22 @@
-$nsw-global-alert: (
-  default: (
-    text-color: var(--nsw-text-light),
-    background: var(--nsw-status-info),
-  ),
-  light: (
-    text-color: var(--nsw-text-dark),
-    background: var(--nsw-status-info-bg),
-  ),
-  critical: (
-    text-color: var(--nsw-text-light),
-    background: var(--nsw-status-error),
-  )
-);
-
 .nsw-global-alert {
-  @include nsw-spacing(padding, lg none);
-  font-family: var(--nsw-font-family);
-  position: relative;
-
-  @each $color, $variant in $nsw-global-alert {
-    @if($color == default) {
-      background-color: map-get($variant, background);
-      color: map-get($variant, text-color);
-    } @else {
-      &--#{"" + $color} {
-        background-color: map-get($variant, background);
-        color: map-get($variant, text-color);
-      }
-    }
-  }
+  padding: rem(24px) 0;
+  background-color: var(--nsw-status-info);
+  color: var(--nsw-text-light);
 
   &__close {
+    width: rem(36px);
+    height: rem(36px);
     position: absolute;
-    top: rem(-12px);
-    right: rem(8px);
+    top: 0;
+    right: rem(16px);
     background: none;
     border: 0;
-    width: rem(40px);
-    height: rem(40px);
     padding: 0;
+    color: var(--nsw-text-light);
 
     &:hover {
       @include nsw-hover;
+      background-color: var(--nsw-text-hover-light);
     }
 
     &:focus {
@@ -49,8 +24,7 @@ $nsw-global-alert: (
     }
 
     .nsw-material-icons {
-      color: var(--nsw-text-light);
-      font-size: 40px;
+      font-size: rem(map-get($nsw-icon-sizes, 36));
     }
   }
 
@@ -61,87 +35,42 @@ $nsw-global-alert: (
 
   &__title {
     @include font-size('md');
-    @include nsw-spacing(margin-top, none);
     font-weight: var(--nsw-font-bold);
-  }
-
-  &__link {
-    color: var(--nsw-text-light);
-    text-decoration: underline;
-    font-weight: var(--nsw-font-bold);
-
-    &:hover {
-      text-decoration: none;
-    }
-
-    &:focus {
-      @include nsw-focus($color: var(--nsw-text-light));
-    }
   }
 
   &__content {
-    @include nsw-spacing(margin-right, xxl);
+    margin-right: rem(48px);
 
-    p {
-      margin: 0;
-    }
-
-    * + p {
-      @include nsw-spacing(margin-top, md);
+    a {
+      @include link-light;
     }
   }
 
   .nsw-button {
-    @include button-variant(map-get($button-variations, white));
-    display: block;
     margin-right: 0;
-
-    &:focus {
-      @include nsw-focus($color: var(--nsw-text-light));
-    }
-
-    @include breakpoint('md') {
-      display: inline-block;
-    }
   }
 
-  &--dark {
-    .nsw-button {
-      @include button-variant(map-get($button-variations, white));
-    }
-
-    .nsw-global-alert__close .nsw-material-icons {
-      color: var(--nsw-text-light);
-    }
-  }
-
-  &--light,
-  &--alert {
-    .nsw-button {
-      @include button-variant(map-get($button-variations, dark));
-
-      &:focus {
-        @include nsw-focus;
-      }
-    }
-
-    .nsw-global-alert__close {
-      &:focus {
-        @include nsw-focus;
-      }
-
-      .nsw-material-icons {
-        color: var(--nsw-brand-dark);
-      }
-    }
+  &--critical {
+    background-color: var(--nsw-status-error);
   }
 
   &--light {
-    .nsw-global-alert__link {
+    background-color: var(--nsw-status-info-bg);
+    color: var(--nsw-text-dark);
+
+    .nsw-global-alert__content a {
+      @include link-dark;
+    }
+
+    .nsw-global-alert__close {
       color: var(--nsw-brand-dark);
 
+      &:hover {
+        background-color: var(--nsw-text-hover);
+      }
+
       &:focus {
-        @include nsw-focus();
+        outline-color: var(--nsw-focus);
       }
     }
   }

@@ -1,11 +1,11 @@
-<div class="nsw-global-alert{{#if type}} nsw-global-alert--{{type}}{{/if}} js-sitewide-message" role="alert">
+<div class="nsw-global-alert{{#if type}} nsw-global-alert--{{type}}{{/if}} js-global-alert" role="alert">
   <div class="nsw-global-alert__wrapper">
     <div class="nsw-global-alert__content">
-      <h2 class="nsw-global-alert__title">{{title}}</h2>
-      <p>{{{content}}}{{#if link}}{{#if ctaHref}} <a href="{{ctaHref}}" class="nsw-global-alert__link">{{ctaText}}</a>{{/if}}{{/if}}</p>
+      <div class="nsw-global-alert__title">{{title}}</div>
+      <p>{{{content}}}{{#if link}}{{#if ctaHref}} <a href="{{ctaHref}}">{{ctaText}}</a>{{/if}}{{/if}}</p>
     </div>{{#unless link}}{{#if ctaText}}{{#if ctaHref}}
-    <a href="{{ctaHref}}" class="nsw-button">{{ctaText}}</a>{{else}}
-    <button type="button" class="nsw-button">{{ctaText}}</button>
+    <a href="{{ctaHref}}" class="nsw-button{{#if-equals type "light"}} nsw-button--dark{{else}} nsw-button--white{{/if-equals}}">{{ctaText}}</a>{{else}}
+    <button type="button" class="nsw-button{{#if-equals type "light"}} nsw-button--dark{{else}} nsw-button--white{{/if-equals}}">{{ctaText}}</button>
     {{/if}}{{/if}}{{/unless}}
     <button type="button" class="nsw-global-alert__close">
       <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">close</i>
