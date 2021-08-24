@@ -1,3 +1,10 @@
+$nsw-icon-sizes: (
+  20: 20px,
+  24: 24px,
+  30: 30px,
+  36: 36px
+);
+
 $nsw-icon-colors: (
   error: var(--nsw-status-error),
   success: var(--nsw-status-success),
@@ -8,8 +15,11 @@ $nsw-icon-colors: (
 $nsw-icon-angles: (90, 180, 270);
 
 .nsw-material-icons {
-  color: var(--nsw-brand-dark);
-  font-size: rem(30px);
+  @each $size, $variant in $nsw-icon-sizes {
+    &--#{"" + $size} {
+      font-size: rem(map-get($nsw-icon-sizes, $size));
+    }
+  }
 
   @each $color, $variant in $nsw-icon-colors {
     &--#{"" + $color} {
