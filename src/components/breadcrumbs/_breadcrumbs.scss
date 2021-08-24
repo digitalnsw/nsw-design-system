@@ -1,18 +1,17 @@
-.nsw-breadcrumb {
+.nsw-breadcrumbs {
   @include font-size('xs');
-  @include nsw-spacing(margin-top, lg);
-  font-family: var(--nsw-font-family);
+  margin-top: rem(24px);
 
-  &__list {
+  ol {
     margin: 0;
     padding-left: 0;
     list-style: none;
   }
 
-  &__item {
+  li {
     display: none;
 
-    & + &::before {
+    &::before {
       content: '';
       display: inline-block;
       border-right: 2px solid currentColor;
@@ -29,24 +28,30 @@
     @include breakpoint('md') {
       display: inline;
     }
-  }
 
-  &__item:nth-last-child(2),
-  &__item:last-child {
-    display: inline;
-  }
+    &:first-child {
+      &::before {
+        display: none;
+      }
+    }
 
-  &__item:nth-last-child(2) {
-    &::before {
-      display: none;
+    &:nth-last-child(2),
+    &:last-child {
+      display: inline;
+    }
 
-      @include breakpoint('md') {
-        display: inline-block;
+    &:nth-last-child(2) {
+      &::before {
+        display: none;
+
+        @include breakpoint('md') {
+          display: inline-block;
+        }
       }
     }
   }
 
-  &__link {
+  a {
     color: var(--nsw-brand-dark);
     text-decoration: underline;
     text-decoration-skip-ink: auto;
@@ -58,11 +63,11 @@
     &:focus {
       @include nsw-focus($offset: false);
     }
-  }
 
-  &--current {
-    text-decoration: none;
-    pointer-events: none;
-    color: var(--nsw-text-dark);
+    &.current {
+      text-decoration: none;
+      pointer-events: none;
+      color: var(--nsw-text-dark);
+    }
   }
 }
