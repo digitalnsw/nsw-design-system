@@ -44,11 +44,16 @@ small {
   @include font-size('xs');
 }
 
+/* stylelint-disable selector-no-qualifying-type */
+
 abbr,
+abbr[title], /* stylelint-disable-line selector-no-qualifying-type */
 acronym {
   text-decoration: none;
   border-bottom: 1px var(--nsw-brand-dark) dashed;
 }
+
+/* stylelint-enable selector-no-qualifying-type */
 
 blockquote {
   @include font-size('lg');
@@ -182,10 +187,6 @@ a {
       &:last-child {
         margin-left: rem(4px);
       }
-    }
-
-    +.nsw-link--icon {
-      margin-left: rem(16px);
     }
   }
 }

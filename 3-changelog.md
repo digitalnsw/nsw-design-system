@@ -19,3 +19,4 @@ Manual list of 3.0 breaking changes
 - Tabs: updated component name and removed li/a classes
 - Accordion: cleaned up classes, changed hbs setup
 - Breadcrumbs: changed nsw-breadcrumb to nsw-breadcrumbs, cleaned up classes, changed hbs setup
+- Buttons: descrease padding
