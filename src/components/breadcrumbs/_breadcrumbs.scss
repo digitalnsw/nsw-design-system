@@ -12,17 +12,13 @@
     display: none;
 
     &::before {
-      content: '';
+      @include material-icons;
+      content: 'keyboard_arrow_right';
+      font-size: rem(map-get($nsw-icon-sizes, 20));
+      line-height: rem(8px);
       display: inline-block;
-      border-right: 2px solid currentColor;
-      border-bottom: 2px solid currentColor;
-      width: rem(6px);
-      height: rem(6px);
-      transform: rotate(-45deg);
-      margin-right: rem(6px);
-      margin-left: rem(6px);
-      top: -1px;
       position: relative;
+      top: rem(6px);
     }
 
     @include breakpoint('md') {
