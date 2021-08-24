@@ -95,18 +95,6 @@ h6,
 .nsw-h6 {
   font-weight: var(--nsw-font-bold);
   margin: 0;
-
-  &.nsw-section-title {
-    font-family: var(--nsw-font-family);
-    font-weight: var(--nsw-font-bold);
-    margin: 0;
-    padding-top: rem($grid-gutters);
-    padding-bottom: rem(8px);
-
-    @include breakpoint('md') {
-      padding-top: rem($grid-gutters*2);
-    }
-  }
 }
 
 h1,
@@ -224,4 +212,14 @@ a {
 .nsw-section-text {
   margin-top: rem(-8px);
   padding-bottom: rem(8px);
+}
+
+.nsw-section-title {
+  margin: 0;
+  padding-top: rem($grid-gutters);
+  padding-bottom: rem(8px);
+
+  @include breakpoint('md') {
+    padding-top: rem($grid-gutters*2);
+  }
 }
