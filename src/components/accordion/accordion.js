@@ -10,7 +10,7 @@ function createButtons({ textContent }) {
   button.setAttribute('aria-controls', uID)
   button.classList.add('nsw-accordion__button')
   button.insertAdjacentHTML('beforeend', `
-  <i class="material-icons nsw-material-icons nsw-accordion__icon" focusable="false" aria-hidden="true">keyboard_arrow_right</i>
+  <i class="material-icons nsw-material-icons nsw-accordion__icon" focusable="false" aria-hidden="true">keyboard_arrow_down</i>
   `)
 
   fragment.appendChild(button)

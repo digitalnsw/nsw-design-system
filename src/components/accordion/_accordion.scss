@@ -4,9 +4,9 @@
   &__title,
   &__button {
     @include font-size('md');
-    @include nsw-spacing(margin, xs none none);
-    @include nsw-spacing(padding, md xxl md md);
     font-weight: var(--nsw-font-bold);
+    padding: rem(16px) rem(48px) rem(16px) rem(16px);
+    margin-top: rem(8px);
     background-color: var(--nsw-off-white);
     display: block;
     width: 100%;
@@ -26,9 +26,9 @@
   }
 
   &__toggle {
-    @include nsw-spacing(margin, none none md none);
     display: flex;
     justify-content: flex-end;
+    margin-bottom: rem(16px);
 
     button {
       @include link;
@@ -39,11 +39,11 @@
       background: none;
 
       &:first-child {
-        @include nsw-spacing(margin, none lg none none);
+        margin-right: rem(24px);
       }
 
       &:disabled {
-        opacity: 0.38;
+        opacity: 0.4;
         cursor: not-allowed;
       }
     }
@@ -51,7 +51,6 @@
 
   &__title {
     .is-ready & {
-      border-left: 0;
       padding: 0;
       margin-top: 0;
     }
@@ -70,18 +69,20 @@
   }
 
   &__icon {
-    transform: translateY(-50%) rotate(90deg);
+    font-size: rem(map-get($nsw-icon-sizes, 30));
+    color: var(--nsw-brand-dark);
+    transform: translateY(-50%);
     position: absolute;
     top: 50%;
-    right: rem(9px);
+    right: rem(8px);
     transition: transform $transition-duration, color $transition-duration;
 
     .is-open & {
-      transform: translateY(-50%) rotate(270deg);
+      transform: translateY(-50%) rotate(180deg);
     }
   }
 
   &__content {
-    @include nsw-spacing(padding, md);
+    padding: rem(16px);
   }
 }
