@@ -51,6 +51,17 @@
   }
 }
 
+@mixin link-button() {
+  @include link();
+  @include font-size('sm');
+  display: inline-block;
+  cursor: pointer;
+  background-color: transparent;
+  border: 0;
+  padding: 0;
+  -webkit-appearance: none; /* stylelint-disable-line property-no-vendor-prefix */
+}
+
 @mixin text-link {
   font-weight: var(--nsw-font-bold);
   color: var(--nsw-brand-dark);

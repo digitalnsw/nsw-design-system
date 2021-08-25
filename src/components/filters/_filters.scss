@@ -27,34 +27,20 @@
     }
 
     button {
+      @include link-button;
       display: flex;
       align-items: center;
-      cursor: pointer;
-      background-color: transparent;
-      border: 0;
-      padding: 0;
-      color: var(--nsw-brand-dark);
-
-      &:hover {
-        @include nsw-hover;
-        outline: 4px solid var(--nsw-text-hover);
-      }
-
-      &:focus {
-        @include nsw-focus;
-      }
+      text-decoration: none;
 
       span {
-        @include font-size('sm');
-        font-weight: var(--nsw-font-bold);
         text-decoration: underline;
         padding-left: rem(8px);
       }
     }
 
     .nsw-material-icons {
+      font-size: rem(map-get($nsw-icon-sizes, 24));
       border-radius: var(--nsw-border-radius);
-      font-size: rem(24px);
       padding: rem(1px);
       border: 2px solid var(--nsw-brand-dark);
     }
@@ -81,31 +67,19 @@
       display: none;
     }
 
-    button {
-      background-color: transparent;
-      border: 0;
-      padding: 0;
-      color: var(--nsw-brand-dark);
+    button {      
+      @include link-button;
       display: flex;
       align-items: center;
       cursor: pointer;
-
-      &:hover {
-        @include nsw-hover;
-      }
-
-      &:focus {
-        @include nsw-focus;
-      }
+      text-decoration: none;
 
       span {
-        @include font-size('sm');
-        font-weight: var(--nsw-font-bold);
         text-decoration: underline;
       }
 
-      i {
-        font-size: rem(24px);
+      .nsw-material-icons {
+        font-size: rem(map-get($nsw-icon-sizes, 24));
         margin-right: rem(4px);
       }      
     }
@@ -194,27 +168,13 @@
     }
 
     button {
-      @include text-link;
-      @include font-size('sm');
-      font-weight: normal;
-      text-decoration: underline;
-      cursor: pointer;
-      background-color: transparent;
-      border: 0;
-      padding: 0;
+      @include link-button;
     }
   }
 
   &__more,
-  &__less {
-    @include text-link;
-    @include font-size('sm');
-    font-weight: normal;
-    text-decoration: underline;
-    cursor: pointer;
-    background-color: transparent;
-    border: 0;
-    padding: 0;
+  &__less { 
+    @include link-button;
     margin-top: rem(24px);
   }
 
