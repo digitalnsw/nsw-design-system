@@ -82,17 +82,6 @@
   @return url('data:image/svg+xml,#{$encoded}');
 }
 
-// Background svg mixin
-@mixin background-svg($id, $fill: null) {
-  $new-svg: map-get($nsw-icons, $id);
-
-  @if $fill {
-    $new-svg: str-insert($new-svg, 'fill="#{$fill}" ', 6);
-  }
-
-  background-image: svg-url($new-svg);
-}
-
 // Helper function to replace characters in a string
 @function str-replace($string, $search, $replace: '') {
   $index: str-index($string, $search);

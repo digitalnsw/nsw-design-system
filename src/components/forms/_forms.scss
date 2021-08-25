@@ -1,15 +1,15 @@
-$nsw-svg-light: #ffffff;
-$nsw-svg-dark: #333333;
+$nsw-form-chevron-down: '<svg fill="#333333" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path d="M16 26l16-16-4-4-12 12-12-12-4 4 16 16z"></path></svg>';
+$nsw-form-tick: '<svg fill="#ffffff" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path d="M29.362 3.742l-18.867 19.204-7.857-7.997-2.638 2.685 9.175 9.34 1.319 1.284 1.318-1.284 20.187-20.547z"></path></svg>';
 
 .nsw-form {
-  @include nsw-spacing(margin-top, xxl);
+  margin-top: rem(48px);
 
   &:first-child {
     margin-top: 0;
   }
 
   &__group {
-    @include nsw-spacing(margin-top, md);
+    margin-top: rem(16px);
 
     &:first-child {
       margin-top: 0;
@@ -23,9 +23,10 @@ $nsw-svg-dark: #333333;
 
     &--error,
     &--valid {
-      @include nsw-spacing(padding, xs);
-      @include nsw-spacing(margin-top, xs);
+      margin-top: rem(8px);
+      padding: rem(8px);
       font-weight: var(--nsw-font-bold);
+      color: var(--nsw-text-dark);
       background-repeat: no-repeat;
       background-position: left rem(8px) top rem(8px);
       background-size: 1rem auto;
@@ -33,9 +34,8 @@ $nsw-svg-dark: #333333;
       align-items: center;
 
       .nsw-material-icons {
-        font-size: rem(20px);
+        font-size: rem(map-get($nsw-icon-sizes, 20));
         margin-right: rem(4px);
-        color: var(--nsw-text-dark);
       }
     }
 
@@ -82,7 +82,7 @@ $nsw-svg-dark: #333333;
   &__input,
   &__select {
     @include font-size('sm');
-    @include nsw-spacing(padding, sm md);
+    padding: rem(12px) rem(16px);
     border-radius: var(--nsw-border-radius);
     background-color: var(--nsw-white);
     color: var(--nsw-text-dark);
@@ -92,42 +92,63 @@ $nsw-svg-dark: #333333;
     -webkit-appearance: none; /* stylelint-disable-line property-no-vendor-prefix */
     width: 100%;
 
-    &:hover {
-      @include nsw-hover;
-    }
-
     &:focus {
       @include nsw-focus;
     }
 
     &:disabled {
-      background-color: var(--nsw-off-white);
       border-color: var(--nsw-grey-03);
       color: var(--nsw-grey-03);
       cursor: not-allowed;
+      opacity: 1;
     }
-
 
     &[aria-invalid='true'],
     &.has-error {
       border-color: var(--nsw-status-error);
       border-width: 2px;
+    }
+  }
 
+  &__input {
+    &:hover {
+      background-image: linear-gradient(var(--nsw-text-hover), var(--nsw-text-hover));
+    }
+
+    &:disabled {
+      background: var(--nsw-off-white);
+    }
+
+    &[aria-invalid='true'],
+    &.has-error {
       &:hover {
-        background-color: var(--nsw-status-error-bg);
+        background: var(--nsw-status-error-bg);
       }
     }
   }
 
   &__select {
-    @include background-svg(chevron-down, $nsw-svg-dark);
-    @include nsw-spacing(padding-right, xxl);
-    background-repeat: no-repeat;
-    background-position: right rem(16px) center;
+    padding-right: rem(48px);
+    background: var(--nsw-white) svg-url($nsw-form-chevron-down) no-repeat right rem(16px) center;
     background-size: rem(16px) auto;
 
+    &:hover {
+      background: svg-url($nsw-form-chevron-down) no-repeat right rem(16px) center, linear-gradient(var(--nsw-text-hover), var(--nsw-text-hover));
+      background-size: rem(16px) auto, auto;
+      background-color: var(--nsw-white);
+    }
+
     &:disabled {
-      @include background-svg(chevron-down, $nsw-svg-dark);
+      background: var(--nsw-off-white) svg-url($nsw-form-chevron-down) no-repeat right rem(16px) center;
+      background-size: rem(16px) auto;
+    }
+
+    &[aria-invalid='true'],
+    &.has-error {
+      &:hover {
+        background: var(--nsw-status-error-bg) svg-url($nsw-form-chevron-down) no-repeat right rem(16px) center;
+        background-size: rem(16px) auto;
+      }
     }
 
     option {
@@ -171,14 +192,14 @@ $nsw-svg-dark: #333333;
         border-left-width: 0;
 
         &:hover {
-          @include nsw-hover;
+          background-image: linear-gradient(var(--nsw-text-hover), var(--nsw-text-hover));
         }
       }
     }
 
     &--large {
       .nsw-form__input {
-        @include nsw-spacing(padding, md);
+        padding: rem(16px);
       }
 
       .nsw-button {
@@ -216,10 +237,11 @@ $nsw-svg-dark: #333333;
       margin: 0;
     }
 
-    a:not([class]) {
+    a {
       display: block;
       padding: rem(10px);
       color: var(--nsw-text-dark);
+      font-weight: var(--nsw-font-normal);
 
       &:hover {
         outline: none;
@@ -234,7 +256,6 @@ $nsw-svg-dark: #333333;
       }
     }
   }
-
 
   &__date {
     padding: 0;
@@ -268,8 +289,8 @@ $nsw-svg-dark: #333333;
     display: contents;
 
     legend {
-      @include nsw-spacing(margin, none none md none);
       padding: 0;
+      margin: 0 0 rem(16px) 0;
       display: block;
     }
   }
@@ -293,11 +314,11 @@ $nsw-svg-dark: #333333;
 
     &:hover + .nsw-form__checkbox-label::before,
     &:hover + .nsw-form__radio-label::before {
-      @include nsw-hover;
+      background-image: linear-gradient(var(--nsw-text-hover), var(--nsw-text-hover));
     }
 
     &:checked + .nsw-form__checkbox-label::after {
-      @include background-svg(tick, $nsw-svg-light);
+      background-image: svg-url($nsw-form-tick);
       background-color: var(--nsw-brand-dark);
     }
 
@@ -334,7 +355,7 @@ $nsw-svg-dark: #333333;
     &[aria-invalid='true'] + .nsw-form__checkbox-label,
     &.has-error + .nsw-form__checkbox-label {
       &:hover::before {
-        background-color: var(--nsw-status-error-bg);
+        background-image: linear-gradient(var(--nsw-status-error-bg), var(--nsw-status-error-bg));
       }
 
       &::before {
@@ -347,17 +368,17 @@ $nsw-svg-dark: #333333;
   &__checkbox-label,
   &__radio-label {
     @include font-size('sm');
-    @include nsw-spacing(margin, md none none none);
+    margin: rem(16px) 0 0 0;
     padding: rem(4px) 0 rem(4px) rem(48px);
     min-height: rem(32px);
     display: block;
     position: relative;
 
     &::before {
-      @include nsw-spacing(margin-right, md);
       content: '';
       width: rem(32px);
       height: rem(32px);
+      margin-right: rem(16px);
       border: 1px var(--nsw-grey-01) solid;
       background-color: var(--nsw-white);
       top: 0;
