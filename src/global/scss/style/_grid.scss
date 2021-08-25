@@ -93,17 +93,17 @@
     @include create-column-default();
 
     &:not(:first-child) {
-      @include create-column(8, $desktop-breakpoint);
+      @include create-column(8, $nsw-desktop-breakpoint);
     }
 
     &:not(:last-child) {
-      @include create-column(8, $desktop-breakpoint);
+      @include create-column(8, $nsw-desktop-breakpoint);
     }
   }
 
   &__sidebar {
     @include create-column-default();
-    @include create-column(4, $desktop-breakpoint);
+    @include create-column(4, $nsw-desktop-breakpoint);
 
     &:first-child {
       @include breakpoint('lg') {
@@ -112,7 +112,7 @@
     }
 
     &:last-child {
-      @include breakpoint($desktop-breakpoint) {
+      @include breakpoint($nsw-desktop-breakpoint) {
         padding-left: rem($grid-gutters*2 + $layout-gap);
       }
     }
@@ -120,7 +120,7 @@
     &--desktop {
       display: none;
 
-      @include breakpoint($desktop-breakpoint) {
+      @include breakpoint($nsw-desktop-breakpoint) {
         display: block;
       }
     }

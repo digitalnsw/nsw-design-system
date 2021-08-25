@@ -1,5 +1,5 @@
 // Breakpoints
-$breakpoints: (
+$nsw-breakpoints: (
   xs: 0,
   sm: 576px,
   md: 768px,
@@ -8,29 +8,16 @@ $breakpoints: (
 ) !default;
 
 //Breakpoint to switch to desktop view (Layout and Navigation)
-$desktop-breakpoint: lg;
-
-// Spacing - Used with margin and padding
-$spacing-sizes: (
-  none:   0,
-  xs:     8px,
-  sm:     12px,
-  md:     16px,
-  lg:     24px,
-  xl:     32px,
-  xxl:    48px,
-  xxxl:   64px,
-  xxxxl:  80px
-) !default;
+$nsw-desktop-breakpoint: lg;
 
 //Spacing in between components
-$components-spacing: (
+$nsw-components-spacing: (
   mobile: 24px,
   desktop: 32px
 );
 
 // z-index
-$z-index: (
+$nsw-z-index: (
   top: 900,
   upper: 300,
   middle: 200,
@@ -39,7 +26,20 @@ $z-index: (
 ) !default;
 
 // Transitions
-$transition-duration: 0.15s ease-in-out !default;
+$nsw-transition-duration: 0.15s ease-in-out !default;
+
+// Font
+$nsw-base-font-size: 16px;
+$nsw-font-size-reponsive-breakpoint: lg !default;
+
+//Utilities
+$nsw-focus-offset: 3px !default;
+
+//Icons to use in pseudo elements
+$nsw-icons: (
+  chevron-down: '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path d="M16 26l16-16-4-4-12 12-12-12-4 4 16 16z"></path></svg>',
+  tick: '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path d="M29.362 3.742l-18.867 19.204-7.857-7.997-2.638 2.685 9.175 9.34 1.319 1.284 1.318-1.284 20.187-20.547z"></path></svg>',
+) !default;
 
 // Container
 $container-offset: 16px;
@@ -70,18 +70,15 @@ $grid-col-sizes: (
 
 $grid-columns: 12;
 
-// Font
-$base-font-size: 16px;
-$font-size-reponsive-breakpoint: lg !default;
-
-//Utilities
-$focus-offset: 3px !default;
-
-$icons: (
-  chevron-right: '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="20" height="32" viewBox="0 0 20 32"><path d="M20 16l-16-16-4 4 12 12-12 12 4 4 16-16z"></path></svg>',
-  chevron-down: '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path d="M16 26l16-16-4-4-12 12-12-12-4 4 16 16z"></path></svg>',
-  chevron-left: '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="20" height="32" viewBox="0 0 20 32"><path d="M0 16l16-16 4 4-12 12 12 12-4 4-16-16z"></path></svg>',
-  chevron-up: '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path d="M16 6l16 16-4 4-12-12-12 12-4-4 16-16z"></path></svg>',
-  tick: '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path d="M29.362 3.742l-18.867 19.204-7.857-7.997-2.638 2.685 9.175 9.34 1.319 1.284 1.318-1.284 20.187-20.547z"></path></svg>',
-  error: '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path d="M16 32c4.243 0 8.313-1.686 11.314-4.686 3-3.001 4.686-7.070 4.686-11.314s-1.686-8.313-4.686-11.314c-3.001-3-7.070-4.686-11.314-4.686s-8.313 1.686-11.314 4.686c-3 3.001-4.686 7.070-4.686 11.314s1.686 8.313 4.686 11.314c3.001 3 7.070 4.686 11.314 4.686zM16 7c0.809 0 1.538 0.487 1.848 1.234s0.138 1.608-0.434 2.18c-0.572 0.572-1.432 0.744-2.18 0.434s-1.234-1.039-1.234-1.848c0-1.104 0.896-2 2-2zM14 14h4v11h-4v-11z"></path></svg>'
+// Spacing - Used with margin and padding
+$spacing-sizes: (
+  none:   0,
+  xs:     8px,
+  sm:     12px,
+  md:     16px,
+  lg:     24px,
+  xl:     32px,
+  xxl:    48px,
+  xxxl:   64px,
+  xxxxl:  80px
 ) !default;

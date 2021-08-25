@@ -4,7 +4,7 @@
     $value: $value * 1px;
   }
 
-  @return $value / $base-font-size * 1rem;
+  @return $value / $nsw-base-font-size * 1rem;
 }
 
 @function em($value) {
@@ -12,7 +12,7 @@
     $value: $value * 1px;
   }
 
-  @return $value / $base-font-size * 1em;
+  @return $value / $nsw-base-font-size * 1em;
 }
 
 // generates modifer classes in the bem syntax
@@ -84,7 +84,7 @@
 
 // Background svg mixin
 @mixin background-svg($id, $fill: null) {
-  $new-svg: map-get($icons, $id);
+  $new-svg: map-get($nsw-icons, $id);
 
   @if $fill {
     $new-svg: str-insert($new-svg, 'fill="#{$fill}" ', 6);
@@ -120,10 +120,10 @@
 // Z-index
 @mixin z-index($index: 'base') {
 
-  @if map-has-key($z-index, $index) == false {
-    @error 'NSW-DS z-index mixin allows the following values for $index: #{map-keys($z-index)}. You have used "#{$index}"';
+  @if map-has-key($nsw-z-index, $index) == false {
+    @error 'NSW-DS z-index mixin allows the following values for $index: #{map-keys($nsw-z-index)}. You have used "#{$index}"';
   }
   @else {
-    z-index: map-get($z-index, $index);
+    z-index: map-get($nsw-z-index, $index);
   }
 }

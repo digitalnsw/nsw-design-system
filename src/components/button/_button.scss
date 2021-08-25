@@ -61,7 +61,6 @@ $nsw-buttons: (
 
 .nsw-button {
   @include font-size('sm');
-  @include nsw-spacing(margin, lg md none none);
   border-radius: var(--nsw-border-radius);
   font-weight: var(--nsw-font-bold);
   border: solid 2px transparent;
@@ -105,7 +104,7 @@ $nsw-buttons: (
     display: block;
     width: 100%;
 
-    @include breakpoint($desktop-breakpoint) {
+    @include breakpoint($nsw-desktop-breakpoint) {
       display: inline-block;
       width: auto;
     }
@@ -124,5 +123,18 @@ $nsw-buttons: (
     &:last-child {
       margin-left: rem(8px);
     }
+  }
+}
+
+.nsw-buttons {
+  @include component-spacing;
+  margin-left: rem(-8px);
+  margin-right: rem(-8px);
+  margin-bottom: rem(-16px);
+  display: flex;
+  flex-wrap: wrap;
+
+  .nsw-button {
+    margin: 0 rem(8px) rem(16px) rem(8px);
   }
 }

@@ -6,7 +6,7 @@
   @if $size != 'xs' and $size != 'sm' and $size != 'md' and $size != 'lg' and $size != 'xl' {
     @error 'NSW-DS Breakpoint mixin allows the following breakpoint sizes xs, sm, md, lg';
   } @else {
-    $px-size: map-get($breakpoints, $size);
+    $px-size: map-get($nsw-breakpoints, $size);
     $em-size: em($px-size);
 
     @media ($width-type: $em-size) {

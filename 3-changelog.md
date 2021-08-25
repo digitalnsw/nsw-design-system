@@ -17,11 +17,13 @@ Manual list of 3.0 breaking changes
 
 
 - Icons: added sizing and colour options, removed default size and colour, updated positioning inside components
-- Tabs: updated component name and removed li/a classes
 - Accordion: cleaned up classes, changed hbs setup
 - Breadcrumbs: changed nsw-breadcrumb to nsw-breadcrumbs, cleaned up classes, changed hbs setup
 - Buttons: descrease padding
 - Callout: updates spacing, classes cleanup
-- Card: component code rewrite, changed default card to be content
-- Global alert: styling/classes update
+- Cards: component code rewrite, changed default card to be content
+- Content blocks: classes/code cleanup
+- Filters: code cleanup
 - Footer: cleaned up classes, changed to single component BEM
+- Global alert: styling/classes update
+- Tabs: updated component name and removed li/a classes

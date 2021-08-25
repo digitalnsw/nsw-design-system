@@ -36,7 +36,7 @@
     }
   }
 
-  @each $breakpoint, $breakpoint-size in $breakpoints {
+  @each $breakpoint, $breakpoint-size in $nsw-breakpoints {
     @include breakpoint($breakpoint) {
       @for $i from 1 through $grid-columns {
         .nsw-col-#{$breakpoint}-#{$i} {
@@ -51,7 +51,7 @@
     }
   }
 
-  @each $breakpoint, $breakpoint-size in $breakpoints {
+  @each $breakpoint, $breakpoint-size in $nsw-breakpoints {
     .nsw-show-#{$breakpoint} {
       display: none;
     }

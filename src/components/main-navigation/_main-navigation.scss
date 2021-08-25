@@ -26,7 +26,7 @@
     transform: translateX(-100%);
   }
 
-  @include breakpoint($desktop-breakpoint) {
+  @include breakpoint($nsw-desktop-breakpoint) {
     position: relative;
     transform: none;
     background-color: var(--nsw-off-white);
@@ -62,7 +62,7 @@
       font-size: rem(34px);
     }
 
-    @include breakpoint($desktop-breakpoint) {
+    @include breakpoint($nsw-desktop-breakpoint) {
       display: none;
     }
   }
@@ -88,7 +88,7 @@
       @include nsw-focus;
     }
 
-    @include breakpoint($desktop-breakpoint) {
+    @include breakpoint($nsw-desktop-breakpoint) {
       display: none;
     }
   }
@@ -102,7 +102,7 @@
   margin-top: 0;
   margin-bottom: 0;
 
-  @include breakpoint($desktop-breakpoint) {
+  @include breakpoint($nsw-desktop-breakpoint) {
     @include container(0);
     display: flex;
     flex-direction: row;
@@ -113,7 +113,7 @@
 }
 
 .nsw-subnavigation__list {
-  @include breakpoint($desktop-breakpoint) {
+  @include breakpoint($nsw-desktop-breakpoint) {
     @include nsw-spacing(margin-top, xl);
     display: flex;
   }
@@ -129,14 +129,14 @@
   align-items: stretch;
   flex-wrap: nowrap;
 
-  @include breakpoint($desktop-breakpoint) {
+  @include breakpoint($nsw-desktop-breakpoint) {
     border-bottom: 0;
   }
 }
 
 .nsw-navigation__list-item,
 .nsw-subnavigation__list-item {
-  @include breakpoint($desktop-breakpoint) {
+  @include breakpoint($nsw-desktop-breakpoint) {
     font-weight: var(--nsw-font-bold);
     border-bottom: 0;
   }
@@ -144,7 +144,7 @@
 
 .nsw-subnavigation__list-item {
 
-  @include breakpoint($desktop-breakpoint) {
+  @include breakpoint($nsw-desktop-breakpoint) {
     width: 32%;
     border-top: solid 1px var(--nsw-grey-04);
 
@@ -171,7 +171,7 @@
   align-items: stretch;
   flex-wrap: nowrap;
 
-  @include breakpoint($desktop-breakpoint) {
+  @include breakpoint($nsw-desktop-breakpoint) {
     @include z-index('middle');
     position: relative;
   }
@@ -190,7 +190,7 @@
 }
 
 .nsw-subnavigation__link {
-  @include breakpoint($desktop-breakpoint) {
+  @include breakpoint($nsw-desktop-breakpoint) {
     color: var(--nsw-brand-dark);
   }
 }
@@ -209,7 +209,7 @@
   position: relative;
   right: rem(-7px);
 
-  @include breakpoint($desktop-breakpoint) {
+  @include breakpoint($nsw-desktop-breakpoint) {
     display: block;
     transform: rotate(90deg);
     font-size: rem(24px);
@@ -240,7 +240,7 @@
     visibility: visible;
   }
 
-  @include breakpoint($desktop-breakpoint) {
+  @include breakpoint($nsw-desktop-breakpoint) {
     @include container;
     padding: rem(48) rem(40);
     top: 100%;
@@ -257,7 +257,7 @@
     }
   }
 
-  @include breakpoint($desktop-breakpoint) {
+  @include breakpoint($nsw-desktop-breakpoint) {
     @include nsw-spacing(padding-top, xxl);
     @include nsw-spacing(padding-bottom, xxl);
   }
@@ -281,7 +281,7 @@
     align-self: center;
   }
 
-  @include breakpoint($desktop-breakpoint) {
+  @include breakpoint($nsw-desktop-breakpoint) {
     display: none;
   }
 }
@@ -312,7 +312,7 @@
     align-self: center;
   }
 
-  @include breakpoint($desktop-breakpoint) {
+  @include breakpoint($nsw-desktop-breakpoint) {
     display: none;
   }
 }
@@ -322,7 +322,7 @@
   @include nsw-spacing(margin, none);
   font-weight: var(--nsw-font-bold);
 
-  @include breakpoint($desktop-breakpoint) {
+  @include breakpoint($nsw-desktop-breakpoint) {
     @include font-size('lg');
     display: inline-block;
   }
@@ -334,14 +334,14 @@
     left: auto;
     display: none;
 
-    @include breakpoint($desktop-breakpoint) {
+    @include breakpoint($nsw-desktop-breakpoint) {
       display: inline;
     }
   }
 }
 
 .nsw-subnavigation__title-link {
-  @include breakpoint($desktop-breakpoint) {
+  @include breakpoint($nsw-desktop-breakpoint) {
     @include nsw-spacing(padding, none);
     color: var(--nsw-brand-dark);
   }
@@ -352,7 +352,7 @@
   @include font-size('xs');
   display: none;
 
-  @include breakpoint($desktop-breakpoint) {
+  @include breakpoint($nsw-desktop-breakpoint) {
     display: block;
   }
 }
@@ -360,7 +360,7 @@
 .nsw-subnavigation .nsw-subnavigation,
 .nsw-subnavigation .nsw-navigation__link-icon {
 
-  @include breakpoint($desktop-breakpoint) {
+  @include breakpoint($nsw-desktop-breakpoint) {
     display: none;
   }
 
