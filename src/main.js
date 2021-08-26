@@ -2,7 +2,6 @@ import SiteSearch from './components/header/header'
 import Navigation from './components/main-navigation/main-navigation'
 import Accordion from './components/accordion/accordion'
 import Filters from './components/filters/filters'
-import ShareThis from './components/social-bar/social-bar'
 import Tabs from './components/tabs/tabs'
 import GlobalAlert from './components/global-alert/global-alert'
 
@@ -62,8 +61,6 @@ function initSite() {
     })
   }
 
-  new ShareThis().init()
-
   if (globalAlert) {
     globalAlert.forEach((element) => {
       new GlobalAlert(element).init()
@@ -72,5 +69,5 @@ function initSite() {
 }
 
 export {
-  initSite, SiteSearch, Navigation, Accordion, ShareThis, Tabs, GlobalAlert,
+  initSite, SiteSearch, Navigation, Accordion, Tabs, GlobalAlert,
 }
