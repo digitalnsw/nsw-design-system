@@ -15,6 +15,7 @@ Manual list of 3.0 breaking changes
 - Renamed banner to hero-banner
 - Renamed site-wide-message to global-alert
 
+- Typography: updated links for all components
 
 - Icons: added sizing and colour options, removed default size and colour, updated positioning inside components
 - Accordion: cleaned up classes, changed hbs setup
@@ -23,7 +24,11 @@ Manual list of 3.0 breaking changes
 - Callout: updates spacing, classes cleanup
 - Cards: component code rewrite, changed default card to be content
 - Content blocks: classes/code cleanup
-- Filters: code cleanup
+- Filters: styles cleanup
 - Footer: cleaned up classes, changed to single component BEM
+- Forms: styles cleanup
 - Global alert: styling/classes update
 - Tabs: updated component name and removed li/a classes
+
+- Added helper classes for list
+- Added classes for icon/svg linkls and buttons

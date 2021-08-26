@@ -34,3 +34,33 @@ $nsw-icon-angles: (90, 180, 270);
     }
   }
 }
+
+.nsw-icon-button {
+  border-radius: var(--nsw-border-radius);
+  color: var(--nsw-brand-dark);
+  background: none;
+  border: 0;
+  text-decoration: none;
+  padding: rem(8px);
+  display: inline-block;
+
+  &:hover {
+    @include nsw-hover;
+    outline: none;
+  }
+
+  &:focus {
+    @include nsw-focus;
+  }
+
+  .nsw-material-icons,
+  svg {
+    display: block;
+  }
+
+  @at-root {
+    a#{&} {
+      cursor: pointer;
+    }
+  }
+}
