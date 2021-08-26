@@ -26,10 +26,56 @@
     }
   }
 
+  &__menu,
+  &__search {
+    button {      
+      border-radius: var(--nsw-border-radius);
+      color: var(--nsw-brand-dark);
+      width: rem(48px);
+      height: rem(48px);
+      background: none;
+      border: 0;
+      padding: 0;
+      text-align: center;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      &:hover {
+        @include nsw-hover;
+      }
+
+      &:focus {
+        @include nsw-focus;
+      }
+
+      .nsw-material-icons {
+        position: relative;
+        font-size: rem(22px);
+        line-height: rem(18px);
+        top: -1px;
+      }
+
+      > span {
+        @include font-size('xxs');
+        font-weight: var(--nsw-font-bold);
+      }
+    }
+
+  }
+
   &__menu {
     position: absolute;
     top: rem(12px);
     left: rem(-6px);
+
+    button {      
+      @include breakpoint('lg') {
+        display: none;
+      }
+    }
   }
 
   &__search {
@@ -41,6 +87,18 @@
       right: 0;
       top: 50%;
       margin-top: rem(-24px);
+    }
+
+    button {      
+      @include breakpoint('lg') {
+        > span {
+          @include sr-only;
+        }
+
+        .nsw-material-icons {
+          font-size: rem(34px);
+        }
+      }
     }
   }
 
@@ -75,29 +133,34 @@
         height: rem(76px);
       }
     }
-  }
 
-  &__waratah-link {
-    display: flex;
+    a {
+      display: flex;
 
-    &:focus {
-      @include nsw-focus;
-
-      @include breakpoint('lg') {
+      &:hover {
+        background: transparent;
         outline: none;
       }
-    }
 
-    @include breakpoint('lg') {
-      @include pseudo-clickable-block;
-    }
+      &:focus {
+        @include nsw-focus;
 
-    svg:not(:first-child) {
-      margin-left: rem(24px);
+        @include breakpoint('lg') {
+          outline: none;
+        }
+      }
 
       @include breakpoint('lg') {
-        margin-left: rem(48px);
+        @include pseudo-clickable-block;
       }
+
+      svg:not(:first-child) {
+        margin-left: rem(24px);
+
+        @include breakpoint('lg') {
+          margin-left: rem(48px);
+        }
+      }      
     }
   }
 
@@ -139,60 +202,6 @@
   }
 }
 
-.nsw-header-btn {
-  border-radius: var(--nsw-border-radius);
-  color: var(--nsw-brand-dark);
-  width: rem(48px);
-  height: rem(48px);
-  background: none;
-  border: 0;
-  padding: 0;
-  text-align: center;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  &:hover {
-    @include nsw-hover;
-  }
-
-  &:focus {
-    @include nsw-focus;
-  }
-
-  &__icon {
-    position: relative;
-    font-size: rem(22px);
-    line-height: rem(18px);
-    top: -1px;
-  }
-
-  &__sub {
-    @include font-size('xxs');
-    font-weight: var(--nsw-font-bold);
-  }
-}
-
-.nsw-header-btn--menu {
-  @include breakpoint('lg') {
-    display: none;
-  }
-}
-
-.nsw-header-btn--search {
-  @include breakpoint('lg') {
-    .nsw-header-btn__sub {
-      @include sr-only;
-    }
-
-    .nsw-header-btn__icon {
-      font-size: rem(34px);
-    }
-  }
-}
-
 .nsw-search {
   &__area {
     @include break-out(absolute);
@@ -224,7 +233,6 @@
     }
 
     @include breakpoint('lg') {
-      @include nsw-spacing(padding, none md);
       border-radius: var(--nsw-border-radius);
       height: rem(50px);
       padding: 0 rem(16px);
@@ -241,23 +249,23 @@
     appearance: none;
     background: none;
     cursor: pointer;
-  }
 
-  &__search-icon {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: rem(34px);
-    right: rem(7px);
-    margin-top: -1px;
-    display: none;
+    .nsw-material-icons {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: rem(34px);
+      right: rem(7px);
+      margin-top: -1px;
+      display: none;
 
-    @include breakpoint('lg') {
-      display: inline-block;
+      @include breakpoint('lg') {
+        display: inline-block;
+      }      
     }
   }
 
-  &__close-btn {
+  &__close {
     width: rem(48px);
     height: rem(48px);
     background: none;
@@ -280,9 +288,9 @@
     @include breakpoint('lg') {
       display: none;
     }
-  }
 
-  &__close-icon {
-    font-size: rem(40px);
+    .material-icons {
+      font-size: rem(40px);
+    }
   }
 }
