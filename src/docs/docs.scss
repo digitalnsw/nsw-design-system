@@ -2,6 +2,13 @@
 
 $content-width: 768px;
 
+.green {
+  --nsw-brand-dark: var(--nsw-palette-green-01);
+  --nsw-brand-light: var(--nsw-palette-green-04);
+  --nsw-brand-supplementary: var(--nsw-palette-green-02);
+  --nsw-brand-accent: var(--nsw-palette-green-02);
+}
+
 .nsw-docs {
   font-family: var(--nsw-font-family);
 
@@ -106,6 +113,44 @@ $content-width: 768px;
           padding-bottom: rem(88px);
         }
       }
+    }
+  }
+
+  &__theme-ui {
+    position: fixed;
+    width: 25%;
+    background: var(--nsw-white);
+    top: rem(16px);
+    right: rem(16px);
+
+    @include z-index(top);
+  }
+
+  &__color-row {
+    display: flex;
+  }
+
+  &__color-swatch {
+    margin-top: 0;
+
+    &:hover + .nsw-form__radio-label::before {
+      background-color: var(--nsw-brand-dark);
+    }
+
+    &::before {
+      background-color: var(--nsw-brand-dark);
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      width: 2rem;
+      height: 2rem;
+      background-repeat: no-repeat;
+      background-position: 50%;
+      background-size: 1rem auto;
+      left: 0;
+      top: 0;
     }
   }
 
