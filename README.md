@@ -32,15 +32,15 @@ How you use the NSW Design System depends on your team's capabilities. We recomm
 The NSW Design System is now installed as a dependancy of your project, check out how to [import styles](#importing-styles-into-your-project) and [javascript](#importing-javascript-into-your-project) in to your project build.
 
 
-### Import all styles
+### Option 1: Import all styles
 The NSW Design System styles need to be added to the main Sass file in your project.  
 Use the below snippet to import the NSW Design System (ideally placed before any other imports or sass):
 ```
 @import 'node_modules/nsw-design-system/src/main';
 ```
 
-### Import core and certain components
-The core library includes the design system's base theme, typography, mixins and helper functions. You can import this and take advantage of our variables and scss tools.
+### Option 2: Import core and certain components
+The core library includes the design system's base theme, typography, mixins and helper functions. You can import this and take advantage of our variables and helpers.
 
 In your own main Sass file, you can import NSW Design System’s core library.
 
@@ -56,7 +56,7 @@ In your own main Sass file, you can import NSW Design System’s core library.
 
 ```
 
-You can choose to import components as you need it. In the same file, import the sass files of each component
+You can choose to import components as you need it. In the same file, import the Sass files of each component
 
 ```
 // Components
