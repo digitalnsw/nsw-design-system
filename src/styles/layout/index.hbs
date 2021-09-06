@@ -5,7 +5,12 @@ width: wide
 directory: layout
 ---
 
+<p>Adding container and layout classes allow us to implement consistent and clean layouts. A <code>nsw-container</code> has a max-width of 1200px and the <code>nsw-page-layout</code>acts as a wrapper to align the spacing inside the content.</p>
+
+<p>There are then 3 standard page layouts that should be used to enclose your grid:</p>
+
 <h3>Full width - Main content area</h3>
+<p>Displays main content area the full width of the container.</p><br/>
 {{#>_docs-example}}
 <div class="nsw-container">
   {{>_layout}}
@@ -13,6 +18,7 @@ directory: layout
 {{/_docs-example}}
 
 <h3>Two column - Left side desktop only</h3>
+<p>Displays a left hand sidebar that is visible on 992px+ viewports, with a main content area that is always visible. (Recommended for side navigation)</p><br/>
 {{#>_docs-example}}
 <div class="nsw-container">
   {{>_layout side="left" desktop="true"}}
@@ -21,6 +27,7 @@ directory: layout
 
 
 <h3>Two column - Right side</h3>
+<p>Displays a right hand sidebar that stacks on 0 - 991px viewports, with main content area that is always visible. </p><br/>
 {{#>_docs-example}}
 <div class="nsw-container">
   {{>_layout side="right"}}
