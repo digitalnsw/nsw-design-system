@@ -3,79 +3,117 @@ title: Grid
 layout: blank-layout.hbs
 ---
 
-<p>I thnk we should base our description on <a href="https://getbootstrap.com/docs/4.0/layout/grid/" target="_blank">Bootstrap Grid</a></p>
+<p>The NSW Design System is built on a 12 column responsive grid which adapts to the user’s viewport across 5 breakpoints. </p>
 
-<p>The NSW Design System is built on a 12 column responsive grid which adapts to the user’s viewport to provide the optimal layout.</p>
-
-<h2>Breakpoints</h2>
-
+<h2 class="nsw-h3">Breakpoints</h2>
+<div class="nsw-section nsw-section--white nsw-p-x-md nsw-m-top-sm">
 <table class="nsw-table">
   <thead>
     <tr>
       <th>Breakpoint</th>
-      <th>Dimensions</th>
-      <th>Columns</th>
-      <th>Margins</th>
-      <th>Gutters (Split)</th>
+      <th>Token</th>
+      <th>Container offset (fixed)</th>
+      <th>Gutters (fixed)</th>
+      <th>Max active content area</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>xs (Extra Small)</td>
-      <td>0-575px</td>
-      <td>1</td>
-      <td>8px</td>
-      <td>16px (8px)</td>
-    </tr>
-    <tr>
-      <td>sm (Small)</td>
-      <td>576-767px</td>
-      <td>Up to 2</td>
-      <td>8px</td>
-      <td>16px (8px)</td>
-    </tr>
-    <tr>
-      <td>md (Medium)</td>
-      <td>768-991px</td>
-      <td>Up to 3</td>
-      <td>16px  </td>
-      <td>32px 16px)</td>
-    </tr>
-    <tr>
-      <td>lg (Large)</td>
-      <td>992-1199px</td>
-      <td>Up to 4</td>
+      <td>xs (Extra Small)<br />0-575px</td>
+      <td><code>breakpoints-xs</code></td>
       <td>16px</td>
-      <td>32px (16px)</td>
+      <td>16px</td>
+      <td>544px</td>
     </tr>
     <tr>
-      <td>xl (Extra Large)</td>
-      <td>1200px+</td>
-      <td>Up to 4</td>
+      <td>sm (Small)<br />576-767px</td>
+      <td><code>breakpoints-sm</code></td>
       <td>16px</td>
-      <td>32px (16px)</td>
+      <td>16px</td>
+      <td>735px</td>
+    </tr>
+    <tr>
+      <td>md (Medium)<br />768-991px</td>
+      <td><code>breakpoints-md</code></td>
+      <td>16px</td>
+      <td>32px  </td>
+      <td>959px</td>
+    </tr>
+    <tr>
+      <td>lg (Large)<br />992-1199px</td>
+      <td><code>breakpoints-lg</code></td>
+      <td>16px</td>
+      <td>32px</td>
+      <td>1167px</td>
+    </tr>
+    <tr>
+      <td>xl (Extra Large)<br />1200px+</td>
+      <td><code>breakpoints-xl</code></td>
+      <td>16px</td>
+      <td>32px</td>
+      <td>1168px</td>
     </tr>
   </tbody>
 </table>
-
-<h2>Grid</h2>
-<figure class="nsw-media">
-  <img src="/assets/images/grid-v2.7.0.png" alt="Grid diagram">
-</figure>
-
-<h2>Viewport Visibility</h2>
-<p>These classes give you the option to show or hide elements in certain viewports xs, sm, md, lg, xl</p>
-<p>Where size is one of:</p>
+</div>
+<div class="nsw-section nsw-section--white nsw-p-x-md nsw-m-top-sm">
+  <figure class="nsw-media">
+    <img src="/assets/images/grid-v2.7.0.png" alt="Grid diagram">
+  </figure>
+</div>
+<h2 class="nsw-h3">Max container width</h2>
+<p>The default max container width is 1168px to ensure content readability when applying layouts for information based websites.</p>
+<p>Wrap a <code>nsw-container</code> class around your components.</p>
+<h2 class="nsw-h3">Content grids</h2>
+<p>Grid gives you the flexibility with Flexbox to build responsive layouts across different breakpoints. For example, to increase cards from a 2 column layout on the md breakpoint to a 3 column layout on the lg breakpoint. The NSW Design System recommends the below number of columns per breakpoint to ensure the content is at an optimal layout for readability and accessibility: </p>
 <ul>
-  <li>xs - targets from 0 to 575px</li>
-  <li>sm - targets from 576px to 767px</li>
-  <li>md - targets from 768px to 991px</li>
-  <li>lg - targets from 992px to 1199px</li>
-  <li>xl - targets from 1200px upwards</li>
+  <li>xs (Extra small) - 1 column</li>
+  <li>sm (Small) - up to 2 columns</li>
+  <li>md (Medium) - up to 3 columns</li>
+  <li>lg (Large) - up to 4 columns</li>
+  <li>xl (Extra large) - up to 4 columns</li>
 </ul>
-<p>Where display is one of:</p>
+<p>You can find base grid components in the Figma UI Kit to enable quick building and prototyping. </p>
+<p> A set of rows make up a grid, and a set of columns make up a row. Columns are set using classes in this format: <code>nsw-col-{breakpoint}-{columns}</code></p>
+<p>Where <strong>breakpoint</strong> is one of <strong>xs, sm, md, lg, xl</strong>.</p>
+<p>Where <strong>columns</strong> is between <strong>1</strong> and <strong>12</strong>.</p>
+
+<h2 class="nsw-h3">Default</h2>
+<p>For columns with uniform widths</p>
+{{#>_docs-example separated="true"}}
+  {{>_grid
+          cols=(split "nsw-col nsw-col-md-6 nsw-col-lg-3;nsw-col nsw-col-md-6 nsw-col-lg-3; nsw-col nsw-col-md-6 nsw-col-lg-3; nsw-col nsw-col-md-6 nsw-col-lg-3")
+  }}
+{{/_docs-example}}
+
+<h2 class="nsw-h3">Offset</h2>
+<p>Use <code>nsw-offset-lg-*</code> to shift the column to the right to the number of columns specified. For example, a <code>nsw-offset-lg-3</code> class will have a 3-column gap between the previous column.</p>
+{{#>_docs-example separated="true"}}
+  {{>_grid
+          cols=(split "nsw-col nsw-col-lg-6; nsw-col nsw-col-lg-3 nsw-offset-lg-3")
+  }}
+{{/_docs-example}}
+
+<h2 class="nsw-h3">Viewport Visibility</h2>
+<p>Grid classes give you the option to show or hide elements in certain breakpoints. For example, displaying an image on a large screen when it supports the content, but hiding it on a small screen when it hinders the users access to information. </p>
+<p>The classes are named using the format <code>nsw-{display}-{size}</code></p>
+<p>Where <strong>breakpoint</strong> is one of <strong>xs, sm, md, lg, xl</strong>.</p>
+<p>Where <strong>display</strong> is one of:</p>
 <ul>
-  <li>show - displays the elements</li>
-  <li>hide - hides the elements</li>
+  <li><strong>show</strong> - displays the elements</li>
+  <li><strong>hide</strong> - hides the elements</li>
 </ul>
-<p>The classes are named using the format nsw-{display}-{size}</p>
+
+<p>Showing</p>
+{{#>_docs-example separated="true"}}
+  <div class="nsw-show-lg">
+    <p>This text is only visible in large breakpoint and up</p>
+  </div>
+{{/_docs-example}}
+
+<p>Hiding</p>
+{{#>_docs-example separated="true"}}
+  <div class="nsw-hide-lg">
+    <p>This text is only visible from large breakpoint and lower</p>
+  </div>
+{{/_docs-example}}
