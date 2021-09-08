@@ -116,44 +116,6 @@ $content-width: 768px;
     }
   }
 
-  &__theme-ui {
-    position: fixed;
-    width: 25%;
-    background: var(--nsw-white);
-    top: rem(16px);
-    right: rem(16px);
-
-    @include z-index(top);
-  }
-
-  &__color-row {
-    display: flex;
-  }
-
-  &__color-swatch {
-    margin-top: 0;
-
-    &:hover + .nsw-form__radio-label::before {
-      background-color: var(--nsw-brand-dark);
-    }
-
-    &::before {
-      background-color: var(--nsw-brand-dark);
-    }
-
-    &::after {
-      content: '';
-      position: absolute;
-      width: 2rem;
-      height: 2rem;
-      background-repeat: no-repeat;
-      background-position: 50%;
-      background-size: 1rem auto;
-      left: 0;
-      top: 0;
-    }
-  }
-
   &__tabs {
     flex-grow: 1;
   }
