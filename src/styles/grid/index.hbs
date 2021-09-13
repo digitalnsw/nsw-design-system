@@ -6,9 +6,23 @@ directory: grid
 ---
 
 
-<p>The NSW Design System is built on a 12 column responsive grid which adapts to the user’s viewport across 5 breakpoints. </p>
+<nav class="nsw-page-nav" aria-labelledby="in-page-nav">
+  <h2 class="nsw-page-nav__title">On this page</h2>
+  <ul class="nsw-page-nav__list">
+    <li class="nsw-page-nav__list-item">
+      <a href="#breakpoints" class="nsw-page-nav__link">Breakpoints</a>
+    </li>
+    <li class="nsw-page-nav__list-item">
+      <a href="#content-grids" class="nsw-page-nav__link">Content grids</a>
+    </li>
+    <li class="nsw-page-nav__list-item">
+      <a href="#viewport-visibility" class="nsw-page-nav__link">Viewport Visibility</a>
+    </li>
+  </ul>
+</nav>
 
-<h2 class="nsw-h3">Breakpoints</h2>
+<h2 id="breakpoints">Breakpoints</h3>
+<p>The NSW Design System is built on a 12 column responsive grid which adapts to the user’s viewport across 5 breakpoints.</p>
 <div class="nsw-section nsw-section--white nsw-p-x-md nsw-m-top-sm">
 <table class="nsw-table">
   <thead>
@@ -59,17 +73,9 @@ directory: grid
   </tbody>
 </table>
 </div>
+<br>
 
-<h2 class="nsw-h3">Container, columns and gutter</h2>
-<div class="nsw-p-x-md nsw-m-top-sm">
-  <figure class="nsw-media">
-    <img src="/assets/images/docs-grid-v3.0.png" alt="Grid diagram">
-  </figure>
-</div>
-<h2 class="nsw-h3">Max container width</h2>
-<p>The default max container width is 1168px to ensure content readability when applying layouts for information based websites.</p>
-<p>Wrap a <code>nsw-container</code> class around your components.</p>
-<h2 class="nsw-h3">Content grids</h2>
+<h2 id="content-grids">Content grids</h2>
 <p>Grid gives you the flexibility with Flexbox to build responsive layouts across different breakpoints. For example, to increase cards from a 2 column layout on the md breakpoint to a 3 column layout on the lg breakpoint. The NSW Design System recommends the below number of columns per breakpoint to ensure the content is at an optimal layout for readability and accessibility: </p>
 <ul>
   <li>xs (Extra small) - 1 column</li>
@@ -83,8 +89,12 @@ directory: grid
 <p>Where <strong>breakpoint</strong> is one of <strong>xs, sm, md, lg, xl</strong>.</p>
 <p>Where <strong>columns</strong> is between <strong>1</strong> and <strong>12</strong>.</p>
 
-<h2 class="nsw-h3">Default grids</h2>
-<p>For columns with uniform widths</p>
+<h3>Grid layouts</h3>
+<div class="nsw-p-x-md nsw-m-top-sm">
+  <figure class="nsw-media">
+    <img src="/assets/images/docs-grid-v3.0.png" alt="Container, columns and gutter diagram">
+  </figure>
+</div>
 
 <h4>Whole</h4>
 {{#>_docs-example}}
@@ -122,8 +132,8 @@ directory: grid
           cols=(split "nsw-col nsw-col-lg-6; nsw-col nsw-col-lg-3 nsw-offset-lg-3")
   }}
 {{/_docs-example}}
-
-<h2 class="nsw-h3">Viewport Visibility</h2>
+<br>
+<h2 id="viewport-visibility">Viewport Visibility</h2>
 <p>Grid classes give you the option to show or hide elements in certain breakpoints. For example, displaying an image on a large screen when it supports the content, but hiding it on a small screen when it hinders the users access to information. </p>
 <p>The classes are named using the format <code>nsw-{display}-{breakpoint}</code></p>
 <p>Where <strong>breakpoint</strong> is one of <strong>xs, sm, md, lg, xl</strong>.</p>
