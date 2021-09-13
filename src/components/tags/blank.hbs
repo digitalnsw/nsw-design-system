@@ -8,13 +8,19 @@ model:
   checkbox: json/tags-checkbox.json
 ---
 {{#>_layout-container}}
-<div class="nsw-docs__section nsw-docs__section--spaced"> 
-{{>_tags model.link}}
+<div class="nsw-docs__section nsw-docs__section--spaced">
+  <div class="nsw-list nsw-list--8">
+    {{>_tags model.link}}
+  </div>
 </div>
-<div class="nsw-docs__section nsw-docs__section--spaced"> 
-{{>_tags model.text}}
+<div class="nsw-docs__section nsw-docs__section--spaced">
+  <div class="nsw-list nsw-list--8">
+    {{>_tags model.text}}
+  </div>
 </div>
-<div class="nsw-docs__section nsw-docs__section--spaced"> 
-{{>_tags model.checkbox}}
+<div class="nsw-docs__section nsw-docs__section--spaced">
+  <div class="nsw-list nsw-list--8">
+    {{>_tags model.checkbox}}
+  </div>
 </div>
 {{/_layout-container}}

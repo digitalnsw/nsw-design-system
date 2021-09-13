@@ -1,63 +1,56 @@
-.nsw-tag:not(.nsw-tag--checkbox),
-.nsw-tag label {
+.nsw-tag {
   @include font-size('xs');
-  @include nsw-spacing(padding-left, md);
-  @include nsw-spacing(padding-right, md);  
+  font-weight: var(--nsw-font-normal);
+  padding: rem(2px) rem(16px);
   border: solid 1px var(--nsw-brand-dark);
-  border-radius: rem(13px);
-  padding-top: 2px;
-  padding-bottom: 2px;
+  border-radius: rem(24px);
   color: var(--nsw-brand-dark);
   text-decoration: none;
   display: inline-block;
-}
 
-a.nsw-tag,
-button.nsw-tag {
+  &:visited {
+    color: var(--nsw-brand-dark);
+  }
+
   &:hover {
-    @include nsw-hover;
+    outline: none;
   }
 
-  &:focus {
-    @include nsw-focus;
-  }
-}
+  &--checkbox {
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    position: relative;
 
-.button.nsw-tag {
-  .is-selected {
+    input {
+      position: absolute;
+      opacity: 0;
+
+      &:hover + label {
+        @include nsw-hover;
+      }
+
+      &:focus + label {
+        @include nsw-focus;
+        outline-offset: 0;
+      }
+
+      &:checked + label {
+        background-color: var(--nsw-brand-dark);
+        color: var(--nsw-text-light);
+      }
+    }
+
+    label {
+      padding: rem(2px) rem(16px);
+      border: solid 1px var(--nsw-brand-dark);
+      border-radius: rem(24px);
+      display: inline-block;
+    }
+  }
+
+  &.is-selected {
     background-color: var(--nsw-brand-dark);
     color: var(--nsw-text-light);
-  }
-}
-
-.nsw-tag--checkbox {
-  display: inline-block;
-
-  input {
-    position: absolute;
-    opacity: 0;
-
-    &:hover + label {
-      @include nsw-hover;
-    }
-
-    &:focus + label {
-      @include nsw-focus;
-    }
-
-    &:checked + label {
-      background-color: var(--nsw-brand-dark);
-      color: var(--nsw-text-light);
-    }
-  }
-}
-
-.nsw-tags {
-  display: flex;
-  flex-wrap: wrap;
-  margin: rem(-16px) rem(-8px) 0 0;
-
-  .nsw-tag {
-    margin: rem(16px) rem(8px) 0 0;
   }
 }
