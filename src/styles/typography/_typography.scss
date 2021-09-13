@@ -57,7 +57,10 @@ acronym {
 
 blockquote {
   @include font-size('lg');
-  @include nsw-spacing(margin, md none none none);
+  @include component-spacing;
+  margin-left: 0;
+  margin-right: 0;
+  margin-bottom: 0;
   border-left: solid 6px var(--nsw-brand-accent);
   padding: rem(20px) rem(24px);
 
@@ -65,6 +68,37 @@ blockquote {
     margin-left: auto;
     margin-right: auto;
     max-width: 75%;
+  }
+}
+
+table {
+  @include component-spacing;
+  border: 0;
+  border-collapse: collapse;
+  width: 100%;
+  caption-side: bottom;
+
+  caption {
+    padding: rem(12px) rem(8px);
+    text-align: left;
+  }
+
+  th,
+  td {
+    padding: rem(12px) rem(8px);
+    text-align: left;
+    vertical-align: baseline;
+    border-bottom: solid 1px var(--nsw-grey-01);
+  }
+
+  th,
+  thead td,
+  tfoot td {
+    font-weight: var(--nsw-font-bold);
+  }
+
+  thead {
+    border-bottom: solid 2px var(--nsw-grey-01);
   }
 }
 

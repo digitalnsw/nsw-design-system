@@ -1,55 +1,24 @@
 .nsw-table {
-  @include font-size('sm');
-  border-radius: 0;
-  border-collapse: collapse;
-  width: 100%;
-  margin: 0 auto;
-  caption-side: bottom;
-
-  caption {
-    @include nsw-spacing(padding, sm xs);
-    text-align: left;
+  &--caption-top {
+    caption-side: top;
   }
 
-  th,
-  td {
-    @include nsw-spacing(padding, sm xs);
-    text-align: left;
-    vertical-align: baseline;
-    border-bottom: solid 1px var(--nsw-grey-01);
+  &--striped {
+    th,
+    td {
+      border-bottom: 0;
+    }
+
+    tbody tr:nth-of-type(even) {
+      background-color: var(--nsw-off-white);
+    }
   }
 
-  th,
-  thead td,
-  tfoot td {
-    font-weight: var(--nsw-font-bold);
-  }
-
-  thead {
-    border-bottom: solid 2px var(--nsw-grey-01);
-  }
-}
-
-.nsw-table--caption-top {
-  caption-side: top;
-}
-
-.nsw-table--striped {
-  th,
-  td {
-    border-bottom: 0;
-  }
-
-  tbody tr:nth-of-type(even) {
-    background-color: var(--nsw-off-white);
-  }
-}
-
-
-.nsw-table--bordered {
-  th,
-  td {
-    border: solid 1px var(--nsw-grey-01);
+  &--bordered {
+    th,
+    td {
+      border: solid 1px var(--nsw-grey-01);
+    }
   }
 }
 
@@ -64,7 +33,8 @@
     @include nsw-focus;
   }
 
-  .nsw-table {
+  table {
+    margin: 0;
     min-width: rem(600);
   }
 }
