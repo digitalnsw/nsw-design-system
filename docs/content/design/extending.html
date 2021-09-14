@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NSW Digital Design System - Extending</title>
+  <meta name="robots" content="noindex" />
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="icon" href="../../favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="/docs/css/docs.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/atom-one-light.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/xml.min.js"></script>
+</head>
+
+<body class="nsw-body-content nsw-docs">
+  <div class="nsw-docs__wrapper">
+    <div class="nsw-docs__nav">
+      <nav class="nsw-docs-nav">
+        <div class="nsw-docs-nav__wrapper">
+          <div class="nsw-docs-nav__title nsw-docs-nav__title--main">
+            <a class="nsw-docs-nav__title-link" href="/">NSW Digital Design System</a>
+          </div>
+      
+          <div class="nsw-docs-nav__title">
+            <button>
+              <span>Design</span>
+              <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</i>
+            </button>
+          </div>
+          <ul class="nsw-docs-nav__list">
+              <li><a class="nsw-docs-nav__list-link" href="/docs/content/design/getting-started.html">Getting Started</a></li>
+              <li><a class="nsw-docs-nav__list-link" href="/docs/content/design/extending.html">Extending</a></li>
+              <li><a class="nsw-docs-nav__list-link" href="/docs/content/design/theming.html">Theming</a></li>
+          </ul>
+          <div class="nsw-docs-nav__title">
+            <button>
+              <span>Develop</span>
+              <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</i>
+            </button>
+          </div>
+          <ul class="nsw-docs-nav__list">
+              <li><a class="nsw-docs-nav__list-link" href="/docs/content/develop/getting-started.html">Getting Started</a></li>
+              <li><a class="nsw-docs-nav__list-link" href="/docs/content/develop/theming.html">Theming</a></li>
+              <li><a class="nsw-docs-nav__list-link" href="/docs/content/develop/migration.html">Migration</a></li>
+          </ul>
+          <div class="nsw-docs-nav__title">
+            <button>
+              <span>Core styles</span>
+              <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</i>
+            </button>
+          </div>
+          <ul class="nsw-docs-nav__list">
+            <li><a class="nsw-docs-nav__list-link" href="/styles/colour/index.html">Colour</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/styles/typography/index.html">Typography</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/styles/iconography/index.html">Iconography</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/styles/grid/index.html">Grid</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/styles/layout/index.html">Layout</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/styles/section/index.html">Section</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/styles/spacing/index.html">Spacing</a></li>
+          </ul>
+      
+          <div class="nsw-docs-nav__title">
+            <button>
+              <span>Components</span>
+              <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</i>
+            </button>
+          </div>
+          <ul class="nsw-docs-nav__list">
+            <li><a class="nsw-docs-nav__list-link" href="/components/accordion/index.html">Accordion</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/breadcrumbs/index.html">Breadcrumbs</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/button/index.html">Buttons</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/callout/index.html">Callout</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/card/index.html">Cards</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/content-block/index.html">Content blocks</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/filters/index.html">Filters</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/footer/index.html">Footer</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/forms/index.html">Forms</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/site-wide-message/index.html">Global alert</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/header/index.html">Header</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/banner/index.html">Hero banner</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/hero-search/index.html">Hero search</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/in-page-navigation/index.html">In-page navigation</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/notification/index.html">In-page notification</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/link-list/index.html">Link list</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/list-item/index.html">List items</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/main-navigation/index.html">Main navigation</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/masthead/index.html">Masthead</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/media/index.html">Media</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/pagination/index.html">Pagination</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/progress-indicator/index.html">Progress Indicator</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/results-bar/index.html">Results bar</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/side-navigation/index.html">Side navigation</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/social-bar/index.html">Social bar</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/tables/index.html">Tables</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/tab-navigation/index.html">Tabs</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/tags/index.html">Tags</a></li>
+          </ul>
+      
+          <div class="nsw-docs-nav__title">
+            <a class="nsw-docs-nav__link" href="/templates/index.html">
+              <span>Example pages</span>
+            </a>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <div class="nsw-docs__main nsw-docs__main--narrow">
+      <div class="nsw-docs__back">
+        <a href="/" class="nsw-docs__link">
+          <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_left</i>
+          <span>Home</span>
+        </a>
+      </div>
+      <div class="nsw-docs__intro">
+        <div class="nsw-docs__container">
+          <h1>Extending</h1>
+          
+          
+        </div>
+      </div>
+      <div class="nsw-docs__content">
+        <div class="nsw-docs__container">
+<p>The NSW Design System may not cover all use cases. Should existing components
+  not be suitable to meet the needs of your users or unique project, designers
+  are able to create custom solutions, drawing on core elements of the NSW
+  Design System.</p>
+<p>Our <a href="https://community.digital.nsw.gov.au/">Digital community</a> is
+  the best first point of call to explore and ask teams who have faced similar
+  user needs or researched similar solutions. We encourage re-use when designing
+  to keep experiences consistent across NSW Government digital platforms.</p>
+
+<h2>Designing using common approaches</h2>
+<p>To design for your specific user need, use the core elements of the NSW
+  Design System to create consistent services for users and save your team time
+  and effort by building with already tested and accessible solutions.</p>
+
+<h3>Core styles</h3>
+<p><strong>Raw ingredients of the NSW Design System.</strong></p>
+<p>Core styles communicate the NSW Government visual identify by defining the
+  look and feel of digital platforms.</p>
+
+<h3>Base components</h3>
+<p><strong>Serving suggestions using the NSW Design System foundations.</strong>
+</p>
+<p>Base components are examples of assembled core styles to support the build of
+  user interfaces. They are designed as building blocks to be re-used and
+  adapted (where required) to meet specific user needs while maintaining a
+  consistent look and feel.</p>
+
+<h3>UX Guidance</h3>
+<p><strong>Recipes for implementing the NSW Design System for your
+  users.</strong></p>
+<p>Each core style and component contains guidance, based on evidence, to help
+  guide when it should be used and how it meets user needs. Following these
+  principles will ensure consistent and accessible user experiences across NSW
+  Government digital products and services.</p>
+
+<h2>Contributing back</h2>
+<p>Whether proposing a component or building a new one, its your contribution
+  that will help us deliver better services for NSW.</p>
+<p>If you build a component or user journey that doesn’t exist in the NSW Design
+  System, please share it with us via the <a
+          href="https://community.digital.nsw.gov.au/">Digital community</a> or
+  email us at <a href="mailto:digital@customerservice.nsw.gov.au">digital@customerservice.nsw.gov.au</a>.
+  Your contributions help us grow the Design System and help others create
+  engaging and user-focused NSW Government digital products and services.</p>
+
+        </div>
+      </div>
+      <footer class="nsw-footer nsw-docs-footer">
+        <div class="nsw-footer__lower">
+          <div class="nsw-container">
+            <p>We pay respect to the Traditional Custodians and First Peoples of NSW, and acknowledge their continued connection to their country and culture.</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+  <script src="../../js/main.js"></script>
+  <script>
+    window.NSW.initSite()
+  </script>
+  <script src="/docs/js/docs.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
+</body>
+</html>

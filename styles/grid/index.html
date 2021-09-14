@@ -1,0 +1,622 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NSW Digital Design System - Grid</title>
+  <meta name="robots" content="noindex" />
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="icon" href="../../favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="/docs/css/docs.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/atom-one-light.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/xml.min.js"></script>
+</head>
+
+<body class="nsw-body-content nsw-docs">
+  <div class="nsw-docs__wrapper">
+    <div class="nsw-docs__nav">
+      <nav class="nsw-docs-nav">
+        <div class="nsw-docs-nav__wrapper">
+          <div class="nsw-docs-nav__title nsw-docs-nav__title--main">
+            <a class="nsw-docs-nav__title-link" href="/">NSW Digital Design System</a>
+          </div>
+      
+          <div class="nsw-docs-nav__title">
+            <button>
+              <span>Design</span>
+              <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</i>
+            </button>
+          </div>
+          <ul class="nsw-docs-nav__list">
+              <li><a class="nsw-docs-nav__list-link" href="/docs/content/design/getting-started.html">Getting Started</a></li>
+              <li><a class="nsw-docs-nav__list-link" href="/docs/content/design/extending.html">Extending</a></li>
+              <li><a class="nsw-docs-nav__list-link" href="/docs/content/design/theming.html">Theming</a></li>
+          </ul>
+          <div class="nsw-docs-nav__title">
+            <button>
+              <span>Develop</span>
+              <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</i>
+            </button>
+          </div>
+          <ul class="nsw-docs-nav__list">
+              <li><a class="nsw-docs-nav__list-link" href="/docs/content/develop/getting-started.html">Getting Started</a></li>
+              <li><a class="nsw-docs-nav__list-link" href="/docs/content/develop/theming.html">Theming</a></li>
+              <li><a class="nsw-docs-nav__list-link" href="/docs/content/develop/migration.html">Migration</a></li>
+          </ul>
+          <div class="nsw-docs-nav__title">
+            <button>
+              <span>Core styles</span>
+              <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</i>
+            </button>
+          </div>
+          <ul class="nsw-docs-nav__list">
+            <li><a class="nsw-docs-nav__list-link" href="/styles/colour/index.html">Colour</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/styles/typography/index.html">Typography</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/styles/iconography/index.html">Iconography</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/styles/grid/index.html">Grid</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/styles/layout/index.html">Layout</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/styles/section/index.html">Section</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/styles/spacing/index.html">Spacing</a></li>
+          </ul>
+      
+          <div class="nsw-docs-nav__title">
+            <button>
+              <span>Components</span>
+              <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</i>
+            </button>
+          </div>
+          <ul class="nsw-docs-nav__list">
+            <li><a class="nsw-docs-nav__list-link" href="/components/accordion/index.html">Accordion</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/breadcrumbs/index.html">Breadcrumbs</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/button/index.html">Buttons</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/callout/index.html">Callout</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/card/index.html">Cards</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/content-block/index.html">Content blocks</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/filters/index.html">Filters</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/footer/index.html">Footer</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/forms/index.html">Forms</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/site-wide-message/index.html">Global alert</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/header/index.html">Header</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/banner/index.html">Hero banner</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/hero-search/index.html">Hero search</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/in-page-navigation/index.html">In-page navigation</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/notification/index.html">In-page notification</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/link-list/index.html">Link list</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/list-item/index.html">List items</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/main-navigation/index.html">Main navigation</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/masthead/index.html">Masthead</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/media/index.html">Media</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/pagination/index.html">Pagination</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/progress-indicator/index.html">Progress Indicator</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/results-bar/index.html">Results bar</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/side-navigation/index.html">Side navigation</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/social-bar/index.html">Social bar</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/tables/index.html">Tables</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/tab-navigation/index.html">Tabs</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/tags/index.html">Tags</a></li>
+          </ul>
+      
+          <div class="nsw-docs-nav__title">
+            <a class="nsw-docs-nav__link" href="/templates/index.html">
+              <span>Example pages</span>
+            </a>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <div class="nsw-docs__main nsw-docs__main--wide">
+      <div class="nsw-docs__back">
+        <a href="/" class="nsw-docs__link">
+          <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_left</i>
+          <span>Home</span>
+        </a>
+      </div>
+      <div class="nsw-docs__intro">
+        <div class="nsw-docs__container">
+          <h1>Grid</h1>
+          
+          
+          <div class="nsw-docs__external-link">
+            <a target="_blank" href="blank.html" class="nsw-docs__external">
+              <span>View in new window</span>
+              <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">launch</i>
+            </a>
+          </div>
+          
+        </div>
+      </div>
+      <div class="nsw-docs__content">
+        <div class="nsw-docs__container">
+
+
+<nav class="nsw-page-nav" aria-labelledby="in-page-nav">
+  <h2 class="nsw-page-nav__title">On this page</h2>
+  <ul class="nsw-page-nav__list">
+    <li class="nsw-page-nav__list-item">
+      <a href="#breakpoints" class="nsw-page-nav__link">Breakpoints</a>
+    </li>
+    <li class="nsw-page-nav__list-item">
+      <a href="#content-grids" class="nsw-page-nav__link">Content grids</a>
+    </li>
+    <li class="nsw-page-nav__list-item">
+      <a href="#viewport-visibility" class="nsw-page-nav__link">Viewport Visibility</a>
+    </li>
+  </ul>
+</nav>
+
+<h2 id="breakpoints">Breakpoints</h3>
+<p>The NSW Design System is built on a 12 column responsive grid which adapts to the user’s viewport across 5 breakpoints.</p>
+<div class="nsw-section nsw-section--white nsw-p-x-md nsw-m-top-sm">
+<table class="nsw-table">
+  <thead>
+    <tr>
+      <th>Breakpoint</th>
+      <th>Token</th>
+      <th style="max-width: 120px;">Container offset (fixed)</th>
+      <th style="max-width: 100px;">Gutters (fixed)</th>
+      <th style="max-width: 120px;">Max active content area</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>xs (Extra Small)<br />0-575px</td>
+      <td><code>breakpoints-xs</code></td>
+      <td>16px</td>
+      <td>16px</td>
+      <td>544px</td>
+    </tr>
+    <tr>
+      <td>sm (Small)<br />576-767px</td>
+      <td><code>breakpoints-sm</code></td>
+      <td>16px</td>
+      <td>16px</td>
+      <td>735px</td>
+    </tr>
+    <tr>
+      <td>md (Medium)<br />768-991px</td>
+      <td><code>breakpoints-md</code></td>
+      <td>16px</td>
+      <td>32px  </td>
+      <td>959px</td>
+    </tr>
+    <tr>
+      <td>lg (Large)<br />992-1199px</td>
+      <td><code>breakpoints-lg</code></td>
+      <td>16px</td>
+      <td>32px</td>
+      <td>1167px</td>
+    </tr>
+    <tr>
+      <td>xl (Extra Large)<br />1200px+</td>
+      <td><code>breakpoints-xl</code></td>
+      <td>16px</td>
+      <td>32px</td>
+      <td>1168px</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<br>
+
+<h2 id="content-grids">Content grids</h2>
+<p>Grid gives you the flexibility with Flexbox to build responsive layouts across different breakpoints. For example, to increase cards from a 2 column layout on the md breakpoint to a 3 column layout on the lg breakpoint. The NSW Design System recommends the below number of columns per breakpoint to ensure the content is at an optimal layout for readability and accessibility: </p>
+<ul>
+  <li>xs (Extra small) - 1 column</li>
+  <li>sm (Small) - up to 2 columns</li>
+  <li>md (Medium) - up to 3 columns</li>
+  <li>lg (Large) - up to 4 columns</li>
+  <li>xl (Extra large) - up to 4 columns</li>
+</ul>
+<p>You can find base grid components in the Figma UI Kit to enable quick building and prototyping. </p>
+<p> A set of rows make up a grid, and a set of columns make up a row. Columns are set using classes in this format: <code>nsw-col-{breakpoint}-{columns}</code></p>
+<p>Where <strong>breakpoint</strong> is one of <strong>xs, sm, md, lg, xl</strong>.</p>
+<p>Where <strong>columns</strong> is between <strong>1</strong> and <strong>12</strong>.</p>
+
+<h3>Grid layouts</h3>
+<div class="nsw-p-x-md nsw-m-top-sm">
+  <figure class="nsw-media">
+    <img src="/assets/images/docs-grid-v3.0.png" alt="Container, columns and gutter diagram">
+  </figure>
+</div>
+
+<h4>Whole</h4>
+<div class="nsw-docs__example">
+  <div class="nsw-docs__component">
+    <div class="nsw-grid">
+      <div class="nsw-col">
+        <!-- START: Column content -->
+        <div class="nsw-docs__box"></div>
+        <!-- END: Column content -->
+      </div>
+    </div>  </div>
+</div>
+<div class="nsw-docs-code">
+	<button class="nsw-docs-code__button">
+		<span>Show code</span>
+		<i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</i>
+	</button>
+	<div class="nsw-docs-code__content">
+		<button class="nsw-docs-code__copy">
+			<span>Copy</span>
+			<i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</i>
+		</button>
+		<div class="nsw-docs-code__wrapper">
+<pre><code class="html"><script>
+	  function escapeHtml(unsafe) {
+	    return unsafe
+	     .replace(/&/g, "&amp;")
+	     .replace(/</g, "&lt;")
+	     .replace(/>/g, "&gt;")
+	     .replace(/"/g, "&quot;")
+	     .replace(/'/g, "&#039;");
+	  }
+	  document.write(escapeHtml(`<div class="nsw-grid">
+  <div class="nsw-col">
+    <!-- START: Column content -->
+    <div class="nsw-docs__box"></div>
+    <!-- END: Column content -->
+  </div>
+</div>`));
+</script></code></pre>
+		</div>
+	</div>
+</div>
+
+<h4>Half</h4>
+<div class="nsw-docs__example">
+  <div class="nsw-docs__component">
+    <div class="nsw-grid">
+      <div class="nsw-col nsw-col-sm-6">
+        <!-- START: Column content -->
+        <div class="nsw-docs__box"></div>
+        <!-- END: Column content -->
+      </div>
+      <div class="nsw-col nsw-col-sm-6">
+        <!-- START: Column content -->
+        <div class="nsw-docs__box"></div>
+        <!-- END: Column content -->
+      </div>
+    </div>  </div>
+</div>
+<div class="nsw-docs-code">
+	<button class="nsw-docs-code__button">
+		<span>Show code</span>
+		<i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</i>
+	</button>
+	<div class="nsw-docs-code__content">
+		<button class="nsw-docs-code__copy">
+			<span>Copy</span>
+			<i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</i>
+		</button>
+		<div class="nsw-docs-code__wrapper">
+<pre><code class="html"><script>
+	  function escapeHtml(unsafe) {
+	    return unsafe
+	     .replace(/&/g, "&amp;")
+	     .replace(/</g, "&lt;")
+	     .replace(/>/g, "&gt;")
+	     .replace(/"/g, "&quot;")
+	     .replace(/'/g, "&#039;");
+	  }
+	  document.write(escapeHtml(`<div class="nsw-grid">
+  <div class="nsw-col nsw-col-sm-6">
+    <!-- START: Column content -->
+    <div class="nsw-docs__box"></div>
+    <!-- END: Column content -->
+  </div>
+  <div class="nsw-col nsw-col-sm-6">
+    <!-- START: Column content -->
+    <div class="nsw-docs__box"></div>
+    <!-- END: Column content -->
+  </div>
+</div>`));
+</script></code></pre>
+		</div>
+	</div>
+</div>
+
+<h4>Third</h4>
+<div class="nsw-docs__example">
+  <div class="nsw-docs__component">
+    <div class="nsw-grid">
+      <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+        <!-- START: Column content -->
+        <div class="nsw-docs__box"></div>
+        <!-- END: Column content -->
+      </div>
+      <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+        <!-- START: Column content -->
+        <div class="nsw-docs__box"></div>
+        <!-- END: Column content -->
+      </div>
+      <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+        <!-- START: Column content -->
+        <div class="nsw-docs__box"></div>
+        <!-- END: Column content -->
+      </div>
+    </div>  </div>
+</div>
+<div class="nsw-docs-code">
+	<button class="nsw-docs-code__button">
+		<span>Show code</span>
+		<i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</i>
+	</button>
+	<div class="nsw-docs-code__content">
+		<button class="nsw-docs-code__copy">
+			<span>Copy</span>
+			<i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</i>
+		</button>
+		<div class="nsw-docs-code__wrapper">
+<pre><code class="html"><script>
+	  function escapeHtml(unsafe) {
+	    return unsafe
+	     .replace(/&/g, "&amp;")
+	     .replace(/</g, "&lt;")
+	     .replace(/>/g, "&gt;")
+	     .replace(/"/g, "&quot;")
+	     .replace(/'/g, "&#039;");
+	  }
+	  document.write(escapeHtml(`<div class="nsw-grid">
+  <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+    <!-- START: Column content -->
+    <div class="nsw-docs__box"></div>
+    <!-- END: Column content -->
+  </div>
+  <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+    <!-- START: Column content -->
+    <div class="nsw-docs__box"></div>
+    <!-- END: Column content -->
+  </div>
+  <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+    <!-- START: Column content -->
+    <div class="nsw-docs__box"></div>
+    <!-- END: Column content -->
+  </div>
+</div>`));
+</script></code></pre>
+		</div>
+	</div>
+</div>
+
+<h4>Quarter</h4>
+<div class="nsw-docs__example">
+  <div class="nsw-docs__component">
+    <div class="nsw-grid">
+      <div class="nsw-col nsw-col-md-6 nsw-col-lg-3">
+        <!-- START: Column content -->
+        <div class="nsw-docs__box"></div>
+        <!-- END: Column content -->
+      </div>
+      <div class="nsw-col nsw-col-md-6 nsw-col-lg-3">
+        <!-- START: Column content -->
+        <div class="nsw-docs__box"></div>
+        <!-- END: Column content -->
+      </div>
+      <div class="nsw-col nsw-col-md-6 nsw-col-lg-3">
+        <!-- START: Column content -->
+        <div class="nsw-docs__box"></div>
+        <!-- END: Column content -->
+      </div>
+      <div class="nsw-col nsw-col-md-6 nsw-col-lg-3">
+        <!-- START: Column content -->
+        <div class="nsw-docs__box"></div>
+        <!-- END: Column content -->
+      </div>
+    </div>  </div>
+</div>
+<div class="nsw-docs-code">
+	<button class="nsw-docs-code__button">
+		<span>Show code</span>
+		<i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</i>
+	</button>
+	<div class="nsw-docs-code__content">
+		<button class="nsw-docs-code__copy">
+			<span>Copy</span>
+			<i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</i>
+		</button>
+		<div class="nsw-docs-code__wrapper">
+<pre><code class="html"><script>
+	  function escapeHtml(unsafe) {
+	    return unsafe
+	     .replace(/&/g, "&amp;")
+	     .replace(/</g, "&lt;")
+	     .replace(/>/g, "&gt;")
+	     .replace(/"/g, "&quot;")
+	     .replace(/'/g, "&#039;");
+	  }
+	  document.write(escapeHtml(`<div class="nsw-grid">
+  <div class="nsw-col nsw-col-md-6 nsw-col-lg-3">
+    <!-- START: Column content -->
+    <div class="nsw-docs__box"></div>
+    <!-- END: Column content -->
+  </div>
+  <div class="nsw-col nsw-col-md-6 nsw-col-lg-3">
+    <!-- START: Column content -->
+    <div class="nsw-docs__box"></div>
+    <!-- END: Column content -->
+  </div>
+  <div class="nsw-col nsw-col-md-6 nsw-col-lg-3">
+    <!-- START: Column content -->
+    <div class="nsw-docs__box"></div>
+    <!-- END: Column content -->
+  </div>
+  <div class="nsw-col nsw-col-md-6 nsw-col-lg-3">
+    <!-- START: Column content -->
+    <div class="nsw-docs__box"></div>
+    <!-- END: Column content -->
+  </div>
+</div>`));
+</script></code></pre>
+		</div>
+	</div>
+</div>
+
+<h2 class="nsw-h3">Offset grids</h2>
+<p>Use <code>nsw-offset-lg-*</code> to shift the column to the right to the number of columns specified. For example, a <code>nsw-offset-lg-3</code> class will have a 3-column gap between the previous column.</p>
+<div class="nsw-docs__example nsw-m-top-md">
+  <div class="nsw-docs__component">
+      <div class="nsw-grid">
+        <div class="nsw-col nsw-col nsw-col-lg-6">
+          <!-- START: Column content -->
+          <div class="nsw-docs__box"></div>
+          <!-- END: Column content -->
+        </div>
+        <div class="nsw-col  nsw-col nsw-col-lg-3 nsw-offset-lg-3">
+          <!-- START: Column content -->
+          <div class="nsw-docs__box"></div>
+          <!-- END: Column content -->
+        </div>
+      </div>  </div>
+</div>
+<div class="nsw-docs-code">
+	<button class="nsw-docs-code__button">
+		<span>Show code</span>
+		<i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</i>
+	</button>
+	<div class="nsw-docs-code__content">
+		<button class="nsw-docs-code__copy">
+			<span>Copy</span>
+			<i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</i>
+		</button>
+		<div class="nsw-docs-code__wrapper">
+<pre><code class="html"><script>
+	  function escapeHtml(unsafe) {
+	    return unsafe
+	     .replace(/&/g, "&amp;")
+	     .replace(/</g, "&lt;")
+	     .replace(/>/g, "&gt;")
+	     .replace(/"/g, "&quot;")
+	     .replace(/'/g, "&#039;");
+	  }
+	  document.write(escapeHtml(`  <div class="nsw-grid">
+    <div class="nsw-col nsw-col nsw-col-lg-6">
+      <!-- START: Column content -->
+      <div class="nsw-docs__box"></div>
+      <!-- END: Column content -->
+    </div>
+    <div class="nsw-col  nsw-col nsw-col-lg-3 nsw-offset-lg-3">
+      <!-- START: Column content -->
+      <div class="nsw-docs__box"></div>
+      <!-- END: Column content -->
+    </div>
+  </div>`));
+</script></code></pre>
+		</div>
+	</div>
+</div>
+<br>
+<h2 id="viewport-visibility">Viewport Visibility</h2>
+<p>Grid classes give you the option to show or hide elements in certain breakpoints. For example, displaying an image on a large screen when it supports the content, but hiding it on a small screen when it hinders the users access to information. </p>
+<p>The classes are named using the format <code>nsw-{display}-{breakpoint}</code></p>
+<p>Where <strong>breakpoint</strong> is one of <strong>xs, sm, md, lg, xl</strong>.</p>
+<p>Where <strong>display</strong> is one of:</p>
+<ul>
+  <li><strong>show</strong> - displays the elements</li>
+  <li><strong>hide</strong> - hides the elements</li>
+</ul>
+
+<p>Showing</p>
+<div class="nsw-docs__example nsw-m-top-md">
+  <div class="nsw-docs__component">
+      <div class="nsw-show-lg">
+        <p>This text is only visible in large breakpoint and up</p>
+      </div>
+  </div>
+</div>
+<div class="nsw-docs-code">
+	<button class="nsw-docs-code__button">
+		<span>Show code</span>
+		<i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</i>
+	</button>
+	<div class="nsw-docs-code__content">
+		<button class="nsw-docs-code__copy">
+			<span>Copy</span>
+			<i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</i>
+		</button>
+		<div class="nsw-docs-code__wrapper">
+<pre><code class="html"><script>
+	  function escapeHtml(unsafe) {
+	    return unsafe
+	     .replace(/&/g, "&amp;")
+	     .replace(/</g, "&lt;")
+	     .replace(/>/g, "&gt;")
+	     .replace(/"/g, "&quot;")
+	     .replace(/'/g, "&#039;");
+	  }
+	  document.write(escapeHtml(`  <div class="nsw-show-lg">
+    <p>This text is only visible in large breakpoint and up</p>
+  </div>
+`));
+</script></code></pre>
+		</div>
+	</div>
+</div>
+
+<p>Hiding</p>
+<div class="nsw-docs__example nsw-m-top-md">
+  <div class="nsw-docs__component">
+      <div class="nsw-hide-lg">
+        <p>This text is only visible from large breakpoint and lower</p>
+      </div>
+  </div>
+</div>
+<div class="nsw-docs-code">
+	<button class="nsw-docs-code__button">
+		<span>Show code</span>
+		<i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</i>
+	</button>
+	<div class="nsw-docs-code__content">
+		<button class="nsw-docs-code__copy">
+			<span>Copy</span>
+			<i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</i>
+		</button>
+		<div class="nsw-docs-code__wrapper">
+<pre><code class="html"><script>
+	  function escapeHtml(unsafe) {
+	    return unsafe
+	     .replace(/&/g, "&amp;")
+	     .replace(/</g, "&lt;")
+	     .replace(/>/g, "&gt;")
+	     .replace(/"/g, "&quot;")
+	     .replace(/'/g, "&#039;");
+	  }
+	  document.write(escapeHtml(`  <div class="nsw-hide-lg">
+    <p>This text is only visible from large breakpoint and lower</p>
+  </div>
+`));
+</script></code></pre>
+		</div>
+	</div>
+</div>
+
+
+
+        </div>
+      </div>
+      <footer class="nsw-footer nsw-docs-footer">
+        <div class="nsw-footer__lower">
+          <div class="nsw-container">
+            <p>We pay respect to the Traditional Custodians and First Peoples of NSW, and acknowledge their continued connection to their country and culture.</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+  <script src="../../js/main.js"></script>
+  <script>
+    window.NSW.initSite()
+  </script>
+  <script src="/docs/js/docs.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
+</body>
+</html>

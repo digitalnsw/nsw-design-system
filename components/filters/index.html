@@ -1,0 +1,726 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NSW Digital Design System - Filters</title>
+  <meta name="robots" content="noindex" />
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="icon" href="../../favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="/docs/css/docs.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/atom-one-light.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/xml.min.js"></script>
+</head>
+
+<body class="nsw-body-content nsw-docs">
+  <div class="nsw-docs__wrapper">
+    <div class="nsw-docs__nav">
+      <nav class="nsw-docs-nav">
+        <div class="nsw-docs-nav__wrapper">
+          <div class="nsw-docs-nav__title nsw-docs-nav__title--main">
+            <a class="nsw-docs-nav__title-link" href="/">NSW Digital Design System</a>
+          </div>
+      
+          <div class="nsw-docs-nav__title">
+            <button>
+              <span>Design</span>
+              <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</i>
+            </button>
+          </div>
+          <ul class="nsw-docs-nav__list">
+              <li><a class="nsw-docs-nav__list-link" href="/docs/content/design/getting-started.html">Getting Started</a></li>
+              <li><a class="nsw-docs-nav__list-link" href="/docs/content/design/extending.html">Extending</a></li>
+              <li><a class="nsw-docs-nav__list-link" href="/docs/content/design/theming.html">Theming</a></li>
+          </ul>
+          <div class="nsw-docs-nav__title">
+            <button>
+              <span>Develop</span>
+              <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</i>
+            </button>
+          </div>
+          <ul class="nsw-docs-nav__list">
+              <li><a class="nsw-docs-nav__list-link" href="/docs/content/develop/getting-started.html">Getting Started</a></li>
+              <li><a class="nsw-docs-nav__list-link" href="/docs/content/develop/theming.html">Theming</a></li>
+              <li><a class="nsw-docs-nav__list-link" href="/docs/content/develop/migration.html">Migration</a></li>
+          </ul>
+          <div class="nsw-docs-nav__title">
+            <button>
+              <span>Core styles</span>
+              <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</i>
+            </button>
+          </div>
+          <ul class="nsw-docs-nav__list">
+            <li><a class="nsw-docs-nav__list-link" href="/styles/colour/index.html">Colour</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/styles/typography/index.html">Typography</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/styles/iconography/index.html">Iconography</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/styles/grid/index.html">Grid</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/styles/layout/index.html">Layout</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/styles/section/index.html">Section</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/styles/spacing/index.html">Spacing</a></li>
+          </ul>
+      
+          <div class="nsw-docs-nav__title">
+            <button>
+              <span>Components</span>
+              <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</i>
+            </button>
+          </div>
+          <ul class="nsw-docs-nav__list">
+            <li><a class="nsw-docs-nav__list-link" href="/components/accordion/index.html">Accordion</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/breadcrumbs/index.html">Breadcrumbs</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/button/index.html">Buttons</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/callout/index.html">Callout</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/card/index.html">Cards</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/content-block/index.html">Content blocks</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/filters/index.html">Filters</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/footer/index.html">Footer</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/forms/index.html">Forms</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/site-wide-message/index.html">Global alert</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/header/index.html">Header</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/banner/index.html">Hero banner</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/hero-search/index.html">Hero search</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/in-page-navigation/index.html">In-page navigation</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/notification/index.html">In-page notification</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/link-list/index.html">Link list</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/list-item/index.html">List items</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/main-navigation/index.html">Main navigation</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/masthead/index.html">Masthead</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/media/index.html">Media</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/pagination/index.html">Pagination</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/progress-indicator/index.html">Progress Indicator</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/results-bar/index.html">Results bar</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/side-navigation/index.html">Side navigation</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/social-bar/index.html">Social bar</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/tables/index.html">Tables</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/tab-navigation/index.html">Tabs</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/tags/index.html">Tags</a></li>
+          </ul>
+      
+          <div class="nsw-docs-nav__title">
+            <a class="nsw-docs-nav__link" href="/templates/index.html">
+              <span>Example pages</span>
+            </a>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <div class="nsw-docs__main nsw-docs__main--menu">
+      <div class="nsw-docs__back">
+        <a href="/" class="nsw-docs__link">
+          <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_left</i>
+          <span>Home</span>
+        </a>
+      </div>
+      <div class="nsw-docs__intro nsw-docs__intro--tabs">
+        <div class="nsw-docs__container">
+          <h1>Filters</h1>
+          <p class="nsw-intro">Filters allows a user to narrow down results using multiple attributes.</p>
+          
+          <p>
+            <a target="_blank" href="https://www.figma.com/file/PVrERKnckLTlJSPk12gbtS/NSW-Digital-Design-System?node-id&#x3D;14423%3A9306" class="nsw-icon-link"><span>
+              <svg width="11" height="16" viewBox="0 0 33 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.003 48c4.416 0 8-3.584 8-8v-8h-8c-4.416 0-8 3.584-8 8s3.584 8 8 8z" fill="#0ACF83"/><path d="M.003 24c0-4.416 3.584-8 8-8h8v16h-8c-4.416 0-8-3.584-8-8z" fill="#A259FF"/><path d="M.003 8c0-4.416 3.584-8 8-8h8v16h-8c-4.416 0-8-3.584-8-8z" fill="#F24E1E"/><path d="M16.003 0h8c4.416 0 8 3.584 8 8s-3.584 8-8 8h-8V0z" fill="#FF7262"/><path d="M32.003 24c0 4.416-3.584 8-8 8s-8-3.584-8-8 3.584-8 8-8 8 3.584 8 8z" fill="#1ABCFE"/></svg>Figma
+            </span></a>
+          </p>
+        </div>
+      </div>
+<div class="nsw-docs__tabs">
+  <div class="nsw-tabs js-tabs nsw-docs-tabs">
+    <ul class="nsw-tabs__list">
+      <li class="nsw-tabs__list-item">
+        <a href="#section-guidance" class="nsw-tabs__link js-tabs-fixed">Guidance</a>
+      </li>
+      <li class="nsw-tabs__list-item">
+        <a href="#section-interactive-demo" class="nsw-tabs__link js-tabs-fixed">Demo &amp; Code</a>
+      </li>
+    </ul>
+    <section id="section-guidance" class="nsw-tabs__content">
+      <div class="nsw-docs__container">
+        
+<h2>Usage</h2>
+<p>Filters help users narrow down the results of large data sets to find something specific. They give the user the power to refine results based on their desired criteria and eliminate the need for numerous searches.</p>
+
+<p>Do:</p>
+
+<ul>
+  <li>choose the right filters for your content. Too many filters may confuse users, so make sure your filters are relevant and differentiable</li>
+  <li>keep the original text or selection a user has made visible so they can see their current filters</li>
+  <li>allow the user to remove and clear all filters easily</li>
+  <li>truncate larger filtering sets with “Show all categories”, making the most popular choices of your users the ones that are initially surfaced</li>
+</ul>
+
+<h3>When to avoid</h3>
+<p>Do not use:</p>
+<ul>
+  <li>when there are limited results to present, consider displaying all results without filters.</li>
+</ul>
+
+<h3>How the component works</h3>
+<p>Filters can be returned in instant or batch updates. Instant updates return results after each individual selection is made by the user. Consider instant update filters when:</p>
+<ul>
+  <li>a user would only expect to make one filter selection at a time</li>
+  <li>filters can return results based on an individual selection, ie dropdown or checkbox</li>
+</ul>
+<p>Batch updates allows a user to select multiple filters before selecting “Apply filters” to return updated results. Consider batch update filters when:</p>
+<ul>
+  <li>users would be expected to select multiple related filters</li>
+  <li>filters require multiple actions, ie keywords or date ranges</li>
+</ul>
+
+<h3>Small screens</h3>
+<p>On small screens, filters can be are launched using the mobile filter icon. When a user selects “Filter results” the filters open in full screen so the user can navigate and select desired filters.</p>
+<p>For batch updates:</p>
+<ul>
+  <li>“Back” bar is sticky to top of screen and on selection closes filtering window with no updates to results.</li>
+  <li>“Apply filters” button is sticky to bottom of screen and on selection closes filtering window and displays updated results.</li>
+  <li>“Apply filters” is disabled if no filters are selected</li>
+  <li>When a filter is selected the icon changes to filled version and displays number of filters selected in brackets.</li>
+</ul>
+<p>For instant updates:</p>
+<ul>
+  <li>“Back” is sticky to top of screen and on selection closes filtering window and displays updated results.</li>
+  <li>When a filter is selected the icon changes to filled version and displays number of filters selected in brackets.</li>
+</ul>
+
+
+      </div>
+    </section>
+    <section id="section-interactive-demo" class="nsw-tabs__content">
+      <div class="nsw-docs__demo">
+        <div class="nsw-docs__external-link">
+          <a target="_blank" href="blank.html" class="nsw-docs__external">
+            <span>View in new window</span>
+            <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">launch</i>
+          </a>
+        </div>
+
+<h3>Instant filtering</h3>
+<div class="nsw-docs__example">
+  <div class="nsw-docs__component">
+    <div class="nsw-filters nsw-filters--instant">
+      <div class="nsw-filters__wrapper">
+        <div class="nsw-filters__title">Filter results</div>
+        <div class="nsw-filters__list">
+          <div class="nsw-filters__item">
+            <label class="nsw-form__label" for="filters-instant-regions">Region</label>
+            <select class="nsw-form__select" id="filters-instant-regions" name="filters-instant-regions">
+              <option value="">Please select</option>  
+              <option value="Central Coast">Central Coast</option>
+              <option value="Central West &amp; Orana">Central West &amp; Orana</option>
+              <option value="Far West">Far West</option>
+              <option value="Hunter">Hunter</option>
+              <option value="Illawarra-Shoalhaven">Illawarra-Shoalhaven</option>
+              <option value="New England &amp; North West">New England &amp; North West</option>
+              <option value="North Coast">North Coast</option>
+              <option value="Riverina Murray">Riverina Murray</option>
+            </select>
+          </div>
+          <div class="nsw-filters__item">
+            <fieldset class="nsw-form__fieldset">
+              <legend class="nsw-form__legend">Categories</legend>
+              <input class="nsw-form__checkbox-input" type="checkbox" name="filters-instant-categories" value="Customer Service" id="filters-instant-categories-1">
+              <label class="nsw-form__checkbox-label" for="filters-instant-categories-1">Customer Service</label>
+              <input class="nsw-form__checkbox-input" type="checkbox" name="filters-instant-categories" value="Communities and Justice" id="filters-instant-categories-2">
+              <label class="nsw-form__checkbox-label" for="filters-instant-categories-2">Communities and Justice</label>
+              <input class="nsw-form__checkbox-input" type="checkbox" name="filters-instant-categories" value="Education" id="filters-instant-categories-3">
+              <label class="nsw-form__checkbox-label" for="filters-instant-categories-3">Education</label>
+              <input class="nsw-form__checkbox-input" type="checkbox" name="filters-instant-categories" value="Health" id="filters-instant-categories-4">
+              <label class="nsw-form__checkbox-label" for="filters-instant-categories-4">Health</label>
+              <input class="nsw-form__checkbox-input" type="checkbox" name="filters-instant-categories" value="Planning" id="filters-instant-categories-5">
+              <label class="nsw-form__checkbox-label" for="filters-instant-categories-5">Planning</label>
+            </fieldset>
+          </div>
+        </div>
+        <div class="nsw-filters__cancel">
+          <button type="reset">Clear all filters</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="nsw-docs-code">
+	<button class="nsw-docs-code__button">
+		<span>Show code</span>
+		<i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</i>
+	</button>
+	<div class="nsw-docs-code__content">
+		<button class="nsw-docs-code__copy">
+			<span>Copy</span>
+			<i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</i>
+		</button>
+		<div class="nsw-docs-code__wrapper">
+<pre><code class="html"><script>
+	  function escapeHtml(unsafe) {
+	    return unsafe
+	     .replace(/&/g, "&amp;")
+	     .replace(/</g, "&lt;")
+	     .replace(/>/g, "&gt;")
+	     .replace(/"/g, "&quot;")
+	     .replace(/'/g, "&#039;");
+	  }
+	  document.write(escapeHtml(`<div class="nsw-filters nsw-filters--instant">
+  <div class="nsw-filters__wrapper">
+    <div class="nsw-filters__title">Filter results</div>
+    <div class="nsw-filters__list">
+      <div class="nsw-filters__item">
+        <label class="nsw-form__label" for="filters-instant-regions">Region</label>
+        <select class="nsw-form__select" id="filters-instant-regions" name="filters-instant-regions">
+          <option value="">Please select</option>  
+          <option value="Central Coast">Central Coast</option>
+          <option value="Central West &amp; Orana">Central West &amp; Orana</option>
+          <option value="Far West">Far West</option>
+          <option value="Hunter">Hunter</option>
+          <option value="Illawarra-Shoalhaven">Illawarra-Shoalhaven</option>
+          <option value="New England &amp; North West">New England &amp; North West</option>
+          <option value="North Coast">North Coast</option>
+          <option value="Riverina Murray">Riverina Murray</option>
+        </select>
+      </div>
+      <div class="nsw-filters__item">
+        <fieldset class="nsw-form__fieldset">
+          <legend class="nsw-form__legend">Categories</legend>
+          <input class="nsw-form__checkbox-input" type="checkbox" name="filters-instant-categories" value="Customer Service" id="filters-instant-categories-1">
+          <label class="nsw-form__checkbox-label" for="filters-instant-categories-1">Customer Service</label>
+          <input class="nsw-form__checkbox-input" type="checkbox" name="filters-instant-categories" value="Communities and Justice" id="filters-instant-categories-2">
+          <label class="nsw-form__checkbox-label" for="filters-instant-categories-2">Communities and Justice</label>
+          <input class="nsw-form__checkbox-input" type="checkbox" name="filters-instant-categories" value="Education" id="filters-instant-categories-3">
+          <label class="nsw-form__checkbox-label" for="filters-instant-categories-3">Education</label>
+          <input class="nsw-form__checkbox-input" type="checkbox" name="filters-instant-categories" value="Health" id="filters-instant-categories-4">
+          <label class="nsw-form__checkbox-label" for="filters-instant-categories-4">Health</label>
+          <input class="nsw-form__checkbox-input" type="checkbox" name="filters-instant-categories" value="Planning" id="filters-instant-categories-5">
+          <label class="nsw-form__checkbox-label" for="filters-instant-categories-5">Planning</label>
+        </fieldset>
+      </div>
+    </div>
+    <div class="nsw-filters__cancel">
+      <button type="reset">Clear all filters</button>
+    </div>
+  </div>
+</div>
+`));
+</script></code></pre>
+		</div>
+	</div>
+</div>
+
+
+<h3>Batch filtering (with compact mobile implementation)</h3>
+<div class="nsw-docs__example">
+  <div class="nsw-docs__component">
+    <form class="nsw-filters nsw-filters--fixed js-filters">
+      <div class="nsw-filters__controls">
+        <button>
+          <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">tune</i>
+          <span>Filter results</span>
+        </button>
+      </div>
+      <div class="nsw-filters__wrapper">
+        <div class="nsw-filters__back">
+          <button>
+            <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_left</i>
+            <span>Back</span>
+          </button>
+        </div>
+        <div class="nsw-filters__title">Filter results</div>
+        <div class="nsw-filters__list">
+          <div class="nsw-filters__item">
+            <label class="nsw-form__label" for="filters-batch-keyword">Keyword</label>
+            <input class="nsw-form__input" type="text" id="filters-batch-keyword" name="filters-keyword">
+          </div>
+          <div class="nsw-filters__item">
+            <label class="nsw-form__label" for="filters-batch-regions">Region</label>
+            <select class="nsw-form__select" id="filters-batch-regions" name="filters-batch-regions">
+              <option value="">Please select</option>  
+              <option value="Central Coast">Central Coast</option>
+              <option value="Central West &amp; Orana">Central West &amp; Orana</option>
+              <option value="Far West">Far West</option>
+              <option value="Hunter">Hunter</option>
+              <option value="Illawarra-Shoalhaven">Illawarra-Shoalhaven</option>
+              <option value="New England &amp; North West">New England &amp; North West</option>
+              <option value="North Coast">North Coast</option>
+              <option value="Riverina Murray">Riverina Murray</option>
+            </select>
+          </div>
+          <div class="nsw-filters__item">
+            <fieldset class="nsw-form__fieldset">
+              <legend class="nsw-form__legend">Categories</legend>
+              <input class="nsw-form__checkbox-input" type="checkbox" name="filters-batch-categories" value="Customer Service" id="filters-batch-categories-1">
+              <label class="nsw-form__checkbox-label" for="filters-batch-categories-1">Customer Service</label>
+              <input class="nsw-form__checkbox-input" type="checkbox" name="filters-batch-categories" value="Communities and Justice" id="filters-batch-categories-2">
+              <label class="nsw-form__checkbox-label" for="filters-batch-categories-2">Communities and Justice</label>
+              <input class="nsw-form__checkbox-input" type="checkbox" name="filters-batch-categories" value="Education" id="filters-batch-categories-3">
+              <label class="nsw-form__checkbox-label" for="filters-batch-categories-3">Education</label>
+            </fieldset>
+          </div>
+        </div>
+        <div class="nsw-filters__accept">
+          <button type="submit" class="nsw-button nsw-button--dark nsw-button--full-width" disabled>Apply filters</button>
+        </div>
+        <div class="nsw-filters__cancel">
+          <button type="reset">Clear all filters</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="nsw-docs-code">
+	<button class="nsw-docs-code__button">
+		<span>Show code</span>
+		<i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</i>
+	</button>
+	<div class="nsw-docs-code__content">
+		<button class="nsw-docs-code__copy">
+			<span>Copy</span>
+			<i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</i>
+		</button>
+		<div class="nsw-docs-code__wrapper">
+<pre><code class="html"><script>
+	  function escapeHtml(unsafe) {
+	    return unsafe
+	     .replace(/&/g, "&amp;")
+	     .replace(/</g, "&lt;")
+	     .replace(/>/g, "&gt;")
+	     .replace(/"/g, "&quot;")
+	     .replace(/'/g, "&#039;");
+	  }
+	  document.write(escapeHtml(`<form class="nsw-filters nsw-filters--fixed js-filters">
+  <div class="nsw-filters__controls">
+    <button>
+      <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">tune</i>
+      <span>Filter results</span>
+    </button>
+  </div>
+  <div class="nsw-filters__wrapper">
+    <div class="nsw-filters__back">
+      <button>
+        <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_left</i>
+        <span>Back</span>
+      </button>
+    </div>
+    <div class="nsw-filters__title">Filter results</div>
+    <div class="nsw-filters__list">
+      <div class="nsw-filters__item">
+        <label class="nsw-form__label" for="filters-batch-keyword">Keyword</label>
+        <input class="nsw-form__input" type="text" id="filters-batch-keyword" name="filters-keyword">
+      </div>
+      <div class="nsw-filters__item">
+        <label class="nsw-form__label" for="filters-batch-regions">Region</label>
+        <select class="nsw-form__select" id="filters-batch-regions" name="filters-batch-regions">
+          <option value="">Please select</option>  
+          <option value="Central Coast">Central Coast</option>
+          <option value="Central West &amp; Orana">Central West &amp; Orana</option>
+          <option value="Far West">Far West</option>
+          <option value="Hunter">Hunter</option>
+          <option value="Illawarra-Shoalhaven">Illawarra-Shoalhaven</option>
+          <option value="New England &amp; North West">New England &amp; North West</option>
+          <option value="North Coast">North Coast</option>
+          <option value="Riverina Murray">Riverina Murray</option>
+        </select>
+      </div>
+      <div class="nsw-filters__item">
+        <fieldset class="nsw-form__fieldset">
+          <legend class="nsw-form__legend">Categories</legend>
+          <input class="nsw-form__checkbox-input" type="checkbox" name="filters-batch-categories" value="Customer Service" id="filters-batch-categories-1">
+          <label class="nsw-form__checkbox-label" for="filters-batch-categories-1">Customer Service</label>
+          <input class="nsw-form__checkbox-input" type="checkbox" name="filters-batch-categories" value="Communities and Justice" id="filters-batch-categories-2">
+          <label class="nsw-form__checkbox-label" for="filters-batch-categories-2">Communities and Justice</label>
+          <input class="nsw-form__checkbox-input" type="checkbox" name="filters-batch-categories" value="Education" id="filters-batch-categories-3">
+          <label class="nsw-form__checkbox-label" for="filters-batch-categories-3">Education</label>
+        </fieldset>
+      </div>
+    </div>
+    <div class="nsw-filters__accept">
+      <button type="submit" class="nsw-button nsw-button--dark nsw-button--full-width" disabled>Apply filters</button>
+    </div>
+    <div class="nsw-filters__cancel">
+      <button type="reset">Clear all filters</button>
+    </div>
+  </div>
+</form>
+`));
+</script></code></pre>
+		</div>
+	</div>
+</div>
+
+
+<h3>Batch filtering (with expanding multiselect and compact mobile implementation)</h3>
+<div class="nsw-docs__example">
+  <div class="nsw-docs__component">
+    <form class="nsw-filters nsw-filters--fixed js-filters">
+      <div class="nsw-filters__controls nsw-filters__controls--active">
+        <button>
+          <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">tune</i>
+          <span>Filter results  (4)</span>
+        </button>
+      </div>
+      <div class="nsw-filters__wrapper">
+        <div class="nsw-filters__back">
+          <button>
+            <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_left</i>
+            <span>Back</span>
+          </button>
+        </div>
+        <div class="nsw-filters__title">Filter results</div>
+        <div class="nsw-filters__list">
+          <div class="nsw-filters__item">
+            <label class="nsw-form__label" for="filters-all-keyword">Keyword</label>
+            <input class="nsw-form__input" type="text" id="filters-all-keyword" name="filters-keyword" value="Digital Design System">
+          </div>
+          <div class="nsw-filters__item">
+            <label class="nsw-form__label" for="filters-all-regions">Region</label>
+            <select class="nsw-form__select" id="filters-all-regions" name="filters-all-regions">
+              <option value="">Please select</option>  
+              <option value="Central Coast">Central Coast</option>
+              <option value="Central West &amp; Orana">Central West &amp; Orana</option>
+              <option value="Far West">Far West</option>
+              <option value="Hunter">Hunter</option>
+              <option value="Illawarra-Shoalhaven">Illawarra-Shoalhaven</option>
+              <option value="New England &amp; North West">New England &amp; North West</option>
+              <option value="North Coast">North Coast</option>
+              <option value="Riverina Murray">Riverina Murray</option>
+            </select>
+          </div>
+          <div class="nsw-filters__item">
+            <fieldset class="nsw-form__fieldset">
+              <legend class="nsw-form__legend">Categories</legend>
+              <input class="nsw-form__checkbox-input" type="checkbox" name="filters-all-categories" value="Customer Service" id="filters-all-categories-1">
+              <label class="nsw-form__checkbox-label" for="filters-all-categories-1">Customer Service</label>
+              <input class="nsw-form__checkbox-input" type="checkbox" name="filters-all-categories" value="Communities and Justice" id="filters-all-categories-2" checked>
+              <label class="nsw-form__checkbox-label" for="filters-all-categories-2">Communities and Justice</label>
+              <input class="nsw-form__checkbox-input" type="checkbox" name="filters-all-categories" value="Education" id="filters-all-categories-3" checked>
+              <label class="nsw-form__checkbox-label" for="filters-all-categories-3">Education</label>
+              <input class="nsw-form__checkbox-input" type="checkbox" name="filters-all-categories" value="Health" id="filters-all-categories-4">
+              <label class="nsw-form__checkbox-label" for="filters-all-categories-4">Health</label>
+              <div class="nsw-filters__all hidden">
+                <input class="nsw-form__checkbox-input" type="checkbox" name="filters-all-categories" value="Planning" id="filters-all-categories-5">
+                <label class="nsw-form__checkbox-label" for="filters-all-categories-5">Planning</label>
+                <input class="nsw-form__checkbox-input" type="checkbox" name="filters-all-categories" value="Premier and Cabinet" id="filters-all-categories-6">
+                <label class="nsw-form__checkbox-label" for="filters-all-categories-6">Premier and Cabinet</label>
+                <input class="nsw-form__checkbox-input" type="checkbox" name="filters-all-categories" value="Regional NSW" id="filters-all-categories-7">
+                <label class="nsw-form__checkbox-label" for="filters-all-categories-7">Regional NSW</label>
+                <input class="nsw-form__checkbox-input" type="checkbox" name="filters-all-categories" value="Transport" id="filters-all-categories-8">
+                <label class="nsw-form__checkbox-label" for="filters-all-categories-8">Transport</label>
+                <input class="nsw-form__checkbox-input" type="checkbox" name="filters-all-categories" value="Treasury" id="filters-all-categories-9">
+                <label class="nsw-form__checkbox-label" for="filters-all-categories-9">Treasury</label>
+              </div>
+              <button class="nsw-filters__more">Show all categories (9)</button>
+            </fieldset>
+          </div>
+          <div class="nsw-filters__item">
+            <div class="nsw-form__group">
+              <fieldset class="nsw-form__date">
+                <legend class="nsw-form__label">Date published from:</legend>
+                <div class="nsw-form__date-wrapper">
+                  <div class="nsw-form__date-input">
+                    <label class="nsw-form__label nsw-form__label--small" for="filters-all-date-from-day">Day</label>
+                    <input class="nsw-form__input" type="text" maxlength="2" id="filters-all-date-from-day" name="filters-all-date-from-day">
+                  </div>
+                  <div class="nsw-form__date-input">
+                    <label class="nsw-form__label nsw-form__label--small" for="filters-all-date-from-month">Month</label>
+                    <input class="nsw-form__input" type="text" maxlength="2" id="filters-all-date-from-month" name="filters-all-date-from-month">
+                  </div>
+                  <div class="nsw-form__date-input nsw-form__date-input--large">
+                    <label class="nsw-form__label nsw-form__label--small" for="filters-all-date-from-year">Year</label>
+                    <input class="nsw-form__input" type="text" maxlength="4" id="filters-all-date-from-year" name="filters-all-date-from-year">
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            <div class="nsw-form__group">
+              <fieldset class="nsw-form__date">
+                <legend class="nsw-form__label">Date published to:</legend>
+                <div class="nsw-form__date-wrapper">
+                  <div class="nsw-form__date-input">
+                    <label class="nsw-form__label nsw-form__label--small" for="filters-all-date-to-day">Day</label>
+                    <input class="nsw-form__input" type="text" maxlength="2" id="filters-all-date-to-day" name="filters-all-date-to-day">
+                  </div>
+                  <div class="nsw-form__date-input">
+                    <label class="nsw-form__label nsw-form__label--small" for="filters-all-date-to-month">Month</label>
+                    <input class="nsw-form__input" type="text" maxlength="2" id="filters-all-date-to-month" name="filters-all-date-to-month">
+                  </div>
+                  <div class="nsw-form__date-input nsw-form__date-input--large">
+                    <label class="nsw-form__label nsw-form__label--small" for="filters-all-date-to-year">Year</label>
+                    <input class="nsw-form__input" type="text" maxlength="4" id="filters-all-date-to-year" name="filters-all-date-to-year">
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+          </div>
+        </div>
+        <div class="nsw-filters__accept">
+          <button type="submit" class="nsw-button nsw-button--dark nsw-button--full-width">Apply filters</button>
+        </div>
+        <div class="nsw-filters__cancel">
+          <button type="reset">Clear all filters</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="nsw-docs-code">
+	<button class="nsw-docs-code__button">
+		<span>Show code</span>
+		<i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</i>
+	</button>
+	<div class="nsw-docs-code__content">
+		<button class="nsw-docs-code__copy">
+			<span>Copy</span>
+			<i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</i>
+		</button>
+		<div class="nsw-docs-code__wrapper">
+<pre><code class="html"><script>
+	  function escapeHtml(unsafe) {
+	    return unsafe
+	     .replace(/&/g, "&amp;")
+	     .replace(/</g, "&lt;")
+	     .replace(/>/g, "&gt;")
+	     .replace(/"/g, "&quot;")
+	     .replace(/'/g, "&#039;");
+	  }
+	  document.write(escapeHtml(`<form class="nsw-filters nsw-filters--fixed js-filters">
+  <div class="nsw-filters__controls nsw-filters__controls--active">
+    <button>
+      <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">tune</i>
+      <span>Filter results  (4)</span>
+    </button>
+  </div>
+  <div class="nsw-filters__wrapper">
+    <div class="nsw-filters__back">
+      <button>
+        <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_left</i>
+        <span>Back</span>
+      </button>
+    </div>
+    <div class="nsw-filters__title">Filter results</div>
+    <div class="nsw-filters__list">
+      <div class="nsw-filters__item">
+        <label class="nsw-form__label" for="filters-all-keyword">Keyword</label>
+        <input class="nsw-form__input" type="text" id="filters-all-keyword" name="filters-keyword" value="Digital Design System">
+      </div>
+      <div class="nsw-filters__item">
+        <label class="nsw-form__label" for="filters-all-regions">Region</label>
+        <select class="nsw-form__select" id="filters-all-regions" name="filters-all-regions">
+          <option value="">Please select</option>  
+          <option value="Central Coast">Central Coast</option>
+          <option value="Central West &amp; Orana">Central West &amp; Orana</option>
+          <option value="Far West">Far West</option>
+          <option value="Hunter">Hunter</option>
+          <option value="Illawarra-Shoalhaven">Illawarra-Shoalhaven</option>
+          <option value="New England &amp; North West">New England &amp; North West</option>
+          <option value="North Coast">North Coast</option>
+          <option value="Riverina Murray">Riverina Murray</option>
+        </select>
+      </div>
+      <div class="nsw-filters__item">
+        <fieldset class="nsw-form__fieldset">
+          <legend class="nsw-form__legend">Categories</legend>
+          <input class="nsw-form__checkbox-input" type="checkbox" name="filters-all-categories" value="Customer Service" id="filters-all-categories-1">
+          <label class="nsw-form__checkbox-label" for="filters-all-categories-1">Customer Service</label>
+          <input class="nsw-form__checkbox-input" type="checkbox" name="filters-all-categories" value="Communities and Justice" id="filters-all-categories-2" checked>
+          <label class="nsw-form__checkbox-label" for="filters-all-categories-2">Communities and Justice</label>
+          <input class="nsw-form__checkbox-input" type="checkbox" name="filters-all-categories" value="Education" id="filters-all-categories-3" checked>
+          <label class="nsw-form__checkbox-label" for="filters-all-categories-3">Education</label>
+          <input class="nsw-form__checkbox-input" type="checkbox" name="filters-all-categories" value="Health" id="filters-all-categories-4">
+          <label class="nsw-form__checkbox-label" for="filters-all-categories-4">Health</label>
+          <div class="nsw-filters__all hidden">
+            <input class="nsw-form__checkbox-input" type="checkbox" name="filters-all-categories" value="Planning" id="filters-all-categories-5">
+            <label class="nsw-form__checkbox-label" for="filters-all-categories-5">Planning</label>
+            <input class="nsw-form__checkbox-input" type="checkbox" name="filters-all-categories" value="Premier and Cabinet" id="filters-all-categories-6">
+            <label class="nsw-form__checkbox-label" for="filters-all-categories-6">Premier and Cabinet</label>
+            <input class="nsw-form__checkbox-input" type="checkbox" name="filters-all-categories" value="Regional NSW" id="filters-all-categories-7">
+            <label class="nsw-form__checkbox-label" for="filters-all-categories-7">Regional NSW</label>
+            <input class="nsw-form__checkbox-input" type="checkbox" name="filters-all-categories" value="Transport" id="filters-all-categories-8">
+            <label class="nsw-form__checkbox-label" for="filters-all-categories-8">Transport</label>
+            <input class="nsw-form__checkbox-input" type="checkbox" name="filters-all-categories" value="Treasury" id="filters-all-categories-9">
+            <label class="nsw-form__checkbox-label" for="filters-all-categories-9">Treasury</label>
+          </div>
+          <button class="nsw-filters__more">Show all categories (9)</button>
+        </fieldset>
+      </div>
+      <div class="nsw-filters__item">
+        <div class="nsw-form__group">
+          <fieldset class="nsw-form__date">
+            <legend class="nsw-form__label">Date published from:</legend>
+            <div class="nsw-form__date-wrapper">
+              <div class="nsw-form__date-input">
+                <label class="nsw-form__label nsw-form__label--small" for="filters-all-date-from-day">Day</label>
+                <input class="nsw-form__input" type="text" maxlength="2" id="filters-all-date-from-day" name="filters-all-date-from-day">
+              </div>
+              <div class="nsw-form__date-input">
+                <label class="nsw-form__label nsw-form__label--small" for="filters-all-date-from-month">Month</label>
+                <input class="nsw-form__input" type="text" maxlength="2" id="filters-all-date-from-month" name="filters-all-date-from-month">
+              </div>
+              <div class="nsw-form__date-input nsw-form__date-input--large">
+                <label class="nsw-form__label nsw-form__label--small" for="filters-all-date-from-year">Year</label>
+                <input class="nsw-form__input" type="text" maxlength="4" id="filters-all-date-from-year" name="filters-all-date-from-year">
+              </div>
+            </div>
+          </fieldset>
+        </div>
+        <div class="nsw-form__group">
+          <fieldset class="nsw-form__date">
+            <legend class="nsw-form__label">Date published to:</legend>
+            <div class="nsw-form__date-wrapper">
+              <div class="nsw-form__date-input">
+                <label class="nsw-form__label nsw-form__label--small" for="filters-all-date-to-day">Day</label>
+                <input class="nsw-form__input" type="text" maxlength="2" id="filters-all-date-to-day" name="filters-all-date-to-day">
+              </div>
+              <div class="nsw-form__date-input">
+                <label class="nsw-form__label nsw-form__label--small" for="filters-all-date-to-month">Month</label>
+                <input class="nsw-form__input" type="text" maxlength="2" id="filters-all-date-to-month" name="filters-all-date-to-month">
+              </div>
+              <div class="nsw-form__date-input nsw-form__date-input--large">
+                <label class="nsw-form__label nsw-form__label--small" for="filters-all-date-to-year">Year</label>
+                <input class="nsw-form__input" type="text" maxlength="4" id="filters-all-date-to-year" name="filters-all-date-to-year">
+              </div>
+            </div>
+          </fieldset>
+        </div>
+      </div>
+    </div>
+    <div class="nsw-filters__accept">
+      <button type="submit" class="nsw-button nsw-button--dark nsw-button--full-width">Apply filters</button>
+    </div>
+    <div class="nsw-filters__cancel">
+      <button type="reset">Clear all filters</button>
+    </div>
+  </div>
+</form>
+`));
+</script></code></pre>
+		</div>
+	</div>
+</div>
+
+
+      </div>
+    </section>
+  </div>
+</div>
+      <footer class="nsw-footer nsw-docs-footer">
+        <div class="nsw-footer__lower">
+          <div class="nsw-container">
+            <p>We pay respect to the Traditional Custodians and First Peoples of NSW, and acknowledge their continued connection to their country and culture.</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+  <script src="../../js/main.js"></script>
+  <script>
+    window.NSW.initSite()
+  </script>
+  <script src="/docs/js/docs.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
+</body>
+</html>

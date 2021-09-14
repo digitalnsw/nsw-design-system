@@ -1,0 +1,1664 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NSW Digital Design System - Forms</title>
+  <meta name="robots" content="noindex" />
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="icon" href="../../favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="/docs/css/docs.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/atom-one-light.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/xml.min.js"></script>
+</head>
+
+<body class="nsw-body-content nsw-docs">
+  <div class="nsw-docs__wrapper">
+    <div class="nsw-docs__nav">
+      <nav class="nsw-docs-nav">
+        <div class="nsw-docs-nav__wrapper">
+          <div class="nsw-docs-nav__title nsw-docs-nav__title--main">
+            <a class="nsw-docs-nav__title-link" href="/">NSW Digital Design System</a>
+          </div>
+      
+          <div class="nsw-docs-nav__title">
+            <button>
+              <span>Design</span>
+              <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</i>
+            </button>
+          </div>
+          <ul class="nsw-docs-nav__list">
+              <li><a class="nsw-docs-nav__list-link" href="/docs/content/design/getting-started.html">Getting Started</a></li>
+              <li><a class="nsw-docs-nav__list-link" href="/docs/content/design/extending.html">Extending</a></li>
+              <li><a class="nsw-docs-nav__list-link" href="/docs/content/design/theming.html">Theming</a></li>
+          </ul>
+          <div class="nsw-docs-nav__title">
+            <button>
+              <span>Develop</span>
+              <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</i>
+            </button>
+          </div>
+          <ul class="nsw-docs-nav__list">
+              <li><a class="nsw-docs-nav__list-link" href="/docs/content/develop/getting-started.html">Getting Started</a></li>
+              <li><a class="nsw-docs-nav__list-link" href="/docs/content/develop/theming.html">Theming</a></li>
+              <li><a class="nsw-docs-nav__list-link" href="/docs/content/develop/migration.html">Migration</a></li>
+          </ul>
+          <div class="nsw-docs-nav__title">
+            <button>
+              <span>Core styles</span>
+              <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</i>
+            </button>
+          </div>
+          <ul class="nsw-docs-nav__list">
+            <li><a class="nsw-docs-nav__list-link" href="/styles/colour/index.html">Colour</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/styles/typography/index.html">Typography</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/styles/iconography/index.html">Iconography</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/styles/grid/index.html">Grid</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/styles/layout/index.html">Layout</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/styles/section/index.html">Section</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/styles/spacing/index.html">Spacing</a></li>
+          </ul>
+      
+          <div class="nsw-docs-nav__title">
+            <button>
+              <span>Components</span>
+              <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</i>
+            </button>
+          </div>
+          <ul class="nsw-docs-nav__list">
+            <li><a class="nsw-docs-nav__list-link" href="/components/accordion/index.html">Accordion</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/breadcrumbs/index.html">Breadcrumbs</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/button/index.html">Buttons</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/callout/index.html">Callout</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/card/index.html">Cards</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/content-block/index.html">Content blocks</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/filters/index.html">Filters</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/footer/index.html">Footer</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/forms/index.html">Forms</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/site-wide-message/index.html">Global alert</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/header/index.html">Header</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/banner/index.html">Hero banner</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/hero-search/index.html">Hero search</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/in-page-navigation/index.html">In-page navigation</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/notification/index.html">In-page notification</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/link-list/index.html">Link list</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/list-item/index.html">List items</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/main-navigation/index.html">Main navigation</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/masthead/index.html">Masthead</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/media/index.html">Media</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/pagination/index.html">Pagination</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/progress-indicator/index.html">Progress Indicator</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/results-bar/index.html">Results bar</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/side-navigation/index.html">Side navigation</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/social-bar/index.html">Social bar</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/tables/index.html">Tables</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/tab-navigation/index.html">Tabs</a></li>
+            <li><a class="nsw-docs-nav__list-link" href="/components/tags/index.html">Tags</a></li>
+          </ul>
+      
+          <div class="nsw-docs-nav__title">
+            <a class="nsw-docs-nav__link" href="/templates/index.html">
+              <span>Example pages</span>
+            </a>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <div class="nsw-docs__main nsw-docs__main--narrow">
+      <div class="nsw-docs__back">
+        <a href="/" class="nsw-docs__link">
+          <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_left</i>
+          <span>Home</span>
+        </a>
+      </div>
+      <div class="nsw-docs__intro nsw-docs__intro--tabs">
+        <div class="nsw-docs__container">
+          <h1>Forms</h1>
+          <p class="nsw-intro">Forms are used to capture data from users.</p>
+          
+          <p>
+            <a target="_blank" href="https://www.figma.com/file/PVrERKnckLTlJSPk12gbtS/NSW-Digital-Design-System?node-id&#x3D;986%3A6591" class="nsw-icon-link"><span>
+              <svg width="11" height="16" viewBox="0 0 33 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.003 48c4.416 0 8-3.584 8-8v-8h-8c-4.416 0-8 3.584-8 8s3.584 8 8 8z" fill="#0ACF83"/><path d="M.003 24c0-4.416 3.584-8 8-8h8v16h-8c-4.416 0-8-3.584-8-8z" fill="#A259FF"/><path d="M.003 8c0-4.416 3.584-8 8-8h8v16h-8c-4.416 0-8-3.584-8-8z" fill="#F24E1E"/><path d="M16.003 0h8c4.416 0 8 3.584 8 8s-3.584 8-8 8h-8V0z" fill="#FF7262"/><path d="M32.003 24c0 4.416-3.584 8-8 8s-8-3.584-8-8 3.584-8 8-8 8 3.584 8 8z" fill="#1ABCFE"/></svg>Figma
+            </span></a>
+            <a target="_blank" href="https://digitalnsw.github.io/nsw-design-system-react/?path&#x3D;/docs/transaction-checkboxes--group" class="nsw-icon-link"><span>
+              <svg width="16" height="15" viewBox="0 0 48 43" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M48 21.378c0-3.18-3.982-6.193-10.087-8.062 1.409-6.223.783-11.173-1.977-12.758C35.3.186 34.556.01 33.745.01v2.182c.45 0 .812.088 1.115.254 1.33.763 1.908 3.669 1.458 7.406a30.13 30.13 0 01-.499 2.877 47.419 47.419 0 00-6.213-1.066 47.722 47.722 0 00-4.07-4.893c3.19-2.964 6.183-4.588 8.219-4.588V0c-2.691 0-6.213 1.918-9.775 5.244C20.42 1.937 16.897.04 14.206.04v2.182c2.026 0 5.03 1.614 8.219 4.56a46.205 46.205 0 00-4.041 4.881 45.692 45.692 0 00-6.223 1.077 29.52 29.52 0 01-.508-2.838c-.46-3.737.107-6.643 1.428-7.416.294-.176.675-.254 1.125-.254V.049c-.822 0-1.565.176-2.21.548-2.75 1.585-3.367 6.526-1.948 12.729C3.962 15.204 0 18.208 0 21.378c0 3.18 3.982 6.193 10.087 8.062-1.409 6.223-.782 11.173 1.977 12.758.636.372 1.38.548 2.201.548 2.69 0 6.213-1.918 9.774-5.244 3.561 3.307 7.084 5.205 9.774 5.205.822 0 1.566-.176 2.212-.548 2.749-1.585 3.365-6.526 1.947-12.729C44.038 27.561 48 24.548 48 21.378zm-12.739-6.526a44.092 44.092 0 01-1.32 3.865 46.386 46.386 0 00-1.282-2.348 53.01 53.01 0 00-1.41-2.29c1.39.205 2.73.46 4.012.773zm-4.48 10.42a52.141 52.141 0 01-2.359 3.737 50.903 50.903 0 01-8.825.01 53.993 53.993 0 01-2.367-3.718 50.933 50.933 0 01-2.036-3.894 51.007 51.007 0 012.026-3.904 52.119 52.119 0 012.358-3.737 50.903 50.903 0 018.825-.01 53.993 53.993 0 012.367 3.718 50.933 50.933 0 012.036 3.894 54.731 54.731 0 01-2.026 3.904zM33.94 24a41.94 41.94 0 011.35 3.894 43.886 43.886 0 01-4.031.783c.48-.754.958-1.527 1.409-2.32.45-.782.87-1.574 1.272-2.357zM24.02 34.44c-.91-.94-1.82-1.987-2.72-3.131.88.039 1.78.068 2.69.068.92 0 1.83-.02 2.72-.068a38.214 38.214 0 01-2.69 3.13zm-7.28-5.763c-1.389-.206-2.73-.46-4.011-.773a44.092 44.092 0 011.32-3.865c.402.783.823 1.566 1.282 2.348.46.783.93 1.546 1.41 2.29zm7.23-20.36c.91.939 1.82 1.986 2.72 3.13-.88-.039-1.78-.068-2.69-.068-.92 0-1.83.02-2.72.068a38.166 38.166 0 012.69-3.13zm-7.24 5.762a54.064 54.064 0 00-2.68 4.667 41.909 41.909 0 01-1.35-3.894 47.483 47.483 0 014.03-.773zM7.877 26.33c-3.463-1.478-5.704-3.415-5.704-4.951 0-1.536 2.24-3.483 5.704-4.95a30.151 30.151 0 012.71-.989 47 47 0 002.202 5.959 46.33 46.33 0 00-2.172 5.928 29.721 29.721 0 01-2.74-.997zm5.264 13.98c-1.33-.762-1.908-3.668-1.458-7.406.108-.92.284-1.888.499-2.876 1.918.47 4.011.831 6.213 1.066a47.725 47.725 0 004.07 4.892c-3.19 2.965-6.183 4.589-8.219 4.589-.44-.01-.812-.098-1.105-.264zm23.207-7.454c.46 3.737-.107 6.643-1.428 7.416-.294.176-.675.254-1.125.254-2.026 0-5.03-1.614-8.219-4.56a46.219 46.219 0 004.041-4.881 45.673 45.673 0 006.223-1.077c.225.988.4 1.938.508 2.848zm3.767-6.526a30.15 30.15 0 01-2.71.988 46.996 46.996 0 00-2.201-5.959 46.33 46.33 0 002.172-5.929c.968.304 1.888.636 2.749.998 3.463 1.478 5.704 3.415 5.704 4.95-.01 1.537-2.25 3.484-5.714 4.952z" fill="#61DAFB"/><path d="M23.99 25.85a4.471 4.471 0 100-8.943 4.471 4.471 0 000 8.942z" fill="#61DAFB"/></svg>React
+            </span></a>
+          </p>
+        </div>
+      </div>
+<div class="nsw-docs__tabs">
+  <div class="nsw-tabs js-tabs nsw-docs-tabs">
+    <ul class="nsw-tabs__list">
+      <li class="nsw-tabs__list-item">
+        <a href="#section-guidance" class="nsw-tabs__link js-tabs-fixed">Guidance</a>
+      </li>
+      <li class="nsw-tabs__list-item">
+        <a href="#section-interactive-demo" class="nsw-tabs__link js-tabs-fixed">Demo &amp; Code</a>
+      </li>
+    </ul>
+    <section id="section-guidance" class="nsw-tabs__content">
+      <div class="nsw-docs__container">
+        
+<h2>Using forms</h2>
+<p>Forms comprise of the form itself and multiple form inputs. Each form is broken down into one or more fieldsets that groups the form elements into logical chunks that make sense to the user, for example, a delivery address.  </p>
+<p>Form elements are split into two key input types:</p>
+<p><strong>Freeform inputs</strong> - Free form text inputs are the most used components in forms. Use text fields and text areas for freeform entry. Text fields are used to input a short (single line) amount of freeform text. Text areas are used to input multiple lines of text, for example, a comments field. Use text areas when you expect longer entries.</p>
+<p><strong>Selection inputs</strong> - Selection inputs are used to select an option from a predefined list of available options. Selection options may be single-select or multi-select. Use a radio button list or dropdowns for single selections and checkboxes for multi-selections.  </p>
+<p>Do:</p>
+<ul>
+  <li>keep it one column - multiple columns easily disrupt a user’s vertical momentum</li>
+  <li>use field length input constraints - employ this for fields that have a defined character count like phone numbers and postcodes</li>
+  <li>mark required vs. optional form fields - you should always mark your form fields as “required” or “optional”. You can do this by writing “required” or “optional” in a small font next to your field, or by placing an asterisk next to your required fields</li>
+  <li>use top align labels - users complete top aligned labeled forms at a much higher rate than left-aligned labels. Top aligned labels also translate well on mobile.</li>
+  <li>make CTAs descriptive, state the intent of the action</li>
+  <li>specify errors inline, show the user where the error occurred and provide a reason.</li>
+</ul>
+<p>Do not:</p>
+<ul>
+  <li>use all caps</li>
+  <li>hide helper text</li>
+</ul>
+
+<h3>Dropdown</h3>
+<p>The dropdown pattern, also referred to as a drop list or select list, allows users to select a single option from a list of available options.</p>
+
+<h3>Single checkbox</h3>
+<p>Single checkboxes are used to confirm a user's selection or preference like agreeing to terms and conditions or registering for an option.</p>
+
+<h3>Checkbox list</h3>
+<p>Checkbox lists provide the user with a list of available items to choose from. The number of items a user can select should be indicated to the user on the page. Checkbox lists are used where multiple selections are permitted. Checkbox lists are wrapped in a fieldset to make them one logical group.</p>
+
+<h3>Radio list</h3>
+<p>Radio lists provide the user with a list of all available items from which a single selection is made. Radio lists are wrapped in a fieldset to make them one logical group.</p>
+
+<h2>How this component works</h2>
+<p><strong>Help text</strong></p>
+<p>Help text allows form designers to provide users with help to fill in a form element. Use help text to provide additional context, information or as an example to complete a field input.</p>
+<p><strong>Validation</strong></p>
+<p>Validation is used to let the user know when there is an issue with the data they have input. The validation that you input needs to clearly explain to the user what the issue is and what they need to do to address the error.</p>
+<p><strong>Organising form elements</strong></p>
+<ul>
+  <li>Differentiate primary from secondary actions</li>
+  <li>Group related information to ensure the user makes sense of the form faster</li>
+  <li>Enable autofill and autocorrect based on common attributes or responses, such as name and email, previously provided on the site or in the browser</li>
+  <li>Use multi-step forms in situations where there are multiple form fields, several of which could be split up into categories (such as “personal”, “shipping”, “billing”, and “payment review”).</li>
+</ul>
+
+<h2>Accessibility</h2>
+<p>All components are responsive and meet WCAG 2.1 AA accessibility guidelines.</p>
+
+      </div>
+    </section>
+    <section id="section-interactive-demo" class="nsw-tabs__content">
+      <div class="nsw-docs__demo">
+        <div class="nsw-docs__external-link">
+          <a target="_blank" href="blank.html" class="nsw-docs__external">
+            <span>View in new window</span>
+            <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">launch</i>
+          </a>
+        </div>
+
+<h3>Default</h3>
+
+<h4>Text Fields</h4>
+<div class="nsw-docs__example">
+  <div class="nsw-docs__component">
+    <div class="nsw-form">
+      <div class="nsw-form__group">
+        <label class="nsw-form__label" for="form-text-1">Name</label>
+        <input class="nsw-form__input" type="text" id="form-text-1" name="form-text-1">
+      </div>
+      <div class="nsw-form__group">
+        <label class="nsw-form__label" for="form-textarea-1">Comment</label>
+        <textarea class="nsw-form__input" name="textarea" id="form-textarea-1"></textarea>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="nsw-docs-code">
+	<button class="nsw-docs-code__button">
+		<span>Show code</span>
+		<i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</i>
+	</button>
+	<div class="nsw-docs-code__content">
+		<button class="nsw-docs-code__copy">
+			<span>Copy</span>
+			<i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</i>
+		</button>
+		<div class="nsw-docs-code__wrapper">
+<pre><code class="html"><script>
+	  function escapeHtml(unsafe) {
+	    return unsafe
+	     .replace(/&/g, "&amp;")
+	     .replace(/</g, "&lt;")
+	     .replace(/>/g, "&gt;")
+	     .replace(/"/g, "&quot;")
+	     .replace(/'/g, "&#039;");
+	  }
+	  document.write(escapeHtml(`<div class="nsw-form">
+  <div class="nsw-form__group">
+    <label class="nsw-form__label" for="form-text-1">Name</label>
+    <input class="nsw-form__input" type="text" id="form-text-1" name="form-text-1">
+  </div>
+  <div class="nsw-form__group">
+    <label class="nsw-form__label" for="form-textarea-1">Comment</label>
+    <textarea class="nsw-form__input" name="textarea" id="form-textarea-1"></textarea>
+  </div>
+</div>
+`));
+</script></code></pre>
+		</div>
+	</div>
+</div>
+
+<h4>Input groups</h4>
+<div class="nsw-docs__example">
+  <div class="nsw-docs__component">
+    <div class="nsw-form">
+      <div class="nsw-form__group">
+        <div class="nsw-form__input-group">
+          <label class="sr-only" for="form-input-group-1">Search</label>
+          <input class="nsw-form__input" type="text" id="form-input-group-1" name="form-input-group-1" value="">
+          <button class="nsw-button nsw-button--dark nsw-button--flex" type="submit">Search</button>
+        </div>
+      </div>
+      <div class="nsw-form__group">
+        <div class="nsw-form__input-group nsw-form__input-group--icon nsw-form__input-group--large">
+          <label class="sr-only" for="form-input-group-icon-1">Search</label>
+          <input class="nsw-form__input" type="text" id="form-input-group-icon-1" name="form-input-group-icon-1" value="">
+          <button class="nsw-button nsw-button--white nsw-button--flex" type="submit"><i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">search</i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="nsw-docs-code">
+	<button class="nsw-docs-code__button">
+		<span>Show code</span>
+		<i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</i>
+	</button>
+	<div class="nsw-docs-code__content">
+		<button class="nsw-docs-code__copy">
+			<span>Copy</span>
+			<i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</i>
+		</button>
+		<div class="nsw-docs-code__wrapper">
+<pre><code class="html"><script>
+	  function escapeHtml(unsafe) {
+	    return unsafe
+	     .replace(/&/g, "&amp;")
+	     .replace(/</g, "&lt;")
+	     .replace(/>/g, "&gt;")
+	     .replace(/"/g, "&quot;")
+	     .replace(/'/g, "&#039;");
+	  }
+	  document.write(escapeHtml(`<div class="nsw-form">
+  <div class="nsw-form__group">
+    <div class="nsw-form__input-group">
+      <label class="sr-only" for="form-input-group-1">Search</label>
+      <input class="nsw-form__input" type="text" id="form-input-group-1" name="form-input-group-1" value="">
+      <button class="nsw-button nsw-button--dark nsw-button--flex" type="submit">Search</button>
+    </div>
+  </div>
+  <div class="nsw-form__group">
+    <div class="nsw-form__input-group nsw-form__input-group--icon nsw-form__input-group--large">
+      <label class="sr-only" for="form-input-group-icon-1">Search</label>
+      <input class="nsw-form__input" type="text" id="form-input-group-icon-1" name="form-input-group-icon-1" value="">
+      <button class="nsw-button nsw-button--white nsw-button--flex" type="submit"><i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">search</i></button>
+    </div>
+  </div>
+</div>
+`));
+</script></code></pre>
+		</div>
+	</div>
+</div>
+
+<h4>Predictive list</h4>
+<div class="nsw-docs__example">
+  <div class="nsw-docs__component">
+    <div class="nsw-form">
+      <div class="nsw-form__group">
+        <label class="nsw-form__label" for="form-predictive-text-1">Suburb</label>
+        <div class="nsw-form__predictive">
+          <input class="nsw-form__input" type="text" id="form-predictive-text-1" name="form-predictive-text-1" value="Horn" aria-autocomplete="list" autocomplete="off">
+          <ul class="nsw-form__predictive-list">
+            <li><a href="#"><span>Horn</span>sby</a></li>
+            <li><a href="#"><span>Horn</span>sby Heights</a></li>
+            <li><a href="#"><span>Horn</span>ingsea Park</a></li>
+          </ul>
+        </div>
+      </div>
+      <br><br><br><br><br><br>
+      <div class="nsw-form__group">
+        <div class="nsw-form__predictive">
+          <div class="nsw-form__input-group">
+            <label class="sr-only" for="form-predictive-group-1">Search</label>
+            <input class="nsw-form__input" type="text" id="form-predictive-group-1" name="form-predictive-group-1" value="Tran" aria-autocomplete="list" autocomplete="off">
+            <button class="nsw-button nsw-button--dark nsw-button--flex" type="submit">Search</button>
+          </div>
+          <ul class="nsw-form__predictive-list">
+            <li><a href="#"><span>Tran</span>sport</a></li>
+            <li><a href="#">Road <span>Tran</span>sport</a></li>
+            <li><a href="#">Public <span>Tran</span>sport</a></li>
+          </ul>
+        </div>
+      </div>
+      <br><br><br><br><br><br>
+      <div class="nsw-form__group">
+        <div class="nsw-form__predictive">
+          <div class="nsw-form__input-group nsw-form__input-group--icon nsw-form__input-group--large">
+            <label class="sr-only" for="form-predictive-group-icon-1">Search</label>
+            <input class="nsw-form__input" type="text" id="form-predictive-group-icon-1" name="form-predictive-group-icon-1" value="Govern" aria-autocomplete="list" autocomplete="off">
+            <button class="nsw-button nsw-button--white nsw-button--flex" type="submit"><i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">search</i></button>
+          </div>
+          <ul class="nsw-form__predictive-list nsw-form__predictive-list--large">
+            <li><a href="#"><span>Govern</span>ment</a></li>
+            <li><a href="#"><span>Govern</span>ment payments</a></li>
+            <li><a href="#"><span>Govern</span>ance</a></li>
+          </ul>
+        </div>
+      </div>
+      <br><br><br><br><br><br>
+    </div>
+  </div>
+</div>
+<div class="nsw-docs-code">
+	<button class="nsw-docs-code__button">
+		<span>Show code</span>
+		<i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</i>
+	</button>
+	<div class="nsw-docs-code__content">
+		<button class="nsw-docs-code__copy">
+			<span>Copy</span>
+			<i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</i>
+		</button>
+		<div class="nsw-docs-code__wrapper">
+<pre><code class="html"><script>
+	  function escapeHtml(unsafe) {
+	    return unsafe
+	     .replace(/&/g, "&amp;")
+	     .replace(/</g, "&lt;")
+	     .replace(/>/g, "&gt;")
+	     .replace(/"/g, "&quot;")
+	     .replace(/'/g, "&#039;");
+	  }
+	  document.write(escapeHtml(`<div class="nsw-form">
+  <div class="nsw-form__group">
+    <label class="nsw-form__label" for="form-predictive-text-1">Suburb</label>
+    <div class="nsw-form__predictive">
+      <input class="nsw-form__input" type="text" id="form-predictive-text-1" name="form-predictive-text-1" value="Horn" aria-autocomplete="list" autocomplete="off">
+      <ul class="nsw-form__predictive-list">
+        <li><a href="#"><span>Horn</span>sby</a></li>
+        <li><a href="#"><span>Horn</span>sby Heights</a></li>
+        <li><a href="#"><span>Horn</span>ingsea Park</a></li>
+      </ul>
+    </div>
+  </div>
+  <br><br><br><br><br><br>
+  <div class="nsw-form__group">
+    <div class="nsw-form__predictive">
+      <div class="nsw-form__input-group">
+        <label class="sr-only" for="form-predictive-group-1">Search</label>
+        <input class="nsw-form__input" type="text" id="form-predictive-group-1" name="form-predictive-group-1" value="Tran" aria-autocomplete="list" autocomplete="off">
+        <button class="nsw-button nsw-button--dark nsw-button--flex" type="submit">Search</button>
+      </div>
+      <ul class="nsw-form__predictive-list">
+        <li><a href="#"><span>Tran</span>sport</a></li>
+        <li><a href="#">Road <span>Tran</span>sport</a></li>
+        <li><a href="#">Public <span>Tran</span>sport</a></li>
+      </ul>
+    </div>
+  </div>
+  <br><br><br><br><br><br>
+  <div class="nsw-form__group">
+    <div class="nsw-form__predictive">
+      <div class="nsw-form__input-group nsw-form__input-group--icon nsw-form__input-group--large">
+        <label class="sr-only" for="form-predictive-group-icon-1">Search</label>
+        <input class="nsw-form__input" type="text" id="form-predictive-group-icon-1" name="form-predictive-group-icon-1" value="Govern" aria-autocomplete="list" autocomplete="off">
+        <button class="nsw-button nsw-button--white nsw-button--flex" type="submit"><i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">search</i></button>
+      </div>
+      <ul class="nsw-form__predictive-list nsw-form__predictive-list--large">
+        <li><a href="#"><span>Govern</span>ment</a></li>
+        <li><a href="#"><span>Govern</span>ment payments</a></li>
+        <li><a href="#"><span>Govern</span>ance</a></li>
+      </ul>
+    </div>
+  </div>
+  <br><br><br><br><br><br>
+</div>
+`));
+</script></code></pre>
+		</div>
+	</div>
+</div>
+
+<h4>Date</h4>
+<div class="nsw-docs__example">
+  <div class="nsw-docs__component">
+    <div class="nsw-form">
+      <div class="nsw-form__group">
+        <fieldset class="nsw-form__date">
+          <legend>
+            <span class="nsw-form__label">Date of birth</span>
+          </legend>
+          <div class="nsw-form__date-wrapper">
+            <div class="nsw-form__date-input">
+              <label for="form-date-1-day" class="nsw-form__label nsw-form__label--small">Day</label>
+              <input type="text" maxlength="2" id="form-date-1-day" name="form-date-1-day" class="nsw-form__input">
+            </div>
+            <div class="nsw-form__date-input">
+              <label for="form-date-1-month" class="nsw-form__label nsw-form__label--small">Month</label>
+              <input type="text" maxlength="2" id="form-date-1-month" name="form-date-1-month" class="nsw-form__input">
+            </div>
+            <div class="nsw-form__date-input nsw-form__date-input--large">
+              <label for="form-date-1-year" class="nsw-form__label nsw-form__label--small">Year</label>
+              <input type="text" maxlength="4" id="form-date-1-year" name="form-date-1-year" class="nsw-form__input">
+            </div>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="nsw-docs-code">
+	<button class="nsw-docs-code__button">
+		<span>Show code</span>
+		<i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</i>
+	</button>
+	<div class="nsw-docs-code__content">
+		<button class="nsw-docs-code__copy">
+			<span>Copy</span>
+			<i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</i>
+		</button>
+		<div class="nsw-docs-code__wrapper">
+<pre><code class="html"><script>
+	  function escapeHtml(unsafe) {
+	    return unsafe
+	     .replace(/&/g, "&amp;")
+	     .replace(/</g, "&lt;")
+	     .replace(/>/g, "&gt;")
+	     .replace(/"/g, "&quot;")
+	     .replace(/'/g, "&#039;");
+	  }
+	  document.write(escapeHtml(`<div class="nsw-form">
+  <div class="nsw-form__group">
+    <fieldset class="nsw-form__date">
+      <legend>
+        <span class="nsw-form__label">Date of birth</span>
+      </legend>
+      <div class="nsw-form__date-wrapper">
+        <div class="nsw-form__date-input">
+          <label for="form-date-1-day" class="nsw-form__label nsw-form__label--small">Day</label>
+          <input type="text" maxlength="2" id="form-date-1-day" name="form-date-1-day" class="nsw-form__input">
+        </div>
+        <div class="nsw-form__date-input">
+          <label for="form-date-1-month" class="nsw-form__label nsw-form__label--small">Month</label>
+          <input type="text" maxlength="2" id="form-date-1-month" name="form-date-1-month" class="nsw-form__input">
+        </div>
+        <div class="nsw-form__date-input nsw-form__date-input--large">
+          <label for="form-date-1-year" class="nsw-form__label nsw-form__label--small">Year</label>
+          <input type="text" maxlength="4" id="form-date-1-year" name="form-date-1-year" class="nsw-form__input">
+        </div>
+      </div>
+    </fieldset>
+  </div>
+</div>
+`));
+</script></code></pre>
+		</div>
+	</div>
+</div>
+
+<h4>Dropdown</h4>
+<div class="nsw-docs__example">
+  <div class="nsw-docs__component">
+    <div class="nsw-form">
+      <div class="nsw-form__group">
+        <label class="nsw-form__label" for="form-select-1">Region</label>
+        <select class="nsw-form__select" id="form-select-1">
+          <option value="">Please select</option>  
+          <option value="1">Central Coast</option>
+          <option value="2">North Coast</option>
+          <option value="3">New England &amp; North West</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="nsw-docs-code">
+	<button class="nsw-docs-code__button">
+		<span>Show code</span>
+		<i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</i>
+	</button>
+	<div class="nsw-docs-code__content">
+		<button class="nsw-docs-code__copy">
+			<span>Copy</span>
+			<i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</i>
+		</button>
+		<div class="nsw-docs-code__wrapper">
+<pre><code class="html"><script>
+	  function escapeHtml(unsafe) {
+	    return unsafe
+	     .replace(/&/g, "&amp;")
+	     .replace(/</g, "&lt;")
+	     .replace(/>/g, "&gt;")
+	     .replace(/"/g, "&quot;")
+	     .replace(/'/g, "&#039;");
+	  }
+	  document.write(escapeHtml(`<div class="nsw-form">
+  <div class="nsw-form__group">
+    <label class="nsw-form__label" for="form-select-1">Region</label>
+    <select class="nsw-form__select" id="form-select-1">
+      <option value="">Please select</option>  
+      <option value="1">Central Coast</option>
+      <option value="2">North Coast</option>
+      <option value="3">New England &amp; North West</option>
+    </select>
+  </div>
+</div>
+`));
+</script></code></pre>
+		</div>
+	</div>
+</div>
+
+<h4>Checkboxes</h4>
+<div class="nsw-docs__example">
+  <div class="nsw-docs__component">
+    <div class="nsw-form">
+      <div class="nsw-form__group">
+        <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-1" id="form-checkbox-1">
+        <label class="nsw-form__checkbox-label" for="form-checkbox-1">I agree to terms and conditions</label>
+      </div>
+      <div class="nsw-form__group">
+        <fieldset class="nsw-form__fieldset">
+          <legend>
+            <span class="nsw-form__legend">Category</span>
+          </legend>
+          <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-multi" id="form-checkbox-multi-1-a">
+          <label class="nsw-form__checkbox-label" for="form-checkbox-multi-1-a">Customer Service</label>
+          <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-multi" id="form-checkbox-multi-1-b" checked>
+          <label class="nsw-form__checkbox-label" for="form-checkbox-multi-1-b">Communities and Justice</label>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="nsw-docs-code">
+	<button class="nsw-docs-code__button">
+		<span>Show code</span>
+		<i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</i>
+	</button>
+	<div class="nsw-docs-code__content">
+		<button class="nsw-docs-code__copy">
+			<span>Copy</span>
+			<i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</i>
+		</button>
+		<div class="nsw-docs-code__wrapper">
+<pre><code class="html"><script>
+	  function escapeHtml(unsafe) {
+	    return unsafe
+	     .replace(/&/g, "&amp;")
+	     .replace(/</g, "&lt;")
+	     .replace(/>/g, "&gt;")
+	     .replace(/"/g, "&quot;")
+	     .replace(/'/g, "&#039;");
+	  }
+	  document.write(escapeHtml(`<div class="nsw-form">
+  <div class="nsw-form__group">
+    <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-1" id="form-checkbox-1">
+    <label class="nsw-form__checkbox-label" for="form-checkbox-1">I agree to terms and conditions</label>
+  </div>
+  <div class="nsw-form__group">
+    <fieldset class="nsw-form__fieldset">
+      <legend>
+        <span class="nsw-form__legend">Category</span>
+      </legend>
+      <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-multi" id="form-checkbox-multi-1-a">
+      <label class="nsw-form__checkbox-label" for="form-checkbox-multi-1-a">Customer Service</label>
+      <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-multi" id="form-checkbox-multi-1-b" checked>
+      <label class="nsw-form__checkbox-label" for="form-checkbox-multi-1-b">Communities and Justice</label>
+    </fieldset>
+  </div>
+</div>
+`));
+</script></code></pre>
+		</div>
+	</div>
+</div>
+
+<h4>Radio buttons</h4>
+<div class="nsw-docs__example">
+  <div class="nsw-docs__component">
+    <div class="nsw-form">
+      <div class="nsw-form__group">
+        <fieldset class="nsw-form__fieldset">
+          <legend>
+            <span class="nsw-form__legend">Topic</span>
+          </legend>
+          <input class="nsw-form__radio-input" type="radio" name="form-radio" id="form-radio-1-a" checked>
+          <label class="nsw-form__radio-label" for="form-radio-1-a">NSW Government</label>
+          <input class="nsw-form__radio-input" type="radio" name="form-radio" id="form-radio-1-b">
+          <label class="nsw-form__radio-label" for="form-radio-1-b">Business and Economy</label>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="nsw-docs-code">
+	<button class="nsw-docs-code__button">
+		<span>Show code</span>
+		<i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</i>
+	</button>
+	<div class="nsw-docs-code__content">
+		<button class="nsw-docs-code__copy">
+			<span>Copy</span>
+			<i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</i>
+		</button>
+		<div class="nsw-docs-code__wrapper">
+<pre><code class="html"><script>
+	  function escapeHtml(unsafe) {
+	    return unsafe
+	     .replace(/&/g, "&amp;")
+	     .replace(/</g, "&lt;")
+	     .replace(/>/g, "&gt;")
+	     .replace(/"/g, "&quot;")
+	     .replace(/'/g, "&#039;");
+	  }
+	  document.write(escapeHtml(`<div class="nsw-form">
+  <div class="nsw-form__group">
+    <fieldset class="nsw-form__fieldset">
+      <legend>
+        <span class="nsw-form__legend">Topic</span>
+      </legend>
+      <input class="nsw-form__radio-input" type="radio" name="form-radio" id="form-radio-1-a" checked>
+      <label class="nsw-form__radio-label" for="form-radio-1-a">NSW Government</label>
+      <input class="nsw-form__radio-input" type="radio" name="form-radio" id="form-radio-1-b">
+      <label class="nsw-form__radio-label" for="form-radio-1-b">Business and Economy</label>
+    </fieldset>
+  </div>
+</div>
+`));
+</script></code></pre>
+		</div>
+	</div>
+</div>
+<h3>Helper text</h3>
+
+<h4>Text Fields</h4>
+<div class="nsw-docs__example">
+  <div class="nsw-docs__component">
+    <div class="nsw-form">
+      <div class="nsw-form__group">
+        <label class="nsw-form__label" for="form-text-2">Name</label>
+        <span class="nsw-form__helper" id="form-text-2-helper-text">As it appears on your identity document</span>
+        <input class="nsw-form__input" type="text" id="form-text-2" name="form-text-2" aria-describedby="form-text-2-helper-text">
+      </div>
+      <div class="nsw-form__group">
+        <label class="nsw-form__label" for="form-textarea-2">Comment</label>
+        <span class="nsw-form__helper" id="form-textarea-2-helper-text">Maximum 500 characters</span>
+        <textarea class="nsw-form__input" name="textarea" id="form-textarea-2" aria-describedby="form-textarea-2-helper-text"></textarea>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="nsw-docs-code">
+	<button class="nsw-docs-code__button">
+		<span>Show code</span>
+		<i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</i>
+	</button>
+	<div class="nsw-docs-code__content">
+		<button class="nsw-docs-code__copy">
+			<span>Copy</span>
+			<i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</i>
+		</button>
+		<div class="nsw-docs-code__wrapper">
+<pre><code class="html"><script>
+	  function escapeHtml(unsafe) {
+	    return unsafe
+	     .replace(/&/g, "&amp;")
+	     .replace(/</g, "&lt;")
+	     .replace(/>/g, "&gt;")
+	     .replace(/"/g, "&quot;")
+	     .replace(/'/g, "&#039;");
+	  }
+	  document.write(escapeHtml(`<div class="nsw-form">
+  <div class="nsw-form__group">
+    <label class="nsw-form__label" for="form-text-2">Name</label>
+    <span class="nsw-form__helper" id="form-text-2-helper-text">As it appears on your identity document</span>
+    <input class="nsw-form__input" type="text" id="form-text-2" name="form-text-2" aria-describedby="form-text-2-helper-text">
+  </div>
+  <div class="nsw-form__group">
+    <label class="nsw-form__label" for="form-textarea-2">Comment</label>
+    <span class="nsw-form__helper" id="form-textarea-2-helper-text">Maximum 500 characters</span>
+    <textarea class="nsw-form__input" name="textarea" id="form-textarea-2" aria-describedby="form-textarea-2-helper-text"></textarea>
+  </div>
+</div>
+`));
+</script></code></pre>
+		</div>
+	</div>
+</div>
+
+<h4>Date</h4>
+<div class="nsw-docs__example">
+  <div class="nsw-docs__component">
+    <div class="nsw-form">
+      <div class="nsw-form__group">
+        <fieldset class="nsw-form__date">
+          <legend>
+            <span class="nsw-form__label">Date of birth</span>
+            <span id="form-date-2-helper-text" class="nsw-form__helper">For example 08 12 1990</span>
+          </legend>
+          <div class="nsw-form__date-wrapper">
+            <div class="nsw-form__date-input">
+              <label for="form-date-2-day" class="nsw-form__label nsw-form__label--small">Day</label>
+              <input type="text" maxlength="2" id="form-date-2-day" name="form-date-2-day" class="nsw-form__input">
+            </div>
+            <div class="nsw-form__date-input">
+              <label for="form-date-2-month" class="nsw-form__label nsw-form__label--small">Month</label>
+              <input type="text" maxlength="2" id="form-date-2-month" name="form-date-2-month" class="nsw-form__input">
+            </div>
+            <div class="nsw-form__date-input nsw-form__date-input--large">
+              <label for="form-date-2-year" class="nsw-form__label nsw-form__label--small">Year</label>
+              <input type="text" maxlength="4" id="form-date-2-year" name="form-date-2-year" class="nsw-form__input">
+            </div>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="nsw-docs-code">
+	<button class="nsw-docs-code__button">
+		<span>Show code</span>
+		<i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</i>
+	</button>
+	<div class="nsw-docs-code__content">
+		<button class="nsw-docs-code__copy">
+			<span>Copy</span>
+			<i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</i>
+		</button>
+		<div class="nsw-docs-code__wrapper">
+<pre><code class="html"><script>
+	  function escapeHtml(unsafe) {
+	    return unsafe
+	     .replace(/&/g, "&amp;")
+	     .replace(/</g, "&lt;")
+	     .replace(/>/g, "&gt;")
+	     .replace(/"/g, "&quot;")
+	     .replace(/'/g, "&#039;");
+	  }
+	  document.write(escapeHtml(`<div class="nsw-form">
+  <div class="nsw-form__group">
+    <fieldset class="nsw-form__date">
+      <legend>
+        <span class="nsw-form__label">Date of birth</span>
+        <span id="form-date-2-helper-text" class="nsw-form__helper">For example 08 12 1990</span>
+      </legend>
+      <div class="nsw-form__date-wrapper">
+        <div class="nsw-form__date-input">
+          <label for="form-date-2-day" class="nsw-form__label nsw-form__label--small">Day</label>
+          <input type="text" maxlength="2" id="form-date-2-day" name="form-date-2-day" class="nsw-form__input">
+        </div>
+        <div class="nsw-form__date-input">
+          <label for="form-date-2-month" class="nsw-form__label nsw-form__label--small">Month</label>
+          <input type="text" maxlength="2" id="form-date-2-month" name="form-date-2-month" class="nsw-form__input">
+        </div>
+        <div class="nsw-form__date-input nsw-form__date-input--large">
+          <label for="form-date-2-year" class="nsw-form__label nsw-form__label--small">Year</label>
+          <input type="text" maxlength="4" id="form-date-2-year" name="form-date-2-year" class="nsw-form__input">
+        </div>
+      </div>
+    </fieldset>
+  </div>
+</div>
+`));
+</script></code></pre>
+		</div>
+	</div>
+</div>
+
+<h4>Dropdown</h4>
+<div class="nsw-docs__example">
+  <div class="nsw-docs__component">
+    <div class="nsw-form">
+      <div class="nsw-form__group">
+        <label class="nsw-form__label" for="form-select-2">Region</label>
+        <span class="nsw-form__helper" id="form-select-2-helper-text">Your region of residence</span>
+        <select class="nsw-form__select" id="form-select-2" aria-describedby="form-select-2-helper-text">
+          <option value="">Please select</option>  
+          <option value="1">Central Coast</option>
+          <option value="2">North Coast</option>
+          <option value="3">New England &amp; North West</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="nsw-docs-code">
+	<button class="nsw-docs-code__button">
+		<span>Show code</span>
+		<i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</i>
+	</button>
+	<div class="nsw-docs-code__content">
+		<button class="nsw-docs-code__copy">
+			<span>Copy</span>
+			<i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</i>
+		</button>
+		<div class="nsw-docs-code__wrapper">
+<pre><code class="html"><script>
+	  function escapeHtml(unsafe) {
+	    return unsafe
+	     .replace(/&/g, "&amp;")
+	     .replace(/</g, "&lt;")
+	     .replace(/>/g, "&gt;")
+	     .replace(/"/g, "&quot;")
+	     .replace(/'/g, "&#039;");
+	  }
+	  document.write(escapeHtml(`<div class="nsw-form">
+  <div class="nsw-form__group">
+    <label class="nsw-form__label" for="form-select-2">Region</label>
+    <span class="nsw-form__helper" id="form-select-2-helper-text">Your region of residence</span>
+    <select class="nsw-form__select" id="form-select-2" aria-describedby="form-select-2-helper-text">
+      <option value="">Please select</option>  
+      <option value="1">Central Coast</option>
+      <option value="2">North Coast</option>
+      <option value="3">New England &amp; North West</option>
+    </select>
+  </div>
+</div>
+`));
+</script></code></pre>
+		</div>
+	</div>
+</div>
+
+<h4>Checkboxes</h4>
+<div class="nsw-docs__example">
+  <div class="nsw-docs__component">
+    <div class="nsw-form">
+      <div class="nsw-form__group">
+        <fieldset class="nsw-form__fieldset">
+          <legend>
+            <span class="nsw-form__legend">Category</span>
+            <span class="nsw-form__helper">Select all that applies to you</span>
+          </legend>
+          <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-multi" id="form-checkbox-multi-2-a">
+          <label class="nsw-form__checkbox-label" for="form-checkbox-multi-2-a">Customer Service</label>
+          <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-multi" id="form-checkbox-multi-2-b">
+          <label class="nsw-form__checkbox-label" for="form-checkbox-multi-2-b">Communities and Justice</label>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="nsw-docs-code">
+	<button class="nsw-docs-code__button">
+		<span>Show code</span>
+		<i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</i>
+	</button>
+	<div class="nsw-docs-code__content">
+		<button class="nsw-docs-code__copy">
+			<span>Copy</span>
+			<i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</i>
+		</button>
+		<div class="nsw-docs-code__wrapper">
+<pre><code class="html"><script>
+	  function escapeHtml(unsafe) {
+	    return unsafe
+	     .replace(/&/g, "&amp;")
+	     .replace(/</g, "&lt;")
+	     .replace(/>/g, "&gt;")
+	     .replace(/"/g, "&quot;")
+	     .replace(/'/g, "&#039;");
+	  }
+	  document.write(escapeHtml(`<div class="nsw-form">
+  <div class="nsw-form__group">
+    <fieldset class="nsw-form__fieldset">
+      <legend>
+        <span class="nsw-form__legend">Category</span>
+        <span class="nsw-form__helper">Select all that applies to you</span>
+      </legend>
+      <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-multi" id="form-checkbox-multi-2-a">
+      <label class="nsw-form__checkbox-label" for="form-checkbox-multi-2-a">Customer Service</label>
+      <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-multi" id="form-checkbox-multi-2-b">
+      <label class="nsw-form__checkbox-label" for="form-checkbox-multi-2-b">Communities and Justice</label>
+    </fieldset>
+  </div>
+</div>
+`));
+</script></code></pre>
+		</div>
+	</div>
+</div>
+
+<h4>Radio buttons</h4>
+<div class="nsw-docs__example">
+  <div class="nsw-docs__component">
+    <div class="nsw-form">
+      <div class="nsw-form__group">
+        <fieldset class="nsw-form__fieldset">
+          <legend>
+            <span class="nsw-form__legend">Topic</span>
+            <span class="nsw-form__helper">Select closest match</span>
+          </legend>
+          <input class="nsw-form__radio-input" type="radio" name="form-radio" id="form-radio-2-a">
+          <label class="nsw-form__radio-label" for="form-radio-2-a">NSW Government</label>
+          <input class="nsw-form__radio-input" type="radio" name="form-radio" id="form-radio-2-b">
+          <label class="nsw-form__radio-label" for="form-radio-2-b">Business and Economy</label>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="nsw-docs-code">
+	<button class="nsw-docs-code__button">
+		<span>Show code</span>
+		<i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</i>
+	</button>
+	<div class="nsw-docs-code__content">
+		<button class="nsw-docs-code__copy">
+			<span>Copy</span>
+			<i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</i>
+		</button>
+		<div class="nsw-docs-code__wrapper">
+<pre><code class="html"><script>
+	  function escapeHtml(unsafe) {
+	    return unsafe
+	     .replace(/&/g, "&amp;")
+	     .replace(/</g, "&lt;")
+	     .replace(/>/g, "&gt;")
+	     .replace(/"/g, "&quot;")
+	     .replace(/'/g, "&#039;");
+	  }
+	  document.write(escapeHtml(`<div class="nsw-form">
+  <div class="nsw-form__group">
+    <fieldset class="nsw-form__fieldset">
+      <legend>
+        <span class="nsw-form__legend">Topic</span>
+        <span class="nsw-form__helper">Select closest match</span>
+      </legend>
+      <input class="nsw-form__radio-input" type="radio" name="form-radio" id="form-radio-2-a">
+      <label class="nsw-form__radio-label" for="form-radio-2-a">NSW Government</label>
+      <input class="nsw-form__radio-input" type="radio" name="form-radio" id="form-radio-2-b">
+      <label class="nsw-form__radio-label" for="form-radio-2-b">Business and Economy</label>
+    </fieldset>
+  </div>
+</div>
+`));
+</script></code></pre>
+		</div>
+	</div>
+</div>
+<h3>Error</h3>
+
+<h4>Text Fields</h4>
+<div class="nsw-docs__example">
+  <div class="nsw-docs__component">
+    <div class="nsw-form">
+      <div class="nsw-form__group">
+        <label class="nsw-form__label nsw-form__required" for="form-text-3">Name<span class="sr-only"> (required)</span></label>
+        <input class="nsw-form__input" type="text" id="form-text-3" name="form-text-3" aria-invalid="true">
+        <span class="nsw-form__helper nsw-form__helper--error" id="form-text-3-error-text"><i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</i>This field is required</span>
+      </div>
+      <div class="nsw-form__group">
+        <label class="nsw-form__label nsw-form__required" for="form-textarea-3">Comment<span class="sr-only"> (required)</span></label>
+        <textarea class="nsw-form__input" name="textarea" id="form-textarea-3" aria-invalid="true"></textarea>
+        <span class="nsw-form__helper nsw-form__helper--error" id="form-textarea-3-error-text"><i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</i>This field is required</span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="nsw-docs-code">
+	<button class="nsw-docs-code__button">
+		<span>Show code</span>
+		<i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</i>
+	</button>
+	<div class="nsw-docs-code__content">
+		<button class="nsw-docs-code__copy">
+			<span>Copy</span>
+			<i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</i>
+		</button>
+		<div class="nsw-docs-code__wrapper">
+<pre><code class="html"><script>
+	  function escapeHtml(unsafe) {
+	    return unsafe
+	     .replace(/&/g, "&amp;")
+	     .replace(/</g, "&lt;")
+	     .replace(/>/g, "&gt;")
+	     .replace(/"/g, "&quot;")
+	     .replace(/'/g, "&#039;");
+	  }
+	  document.write(escapeHtml(`<div class="nsw-form">
+  <div class="nsw-form__group">
+    <label class="nsw-form__label nsw-form__required" for="form-text-3">Name<span class="sr-only"> (required)</span></label>
+    <input class="nsw-form__input" type="text" id="form-text-3" name="form-text-3" aria-invalid="true">
+    <span class="nsw-form__helper nsw-form__helper--error" id="form-text-3-error-text"><i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</i>This field is required</span>
+  </div>
+  <div class="nsw-form__group">
+    <label class="nsw-form__label nsw-form__required" for="form-textarea-3">Comment<span class="sr-only"> (required)</span></label>
+    <textarea class="nsw-form__input" name="textarea" id="form-textarea-3" aria-invalid="true"></textarea>
+    <span class="nsw-form__helper nsw-form__helper--error" id="form-textarea-3-error-text"><i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</i>This field is required</span>
+  </div>
+</div>
+`));
+</script></code></pre>
+		</div>
+	</div>
+</div>
+
+<h4>Date</h4>
+<div class="nsw-docs__example">
+  <div class="nsw-docs__component">
+    <div class="nsw-form">
+      <div class="nsw-form__group">
+        <fieldset class="nsw-form__date">
+          <legend>
+            <span class="nsw-form__label nsw-form__required">Date of birth<span class="sr-only"> (required)</span></span>
+          </legend>
+          <div class="nsw-form__date-wrapper">
+            <div class="nsw-form__date-input">
+              <label for="form-date-3-day" class="nsw-form__label nsw-form__label--small">Day</label>
+              <input type="text" maxlength="2" id="form-date-3-day" name="form-date-3-day" class="nsw-form__input" aria-invalid="true">
+            </div>
+            <div class="nsw-form__date-input">
+              <label for="form-date-3-month" class="nsw-form__label nsw-form__label--small">Month</label>
+              <input type="text" maxlength="2" id="form-date-3-month" name="form-date-3-month" class="nsw-form__input" aria-invalid="true">
+            </div>
+            <div class="nsw-form__date-input nsw-form__date-input--large">
+              <label for="form-date-3-year" class="nsw-form__label nsw-form__label--small">Year</label>
+              <input type="text" maxlength="4" id="form-date-3-year" name="form-date-3-year" class="nsw-form__input" aria-invalid="true">
+            </div>
+          </div>
+        </fieldset>
+        <span id="form-date-3-error-text" class="nsw-form__helper nsw-form__helper--error"><i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</i>This field is required</span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="nsw-docs-code">
+	<button class="nsw-docs-code__button">
+		<span>Show code</span>
+		<i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</i>
+	</button>
+	<div class="nsw-docs-code__content">
+		<button class="nsw-docs-code__copy">
+			<span>Copy</span>
+			<i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</i>
+		</button>
+		<div class="nsw-docs-code__wrapper">
+<pre><code class="html"><script>
+	  function escapeHtml(unsafe) {
+	    return unsafe
+	     .replace(/&/g, "&amp;")
+	     .replace(/</g, "&lt;")
+	     .replace(/>/g, "&gt;")
+	     .replace(/"/g, "&quot;")
+	     .replace(/'/g, "&#039;");
+	  }
+	  document.write(escapeHtml(`<div class="nsw-form">
+  <div class="nsw-form__group">
+    <fieldset class="nsw-form__date">
+      <legend>
+        <span class="nsw-form__label nsw-form__required">Date of birth<span class="sr-only"> (required)</span></span>
+      </legend>
+      <div class="nsw-form__date-wrapper">
+        <div class="nsw-form__date-input">
+          <label for="form-date-3-day" class="nsw-form__label nsw-form__label--small">Day</label>
+          <input type="text" maxlength="2" id="form-date-3-day" name="form-date-3-day" class="nsw-form__input" aria-invalid="true">
+        </div>
+        <div class="nsw-form__date-input">
+          <label for="form-date-3-month" class="nsw-form__label nsw-form__label--small">Month</label>
+          <input type="text" maxlength="2" id="form-date-3-month" name="form-date-3-month" class="nsw-form__input" aria-invalid="true">
+        </div>
+        <div class="nsw-form__date-input nsw-form__date-input--large">
+          <label for="form-date-3-year" class="nsw-form__label nsw-form__label--small">Year</label>
+          <input type="text" maxlength="4" id="form-date-3-year" name="form-date-3-year" class="nsw-form__input" aria-invalid="true">
+        </div>
+      </div>
+    </fieldset>
+    <span id="form-date-3-error-text" class="nsw-form__helper nsw-form__helper--error"><i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</i>This field is required</span>
+  </div>
+</div>
+`));
+</script></code></pre>
+		</div>
+	</div>
+</div>
+
+<h4>Dropdown</h4>
+<div class="nsw-docs__example">
+  <div class="nsw-docs__component">
+    <div class="nsw-form">
+      <div class="nsw-form__group">
+        <label class="nsw-form__label nsw-form__required" for="form-select-3">Region<span class="sr-only"> (required)</span></label>
+        <select class="nsw-form__select" id="form-select-3" aria-invalid="true">
+          <option value="">Please select</option>  
+          <option value="1">Central Coast</option>
+          <option value="2">North Coast</option>
+          <option value="3">New England &amp; North West</option>
+        </select>
+        <span id="form-select-3-error-text" class="nsw-form__helper nsw-form__helper--error"><i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</i>This field is required</span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="nsw-docs-code">
+	<button class="nsw-docs-code__button">
+		<span>Show code</span>
+		<i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</i>
+	</button>
+	<div class="nsw-docs-code__content">
+		<button class="nsw-docs-code__copy">
+			<span>Copy</span>
+			<i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</i>
+		</button>
+		<div class="nsw-docs-code__wrapper">
+<pre><code class="html"><script>
+	  function escapeHtml(unsafe) {
+	    return unsafe
+	     .replace(/&/g, "&amp;")
+	     .replace(/</g, "&lt;")
+	     .replace(/>/g, "&gt;")
+	     .replace(/"/g, "&quot;")
+	     .replace(/'/g, "&#039;");
+	  }
+	  document.write(escapeHtml(`<div class="nsw-form">
+  <div class="nsw-form__group">
+    <label class="nsw-form__label nsw-form__required" for="form-select-3">Region<span class="sr-only"> (required)</span></label>
+    <select class="nsw-form__select" id="form-select-3" aria-invalid="true">
+      <option value="">Please select</option>  
+      <option value="1">Central Coast</option>
+      <option value="2">North Coast</option>
+      <option value="3">New England &amp; North West</option>
+    </select>
+    <span id="form-select-3-error-text" class="nsw-form__helper nsw-form__helper--error"><i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</i>This field is required</span>
+  </div>
+</div>
+`));
+</script></code></pre>
+		</div>
+	</div>
+</div>
+
+<h4>Checkboxes</h4>
+<div class="nsw-docs__example">
+  <div class="nsw-docs__component">
+    <div class="nsw-form">
+      <div class="nsw-form__group">
+        <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-3" id="form-checkbox-3" aria-describedby="form-checkbox-3-error-text" aria-invalid="true">
+        <label class="nsw-form__checkbox-label" for="form-checkbox-3">I agree to terms and conditions<span class="nsw-form__required"></span><span class="sr-only"> (required)</span></label>
+        <span id="form-checkbox-3-error-text" class="nsw-form__helper nsw-form__helper--error"><i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</i>This field is required</span>
+      </div>
+      <div class="nsw-form__group">
+        <fieldset class="nsw-form__fieldset">
+          <legend>
+            <span class="nsw-form__legend nsw-form__required">Category<span class="sr-only"> (required)</span></span>
+            <span class="nsw-form__helper nsw-form__helper--error"><i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</i>This field is required</span>
+          </legend>
+          <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-multi" id="form-checkbox-multi-3-a">
+          <label class="nsw-form__checkbox-label" for="form-checkbox-multi-3-a">Customer Service</label>
+          <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-multi" id="form-checkbox-multi-3-b">
+          <label class="nsw-form__checkbox-label" for="form-checkbox-multi-3-b">Communities and Justice</label>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="nsw-docs-code">
+	<button class="nsw-docs-code__button">
+		<span>Show code</span>
+		<i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</i>
+	</button>
+	<div class="nsw-docs-code__content">
+		<button class="nsw-docs-code__copy">
+			<span>Copy</span>
+			<i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</i>
+		</button>
+		<div class="nsw-docs-code__wrapper">
+<pre><code class="html"><script>
+	  function escapeHtml(unsafe) {
+	    return unsafe
+	     .replace(/&/g, "&amp;")
+	     .replace(/</g, "&lt;")
+	     .replace(/>/g, "&gt;")
+	     .replace(/"/g, "&quot;")
+	     .replace(/'/g, "&#039;");
+	  }
+	  document.write(escapeHtml(`<div class="nsw-form">
+  <div class="nsw-form__group">
+    <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-3" id="form-checkbox-3" aria-describedby="form-checkbox-3-error-text" aria-invalid="true">
+    <label class="nsw-form__checkbox-label" for="form-checkbox-3">I agree to terms and conditions<span class="nsw-form__required"></span><span class="sr-only"> (required)</span></label>
+    <span id="form-checkbox-3-error-text" class="nsw-form__helper nsw-form__helper--error"><i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</i>This field is required</span>
+  </div>
+  <div class="nsw-form__group">
+    <fieldset class="nsw-form__fieldset">
+      <legend>
+        <span class="nsw-form__legend nsw-form__required">Category<span class="sr-only"> (required)</span></span>
+        <span class="nsw-form__helper nsw-form__helper--error"><i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</i>This field is required</span>
+      </legend>
+      <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-multi" id="form-checkbox-multi-3-a">
+      <label class="nsw-form__checkbox-label" for="form-checkbox-multi-3-a">Customer Service</label>
+      <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-multi" id="form-checkbox-multi-3-b">
+      <label class="nsw-form__checkbox-label" for="form-checkbox-multi-3-b">Communities and Justice</label>
+    </fieldset>
+  </div>
+</div>
+`));
+</script></code></pre>
+		</div>
+	</div>
+</div>
+
+<h4>Radio buttons</h4>
+<div class="nsw-docs__example">
+  <div class="nsw-docs__component">
+    <div class="nsw-form">
+      <div class="nsw-form__group">
+        <fieldset class="nsw-form__fieldset">
+          <legend>
+            <span class="nsw-form__legend nsw-form__required">Topic<span class="sr-only"> (required)</span></span>
+            <span class="nsw-form__helper nsw-form__helper--error"><i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</i>This field is required</span>
+          </legend>
+          <input class="nsw-form__radio-input" type="radio" name="form-radio" id="form-radio-3-a">
+          <label class="nsw-form__radio-label" for="form-radio-3-a">NSW Government</label>
+          <input class="nsw-form__radio-input" type="radio" name="form-radio" id="form-radio-3-b">
+          <label class="nsw-form__radio-label" for="form-radio-3-b">Business and Economy</label>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="nsw-docs-code">
+	<button class="nsw-docs-code__button">
+		<span>Show code</span>
+		<i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</i>
+	</button>
+	<div class="nsw-docs-code__content">
+		<button class="nsw-docs-code__copy">
+			<span>Copy</span>
+			<i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</i>
+		</button>
+		<div class="nsw-docs-code__wrapper">
+<pre><code class="html"><script>
+	  function escapeHtml(unsafe) {
+	    return unsafe
+	     .replace(/&/g, "&amp;")
+	     .replace(/</g, "&lt;")
+	     .replace(/>/g, "&gt;")
+	     .replace(/"/g, "&quot;")
+	     .replace(/'/g, "&#039;");
+	  }
+	  document.write(escapeHtml(`<div class="nsw-form">
+  <div class="nsw-form__group">
+    <fieldset class="nsw-form__fieldset">
+      <legend>
+        <span class="nsw-form__legend nsw-form__required">Topic<span class="sr-only"> (required)</span></span>
+        <span class="nsw-form__helper nsw-form__helper--error"><i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</i>This field is required</span>
+      </legend>
+      <input class="nsw-form__radio-input" type="radio" name="form-radio" id="form-radio-3-a">
+      <label class="nsw-form__radio-label" for="form-radio-3-a">NSW Government</label>
+      <input class="nsw-form__radio-input" type="radio" name="form-radio" id="form-radio-3-b">
+      <label class="nsw-form__radio-label" for="form-radio-3-b">Business and Economy</label>
+    </fieldset>
+  </div>
+</div>
+`));
+</script></code></pre>
+		</div>
+	</div>
+</div>
+<h3>Validation</h3>
+
+<h4>Text Fields</h4>
+<div class="nsw-docs__example">
+  <div class="nsw-docs__component">
+    <div class="nsw-form">
+      <div class="nsw-form__group">
+        <label class="nsw-form__label" for="form-text-4">Name</label>
+        <input class="nsw-form__input" type="text" id="form-text-4" name="form-text-4">
+        <span class="nsw-form__helper nsw-form__helper--valid" id="form-text-4-valid-text"><i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</i>This field has been validated</span>
+      </div>
+      <div class="nsw-form__group">
+        <label class="nsw-form__label" for="form-textarea-4">Comment</label>
+        <textarea class="nsw-form__input" name="textarea" id="form-textarea-4"></textarea>
+        <span class="nsw-form__helper nsw-form__helper--valid" id="form-textarea-4-valid-text"><i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</i>This field has been validated</span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="nsw-docs-code">
+	<button class="nsw-docs-code__button">
+		<span>Show code</span>
+		<i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</i>
+	</button>
+	<div class="nsw-docs-code__content">
+		<button class="nsw-docs-code__copy">
+			<span>Copy</span>
+			<i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</i>
+		</button>
+		<div class="nsw-docs-code__wrapper">
+<pre><code class="html"><script>
+	  function escapeHtml(unsafe) {
+	    return unsafe
+	     .replace(/&/g, "&amp;")
+	     .replace(/</g, "&lt;")
+	     .replace(/>/g, "&gt;")
+	     .replace(/"/g, "&quot;")
+	     .replace(/'/g, "&#039;");
+	  }
+	  document.write(escapeHtml(`<div class="nsw-form">
+  <div class="nsw-form__group">
+    <label class="nsw-form__label" for="form-text-4">Name</label>
+    <input class="nsw-form__input" type="text" id="form-text-4" name="form-text-4">
+    <span class="nsw-form__helper nsw-form__helper--valid" id="form-text-4-valid-text"><i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</i>This field has been validated</span>
+  </div>
+  <div class="nsw-form__group">
+    <label class="nsw-form__label" for="form-textarea-4">Comment</label>
+    <textarea class="nsw-form__input" name="textarea" id="form-textarea-4"></textarea>
+    <span class="nsw-form__helper nsw-form__helper--valid" id="form-textarea-4-valid-text"><i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</i>This field has been validated</span>
+  </div>
+</div>
+`));
+</script></code></pre>
+		</div>
+	</div>
+</div>
+
+<h4>Date</h4>
+<div class="nsw-docs__example">
+  <div class="nsw-docs__component">
+    <div class="nsw-form">
+      <div class="nsw-form__group">
+        <fieldset class="nsw-form__date">
+          <legend>
+            <span class="nsw-form__label">Date of birth</span>
+          </legend>
+          <div class="nsw-form__date-wrapper">
+            <div class="nsw-form__date-input">
+              <label for="form-date-4-day" class="nsw-form__label nsw-form__label--small">Day</label>
+              <input type="text" maxlength="2" id="form-date-4-day" name="form-date-4-day" class="nsw-form__input">
+            </div>
+            <div class="nsw-form__date-input">
+              <label for="form-date-4-month" class="nsw-form__label nsw-form__label--small">Month</label>
+              <input type="text" maxlength="2" id="form-date-4-month" name="form-date-4-month" class="nsw-form__input">
+            </div>
+            <div class="nsw-form__date-input nsw-form__date-input--large">
+              <label for="form-date-4-year" class="nsw-form__label nsw-form__label--small">Year</label>
+              <input type="text" maxlength="4" id="form-date-4-year" name="form-date-4-year" class="nsw-form__input">
+            </div>
+          </div>
+        </fieldset>
+        
+        <span id="form-date-4-valid-text" class="nsw-form__helper nsw-form__helper--valid"><i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</i>This field has been validated</span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="nsw-docs-code">
+	<button class="nsw-docs-code__button">
+		<span>Show code</span>
+		<i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</i>
+	</button>
+	<div class="nsw-docs-code__content">
+		<button class="nsw-docs-code__copy">
+			<span>Copy</span>
+			<i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</i>
+		</button>
+		<div class="nsw-docs-code__wrapper">
+<pre><code class="html"><script>
+	  function escapeHtml(unsafe) {
+	    return unsafe
+	     .replace(/&/g, "&amp;")
+	     .replace(/</g, "&lt;")
+	     .replace(/>/g, "&gt;")
+	     .replace(/"/g, "&quot;")
+	     .replace(/'/g, "&#039;");
+	  }
+	  document.write(escapeHtml(`<div class="nsw-form">
+  <div class="nsw-form__group">
+    <fieldset class="nsw-form__date">
+      <legend>
+        <span class="nsw-form__label">Date of birth</span>
+      </legend>
+      <div class="nsw-form__date-wrapper">
+        <div class="nsw-form__date-input">
+          <label for="form-date-4-day" class="nsw-form__label nsw-form__label--small">Day</label>
+          <input type="text" maxlength="2" id="form-date-4-day" name="form-date-4-day" class="nsw-form__input">
+        </div>
+        <div class="nsw-form__date-input">
+          <label for="form-date-4-month" class="nsw-form__label nsw-form__label--small">Month</label>
+          <input type="text" maxlength="2" id="form-date-4-month" name="form-date-4-month" class="nsw-form__input">
+        </div>
+        <div class="nsw-form__date-input nsw-form__date-input--large">
+          <label for="form-date-4-year" class="nsw-form__label nsw-form__label--small">Year</label>
+          <input type="text" maxlength="4" id="form-date-4-year" name="form-date-4-year" class="nsw-form__input">
+        </div>
+      </div>
+    </fieldset>
+    
+    <span id="form-date-4-valid-text" class="nsw-form__helper nsw-form__helper--valid"><i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</i>This field has been validated</span>
+  </div>
+</div>
+`));
+</script></code></pre>
+		</div>
+	</div>
+</div>
+
+<h4>Dropdown</h4>
+<div class="nsw-docs__example">
+  <div class="nsw-docs__component">
+    <div class="nsw-form">
+      <div class="nsw-form__group">
+        <label class="nsw-form__label" for="form-select-4">Region</label>
+        <select class="nsw-form__select" id="form-select-4">
+          <option value="">Please select</option>  
+          <option value="1">Central Coast</option>
+          <option value="2">North Coast</option>
+          <option value="3">New England &amp; North West</option>
+        </select>
+        <span id="form-select-4-valid-text" class="nsw-form__helper nsw-form__helper--valid"><i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</i>This field has been validated</span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="nsw-docs-code">
+	<button class="nsw-docs-code__button">
+		<span>Show code</span>
+		<i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</i>
+	</button>
+	<div class="nsw-docs-code__content">
+		<button class="nsw-docs-code__copy">
+			<span>Copy</span>
+			<i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</i>
+		</button>
+		<div class="nsw-docs-code__wrapper">
+<pre><code class="html"><script>
+	  function escapeHtml(unsafe) {
+	    return unsafe
+	     .replace(/&/g, "&amp;")
+	     .replace(/</g, "&lt;")
+	     .replace(/>/g, "&gt;")
+	     .replace(/"/g, "&quot;")
+	     .replace(/'/g, "&#039;");
+	  }
+	  document.write(escapeHtml(`<div class="nsw-form">
+  <div class="nsw-form__group">
+    <label class="nsw-form__label" for="form-select-4">Region</label>
+    <select class="nsw-form__select" id="form-select-4">
+      <option value="">Please select</option>  
+      <option value="1">Central Coast</option>
+      <option value="2">North Coast</option>
+      <option value="3">New England &amp; North West</option>
+    </select>
+    <span id="form-select-4-valid-text" class="nsw-form__helper nsw-form__helper--valid"><i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</i>This field has been validated</span>
+  </div>
+</div>
+`));
+</script></code></pre>
+		</div>
+	</div>
+</div>
+
+<h4>Checkboxes</h4>
+<div class="nsw-docs__example">
+  <div class="nsw-docs__component">
+    <div class="nsw-form">
+      <div class="nsw-form__group">
+        <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-4" id="form-checkbox-4">
+        <label class="nsw-form__checkbox-label" for="form-checkbox-4">I agree to terms and conditions</label>
+        <span id="form-checkbox-4-valid-text" class="nsw-form__helper nsw-form__helper--valid"><i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</i>This field has been validated</span>
+      </div>
+      <div class="nsw-form__group">
+        <fieldset class="nsw-form__fieldset">
+          <legend>
+            <span class="nsw-form__legend">Category</span>
+            <span class="nsw-form__helper nsw-form__helper--valid"><i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</i>This field has been validated</span>
+          </legend>
+          <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-multi" id="form-checkbox-multi-4-a">
+          <label class="nsw-form__checkbox-label" for="form-checkbox-multi-4-a">Customer Service</label>
+          <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-multi" id="form-checkbox-multi-4-b">
+          <label class="nsw-form__checkbox-label" for="form-checkbox-multi-4-b">Communities and Justice</label>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="nsw-docs-code">
+	<button class="nsw-docs-code__button">
+		<span>Show code</span>
+		<i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</i>
+	</button>
+	<div class="nsw-docs-code__content">
+		<button class="nsw-docs-code__copy">
+			<span>Copy</span>
+			<i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</i>
+		</button>
+		<div class="nsw-docs-code__wrapper">
+<pre><code class="html"><script>
+	  function escapeHtml(unsafe) {
+	    return unsafe
+	     .replace(/&/g, "&amp;")
+	     .replace(/</g, "&lt;")
+	     .replace(/>/g, "&gt;")
+	     .replace(/"/g, "&quot;")
+	     .replace(/'/g, "&#039;");
+	  }
+	  document.write(escapeHtml(`<div class="nsw-form">
+  <div class="nsw-form__group">
+    <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-4" id="form-checkbox-4">
+    <label class="nsw-form__checkbox-label" for="form-checkbox-4">I agree to terms and conditions</label>
+    <span id="form-checkbox-4-valid-text" class="nsw-form__helper nsw-form__helper--valid"><i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</i>This field has been validated</span>
+  </div>
+  <div class="nsw-form__group">
+    <fieldset class="nsw-form__fieldset">
+      <legend>
+        <span class="nsw-form__legend">Category</span>
+        <span class="nsw-form__helper nsw-form__helper--valid"><i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</i>This field has been validated</span>
+      </legend>
+      <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-multi" id="form-checkbox-multi-4-a">
+      <label class="nsw-form__checkbox-label" for="form-checkbox-multi-4-a">Customer Service</label>
+      <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-multi" id="form-checkbox-multi-4-b">
+      <label class="nsw-form__checkbox-label" for="form-checkbox-multi-4-b">Communities and Justice</label>
+    </fieldset>
+  </div>
+</div>
+`));
+</script></code></pre>
+		</div>
+	</div>
+</div>
+
+<h4>Radio buttons</h4>
+<div class="nsw-docs__example">
+  <div class="nsw-docs__component">
+    <div class="nsw-form">
+      <div class="nsw-form__group">
+        <fieldset class="nsw-form__fieldset">
+          <legend>
+            <span class="nsw-form__legend">Topic</span>
+            <span class="nsw-form__helper nsw-form__helper--valid"><i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</i>This field has been validated</span>
+          </legend>
+          <input class="nsw-form__radio-input" type="radio" name="form-radio" id="form-radio-4-a">
+          <label class="nsw-form__radio-label" for="form-radio-4-a">NSW Government</label>
+          <input class="nsw-form__radio-input" type="radio" name="form-radio" id="form-radio-4-b">
+          <label class="nsw-form__radio-label" for="form-radio-4-b">Business and Economy</label>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="nsw-docs-code">
+	<button class="nsw-docs-code__button">
+		<span>Show code</span>
+		<i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</i>
+	</button>
+	<div class="nsw-docs-code__content">
+		<button class="nsw-docs-code__copy">
+			<span>Copy</span>
+			<i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</i>
+		</button>
+		<div class="nsw-docs-code__wrapper">
+<pre><code class="html"><script>
+	  function escapeHtml(unsafe) {
+	    return unsafe
+	     .replace(/&/g, "&amp;")
+	     .replace(/</g, "&lt;")
+	     .replace(/>/g, "&gt;")
+	     .replace(/"/g, "&quot;")
+	     .replace(/'/g, "&#039;");
+	  }
+	  document.write(escapeHtml(`<div class="nsw-form">
+  <div class="nsw-form__group">
+    <fieldset class="nsw-form__fieldset">
+      <legend>
+        <span class="nsw-form__legend">Topic</span>
+        <span class="nsw-form__helper nsw-form__helper--valid"><i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</i>This field has been validated</span>
+      </legend>
+      <input class="nsw-form__radio-input" type="radio" name="form-radio" id="form-radio-4-a">
+      <label class="nsw-form__radio-label" for="form-radio-4-a">NSW Government</label>
+      <input class="nsw-form__radio-input" type="radio" name="form-radio" id="form-radio-4-b">
+      <label class="nsw-form__radio-label" for="form-radio-4-b">Business and Economy</label>
+    </fieldset>
+  </div>
+</div>
+`));
+</script></code></pre>
+		</div>
+	</div>
+</div>
+
+      </div>
+    </section>
+  </div>
+</div>
+      <footer class="nsw-footer nsw-docs-footer">
+        <div class="nsw-footer__lower">
+          <div class="nsw-container">
+            <p>We pay respect to the Traditional Custodians and First Peoples of NSW, and acknowledge their continued connection to their country and culture.</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+  <script src="../../js/main.js"></script>
+  <script>
+    window.NSW.initSite()
+  </script>
+  <script src="/docs/js/docs.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
+</body>
+</html>
