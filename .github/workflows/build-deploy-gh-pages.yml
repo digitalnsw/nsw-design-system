@@ -1,0 +1,55 @@
+name: build-deploy-gh-pages
+on:
+  push:
+    branches:
+      - 'build-gh-pages'
+      - '!master'
+  pull_request:
+    types: [assigned, opened, synchronize, reopened]
+jobs:
+  build-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 8
+      - run: npm install
+      - run: npm run starterkit:build
+      - uses: actions/upload-artifact@v2
+        with:
+          name: dist
+          path: |
+            dist
+  test-docs:
+    needs: build-docs
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+      - uses: actions/download-artifact@v2
+        with:
+          name: dist
+          path: |
+            dist
+      - run: |
+          npm install -g pa11y-ci
+          pa11y-ci ./dist/{components,styles,templates}/**/*.html
+  deploy-docs:
+    needs: test-docs
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+      - uses: actions/download-artifact@v2
+        with:
+          name: dist
+          path: |
+            dist
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@3.7.1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages # The branch the action should deploy to.
+          FOLDER: dist # The folder the action should deploy.
+          CLEAN: true # Automatically remove deleted files from the deploy branch
