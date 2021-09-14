@@ -1,84 +1,69 @@
-.nsw-sidenav {  
-  &__header {
-    border-bottom: solid 2px var(--nsw-brand-dark);
-  }
-
-  &__heading {
-    @include nsw-spacing(margin, none);
-    @include font-size('sm');
-    font-weight: var(--nsw-font-bold);
-  }
-
-  &__list {
-    @include nsw-spacing(margin, none);
-    @include nsw-spacing(padding-left, none);
+.nsw-side-nav {
+  ul {
+    padding: 0;
+    margin: 0;
     list-style: none;
   }
 
-  &__list-item {
+  > ul {
+    > li {
+      &.has-active-children {
+        border-left: solid 2px var(--nsw-brand-accent);
+      }
+    }
+  }
+
+  li {
+    margin: 0;
     border-top: solid 1px var(--nsw-grey-04);
+
+    li a {
+      padding-left: rem(24px);
+    }
+
+    li li a { /* stylelint-disable-line selector-max-compound-selectors */
+      padding-left: rem(32px);
+    }
+
+    li li li a { /* stylelint-disable-line selector-max-compound-selectors */
+      padding-left: rem(48px);
+    }
+
+    &.has-active-children {
+      > a {
+        font-weight: var(--nsw-font-bold);
+      }
+    }
   }
 
-  &__heading-link {
-    @include nsw-spacing(padding, xs xs xs none);
+  a {
+    font-weight: var(--nsw-font-normal);
     display: block;
-    color: var(--nsw-text-dark);
     text-decoration: none;
-    background-color: var(--nsw-white);
+    color: var(--nsw-text-dark);
+    padding: rem(16px);
 
     &:hover {
-      @include nsw-hover;
-    }
-
-    &:focus {
-      @include nsw-focus($offset: false);
-    }
-  }
-
-  &__link {
-    @include nsw-spacing(padding, md);
-    display: block;
-    color: var(--nsw-text-dark);
-    text-decoration: none;
-    background-color: var(--nsw-white);
-
-    &:hover {
-      @include nsw-hover;
-    }
-
-    &:focus {
-      @include nsw-focus($offset: false);
+      outline: none;
     }
 
     &.is-current {
       background-color: var(--nsw-off-white);
     }
+  }
 
-    .has-active-children > & {
+  &__header {
+    border-bottom: solid 2px var(--nsw-brand-dark);
+
+    a {
       font-weight: var(--nsw-font-bold);
+      padding: rem(8px) 0;
+    }
 
-      &:hover {
-        @include nsw-hover;
+    + ul {
+      > li:first-child {
+        border-top: 0;
       }
     }
-
-    .nsw-sidenav__list--level-2 & {
-      @include nsw-spacing(padding-left, lg);
-    }
-
-    .nsw-sidenav__list--level-3 & {
-      @include nsw-spacing(padding-left, xl);
-    }
-
-    .nsw-sidenav__list--level-4 & {
-      @include nsw-spacing(padding-left, xxl);
-    }
   }
-
-  .nsw-sidenav__list--level-1 {
-    > .has-active-children {
-      border-left: solid 2px var(--nsw-brand-accent);
-    }
-  }
-
 }

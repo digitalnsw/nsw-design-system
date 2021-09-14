@@ -1,28 +1,26 @@
-<nav class="nsw-sidenav" aria-labelledby="{{parentID}} side navigation">
-  <div class="nsw-sidenav__header">
-    <h2 id="{{parentID}}" class="nsw-sidenav__heading">
-      <a href="{{parent-url}}" class="nsw-sidenav__heading-link">{{parent-text}}</a>
-    </h2>
+<nav class="nsw-side-nav" aria-labelledby="{{parentID}}">
+  <div class="nsw-side-nav__header" id="{{parentID}}">
+    <a href="{{parent-url}}">{{parent-text}}</a>
   </div>
-  <ul class="nsw-sidenav__list nsw-sidenav__list--level-1">
+  <ul>
     {{#each navitems}}
-    <li class="nsw-sidenav__list-item{{#if (or currentPage navitems) }} has-active-children{{/if}}">
-      <a href="{{url}}" class="nsw-sidenav__link{{#if currentPage}} is-current{{/if}}"{{#if currentPage}} aria-current="page"{{/if}}>{{text}}</a>
+    <li{{#if (or currentPage navitems) }} class="has-active-children"{{/if}}>
+      <a href="{{url}}"{{#if currentPage}} class="is-current" aria-current="page"{{/if}}>{{text}}</a>
       {{#if navitems}}
-      <ul class="nsw-sidenav__list nsw-sidenav__list--level-2">
+      <ul>
         {{#each navitems}}
-        <li class="nsw-sidenav__list-item{{#if navitems}} has-active-children{{/if}}">
-          <a href="{{url}}" class="nsw-sidenav__link{{#if currentPage}} is-current{{/if}}"{{#if currentPage}} aria-current="page"{{/if}}>{{text}}</a>
+        <li{{#if navitems}} class="has-active-children"{{/if}}>
+          <a href="{{url}}"{{#if currentPage}} class="is-current" aria-current="page"{{/if}}>{{text}}</a>
           {{#if navitems}}
-          <ul class="nsw-sidenav__list nsw-sidenav__list--level-3">
+          <ul>
             {{#each navitems}}
-            <li class="nsw-sidenav__list-item{{#if navitems}} has-active-children{{/if}}">
-              <a href="{{url}}" class="nsw-sidenav__link{{#if currentPage}} is-current{{/if}}"{{#if currentPage}} aria-current="page"{{/if}}>{{text}}</a>
+            <li{{#if navitems}} class="has-active-children"{{/if}}>
+              <a href="{{url}}"{{#if currentPage}} class="is-current" aria-current="page"{{/if}}>{{text}}</a>
               {{#if navitems}}
-              <ul class="nsw-sidenav__list nsw-sidenav__list--level-4">
+              <ul>
                 {{#each navitems}}
-                <li class="nsw-sidenav__list-item{{#if navitems}} has-active-children{{/if}}">
-                  <a href="{{url}}" class="nsw-sidenav__link{{#if currentPage}} is-current{{/if}}"{{#if currentPage}} aria-current="page"{{/if}}>{{text}}</a>
+                <li{{#if navitems}} class="has-active-children"{{/if}}>
+                  <a href="{{url}}"{{#if currentPage}} class="is-current" aria-current="page"{{/if}}>{{text}}</a>
                 </li>
                 {{/each}}
               </ul>

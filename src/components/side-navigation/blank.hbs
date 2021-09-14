@@ -8,13 +8,21 @@ model:
   four-level: json/side-navigation-level-4.json
 ---
 {{#>_layout-container}}
-<div class="nsw-docs__section nsw-docs__section--spaced"> 
-{{>_side-navigation model.single-level}}
-</div>
-<div class="nsw-docs__section nsw-docs__section--spaced"> 
-{{>_side-navigation model.two-level}}
-</div>
-<div class="nsw-docs__section nsw-docs__section--spaced"> 
-{{>_side-navigation model.four-level}}
+<div class="nsw-grid">
+  <div class="nsw-col nsw-col-xl-4">
+    <div class="nsw-docs__component">
+      {{>_side-navigation model.single-level}}
+    </div>
+  </div>
+  <div class="nsw-col nsw-col-xl-4">
+    <div class="nsw-docs__component">
+      {{>_side-navigation model.two-level}}
+    </div>
+  </div>
+  <div class="nsw-col nsw-col-xl-4">
+    <div class="nsw-docs__component">
+      {{>_side-navigation model.four-level}}
+    </div>
+  </div>
 </div>
 {{/_layout-container}}
