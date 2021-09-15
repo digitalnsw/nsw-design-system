@@ -24,10 +24,10 @@ $nsw-in-page-notes: (
 
 .nsw-in-page-note {
   @include component-spacing();
-  @include nsw-spacing(padding, md);
-  background: transparent;
+  padding: rem(16px);
   position: relative;
-  border-left: solid 6px transparent;
+  border-left: solid 6px var(--nsw-brand-accent);
+  background-color: var(--nsw-grey-04);
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -37,27 +37,8 @@ $nsw-in-page-notes: (
   }
 
   &__icon {
-    flex: 0 0 auto;
-    font-size: rem(38px);
-    position: relative;
-    top: rem(-3px);
-    left: rem(-3px);
-    margin-right: rem(10px);
-  }
-
-  &__content {
-    p:not([class]) {
-      @include nsw-spacing(margin, sm none none none);
-    }
-
-    .nsw-text-link {
-      @include nsw-spacing(margin-top, sm);
-    }
-  }
-
-  &__title {
-    font-weight: var(--nsw-font-bold);
-    margin: 0;
+    font-size: rem(map-get($nsw-icon-sizes, 36));
+    margin-right: rem(16px);
   }
 
   @each $color, $variant in $nsw-in-page-notes {
