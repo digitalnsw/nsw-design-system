@@ -1,24 +1,26 @@
 <div class="hero-search">
   <div class="nsw-container">
-    <div class="hero-search__content">
-      <h1 class="hero-search__title">{{title}}</h1>
-      {{{copy}}}
-      <form role="search" class="hero-search__form">
-        <div class="nsw-form__input-group nsw-form__input-group--icon nsw-form__input-group--large">
-          <label class="sr-only" for="form-input-group-1">{{searchLabel}}</label>
-          <input class="nsw-form__input" type="text" id="form-input-group-1" name="form-input-group-1" value="">
-          <button class="nsw-button nsw-button--white nsw-button--flex" type="submit">
-            <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">search</i>
-            <span class="sr-only">Search</span>
-          </button>
+    <div class="hero-search__wrapper">
+      <div class="hero-search__content">
+        <h1>{{title}}</h1>
+        <p class="nsw-intro">{{{copy}}}</p>
+        <form role="search" class="hero-search__form">
+          <div class="nsw-form__input-group nsw-form__input-group--icon nsw-form__input-group--large">
+            <label class="sr-only" for="form-input-group-1">{{searchLabel}}</label>
+            <input class="nsw-form__input" type="text" id="form-input-group-1" name="form-input-group-1" value="">
+            <button class="nsw-button nsw-button--white nsw-button--flex" type="submit">
+              <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">search</i>
+              <span class="sr-only">Search</span>
+            </button>
+          </div>
+        </form>
+        <div class="hero-search__suggested">
+          <ul>
+            {{#each list}}
+            <li><a href="#">{{this}}</a></li>
+            {{/each}}
+          </ul>
         </div>
-      </form>
-      <div class="hero-search__suggested">
-        <ul>
-          {{#each suggestSearches}}
-          <li><a href="{{url}}">{{text}}</a></li>
-          {{/each}}
-        </ul>
       </div>
     </div>
   </div>

@@ -163,6 +163,10 @@ $nsw-form-tick: '<svg fill="#ffffff" version="1.1" xmlns="http://www.w3.org/2000
       border-right-width: 0;
       border-top-right-radius: 0;
       border-bottom-right-radius: 0;
+      
+      &:focus {
+        position: relative;
+      }
     }
 
     .nsw-button {
@@ -175,12 +179,16 @@ $nsw-form-tick: '<svg fill="#ffffff" version="1.1" xmlns="http://www.w3.org/2000
       border-bottom-left-radius: 0;
       border-width: 1px;
       white-space: nowrap;
+
+      &:focus {
+        outline-color: var(--nsw-focus);
+      }
     }
 
     .nsw-material-icons {
       display: block;
       color: var(--nsw-brand-dark);
-      font-size: rem(30px);
+      font-size: rem(map-get($nsw-icon-sizes, 30));
       position: static;
     }
 
@@ -204,6 +212,10 @@ $nsw-form-tick: '<svg fill="#ffffff" version="1.1" xmlns="http://www.w3.org/2000
 
       .nsw-button {
         min-width: rem(58px);
+      }
+
+      .nsw-material-icons {
+        font-size: rem(map-get($nsw-icon-sizes, 36));
       }
     }
   }
