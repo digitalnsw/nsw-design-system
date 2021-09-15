@@ -4,23 +4,23 @@
   </div>
   <ul>
     {{#each navitems}}
-    <li{{#if (or currentPage navitems) }} class="has-active-children"{{/if}}>
-      <a href="{{url}}"{{#if currentPage}} class="is-current" aria-current="page"{{/if}}>{{text}}</a>
+    <li{{#if (or currentPage navitems) }} class="active"{{/if}}>
+      <a href="{{url}}"{{#if currentPage}} class="current" aria-current="page"{{/if}}>{{text}}</a>
       {{#if navitems}}
       <ul>
         {{#each navitems}}
-        <li{{#if navitems}} class="has-active-children"{{/if}}>
-          <a href="{{url}}"{{#if currentPage}} class="is-current" aria-current="page"{{/if}}>{{text}}</a>
+        <li{{#if navitems}} class="active"{{/if}}>
+          <a href="{{url}}"{{#if currentPage}} class="current" aria-current="page"{{/if}}>{{text}}</a>
           {{#if navitems}}
           <ul>
             {{#each navitems}}
-            <li{{#if navitems}} class="has-active-children"{{/if}}>
-              <a href="{{url}}"{{#if currentPage}} class="is-current" aria-current="page"{{/if}}>{{text}}</a>
+            <li{{#if navitems}} class="active"{{/if}}>
+              <a href="{{url}}"{{#if currentPage}} class="current" aria-current="page"{{/if}}>{{text}}</a>
               {{#if navitems}}
               <ul>
                 {{#each navitems}}
-                <li{{#if navitems}} class="has-active-children"{{/if}}>
-                  <a href="{{url}}"{{#if currentPage}} class="is-current" aria-current="page"{{/if}}>{{text}}</a>
+                <li{{#if navitems}} class="active"{{/if}}>
+                  <a href="{{url}}"{{#if currentPage}} class="current" aria-current="page"{{/if}}>{{text}}</a>
                 </li>
                 {{/each}}
               </ul>
