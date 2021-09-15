@@ -3,26 +3,24 @@ $masthead-off-white: #f2f2f2;
 $masthead-text-dark: #22272b;
 $masthead-text-light: #ffffff;
 
-.nsw-skipto {
-  position: absolute;
+.nsw-skip {
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
 
-  &__link {
+  a {
     @include font-size('xxs');
-    @include nsw-spacing(padding, xs md);
     @include z-index('middle');
     background-color: $masthead-brand-dark;
     color: $masthead-text-light;
-    transform: translateY(-101%);
-    display: block;
-    text-align: center;
     width: 100%;
+    text-decoration: none;
+    padding: rem(8px) rem(16px);
     position: absolute;
     top: 0;
     left: 0;
-    text-decoration: none;
+    transform: translateY(-101%);
 
     &:focus {
       transform: translateY(0);
@@ -39,7 +37,7 @@ $masthead-text-light: #ffffff;
   }
 
   &--light {
-    .nsw-skipto__link {
+    a {
       background-color: $masthead-off-white;
       color: $masthead-text-dark;
 
@@ -50,16 +48,11 @@ $masthead-text-light: #ffffff;
   }
 }
 
-.nsw-infobar,
 .nsw-masthead {
-  @include nsw-spacing(padding, xs none);
+  @include font-size('xxs');
+  padding: rem(8px) 0;
   background-color: $masthead-brand-dark;
   color: $masthead-text-light;
-
-  p {
-    @include font-size('xxs');
-    margin: 0;
-  }
 
   &--light {
     background-color: $masthead-off-white;
