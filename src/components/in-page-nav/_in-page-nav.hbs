@@ -1,9 +1,9 @@
-<nav class="nsw-page-nav" aria-labelledby="in-page-nav">
-  <h2 id="in-page-nav" class="nsw-page-nav__title">{{title}}</h2>
-  <ul class="nsw-page-nav__list">
+<nav class="nsw-in-page-nav" aria-labelledby="in-page-nav">
+  <div id="in-page-nav" class="nsw-in-page-nav__title">{{title}}</div>
+  <ul>
     {{#each pageSections}}
-    <li class="nsw-page-nav__list-item">
-      <a href="{{#if anchor}}{{anchor}}{{else}}#{{/if}}" class="nsw-page-nav__link">{{text}}</a>
+    <li>
+      <a href="{{#if anchor}}{{anchor}}{{else}}#{{/if}}">{{text}}</a>
     </li>
     {{/each}}
   </ul>

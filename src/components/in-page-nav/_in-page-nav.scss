@@ -1,26 +1,22 @@
-.nsw-page-nav {
+.nsw-in-page-nav {
   @include component-spacing();
-  @include nsw-spacing(padding, md);
+  padding: rem(16px);
   border-left: solid 4px var(--nsw-brand-accent);
 
   &__title {
-    @include nsw-spacing(margin, none);
     @include font-size(md);
     font-weight: var(--nsw-font-bold);
+    margin: 0;
   }
 
-  &__list {
-    @include nsw-spacing(margin, none);
-    @include nsw-spacing(padding, none);
+  ul {
+    padding: 0;
+    margin: 0;
     list-style: none;
   }
 
-  &__list-item {
-    @include nsw-spacing(margin-top, md);
+  li {
     display: block;
-  }
-
-  &__link {
-    @include text-link;
+    margin-top: rem(16px);
   }
 }
