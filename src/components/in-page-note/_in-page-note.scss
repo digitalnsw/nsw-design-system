@@ -1,5 +1,5 @@
 //Variations
-$nsw-notifications: (
+$nsw-in-page-notes: (
   info: (
     border: var(--nsw-status-info),
     background: var(--nsw-status-info-bg),
@@ -22,7 +22,7 @@ $nsw-notifications: (
   ),
 );
 
-.nsw-notification {
+.nsw-in-page-note {
   @include component-spacing();
   @include nsw-spacing(padding, md);
   background: transparent;
@@ -60,12 +60,12 @@ $nsw-notifications: (
     margin: 0;
   }
 
-  @each $color, $variant in $nsw-notifications {
+  @each $color, $variant in $nsw-in-page-notes {
     &--#{"" + $color} {
       background-color: map-get($variant, background);
       border-color: map-get($variant, border);
 
-      .nsw-notification__icon {
+      .nsw-in-page-note__icon {
         color: map-get($variant, fill);
       }
     }
