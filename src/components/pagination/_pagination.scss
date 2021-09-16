@@ -13,18 +13,6 @@
   li {
     margin: 0;
 
-    &:first-child {
-      .nsw-link {
-        margin-right: rem(4px);
-      }
-    }
-
-    &:last-child {
-      .nsw-link {
-        margin-left: rem(4px);
-      }
-    }
-
     > span {
       padding: rem(4px);
     }
@@ -36,6 +24,7 @@
     text-align: center;
     padding: rem(4px);
     min-width: rem(30px);
+    border-radius: var(--nsw-border-radius);
 
     &:hover {
       outline: none;
@@ -44,6 +33,10 @@
     &.active {
       position: relative;
       color: var(--nsw-text-dark);
+
+      &:hover {
+        background-color: transparent;
+      }
 
       &::after {
         content: '';
@@ -55,14 +48,5 @@
         background-color: var(--nsw-brand-accent);        
       }
     }    
-  }
-
-  &__text {
-    vertical-align: middle;
-  }
-
-  .nsw-link {
-    padding: rem(4px) rem(8px);
-    text-decoration: none;
   }
 }
