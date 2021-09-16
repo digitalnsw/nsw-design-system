@@ -1,0 +1,48 @@
+---
+title: Utility Classes
+width: narrow
+no-blank: true
+order: 4
+model: json/colours.json
+---
+<div>
+  <p class="nsw-intro"></p>
+</div>
+
+{{#each model.colours as |value property|}}
+<h2>{{capitalize @key}}</h2>
+  <table class="nsw-table nsw-table--bordered nsw-table--valign-middle nsw-table-responsive" style="background-color: var(--nsw-white)">
+    <tbody>
+    <tr>
+      <th style="width: 500px">
+        <div>
+          <p>Class</p>
+        </div>
+      </th>
+      <th style="width: 50%">
+        <div>
+          <p>Description</p>
+        </div>
+      </th>
+    </tr>
+{{#each this}}
+    <tr>
+      <td>
+        {{#if-equals property "font style"}}
+          <p>nsw-{{this}}</p>
+        {{else}}
+          <p>{{this}}</p>
+        {{/if-equals}}
+      </td>
+      <td>
+      {{#if-equals property "font style"}}
+          <p>Applies {{this}} font style to element</p>
+      {{else}}
+        <p>Applies {{property}} <code>var(--{{this}})</code> to element</p>
+      {{/if-equals}}
+      </td>
+    </tr>
+{{/each}}
+    </tbody>
+  </table>
+{{/each}}
