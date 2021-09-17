@@ -4,10 +4,9 @@ order: 20
 width: narrow
 directory: iconography
 no-blank: true
+intro: Creation, sizing, spacing and usage guidelines. 
 ---
 
-<p class="nsw-intro">Icons illustrate actions, communicate status, indicate an interaction and
-  draw attention to important information.</p>
 
 <nav class="nsw-page-nav" aria-labelledby="in-page-nav">
   <h2 class="nsw-page-nav__title">On this page</h2>
@@ -20,7 +19,9 @@ no-blank: true
     </li>
   </ul>
 </nav>
-<h2 id="#icons">Icons</h2>
+<h2 id="icons">Icons</h2>
+<p>Icons illustrate actions, communicate status, indicate an interaction and
+  draw attention to important information.</p>
 <p>Icons can be added to components or paired with text. Avoid having icons as
   standalone as they may be interpreted differently by different users. It is
   important to ensure where an icon is used it matches the intended action.</p>
@@ -60,7 +61,7 @@ no-blank: true
   </div>
 </div>
 <h3>Text Icons</h3>
-<p>Add an icon next to text to support the text</p>
+<p>Add an icon next to text to support the action.</p>
 
 {{#>_docs-example simple="true" separated="true" open="true" showcode="false"}}
   <span class="nsw-link nsw-link--icon" href="#">
@@ -79,7 +80,7 @@ no-blank: true
 {{/_docs-example}}
 
 <h3>Button Icons</h3>
-<p>Add an icon into a button to support the action</p>
+<p>Add an icon into a button to support the action.</p>
 
 {{#>_docs-example simple="true" separated="true" showcode="false"}}
   {{>_button-link url="#" style="dark" text="Upload file" icon="upload"}}
@@ -88,7 +89,7 @@ no-blank: true
 
 <h3>Component Icons</h3>
 <p>Add an icon to a component to represent interactivity or communicate a
-  status </p>
+  status. </p>
 
 {{#>_docs-example simple="true" showcode="false" separated="true"}}
   <div class="nsw-grid">
@@ -126,7 +127,12 @@ no-blank: true
 <h2 class="nsw-h3">Sizing</h2>
 <p>The NSW Design System displays icons at 4 four sizes depending on their type,
   use and screen size:</p>
-<p>** Add once code style built **</p>
+<ul>
+  <li>sm - 20px</li>
+  <li>md - 24px</li>
+  <li>lg - 30px</li>
+  <li>xl - 36px</li>
+</ul>
 
 <h2 class="nsw-h3">Spacing</h2>
 <p>Ensure you allocate the right amount of space around an icon to allow for
@@ -151,13 +157,13 @@ no-blank: true
 <h3>Designing</h3>
 <p>Icons used to build base components are included in the UI Kit. Base colour
   ranges are available and can be changed using the Variants panel in Figma. If
-  you require additional icons, you can download them from Material <a href="">design
+  you require additional icons, you can download them from <a href="https://fonts.google.com/icons?selected=Material+Icons">Material design
     icons</a> and import where required.</p>
 <div class="nsw-notification nsw-notification--info">
       <span class="material-icons nsw-material-icons nsw-notification__icon"
             focusable="false" aria-hidden="true">info</span>
   <div class="nsw-notification__content">
-  <h4 class="nsw-notification__title">Designing with Material Design Icons</h4>
+  <h4 class="nsw-notification__title">Material Design Icon Padding</h4>
     <p>Maintain the default
       internal padding in each icon file. This padding is tied to the icon when
       implemented in development, therefore when designing you should
@@ -165,7 +171,10 @@ no-blank: true
   </div>
 </div>
 <h2 id="pictogram">Pictogram</h2>
-<p><strong>Characteristics</strong></p>
+<p>Use pictograms to represent a word or idea using simple and clean illustration. Used to visually support and highlight content, making it quickly identifiable on the page.
+
+</p>
+<h3>Characteristics</h3>
 <p>The pictogram language is derived from visual cues within the brand:</p>
 <ul>
   <li>Curved outer edges of logo</li>
@@ -276,13 +285,13 @@ no-blank: true
 <p>The grid contains 2px padding. Pictograms should remain inside the live area
   and not cross over into the padding area.</p>
 <div class="nsw-grid">
-  <div class="nsw-col nsw-col-sm-3">
+  <div class="nsw-col nsw-col-sm-4">
     <figure class="nsw-media nsw-media--light">
       <img src="/assets/images/icon-padding-do.png"
            alt="Correct padding">
     </figure>
   </div>
-  <div class="nsw-col nsw-col-sm-3">
+  <div class="nsw-col nsw-col-sm-4">
     <figure class="nsw-media nsw-media--light">
       <img src="/assets/images/icon-padding-dont.png"
            alt="Incorrect padding">
@@ -292,15 +301,17 @@ no-blank: true
 <h3>Corner radius</h3>
 <p>Corner radius should be 2px and increased where necessary to make rounded
   objects. Interior corners should be square.</p>
+
+
 <div class="nsw-grid">
-  <div class="nsw-col nsw-col-sm-3">
+  <div class="nsw-col nsw-col-sm-4">
     <figure class="nsw-media nsw-media--light">
       <img src="/assets/images/icon-corner-radius.png"
            alt="Correct padding">
+           <figcaption><strong>External corners with 2px radius and square internal corners.</strong>
     </figure>
   </div>
 </div>
-<p>External corners with 2px radius and square internal corners</p>
 <h3>Colour</h3>
 <p>Pictograms are two toned and can be designed using different colour
   combinations. If you change your Brand colours from the base palette ensure
@@ -310,22 +321,6 @@ no-blank: true
   <div class="nsw-col nsw-col-sm-3">
     <figure class="nsw-media nsw-media--light">
       <img src="/assets/images/grey-accent.png"
-           alt="bulb and calendar icons in grey and accent colour">
-      <figcaption><strong>Grey 01 + <br>Brand Accent</strong>
-      </figcaption>
-    </figure>
-  </div>
-  <div class="nsw-col nsw-col-sm-3">
-    <figure class="nsw-media nsw-media--light">
-      <img src="/assets/images/grey-supp.png"
-           alt="bulb and calendar icons in grey and supplementary colour">
-      <figcaption><strong>Grey 01 + <br>Brand Supplementary</strong>
-      </figcaption>
-    </figure>
-  </div>
-  <div class="nsw-col nsw-col-sm-3">
-    <figure class="nsw-media nsw-media--light">
-      <img src="/assets/images/dark-accent.png"
            alt="bulb and calendar icons in brand dark and accent colour">
       <figcaption><strong>Brand Dark + <br>Brand Accent</strong>
       </figcaption>
@@ -333,14 +328,29 @@ no-blank: true
   </div>
   <div class="nsw-col nsw-col-sm-3">
     <figure class="nsw-media nsw-media--light">
-      <img src="/assets/images/dark-supp.png"
+      <img src="/assets/images/grey-supp.png"
            alt="bulb and calendar icons in brand dark and supplementary colour">
       <figcaption><strong>Brand Dark + <br>Brand Supplementary</strong>
       </figcaption>
     </figure>
   </div>
+  <div class="nsw-col nsw-col-sm-3">
+    <figure class="nsw-media nsw-media--light">
+      <img src="/assets/images/dark-accent.png"
+           alt="bulb and calendar icons in grey 01 and accent colour">
+      <figcaption><strong>Grey 01 + <br>Brand Accent</strong>
+      </figcaption>
+    </figure>
+  </div>
+  <div class="nsw-col nsw-col-sm-3">
+    <figure class="nsw-media nsw-media--light">
+      <img src="/assets/images/dark-supp.png"
+           alt="bulb and calendar icons in grey 01 and supplementary colour">
+      <figcaption><strong>Grey 01 + <br>Brand Supplementary</strong>
+      </figcaption>
+    </figure>
+  </div>
 </div>
-<h2>Application</h2>
 <h3>Spacing and positioning</h3>
 <p>Minimum spacing around pictograms should be 24px and wherever possible, size
   your spacing in multiples of 8 pixels.</p>
