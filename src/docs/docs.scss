@@ -56,10 +56,10 @@ $content-width: 768px;
 
     &--wide {
       .nsw-docs__demo {
-        max-width: rem($container-max-width + 32px);
+        max-width: calc(var(--nsw-container-width) + #{rem(32px)});
 
         @include breakpoint('xl') {
-          max-width: rem($container-max-width + 104px);
+          max-width: calc(var(--nsw-container-width) + #{rem(104px)});
         }
       }
     }
@@ -393,7 +393,7 @@ $content-width: 768px;
   }
 
   &__wrapper {
-    padding: rem(30px) rem($container-offset);
+    padding: rem(30px) rem(16px);
   }
 
   &__title {
