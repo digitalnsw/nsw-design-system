@@ -1,0 +1,71 @@
+---
+title: Utility Classes
+width: narrow
+no-blank: true
+order: 4
+model: json/colours.json
+---
+<div>
+  <p class="nsw-intro"></p>
+</div>
+
+{{#each model.colours as |value property|}}
+<h2>{{capitalize @key}}</h2>
+  <table class="nsw-table nsw-table--bordered nsw-table--valign-middle nsw-table-responsive" style="background-color: var(--nsw-white)">
+    <tbody>
+    <tr>
+      {{#if-equals property "font style"}}
+        <th style="width: 435px">
+          <div>
+            <p>Class</p>
+          </div>
+        </th>
+        <th style="width: 50%">
+          <div>
+            <p>Description</p>
+          </div>
+        </th>
+      {{else}}
+        <th style="width: 25%">
+          <div>
+            <p>Class</p>
+          </div>
+        </th>
+        <th style="width: 25%">
+          <div>
+            <p>Hover Class</p>
+          </div>
+        </th>
+        <th style="width: 50%">
+          <div>
+            <p>Description</p>
+          </div>
+        </th>
+      {{/if-equals}}
+    </tr>
+{{#each this}}
+    <tr>
+      <td>
+        {{#if-equals property "font style"}}
+          <p>nsw-{{this}}</p>
+        {{else}}
+          <p>{{@key}}</p>
+        {{/if-equals}}
+      </td>
+      {{#if-equals property "font style"}}
+      {{else}}
+        <td>hover:{{@key}}</td>
+      {{/if-equals}}
+
+      <td>
+      {{#if-equals property "font style"}}
+          <p>Applies {{this}} font style to element</p>
+      {{else}}
+        <p>Applies {{property}} <code>var(--{{this}})</code> to element</p>
+      {{/if-equals}}
+      </td>
+    </tr>
+{{/each}}
+    </tbody>
+  </table>
+{{/each}}

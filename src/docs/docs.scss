@@ -2,11 +2,26 @@
 
 $content-width: 768px;
 
-.green {
-  --nsw-brand-dark: var(--nsw-palette-green-01);
-  --nsw-brand-light: var(--nsw-palette-green-04);
-  --nsw-brand-supplementary: var(--nsw-palette-green-02);
-  --nsw-brand-accent: var(--nsw-palette-green-02);
+.nsw-palette {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  gap: 0 0;
+  grid-template-areas:
+    '. . . . . . . . . . . .'
+    '. . . . . . . . . . . .'
+    '. . . . . . . . . . . .'
+    '. . . . . . . . . . . .';
+
+  font-size: var(--nsw-font-size-xxs-desktop);
+  color: var(--nsw-text-light);
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+
+  > div {
+    padding: rem(8px);
+  }
 }
 
 .nsw-docs {
