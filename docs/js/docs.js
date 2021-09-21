@@ -15,7 +15,7 @@ function initDocs() {
         code.classList.add('is-open');
         text.textContent = 'Hide code';
       }
-    }, false);    
+    }, false);
   });
 
 
@@ -54,17 +54,17 @@ function initDocs() {
         button.classList.add('is-open');
         list.classList.add('is-open');
       }
-    }, false);    
+    }, false);
   });
 
   const navLinks = document.querySelectorAll('.nsw-docs-nav a');
   var currentURL = window.location.pathname;
 
-  if (currentURL == '/' || currentURL == '/nsw-design-system-docs/') currentURL = '/home/index.html';
+  if (currentURL == '/' || currentURL == '/nsw-design-system/') currentURL = '/home/index.html';
 
   navLinks.forEach((link) => {
     var linkURL = link.getAttribute('href');
-    if (linkURL == '/' || linkURL == '/nsw-design-system-docs/') linkURL = '/home/index.html';
+    if (linkURL == '/' || linkURL == '/nsw-design-system/') linkURL = '/home/index.html';
 
     if (currentURL.match(linkURL)) {
       link.classList.add('is-active');
