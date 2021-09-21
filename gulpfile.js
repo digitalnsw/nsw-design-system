@@ -251,7 +251,7 @@ function renamePath() {
     .pipe(replace('/js/main.js', './js/main.js'))
     .pipe(replace('/docs/js/docs.js', './docs/js/docs.js'))
     .pipe(replace('/favicon.ico', './favicon.ico'))
-    .pipe(replace('href="/', 'href="/nsw-design-system/'))
+    .pipe(replace('class="nsw-docs-nav__list-link" href="/', 'class="nsw-docs-nav__list-link"href="/nsw-design-system/'))
     .pipe(dest(config.dir.build))
     .pipe(src([`${config.dir.build}**/*.html`, `!${config.dir.build}index.html`]))
     .pipe(replace('/css/main.css', '/nsw-design-system/css/main.css'))
@@ -259,7 +259,7 @@ function renamePath() {
     .pipe(replace('/js/main.js', '/nsw-design-system/js/main.js'))
     .pipe(replace('/docs/js/docs.js', '/nsw-design-system/docs/js/docs.js'))
     .pipe(replace('/favicon.ico', '../../favicon.ico'))
-    .pipe(replace('href="/', 'href="/nsw-design-system/'))
+    .pipe(replace('class="nsw-docs-nav__list-link" href="/', 'class="nsw-docs-nav__list-link" href="/nsw-design-system/'))
     .pipe(dest(config.dir.build))
 }
 
