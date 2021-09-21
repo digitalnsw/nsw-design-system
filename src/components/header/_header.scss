@@ -3,12 +3,12 @@
   position: relative;
   border-bottom: solid 1px var(--nsw-grey-04);
 
-  @include breakpoint('lg') {
+  @include breakpoint($nsw-desktop-breakpoint) {
     border-bottom: 0;
   }
 
   &--simple {
-    @include breakpoint('lg') {
+    @include breakpoint($nsw-desktop-breakpoint) {
       border-bottom: solid 1px var(--nsw-grey-03);
     }
   }
@@ -21,7 +21,7 @@
   &__inner {
     position: relative;
 
-    @include breakpoint('lg') {
+    @include breakpoint($nsw-desktop-breakpoint) {
       display: flex;
     }
   }
@@ -52,10 +52,7 @@
       }
 
       .nsw-material-icons {
-        position: relative;
-        font-size: rem(22px);
-        line-height: rem(18px);
-        top: -1px;
+        font-size: rem(map-get($nsw-icon-sizes, 24));
       }
 
       > span {
@@ -72,7 +69,7 @@
     left: rem(-6px);
 
     button {      
-      @include breakpoint('lg') {
+      @include breakpoint($nsw-desktop-breakpoint) {
         display: none;
       }
     }
@@ -83,27 +80,27 @@
     top: rem(12px);
     right: rem(-4px);
 
-    @include breakpoint('lg') {
+    @include breakpoint($nsw-desktop-breakpoint) {
       right: 0;
       top: 50%;
       margin-top: rem(-24px);
     }
 
     button {      
-      @include breakpoint('lg') {
+      @include breakpoint($nsw-desktop-breakpoint) {
         > span {
           @include sr-only;
         }
 
         .nsw-material-icons {
-          font-size: rem(34px);
+          font-size: rem(map-get($nsw-icon-sizes, 36));
         }
       }
     }
   }
 
   &__main {
-    @include breakpoint('lg') {
+    @include breakpoint($nsw-desktop-breakpoint) {
       position: relative;
       display: flex;
       justify-content: flex-start;
@@ -121,7 +118,7 @@
     display: flex;
     justify-content: center;
 
-    @include breakpoint('lg') {
+    @include breakpoint($nsw-desktop-breakpoint) {
       padding: 0;
     }
 
@@ -129,7 +126,7 @@
       height: rem(48px);
       display: block;
 
-      @include breakpoint('lg') {
+      @include breakpoint($nsw-desktop-breakpoint) {
         height: rem(76px);
       }
     }
@@ -145,19 +142,19 @@
       &:focus {
         @include nsw-focus;
 
-        @include breakpoint('lg') {
+        @include breakpoint($nsw-desktop-breakpoint) {
           outline: none;
         }
       }
 
-      @include breakpoint('lg') {
+      @include breakpoint($nsw-desktop-breakpoint) {
         @include pseudo-clickable-block;
       }
 
       svg:not(:first-child) {
         margin-left: rem(24px);
 
-        @include breakpoint('lg') {
+        @include breakpoint($nsw-desktop-breakpoint) {
           margin-left: rem(48px);
         }
       }      
@@ -167,7 +164,7 @@
   &__name {
     padding: rem(12px) 0;
 
-    @include breakpoint('lg') {
+    @include breakpoint($nsw-desktop-breakpoint) {
       padding: 0;
       margin-left: rem(32px);
     }
@@ -186,7 +183,7 @@
     display: flex;
     justify-content: center;
 
-    @include breakpoint('lg') {
+    @include breakpoint($nsw-desktop-breakpoint) {
       padding-left: rem(16px);
       justify-content: flex-start;
     }
@@ -195,102 +192,76 @@
       height: rem(48px);
       display: block;
 
-      @include breakpoint('lg') {
+      @include breakpoint($nsw-desktop-breakpoint) {
         height: rem(76px);
       }
     }
   }
-}
-
-.nsw-search {
-  &__area {
-    @include break-out(absolute);
-    background: var(--nsw-off-white);
+  
+  &__search-area {
+    position: absolute;
     top: 0;
+    left: 0;
+    right: 0;
 
-    @include breakpoint('lg') {
-      @include break-out-reset;
-      position: absolute;
+    @include breakpoint($nsw-desktop-breakpoint) {
       width: rem(394px);
+      left: auto;
       right: rem(16px);
       top: 50%;
       transform: translateY(-50%);
     }
-  }
 
-  &__input {
-    @include font-size('md');
-    background: none;
-    padding: rem(8px) rem(72px) rem(8px) rem(16px);
-    color: var(--nsw-text-dark);
-    width: 100%;
-    appearance: none;
-    border: 0;
-    height: rem(72px);
-
-    &:focus {
-      @include nsw-focus($offset: false);
-    }
-
-    @include breakpoint('lg') {
-      border-radius: var(--nsw-border-radius);
-      height: rem(50px);
-      padding: 0 rem(16px);
-    }
-  }
-
-  &__submit {
-    position: absolute;
-    top: 0;
-    right: 0;
-    height: rem(50px);
-    width: rem(50px);
-    border: 0;
-    appearance: none;
-    background: none;
-    cursor: pointer;
-
-    .nsw-material-icons {
+    button {
       position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: rem(34px);
-      right: rem(7px);
-      margin-top: -1px;
-      display: none;
-
-      @include breakpoint('lg') {
-        display: inline-block;
-      }      
-    }
-  }
-
-  &__close {
-    width: rem(48px);
-    height: rem(48px);
-    background: none;
-    border: 0;
-    padding: 0;
-    text-align: center;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    right: rem(16px);
-
-    &:hover {
-      @include nsw-hover;
+      right: 0;
+      top: 0;
+      bottom: 0;
     }
 
-    &:focus {
-      @include nsw-focus;
+    > button {
+      border-radius: 0;
+
+      @include breakpoint($nsw-desktop-breakpoint) {
+        display: none;
+      }
     }
 
-    @include breakpoint('lg') {
-      display: none;
+    form {
+      button {
+        display: none;
+        padding: 0;
+        width: rem(48px);
+
+        @include breakpoint($nsw-desktop-breakpoint) {
+          display: flex;
+        }
+      }
+
+      .nsw-material-icons {
+        font-size: rem(map-get($nsw-icon-sizes, 36));
+      }
     }
 
-    .material-icons {
-      font-size: rem(40px);
+    input {
+      @include font-size('md');
+      background: var(--nsw-off-white);
+      padding: rem(8px) rem(72px) rem(8px) rem(16px);
+      color: var(--nsw-text-dark);
+      width: 100%;
+      appearance: none;
+      border: 0;
+      height: rem(72px);
+
+      &:focus {
+        @include nsw-focus($offset: false);
+      }
+
+      @include breakpoint($nsw-desktop-breakpoint) {
+        border-radius: var(--nsw-border-radius);
+        height: rem(48px);
+        padding: 0 rem(16px);
+      }
     }
   }
 }

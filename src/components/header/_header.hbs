@@ -42,20 +42,19 @@
     </div>
 
     {{#unless simple}}
-    <div class="nsw-search">
-      <div class="nsw-search__area js-search-area" id="header-search{{#if header-id}}-{{header-id}}{{/if}}" hidden>
-        <form role="search">
-          <label for="nsw-search__input{{#if header-id}}-{{header-id}}{{/if}}" class="sr-only">Search site for:</label>
-          <input class="nsw-search__input js-search-input" type="text" autocomplete="off" id="nsw-search__input{{#if header-id}}-{{header-id}}{{/if}}" name="input-autocomplete">
-          <button class="nsw-search__submit" type="submit" aria-label="search">
-            <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">search</i>
-          </button>
-        </form>
-        <button class="nsw-search__close js-close-search" aria-expanded="true" aria-controls="header-search">
-          <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">close</i>
-          <span class="sr-only">Close search</span>
+    <div class="nsw-header__search-area js-search-area" id="header-search{{#if header-id}}-{{header-id}}{{/if}}" hidden>
+      <form role="search">
+        <label for="nsw-header-input{{#if header-id}}-{{header-id}}{{/if}}" class="sr-only">Search site for:</label>
+        <input class="nsw-header__input js-search-input" type="text" autocomplete="off" id="nsw-header-input{{#if header-id}}-{{header-id}}{{/if}}" name="input-autocomplete">
+        <button class="nsw-icon-button nsw-icon-button--flex" type="submit">
+          <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">search</i>
+          <span class="sr-only">Search</span>
         </button>
-      </div>
+      </form>
+      <button class="nsw-icon-button js-close-search" aria-expanded="true" aria-controls="header-search">
+        <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">close</i>
+        <span class="sr-only">Close search</span>
+      </button>
     </div>
     {{/unless}}
   </div>
