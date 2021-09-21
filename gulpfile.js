@@ -259,11 +259,10 @@ function renamePath() {
 
 function renamePathForProd() {
   return src(`${config.dir.build}index.html`)
-    .pipe(replace('/css/main.css', './css/main.css'))
-    .pipe(replace('/js/main.js', './js/main.js'))
-    .pipe(replace('/docs/js/docs.js', './docs/js/docs.js'))
     .pipe(replace('/favicon.ico', './favicon.ico'))
-    .pipe(replace('class="nsw-docs-nav__list-link" href="/', 'class="nsw-docs-nav__list-link"href="/nsw-design-system/'))
+    .pipe(replace('class="nsw-docs-nav__list-link" href="/', 'class="nsw-docs-nav__list-link" href="/nsw-design-system/'))
+    .pipe(replace('class="nsw-docs-nav__link" href="/', 'class="class="nsw-docs-nav__link" href="/nsw-design-system/'))
+    .pipe(replace('src="/assets/images', 'src="/nsw-design-system-docs/assets/images'))
     .pipe(dest(config.dir.build))
     .pipe(src([`${config.dir.build}**/*.html`, `!${config.dir.build}index.html`]))
     .pipe(replace('/css/main.css', '/nsw-design-system/css/main.css'))
@@ -272,6 +271,8 @@ function renamePathForProd() {
     .pipe(replace('/docs/js/docs.js', '/nsw-design-system/docs/js/docs.js'))
     .pipe(replace('/favicon.ico', '../../favicon.ico'))
     .pipe(replace('class="nsw-docs-nav__list-link" href="/', 'class="nsw-docs-nav__list-link" href="/nsw-design-system/'))
+    .pipe(replace('class="nsw-docs-nav__link" href="/', 'class="class="nsw-docs-nav__link" href="/nsw-design-system/'))
+    .pipe(replace('src="/assets/images', 'src="/nsw-design-system-docs/assets/images'))
     .pipe(dest(config.dir.build))
 }
 
