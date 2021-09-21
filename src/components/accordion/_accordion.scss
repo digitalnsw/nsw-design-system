@@ -14,7 +14,7 @@
     position: relative;
     transition: background $nsw-transition-duration, color $nsw-transition-duration;
 
-    .is-open,
+    .active,
     &:hover & {
       background-color: var(--nsw-brand-dark);
       color: var(--nsw-text-light);
@@ -61,9 +61,19 @@
   }
 
   &__title {
-    .is-ready & {
+    .ready & {
       padding: 0;
       margin-top: 0;
+    }
+
+    .nsw-material-icons {
+      font-size: rem(map-get($nsw-icon-sizes, 30));
+      color: var(--nsw-brand-dark);
+      transform: translateY(-50%);
+      position: absolute;
+      top: 50%;
+      right: rem(8px);
+      transition: transform $nsw-transition-duration, color $nsw-transition-duration;
     }
   }
 
@@ -76,19 +86,11 @@
       @include z-index;
       position: relative;
     }
-  }
 
-  &__icon {
-    font-size: rem(map-get($nsw-icon-sizes, 30));
-    color: var(--nsw-brand-dark);
-    transform: translateY(-50%);
-    position: absolute;
-    top: 50%;
-    right: rem(8px);
-    transition: transform $nsw-transition-duration, color $nsw-transition-duration;
-
-    .is-open & {
-      transform: translateY(-50%) rotate(180deg);
+    &.active {
+      .nsw-material-icons {
+        transform: translateY(-50%) rotate(180deg);
+      }
     }
   }
 
