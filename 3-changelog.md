@@ -29,11 +29,11 @@ Components:
 - Callout: updates spacing, classes cleanup
 - Cards: component code rewrite, changed default card to be content
 - Content blocks: classes/code cleanup
-- Filters: styles cleanup
+- Filters: styles cleanup, buttons update
 - Footer: cleaned up classes, changed to single component BEM
 - Forms: styles cleanup
 - Global alert: styling/classes update, renamed site-wide-message to global-alert
-- Header
+- Header: BEM classes update, styles cleanup
 - Hero banner: renamed banner to hero-banner, updated link on dark bg
 - Hero search: CSS/classes cleanup
 - In-page navigation: renamed to in-page-nav, classes/CSS update

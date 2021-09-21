@@ -30,7 +30,6 @@ class Tabs {
     this.tab.prepend(tabListWrapper)
     tabListWrapper.prepend(this.tabList)
 
-    this.tab.classList.add('is-ready')
     this.tabList.setAttribute('role', 'tablist')
     this.tabItems.forEach((item) => {
       const itemElem = item
@@ -68,7 +67,7 @@ class Tabs {
     } = this
     const index = (showTab === undefined) ? 0 : showTab
     const selectedLink = tabLinks[index]
-    selectedLink.classList.add('is-selected')
+    selectedLink.classList.add('active')
     selectedLink.removeAttribute('tabindex')
     selectedLink.setAttribute('aria-selected', true)
     tabPanel[index].hidden = false
@@ -86,10 +85,10 @@ class Tabs {
       clickedTab.focus()
       clickedTab.removeAttribute('tabindex')
       clickedTab.setAttribute('aria-selected', true)
-      clickedTab.classList.add('is-selected')
+      clickedTab.classList.add('active')
       this.selectedTab.setAttribute('aria-selected', false)
       this.selectedTab.setAttribute('tabindex', '-1')
-      this.selectedTab.classList.remove('is-selected')
+      this.selectedTab.classList.remove('active')
       const clickedTabIndex = this.tabLinks.indexOf(clickedTab)
       const selectedTabIndex = this.tabLinks.indexOf(this.selectedTab)
       this.tabPanel[clickedTabIndex].hidden = false

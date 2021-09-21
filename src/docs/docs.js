@@ -6,13 +6,13 @@ function initDocs() {
     const text = button.querySelector('span')
 
     button.addEventListener('click', (event) => {
-      if (code.classList.contains('is-open')) {
-        button.classList.remove('is-open')
-        code.classList.remove('is-open')
+      if (code.classList.contains('open')) {
+        button.classList.remove('open')
+        code.classList.remove('open')
         text.textContent = 'Show code'
       } else {
-        button.classList.add('is-open')
-        code.classList.add('is-open')
+        button.classList.add('open')
+        code.classList.add('open')
         text.textContent = 'Hide code'
       }
     }, false)    
@@ -47,12 +47,12 @@ function initDocs() {
     const button = list.previousElementSibling.querySelector('button')
 
     button.addEventListener('click', (event) => {
-      if (list.classList.contains('is-open')) {
-        button.classList.remove('is-open')
-        list.classList.remove('is-open')
+      if (list.classList.contains('open')) {
+        button.classList.remove('open')
+        list.classList.remove('open')
       } else {
-        button.classList.add('is-open')
-        list.classList.add('is-open')
+        button.classList.add('open')
+        list.classList.add('open')
       }
     }, false)    
   })
@@ -67,15 +67,15 @@ function initDocs() {
     if (linkURL == '/' || linkURL == '/nsw-design-system-docs/') linkURL = '/home/index.html'
 
     if (currentURL.match(linkURL)) {
-      link.classList.add('is-active')
+      link.classList.add('active')
 
       if(!link.parentNode.classList.contains('nsw-docs-nav__title')) {
         const list = link.closest('ul')
         const button = list.previousElementSibling.querySelector('button')
 
-        button.classList.add('is-open')
-        button.classList.add('is-active')
-        list.classList.add('is-open')
+        button.classList.add('open')
+        button.classList.add('active')
+        list.classList.add('open')
       }
     }
   })
