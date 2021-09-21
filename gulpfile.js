@@ -247,7 +247,19 @@ function zipDistFolder() {
 function renamePath() {
   return src(`${config.dir.build}index.html`)
     .pipe(replace('/css/main.css', './css/main.css'))
-    .pipe(replace('/docs/css/docs.css', './docs/css/docs.css'))
+    .pipe(replace('/js/main.js', './js/main.js'))
+    .pipe(replace('/favicon.ico', './favicon.ico'))
+    .pipe(dest(config.dir.build))
+    .pipe(src([`${config.dir.build}**/*.html`, `!${config.dir.build}index.html`]))
+    .pipe(replace('/css/main.css', '../../css/main.css'))
+    .pipe(replace('/js/main.js', '../../js/main.js'))
+    .pipe(replace('/favicon.ico', '../../favicon.ico'))
+    .pipe(dest(config.dir.build))
+}
+
+function renamePathForProd() {
+  return src(`${config.dir.build}index.html`)
+    .pipe(replace('/css/main.css', './css/main.css'))
     .pipe(replace('/js/main.js', './js/main.js'))
     .pipe(replace('/docs/js/docs.js', './docs/js/docs.js'))
     .pipe(replace('/favicon.ico', './favicon.ico'))
@@ -295,6 +307,19 @@ function watchFiles(done) {
   done()
 }
 
+const buildprod = series(
+  cleanUp,
+  copyFavicon,
+  metalsmithBuild,
+  styles,
+  javascript,
+  moveImages,
+  compileSvg,
+  renamePathForProd,
+  injectSVG,
+  zipDistFolder,
+)
+
 const build = series(
   cleanUp,
   copyFavicon,
@@ -331,6 +356,7 @@ exports.watch = watchFiles // gulp watch - watches the files
 exports.lint = lintStyles // gulp lint - lints the sass
 exports.svg = compileSvg // gulp svg - creates svg sprite
 exports.images = moveImages // gulp images - moves images
+exports.buildprod = buildprod // gulp build - builds the files
 exports.build = build // gulp build - builds the files
 exports.surge = deploy // gulp surge - builds the files and deploys to surge
 exports.clean = cleanUp // gulp clean - clean the dist directory
