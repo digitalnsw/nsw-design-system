@@ -1,20 +1,24 @@
-### Changelog for version 3.0
+## Changelog for version 3.0
 
-#### Removals
-- Removed old Hero Banner component
-- Removed Direction link component
-- Removed Feature tile component
-- Removed old Button classes
-- Removed CSS for old Forms HTML structure
-- Removed CSS for old Header structure
-- Removed unused SCSS variables and mixins
-- Removed old Section classes
-- Removed old icon implementation
-- Removed Social bar component
-- Removed old Layout styles
-- Removed text-link
+### Deprecated
+- Direction link component
+- Feature tile component
+- Hero Banner component [legacy]
+- Social bar component
+- Grid legacy HTML structure
+- Layout legacy HTML structure
+- Section legacy classes
+- Icons legacy classes
+- Button legacy classes
+- Forms legacy HTML structure
+- Header legacy HTML structure
+- Unutilized SCSS variables, mixins and classes
+- SVG icon files
+- Montserrat font
 
-#### Core styles:
+### Updated
+
+#### Core styles
 - Colour: No changes
 - Typography: updated links for all components, added default table styles
 - Iconography: added sizing and colour options, removed default size and colour, updated positioning inside components
@@ -52,7 +56,6 @@
 - Tabs: updated component name and removed li/a classes
 - Tags: cleaned up CSS, changed wrapper class
 
-#### MISC
-- Added helper classes for list
-- Added classes for icon/svg links and buttons
-- Cleaned settings file
+### Added
+- Helper classes for list
+- Classes for icon/svg links and buttons
