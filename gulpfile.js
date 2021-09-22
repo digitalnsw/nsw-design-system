@@ -258,22 +258,14 @@ function renamePath() {
 }
 
 function renamePathForProd() {
-  return src(`${config.dir.build}index.html`)
-    .pipe(replace('/favicon.ico', './favicon.ico'))
-    .pipe(replace('class="nsw-docs-nav__list-link" href="/', `class="nsw-docs-nav__list-link" href="${config.baseUrl.prod}/`))
-    .pipe(replace('class="nsw-docs-nav__link" href="/', `class="class="nsw-docs-nav__link" href="${config.baseUrl.prod}/`))
-    .pipe(replace('src="/assets/images', `src="${config.baseUrl.prod}/assets/images`))
-    .pipe(dest(config.dir.build))
-    .pipe(src([`!${config.dir.build}index.html`, `${config.dir.build}**/*.html`]))
+  return src(`${config.dir.build}/**/*.html`)
     .pipe(replace('/css/main.css', `${config.baseUrl.prod}/css/main.css`))
     .pipe(replace('/docs/css/docs.css', `${config.baseUrl.prod}/docs/css/docs.css`))
     .pipe(replace('/js/main.js', `${config.baseUrl.prod}/js/main.js`))
     .pipe(replace('/docs/js/docs.js', `${config.baseUrl.prod}/docs/js/docs.js`))
     .pipe(replace('/favicon.ico', `${config.baseUrl.prod}/favicon.ico`))
-    .pipe(replace('href="/"', `href="${config.baseUrl.prod}/"`))
-    .pipe(replace('class="nsw-docs-nav__list-link" href="/', `class="nsw-docs-nav__list-link" href="${config.baseUrl.prod}/`))
-    .pipe(replace('class="nsw-docs-nav__link" href="/', `class="nsw-docs-nav__link" href="${config.baseUrl.prod}/`))
-    .pipe(replace('src="/assets/images', `src="${config.baseUrl.prod}/assets/images`))
+    .pipe(replace('<base href="/', `<base href="${config.baseUrl.prod}/`))
+    .pipe(replace('href="#"', `href="${config.baseUrl.prod}"`))
     .pipe(dest(config.dir.build))
 }
 
