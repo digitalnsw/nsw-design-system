@@ -1,8 +1,6 @@
-### Changelog
+### Changelog for version 3.0
 
-Manual list of 3.0 breaking changes
-
-Removals:
+#### Removals
 - Removed old Hero Banner component
 - Removed Direction link component
 - Removed Feature tile component
@@ -14,14 +12,18 @@ Removals:
 - Removed old icon implementation
 - Removed Social bar component
 - Removed old Layout styles
+- Removed text-link
 
-MISC:
+#### Core styles:
+- Colour: No changes
+- Typography: updated links for all components, added default table styles
+- Iconography: added sizing and colour options, removed default size and colour, updated positioning inside components
+- Grid: CSS cleanup
+- Layout: renamed page-layout to layout and moved to styles
+- Section: No changes
+- Spacing: No changes
 
-- Added helper classes for list
-- Added classes for icon/svg links and buttons
-- Cleaned settings file
-
-Components:
+#### Components
 - Accordion: cleaned up classes, changed hbs setup
 - Breadcrumbs: changed nsw-breadcrumb to nsw-breadcrumbs, cleaned up classes, changed hbs setup
 - Buttons: decreased padding, changed wrapper class
@@ -50,11 +52,7 @@ Components:
 - Tabs: updated component name and removed li/a classes
 - Tags: cleaned up CSS, changed wrapper class
 
-Styles:
-- Colour
-- Typography: updated links for all components, added default table styles
-- Iconography: added sizing and colour options, removed default size and colour, updated positioning inside components
-- Grid: CSS cleanup
-- Layout: renamed page-layout to layout and moved to styles
-- Section
-- Spacing
+#### MISC
+- Added helper classes for list
+- Added classes for icon/svg links and buttons
+- Cleaned settings file
