@@ -1,5 +1,5 @@
 import SiteSearch from './components/header/header'
-import Navigation from './components/main-navigation/main-navigation'
+import Navigation from './components/main-nav/main-nav'
 import Accordion from './components/accordion/accordion'
 import Filters from './components/filters/filters'
 import Tabs from './components/tabs/tabs'

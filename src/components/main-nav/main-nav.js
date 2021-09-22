@@ -4,11 +4,11 @@ import {
 
 class Navigation {
   constructor() {
-    this.openNavButton = document.querySelector('.js-open-navigation')
-    this.closeNavButtons = document.querySelectorAll('.js-close-navigation')
+    this.openNavButton = document.querySelector('.js-open-nav')
+    this.closeNavButtons = document.querySelectorAll('.js-close-nav')
     this.openSubNavButtons = document.querySelectorAll('.js-open-sub-nav')
     this.closeSubNavButtons = document.querySelectorAll('.js-close-sub-nav')
-    this.mainNavElement = document.getElementById('main-navigation')
+    this.mainNavElement = document.getElementById('main-nav')
     this.isMegaMenuElement = !!document.querySelector('.js-mega-menu')
     this.transitionEvent = whichTransitionEvent()
     this.mobileToggleMainNavEvent = (e) => this.mobileToggleMainNav(e)

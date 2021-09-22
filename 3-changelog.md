@@ -31,7 +31,7 @@ Components:
 - Content blocks: classes/code cleanup
 - Filters: styles cleanup, buttons update
 - Footer: cleaned up classes, changed to single component BEM
-- Forms: styles cleanup
+- Forms: styles cleanup, changed name to form
 - Global alert: styling/classes update, renamed site-wide-message to global-alert
 - Header: BEM classes update, styles cleanup
 - Hero banner: renamed banner to hero-banner, updated link on dark bg
@@ -40,7 +40,7 @@ Components:
 - In-page notification: renamed notification to in-page-note, classes update, CSS cleanup
 - Link list: CSS/classes cleanup
 - List items CSS/classes cleanup
-- Main navigation: CSS/classes cleanup, minor visual updates
+- Main navigation: CSS/classes cleanup, minor visual updates, changed name to main-nav
 - Masthead: Skip styles/classes cleanup
 - Media: No update
 - Pagination: classes cleanup, styling update
