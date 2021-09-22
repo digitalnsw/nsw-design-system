@@ -16,11 +16,10 @@ Removals:
 - Removed old Layout styles
 
 MISC:
-- Typography: updated links for all components, added default table styles
-- Icons: added sizing and colour options, removed default size and colour, updated positioning inside components
 
 - Added helper classes for list
 - Added classes for icon/svg links and buttons
+- Cleaned settings file
 
 Components:
 - Accordion: cleaned up classes, changed hbs setup
@@ -53,9 +52,9 @@ Components:
 
 Styles:
 - Colour
-- Typography
-- Iconography
-- Grid
+- Typography: updated links for all components, added default table styles
+- Iconography: added sizing and colour options, removed default size and colour, updated positioning inside components
+- Grid: CSS cleanup
 - Layout: renamed page-layout to layout and moved to styles
 - Section
 - Spacing

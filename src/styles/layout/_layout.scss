@@ -1,3 +1,5 @@
+$nsw-layout-gap: 32px;
+
 .nsw-layout {
   @include create-grid();
 
@@ -19,13 +21,13 @@
 
     &:first-child {
       @include breakpoint('lg') {
-        padding-right: rem($grid-gutters*2 + $layout-gap);
+        padding-right: rem($grid-gutters*2 + $nsw-layout-gap);
       }
     }
 
     &:last-child {
       @include breakpoint($nsw-desktop-breakpoint) {
-        padding-left: rem($grid-gutters*2 + $layout-gap);
+        padding-left: rem($grid-gutters*2 + $nsw-layout-gap);
       }
     }
 
