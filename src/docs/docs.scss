@@ -2,6 +2,28 @@
 
 $content-width: 768px;
 
+.nsw-palette {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  gap: 0 0;
+  grid-template-areas:
+    '. . . . . . . . . . . .'
+    '. . . . . . . . . . . .'
+    '. . . . . . . . . . . .'
+    '. . . . . . . . . . . .';
+
+  font-size: var(--nsw-font-size-xxs-desktop);
+  color: var(--nsw-text-light);
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+
+  > div {
+    padding: rem(8px);
+  }
+}
+
 .nsw-docs {
   :not(pre) code {
     padding: 0.2rem;
@@ -279,6 +301,14 @@ $content-width: 768px;
       @include component-spacing();
     }
   }
+
+  &__swatch {
+    margin: 0 auto;
+    background-color: var(--nsw-brand-dark);
+    width: rem(40px);
+    height: rem(40px);
+    border-radius: rem(20px);
+  }
 }
 
 .nsw-docs-code {
@@ -317,7 +347,6 @@ $content-width: 768px;
     position: relative;
     display: none;
     margin-top: rem(24px);
-    max-width: rem(800px);
 
     &.open {
       display: block;
@@ -336,7 +365,6 @@ $content-width: 768px;
 
   &__wrapper {
     min-height: rem(68px);
-    max-width: rem(800px);
     max-height: rem(400px);
     overflow: auto;
     background-color: var(--nsw-white);
@@ -485,6 +513,7 @@ $content-width: 768px;
   }
 
   &__link {
+    font-weight: var(--nsw-font-normal);
     display: block;
     color: var(--nsw-text-dark);
     text-decoration: none;

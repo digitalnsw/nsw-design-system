@@ -1,12 +1,10 @@
 ---
 title: Theming
-home: true
 width: narrow
-order: 3
+no-blank: true
+order: 2
 ---
-<div class="nsw-docs-example nsw-docs-example--narrow">
-  <div class="nsw-section">
-    <h2>Theming the NSW design System</h2>
+<div>
     <p>NSW Design System supports multiple levels of customisation depending on
       your branding requirements.</p>
     <h3>Variables</h3>
@@ -24,10 +22,10 @@ order: 3
             href="https://github.com/digitalnsw/nsw-design-system/blob/master/HTMLstarterkit.zip">download</a>
       the NSW
       Design System.</p>
-    <p>Below are the exposed variables for the NSW Design System’s base theme.
+    <p>Below are the exposed variables for the NSW Design System's base theme.
       Simply copy the variables and update the values to match your theming
       requirements. Please refer <a href="/styles/colour/index.html">here</a>
-      for the available theme colours.</p>
+      for the available list of brand colours or create a customised <code>palette.scss</code></p>
     {{#>_docs-example hidden="true" open="true" code="language-css"}}
 :root {
 /* Colours */
@@ -118,7 +116,7 @@ order: 3
     --nsw-brand-light: var(--nsw-palette-blue-04);
     --nsw-brand-accent: var(--nsw-palette-red-02);
     --nsw-brand-supplementary: var(--nsw-palette-blue-02);
-  . . .
+  ...
 
   }
 </style>
@@ -137,9 +135,10 @@ order: 3
 @import 'node_modules/nsw-design-system/src/global/scss/tools/all';
 @import 'node_modules/nsw-design-system/src/global/scss/helpers/all';
 @import 'node_modules/nsw-design-system/src/global/scss/style/all';
-@import 'node_modules/nsw-design-system/src/styles/typography/typography';
+@import 'node_modules/nsw-design-system/src/styles/all';
 
 // Add your custom theme file here or drop all the variables here
+@import 'node_modules/nsw-design-system/src/global/scss/settings/palette';
 @import './path/to/myTheme';
 
 // Components
@@ -147,5 +146,4 @@ order: 3
 @import 'node_modules/nsw-design-system/src/components/card/card';
 @import 'node_modules/nsw-design-system/src/components/in-page-note/in-page-note';
     {{/_docs-example}}
-  </div>
 </div>

@@ -1,3 +1,10 @@
+$nsw-vertical-align: (
+  valign-baseline: baseline,
+  valign-top: top,
+  valign-middle: middle,
+  valign-bottom: bottom,
+);
+
 .nsw-table {
   &--caption-top {
     caption-side: top;
@@ -18,6 +25,15 @@
     th,
     td {
       border: solid 1px var(--nsw-grey-01);
+    }
+  }
+}
+
+@each $name, $alignment in $nsw-vertical-align {
+  .nsw-table--#{"" + $name} {
+    th,
+    td {
+      vertical-align: $alignment;
     }
   }
 }
