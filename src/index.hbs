@@ -20,7 +20,8 @@ width: narrow
               <div class="nsw-card__content">
                 <h2 class="nsw-card__title">
                   <a href="{{change-extention path}}" class="nsw-card__link">{{title}}</a>
-                  <i class="material-icons nsw-material-icons nsw-card__icon" focusable="false" aria-hidden="true">east</i>
+                  <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</i>
+                  {{#if core}}<i class="material-icons nsw-material-icons nsw-material-icons" focusable="false" aria-hidden="true">invert_colors</i>{{/if}}
                 </h2>
               </div>
             </div>
@@ -33,7 +34,7 @@ width: narrow
 
     <ul class="nsw-docs__list nsw-docs__list--4">
       {{#each collections.componentsnav}}
-        <li><a href="{{change-extention path}}">{{title}}</a></li>
+        <li><a href="{{change-extention path}}">{{title}}{{#if core}}<i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">invert_colors</i>{{/if}}</a></li>
       {{/each}}
     </ul>
     <h3>Example pages</h3>

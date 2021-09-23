@@ -169,6 +169,12 @@ $content-width: 768px;
           a {
             padding-left: rem(24px);
             color: var(--nsw-text-dark);
+
+            .nsw-material-icons {
+              display: block;
+              color: var(--nsw-brand-accent);
+              font-size: rem(map-get($nsw-icon-sizes, 20));
+            }
           }
         }
       }
@@ -399,6 +405,15 @@ $content-width: 768px;
     li {
       padding: rem(2px) 0;
     }
+
+    .nsw-material-icons {
+      color: var(--nsw-brand-accent);
+      font-size: rem(map-get($nsw-icon-sizes, 20));
+      line-height: rem(10px);
+      position: relative;
+      bottom: rem(-5px);
+      margin-left: rem(4px);
+    }
   }
 
   &__box {
@@ -433,6 +448,24 @@ $content-width: 768px;
     width: rem(40px);
     height: rem(40px);
     border-radius: rem(20px);
+  }
+
+  .nsw-card {
+    .nsw-material-icons + .nsw-material-icons {
+      color: var(--nsw-brand-accent);
+      left: auto;
+      right: rem(16px);
+
+      @include breakpoint('lg') {
+        right: rem(32px);
+      }
+    }
+
+    &:hover {
+      .nsw-material-icons + .nsw-material-icons {
+        color: var(--nsw-text-light);
+      }
+    }
   }
 }
 

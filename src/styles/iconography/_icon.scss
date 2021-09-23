@@ -7,6 +7,7 @@ $nsw-icon-sizes: (
 
 $nsw-icon-colors: (
   brand: var(--nsw-brand-dark),
+  accent: var(--nsw-brand-accent),
   error: var(--nsw-status-error),
   success: var(--nsw-status-success),
   info: var(--nsw-status-info),
@@ -32,6 +33,14 @@ $nsw-icon-angles: (90, 180, 270);
     &--rotate-#{"" + $angle} {
       transform: rotate(#{$angle}deg);
     }
+  }
+
+  &--inline {
+    font-size: rem(map-get($nsw-icon-sizes, 20));
+    line-height: rem(10px);
+    position: relative;
+    bottom: rem(-5px);
+    margin-right: rem(4px);
   }
 }
 
