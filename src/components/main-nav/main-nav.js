@@ -189,7 +189,7 @@ class Navigation {
       link.classList.remove('active')
       this.mainNavElement.removeEventListener('focus', this.checkFocusEvent, true)
       // fix: workaround for safari because it doesn't support focus event
-      this.mainNavElement.removeEventListener('mousedown', this.checkFocusEvent, true)
+      this.mainNavElement.removeEventListener('click', this.checkFocusEvent, true)
     } else {
       link.focus()
       submenu.removeEventListener('keydown', this.mobileSubNavTrapTabKeyEvent, false)
@@ -205,7 +205,7 @@ class Navigation {
       link.classList.add('active')
       this.mainNavElement.addEventListener('focus', this.checkFocusEvent, true)
       // fix: workaround for safari because it doesn't support focus event
-      this.mainNavElement.addEventListener('mousedown', this.checkFocusEvent, true)
+      this.mainNavElement.addEventListener('click', this.checkFocusEvent, true)
     } else {
       submenu.addEventListener('keydown', this.mobileSubNavTrapTabKeyEvent, false)
       submenu.addEventListener(this.transitionEvent, this.showSubNavTransitionEndEvent, false)
