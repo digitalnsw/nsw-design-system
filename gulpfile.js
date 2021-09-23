@@ -262,19 +262,6 @@ function bumping() {
     .pipe(dest('./'))
 }
 
-function injectSVG() {
-  const fileContent = fs.readFileSync('./dist/assets/svg/sprite.svg')
-
-  return src(`${config.dir.build}**/*.html`)
-    .pipe(inject.after('<body>', fileContent))
-    .pipe(dest(config.dir.build))
-    .pipe(inject.after(
-      'xmlns:xlink="http://www.w3.org/1999/xlink"',
-      ' aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;"',
-    ))
-    .pipe(dest(config.dir.build))
-}
-
 const styles = series(lintStyles, buildStyles, buildDocStyles)
 const javascript = series(lintJavascript, compileJS, compileDocsJS)
 
@@ -297,7 +284,6 @@ const build = series(
   moveImages,
   compileSvg,
   renamePath,
-  injectSVG,
   zipDistFolder,
 )
 
