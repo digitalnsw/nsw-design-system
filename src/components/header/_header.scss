@@ -9,7 +9,7 @@
 
   &--simple {
     @include breakpoint($nsw-desktop-breakpoint) {
-      border-bottom: solid 1px var(--nsw-grey-03);
+      border-bottom: solid 1px var(--nsw-grey-04);
     }
   }
 
@@ -133,6 +133,9 @@
 
     a {
       display: flex;
+      color: var(--nsw-brand-dark);
+      text-decoration: none;
+      align-items: center;
 
       &:hover {
         background: transparent;
@@ -173,6 +176,12 @@
   &__title {
     @include font-size('lg');
     font-weight: var(--nsw-font-bold);
+    display: flex;
+    align-items: center;
+
+    .nsw-tag {
+      margin-left: rem(24px);
+    }
   }
 
   &__description {

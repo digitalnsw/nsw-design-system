@@ -41,23 +41,7 @@ function initDocs() {
     }, false)
   })
 
-  const navAccordions = document.querySelectorAll('.nsw-docs-nav__list')
-
-  navAccordions.forEach((list) => {
-    const button = list.previousElementSibling.querySelector('button')
-
-    button.addEventListener('click', (event) => {
-      if (list.classList.contains('open')) {
-        button.classList.remove('open')
-        list.classList.remove('open')
-      } else {
-        button.classList.add('open')
-        list.classList.add('open')
-      }
-    }, false)    
-  })
-
-  const navLinks = document.querySelectorAll('.nsw-docs-nav a')
+  const navLinks = document.querySelectorAll('.nsw-docs__nav a')
   var currentURL = window.location.pathname
 
   if (currentURL == '/' || currentURL == '/nsw-design-system-docs/') currentURL = '/home/index.html'
@@ -67,15 +51,17 @@ function initDocs() {
     if (linkURL == '/' || linkURL == '/nsw-design-system-docs/') linkURL = '/home/index.html'
 
     if (currentURL.match(linkURL)) {
-      link.classList.add('active')
+      link.classList.add('current')
 
-      if(!link.parentNode.classList.contains('nsw-docs-nav__title')) {
-        const list = link.closest('ul')
-        const button = list.previousElementSibling.querySelector('button')
+      if(link.closest('ul').classList.contains('nsw-main-nav__sub-list')) {
+        const list = link.closest('.nsw-main-nav__sub-nav')
+        const button = list.previousElementSibling
 
-        button.classList.add('open')
-        button.classList.add('active')
-        list.classList.add('open')
+        list.classList.add('current-section')
+        button.classList.add('current-section')
+        button.click()
+      } else {
+        link.classList.add('current-section')
       }
     }
   })

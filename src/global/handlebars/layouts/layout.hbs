@@ -21,13 +21,20 @@
 {{/unless}}
 </head>
 
-<body class="{{#unless page}} nsw-docs{{#if light}} nsw-docs--light{{/if}}{{/unless}}">
+<body{{#unless page}} class="nsw-docs{{#if light}} nsw-docs--light{{/if}}"{{/unless}}>
 {{#if page}}
 {{{contents}}}
 {{else}}
+  <div class="nsw-docs__header">
+    <div class="nsw-docs__header-wrapper">
+      {{>_docs-header}}
+    </div>
+  </div>
   <div class="nsw-docs__wrapper">
     <div class="nsw-docs__nav">
-      {{>_docs-side-navigation}}
+      <div class="nsw-docs__nav-wrapper">
+        {{>_docs-nav}}
+      </div>
     </div>
     <div class="nsw-docs__main{{#if width}} nsw-docs__main--{{width}}{{/if}}">
       {{#unless home}}
