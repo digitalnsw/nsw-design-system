@@ -2,16 +2,24 @@
 title: Main navigation
 tabs: true
 directory: main-nav
-intro: The main navigation shows users the key areas of your site and helps them to find what they are looking for. 
+intro: The main navigation shows users the key areas of your site and helps them to find what they are looking for.
 figma: https://www.figma.com/file/PVrERKnckLTlJSPk12gbtS/NSW-Digital-Design-System?node-id=0%3A1781
-react: https://digitalnsw.github.io/nsw-design-system-react/?path=/docs/navigation-mainnav--main-nav-mega 
+react: https://digitalnsw.github.io/nsw-design-system-react/?path=/docs/navigation-mainnav--main-nav-mega
 model:
   basic: json/main-nav.json
   mega: json/main-nav-mega.json
 ---
 
-{{#>_docs-example}}
-{{>_masthead content="#" nav="#main-nav"}}
-{{>_header header-title="Premier & Cabinet"}}
-{{>_main-nav model.mega}}
-{{/_docs-example}}
+<h3>Default</h3>
+{{#> _docs-iframe }}
+  {{>_masthead content="#" nav="#main-nav"}}
+  {{>_header header-title="Premier & Cabinet"}}
+  {{>_main-nav model.basic}}
+{{/_docs-iframe}}
+
+<h3>Mega Nav</h3>
+{{#> _docs-iframe }}
+  {{>_masthead content="#" nav="#main-nav"}}
+  {{>_header header-title="Premier & Cabinet"}}
+  {{>_main-nav model.mega}}
+{{/_docs-iframe}}
