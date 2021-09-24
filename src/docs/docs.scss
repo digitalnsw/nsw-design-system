@@ -26,7 +26,7 @@ $content-width: 768px;
 
 .nsw-docs {
   :not(pre) code {
-    padding: 0.2rem;
+    padding: rem(3px);
     background: var(--nsw-grey-04);
     border-radius: var(--nsw-border-radius);
   }
@@ -66,7 +66,7 @@ $content-width: 768px;
   }
 
   &__wrapper {
-    @include breakpoint('xl') {
+    @include breakpoint($nsw-desktop-breakpoint) {
       display: flex;
     }
   }
@@ -93,6 +93,15 @@ $content-width: 768px;
     }
 
     /* stylelint-disable max-nesting-depth */
+
+    .nsw-main-nav__sub-nav a {
+      .nsw-material-icons {
+        display: block;
+        color: var(--nsw-brand-accent);
+        font-size: rem(map-get($nsw-icon-sizes, 20));
+        margin-right: rem(-6px);
+      }
+    }
 
     @include breakpoint($nsw-desktop-breakpoint) { 
       .nsw-main-nav {
@@ -169,12 +178,6 @@ $content-width: 768px;
           a {
             padding-left: rem(24px);
             color: var(--nsw-text-dark);
-
-            .nsw-material-icons {
-              display: block;
-              color: var(--nsw-brand-accent);
-              font-size: rem(map-get($nsw-icon-sizes, 20));
-            }
           }
         }
       }
@@ -201,7 +204,7 @@ $content-width: 768px;
       .nsw-docs__demo {
         max-width: rem($content-width + 32px);
 
-        @include breakpoint('xl') {
+        @include breakpoint($nsw-desktop-breakpoint) {
           max-width: rem($content-width + 104px);
         }
       }
@@ -211,7 +214,7 @@ $content-width: 768px;
       .nsw-docs__demo {
         max-width: calc(var(--nsw-container-width) + #{rem(32px)});
 
-        @include breakpoint('xl') {
+        @include breakpoint($nsw-desktop-breakpoint) {
           max-width: calc(var(--nsw-container-width) + #{rem(104px)});
         }
       }
@@ -222,12 +225,12 @@ $content-width: 768px;
         max-width: rem(336px);
       }
     }
-  }
+  } 
 
   &__container {
     max-width: rem($content-width + 32px);
 
-    @include breakpoint('xl') {
+    @include breakpoint($nsw-desktop-breakpoint) {
       max-width: rem($content-width + 104px);
     }
   }
@@ -238,7 +241,7 @@ $content-width: 768px;
     .nsw-docs__container {
       padding: rem(24px) rem(16px);
 
-      @include breakpoint('xl') {
+      @include breakpoint($nsw-desktop-breakpoint) {
         padding: rem(48px) rem(52px);
       }
     }
@@ -249,7 +252,7 @@ $content-width: 768px;
       .nsw-docs__container {
         padding-bottom: rem(78px);
 
-        @include breakpoint('xl') {
+        @include breakpoint($nsw-desktop-breakpoint) {
           padding-bottom: rem(88px);
         }
       }
@@ -264,7 +267,7 @@ $content-width: 768px;
     padding: rem(24px) rem(16px);
     flex-grow: 1;
 
-    @include breakpoint('xl') {
+    @include breakpoint($nsw-desktop-breakpoint) {
       padding: rem(48px) rem(52px);
     }
   }
@@ -307,43 +310,6 @@ $content-width: 768px;
       content: '';
       clear: both;
       display: table;
-    }
-  }
-
-  &__back {
-    display: flex;
-    padding: rem(24px) rem(16px);
-
-    @include breakpoint('xl') {
-      display: none;
-    }
-
-    a {
-      font-weight: var(--nsw-font-bold);
-      font-size: rem(14px);
-      color: var(--nsw-brand-dark);
-      border: 0;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      cursor: pointer;
-
-      &:hover {
-        @include nsw-hover;
-      }
-
-      &:focus {
-        @include nsw-focus;
-      }
-
-      span {
-        text-decoration: underline;
-      }
-
-      i {
-        font-size: rem(16px);
-        margin-right: rem(4px);
-      }
     }
   }
 
@@ -390,13 +356,13 @@ $content-width: 768px;
       column-gap: rem(36px);
       column-count: 2;
 
-      @include breakpoint('lg') {
+      @include breakpoint($nsw-desktop-breakpoint) {
         column-count: 4;
       }
     }
 
     &--2 {
-      @include breakpoint('lg') {
+      @include breakpoint($nsw-desktop-breakpoint) {
         column-gap: rem(36px);
         column-count: 2;
       }
@@ -450,14 +416,25 @@ $content-width: 768px;
     border-radius: rem(20px);
   }
 
+  .nsw-in-page-note + h1 {
+    margin-top: rem(24px);
+
+    @include breakpoint($nsw-desktop-breakpoint) {
+      margin-top: rem(48px);
+    }
+  } 
+
   .nsw-card {
     .nsw-material-icons + .nsw-material-icons {
       color: var(--nsw-brand-accent);
       left: auto;
       right: rem(16px);
+      bottom: rem(19px);
+      font-size: rem(map-get($nsw-icon-sizes, 24));
 
       @include breakpoint('lg') {
         right: rem(32px);
+        bottom: rem(35px);
       }
     }
 
@@ -565,7 +542,7 @@ $content-width: 768px;
     background-color: transparent;
     padding: 0 rem(16px);
 
-    @include breakpoint('xl') {
+    @include breakpoint($nsw-desktop-breakpoint) {
       padding: 0 rem(52px);
     }
   }
@@ -583,7 +560,7 @@ $content-width: 768px;
     .nsw-docs__demo {
       padding: rem(24px) rem(16px);
 
-      @include breakpoint('xl') {
+      @include breakpoint($nsw-desktop-breakpoint) {
         padding: rem(48px) rem(52px);
       }
     }
@@ -599,7 +576,7 @@ $content-width: 768px;
     margin: 0;
     padding: 0 rem(16px);
 
-    @include breakpoint('xl') {
+    @include breakpoint($nsw-desktop-breakpoint) {
       padding: 0 rem(52px);
     }
   }
