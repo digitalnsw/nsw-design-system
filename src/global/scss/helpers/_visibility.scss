@@ -1,0 +1,31 @@
+.sr-only {
+  @include sr-only;
+}
+
+.sr-only-focusable:focus {
+  @include sr-only-focus;
+}
+
+.nsw-show {
+  @each $breakpoint, $breakpoint-size in $nsw-breakpoints {
+    &-#{$breakpoint} {
+      display: none;
+    }
+
+    @include breakpoint($breakpoint) {
+      &-#{$breakpoint} {
+        display: block;
+      }
+    }
+  }
+}
+
+.nsw-hide {
+  @each $breakpoint, $breakpoint-size in $nsw-breakpoints {
+    @include breakpoint($breakpoint) {
+      &-#{$breakpoint} {
+        display: none;
+      }
+    }
+  }
+}
