@@ -9,7 +9,6 @@ const sourcemaps = require('gulp-sourcemaps')
 const browsersync = require('browser-sync')
 const surge = require('gulp-surge')
 const zip = require('gulp-zip')
-const svgSprite = require('gulp-svg-sprite')
 const del = require('del')
 const postcssNormalize = require('postcss-normalize')
 const sassGlob = require('gulp-sass-glob')
@@ -46,15 +45,6 @@ const postcssProcessors = [
 function moveImages() {
   return src(config.images.src)
     .pipe(dest(config.images.build))
-}
-
-function compileSvg() {
-  return src(config.svg.src)
-    .pipe(svgSprite(config.svg.svgSprite))
-    .on('error', (error) => {
-      console.log(error)
-    })
-    .pipe(dest(config.svg.build))
 }
 
 function buildStyles() {
@@ -145,8 +135,8 @@ function metalsmithBuild(callback) {
       pattern: config.metalSmith.collection.components.pattern,
       sortBy: sortByAlpha,
     },
-    styles: {
-      pattern: config.metalSmith.collection.styles.pattern,
+    core: {
+      pattern: config.metalSmith.collection.core.pattern,
       sortBy: sortByAlpha,
     },
     templates: {
@@ -160,8 +150,8 @@ function metalsmithBuild(callback) {
       refer: false,
       sortBy: sortByAlpha,
     },
-    stylesnav: {
-      pattern: config.metalSmith.collection.stylesnav.pattern,
+    corenav: {
+      pattern: config.metalSmith.collection.corenav.pattern,
       refer: false,
       sortBy: 'order',
     },
@@ -270,7 +260,6 @@ function watchFiles(done) {
   watch(config.js.watch, series(javascript, reload))
   watch(config.jsDocs.watch, series(javascript, reload))
   watch(config.images.watch, series(moveImages, reload))
-  watch(config.svg.watch, series(compileSvg, reload))
   watch(config.metalSmith.watch, series(metalsmithBuild, reload))
   done()
 }
@@ -282,7 +271,6 @@ const build = series(
   styles,
   javascript,
   moveImages,
-  compileSvg,
   renamePath,
   zipDistFolder,
 )
@@ -294,7 +282,6 @@ const dev = series(
   styles,
   javascript,
   moveImages,
-  compileSvg,
   watchFiles,
   browserSync,
 )
@@ -308,7 +295,6 @@ const deploy = series(
 exports.scss = buildStyles // gulp sass - compiles the sass
 exports.watch = watchFiles // gulp watch - watches the files
 exports.lint = lintStyles // gulp lint - lints the sass
-exports.svg = compileSvg // gulp svg - creates svg sprite
 exports.images = moveImages // gulp images - moves images
 exports.build = build // gulp build - builds the files
 exports.surge = deploy // gulp surge - builds the files and deploys to surge
