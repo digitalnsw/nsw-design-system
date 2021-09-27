@@ -33,6 +33,6 @@ jobs:
             dist
       - run: surge ./dist ${{ secrets.SURGE_DOMAIN_PRODUCTION }} --token ${{ secrets.SURGE_TOKEN }}
       - name: Visual test
-        run: npx percy snapshot dist/ --ignore-files "{components,styles}/**/index.html"
+        run: npx percy snapshot dist/ --ignore-files "{components,core}/**/index.html"
         env:
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
