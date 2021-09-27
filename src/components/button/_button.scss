@@ -100,16 +100,6 @@ $nsw-buttons: (
     cursor: not-allowed;
   }
 
-  &--full-width {
-    display: block;
-    width: 100%;
-
-    @include breakpoint($nsw-desktop-breakpoint) {
-      display: inline-block;
-      width: auto;
-    }
-  }
-
   .nsw-material-icons {
     font-size: rem(map-get($nsw-icon-sizes, 24));
     line-height: rem(10px);
@@ -126,6 +116,47 @@ $nsw-buttons: (
 
     &:only-child {
       margin: 0;
+    }
+  }
+
+  &--small {
+    @include font-size('xs');
+    padding: rem(5px);
+
+    .nsw-material-icons {
+      font-size: rem(map-get($nsw-icon-sizes, 20));
+
+      &:first-child {
+        margin-right: rem(4px);
+      }
+
+      &:last-child {
+        margin-left: rem(4px);
+      }
+
+      &:only-child {
+        margin: 0;
+      }    
+    }
+  }
+
+  &--flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .nsw-material-icons {
+      position: static;
+    }
+  }
+
+  &--full-width {
+    display: block;
+    width: 100%;
+
+    @include breakpoint($nsw-desktop-breakpoint) {
+      display: inline-block;
+      width: auto;
     }
   }
 }

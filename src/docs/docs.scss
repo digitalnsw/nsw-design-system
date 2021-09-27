@@ -319,42 +319,11 @@ $content-width: 768px;
     }
   }
 
-  &__external-link {
-    padding-top: rem(8px);
-    display: flex;
-  }
-
   &__external {
-    font-weight: var(--nsw-font-bold);
-    font-size: rem(14px);
-    color: var(--nsw-brand-dark);
-    border: 0;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    white-space: nowrap;
-
-    &:hover {
-      @include nsw-hover;
-    }
-
-    &:focus {
-      @include nsw-focus;
-    }
-
-    span {
-      text-decoration: underline;
-    }
-
-    i {
-      font-size: rem(16px);
-      margin-left: rem(4px);
-    }
+    padding-top: rem(8px);
   }
 
   &__list {
-    margin: rem(16px) 0 0 0;
     padding: 0;
     list-style-type: none;
 
@@ -372,10 +341,6 @@ $content-width: 768px;
         column-gap: rem(36px);
         column-count: 2;
       }
-    }
-
-    li {
-      padding: rem(2px) 0;
     }
 
     .nsw-material-icons {
@@ -419,7 +384,7 @@ $content-width: 768px;
     background-color: var(--nsw-brand-dark);
     width: rem(40px);
     height: rem(40px);
-    border-radius: rem(20px);
+    border-radius: 100%;
   }
 
   .nsw-in-page-note + h1 {
@@ -455,30 +420,11 @@ $content-width: 768px;
 .nsw-docs-code {
   position: relative;
 
-  &__button {
-    @include link;
-    font-weight: var(--nsw-font-bold);
-    font-size: rem(14px);
-    background: transparent;
-    border: 0;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
+  > button {
     margin-top: rem(24px);
-    cursor: pointer;
-    padding: 0;
 
-    span {
-      text-decoration: underline;
-    }
-
-    i {
-      font-size: rem(20px);
-      margin-left: rem(2px);
-    }
-
-    &.open {
-      i {
+    &.active {
+      .nsw-material-icons {
         transform: rotate(180deg);
       }
     }
@@ -490,7 +436,7 @@ $content-width: 768px;
     margin-top: rem(24px);
     max-width: rem(800px);
 
-    &.open {
+    &.active {
       display: block;
     }
 
@@ -503,6 +449,12 @@ $content-width: 768px;
       overflow: visible;
       background-color: transparent;
     }
+
+    > button {
+      position: absolute;
+      top: rem(16px);
+      right: rem(16px);      
+    }
   }
 
   &__wrapper {
@@ -511,35 +463,6 @@ $content-width: 768px;
     max-height: rem(400px);
     overflow: auto;
     background-color: var(--nsw-white);
-  }
-
-  &__copy {
-    border-radius: var(--nsw-border-radius);
-    font-weight: var(--nsw-font-bold);
-    font-size: rem(14px);
-    background-color: var(--nsw-white);
-    color: var(--nsw-brand-dark);
-    border: 1px solid var(--nsw-brand-dark);
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    position: absolute;
-    top: rem(16px);
-    right: rem(16px);
-    padding: rem(8px);
-
-    &:hover {
-      background-color: var(--nsw-grey-04);
-    }
-
-    &:focus {
-      @include nsw-focus;
-    }
-
-    i {
-      font-size: rem(16px);
-      margin-left: rem(4px);
-    }
   }
 }
 
@@ -572,7 +495,7 @@ $content-width: 768px;
     }
   }
 
-  .nsw-docs__external-link {
+  .nsw-docs__external {
     padding: 0 0 rem(24px) 0;
   }
 }

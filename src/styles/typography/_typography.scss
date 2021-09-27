@@ -40,7 +40,8 @@ dt {
   margin-top: rem(8px);
 }
 
-small {
+small,
+.nsw-small {
   @include font-size('xs');
 }
 
@@ -198,6 +199,13 @@ a {
 }
 
 .nsw-link {
+  &--button {
+    @include link;
+    background-color: transparent;
+    border: 0;
+    padding: 0;
+  }
+
   &--icon {
     display: inline-block;
     font-weight: var(--nsw-font-bold);

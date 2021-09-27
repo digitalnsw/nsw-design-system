@@ -1,18 +1,18 @@
 function initDocs() {
-  const codeButtons = document.querySelectorAll('.nsw-docs-code__button')
+  const codeButtons = document.querySelectorAll('.js-code-button')
 
   codeButtons.forEach((button) => {
     const code = button.nextElementSibling
     const text = button.querySelector('span')
 
     button.addEventListener('click', (event) => {
-      if (code.classList.contains('open')) {
-        button.classList.remove('open')
-        code.classList.remove('open')
+      if (code.classList.contains('active')) {
+        button.classList.remove('active')
+        code.classList.remove('active')
         text.textContent = 'Show code'
       } else {
-        button.classList.add('open')
-        code.classList.add('open')
+        button.classList.add('active')
+        code.classList.add('active')
         text.textContent = 'Hide code'
       }
     }, false)    
