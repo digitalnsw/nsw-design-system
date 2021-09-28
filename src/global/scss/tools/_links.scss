@@ -1,7 +1,7 @@
 @mixin link() {
+  font-weight: var(--nsw-font-bold);
   color: var(--nsw-brand-dark);
   text-decoration: underline;
-  text-decoration-skip-ink: auto;
 
   &:hover {
     @include nsw-hover;
@@ -17,17 +17,47 @@
   }
 }
 
-@mixin text-link {
-  font-weight: var(--nsw-font-bold);
+@mixin link-dark() {
   color: var(--nsw-brand-dark);
-  display: inline-block;
 
   &:hover {
-    @include nsw-hover;
-    outline: 2px solid var(--nsw-text-hover);
+    background-color: var(--nsw-text-hover);
+    outline-color: var(--nsw-text-hover);
   }
 
   &:focus {
-    @include nsw-focus($offset: false);
+    outline-color: var(--nsw-focus);
   }
+
+  &:visited {
+    color: var(--nsw-text-visited);
+  }
+}
+
+@mixin link-light() {
+  color: var(--nsw-text-light);
+
+  &:hover {
+    background-color: var(--nsw-text-hover-light);
+    outline-color: var(--nsw-text-hover-light);
+  }
+
+  &:focus {
+    outline-color: var(--nsw-white);
+  }
+
+  &:visited {
+    color: var(--nsw-text-light);
+  }
+}
+
+@mixin link-button() {
+  @include link();
+  @include font-size('sm');
+  display: inline-block;
+  cursor: pointer;
+  background-color: transparent;
+  border: 0;
+  padding: 0;
+  -webkit-appearance: none; /* stylelint-disable-line property-no-vendor-prefix */
 }

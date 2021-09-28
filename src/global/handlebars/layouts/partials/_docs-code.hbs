@@ -1,27 +1,27 @@
 <div class="nsw-docs-code">
 {{#unless open}}
-	<button class="nsw-docs-code__button">
-		<span>Show code</span>
-		<i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</i>
-	</button>
+  <button class="nsw-small nsw-link nsw-link--button nsw-link--icon js-code-button">
+    <span>Show code</span>
+    <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</i>
+  </button>
 {{/unless}}
-	<div class="nsw-docs-code__content{{#if open}} is-open{{/if}}">
-		<button class="nsw-docs-code__copy">
-			<span>Copy</span>
-			<i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</i>
-		</button>
-		<div class="nsw-docs-code__wrapper">
+  <div class="nsw-docs-code__content{{#if open}} open{{/if}}">
+    <button type="button" class="nsw-button nsw-button--dark-outline nsw-button--flex nsw-button--small">
+      <span>Copy</span>
+      <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</i>
+    </button>
+    <div class="nsw-docs-code__wrapper">
 <pre><code class="{{#if code}}{{code}}{{else}}html{{/if}}"><script>
-	  function escapeHtml(unsafe) {
-	    return unsafe
-	     .replace(/&/g, "&amp;")
-	     .replace(/</g, "&lt;")
-	     .replace(/>/g, "&gt;")
-	     .replace(/"/g, "&quot;")
-	     .replace(/'/g, "&#039;");
-	  }
-	  document.write(escapeHtml(`{{> @partial-block }}`));
+    function escapeHtml(unsafe) {
+      return unsafe
+       .replace(/&/g, "&amp;")
+       .replace(/</g, "&lt;")
+       .replace(/>/g, "&gt;")
+       .replace(/"/g, "&quot;")
+       .replace(/'/g, "&#039;");
+    }
+    document.write(escapeHtml(`{{> @partial-block }}`));
 </script></code></pre>
-		</div>
-	</div>
+    </div>
+  </div>
 </div>

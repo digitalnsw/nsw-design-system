@@ -1,0 +1,60 @@
+.nsw-tag {
+  @include font-size('xs');
+  font-weight: var(--nsw-font-normal);
+  padding: rem(2px) rem(16px);
+  border: solid 1px var(--nsw-brand-dark);
+  border-radius: rem(24px);
+  color: var(--nsw-brand-dark);
+  text-decoration: none;
+  display: inline-block;
+
+  &:visited {
+    color: var(--nsw-brand-dark);
+  }
+  
+  &:hover {
+    outline-width: 0;
+  }
+
+  &:focus {
+    outline-width: 3px;
+  }
+
+  &--checkbox {
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    position: relative;
+
+    input {
+      position: absolute;
+      opacity: 0;
+
+      &:hover + label {
+        @include nsw-hover;
+      }
+
+      &:focus + label {
+        @include nsw-focus;
+        outline-offset: 0;
+      }
+
+      &:checked + label {
+        background-color: var(--nsw-brand-dark);
+        color: var(--nsw-text-light);
+      }
+    }
+
+    label {
+      padding: rem(2px) rem(16px);
+      border: solid 1px var(--nsw-brand-dark);
+      border-radius: rem(24px);
+      display: inline-block;
+    }
+  }
+
+  &.active {
+    background-color: var(--nsw-brand-dark);
+    color: var(--nsw-text-light);
+  }
+}

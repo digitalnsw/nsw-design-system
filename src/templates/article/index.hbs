@@ -4,10 +4,10 @@ order: 22
 page: true
 directory: Article
 model:
-  nav-basic: ../../components/main-navigation/json/main-navigation.json
-  nav-mega: ../../components/main-navigation/json/mega-navigation.json
+  nav-basic: ../../components/main-nav/json/main-nav.json
+  nav-mega: ../../components/main-nav/json/main-nav-mega.json
   breadcrumbs: ../../components/breadcrumbs/json/breadcrumbs.json
-  tags: ../../components/tags/json/tags-link.json
+  tag: ../../components/tag/json/tag-link.json
   callout: ../../components/callout/json/callout-all-2.json
   link-list: ../../components/link-list/json/link-list-3.json
   card-blog-1: ../../components/card/json/card-blog-1.json
@@ -15,15 +15,16 @@ model:
   card-blog-3: ../../components/card/json/card-blog-3.json
   footer: ../../components/footer/json/footer.json
 ---
-{{>_masthead content="#content" nav="#main-navigation"}}
+
+{{>_masthead content="#content" nav="#main-nav"}}
 {{>_header header-title="Premier & Cabinet"}}
-{{>_main-navigation model.nav-basic}}
+{{>_main-nav model.nav-basic}}
 <div class="nsw-container nsw-p-bottom-xs">
   {{>_breadcrumbs model.breadcrumbs}}
 </div>
 <div class="nsw-container nsw-p-top-sm nsw-p-bottom-lg">
-  <div class="nsw-page-layout">
-    <main id="content" class="nsw-page-layout__main">
+  <div class="nsw-layout">
+    <main id="content" class="nsw-layout__main">
       <div class="nsw-block">
         <h1>Scaling a design system</h1>
         <p>
@@ -32,7 +33,7 @@ model:
         </p>
         <hr>
         <div class="nsw-m-bottom-md">
-          {{>_tags model.tags}}
+          {{>_tag model.tag}}
         </div>
 
         <p>When we launched the public beta of the NSW Design System in December 2018, we had no idea that what we delivered as a test-and-learn product would become one of the most talked about whole of government projects in NSW. </p>
@@ -55,7 +56,7 @@ model:
       {{>_callout model.callout}}
 
     </main>
-    <div class="nsw-page-layout__sidebar">
+    <div class="nsw-layout__sidebar">
       <div class="nsw-section nsw-section--box">
         <form class="nsw-form" action="#">
           <h4 class="nsw-section-title">Want to stay in touch?</h4>
@@ -92,18 +93,18 @@ model:
 
 <div class="nsw-section nsw-section--off-white">
   <div class="nsw-container">
-    <div class="nsw-page-layout">
-      <div class="nsw-page-layout__main">
+    <div class="nsw-layout">
+      <div class="nsw-layout__main">
         <h3 class="nsw-section-title">Similar blog posts</h3>
         <div class="nsw-grid">
           <div class="nsw-col nsw-col-md-4">
-            {{>_card model.card-blog-1}}
+            {{>_card model.card-blog-1 highlight=true}}
           </div>
           <div class="nsw-col nsw-col-md-4">
-            {{>_card model.card-blog-2}}
+            {{>_card model.card-blog-2 highlight=true}}
           </div>
           <div class="nsw-col nsw-col-md-4">
-            {{>_card model.card-blog-3}}
+            {{>_card model.card-blog-3 highlight=true}}
           </div>
         </div>
       </div>

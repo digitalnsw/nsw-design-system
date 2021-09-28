@@ -1,20 +1,15 @@
 .nsw-header {
-  font-family: var(--nsw-font-family);
   background-color: var(--nsw-white);
   position: relative;
   border-bottom: solid 1px var(--nsw-grey-04);
 
-  button {    
-    font-family: var(--nsw-font-family);
-  }
-
-  @include breakpoint('lg') {
+  @include breakpoint($nsw-desktop-breakpoint) {
     border-bottom: 0;
   }
 
   &--simple {
-    @include breakpoint('lg') {
-      border-bottom: solid 1px var(--nsw-grey-03);
+    @include breakpoint($nsw-desktop-breakpoint) {
+      border-bottom: solid 1px var(--nsw-grey-04);
     }
   }
 
@@ -26,15 +21,58 @@
   &__inner {
     position: relative;
 
-    @include breakpoint('lg') {
+    @include breakpoint($nsw-desktop-breakpoint) {
       display: flex;
     }
+  }
+
+  &__menu,
+  &__search {
+    button {      
+      border-radius: var(--nsw-border-radius);
+      color: var(--nsw-brand-dark);
+      width: rem(48px);
+      height: rem(48px);
+      background: none;
+      border: 0;
+      padding: 0;
+      text-align: center;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      &:hover {
+        @include nsw-hover;
+      }
+
+      &:focus {
+        @include nsw-focus;
+      }
+
+      .nsw-material-icons {
+        font-size: rem(map-get($nsw-icon-sizes, 24));
+      }
+
+      > span {
+        @include font-size('xxs');
+        font-weight: var(--nsw-font-bold);
+      }
+    }
+
   }
 
   &__menu {
     position: absolute;
     top: rem(12px);
     left: rem(-6px);
+
+    button {      
+      @include breakpoint($nsw-desktop-breakpoint) {
+        display: none;
+      }
+    }
   }
 
   &__search {
@@ -42,15 +80,27 @@
     top: rem(12px);
     right: rem(-4px);
 
-    @include breakpoint('lg') {
+    @include breakpoint($nsw-desktop-breakpoint) {
       right: 0;
       top: 50%;
       margin-top: rem(-24px);
     }
+
+    button {      
+      @include breakpoint($nsw-desktop-breakpoint) {
+        > span {
+          @include sr-only;
+        }
+
+        .nsw-material-icons {
+          font-size: rem(map-get($nsw-icon-sizes, 36));
+        }
+      }
+    }
   }
 
   &__main {
-    @include breakpoint('lg') {
+    @include breakpoint($nsw-desktop-breakpoint) {
       position: relative;
       display: flex;
       justify-content: flex-start;
@@ -68,7 +118,7 @@
     display: flex;
     justify-content: center;
 
-    @include breakpoint('lg') {
+    @include breakpoint($nsw-desktop-breakpoint) {
       padding: 0;
     }
 
@@ -76,40 +126,48 @@
       height: rem(48px);
       display: block;
 
-      @include breakpoint('lg') {
+      @include breakpoint($nsw-desktop-breakpoint) {
         height: rem(76px);
       }
     }
-  }
 
-  &__waratah-link {
-    display: flex;
+    a {
+      display: flex;
+      color: var(--nsw-brand-dark);
+      text-decoration: none;
+      align-items: center;
 
-    &:focus {
-      @include nsw-focus;
-
-      @include breakpoint('lg') {
-        outline: none;
+      &:hover {
+        background: transparent;
+        outline-width: 0;
       }
-    }
 
-    @include breakpoint('lg') {
-      @include pseudo-clickable-block;
-    }
+      &:focus {
+        outline-width: 3px;
 
-    svg:not(:first-child) {
-      margin-left: rem(24px);
-
-      @include breakpoint('lg') {
-        margin-left: rem(48px);
+        @include breakpoint($nsw-desktop-breakpoint) {
+          outline: none;
+        }
       }
+
+      @include breakpoint($nsw-desktop-breakpoint) {
+        @include pseudo-clickable-block;
+      }
+
+      svg:not(:first-child) {
+        margin-left: rem(24px);
+
+        @include breakpoint($nsw-desktop-breakpoint) {
+          margin-left: rem(48px);
+        }
+      }      
     }
   }
 
   &__name {
     padding: rem(12px) 0;
 
-    @include breakpoint('lg') {
+    @include breakpoint($nsw-desktop-breakpoint) {
       padding: 0;
       margin-left: rem(32px);
     }
@@ -118,6 +176,12 @@
   &__title {
     @include font-size('lg');
     font-weight: var(--nsw-font-bold);
+    display: flex;
+    align-items: center;
+
+    .nsw-tag {
+      margin-left: rem(24px);
+    }
   }
 
   &__description {
@@ -128,7 +192,7 @@
     display: flex;
     justify-content: center;
 
-    @include breakpoint('lg') {
+    @include breakpoint($nsw-desktop-breakpoint) {
       padding-left: rem(16px);
       justify-content: flex-start;
     }
@@ -137,250 +201,76 @@
       height: rem(48px);
       display: block;
 
-      @include breakpoint('lg') {
+      @include breakpoint($nsw-desktop-breakpoint) {
         height: rem(76px);
       }
     }
   }
-
-  /* Legacy code start */
-
-  &__wrapper {
-    @include nsw-spacing(padding, sm none);
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-content: center;
-    align-items: center;
-    height: rem(72px);
-
-    @include breakpoint('lg') {
-      justify-content: unset;
-      height: rem(94px);
-    }
-  }
-
-  &__center {
-    order: 2;
-
-    @include breakpoint('lg') {
-      order: 0;
-    }
-  }
-
-  &__left {
-    order: 1;
-    margin-left: rem(-6px);
-  }
-
-  &__right {
-    order: 3;
-    margin-right: rem(-4px);
-
-    @include breakpoint('lg') {
-      margin-left: auto;
-      margin-right: 0;
-    }
-  }
-
-  &__main-link {
-    display: block;
-
-    &:focus {
-      @include nsw-focus;
-    }
-
-    .nsw-header__main {
-      width: rem(141px);
-      height: rem(46px);
-
-      @include breakpoint('lg') {
-        width: rem(168px);
-        height: rem(55px);
-      }
-    }
-  }
-
-  &__main-image {
-    display: flex;
-
-    svg {
-      display: block;
-    }
-  }
-
-  /* Legacy code end */
-}
-
-.nsw-header-btn {
-  border-radius: var(--nsw-border-radius);
-  color: var(--nsw-brand-dark);
-  width: rem(48px);
-  height: rem(48px);
-  background: none;
-  border: 0;
-  padding: 0;
-  text-align: center;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  &:hover {
-    @include nsw-hover;
-  }
-
-  &:focus {
-    @include nsw-focus;
-  }
-
-  &__icon {
-    position: relative;
-    font-size: rem(22px);
-    line-height: rem(18px);
-    top: -1px;
-
-    &.nsw-icon {
-      height: rem(16px);
-      width: rem(16px);
-      margin: 1px 0;
-    }
-  }
-
-  &__sub {
-    @include font-size('xxs');
-    font-weight: var(--nsw-font-bold);
-  }
-}
-
-.nsw-header-btn--menu {
-  @include breakpoint('lg') {
-    display: none;
-  }
-}
-
-.nsw-header-btn--search {
-  @include breakpoint('lg') {
-    .nsw-header-btn__sub {
-      @include sr-only;
-    }
-
-    .nsw-header-btn__icon {
-      font-size: rem(34px);
-
-      &.nsw-icon {
-        width: rem(24px);
-        height: rem(24px);
-        margin-bottom: 0;
-      }
-    }
-  }
-}
-
-.nsw-search {
-  &__area {
-    @include break-out(absolute);
-    background: var(--nsw-off-white);
+  
+  &__search-area {
+    position: absolute;
     top: 0;
+    left: 0;
+    right: 0;
 
-    @include breakpoint('lg') {
-      @include break-out-reset;
-      position: absolute;
+    @include breakpoint($nsw-desktop-breakpoint) {
       width: rem(394px);
+      left: auto;
       right: rem(16px);
       top: 50%;
       transform: translateY(-50%);
     }
-  }
 
-  &__input {
-    @include font-size('md');
-    font-family: var(--nsw-font-family);
-    background: none;
-    padding: rem(8px) rem(72px) rem(8px) rem(16px);
-    color: var(--nsw-text-dark);
-    width: 100%;
-    appearance: none;
-    border: 0;
-    height: rem(72px);
-
-    &:focus {
-      @include nsw-focus($offset: false);
+    button {
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
     }
 
-    @include breakpoint('lg') {
-      @include nsw-spacing(padding, none md);
-      border-radius: var(--nsw-border-radius);
-      height: rem(50px);
-      padding: 0 rem(16px);
-    }
-  }
+    > button {
+      border-radius: 0;
 
-  &__submit {
-    position: absolute;
-    top: 0;
-    right: 0;
-    height: rem(50px);
-    width: rem(50px);
-    border: 0;
-    appearance: none;
-    background: none;
-    cursor: pointer;
-  }
-
-  &__search-icon {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: rem(34px);
-    right: rem(7px);
-    margin-top: -1px;
-    display: none;
-
-    @include breakpoint('lg') {
-      display: inline-block;
+      @include breakpoint($nsw-desktop-breakpoint) {
+        display: none;
+      }
     }
 
-    &.nsw-icon {
-      width: rem(24px);
-      height: rem(24px);
-      right: rem(12px);
-      margin-top: 0;
-    }
-  }
+    form {
+      button {
+        display: none;
+        padding: 0;
+        width: rem(48px);
 
-  &__close-btn {
-    width: rem(48px);
-    height: rem(48px);
-    background: none;
-    border: 0;
-    padding: 0;
-    text-align: center;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    right: rem(16px);
+        @include breakpoint($nsw-desktop-breakpoint) {
+          display: flex;
+        }
+      }
 
-    &:hover {
-      @include nsw-hover;
+      .nsw-material-icons {
+        font-size: rem(map-get($nsw-icon-sizes, 36));
+      }
     }
 
-    &:focus {
-      @include nsw-focus;
-    }
+    input {
+      @include font-size('md');
+      background: var(--nsw-off-white);
+      padding: rem(8px) rem(72px) rem(8px) rem(16px);
+      color: var(--nsw-text-dark);
+      width: 100%;
+      appearance: none;
+      border: 0;
+      height: rem(72px);
 
-    @include breakpoint('lg') {
-      display: none;
-    }
-  }
+      &:focus {
+        @include nsw-focus($offset: false);
+      }
 
-  &__close-icon {
-    font-size: rem(40px);
-
-    &.nsw-icon {
-      width: rem(24px);
-      height: rem(24px);
+      @include breakpoint($nsw-desktop-breakpoint) {
+        border-radius: var(--nsw-border-radius);
+        height: rem(48px);
+        padding: 0 rem(16px);
+      }
     }
   }
 }

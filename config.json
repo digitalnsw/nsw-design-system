@@ -22,31 +22,18 @@
   },
   "js": {
     "src": "./src/main.js",
-    "watch": ["./src/main.js", "./src/components/**/*.js", "./src/global/scripts/**/*.js", "./src/styles/**/*.js"],
+    "watch": ["./src/main.js", "./src/components/**/*.js", "./src/global/scripts/**/*.js", "./src/core/**/*.js"],
     "build": "./dist/js/"
   },
   "jsDocs": {
     "src": "./src/docs/docs.js",
-    "watch": ["./src/docs.js"],
+    "watch": ["./src/docs/docs.js"],
     "build": "./dist/docs/js/"
   },
   "images": {
     "src": "./src/assets/images/*.*",
     "watch": "./src/assets/images/*.*",
     "build": "./dist/assets/images/"
-  },
-  "svg": {
-    "src": "./src/assets/svg/*.svg",
-    "watch": "./src/assets/svg/*.svg",
-    "build": "./dist/assets/svg/",
-    "svgSprite": {
-      "mode": {
-        "defs": {
-          "dest": "",
-          "sprite": "sprite.svg"
-        }
-      }
-    }
   },
   "favicon": {
     "src": "./src/favicon.ico",
@@ -88,8 +75,8 @@
       "patterns": {
         "pattern": ["patterns/**/*.hbs", "!patterns/**/_*.hbs"]
       },
-      "styles": {
-        "pattern": ["styles/**/*.hbs", "!styles/**/_*.hbs"]
+      "core": {
+        "pattern": ["core/**/*.hbs", "!core/**/_*.hbs"]
       },
       "templates": {
         "pattern": ["templates/**/*.hbs", "!templates/**/_*.hbs"]
@@ -100,8 +87,8 @@
       "componentsnav": {
         "pattern": "components/**/index.hbs"
       },
-      "stylesnav": {
-        "pattern": "styles/**/index.hbs"
+      "corenav": {
+        "pattern": "core/**/index.hbs"
       },
       "templatesnav": {
         "pattern": "templates/**/index.hbs"

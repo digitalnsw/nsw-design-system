@@ -1,0 +1,99 @@
+.nsw-block {
+  @include component-spacing();  
+}
+
+$spacers: (
+  xs: (
+    mobile: 4px,
+    desktop: 8px
+  ),
+  sm: (
+    mobile: 8px,
+    desktop: 16px
+  ),
+  md: (
+    mobile: 16px,
+    desktop: 32px
+  ),
+  lg: (
+    mobile: 24px,
+    desktop: 48px
+  ),
+  xl: (
+    mobile: 32px,
+    desktop: 64px
+  ),
+  xxl: (
+    mobile: 40px,
+    desktop: 80px
+  )
+);
+
+@each $prop, $abbrev in (margin: nsw-m, padding: nsw-p) {
+  @each $size, $lengths in $spacers {
+    $length-mobile: rem(map-get($lengths, mobile));
+    $length-desktop: rem(map-get($lengths, desktop));
+
+    .#{$abbrev}-#{$size} {
+      #{$prop}: $length-mobile;
+    }
+
+    .#{$abbrev}-top-#{$size} {
+      #{$prop}-top: $length-mobile;
+    }
+
+    .#{$abbrev}-right-#{$size} {
+      #{$prop}-right: $length-mobile;
+    }
+
+    .#{$abbrev}-bottom-#{$size} {
+      #{$prop}-bottom: $length-mobile;
+    }
+
+    .#{$abbrev}-left-#{$size} {
+      #{$prop}-left: $length-mobile;
+    }
+
+    .#{$abbrev}-x-#{$size} {
+      #{$prop}-left: $length-mobile;
+      #{$prop}-right: $length-mobile;
+    }
+
+    .#{$abbrev}-y-#{$size} {
+      #{$prop}-top: $length-mobile;
+      #{$prop}-bottom: $length-mobile;
+    }
+
+    @include breakpoint('lg') {
+      .#{$abbrev}-#{$size} {
+        #{$prop}: $length-desktop;
+      }
+
+      .#{$abbrev}-top-#{$size} {
+        #{$prop}-top: $length-desktop;
+      }
+
+      .#{$abbrev}-right-#{$size} {
+        #{$prop}-right: $length-desktop;
+      }
+
+      .#{$abbrev}-bottom-#{$size} {
+        #{$prop}-bottom: $length-desktop;
+      }
+
+      .#{$abbrev}-left-#{$size} {
+        #{$prop}-left: $length-desktop;
+      }
+
+      .#{$abbrev}-x-#{$size} {
+        #{$prop}-left: $length-desktop;
+        #{$prop}-right: $length-desktop;
+      }
+
+      .#{$abbrev}-y-#{$size} {
+        #{$prop}-top: $length-desktop;
+        #{$prop}-bottom: $length-desktop;
+      }
+    }
+  }
+}

@@ -4,7 +4,7 @@
     $value: $value * 1px;
   }
 
-  @return $value / $base-font-size * 1rem;
+  @return $value / $nsw-base-font-size * 1rem;
 }
 
 @function em($value) {
@@ -12,7 +12,7 @@
     $value: $value * 1px;
   }
 
-  @return $value / $base-font-size * 1em;
+  @return $value / $nsw-base-font-size * 1em;
 }
 
 // generates modifer classes in the bem syntax
@@ -82,17 +82,6 @@
   @return url('data:image/svg+xml,#{$encoded}');
 }
 
-// Background svg mixin
-@mixin background-svg($id, $fill: null) {
-  $new-svg: map-get($icons, $id);
-
-  @if $fill {
-    $new-svg: str-insert($new-svg, 'fill="#{$fill}" ', 6);
-  }
-
-  background-image: svg-url($new-svg);
-}
-
 // Helper function to replace characters in a string
 @function str-replace($string, $search, $replace: '') {
   $index: str-index($string, $search);
@@ -120,44 +109,10 @@
 // Z-index
 @mixin z-index($index: 'base') {
 
-  @if map-has-key($z-index, $index) == false {
-    @error 'NSW-DS z-index mixin allows the following values for $index: #{map-keys($z-index)}. You have used "#{$index}"';
+  @if map-has-key($nsw-z-index, $index) == false {
+    @error 'NSW-DS z-index mixin allows the following values for $index: #{map-keys($nsw-z-index)}. You have used "#{$index}"';
   }
   @else {
-    z-index: map-get($z-index, $index);
+    z-index: map-get($nsw-z-index, $index);
   }
 }
-
-/* Legacy start */
-
-@mixin border-radius($type: default) {
-  @if $type != 'none' and $type != 'default' and $type != 'round' and $type != 'tag' {
-    @error 'NSW-DS get-border-radius mixin allows the following values for $type: none, default, round, tag. You have used "#{$type}"';
-  }
-
-  @if $type == 'round' {
-    border-radius: map-get($border-radii, $type);
-  } @else {
-    border-radius: rem(map-get($border-radii, $type));
-  }
-}
-
-@mixin border($direction: null, $width: sm, $color: $nsw-primary-blue) {
-  @if map-has-key($border-width, $width) == false {
-    @error 'NSW-DS border mixin allows the following values for $width: #{map-keys($border-width)}. You have used "#{$width}"';
-  }
-  @if $direction != null and $direction != 'left' and $direction != 'top' and $direction != 'bottom' and $direction != 'right' {
-    @error 'NSW-DS border mixin allows the following values for $direction: left, top, bottom, right. You have used "#{$direction}"';
-  }
-
-  $properties: if($width == 'none', map-get($border-width, $width), solid map-get($border-width, $width) $color);
-
-  @if $direction == null {
-    border: $properties;
-  }
-  @else {
-    border-#{$direction}: $properties;
-  }
-}
-
-/* Legacy end */

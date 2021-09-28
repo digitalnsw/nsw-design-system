@@ -25,10 +25,8 @@ $content-width: 768px;
 }
 
 .nsw-docs {
-  font-family: var(--nsw-font-family);
-
   :not(pre) code {
-    padding: 0.2rem;
+    padding: rem(3px);
     background: var(--nsw-grey-04);
     border-radius: var(--nsw-border-radius);
   }
@@ -39,24 +37,154 @@ $content-width: 768px;
     }
   }
 
-  button {
-    font-family: var(--nsw-font-family);
+  &__header {
+    @include breakpoint($nsw-desktop-breakpoint) {
+      height: rem(115px);
+    }
+
+    &-wrapper {      
+      @include breakpoint($nsw-desktop-breakpoint) {
+        @include z-index('upper');
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background-color: var(--nsw-white);
+      }
+    }
+
+    .nsw-header__waratah svg {
+      @include breakpoint($nsw-desktop-breakpoint) {
+        height: rem(56px);
+      }
+    }
+
+    .nsw-container,
+    .nsw-header__container {
+      margin: 0;
+    }
   }
 
   &__wrapper {
-    @include breakpoint('xl') {
+    @include breakpoint($nsw-desktop-breakpoint) {
       display: flex;
     }
   }
 
   &__nav {
-    display: none;
-    min-width: rem(300px);
-    max-width: rem(300px);
-
-    @include breakpoint('xl') {
-      display: block;
+    @include breakpoint($nsw-desktop-breakpoint) {
+      min-width: rem(300px);
+      max-width: rem(300px);
     }
+
+    &-wrapper {  
+      @include breakpoint($nsw-desktop-breakpoint) {    
+        @include z-index('upper');
+        position: fixed;
+        top: rem(115px);
+        bottom: 0;
+        left: 0;
+        width: rem(300px);
+        overflow-y: auto;
+        border-right: 1px solid var(--nsw-grey-04);
+        background-color: var(--nsw-white);
+        padding: rem(16px);
+      }
+    }
+
+    /* stylelint-disable max-nesting-depth */
+
+    .nsw-main-nav__sub-nav a {
+      .nsw-material-icons {
+        display: block;
+        color: var(--nsw-brand-accent);
+        font-size: rem(map-get($nsw-icon-sizes, 20));
+        margin-right: rem(-6px);
+      }
+    }
+
+    @include breakpoint($nsw-desktop-breakpoint) { 
+      .nsw-main-nav {
+        background-color: transparent;
+
+        li {
+          border-top: 1px solid var(--nsw-grey-04);    
+        }
+
+        a {
+          font-weight: var(--nsw-font-normal);
+
+          &.active {
+            font-weight: var(--nsw-font-bold);
+          }
+
+          &.current-section {
+            font-weight: var(--nsw-font-bold);
+            border-left: 2px solid var(--nsw-brand-accent);
+
+            &:hover {
+              background-color: var(--nsw-text-hover);
+            }
+          }
+
+          &.current {
+            background-color: var(--nsw-off-white);
+          }
+        } 
+
+        &__list {
+          max-width: none;
+          margin: 0;
+          flex-direction: column;
+
+          > li {            
+            &:first-child {
+              border-top: 0;
+            }  
+          }        
+        }
+
+        &__sub-nav {
+          position: relative;
+          top: auto;
+          left: auto;
+          max-width: none;
+          margin: 0;
+          padding: 0;
+          box-shadow: none;
+          display: none;
+
+          &.active {
+            display: block;
+            transform: none;
+            left: auto;
+          }
+
+          &.current-section {
+            border-left: 2px solid var(--nsw-brand-accent);
+          }
+
+          ul {
+            margin: 0;
+            flex-direction: column;
+          }
+
+          li {
+            width: auto;
+            margin: 0;
+            border-bottom: 0;
+          }
+
+          a {
+            padding-left: rem(24px);
+            color: var(--nsw-text-dark);
+          }
+        }
+      }
+    }
+
+    /* stylelint-enable max-nesting-depth */
+
   }
 
   &__main {
@@ -76,7 +204,7 @@ $content-width: 768px;
       .nsw-docs__demo {
         max-width: rem($content-width + 32px);
 
-        @include breakpoint('xl') {
+        @include breakpoint($nsw-desktop-breakpoint) {
           max-width: rem($content-width + 104px);
         }
       }
@@ -84,10 +212,10 @@ $content-width: 768px;
 
     &--wide {
       .nsw-docs__demo {
-        max-width: rem($container-max-width + 32px);
+        max-width: calc(var(--nsw-container-width) + #{rem(32px)});
 
-        @include breakpoint('xl') {
-          max-width: rem($container-max-width + 104px);
+        @include breakpoint($nsw-desktop-breakpoint) {
+          max-width: calc(var(--nsw-container-width) + #{rem(104px)});
         }
       }
     }
@@ -97,12 +225,12 @@ $content-width: 768px;
         max-width: rem(336px);
       }
     }
-  }
+  } 
 
   &__container {
     max-width: rem($content-width + 32px);
 
-    @include breakpoint('xl') {
+    @include breakpoint($nsw-desktop-breakpoint) {
       max-width: rem($content-width + 104px);
     }
   }
@@ -113,7 +241,7 @@ $content-width: 768px;
     .nsw-docs__container {
       padding: rem(24px) rem(16px);
 
-      @include breakpoint('xl') {
+      @include breakpoint($nsw-desktop-breakpoint) {
         padding: rem(48px) rem(52px);
       }
     }
@@ -124,7 +252,7 @@ $content-width: 768px;
       .nsw-docs__container {
         padding-bottom: rem(78px);
 
-        @include breakpoint('xl') {
+        @include breakpoint($nsw-desktop-breakpoint) {
           padding-bottom: rem(88px);
         }
       }
@@ -139,7 +267,7 @@ $content-width: 768px;
     padding: rem(24px) rem(16px);
     flex-grow: 1;
 
-    @include breakpoint('xl') {
+    @include breakpoint($nsw-desktop-breakpoint) {
       padding: rem(48px) rem(52px);
     }
   }
@@ -152,6 +280,12 @@ $content-width: 768px;
     &.nsw-docs__example--dark {
       background-color: var(--nsw-grey-01);
     }
+  }
+
+  &__iframe {
+    width: 100%;
+    height: 500px;
+    background-color: var(--nsw-white);
   }
 
   &__demo {
@@ -185,79 +319,11 @@ $content-width: 768px;
     }
   }
 
-  &__back {
-    display: flex;
-    padding: rem(24px) rem(16px);
-
-    @include breakpoint('xl') {
-      display: none;
-    }
-
-    a {
-      font-weight: var(--nsw-font-bold);
-      font-size: rem(14px);
-      color: var(--nsw-brand-dark);
-      border: 0;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      cursor: pointer;
-
-      &:hover {
-        @include nsw-hover;
-      }
-
-      &:focus {
-        @include nsw-focus;
-      }
-
-      span {
-        text-decoration: underline;
-      }
-
-      i {
-        font-size: rem(16px);
-        margin-right: rem(4px);
-      }
-    }
-  }
-
-  &__external-link {
-    padding-top: rem(8px);
-    display: flex;
-  }
-
   &__external {
-    font-weight: var(--nsw-font-bold);
-    font-size: rem(14px);
-    color: var(--nsw-brand-dark);
-    border: 0;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    white-space: nowrap;
-
-    &:hover {
-      @include nsw-hover;
-    }
-
-    &:focus {
-      @include nsw-focus;
-    }
-
-    span {
-      text-decoration: underline;
-    }
-
-    i {
-      font-size: rem(16px);
-      margin-left: rem(4px);
-    }
+    padding-top: rem(8px);
   }
 
   &__list {
-    margin: rem(16px) 0 0 0;
     padding: 0;
     list-style-type: none;
 
@@ -265,20 +331,25 @@ $content-width: 768px;
       column-gap: rem(36px);
       column-count: 2;
 
-      @include breakpoint('lg') {
+      @include breakpoint($nsw-desktop-breakpoint) {
         column-count: 4;
       }
     }
 
     &--2 {
-      @include breakpoint('lg') {
+      @include breakpoint($nsw-desktop-breakpoint) {
         column-gap: rem(36px);
         column-count: 2;
       }
     }
 
-    li {
-      padding: rem(2px) 0;
+    .nsw-material-icons {
+      color: var(--nsw-brand-accent);
+      font-size: rem(map-get($nsw-icon-sizes, 20));
+      line-height: rem(10px);
+      position: relative;
+      bottom: rem(-5px);
+      margin-left: rem(4px);
     }
   }
 
@@ -298,6 +369,11 @@ $content-width: 768px;
       margin: rem(8px) rem(-8px) 0 rem(-8px);
     }
 
+    &--light {
+      padding: rem(8px);
+      margin: rem(8px) rem(-8px) 0 rem(-8px);
+    }
+
     &--spaced {
       @include component-spacing();
     }
@@ -308,37 +384,47 @@ $content-width: 768px;
     background-color: var(--nsw-brand-dark);
     width: rem(40px);
     height: rem(40px);
-    border-radius: rem(20px);
+    border-radius: 100%;
+  }
+
+  .nsw-in-page-note + h1 {
+    margin-top: rem(24px);
+
+    @include breakpoint($nsw-desktop-breakpoint) {
+      margin-top: rem(48px);
+    }
+  } 
+
+  .nsw-card {
+    .nsw-material-icons + .nsw-material-icons {
+      color: var(--nsw-brand-accent);
+      left: auto;
+      right: rem(16px);
+      bottom: rem(19px);
+      font-size: rem(map-get($nsw-icon-sizes, 24));
+
+      @include breakpoint('lg') {
+        right: rem(32px);
+        bottom: rem(35px);
+      }
+    }
+
+    &:hover {
+      .nsw-material-icons + .nsw-material-icons {
+        color: var(--nsw-text-light);
+      }
+    }
   }
 }
 
 .nsw-docs-code {
   position: relative;
 
-  &__button {
-    @include link;
-    font-weight: var(--nsw-font-bold);
-    font-size: rem(14px);
-    background: transparent;
-    border: 0;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
+  > button {
     margin-top: rem(24px);
-    cursor: pointer;
-    padding: 0;
 
-    span {
-      text-decoration: underline;
-    }
-
-    i {
-      font-size: rem(20px);
-      margin-left: rem(2px);
-    }
-
-    &.is-open {
-      i {
+    &.active {
+      .nsw-material-icons {
         transform: rotate(180deg);
       }
     }
@@ -348,8 +434,9 @@ $content-width: 768px;
     position: relative;
     display: none;
     margin-top: rem(24px);
+    max-width: rem(800px);
 
-    &.is-open {
+    &.active {
       display: block;
     }
 
@@ -362,166 +449,19 @@ $content-width: 768px;
       overflow: visible;
       background-color: transparent;
     }
+
+    > button {
+      position: absolute;
+      top: rem(16px);
+      right: rem(16px);      
+    }
   }
 
   &__wrapper {
     min-height: rem(68px);
+    max-width: rem(800px);
     max-height: rem(400px);
     overflow: auto;
-    background-color: var(--nsw-white);
-  }
-
-  &__copy {
-    border-radius: var(--nsw-border-radius);
-    font-weight: var(--nsw-font-bold);
-    font-size: rem(14px);
-    background-color: var(--nsw-white);
-    color: var(--nsw-brand-dark);
-    border: 1px solid var(--nsw-brand-dark);
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    position: absolute;
-    top: rem(16px);
-    right: rem(16px);
-    padding: rem(8px);
-
-    &:hover {
-      background-color: var(--nsw-grey-04);
-    }
-
-    &:focus {
-      @include nsw-focus;
-    }
-
-    i {
-      font-size: rem(16px);
-      margin-left: rem(4px);
-    }
-  }
-}
-
-.nsw-docs-nav {
-  @include z-index('upper');
-  font-family: var(--nsw-font-family);
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  width: rem(300px);
-  overflow-y: auto;
-  border-right: 1px solid var(--nsw-grey-04);
-  background-color: var(--nsw-white);
-
-  button {
-    font-family: var(--nsw-font-family);
-  }
-
-  &__logo {
-    padding-bottom: rem(40px);
-
-    img {
-      max-width: rem(168px);
-      max-height: rem(55px);
-    }
-  }
-
-  &__wrapper {
-    padding: rem(30px) rem($container-offset);
-  }
-
-  &__title {
-    a,
-    button {
-      @include font-size('sm');
-      background: transparent;
-      border: 0;
-      border-bottom: solid 1px var(--nsw-grey-04);
-      display: block;
-      width: 100%;
-      padding: rem(8px);
-      text-align: left;
-      color: var(--nsw-text-dark);
-      text-decoration: none;
-
-      &:hover {
-        @include nsw-hover;
-      }
-
-      &:focus {
-        @include nsw-focus;
-      }
-
-      &.is-active {
-        font-weight: var(--nsw-font-bold);
-      }
-    }
-
-    &--main {
-      a,
-      button {
-        font-weight: var(--nsw-font-bold);
-        border-bottom: solid 2px var(--nsw-brand-dark);
-      }
-    }
-
-    button {
-      display: flex;
-      align-items: center;
-      color: var(--nsw-text-dark);
-
-      &.is-open {
-        .nsw-material-icons {
-          transform: rotate(180deg);
-        }
-      }
-
-      &.is-active {
-        font-weight: var(--nsw-font-bold);
-      }
-
-      span {
-        width: 100%;
-      }
-    }
-  }
-
-  &__list {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    border-bottom: solid 1px var(--nsw-grey-04);
-    display: none;
-
-    &.is-open {
-      display: block;
-    }
-
-    li {
-      padding: 0;
-      margin: 0;
-    }
-
-    a {
-      display: block;
-      color: var(--nsw-text-dark);
-      text-decoration: none;
-      padding: rem(8px) rem(16px);
-      border-left: rem(4px) solid transparent;
-
-      &:hover,
-      &.is-active {
-        background-color: var(--nsw-off-white);
-        border-color: var(--nsw-brand-accent);
-      }
-    }
-  }
-
-  &__link {
-    @include nsw-spacing(padding, md);
-    display: block;
-    color: var(--nsw-text-dark);
-    text-decoration: none;
     background-color: var(--nsw-white);
   }
 }
@@ -531,7 +471,7 @@ $content-width: 768px;
     background-color: transparent;
     padding: 0 rem(16px);
 
-    @include breakpoint('xl') {
+    @include breakpoint($nsw-desktop-breakpoint) {
       padding: 0 rem(52px);
     }
   }
@@ -549,13 +489,13 @@ $content-width: 768px;
     .nsw-docs__demo {
       padding: rem(24px) rem(16px);
 
-      @include breakpoint('xl') {
+      @include breakpoint($nsw-desktop-breakpoint) {
         padding: rem(48px) rem(52px);
       }
     }
   }
 
-  .nsw-docs__external-link {
+  .nsw-docs__external {
     padding: 0 0 rem(24px) 0;
   }
 }
@@ -565,7 +505,7 @@ $content-width: 768px;
     margin: 0;
     padding: 0 rem(16px);
 
-    @include breakpoint('xl') {
+    @include breakpoint($nsw-desktop-breakpoint) {
       padding: 0 rem(52px);
     }
   }

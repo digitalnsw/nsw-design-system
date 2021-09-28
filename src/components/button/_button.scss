@@ -1,13 +1,72 @@
+$nsw-buttons: (
+  dark: (
+    text-color: var(--nsw-text-light),
+    text-color-hover: var(--nsw-text-light),
+    background: var(--nsw-brand-dark),
+    background-hover: var(--nsw-brand-dark),
+    border: transparent,
+    border-hover: transparent,
+    focus: var(--nsw-focus),
+    hover: white
+  ),
+  dark-outline: (
+    text-color: var(--nsw-text-dark),
+    text-color-hover: var(--nsw-text-light),
+    background: transparent,
+    background-hover: var(--nsw-brand-dark),
+    border: var(--nsw-brand-dark),
+    focus: var(--nsw-focus),
+    border-hover: transparent
+  ),
+  light: (
+    text-color: var(--nsw-text-dark),
+    text-color-hover: var(--nsw-text-dark),
+    background: var(--nsw-brand-light),
+    background-hover: var(--nsw-brand-light),
+    border: transparent,
+    border-hover: transparent,
+    focus: var(--nsw-focus),
+    hover: black
+  ),
+  light-outline: (
+    text-color: var(--nsw-text-light),
+    text-color-hover: var(--nsw-text-dark),
+    background: transparent,
+    background-hover: var(--nsw-brand-light),
+    border: var(--nsw-brand-light),
+    focus: var(--nsw-focus),
+    border-hover: transparent
+  ),
+  white: (
+    text-color: var(--nsw-text-dark),
+    text-color-hover: var(--nsw-text-dark),
+    background: var(--nsw-white),
+    background-hover: var(--nsw-white),
+    border: transparent,
+    border-hover: transparent,
+    focus: var(--nsw-white),
+    hover: black
+  ),
+  danger: (
+    text-color: var(--nsw-text-light),
+    text-color-hover: var(--nsw-text-light),
+    background: var(--nsw-status-error),
+    background-hover: var(--nsw-status-error),
+    border: transparent,
+    border-hover: transparent,
+    focus: var(--nsw-focus),
+    hover: white
+  )
+);
+
 .nsw-button {
   @include font-size('sm');
-  @include nsw-spacing(margin, lg md none none);
   border-radius: var(--nsw-border-radius);
-  font-family: var(--nsw-font-family);
   font-weight: var(--nsw-font-bold);
   border: solid 2px transparent;
   white-space: normal;
   text-decoration: none;
-  padding: rem(12px) rem(24px);
+  padding: rem(10px) rem(22px);
   cursor: pointer;
   -webkit-appearance: none; /* stylelint-disable-line property-no-vendor-prefix */
   text-decoration: none;
@@ -21,11 +80,15 @@
     min-width: rem(124px);
   }
 
+  &:hover {
+    outline: none;
+  }
+
   &:focus {
     @include nsw-focus;
   }
 
-  @each $color, $value in $button-variations {
+  @each $color, $value in $nsw-buttons {
     &--#{"" + $color} {
       @include button-variant($value);
     }
@@ -33,22 +96,12 @@
 
   &:disabled,
   &.disabled {
-    opacity: 0.38;
+    opacity: 0.4;
     cursor: not-allowed;
   }
 
-  &--full-width {
-    display: block;
-    width: 100%;
-
-    @include breakpoint($desktop-breakpoint) {
-      display: inline-block;
-      width: auto;
-    }
-  }
-
   .nsw-material-icons {
-    font-size: rem(24px);
+    font-size: rem(map-get($nsw-icon-sizes, 24));
     line-height: rem(10px);
     position: relative;
     bottom: rem(-7px);
@@ -60,18 +113,50 @@
     &:last-child {
       margin-left: rem(8px);
     }
+
+    &:only-child {
+      margin: 0;
+    }
+  }
+
+  &--small {
+    @include font-size('xs');
+    padding: rem(5px);
+
+    .nsw-material-icons {
+      font-size: rem(map-get($nsw-icon-sizes, 20));
+
+      &:first-child {
+        margin-right: rem(4px);
+      }
+
+      &:last-child {
+        margin-left: rem(4px);
+      }
+
+      &:only-child {
+        margin: 0;
+      }    
+    }
+  }
+
+  &--flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .nsw-material-icons {
+      position: static;
+    }
+  }
+
+  &--full-width {
+    display: block;
+    width: 100%;
+
+    @include breakpoint($nsw-desktop-breakpoint) {
+      display: inline-block;
+      width: auto;
+    }
   }
 }
-
-/* Legacy start */
-
-.nsw-button--block {
-  display: block;
-  width: 100%;
-
-  + .nsw-button--block {
-    margin-bottom: 0;
-  }
-}
-
-/* Legacy end */

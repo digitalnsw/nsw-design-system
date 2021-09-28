@@ -1,0 +1,56 @@
+$nsw-vertical-align: (
+  valign-baseline: baseline,
+  valign-top: top,
+  valign-middle: middle,
+  valign-bottom: bottom,
+);
+
+.nsw-table {
+  &--caption-top {
+    caption-side: top;
+  }
+
+  &--striped {
+    th,
+    td {
+      border-bottom: 0;
+    }
+
+    tbody tr:nth-of-type(even) {
+      background-color: var(--nsw-off-white);
+    }
+  }
+
+  &--bordered {
+    th,
+    td {
+      border: solid 1px var(--nsw-grey-01);
+    }
+  }
+}
+
+@each $name, $alignment in $nsw-vertical-align {
+  .nsw-table--#{"" + $name} {
+    th,
+    td {
+      vertical-align: $alignment;
+    }
+  }
+}
+
+.nsw-table {
+  @include component-spacing();
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+
+  &:focus {
+    @include nsw-focus;
+  }
+
+  table {
+    margin: 0;
+    min-width: rem(600);
+  }
+}

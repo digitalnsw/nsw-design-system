@@ -1,0 +1,21 @@
+$nsw-helper-list-sizes: (8, 16, 32);
+
+.nsw-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+
+  &--center {
+    justify-content: center;
+  }
+
+  @each $size in $nsw-helper-list-sizes {
+    &--#{"" + $size} {
+      margin: rem(-$size / 2);
+
+      > * {
+        margin: rem($size / 2);
+      }
+    }
+  }
+}

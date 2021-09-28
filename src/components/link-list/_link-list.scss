@@ -1,74 +1,55 @@
 .nsw-link-list {
   @include component-spacing();
-  font-family: var(--nsw-font-family);
-  font-weight: var(--nsw-font-bold);
 
   &__title {
     @include font-size('lg');
-    @include nsw-spacing(padding-bottom, md);
+    font-weight: var(--nsw-font-bold);
+    padding-bottom: rem(16px);
     
     @include breakpoint('md') {
-      @include nsw-spacing(padding-bottom, lg);
+      padding-bottom: rem(24px);
     }
   }
 
-  &__list {
+  ul {
     margin: 0;
     padding: 0;
     list-style-type: none;
   }
 
-  &__item {
+  li {
+    margin: 0;
     border-top: 1px solid var(--nsw-grey-04);
 
     &:last-child {
       border-bottom: 1px solid var(--nsw-grey-04);
     }
+  }
 
-    a {
-      @include nsw-spacing(padding, md);
-      color: var(--nsw-brand-dark);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
 
-      &:hover {
-        @include nsw-hover;
-      }
+  a {
+    padding: rem(16px);
+    color: var(--nsw-brand-dark);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-decoration: none;
 
-      &:focus {
-        @include nsw-focus;
-      }
-
-      span {
-        text-decoration: underline;
-      }
+    &:hover {
+      outline-width: 0;
     }
 
-    a:not([class]) {
-      text-decoration: none;
-
-      &:visited {
-        color: var(--nsw-brand-dark);
-      }
+    &:focus {
+      outline-width: 3px;
     }
 
-    .nsw-link-list__link {
+    span {
       text-decoration: underline;
     }
   }
 
-  &__icon {
-    @include nsw-spacing(margin-left, md);
-    flex: none;
-    font-size: rem(20px);
-    position: relative;
-    right: -2px;
-
-    &.nsw-icon {
-      width: rem(16px);
-      height: rem(16px);
-      position: static;
-    }
+  .nsw-material-icons {
+    font-size: rem(map-get($nsw-icon-sizes, 20));
+    margin-left: rem(16px);
   }
 }

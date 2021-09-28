@@ -3,15 +3,15 @@ title: Homepage - Hero search
 order: 13
 page: true
 model:
-  nav: ../../components/main-navigation/json/main-navigation-nsw.json
+  nav: ../../components/main-nav/json/main-nav-nsw.json
   hero-search: ../../components/hero-search/json/hero-search.json
   breadcrumbs: ../../components/breadcrumbs/json/breadcrumbs.json
   footer: ../../components/footer/json/footer.json
 ---
 
-{{>_masthead content="#content" nav="#main-navigation"}}
+{{>_masthead content="#content" nav="#main-nav"}}
 {{>_header header-title="digital.nsw" header-description="Department of Customer Service"}}
-{{>_main-navigation model.nav}}
+{{>_main-nav model.nav}}
 
 <section class="nsw-section nsw-section--image" style="background-image: url(https://picsum.photos/id/1057/2000/1250);">
   {{>_hero-search model.hero-search}}
@@ -20,41 +20,47 @@ model:
 <main id="content">
   <section class="nsw-section">
     <div class="nsw-container">
-      <div class="nsw-page-layout">
-        <div class="nsw-page-layout__main">
+      <div class="nsw-layout">
+        <div class="nsw-layout__main">
           <div class="nsw-grid nsw-m-bottom-md">
             <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
               {{>_card 
+                highlight=true
                 heading= "Working and business"
                 copy="Start or grow a business, export or import goods, or find information on employment and jobs, industries and doing business in NSW."
               }}
             </div>
             <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
               {{>_card 
+                highlight=true
                 heading= "Education and training"
                 copy="Year 12 school leavers can access free Summer Skills training courses across  and get a head start on 2021."
               }}
             </div>
             <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
               {{>_card 
+                highlight=true
                 heading= "Roads and transport"
                 copy="Find out about NSW driving and boating licences, vehicle or vessel registration."
               }}
             </div>
             <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
               {{>_card 
+                highlight=true
                 heading= "Housing and property"
                 copy="Diverse housing, economic activities, public spaces, sustainable water services for NSW."
               }}
             </div>
             <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
               {{>_card 
+                highlight=true
                 heading= "Environment and energy"
                 copy="Working with the community, we care for and protect NSW’s environment and energy."
               }}
             </div>
             <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
               {{>_card 
+                highlight=true
                 heading= "Water"
                 copy="Diverse economic activities, public spaces, sustainable and resilient water services for NSW."
               }}

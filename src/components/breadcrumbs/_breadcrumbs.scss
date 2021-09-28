@@ -1,68 +1,63 @@
-.nsw-breadcrumb {
+.nsw-breadcrumbs {
   @include font-size('xs');
-  @include nsw-spacing(margin-top, lg);
-  font-family: var(--nsw-font-family);
+  margin-top: rem(24px);
 
-  &__list {
+  ol {
     margin: 0;
     padding-left: 0;
     list-style: none;
   }
 
-  &__item {
+  li {
     display: none;
 
-    & + &::before {
-      content: '';
+    &::before {
+      @include material-icons;
+      content: 'keyboard_arrow_right';
+      font-size: rem(map-get($nsw-icon-sizes, 20));
+      line-height: rem(8px);
       display: inline-block;
-      border-right: 2px solid currentColor;
-      border-bottom: 2px solid currentColor;
-      width: rem(6px);
-      height: rem(6px);
-      transform: rotate(-45deg);
-      margin-right: rem(6px);
-      margin-left: rem(6px);
-      top: -1px;
       position: relative;
+      top: rem(6px);
     }
 
     @include breakpoint('md') {
       display: inline;
     }
-  }
 
-  &__item:nth-last-child(2),
-  &__item:last-child {
-    display: inline;
-  }
+    &:nth-last-child(2),
+    &:last-child {
+      display: inline;
+    }
 
-  &__item:nth-last-child(2) {
-    &::before {
-      display: none;
+    &:nth-last-child(2) {
+      &::before {
+        display: none;
 
-      @include breakpoint('md') {
-        display: inline-block;
+        @include breakpoint('md') {
+          display: inline-block;
+        }
+      }
+    }
+
+    &:first-child {
+      &::before {
+        display: none;
+
+        @include breakpoint('md') {
+          display: none;
+        }
       }
     }
   }
 
-  &__link {
-    color: var(--nsw-brand-dark);
-    text-decoration: underline;
-    text-decoration-skip-ink: auto;
+  a {
+    font-weight: var(--nsw-font-normal);
 
-    &:hover {
-      @include nsw-hover;
+    &.current {
+      text-decoration: none;
+      pointer-events: none;
+      color: var(--nsw-text-dark);
     }
-
-    &:focus {
-      @include nsw-focus($offset: false);
-    }
-  }
-
-  &--current {
-    text-decoration: none;
-    pointer-events: none;
-    color: var(--nsw-text-dark);
   }
 }

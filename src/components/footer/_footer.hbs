@@ -1,13 +1,13 @@
 <footer class="nsw-footer">
   {{#if sectionLinks}}
   <div class="nsw-footer__upper">
-    <div class="nsw-container section-links">
+    <div class="nsw-container">
       {{#each sectionLinks}}
-        <div class="section-links__group">
-          <h3 class="section-links__heading"><a href="{{url}}">{{title}}</a></h3>
-          <ul class="section-links__list">
+        <div class="nsw-footer__group">
+          <div class="nsw-footer__heading"><a href="{{url}}">{{title}}</a></div>
+          <ul>
             {{#each links}}
-              <li class="section-links__item"><a href="{{url}}">{{text}}</a></li>
+            <li><a href="{{url}}">{{text}}</a></li>
             {{/each}}
           </ul>
         </div>
@@ -20,16 +20,14 @@
       <p>{{respectText}}</p>
       {{#unless simple}}
       <hr>
-      <ul class="nsw-footer-links">
+      <ul>
         {{#each footerLinks}}
-          <li class="nsw-footer-links__item">
-            <a href="{{url}}" class="nsw-footer-links__link">{{text}}</a>
-          </li>
+        <li><a href="{{url}}">{{text}}</a></li>
         {{/each}}
       </ul>
       <div class="nsw-footer__info">
-        <p class="nsw-footer__copyright">{{copyright}}</p>
-        <p class="nsw-footer__built">Built by <a href="https://www.digital.nsw.gov.au/digital-design-system" target="_blank" rel="noopener noreferrer">NSW Design System</a></p>
+        <div class="nsw-footer__copyright">{{copyright}}</div>
+        <div class="nsw-footer__built">Built by <a href="https://www.digital.nsw.gov.au/digital-design-system" target="_blank" rel="noopener noreferrer">NSW Design System</a></div>
       </div>
       {{/unless}}
     </div>

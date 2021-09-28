@@ -9,13 +9,21 @@ model:
 ---
 
 {{#>_layout-container}}
-<div class="nsw-docs__section nsw-docs__section--spaced"> 
-{{>_filters model.instant}}
-</div>
-<div class="nsw-docs__section nsw-docs__section--spaced"> 
-{{>_filters model.batch}}
-</div>
-<div class="nsw-docs__section nsw-docs__section--spaced"> 
-{{>_filters model.all}}
+<div class="nsw-grid">
+  <div class="nsw-col nsw-col-xl-4">
+    <div class="nsw-docs__component">
+      {{>_filters model.instant}}
+    </div>
+  </div>
+  <div class="nsw-col nsw-col-xl-4">
+    <div class="nsw-docs__component">
+      {{>_filters model.batch}}
+    </div>
+  </div>
+  <div class="nsw-col nsw-col-xl-4">
+    <div class="nsw-docs__component">
+      {{>_filters model.all}}
+    </div>
+  </div>
 </div>
 {{/_layout-container}}

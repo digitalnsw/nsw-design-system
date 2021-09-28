@@ -1,6 +1,5 @@
 .nsw-progress-indicator {
   @include component-spacing();
-  font-family: var(--nsw-font-family);
 
   &__count {
     @include font-size('sm');
@@ -8,20 +7,20 @@
 
   &__bar {
     display: flex;
+    padding-top: rem(8px);
 
-    @include nsw-spacing(margin-top, xs);
-  }
+    div {
+      height: rem(4px);
+      width: 100%;
+      background-color: var(--nsw-grey-04);
 
-  &__step {
-    border-top: 4px solid var(--nsw-grey-04);
-    width: 100%;
+      &:not(:first-child) {
+        margin-left: rem(4px);
+      }
 
-    &--active {
-      border-top: 4px solid var(--nsw-brand-accent);
-    }
-
-    &:not(:first-child) {
-      margin-left: rem(4px);
+      &.active {
+        background-color: var(--nsw-brand-accent);
+      }
     }
   }
 }

@@ -13,7 +13,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="/docs/css/docs.css">
 {{#unless page}}
@@ -23,22 +22,23 @@
 {{/unless}}
 </head>
 
-<body class="nsw-body-content{{#unless page}} nsw-docs{{#if light}} nsw-docs--light{{/if}}{{/unless}}">
+<body{{#unless page}} class="nsw-docs{{#if light}} nsw-docs--light{{/if}}"{{/unless}}>
 {{#if page}}
 {{{contents}}}
 {{else}}
+  <div class="nsw-docs__header">
+    <div class="nsw-docs__header-wrapper">
+      {{>_docs-header}}
+    </div>
+  </div>
   <div class="nsw-docs__wrapper">
     <div class="nsw-docs__nav">
-      {{>_docs-side-navigation}}
+      <div class="nsw-docs__nav-wrapper">
+        {{>_docs-nav}}
+      </div>
     </div>
     <div class="nsw-docs__main{{#if width}} nsw-docs__main--{{width}}{{/if}}">
       {{#unless home}}
-      <div class="nsw-docs__back">
-        <a href="/" class="nsw-docs__link">
-          <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_left</i>
-          <span>Home</span>
-        </a>
-      </div>
       {{>_docs-intro}}
       {{/unless}}
       {{#if tabs}}

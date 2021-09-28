@@ -11,22 +11,22 @@ order: 1
     <nav class="nsw-page-nav" aria-labelledby="in-page-nav">
       <h2 id="in-page-nav" class="nsw-page-nav__title">On this page</h2>
       <ul class="nsw-page-nav__list">
-        <li class="nsw-page-nav__list-item">
+        <li class="nsw-in-page-nav__list-item">
           <a href="{{change-extention path 'anchor' 'npm'}}" class="nsw-page-nav__link">Installing with NPM</a>
         </li>
-        <li class="nsw-page-nav__list-item">
+        <li class="nsw-in-page-nav__list-item">
           <a href="{{change-extention path 'anchor' 'style'}}" class="nsw-page-nav__link">Import styles</a>
         </li>
-        <li class="nsw-page-nav__list-item">
+        <li class="nsw-in-page-nav__list-item">
           <a href="{{change-extention path 'anchor' 'fonticon'}}" class="nsw-page-nav__link">Adding the font and icons</a>
         </li>
-        <li class="nsw-page-nav__list-item">
+        <li class="nsw-in-page-nav__list-item">
           <a href="{{change-extention path 'anchor' 'javascript'}}" class="nsw-page-nav__link">Importing javascript into your project</a>
         </li>
-        <li class="nsw-page-nav__list-item">
+        <li class="nsw-in-page-nav__list-item">
           <a href="{{change-extention path 'anchor' 'cdn'}}" class="nsw-page-nav__link">Using JSDelivr CDN</a>
         </li>
-        <li class="nsw-page-nav__list-item">
+        <li class="nsw-in-page-nav__list-item">
           <a href="{{change-extention path 'anchor' 'starter-kit'}}" class="nsw-page-nav__link">Download starter kit</a>
         </li>
       </ul>
@@ -64,16 +64,16 @@ order: 1
 @import 'node_modules/nsw-design-system/src/global/scss/tools/all';
 @import 'node_modules/nsw-design-system/src/global/scss/helpers/all';
 @import 'node_modules/nsw-design-system/src/global/scss/style/all';
-@import 'node_modules/nsw-design-system/src/styles/all';
+@import 'node_modules/nsw-design-system/src/core/all';
     {{/_docs-example}}
     <p>You can choose to import components as you need it. In the same file,
       import
       the sass files of each component</p>
     {{#>_docs-example hidden="true" open="true" code="language-scss"}}
 // Components
-@import 'node_modules/nsw-design-system/src/components/card/card';
-@import 'node_modules/nsw-design-system/src/components/notification/notification';
 @import 'node_modules/nsw-design-system/src/components/accordion/accordion';
+@import 'node_modules/nsw-design-system/src/components/card/card';
+@import 'node_modules/nsw-design-system/src/components/in-page-note/in-page-note';
     {{/_docs-example}}
     <p>With this setup you can also start theming with a few sets of variable changes. Get started <a href="/content/develop/theming.html">here</a>.</p>
     <h3 id="fonticon">Adding the fonts and the icons</h3>

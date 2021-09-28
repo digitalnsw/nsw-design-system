@@ -1,18 +1,18 @@
 function initDocs() {
-  const codeButtons = document.querySelectorAll('.nsw-docs-code__button')
+  const codeButtons = document.querySelectorAll('.js-code-button')
 
   codeButtons.forEach((button) => {
     const code = button.nextElementSibling
     const text = button.querySelector('span')
 
     button.addEventListener('click', (event) => {
-      if (code.classList.contains('is-open')) {
-        button.classList.remove('is-open')
-        code.classList.remove('is-open')
+      if (code.classList.contains('active')) {
+        button.classList.remove('active')
+        code.classList.remove('active')
         text.textContent = 'Show code'
       } else {
-        button.classList.add('is-open')
-        code.classList.add('is-open')
+        button.classList.add('active')
+        code.classList.add('active')
         text.textContent = 'Hide code'
       }
     }, false)
@@ -41,23 +41,7 @@ function initDocs() {
     }, false)
   })
 
-  const navAccordions = document.querySelectorAll('.nsw-docs-nav__list')
-
-  navAccordions.forEach((list) => {
-    const button = list.previousElementSibling.querySelector('button')
-
-    button.addEventListener('click', (event) => {
-      if (list.classList.contains('is-open')) {
-        button.classList.remove('is-open')
-        list.classList.remove('is-open')
-      } else {
-        button.classList.add('is-open')
-        list.classList.add('is-open')
-      }
-    }, false)
-  })
-
-  const navLinks = document.querySelectorAll('.nsw-docs-nav a')
+  const navLinks = document.querySelectorAll('.nsw-docs__nav a')
   var currentURL = window.location.pathname
 
   if (currentURL == '/' || currentURL == '/nsw-design-system/') currentURL = '/home/index.html'
@@ -67,15 +51,17 @@ function initDocs() {
     if (linkURL == '/' || linkURL == '/nsw-design-system/') linkURL = '/home/index.html'
 
     if (currentURL.match(linkURL)) {
-      link.classList.add('is-active')
+      link.classList.add('current')
 
-      if(!link.parentNode.classList.contains('nsw-docs-nav__title')) {
-        const list = link.closest('ul')
-        const button = list.previousElementSibling.querySelector('button')
+      if(link.closest('ul').classList.contains('nsw-main-nav__sub-list')) {
+        const list = link.closest('.nsw-main-nav__sub-nav')
+        const button = list.previousElementSibling
 
-        button.classList.add('is-open')
-        button.classList.add('is-active')
-        list.classList.add('is-open')
+        list.classList.add('current-section')
+        button.classList.add('current-section')
+        button.click()
+      } else {
+        link.classList.add('current-section')
       }
     }
   })

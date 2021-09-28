@@ -3,17 +3,16 @@ title: Homepage - Featured list
 order: 12
 page: true
 model:
-  nav: ../../components/main-navigation/json/main-navigation-customer-service.json
-  banner: ../../components/banner/json/banner.json
+  nav: ../../components/main-nav/json/main-nav-customer-service.json
   breadcrumbs: ../../components/breadcrumbs/json/breadcrumbs.json
   footer: ../../components/footer/json/footer.json
 ---
 
-{{>_masthead content="#content" nav="#main-navigation"}}
+{{>_masthead content="#content" nav="#main-nav"}}
 {{>_header header-title="Department of Customer Service"}}
-{{>_main-navigation model.nav}}
+{{>_main-nav model.nav}}
 
-{{>_banner 
+{{>_hero-banner 
   wide=false 
   dark=false 
   heading="NSW Department of Customer Service" 
@@ -25,26 +24,29 @@ model:
 <main id="content">
   <section class="nsw-section">
     <div class="nsw-container">
-      <div class="nsw-page-layout">
-        <div class="nsw-page-layout__main">
+      <div class="nsw-layout">
+        <div class="nsw-layout__main">
           <div class="nsw-grid">
             <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
               {{>_card 
-                heading= "Dine & Discover NSW"
+                highlight=true
+                heading="Dine & Discover NSW"
                 copy="Encouraging the community to get out and about, supporting dining, arts and tourism businesses."
                 img="https://picsum.photos/id/431/400/200"
               }}
             </div>
             <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
               {{>_card 
-                heading= "Creative kids"
+                highlight=true
+                heading="Creative kids"
                 copy="The $100 voucher encourges school-aged children to enrol in  creative and cultural activities."
                 img="https://picsum.photos/id/534/400/200"
               }}
             </div>
             <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
               {{>_card 
-                heading= "Active kids"
+                highlight=true
+                heading="Active kids"
                 copy="The $100 voucher encourges school-aged children to enrol in sport, fitness or active recreation programs."
                 img="https://picsum.photos/id/73/400/200"
               }}
@@ -57,56 +59,48 @@ model:
 
   <section class="nsw-section nsw-section--off-white">
     <div class="nsw-container">
-      <div class="nsw-page-layout">
-        <div class="nsw-page-layout__main">
+      <div class="nsw-layout">
+        <div class="nsw-layout__main">
           <h2 class="nsw-section-title">Our services</h2>
           <div class="nsw-grid">
             <div class="nsw-col nsw-col-md-6 nsw-col-lg-3">
               {{>_card 
                 heading="Health"
-                content=true
               }}
             </div>
             <div class="nsw-col nsw-col-md-6 nsw-col-lg-3">
               {{>_card 
                 heading="Housing and property"
-                content=true
               }}
             </div>
             <div class="nsw-col nsw-col-md-6 nsw-col-lg-3">
               {{>_card 
                 heading="Education"
-                content=true
               }}
             </div>
             <div class="nsw-col nsw-col-md-6 nsw-col-lg-3">
               {{>_card 
                 heading="Transport"
-                content=true
               }}
             </div>
             <div class="nsw-col nsw-col-md-6 nsw-col-lg-3">
               {{>_card 
                 heading="Living in NSW"
-                content=true
               }}
             </div>
             <div class="nsw-col nsw-col-md-6 nsw-col-lg-3">
               {{>_card 
                 heading="Environment"
-                content=true
               }}
             </div>
             <div class="nsw-col nsw-col-md-6 nsw-col-lg-3">
               {{>_card 
                 heading="Planning"
-                content=true
               }}
             </div>
             <div class="nsw-col nsw-col-md-6 nsw-col-lg-3">
               {{>_card 
                 heading="Spatial"
-                content=true
               }}
             </div>
           </div>
@@ -117,8 +111,8 @@ model:
 
   <section class="nsw-section">
     <div class="nsw-container">
-      <div class="nsw-page-layout">
-        <div class="nsw-page-layout__main">
+      <div class="nsw-layout">
+        <div class="nsw-layout__main">
           <div class="nsw-grid nsw-grid--spaced">
             <div class="nsw-col nsw-col-lg-6">
               {{>_content-block 

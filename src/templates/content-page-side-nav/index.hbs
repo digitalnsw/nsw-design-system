@@ -3,36 +3,36 @@ title: Content page - Side nav
 order: 21
 page: true
 model:
-  nav-basic: ../../components/main-navigation/json/main-navigation.json
+  nav-basic: ../../components/main-nav/json/main-nav.json
   breadcrumbs: ../../components/breadcrumbs/json/breadcrumbs.json
-  side-navigation: ../../components/side-navigation/json/side-navigation-level-2.json
-  in-page-navigation: ../../components/in-page-navigation/json/in-page-navigation-2.json
+  side-nav: ../../components/side-nav/json/side-nav-level-2.json
+  in-page-nav: ../../components/in-page-nav/json/in-page-nav-2.json
   accordion: ../../components/accordion/json/accordion-3.json
   callout: ../../components/callout/json/callout-icon.json
-  tab-navigation: ../../components/tab-navigation/json/tab-navigation-2.json
+  tabs: ../../components/tabs/json/tabs-2.json
   link-list: ../../components/link-list/json/link-list-2.json
   footer: ../../components/footer/json/footer.json
 ---
 
-{{>_masthead content="#content" nav="#main-navigation"}}
+{{>_masthead content="#content" nav="#main-nav"}}
 {{>_header header-title="Premier & Cabinet"}}
-{{>_main-navigation model.nav-basic}}
+{{>_main-nav model.nav-basic}}
 <div class="nsw-container nsw-p-bottom-xs">
   {{>_breadcrumbs model.breadcrumbs}}
 </div>
 
 <div class="nsw-container nsw-p-top-sm nsw-p-bottom-lg">
-  <div class="nsw-page-layout">
-    <div class="nsw-page-layout__sidebar nsw-page-layout__sidebar--desktop">
-      {{>_side-navigation model.side-navigation}}
+  <div class="nsw-layout">
+    <div class="nsw-layout__sidebar nsw-layout__sidebar--desktop">
+      {{>_side-nav model.side-nav}}
     </div>
-    <main id="content" class="nsw-page-layout__main">
+    <main id="content" class="nsw-layout__main">
       <div class="nsw-block">
         <h1>Content design</h1>
         <p class="nsw-intro">Content designers create patterns of content to guide the user and help them achieve their goal.</p>
       </div>
 
-      {{>_in-page-navigation model.in-page-navigation}}
+      {{>_in-page-nav model.in-page-nav}}
 
       <div class="nsw-block">
         <h2 id="ways-of-working">Ways of working</h2>
@@ -67,7 +67,7 @@ model:
         <p>In this guide we’ve used Service NSW examples. </p>
       </div>
 
-      {{>_tab-navigation model.tab-navigation}}
+      {{>_tabs model.tabs}}
 
       {{>_link-list model.link-list}}
     </main>

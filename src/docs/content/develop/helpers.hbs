@@ -69,3 +69,31 @@ model: json/colours.json
     </tbody>
   </table>
 {{/each}}
+<h2 id="viewport-visibility">Viewport Visibility</h2>
+<p>Grid classes give you the option to show or hide elements in certain
+  breakpoints. For example, displaying an image on a large screen when it
+  supports the content, but hiding it on a small screen when it hinders the
+  users access to information. </p>
+<p>The classes are named using the format
+  <code>nsw-{display}-{breakpoint}</code></p>
+<p>Where <strong>breakpoint</strong> is one of <strong>xs, sm, md, lg,
+  xl</strong>.</p>
+<p>Where <strong>display</strong> is one of:</p>
+<ul>
+  <li><strong>show</strong> - displays the elements</li>
+  <li><strong>hide</strong> - hides the elements</li>
+</ul>
+
+<p>Showing</p>
+{{#>_docs-example separated="true"}}
+  <div class="nsw-show-lg">
+    <p>This text is only visible in large breakpoint and up</p>
+  </div>
+{{/_docs-example}}
+
+<p>Hiding</p>
+{{#>_docs-example separated="true"}}
+  <div class="nsw-hide-lg">
+    <p>This text is only visible from large breakpoint and lower</p>
+  </div>
+{{/_docs-example}}

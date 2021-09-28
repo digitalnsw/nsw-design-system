@@ -10,7 +10,7 @@ function createButtons({ textContent }) {
   button.setAttribute('aria-controls', uID)
   button.classList.add('nsw-accordion__button')
   button.insertAdjacentHTML('beforeend', `
-  <i class="material-icons nsw-material-icons nsw-accordion__icon" focusable="false" aria-hidden="true">keyboard_arrow_right</i>
+  <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</i>
   `)
 
   fragment.appendChild(button)
@@ -39,7 +39,7 @@ class Accordion {
   }
 
   setUpDom() {
-    this.accordion.classList.add('is-ready')
+    this.accordion.classList.add('ready')
     if (this.collapseAllBtn) {
       this.collapseAllBtn.disabled = true
     }
@@ -79,11 +79,11 @@ class Accordion {
     const targetContent = this.getTargetContent(element)
 
     if (state === 'open') {
-      element.classList.add('is-open')
+      element.classList.add('active')
       element.setAttribute('aria-expanded', 'true')
       targetContent.hidden = false
     } else if (state === 'close') {
-      element.classList.remove('is-open')
+      element.classList.remove('active')
       element.setAttribute('aria-expanded', 'false')
       targetContent.hidden = true
     }

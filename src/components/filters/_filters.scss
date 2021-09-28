@@ -1,11 +1,5 @@
-.nsw-filters {
-  font-family: var(--nsw-font-family);
-
-  button {
-    font-family: var(--nsw-font-family);
-  }
-  
-  .nsw-page-layout__sidebar & {
+.nsw-filters {  
+  .nsw-layout__sidebar & {
     margin: rem(-8px) 0 rem(-16px) 0;
 
     @include breakpoint('lg') {
@@ -33,39 +27,25 @@
     }
 
     button {
+      @include link-button;
       display: flex;
       align-items: center;
-      cursor: pointer;
-      background-color: transparent;
-      border: 0;
-      padding: 0;
-      color: var(--nsw-brand-dark);
-
-      &:hover {
-        @include nsw-hover;
-        outline: 4px solid var(--nsw-text-hover);
-      }
-
-      &:focus {
-        @include nsw-focus;
-      }
+      text-decoration: none;
 
       span {
-        @include font-size('sm');
-        font-weight: var(--nsw-font-bold);
         text-decoration: underline;
         padding-left: rem(8px);
       }
     }
 
     .nsw-material-icons {
+      font-size: rem(map-get($nsw-icon-sizes, 24));
       border-radius: var(--nsw-border-radius);
-      font-size: rem(24px);
       padding: rem(1px);
       border: 2px solid var(--nsw-brand-dark);
     }
 
-    &--active {
+    &.active {
       .nsw-material-icons {
         background-color: var(--nsw-brand-dark);
         color: var(--nsw-text-light);        
@@ -80,40 +60,11 @@
     left: 0;
     right: 0;
     background-color: var(--nsw-white);
-    padding: rem(24px) rem(16px);
+    padding: rem(16px) rem(8px);
     border-bottom: 1px solid var(--nsw-grey-04);
 
     @include breakpoint('lg') {
       display: none;
-    }
-
-    button {
-      background-color: transparent;
-      border: 0;
-      padding: 0;
-      color: var(--nsw-brand-dark);
-      display: flex;
-      align-items: center;
-      cursor: pointer;
-
-      &:hover {
-        @include nsw-hover;
-      }
-
-      &:focus {
-        @include nsw-focus;
-      }
-
-      span {
-        @include font-size('sm');
-        font-weight: var(--nsw-font-bold);
-        text-decoration: underline;
-      }
-
-      i {
-        font-size: rem(24px);
-        margin-right: rem(4px);
-      }      
     }
   }
 
@@ -175,10 +126,6 @@
         padding: rem(32px) 0;
       }
     }
-
-    button {
-      margin: 0;
-    }
   }
 
   &__cancel {   
@@ -200,27 +147,13 @@
     }
 
     button {
-      @include text-link;
-      @include font-size('sm');
-      font-weight: normal;
-      text-decoration: underline;
-      cursor: pointer;
-      background-color: transparent;
-      border: 0;
-      padding: 0;
+      @include link-button;
     }
   }
 
   &__more,
-  &__less {
-    @include text-link;
-    @include font-size('sm');
-    font-weight: normal;
-    text-decoration: underline;
-    cursor: pointer;
-    background-color: transparent;
-    border: 0;
-    padding: 0;
+  &__less { 
+    @include link-button;
     margin-top: rem(24px);
   }
 

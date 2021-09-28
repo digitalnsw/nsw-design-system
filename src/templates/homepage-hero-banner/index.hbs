@@ -3,17 +3,16 @@ title: Homepage - Hero banner
 order: 11
 page: true
 model:
-  nav: ../../components/main-navigation/json/mega-navigation-digital-nsw.json
-  hero-banner: ../../components/hero-banner/json/hero-banner.json
+  nav: ../../components/main-nav/json/main-nav-digital-nsw.json
   breadcrumbs: ../../components/breadcrumbs/json/breadcrumbs.json
   footer: ../../components/footer/json/footer.json
 ---
 
-{{>_masthead content="#content" nav="#main-navigation"}}
+{{>_masthead content="#content" nav="#main-nav"}}
 {{>_header header-title="digital.nsw" header-description="Department of Customer Service"}}
-{{>_main-navigation model.nav}}
+{{>_main-nav model.nav}}
 
-{{>_banner
+{{>_hero-banner
   wide=true
   dark=true
   heading="Helping you deliver great government services"
@@ -24,27 +23,31 @@ model:
 <main id="content">
   <section class="nsw-section">
     <div class="nsw-container">
-      <div class="nsw-page-layout">
-        <div class="nsw-page-layout__main">
+      <div class="nsw-layout">
+        <div class="nsw-layout__main">
           <h2 class="nsw-section-title">Fast track to</h2>
           <div class="nsw-grid">
             <div class="nsw-col nsw-col-md-6 nsw-col-lg-3">
               {{>_card
+                highlight=true
                 heading="Digital styles"
               }}
             </div>
             <div class="nsw-col nsw-col-md-6 nsw-col-lg-3">
               {{>_card
+                highlight=true
                 heading="Component library"
               }}
             </div>
             <div class="nsw-col nsw-col-md-6 nsw-col-lg-3">
               {{>_card
+                highlight=true
                 heading="Solutions marketplace"
               }}
             </div>
             <div class="nsw-col nsw-col-md-6 nsw-col-lg-3">
               {{>_card
+                highlight=true
                 heading="Community"
               }}
             </div>
@@ -85,13 +88,14 @@ model:
 
   <section class="nsw-section nsw-section--off-white">
     <div class="nsw-container">
-      <div class="nsw-page-layout">
-        <div class="nsw-page-layout__main">
+      <div class="nsw-layout">
+        <div class="nsw-layout__main">
           <h2 class="nsw-section-title">Latest stories</h2>
           <p class="nsw-section-text">The latest in the digital space.</p>
           <div class="nsw-grid">
             <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
               {{>_card
+                highlight=true
                 heading= "Celebrating International Women’s Day"
                 img="https://picsum.photos/id/838/400/200"
                 tag="DCS Women in Technology Network"
@@ -101,6 +105,7 @@ model:
             </div>
             <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
               {{>_card
+                highlight=true
                 heading= "Cyber Security NSW - 2020 year in review"
                 img="https://picsum.photos/id/3/400/200"
                 tag="Cyber Security"
@@ -110,6 +115,7 @@ model:
             </div>
             <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
               {{>_card
+                highlight=true
                 heading= "Transforming transportnsw.info"
                 img="https://picsum.photos/id/524/400/200"
                 tag="Transport for NSW"

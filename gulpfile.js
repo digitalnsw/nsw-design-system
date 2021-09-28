@@ -9,7 +9,6 @@ const sourcemaps = require('gulp-sourcemaps')
 const browsersync = require('browser-sync')
 const surge = require('gulp-surge')
 const zip = require('gulp-zip')
-const svgSprite = require('gulp-svg-sprite')
 const del = require('del')
 const postcssNormalize = require('postcss-normalize')
 const sassGlob = require('gulp-sass-glob')
@@ -46,15 +45,6 @@ const postcssProcessors = [
 function moveImages() {
   return src(config.images.src)
     .pipe(dest(config.images.build))
-}
-
-function compileSvg() {
-  return src(config.svg.src)
-    .pipe(svgSprite(config.svg.svgSprite))
-    .on('error', (error) => {
-      console.log(error)
-    })
-    .pipe(dest(config.svg.build))
 }
 
 function buildStyles() {
@@ -110,7 +100,6 @@ function cleanBuild(files, metalsmith, done) {
     const file = path.split('.')
     if (
       file[0].indexOf('assets') > -1
-      || file[0].indexOf('global') > -1
       || file[0].indexOf('partials') > -1
       || file[0].indexOf('partials') > -1
       || file[0].indexOf('_') > -1
@@ -146,8 +135,8 @@ function metalsmithBuild(callback) {
       pattern: config.metalSmith.collection.components.pattern,
       sortBy: sortByAlpha,
     },
-    styles: {
-      pattern: config.metalSmith.collection.styles.pattern,
+    core: {
+      pattern: config.metalSmith.collection.core.pattern,
       sortBy: sortByAlpha,
     },
     templates: {
@@ -161,8 +150,8 @@ function metalsmithBuild(callback) {
       refer: false,
       sortBy: sortByAlpha,
     },
-    stylesnav: {
-      pattern: config.metalSmith.collection.stylesnav.pattern,
+    corenav: {
+      pattern: config.metalSmith.collection.corenav.pattern,
       refer: false,
       sortBy: 'order',
     },
@@ -275,19 +264,6 @@ function bumping() {
     .pipe(dest('./'))
 }
 
-function injectSVG() {
-  const fileContent = fs.readFileSync('./dist/assets/svg/sprite.svg')
-
-  return src(`${config.dir.build}**/*.html`)
-    .pipe(inject.after('<body>', fileContent))
-    .pipe(dest(config.dir.build))
-    .pipe(inject.after(
-      'xmlns:xlink="http://www.w3.org/1999/xlink"',
-      ' aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;"',
-    ))
-    .pipe(dest(config.dir.build))
-}
-
 const styles = series(lintStyles, buildStyles, buildDocStyles)
 const javascript = series(lintJavascript, compileJS, compileDocsJS)
 
@@ -296,7 +272,6 @@ function watchFiles(done) {
   watch(config.js.watch, series(javascript, reload))
   watch(config.jsDocs.watch, series(javascript, reload))
   watch(config.images.watch, series(moveImages, reload))
-  watch(config.svg.watch, series(compileSvg, reload))
   watch(config.metalSmith.watch, series(metalsmithBuild, reload))
   done()
 }
@@ -321,9 +296,7 @@ const build = series(
   styles,
   javascript,
   moveImages,
-  compileSvg,
   renamePath,
-  injectSVG,
   zipDistFolder,
 )
 
@@ -334,7 +307,6 @@ const dev = series(
   styles,
   javascript,
   moveImages,
-  compileSvg,
   watchFiles,
   browserSync,
 )
@@ -348,7 +320,6 @@ const deploy = series(
 exports.scss = buildStyles // gulp sass - compiles the sass
 exports.watch = watchFiles // gulp watch - watches the files
 exports.lint = lintStyles // gulp lint - lints the sass
-exports.svg = compileSvg // gulp svg - creates svg sprite
 exports.images = moveImages // gulp images - moves images
 exports.buildprod = buildprod // gulp build - builds the files
 exports.build = build // gulp build - builds the files
