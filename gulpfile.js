@@ -283,9 +283,7 @@ const buildprod = series(
   styles,
   javascript,
   moveImages,
-  compileSvg,
   renamePathForProd,
-  injectSVG,
   zipDistFolder,
 )
 
