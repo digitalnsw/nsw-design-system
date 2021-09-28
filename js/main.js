@@ -178,11 +178,6 @@
     var prefixValue = prefix === undefined ? 'nsw' : prefix;
     return "".concat(prefixValue, "-").concat(Math.random().toString(36).substr(2, 16));
   };
-  var popupWindow = function popupWindow(url, width, height) {
-    var y = window.top.outerHeight / 2 + window.top.screenY - height / 2;
-    var x = window.top.outerWidth / 2 + window.top.screenX - width / 2;
-    window.open(url, '', "toolbar=no,location=no,directories=no, status=no,\n    menubar=no, scrollbars=no, resizable=no, copyhistory=no,\n    width=".concat(width, ", height=").concat(height, ", top=").concat(y, ", left=").concat(x));
-  };
 
   var Navigation = /*#__PURE__*/function () {
     function Navigation() {
@@ -190,11 +185,11 @@
 
       _classCallCheck(this, Navigation);
 
-      this.openNavButton = document.querySelector('.js-open-navigation');
-      this.closeNavButtons = document.querySelectorAll('.js-close-navigation');
-      this.openSubnavButtons = document.querySelectorAll('.js-open-subnav');
-      this.closeSubnavButtons = document.querySelectorAll('.js-close-subnav');
-      this.mainNavElement = document.getElementById('main-navigation');
+      this.openNavButton = document.querySelector('.js-open-nav');
+      this.closeNavButtons = document.querySelectorAll('.js-close-nav');
+      this.openSubNavButtons = document.querySelectorAll('.js-open-sub-nav');
+      this.closeSubNavButtons = document.querySelectorAll('.js-close-sub-nav');
+      this.mainNavElement = document.getElementById('main-nav');
       this.isMegaMenuElement = !!document.querySelector('.js-mega-menu');
       this.transitionEvent = whichTransitionEvent();
 
@@ -202,8 +197,8 @@
         return _this.mobileToggleMainNav(e);
       };
 
-      this.mobileToggleSubnavEvent = function () {
-        return _this.closeSubnav();
+      this.mobileToggleSubNavEvent = function () {
+        return _this.closeSubNav();
       };
 
       this.mobileShowMainTransitionEndEvent = function (e) {
@@ -266,8 +261,8 @@
         var megaMenuListItems = [];
 
         if (e.matches) {
-          megaMenuListItems = [].slice.call(this.mainNavElement.querySelectorAll('.nsw-navigation__list > li'));
-          this.body.classList.remove('navigation-open');
+          megaMenuListItems = [].slice.call(this.mainNavElement.querySelectorAll('ul > li'));
+          this.body.classList.remove('main-nav-active');
         } else {
           megaMenuListItems = [].slice.call(this.mainNavElement.querySelectorAll('li'));
         }
@@ -283,7 +278,7 @@
         if (this.isMegaMenuElement) {
           var listItems = [].slice.call(this.mainNavElement.querySelectorAll('li'));
           listItems.forEach(function (item) {
-            var submenu = item.querySelector('[id^=subnav-]');
+            var submenu = item.querySelector('[id^=sub-nav-]');
             var link = item.querySelector('a');
 
             if (submenu) {
@@ -305,8 +300,8 @@
         this.closeNavButtons.forEach(function (element) {
           element.addEventListener('click', _this4.mobileToggleMainNavEvent, false);
         });
-        this.closeSubnavButtons.forEach(function (element) {
-          element.addEventListener('click', _this4.mobileToggleSubnavEvent, false);
+        this.closeSubNavButtons.forEach(function (element) {
+          element.addEventListener('click', _this4.mobileToggleSubNavEvent, false);
         });
       }
     }, {
@@ -322,7 +317,7 @@
 
         if (this.isMegaMenuElement) {
           listItems.forEach(function (item) {
-            var submenu = item.querySelector('[id^=subnav-]');
+            var submenu = item.querySelector('[id^=sub-nav-]');
             var link = item.querySelector('a');
 
             if (submenu) {
@@ -342,8 +337,8 @@
         var propertyName = _ref.propertyName;
         if (!propertyName === 'transform') return;
         getFocusableElementBySelector(this.mainNavElement.id, ['> div button', '> ul > li > a']).all[1].focus();
-        this.mainNavElement.classList.add('is-open');
-        this.mainNavElement.classList.remove('is-opening');
+        this.mainNavElement.classList.add('active');
+        this.mainNavElement.classList.remove('activating');
         this.mainNavElement.removeEventListener(this.transitionEvent, this.mobileShowMainTransitionEndEvent, false);
         this.mainNavElement.addEventListener('keydown', this.mobileTrapTabKeyEvent, false);
       }
@@ -352,16 +347,16 @@
       value: function mobileHideMainNav(_ref2) {
         var propertyName = _ref2.propertyName;
         if (!propertyName === 'transform') return;
-        this.mainNavElement.classList.remove('is-open');
-        this.mainNavElement.classList.remove('is-closing');
+        this.mainNavElement.classList.remove('active');
+        this.mainNavElement.classList.remove('closing');
 
         while (this.openSubNavElements.length > 0) {
           var _this$whichSubNavLate = this.whichSubNavLatest(),
               submenu = _this$whichSubNavLate.submenu;
 
           submenu.removeEventListener('keydown', this.mobileSubNavTrapTabKeyEvent, false);
-          submenu.classList.remove('is-open');
-          submenu.classList.remove('is-closing');
+          submenu.classList.remove('active');
+          submenu.classList.remove('closing');
           this.openSubNavElements.pop();
         }
 
@@ -375,13 +370,13 @@
         var isExpanded = currentTarget.getAttribute('aria-expanded') === 'true';
 
         if (isExpanded) {
-          this.body.classList.remove('navigation-open');
+          this.body.classList.remove('main-nav-active');
           this.openNavButton.focus();
-          this.mainNavElement.classList.add('is-closing');
+          this.mainNavElement.classList.add('closing');
           this.mainNavElement.addEventListener(this.transitionEvent, this.mobileHideMainTransitionEndEvent, false);
         } else {
-          this.body.classList.add('navigation-open');
-          this.mainNavElement.classList.add('is-opening');
+          this.body.classList.add('main-nav-active');
+          this.mainNavElement.classList.add('activating');
           this.mainNavElement.addEventListener(this.transitionEvent, this.mobileShowMainTransitionEndEvent, false);
         }
       }
@@ -389,7 +384,7 @@
       key: "buttonClickDesktop",
       value: function buttonClickDesktop(e) {
         this.saveElements(e);
-        this.toggleSubnavDesktop();
+        this.toggleSubNavDesktop();
         e.preventDefault();
       }
     }, {
@@ -397,7 +392,7 @@
       value: function buttonKeydownDesktop(e) {
         if (e.key === ' ' || e.key === 'Enter' || e.key === 'Spacebar') {
           this.saveElements(e);
-          this.toggleSubnavDesktop();
+          this.toggleSubNavDesktop();
           e.preventDefault();
         }
       }
@@ -411,7 +406,7 @@
           var isExpanded = link.getAttribute('aria-expanded') === 'true';
 
           if (isExpanded) {
-            this.toggleSubnavDesktop(true);
+            this.toggleSubNavDesktop(true);
             e.preventDefault();
             link.focus();
           }
@@ -437,62 +432,62 @@
             submenu = _this$whichSubNavLate3.submenu;
 
         if (!propertyName === 'transform') return;
-        getFocusableElementBySelector(submenu.id, ['> div button', '> h2 a', '> ul > li > a']).all[2].focus();
+        getFocusableElementBySelector(submenu.id, ['> div button', '> .nsw-main-nav__title a', '> ul > li > a']).all[2].focus();
         submenu.removeEventListener(this.transitionEvent, this.showSubNavTransitionEndEvent, false);
       }
     }, {
-      key: "closeSubnav",
-      value: function closeSubnav() {
+      key: "closeSubNav",
+      value: function closeSubNav() {
         var _this$whichSubNavLate4 = this.whichSubNavLatest(),
             submenu = _this$whichSubNavLate4.submenu,
             link = _this$whichSubNavLate4.link;
 
         if (this.breakpoint.matches) {
           link.setAttribute('aria-expanded', false);
-          link.classList.remove('is-open');
+          link.classList.remove('active');
           this.mainNavElement.removeEventListener('focus', this.checkFocusEvent, true); // fix: workaround for safari because it doesn't support focus event
 
-          this.mainNavElement.removeEventListener('mousedown', this.checkFocusEvent, true);
+          this.mainNavElement.removeEventListener('click', this.checkFocusEvent, true);
         } else {
           link.focus();
           submenu.removeEventListener('keydown', this.mobileSubNavTrapTabKeyEvent, false);
         }
 
-        submenu.classList.remove('is-open');
+        submenu.classList.remove('active');
         this.openSubNavElements.pop();
       }
     }, {
-      key: "opensubnav",
-      value: function opensubnav() {
+      key: "openSubNav",
+      value: function openSubNav() {
         var _this$whichSubNavLate5 = this.whichSubNavLatest(),
             submenu = _this$whichSubNavLate5.submenu,
             link = _this$whichSubNavLate5.link;
 
         if (this.breakpoint.matches) {
           link.setAttribute('aria-expanded', true);
-          link.classList.add('is-open');
+          link.classList.add('active');
           this.mainNavElement.addEventListener('focus', this.checkFocusEvent, true); // fix: workaround for safari because it doesn't support focus event
 
-          this.mainNavElement.addEventListener('mousedown', this.checkFocusEvent, true);
+          this.mainNavElement.addEventListener('click', this.checkFocusEvent, true);
         } else {
           submenu.addEventListener('keydown', this.mobileSubNavTrapTabKeyEvent, false);
           submenu.addEventListener(this.transitionEvent, this.showSubNavTransitionEndEvent, false);
         }
 
-        submenu.classList.add('is-open');
+        submenu.classList.add('active');
       }
     }, {
-      key: "toggleSubnavDesktop",
-      value: function toggleSubnavDesktop() {
+      key: "toggleSubNavDesktop",
+      value: function toggleSubNavDesktop() {
         var _this$whichSubNavLate6 = this.whichSubNavLatest(),
             link = _this$whichSubNavLate6.link;
 
         var isExpanded = link.getAttribute('aria-expanded') === 'true';
 
         if (isExpanded) {
-          this.closeSubnav();
+          this.closeSubNav();
         } else {
-          this.opensubnav();
+          this.openSubNav();
         }
       }
     }, {
@@ -504,7 +499,7 @@
         var focusWithin = linkParent.contains(e.target);
 
         if (!focusWithin) {
-          this.toggleSubnavDesktop();
+          this.toggleSubNavDesktop();
         }
       }
     }, {
@@ -537,7 +532,7 @@
     button.setAttribute('aria-expanded', 'false');
     button.setAttribute('aria-controls', uID);
     button.classList.add('nsw-accordion__button');
-    button.insertAdjacentHTML('beforeend', "\n  <i class=\"material-icons nsw-material-icons nsw-accordion__icon\" focusable=\"false\" aria-hidden=\"true\">keyboard_arrow_right</i>\n  ");
+    button.insertAdjacentHTML('beforeend', "\n  <i class=\"material-icons nsw-material-icons\" focusable=\"false\" aria-hidden=\"true\">keyboard_arrow_down</i>\n  ");
     fragment.appendChild(button);
     return fragment;
   }
@@ -585,7 +580,7 @@
       value: function setUpDom() {
         var _this2 = this;
 
-        this.accordion.classList.add('is-ready');
+        this.accordion.classList.add('ready');
 
         if (this.collapseAllBtn) {
           this.collapseAllBtn.disabled = true;
@@ -632,11 +627,11 @@
         var targetContent = this.getTargetContent(element);
 
         if (state === 'open') {
-          element.classList.add('is-open');
+          element.classList.add('active');
           element.setAttribute('aria-expanded', 'true');
           targetContent.hidden = false;
         } else if (state === 'close') {
-          element.classList.remove('is-open');
+          element.classList.remove('active');
           element.setAttribute('aria-expanded', 'false');
           targetContent.hidden = true;
         }
@@ -721,13 +716,7 @@
     _createClass(Filters, [{
       key: "init",
       value: function init() {
-        this.setUpDom();
         this.controls();
-      }
-    }, {
-      key: "setUpDom",
-      value: function setUpDom() {
-        this.filters.classList.add('is-ready');
       }
     }, {
       key: "controls",
@@ -772,38 +761,6 @@
     return Filters;
   }();
 
-  var ShareThis = /*#__PURE__*/function () {
-    function ShareThis() {
-      _classCallCheck(this, ShareThis);
-
-      this.sharelinks = document.querySelectorAll('.js-share-this');
-    }
-
-    _createClass(ShareThis, [{
-      key: "init",
-      value: function init() {
-        this.controls();
-      }
-    }, {
-      key: "controls",
-      value: function controls() {
-        var _this = this;
-
-        this.sharelinks.forEach(function (element) {
-          element.addEventListener('click', _this.popup, false);
-        });
-      }
-    }, {
-      key: "popup",
-      value: function popup(e) {
-        e.preventDefault();
-        popupWindow(this.href, 600, 600);
-      }
-    }]);
-
-    return ShareThis;
-  }();
-
   var Tabs = /*#__PURE__*/function () {
     function Tabs(element, showTab) {
       var _this = this;
@@ -811,8 +768,8 @@
       _classCallCheck(this, Tabs);
 
       this.tablistClass = '.nsw-tabs__list';
-      this.tablistItemClass = '.nsw-tabs__list-item';
-      this.tablistLinkClass = '.nsw-tabs__link';
+      this.tablistItemClass = 'li';
+      this.tablistLinkClass = 'a';
       this.tab = element;
       this.showTab = showTab;
       this.tabList = element.querySelector(this.tablistClass);
@@ -847,7 +804,6 @@
         tabListWrapper.classList.add('nsw-tabs__list-wrapper');
         this.tab.prepend(tabListWrapper);
         tabListWrapper.prepend(this.tabList);
-        this.tab.classList.add('is-ready');
         this.tabList.setAttribute('role', 'tablist');
         this.tabItems.forEach(function (item) {
           var itemElem = item;
@@ -886,13 +842,12 @@
     }, {
       key: "setInitalTab",
       value: function setInitalTab() {
-        var tabItems = this.tabItems,
-            tabLinks = this.tabLinks,
+        var tabLinks = this.tabLinks,
             tabPanel = this.tabPanel,
             showTab = this.showTab;
         var index = showTab === undefined ? 0 : showTab;
         var selectedLink = tabLinks[index];
-        tabItems[index].classList.add('is-selected');
+        selectedLink.classList.add('active');
         selectedLink.removeAttribute('tabindex');
         selectedLink.setAttribute('aria-selected', true);
         tabPanel[index].hidden = false;
@@ -913,12 +868,12 @@
           clickedTab.focus();
           clickedTab.removeAttribute('tabindex');
           clickedTab.setAttribute('aria-selected', true);
+          clickedTab.classList.add('active');
           this.selectedTab.setAttribute('aria-selected', false);
           this.selectedTab.setAttribute('tabindex', '-1');
+          this.selectedTab.classList.remove('active');
           var clickedTabIndex = this.tabLinks.indexOf(clickedTab);
           var selectedTabIndex = this.tabLinks.indexOf(this.selectedTab);
-          this.tabItems[clickedTabIndex].classList.add('is-selected');
-          this.tabItems[selectedTabIndex].classList.remove('is-selected');
           this.tabPanel[clickedTabIndex].hidden = false;
           this.tabPanel[selectedTabIndex].hidden = true;
           this.selectedTab = clickedTab;
@@ -983,21 +938,21 @@
     return Tabs;
   }();
 
-  var SitewideMessage = /*#__PURE__*/function () {
-    function SitewideMessage(element) {
+  var GlobalAlert = /*#__PURE__*/function () {
+    function GlobalAlert(element) {
       var _this = this;
 
-      _classCallCheck(this, SitewideMessage);
+      _classCallCheck(this, GlobalAlert);
 
       this.messageElement = element;
-      this.closeButton = element.querySelector('.nsw-sitewide-message__close');
+      this.closeButton = element.querySelector('.nsw-global-alert__close');
 
       this.closeMessageEvent = function (e) {
         return _this.closeMessage(e);
       };
     }
 
-    _createClass(SitewideMessage, [{
+    _createClass(GlobalAlert, [{
       key: "init",
       value: function init() {
         this.controls();
@@ -1014,7 +969,7 @@
       }
     }]);
 
-    return SitewideMessage;
+    return GlobalAlert;
   }();
 
   if (window.NodeList && !NodeList.prototype.forEach) {
@@ -1047,7 +1002,7 @@
     var accordions = document.querySelectorAll('.js-accordion');
     var filters = document.querySelectorAll('.js-filters');
     var tabs = document.querySelectorAll('.js-tabs');
-    var siteMessages = document.querySelectorAll('.js-sitewide-message');
+    var globalAlert = document.querySelectorAll('.js-global-alert');
     openSearchButton.forEach(function (element) {
       new SiteSearch(element).init();
     });
@@ -1072,20 +1027,17 @@
       });
     }
 
-    new ShareThis().init();
-
-    if (siteMessages) {
-      siteMessages.forEach(function (element) {
-        new SitewideMessage(element).init();
+    if (globalAlert) {
+      globalAlert.forEach(function (element) {
+        new GlobalAlert(element).init();
       });
     }
   }
 
   exports.Accordion = Accordion;
+  exports.GlobalAlert = GlobalAlert;
   exports.Navigation = Navigation;
-  exports.ShareThis = ShareThis;
   exports.SiteSearch = SiteSearch;
-  exports.SitewideMessage = SitewideMessage;
   exports.Tabs = Tabs;
   exports.initSite = initSite;
 
