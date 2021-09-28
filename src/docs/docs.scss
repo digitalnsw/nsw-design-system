@@ -31,6 +31,16 @@ $content-width: 768px;
     border-radius: var(--nsw-border-radius);
   }
 
+
+  // fix to offset height of fixed nav to trick anchor links' positioning
+
+  :target::before {
+    content: '';
+    display: block;
+    height: 115px;
+    margin: -115px 0 0;
+  }
+
   &--light {
     .nsw-docs__main {
       background-color: var(--nsw-white);
@@ -42,7 +52,7 @@ $content-width: 768px;
       height: rem(115px);
     }
 
-    &-wrapper {      
+    &-wrapper {
       @include breakpoint($nsw-desktop-breakpoint) {
         @include z-index('upper');
         position: fixed;
@@ -77,8 +87,8 @@ $content-width: 768px;
       max-width: rem(300px);
     }
 
-    &-wrapper {  
-      @include breakpoint($nsw-desktop-breakpoint) {    
+    &-wrapper {
+      @include breakpoint($nsw-desktop-breakpoint) {
         @include z-index('upper');
         position: fixed;
         top: rem(115px);
@@ -100,12 +110,12 @@ $content-width: 768px;
       }
     }
 
-    @include breakpoint($nsw-desktop-breakpoint) { 
+    @include breakpoint($nsw-desktop-breakpoint) {
       .nsw-main-nav {
         background-color: transparent;
 
         li {
-          border-top: 1px solid var(--nsw-grey-04);    
+          border-top: 1px solid var(--nsw-grey-04);
         }
 
         a {
@@ -127,18 +137,18 @@ $content-width: 768px;
           &.current {
             background-color: var(--nsw-off-white);
           }
-        } 
+        }
 
         &__list {
           max-width: none;
           margin: 0;
           flex-direction: column;
 
-          > li {            
+          > li {
             &:first-child {
               border-top: 0;
-            }  
-          }        
+            }
+          }
         }
 
         &__sub-nav {
@@ -222,7 +232,7 @@ $content-width: 768px;
         max-width: rem(336px);
       }
     }
-  } 
+  }
 
   &__container {
     max-width: rem($content-width + 32px);
@@ -390,7 +400,7 @@ $content-width: 768px;
     @include breakpoint($nsw-desktop-breakpoint) {
       margin-top: rem(48px);
     }
-  } 
+  }
 
   .nsw-card {
     .nsw-brand {
@@ -435,7 +445,7 @@ $content-width: 768px;
     > button {
       position: absolute;
       top: rem(16px);
-      right: rem(16px);      
+      right: rem(16px);
     }
   }
 
