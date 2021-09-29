@@ -37,8 +37,12 @@ $content-width: 768px;
   :target::before {
     content: '';
     display: block;
-    height: 115px;
-    margin: -115px 0 0;
+    height: 0;
+
+    @include breakpoint(lg) {
+      height: 115px;
+      margin: -115px 0 0;
+    }
   }
 
   &--light {
