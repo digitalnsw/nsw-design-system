@@ -7,9 +7,9 @@
     @error 'NSW-DS Breakpoint mixin allows the following breakpoint sizes xs, sm, md, lg';
   } @else {
     $px-size: map-get($nsw-breakpoints, $size);
-    $em-size: em($px-size);
+    $rem-size: rem($px-size);
 
-    @media ($width-type: $em-size) {
+    @media ($width-type: $rem-size) {
       @content;
     }
   }
