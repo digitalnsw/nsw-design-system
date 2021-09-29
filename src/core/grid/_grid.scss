@@ -8,7 +8,7 @@
 }
 
 .nsw-grid {
-  @include create-grid();
+  @include grid();
 
   &--spaced {
     margin-top: rem(-$grid-gutters);
@@ -56,11 +56,11 @@
 }
 
 .nsw-row {
-  @include create-row();
+  @include row();
 }
 
 .nsw-col {
-  @include create-column-default();
+  @include column-default();
 
   @for $i from 1 through 12 {
     &-#{$i} {

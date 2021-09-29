@@ -1,23 +1,23 @@
 $nsw-layout-gap: 32px;
 
 .nsw-layout {
-  @include create-grid();
+  @include grid();
 
   &__main {
-    @include create-column-default();
+    @include column-default();
 
     &:not(:first-child) {
-      @include create-column(8, $nsw-desktop-breakpoint);
+      @include column(8, $nsw-desktop-breakpoint);
     }
 
     &:not(:last-child) {
-      @include create-column(8, $nsw-desktop-breakpoint);
+      @include column(8, $nsw-desktop-breakpoint);
     }
   }
 
   &__sidebar {
-    @include create-column-default();
-    @include create-column(4, $nsw-desktop-breakpoint);
+    @include column-default();
+    @include column(4, $nsw-desktop-breakpoint);
 
     &:first-child {
       @include breakpoint('lg') {

@@ -1,0 +1,241 @@
+@mixin breakpoint( $size, $width-type: min-width) {
+  @if type-of( $size ) != 'string' {
+    @error 'NSW-DS Breakpoint mixin accepts only strings';
+  }
+
+  @if $size != 'xs' and $size != 'sm' and $size != 'md' and $size != 'lg' and $size != 'xl' {
+    @error 'NSW-DS Breakpoint mixin allows the following breakpoint sizes xs, sm, md, lg';
+  } @else {
+    $px-size: map-get($nsw-breakpoints, $size);
+    $em-size: em($px-size);
+
+    @media ($width-type: $em-size) {
+      @content;
+    }
+  }
+}
+
+// Default focus state
+@mixin nsw-focus($offset: true, $color: var(--nsw-focus)) {
+  @if type-of($offset) != bool {
+    @error 'NSW-DS nsw-focus mixin allows a boolean for $offset: You have used a type of "#{type-of($offset)}" and a value of "#{$offset}"';
+  }
+
+  outline: solid 3px $color;
+  outline-offset: 0;
+
+  @if $offset == true {
+    outline-offset: 3px;
+  }
+}
+
+// Default hover state
+@mixin nsw-hover {
+  background-color: var(--nsw-text-hover);
+}
+
+// A block to click around the link
+@mixin pseudo-clickable-block {
+  &::after {
+    @include z-index;
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+}
+
+// Z-index
+@mixin z-index($index: 'base') {
+
+  @if map-has-key($nsw-z-index, $index) == false {
+    @error 'NSW-DS z-index mixin allows the following values for $index: #{map-keys($nsw-z-index)}. You have used "#{$index}"';
+  }
+  @else {
+    z-index: map-get($nsw-z-index, $index);
+  }
+}
+
+//Screen reader text
+/* stylelint-disable declaration-no-important  */
+@mixin sr-only {
+  border: 0 !important;
+  clip: rect(1px, 1px, 1px, 1px) !important;
+  clip-path: inset(50%) !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: absolute !important;
+  width: 1px !important;
+  white-space: nowrap !important;
+}
+
+@mixin sr-only-focus {
+  clip: auto !important;
+  clip-path: none !important;
+  height: auto !important;
+  overflow: visible !important;
+  width: auto !important;
+  white-space: normal !important;
+}
+/* stylelint-enable declaration-no-important  */
+
+//Component spacing
+@mixin component-spacing() {
+  margin-top: rem(24px);
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  @include breakpoint('md') {
+    margin-top: rem(32px);
+  }
+}
+
+//Links
+@mixin link() {
+  font-weight: var(--nsw-font-bold);
+  color: var(--nsw-brand-dark);
+  text-decoration: underline;
+
+  &:hover {
+    @include nsw-hover;
+    outline: 2px solid var(--nsw-text-hover);
+  }
+
+  &:focus {
+    @include nsw-focus($offset: false);
+  }
+
+  &:visited {
+    color: var(--nsw-text-visited);
+  }
+}
+
+@mixin link-dark() {
+  color: var(--nsw-brand-dark);
+
+  &:hover {
+    background-color: var(--nsw-text-hover);
+    outline-color: var(--nsw-text-hover);
+  }
+
+  &:focus {
+    outline-color: var(--nsw-focus);
+  }
+
+  &:visited {
+    color: var(--nsw-text-visited);
+  }
+}
+
+@mixin link-light() {
+  color: var(--nsw-text-light);
+
+  &:hover {
+    background-color: var(--nsw-text-hover-light);
+    outline-color: var(--nsw-text-hover-light);
+  }
+
+  &:focus {
+    outline-color: var(--nsw-white);
+  }
+
+  &:visited {
+    color: var(--nsw-text-light);
+  }
+}
+
+@mixin link-button() {
+  @include link();
+  @include font-size('sm');
+  display: inline-block;
+  cursor: pointer;
+  background-color: transparent;
+  border: 0;
+  padding: 0;
+  -webkit-appearance: none; /* stylelint-disable-line property-no-vendor-prefix */
+}
+
+// Font-size mixin - returns the font size for mobile and desktop based of the values in $font-sizes map
+@mixin font-size($size) {
+  @if $size != 'xxs' and $size != 'xs' and $size != 'sm' and $size != 'md' and $size != 'lg' and $size != 'xl' and $size != 'xxl' {
+    @error 'NSW-DS font-size mixin allows the following values for $sizes: xs, sm, md, lg, xl, xxl, xxxl. You have used "#{$size}"';
+  }
+
+  @if $size {
+    font-size: var(--nsw-font-size-#{$size}-mobile);
+    line-height: var(--nsw-line-height-#{$size}-mobile);
+
+    @include breakpoint($nsw-font-size-reponsive-breakpoint) {
+      font-size: var(--nsw-font-size-#{$size}-desktop);
+      line-height: var(--nsw-line-height-#{$size}-desktop);
+    }
+  }
+}
+
+// Material icons mixin - to add icons to pseudo elements
+@mixin material-icons() {
+  font-family: 'Material Icons';
+  -webkit-font-feature-settings: 'liga'; /* stylelint-disable-line property-no-vendor-prefix */
+}
+
+//Grid
+@mixin container($offset: $grid-gutters*2) {
+  max-width: var(--nsw-container-width);
+  padding-left: rem($offset);
+  padding-right: rem($offset);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@mixin grid() {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: rem(-$grid-gutters);
+  margin-right: rem(-$grid-gutters);
+
+  @include breakpoint('md') {
+    margin-left: rem(-$grid-gutters*2);
+    margin-right: rem(-$grid-gutters*2);
+  }
+}
+
+@mixin row() {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@mixin column-default() {
+  width: 100%;
+  padding: rem($grid-gutters);
+
+  @include breakpoint('md') {
+    padding: rem($grid-gutters*2);
+  }
+}
+
+@mixin column($size, $breakpoint: null, $offset: null) {
+  @if ($breakpoint) {
+    @include breakpoint($breakpoint) {
+      width: percentage($size / 12);
+      max-width: percentage($size / 12);
+
+      @if ($offset) {
+        margin-left: percentage($offset / 12);
+      }
+    }
+
+  } @else {
+    width: percentage($size / 12);
+    max-width: percentage($size / 12);
+
+    @if ($offset) {
+      margin-left: percentage($offset / 12);
+    }
+  }
+}
