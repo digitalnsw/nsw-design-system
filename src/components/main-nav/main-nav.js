@@ -226,7 +226,8 @@ class Navigation {
   checkIfContainsFocus(e) {
     const { linkParent } = this.whichSubNavLatest()
     const focusWithin = linkParent.contains(e.target)
-    if (!focusWithin) {
+    const isButton = e.target.getAttribute('role')
+    if (!focusWithin && isButton) {
       this.toggleSubNavDesktop()
     }
   }
