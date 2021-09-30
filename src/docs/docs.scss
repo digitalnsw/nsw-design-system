@@ -35,10 +35,13 @@ $content-width: 768px;
   // fix to offset height of fixed nav to trick anchor links' positioning
 
   :target::before {
-    content: '';
-    display: block;
-    height: 115px;
-    margin: -115px 0 0;
+
+    @include breakpoint($nsw-desktop-breakpoint) {
+      content: '';
+      display: block;
+      height: 115px;
+      margin: -115px 0 0;
+    }
   }
 
   &--light {

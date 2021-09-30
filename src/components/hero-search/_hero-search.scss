@@ -1,6 +1,6 @@
 .hero-search {
   @include breakpoint('md') {
-    padding: rem(32px) 0;
+    padding: rem(32px) rem(16px);
   }
 
   &__form {
@@ -15,12 +15,12 @@
 
   &__wrapper {
     padding: rem(32px) rem(16px);
-    border-top-left-radius: var(--nsw-border-radius);
-    border-top-right-radius: var(--nsw-border-radius);
     background-color: var(--nsw-off-white);
     border-bottom: solid 6px var(--nsw-brand-accent);
 
     @include breakpoint('md') {
+      border-top-left-radius: var(--nsw-border-radius);
+      border-top-right-radius: var(--nsw-border-radius);
       padding: rem(32px) rem(80px);
     }
   }
@@ -43,5 +43,9 @@
       margin: rem(8px) rem(16px) 0 rem(16px);
       display: inline-block;
     }
+  }
+
+  .nsw-container {
+    padding: 0;
   }
 }
