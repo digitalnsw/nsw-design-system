@@ -497,8 +497,9 @@
             linkParent = _this$whichSubNavLate7.linkParent;
 
         var focusWithin = linkParent.contains(e.target);
+        var isButton = e.target.getAttribute('role');
 
-        if (!focusWithin) {
+        if (!focusWithin && isButton) {
           this.toggleSubNavDesktop();
         }
       }
