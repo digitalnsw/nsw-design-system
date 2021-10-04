@@ -72,9 +72,74 @@ $content-width: 768px;
       }
     }
 
+    .nsw-header__input {
+      padding: 0 1rem 0 3rem;
+      background: var(--nsw-off-white) url('/assets/images/search_black.svg') 0.7rem 1.2rem no-repeat;
+      background-size: 2rem;
+
+      @include breakpoint($nsw-desktop-breakpoint) {
+        background-size: 1.75rem;
+        background-position: 0.7rem 0.7rem;
+      }
+    }
+
     .nsw-container,
     .nsw-header__container {
       margin: 0;
+      max-width: unset;
+    }
+
+    .aa-dropdown-menu {
+      @include z-index;
+      position: relative;
+      border-radius: var(--nsw-border-radius);
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      background-color: var(--nsw-white);
+      box-shadow: 0 4px 12px 0 rgba(var(--nsw-black-rgb), 0.15);
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      position: absolute;
+      width: 100%;
+      top: rem(48px);
+      right: 0;
+      left: 0;
+      overflow: hidden;
+
+      &--large {
+        top: rem(58px);
+      }
+
+      li {
+        padding: 0;
+        margin: 0;
+      }
+
+      a {
+        display: block;
+        padding: rem(10px);
+        color: var(--nsw-text-dark);
+        font-weight: var(--nsw-font-normal);
+
+        &:hover {
+          outline-width: 0;
+        }
+
+        &:focus {
+          outline-width: 3px;
+          outline-offset: -3px;
+        }
+
+        strong {
+          font-weight: var(--nsw-font-bold);
+        }
+      }
+    }
+
+    .algolia-autocomplete {
+      /* stylelint-disable declaration-no-important  */
+      display: block !important;
     }
   }
 
@@ -470,7 +535,7 @@ $content-width: 768px;
 }
 
 .nsw-docs-tabs {
-  >.nsw-tabs__list-wrapper {
+  > .nsw-tabs__list-wrapper {
     background-color: transparent;
     padding: 0 rem(16px);
 
@@ -479,7 +544,7 @@ $content-width: 768px;
     }
   }
 
-  >.nsw-tabs__content {
+  > .nsw-tabs__content {
     padding: 0;
     border-bottom: 0;
     border-color: var(--nsw-white);

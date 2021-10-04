@@ -20,6 +20,7 @@ const ignore = require('metalsmith-ignore')
 const discoverPartials = require('metalsmith-discover-partials')
 const dataLoader = require('metalsmith-data-loader')
 const dynamicCollections = require('metalsmith-dynamic-collections')
+const simpleSearch = require('metalsmith-simple-search')
 // const debug = require('metalsmith-debug-ui')
 const discoverHelpers = require('metalsmith-discover-helpers')
 const rollup = require('gulp-better-rollup')
@@ -195,6 +196,21 @@ function metalsmithBuild(callback) {
     }
     callback()
   })
+  metalsmith.use(simpleSearch({
+    destinationJson: 'search.json',
+    index: {
+      title: true,
+      keywords: true,
+      intro: 'intro',
+    },
+    match: ['**/index.{htm,html}', 'docs/content/**/**.{htm,html}'],
+    matchOptions: {},
+    skipSearchJs: true,
+    transformUrl(filename) {
+      return `/${filename}`
+    },
+
+  }))
 }
 
 function compileJS() {

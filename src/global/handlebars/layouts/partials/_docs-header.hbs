@@ -1,6 +1,6 @@
 <div class="nsw-masthead">
   <div class="nsw-container">A NSW Government website</div>
-</div>  
+</div>
 <header class="nsw-header nsw-header--simple">
   <div class="nsw-header__container">
     <div class="nsw-header__inner">
@@ -27,6 +27,22 @@
           </button>
         </div>
       </div>
+      <div class="nsw-header__search">
+        <button type="button" class="js-open-search" aria-expanded="false" aria-controls="header-search">
+          <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">search</i>
+          <span><span class="sr-only">Show</span> Search</span>
+        </button>
+      </div>
+    </div>
+    <div novalidate="novalidate" class="nsw-header__search-area js-search-area searchbox" id="header-search" role="search" hidden>
+      <form role="search" onsubmit="return false;">
+        <label for="nsw-docs-header-input" class="sr-only">Search site for:</label>
+        <input id="nsw-docs-header-input" class="nsw-header__input js-search-input searchbox__input" type="text" autocomplete="off" placeholder="Search the docs" name="input-autocomplete">
+      </form>
+      <button class="nsw-icon-button js-close-search" aria-expanded="true" aria-controls="header-search">
+        <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">close</i>
+        <span class="sr-only">Close search</span>
+      </button>
     </div>
   </div>
 </header>
