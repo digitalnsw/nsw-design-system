@@ -29,6 +29,8 @@
   &__menu,
   &__search {
     button {      
+      @include font-size('xxs');
+      font-weight: var(--nsw-font-bold);
       border-radius: var(--nsw-border-radius);
       color: var(--nsw-brand-dark);
       width: rem(48px);
@@ -53,11 +55,6 @@
 
       .nsw-material-icons {
         font-size: rem(map-get($nsw-icon-sizes, 24));
-      }
-
-      > span {
-        @include font-size('xxs');
-        font-weight: var(--nsw-font-bold);
       }
     }
 
@@ -88,7 +85,7 @@
 
     button {      
       @include breakpoint($nsw-desktop-breakpoint) {
-        > span {
+        > span:last-child {
           @include sr-only;
         }
 
