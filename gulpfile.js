@@ -23,6 +23,7 @@ const dynamicCollections = require('metalsmith-dynamic-collections')
 // const debug = require('metalsmith-debug-ui')
 const discoverHelpers = require('metalsmith-discover-helpers')
 const rollup = require('gulp-better-rollup')
+const sitemap = require('gulp-sitemap')
 const babel = require('rollup-plugin-babel')
 const eslint = require('gulp-eslint')
 const gulpStylelint = require('gulp-stylelint')
@@ -74,6 +75,12 @@ function lintStyles() {
         { formatter: 'string', console: true },
       ],
     }))
+}
+
+function generateSitemap() {
+  return src(['./dist/**/*.html', '!**/blank.html'], { read: false })
+    .pipe(sitemap({ siteUrl: config.baseUrl.full }))
+    .pipe(dest(config.dir.build))
 }
 
 function browserSync(done) {
@@ -285,6 +292,7 @@ const buildprod = series(
   moveImages,
   renamePathForProd,
   zipDistFolder,
+  generateSitemap,
 )
 
 const build = series(
