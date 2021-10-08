@@ -1,11 +1,51 @@
 ---
-title: Migration
+title: Brand guide
 width: narrow
+intro: There's a NSW Government brand, here's what that means for you.
 no-blank: true
 order: 3
 ---
+<p class="nsw-intro">If you are not using the NSW Design System code or locked to a specific version, below are the minimum requirements to stay aligned with the new brand:</p>
+<h3>1. Update the header component</h3>
+<p>Use the new <a href="/components/header/index.html">header</a> component according to your brand level. There are 2 header components – masterbrand and co-brand.</p>
 
-<p class="nsw-intro">The NSW Design System is rebranding and changing its typeface from <br><a href="https://fonts.google.com/specimen/Montserrat">Montserrat</a> to <a href="https://fonts.google.com/specimen/Public+Sans">Public Sans</a>.</p>
+<h3>2. Replace hex colours</h3>
+<p>A few of the colour swatches have been updated for the new branding. The code snippets below demonstrate the list SASS variables the were updated</p>
+<div class="nsw-grid">
+  <div class="nsw-col nsw-col-sm-6">
+    <p>Old</p>
+{{#>_docs-example hidden="true" open="true" code="language-scss"}}
+// Shades
+$black: #000000 !default;
+$dark80: #333333 !default;
+$dark70: #4c4f55 !default;
+$dark60: #6d7079 !default;
+
+$light40: #a0a5ae !default;
+$light20: #e4e4e6 !default;
+$light10: #f4f4f7 !default;
+$white: #ffffff !default;
+{{/_docs-example}}
+  </div>
+  <div class="nsw-col nsw-col-sm-6">
+    <p>New</p>
+{{#>_docs-example hidden="true" open="true" code="language-scss"}}
+// Shades
+$black: #000000 !default;
+$dark80: #22272B !default;
+$dark70: #495054 !default;
+$dark60: #495054 !default;
+
+$light40: #C0C6C9 !default;
+$light20: #EBEBEB !default;
+$light10: #F2F2F2 !default;
+$white: #FFFFFF !default;
+{{/_docs-example}}
+  </div>
+</div>
+
+<h3>3. Update to Public Sans</h3>
+<p>The NSW Design System is rebranding and changing its typeface from <br><a href="https://fonts.google.com/specimen/Montserrat">Montserrat</a> to <a href="https://fonts.google.com/specimen/Public+Sans">Public Sans</a>.</p>
 <p>Make sure to upgrade to 2.14.X or later</p>
 {{#>_docs-example hidden="true" open="true" code="language-bash"}}
   npm install nsw-design-system@2.14.X
