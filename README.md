@@ -13,11 +13,13 @@ See live examples of NSW Digital Design system components and guidance on how to
 How you use the NSW Design System depends on your team's capabilities. We recommend using `npm` but also provided in a CDN, and a downloadable starter kit which includes all the compiled assets.
 
  1. [Installing with NPM](#installing-with-npm)
- 2. [Using JSDelivr CDN](#using-jsdelivr-cdn)
- 3. [Download starter kit](#download-starter-kit)
+ 2. [Import styles](#importing-all-styles)
+ 3. [Adding the font and icons](#adding-the-font-and-the-icons)
+ 4. [Importing javascript into your project](#importing-javascript-into-your-project)
+ 5. [Using JSDelivr CDN](#using-jsdelivr-cdn)
+ 6. [Download starter kit](#download-starter-kit)
  
 ### Installing with NPM
-`npm` is a package manager for Node-based projects. We recommend `npm` packages because it makes it easy to update and install the design system from the command line.
 1.  Install  `Node/npm`. 
     
     -   More information can be found via the nodejs [Installation guides](https://nodejs.org/en/download/)
@@ -30,12 +32,40 @@ How you use the NSW Design System depends on your team's capabilities. We recomm
 The NSW Design System is now installed as a dependancy of your project, check out how to [import styles](#importing-styles-into-your-project) and [javascript](#importing-javascript-into-your-project) in to your project build.
 
 
-### Importing styles into your project
+### Option 1: Import all styles
 The NSW Design System styles need to be added to the main Sass file in your project.  
 Use the below snippet to import the NSW Design System (ideally placed before any other imports or sass):
 ```
 @import 'node_modules/nsw-design-system/src/main';
 ```
+
+### Option 2: Import core and certain components
+The core library includes the design system's base theme, typography, mixins and helper functions. You can import this and take advantage of our variables and helpers.
+
+In your own main Sass file, you can import NSW Design System’s core library.
+
+```
+// Core libraries
+@import 'node_modules/nsw-design-system/src/global/scss/settings/settings';
+@import 'node_modules/nsw-design-system/src/global/scss/tools/all';
+@import 'node_modules/nsw-design-system/src/global/scss/helpers/all';
+@import 'node_modules/nsw-design-system/src/global/scss/style/all';
+@import 'node_modules/nsw-design-system/src/styles/section/section';
+@import 'node_modules/nsw-design-system/src/styles/spacing/spacing';
+@import 'node_modules/nsw-design-system/src/styles/typography/typography';
+
+```
+
+You can choose to import components as you need it. In the same file, import the Sass files of each component
+
+```
+// Components
+@import 'node_modules/nsw-design-system/src/components/accordion/accordion';
+@import 'node_modules/nsw-design-system/src/components/card/card';
+@import 'node_modules/nsw-design-system/src/components/notification/notification';
+```
+
+With this setup you can also start theming with a few sets of variable changes.
 
 #### Adding the font and the icons
 In your main html document add this line of code inside the `<head>` tag. Make sure that it's placed before the NSW Design System styles import.
@@ -43,9 +73,13 @@ In your main html document add this line of code inside the `<head>` tag. Make s
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 ```
-
+Another way is to import it in css:
+```
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+```
 ### Importing javascript into your project
-Some of the NSW Design System components require javascript to provide advanced functionality. To ensure the page is ready for javascript to run, include the follow scripts tags at the end of the html document.
+Some NSW Design System components require javascript to provide advanced functionality. To ensure the page is ready for javascript to run, include the follow scripts tags at the end of the html document.
 ```
     <script src="path/to/main.js"></script>
     <script>window.NSW.initSite()</script>

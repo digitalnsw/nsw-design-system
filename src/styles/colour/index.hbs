@@ -1,90 +1,521 @@
 ---
 title: Colour
 order: 1
-width: narrow
-tabs: true
 directory: colour
 no-blank: true
 code: css
+model: json/palettes.json
+intro: Colour plays an important role in creating a consistent and strong visual identify for NSW Government digital products and services.
 ---
 
-{{#>_docs-example hidden="true" open="true"}}
-:root {
-  /* Colours */
-  --nsw-brand-dark: var(--nsw-palette-blue-01);
-  --nsw-brand-light: var(--nsw-palette-blue-04);
-  --nsw-brand-accent: var(--nsw-palette-red-02);
-  --nsw-brand-supplementary: var(--nsw-palette-blue-02);
+<nav class="nsw-page-nav" aria-labelledby="in-page-nav">
+  <h2 class="nsw-page-nav__title">On this page</h2>
+  <ul class="nsw-page-nav__list">
+    <li class="nsw-page-nav__list-item">
+      <a href="#ds-colour" class="nsw-page-nav__link">Design System default colour theme</a>
+    </li>
+    <li class="nsw-page-nav__list-item">
+      <a href="#gov-colour" class="nsw-page-nav__link">NSW Government colour palette</a>
+    </li>
+  </ul>
+</nav>
 
-  --nsw-text-dark: var(--nsw-palette-grey-01);
-  --nsw-text-light: var(--nsw-palette-white);
-  --nsw-focus: var(--nsw-palette-focus);
-  --nsw-text-hover: var(--nsw-palette-hover);
-  --nsw-text-visited: var(--nsw-palette-visited);
+<h2 id="ds-colour">Design System default colour theme</h2>
+<p>The design system contains a colour scheme using NSW Government brand colours, which may be changed if your product is <a href="https://www.nsw.gov.au/branding/brand-framework/what-brand-framework#brand-exemption-categories" target="_blank">brand exempt</a>.</p>
+<p>The default colours reflect <strong>Corporate</strong> colour usage. It uses Blues, Reds and Greys from the NSW Government wider colour palette to communicate a strong association with NSW Government.</p>
+<p>Instead of using specific hex colours, using the colour system means your styles and components will automatically re-theme if you change your core brand colours. Guidance on further theming options are available for <a href="/docs/content/design/theming.html">Designing</a> and <a href="/docs/content/develop/theming.html">Developing</a>.
+</p>
+<h3>Brand colours</h3>
+<p>Components and core styles inherit these colours to create a consistent yet flexible theme to optimise your user's experience.</p>
+<div class="nsw-notification nsw-notification--info">
+  <span class="material-icons nsw-material-icons nsw-notification__icon" focusable="false" aria-hidden="true">info</span>
+  <div class="nsw-notification__content">
+    <h4 class="nsw-notification__title">You don't need to use hex colours in code</h4>
+    <p>Use either CSS variables (below) or, if you're creating a one-off layout, you can use our helper classes for dark, light, and supplementary colours.</p>
+    <p>By using CSS variables, any branding or theming changes will automatically reflect in your product. See CSS variables below, or see the <a href="/docs/content/develop/helpers.html">Utility classes</a> docs.</p>
+  </div>
+</div>
+<div class="nsw-table-responsive nsw-section nsw-section--white nsw-p-x-sm nsw-m-top-sm nsw-p-top-sm">
+  <table class="nsw-table nsw-table--valign-middle">
+    <thead>
+      <tr>
+        <th style="width: 10%">Swatch</th>
+        <th>Colour</th>
+        <th>Hex Value (Default)</th>
+        <th>CSS variable</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <div class="nsw-docs__swatch" style="background-color: var(--nsw-brand-dark)"></div>
+        </td>
+        <td>
+          <p>Brand Dark</p>
+        </td>
+        <td>
+          <p>Blue 01 (<code>#002664</code>)</p>
+        </td>
+        <td>
+          <p><code>--nsw-brand-dark</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="nsw-docs__swatch" style="background-color: var(--nsw-brand-light)"></div>
+        </td>
+        <td>
+          <p>Brand Light</p>
+        </td>
+        <td>
+          <p>Blue 04 (<code>#CBEDFD</code>)</p>
+        </td>
+        <td>
+          <p><code>--nsw-brand-light</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="nsw-docs__swatch" style="background-color: var(--nsw-brand-supplementary)"></div>
+        </td>
+        <td>
+          <p>Brand Supplementary</p>
+        </td>
+        <td>
+          <p>Blue 02 (<code>#C3EBFD</code>)</p>
+        </td>
+        <td>
+          <p><code>--nsw-brand-supplementary</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="nsw-docs__swatch" style="background-color: var(--nsw-brand-accent)"></div>
+        </td>
+        <td>
+          <p>Brand Accent</p>
+        </td>
+        <td>
+          <p>Red 02 (<code>#D7153A</code>)</p>
+        </td>
+        <td>
+          <p><code>--nsw-brand-accent</code></p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
-  --nsw-black: var(--nsw-palette-black);
-  --nsw-white: var(--nsw-palette-white);
-  --nsw-off-white: var(--nsw-palette-off-white);
-  --nsw-grey-01: var(--nsw-palette-grey-01);
-  --nsw-grey-02: var(--nsw-palette-grey-02);
-  --nsw-grey-03: var(--nsw-palette-grey-03);
-  --nsw-grey-04: var(--nsw-palette-grey-04);
+<h3>Grey colours</h3>
+<p>Used for backgrounds, borders and divider lines to build contrast within content and components to build a structured interface.</p>
 
-  --nsw-status-info: var(--nsw-palette-info-blue);
-  --nsw-status-info-bg: var(--nsw-palette-info-blue-bg);
-  --nsw-status-success: var(--nsw-palette-success-green);
-  --nsw-status-success-bg: var(--nsw-palette-success-green-bg);
-  --nsw-status-warning: var(--nsw-palette-warning-orange);
-  --nsw-status-warning-bg: var(--nsw-palette-warning-orange-bg);
-  --nsw-status-error: var(--nsw-palette-error-red);
-  --nsw-status-error-bg: var(--nsw-palette-error-red-bg);
+<div class="nsw-table-responsive nsw-section nsw-section--white nsw-p-x-sm nsw-m-top-sm nsw-p-top-sm">
+  <table class="nsw-table nsw-table--valign-middle">
+    <tbody>
+    <tr>
+      <th style="width: 10%">
+        <div>
+          <p>Swatch</p>
+        </div>
+      </th>
+      <th>
+        <div>
+          <p>Colour</p>
+        </div>
+      </th>
+      <th>
+        <div>
+          <p>Hex value</p>
+        </div>
+      </th>
+      <th>
+        <div>
+          <p>CSS variable</p>
+        </div>
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <div class="nsw-docs__swatch"
+             style="background-color: var(--nsw-palette-black)"></div>
+      </td>
+      <td>
+        <p>Black</p>
+      </td>
+      <td>
+        <p><code>#000000</code></p>
+      </td>
+      <td>
+        <p><code>--nsw-palette-black</code></p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="nsw-docs__swatch"
+             style="border: 1px solid var(--nsw-text-dark); background-color: var(--nsw-palette-white)"></div>
+      </td>
+      <td>
+        <p>White</p>
+      </td>
+      <td>
+        <p><code>#FFFFFF</code></p>
+      </td>
+      <td>
+        <p><code>--nsw-palette-white</code></p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="nsw-docs__swatch"
+             style="background-color: var(--nsw-palette-off-white)"></div>
+      </td>
+      <td>
+        <p>Off white</p>
+      </td>
+      <td>
+        <p><code>#F2F2F2</code></p>
+      </td>
+      <td>
+        <p><code>--nsw-palette-off-white</code></p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="nsw-docs__swatch"
+             style="background-color: var(--nsw-palette-grey-01)"></div>
+      </td>
+      <td>
+        <p>Grey 01</p>
+      </td>
+      <td>
+        <p><code>#22272B</code></p>
+      </td>
+      <td>
+        <p><code>--nsw-palette-grey-01</code></p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="nsw-docs__swatch"
+             style="background-color: var(--nsw-palette-grey-02)"></div>
+      </td>
+      <td>
+        <p>Grey 02</p>
+      </td>
+      <td><code>#495054</code></td>
+      <td><code>--nsw-palette-grey-02</code></td>
+    </tr>
+    <tr>
+      <td>
+        <div class="nsw-docs__swatch"
+             style="background-color: var(--nsw-palette-grey-03)"></div>
+      </td>
+      <td>Grey 03</td>
+      <td><code>#C0C6C9</code></td>
+      <td><code>--nsw-palette-grey-03</code></td>
+    </tr>
+    <tr>
+      <td>
+        <div class="nsw-docs__swatch"
+             style="background-color: var(--nsw-palette-grey-04)"></div>
+      </td>
+      <td>Grey 04</td>
+      <td><code>#EBEBEB</code></td>
+      <td><code>--nsw-palette-grey-04</code></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
 
-  --nsw-black-rgb: 0, 0, 0;
-  --nsw-white-rgb: 255, 255, 255;
+<h3>Text colours</h3>
+<p>This set of text colours have a ratio of at least 4.5:1 (or 3:1 for text larger than 18 point) to met Web Content Accessibility Guidelines (WCAG 2.1). </p>
 
-  /* Font */
-  --nsw-font-family: 'Public Sans', sans-serif;
-  --nsw-font-size: 16px;
-  --nsw-line-height: 1.5;
-  --nsw-font-normal: 400;
-  --nsw-font-bold: 700;
+<div class="nsw-table-responsive nsw-section nsw-section--white nsw-p-x-sm nsw-m-top-sm nsw-p-top-sm">
+  <table class="nsw-table nsw-table--valign-middle">
+    <tbody>
+    <tr>
+      <th style="width: 10%">
+        <div>
+          <p>Swatch</p>
+        </div>
+      </th>
+      <th style="width: 30%">
+        <div>
+          <p>Colour</p>
+        </div>
+      </th>
+      <th style="width: 30">
+        <div>
+          <p>Hex value</p>
+        </div>
+      </th>
+      <th>
+        <div>
+          <p>CSS variable</p>
+        </div>
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <div class="nsw-docs__swatch"
+             style="background-color: var(--nsw-text-dark)"></div>
+      </td>
+      <td>
+        <p>Text dark<br><span style="font-size:var(--nsw-font-size-xxs-desktop)">For use on light backgrounds</span></p>
+      </td>
+      <td>
+        <p><code>#22272B</code></p>
+      </td>
+      <td>
+        <p><code>--nsw-text-dark</code></p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="nsw-docs__swatch"
+             style="border: 1px solid var(--nsw-text-dark); background-color: var(--nsw-text-light)"></div>
+      </td>
+      <td>
+        <p>Text light<br><span style="font-size:var(--nsw-font-size-xxs-desktop)">For use on dark backgrounds</span>
+      </td>
+      <td>
+        <p><code>#FFFFFF</code></p>
+      </td>
+      <td>
+        <p><code>--nsw-text-light</code></p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="nsw-docs__swatch"
+             style="background-color: var(--nsw-focus)"></div>
+      </td>
+      <td>
+        <p>Text focus</p>
+      </td>
+      <td>
+        <p><code>#0085b3</code></p>
+      </td>
+      <td>
+        <p><code>--nsw-focus</code></p>
+      </td>
+    </tr>
+    <tr></tr>
+    <tr>
+      <td>
+        <div class="nsw-docs__swatch"
+             style="background-color: var(--nsw-text-hover)"></div>
+      </td>
+      <td>
+        <p>Text hover background</p>
+      </td>
+      <td>
+        <p><code>rgb(0, 133, 179, 0.2)</code></p>
+      </td>
+      <td>
+        <p><code>--nsw-text-hover-bg</code></p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="nsw-docs__swatch"
+             style="background-color: var(--nsw-text-visited)"></div>
+      </td>
+      <td>
+        <p>Text visited</p>
+      </td>
+      <td>
+        <p><code>#551A8B</code></p>
+      </td>
+      <td><code>--nsw-text-visited</code></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<h3>Status colours</h3>
+<p>Used for providing contextual or transactional feedback to the user. Refer to individual component guidance on when each colour should be used.</p>
 
-  --nsw-font-size-xxs-mobile: 0.75rem;
-  --nsw-font-size-xxs-desktop: 0.75rem;
-  --nsw-line-height-xxs-mobile: 1.5;
-  --nsw-line-height-xxs-desktop: 1.5;
+<div class="nsw-table-responsive nsw-section nsw-section--white nsw-p-x-sm nsw-m-top-sm nsw-p-top-sm">
+  <table class="nsw-table nsw-table--valign-middle">
+    <tbody>
+    <tr>
+      <th style="width: 10%">
+        <div>
+          <p>Swatch</p>
+        </div>
+      </th>
+      <th style="width: 25%">
+        <div>
+          <p>Colour</p>
+        </div>
+      </th>
+      <th style="width: 15%">
+        <div>
+          <p>Hex value</p>
+        </div>
+      </th>
+      <th>
+        <div>
+          <p>CSS variable</p>
+        </div>
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <div class="nsw-docs__swatch"
+             style="background-color: var(--nsw-status-info)"></div>
+      </td>
+      <td>
+        <p>Info Blue</p>
+      </td>
+      <td>
+        <p><code>#2E5299</code></p>
+      </td>
+      <td>
+        <p><code>--nsw-status-info-blue</code></p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="nsw-docs__swatch"
+             style="background-color: var(--nsw-status-info-bg)"></div>
+      </td>
+      <td>
+        <p>Info Blue Bg</p>
+      </td>
+      <td>
+        <p><code>#EAEDF4</code></p>
+      </td>
+      <td>
+        <p><code>--nsw-status-info-blue-bg</code></p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="nsw-docs__swatch"
+             style="background-color: var(--nsw-status-success)"></div>
+      </td>
+      <td>
+        <p>Success Green</p>
+      </td>
+      <td>
+        <p><code>#00A908</code></p>
+      </td>
+      <td>
+        <p><code>--nsw-status-success-green</code></p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="nsw-docs__swatch"
+             style="background-color: var(--nsw-status-success-bg)"></div>
+      </td>
+      <td>Success Green Bg</td>
+      <td>
+        <p><code>#E5F6E6</code></p>
+      </td>
+      <td>
+        <p><code>--nsw-status-success-green-bg</code></p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="nsw-docs__swatch"
+             style="background-color: var(--nsw-status-warning)"></div>
+      </td>
+      <td>
+        <p>Warning Orange</p>
+      </td>
+      <td>
+        <p><code>#DC5800</code></p>
+      </td>
+      <td><code>--nsw-status-warning-orange</code></td>
+    </tr>
+    <tr>
+      <td>
+        <div class="nsw-docs__swatch"
+             style="background-color: var(--nsw-status-warning-bg)"></div>
+      </td>
+      <td>
+        <p>Warning Orange Bg</p>
+      </td>
+      <td>
+        <p><code>#FBEEE5</code></p>
+      </td>
+      <td><code>--nsw-status-warning-orange-bg</code>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>
+        <div class="nsw-docs__swatch"
+             style="background-color: var(--nsw-status-error)"></div>
+      </td>
+      <td>
+        <p>Error Red</p>
+      </td>
+      <td><code>#B81237</code></td>
+      <td><code>--nsw-status-error-red</code></td>
+    </tr>
+    <tr>
+      <td>
+        <div class="nsw-docs__swatch"
+             style="background-color: var(--nsw-status-error-bg)"></div>
+      </td>
+      <td>
+        <p>Error Red Bg</p>
+      </td>
+      <td><code>#E81745</code></td>
+      <td><code>--nsw-status-error-red-bg</code></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<br>
 
-  --nsw-font-size-xs-mobile: 0.875rem;
-  --nsw-font-size-xs-desktop: 0.875rem;
-  --nsw-line-height-xs-mobile: 1.35;
-  --nsw-line-height-xs-desktop: 1.35;
-
-  --nsw-font-size-sm-mobile: 1rem;
-  --nsw-font-size-sm-desktop: 1rem;
-  --nsw-line-height-sm-mobile: 1.5;
-  --nsw-line-height-sm-desktop: 1.5;
-
-  --nsw-font-size-md-mobile: 1.125rem;
-  --nsw-font-size-md-desktop: 1.25rem;
-  --nsw-line-height-md-mobile: 1.33;
-  --nsw-line-height-md-desktop: 1.4;
-
-  --nsw-font-size-lg-mobile: 1.375rem;
-  --nsw-font-size-lg-desktop: 1.5rem;
-  --nsw-line-height-lg-mobile: 1.25;
-  --nsw-line-height-lg-desktop: 1.33;
-
-  --nsw-font-size-xl-mobile: 1.75rem;
-  --nsw-font-size-xl-desktop: 2rem;
-  --nsw-line-height-xl-mobile: 1.25;
-  --nsw-line-height-xl-desktop: 1.25;
-
-  --nsw-font-size-xxl-mobile: 2.25rem;
-  --nsw-font-size-xxl-desktop: 3rem;
-  --nsw-line-height-xxl-mobile: 1.25;
-  --nsw-line-height-xxl-desktop: 1.25;
-
-  /* Borders */
-  --nsw-border-radius: 0.25rem;
-}
-{{/_docs-example}}
+<h2 id="gov-colour">NSW Government colour palette</h2>
+<p>Use these colours to create your own NSW Design System theme. See <a href="/docs/content/design/theming.html">theming guidance for designers</a> or <a href="/docs/content/develop/theming.html">theming guidance for developers</a>.</p>
+<div class="nsw-table-responsive nsw-section nsw-section--white nsw-p-x-sm nsw-m-top-sm nsw-p-top-sm">
+  <table class="nsw-table nsw-table--valign-middle">
+    <tbody>
+    <tr>
+      <th style="width: 10%">
+        <div>
+          <p>Swatch</p>
+        </div>
+      </th>
+      <th style="width: 20%">
+        <div>
+          <p>Colour</p>
+        </div>
+      </th>
+      <th style="width: 20%">
+        <div>
+          <p><strong>Hex value</strong></p>
+        </div>
+      </th>
+      <th>
+        <div>
+          <p><strong>CSS variable</strong></p>
+        </div>
+      </th>
+    </tr>
+    {{#each model.palettes}}
+      <tr>
+        <td>
+          <div class="nsw-docs__swatch"
+               style="{{#if-equals @key
+                                   "white"}} border: 1px solid var(--nsw-text-dark);{{/if-equals}} background-color: var(--nsw-palette-{{@key}})"></div>
+        </td>
+        <td>
+          <p>{{capitalize @key}}</p>
+        </td>
+        <td>
+          <p><code>{{capitalize this "all"}}</code></p>
+        </td>
+        <td>
+          <p><code>--nsw-palette-{{@key}}</code></p>
+        </td>
+      </tr>
+    {{/each}}
+    </tbody>
+  </table>
+</div>

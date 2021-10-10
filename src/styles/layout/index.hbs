@@ -2,28 +2,42 @@
 title: Layout
 order: 40
 width: wide
-tabs: true
 directory: layout
+intro: Layouts are common page composition patterns that offer ways of structuring components and content.
 ---
 
+<h2>Page layouts</h2>
+<p>There are then 3 standard page layouts that can be used to enclose your grid:</p>
+<ul>
+  <li>Full width <a target="_blank" href="/templates/homepage-hero-banner/index.html">(Demo)</a></li>
+  <li>Two column - Left side desktop only <a target="_blank" href="/templates/content-page-side-nav/index.html">(Demo)</a></li>
+  <li>Two column - Right side <a target="_blank" href="/templates/article/index.html">(Demo)</a></li>
+</ul>
+
+<h2>Usage</h2>
+<p>A <code>nsw-container</code> keeps a container width of 1200px and the <code>nsw-page-layout</code> acts as a wrapper to align the content's spacing.</p>
+
 <h3>Full width - Main content area</h3>
-{{#>_docs-example}}
-<div class="nsw-container"> 
-  {{>_layout}}
-</div>
+<p>Displays main content area the full width of the container.</p>
+{{#>_docs-example separated="true"}}
+  <div class="nsw-container">
+    {{>_layout}}
+  </div>
 {{/_docs-example}}
 
 <h3>Two column - Left side desktop only</h3>
-{{#>_docs-example}}
-<div class="nsw-container"> 
-  {{>_layout side="left" desktop="true"}}
-</div>
+<p>Displays a left hand sidebar that is visible on 992px+ viewports, with a main content area that is always visible. (Recommended for side navigation).</p>
+{{#>_docs-example separated="true"}}
+  <div class="nsw-container">
+    {{>_layout side="left" desktop="true"}}
+  </div>
 {{/_docs-example}}
 
 
 <h3>Two column - Right side</h3>
-{{#>_docs-example}}
-<div class="nsw-container"> 
-  {{>_layout side="right"}}
-</div>
+<p>Displays a right hand sidebar that stacks on 0 - 991px viewports, with main content area that is always visible.</p>
+{{#>_docs-example separated="true"}}
+  <div class="nsw-container">
+    {{>_layout side="right"}}
+  </div>
 {{/_docs-example}}

@@ -1,34 +1,21 @@
 ---
 title: Theming
-home: true
 width: narrow
-order: 3
+intro: NSW Design System supports multiple levels of customisation depending on your branding requirements.
+no-blank: true
+order: 2
 ---
-<div class="nsw-docs-example nsw-docs-example--narrow">
-  <div class="nsw-section">
-    <h2>Theming the NSW design System</h2>
-    <p>NSW Design System supports multiple levels of customisation depending on
-      your branding requirements.</p>
-    <h3>Variables</h3>
-    <p>CSS variables allow easy and on the fly customisation whether you have a
-      build setup or a vanilla css implementation. These variables allow
-      customising the following:</p>
-    <ul>
-      <li>Colour Variables</li>
-      <li>Font family</li>
-      <li>Font size and line height</li>
-      <li>Border radius</li>
-    </ul>
-    <p>To theme the NSW Design System, make sure to <a
-            href="/content/develop/getting-started.html">install</a> or <a
-            href="https://github.com/digitalnsw/nsw-design-system/blob/master/HTMLstarterkit.zip">download</a>
-      the NSW
-      Design System.</p>
-    <p>Below are the exposed variables for the NSW Design System’s base theme.
-      Simply copy the variables and update the values to match your theming
-      requirements. Please refer <a href="/styles/colour/index.html">here</a>
-      for the available theme colours.</p>
-    {{#>_docs-example hidden="true" open="true" code="language-css"}}
+  <h3>Variables</h3>
+  <p>CSS variables allow easy and on the fly customisation whether you have a build setup or a vanilla css implementation. These variables allow customising the following:</p>
+  <ul>
+    <li>Colour Variables</li>
+    <li>Font family</li>
+    <li>Font size and line height</li>
+    <li>Border radius</li>
+  </ul>
+  <p>To theme the NSW Design System, make sure to <a href="/content/develop/getting-started.html">install</a> or <a href="https://github.com/digitalnsw/nsw-design-system/blob/master/HTMLstarterkit.zip">download</a> the NSW Design System.</p>
+  <p>Below are the exposed variables for the NSW Design System's base theme. Simply copy the variables and update the values to match your theming requirements. Please refer <a href="/styles/colour/index.html">here</a> for the available list of brand colours or create a customised <code>palette.scss</code></p>
+  {{#>_docs-example hidden="true" open="true" code="language-css"}}
 :root {
 /* Colours */
 --nsw-brand-dark: var(--nsw-palette-blue-01);
@@ -106,46 +93,45 @@ order: 3
 
 /* Borders */
 --nsw-border-radius: 4px;
-    {{/_docs-example}}
-    <h3>With CSS</h3>
-    <p>Enclose the CSS variables in style tag in your html page
-      after the head tag.</p>
-    {{#>_docs-example hidden="true" open="true" code="language-css"}}
+  {{/_docs-example}}
+  <h3>With CSS</h3>
+  <p>Enclose the CSS variables in style tag in your html page
+    after the head tag.</p>
+  {{#>_docs-example hidden="true" open="true" code="language-css"}}
 <style>
-  :root {
-    /* Colours */
-    --nsw-brand-dark: var(--nsw-palette-blue-01);
-    --nsw-brand-light: var(--nsw-palette-blue-04);
-    --nsw-brand-accent: var(--nsw-palette-red-02);
-    --nsw-brand-supplementary: var(--nsw-palette-blue-02);
-  . . .
+:root {
+  /* Colours */
+  --nsw-brand-dark: var(--nsw-palette-blue-01);
+  --nsw-brand-light: var(--nsw-palette-blue-04);
+  --nsw-brand-accent: var(--nsw-palette-red-02);
+  --nsw-brand-supplementary: var(--nsw-palette-blue-02);
+...
 
-  }
+}
 </style>
-    {{/_docs-example}}
-    <p>For a more local scope, use a selector to target instead of <code>:root</code>.
-      Read more on custom properties <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/--*#css">here</a>.</p>
-    <h3>With SCSS</h3>
-    <p>The NSW Design System has a <code>theme.scss</code> file that defines its
-      look and feel.</p>
-    <p>Create your own theme file and import it in your
-      <code>main.scss</code>
-      file</p>
-    {{#>_docs-example hidden="true" open="true" code="language-scss"}}
+  {{/_docs-example}}
+  <p>For a more local scope, use a selector to target instead of <code>:root</code>.
+    Read more on custom properties <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/--*#css">here</a>.</p>
+  <h3>With SCSS</h3>
+  <p>The NSW Design System has a <code>theme.scss</code> file that defines its
+    look and feel.</p>
+  <p>Create your own theme file and import it in your
+    <code>main.scss</code>
+    file</p>
+  {{#>_docs-example hidden="true" open="true" code="language-scss"}}
 // Base styles
 @import 'node_modules/nsw-design-system/src/global/scss/settings/settings';
 @import 'node_modules/nsw-design-system/src/global/scss/tools/all';
 @import 'node_modules/nsw-design-system/src/global/scss/helpers/all';
 @import 'node_modules/nsw-design-system/src/global/scss/style/all';
-@import 'node_modules/nsw-design-system/src/styles/typography/typography';
+@import 'node_modules/nsw-design-system/src/styles/all';
 
 // Add your custom theme file here or drop all the variables here
+@import 'node_modules/nsw-design-system/src/global/scss/settings/palette';
 @import './path/to/myTheme';
 
 // Components
 @import 'node_modules/nsw-design-system/src/components/card/card';
 @import 'node_modules/nsw-design-system/src/components/notification/notification';
 @import 'node_modules/nsw-design-system/src/components/accordion/accordion';
-    {{/_docs-example}}
-  </div>
-</div>
+  {{/_docs-example}}
