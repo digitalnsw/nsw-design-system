@@ -31,32 +31,28 @@ How you use the NSW Design System depends on your team's capabilities. We recomm
 
 The NSW Design System is now installed as a dependancy of your project, check out how to [import styles](#importing-styles-into-your-project) and [javascript](#importing-javascript-into-your-project) in to your project build.
 
-
-### Option 1: Import all styles
-The NSW Design System styles need to be added to the main Sass file in your project.  
-Use the below snippet to import the NSW Design System (ideally placed before any other imports or sass):
+###Importing styles
+####All styles
+To import all styles as a single package you need to add following snippet at the start of your main SCSS file:
 ```
 @import 'node_modules/nsw-design-system/src/main';
 ```
 
-### Option 2: Import core and certain components
-The core library includes the design system's base theme, typography, mixins and helper functions. You can import this and take advantage of our variables and helpers.
-
-In your own main Sass file, you can import NSW Design System’s core library.
+#### Core and selected components
+Our core library includes the design system's base theme, typography, mixins and helper functions. Once you imported it, you can take full advantage of our variables and helpers. To import core library you need to add following snippet at the start of your main SASS file:
 
 ```
 // Core libraries
 @import 'node_modules/nsw-design-system/src/global/scss/settings/settings';
-@import 'node_modules/nsw-design-system/src/global/scss/tools/all';
+@import 'node_modules/nsw-design-system/src/global/scss/base/all';
 @import 'node_modules/nsw-design-system/src/global/scss/helpers/all';
-@import 'node_modules/nsw-design-system/src/global/scss/style/all';
-@import 'node_modules/nsw-design-system/src/styles/section/section';
-@import 'node_modules/nsw-design-system/src/styles/spacing/spacing';
-@import 'node_modules/nsw-design-system/src/styles/typography/typography';
+@import 'node_modules/nsw-design-system/src/global/scss/settings/palette';
+@import 'node_modules/nsw-design-system/src/global/scss/settings/theme';
+@import 'node_modules/nsw-design-system/src/core/all';
 
 ```
 
-You can choose to import components as you need it. In the same file, import the Sass files of each component
+Once you have installed the core library you can start importing components as you need it. To import individual components you need to add following snippets to your main SASS file under core libraries import:
 
 ```
 // Components
