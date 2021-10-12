@@ -19,7 +19,7 @@ function initDocs() {
   })
 
 
-  const copyButtons = document.querySelectorAll('.nsw-docs-code__copy')
+  const copyButtons = document.querySelectorAll('.js-code-copy')
 
   copyButtons.forEach((button) => {
     const code = button.closest('.nsw-docs-code').previousElementSibling.querySelector('.nsw-docs__component')

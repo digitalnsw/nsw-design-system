@@ -1,7 +1,7 @@
 class GlobalAlert {
   constructor(element) {
     this.messageElement = element
-    this.closeButton = element.querySelector('.nsw-global-alert__close')
+    this.closeButton = element.querySelector('.js-close-alert')
     this.closeMessageEvent = (e) => this.closeMessage(e)
   }
 

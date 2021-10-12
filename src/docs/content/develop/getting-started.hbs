@@ -5,9 +5,7 @@ no-blank: true
 order: 1
 ---
     <h2>Using the design system</h2>
-    <p>How you use the NSW Design System depends on your team's capabilities. We
-      recommend using <code>npm</code> but also provided in a CDN, and a
-      downloadable starter kit which includes all the compiled assets.</p>
+<p>How you use the NSW Design System depends on your team's capabilities. We recommend using npm but also provided in a CDN, and a downloadable starter kit which includes all the compiled assets.</p>
     <nav class="nsw-in-page-nav" aria-labelledby="in-page-nav">
       <h2 id="in-page-nav" class="nsw-page-nav__title">On this page</h2>
       <ul class="nsw-in-page-nav__list">
@@ -32,49 +30,44 @@ order: 1
       </ul>
     </nav>
     <h3 id="npm">Installing with NPM</h3>
-    <ol>
-      <li>Install Node/npm.
-          <ul>
-            <li>More information can be found via the <a href="https://nodejs.org/en/download/">nodejs</a></li>
-          </ul>
+    <ul>
+      <li>Install Node/npm. You can find more information how to install it <a href="https://nodejs.org/en/download/">Nodejs</a>.
       </li>
-      <li>Generate a <code>package.json</code> file using the <code>npm init</code> command in the terminal. You will be prompted to enter several pieces of information, like the name of your application, version, description etc.</li>
-      <li>Add  <code>nsw-design-system</code>  to your project’s  <code>package.json</code>:
-        <ul>
-          <li><code>npm install --save nsw-design-system</code></li>
-        </ul>
+      <li>Generate a <code>package.json</code> file using the <code>npm init</code> command in the terminal. You will be prompted to enter several pieces of information, like the name of your application, version, description etc.
       </li>
-    </ol>
-    <p>The NSW Design System is now installed as a dependancy of your project, check out how to import <a href="#style">styles</a> and <a href="#javascript">javascript</a> in to your project build.</p>
-    <h3 id="style">Option 1: Import all styles</h3>
-    <p>The NSW Design System styles need to be added to the main Sass file in your project.
-      Use the below snippet to import the NSW Design System (ideally placed before any other imports or sass):</p>
+      <li>Add <code>nsw-design-system</code> to your project’s <code>package.json</code>:
+        <br><br>
+        <code>npm install --save nsw-design-system</code>
+      </li>
+    </ul>
+    <p>The NSW Design System is now installed as a dependancy of your project. Next, import <a href="#style">styles</a> and <a href="#javascript">javascript</a> in to your project build.</p>
+    <h3 id="style">Importing styles</h3>
+    <p>The NSW Design System styles can be imported as a whole package, or you can install core styles and add components selectively.</p>
+    <h4>All styles</h4>
+    <p>To import all styles as a single package you need to add following snippet at the start of your main SCSS file:</p>
     {{#>_docs-example hidden="true" open="true" code="language-scss"}}
 @import 'node_modules/nsw-design-system/src/main';
     {{/_docs-example}}
-    <h3>Option 2: Import core and certain components</h3>
-    <p>The core library includes the design system's base theme, typography,
-    mixins and helper functions. You can import this and take advantage of
-    our variables and helpers.</p>
-    <p>In your own main Sass file, you can import NSW Design System’s
-      core library.</p>
+    <h4>Core and selected components</h4>
+    <p>Our core library includes the design system's base theme, typography, mixins and helper functions. Once you imported it, you can take full advantage of our variables and helpers. To import core library you need to add following snippet at the start of your main SASS file:</p>
     {{#>_docs-example hidden="true" open="true" code="language-scss"}}
 // Core libraries
 @import 'node_modules/nsw-design-system/src/global/scss/settings/settings';
 @import 'node_modules/nsw-design-system/src/global/scss/base/all';
 @import 'node_modules/nsw-design-system/src/global/scss/helpers/all';
+@import 'node_modules/nsw-design-system/src/global/scss/settings/palette';
+@import 'node_modules/nsw-design-system/src/global/scss/settings/theme';
 @import 'node_modules/nsw-design-system/src/core/all';
     {{/_docs-example}}
-    <p>You can choose to import components as you need it. In the same file,
-      import
-      the sass files of each component</p>
+    <p>Once you have installed the core library you can start importing components
+      as you need it. To import individual components you need to add following
+      snippets to your main SASS file under core libraries import:</p>
     {{#>_docs-example hidden="true" open="true" code="language-scss"}}
 // Components
 @import 'node_modules/nsw-design-system/src/components/accordion/accordion';
 @import 'node_modules/nsw-design-system/src/components/card/card';
 @import 'node_modules/nsw-design-system/src/components/in-page-note/in-page-note';
     {{/_docs-example}}
-    <p>With this setup you can also start theming with a few sets of variable changes. Get started <a href="/content/develop/theming.html">here</a>.</p>
     <h3 id="fonticon">Adding the fonts and the icons</h3>
     <p>In your main html document add this line of code inside the head tag. Make sure that it's placed before the NSW Design System styles import. Or install <a href="https://www.npmjs.com/package/material-icons" target="_blank">icon</a> and <a href="https://www.npmjs.com/package/@fontsource/montserrat" target="_blank">font</a> from npm.</p>
     {{#>_docs-example hidden="true" open="true" code="language-html"}}
@@ -87,7 +80,7 @@ order: 1
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
     {{/_docs-example}}
     <h3 id="javascript">Importing javascript into your project</h3>
-<p>Some NSW Design System components require javascript to provide advanced functionality. To ensure the page is ready for javascript to run, include the follow scripts tags at the end of the html document.</p>
+    <p>Some NSW Design System components require javascript to provide advanced functionality. To ensure the page is ready for javascript to run, include the follow scripts tags at the end of the html document.</p>
     {{#>_docs-example hidden="true" open="true" code="language-html"}}
   ...
   <script src="path/to/main.js"> <\/script>

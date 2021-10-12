@@ -58,6 +58,16 @@ function buildStyles() {
     .pipe(dest(config.scss.build))
 }
 
+function buildCoreStyles() {
+  return src(config.scssCore.src)
+    .pipe(sourcemaps.init())
+    .pipe(sassGlob())
+    .pipe(sass().on('error', sass.logError))
+    .pipe(postcss(postcssProcessors))
+    .pipe(sourcemaps.write('.'))
+    .pipe(dest(config.scssCore.build))
+}
+
 function buildDocStyles() {
   return src(config.scssDocs.src)
     .pipe(sourcemaps.init())
@@ -271,7 +281,7 @@ function bumping() {
     .pipe(dest('./'))
 }
 
-const styles = series(lintStyles, buildStyles, buildDocStyles)
+const styles = series(lintStyles, buildStyles, buildCoreStyles, buildDocStyles)
 const javascript = series(lintJavascript, compileJS, compileDocsJS)
 
 function watchFiles(done) {
