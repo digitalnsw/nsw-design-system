@@ -93,11 +93,11 @@ You can add the files to your main html document
 <html>
   <head>
     ...
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nsw-design-system@2/dist/css/main.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nsw-design-system@3/dist/css/main.css">
   </head>
   <body>
     ...
-    <script src="https://cdn.jsdelivr.net/npm/nsw-design-system@2/dist/js/main.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/nsw-design-system@3/dist/js/main.min.js"></script>
     <script>window.NSW.initSite()</script>
   </body>
 </html>
