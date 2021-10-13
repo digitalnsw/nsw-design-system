@@ -533,7 +533,7 @@
     button.setAttribute('aria-expanded', 'false');
     button.setAttribute('aria-controls', uID);
     button.classList.add('nsw-accordion__button');
-    button.insertAdjacentHTML('beforeend', "\n  <i class=\"material-icons nsw-material-icons\" focusable=\"false\" aria-hidden=\"true\">keyboard_arrow_down</i>\n  ");
+    button.insertAdjacentHTML('beforeend', "\n  <span class=\"material-icons nsw-material-icons\" focusable=\"false\" aria-hidden=\"true\">keyboard_arrow_down</span>\n  ");
     fragment.appendChild(button);
     return fragment;
   }
@@ -946,7 +946,7 @@
       _classCallCheck(this, GlobalAlert);
 
       this.messageElement = element;
-      this.closeButton = element.querySelector('.nsw-global-alert__close');
+      this.closeButton = element.querySelector('.js-close-alert');
 
       this.closeMessageEvent = function (e) {
         return _this.closeMessage(e);
