@@ -9,7 +9,6 @@ const sourcemaps = require('gulp-sourcemaps')
 const browsersync = require('browser-sync')
 const surge = require('gulp-surge')
 const zip = require('gulp-zip')
-const svgSprite = require('gulp-svg-sprite')
 const del = require('del')
 const postcssNormalize = require('postcss-normalize')
 const sassGlob = require('gulp-sass-glob')
@@ -24,6 +23,7 @@ const dynamicCollections = require('metalsmith-dynamic-collections')
 // const debug = require('metalsmith-debug-ui')
 const discoverHelpers = require('metalsmith-discover-helpers')
 const rollup = require('gulp-better-rollup')
+const sitemap = require('gulp-sitemap')
 const babel = require('rollup-plugin-babel')
 const eslint = require('gulp-eslint')
 const gulpStylelint = require('gulp-stylelint')
@@ -48,15 +48,6 @@ function moveImages() {
     .pipe(dest(config.images.build))
 }
 
-function compileSvg() {
-  return src(config.svg.src)
-    .pipe(svgSprite(config.svg.svgSprite))
-    .on('error', (error) => {
-      console.log(error)
-    })
-    .pipe(dest(config.svg.build))
-}
-
 function buildStyles() {
   return src(config.scss.src)
     .pipe(sourcemaps.init())
@@ -67,6 +58,26 @@ function buildStyles() {
     .pipe(dest(config.scss.build))
 }
 
+function buildCoreStyles() {
+  return src(config.scssCore.src)
+    .pipe(sourcemaps.init())
+    .pipe(sassGlob())
+    .pipe(sass().on('error', sass.logError))
+    .pipe(postcss(postcssProcessors))
+    .pipe(sourcemaps.write('.'))
+    .pipe(dest(config.scssCore.build))
+}
+
+function buildDocStyles() {
+  return src(config.scssDocs.src)
+    .pipe(sourcemaps.init())
+    .pipe(sassGlob())
+    .pipe(sass().on('error', sass.logError))
+    .pipe(postcss(postcssProcessors))
+    .pipe(sourcemaps.write('.'))
+    .pipe(dest(config.scssDocs.build))
+}
+
 function lintStyles() {
   return src(config.scss.watch)
     .pipe(gulpStylelint({
@@ -74,6 +85,12 @@ function lintStyles() {
         { formatter: 'string', console: true },
       ],
     }))
+}
+
+function generateSitemap() {
+  return src(['./dist/**/*.html', '!**/blank.html'], { read: false })
+    .pipe(sitemap({ siteUrl: config.baseUrl.full }))
+    .pipe(dest(config.dir.build))
 }
 
 function browserSync(done) {
@@ -100,7 +117,6 @@ function cleanBuild(files, metalsmith, done) {
     const file = path.split('.')
     if (
       file[0].indexOf('assets') > -1
-      || file[0].indexOf('global') > -1
       || file[0].indexOf('partials') > -1
       || file[0].indexOf('partials') > -1
       || file[0].indexOf('_') > -1
@@ -136,14 +152,14 @@ function metalsmithBuild(callback) {
       pattern: config.metalSmith.collection.components.pattern,
       sortBy: sortByAlpha,
     },
-    styles: {
-      pattern: config.metalSmith.collection.styles.pattern,
+    core: {
+      pattern: config.metalSmith.collection.core.pattern,
       sortBy: sortByAlpha,
     },
     templates: {
       pattern: config.metalSmith.collection.templates.pattern,
       sortBy: sortByAlpha,
-    }
+    },
   }))
   metalsmith.use(dynamicCollections({
     componentsnav: {
@@ -151,13 +167,28 @@ function metalsmithBuild(callback) {
       refer: false,
       sortBy: sortByAlpha,
     },
-    stylesnav: {
-      pattern: config.metalSmith.collection.stylesnav.pattern,
+    corenav: {
+      pattern: config.metalSmith.collection.corenav.pattern,
       refer: false,
       sortBy: 'order',
     },
     templatesnav: {
       pattern: config.metalSmith.collection.templatesnav.pattern,
+      refer: false,
+      sortBy: 'order',
+    },
+    guidancetab: {
+      pattern: config.metalSmith.collection.guidancetab.pattern,
+      refer: false,
+      sortBy: sortByAlpha,
+    },
+    design: {
+      pattern: config.metalSmith.collection.contentnav.design,
+      refer: false,
+      sortBy: 'order',
+    },
+    develop: {
+      pattern: config.metalSmith.collection.contentnav.develop,
       refer: false,
       sortBy: 'order',
     },
@@ -232,26 +263,25 @@ function renamePath() {
     .pipe(dest(config.dir.build))
 }
 
+function renamePathForProd() {
+  return src(`${config.dir.build}/**/*.html`)
+    .pipe(replace('/css/main.css', `${config.baseUrl.prod}/css/main.css`))
+    .pipe(replace('/docs/css/docs.css', `${config.baseUrl.prod}/docs/css/docs.css`))
+    .pipe(replace('/js/main.js', `${config.baseUrl.prod}/js/main.js`))
+    .pipe(replace('/docs/js/docs.js', `${config.baseUrl.prod}/docs/js/docs.js`))
+    .pipe(replace('/favicon.ico', `${config.baseUrl.prod}/favicon.ico`))
+    .pipe(replace('<base href="/', `<base href="${config.baseUrl.prod}/`))
+    .pipe(replace('href="#"', `href="${config.baseUrl.prod}"`))
+    .pipe(dest(config.dir.build))
+}
+
 function bumping() {
   return src('./package.json')
     .pipe(bump({ type: argv.type }))
     .pipe(dest('./'))
 }
 
-function injectSVG() {
-  const fileContent = fs.readFileSync('./dist/assets/svg/sprite.svg')
-
-  return src(`${config.dir.build}**/*.html`)
-    .pipe(inject.after('<body>', fileContent))
-    .pipe(dest(config.dir.build))
-    .pipe(inject.after(
-      'xmlns:xlink="http://www.w3.org/1999/xlink"',
-      ' aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;"',
-    ))
-    .pipe(dest(config.dir.build))
-}
-
-const styles = series(lintStyles, buildStyles)
+const styles = series(lintStyles, buildStyles, buildCoreStyles, buildDocStyles)
 const javascript = series(lintJavascript, compileJS, compileDocsJS)
 
 function watchFiles(done) {
@@ -259,10 +289,21 @@ function watchFiles(done) {
   watch(config.js.watch, series(javascript, reload))
   watch(config.jsDocs.watch, series(javascript, reload))
   watch(config.images.watch, series(moveImages, reload))
-  watch(config.svg.watch, series(compileSvg, reload))
   watch(config.metalSmith.watch, series(metalsmithBuild, reload))
   done()
 }
+
+const buildprod = series(
+  cleanUp,
+  copyFavicon,
+  metalsmithBuild,
+  styles,
+  javascript,
+  moveImages,
+  renamePathForProd,
+  zipDistFolder,
+  generateSitemap,
+)
 
 const build = series(
   cleanUp,
@@ -271,9 +312,7 @@ const build = series(
   styles,
   javascript,
   moveImages,
-  compileSvg,
   renamePath,
-  injectSVG,
   zipDistFolder,
 )
 
@@ -284,7 +323,6 @@ const dev = series(
   styles,
   javascript,
   moveImages,
-  compileSvg,
   watchFiles,
   browserSync,
 )
@@ -298,8 +336,8 @@ const deploy = series(
 exports.scss = buildStyles // gulp sass - compiles the sass
 exports.watch = watchFiles // gulp watch - watches the files
 exports.lint = lintStyles // gulp lint - lints the sass
-exports.svg = compileSvg // gulp svg - creates svg sprite
 exports.images = moveImages // gulp images - moves images
+exports.buildprod = buildprod // gulp build - builds the files
 exports.build = build // gulp build - builds the files
 exports.surge = deploy // gulp surge - builds the files and deploys to surge
 exports.clean = cleanUp // gulp clean - clean the dist directory

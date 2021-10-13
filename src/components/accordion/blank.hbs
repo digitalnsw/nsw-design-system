@@ -2,7 +2,12 @@
 title: Accordion
 width: narrow
 page: true
-model: json/accordion.json
+model:
+    accordion-1: json/accordion.json
+    accordion-2: json/accordion-2.json
 ---
 
-{{#>_layout-container}}{{>_accordion model}}{{/_layout-container}}
+{{#>_layout-container}}
+{{>_accordion model.accordion-1}}
+{{>_accordion model.accordion-2}}
+{{/_layout-container}}

@@ -1,0 +1,49 @@
+---
+title: Filters
+layout: blank-layout.hbs
+---
+
+<h2>Usage</h2>
+<p>Filters help users narrow down the results of large data sets to find something specific. They give the user the power to refine results based on their desired criteria and eliminate the need for numerous searches.</p>
+
+<p>Do:</p>
+
+<ul>
+  <li>choose the right filters for your content. Too many filters may confuse users, so make sure your filters are relevant and differentiable</li>
+  <li>keep the original text or selection a user has made visible so they can see their current filters</li>
+  <li>allow the user to remove and clear all filters easily</li>
+  <li>truncate larger filtering sets with “Show all categories”, making the most popular choices of your users the ones that are initially surfaced</li>
+</ul>
+
+<h3>When to avoid</h3>
+<p>Do not use:</p>
+<ul>
+  <li>when there are limited results to present, consider displaying all results without filters.</li>
+</ul>
+
+<h3>How the component works</h3>
+<p>Filters can be returned in instant or batch updates. Instant updates return results after each individual selection is made by the user. Consider instant update filters when:</p>
+<ul>
+  <li>a user would only expect to make one filter selection at a time</li>
+  <li>filters can return results based on an individual selection, ie dropdown or checkbox</li>
+</ul>
+<p>Batch updates allows a user to select multiple filters before selecting “Apply filters” to return updated results. Consider batch update filters when:</p>
+<ul>
+  <li>users would be expected to select multiple related filters</li>
+  <li>filters require multiple actions, ie keywords or date ranges</li>
+</ul>
+
+<h3>Small screens</h3>
+<p>On small screens, filters can be are launched using the mobile filter icon. When a user selects “Filter results” the filters open in full screen so the user can navigate and select desired filters.</p>
+<p>For batch updates:</p>
+<ul>
+  <li>“Back” bar is sticky to top of screen and on selection closes filtering window with no updates to results.</li>
+  <li>“Apply filters” button is sticky to bottom of screen and on selection closes filtering window and displays updated results.</li>
+  <li>“Apply filters” is disabled if no filters are selected</li>
+  <li>When a filter is selected the icon changes to filled version and displays number of filters selected in brackets.</li>
+</ul>
+<p>For instant updates:</p>
+<ul>
+  <li>“Back” is sticky to top of screen and on selection closes filtering window and displays updated results.</li>
+  <li>When a filter is selected the icon changes to filled version and displays number of filters selected in brackets.</li>
+</ul>

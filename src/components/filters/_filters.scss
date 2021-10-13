@@ -1,5 +1,5 @@
-.nsw-filters {
-  .nsw-page-layout__sidebar & {
+.nsw-filters {  
+  .nsw-layout__sidebar & {
     margin: rem(-8px) 0 rem(-16px) 0;
 
     @include breakpoint('lg') {
@@ -8,8 +8,8 @@
   }
 
   &__title {
-    @include font-stack('heading');
     @include font-size('lg');
+    font-weight: var(--nsw-font-bold);
     padding: rem(24px) 0;
 
     @include breakpoint('lg') {
@@ -20,49 +20,36 @@
 
   &__controls {
     padding: rem(24px) 0;
-    border-bottom: 1px solid $light20;
+    border-bottom: 1px solid var(--nsw-grey-04);
 
     @include breakpoint('lg') {
       display: none;
     }
 
     button {
+      @include link-button;
       display: flex;
       align-items: center;
-      cursor: pointer;
-      background-color: transparent;
-      border: 0;
-      padding: 0;
-      color: $nsw-primary-blue;
-
-      &:hover {
-        @include nsw-hover;
-        outline: 4px solid $hover-colour;
-      }
-
-      &:focus {
-        @include nsw-focus;
-      }
+      text-decoration: none;
 
       span {
-        @include font-stack('heading');
-        @include font-size('sm');
         text-decoration: underline;
         padding-left: rem(8px);
       }
     }
 
     .nsw-material-icons {
-      @include border-radius;
-      font-size: rem(24px);
+      font-size: rem(map-get($nsw-icon-sizes, 24));
+      border-radius: var(--nsw-border-radius);
       padding: rem(1px);
-      border: 2px solid $nsw-primary-blue;
+      border: 2px solid var(--nsw-brand-dark);
+      text-decoration: none;
     }
 
-    &--active {
+    &.active {
       .nsw-material-icons {
-        background-color: $nsw-primary-blue;
-        color: $white;        
+        background-color: var(--nsw-brand-dark);
+        color: var(--nsw-text-light);        
       }
     }
   }
@@ -73,41 +60,12 @@
     top: 0;
     left: 0;
     right: 0;
-    background-color: $white;
-    padding: rem(24px) rem(16px);
-    border-bottom: 1px solid $light20;
+    background-color: var(--nsw-white);
+    padding: rem(16px) rem(8px);
+    border-bottom: 1px solid var(--nsw-grey-04);
 
     @include breakpoint('lg') {
       display: none;
-    }
-
-    button {
-      background-color: transparent;
-      border: 0;
-      padding: 0;
-      color: $nsw-primary-blue;
-      display: flex;
-      align-items: center;
-      cursor: pointer;
-
-      &:hover {
-        @include nsw-hover;
-      }
-
-      &:focus {
-        @include nsw-focus;
-      }
-
-      span {
-        @include font-stack('heading');
-        @include font-size('sm');
-        text-decoration: underline;
-      }
-
-      i {
-        font-size: rem(24px);
-        margin-right: rem(4px);
-      }      
     }
   }
 
@@ -121,7 +79,7 @@
       left: 0;
       right: 0;
       overflow-y: auto;
-      background-color: $white;
+      background-color: var(--nsw-white);
       padding: rem(73px) rem(16px) rem(101px) rem(16px);
 
       @include breakpoint('lg') {
@@ -144,7 +102,7 @@
 
   &__item {
     padding: rem(24px) 0;
-    border-top: 1px solid $light20;
+    border-top: 1px solid var(--nsw-grey-04);
   }
 
   &__all {
@@ -153,7 +111,7 @@
 
   &__accept {
     padding: rem(32px) 0;
-    border-top: 1px solid $light20;
+    border-top: 1px solid var(--nsw-grey-04);
 
     .nsw-filters--fixed & {
       @include z-index('upper');
@@ -161,7 +119,7 @@
       bottom: 0;
       left: 0;
       right: 0;
-      background-color: $white;
+      background-color: var(--nsw-white);
       padding: rem(24px) rem(16px);
 
       @include breakpoint('lg') {
@@ -169,17 +127,13 @@
         padding: rem(32px) 0;
       }
     }
-
-    button {
-      margin: 0;
-    }
   }
 
   &__cancel {   
     padding-bottom: rem(32px);
 
     .nsw-filters--fixed & {
-      border-top: 1px solid $light20;
+      border-top: 1px solid var(--nsw-grey-04);
       padding: rem(32px) 0;
 
       @include breakpoint('lg') {
@@ -189,32 +143,18 @@
     }
 
     .nsw-filters--instant & {
-      border-top: 1px solid $light20;
+      border-top: 1px solid var(--nsw-grey-04);
       padding: rem(32px) 0;
     }
 
     button {
-      @include text-link;
-      @include font-size('sm');
-      font-weight: normal;
-      text-decoration: underline;
-      cursor: pointer;
-      background-color: transparent;
-      border: 0;
-      padding: 0;
+      @include link-button;
     }
   }
 
   &__more,
-  &__less {
-    @include text-link;
-    @include font-size('sm');
-    font-weight: normal;
-    text-decoration: underline;
-    cursor: pointer;
-    background-color: transparent;
-    border: 0;
-    padding: 0;
+  &__less { 
+    @include link-button;
     margin-top: rem(24px);
   }
 

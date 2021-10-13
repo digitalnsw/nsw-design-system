@@ -1,0 +1,90 @@
+<nav class="nsw-main-nav{{#if mega-menu}} js-mega-menu{{/if}}" id="main-nav" aria-label="Main menu">
+  <div class="nsw-main-nav__header">
+    <div class="nsw-main-nav__title">Menu</div>
+    <button class="nsw-icon-button js-close-nav" type="button" aria-expanded="true">
+      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">close</span>
+      <span class="sr-only">Close Menu</span>
+    </button>
+  </div>
+  <ul class="nsw-main-nav__list">
+    {{#each items}}
+    <li>
+      <a href="{{url}}">
+        <span>{{text}}</span>
+        {{#if sub-nav}}
+        <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_right</span>
+        {{/if}}
+      </a>{{#if sub-nav}}
+
+      <div class="nsw-main-nav__sub-nav" id="sub-nav-{{id}}" role="region" aria-label="{{text}} Submenu">
+        <div class="nsw-main-nav__header">
+          <button class="nsw-icon-button nsw-icon-button--flex js-close-sub-nav" type="button" aria-expanded="true" aria-controls="sub-nav-{{id}}">
+            <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_left</span>
+            <span>Back<span class="sr-only"> to previous menu</span></span> 
+          </button>
+
+          <button class="nsw-icon-button js-close-nav" type="button" aria-expanded="true">
+            <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">close</span>
+            <span class="sr-only">Close Menu</span>
+          </button>
+        </div>
+
+        <div class="nsw-main-nav__title">
+          <a href="{{url}}">
+            <span>{{text}}</span>
+            <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span>
+          </a>
+        </div>
+
+        <div class="nsw-main-nav__description">{{description}}</div>
+
+        <ul class="nsw-main-nav__sub-list">
+          {{#each sub-nav}}
+          <li>
+            <a href="{{url}}">
+              <span>{{text}}</span>
+              {{#if sub-nav}}
+              <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_right</span>
+              {{/if}}
+            </a>
+            {{#if sub-nav}}
+            <div class="nsw-main-nav__sub-nav" id="sub-nav-{{id}}" role="region" aria-label="{{text}} Submenu">
+              <div class="nsw-main-nav__header">
+                <button class="nsw-icon-button nsw-icon-button--flex js-close-sub-nav" type="button" aria-expanded="true" aria-controls="sub-nav-{{id}}">
+                  <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_left</span>
+                  <span>Back<span class="sr-only"> to previous menu</span></span> 
+                </button>
+
+                <button class="nsw-icon-button js-close-nav" type="button" aria-expanded="true">
+                  <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">close</span>
+                  <span class="sr-only">Close Menu</span>
+                </button>
+              </div>
+
+              <div class="nsw-main-nav__title">
+                <a href="{{url}}"><span>{{text}}</span></a>
+              </div>
+
+              <ul class="nsw-main-nav__sub-list">
+                {{#each sub-nav}}
+                <li>
+                  <a href="{{url}}">
+                    <span>{{text}}</span>
+                    {{#if sub-nav}}
+                    <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_right</span>
+                    {{/if}}
+                  </a>
+                </li>
+                {{/each}}
+              </ul>
+            </div>
+            {{/if}}
+          </li>
+          {{/each}}
+        </ul>
+      </div>
+      {{/if}}
+    </li>
+    {{/each}}
+  </ul>
+</nav>

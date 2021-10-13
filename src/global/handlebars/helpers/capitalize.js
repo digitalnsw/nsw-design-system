@@ -1,4 +1,5 @@
-module.exports = function (str) {
+module.exports = function (str, mode) {
   if (typeof str !== 'string') return ''
-  return str.charAt(0).toUpperCase() + str.slice(1)
+  if (mode == 'all') return str.toUpperCase()
+  return str.charAt(0).toUpperCase() + str.slice(1).replace('-', ' ')
 };

@@ -1,0 +1,39 @@
+<nav class="nsw-side-nav" aria-labelledby="{{parent-id}}">
+  <div class="nsw-side-nav__header" id="{{parent-id}}">
+    <a href="{{parent-url}}">{{parent-text}}</a>
+  </div>
+  <ul>
+    {{#each items}}
+    <li{{#if (or current items) }} class="active"{{/if}}>
+      <a href="{{#if url}}{{url}}{{else}}#{{/if}}"{{#if current}} class="current" aria-current="page"{{/if}}>{{text}}</a>
+      {{#if items}}
+      <ul>
+        {{#each items}}
+        <li{{#if items}} class="active"{{/if}}>
+          <a href="{{url}}"{{#if current}} class="current" aria-current="page"{{/if}}>{{text}}</a>
+          {{#if items}}
+          <ul>
+            {{#each items}}
+            <li{{#if items}} class="active"{{/if}}>
+              <a href="{{url}}"{{#if current}} class="current" aria-current="page"{{/if}}>{{text}}</a>
+              {{#if items}}
+              <ul>
+                {{#each items}}
+                <li{{#if items}} class="active"{{/if}}>
+                  <a href="{{url}}"{{#if current}} class="current" aria-current="page"{{/if}}>{{text}}</a>
+                </li>
+                {{/each}}
+              </ul>
+              {{/if}}
+            </li>
+            {{/each}}
+          </ul>
+          {{/if}}
+        </li>
+        {{/each}}
+      </ul>
+      {{/if}}
+    </li>
+    {{/each}}
+  </ul>
+</nav>

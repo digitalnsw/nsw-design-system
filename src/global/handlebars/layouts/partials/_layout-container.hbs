@@ -1,18 +1,8 @@
-{{#if-equals width "menu"}}
-<div class="nsw-container nsw-p-y-sm">
-  <div class="nsw-page-layout">
-  	<div class="nsw-page-layout__sidebar">
-  		{{> @partial-block }}
-  	</div>
-  </div>
-</div>
-{{else}}
-<div class="nsw-container nsw-p-y-sm">
-  <div class="nsw-page-layout">
-    <main class="nsw-page-layout__main">
+<div class="nsw-container nsw-p-y-sm{{#if-equals width "menu"}} nsw-docs__main--menu{{/if-equals}}">
+  <div class="nsw-layout">
+    <main class="nsw-layout__main">
   		{{> @partial-block }}
   	</main>
-  	{{#if-equals width "narrow"}}<div class="nsw-page-layout__sidebar nsw-page-layout__sidebar--desktop"></div>{{/if-equals}}
+  	{{#if-equals width "narrow"}}<div class="nsw-layout__sidebar nsw-layout__sidebar--desktop"></div>{{/if-equals}}
   </div>
 </div>
-{{/if-equals}}

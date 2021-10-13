@@ -1,12 +1,81 @@
+$nsw-buttons: (
+  dark: (
+    text-color: var(--nsw-text-light),
+    text-color-hover: var(--nsw-text-light),
+    background: var(--nsw-brand-dark),
+    background-hover: var(--nsw-brand-dark),
+    border: transparent,
+    border-hover: transparent,
+    focus: var(--nsw-focus),
+    hover: white
+  ),
+  dark-outline: (
+    text-color: var(--nsw-brand-dark),
+    text-color-hover: var(--nsw-text-light),
+    background: transparent,
+    background-hover: var(--nsw-brand-dark),
+    border: var(--nsw-brand-dark),
+    focus: var(--nsw-focus),
+    border-hover: transparent
+  ),
+  dark-outline-solid: (
+    text-color: var(--nsw-brand-dark),
+    text-color-hover: var(--nsw-text-light),
+    background: var(--nsw-white),
+    background-hover: var(--nsw-brand-dark),
+    border: var(--nsw-brand-dark),
+    focus: var(--nsw-focus),
+    border-hover: transparent
+  ),
+  light: (
+    text-color: var(--nsw-text-dark),
+    text-color-hover: var(--nsw-text-dark),
+    background: var(--nsw-brand-light),
+    background-hover: var(--nsw-brand-light),
+    border: transparent,
+    border-hover: transparent,
+    focus: var(--nsw-focus),
+    hover: black
+  ),
+  light-outline: (
+    text-color: var(--nsw-brand-light),
+    text-color-hover: var(--nsw-text-dark),
+    background: transparent,
+    background-hover: var(--nsw-brand-light),
+    border: var(--nsw-brand-light),
+    focus: var(--nsw-focus),
+    border-hover: transparent
+  ),
+  white: (
+    text-color: var(--nsw-text-dark),
+    text-color-hover: var(--nsw-text-dark),
+    background: var(--nsw-white),
+    background-hover: var(--nsw-white),
+    border: transparent,
+    border-hover: transparent,
+    focus: var(--nsw-white),
+    hover: black
+  ),
+  danger: (
+    text-color: var(--nsw-text-light),
+    text-color-hover: var(--nsw-text-light),
+    background: var(--nsw-status-error),
+    background-hover: var(--nsw-status-error),
+    border: transparent,
+    border-hover: transparent,
+    focus: var(--nsw-focus),
+    hover: white
+  )
+);
+
 .nsw-button {
-  @include font-stack('heading');
   @include font-size('sm');
-  @include nsw-spacing(margin, lg md none none);
-  @include border-radius;
+  border-radius: var(--nsw-border-radius);
+  font-weight: var(--nsw-font-bold);
   border: solid 2px transparent;
   white-space: normal;
   text-decoration: none;
-  padding: rem(12px) rem(24px);
+  padding: rem(10px) rem(22px);
   cursor: pointer;
   -webkit-appearance: none; /* stylelint-disable-line property-no-vendor-prefix */
   text-decoration: none;
@@ -20,45 +89,120 @@
     min-width: rem(124px);
   }
 
+  &:hover {
+    outline: none;
+  }
+
   &:focus {
     @include nsw-focus;
   }
 
-  @each $color, $value in $button-variations {
+  @each $color, $property-map in $nsw-buttons {
     &--#{"" + $color} {
-      @include button-variant($value);
-    }
-  }
+      color: map-get($property-map, text-color);
+      background-color: map-get($property-map, background);
+      border-color: map-get($property-map, border);
 
-  &:active {
-    @include nsw-active;
-    border-color: $focus-color;
+      &:visited {
+        color: map-get($property-map, text-color);
+      }
+
+      &:focus {
+        outline-color: map-get($property-map, focus);
+      }
+
+      &:hover {
+        color: map-get($property-map, text-color-hover);
+        background-color: map-get($property-map, background-hover);
+        border-color: map-get($property-map, border-hover);
+        @if map-get($property-map, hover) == white {
+          background-image: linear-gradient(rgba(var(--nsw-white-rgb), 0.15), rgba(var(--nsw-white-rgb), 0.15));
+        }
+        @if map-get($property-map, hover) == black {
+          background-image: linear-gradient(rgba(var(--nsw-black-rgb), 0.07), rgba(var(--nsw-black-rgb), 0.07));
+        }
+
+        .nsw-material-icons {
+          color: map-get($property-map, text-color-hover);
+        }
+      }
+
+      &:disabled,
+      &.disabled {
+        color: map-get($property-map, text-color);
+        background-color: map-get($property-map, background);
+        border-color: map-get($property-map, border);
+      }
+
+      .nsw-material-icons {
+        color: map-get($property-map, text-color);
+      }
+    }
   }
 
   &:disabled,
   &.disabled {
-    background-color: $light10;
-    color: $light40;
-    border-color: $light10;
+    opacity: 0.4;
     cursor: not-allowed;
   }
-}
 
-.nsw-button--block {
-  display: block;
-  width: 100%;
+  .nsw-material-icons {
+    font-size: rem(map-get($nsw-icon-sizes, 24));
+    line-height: rem(10px);
+    position: relative;
+    bottom: rem(-7px);
 
-  + .nsw-button--block {
-    margin-bottom: 0;
+    &:first-child {
+      margin-right: rem(8px);
+    }
+
+    &:last-child {
+      margin-left: rem(8px);
+    }
+
+    &:only-child {
+      margin: 0;
+    }
   }
-}
 
-.nsw-button--full-width {
-  display: block;
-  width: 100%;
+  &--small {
+    @include font-size('xs');
+    padding: rem(5px);
 
-  @include breakpoint($desktop-breakpoint) {
-    display: inline-block;
-    width: auto;
+    .nsw-material-icons {
+      font-size: rem(map-get($nsw-icon-sizes, 20));
+
+      &:first-child {
+        margin-right: rem(4px);
+      }
+
+      &:last-child {
+        margin-left: rem(4px);
+      }
+
+      &:only-child {
+        margin: 0;
+      }    
+    }
+  }
+
+  &--flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .nsw-material-icons {
+      position: static;
+    }
+  }
+
+  &--full-width {
+    display: block;
+    width: 100%;
+
+    @include breakpoint($nsw-desktop-breakpoint) {
+      display: inline-block;
+      width: auto;
+    }
   }
 }

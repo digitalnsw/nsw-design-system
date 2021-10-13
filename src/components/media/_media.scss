@@ -1,4 +1,3 @@
-
 .nsw-media {
   width: 100%;
   margin: rem(16px) auto;
@@ -85,8 +84,21 @@
 
   figcaption {
     @include font-size('xs');
-    background-color: $light10;
+    background-color: var(--nsw-off-white);
     padding: rem(16px);
+  }
+
+  &--light {
+    figcaption {
+      background-color: var(--nsw-brand-light);
+    }
+  }
+
+  &--dark {
+    figcaption {
+      background-color: var(--nsw-brand-dark);
+      color: var(--nsw-text-light);
+    }
   }
 
   &--transparent {

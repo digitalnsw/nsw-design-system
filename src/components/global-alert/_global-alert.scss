@@ -1,0 +1,68 @@
+.nsw-global-alert {
+  padding: rem(24px) 0;
+  background-color: var(--nsw-status-info);
+  color: var(--nsw-text-light);
+
+  .nsw-icon-button {
+    position: absolute;
+    top: rem(-8px);
+    right: rem(4px);
+    color: var(--nsw-text-light);
+
+    &:hover {
+      @include nsw-hover;
+      background-color: var(--nsw-text-hover-light);
+    }
+
+    &:focus {
+      @include nsw-focus($color: var(--nsw-text-light));
+    }
+  }
+
+  &__wrapper {
+    @include container;
+    position: relative;
+  }
+
+  &__title {
+    @include font-size('md');
+    font-weight: var(--nsw-font-bold);
+  }
+
+  &__content {
+    margin-right: rem(36px);
+
+    a {
+      @include link-light;
+    }
+  }
+
+  .nsw-button {
+    margin-right: 0;
+  }
+
+  &--critical {
+    background-color: var(--nsw-status-error);
+  }
+
+  &--light {
+    background-color: var(--nsw-status-info-bg);
+    color: var(--nsw-text-dark);
+
+    .nsw-global-alert__content a {
+      @include link-dark;
+    }
+
+    .nsw-icon-button {
+      color: var(--nsw-brand-dark);
+
+      &:hover {
+        background-color: var(--nsw-text-hover);
+      }
+
+      &:focus {
+        outline-color: var(--nsw-focus);
+      }
+    }
+  }
+}

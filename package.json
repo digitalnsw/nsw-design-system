@@ -6,7 +6,7 @@
   "style": "dist/main.css",
   "files": [
     "dist/{css,js,assets/svg}/*.{css,js,svg}",
-    "src/{components,patterns,styles}/**/*.{scss,js}",
+    "src/{components,patterns,styles,core}/**/*.{scss,js}",
     "src/global/{scripts,scss}/**/*.{scss,js}",
     "src/main.{scss,js}"
   ],
@@ -21,6 +21,7 @@
   "scripts": {
     "dev": "gulp",
     "starterkit:build": "gulp build",
+    "prod:build": "gulp buildprod",
     "surge": "gulp surge",
     "add": "node add-component.js",
     "git-tag": "git tag v$npm_package_version && git push origin v$npm_package_version",
@@ -63,6 +64,7 @@
     "gulp-replace": "^1.0.0",
     "gulp-sass": "^4.0.2",
     "gulp-sass-glob": "^1.1.0",
+    "gulp-sitemap": "^8.0.0",
     "gulp-sourcemaps": "^2.6.5",
     "gulp-stylelint": "^13.0.0",
     "gulp-surge": "^0.1.4",

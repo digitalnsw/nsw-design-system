@@ -1,0 +1,42 @@
+$nsw-layout-gap: 32px;
+
+.nsw-layout {
+  @include grid();
+
+  &__main {
+    @include column-default();
+
+    &:not(:first-child) {
+      @include column(8, $nsw-desktop-breakpoint);
+    }
+
+    &:not(:last-child) {
+      @include column(8, $nsw-desktop-breakpoint);
+    }
+  }
+
+  &__sidebar {
+    @include column-default();
+    @include column(4, $nsw-desktop-breakpoint);
+
+    &:first-child {
+      @include breakpoint('lg') {
+        padding-right: rem($grid-gutters*2 + $nsw-layout-gap);
+      }
+    }
+
+    &:last-child {
+      @include breakpoint($nsw-desktop-breakpoint) {
+        padding-left: rem($grid-gutters*2 + $nsw-layout-gap);
+      }
+    }
+
+    &--desktop {
+      display: none;
+
+      @include breakpoint($nsw-desktop-breakpoint) {
+        display: block;
+      }
+    }
+  }
+}

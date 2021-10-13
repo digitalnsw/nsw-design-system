@@ -1,0 +1,16 @@
+---
+title: In-page notification
+width: narrow
+page: true
+model:
+  info: json/in-page-note-info.json
+  error: json/in-page-note-error.json
+  warning: json/in-page-note-warning.json
+  success: json/in-page-note-success.json
+---
+{{#>_layout-container}}
+{{>_in-page-note model.info}}
+{{>_in-page-note model.error}}
+{{>_in-page-note model.warning}}
+{{>_in-page-note model.success}}
+{{/_layout-container}}

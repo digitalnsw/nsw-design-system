@@ -13,12 +13,7 @@ class Filters {
   }
 
   init() {
-    this.setUpDom()
     this.controls()
-  }
-
-  setUpDom() {
-    this.filters.classList.add('is-ready')
   }
 
   controls() {

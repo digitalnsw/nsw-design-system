@@ -1,150 +1,32 @@
 .nsw-footer {
-  @include font-stack;
-  border-top: solid 1px $light40;
-
   hr {
-    @include nsw-spacing(margin, md none md none);
+    margin: rem(16px) 0;
     height: 1px;
     border: 0;
-    color: $light40;
-    background-color: $light40;
+    background-color: var(--nsw-grey-03);
   }
 
   &__upper {
-    @include nsw-spacing(padding-top, lg);
-    background-color: $white;
-  }
+    background-color: var(--nsw-white);
+    border-top: solid 1px var(--nsw-grey-03);
+    padding-top: rem(24px);
 
-  &__lower {
-    @include nsw-spacing(padding, md none lg none);
-    background-color: $dark80;
-    color: $white;
-    font-size: rem(12px);
-
-    a {
-      color: $white;
-
-      &:focus {
-        @include nsw-focus($color: $white);
-      }
-    }
-
-    p:not([class]) {
-      margin: rem(12px) 0;
-    }
-  }
-
-  &__info {
-
-    @include breakpoint('md') {
+    .nsw-container {
+      padding-left: rem(8px);
+      padding-right: rem(8px);
       display: flex;
-      flex-wrap: nowrap;
-    }
-  }
+      flex-direction: row;
+      flex-wrap: wrap;
 
-  &__copyright {
-    flex: 1 1 auto;
-  }
-
-  &__built {
-    flex: 0 0 rem(200px);
-
-    a:not([class]) {
-      color: $white;
-
-      &:hover {
-        background-color: transparent;
-        outline: none;
-        text-decoration: none;
+      @include breakpoint('lg') {
+        padding-left: 0;
+        padding-right: 0;
       }
-
-      &:focus {
-        @include nsw-focus($offset: false, $color: $white);
-      }
-
-      &:visited {
-        color: $white;
-      }
-
-      &:active {
-        background-color: transparent;
-      }
-    }
-
-    @include breakpoint('md') {
-      text-align: right;
-    }
-  }
-}
-
-.nsw-footer-links {
-  @include font-stack('heading');
-  @include nsw-spacing(margin, md none none none);
-  @include nsw-spacing(padding, none);
-  list-style: none;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-
-  &__item {
-    @include nsw-spacing(margin, none none md none);
-    flex: 1 0 50%;
-    max-width: 50%;
-
-    @include breakpoint('md') {
-      @include nsw-spacing(margin-right, lg);
-      flex: 0 0 auto;
-      max-width: none;
-    }
-  }
-
-  &__link {
-    text-decoration: underline;
-
-    &:hover {
-      text-decoration: none;
-    }
-
-    &:focus {
-      @include nsw-focus($color: $white);
-    }
-  }
-}
-
-.section-links {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-
-  @include breakpoint('md') {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
-
-  a:not([class]) {
-    color: $nsw-primary-blue;
-
-    &:visited {
-      color: $nsw-primary-blue;
-    }
-
-    &:hover {
-      @include nsw-hover;
-      outline: 2px solid $hover-colour;
-    } 
-
-    &:focus {
-      @include nsw-focus($offset: false);
-    }
-
-    &:active {
-      @include nsw-active;
     }
   }
 
   &__group {
-    @include nsw-spacing(padding-bottom, lg);
+    padding: 0 rem(8px) rem(16px) rem(8px);
     flex: 1 0 auto;
     min-width: rem(256px);
     max-width: 50%;
@@ -155,25 +37,91 @@
     }
 
     @include breakpoint('lg') {
+      padding: 0 rem(16px) rem(24px) rem(16px);
       flex-basis: 25%;
+    }
+
+    ul {
+      @include font-size('xs');
+      list-style: none;
+      margin: rem(4px) 0 0 0;
+      padding: 0;
+
+      a {
+        font-weight: var(--nsw-font-normal);
+      }
+    }
+
+    li:first-child {
+      margin-top: 0;
     }
   }
 
   &__heading {
-    @include nsw-spacing(margin, none);
-    @include font-stack('heading');
     @include font-size('sm');
   }
 
-  &__list {
-    @include nsw-spacing(margin, none);
-    @include nsw-spacing(padding, none);
-    @include font-size('xs');
-    list-style: none;
-    margin-top: rem(4px);
+  &__lower {
+    @include font-size('xxs');
+    background-color: var(--nsw-grey-01);
+    color: var(--nsw-text-light);
+    padding: rem(16px) 0 rem(24px) 0;
+
+    a {
+      @include link-light;
+    }
+
+    p {
+      margin: rem(12px) 0;
+    }
+
+    ul {
+      list-style: none;
+      margin: rem(16px) rem(-8px) 0 rem(-8px);
+      padding: 0;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+
+      @include breakpoint('md') {
+        margin-left: 0;
+        margin-right: 0;
+      }
+    }
+
+    li {
+      flex: 1 0 50%;
+      max-width: 50%;
+      padding: 0 rem(8px);
+      margin: 0 0 rem(16px) 0;
+
+      @include breakpoint('md') {
+        margin-right: rem(24px);
+        padding: 0;
+        flex: 0 0 auto;
+        max-width: none;
+      }
+    }
   }
 
-  &__item:not(:first-child) {
-    @include nsw-spacing(margin-top, xs);
+  &__info {
+    @include breakpoint('md') {
+      display: flex;
+      flex-wrap: nowrap;
+    }
+  }
+
+  &__copyright {
+    flex: 1 1 auto;
+    margin: rem(12px) 0;
+  }
+
+  &__built {
+    flex: 0 0 rem(200px);
+    margin: rem(12px) 0;
+
+    @include breakpoint('md') {
+      text-align: right;
+    }
   }
 }

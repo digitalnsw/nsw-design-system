@@ -1,6 +1,16 @@
 <div class="nsw-content-block">
+  {{#if img}}
+  <div class="nsw-content-block__image">
+      <img src="{{img}}" alt="{{heading}}">
+  </div>
+  {{/if}}
+  {{#if icon}}
+  <div class="nsw-content-block__image">
+      <div class="nsw-content-block__icon">{{{icon}}}</div>
+  </div>
+  {{/if}}
   <div class="nsw-content-block__content">
-    <h2 class="nsw-content-block__title">{{heading}}</h2>
+    <div class="nsw-content-block__title">{{heading}}</div>
     {{#if copy}}<p class="nsw-content-block__copy">{{{copy}}}</p>{{/if}}
     {{#if list}}
     <ul class="nsw-content-block__list">
@@ -11,14 +21,4 @@
     {{/if}}
     {{#if link}}<div class="nsw-content-block__link"><a href="#">{{link}}</a></div>{{/if}}
   </div>
-  {{#if img}}
-  <div class="nsw-content-block__image-area">
-      <img src="{{img}}" alt="{{heading}}" class="nsw-content-block__image">
-  </div>
-  {{/if}}
-  {{#if icon}}
-  <div class="nsw-content-block__image-area">
-      <div class="nsw-content-block__icon">{{{icon}}}</div>
-  </div>
-  {{/if}}
 </div>

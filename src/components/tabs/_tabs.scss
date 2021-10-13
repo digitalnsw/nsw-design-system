@@ -1,0 +1,71 @@
+.nsw-tabs {
+  @include component-spacing();
+
+  &__list-wrapper {
+    overflow: hidden;
+    height: rem(48px);
+    background-color: var(--nsw-off-white);
+
+    @include breakpoint('md') {
+      background-color: transparent;
+    }
+  }
+
+  &__list {
+    margin: 0;
+    padding: 0 0 rem(20px) 0;
+    list-style: none;
+    display: flex;
+    position: relative;
+    overflow-x: auto;
+    white-space: nowrap;
+
+    li {
+      margin: 0;
+    }
+
+    a {
+      @include z-index;
+      display: block;
+      padding: rem(12px) rem(16px);
+      position: relative;
+      text-decoration: none;
+      color: var(--nsw-brand-dark);
+      height: 100%;
+
+      &:hover {
+        outline-width: 0;
+      }
+
+      &:focus {
+        outline-width: 3px;
+        outline-offset: -3px;
+      }
+
+      &.active {
+        color: var(--nsw-text-dark);
+
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 0;
+          border-bottom: solid 4px var(--nsw-brand-accent);
+        }
+      }
+    }
+  }
+
+  &__content {
+    padding: rem(24px) rem(16px);
+    border-bottom: solid 1px var(--nsw-grey-04);
+    border-top: solid 2px var(--nsw-grey-04);
+    margin-top: -2px;
+
+    &:focus {
+      @include nsw-focus;
+    }
+  }
+}

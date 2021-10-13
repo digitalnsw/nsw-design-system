@@ -1,7 +1,11 @@
 ---
 title: Cards
 width: wide
-guidance: https://digitalnsw.github.io/nsw-design-system-docs/components/card/index.html
+tabs: true
+directory: card
+intro: Cards group related content or tasks to make it easier for users to scan, read, and find information.
+figma: https://www.figma.com/file/PVrERKnckLTlJSPk12gbtS/NSW-Digital-Design-System?node-id=264%3A10883
+react: https://digitalnsw.github.io/nsw-design-system-react/?path=/docs/content-card--simple
 model:
   card-headline-1: ../../components/card/json/card-headline-1.json
   card-headline-2: ../../components/card/json/card-headline-2.json
@@ -17,46 +21,69 @@ model:
   card-news-3: ../../components/card/json/card-news-3.json
 ---
 
+
 <h3>Headline only</h3>
-{{#>_docs-example}}
+<div class="nsw-show-lg">
+  <div class="nsw-grid">
+    <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+      <h4>White</h4>
+    </div>
+    <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+      <h4>Brand Light</h4>
+    </div>
+    <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+      <h4>Brand Dark</h4>
+    </div>
+  </div>
+</div>
+
+{{#> _docs-example}}
 <div class="nsw-grid">
   <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
     {{>_card model.card-headline-1}}
   </div>
   <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
-    {{>_card model.card-headline-2}}
+    {{>_card model.card-headline-2 theme="light"}}
   </div>
   <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
-    {{>_card model.card-headline-3}}
+    {{>_card model.card-headline-3 theme="dark"}}
   </div>
 </div>
 {{/_docs-example}}
 
-{{#> _docs-example separated="true"}}
+{{#>_docs-example separated="true"}}
 <div class="nsw-grid">
   <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
-    {{>_card model.card-headline-1 content=true}}
-  </div>
-  <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
-    {{>_card model.card-headline-2 content=true}}
-  </div>
-  <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
-    {{>_card model.card-headline-3 content=true}}
+    {{>_card model.card-headline-1 highlight=true}}
   </div>
 </div>
 {{/_docs-example}}
 
 <h3>Headline and copy</h3>
+<div class="nsw-show-lg">
+  <div class="nsw-grid">
+    <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+      <h4>White</h4>
+    </div>
+    <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+      <h4>Brand Light</h4>
+    </div>
+    <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+      <h4>Brand Dark</h4>
+    </div>
+  </div>
+</div>
+
 {{#>_docs-example}}
 <div class="nsw-grid">
   <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
     {{>_card model.card-simple-1}}
   </div>
   <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
-    {{>_card model.card-simple-2}}
+    {{>_card model.card-simple-2 theme="light"}}
   </div>
   <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
-    {{>_card model.card-simple-3}}
+    {{>_card model.card-simple-3 theme="dark"}}
   </div>
 </div>
 {{/_docs-example}}
@@ -64,28 +91,36 @@ model:
 {{#>_docs-example separated="true"}}
 <div class="nsw-grid">
   <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
-    {{>_card model.card-simple-1 content=true}}
-  </div>
-  <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
-    {{>_card model.card-simple-2 content=true}}
-  </div>
-  <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
-    {{>_card model.card-simple-3 content=true}}
+    {{>_card model.card-simple-1 highlight=true}}
   </div>
 </div>
 {{/_docs-example}}
 
 <h3>Label and date</h3>
+<div class="nsw-show-lg">
+  <div class="nsw-grid">
+    <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+      <h4>White</h4>
+    </div>
+    <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+      <h4>Brand Light</h4>
+    </div>
+    <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+      <h4>Brand Dark</h4>
+    </div>
+  </div>
+</div>
+
 {{#>_docs-example}}
 <div class="nsw-grid">
   <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
     {{>_card model.card-content-1}}
   </div>
   <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
-    {{>_card model.card-content-2}}
+    {{>_card model.card-content-2 theme="light"}}
   </div>
   <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
-    {{>_card model.card-content-3}}
+    {{>_card model.card-content-3 theme="dark"}}
   </div>
 </div>
 {{/_docs-example}}
@@ -93,28 +128,36 @@ model:
 {{#>_docs-example separated="true"}}
 <div class="nsw-grid">
   <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
-    {{>_card model.card-content-1 content=true}}
-  </div>
-  <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
-    {{>_card model.card-content-2 content=true}}
-  </div>
-  <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
-    {{>_card model.card-content-3 content=true}}
+    {{>_card model.card-content-1 highlight=true}}
   </div>
 </div>
 {{/_docs-example}}
 
 <h3>Image</h3>
+<div class="nsw-show-lg">
+  <div class="nsw-grid">
+    <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+      <h4>White</h4>
+    </div>
+    <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+      <h4>Brand Light</h4>
+    </div>
+    <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+      <h4>Brand Dark</h4>
+    </div>
+  </div>
+</div>
+
 {{#>_docs-example}}
 <div class="nsw-grid">
   <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
     {{>_card model.card-news-1}}
   </div>
   <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
-    {{>_card model.card-news-2}}
+    {{>_card model.card-news-2 theme="light"}}
   </div>
   <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
-    {{>_card model.card-news-3}}
+    {{>_card model.card-news-3 theme="dark"}}
   </div>
 </div>
 {{/_docs-example}}
@@ -122,13 +165,7 @@ model:
 {{#>_docs-example separated="true"}}
 <div class="nsw-grid">
   <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
-    {{>_card model.card-news-1 content=true}}
-  </div>
-  <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
-    {{>_card model.card-news-2 content=true}}
-  </div>
-  <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
-    {{>_card model.card-news-3 content=true}}
+    {{>_card model.card-news-1 highlight=true}}
   </div>
 </div>
 {{/_docs-example}}

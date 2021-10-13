@@ -13,11 +13,13 @@ See live examples of NSW Digital Design system components and guidance on how to
 How you use the NSW Design System depends on your team's capabilities. We recommend using `npm` but also provided in a CDN, and a downloadable starter kit which includes all the compiled assets.
 
  1. [Installing with NPM](#installing-with-npm)
- 2. [Using JSDelivr CDN](#using-jsdelivr-cdn)
- 3. [Download starter kit](#download-starter-kit)
+ 2. [Import styles](#importing-all-styles)
+ 3. [Adding the font and icons](#adding-the-font-and-the-icons)
+ 4. [Importing javascript into your project](#importing-javascript-into-your-project)
+ 5. [Using JSDelivr CDN](#using-jsdelivr-cdn)
+ 6. [Download starter kit](#download-starter-kit)
  
 ### Installing with NPM
-`npm` is a package manager for Node-based projects. We recommend `npm` packages because it makes it easy to update and install the design system from the command line.
 1.  Install  `Node/npm`. 
     
     -   More information can be found via the nodejs [Installation guides](https://nodejs.org/en/download/)
@@ -29,13 +31,37 @@ How you use the NSW Design System depends on your team's capabilities. We recomm
 
 The NSW Design System is now installed as a dependancy of your project, check out how to [import styles](#importing-styles-into-your-project) and [javascript](#importing-javascript-into-your-project) in to your project build.
 
-
-### Importing styles into your project
-The NSW Design System styles need to be added to the main Sass file in your project.  
-Use the below snippet to import the NSW Design System (ideally placed before any other imports or sass):
+###Importing styles
+####All styles
+To import all styles as a single package you need to add following snippet at the start of your main SCSS file:
 ```
 @import 'node_modules/nsw-design-system/src/main';
 ```
+
+#### Core and selected components
+Our core library includes the design system's base theme, typography, mixins and helper functions. Once you imported it, you can take full advantage of our variables and helpers. To import core library you need to add following snippet at the start of your main SASS file:
+
+```
+// Core libraries
+@import 'node_modules/nsw-design-system/src/global/scss/settings/settings';
+@import 'node_modules/nsw-design-system/src/global/scss/base/all';
+@import 'node_modules/nsw-design-system/src/global/scss/helpers/all';
+@import 'node_modules/nsw-design-system/src/global/scss/settings/palette';
+@import 'node_modules/nsw-design-system/src/global/scss/settings/theme';
+@import 'node_modules/nsw-design-system/src/core/all';
+
+```
+
+Once you have installed the core library you can start importing components as you need it. To import individual components you need to add following snippets to your main SASS file under core libraries import:
+
+```
+// Components
+@import 'node_modules/nsw-design-system/src/components/accordion/accordion';
+@import 'node_modules/nsw-design-system/src/components/card/card';
+@import 'node_modules/nsw-design-system/src/components/notification/notification';
+```
+
+With this setup you can also start theming with a few sets of variable changes.
 
 #### Adding the font and the icons
 In your main html document add this line of code inside the `<head>` tag. Make sure that it's placed before the NSW Design System styles import.
@@ -43,9 +69,13 @@ In your main html document add this line of code inside the `<head>` tag. Make s
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 ```
-
+Another way is to import it in css:
+```
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+```
 ### Importing javascript into your project
-Some of the NSW Design System components require javascript to provide advanced functionality. To ensure the page is ready for javascript to run, include the follow scripts tags at the end of the html document.
+Some NSW Design System components require javascript to provide advanced functionality. To ensure the page is ready for javascript to run, include the follow scripts tags at the end of the html document.
 ```
     <script src="path/to/main.js"></script>
     <script>window.NSW.initSite()</script>
@@ -63,11 +93,11 @@ You can add the files to your main html document
 <html>
   <head>
     ...
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nsw-design-system@2/dist/css/main.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nsw-design-system@3/dist/css/main.css">
   </head>
   <body>
     ...
-    <script src="https://cdn.jsdelivr.net/npm/nsw-design-system@2/dist/js/main.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/nsw-design-system@3/dist/js/main.min.js"></script>
     <script>window.NSW.initSite()</script>
   </body>
 </html>

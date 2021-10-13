@@ -3,60 +3,98 @@
 
   &__title,
   &__button {
-    @include font-stack('heading');
-    @include font-size('sm');
-    @include nsw-spacing(margin, xs none none);
-    @include nsw-spacing(padding, md xxl md md);
-    border-left: solid 4px $nsw-primary-blue;
-    background-color: $light10;
+    @include font-size('md');
+    font-weight: var(--nsw-font-bold);
+    padding: rem(16px) rem(48px) rem(16px) rem(16px);
+    margin-top: rem(8px);
+    background-color: var(--nsw-off-white);
     display: block;
     width: 100%;
     text-align: left;
     position: relative;
+    transition: background $nsw-transition-duration, color $nsw-transition-duration;
+
+    .active,
+    &:hover & {
+      background-color: var(--nsw-brand-dark);
+      color: var(--nsw-text-light);
+
+      .nsw-material-icons {
+        color: var(--nsw-text-light);
+      }
+    }
+  }
+
+  &__toggle {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: rem(16px);
+
+    button {
+      @include font-size('sm');
+      color: var(--nsw-brand-dark);
+      text-decoration: underline;
+      text-decoration-skip-ink: auto;
+      font-weight: var(--nsw-font-bold);
+      border: 0;
+      padding: 0;
+      background: none;
+
+      &:hover:enabled {
+        @include nsw-hover;
+        outline: 2px solid var(--nsw-text-hover);
+      }
+
+      &:focus {
+        @include nsw-focus($offset: false);
+      }
+
+      &:first-child {
+        margin-right: rem(24px);
+      }
+
+      &:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+      }
+    }
   }
 
   &__title {
-    .is-ready & {
-      border-left: 0;
+    .ready & {
       padding: 0;
       margin-top: 0;
+    }
+
+    .nsw-material-icons {
+      font-size: rem(map-get($nsw-icon-sizes, 30));
+      color: var(--nsw-brand-dark);
+      transform: translateY(-50%);
+      position: absolute;
+      top: 50%;
+      right: rem(8px);
+      transition: transform $nsw-transition-duration, color $nsw-transition-duration;
     }
   }
 
   &__button {
     border: 0;
-    border-left: solid 4px $nsw-primary-blue;
-
-    &:hover {
-      @include nsw-hover;
-    }
+    color: var(--nsw-text-dark);
 
     &:focus {
       @include nsw-focus;
       @include z-index;
       position: relative;
     }
-  }
 
-  &__icon {
-    transform: translateY(-50%) rotate(90deg);
-    position: absolute;
-    top: 50%;
-    right: rem(9px);
-
-    .is-open & {
-      transform: translateY(-50%) rotate(270deg);
-    }
-
-    &.nsw-icon {
-      height: rem(16px);
-      width: rem(16px);
-      right: rem(16px);     
+    &.active {
+      .nsw-material-icons {
+        transform: translateY(-50%) rotate(180deg);
+      }
     }
   }
 
   &__content {
-    @include nsw-spacing(padding, md);
-    border-left: solid 4px $nsw-primary-blue;
+    padding: rem(16px);
   }
 }

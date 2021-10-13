@@ -1,83 +1,39 @@
 .nsw-callout {
-  @include nsw-spacing(padding, md);
   @include component-spacing();
-  background: $light10;
+  padding: rem(16px);
+  background: var(--nsw-off-white);
   position: relative;
-  border-left: solid 6px $nsw-primary-blue;
+  border-left: solid 6px var(--nsw-brand-dark);
 
   @include breakpoint('md') {
-    @include nsw-spacing(padding, lg lg lg md);
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
+    padding: rem(24px) rem(24px) rem(24px) rem(16px);
   }
 
-  &__icon {
+  .nsw-material-icons {
+    font-size: rem(map-get($nsw-icon-sizes, 30));
+    color: var(--nsw-brand-dark);
+    display: block;
+
     + .nsw-callout__content {
-      margin-top: 10px;
+      margin-top: rem(12px);
     }
 
     @include breakpoint('md') {
-      margin-right: 10px;
+      margin-right: rem(16px);
       flex: 0 0 auto;
 
       + .nsw-callout__content {
         margin-top: 0;
       }
-
-      &.nsw-icon {
-        width: rem(32px);
-        height: rem(32px);     
-      }
-    }
-
-    &.nsw-material-icons {
-      position: relative;
-      top: -3px;
-      left: -3px;
-    }
-
-    &.nsw-icon {
-      width: rem(24px);
-      height: rem(24px);
-
-      + .nsw-callout__content {
-        @include nsw-spacing(margin-top, md);
-      }
-
-      @include breakpoint('md') {
-        @include nsw-spacing(margin-right, md);
-
-        + .nsw-callout__content {
-          @include nsw-spacing(margin-top, none);
-        }
-      }
     }
   }
 
   &__content {
-    @include font-stack;
-
-    @include breakpoint('md') {
-      @include nsw-spacing(margin-top, none);
+    *+p {
+      margin-top: rem(12px);
     }
-
-    p:not([class]) {
-      @include nsw-spacing(margin, sm none none none);
-    }
-
-    a:not([class]) {
-      @include text-link;
-    }
-
-    .nsw-text-link {
-      @include nsw-spacing(margin-top, sm);
-    }
-  }
-
-  &__title {
-    @include font-stack('heading');
-    @include font-size('md');
-    margin: 0;
   }
 }

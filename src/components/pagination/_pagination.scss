@@ -1,60 +1,56 @@
 .nsw-pagination {
-  @include font-stack('heading');
   @include component-spacing();
-  @include nsw-spacing(padding-left, none);
-  display: flex;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  justify-content: center;
-  list-style: none;
 
-  &__item {
-    @include nsw-spacing(margin, none none none xs);
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+  }
 
-    &--next-page {
-      @include nsw-spacing(margin, none none none md);
-    }
+  li {
+    margin: 0;
 
-    &--prev-page {
-      @include nsw-spacing(margin, none md none none);
-
-      + .nsw-pagination__item {
-        @include nsw-spacing(margin-left, none);
-      }
+    > span {
+      padding: rem(4px);
     }
   }
 
-  &__link {
-    position: relative;
-    display: inline-flex;
+  a {
+    display: block;
     text-decoration: none;
-    vertical-align: middle;
-    padding: rem(4px) rem(8px);
-    color: $dark80;
     text-align: center;
-    min-width: rem(24px);
+    padding: rem(4px);
+    min-width: rem(30px);
+    border-radius: var(--nsw-border-radius);
 
     &:hover {
-      @include nsw-hover;
+      outline-width: 0;
     }
 
     &:focus {
-      @include nsw-focus($offset: false);
+      outline-width: 3px;
     }
 
-    &.is-current::after {
-      position: absolute;
-      content: '';
-      bottom: 0;
-      width: 80%;
-      left: 50%;
-      transform: translateX(-50%);
-      height: 2px;
-      background-color: $nsw-primary-blue;
-    }
-  }
+    &.active {
+      position: relative;
+      color: var(--nsw-text-dark);
 
-  &__text {
-    vertical-align: middle;
+      &:hover {
+        background-color: transparent;
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: rem(4px);
+        right: rem(4px);
+        height: 2px;
+        background-color: var(--nsw-brand-accent);        
+      }
+    }    
   }
 }

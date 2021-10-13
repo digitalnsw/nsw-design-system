@@ -1,0 +1,513 @@
+---
+title: Typography
+order: 10
+width: narrow
+directory: typography
+core: true
+no-blank: true
+intro: NSW Government uses Public Sans font for all digital products and services to create a distinct but consistent look and feel.
+---
+
+<h2>Typeface</h2>
+
+<p>Public Sans is the only font to be used by agencies for NSW Government websites and online applications. Major headings through to body copy must also use Public Sans.</p>
+
+<p>Public Sans is a free font and available from <a href="https://fonts.google.com/specimen/Public+Sans" target="_blank" rel="noopener">Google Fonts</a>.</p>
+
+<div class="nsw-in-page-note nsw-in-page-note--info">
+  <span class="material-icons nsw-material-icons nsw-in-page-note__icon"
+     focusable="false" aria-hidden="true">info</span>
+  <div class="nsw-in-page-note__content">
+    <h4>Font migration</h4>
+    <p>The previous iteration of the NSW Design System used Montserrat, to update to Public Sans read through the developer guide <a href="docs/content/develop/migration.html">here</a>.</p>
+  </div>
+</div>
+
+<div class="nsw-section nsw-section--white nsw-block nsw-p-sm">
+  <div class="nsw-table nsw-table--bordered nsw-table--valign-middle">
+    <table>
+      <tbody>
+      <tr>
+        <th>
+          <div>
+            <p>Typography Base</p>
+          </div>
+        </th>
+        <th>
+          <div>
+            <p>CSS Variable</p>
+          </div>
+        </th>
+        <th>
+          <div>
+            <p>Value</p>
+          </div>
+        </th>
+      </tr>
+      <tr>
+        <td>
+          <p>Font family</p>
+        </td>
+        <td>
+          <code>nsw-font-family</code>
+        </td>
+        <td>
+          <p><code>'Public Sans', sans-serif</code>
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>Font size</p>
+        </td>
+        <td>
+          <code>nsw-font-size</code>
+        </td>
+        <td>
+          <p><code>16px</code>
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>Line height</p>
+        </td>
+        <td>
+          <code>nsw-line-height</code>
+        </td>
+        <td>
+          <p><code>1.5</code>
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>Font weight - Regular</p>
+        </td>
+        <td>
+          <code>nsw-font-normal</code>
+        </td>
+        <td>
+          <p><code>400</code>
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>Font weight - Bold</p>
+        </td>
+        <td>
+          <code>nsw-font-bold</code>
+        </td>
+        <td>
+          <p><code>700</code>
+          </p>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<h3>System fonts</h3>
+<p>System fonts are rendered locally by your web browser, this provides greater speed when loading your content. The preferred system font is Arial.</p>
+
+<p>As a good rule of thumb, you should still refer to a system font as a fallback in your CSS font stack:</p>
+<p><code>body {font-family: 'Public Sans', Arial, sans-serif; }</code></p>
+
+
+<h2>Typography styles</h2>
+<p>In the NSW Design system there are different standard sizes for the headings for large screens and smaller screens.</p>
+<h3>Large screens (≥ 992px)</h3>
+
+<div class="nsw-section nsw-section--white nsw-block nsw-p-x-sm nsw-p-top-sm">
+  <div class="nsw-table nsw-table--valign-top">
+    <table>
+      <thead>
+        <tr>
+          <th>Style</th>
+          <th>Properties</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <h1>Heading 1</h1>
+          </td>
+          <td>
+            <p><strong>Basic properties</strong><br/>
+              Token: xxl<br/>
+              Font size: 3REM (48px)<br/>
+              Font weight: 700 / bold</p>
+
+              <p><strong>UI properties</strong><br/>
+              Line height: 125% (60px)<br/>
+              Margin top: 4REM (64px)</p>
+
+              <p><strong>CSS variables</strong><br/>
+              Font size: <code>nsw-font-size-xxl-desktop</code><br/>
+              Line height: <code>nsw-line-height-xxl-desktop</code></p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <h2>Heading 2</h2>
+          </td>
+          <td>
+            <p><strong>Basic properties</strong><br/>
+              Token: xl<br/>
+              Font size: 2REM (32px)<br/>
+              Font weight: 700 / bold</p>
+
+              <p><strong>UI properties</strong><br/>
+              Line height: 125% (40px)<br/>
+              Margin top: 3REM (48px)</p>
+
+              <p><strong>CSS variables</strong><br/>
+              Font size: <code>nsw-font-size-xl-desktop</code><br/>
+              Line height: <code>nsw-line-height-xl-desktop</code></p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <h3>Heading 3</h3>
+          </td>
+          <td>
+            <p><strong>Basic properties</strong><br/>
+              Token: lg<br/>
+              Font size: 1.5REM (24px)<br/>
+              Font weight: 700 / bold</p>
+
+              <p><strong>UI properties</strong><br/>
+              Line height: 133% (32px)<br/>
+              Margin top: 2REM (32px)</p>
+
+              <p><strong>CSS variables</strong><br/>
+              Font size: <code>nsw-font-size-lg-desktop</code><br/>
+              Line height: <code>nsw-line-height-lg-desktop</code></p>
+          </td>
+        </tr>
+              <tr>
+          <td>
+            <h4>Heading 4</h4>
+          </td>
+          <td>
+            <p><strong>Basic properties</strong><br/>
+              Token: md<br/>
+              Font size: 1.25REM (20px)<br/>
+              Font weight: 700 / bold</p>
+
+              <p><strong>UI properties</strong><br/>
+              Line height: 140% (28px)<br/>
+              Margin top: 1.5REM (24px)</p>
+
+              <p><strong>CSS variables</strong><br/>
+              Font size: <code>nsw-font-size-md-desktop</code><br/>
+              Line height: <code>nsw-line-height-md-desktop</code></p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <h5>Heading 5</h5>
+          </td>
+          <td>
+            <p><strong>Basic properties</strong><br/>
+              Token: sm<br/>
+              Font size: 1REM (16px)<br/>
+              Font weight: 700 / bold</p>
+
+              <p><strong>UI properties</strong><br/>
+              Line height: 150% (24px)<br/>
+              Margin top: 1.5REM (24px)</p>
+
+              <p><strong>CSS variables</strong><br/>
+              Font size: <code>nsw-font-size-sm-desktop</code><br/>
+              Line height: <code>nsw-line-height-sm-desktop</code></p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p class="nsw-intro">Intro Text</p>
+          </td>
+          <td>
+            <p><strong>Basic properties</strong><br/>
+              Token: md<br/>
+              Font size: 1.25REM (20px)<br/>
+              Font weight: 400 / regular</p>
+
+              <p><strong>UI properties</strong><br/>
+              Line height: 140% (28px)<br/>
+              Margin top: 1REM (16px)</p>
+
+              <p><strong>CSS variables</strong><br/>
+              Font size: <code>nsw-font-size-md-desktop</code><br/>
+              Line height: <code>nsw-line-height-md-desktop</code></p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p>Body text</p>
+          </td>
+          <td>
+            <p><strong>Basic properties</strong><br/>
+              Token: sm<br/>
+              Font size: 1REM (16px)<br/>
+              Font weight: 400 / regular</p>
+
+              <p><strong>UI properties</strong><br/>
+              Line height: 150% (24px)<br/>
+              Margin top: 1REM (16px)</p>
+
+              <p><strong>CSS variables</strong><br/>
+              Font size: <code>nsw-font-size-sm-desktop</code><br/>
+              Line height: <code>nsw-line-height-sm-desktop</code></p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <small>Small text</small>
+          </td>
+          <td>
+            <p><strong>Basic properties</strong><br/>
+              Token: xs<br/>
+              Font size: 0.875REM (14px)<br/>
+              Font weight: 400 / regular</p>
+
+              <p><strong>UI properties</strong><br/>
+              Line height: 135% (19px)<br/>
+              Margin top: 1REM (16px)</p>
+
+              <p><strong>CSS variables</strong><br/>
+              Font size: <code>nsw-font-size-xs-desktop</code><br/>
+              Line height: <code>nsw-line-height-xs-desktop</code></p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<h3>Small screens (< 992px)</h3>
+
+<div class="nsw-section nsw-section--white nsw-block nsw-p-x-sm nsw-p-top-sm">
+  <div class="nsw-table nsw-table--valign-top">
+    <table>
+      <thead>
+        <tr>
+          <th>Style</th>
+          <th>Properties</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <h1>Heading 1</h1>
+          </td>
+          <td>
+            <p><strong>Basic properties</strong><br/>
+              Token: xxl<br/>
+              Font size: 2.25REM (36px)<br/>
+              Font weight: 700 / bold</p>
+
+              <p><strong>UI properties</strong><br/>
+              Line height: 125% (45px)<br/>
+              Margin top: 4REM (64px)</p>
+
+              <p><strong>CSS variables</strong><br/>
+              Font size: <code>nsw-font-size-xxl-mobile</code><br/>
+              Line height: <code>nsw-line-height-xxl-mobile</code></p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <h2>Heading 2</h2>
+          </td>
+          <td>
+            <p><strong>Basic properties</strong><br/>
+              Token: xl<br/>
+              Font size: 1.175REM (28px)<br/>
+              Font weight: 700 / bold</p>
+
+              <p><strong>UI properties</strong><br/>
+              Line height: 125% (35px)<br/>
+              Margin top: 3REM (48px)</p>
+
+              <p><strong>CSS variables</strong><br/>
+              Font size: <code>nsw-font-size-xl-mobile</code><br/>
+              Line height: <code>nsw-line-height-xl-mobile</code></p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <h3>Heading 3</h3>
+          </td>
+          <td>
+            <p><strong>Basic properties</strong><br/>
+              Token: lg<br/>
+              Font size: 1.375REM (22px)<br/>
+              Font weight: 700 / bold</p>
+
+              <p><strong>UI properties</strong><br/>
+              Line height: 125% (27.5px)<br/>
+              Margin top: 2REM (32px)</p>
+
+              <p><strong>CSS variables</strong><br/>
+              Font size: <code>nsw-font-size-lg-mobile</code><br/>
+              Line height: <code>nsw-line-height-lg-mobile</code></p>
+          </td>
+        </tr>
+              <tr>
+          <td>
+            <h4>Heading 4</h4>
+          </td>
+          <td>
+            <p><strong>Basic properties</strong><br/>
+              Token: md<br/>
+              Font size: 1.125REM (18px)<br/>
+              Font weight: 700 / bold</p>
+
+              <p><strong>UI properties</strong><br/>
+              Line height: 133% (24px)<br/>
+              Margin top: 1.5REM (24px)</p>
+
+              <p><strong>CSS variables</strong><br/>
+              Font size: <code>nsw-font-size-md-mobile</code><br/>
+              Line height: <code>nsw-line-height-md-mobile</code></p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <h5>Heading 5</h5>
+          </td>
+          <td>
+            <p><strong>Basic properties</strong><br/>
+              Token: sm<br/>
+              Font size: 1REM (16px)<br/>
+              Font weight: 700 / bold</p>
+
+              <p><strong>UI properties</strong><br/>
+              Line height: 150% (24px)<br/>
+              Margin top: 1.5REM (24px)</p>
+
+              <p><strong>CSS variables</strong><br/>
+              Font size: <code>nsw-font-size-sm-mobile</code><br/>
+              Line height: <code>nsw-line-height-sm-mobile</code></p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p class="nsw-intro">Intro Text</p>
+          </td>
+          <td>
+            <p><strong>Basic properties</strong><br/>
+              Token: md<br/>
+              Font size: 1.125REM (18px)<br/>
+              Font weight: 400 / regular</p>
+
+              <p><strong>UI properties</strong><br/>
+              Line height: 133% (24px)<br/>
+              Margin top: 1REM (16px)</p>
+
+              <p><strong>CSS variables</strong><br/>
+              Font size: <code>nsw-font-size-md-mobile</code><br/>
+              Line height: <code>nsw-line-height-md-mobile</code></p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p>Body text</p>
+          </td>
+          <td>
+            <p><strong>Basic properties</strong><br/>
+              Token: sm<br/>
+              Font size: 1REM (16px)<br/>
+              Font weight: 400 / regular</p>
+
+              <p><strong>UI properties</strong><br/>
+              Line height: 150% (24px)<br/>
+              Margin top: 1REM (16px)</p>
+
+              <p><strong>CSS variables</strong><br/>
+              Font size: <code>nsw-font-size-sm-mobile</code><br/>
+              Line height: <code>nsw-line-height-sm-mobile</code></p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <small>Small text</small>
+          </td>
+          <td>
+            <p><strong>Basic properties</strong><br/>
+              Token: xs<br/>
+              Font size: 0.875REM (14px)<br/>
+              Font weight: 400 / regular</p>
+
+              <p><strong>UI properties</strong><br/>
+              Line height: 135% (19px)<br/>
+              Margin top: 1REM (16px)</p>
+
+              <p><strong>CSS variables</strong><br/>
+              Font size: <code>nsw-font-size-xs-mobile</code><br/>
+              Line height: <code>nsw-line-height-xs-mobile</code></p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<h2 class="nsw-h3">Basic typography</h2>
+<p>A wrapper class of <code>nsw-body-content</code> applies styles for basic typographic elements</p>
+{{#>_docs-example simple="true" separated="true"}}
+  <div class="nsw-body-content">
+    <h2>This is a sample heading</h2>
+    <hr/>
+    <p>Nunc porta purus non sem laoreet eleifend a pharetra ex.</p>
+    <blockquote>
+      “Pellentesque facilisis sed quam id blandit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.”
+      <cite>Nullam faucibus</cite>
+    </blockquote>
+  </div>
+{{/_docs-example}}
+<h2 class="nsw-h3">Links</h2>
+{{#>_docs-example simple="true" separated="true"}}
+  <div class="nsw-body-content">
+    <p>
+      Maecenas at risus ullamcorper odio facilisis <a href="#">ultrices et</a> et metus.
+    </p>
+    <p>
+      <a class="nsw-link nsw-link--icon" href="#">
+        <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">download</span>
+        <span>Download PDF schedule</span>
+      </a>
+    </p>
+  </div>
+{{/_docs-example}}
+<h2 class="nsw-h3">Lists</h2>
+{{#>_docs-example simple="true" separated="true"}}
+  <div class="nsw-body-content">
+    <ul>
+      <li>List item</li>
+      <li>List item</li>
+    </ul>
+
+    <ol>
+      <li>List item</li>
+      <li>List item</li>
+    </ol>
+
+    <dl>
+      <dt>Definition title</dt>
+      <dd>Definition Definition</dd>
+      <dd>Definition Definition</dd>
+    </dl>
+  </div>
+{{/_docs-example}}
+<h2 class="nsw-h3">Mathematical notations</h2>
+
+{{#>_docs-example simple="true" separated="true"}}
+  <div class="nsw-body-content">
+    <p>e<sup>x</sup>, sin<sup>2</sup> <i>x</i>, e<sup>x<sup>2</sup></sup> and
+      f(x)<sup>g(x)<sup>a+b+c</sup></sup>
+    </p>
+  </div>{{/_docs-example}}
