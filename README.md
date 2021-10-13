@@ -31,8 +31,8 @@ How you use the NSW Design System depends on your team's capabilities. We recomm
 
 The NSW Design System is now installed as a dependancy of your project, check out how to [import styles](#importing-styles-into-your-project) and [javascript](#importing-javascript-into-your-project) in to your project build.
 
-###Importing styles
-####All styles
+### Importing styles
+#### All styles
 To import all styles as a single package you need to add following snippet at the start of your main SCSS file:
 ```
 @import 'node_modules/nsw-design-system/src/main';
