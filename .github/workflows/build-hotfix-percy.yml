@@ -1,0 +1,38 @@
+name: build-deploy-production
+on:
+  push:
+    branches:
+      - hotfix-percy-deploy
+jobs:
+  test-build-production:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 8
+      - run: npm install
+      - run: npm run prod:build
+      - uses: actions/upload-artifact@v2
+        with:
+          name: dist
+          path: |
+            dist
+
+  deploy-production:
+    needs: test-build-production
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+      - uses: actions/download-artifact@v2
+        with:
+          name: dist
+          path: |
+            dist
+      - run: echo "Deploy step"
+      - run: npm run starterkit:build
+      - name: Visual test
+        run: npx percy snapshot dist/ --ignore-files "{components,core}/**/index.html"
+        env:
+          PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
