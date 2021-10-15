@@ -37,6 +37,15 @@ jobs:
           BRANCH: gh-pages # The branch the action should deploy to.
           FOLDER: dist # The folder the action should deploy.
           CLEAN: true # Automatically remove deleted files from the deploy branch
+
+  visual-test:
+    needs: deploy-production
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+      - run: npm install
+      - run: npm run starterkit:build
       - name: Visual test
         run: npx percy snapshot dist/ --ignore-files "{components,core}/**/index.html"
         env:
