@@ -1,4 +1,4 @@
-name: build-deploy-production
+name: build-deploy-percy
 on:
   push:
     branches:
@@ -19,7 +19,7 @@ jobs:
           path: |
             dist
 
-  deploy-production:
+  test-deploy-production:
     needs: test-build-production
     runs-on: ubuntu-latest
     steps:
@@ -31,6 +31,14 @@ jobs:
           path: |
             dist
       - run: echo "Deploy step"
+
+  visual-test:
+    needs: test-deploy-production
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+      - run: npm install
       - run: npm run starterkit:build
       - name: Visual test
         run: npx percy snapshot dist/ --ignore-files "{components,core}/**/index.html"
