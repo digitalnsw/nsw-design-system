@@ -192,6 +192,11 @@ function metalsmithBuild(callback) {
       refer: false,
       sortBy: 'order',
     },
+    methods: {
+      pattern: config.metalSmith.collection.contentnav.methods,
+      refer: false,
+      sortBy: 'order',
+    },
   }))
   metalsmith.use(inplace(config.metalSmith.inplace))
   metalsmith.use(layouts(config.metalSmith.layouts))
