@@ -5,7 +5,7 @@ width: narrow
 directory: iconography
 core: true
 no-blank: true
-intro: Creation, sizing, spacing and usage guidelines.
+intro: Icons illustrate actions, communicate status, indicate an interaction and draw attention to important information.
 ---
 
 
@@ -13,17 +13,23 @@ intro: Creation, sizing, spacing and usage guidelines.
   <h2 class="nsw-in-page-nav__title">On this page</h2>
   <ul class="nsw-in-page-nav__list">
     <li class="nsw-in-page-nav__list-item">
-      <a href="{{change-extention path 'anchor' 'icons'}}" class="nsw-in-page-nav__link">Icons</a>
+      <a href="{{change-extention path 'anchor' 'usage'}}" class="nsw-in-page-nav__link">Usage</a>
     </li>
     <li class="nsw-in-page-nav__list-item">
-      <a href="{{change-extention path 'anchor' 'pictogram'}}" class="nsw-in-page-nav__link">Pictogram</a>
+      <a href="{{change-extention path 'anchor' 'styling'}}" class="nsw-in-page-nav__link">Styling</a>
+    </li>
+    <li class="nsw-in-page-nav__list-item">
+      <a href="{{change-extention path 'anchor' 'application'}}" class="nsw-in-page-nav__link">Application</a>
+    </li>
+    <li class="nsw-in-page-nav__list-item">
+      <a href="{{change-extention path 'anchor' 'designing'}}" class="nsw-in-page-nav__link">Designing</a>
     </li>
   </ul>
 </nav>
-<h2 id="icons">Icons</h2>
-<p>Icons illustrate actions, communicate status, indicate an interaction and draw attention to important information.</p>
-<p>Icons can be added to components or paired with text. Avoid having icons as standalone as they may be interpreted differently by different users. It is important to ensure where an icon is used it matches the intended action.</p>
+<h2 id="usage">Usage</h2>
 <p>The NSW Design System uses <a taget="_blank" href="https://fonts.google.com/icons?selected=Material+Icons">Material design</a> icons (filled versions) for an easily implementable and consistent user experience.</p>
+<p>Icons can be added to components or paired with text. Avoid having icons as standalone as they may be interpreted differently by different users. It is important to ensure where an icon is used it matches the intended action.</p>
+
 <div class="nsw-docs__section nsw-docs__section--spaced">
 </div>
 <div class="nsw-in-page-note nsw-in-page-note--info">
@@ -37,7 +43,7 @@ intro: Creation, sizing, spacing and usage guidelines.
 <p>Add an icon next to text to support the action.</p>
 
 {{#>_docs-example simple="true" separated="true" open="true" showcode="false"}}
-  <a class="nsw-link nsw-link--icon" href="#">
+  <a class="nsw-link nsw-link--icon nsw-p-right-sm" href="#">
     <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">west</span>
     <span>Back <span class="sr-only">a page</span></span>
   </a>
@@ -83,7 +89,8 @@ intro: Creation, sizing, spacing and usage guidelines.
   </div>
 {{/_docs-example}}
 
-<h2 class="nsw-h3">Colour</h2>
+<h2 id="styling">Styling</h2>
+<h3>Colour</h3>
 <p>Icons that are clickable should use Brand Dark to remain consistent with text link styling. If icon is on a background that changes the colour of the text (for example a button) the icon should take on the same colour as the text.</p>
 <p>Icons used to represent a state should use the appropriate colour, for example an icon used in a success notification should use Success Green.</p>
 
@@ -95,7 +102,7 @@ intro: Creation, sizing, spacing and usage guidelines.
   {{>_icon code="cancel" type="error"}}
 {{/_docs-example}}
 
-<h2 class="nsw-h3">Icon rotation</h2>
+<h3>Icon rotation</h3>
 {{#>_docs-example simple="true" separated="true"}}
   {{>_icon code="east"}}
   {{>_icon code="east" rotate="90"}}
@@ -103,7 +110,8 @@ intro: Creation, sizing, spacing and usage guidelines.
   {{>_icon code="east" rotate="270"}}
 {{/_docs-example}}
 
-<h2 class="nsw-h3">Sizing</h2>
+<h2 id="application">Application</h2>
+<h3>Sizing</h3>
 <p>The NSW Design System displays icons at four sizes (20px, 24px, 30px, 36px) depending on their type, use and screen size:</p>
 
 {{#>_docs-example simple="true" separated="true"}}
@@ -112,7 +120,7 @@ intro: Creation, sizing, spacing and usage guidelines.
   {{>_icon code="east" size="30"}}
   {{>_icon code="east" size="36"}}
 {{/_docs-example}}
-<h2 class="nsw-h3">Spacing</h2>
+<h3>Spacing</h3>
 <p>Ensure you allocate the right amount of space around an icon to allow for legibility and touch. Wherever possible, use an 8 pixel spacing grid to create a consistent visual structure.</p>
 <div class="nsw-grid">
   <div class="nsw-col nsw-col-sm-8">
@@ -129,7 +137,7 @@ intro: Creation, sizing, spacing and usage guidelines.
   </li>
   <li>Use descriptive and meaningful titles for informative icons</li>
 </ul>
-<h3>Designing</h3>
+<h2 id="designing">Designing</h2>
 <p>Icons used to build base components are included in the UI Kit. Base colour ranges are available and can be changed using the Variants panel in Figma. If you require additional icons, you can download them from <a href="https://fonts.google.com/icons?selected=Material+Icons">Material design icons</a> and import where required.</p>
 <div class="nsw-in-page-note nsw-in-page-note--info">
       <span class="material-icons nsw-material-icons nsw-in-page-note__icon" focusable="false" aria-hidden="true">info</span>
@@ -138,7 +146,23 @@ intro: Creation, sizing, spacing and usage guidelines.
     <p>Maintain the default internal padding in each icon file. This padding is tied to the icon when implemented in development, therefore when designing you should accommodate for this padding.</p>
   </div>
 </div>
-<h2 id="pictogram">Pictogram</h2>
+<h3>Creating SVGs</h3>
+<p>The majority of design software allows you to create an SVG file by selecting this format when exporting.</p>
+<p>Tips for creating SVGs:</p>
+<ul>
+  <li>Flatten and outline all elements</li>
+  <li>Do not use masks</li>
+  <li>Ensure white colour is intentionally white and transparent is intentionally transparent
+  </li>
+</ul>
+<h3>Benefits of using SVGs</h3>
+<p>SVGs are scalable vector graphics made up of points, lines and shapes which can easily be adapted in size making them an advantageous choice for responsive design. Other benefits of using SVG format over other raster formats (for example JPEG, GIF and PNG) include:</p>
+<ul>
+  <li>Ability to scale and graphic to any size without losing quality</li>
+  <li>Smaller file sizes means your page will load faster</li>
+  <li>Easily editable strokes and colours through CSS</li>
+</ul>
+<!--<h2 id="pictogram">Pictogram</h2>
 <p>Use pictograms to represent a word or idea using simple and clean illustration. Used to visually support and highlight content, making it quickly identifiable on the page.</p>
 <div class="nsw-in-page-note nsw-in-page-note--info">
       <span class="material-icons nsw-material-icons nsw-in-page-note__icon"
@@ -326,4 +350,4 @@ intro: Creation, sizing, spacing and usage guidelines.
   <li>Ability to scale and graphic to any size without losing quality</li>
   <li>Smaller file sizes means your page will load faster</li>
   <li>Easily editable strokes and colours through CSS</li>
-</ul>
+</ul>-->
