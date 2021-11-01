@@ -3,10 +3,104 @@ title: Maps
 width: narrow
 no-blank: true
 order: 20
+intro: Maps allow you to show data relative to a physical location.
 ---
 
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Morbi tincidunt ornare massa eget. Nisl rhoncus mattis rhoncus urna neque viverra justo. Ipsum consequat nisl vel pretium lectus quam id. Feugiat pretium nibh ipsum consequat. Sed viverra ipsum nunc aliquet bibendum enim facilisis gravida neque. Duis tristique sollicitudin nibh sit amet commodo nulla facilisi nullam. Volutpat blandit aliquam etiam erat velit scelerisque in dictum non. Lobortis scelerisque fermentum dui faucibus in ornare. Pulvinar etiam non quam lacus suspendisse faucibus. Non consectetur a erat nam. Eget felis eget nunc lobortis mattis aliquam. Lacus viverra vitae congue eu consequat ac felis donec et. Aliquet nec ullamcorper sit amet. Lacus viverra vitae congue eu consequat. Fermentum et sollicitudin ac orci phasellus.</p>
+<nav class="nsw-in-page-nav" aria-labelledby="in-page-nav">
+  <div id="in-page-nav" class="nsw-in-page-nav__title">On this page</div>
+  <ul>
+    <li>
+      <a href="{{change-extention path 'anchor' 'when-to-use'}}">When to use maps</a>
+    </li>
+    <li>
+      <a href="{{change-extention path 'anchor' 'how-it-works'}}">How it works</a>
+    </li>
+    <li>
+      <a href="{{change-extention path 'anchor' 'data-info-styling'}}">Data &amp; information styling</a>
+    </li>
+    <li>
+      <a href="{{change-extention path 'anchor' 'code-implementation'}}">Code implementation</a>
+    </li>
+    <li>
+      <a href="{{change-extention path 'anchor' 'example-pages'}}">Example page layouts</a>
+    </li>
+  </ul>
+</nav>
 
-<p>Vulputate odio ut enim blandit volutpat maecenas. Molestie nunc non blandit massa. Ut placerat orci nulla pellentesque dignissim enim sit. Commodo odio aenean sed adipiscing diam donec adipiscing tristique risus. Amet dictum sit amet justo donec enim diam. Aliquet sagittis id consectetur purus ut faucibus. Ut sem nulla pharetra diam sit amet nisl suscipit adipiscing. Dolor magna eget est lorem. Morbi leo urna molestie at elementum eu facilisis sed odio. Accumsan lacus vel facilisis volutpat.</p>
 
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Morbi tincidunt ornare massa eget. Nisl rhoncus mattis rhoncus urna neque viverra justo. Ipsum consequat nisl vel pretium lectus quam id. Feugiat pretium nibh ipsum consequat. Sed viverra ipsum nunc aliquet bibendum enim facilisis gravida neque. Duis tristique sollicitudin nibh sit amet commodo nulla facilisi nullam. Volutpat blandit aliquam etiam erat velit scelerisque in dictum non. Lobortis scelerisque fermentum dui faucibus in ornare. Pulvinar etiam non quam lacus suspendisse faucibus. Non consectetur a erat nam. Eget felis eget nunc lobortis mattis aliquam. Lacus viverra vitae congue eu consequat ac felis donec et. Aliquet nec ullamcorper sit amet. Lacus viverra vitae congue eu consequat. Fermentum et sollicitudin ac orci phasellus.</p>
+<h2 id="when-to-use">When to use</h2>
+<p>Use a map when your users need to see the location of things relative to each other - for example locations where they can access a service.</p>
+<h3>Test your solution</h3>
+<p>Maps can be a challenge for users on small screens, so it is important to carefully consider if it brings value to your product or service. Ensure on mobile, users can still scroll the page by keeping the map’s aspect ratio different to the user’s screen. </p>
+<h3>Provide a text-based alternative</h3>
+<p>Do not rely on users being able to use a map. Make the content available without using the map by offering a text-based alternative.</p>
+<h2 id="how-it-works">How it works</h2>
+<h3>Navigating the map interface</h3>
+<p>Allow spacing around the map area on mobile devices to ensure users can scroll past map and give an option to close or minimise the map option where appropriate.</p>
+<p>To ensure users have a consistent and smooth experience with the map interface:</p>
+<ul>
+  <li>update data points as the user pans based on centre of map</li>
+  <li>use an appropriate zoom level by default</li>
+  <li>consider each zoom level carefully and what information should be visualised</li>
+  <li>use clear and legible labels</li>
+</ul>
+<h3>Data points</h3>
+<p>Symbols indicate relevant data points for the user to focus and interact. The standard set of symbols use NSW Government brand colours to create a consistent presentation of data.</p>
+<p>When a user selects a data point, it should centre on the map and it’s listing should move to the top of the results. On selection, a pop up can also be triggered to provide a snapshot of the data point and link to further information (if requried). Pop ups should be dismissable by the close icon and also close when an alternate data point is selected.</p>
+<p>When implementing data points:</p>
+<ul>
+  <li>ensure touch target size is minimum 44px x 44px (this can include white space around the target) to ensure ease of selection on touch screen devices and comply with WCAG 2.2 accessibility requirements</li>
+  <li>if multiple data points overlap in a view, consider using the clustering symbol. This allows a user to select a single point, and on selection is zoomed into an appropriate magnification level to clearly display all contained data points</li>
+  <li>if additional colours are required, be mindful of users with colour blindness and test to ensure sufficient contrast</li>
+  <li>use familiar and easily recognisable icons, we recommend material design icons to maintain visual consistency</li>
+</ul>
+<h3>Filtering</h3>
+<p>Filters allow a user to narrow down the visible data points by their requirements -  for example the location or available facilities. Fields labels should be descriptive and clearly identify the input required of the user (ie. postcode, suburb or full address).</p>
+<h3>Displaying results</h3>
+<p>When a user selects a result from the listing, it should move to the top of the results and centre the data point on the map with an active pop up (if applicable). Use title of the result to link user to further information.</p>
+<p>When displaying results, consider what information is important to the user and what they require to make an informed decision.</p>
+<p>When displaying results:</p>
+<ul>
+  <li>make phone numbers clickable on mobile</li>
+  <li>update results as user pans based on centre of map</li>
+</ul>
+
+<h2 id="data-info-styling">Data &amp; information styling</h2>
+<p>Maps in NSW Government should have a consistent look and feel. Configure your map to use these styles:</p>
+
+<h2 id="code-implementation">Code implementation</h2>
+<p>We recommend using a well supported maps platform, such as leaflet.js.</p>
+
+<h2 id="example-pages">Example page layouts</h2>
+<div class="nsw-grid">
+  <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+    <div class="nsw-card nsw-card--headline">
+      <div class="nsw-card__content">
+        <div class="nsw-card__title">
+          <a target="_blank" href="#">TBC</a>
+        </div>
+        <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span>
+      </div>
+    </div>
+  </div>
+  <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+    <div class="nsw-card nsw-card--headline">
+      <div class="nsw-card__content">
+        <div class="nsw-card__title">
+          <a target="_blank" href="#">TBC</a>
+        </div>
+        <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span>
+      </div>
+    </div>
+  </div>
+  <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+    <div class="nsw-card nsw-card--headline">
+      <div class="nsw-card__content">
+        <div class="nsw-card__title">
+          <a target="_blank" href="#">TBC</a>
+        </div>
+        <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span>
+      </div>
+    </div>
+  </div>
+</div>
