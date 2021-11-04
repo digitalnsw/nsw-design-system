@@ -6,6 +6,9 @@ order: 20
 intro: Maps allow you to show data relative to a physical location.
 ---
 
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
+
 <nav class="nsw-in-page-nav" aria-labelledby="in-page-nav">
   <div id="in-page-nav" class="nsw-in-page-nav__title">On this page</div>
   <ul>
@@ -45,15 +48,20 @@ intro: Maps allow you to show data relative to a physical location.
   <li>use clear and legible labels</li>
 </ul>
 <h3>Data points</h3>
-<p>Symbols indicate relevant data points for the user to focus and interact. The standard set of symbols use NSW Government brand colours to create a consistent presentation of data.</p>
-<p>When a user selects a data point, it should centre on the map and it’s listing should move to the top of the results. On selection, a pop up can also be triggered to provide a snapshot of the data point and link to further information (if requried). Pop ups should be dismissable by the close icon and also close when an alternate data point is selected.</p>
-<p>When implementing data points:</p>
-<ul>
-  <li>ensure touch target size is minimum 44px x 44px (this can include white space around the target) to ensure ease of selection on touch screen devices and comply with WCAG 2.2 accessibility requirements</li>
-  <li>if multiple data points overlap in a view, consider using the clustering symbol. This allows a user to select a single point, and on selection is zoomed into an appropriate magnification level to clearly display all contained data points</li>
-  <li>if additional colours are required, be mindful of users with colour blindness and test to ensure sufficient contrast</li>
-  <li>use familiar and easily recognisable icons, we recommend material design icons to maintain visual consistency</li>
-</ul>
+<div class="nsw-grid">
+  <div class="nsw-col nsw-col-md-7">
+    <p>Markers indicate relevant data points for the user to focus and interact.</p>
+    <p>When a user selects a data point, it should centre on the map and it’s listing should move to the top of the results. On selection, a pop up can also be triggered to provide a snapshot of the data point and link to further information (if requried). Pop ups should be dismissable by the close icon and also close when an alternate data point is selected.</p>
+    <p>When implementing data points:</p>
+    <ul>
+      <li>ensure touch target size is minimum 44px x 44px (this can include white space around the target) to ensure ease of selection on touch screen devices and comply with WCAG 2.2 accessibility requirements</li>
+      <li>if multiple data points overlap in a view, consider using the clustering symbol</li>
+    </ul>
+  </div>
+  <div class="nsw-col nsw-col-md-5">
+    <div id='map' style='width: 450px; height: 300px;'></div>
+  </div>
+</div>
 <h3>Filtering</h3>
 <p>Filters allow a user to narrow down the visible data points by their requirements -  for example the location or available facilities. Fields labels should be descriptive and clearly identify the input required of the user (ie. postcode, suburb or full address).</p>
 <h3>Displaying results</h3>
@@ -66,10 +74,35 @@ intro: Maps allow you to show data relative to a physical location.
 </ul>
 
 <h2 id="data-info-styling">Data &amp; information styling</h2>
-<p>Maps in NSW Government should have a consistent look and feel. Configure your map to use these styles:</p>
+<p>Maps in NSW Government should have a consistent look and feel. Configure your map to use the following styles.</p>
+<h3>Designing</h3>
+<p>Use pins, cirlces or lines to represent data points. Markers are implemented using a hosted marker generator. We’ve created a sample set in Figma that can used to show example styling to developers.</p>
+<p>Colour: The reccomended colour set is Blue 02, Red 02 and Grey 02. When using pins and circles you can also use an outline to ensure contrast with the map interface. If additional colours are required from the NSW Governement colour palette, be mindful of users with colour blindness and test to ensure sufficient contrast. </p>
+<p>Icons: Icons can be used to highlight specific offerings of a data point. Use familiar and easily recognisable icons.</p>
+<p>Pop ups: Where possible, align your pop ups to NSW Governement visual langauge. This can be done by:</p>
+<ul>
+  <li>4px border radius to indicate an interactive element</li>
+  <li>drop shadow for layering</li>
+  <li>close button in top right corner</li>
+</ul>
 
 <h2 id="code-implementation">Code implementation</h2>
-<p>We recommend using a well supported maps platform, such as leaflet.js.</p>
+<p>We recommend using a well supported maps platform, such as mapbox or leaflet.js.</p>
+<p>When adding markers, use a generator to make sure you have the flexibility needed. We've used <a href="https://www.mapbox.com" targer=_blank>Mapbox</a> in our demo which contains an icon generator. If you're using leaflet, <a href="https://www.mapmarker.io" targer=_blank>MapMarker.io</a> is a publicly available (CC licence) resource to generate markers.</p>
+<p>Use hex colours from the NSW Brand Palette, and work with designers if you've not been given specific colours, as your branding colours may be different to NSW corporate branding.</p>
+<h3>Marker examples</h3>
+<p>
+  <img src="https://cdn.mapmarker.io/api/v1/font-awesome/v5/pin?icon=fa-circle&size=40&hoffset=0&voffset=-1&background=366CFD&color=FFF">
+  <img src="https://cdn.mapmarker.io/api/v1/font-awesome/v5/pin?icon=fa-circle&size=40&hoffset=0&voffset=-1&background=D7153A&color=FFF">
+  <img src="https://cdn.mapmarker.io/api/v1/font-awesome/v5/pin?text=P&size=40&hoffset=0&voffset=-1&background=366CFD&color=FFF">
+  <img src="https://cdn.mapmarker.io/api/v1/font-awesome/v5/pin?icon=fa-plane&size=40&hoffset=0&voffset=-1&background=D7153A&color=FFF">
+</p>
+{{#>_docs-example hidden="true" open="true" code="language-html"}}
+<img src="https://cdn.mapmarker.io/api/v1/font-awesome/v5/pin?icon=fa-circle&size=40&hoffset=0&voffset=-1&background=366CFD&color=FFF">
+<img src="https://cdn.mapmarker.io/api/v1/font-awesome/v5/pin?icon=fa-circle&size=40&hoffset=0&voffset=-1&background=D7153A&color=FFF">
+<img src="https://cdn.mapmarker.io/api/v1/font-awesome/v5/pin?text=P&size=40&hoffset=0&voffset=-1&background=366CFD&color=FFF">
+<img src="https://cdn.mapmarker.io/api/v1/font-awesome/v5/pin?icon=fa-plane&size=40&hoffset=0&voffset=-1&background=D7153A&color=FFF">
+{{/_docs-example}}
 
 <h2 id="example-pages">Example page layouts</h2>
 <div class="nsw-grid">
@@ -104,3 +137,29 @@ intro: Maps allow you to show data relative to a physical location.
     </div>
   </div>
 </div>
+
+<script>
+
+  mapboxgl.accessToken = 'pk.eyJ1IjoidGpoYXJyb3AiLCJhIjoiY2tuZ3piMDk0MGF4bDJwcGtlengzNzN6OCJ9.ER-_rNkxtWlkntifNoVZdw';
+  var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/tjharrop/ckngzc5t308ca17to11dloj89'
+  });
+
+  const markerAirport = new mapboxgl.Marker({
+    color: "#D7153A"
+  }).setLngLat([151.179428, -33.947346])
+  .addTo(map);
+
+  const markerSNSW = new mapboxgl.Marker({
+    color: "#366CFD"
+  }).setLngLat([151.1966803,-33.9405222])
+  .addTo(map);
+
+  const markerThree = new mapboxgl.Marker({
+    color: "#495054"
+  }).setLngLat([151.205065,-33.95535])
+  .addTo(map);
+
+
+</script>
