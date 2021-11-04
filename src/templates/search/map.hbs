@@ -1,0 +1,436 @@
+---
+title: Search results - Maps
+order: 32
+page: true
+maps: true
+model:
+  nav: ../../components/main-nav/json/main-nav-digital-nsw.json
+  breadcrumbs: ../../components/breadcrumbs/json/breadcrumbs-search.json
+  results-bar: ../../components/results-bar/json/results-bar.json
+  list-item: ../../components/list-item/json/list-item-label-date.json
+  filters: ../../components/filters/json/filters-instant.json
+  footer: ../../components/footer/json/footer.json
+  mapdata: json/ev-chargers.json
+---
+
+
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
+
+{{>_masthead content="#content" nav="#main-nav"}}
+{{>_header header-title="digital.nsw" header-description="Department of Customer Service"}}
+{{>_main-nav model.nav}}
+<div class="nsw-container nsw-p-bottom-xs">
+  {{>_breadcrumbs model.breadcrumbs}}
+</div>
+
+<main id="content" class="nsw-container nsw-p-top-sm nsw-p-bottom-lg">
+  <div class="nsw-layout">
+    <div class="nsw-layout__main">
+      <h1>Electric vehicle chargers</h1>
+      <p class="nsw-intro">Electric vehicle chargers are avilable state-wide in partnership with private networks and NRMA.</p>
+    </div>
+    <div class="nsw-layout__sidebar nsw-layout__sidebar--desktop"></div>
+  </div>
+  <div class="nsw-layout">
+    <div class="nsw-layout__sidebar">
+
+
+
+          <form class="nsw-filters nsw-filters--fixed js-filters is-ready">
+            <div class="nsw-filters__controls nsw-filters__controls--active">
+              <button>
+                <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">tune</i>
+                <span>Filter results  (4)</span>
+              </button>
+            </div>
+            <div class="nsw-filters__wrapper">
+              <div class="nsw-filters__back">
+                <button>
+                  <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_left</i>
+                  <span>Back</span>
+                </button>
+              </div>
+              <div class="nsw-filters__title">Filter results</div>
+              <div class="nsw-filters__list">
+                <div class="nsw-filters__item">
+                  <label class="nsw-form__label" for="filters-all-keyword">Keyword</label>
+                  <input class="nsw-form__input" type="text" id="filters-all-keyword" name="filters-keyword" value="">
+                </div>
+                <div class="nsw-filters__item">
+                  <label class="nsw-form__label" for="filters-all-regions">Region</label>
+                  <select class="nsw-form__select" id="filters-all-regions" name="filters-all-regions">
+                    <option value="">Please select</option>
+                    <option value="Central Coast">Central Coast</option>
+                    <option value="Central West &amp; Orana">Central West &amp; Orana</option>
+                    <option value="Far West">Far West</option>
+                    <option value="Hunter">Hunter</option>
+                    <option value="Illawarra-Shoalhaven">Illawarra-Shoalhaven</option>
+                    <option value="New England &amp; North West">New England &amp; North West</option>
+                    <option value="North Coast">North Coast</option>
+                    <option value="Riverina Murray">Riverina Murray</option>
+                  </select>
+                </div>
+                <div class="nsw-filters__item">
+                  <fieldset class="nsw-form__fieldset">
+                    <legend class="nsw-form__legend">Operator</legend>
+                    <input class="nsw-form__checkbox-input" type="checkbox" name="filters-all-categories" value="Customer Service" id="filters-all-categories-1" checked>
+                    <label class="nsw-form__checkbox-label" for="filters-all-categories-1">
+                      Tesla
+                    </label>
+                    <input class="nsw-form__checkbox-input" type="checkbox" name="filters-all-categories" value="Communities and Justice" id="filters-all-categories-2" checked="">
+                    <label class="nsw-form__checkbox-label" for="filters-all-categories-2">
+                      NRMA
+                    </label>
+                    <input class="nsw-form__checkbox-input" type="checkbox" name="filters-all-categories" value="Education" id="filters-all-categories-3" checked="">
+                    <label class="nsw-form__checkbox-label" for="filters-all-categories-3">
+                      Wilson parking
+                    </label>
+                    <input class="nsw-form__checkbox-input" type="checkbox" name="filters-all-categories" value="Health" id="filters-all-categories-4" checked>
+                    <label class="nsw-form__checkbox-label" for="filters-all-categories-4">
+                      Place Management NSW
+                    </label>
+                    <div class="nsw-filters__all hidden">
+                      <input class="nsw-form__checkbox-input" type="checkbox" name="filters-all-categories" value="Planning" id="filters-all-categories-5">
+                      <label class="nsw-form__checkbox-label" for="filters-all-categories-5">Planning</label>
+                      <input class="nsw-form__checkbox-input" type="checkbox" name="filters-all-categories" value="Premier and Cabinet" id="filters-all-categories-6">
+                      <label class="nsw-form__checkbox-label" for="filters-all-categories-6">Premier and Cabinet</label>
+                      <input class="nsw-form__checkbox-input" type="checkbox" name="filters-all-categories" value="Regional NSW" id="filters-all-categories-7">
+                      <label class="nsw-form__checkbox-label" for="filters-all-categories-7">Regional NSW</label>
+                      <input class="nsw-form__checkbox-input" type="checkbox" name="filters-all-categories" value="Transport" id="filters-all-categories-8">
+                      <label class="nsw-form__checkbox-label" for="filters-all-categories-8">Transport</label>
+                      <input class="nsw-form__checkbox-input" type="checkbox" name="filters-all-categories" value="Treasury" id="filters-all-categories-9">
+                      <label class="nsw-form__checkbox-label" for="filters-all-categories-9">Treasury</label>
+                    </div>
+                    <button class="nsw-filters__more">Show all categories (9)</button>
+                  </fieldset>
+                </div>
+
+              </div>
+              <div class="nsw-filters__accept">
+                <button type="submit" class="nsw-button nsw-button--dark" disabled>Apply filters</button>
+              </div>
+              <div class="nsw-filters__cancel">
+                <button type="reset">Clear all filters</button>
+              </div>
+            </div>
+          </form>
+
+
+
+
+    </div>
+    <div class="nsw-layout__main nsw-p-top-xl">
+
+
+
+      <div class="nsw-tabs js-tabs">
+        <ul class="nsw-tabs__list">
+          <li class="nsw-tabs__list-item">
+            <a href="#section1" class="nsw-tabs__link js-tabs-fixed">Map view</a>
+          </li>
+          <li class="nsw-tabs__list-item">
+            <a href="#section2" class="nsw-tabs__link js-tabs-fixed">List view</a>
+          </li>
+        </ul>
+        <section id="section1" class="nsw-tabs__content">
+          <div class="nsw-results-bar">
+            <div class="nsw-results-bar__info">Showing 165 results</div>
+          </div>
+          <div class="nsw-search-results">
+            <div id='map' style='width: 100%; height: 600px;'></div>
+          </div>
+        </section>
+        <section id="section2" class="nsw-tabs__content">
+          <div class="nsw-results-bar">
+            <div class="nsw-results-bar__info">Showing 165 results</div>
+          </div>
+          <div class="nsw-search-results">
+            <div class="nsw-table nsw-table--striped">
+              <table class="table table-bordered table-hover table-condensed">
+                <thead>
+                  <tr>
+                    <th title="Field #1">Operator</th>
+                    <th title="Field #2">Charger location</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                  <td>Wilson Parking</td>
+                  <td>Wilson Parking Harbourside, 50 Murray St,Pyrmont NSW 2009,AUSTRALIA</td>
+                  </tr>
+                  <tr>
+                  <td>Tesla</td>
+                  <td>22 Victor Street,Chatswood NSW 2067,AUSTRALIA</td>
+                  </tr>
+                  <tr>
+                  <td>Tesla</td>
+                  <td>Terminal 3, Sydney Domestic Airport, Shiers Ave,Mascot NSW 2020,AUSTRALIA</td>
+                  </tr>
+                  <tr>
+                  <td>Tesla</td>
+                  <td>135 King Street,Sydney NSW 2000,AUSTRALIA</td>
+                  </tr>
+                  <tr>
+                  <td>Tesla</td>
+                  <td>2 Beach Road,Batesman Bay NSW 2536,AUSTRALIA</td>
+                  </tr>
+                  <tr>
+                  <td>Tesla</td>
+                  <td>2A Todman Avenue,Kensington NSW 2033,AUSTRALIA</td>
+                  </tr>
+                  <tr>
+                  <td>Tesla</td>
+                  <td>3/1-2 Joule Pl,Tuggerah NSW 2259,AUSTRALIA</td>
+                  </tr>
+                  <tr>
+                  <td>Tesla</td>
+                  <td>1650 Alpine Wy,Lake Crackenback NSW 2627,AUSTRALIA</td>
+                  </tr>
+                  <tr>
+                  <td>Tesla</td>
+                  <td>1 Violet,Katoomba NSW 2780,AUSTRALIA</td>
+                  </tr>
+                  <tr>
+                  <td>Tesla</td>
+                  <td>287 Mona Vale Rd,Terry Hills NSW 2084,AUSTRALIA</td>
+                  </tr>
+                  <tr>
+                  <td>Tesla</td>
+                  <td>Don Kendall Dr,Wagga Wagga NSW 2651,AUSTRALIA</td>
+                  </tr>
+                  <tr>
+                  <td>Tesla</td>
+                  <td>1 Eric Felton St,Castle Hill NSW 2154,AUSTRALIA</td>
+                  </tr>
+                  <tr>
+                  <td>Tesla</td>
+                  <td>250-318 PARRAMATTA RD,HOMEBUSH WEST NSW 2140,AUSTRALIA</td>
+                  </tr>
+                  <tr>
+                  <td>Tesla</td>
+                  <td>75 Townson Rd,Schofields NSW 2762,AUSTRALIA</td>
+                  </tr>
+                  <tr>
+                  <td>Tesla</td>
+                  <td>46 Tamar,Ballina NSW 2478,AUSTRALIA</td>
+                  </tr>
+                  <tr>
+                  <td>Tesla</td>
+                  <td>1 Edwin Flack Dr,Sydney Olympic Park NSW 2127,AUSTRALIA</td>
+                  </tr>
+                  <tr>
+                  <td>Srinivasa Fuels PTY LTD</td>
+                  <td>403 Tarean Street,Karuah NSW 2324,AUSTRALIA</td>
+                  </tr>
+                  <tr>
+                  <td>Place Management NSW</td>
+                  <td>Argyle St &amp; Harrington St,The Rocks NSW 2000,AUSTRALIA</td>
+                  </tr>
+                  <tr>
+                  <td>NRMA</td>
+                  <td>Corner of Kalkite Street and Snowy River Avenue,JINDABYNE NSW 2627,AUSTRALIA</td>
+                  </tr>
+                  <tr>
+                  <td>NRMA</td>
+                  <td>9 Murray Rose,SYDNEY OLYMPIC PARK NSW 2127,AUSTRALIA</td>
+                  </tr>
+                  <tr>
+                  <td>NRMA</td>
+                  <td>76 Cowper St,WALLSEND NSW 2287,AUSTRALIA</td>
+                  </tr>
+                  <tr>
+                  <td>NRMA</td>
+                  <td>Hunter Valley Gardens 2090 Broke Road,POKOLBIN NSW 2320,AUSTRALIA</td>
+                  </tr>
+                  <tr>
+                  <td>NRMA</td>
+                  <td>Cnr Hume Highway &amp; Bessemer Street,MITTAGONG NSW 2575,AUSTRALIA</td>
+                  </tr>
+                  <tr>
+                  <td>NRMA</td>
+                  <td>140 Queen St,BERRY NSW 2535,AUSTRALIA</td>
+                  </tr>
+                  <tr>
+                  <td>NRMA</td>
+                  <td>31 Twynam St,NARRANDERA NSW 2700,AUSTRALIA</td>
+                  </tr>
+                  <tr>
+                  <td>NRMA</td>
+                  <td>88 Lovell St,YOUNG NSW 2594,AUSTRALIA</td>
+                  </tr>
+                  <tr>
+                  <td>NRMA</td>
+                  <td>13-17 Shire St,WEST WYALONG NSW 2671,AUSTRALIA</td>
+                  </tr>
+                  <tr>
+                  <td>NRMA</td>
+                  <td>1 Kendall Avenue,BATHURST NSW 2795,AUSTRALIA</td>
+                  </tr>
+                  <tr>
+                  <td>NRMA</td>
+                  <td>27-29 Dalton Street,PARKES NSW 2870,AUSTRALIA</td>
+                  </tr>
+                  <tr>
+                  <td>NRMA</td>
+                  <td>76 Wingewarra Street,DUBBO NSW 2830,AUSTRALIA</td>
+                  </tr>
+                  <tr>
+                  <td>NRMA</td>
+                  <td>37 Nabiac St,NABIAC NSW 2312,AUSTRALIA</td>
+                  </tr>
+                  <tr>
+                  <td>NRMA</td>
+                  <td>2 Kable Avenue,TAMWORTH NSW 2340,AUSTRALIA</td>
+                  </tr>
+                  <tr>
+                  <td>NRMA</td>
+                  <td>2a Beach Road,BATEMANS BAY NSW 2536,AUSTRALIA</td>
+                  </tr>
+                  <tr>
+                  <td>NRMA</td>
+                  <td>Via Lords Pl (charger behind Orange Civic Theatre),ORANGE NSW 2800,AUSTRALIA</td>
+                  </tr>
+                  <tr>
+                  <td>NRMA</td>
+                  <td>132 Pound Street,GRAFTON NSW 2460,AUSTRALIA</td>
+                  </tr>
+                  <tr>
+                  <td>NRMA</td>
+                  <td>Town Hall Car Park,GLEN INNES NSW 2370,AUSTRALIA</td>
+                  </tr>
+                  <tr>
+                  <td>NRMA</td>
+                  <td>11 Ewingsdale Road,EWINGSDALE NSW 2481,AUSTRALIA</td>
+                  </tr>
+                  <tr>
+                  <td>NRMA</td>
+                  <td>81 Gipps Street,BEGA NSW 2550,AUSTRALIA</td>
+                  </tr>
+                  <tr>
+                  <td>NRMA</td>
+                  <td>Riverside Drive,JUGIONG NSW 2726,AUSTRALIA</td>
+                  </tr>
+                  <tr>
+                  <td>NRMA</td>
+                  <td>3-7 Tank Street,LITHGOW NSW 2790,AUSTRALIA</td>
+                  </tr>
+                  <tr>
+                  <td>NRMA</td>
+                  <td>Prospect St,HOLBROOK NSW 2644,AUSTRALIA</td>
+                  </tr>
+                  <tr>
+                  <td>NRMA</td>
+                  <td>73 Little Barber Street,GUNNEDAH NSW 2380,AUSTRALIA</td>
+                  </tr>
+                  <tr>
+                  <td>NRMA</td>
+                  <td>406 Moppett St,HAY NSW 2711,AUSTRALIA</td>
+                  </tr>
+                  <tr>
+                  <td>NRMA</td>
+                  <td>John Oxley Drive,THRUMSTER NSW 2444,AUSTRALIA</td>
+                  </tr>
+                  <tr>
+                  <td>NRMA</td>
+                  <td>441 Kiewa Street,ALBURY NSW 2640,AUSTRALIA</td>
+                  </tr>
+                  <tr>
+                  <td>NRMA</td>
+                  <td>Visitor&#39;s Centre Newell Highway,Coonabarabran NSW 2357,AUSTRALIA</td>
+                  </tr>
+                  <tr>
+                  <td>NRMA</td>
+                  <td>77 Darling,Cowra NSW 2794,AUSTRALIA</td>
+                  </tr>
+                  <tr>
+                  <td>NRMA</td>
+                  <td>5 Walton Ln,PICTON NSW 2571,AUSTRALIA</td>
+                  </tr>
+                  <tr>
+                  <td>NRMA</td>
+                  <td>89 Market St, Balranald NSW 2715</td>
+                  </tr>
+                  <tr>
+                  <td>NRMA</td>
+                  <td>81 MEEHAN ST,YASS NSW 2582,AUSTRALIA</td>
+                  </tr>
+                  <tr>
+                  <td>NRMA</td>
+                  <td>8-24,Wagga Wagga NSW 2650,AUSTRALIA</td>
+                  </tr>
+                  <tr>
+                  <td>NRMA</td>
+                  <td>167C Kelly St,Scone NSW 2337,AUSTRALIA</td>
+                  </tr>
+                  <tr>
+                  <td>NRMA</td>
+                  <td>99 Mortimer St,MUDGEE NSW 2850,AUSTRALIA</td>
+                  </tr>
+                  <tr>
+                  <td>NRMA</td>
+                  <td>Visitor Information Centre 157 Rouse St,TENTERFIELD NSW 2372,AUSTRALIA</td>
+                  </tr>
+                  <tr>
+                  <td>NRMA</td>
+                  <td>Visitor&#39;s Information Centre 82 Marsh St,Armidale NSW 2350,AUSTRALIA</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+      </div>
+
+
+
+
+
+
+    </div>
+  </div>
+</main>
+
+<script>
+  var geojson = {"type":"FeatureCollection","features":[{"type":"Feature","properties":{"Organisation_Name":"NRMA","Service_Station_Location":"9 Murray Rose,SYDNEY OLYMPIC PARK NSW 2127,AUSTRALIA","Latitude":"-33.8458975794938","Longitude":"151.0697680670160"},"geometry":{"type":"Point","coordinates":[151.069768,-33.845898]}},{"type":"Feature","properties":{"Organisation_Name":"NRMA","Service_Station_Location":"76 Cowper St,WALLSEND NSW 2287,AUSTRALIA","Latitude":"-32.9027795805143","Longitude":"151.6698410043810"},"geometry":{"type":"Point","coordinates":[151.669841,-32.90278]}},{"type":"Feature","properties":{"Organisation_Name":"NRMA","Service_Station_Location":"Hunter Valley Gardens 2090 Broke Road,POKOLBIN NSW 2320,AUSTRALIA","Latitude":"-32.7739292768640","Longitude":"151.2931629695430"},"geometry":{"type":"Point","coordinates":[151.293163,-32.773929]}},{"type":"Feature","properties":{"Organisation_Name":"NRMA","Service_Station_Location":"Cnr Hume Highway & Bessemer Street,MITTAGONG NSW 2575,AUSTRALIA","Latitude":"-34.4495405047865","Longitude":"150.4429262745710"},"geometry":{"type":"Point","coordinates":[150.442926,-34.449541]}},{"type":"Feature","properties":{"Organisation_Name":"NRMA","Service_Station_Location":"140 Queen St,BERRY NSW 2535,AUSTRALIA","Latitude":"-34.7759389713294","Longitude":"150.7005414602810"},"geometry":{"type":"Point","coordinates":[150.700541,-34.775939]}},{"type":"Feature","properties":{"Organisation_Name":"NRMA","Service_Station_Location":"31 Twynam St,NARRANDERA NSW 2700,AUSTRALIA","Latitude":"-34.7464770211341","Longitude":"146.5497492452640"},"geometry":{"type":"Point","coordinates":[146.549749,-34.746477]}},{"type":"Feature","properties":{"Organisation_Name":"NRMA","Service_Station_Location":"88 Lovell St,YOUNG NSW 2594,AUSTRALIA","Latitude":"-34.3118781290538","Longitude":"148.2948011384780"},"geometry":{"type":"Point","coordinates":[148.294801,-34.311878]}},{"type":"Feature","properties":{"Organisation_Name":"NRMA","Service_Station_Location":"13-17 Shire St,WEST WYALONG NSW 2671,AUSTRALIA","Latitude":"-33.9234250289962","Longitude":"147.2030597586190"},"geometry":{"type":"Point","coordinates":[147.20306,-33.923425]}},{"type":"Feature","properties":{"Organisation_Name":"NRMA","Service_Station_Location":"1 Kendall Avenue,BATHURST NSW 2795,AUSTRALIA","Latitude":"-33.4186130917717","Longitude":"149.5866089079460"},"geometry":{"type":"Point","coordinates":[149.586609,-33.418613]}},{"type":"Feature","properties":{"Organisation_Name":"NRMA","Service_Station_Location":"27-29 Dalton Street,PARKES NSW 2870,AUSTRALIA","Latitude":"-33.1373758488974","Longitude":"148.1726385039140"},"geometry":{"type":"Point","coordinates":[148.172639,-33.137376]}},{"type":"Feature","properties":{"Organisation_Name":"NRMA","Service_Station_Location":"76 Wingewarra Street,DUBBO NSW 2830,AUSTRALIA","Latitude":"-32.2496944164157","Longitude":"148.6099152679600"},"geometry":{"type":"Point","coordinates":[148.609915,-32.249694]}},{"type":"Feature","properties":{"Organisation_Name":"NRMA","Service_Station_Location":"37 Nabiac St,NABIAC NSW 2312,AUSTRALIA","Latitude":"-32.0997076351659","Longitude":"152.3814490774560"},"geometry":{"type":"Point","coordinates":[152.381449,-32.099708]}},{"type":"Feature","properties":{"Organisation_Name":"NRMA","Service_Station_Location":"2 Kable Avenue,TAMWORTH NSW 2340,AUSTRALIA","Latitude":"-31.0904667298730","Longitude":"150.9273942331440"},"geometry":{"type":"Point","coordinates":[150.927394,-31.090467]}},{"type":"Feature","properties":{"Organisation_Name":"NRMA","Service_Station_Location":"2a Beach Road,BATEMANS BAY NSW 2536,AUSTRALIA","Latitude":"-35.7085808905347","Longitude":"150.1756836986980"},"geometry":{"type":"Point","coordinates":[150.175684,-35.708581]}},{"type":"Feature","properties":{"Organisation_Name":"NRMA","Service_Station_Location":"Via Lords Pl (charger behind Orange Civic Theatre),ORANGE NSW 2800,AUSTRALIA","Latitude":"-33.2843364477645","Longitude":"149.1010570015950"},"geometry":{"type":"Point","coordinates":[149.101057,-33.284336]}},{"type":"Feature","properties":{"Organisation_Name":"NRMA","Service_Station_Location":"132 Pound Street,GRAFTON NSW 2460,AUSTRALIA","Latitude":"-29.6883664837518","Longitude":"152.9338322546950"},"geometry":{"type":"Point","coordinates":[152.933832,-29.688366]}},{"type":"Feature","properties":{"Organisation_Name":"NRMA","Service_Station_Location":"Town Hall Car Park,GLEN INNES NSW 2370,AUSTRALIA","Latitude":"-29.7385792805527","Longitude":"151.7363903819280"},"geometry":{"type":"Point","coordinates":[151.73639,-29.738579]}},{"type":"Feature","properties":{"Organisation_Name":"NRMA","Service_Station_Location":"11 Ewingsdale Road,EWINGSDALE NSW 2481,AUSTRALIA","Latitude":"-28.6354572459289","Longitude":"153.5560183290180"},"geometry":{"type":"Point","coordinates":[153.556018,-28.635457]}},{"type":"Feature","properties":{"Organisation_Name":"NRMA","Service_Station_Location":"81 Gipps Street,BEGA NSW 2550,AUSTRALIA","Latitude":"-36.6733614572665","Longitude":"149.8431556624560"},"geometry":{"type":"Point","coordinates":[149.843156,-36.673361]}},{"type":"Feature","properties":{"Organisation_Name":"NRMA","Service_Station_Location":"Riverside Drive,JUGIONG NSW 2726,AUSTRALIA","Latitude":"-34.8229832488660","Longitude":"148.3338306371150"},"geometry":{"type":"Point","coordinates":[148.333831,-34.822983]}},{"type":"Feature","properties":{"Organisation_Name":"NRMA","Service_Station_Location":"3-7 Tank Street,LITHGOW NSW 2790,AUSTRALIA","Latitude":"-33.4777272182878","Longitude":"150.1609402662890"},"geometry":{"type":"Point","coordinates":[150.16094,-33.477727]}},{"type":"Feature","properties":{"Organisation_Name":"NRMA","Service_Station_Location":"Prospect St,HOLBROOK NSW 2644,AUSTRALIA","Latitude":"-35.7167429300724","Longitude":"147.3171671574400"},"geometry":{"type":"Point","coordinates":[147.317167,-35.716743]}},{"type":"Feature","properties":{"Organisation_Name":"NRMA","Service_Station_Location":"73 Little Barber Street,GUNNEDAH NSW 2380,AUSTRALIA","Latitude":"-30.9781504007885","Longitude":"150.2509305580750"},"geometry":{"type":"Point","coordinates":[150.250931,-30.97815]}},{"type":"Feature","properties":{"Organisation_Name":"NRMA","Service_Station_Location":"406 Moppett St,HAY NSW 2711,AUSTRALIA","Latitude":"-34.5089693621308","Longitude":"144.8428367752780"},"geometry":{"type":"Point","coordinates":[144.842837,-34.508969]}},{"type":"Feature","properties":{"Organisation_Name":"NRMA","Service_Station_Location":"John Oxley Drive,THRUMSTER NSW 2444,AUSTRALIA","Latitude":"-31.4582465589299","Longitude":"152.8290613577060"},"geometry":{"type":"Point","coordinates":[152.829061,-31.458247]}},{"type":"Feature","properties":{"Organisation_Name":"NRMA","Service_Station_Location":"441 Kiewa Street,ALBURY NSW 2640,AUSTRALIA","Latitude":"-36.0837322036194","Longitude":"146.9143513063500"},"geometry":{"type":"Point","coordinates":[146.914351,-36.083732]}},{"type":"Feature","properties":{"Organisation_Name":"NRMA","Service_Station_Location":"Visitor's Centre Newell Highway,Coonabarabran NSW 2357,AUSTRALIA","Latitude":"-31.2783699999999","Longitude":"149.2795500000000"},"geometry":{"type":"Point","coordinates":[149.27955,-31.27837]}},{"type":"Feature","properties":{"Organisation_Name":"NRMA","Service_Station_Location":"77 Darling,Cowra NSW 2794,AUSTRALIA","Latitude":"-33.8341738953414","Longitude":"148.6942786205060"},"geometry":{"type":"Point","coordinates":[148.694279,-33.834174]}},{"type":"Feature","properties":{"Organisation_Name":"NRMA","Service_Station_Location":"5 Walton Ln,PICTON NSW 2571,AUSTRALIA","Latitude":"-34.1680675025877","Longitude":"150.6111656553190"},"geometry":{"type":"Point","coordinates":[150.611166,-34.168068]}},{"type":"Feature","properties":{"Organisation_Name":"NRMA","Service_Station_Location":"89 Market St, Balranald NSW 2715","Latitude":"-34.6396267621962","Longitude":"143.5646290628070"},"geometry":{"type":"Point","coordinates":[143.564629,-34.639627]}},{"type":"Feature","properties":{"Organisation_Name":"NRMA","Service_Station_Location":"81 MEEHAN ST,YASS NSW 2582,AUSTRALIA","Latitude":"-34.8411175724310","Longitude":"148.9121914230800"},"geometry":{"type":"Point","coordinates":[148.912191,-34.841118]}},{"type":"Feature","properties":{"Organisation_Name":"NRMA","Service_Station_Location":"8-24,Wagga Wagga NSW 2650,AUSTRALIA","Latitude":"-35.1124269119987","Longitude":"147.5387136580130"},"geometry":{"type":"Point","coordinates":[147.538714,-35.112427]}},{"type":"Feature","properties":{"Organisation_Name":"NRMA","Service_Station_Location":"167C Kelly St,Scone NSW 2337,AUSTRALIA","Latitude":"-32.0502644647146","Longitude":"150.8669151975150"},"geometry":{"type":"Point","coordinates":[150.866915,-32.050264]}},{"type":"Feature","properties":{"Organisation_Name":"NRMA","Service_Station_Location":"99 Mortimer St,MUDGEE NSW 2850,AUSTRALIA","Latitude":"-32.5929502409850","Longitude":"149.5850349541680"},"geometry":{"type":"Point","coordinates":[149.585035,-32.59295]}},{"type":"Feature","properties":{"Organisation_Name":"NRMA","Service_Station_Location":"Visitor Information Centre 157 Rouse St,TENTERFIELD NSW 2372,AUSTRALIA","Latitude":"-29.0572087974553","Longitude":"152.0187673959960"},"geometry":{"type":"Point","coordinates":[152.018767,-29.057209]}},{"type":"Feature","properties":{"Organisation_Name":"NRMA","Service_Station_Location":"Visitor's Information Centre 82 Marsh St,Armidale NSW 2350,AUSTRALIA","Latitude":"-30.5112937747087","Longitude":"151.6684939487220"},"geometry":{"type":"Point","coordinates":[151.668494,-30.511294]}},{"type":"Feature","properties":{"Organisation_Name":"NATIONAL ROADS AND MOTORISTS' ASSOCIATION LIMITED","Service_Station_Location":"Corner of Kalkite Street and Snowy River Avenue,JINDABYNE NSW 2627,AUSTRALIA","Latitude":"-36.4159799490198","Longitude":"148.6195200908080"},"geometry":{"type":"Point","coordinates":[148.61952,-36.41598]}},{"type":"Feature","properties":{"Organisation_Name":"Place Management NSW","Service_Station_Location":"Argyle St & Harrington St,The Rocks NSW 2000,AUSTRALIA","Latitude":"-33.8591299643084","Longitude":"151.2080000672520"},"geometry":{"type":"Point","coordinates":[151.208,-33.85913]}},{"type":"Feature","properties":{"Organisation_Name":"Srinivasa Fuels PTY LTD","Service_Station_Location":"403 Tarean Street,Karuah NSW 2324,AUSTRALIA","Latitude":"-32.6537178236310","Longitude":"151.9629963077430"},"geometry":{"type":"Point","coordinates":[151.962996,-32.653718]}},{"type":"Feature","properties":{"Organisation_Name":"Tesla Motors Australia","Service_Station_Location":"22 Victor Street,Chatswood NSW 2067,AUSTRALIA","Latitude":"-33.7974620317415","Longitude":"151.1826494057670"},"geometry":{"type":"Point","coordinates":[151.182649,-33.797462]}},{"type":"Feature","properties":{"Organisation_Name":"Tesla Motors Australia","Service_Station_Location":"Terminal 3, Sydney Domestic Airport, Shiers Ave,Mascot NSW 2020,AUSTRALIA","Latitude":"-33.9514430910122","Longitude":"151.1759629245730"},"geometry":{"type":"Point","coordinates":[151.175963,-33.951443]}},{"type":"Feature","properties":{"Organisation_Name":"Tesla Motors Australia","Service_Station_Location":"135 King Street,Sydney NSW 2000,AUSTRALIA","Latitude":"-33.8692609611289","Longitude":"151.2087241798680"},"geometry":{"type":"Point","coordinates":[151.208724,-33.869261]}},{"type":"Feature","properties":{"Organisation_Name":"Tesla Motors Australia","Service_Station_Location":"2 Beach Road,Batesman Bay NSW 2536,AUSTRALIA","Latitude":"-35.7087405657902","Longitude":"150.1768202009500"},"geometry":{"type":"Point","coordinates":[150.17682,-35.708741]}},{"type":"Feature","properties":{"Organisation_Name":"Tesla Motors Australia","Service_Station_Location":"2A Todman Avenue,Kensington NSW 2033,AUSTRALIA","Latitude":"-33.9040753756486","Longitude":"151.2151087318600"},"geometry":{"type":"Point","coordinates":[151.215109,-33.904075]}},{"type":"Feature","properties":{"Organisation_Name":"Tesla Motors Australia","Service_Station_Location":"3/1-2 Joule Pl,Tuggerah NSW 2259,AUSTRALIA","Latitude":"-33.2981616646508","Longitude":"151.4184773673380"},"geometry":{"type":"Point","coordinates":[151.418477,-33.298162]}},{"type":"Feature","properties":{"Organisation_Name":"Tesla Motors Australia","Service_Station_Location":"1650 Alpine Wy,Lake Crackenback NSW 2627,AUSTRALIA","Latitude":"-36.4454313164788","Longitude":"148.4512318430700"},"geometry":{"type":"Point","coordinates":[148.451232,-36.445431]}},{"type":"Feature","properties":{"Organisation_Name":"Tesla Motors Australia","Service_Station_Location":"1 Violet,Katoomba NSW 2780,AUSTRALIA","Latitude":"-33.7288362969313","Longitude":"150.2986952524160"},"geometry":{"type":"Point","coordinates":[150.298695,-33.728836]}},{"type":"Feature","properties":{"Organisation_Name":"Tesla Motors Australia","Service_Station_Location":"287 Mona Vale Rd,Terry Hills NSW 2084,AUSTRALIA","Latitude":"-33.6891228815955","Longitude":"151.2237462267390"},"geometry":{"type":"Point","coordinates":[151.223746,-33.689123]}},{"type":"Feature","properties":{"Organisation_Name":"Tesla Motors Australia","Service_Station_Location":"Don Kendall Dr,Wagga Wagga NSW 2651,AUSTRALIA","Latitude":"-35.1588385507055","Longitude":"147.4611135993180"},"geometry":{"type":"Point","coordinates":[147.461114,-35.158839]}},{"type":"Feature","properties":{"Organisation_Name":"Tesla Motors Australia","Service_Station_Location":"1 Eric Felton St,Castle Hill NSW 2154,AUSTRALIA","Latitude":"-33.7293599563321","Longitude":"151.0057500661370"},"geometry":{"type":"Point","coordinates":[151.00575,-33.72936]}},{"type":"Feature","properties":{"Organisation_Name":"Tesla Motors Australia","Service_Station_Location":"250-318 PARRAMATTA RD,HOMEBUSH WEST NSW 2140,AUSTRALIA","Latitude":"-33.8598372292983","Longitude":"151.0712931542980"},"geometry":{"type":"Point","coordinates":[151.071293,-33.859837]}},{"type":"Feature","properties":{"Organisation_Name":"Tesla Motors Australia","Service_Station_Location":"75 Townson Rd,Schofields NSW 2762,AUSTRALIA","Latitude":"-33.7113663152378","Longitude":"150.8523591006410"},"geometry":{"type":"Point","coordinates":[150.852359,-33.711366]}},{"type":"Feature","properties":{"Organisation_Name":"Tesla Motors Australia","Service_Station_Location":"46 Tamar,Ballina NSW 2478,AUSTRALIA","Latitude":"-28.8707200851620","Longitude":"153.5632832597770"},"geometry":{"type":"Point","coordinates":[153.563283,-28.87072]}},{"type":"Feature","properties":{"Organisation_Name":"Tesla Motors Australia","Service_Station_Location":"1 Edwin Flack Dr,Sydney Olympic Park NSW 2127,AUSTRALIA","Latitude":"-33.8490016916063","Longitude":"151.0619297302610"},"geometry":{"type":"Point","coordinates":[151.06193,-33.849002]}},{"type":"Feature","properties":{"Organisation_Name":"WILSON PARKING AUSTRALIA 1992 PTY LTD","Service_Station_Location":"Wilson Parking Harbourside, 50 Murray St,Pyrmont NSW 2009,AUSTRALIA","Latitude":"-33.8709295885036","Longitude":"151.1979458067550"},"geometry":{"type":"Point","coordinates":[151.197946,-33.87093]}}]}
+
+  mapboxgl.accessToken = 'pk.eyJ1IjoidGpoYXJyb3AiLCJhIjoiY2tuZ3piMDk0MGF4bDJwcGtlengzNzN6OCJ9.ER-_rNkxtWlkntifNoVZdw';
+  var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/tjharrop/ckngzc5t308ca17to11dloj89',
+    zoom: 6.5,
+    center: [150, -33.81]
+  });
+
+  map.on('load', () => {
+    geojson.features.forEach(function(marker) {
+
+      var markerColor;
+      var nswStyles = getComputedStyle(document.body)
+
+      switch (marker.properties.Organisation_Name) {
+        case "Tesla Motors Australia":
+          markerColor = nswStyles.getPropertyValue('--nsw-palette-red-02');
+          break;
+        case "NRMA":
+          markerColor = nswStyles.getPropertyValue('--nsw-palette-blue-02');
+          break;
+        case "WILSON PARKING AUSTRALIA 1992 PTY LTD":
+          markerColor = nswStyles.getPropertyValue('--nsw-palette-orange-02');
+          break;
+        default:
+          markerColor = nswStyles.getPropertyValue('--nsw-palette-grey-02');
+      }
+
+      new mapboxgl.Marker({
+          color: markerColor
+        })
+        .setLngLat(marker.geometry.coordinates)
+        .addTo(map);
+    });
+
+});
+
+</script>
+
+{{>_footer model.footer}}
