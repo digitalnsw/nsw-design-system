@@ -32,7 +32,7 @@ figma: https://www.figma.com/
 <h2 id="when-to-use">When to use</h2>
 <figure class="nsw-media nsw-media--right-30 nsw-media--transparent">
   <img src="assets/images/page-maps.png" alt="Map example page">
-</figure>  
+</figure>
 <p>Use a map when your users need to see the location of things relative to each other - for example locations where they can access a service.</p>
 <p><strong>Test your solution</strong></p>
 <p>Maps can be a challenge for users on small screens, so it is important to carefully consider if it brings value to your product or service. Ensure on mobile, users can still scroll the page by keeping the map’s aspect ratio different to the user’s screen. </p>
@@ -52,13 +52,13 @@ figma: https://www.figma.com/
 <h3>Data points</h3>
 <figure class="nsw-media nsw-media--right-50 nsw-media--transparent">
   <div id='map' style='width: 100%; height: 300px;'></div>
-</figure>  
+</figure>
 <p>Markers are used to indicate relevant data points for the user to focus and interact. When a user selects a data point, it should centre on the map and it’s listing should move to the top of the results. On selection, a pop up can also be triggered to provide a snapshot of the data point and link to further information (if requried). Pop ups should be dismissable by the close icon and also close when an alternate data point is selected.</p>
 <p>When implementing data points:</p>
 <ul>
   <li>ensure touch target size is minimum 44px x 44px (this can include white space around the target) to ensure ease of selection on touch screen devices and comply with WCAG 2.2 accessibility requirements</li>
   <li>if multiple data points overlap in a view, consider using the clustering symbol</li>
-</ul>    
+</ul>
 <h3>Filtering</h3>
 <p>Filters allow a user to narrow down the visible data points by their requirements -  for example the location or available facilities. Fields labels should be descriptive and clearly identify the input required of the user (ie. postcode, suburb or full address).</p>
 <h3>Displaying results</h3>
@@ -75,7 +75,7 @@ figma: https://www.figma.com/
 <h3>Designing</h3>
 <figure class="nsw-media nsw-media--right-50 nsw-media--transparent">
   <div id='mapTwo' style='width: 100%; height: 300px;'></div>
-</figure>  
+</figure>
 <p>Use pins, cirlces or lines to represent data points. Markers are implemented using a hosted marker generator. We’ve created a sample set in Figma that can used to show example styling to developers.</p>
 <p><strong>Colour:</strong> The reccomended colour set is Blue 02, Red 02 and Grey 02. When using pins and circles you can also use an outline to ensure contrast with the map interface. If additional colours are required from the NSW Governement colour palette, be mindful of users with colour blindness and test to ensure sufficient contrast. </p>
 <p><strong>Icons:</strong> Icons can be used to highlight specific offerings of a data point. Use familiar and easily recognisable icons.</p>
@@ -88,20 +88,70 @@ figma: https://www.figma.com/
 
 <h2 id="code-implementation">Code implementation</h2>
 <p>We recommend using a well supported maps platform, such as mapbox or leaflet.js.</p>
-<p>When adding markers, use a generator to make sure you have the flexibility needed. We've used <a href="https://www.mapbox.com" target="_blank">Mapbox</a> in our demo which contains an icon generator. If you're using leaflet, <a href="https://www.mapmarker.io" target="_blank">MapMarker.io</a> is a publicly available (CC licence) resource to generate markers.</p>
+<p>When adding markers, use a generator to make sure you have the flexibility needed. We've used <a href="https://www.mapbox.com" target="_blank">Mapbox</a> in our demo which contains an icon generator. If you're using leaflet, <a href="https://www.mapmarker.io" target="_blank">MapMarker.io</a> is a publicly available (CC licence) resource to generate markers on-the fly, or the SVGs below can be modified in figma.</p>
 <p>Use hex colours from the NSW Brand Palette, and work with designers if you've not been given specific colours, as your branding colours may be different to NSW corporate branding.</p>
 <h3>Marker examples</h3>
 <div class="nsw-list nsw-list--8 nsw-m-top-md">
-  <img src="https://cdn.mapmarker.io/api/v1/font-awesome/v5/pin?icon=fa-circle&size=40&hoffset=0&voffset=-1&background=366CFD&color=FFF">
-  <img src="https://cdn.mapmarker.io/api/v1/font-awesome/v5/pin?icon=fa-circle&size=40&hoffset=0&voffset=-1&background=D7153A&color=FFF">
-  <img src="https://cdn.mapmarker.io/api/v1/font-awesome/v5/pin?text=P&size=40&hoffset=0&voffset=-1&background=366CFD&color=FFF">
-  <img src="https://cdn.mapmarker.io/api/v1/font-awesome/v5/pin?icon=fa-plane&size=40&hoffset=0&voffset=-1&background=D7153A&color=FFF">
+  <svg display="block" height="41px" width="27px" viewBox="0 0 27 41">
+    <g fill-rule="nonzero">
+      <g fill="#146cfd">
+        <path d="M27,13.5 C27,19.074644 20.250001,27.000002 14.75,34.500002 C14.016665,35.500004 12.983335,35.500004 12.25,34.500002 C6.7499993,27.000002 0,19.222562 0,13.5 C0,6.0441559 6.0441559,0 13.5,0 C20.955844,0 27,6.0441559 27,13.5 Z"></path>
+      </g>
+      <g opacity="0.25" fill="#000000">
+        <path d="M13.5,0 C6.0441559,0 0,6.0441559 0,13.5 C0,19.222562 6.7499993,27 12.25,34.5 C13,35.522727 14.016664,35.500004 14.75,34.5 C20.250001,27 27,19.074644 27,13.5 C27,6.0441559 20.955844,0 13.5,0 Z M13.5,1 C20.415404,1 26,6.584596 26,13.5 C26,15.898657 24.495584,19.181431 22.220703,22.738281 C19.945823,26.295132 16.705119,30.142167 13.943359,33.908203 C13.743445,34.180814 13.612715,34.322738 13.5,34.441406 C13.387285,34.322738 13.256555,34.180814 13.056641,33.908203 C10.284481,30.127985 7.4148684,26.314159 5.015625,22.773438 C2.6163816,19.232715 1,15.953538 1,13.5 C1,6.584596 6.584596,1 13.5,1 Z"></path>
+      </g>
+      <g transform="translate(6.0, 7.0)" fill="#FFFFFF"></g><g transform="translate(8.0, 8.0)">
+        <circle fill="#000000" opacity="0.25" cx="5.5" cy="5.5" r="5.4999962"></circle>
+        <circle fill="#FFFFFF" cx="5.5" cy="5.5" r="5.4999962"></circle>
+      </g>
+    </g>
+  </svg>
+
+  <svg display="block" height="41px" width="27px" viewBox="0 0 27 41">
+    <g fill-rule="nonzero">
+      <g fill="#D7153A">
+        <path d="M27,13.5 C27,19.074644 20.250001,27.000002 14.75,34.500002 C14.016665,35.500004 12.983335,35.500004 12.25,34.500002 C6.7499993,27.000002 0,19.222562 0,13.5 C0,6.0441559 6.0441559,0 13.5,0 C20.955844,0 27,6.0441559 27,13.5 Z"></path>
+      </g>
+      <g opacity="0.25" fill="#000000">
+        <path d="M13.5,0 C6.0441559,0 0,6.0441559 0,13.5 C0,19.222562 6.7499993,27 12.25,34.5 C13,35.522727 14.016664,35.500004 14.75,34.5 C20.250001,27 27,19.074644 27,13.5 C27,6.0441559 20.955844,0 13.5,0 Z M13.5,1 C20.415404,1 26,6.584596 26,13.5 C26,15.898657 24.495584,19.181431 22.220703,22.738281 C19.945823,26.295132 16.705119,30.142167 13.943359,33.908203 C13.743445,34.180814 13.612715,34.322738 13.5,34.441406 C13.387285,34.322738 13.256555,34.180814 13.056641,33.908203 C10.284481,30.127985 7.4148684,26.314159 5.015625,22.773438 C2.6163816,19.232715 1,15.953538 1,13.5 C1,6.584596 6.584596,1 13.5,1 Z"></path>
+      </g>
+      <g transform="translate(6.0, 7.0)" fill="#FFFFFF"></g><g transform="translate(8.0, 8.0)">
+        <circle fill="#000000" opacity="0.25" cx="5.5" cy="5.5" r="5.4999962"></circle>
+        <circle fill="#FFFFFF" cx="5.5" cy="5.5" r="5.4999962"></circle>
+      </g>
+    </g>
+  </svg>
+
+  <svg display="block" height="41px" width="27px" viewBox="0 0 27 41">
+    <g fill-rule="nonzero">
+      <g fill="#495054">
+        <path d="M27,13.5 C27,19.074644 20.250001,27.000002 14.75,34.500002 C14.016665,35.500004 12.983335,35.500004 12.25,34.500002 C6.7499993,27.000002 0,19.222562 0,13.5 C0,6.0441559 6.0441559,0 13.5,0 C20.955844,0 27,6.0441559 27,13.5 Z"></path>
+      </g>
+      <g opacity="0.25" fill="#000000">
+        <path d="M13.5,0 C6.0441559,0 0,6.0441559 0,13.5 C0,19.222562 6.7499993,27 12.25,34.5 C13,35.522727 14.016664,35.500004 14.75,34.5 C20.250001,27 27,19.074644 27,13.5 C27,6.0441559 20.955844,0 13.5,0 Z M13.5,1 C20.415404,1 26,6.584596 26,13.5 C26,15.898657 24.495584,19.181431 22.220703,22.738281 C19.945823,26.295132 16.705119,30.142167 13.943359,33.908203 C13.743445,34.180814 13.612715,34.322738 13.5,34.441406 C13.387285,34.322738 13.256555,34.180814 13.056641,33.908203 C10.284481,30.127985 7.4148684,26.314159 5.015625,22.773438 C2.6163816,19.232715 1,15.953538 1,13.5 C1,6.584596 6.584596,1 13.5,1 Z"></path>
+      </g>
+      <g transform="translate(6.0, 7.0)" fill="#FFFFFF"></g><g transform="translate(8.0, 8.0)">
+        <circle fill="#000000" opacity="0.25" cx="5.5" cy="5.5" r="5.4999962"></circle>
+        <circle fill="#FFFFFF" cx="5.5" cy="5.5" r="5.4999962"></circle>
+      </g>
+    </g>
+  </svg>
 </div>
 {{#>_docs-example hidden="true" open="true" code="language-html"}}
-<img src="https://cdn.mapmarker.io/api/v1/font-awesome/v5/pin?icon=fa-circle&size=40&hoffset=0&voffset=-1&background=366CFD&color=FFF">
-<img src="https://cdn.mapmarker.io/api/v1/font-awesome/v5/pin?icon=fa-circle&size=40&hoffset=0&voffset=-1&background=D7153A&color=FFF">
-<img src="https://cdn.mapmarker.io/api/v1/font-awesome/v5/pin?text=P&size=40&hoffset=0&voffset=-1&background=366CFD&color=FFF">
-<img src="https://cdn.mapmarker.io/api/v1/font-awesome/v5/pin?icon=fa-plane&size=40&hoffset=0&voffset=-1&background=D7153A&color=FFF">
+<svg display="block" height="41px" width="27px" viewBox="0 0 27 41">
+  <g fill-rule="nonzero">
+    <g fill="#146cfd">
+      <path d="M27,13.5 C27,19.074644 20.250001,27.000002 14.75,34.500002 C14.016665,35.500004 12.983335,35.500004 12.25,34.500002 C6.7499993,27.000002 0,19.222562 0,13.5 C0,6.0441559 6.0441559,0 13.5,0 C20.955844,0 27,6.0441559 27,13.5 Z"></path>
+    </g>
+    <g opacity="0.25" fill="#000000">
+      <path d="M13.5,0 C6.0441559,0 0,6.0441559 0,13.5 C0,19.222562 6.7499993,27 12.25,34.5 C13,35.522727 14.016664,35.500004 14.75,34.5 C20.250001,27 27,19.074644 27,13.5 C27,6.0441559 20.955844,0 13.5,0 Z M13.5,1 C20.415404,1 26,6.584596 26,13.5 C26,15.898657 24.495584,19.181431 22.220703,22.738281 C19.945823,26.295132 16.705119,30.142167 13.943359,33.908203 C13.743445,34.180814 13.612715,34.322738 13.5,34.441406 C13.387285,34.322738 13.256555,34.180814 13.056641,33.908203 C10.284481,30.127985 7.4148684,26.314159 5.015625,22.773438 C2.6163816,19.232715 1,15.953538 1,13.5 C1,6.584596 6.584596,1 13.5,1 Z"></path>
+    </g>
+    <g transform="translate(6.0, 7.0)" fill="#FFFFFF"></g><g transform="translate(8.0, 8.0)">
+      <circle fill="#000000" opacity="0.25" cx="5.5" cy="5.5" r="5.4999962"></circle>
+      <circle fill="#FFFFFF" cx="5.5" cy="5.5" r="5.4999962"></circle>
+    </g>
+  </g>
+</svg>
 {{/_docs-example}}
 
 
