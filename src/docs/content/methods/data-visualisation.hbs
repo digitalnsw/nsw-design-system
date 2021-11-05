@@ -1,0 +1,228 @@
+---
+title: Data visualisation
+no-blank: true
+intro: Graphs and charts allow data to be comprehended quickly, allowing for faster analysis and conclusions
+order: 30
+---
+
+<!-- TODO: Move to header -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js'></script>
+
+
+    <nav class="nsw-in-page-nav" aria-labelledby="in-page-nav">
+      <div id="in-page-nav" class="nsw-in-page-nav__title">On this page</div>
+      <ul>
+        <li>
+          <a href="{{change-extention path 'anchor' 'when-to-use'}}">When to use graphs and charts</a>
+        </li>
+        <li>
+          <a href="{{change-extention path 'anchor' 'colours-and-theming'}}">Colours and theming</a>
+        </li>
+        <li>
+          <a href="{{change-extention path 'anchor' 'code-implementation'}}">Code implementation</a>
+        </li>
+        <li>
+          <a href="{{change-extention path 'anchor' 'full-docs'}}">Full documentation</a>
+        </li>
+      </ul>
+    </nav>
+
+
+<h2 id="when-to-use">When to use</h2>
+
+<p>Use graphs and charts to easily convey relationships, patterns and trends visually between data sets to users. Use the chart or graph type that best tells the story of the data and clearly represents the core insights.</p>
+<p>Representing data using graphics can be more widely understood by those with reading disabilities, accessibility needs or those for whom English is not their first language.</p>
+<p>Data visualisation can be used when:</p>
+<ul>
+  <li>Comparing data </li>
+  <li>Showing trends </li>
+  <li>Displaying statistics  </li>
+  <li>Processes and workflows </li>
+  <li>Mapping and diagramming</li>
+</ul>
+
+<h3 id="colours-and-theming">Colours and theming</h3>
+<p>Colour plays a large role in data visualisation to communicate insights. </p>
+<p>Use colours from your website’s colour sets. If you need extra colours, use the NSW palette.</p>
+<p>Where possible, use either:</p>
+<ul>
+  <li>Shades 01 to 04 of your Brand colour set</li>
+  <li>The same shade (row) across different colours</li>
+</ul>
+<p>For corporate websites, your colours are blue, grey, and red. For campaigns and brand-exempt sites, you'll have your own colours.</p>
+
+<h4>Colour contrast</h4>
+<p>The colours in the NSW Design System follow a pattern from the darkest (e.g. Blue 01) to lightest (e.g. Row 04). Prioritise the colours with the best constrast to your background.</p>
+
+<div class="nsw-section nsw-section--white nsw-block nsw-p-x-sm nsw-p-top-sm">
+  <h3>Colour examples</h3>
+  <div class="nsw-grid nsw-m-top-md">
+    <div class="nsw-col nsw-col-sm-6">
+      <canvas id="bar" height="300" width="500"></canvas>
+    </div>
+    <div class="nsw-col nsw-col-sm-6 nsw-p-left-sm">
+      <h4>Single colour</h4>
+      <p>For charts with a single dataset, you can use just one colour. In most cases, aim to use your brand dark colour, or brand light if the chart sits on a dark background.</p>
+    </div>
+  </div>
+
+  <div class="nsw-grid nsw-m-top-md">
+    <div class="nsw-col nsw-col-sm-6">
+      <h4>Row-02 colours</h4>
+      <p>This example uses multiple colours from row 02 of the brand framework. If you're displaying data side-by-side, such as a pie chart, use colours from the NSW palette. Instructions for developers are below.</p>
+    </div>
+    <div class="nsw-col nsw-col-sm-6">
+      <canvas id="pie" height="300" width="500"></canvas>
+    </div>
+  </div>
+</div>
+
+<h3 id="code-implementation">Code implementation</h3>
+<p class="intro">
+  The NSW Design System uses charts.js, the leading open-source library, to create charts and graphs. The instructions below show how it can be used in a brand compliant and accessible way.
+</p>
+
+<h4>Installing and Usage</h4>
+<p>Follow the <a href="https://www.chartjs.org/docs/latest/getting-started/installation.html" target="_blank">charts.js installation instructions</a> in their documentation.</p>
+<p>Once installed, follow the normal <a href="https://www.chartjs.org/docs/latest/getting-started/usage.html" target="_blank">charts.js usage instructions</a> - we'll change some config settings to folow NSW best practice.</p>
+
+<h4>Screen readers</h4>
+<p>Canvas elements cannot be read by screen readers, similar to images. Use the NSW Design System <code>.sr-only</code> class - this will hide elements from screens but allow screen readers to read them. To make your graphs accessible to screen readers, create screen-reader friendly in an <code>.sr-only</code> container, and make sure to include content on the graphic so screen readers can give context to users:</p>
+{{#>_docs-example hidden="true" open="true" code="language-html"}}
+<canvas id="accessibleGraph" width="400" height="400" aria-label="Graph showing value of bitcoin over time" role="img"></canvas>
+{{/_docs-example}}
+
+<p>For maximum accessibility, we recommend offering a text-based alternative to all users.</p>
+
+<h4>Theming with the NSW Government Palette</h4>
+<p>Use the design guidance above to decide which colours your chart or graph should use. You can access the full palette via javascript.</p>
+<p>First, set fonts and a default theme. These will be the default colours for your charts and graphs, but you can override them if needed.</p>
+
+{{#>_docs-example hidden="true" open="true" code="language-html"}}
+<script>
+//Set a default theme to avoid rework
+var nswStyles = getComputedStyle(document.body)
+Chart.defaults.backgroundColor = [
+  nswStyles.getPropertyValue('--nsw-palette-blue-02'),
+  nswStyles.getPropertyValue('--nsw-palette-red-02'),
+  nswStyles.getPropertyValue('--nsw-palette-yellow-02'),
+  nswStyles.getPropertyValue('--nsw-palette-green-02'),
+  nswStyles.getPropertyValue('--nsw-palette-purple-02'),
+  nswStyles.getPropertyValue('--nsw-palette-orange-02'),
+  nswStyles.getPropertyValue('--nsw-palette-pink-02'),
+];
+Chart.defaults.font.family = "'Public Sans'";
+Chart.defaults.font.size = 14;
+Chart.defaults.font.weight = 400;
+<\/script>
+{{/_docs-example}}
+
+<h4>Setting colours for a specific graph</h4>
+<p>You can theme each chart or graph individually.</p>
+
+{{#>_docs-example hidden="true" open="true" code="language-html"}}
+<script>
+const data = {
+  labels: [
+    'Item 1',
+    'Item 2',
+    'Item 3'
+  ],
+  datasets: [{
+    label: 'Example Dataset',
+    data: [300, 50, 100],
+    backgroundColor: [
+      nswStyles.getPropertyValue('--nsw-palette-blue-01'),
+      nswStyles.getPropertyValue('--nsw-palette-blue-02'),
+      nswStyles.getPropertyValue('--nsw-palette-blue-03')
+    ],
+    hoverOffset: 4
+  }]
+};
+
+var myChart = new Chart(
+  document.getElementById('myChart'), {
+    type: 'pie',
+    data: data,
+  }
+);
+<\/script>
+{{/_docs-example}}
+
+<h3 id="full-docs">Full Documentation</h3>
+<p>The information above shows you how to configure charts.js for use in a way that meets the digital brand framework, and the digital standards. For full documentation see the <a target="_blank" href="https://www.chartjs.org/docs/latest/">charts.js documentation</a></p>
+
+<script>
+
+//Set a default theme to avoid rework
+
+var nswStyles = getComputedStyle(document.body)
+Chart.defaults.backgroundColor = [
+  nswStyles.getPropertyValue('--nsw-palette-blue-02'),
+  nswStyles.getPropertyValue('--nsw-palette-red-02'),
+  nswStyles.getPropertyValue('--nsw-palette-yellow-02'),
+  nswStyles.getPropertyValue('--nsw-palette-green-02'),
+  nswStyles.getPropertyValue('--nsw-palette-purple-02'),
+  nswStyles.getPropertyValue('--nsw-palette-orange-02'),
+  nswStyles.getPropertyValue('--nsw-palette-pink-02'),
+];
+Chart.defaults.font.family = "'Public Sans'";
+Chart.defaults.font.size = 14;
+Chart.defaults.font.weight = 400;
+Chart.defaults.plugins.legend.position = 'bottom';
+
+var ctx = document.getElementById('pie');
+var pieChart = new Chart(ctx, {
+    type: 'pie',
+    data: {
+      labels: [
+        'A thing',
+        'Another thing',
+        'Third thing',
+        'Fourth thing',
+        'Fifth thing',
+        'Penultimate thing',
+        'Last thing',
+      ],
+      datasets: [{
+        label: 'Example Dataset',
+        data: [125, 50, 100, 75, 50, 25, 75],
+        hoverOffset: 8,
+      }]
+    },
+});
+
+var ctx = document.getElementById('bar');
+var barChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: [
+        'A thing',
+        'Another thing',
+        'Third thing',
+        'Fourth thing',
+        'Fifth thing',
+        'Penultimate thing',
+        'Last thing',
+      ],
+      datasets: [{
+        label: false,
+        data: [125, 50, 100, 75, 50, 25, 75],
+        backgroundColor: [nswStyles.getPropertyValue('--nsw-palette-blue-02')],
+      }],
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      },
+      plugins: {
+            legend: {
+                display: false
+            }
+        }
+    },
+});
+
+</script>
