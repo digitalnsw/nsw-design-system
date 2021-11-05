@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>NSW Digital Design System - Breadcrumbs</title>
+  <title>NSW Digital Design System - Search &amp; Filters</title>
   <meta name="robots" content="noindex" />
   <meta name="description" content="">
   <meta name="keywords" content="">
@@ -254,7 +254,7 @@
       </div>
     </div>
     <div class="nsw-docs__main nsw-docs__main--narrow">
-      <div class="nsw-docs__intro nsw-docs__intro--tabs">
+      <div class="nsw-docs__intro">
         <div class="nsw-docs__container">
           <div class="nsw-in-page-note nsw-in-page-note--info">
             <span class="material-icons nsw-material-icons nsw-in-page-note__icon" focusable="false" aria-hidden="true">info</span>
@@ -263,127 +263,98 @@
               <p>To get access to Figma files or code please email us on <a class="nsw-word-break nsw-word-break--mobile" href="mailto:digital@customerservice.nsw.gov.au>">digital@customerservice.nsw.gov.au</a></p>
             </div>
           </div>
-          <h1>Breadcrumbs</h1>
+          <h1>Search &amp; Filters</h1>
           
-          <p class="nsw-intro">Breadcrumbs help users to understand where they are within a website’s structure.</p>
+          <p class="nsw-intro">Search allow users to explore products and services using keywords or phrases.</p>
           
-          <p>
-            <a class="nsw-link nsw-link--icon" target="_blank" href="https://www.figma.com/file/PVrERKnckLTlJSPk12gbtS/NSW-Digital-Design-System?node-id&#x3D;0%3A1229">
-              <svg width="20" height="20" viewBox="0 0 33 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.003 48c4.416 0 8-3.584 8-8v-8h-8c-4.416 0-8 3.584-8 8s3.584 8 8 8z" fill="#0ACF83"></path><path d="M.003 24c0-4.416 3.584-8 8-8h8v16h-8c-4.416 0-8-3.584-8-8z" fill="#A259FF"></path><path d="M.003 8c0-4.416 3.584-8 8-8h8v16h-8c-4.416 0-8-3.584-8-8z" fill="#F24E1E"></path><path d="M16.003 0h8c4.416 0 8 3.584 8 8s-3.584 8-8 8h-8V0z" fill="#FF7262"></path><path d="M32.003 24c0 4.416-3.584 8-8 8s-8-3.584-8-8 3.584-8 8-8 8 3.584 8 8z" fill="#1ABCFE"></path></svg>
-              <span>Figma</span>
-            </a>
-          </p>
         </div>
       </div>
-<div class="nsw-docs__tabs">
-  <div class="nsw-tabs js-tabs nsw-docs-tabs">
-    <ul class="nsw-tabs__list">
-      <li class="nsw-tabs__list-item">
-        <a href="#section-guidance" class="nsw-tabs__link js-tabs-fixed">Guidance</a>
-      </li>
-      <li class="nsw-tabs__list-item">
-        <a href="#section-interactive-demo" class="nsw-tabs__link js-tabs-fixed">Demo &amp; Code</a>
-      </li>
-    </ul>
-    <section id="section-guidance" class="nsw-tabs__content">
-      <div class="nsw-docs__container">
-        
-<h2>Usage</h2>
-<p>Use the breadcrumbs component when you need to help users understand and move between the multiple levels of a website.</p>
+      <div class="nsw-docs__content">
+        <div class="nsw-docs__container">
+
+
+<h2 id="Usage">Usage</h2>
+<p>Search results help users find content quickly by returning results based on a specific keyword or phrase.</p>
+<p>Use the search results pattern for:</p>
+<ul>
+  <li>Global searches</li>
+  <li>Result listings where primary search is by keyword</li>
+</ul>
 <p>Do:</p>
 <ul>
-	<li>display in the top left of the main content area above the page title</li>
-	<li>reflect the names of the parent-level pages ensuring you use the same labels and casing as the main IA</li>
+  <li>where possible, account for typos and synonyms in search queries</li>
+  <li>trigger the search if a user hits the Enter key when typing in the search field</li>
+  <li>always display the search bar with the user's last searched term</li>
 </ul>
-<h3>When to avoid</h3>
-<p>Do not use the breadcrumbs component on websites with a flat structure, or to show progress through a linear journey or transaction.</p>
-<p>Breadcrumb navigation should be regarded as an extra feature and shouldn’t replace effective primary navigation menus.</p>
-<p>If you’re using other navigational elements on the page, such as a sidebar, consider whether your users need the additional support of breadcrumbs.</p>
-<p><strong>Parent page</strong><br>Starts with the "Home" page and links users to parent-level pages in the IA</p>
-<p><strong>Icon</strong><br>The chevrons between the names shows the visual hierarchy between pages.</p>
-<p><strong>Current page</strong><br>Indicates the current page the user is viewing.</p>
-
-<h2>Behaviour</h2>
-<p>For mobile resolutions (under 768px), the breadcrumb shows a link to the immediate parent and current page only.</p>
-
-<h2>Accessibility</h2>
-<p>All components are responsive and meet WCAG 2.1 AA accessibility guidelines.</p>
-
-      </div>
-    </section>
-    <section id="section-interactive-demo" class="nsw-tabs__content">
-      <div class="nsw-docs__demo">
-        <div class="nsw-docs__external">
-          <a class="nsw-small nsw-link nsw-link--icon" target="_blank" href="components/breadcrumbs/blank.html"><span>View in new window</span><i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">launch</i></a>
+<h2 id="When-to-avoid">When to avoid</h2>
+<p>Do not use when filtering results by categories is the primary user need, consider using filtering pattern.</p>
+<h2 id="Results">Results</h2>
+<p>By default, search results should be sorted by relevance. If there is a user need, offer a sort function to allow users to order the results based on supplementary criteria.</p>
+<p>Do:</p>
+<ul>
+  <li>ensure search results are tested and return accurate and relevant results</li>
+  <li>allow users to sort the content by the factors that are most important to them</li>
+  <li>show the number of results returned, and update the count each time filters are updated</li>
+  <li>where possible, bold the matching keyword or term in the result description</li>
+  <li>use pagination when more than 10 results are returned</li>
+</ul>
+<p>When displaying results, consider what information is important to the user and display what they require to make an informed decision.</p>
+<p>Content options can include:</p>
+<ul>
+<li><strong>Headline </strong>- use to identify the title of page or result</li>
+<li><strong>Description </strong>- use to give the user a snapshot to the content (metadata)</li>
+<li><strong>URL </strong>- use to indicate when content is located on a different site</li>
+<li><strong>Label </strong>- use to indicate the result category when this will give greater context over the result type or content. For example, the file type if it differs from a webpage.</li>
+<li><strong>Date </strong>- use when it brings value to the user to know this information and be clear on their relation to the content (for example &ldquo;Last updated&rdquo;).</li>
+</ul>
+<p>If no results are returned, clearly communicate there are no matching results and allow the user to continue their journey by providing tips to improve or widen their results.</p>
+<p>Some ways to do this are by:</p>
+<ul>
+  <li>Suggesting alternative keyword if current keyword is not found or a spelling mistake is detected (if possible)</p></li>
+  <li>Tips to improve or widen the results</p></li>
+  <li>Contact information or other ways to navigate the site</li>
+</ul>
+<h2 id="Filtering">Filtering</h2>
+<p>Adding filters can help users narrow down their search results.</p>
+<h2 id="Predictive-search">Predictive search</h2>
+<p>Assist users by providing suggestions as they type. This can speed up search times, reduce no results being returned and surface content the user may not be aware of. Ensure suggestions are relevant and match your user's need.</p>
+<hr>
+<h2>Example pages</h2>
+<div class="nsw-grid">
+  <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+    <div class="nsw-card nsw-card--headline">
+      <div class="nsw-card__content">
+        <div class="nsw-card__title">
+          <a target="_blank" href="templates/search/simple.html">Simple</a>
         </div>
-
-<div class="nsw-docs__example">
-  <div class="nsw-docs__component">
-    <nav aria-label="Breadcrumbs" class="nsw-breadcrumbs">
-      <ol>
-        <li>
-          <a href="/nsw-design-system">Home</a>
-        </li>
-        <li>
-          <a href="/nsw-design-system">About DPC</a>
-        </li>
-        <li>
-          <a href="/nsw-design-system">NSW Digital Design System</a>
-        </li>
-        <li>
-          <a href="/nsw-design-system" class="current" aria-current="page">Content design</a>
-        </li>
-      </ol>
-    </nav>
+        <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span>
+      </div>
+    </div>
   </div>
-</div>
-<div class="nsw-docs-code">
-  <button class="nsw-small nsw-link nsw-link--button nsw-link--icon js-code-button">
-    <span>Show code</span>
-    <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
-  </button>
-  <div class="nsw-docs-code__content">
-    <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
-      <span>Copy</span>
-      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
-    </button>
-    <div class="nsw-docs-code__wrapper">
-<pre><code class="html"><script>
-    function escapeHtml(unsafe) {
-      return unsafe
-       .replace(/&/g, "&amp;")
-       .replace(/</g, "&lt;")
-       .replace(/>/g, "&gt;")
-       .replace(/"/g, "&quot;")
-       .replace(/'/g, "&#039;");
-    }
-    document.write(escapeHtml(`<nav aria-label="Breadcrumbs" class="nsw-breadcrumbs">
-  <ol>
-    <li>
-      <a href="/nsw-design-system">Home</a>
-    </li>
-    <li>
-      <a href="/nsw-design-system">About DPC</a>
-    </li>
-    <li>
-      <a href="/nsw-design-system">NSW Digital Design System</a>
-    </li>
-    <li>
-      <a href="/nsw-design-system" class="current" aria-current="page">Content design</a>
-    </li>
-  </ol>
-</nav>
-`));
-</script></code></pre>
+  <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+    <div class="nsw-card nsw-card--headline">
+      <div class="nsw-card__content">
+        <div class="nsw-card__title">
+          <a target="_blank" href="templates/search/filters.html">Filters</a>
+        </div>
+        <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span>
+      </div>
+    </div>
+  </div>
+  <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+    <div class="nsw-card nsw-card--headline">
+      <div class="nsw-card__content">
+        <div class="nsw-card__title">
+          <a target="_blank" href="templates/search/no-results.html">No results</a>
+        </div>
+        <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span>
+      </div>
     </div>
   </div>
 </div>
 
-
+        </div>
       </div>
-    </section>
-  </div>
-</div>
       <footer class="nsw-footer nsw-docs-footer">
         <div class="nsw-footer__lower">
           <div class="nsw-container">

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>NSW Digital Design System - Breadcrumbs</title>
+  <title>NSW Digital Design System - Data visualisation</title>
   <meta name="robots" content="noindex" />
   <meta name="description" content="">
   <meta name="keywords" content="">
@@ -253,8 +253,8 @@
         </nav>
       </div>
     </div>
-    <div class="nsw-docs__main nsw-docs__main--narrow">
-      <div class="nsw-docs__intro nsw-docs__intro--tabs">
+    <div class="nsw-docs__main">
+      <div class="nsw-docs__intro">
         <div class="nsw-docs__container">
           <div class="nsw-in-page-note nsw-in-page-note--info">
             <span class="material-icons nsw-material-icons nsw-in-page-note__icon" focusable="false" aria-hidden="true">info</span>
@@ -263,92 +263,110 @@
               <p>To get access to Figma files or code please email us on <a class="nsw-word-break nsw-word-break--mobile" href="mailto:digital@customerservice.nsw.gov.au>">digital@customerservice.nsw.gov.au</a></p>
             </div>
           </div>
-          <h1>Breadcrumbs</h1>
+          <h1>Data visualisation</h1>
           
-          <p class="nsw-intro">Breadcrumbs help users to understand where they are within a website’s structure.</p>
+          <p class="nsw-intro">Graphs and charts allow data to be comprehended quickly, allowing for faster analysis and conclusions</p>
           
-          <p>
-            <a class="nsw-link nsw-link--icon" target="_blank" href="https://www.figma.com/file/PVrERKnckLTlJSPk12gbtS/NSW-Digital-Design-System?node-id&#x3D;0%3A1229">
-              <svg width="20" height="20" viewBox="0 0 33 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.003 48c4.416 0 8-3.584 8-8v-8h-8c-4.416 0-8 3.584-8 8s3.584 8 8 8z" fill="#0ACF83"></path><path d="M.003 24c0-4.416 3.584-8 8-8h8v16h-8c-4.416 0-8-3.584-8-8z" fill="#A259FF"></path><path d="M.003 8c0-4.416 3.584-8 8-8h8v16h-8c-4.416 0-8-3.584-8-8z" fill="#F24E1E"></path><path d="M16.003 0h8c4.416 0 8 3.584 8 8s-3.584 8-8 8h-8V0z" fill="#FF7262"></path><path d="M32.003 24c0 4.416-3.584 8-8 8s-8-3.584-8-8 3.584-8 8-8 8 3.584 8 8z" fill="#1ABCFE"></path></svg>
-              <span>Figma</span>
-            </a>
-          </p>
         </div>
       </div>
-<div class="nsw-docs__tabs">
-  <div class="nsw-tabs js-tabs nsw-docs-tabs">
-    <ul class="nsw-tabs__list">
-      <li class="nsw-tabs__list-item">
-        <a href="#section-guidance" class="nsw-tabs__link js-tabs-fixed">Guidance</a>
-      </li>
-      <li class="nsw-tabs__list-item">
-        <a href="#section-interactive-demo" class="nsw-tabs__link js-tabs-fixed">Demo &amp; Code</a>
-      </li>
-    </ul>
-    <section id="section-guidance" class="nsw-tabs__content">
-      <div class="nsw-docs__container">
-        
-<h2>Usage</h2>
-<p>Use the breadcrumbs component when you need to help users understand and move between the multiple levels of a website.</p>
-<p>Do:</p>
-<ul>
-	<li>display in the top left of the main content area above the page title</li>
-	<li>reflect the names of the parent-level pages ensuring you use the same labels and casing as the main IA</li>
-</ul>
-<h3>When to avoid</h3>
-<p>Do not use the breadcrumbs component on websites with a flat structure, or to show progress through a linear journey or transaction.</p>
-<p>Breadcrumb navigation should be regarded as an extra feature and shouldn’t replace effective primary navigation menus.</p>
-<p>If you’re using other navigational elements on the page, such as a sidebar, consider whether your users need the additional support of breadcrumbs.</p>
-<p><strong>Parent page</strong><br>Starts with the "Home" page and links users to parent-level pages in the IA</p>
-<p><strong>Icon</strong><br>The chevrons between the names shows the visual hierarchy between pages.</p>
-<p><strong>Current page</strong><br>Indicates the current page the user is viewing.</p>
+      <div class="nsw-docs__content">
+        <div class="nsw-docs__container">
 
-<h2>Behaviour</h2>
-<p>For mobile resolutions (under 768px), the breadcrumb shows a link to the immediate parent and current page only.</p>
+<!-- TODO: Move to header -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js'></script>
 
-<h2>Accessibility</h2>
-<p>All components are responsive and meet WCAG 2.1 AA accessibility guidelines.</p>
 
-      </div>
-    </section>
-    <section id="section-interactive-demo" class="nsw-tabs__content">
-      <div class="nsw-docs__demo">
-        <div class="nsw-docs__external">
-          <a class="nsw-small nsw-link nsw-link--icon" target="_blank" href="components/breadcrumbs/blank.html"><span>View in new window</span><i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">launch</i></a>
-        </div>
-
-<div class="nsw-docs__example">
-  <div class="nsw-docs__component">
-    <nav aria-label="Breadcrumbs" class="nsw-breadcrumbs">
-      <ol>
+    <nav class="nsw-in-page-nav" aria-labelledby="in-page-nav">
+      <div id="in-page-nav" class="nsw-in-page-nav__title">On this page</div>
+      <ul>
         <li>
-          <a href="/nsw-design-system">Home</a>
+          <a href="docs/content/methods/data-visualisation.html#when-to-use">When to use graphs and charts</a>
         </li>
         <li>
-          <a href="/nsw-design-system">About DPC</a>
+          <a href="docs/content/methods/data-visualisation.html#colours-and-theming">Colours and theming</a>
         </li>
         <li>
-          <a href="/nsw-design-system">NSW Digital Design System</a>
+          <a href="docs/content/methods/data-visualisation.html#code-implementation">Code implementation</a>
         </li>
         <li>
-          <a href="/nsw-design-system" class="current" aria-current="page">Content design</a>
+          <a href="docs/content/methods/data-visualisation.html#full-docs">Full documentation</a>
         </li>
-      </ol>
+      </ul>
     </nav>
+
+
+<h2 id="when-to-use">When to use</h2>
+
+<p>Use graphs and charts to easily convey relationships, patterns and trends visually between data sets to users. Use the chart or graph type that best tells the story of the data and clearly represents the core insights.</p>
+<p>Representing data using graphics can be more widely understood by those with reading disabilities, accessibility needs or those for whom English is not their first language.</p>
+<p>Data visualisation can be used when:</p>
+<ul>
+  <li>Comparing data </li>
+  <li>Showing trends </li>
+  <li>Displaying statistics  </li>
+  <li>Processes and workflows </li>
+  <li>Mapping and diagramming</li>
+</ul>
+
+<h3 id="colours-and-theming">Colours and theming</h3>
+<p>Colour plays a large role in data visualisation to communicate insights. </p>
+<p>Use colours from your website’s colour sets. If you need extra colours, use the NSW palette.</p>
+<p>Where possible, use either:</p>
+<ul>
+  <li>Shades 01 to 04 of your Brand colour set</li>
+  <li>The same shade (row) across different colours</li>
+</ul>
+<p>For corporate websites, your colours are blue, grey, and red. For campaigns and brand-exempt sites, you'll have your own colours.</p>
+
+<h4>Colour contrast</h4>
+<p>The colours in the NSW Design System follow a pattern from the darkest (e.g. Blue 01) to lightest (e.g. Row 04). Prioritise the colours with the best constrast to your background.</p>
+
+<div class="nsw-section nsw-section--white nsw-block nsw-p-x-sm nsw-p-top-sm">
+  <h3>Colour examples</h3>
+  <div class="nsw-grid nsw-m-top-md">
+    <div class="nsw-col nsw-col-sm-6">
+      <canvas id="bar" height="300" width="500"></canvas>
+    </div>
+    <div class="nsw-col nsw-col-sm-6 nsw-p-left-sm">
+      <h4>Single colour</h4>
+      <p>For charts with a single dataset, you can use just one colour. In most cases, aim to use your brand dark colour, or brand light if the chart sits on a dark background.</p>
+    </div>
+  </div>
+
+  <div class="nsw-grid nsw-m-top-md">
+    <div class="nsw-col nsw-col-sm-6">
+      <h4>Row-02 colours</h4>
+      <p>This example uses multiple colours from row 02 of the brand framework. If you're displaying data side-by-side, such as a pie chart, use colours from the NSW palette. Instructions for developers are below.</p>
+    </div>
+    <div class="nsw-col nsw-col-sm-6">
+      <canvas id="pie" height="300" width="500"></canvas>
+    </div>
+  </div>
+</div>
+
+<h3 id="code-implementation">Code implementation</h3>
+<p class="intro">
+  The NSW Design System uses charts.js, the leading open-source library, to create charts and graphs. The instructions below show how it can be used in a brand compliant and accessible way.
+</p>
+
+<h4>Installing and Usage</h4>
+<p>Follow the <a href="https://www.chartjs.org/docs/latest/getting-started/installation.html" target="_blank">charts.js installation instructions</a> in their documentation.</p>
+<p>Once installed, follow the normal <a href="https://www.chartjs.org/docs/latest/getting-started/usage.html" target="_blank">charts.js usage instructions</a> - we'll change some config settings to folow NSW best practice.</p>
+
+<h4>Screen readers</h4>
+<p>Canvas elements cannot be read by screen readers, similar to images. Use the NSW Design System <code>.sr-only</code> class - this will hide elements from screens but allow screen readers to read them. To make your graphs accessible to screen readers, create screen-reader friendly in an <code>.sr-only</code> container, and make sure to include content on the graphic so screen readers can give context to users:</p>
+<div class="nsw-docs__example nsw-docs__example--hidden">
+  <div class="nsw-docs__component">
   </div>
 </div>
 <div class="nsw-docs-code">
-  <button class="nsw-small nsw-link nsw-link--button nsw-link--icon js-code-button">
-    <span>Show code</span>
-    <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
-  </button>
-  <div class="nsw-docs-code__content">
+  <div class="nsw-docs-code__content active">
     <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
       <span>Copy</span>
       <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
     </button>
     <div class="nsw-docs-code__wrapper">
-<pre><code class="html"><script>
+<pre><code class="language-html"><script>
     function escapeHtml(unsafe) {
       return unsafe
        .replace(/&/g, "&amp;")
@@ -357,22 +375,7 @@
        .replace(/"/g, "&quot;")
        .replace(/'/g, "&#039;");
     }
-    document.write(escapeHtml(`<nav aria-label="Breadcrumbs" class="nsw-breadcrumbs">
-  <ol>
-    <li>
-      <a href="/nsw-design-system">Home</a>
-    </li>
-    <li>
-      <a href="/nsw-design-system">About DPC</a>
-    </li>
-    <li>
-      <a href="/nsw-design-system">NSW Digital Design System</a>
-    </li>
-    <li>
-      <a href="/nsw-design-system" class="current" aria-current="page">Content design</a>
-    </li>
-  </ol>
-</nav>
+    document.write(escapeHtml(`<canvas id="accessibleGraph" width="400" height="400" aria-label="Graph showing value of bitcoin over time" role="img"></canvas>
 `));
 </script></code></pre>
     </div>
@@ -380,10 +383,191 @@
 </div>
 
 
-      </div>
-    </section>
+<p>For maximum accessibility, we recommend offering a text-based alternative to all users.</p>
+
+<h4>Theming with the NSW Government Palette</h4>
+<p>Use the design guidance above to decide which colours your chart or graph should use. You can access the full palette via javascript.</p>
+<p>First, set fonts and a default theme. These will be the default colours for your charts and graphs, but you can override them if needed.</p>
+
+<div class="nsw-docs__example nsw-docs__example--hidden">
+  <div class="nsw-docs__component">
   </div>
 </div>
+<div class="nsw-docs-code">
+  <div class="nsw-docs-code__content active">
+    <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
+      <span>Copy</span>
+      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
+    </button>
+    <div class="nsw-docs-code__wrapper">
+<pre><code class="language-html"><script>
+    function escapeHtml(unsafe) {
+      return unsafe
+       .replace(/&/g, "&amp;")
+       .replace(/</g, "&lt;")
+       .replace(/>/g, "&gt;")
+       .replace(/"/g, "&quot;")
+       .replace(/'/g, "&#039;");
+    }
+    document.write(escapeHtml(`<script>
+//Set a default theme to avoid rework
+var nswStyles = getComputedStyle(document.body)
+Chart.defaults.backgroundColor = [
+  nswStyles.getPropertyValue('--nsw-palette-blue-02'),
+  nswStyles.getPropertyValue('--nsw-palette-red-02'),
+  nswStyles.getPropertyValue('--nsw-palette-yellow-02'),
+  nswStyles.getPropertyValue('--nsw-palette-green-02'),
+  nswStyles.getPropertyValue('--nsw-palette-purple-02'),
+  nswStyles.getPropertyValue('--nsw-palette-orange-02'),
+  nswStyles.getPropertyValue('--nsw-palette-pink-02'),
+];
+Chart.defaults.font.family = "'Public Sans'";
+Chart.defaults.font.size = 14;
+Chart.defaults.font.weight = 400;
+<\/script>
+`));
+</script></code></pre>
+    </div>
+  </div>
+</div>
+
+
+<h4>Setting colours for a specific graph</h4>
+<p>You can theme each chart or graph individually.</p>
+
+<div class="nsw-docs__example nsw-docs__example--hidden">
+  <div class="nsw-docs__component">
+  </div>
+</div>
+<div class="nsw-docs-code">
+  <div class="nsw-docs-code__content active">
+    <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
+      <span>Copy</span>
+      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
+    </button>
+    <div class="nsw-docs-code__wrapper">
+<pre><code class="language-html"><script>
+    function escapeHtml(unsafe) {
+      return unsafe
+       .replace(/&/g, "&amp;")
+       .replace(/</g, "&lt;")
+       .replace(/>/g, "&gt;")
+       .replace(/"/g, "&quot;")
+       .replace(/'/g, "&#039;");
+    }
+    document.write(escapeHtml(`<script>
+const data = {
+  labels: [
+    'Item 1',
+    'Item 2',
+    'Item 3'
+  ],
+  datasets: [{
+    label: 'Example Dataset',
+    data: [300, 50, 100],
+    backgroundColor: [
+      nswStyles.getPropertyValue('--nsw-palette-blue-01'),
+      nswStyles.getPropertyValue('--nsw-palette-blue-02'),
+      nswStyles.getPropertyValue('--nsw-palette-blue-03')
+    ],
+    hoverOffset: 4
+  }]
+};
+
+var myChart = new Chart(
+  document.getElementById('myChart'), {
+    type: 'pie',
+    data: data,
+  }
+);
+<\/script>
+`));
+</script></code></pre>
+    </div>
+  </div>
+</div>
+
+
+<h3 id="full-docs">Full Documentation</h3>
+<p>The information above shows you how to configure charts.js for use in a way that meets the digital brand framework, and the digital standards. For full documentation see the <a target="_blank" href="https://www.chartjs.org/docs/latest/">charts.js documentation</a></p>
+
+<script>
+
+//Set a default theme to avoid rework
+
+var nswStyles = getComputedStyle(document.body)
+Chart.defaults.backgroundColor = [
+  nswStyles.getPropertyValue('--nsw-palette-blue-02'),
+  nswStyles.getPropertyValue('--nsw-palette-red-02'),
+  nswStyles.getPropertyValue('--nsw-palette-yellow-02'),
+  nswStyles.getPropertyValue('--nsw-palette-green-02'),
+  nswStyles.getPropertyValue('--nsw-palette-purple-02'),
+  nswStyles.getPropertyValue('--nsw-palette-orange-02'),
+  nswStyles.getPropertyValue('--nsw-palette-pink-02'),
+];
+Chart.defaults.font.family = "'Public Sans'";
+Chart.defaults.font.size = 14;
+Chart.defaults.font.weight = 400;
+Chart.defaults.plugins.legend.position = 'bottom';
+
+var ctx = document.getElementById('pie');
+var pieChart = new Chart(ctx, {
+    type: 'pie',
+    data: {
+      labels: [
+        'A thing',
+        'Another thing',
+        'Third thing',
+        'Fourth thing',
+        'Fifth thing',
+        'Penultimate thing',
+        'Last thing',
+      ],
+      datasets: [{
+        label: 'Example Dataset',
+        data: [125, 50, 100, 75, 50, 25, 75],
+        hoverOffset: 8,
+      }]
+    },
+});
+
+var ctx = document.getElementById('bar');
+var barChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: [
+        'A thing',
+        'Another thing',
+        'Third thing',
+        'Fourth thing',
+        'Fifth thing',
+        'Penultimate thing',
+        'Last thing',
+      ],
+      datasets: [{
+        label: false,
+        data: [125, 50, 100, 75, 50, 25, 75],
+        backgroundColor: [nswStyles.getPropertyValue('--nsw-palette-blue-02')],
+      }],
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      },
+      plugins: {
+            legend: {
+                display: false
+            }
+        }
+    },
+});
+
+</script>
+
+        </div>
+      </div>
       <footer class="nsw-footer nsw-docs-footer">
         <div class="nsw-footer__lower">
           <div class="nsw-container">
