@@ -200,10 +200,15 @@ a {
 
 .nsw-link {
   &--button {
+    @include font-size('sm');
     @include link;
     background-color: transparent;
     border: 0;
     padding: 0;
+
+    &.nsw-small {
+      @include font-size('xs');
+    }
   }
 
   &--icon {
