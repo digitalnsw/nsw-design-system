@@ -67,6 +67,13 @@
 
 .nsw-row {
   @include row();
+
+  &--reverse {
+    @include breakpoint('lg') {
+      flex-direction: row-reverse;
+      justify-content: flex-end;
+    }
+  }
 }
 
 .nsw-col {
