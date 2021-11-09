@@ -66,12 +66,11 @@ With this setup you can also start theming with a few sets of variable changes.
 #### Adding the font and the icons
 In your main html document add this line of code inside the `<head>` tag. Make sure that it's placed before the NSW Design System styles import.
 ```
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 ```
 Another way is to import it in css:
-```
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,700;1,400&display=swap');
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 ```
 ### Importing javascript into your project
