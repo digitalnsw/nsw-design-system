@@ -8,6 +8,40 @@ model:
   footer: ../../components/footer/json/footer.json
 ---
 
+<style>
+  .nsw-map-bar {
+    display: flex;
+    justify-content: space-between;
+    padding: 1.5rem 0;
+  }
+
+  .nsw-map-bar__key {
+    display: flex;
+    align-items: center;
+    margin: 0 -0.5rem;
+  }
+
+  .nsw-map-bar__key > span {
+    display: flex;
+    align-items: center;
+    padding: 0 0.5rem;
+  }
+
+  .nsw-map-bar svg {
+    width: 1rem;
+    height: 1.5rem;
+    margin-right: 0.5rem;
+  }
+
+@media (min-width: 62rem) {
+  .nsw-map-bar {
+    padding-top: 3rem;
+  }
+
+}
+
+</style>
+
 {{>_global-alert title="Example page only" content="This is an example page from the NSW Design System, and is for demonstration only. Visit <a target='_blank' href='https://www.nsw.gov.au'>nsw.gov.au</a> for government services."
 }}
 
@@ -40,10 +74,10 @@ model:
             <input class="nsw-form__input" type="text" id="form-postcode" name="postcode" value="">
             <button class="nsw-button nsw-button--dark nsw-button--flex" type="submit">Search</button>
           </div>
-          <button class="nsw-link nsw-link--button nsw-link--icon nsw-m-top-xs">
+          <a href="#" class="nsw-link nsw-link--icon nsw-m-top-xs">
             <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">near_me</span>
             <span>Use my currrent location</span>
-          </button>
+          </a>
         </div>
       </div>
       <div class="nsw-layout__sidebar nsw-layout__sidebar--desktop"></div>
@@ -93,7 +127,7 @@ model:
               <div class="nsw-filters__item">
                 <fieldset class="nsw-form__fieldset">
                   <legend class="nsw-form__legend">Opening hours</legend>
-                  <input class="nsw-form__checkbox-input" type="checkbox" name="form-hours" value="Weekends" id="form-facilities-1">
+                  <input class="nsw-form__checkbox-input" type="checkbox" name="form-hours" value="Weekends" id="form-hours-1">
                   <label class="nsw-form__checkbox-label" for="form-hours-1">Weekends</label>
                   <input class="nsw-form__checkbox-input" type="checkbox" name="form-hours" value="Out of hours services" id="form-hours-2">
                   <label class="nsw-form__checkbox-label" for="form-hours-2">Out of hours services</label>
@@ -110,54 +144,51 @@ model:
         </div>
       </div>
       <div class="nsw-layout__main">
-        <div class="nsw-show-lg nsw-p-top-sm"></div>
-        <div class="nsw-results-bar">
-          <div class="nsw-results-bar__info">
-            <div class="nsw-list nsw-list--16">
-              <span><strong>Key:</strong></span>              
-              <span style="display: flex; align-items: center;">                
-                <svg style="margin-right: 8px;" height="32px" width="24px" viewBox="0 0 27 41">
-                  <g fill-rule="nonzero">
-                    <g fill="#146cfd">
-                      <path d="M27,13.5 C27,19.074644 20.250001,27.000002 14.75,34.500002 C14.016665,35.500004 12.983335,35.500004 12.25,34.500002 C6.7499993,27.000002 0,19.222562 0,13.5 C0,6.0441559 6.0441559,0 13.5,0 C20.955844,0 27,6.0441559 27,13.5 Z"></path>
-                    </g>
-                    <g opacity="0.25" fill="#000000">
-                      <path d="M13.5,0 C6.0441559,0 0,6.0441559 0,13.5 C0,19.222562 6.7499993,27 12.25,34.5 C13,35.522727 14.016664,35.500004 14.75,34.5 C20.250001,27 27,19.074644 27,13.5 C27,6.0441559 20.955844,0 13.5,0 Z M13.5,1 C20.415404,1 26,6.584596 26,13.5 C26,15.898657 24.495584,19.181431 22.220703,22.738281 C19.945823,26.295132 16.705119,30.142167 13.943359,33.908203 C13.743445,34.180814 13.612715,34.322738 13.5,34.441406 C13.387285,34.322738 13.256555,34.180814 13.056641,33.908203 C10.284481,30.127985 7.4148684,26.314159 5.015625,22.773438 C2.6163816,19.232715 1,15.953538 1,13.5 C1,6.584596 6.584596,1 13.5,1 Z"></path>
-                    </g>
-                    <g transform="translate(6.0, 7.0)" fill="#FFFFFF"></g><g transform="translate(8.0, 8.0)">
-                      <circle fill="#000000" opacity="0.25" cx="5.5" cy="5.5" r="5.4999962"></circle>
-                      <circle fill="#FFFFFF" cx="5.5" cy="5.5" r="5.4999962"></circle>
-                    </g>
+        <div class="nsw-map-bar">
+          <div class="nsw-map-bar__key">
+            <span><strong>Key:</strong></span>              
+            <span>                
+              <svg viewBox="0 0 27 41">
+                <g fill-rule="nonzero">
+                  <g fill="#146cfd">
+                    <path d="M27,13.5 C27,19.074644 20.250001,27.000002 14.75,34.500002 C14.016665,35.500004 12.983335,35.500004 12.25,34.500002 C6.7499993,27.000002 0,19.222562 0,13.5 C0,6.0441559 6.0441559,0 13.5,0 C20.955844,0 27,6.0441559 27,13.5 Z"></path>
                   </g>
-                </svg>
-                <span>Open</span>
-              </span>              
-              <span style="display: flex; align-items: center;">                
-                <svg style="margin-right: 8px;" height="32px" width="24px" viewBox="0 0 27 41">
-                  <g fill-rule="nonzero">
-                    <g fill="#D7153A">
-                      <path d="M27,13.5 C27,19.074644 20.250001,27.000002 14.75,34.500002 C14.016665,35.500004 12.983335,35.500004 12.25,34.500002 C6.7499993,27.000002 0,19.222562 0,13.5 C0,6.0441559 6.0441559,0 13.5,0 C20.955844,0 27,6.0441559 27,13.5 Z"></path>
-                    </g>
-                    <g opacity="0.25" fill="#000000">
-                      <path d="M13.5,0 C6.0441559,0 0,6.0441559 0,13.5 C0,19.222562 6.7499993,27 12.25,34.5 C13,35.522727 14.016664,35.500004 14.75,34.5 C20.250001,27 27,19.074644 27,13.5 C27,6.0441559 20.955844,0 13.5,0 Z M13.5,1 C20.415404,1 26,6.584596 26,13.5 C26,15.898657 24.495584,19.181431 22.220703,22.738281 C19.945823,26.295132 16.705119,30.142167 13.943359,33.908203 C13.743445,34.180814 13.612715,34.322738 13.5,34.441406 C13.387285,34.322738 13.256555,34.180814 13.056641,33.908203 C10.284481,30.127985 7.4148684,26.314159 5.015625,22.773438 C2.6163816,19.232715 1,15.953538 1,13.5 C1,6.584596 6.584596,1 13.5,1 Z"></path>
-                    </g>
-                    <g transform="translate(6.0, 7.0)" fill="#FFFFFF"></g><g transform="translate(8.0, 8.0)">
-                      <circle fill="#000000" opacity="0.25" cx="5.5" cy="5.5" r="5.4999962"></circle>
-                      <circle fill="#FFFFFF" cx="5.5" cy="5.5" r="5.4999962"></circle>
-                    </g>
+                  <g opacity="0.25" fill="#000000">
+                    <path d="M13.5,0 C6.0441559,0 0,6.0441559 0,13.5 C0,19.222562 6.7499993,27 12.25,34.5 C13,35.522727 14.016664,35.500004 14.75,34.5 C20.250001,27 27,19.074644 27,13.5 C27,6.0441559 20.955844,0 13.5,0 Z M13.5,1 C20.415404,1 26,6.584596 26,13.5 C26,15.898657 24.495584,19.181431 22.220703,22.738281 C19.945823,26.295132 16.705119,30.142167 13.943359,33.908203 C13.743445,34.180814 13.612715,34.322738 13.5,34.441406 C13.387285,34.322738 13.256555,34.180814 13.056641,33.908203 C10.284481,30.127985 7.4148684,26.314159 5.015625,22.773438 C2.6163816,19.232715 1,15.953538 1,13.5 C1,6.584596 6.584596,1 13.5,1 Z"></path>
                   </g>
-                </svg>
-                <span>Closed</span>
-              </span>
-            </div>
+                  <g transform="translate(6.0, 7.0)" fill="#FFFFFF"></g><g transform="translate(8.0, 8.0)">
+                    <circle fill="#000000" opacity="0.25" cx="5.5" cy="5.5" r="5.4999962"></circle>
+                    <circle fill="#FFFFFF" cx="5.5" cy="5.5" r="5.4999962"></circle>
+                  </g>
+                </g>
+              </svg>
+              <span>Open</span>
+            </span>              
+            <span>                
+              <svg viewBox="0 0 27 41">
+                <g fill-rule="nonzero">
+                  <g fill="#D7153A">
+                    <path d="M27,13.5 C27,19.074644 20.250001,27.000002 14.75,34.500002 C14.016665,35.500004 12.983335,35.500004 12.25,34.500002 C6.7499993,27.000002 0,19.222562 0,13.5 C0,6.0441559 6.0441559,0 13.5,0 C20.955844,0 27,6.0441559 27,13.5 Z"></path>
+                  </g>
+                  <g opacity="0.25" fill="#000000">
+                    <path d="M13.5,0 C6.0441559,0 0,6.0441559 0,13.5 C0,19.222562 6.7499993,27 12.25,34.5 C13,35.522727 14.016664,35.500004 14.75,34.5 C20.250001,27 27,19.074644 27,13.5 C27,6.0441559 20.955844,0 13.5,0 Z M13.5,1 C20.415404,1 26,6.584596 26,13.5 C26,15.898657 24.495584,19.181431 22.220703,22.738281 C19.945823,26.295132 16.705119,30.142167 13.943359,33.908203 C13.743445,34.180814 13.612715,34.322738 13.5,34.441406 C13.387285,34.322738 13.256555,34.180814 13.056641,33.908203 C10.284481,30.127985 7.4148684,26.314159 5.015625,22.773438 C2.6163816,19.232715 1,15.953538 1,13.5 C1,6.584596 6.584596,1 13.5,1 Z"></path>
+                  </g>
+                  <g transform="translate(6.0, 7.0)" fill="#FFFFFF"></g><g transform="translate(8.0, 8.0)">
+                    <circle fill="#000000" opacity="0.25" cx="5.5" cy="5.5" r="5.4999962"></circle>
+                    <circle fill="#FFFFFF" cx="5.5" cy="5.5" r="5.4999962"></circle>
+                  </g>
+                </g>
+              </svg>
+              <span>Closed</span>
+            </span>
           </div>
-          <div class="nsw-results-bar__sorting">
-            <button class="nsw-link nsw-link--button js-hide-map">Hide Map</button>            
-            <button class="nsw-link nsw-link--button js-show-map" style="display: none;">Show Map</button>            
+          <div class="nsw-map-bar__sorting">
+            <a href="#" class="js-hide-map">Hide Map</a>            
+            <a href="#" class="js-show-map" style="display: none;">Show Map</a>            
           </div>
         </div>
 
-        <div class="nsw-map">
+        <div class="nsw-map js-map">
           <div id='map' style='width: 100%; height: 480px;'></div>
         </div>
 
@@ -220,6 +251,24 @@ model:
     </div>
   </div>
 </main>
+
+<script>
+  document.querySelector('.js-hide-map').addEventListener('click', function(e){
+    e.preventDefault()
+    this.style.display = "none"
+    document.querySelector('.js-show-map').style.display = "block"
+    document.querySelector('.js-map').style.display = "none"
+
+  }, false)
+
+  document.querySelector('.js-show-map').addEventListener('click', function(e){
+    e.preventDefault()
+    this.style.display = "none"
+    document.querySelector('.js-hide-map').style.display = "block"
+    document.querySelector('.js-map').style.display = "block"
+
+  }, false)
+</script>
 
 <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
 <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
