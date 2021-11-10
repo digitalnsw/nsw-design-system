@@ -30,6 +30,16 @@
     }
   }
 
+  &--flush {
+    margin-top: rem(-$grid-gutters);
+    margin-bottom: rem(-$grid-gutters);
+
+    @include breakpoint('md') {
+      margin-top: rem(-$grid-gutters*2);
+      margin-bottom: rem(-$grid-gutters*2);
+    }
+  }
+
   &-overlay {
     position: fixed;
     right: 0;
@@ -57,6 +67,13 @@
 
 .nsw-row {
   @include row();
+
+  &--reverse {
+    @include breakpoint('lg') {
+      flex-direction: row-reverse;
+      justify-content: flex-end;
+    }
+  }
 }
 
 .nsw-col {

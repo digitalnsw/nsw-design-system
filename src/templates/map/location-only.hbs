@@ -1,0 +1,295 @@
+---
+title: Maps - Location based only
+order: 32
+page: true
+maps: true
+model:
+  nav: ../../components/main-nav/json/main-nav-customer-service.json
+  footer: ../../components/footer/json/footer.json
+---
+
+<style>
+  .nsw-map-bar {
+    padding: 1rem 0 1.5rem 0;
+  }
+
+  .nsw-map-bar__key {
+    display: flex;
+    align-items: center;
+    margin: 0 -0.5rem;
+  }
+
+  .nsw-map-bar__key > span {
+    display: flex;
+    align-items: center;
+    padding: 0 0.5rem;
+  }
+
+  .nsw-map-bar svg {
+    width: 1rem;
+    height: 1.5rem;
+    margin-right: 0.5rem;
+  }
+
+  .nsw-map-results {
+    padding: 1rem 0;
+  }
+
+  .nsw-map-container {
+    position: relative;
+  }
+
+  .nsw-map-controls {
+    position: absolute;
+    top: 1.5rem;
+    right: 0.5rem;
+  }
+
+@media (min-width: 48rem) {
+  .nsw-map-controls {
+    right: 1rem;
+  }
+}
+
+@media (min-width: 62rem) {
+  .nsw-map-results {
+    padding: 2rem 0 1.5rem 0;
+  }
+
+  .nsw-map-bar {
+    padding-top: 2rem;
+  }
+
+  .nsw-map-controls {
+    top: 3rem;
+  }
+
+  .nsw-col--line:before {
+    content: '';
+    position: absolute;
+    background: var(--nsw-grey-04);
+    height: 1px;
+    top: 6rem;
+    left: 1rem;
+    right: 1rem;
+  }
+}
+
+</style>
+
+{{>_global-alert title="Example page only" content="This is an example page from the NSW Design System, and is for demonstration only. Visit <a target='_blank' href='https://www.nsw.gov.au'>nsw.gov.au</a> for government services."
+}}
+
+{{>_masthead content="#content" nav="#main-nav"}}
+{{>_header header-title="Department of Customer Service"}}
+{{>_main-nav model.nav}}
+<div class="nsw-container nsw-p-bottom-xs">
+  <nav aria-label="Breadcrumbs" class="nsw-breadcrumbs">
+    <ol>
+      <li>
+        <a href="#">Home</a>
+      </li>
+      <li>
+        <a href="#" class="current" aria-current="page">Find a service</a>
+      </li>
+    </ol>
+  </nav>
+</div>
+
+<main id="content" class="nsw-container nsw-p-top-sm nsw-p-bottom-lg">
+  <div class="nsw-layout">
+    <div class="nsw-layout__main">
+      <div class="nsw-grid nsw-grid--flush">
+        <div class="nsw-row">
+          <div class="nsw-col nsw-col-lg-8">
+            <h1>Find a service</h1>
+            <p class="nsw-intro">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+            <form class="nsw-p-top-lg" action="#" method="_get">
+              <label class="nsw-form__label" for="form-postcode">Search by postcode</label>
+              <div class="nsw-form__input-group">
+                <input class="nsw-form__input" type="text" id="form-postcode" name="postcode" value="">
+                <button class="nsw-button nsw-button--dark nsw-button--flex" type="submit">Search</button>
+              </div>
+              <a href="#" class="nsw-link nsw-link--icon nsw-m-top-xs">
+                <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">near_me</span>
+                <span>Use my currrent location</span>
+              </a>
+            </form>
+          </div>
+        </div>
+        <div class="nsw-row nsw-row--reverse nsw-map-container">
+          <div class="nsw-col nsw-col-lg-7 js-map">
+            <div class="nsw-map-bar">
+              <div class="nsw-map-bar__key">
+                <span><strong>Key:</strong></span>              
+                <span>                
+                  <svg viewBox="0 0 27 41">
+                    <g fill-rule="nonzero">
+                      <g fill="#146cfd">
+                        <path d="M27,13.5 C27,19.074644 20.250001,27.000002 14.75,34.500002 C14.016665,35.500004 12.983335,35.500004 12.25,34.500002 C6.7499993,27.000002 0,19.222562 0,13.5 C0,6.0441559 6.0441559,0 13.5,0 C20.955844,0 27,6.0441559 27,13.5 Z"></path>
+                      </g>
+                      <g opacity="0.25" fill="#000000">
+                        <path d="M13.5,0 C6.0441559,0 0,6.0441559 0,13.5 C0,19.222562 6.7499993,27 12.25,34.5 C13,35.522727 14.016664,35.500004 14.75,34.5 C20.250001,27 27,19.074644 27,13.5 C27,6.0441559 20.955844,0 13.5,0 Z M13.5,1 C20.415404,1 26,6.584596 26,13.5 C26,15.898657 24.495584,19.181431 22.220703,22.738281 C19.945823,26.295132 16.705119,30.142167 13.943359,33.908203 C13.743445,34.180814 13.612715,34.322738 13.5,34.441406 C13.387285,34.322738 13.256555,34.180814 13.056641,33.908203 C10.284481,30.127985 7.4148684,26.314159 5.015625,22.773438 C2.6163816,19.232715 1,15.953538 1,13.5 C1,6.584596 6.584596,1 13.5,1 Z"></path>
+                      </g>
+                      <g transform="translate(6.0, 7.0)" fill="#FFFFFF"></g><g transform="translate(8.0, 8.0)">
+                        <circle fill="#000000" opacity="0.25" cx="5.5" cy="5.5" r="5.4999962"></circle>
+                        <circle fill="#FFFFFF" cx="5.5" cy="5.5" r="5.4999962"></circle>
+                      </g>
+                    </g>
+                  </svg>
+                  <span>Open</span>
+                </span>              
+                <span>                
+                  <svg viewBox="0 0 27 41">
+                    <g fill-rule="nonzero">
+                      <g fill="#D7153A">
+                        <path d="M27,13.5 C27,19.074644 20.250001,27.000002 14.75,34.500002 C14.016665,35.500004 12.983335,35.500004 12.25,34.500002 C6.7499993,27.000002 0,19.222562 0,13.5 C0,6.0441559 6.0441559,0 13.5,0 C20.955844,0 27,6.0441559 27,13.5 Z"></path>
+                      </g>
+                      <g opacity="0.25" fill="#000000">
+                        <path d="M13.5,0 C6.0441559,0 0,6.0441559 0,13.5 C0,19.222562 6.7499993,27 12.25,34.5 C13,35.522727 14.016664,35.500004 14.75,34.5 C20.250001,27 27,19.074644 27,13.5 C27,6.0441559 20.955844,0 13.5,0 Z M13.5,1 C20.415404,1 26,6.584596 26,13.5 C26,15.898657 24.495584,19.181431 22.220703,22.738281 C19.945823,26.295132 16.705119,30.142167 13.943359,33.908203 C13.743445,34.180814 13.612715,34.322738 13.5,34.441406 C13.387285,34.322738 13.256555,34.180814 13.056641,33.908203 C10.284481,30.127985 7.4148684,26.314159 5.015625,22.773438 C2.6163816,19.232715 1,15.953538 1,13.5 C1,6.584596 6.584596,1 13.5,1 Z"></path>
+                      </g>
+                      <g transform="translate(6.0, 7.0)" fill="#FFFFFF"></g><g transform="translate(8.0, 8.0)">
+                        <circle fill="#000000" opacity="0.25" cx="5.5" cy="5.5" r="5.4999962"></circle>
+                        <circle fill="#FFFFFF" cx="5.5" cy="5.5" r="5.4999962"></circle>
+                      </g>
+                    </g>
+                  </svg>
+                  <span>Closed</span>
+                </span>
+              </div>
+            </div>
+            <div class="nsw-map">
+              <div id='map' style='width: 100%; height: 480px;'></div>
+            </div>            
+          </div>
+          <div class="nsw-col nsw-col-lg-5 js-map-results">
+            <div class="nsw-map-controls">
+              <a href="#" class="js-hide-map">Hide Map</a>            
+              <a href="#" class="js-show-map" style="display: none;">Show Map</a>            
+            </div>
+            <div class="nsw-map-results">4 services found</div>
+            <div class="nsw-results">
+              <div class="nsw-list-item">
+                <div class="nsw-list-item__content">
+                  <div class="nsw-list-item__title"><a href="#">Service Alpha</a></div>
+                  <div class="nsw-list-item__copy">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim venian.</p>
+                    <p>
+                      123 Sydney Street, Sydney NSW 2000<br>
+                      (02) 9888 9888<br>
+                      <a href="mailto:admin@customerservice.nsw.gov.au">admin@customerservice.nsw.gov.au</a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="nsw-list-item">
+                <div class="nsw-list-item__content">
+                  <div class="nsw-list-item__title"><a href="#">Service Beta</a></div>
+                  <div class="nsw-list-item__copy">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim venian.</p>
+                    <p>
+                      123 Sydney Street, Sydney NSW 2000<br>
+                      (02) 9888 9888<br>
+                      <a href="mailto:admin@customerservice.nsw.gov.au">admin@customerservice.nsw.gov.au</a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="nsw-list-item">
+                <div class="nsw-list-item__content">
+                  <div class="nsw-list-item__title"><a href="#">Service Charlie</a></div>
+                  <div class="nsw-list-item__copy">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim venian.</p>
+                    <p>
+                      123 Sydney Street, Sydney NSW 2000<br>
+                      (02) 9888 9888<br>
+                      <a href="mailto:admin@customerservice.nsw.gov.au">admin@customerservice.nsw.gov.au</a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="nsw-list-item">
+                <div class="nsw-list-item__content">
+                  <div class="nsw-list-item__title"><a href="#">Service Delta</a></div>
+                  <div class="nsw-list-item__copy">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim venian.</p>
+                    <p>
+                      123 Sydney Street, Sydney NSW 2000<br>
+                      (02) 9888 9888<br>
+                      <a href="mailto:admin@customerservice.nsw.gov.au">admin@customerservice.nsw.gov.au</a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+  document.querySelector('.js-hide-map').addEventListener('click', function(e){
+    e.preventDefault()
+    this.style.display = "none"
+    document.querySelector('.js-show-map').style.display = "block"
+    document.querySelector('.js-map').style.display = "none"
+    document.querySelector('.js-map-results').classList.remove("nsw-col-lg-5")
+    document.querySelector('.js-map-results').classList.add("nsw-col-lg-8")
+    document.querySelector('.js-map-results').classList.add("nsw-col--line")
+
+  }, false)
+
+  document.querySelector('.js-show-map').addEventListener('click', function(e){
+    e.preventDefault()
+    this.style.display = "none"
+    document.querySelector('.js-hide-map').style.display = "block"
+    document.querySelector('.js-map').style.display = "block"
+    document.querySelector('.js-map-results').classList.remove("nsw-col-lg-8")
+    document.querySelector('.js-map-results').classList.remove("nsw-col--line")
+    document.querySelector('.js-map-results').classList.add("nsw-col-lg-5")
+
+  }, false)
+</script>
+
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
+<script>
+  var geojson = {"type":"FeatureCollection","features":[{"type":"Feature","properties":{"Organisation_Name":"Service Alpha","Service_Station_Location":"9 Murray Rose,SYDNEY OLYMPIC PARK NSW 2127,AUSTRALIA","Latitude":"-33.8458975794938","Longitude":"151.0697680670160"},"geometry":{"type":"Point","coordinates":[151.069768,-33.845898]}},{"type":"Feature","properties":{"Organisation_Name":"Service Beta","Service_Station_Location":"Terminal 3, Sydney Domestic Airport, Shiers Ave,Mascot NSW 2020,AUSTRALIA","Latitude":"-33.9514430910122","Longitude":"151.1759629245730"},"geometry":{"type":"Point","coordinates":[151.175963,-33.951443]}},{"type":"Feature","properties":{"Organisation_Name":"Service Charlie","Service_Station_Location":"135 King Street,Sydney NSW 2000,AUSTRALIA","Latitude":"-33.8692609611289","Longitude":"151.2087241798680"},"geometry":{"type":"Point","coordinates":[151.208724,-33.869261]}},{"type":"Feature","properties":{"Organisation_Name":"Service Delta","Service_Station_Location":"2 Beach Road,Batesman Bay NSW 2536,AUSTRALIA","Latitude":"-33.8000075794938","Longitude":"151.0000080670160"},"geometry":{"type":"Point","coordinates":[151.000008,-33.800008]}}]}
+
+  mapboxgl.accessToken = 'pk.eyJ1IjoidGpoYXJyb3AiLCJhIjoiY2tuZ3piMDk0MGF4bDJwcGtlengzNzN6OCJ9.ER-_rNkxtWlkntifNoVZdw';
+  var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/tjharrop/ckngzc5t308ca17to11dloj89',
+    zoom: 9,
+    center: [151.25, -33.81]
+  });
+
+  map.on('load', () => {
+    geojson.features.forEach(function(marker) {
+
+      var markerColor;
+      var nswStyles = getComputedStyle(document.body)
+
+      switch (marker.properties.Organisation_Name) {
+        case "Service Alpha":
+          markerColor = nswStyles.getPropertyValue('--nsw-palette-red-02');
+          break;
+        default:
+          markerColor = nswStyles.getPropertyValue('--nsw-palette-blue-02');
+      }
+
+      new mapboxgl.Marker({
+          color: markerColor
+        })
+        .setLngLat(marker.geometry.coordinates)
+        .addTo(map);
+    });
+
+});
+
+</script>
+
+{{>_footer model.footer}}
