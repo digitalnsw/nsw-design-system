@@ -1,5 +1,5 @@
 //Variations
-$nsw-in-page-notes: (
+$nsw-in-page-alerts: (
   info: (
     border: var(--nsw-status-info),
     background: var(--nsw-status-info-bg),
@@ -22,7 +22,7 @@ $nsw-in-page-notes: (
   ),
 );
 
-.nsw-in-page-note {
+.nsw-in-page-alert {
   @include component-spacing();
   padding: rem(16px);
   position: relative;
@@ -41,12 +41,12 @@ $nsw-in-page-notes: (
     margin-right: rem(16px);
   }
 
-  @each $color, $variant in $nsw-in-page-notes {
+  @each $color, $variant in $nsw-in-page-alerts {
     &--#{"" + $color} {
       background-color: map-get($variant, background);
       border-color: map-get($variant, border);
 
-      .nsw-in-page-note__icon {
+      .nsw-in-page-alert__icon {
         color: map-get($variant, fill);
       }
     }
