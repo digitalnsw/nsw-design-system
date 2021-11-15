@@ -15,6 +15,8 @@ model:
   card-news-1: ../../components/card/json/card-news-1.json
   card-news-2: ../../components/card/json/card-news-2.json
   card-news-3: ../../components/card/json/card-news-3.json
+  card-media-1: ../../components/card/json/card-media-1.json
+  card-media-2: ../../components/card/json/card-media-2.json
 ---
 {{#>_layout-container}}
 <div class="nsw-grid">
@@ -86,6 +88,21 @@ model:
 <div class="nsw-grid">
   <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
     {{>_card model.card-news-1 highlight=true}}
+  </div>
+</div>
+
+<div class="nsw-grid">
+  <div class="nsw-col nsw-col-lg-6">
+    {{>_card model.card-media-1 horizontal=true}}
+  </div>
+  <div class="nsw-col nsw-col-lg-6">
+    {{>_card model.card-media-2 horizontal=true theme="light"}}
+  </div>
+</div>
+
+<div class="nsw-grid">
+  <div class="nsw-col nsw-col-lg-6">
+    {{>_card model.card-media-1 horizontal=true highlight=true}}
   </div>
 </div>
 {{/_layout-container}}

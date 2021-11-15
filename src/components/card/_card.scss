@@ -5,8 +5,7 @@
   overflow: hidden;
   height: 100%;
   color: var(--nsw-text-dark);
-  border-top-left-radius: var(--nsw-border-radius);
-  border-top-right-radius: var(--nsw-border-radius);
+  border-radius: var(--nsw-border-radius);
 
   &:hover {
     color: var(--nsw-text-light);
@@ -63,7 +62,7 @@
     @include font-size('md');
     font-weight: var(--nsw-font-bold);
 
-    a {      
+    a {
       @include pseudo-clickable-block;
       text-decoration: none;
       color: var(--nsw-text-dark);
@@ -122,7 +121,7 @@
     img {
       width: 100%;
       height: 100%;
-      object-fit: cover;      
+      object-fit: cover;
     }
 
     + .nsw-card__content {
@@ -234,6 +233,52 @@
         height: 6px;
         background-color: var(--nsw-brand-accent);
         transition: background $nsw-transition-duration;
+      }
+    }
+  }
+
+  &--horizontal {
+    @include breakpoint('md') {
+      flex-direction: row;
+      align-items: stretch;
+
+      .nsw-card__content {
+        flex: 1 1 50%;
+        height: auto;
+
+        > .nsw-material-icons {
+          left: calc(50% + #{rem(16px)});
+        }
+      }
+
+      .nsw-card__image {
+        flex: 1 1 50%;
+        position: relative;
+        height: auto;
+
+        + .nsw-card__content {
+          border-top-right-radius: var(--nsw-border-radius);
+          border-bottom-left-radius: 0;
+          border-top-width: 1px;
+          border-left-width: 0;
+        }
+      }
+
+      &.nsw-card--highlight {
+        .nsw-card__image::after {
+          top: 0;
+          bottom: 0;
+          left: auto;
+          right: -6px;
+          width: 6px;
+          height: auto;
+        }
+      }
+    }
+
+    @include breakpoint('lg') {
+      .nsw-card__content > .nsw-material-icons {
+        left: calc(50% + #{rem(32px)});
       }
     }
   }
