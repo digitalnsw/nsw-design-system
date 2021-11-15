@@ -1,0 +1,16 @@
+---
+title: In-page alert
+width: narrow
+page: true
+model:
+  info: json/in-page-alert-info.json
+  error: json/in-page-alert-error.json
+  warning: json/in-page-alert-warning.json
+  success: json/in-page-alert-success.json
+---
+{{#>_layout-container}}
+{{>_in-page-alert model.info}}
+{{>_in-page-alert model.error}}
+{{>_in-page-alert model.warning}}
+{{>_in-page-alert model.success}}
+{{/_layout-container}}
