@@ -18,14 +18,14 @@ How you use the NSW Design System depends on your team's capabilities. We recomm
  4. [Importing javascript into your project](#importing-javascript-into-your-project)
  5. [Using JSDelivr CDN](#using-jsdelivr-cdn)
  6. [Download starter kit](#download-starter-kit)
- 
+
 ### Installing with NPM
-1.  Install  `Node/npm`. 
-    
+1.  Install  `Node/npm`.
+
     -   More information can be found via the nodejs [Installation guides](https://nodejs.org/en/download/)
-    
+
 2.  Generate a `package.json` file using the `npm init` command in the terminal. You will be prompted to enter several pieces of information, like the name of your application, version, description etc.
-    
+
 4.  Add  `nsw-design-system`  to your project’s  `package.json`:
     - `npm install --save nsw-design-system`
 
@@ -34,14 +34,14 @@ The NSW Design System is now installed as a dependancy of your project, check ou
 ### Importing styles
 #### All styles
 To import all styles as a single package you need to add following snippet at the start of your main SCSS file:
-```
+```css
 @import 'node_modules/nsw-design-system/src/main';
 ```
 
 #### Core and selected components
 Our core library includes the design system's base theme, typography, mixins and helper functions. Once you imported it, you can take full advantage of our variables and helpers. To import core library you need to add following snippet at the start of your main SASS file:
 
-```
+```css
 // Core libraries
 @import 'node_modules/nsw-design-system/src/global/scss/settings/settings';
 @import 'node_modules/nsw-design-system/src/global/scss/base/all';
@@ -54,7 +54,7 @@ Our core library includes the design system's base theme, typography, mixins and
 
 Once you have installed the core library you can start importing components as you need it. To import individual components you need to add following snippets to your main SASS file under core libraries import:
 
-```
+```css
 // Components
 @import 'node_modules/nsw-design-system/src/components/accordion/accordion';
 @import 'node_modules/nsw-design-system/src/components/card/card';
@@ -65,18 +65,18 @@ With this setup you can also start theming with a few sets of variable changes.
 
 #### Adding the font and the icons
 In your main html document add this line of code inside the `<head>` tag. Make sure that it's placed before the NSW Design System styles import.
-```
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap" rel="stylesheet">
+```html
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 ```
 Another way is to import it in css:
-```
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap');
+```css
+@import url('https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,700;1,400&display=swap');
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 ```
 ### Importing javascript into your project
 Some NSW Design System components require javascript to provide advanced functionality. To ensure the page is ready for javascript to run, include the follow scripts tags at the end of the html document.
-```
+```html
     <script src="path/to/main.js"></script>
     <script>window.NSW.initSite()</script>
   </body>
@@ -89,7 +89,7 @@ Depending on your project set up, you might wish to copy the file into your proj
 The bundled css and js files are also hosted in [JSDelivr](https://www.jsdelivr.com).
 
 You can add the files to your main html document
-```
+```html
 <html>
   <head>
     ...
