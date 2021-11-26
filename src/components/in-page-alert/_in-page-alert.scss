@@ -37,8 +37,9 @@ $nsw-in-page-alerts: (
   }
 
   &__icon {
-    font-size: rem(map-get($nsw-icon-sizes, 36));
+    font-size: rem(map-get($nsw-icon-sizes, 30));
     margin-right: rem(16px);
+    margin-top: rem(-2px);
   }
 
   @each $color, $variant in $nsw-in-page-alerts {
@@ -49,6 +50,17 @@ $nsw-in-page-alerts: (
       .nsw-in-page-alert__icon {
         color: map-get($variant, fill);
       }
+    }
+  }
+
+  &--compact {
+    padding: rem(8px);
+    border: 0;
+
+    .nsw-in-page-alert__icon {
+      font-size: rem(map-get($nsw-icon-sizes, 20));
+      margin-right: rem(8px);
+      margin-top: 0;
     }
   }
 }
