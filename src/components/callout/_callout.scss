@@ -1,39 +1,5 @@
 .nsw-callout {
   @include component-spacing();
   padding: rem(16px);
-  background: var(--nsw-off-white);
-  position: relative;
-  border-left: solid 6px var(--nsw-brand-dark);
-
-  @include breakpoint('md') {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    padding: rem(24px) rem(24px) rem(24px) rem(16px);
-  }
-
-  .nsw-material-icons {
-    font-size: rem(map-get($nsw-icon-sizes, 30));
-    color: var(--nsw-brand-dark);
-    display: block;
-
-    + .nsw-callout__content {
-      margin-top: rem(12px);
-    }
-
-    @include breakpoint('md') {
-      margin-right: rem(16px);
-      flex: 0 0 auto;
-
-      + .nsw-callout__content {
-        margin-top: 0;
-      }
-    }
-  }
-
-  &__content {
-    *+p {
-      margin-top: rem(12px);
-    }
-  }
+  border-left: solid 4px var(--nsw-brand-dark);
 }
