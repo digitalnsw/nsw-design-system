@@ -41,15 +41,6 @@ function initDocs() {
     }, false)
   })
 
-  document.querySelectorAll('[data-disable-links]').forEach(container => {
-    container.addEventListener('click', (e) => {
-      if (e.target.tagName !== 'a'){
-        e.preventDefault();
-      }
-    });
-  });
-
-
   const navLinks = document.querySelectorAll('.nsw-docs__nav a')
   var currentURL = window.location.pathname
 
