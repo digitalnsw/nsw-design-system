@@ -33,6 +33,7 @@ const fs = require('fs')
 const { argv } = require('yargs')
 const bump = require('gulp-bump')
 const config = require('./config')
+const package = require('./package')
 
 const server = browsersync.create()
 sass.compiler = require('node-sass')
@@ -139,7 +140,7 @@ function sortByAlpha(a, b) {
 function metalsmithBuild(callback) {
   const metalsmith = new Metalsmith(__dirname)
   // debug.patch(metalsmith)
-  metalsmith.metadata(config.metalSmith.metadata)
+  metalsmith.metadata(package)
   metalsmith.source(config.metalSmith.src)
   metalsmith.destination(config.metalSmith.build)
   metalsmith.use(ignore(config.metalSmith.ignoreFiles))
