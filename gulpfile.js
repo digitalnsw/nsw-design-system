@@ -48,6 +48,11 @@ function moveImages() {
     .pipe(dest(config.images.build))
 }
 
+function moveBrand() {
+  return src(config.brand.src)
+    .pipe(dest(config.brand.build))
+}
+
 function buildStyles() {
   return src(config.scss.src)
     .pipe(sourcemaps.init())
@@ -294,6 +299,7 @@ function watchFiles(done) {
   watch(config.js.watch, series(javascript, reload))
   watch(config.jsDocs.watch, series(javascript, reload))
   watch(config.images.watch, series(moveImages, reload))
+  watch(config.brand.watch, series(moveBrand, reload))
   watch(config.metalSmith.watch, series(metalsmithBuild, reload))
   done()
 }
@@ -305,6 +311,7 @@ const buildprod = series(
   styles,
   javascript,
   moveImages,
+  moveBrand,
   renamePathForProd,
   zipDistFolder,
   generateSitemap,
@@ -317,6 +324,7 @@ const build = series(
   styles,
   javascript,
   moveImages,
+  moveBrand,
   renamePath,
   zipDistFolder,
 )
@@ -328,6 +336,7 @@ const dev = series(
   styles,
   javascript,
   moveImages,
+  moveBrand,
   watchFiles,
   browserSync,
 )
@@ -342,6 +351,7 @@ exports.scss = buildStyles // gulp sass - compiles the sass
 exports.watch = watchFiles // gulp watch - watches the files
 exports.lint = lintStyles // gulp lint - lints the sass
 exports.images = moveImages // gulp images - moves images
+exports.brand = moveBrand // gulp images - moves brand files
 exports.buildprod = buildprod // gulp build - builds the files
 exports.build = build // gulp build - builds the files
 exports.surge = deploy // gulp surge - builds the files and deploys to surge
