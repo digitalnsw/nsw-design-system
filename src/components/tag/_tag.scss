@@ -20,11 +20,22 @@
     outline-width: 3px;
   }
 
+  .nsw-section--invert & {    
+    @include link-light;
+    border-color: var(--nsw-text-light);
+  }
+
   &--checkbox {
     padding: 0;
     border: 0;
     border-radius: 0;
     position: relative;
+
+    &:hover {
+      .nsw-section--invert & {    
+        background-color: transparent;
+      }
+    }
 
     input {
       position: absolute;
@@ -32,16 +43,29 @@
 
       &:hover + label {
         @include nsw-hover;
+        
+        .nsw-section--invert & {    
+          background-color: var(--nsw-text-hover-light);
+        }
       }
 
       &:focus + label {
         @include nsw-focus;
         outline-offset: 0;
+
+        .nsw-section--invert & {    
+          outline-color: var(--nsw-white);
+        }
       }
 
       &:checked + label {
         background-color: var(--nsw-brand-dark);
         color: var(--nsw-text-light);
+
+        .nsw-section--invert & {    
+          background-color: var(--nsw-white);
+          color: var(--nsw-text-dark);
+        }
       }
     }
 
@@ -50,6 +74,10 @@
       border: solid 1px var(--nsw-brand-dark);
       border-radius: rem(24px);
       display: inline-block;
+
+      .nsw-section--invert & {    
+        border-color: var(--nsw-text-light);
+      }
     }
   }
 

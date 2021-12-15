@@ -35,6 +35,14 @@ $nsw-in-page-alerts: (
   @include breakpoint('md') {
     padding: rem(24px) rem(24px) rem(24px) rem(16px);
   }
+      
+  .nsw-section--invert & {    
+    color: var(--nsw-text-dark);
+
+    a {
+      @include link-dark;
+    }
+  }
 
   &__icon {
     font-size: rem(map-get($nsw-icon-sizes, 30));

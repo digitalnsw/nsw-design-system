@@ -32,6 +32,18 @@
     .nsw-material-icons {
       color: var(--nsw-text-light);
     }
+
+    .nsw-section--invert & {
+      color: var(--nsw-text-dark);
+
+      .nsw-card__content {
+        background-color: var(--nsw-brand-light);
+
+        &::after {
+          background-color: transparent;
+        }
+      }
+    }
   }
 
   &:focus-within {
@@ -56,6 +68,10 @@
     @include breakpoint('lg') {
       padding: rem(32px) rem(32px) rem(94px) rem(32px);
     }
+      
+    .nsw-section--invert & {    
+      border-color: transparent;
+    }
   }
 
   &__title {
@@ -75,6 +91,10 @@
       &:hover {
         background-color: transparent;
         outline: none;
+      }
+      
+      .nsw-section--invert & {    
+        color: var(--nsw-text-dark);
       }
     }
   }
@@ -111,6 +131,10 @@
       bottom: rem(32px);
       left: rem(32px);
     }
+
+    .nsw-section--invert & {    
+      color: var(--nsw-brand-dark);
+    }
   }
 
   &__image {
@@ -136,6 +160,14 @@
   }
 
   &--light {
+    &:hover {      
+      .nsw-section--invert & {  
+        .nsw-card__content {  
+          background-color: var(--nsw-white);
+        }
+      }
+    }
+
     .nsw-card__content {
       background-color: var(--nsw-brand-light);
       border-color: transparent;
@@ -159,6 +191,12 @@
     &:hover {
       color: var(--nsw-text-dark);
 
+      .nsw-section--invert & {  
+        .nsw-card__content {  
+          background-color: var(--nsw-white);
+        }
+      }
+
       .nsw-card__content {
         background-color: var(--nsw-white);
         border-color: var(--nsw-grey-03);
@@ -180,6 +218,10 @@
       &::before,
       &::after {
         display: none;
+      }
+      
+      .nsw-section--invert & {    
+        border-color: var(--nsw-white);
       }
     }
 

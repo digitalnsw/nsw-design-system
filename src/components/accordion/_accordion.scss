@@ -19,6 +19,15 @@
       background-color: var(--nsw-brand-dark);
       color: var(--nsw-text-light);
 
+      .nsw-section--invert & {    
+        background-color: var(--nsw-brand-light);
+        color: var(--nsw-text-dark);
+        
+        .nsw-material-icons {
+          color: var(--nsw-brand-dark);
+        }
+      }
+
       .nsw-material-icons {
         color: var(--nsw-text-light);
       }
@@ -43,6 +52,11 @@
       &:hover:enabled {
         @include nsw-hover;
         outline: 2px solid var(--nsw-text-hover);
+
+        .nsw-section--invert & {    
+          background-color: var(--nsw-text-hover-light);
+          outline-color: var(--nsw-text-hover-light);
+        }
       }
 
       &:focus {
@@ -56,6 +70,14 @@
       &:disabled {
         opacity: 0.4;
         cursor: not-allowed;
+      }      
+
+      .nsw-section--invert & {    
+        color: var(--nsw-text-light);
+
+        &:focus {
+          outline-color: var(--nsw-white);
+        }
       }
     }
   }
