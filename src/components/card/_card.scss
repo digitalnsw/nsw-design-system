@@ -191,12 +191,6 @@
     &:hover {
       color: var(--nsw-text-dark);
 
-      .nsw-section--invert & {  
-        .nsw-card__content {  
-          background-color: var(--nsw-white);
-        }
-      }
-
       .nsw-card__content {
         background-color: var(--nsw-white);
         border-color: var(--nsw-grey-03);
@@ -208,6 +202,16 @@
 
       .nsw-material-icons {
         color: var(--nsw-brand-dark);
+      }
+
+      .nsw-section--invert & {  
+        .nsw-card__content {  
+          background-color: var(--nsw-white);
+        }
+
+        .nsw-material-icons {
+          color: var(--nsw-brand-dark);
+        }
       }
     }
 
@@ -237,6 +241,10 @@
 
     .nsw-material-icons {
       color: var(--nsw-text-light);
+
+      .nsw-section--invert & {  
+        color: var(--nsw-text-light);
+      }
     }
   }
 

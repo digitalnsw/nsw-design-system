@@ -80,6 +80,10 @@
     @include breakpoint('lg') {
       display: none;
     }
+
+    .nsw-section--invert & {
+      background-color: var(--nsw-brand-dark);
+    }
   }
 
   &__wrapper {
@@ -94,6 +98,10 @@
       overflow-y: auto;
       background-color: var(--nsw-white);
       padding: rem(73px) rem(16px) rem(101px) rem(16px);
+      
+      .nsw-section--invert & {    
+        background-color: var(--nsw-brand-dark);
+      }
 
       @include breakpoint('lg') {
         display: block;
@@ -101,17 +109,9 @@
         background-color: transparent;
         padding: 0;
         overflow-y: visible;
-      }
-      
-      .nsw-section--invert & {    
-        color: var(--nsw-text-dark);
-
-        @include breakpoint('lg') {
-          color: var(--nsw-text-light);
-        }
-
-        .nsw-icon-button {
-          @include link-dark;
+        
+        .nsw-section--invert & {    
+          background-color: transparent;
         }
       }
     }
@@ -147,10 +147,18 @@
       background-color: var(--nsw-white);
       padding: rem(24px) rem(16px);
 
+      .nsw-section--invert & {
+        background-color: var(--nsw-brand-dark);
+      }
+
       @include breakpoint('lg') {
         position: static;
         padding: rem(32px) 0;
         background-color: transparent;
+
+        .nsw-section--invert & {
+          background-color: transparent;
+        }
       }
     }
   }
@@ -167,20 +175,6 @@
         border: 0;
         background-color: transparent;
       }
-
-      button {
-        .nsw-section--invert & {    
-          @include link-dark;
-
-          /* stylelint-disable max-nesting-depth */
-
-          @include breakpoint('lg') {
-            @include link-light;
-          }
-
-          /* stylelint-enable max-nesting-depth */
-        }
-      }
     }
 
     .nsw-filters--instant & {
@@ -190,8 +184,8 @@
 
     button {
       @include link-button;
-      
-      .nsw-section--invert & {    
+
+      .nsw-section--invert & {
         @include link-light;
       }
     }
@@ -202,10 +196,8 @@
     @include link-button;
     margin-top: rem(24px);
 
-    @include breakpoint('lg') {
-      .nsw-section--invert & {
-        @include link-light;
-      }
+    .nsw-section--invert & {
+      @include link-light;
     }
   }
 
