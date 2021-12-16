@@ -22,16 +22,15 @@ function initDocs() {
   const copyButtons = document.querySelectorAll('.js-code-copy')
 
   copyButtons.forEach((button) => {
-    const code = button.closest('.nsw-docs-code').previousElementSibling.querySelector('.nsw-docs__component')
+    const code = button.nextElementSibling
     const text = button.querySelector('span')
 
+    console.log(button.nextElementSibling)
     button.addEventListener('click', (event) => {
-      const elem = document.createElement('textarea');
-      elem.value = code.innerHTML;
-      document.body.appendChild(elem);
-      elem.select();
+      code.style.display = 'block';
+      code.select();
       document.execCommand('copy');
-      document.body.removeChild(elem);
+      code.style.display = 'none';
 
       text.textContent = 'Copied'
 
