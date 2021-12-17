@@ -53,11 +53,23 @@
 
     &.current {
       background-color: var(--nsw-off-white);
+      
+      .nsw-section--invert & {    
+        background-color: var(--nsw-text-hover-light);
+      }
+    }
+
+    .nsw-section--invert & {    
+      color: var(--nsw-text-light);
     }
   }
 
   &__header {
     border-bottom: solid 2px var(--nsw-brand-dark);
+
+    .nsw-section--invert & {    
+      border-color: var(--nsw-brand-light);
+    }
 
     a {
       font-weight: var(--nsw-font-bold);

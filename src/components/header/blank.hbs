@@ -1,10 +1,13 @@
 ---
 title: Header
 page: true
-model: json/header-seniors-card.json
+model:
+  square: json/header-square.json
+  rectangular: json/header-rectangular.json
 ---
 
 {{>_header header-title="digital.nsw"}}
 {{>_header header-title="digital.nsw" header-description="Department of Customer Service" header-id="0"}}
-{{>_header model header-id="1"}}
-{{>_header model header-id="2" header-inline="true"}}
+{{>_header header-title="Department of Planning, <br>Industry and Environment" header-id="1"}}
+{{>_header model.square header-inline="true" header-id="2"}}
+{{>_header model.rectangular header-id="3"}}

@@ -90,6 +90,10 @@ table {
     text-align: left;
     vertical-align: baseline;
     border-bottom: solid 1px var(--nsw-grey-01);
+
+    .nsw-section--invert & {    
+      border-color: var(--nsw-white);
+    }
   }
 
   th,
@@ -100,6 +104,10 @@ table {
 
   thead {
     border-bottom: solid 2px var(--nsw-grey-01);
+    
+    .nsw-section--invert & {    
+      border-color: var(--nsw-white);
+    }
   }
 }
 
@@ -196,6 +204,10 @@ h6,
 
 a {
   @include link;
+
+  .nsw-section--invert & {    
+    @include link-light();
+  }
 }
 
 .nsw-link {

@@ -31,6 +31,10 @@
       display: flex;
       align-items: center;
       text-decoration: none;
+      
+      .nsw-section--invert & {    
+        color: var(--nsw-white);
+      }
 
       span {
         text-decoration: underline;
@@ -44,12 +48,21 @@
       padding: rem(1px);
       border: 2px solid var(--nsw-brand-dark);
       text-decoration: none;
+      
+      .nsw-section--invert & {    
+        border-color: var(--nsw-white);
+      }
     }
 
     &.active {
       .nsw-material-icons {
         background-color: var(--nsw-brand-dark);
         color: var(--nsw-text-light);
+      
+        .nsw-section--invert & {    
+          background-color: var(--nsw-white);
+          color: var(--nsw-brand-dark);
+        }
       }
     }
   }
@@ -67,6 +80,10 @@
     @include breakpoint('lg') {
       display: none;
     }
+
+    .nsw-section--invert & {
+      background-color: var(--nsw-brand-dark);
+    }
   }
 
   &__wrapper {
@@ -81,6 +98,10 @@
       overflow-y: auto;
       background-color: var(--nsw-white);
       padding: rem(73px) rem(16px) rem(101px) rem(16px);
+      
+      .nsw-section--invert & {    
+        background-color: var(--nsw-brand-dark);
+      }
 
       @include breakpoint('lg') {
         display: block;
@@ -88,6 +109,10 @@
         background-color: transparent;
         padding: 0;
         overflow-y: visible;
+        
+        .nsw-section--invert & {    
+          background-color: transparent;
+        }
       }
     }
 
@@ -122,9 +147,18 @@
       background-color: var(--nsw-white);
       padding: rem(24px) rem(16px);
 
+      .nsw-section--invert & {
+        background-color: var(--nsw-brand-dark);
+      }
+
       @include breakpoint('lg') {
         position: static;
         padding: rem(32px) 0;
+        background-color: transparent;
+
+        .nsw-section--invert & {
+          background-color: transparent;
+        }
       }
     }
   }
@@ -139,6 +173,7 @@
       @include breakpoint('lg') {
         padding-top: 0;
         border: 0;
+        background-color: transparent;
       }
     }
 
@@ -149,6 +184,10 @@
 
     button {
       @include link-button;
+
+      .nsw-section--invert & {
+        @include link-light;
+      }
     }
   }
 
@@ -156,6 +195,10 @@
   &__less {
     @include link-button;
     margin-top: rem(24px);
+
+    .nsw-section--invert & {
+      @include link-light;
+    }
   }
 
   .hidden {
