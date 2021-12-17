@@ -24,15 +24,18 @@ function initDocs() {
   copyButtons.forEach((button) => {
     const code = button.nextElementSibling
     const text = button.querySelector('span')
+    const script = code.querySelector('script')
 
-    console.log(button.nextElementSibling)
+    script.remove()
+
     button.addEventListener('click', (event) => {
-      code.style.display = 'block';
-      code.select();
+      const elem = document.createElement('textarea');
+      elem.value = code.innerHTML.replace(/&lt;/g, "<").replace(/&gt;/g, ">")
+      document.body.appendChild(elem);
+      elem.select();
       document.execCommand('copy');
-      code.style.display = 'none';
-
       text.textContent = 'Copied'
+      document.body.removeChild(elem);
 
       setTimeout(function() {
         text.textContent = 'Copy'
