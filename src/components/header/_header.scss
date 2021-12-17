@@ -102,10 +102,18 @@
       display: flex;
       justify-content: flex-start;
       align-items: center;
-      margin: rem(12px) rem(72px) rem(12px) 0;
+      margin: rem(20px) rem(72px) rem(20px) 0;
 
       &:focus-within {
         @include nsw-focus;
+      }
+    }
+
+    .nsw-header__rectangular-logo {
+      @include breakpoint('lg') {
+        height: rem(60px);
+        margin-top: rem(8px);
+        margin-bottom: rem(8px);
       }
     }
   }
@@ -163,7 +171,7 @@
         margin-left: rem(24px);
 
         @include breakpoint($nsw-desktop-breakpoint) {
-          margin-left: rem(48px);
+          margin-left: rem(40px);
         }
       }      
     }
@@ -191,7 +199,7 @@
 
     @include breakpoint($nsw-desktop-breakpoint) {
       padding: 0;
-      margin-left: rem(32px);
+      margin-left: rem(40px);
     }
   }
 
@@ -201,6 +209,10 @@
     color: var(--nsw-brand-dark);
     display: flex;
     align-items: center;
+
+    @include breakpoint('lg') {
+      line-height: rem(28px);
+    }
 
     .nsw-tag {
       margin-left: rem(24px);
@@ -217,7 +229,6 @@
     justify-content: center;
 
     @include breakpoint($nsw-desktop-breakpoint) {
-      padding-left: rem(16px);
       justify-content: flex-start;
     }
 

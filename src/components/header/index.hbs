@@ -6,7 +6,9 @@ core: true
 intro: The NSW Government header displays across the top of all NSW Government sites. It helps users see which service they are using.
 figma: https://www.figma.com/file/PVrERKnckLTlJSPk12gbtS/NSW-Digital-Design-System?node-id=21298%3A22099
 react: https://digitalnsw.github.io/nsw-design-system-react/?path=/docs/templates-header--search
-model: json/header-seniors-card.json
+model:
+  square: json/header-square.json
+  rectangular: json/header-rectangular.json
 ---
 
 <h3>Masterbrand with descriptor</h3>
@@ -14,6 +16,6 @@ model: json/header-seniors-card.json
 <h3>Masterbrand with secondary descriptor</h3>
 {{#>_docs-example}}{{>_header header-title="digital.nsw" header-description="Department of Customer Service" header-id="0"}}{{/_docs-example}}
 <h3>Co-brand - mobile vertical stacked</h3>
-{{#>_docs-example}}{{>_header model header-id="1"}}{{/_docs-example}}
+{{#>_docs-example}}{{>_header model.rectangular header-id="1"}}{{/_docs-example}}
 <h3>Co-brand - mobile horizontal stacked</h3>
-{{#>_docs-example}}{{>_header model header-id="2" header-inline="true"}}{{/_docs-example}}
+{{#>_docs-example}}{{>_header model.square header-id="2" header-inline="true"}}{{/_docs-example}}
