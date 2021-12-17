@@ -320,16 +320,16 @@
     <nav aria-label="Breadcrumbs" class="nsw-breadcrumbs">
       <ol>
         <li>
-          <a href="/nsw-design-system">Home</a>
+          <a href="#">Home</a>
         </li>
         <li>
-          <a href="/nsw-design-system">About DPC</a>
+          <a href="#">About DPC</a>
         </li>
         <li>
-          <a href="/nsw-design-system">NSW Digital Design System</a>
+          <a href="#">NSW Digital Design System</a>
         </li>
         <li>
-          <a href="/nsw-design-system" class="current" aria-current="page">Content design</a>
+          <a href="#" class="current" aria-current="page">Content design</a>
         </li>
       </ol>
     </nav>
@@ -345,34 +345,41 @@
       <span>Copy</span>
       <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
     </button>
-    <div class="nsw-docs-code__wrapper">
-<pre><code class="html"><script>
-    function escapeHtml(unsafe) {
-      return unsafe
-       .replace(/&/g, "&amp;")
-       .replace(/</g, "&lt;")
-       .replace(/>/g, "&gt;")
-       .replace(/"/g, "&quot;")
-       .replace(/'/g, "&#039;");
-    }
-    document.write(escapeHtml(`<nav aria-label="Breadcrumbs" class="nsw-breadcrumbs">
+    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`<nav aria-label="Breadcrumbs" class="nsw-breadcrumbs">
   <ol>
     <li>
-      <a href="/nsw-design-system">Home</a>
+      <a href="#">Home</a>
     </li>
     <li>
-      <a href="/nsw-design-system">About DPC</a>
+      <a href="#">About DPC</a>
     </li>
     <li>
-      <a href="/nsw-design-system">NSW Digital Design System</a>
+      <a href="#">NSW Digital Design System</a>
     </li>
     <li>
-      <a href="/nsw-design-system" class="current" aria-current="page">Content design</a>
+      <a href="#" class="current" aria-current="page">Content design</a>
     </li>
   </ol>
 </nav>
-`));
-</script></code></pre>
+`).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
+    <div class="nsw-docs-code__wrapper">
+<pre><code class="html"><script>document.write((`<nav aria-label="Breadcrumbs" class="nsw-breadcrumbs">
+  <ol>
+    <li>
+      <a href="#">Home</a>
+    </li>
+    <li>
+      <a href="#">About DPC</a>
+    </li>
+    <li>
+      <a href="#">NSW Digital Design System</a>
+    </li>
+    <li>
+      <a href="#" class="current" aria-current="page">Content design</a>
+    </li>
+  </ol>
+</nav>
+`).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
     </div>
   </div>
 </div>

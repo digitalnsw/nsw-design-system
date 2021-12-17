@@ -341,17 +341,7 @@
       <span>Copy</span>
       <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
     </button>
-    <div class="nsw-docs-code__wrapper">
-<pre><code class="html"><script>
-    function escapeHtml(unsafe) {
-      return unsafe
-       .replace(/&/g, "&amp;")
-       .replace(/</g, "&lt;")
-       .replace(/>/g, "&gt;")
-       .replace(/"/g, "&quot;")
-       .replace(/'/g, "&#039;");
-    }
-    document.write(escapeHtml(`<div class="nsw-progress-indicator">
+    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`<div class="nsw-progress-indicator">
   <div class="nsw-progress-indicator__count">Step 3 of 5</div>
   <div class="nsw-progress-indicator__bar">
     <div class="active"></div>
@@ -361,8 +351,19 @@
     <div></div>
   </div>
 </div>
-`));
-</script></code></pre>
+`).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
+    <div class="nsw-docs-code__wrapper">
+<pre><code class="html"><script>document.write((`<div class="nsw-progress-indicator">
+  <div class="nsw-progress-indicator__count">Step 3 of 5</div>
+  <div class="nsw-progress-indicator__bar">
+    <div class="active"></div>
+    <div class="active"></div>
+    <div class="active"></div>
+    <div></div>
+    <div></div>
+  </div>
+</div>
+`).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
     </div>
   </div>
 </div>

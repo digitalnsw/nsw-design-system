@@ -359,19 +359,11 @@
       <span>Copy</span>
       <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
     </button>
+    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`<canvas id="accessibleGraph" width="400" height="400" aria-label="Graph showing value of bitcoin over time" role="img"></canvas>
+`).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
     <div class="nsw-docs-code__wrapper">
-<pre><code class="language-html"><script>
-    function escapeHtml(unsafe) {
-      return unsafe
-       .replace(/&/g, "&amp;")
-       .replace(/</g, "&lt;")
-       .replace(/>/g, "&gt;")
-       .replace(/"/g, "&quot;")
-       .replace(/'/g, "&#039;");
-    }
-    document.write(escapeHtml(`<canvas id="accessibleGraph" width="400" height="400" aria-label="Graph showing value of bitcoin over time" role="img"></canvas>
-`));
-</script></code></pre>
+<pre><code class="language-html"><script>document.write((`<canvas id="accessibleGraph" width="400" height="400" aria-label="Graph showing value of bitcoin over time" role="img"></canvas>
+`).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
     </div>
   </div>
 </div>
@@ -393,17 +385,7 @@
       <span>Copy</span>
       <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
     </button>
-    <div class="nsw-docs-code__wrapper">
-<pre><code class="language-html"><script>
-    function escapeHtml(unsafe) {
-      return unsafe
-       .replace(/&/g, "&amp;")
-       .replace(/</g, "&lt;")
-       .replace(/>/g, "&gt;")
-       .replace(/"/g, "&quot;")
-       .replace(/'/g, "&#039;");
-    }
-    document.write(escapeHtml(`<script>
+    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`<script>
 //Set a default theme to avoid rework
 var nswStyles = getComputedStyle(document.body)
 Chart.defaults.backgroundColor = [
@@ -419,8 +401,25 @@ Chart.defaults.font.family = "'Public Sans'";
 Chart.defaults.font.size = 14;
 Chart.defaults.font.weight = 400;
 <\/script>
-`));
-</script></code></pre>
+`).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
+    <div class="nsw-docs-code__wrapper">
+<pre><code class="language-html"><script>document.write((`<script>
+//Set a default theme to avoid rework
+var nswStyles = getComputedStyle(document.body)
+Chart.defaults.backgroundColor = [
+  nswStyles.getPropertyValue('--nsw-palette-blue-02'),
+  nswStyles.getPropertyValue('--nsw-palette-red-02'),
+  nswStyles.getPropertyValue('--nsw-palette-yellow-02'),
+  nswStyles.getPropertyValue('--nsw-palette-green-02'),
+  nswStyles.getPropertyValue('--nsw-palette-purple-02'),
+  nswStyles.getPropertyValue('--nsw-palette-orange-02'),
+  nswStyles.getPropertyValue('--nsw-palette-pink-02'),
+];
+Chart.defaults.font.family = "'Public Sans'";
+Chart.defaults.font.size = 14;
+Chart.defaults.font.weight = 400;
+<\/script>
+`).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
     </div>
   </div>
 </div>
@@ -439,17 +438,7 @@ Chart.defaults.font.weight = 400;
       <span>Copy</span>
       <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
     </button>
-    <div class="nsw-docs-code__wrapper">
-<pre><code class="language-html"><script>
-    function escapeHtml(unsafe) {
-      return unsafe
-       .replace(/&/g, "&amp;")
-       .replace(/</g, "&lt;")
-       .replace(/>/g, "&gt;")
-       .replace(/"/g, "&quot;")
-       .replace(/'/g, "&#039;");
-    }
-    document.write(escapeHtml(`<script>
+    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`<script>
 const data = {
   labels: [
     'Item 1',
@@ -475,8 +464,35 @@ var myChart = new Chart(
   }
 );
 <\/script>
-`));
-</script></code></pre>
+`).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
+    <div class="nsw-docs-code__wrapper">
+<pre><code class="language-html"><script>document.write((`<script>
+const data = {
+  labels: [
+    'Item 1',
+    'Item 2',
+    'Item 3'
+  ],
+  datasets: [{
+    label: 'Example Dataset',
+    data: [300, 50, 100],
+    backgroundColor: [
+      nswStyles.getPropertyValue('--nsw-palette-blue-01'),
+      nswStyles.getPropertyValue('--nsw-palette-blue-02'),
+      nswStyles.getPropertyValue('--nsw-palette-blue-03')
+    ],
+    hoverOffset: 4
+  }]
+};
+
+var myChart = new Chart(
+  document.getElementById('myChart'), {
+    type: 'pie',
+    data: data,
+  }
+);
+<\/script>
+`).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
     </div>
   </div>
 </div>

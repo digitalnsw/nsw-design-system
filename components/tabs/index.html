@@ -350,17 +350,7 @@
       <span>Copy</span>
       <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
     </button>
-    <div class="nsw-docs-code__wrapper">
-<pre><code class="html"><script>
-    function escapeHtml(unsafe) {
-      return unsafe
-       .replace(/&/g, "&amp;")
-       .replace(/</g, "&lt;")
-       .replace(/>/g, "&gt;")
-       .replace(/"/g, "&quot;")
-       .replace(/'/g, "&#039;");
-    }
-    document.write(escapeHtml(`<div class="nsw-tabs js-tabs">
+    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`<div class="nsw-tabs js-tabs">
   <ul class="nsw-tabs__list">
     <li><a href="#section1">New and existing homes</a></li>
     <li><a href="#section2">Vacant land</a></li>
@@ -376,8 +366,25 @@
     <h2>Knockdown rebuild</h2> <p>If you’re like many Sydney homeowners, you wish you had a more spacious and luxurious home. The problem is, you don’t want to give up your prized location!<br/>KnockDown Rebuild by Metricon gives you the best of both worlds.</p><p>You can have a gorgeous, modern home with plenty of space for your family – without giving up the location you love. All you have to do is demolish your existing dwelling and replace it with your dream Metricon home.</p>
   </section>
 </div>
-`));
-</script></code></pre>
+`).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
+    <div class="nsw-docs-code__wrapper">
+<pre><code class="html"><script>document.write((`<div class="nsw-tabs js-tabs">
+  <ul class="nsw-tabs__list">
+    <li><a href="#section1">New and existing homes</a></li>
+    <li><a href="#section2">Vacant land</a></li>
+    <li><a href="#section3">Knockdown rebuild</a></li>
+  </ul>
+  <section id="section1" class="nsw-tabs__content">
+    <h2>New and existing homes</h2><p>As a first home buyer, you may be eligible for a <a href='https://www.revenue.nsw.gov.au/taxes-duties-levies-royalties/transfer-duty'>transfer duty</a> concession or exemption.</p><ul><li>If your home is valued at less than $650,000, you can apply for a full exemption so that you don’t have to pay transfer duty.</li><li>If the value of your home is between $650,000 and $800,000, you can apply for a concessional rate of transfer duty. The amount you’ll have to pay will be based on the value of your home.</li></ul>
+  </section>
+  <section id="section2" class="nsw-tabs__content">
+    <h2>Vacant land</h2> <p>The FHBAS applies to vacant land on which you plan to build your home.</p><ul> <li>You won’t pay any <a href='https://www.revenue.nsw.gov.au/taxes-duties-levies-royalties/transfer-duty'>transfer duty</a> if your land is valued at less than $350,000.</li><li>For land valued between $350,000 and $450,000, you’ll receive a concessional rate.</li></ul>
+  </section>
+  <section id="section3" class="nsw-tabs__content">
+    <h2>Knockdown rebuild</h2> <p>If you’re like many Sydney homeowners, you wish you had a more spacious and luxurious home. The problem is, you don’t want to give up your prized location!<br/>KnockDown Rebuild by Metricon gives you the best of both worlds.</p><p>You can have a gorgeous, modern home with plenty of space for your family – without giving up the location you love. All you have to do is demolish your existing dwelling and replace it with your dream Metricon home.</p>
+  </section>
+</div>
+`).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
     </div>
   </div>
 </div>
