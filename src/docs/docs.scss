@@ -1,6 +1,7 @@
 @import './src/main';
 
 $content-width: 768px;
+$header-height: 151px;
 
 .nsw-palette {
   display: grid;
@@ -39,8 +40,8 @@ $content-width: 768px;
     @include breakpoint($nsw-desktop-breakpoint) {
       content: '';
       display: block;
-      height: 115px;
-      margin: -115px 0 0;
+      height: rem($header-height);
+      margin: rem(-$header-height) 0 0;
     }
   }
 
@@ -52,7 +53,7 @@ $content-width: 768px;
 
   &__header {
     @include breakpoint($nsw-desktop-breakpoint) {
-      height: rem(115px);
+      height: rem($header-height);
     }
 
     &-wrapper {
@@ -63,12 +64,6 @@ $content-width: 768px;
         left: 0;
         right: 0;
         background-color: var(--nsw-white);
-      }
-    }
-
-    .nsw-header__waratah svg {
-      @include breakpoint($nsw-desktop-breakpoint) {
-        height: rem(56px);
       }
     }
 
@@ -94,7 +89,7 @@ $content-width: 768px;
       @include breakpoint($nsw-desktop-breakpoint) {
         @include z-index('upper');
         position: fixed;
-        top: rem(115px);
+        top: rem($header-height);
         bottom: 0;
         left: 0;
         width: rem(300px);
