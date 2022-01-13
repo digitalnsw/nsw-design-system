@@ -281,7 +281,6 @@ function renamePathForProd() {
     .pipe(replace('/js/main.js', `${config.baseUrl.prod}/js/main.js`))
     .pipe(replace('/docs/js/docs.js', `${config.baseUrl.prod}/docs/js/docs.js`))
     .pipe(replace('/favicon.ico', `${config.baseUrl.prod}/favicon.ico`))
-    .pipe(replace('<base href="/', `<base href="${config.baseUrl.prod}/`))
     .pipe(dest(config.dir.build))
 }
 
