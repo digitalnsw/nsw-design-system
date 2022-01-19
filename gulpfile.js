@@ -321,7 +321,6 @@ const build = series(
   javascript,
   moveImages,
   moveBrand,
-  renamePath,
   zipDistFolder,
 )
 
