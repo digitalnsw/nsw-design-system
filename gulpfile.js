@@ -276,12 +276,8 @@ function renamePath() {
 
 function renamePathForProd() {
   return src(`${config.dir.build}/**/*.html`)
-    .pipe(replace('/css/main.css', `${config.baseUrl.prod}/css/main.css`))
-    .pipe(replace('/docs/css/docs.css', `${config.baseUrl.prod}/docs/css/docs.css`))
-    .pipe(replace('/js/main.js', `${config.baseUrl.prod}/js/main.js`))
-    .pipe(replace('/docs/js/docs.js', `${config.baseUrl.prod}/docs/js/docs.js`))
-    .pipe(replace('/favicon.ico', `${config.baseUrl.prod}/favicon.ico`))
-    .pipe(replace('<base href="/', `<base href="${config.baseUrl.prod}/`))
+    .pipe(replace('href="/', `href="/${config.baseUrl.prod}/`))
+    .pipe(replace('src="/', `src="/${config.baseUrl.prod}/`))
     .pipe(dest(config.dir.build))
 }
 
@@ -325,7 +321,6 @@ const build = series(
   javascript,
   moveImages,
   moveBrand,
-  renamePath,
   zipDistFolder,
 )
 
