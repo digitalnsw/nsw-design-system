@@ -276,8 +276,8 @@ function renamePath() {
 
 function renamePathForProd() {
   return src(`${config.dir.build}/**/*.html`)
-    .pipe(replace('href="/', `href="/${config.baseUrl.prod}/`))
-    .pipe(replace('src="/', `src="/${config.baseUrl.prod}/`))
+    .pipe(replace('href="/', `href="${config.baseUrl.prod}/`))
+    .pipe(replace('src="/', `src="${config.baseUrl.prod}/`))
     .pipe(dest(config.dir.build))
 }
 
