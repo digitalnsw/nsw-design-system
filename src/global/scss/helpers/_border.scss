@@ -1,0 +1,20 @@
+$nsw-helper-border-sizes: (2, 4, 6);
+$nsw-helper-border-sides: ('left', 'right', 'top', 'bottom');
+
+/* stylelint-disable declaration-no-important */
+
+.nsw-border {
+  @each $size in $nsw-helper-border-sizes {
+    &--#{"" + $size} {
+      border: #{$size+'px'} solid var(--nsw-brand-accent) !important;
+    }
+
+    @each $side in $nsw-helper-border-sides {
+      &--#{"" + $side}-#{"" + $size} {
+        border-#{"" + $side}: #{$size+'px'} solid var(--nsw-brand-accent) !important;
+      }
+    }
+  }
+}
+
+/* stylelint-enable declaration-no-important */
