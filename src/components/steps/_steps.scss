@@ -13,7 +13,6 @@
           bottom: 0;
         }
       }
-
     }
 
     &::before {
@@ -181,6 +180,90 @@
           background-color: var(--nsw-brand-supplementary);
         }
       }      
+    }
+  }
+
+  &--medium {
+    .nsw-steps__item {
+      &::before {
+        top: rem(-2px);
+
+        @include breakpoint('lg') { 
+          width: rem(40px);
+          height: rem(40px);
+          top: rem(-4px);
+        }
+      }
+
+      &::after {
+        top: rem(-2px);
+
+        @include breakpoint('lg') { 
+          font-size: var(--nsw-font-size-md-mobile);
+          width: rem(40px);
+          height: rem(40px);
+          top: rem(-4px);
+        }    
+      }
+    }
+
+    .nsw-steps__content {
+      @include breakpoint('lg') { 
+        padding-left: rem(60px);
+      }
+
+      &::before {
+        top: rem(30px);
+        bottom: rem(2px);
+
+        @include breakpoint('lg') { 
+          top: rem(36px);
+          bottom: rem(4px);
+          left: rem(18px);
+        }
+      }
+    }
+  }
+
+  &--small {
+    .nsw-steps__item {
+      &::before {
+        top: rem(-4px);
+
+        @include breakpoint('lg') { 
+          width: rem(32px);
+          height: rem(32px);
+          top: rem(-2px);
+        }
+      }
+
+      &::after {
+        top: rem(-4px);
+
+        @include breakpoint('lg') { 
+          font-size: var(--nsw-font-size-md-mobile);
+          width: rem(32px);
+          height: rem(32px);
+          top: rem(-2px);
+        }    
+      }
+    }
+
+    .nsw-steps__content {
+      @include breakpoint('lg') { 
+        padding-left: rem(60px);
+      }
+
+      &::before {
+        top: rem(28px);
+        bottom: rem(4px);
+
+        @include breakpoint('lg') { 
+          top: rem(30px);
+          bottom: rem(2px);
+          left: rem(14px);
+        }
+      }
     }
   }
 }
