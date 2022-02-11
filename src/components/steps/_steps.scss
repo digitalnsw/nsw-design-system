@@ -54,6 +54,34 @@
         top: rem(-4px);
       }    
     }
+
+    &--fill {
+      &::before {
+        background-color: var(--nsw-brand-accent);
+      }
+      
+      &::after {
+        color: var(--nsw-text-light);
+      }
+
+      .nsw-steps--dark & {
+        &::before {
+          background-color: var(--nsw-brand-dark);
+        }   
+      }
+
+      .nsw-steps--light & {
+        &::before {
+          background-color: var(--nsw-brand-light);
+        }
+      }
+
+      .nsw-steps--supplementary & {
+        &::before {
+          background-color: var(--nsw-brand-supplementary);
+        }
+      }
+    }
   }
 
   &__content {
@@ -90,6 +118,12 @@
       &::after {
         color: var(--nsw-brand-dark);
       }
+
+      &--fill {
+        &::after {
+          color: var(--nsw-text-light);
+        }
+      }
     }
 
     .nsw-steps__content {
@@ -108,6 +142,12 @@
       &::after {
         color: var(--nsw-brand-light);
       }
+
+      &--fill {
+        &::after {
+          color: var(--nsw-text-dark);
+        }
+      }
     }
 
     .nsw-steps__content {
@@ -125,6 +165,12 @@
 
       &::after {
         color: var(--nsw-brand-supplementary);
+      }
+
+      &--fill {
+        &::after {
+          color: var(--nsw-text-light);
+        }
       }
     }
 
