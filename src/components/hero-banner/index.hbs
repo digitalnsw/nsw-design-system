@@ -2,175 +2,180 @@
 title: Hero banner
 tabs: true
 directory: hero-banner
-intro: The hero banner reflects the goals or purpose of the product or service.
+intro: The hero banner introduces the goals or purpose of the product or service.
 figma: https://www.figma.com/file/PVrERKnckLTlJSPk12gbtS/NSW-Digital-Design-System?node-id=21298%3A24718
 react: https://digitalnsw.github.io/nsw-design-system-react/?path=/docs/content-hero-banner--default
-model: json/hero-banner-custom.json
 ---
 
-<h3>Headline and copy</h3>
-<h4>White</h4>
+<h3>Primary message</h3>
+<div class="nsw-tabs js-tabs">
+  <ul class="nsw-tabs__list">
+    <li><a href="#primary-brand-dark" class="js-tabs-fixed">Brand Dark</a></li>
+    <li><a href="#primary-brand-light" class="js-tabs-fixed">Brand Light</a></li>
+    <li><a href="#primary-white" class="js-tabs-fixed">White</a></li>
+  </ul>
+  <section id="primary-brand-dark" class="nsw-tabs__content nsw-tabs__content--side-flush">
 {{#>_docs-example}}
 {{>_hero-banner
-	wide=true
-	heading="Helping you deliver great government services"
-	copy="Find the building blocks for creating user-centred digital services, as well as policy, tools and guidance"
+  wide=true
+  theme="dark"
+  heading="Helping you deliver great government services"
+  copy="Find the building blocks for creating user-centred digital services, as well as policy, tools and guidance"
+  cta="View Digital Service Toolkit"
 }}
 {{/_docs-example}}
-<h4>Brand Dark</h4>
+  </section>
+  <section id="primary-brand-light"  class="nsw-tabs__content nsw-tabs__content--side-flush">
 {{#>_docs-example}}
 {{>_hero-banner
-	wide=true
-	theme="dark"
-	heading="Helping you deliver great government services"
-	copy="Find the building blocks for creating user-centred digital services, as well as policy, tools and guidance"
+  wide=true
+  theme="light"
+  heading="Helping you deliver great government services"
+  copy="Find the building blocks for creating user-centred digital services, as well as policy, tools and guidance"
+  cta="View Digital Service Toolkit"
 }}
 {{/_docs-example}}
-<h4>Brand Light</h4>
+  </section>
+  <section id="primary-white"  class="nsw-tabs__content nsw-tabs__content--side-flush">
 {{#>_docs-example}}
 {{>_hero-banner
-	wide=true
-	theme="light"
-	heading="Helping you deliver great government services"
-	copy="Find the building blocks for creating user-centred digital services, as well as policy, tools and guidance"
+  wide=true
+  heading="Helping you deliver great government services"
+  copy="Find the building blocks for creating user-centred digital services, as well as policy, tools and guidance"
+  cta="View Digital Service Toolkit"
 }}
 {{/_docs-example}}
+  </section>
+</div>
 
+<h3>Supporting image</h3>
+<div class="nsw-tabs js-tabs">
+  <ul class="nsw-tabs__list">
+    <li><a href="#image-brand-dark" class="js-tabs-fixed">Brand Dark</a></li>
+    <li><a href="#image-brand-light" class="js-tabs-fixed">Brand Light</a></li>
+    <li><a href="#image-white" class="js-tabs-fixed">White</a></li>
+  </ul>
+  <section id="image-brand-dark" class="nsw-tabs__content nsw-tabs__content--side-flush">
+{{#>_docs-example}}
+{{>_hero-banner
+  wide=false
+  theme="dark"
+  heading="Helping you deliver great government services"
+  copy="Find the building blocks for creating user-centred digital services, as well as policy, tools and guidance"
+  img="https://picsum.photos/id/237/2000/1250"
+  cta="View Digital Service Toolkit"
+}}
+{{/_docs-example}}
+  </section>
+  <section id="image-brand-light"  class="nsw-tabs__content nsw-tabs__content--side-flush">
+{{#>_docs-example}}
+{{>_hero-banner
+  wide=false
+  theme="light"
+  heading="Helping you deliver great government services"
+  copy="Find the building blocks for creating user-centred digital services, as well as policy, tools and guidance"
+  img="https://picsum.photos/id/237/2000/1250"
+  cta="View Digital Service Toolkit"
+}}
+{{/_docs-example}}
+  </section>
+  <section id="image-white"  class="nsw-tabs__content nsw-tabs__content--side-flush">
+{{#>_docs-example}}
+{{>_hero-banner
+  wide=false
+  heading="Helping you deliver great government services"
+  copy="Find the building blocks for creating user-centred digital services, as well as policy, tools and guidance"
+  img="https://picsum.photos/id/237/2000/1250"
+  cta="View Digital Service Toolkit"
+}}
+{{/_docs-example}}
+  </section>
+</div>
 
-<h3>Headline and copy - with image</h3>
-<h4>White</h4>
+<h3>Supporting line system</h3>
+<div class="nsw-tabs js-tabs">
+  <ul class="nsw-tabs__list">
+    <li><a href="#line-brand-dark" class="js-tabs-fixed">Brand Dark</a></li>
+    <li><a href="#line-brand-light" class="js-tabs-fixed">Brand Light</a></li>
+    <li><a href="#line-white" class="js-tabs-fixed">White</a></li>
+  </ul>
+  <section id="line-brand-dark" class="nsw-tabs__content nsw-tabs__content--side-flush">
 {{#>_docs-example}}
 {{>_hero-banner
-	wide=false
-	heading="Helping you deliver great government services"
-	copy="Find the building blocks for creating user-centred digital services, as well as policy, tools and guidance"
-  	img="https://picsum.photos/id/237/2000/1250"
+  wide=true
+  lines=true
+  theme="dark"
+  heading="Helping you deliver great government services"
+  copy="Find the building blocks for creating user-centred digital services, as well as policy, tools and guidance"
+  cta="View Digital Service Toolkit"
 }}
 {{/_docs-example}}
-<h4>Brand Dark</h4>
-{{#>_docs-example separated="true"}}
+  </section>
+  <section id="line-brand-light"  class="nsw-tabs__content nsw-tabs__content--side-flush">
+{{#>_docs-example}}
 {{>_hero-banner
-	wide=false
-	theme="dark"
-	heading="Helping you deliver great government services"
-	copy="Find the building blocks for creating user-centred digital services, as well as policy, tools and guidance"
-  	img="https://picsum.photos/id/237/2000/1250"
+  wide=true
+  lines=true
+  theme="light"
+  heading="Helping you deliver great government services"
+  copy="Find the building blocks for creating user-centred digital services, as well as policy, tools and guidance"
+  cta="View Digital Service Toolkit"
 }}
 {{/_docs-example}}
-<h4>Brand Light</h4>
-{{#>_docs-example separated="true"}}
+  </section>
+  <section id="line-white"  class="nsw-tabs__content nsw-tabs__content--side-flush">
+{{#>_docs-example}}
 {{>_hero-banner
-	wide=false
-	theme="light"
-	heading="Helping you deliver great government services"
-	copy="Find the building blocks for creating user-centred digital services, as well as policy, tools and guidance"
-  	img="https://picsum.photos/id/237/2000/1250"
+  wide=true
+  lines=true
+  heading="Helping you deliver great government services"
+  copy="Find the building blocks for creating user-centred digital services, as well as policy, tools and guidance"
+  cta="View Digital Service Toolkit"
 }}
 {{/_docs-example}}
+  </section>
+</div>
 
-
-<h3>Call to action</h3>
-<h4>White</h4>
+<h3>Supporting content</h3>
+<div class="nsw-tabs js-tabs">
+  <ul class="nsw-tabs__list">
+    <li><a href="#content-brand-dark" class="js-tabs-fixed">Brand Dark</a></li>
+    <li><a href="#content-brand-light" class="js-tabs-fixed">Brand Light</a></li>
+    <li><a href="#content-white" class="js-tabs-fixed">White</a></li>
+  </ul>
+  <section id="content-brand-dark" class="nsw-tabs__content nsw-tabs__content--side-flush">
 {{#>_docs-example}}
 {{>_hero-banner
-	wide=true
-	heading="Helping you deliver great government services"
-	copy="Find the building blocks for creating user-centred digital services, as well as policy, tools and guidance"
-  	cta="View Digital Service Toolkit"
+  wide=false
+  theme="dark"
+  heading="Helping you deliver great government services"
+  copy="Find the building blocks for creating user-centred digital services, as well as policy, tools and guidance"
+  links-title="Key coronavirus links"
+  links=(split "COVIDSafe App;Current COVID-19 case locations;Travel to and from NSW;Health and wellbeing;Business and work;COVID-19 testing centres")
 }}
 {{/_docs-example}}
-<h4>Brand Dark</h4>
-{{#>_docs-example separated="true"}}
-{{>_hero-banner
-	wide=true
-	theme="dark"
-	heading="Helping you deliver great government services"
-	copy="Find the building blocks for creating user-centred digital services, as well as policy, tools and guidance"
-  	cta="View Digital Service Toolkit"
-}}
-{{/_docs-example}}
-<h4>Brand Light</h4>
-{{#>_docs-example separated="true"}}
-{{>_hero-banner
-	wide=true
-	theme="light"
-	heading="Helping you deliver great government services"
-	copy="Find the building blocks for creating user-centred digital services, as well as policy, tools and guidance"
-  	cta="View Digital Service Toolkit"
-}}
-{{/_docs-example}}
-
-<h3>Call to action - with image</h3>
-<h4>White</h4>
+  </section>
+  <section id="content-brand-light"  class="nsw-tabs__content nsw-tabs__content--side-flush">
 {{#>_docs-example}}
 {{>_hero-banner
-	wide=false
-	heading="Helping you deliver great government services"
-	copy="Find the building blocks for creating user-centred digital services, as well as policy, tools and guidance"
-  	cta="View Digital Service Toolkit"
-  	img="https://picsum.photos/id/237/2000/1250"
+  wide=false
+  theme="light"
+  heading="Helping you deliver great government services"
+  copy="Find the building blocks for creating user-centred digital services, as well as policy, tools and guidance"
+  links-title="Key coronavirus links"
+  links=(split "COVIDSafe App;Current COVID-19 case locations;Travel to and from NSW;Health and wellbeing;Business and work;COVID-19 testing centres")
 }}
 {{/_docs-example}}
-<h4>Brand Dark</h4>
-{{#>_docs-example separated="true"}}
-{{>_hero-banner
-	wide=false
-	theme="dark"
-	heading="Helping you deliver great government services"
-	copy="Find the building blocks for creating user-centred digital services, as well as policy, tools and guidance"
-  	cta="View Digital Service Toolkit"
-  	img="https://picsum.photos/id/237/2000/1250"
-}}
-{{/_docs-example}}
-<h4>Brand Light</h4>
-{{#>_docs-example separated="true"}}
-{{>_hero-banner
-	wide=false
-	theme="light"
-	heading="Helping you deliver great government services"
-	copy="Find the building blocks for creating user-centred digital services, as well as policy, tools and guidance"
-  	cta="View Digital Service Toolkit"
-  	img="https://picsum.photos/id/237/2000/1250"
-}}
-{{/_docs-example}}
-
-<h3>Featured list</h3>
-<h4>White</h4>
+  </section>
+  <section id="content-white"  class="nsw-tabs__content nsw-tabs__content--side-flush">
 {{#>_docs-example}}
 {{>_hero-banner
-  	wide=false
-	heading="Helping you deliver great government services"
-	copy="Find the building blocks for creating user-centred digital services, as well as policy, tools and guidance"
-  	links-title="Key coronavirus links"
-  	links=(split "COVIDSafe App;Current COVID-19 case locations;Travel to and from NSW;Health and wellbeing;Business and work;COVID-19 testing centres")
+  wide=false
+  heading="Helping you deliver great government services"
+  copy="Find the building blocks for creating user-centred digital services, as well as policy, tools and guidance"
+  links-title="Key coronavirus links"
+  links=(split "COVIDSafe App;Current COVID-19 case locations;Travel to and from NSW;Health and wellbeing;Business and work;COVID-19 testing centres")
 }}
 {{/_docs-example}}
-<h4>Brand Dark</h4>
-{{#>_docs-example}}
-{{>_hero-banner
-  	wide=false
-	theme="dark"
-	heading="Helping you deliver great government services"
-	copy="Find the building blocks for creating user-centred digital services, as well as policy, tools and guidance"
-  	links-title="Key coronavirus links"
-  	links=(split "COVIDSafe App;Current COVID-19 case locations;Travel to and from NSW;Health and wellbeing;Business and work;COVID-19 testing centres")
-}}
-{{/_docs-example}}
-<h4>Brand Light</h4>
-{{#>_docs-example}}
-{{>_hero-banner
-  	wide=false
-	theme="light"
-	heading="Helping you deliver great government services"
-	copy="Find the building blocks for creating user-centred digital services, as well as policy, tools and guidance"
-  	links-title="Key coronavirus links"
-  	links=(split "COVIDSafe App;Current COVID-19 case locations;Travel to and from NSW;Health and wellbeing;Business and work;COVID-19 testing centres")
-}}
-{{/_docs-example}}
-
-{{!--
-<h3>Custom graphic</h3>
-{{#>_docs-example}}
-{{>_hero-banner model}}
-{{/_docs-example}}
---}}
+  </section>
+</div>

@@ -1,4 +1,4 @@
-<div class="nsw-hero-banner{{#if theme}} nsw-hero-banner--{{theme}}{{/if}}{{#if wide}} nsw-hero-banner--wide{{/if}}{{#if featured}} nsw-hero-banner--featured{{/if}}">
+<div class="nsw-hero-banner{{#if theme}} nsw-hero-banner--{{theme}}{{/if}}{{#if wide}} nsw-hero-banner--wide{{/if}}{{#if featured}} nsw-hero-banner--featured{{/if}}{{#if lines}} nsw-hero-banner--lines{{/if}}">
   <div class="nsw-hero-banner__container">
     <div class="nsw-hero-banner__wrapper">
       <div class="nsw-hero-banner__content">
@@ -19,9 +19,8 @@
       </div>
       {{/if}}
       <div class="nsw-hero-banner__box">{{#if img}}
-        <img class="nsw-hero-banner__image" src="{{img}}" alt="" />{{else if graphic}}
-        <div class="nsw-hero-banner__graphic{{#if transparent}} nsw-hero-banner__graphic--transparent{{/if}}">{{{graphic}}}</div>{{else}}
-        <div class="nsw-hero-banner__bg"></div>{{/if}}
+        <img class="nsw-hero-banner__image" src="{{img}}" alt="" />{{else if lines}}
+        <div class="nsw-hero-banner__lines"></div>{{/if}}
       </div>
     </div>
   </div>

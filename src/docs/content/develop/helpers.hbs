@@ -4,17 +4,125 @@ width: narrow
 intro: Single-responsibility classes for re-use and customisation
 no-blank: true
 order: 4
-model: json/colours.json
+model: json/helpers.json
 ---
 
+<nav class="nsw-in-page-nav" aria-labelledby="in-page-nav">
+  <div id="in-page-nav" class="nsw-in-page-nav__title">On this page</div>
+  <ul>
+    <li><a href="#background-colour">Background colour</a></li>
+    <li><a href="#text-colour">Text colour</a></li>
+    <li><a href="#border-colour">Border colour</a></li>
+    <li><a href="#font-size">Font size</a></li>
+    <li><a href="#border-size">Border size</a></li>
+    <li><a href="#box-shadow">Box shadow</a></li>
+    <li><a href="#viewport-visibility">Viewport visibility</a></li>
+  </ul>
+</nav>
+
 {{#each model.colours as |value property|}}
-<h2>{{capitalize @key}}</h2>
+<h2 id="{{hyphenate @key}}">{{capitalize @key}}</h2>
 <div class="nsw-section nsw-section--white nsw-block nsw-p-sm">
   <div class="nsw-table nsw-table--bordered nsw-table--valign-middle">
     <table>
       <tbody>
-      <tr>
-        {{#if-equals property "font style"}}
+        <tr>
+          <th style="width: 25%">
+            <p>Class</p>
+          </th>
+          <th style="width: 25%">
+            <p>Hover Class</p>
+          </th>
+          <th style="width: 50%">
+            <p>Description</p>
+          </th>
+        </tr>
+  {{#each this}}
+        <tr>
+          <td>
+            <p>{{@key}}</p>
+          </td>
+          <td>
+            <p>hover:{{@key}}</p>
+          </td>
+          <td>
+            <p>Applies {{property}} <code>var(--{{this}})</code> to element</p>
+          </td>
+        </tr>
+  {{/each}}
+      </tbody>
+    </table>
+  </div>
+</div>
+{{/each}}
+
+{{#each model.font as |value property|}}
+<h2 id="{{hyphenate @key}}">{{capitalize @key}}</h2>
+<div class="nsw-section nsw-section--white nsw-block nsw-p-sm">
+  <div class="nsw-table nsw-table--bordered nsw-table--valign-middle">
+    <table>
+      <tbody>
+        <tr>
+          <th style="width: 435px">
+            <p>Class</p>
+          </th>
+          <th style="width: 50%">
+            <p>Description</p>
+          </th>
+        </tr>
+  {{#each this}}
+        <tr>
+          <td>
+            <p>nsw-{{this}}</p>
+          </td>
+          <td>
+            <p>Applies {{this}} font size to element</p>
+          </td>
+        </tr>
+  {{/each}}
+      </tbody>
+    </table>
+  </div>
+</div>
+{{/each}}
+
+{{#each model.border as |value property|}}
+<h2 id="{{hyphenate @key}}">{{capitalize @key}}</h2>
+<div class="nsw-section nsw-section--white nsw-block nsw-p-sm">
+  <div class="nsw-table nsw-table--bordered nsw-table--valign-middle">
+    <table>
+      <tbody>
+        <tr>
+          <th style="width: 435px">
+            <p>Class</p>
+          </th>
+          <th style="width: 50%">
+            <p>Description</p>
+          </th>
+        </tr>
+  {{#each this}}
+        <tr>
+          <td>
+            <p>nsw-border--{{@key}}</p>
+          </td>
+          <td>
+            <p>Applies {{this}} Brand Accent border to element</p>
+          </td>
+        </tr>
+  {{/each}}
+      </tbody>
+    </table>
+  </div>
+</div>
+{{/each}}
+
+
+<h2 id="box-shadow">Box shadow</h2>
+<div class="nsw-section nsw-section--white nsw-block nsw-p-sm">
+  <div class="nsw-table nsw-table--bordered nsw-table--valign-middle">
+    <table>
+      <tbody>
+        <tr>
           <th style="width: 435px">
             <div>
               <p>Class</p>
@@ -25,52 +133,20 @@ model: json/colours.json
               <p>Description</p>
             </div>
           </th>
-        {{else}}
-          <th style="width: 25%">
-            <div>
-              <p>Class</p>
-            </div>
-          </th>
-          <th style="width: 25%">
-            <div>
-              <p>Hover Class</p>
-            </div>
-          </th>
-          <th style="width: 50%">
-            <div>
-              <p>Description</p>
-            </div>
-          </th>
-        {{/if-equals}}
-      </tr>
-  {{#each this}}
-      <tr>
-        <td>
-          {{#if-equals property "font style"}}
-            <p>nsw-{{this}}</p>
-          {{else}}
-            <p>{{@key}}</p>
-          {{/if-equals}}
-        </td>
-        {{#if-equals property "font style"}}
-        {{else}}
-          <td>hover:{{@key}}</td>
-        {{/if-equals}}
-
-        <td>
-        {{#if-equals property "font style"}}
-            <p>Applies {{this}} font style to element</p>
-        {{else}}
-          <p>Applies {{property}} <code>var(--{{this}})</code> to element</p>
-        {{/if-equals}}
-        </td>
-      </tr>
-  {{/each}}
+        </tr>
+        <tr>
+          <td>
+            <p>nsw-box-shadow</p>
+          </td>
+          <td>
+            <p>Applies box-shadow to element</p>
+          </td>
+        </tr>
       </tbody>
     </table>
   </div>
 </div>
-{{/each}}
+
 <h2 id="viewport-visibility">Viewport Visibility</h2>
 <p>Grid classes give you the option to show or hide elements in certain breakpoints. For example, displaying an image on a large screen when it supports the content, but hiding it on a small screen when it hinders the users access to information.</p>
 <p>The classes are named using the format <code>nsw-{display}-{breakpoint}</code></p>
