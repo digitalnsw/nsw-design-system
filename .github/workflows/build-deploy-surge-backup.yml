@@ -1,8 +1,9 @@
-name: build-deploy-staging
+name: build-deploy-surge-backup
 on:
   push:
     branches:
       - 'master'
+  workflow_dispatch:
 jobs:
   build-staging:
     runs-on: ubuntu-latest
