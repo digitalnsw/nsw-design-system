@@ -1,0 +1,125 @@
+.nsw-modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: opacity .3s linear;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  flex-direction: column;
+}
+
+.nsw-modal_dialog {
+  transition: -webkit-transform .3s ease-out;
+  transition: transform .3s ease-out;
+  transition: transform .3s ease-out, -webkit-transform .3s ease-out;
+  -webkit-transform: translate(0, 0);
+  transform: translate(0, 0);
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  pointer-events: none;
+  margin: 0;
+  height: 100%;
+}
+
+.nsw-modal_dialog:after {
+  content: '';
+  min-height: inherit;
+  font-size: 0;
+}
+
+.nsw-modal h2, .nsw-modal h3, .nsw-modal h4 {
+  margin-top: 0;
+}
+
+.nsw-modal_header h2, .nsw-modal_header h3, .nsw-modal_header h4 {
+  margin: 0
+}
+
+.nsw-modal_content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  width: 100%;
+  outline: 0;
+  position: relative;
+  height: 100%;
+  pointer-events: all;
+}
+
+.nsw-modal_copy {
+  padding: 2rem 3rem 2rem 2rem;
+}
+
+.nsw-modal__close {
+  position: absolute;
+  top: .5rem;
+  right: .5rem;
+  background: none;
+  border: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+}
+
+.nsw-modal__close .nsw-material-icons {
+  font-size: 40px;
+}
+
+.nsw-modal__close:hover, .nsw-modal__close:focus {
+  background-color: rgba(0, 133, 179, .2);
+}
+
+.nsw-modal_header {
+  margin: 0;
+  padding: 2rem;
+  border-bottom: 1px solid #ccc;
+}
+
+.nsw-modal_footer {
+  margin: 0;
+  padding: 2rem;
+  border-top: 1px solid #ccc;
+  display: flex;
+  justify-content: space-between;
+}
+
+.nsw-modal_footer .nsw-button {
+  margin: 0;
+}
+
+.nsw-modal .nsw-progress-bar {
+  list-style-type: none;
+  display: flex;
+  align-items: stretch;
+  margin: 1rem 0 2rem 0;
+}
+
+.nsw-modal .nsw-progress-bar ul {
+  list-style-type: none;
+  width: 100%;
+  justify-content: space-between;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.nsw-modal .nsw-progress-bar ul li {
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+  border-bottom: 4px solid #ccc;
+  padding-bottom: .25rem;
+  margin-right: 2%;
+}
+
+.nsw-modal .nsw-progress-bar ul li.current, .nsw-modal .nsw-progress-bar ul li.visited {
+  border-bottom: 4px solid #d7153a;
+}
