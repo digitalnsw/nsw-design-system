@@ -1,0 +1,39 @@
+.nsw-modal {
+  @include component-spacing();
+
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(var(--nsw-black-rgb), 0.5);
+  transition: opacity 0.3s linear;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  flex-direction: column;
+
+  &_dialog {
+    transition: transform 0.3s ease-out;
+    transform: translate(0, 0);
+    display: flex;
+    align-items: center;
+    pointer-events: none;
+    margin: 0;
+    height: 100%;
+  }
+
+  &_content {
+    width: 90%;
+    max-width: 760px;
+    border-radius: 0.25rem;
+    background-color: var(--nsw-white);
+    margin: auto;
+    padding: rem($grid-gutters*4);
+    outline: 0;
+    position: relative;
+    height: 100%;
+    pointer-events: all;
+  }
+}
