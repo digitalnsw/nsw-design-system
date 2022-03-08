@@ -31,36 +31,3 @@ intro: A dialog (also called a modal window or lightbox) is a web page element t
     </div>
   </div>
 </div>
-
-<script type="text/javascript">
-		(function ($) {
-
-var modal = null;
-
-function showModal(modalId) {
-modal = (modalId);
-$("#"+modal).show();
-}
-
-$("[data-modalopen]").click(function(){
-showModal($(this).data("modalopen"));
-return false;
-});
-
-$(window).click(function(event){
-if(modal != null && $(event.target).is("#"+modal)) {
-$("#"+modal).hide();
-modal = null;
-}
-});
-
-$("[data-modalclose]").click(function(){
-$("#"+modal).hide();
-modal = null;
-});
-
-//Add the line below if you want modal to open on load
-//showModal('alpha-modal');
-
-})(jQuery);
-</script>
