@@ -1,30 +1,16 @@
-import { uniqueId } from '../../global/scripts/helpers/utilities'
-
-function createButtons({ textContent }) {
-  const fragment = document.createDocumentFragment()
-  const button = document.createElement('button')
-  const uID = uniqueId('dialog')
-  button.textContent = textContent
-  button.setAttribute('type', 'button')
-  button.setAttribute('aria-expanded', 'false')
-  button.setAttribute('aria-controls', uID)
-  button.classList.add('nsw-accordion__dialog')
-  fragment.appendChild(button)
-
-  return fragment
-}
-
 class Dialog {
   constructor(element) {
-    const [openAll] = Array.from(element.querySelectorAll('.nsw-dialog__open nsw-button'))
-    const [closeAll] = Array.from(element.querySelectorAll('.nsw-dialog__close nsw-button'))
     this.dialog = element
-    this.openAllBtn = openAll
-    this.closeAllBtn = closeAll
-    this.buttons = []
-    this.content = []
-    this.openAllEvent = (e) => this.openAll(e)
-    this.closeAllEvent = (e) => this.closeAll(e)
+    this.dialogContainerClass = '.nsw-dialog__container'
+    this.dialogContainer = element.querySelectorAll(this.dialogContainerClass)
+    this.dialogHeadingClass = '.nsw-dialog__title'
+    this.headings = element.querySelectorAll(this.dialogHeadingClass)
+    this.dialogContentClass = '.nsw-dialog__content'
+    this.content = element.querySelectorAll(this.dialogContentClass)
+    this.dialogCtaClass = '.nsw-dialog__cta'
+    this.dialogCta = element.querySelectorAll(this.dialogCtaClass)
+    this.openBtn = element.querySelectorAll('.nsw-dialog__open')
+    this.closeBtn = element.querySelectorAll('.nsw-dialog__close')
   }
 
   init() {
@@ -34,86 +20,41 @@ class Dialog {
 
   setUpDom() {
     this.dialog.classList.add('ready')
-    if (this.collapseAllBtn) {
-      this.collapseAllBtn.disabled = true
-    }
-    this.headings.forEach((heading) => {
-      const headingElem = heading
-      const contentElem = heading.nextElementSibling
-      const buttonFrag = createButtons(heading)
-      headingElem.textContent = ''
-      headingElem.appendChild(buttonFrag)
-
-      const buttonElem = headingElem.getElementsByTagName('button')[0]
-
-      contentElem.id = buttonElem.getAttribute('aria-controls')
-      contentElem.hidden = true
-
-      this.content.push(contentElem)
-      this.buttons.push(buttonElem)
-    })
   }
 
   controls() {
-    this.buttons.forEach((element) => {
-      element.addEventListener('click', this.toggleEvent, false)
+    this.openBtn.forEach((element) => {
+      element.addEventListener('click', this.openDialog, false)
     })
-    if (this.expandAllBtn && this.collapseAllBtn) {
-      this.expandAllBtn.addEventListener('click', this.expandAllEvent, false)
-      this.collapseAllBtn.addEventListener('click', this.collapseAllEvent, false)
-    }
+    this.closeBtn.forEach((element) => {
+      element.addEventListener('click', this.closeDialog, false)
+    })
   }
 
-  getTargetContent(element) {
-    const currentIndex = this.buttons.indexOf(element)
-    return this.content[currentIndex]
-  }
-
-  setDialogState(element, state) {
-    const targetContent = this.getTargetContent(element)
-
+  setDialogState(state) {
     if (state === 'open') {
-      element.classList.add('active')
-      element.setAttribute('aria-expanded', 'true')
-      targetContent.hidden = false
+      this.closeBtn[0].classList.add('active')
+      this.openBtn[0].disabled = true
+      this.closeBtn[0].disabled = false
+      this.closeBtn[0].setAttribute('aria-expanded', 'true')
+      this.dialogContainer.setAttribute('display', '')
+      this.dialogCta.setAttribute('display', 'none')
     } else if (state === 'close') {
-      element.classList.remove('active')
-      element.setAttribute('aria-expanded', 'false')
-      targetContent.hidden = true
+      this.openBtn[0].classList.add('active')
+      this.closeBtn[0].disabled = true
+      this.openBtn[0].disabled = false
+      this.closeBtn[0].setAttribute('aria-expanded', 'false')
+      this.dialogContainer.setAttribute('display', 'none')
+      this.dialogCta.setAttribute('display', '')
     }
   }
 
-  toggle(e) {
-    const { currentTarget } = e
-    const targetContent = this.getTargetContent(currentTarget)
-    const isHidden = targetContent.hidden
-
-    if ((isHidden)) {
-      this.setDialogState(currentTarget, 'open')
-    } else {
-      this.setDialogState(currentTarget, 'close')
-    }
-
-    if (this.expandAllBtn && this.collapseAllBtn) {
-      this.expandAllBtn.disabled = this.content.every((item) => item.hidden === false)
-      this.collapseAllBtn.disabled = this.content.every((item) => item.hidden === true)
-    }
+  openDialog() {
+    this.setDialogState('open')
   }
 
-  expandAll() {
-    this.buttons.forEach((element) => {
-      this.setAccordionState(element, 'open')
-    })
-    this.expandAllBtn.disabled = true
-    this.collapseAllBtn.disabled = false
-  }
-
-  collapseAll() {
-    this.buttons.forEach((element) => {
-      this.setAccordionState(element, 'close')
-    })
-    this.expandAllBtn.disabled = false
-    this.collapseAllBtn.disabled = true
+  closeDialog() {
+    this.setDialogState('close')
   }
 }
 

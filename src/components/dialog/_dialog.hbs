@@ -1,16 +1,13 @@
-{{#each items}}
-<div class="nsw-dialog js-dialog">
-  <div class="nsw-dialog__title">{{title}}</div>
-  <div class="nsw-dialog__content">
-    {{{content}}}
+<div class="nsw-dialog">
+  <div class="nsw-dialog__container">
+    <div class="nsw-dialog__title">{{title}}</div>
+    <div class="nsw-dialog__content">
+      {{{content}}}
+    </div>
+    <button class="nsw-button nsw-button--dark nsw-dialog__close">Close</button>
   </div>
-  {{#if toggle}}
-  <div class="nsw-dialog__close">
-    <button type="nsw-button">Close</button>
+  <div class="nsw-dialog__cta">
+    <p>Click on the dialog CTA below to open the dialog.</p>
+    <button class="nsw-button nsw-button--dark nsw-dialog__open">Open</button>
   </div>
-  {{/if}}
-</div>
-{{/each}}
-<div>
-  <button type="nsw-button nsw-dialog__open">Open</button>
 </div>
