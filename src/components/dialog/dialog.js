@@ -16,6 +16,7 @@ class Dialog {
   init() {
     this.setUpDom()
     this.controls()
+    console.log('init finished')
   }
 
   setUpDom() {
@@ -37,15 +38,15 @@ class Dialog {
       this.openBtn[0].disabled = true
       this.closeBtn[0].disabled = false
       this.closeBtn[0].setAttribute('aria-expanded', 'true')
-      this.dialogContainer.setAttribute('display', '')
-      this.dialogCta.setAttribute('display', 'none')
+      this.dialogContainer.style.display = ''
+      this.dialogCta.style.display = 'none'
     } else if (state === 'close') {
       this.openBtn[0].classList.add('active')
       this.closeBtn[0].disabled = true
       this.openBtn[0].disabled = false
       this.closeBtn[0].setAttribute('aria-expanded', 'false')
-      this.dialogContainer.setAttribute('display', 'none')
-      this.dialogCta.setAttribute('display', '')
+      this.dialogContainer.style.display = 'none'
+      this.dialogCta.style.display = ''
     }
   }
 
