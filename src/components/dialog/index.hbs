@@ -4,30 +4,10 @@ width: narrow
 tabs: true
 directory: dialog
 intro: A dialog (also called a modal window or lightbox) is a web page element that displays in front of and deactivates all other page content. To return to the main content, the user must engage with the modal by completing an action or by closing it.
+model:
+    dialog: json/dialog.json
 
 ---
-<h3>Button below will trigger a dialog</h3>
-<a data-modalopen="alpha-modal" class="nsw-button nsw-button--dark">Open dialog</a>
 
-<div id="alpha-modal" class="nsw-modal" style="display: none;">
-  <div class="nsw-modal_dialog" role="dialog" aria-labelledby="alpha-modal_label" aria-modal="true">
-    <div class="nsw-modal_content">
-<button class="nsw-icon-button nsw-modal_close" type="button" aria-expanded="true">
-      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">close</span>
-      <span class="sr-only">Close dialog</span>
-    </button>
-      <div class="nsw-modal_header">
-        <h2 class="nsw-modal_title">This is an example of the H2 heading as a modal title</h2>
-      </div>
-      <div class="nsw-modal_copy">
-        <h3>Subheader goes here</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce scelerisque sapien mauris, vel vulputate sem pellentesque vel. Mauris quis leo massa. In hac habitasse platea dictumst. Aliquam in ligula blandit, pharetra justo ut, euismod nulla. Suspendisse accumsan arcu dignissim sodales laoreet.</p>
-        <p>Duis aliquam sed quam ut bibendum. Nunc eget gravida dui, eu laoreet leo. Vestibulum turpis diam, suscipit vitae dui id, venenatis tempus metus. Nullam fermentum viverra mi vitae vehicula. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce scelerisque sapien mauris, vel vulputate sem pellentesque vel. Mauris quis leo massa. In hac habitasse platea dictumst.</p>
-        <p>Aliquam in ligula blandit, pharetra justo ut, euismod nulla. Suspendisse accumsan arcu dignissim sodales laoreet. Duis aliquam sed quam ut bibendum. Nunc eget gravida dui, eu laoreet leo. Vestibulum turpis diam, suscipit vitae dui id, venenatis tempus metus. Nullam fermentum viverra mi vitae vehicula. </p>
-      </div>
-      <div class="nsw-modal_footer">
-        <button class="nsw-button nsw-button--dark-outline" data-modalclose="true">Secondary action</button>
-        <a class="nsw-button nsw-button--dark" href="#" target="_blank" rel="noopener nofollow">Primary action</a> </div>
-    </div>
-  </div>
-</div>
+<h3>Dialog with open/close</h3>
+{{#>_docs-example}}{{>_dialog model.dialog}}{{/_docs-example}}

@@ -1,1 +1,16 @@
-
+{{#each items}}
+<div class="nsw-dialog js-dialog">
+  <div class="nsw-dialog__title">{{title}}</div>
+  <div class="nsw-dialog__content">
+    {{{content}}}
+  </div>
+  {{#if toggle}}
+  <div class="nsw-dialog__close">
+    <button type="nsw-button">Close</button>
+  </div>
+  {{/if}}
+</div>
+{{/each}}
+<div>
+  <button type="nsw-button nsw-dialog__open">Open</button>
+</div>

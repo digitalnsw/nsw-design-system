@@ -1,0 +1,45 @@
+---
+title: Dialog
+layout: blank-layout.hbs
+---
+<h2>Usage</h2>
+<p>Dialogs can work well for people who use a service regularly, or who need to perform familiar tasks quickly.</p>
+<p>Only use an dialog if there’s evidence it’s helpful for users to:</p>
+<ul>
+	<li>see an overview of multiple, related sections of content</li>
+	<li>show and hide those sections as needed</li>
+</ul>
+<h3>When to avoid</h3>
+<p>Test your content without an dialog first. Consider if it’s better to:</p>
+<ul>
+	<li>simplify and reduce the amount of content</li>
+	<li>split the content across multiple pages</li>
+	<li>keep the content on a single page, separated by headings</li>
+	<li>use a list of links to let users navigate quickly to specific sections of content</li>
+	<li>use the Tab component for users who need to switch quickly between 2 sections. Accordions push other sections down the page when they open, but tabs do not move which makes it easier to switch.</li>
+</ul>
+<p>Do not:</p>
+<ul>
+	<li>use the dialog if the amount of content it would need to contain will make the page slow to load</li>
+	<li>use dialogs to split up a series of questions into sections. Use separate pages instead</li>
+	<li>use with very short content, use lists or paragraphs</li>
+	<li>use with very long content, use tabs or separate pages</li>
+	<li>add any other UI elements within the header</li>
+	<li>use where important information can be hidden and missed</li>
+	<li>use an accordion to shorten a page.</li>
+</ul>
+
+<h3>Open all/Close all</h3>
+<p>The optional collapse all/expand all functionality allows users to perform the action to all dialogs, reducing time and clicks to reach the required information. It can be removed or added as required.</p>
+<p>This function should not be used to help users locate information within accordions. If a user is expanding multiple accordions because they are unsure of the content they contain, consider more descriptive titles or removing accordions all together and displaying the content separated by headings.</p>
+
+<h2>Principles</h2>
+<p><strong>Use clear labels</strong></p>
+<p>Accordions hide content, so the labels need to be clear. Ensure the headings used are brief and explicit about what is contained in the hidden panel. Intuitive headings help the user build a clear mental model of the content.</p>
+<p><strong>Do not disable sections</strong></p>
+<p>Accordions can be set open or closed. They can be configured to only allow 1 panel to be open at a time. Do not use with only 1 panel allowed to be open at once, if people need to compare items in different panels.</p>
+<p>Disabling controls is normally confusing for users. If there is no content for a section, either remove the section or, if this would be confusing for your users, explain why there is no content when the section is opened.</p>
+<p>Consider tabs if the user would likely need to flick between content sections.</p>
+
+<h2>Accessibility</h2>
+<p>All components are responsive and meet WCAG 2.1 AA accessibility guidelines.</p>
