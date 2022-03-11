@@ -1,6 +1,5 @@
 class Dialog {
   constructor(element) {
-    this.dialog = element
     this.dialogContainerClass = '.nsw-dialog__container'
     this.dialogContainer = element.querySelectorAll(this.dialogContainerClass)
     this.dialogHeadingClass = '.nsw-dialog__title'
@@ -14,39 +13,26 @@ class Dialog {
   }
 
   init() {
-    this.setUpDom()
     this.controls()
-    console.log('init finished')
-  }
-
-  setUpDom() {
-    this.dialog.classList.add('ready')
+    this.setDialogState('close')
   }
 
   controls() {
-    this.openBtn.forEach((element) => {
-      element.addEventListener('click', this.openDialog, false)
+    this.openBtn.forEach((btn) => {
+      btn.addEventListener('click', this.openDialog(this), false)
     })
-    this.closeBtn.forEach((element) => {
-      element.addEventListener('click', this.closeDialog, false)
+    this.closeBtn.forEach((btn) => {
+      btn.addEventListener('click', this.closeDialog(this), false)
     })
   }
 
   setDialogState(state) {
     if (state === 'open') {
-      this.closeBtn[0].classList.add('active')
-      this.openBtn[0].disabled = true
-      this.closeBtn[0].disabled = false
-      this.closeBtn[0].setAttribute('aria-expanded', 'true')
-      this.dialogContainer.style.display = ''
-      this.dialogCta.style.display = 'none'
+      this.dialogContainer[0].setAttribute('aria-expanded', 'true')
+      this.dialogContainer[0].hidden = false
     } else if (state === 'close') {
-      this.openBtn[0].classList.add('active')
-      this.closeBtn[0].disabled = true
-      this.openBtn[0].disabled = false
-      this.closeBtn[0].setAttribute('aria-expanded', 'false')
-      this.dialogContainer.style.display = 'none'
-      this.dialogCta.style.display = ''
+      this.dialogContainer[0].setAttribute('aria-expanded', 'false')
+      this.dialogContainer[0].hidden = true
     }
   }
 
