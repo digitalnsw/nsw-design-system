@@ -1,47 +1,55 @@
 class Dialog {
   constructor(element) {
+    this.dialog = element
     this.dialogContainerClass = '.nsw-dialog__container'
-    this.dialogContainer = element.querySelectorAll(this.dialogContainerClass)
-    this.dialogHeadingClass = '.nsw-dialog__title'
-    this.headings = element.querySelectorAll(this.dialogHeadingClass)
-    this.dialogContentClass = '.nsw-dialog__content'
-    this.content = element.querySelectorAll(this.dialogContentClass)
-    this.dialogCtaClass = '.nsw-dialog__cta'
-    this.dialogCta = element.querySelectorAll(this.dialogCtaClass)
+    this.dialogs = element.querySelectorAll(this.dialogContainerClass)
     this.openBtn = element.querySelectorAll('.nsw-dialog__open')
     this.closeBtn = element.querySelectorAll('.nsw-dialog__close')
+    this.openEvent = (e) => this.openDialog(e)
+    this.closeEvent = (e) => this.closeDialog(e)
   }
 
   init() {
     this.controls()
-    this.setDialogState('close')
+    this.closeAll()
   }
 
   controls() {
     this.openBtn.forEach((btn) => {
-      btn.addEventListener('click', this.openDialog(this), false)
+      btn.addEventListener('click', this.openEvent, false)
     })
     this.closeBtn.forEach((btn) => {
-      btn.addEventListener('click', this.closeDialog(this), false)
+      btn.addEventListener('click', this.closeEvent, false)
     })
   }
 
-  setDialogState(state) {
+  // eslint-disable-next-line class-methods-use-this
+  setDialogState(dialogRef, state) {
     if (state === 'open') {
-      this.dialogContainer[0].setAttribute('aria-expanded', 'true')
-      this.dialogContainer[0].hidden = false
+      dialogRef.setAttribute('aria-expanded', 'true')
+      dialogRef.removeAttribute('hidden')
     } else if (state === 'close') {
-      this.dialogContainer[0].setAttribute('aria-expanded', 'false')
-      this.dialogContainer[0].hidden = true
+      dialogRef.setAttribute('aria-expanded', 'false')
+      dialogRef.setAttribute('hidden', 'true')
     }
   }
 
-  openDialog() {
-    this.setDialogState('open')
+  openDialog(e) {
+    const { currentTarget } = e
+    const dialogRef = currentTarget.parentNode.previousElementSibling
+    this.setDialogState(dialogRef, 'open')
   }
 
-  closeDialog() {
-    this.setDialogState('close')
+  closeDialog(e) {
+    const { currentTarget } = e
+    const dialogRef = currentTarget.parentNode
+    this.setDialogState(dialogRef, 'close')
+  }
+
+  closeAll() {
+    this.dialogs.forEach((element) => {
+      this.setDialogState(element, 'close')
+    })
   }
 }
 
