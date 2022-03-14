@@ -42,7 +42,7 @@ class Dialog {
 
   closeDialog(e) {
     const { currentTarget } = e
-    const dialogRef = currentTarget.parentNode
+    const dialogRef = currentTarget.parentNode.parentNode
     this.setDialogState(dialogRef, 'close')
   }
 
