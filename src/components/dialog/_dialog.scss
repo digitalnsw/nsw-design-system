@@ -1,36 +1,64 @@
 .nsw-dialog {
   @include component-spacing();
 
-  &__title,
-  &__button {
-    @include font-size('md');
-    font-weight: var(--nsw-font-bold);
-    padding: rem(16px) rem(48px) rem(16px) rem(16px);
-    margin-top: rem(8px);
-    background-color: var(--nsw-off-white);
-    display: block;
+  &__container {
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
     width: 100%;
-    text-align: left;
+    height: 100%;
+    background-color: rgba(var(--nsw-black-rgb), 0.7);
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  &__container[aria-expanded='true'] {
+    display: flex;
+    align-items: flex-end;
+  }
+
+  &__body {
+    background-color: var(--nsw-off-white);
+    width: 100%;
+    outline: 0;
     position: relative;
-    transition: background $nsw-transition-duration, color $nsw-transition-duration;
+    pointer-events: all;
+    font-size: 1rem;
+    line-height: 1.5;
 
-    .active,
-    &:hover & {
-      background-color: var(--nsw-brand-dark);
-      color: var(--nsw-text-light);
-
-      .nsw-section--invert & {
-        background-color: var(--nsw-brand-light);
-        color: var(--nsw-text-dark);
-
-        .nsw-material-icons {
-          color: var(--nsw-brand-dark);
-        }
-      }
-
-      .nsw-material-icons {
-        color: var(--nsw-text-light);
-      }
+    @include breakpoint('md') {
+      width: 90%;
+      max-width: 736px;
+      border-radius: 0.25rem;
+      margin: auto;
     }
   }
+
+  &__header {
+    h2 {
+      margin: 0;
+    }
+
+    button {
+      margin: -0.5rem -0.5rem 0 0;
+      height: 2.5rem;
+    }
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--nsw-grey-03);
+    padding: rem(32px);
+  }
+
+  &__content {
+    border-bottom: 1px solid var(--nsw-grey-03);
+    padding: rem(32px);
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: flex-end;
+    padding: rem(32px);
+  }
+
 }
