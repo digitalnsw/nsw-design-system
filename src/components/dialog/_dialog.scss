@@ -59,12 +59,27 @@
 
   &__footer {
     display: flex;
-    justify-content: flex-end;
+    flex-direction: column;
     padding: rem(32px);
 
     button {
-      margin-left: 1rem;
+      margin-bottom: 1rem;
     }
+
+    @include breakpoint('md') {
+      flex-direction: row;
+      justify-content: flex-end;
+
+      button {
+        margin-left: 1rem;
+      }
+
+    }
+
+
+
+
+
   }
 
 }
