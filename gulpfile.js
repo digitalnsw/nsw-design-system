@@ -188,6 +188,11 @@ function metalsmithBuild(callback) {
       refer: false,
       sortBy: sortByAlpha,
     },
+    about: {
+      pattern: config.metalSmith.collection.contentnav.about,
+      refer: false,
+      sortBy: 'order',
+    },
     design: {
       pattern: config.metalSmith.collection.contentnav.design,
       refer: false,
