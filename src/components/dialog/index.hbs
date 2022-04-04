@@ -5,13 +5,21 @@ tabs: true
 directory: dialog
 intro: Dialogs make a user stop and think by presenting them with a critical action or piece of information required to continue.
 model:
-    dialog-1: json/dialog.json
+    dialog-1: json/dialog-1.json
     dialog-2: json/dialog-2.json
+    dialog-3: json/dialog-3.json
+    dialog-4: json/dialog-4.json
 
 ---
 
-<h3>Dialog non-dissmisable</h3>
+<h3>Transactional</h3>
 {{#>_docs-example}}{{>_dialog model.dialog-1}}{{/_docs-example}}
 
-<h3>Dialog dissmisable</h3>
+<h3>Transactional dismissable</h3>
 {{#>_docs-example}}{{>_dialog model.dialog-2}}{{/_docs-example}}
+
+<h3>Danger</h3>
+{{#>_docs-example}}{{>_dialog model.dialog-3}}{{/_docs-example}}
+
+<h3>Danger dismissable</h3>
+{{#>_docs-example}}{{>_dialog model.dialog-4}}{{/_docs-example}}
