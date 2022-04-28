@@ -286,6 +286,13 @@ function renamePathForProd() {
     .pipe(dest(config.dir.build))
 }
 
+function addAnalytics() {
+  return src(`${config.dir.build}/**/*.html`)
+    .pipe(inject.before('</head>', '<script async src="https://www.googletagmanager.com/gtag/js?id=G-TMEHXHFJXJ"></script>\n'))
+    .pipe(inject.before('</head>', '<script>window.dataLayer=window.dataLayer||[];functiongtag(){dataLayer.push(arguments);}gtag("js",newDate());gtag("config","G-TMEHXHFJXJ");</script>\n'))
+    .pipe(dest(config.dir.build))
+}  
+
 function bumping() {
   return src('./package.json')
     .pipe(bump({ type: argv.type }))
@@ -314,6 +321,7 @@ const buildprod = series(
   moveImages,
   moveBrand,
   renamePathForProd,
+  addAnalytics,
   zipDistFolder,
   generateSitemap,
 )
