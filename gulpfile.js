@@ -289,7 +289,7 @@ function renamePathForProd() {
 function addAnalytics() {
   return src(`${config.dir.build}/**/*.html`)
     .pipe(inject.before('</head>', '<script async src="https://www.googletagmanager.com/gtag/js?id=G-TMEHXHFJXJ"></script>\n'))
-    .pipe(inject.before('</head>', '<script>window.dataLayer=window.dataLayer||[];functiongtag(){dataLayer.push(arguments);}gtag("js",newDate());gtag("config","G-TMEHXHFJXJ");</script>\n'))
+    .pipe(inject.before('</head>', '<script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-TMEHXHFJXJ");</script>\n'))
     .pipe(dest(config.dir.build))
 }  
 
