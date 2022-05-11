@@ -260,6 +260,11 @@ function copyFavicon() {
     .pipe(dest(config.favicon.build))
 }
 
+function moveSitemap() {
+  return src(config.sitemap.src)
+    .pipe(dest(config.sitemap.build))
+}
+
 function zipDistFolder() {
   return src(config.zipfile.src)
     .pipe(zip(config.zipfile.filename))
@@ -315,6 +320,7 @@ function watchFiles(done) {
 const buildprod = series(
   cleanUp,
   copyFavicon,
+  moveSitemap,
   metalsmithBuild,
   styles,
   javascript,
@@ -329,6 +335,7 @@ const buildprod = series(
 const build = series(
   cleanUp,
   copyFavicon,
+  moveSitemap,
   metalsmithBuild,
   styles,
   javascript,
@@ -340,6 +347,7 @@ const build = series(
 const dev = series(
   cleanUp,
   copyFavicon,
+  moveSitemap,
   metalsmithBuild,
   styles,
   javascript,
