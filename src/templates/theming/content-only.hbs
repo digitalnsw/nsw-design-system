@@ -1,0 +1,120 @@
+---
+title: Theming page - Contents only re-colour
+order: 20
+page: true
+model:
+  nav-basic: ../../components/main-nav/json/main-nav.json
+  breadcrumbs: ../../components/breadcrumbs/json/breadcrumbs.json
+  side-nav: ../../components/side-nav/json/side-nav-level-2.json
+  in-page-nav: ../../components/in-page-nav/json/in-page-nav-2.json
+  accordion: ../../components/accordion/json/accordion-3.json
+  tabs: ../../components/tabs/json/tabs-2.json
+  link-list: ../../components/link-list/json/link-list-2.json
+  footer: ../../components/footer/json/footer.json
+---
+
+<style type="text/css">
+  .nsw-layout {
+    --nsw-brand-dark: var(--nsw-palette-orange-01);
+    --nsw-brand-light: var(--nsw-palette-yellow-04);
+    --nsw-brand-accent: var(--nsw-palette-yellow-02);
+    --nsw-brand-supplementary: var(--nsw-palette-orange-02);
+  }
+</style>
+
+{{>_masthead content="#content" nav="#main-nav"}}
+{{>_header header-title="Premier & Cabinet"}}
+{{>_main-nav model.nav-basic}}
+<div class="nsw-container nsw-p-bottom-xs">
+  {{>_breadcrumbs model.breadcrumbs}}
+</div>
+
+<div class="nsw-container nsw-p-top-sm nsw-p-bottom-lg">
+  <div class="nsw-layout">
+    <div class="nsw-layout__sidebar nsw-layout__sidebar--desktop">
+      {{>_side-nav model.side-nav}}
+    </div>
+    <main id="content" class="nsw-layout__main">
+      <div class="nsw-block">
+        <h1>Content design</h1>
+
+        <div class="nsw-section nsw-section--off-white nsw-p-x-md nsw-m-y-md">
+          <h3>Content only re-theming example</h3>
+          <p>Full brand colour palette updated to new theme, but only applied to content section of the page. Global elements (header, navigation, footer etc) remain aligned to masterbrand corporate colour palette. </p>
+          <ul>
+            <li>Brand dark: Orange 01</li>
+            <li>Brand light: Yellow 04</li>
+            <li>Brand accent: Yellow 02</li>
+            <li>Brand supplementary: Orange 02</li>
+          </ul>
+        </div>
+      </div>
+
+      {{>_in-page-nav model.in-page-nav}}
+
+      <div class="nsw-block">
+        <h2 id="ways-of-working">Ways of working</h2>
+        <p>Content design is not copy writing. It may not even be about writing a lot of words. It’s a way of working that starts with the problem you need to resolve for users.</p>
+
+        <div class="nsw-grid">
+          <div class="nsw-col nsw-col-md-6">
+            <div class="nsw-card nsw-card--light">
+              <div class="nsw-card__content">
+                <div class="nsw-card__title">
+                  <a href="#">We design with data</a>
+                </div>
+                <div class="nsw-card__copy">We look at user research, analytics and statistics to learn how people use services. And we test our content so we can learn how to improve it.</div>
+                <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span>
+              </div>
+            </div>
+          </div>
+          <div class="nsw-col nsw-col-md-6">
+            <div class="nsw-card nsw-card--light">
+              <div class="nsw-card__content">
+                <div class="nsw-card__title">
+                  <a href="#">We understand how users interact</a>
+                </div>
+                <div class="nsw-card__copy">Users don't read every word online. They prefer to scan, focusing on keywords and subheadings. </div>
+                <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h3>Building relationships</h3>
+        <p>Work with others to understand the problem you need to address on behalf of the user. Other people in your team may already be doing that.</p>
+        <p>A content person comes in many guises and you may not be a part of the <a href="#">multidisciplinary product team</a>. While you're gathering evidence about the user, try to build relationships across that product team.</p>
+      </div>
+
+      {{>_accordion model.accordion}}
+
+      <div class="nsw-block">
+        <h2 id="core-skills">Core skills</h2>
+        <p>You may have come to content design from a variety of backgrounds – such as communications, marketing, web editing, copywriting, technical writing, journalism.</p>
+
+        <h3>Plain language</h3>
+        <p>Content designers need to know the basics of <a href="#">good readability</a>. They’re aware how readers scan content. There’s a skill involved in improving content for ease of use. They will know how to create signposts for users, mix up the length of sentences and use active language. They work hard to make the meaning succinct and clear.</p>
+      </div>
+
+      {{>_callout heading= "Plain language tool" copy="Learn more about writing clear, concise, organised, and appropriate content for your intended audience using <a href='#'>plain language tools</a>."}}
+
+      <div class="nsw-block">
+        <h2 id="content-design-for-transactions">Content design for transactions</h2>
+        <p>As a content designer, your task is to get the user from A to B in the transaction. </p>
+        <p>When designing content for transactions:  </p>
+        <ul>
+          <li>minimise the user’s chance of error  </li>
+          <li>maximise collaborative teamwork </li>
+          <li>balance business and user needs.  </li>
+        </ul>
+        <p>In this guide we’ve used Service NSW examples. </p>
+      </div>
+
+      {{>_tabs model.tabs}}
+
+      {{>_link-list model.link-list}}
+    </main>
+  </div>
+</div>
+
+{{>_footer model.footer}}
