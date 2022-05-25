@@ -18,6 +18,20 @@ function initDocs() {
     }, false)
   })
 
+  const client = algoliasearch('C105ELLKR4', '7ce5bd509b1baf1182d8ce2a3033b684')
+  const index = client.initIndex('test_index_upload')
+  const myAutocomplete = autocomplete('#nsw-docs-header-input', { hint: false }, [
+    {
+      source: autocomplete.sources.hits(index, { hitsPerPage: 5 }),
+      displayKey: 'title',
+      templates: {
+        suggestion(suggestion) {
+          const pListTemplate = `<li><a href='${suggestion.url}'>${suggestion._highlightResult.title.value}</a></li>`
+          return pListTemplate
+        },
+      },
+    },
+  ])
 
   const copyButtons = document.querySelectorAll('.js-code-copy')
 
