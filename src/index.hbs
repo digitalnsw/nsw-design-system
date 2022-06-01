@@ -3,88 +3,153 @@ title: NSW Digital Design System
 home: true
 light: true
 width: narrow
+meta-description: The NSW Digital Design System is a toolkit to help digital product teams create good customer experiences quickly.
+meta-index: true
 ---
 <div class="nsw-docs-example nsw-docs-example--narrow">
+
+  <div class="nsw-in-page-alert nsw-in-page-alert--info">
+    <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">info</span>
+    <div class="nsw-in-page-alert__content">
+      <h5>Guides Beta release</h5>
+      <p>Let us know your feedback on our newly released <a href="/docs/content/design/guides.html">Designer Guides</a> containing practical and tool based resources for designers.</p>
+    </div>
+  </div>
+
   <h1>NSW Design System</h1>
-  <p class="nsw-intro">The NSW Digital Design System is a toolkit to help digital product teams create good customer experiences quickly.</p>
-  <h2>How the Digital Design System works</h2>
-  <p>The Design System can be used by any department, even if you're not using digital.nsw component kits. The components are UI building blocks, providing a consistent approach to UI and UX designers and engineers.</p>
-  <p>Use the menu on the left to browse components, read guidance on how they can be used, and follow links to documented UI kits in Figma, HTML, and react.</p>
-  <p class="nsw-text--brand-supplementary"><span class="nsw-brand">&#128313;</span>&nbsp;You’ll need to use some features of the design system to be brand compliant. These are indicated with a blue diamond.</p>
-  <h3>Core styles</h3>
-  <p>Use these digital styles for a distinctly NSW Government look and feel.</p>
-  <div class="nsw-grid">
-    {{#each collections.corenav}}
-        <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
-          <div class="nsw-card nsw-card--content">
-            <div class="nsw-card__content">
-              <h2 class="nsw-card__title">
-                <a href="{{change-extention path}}" class="nsw-card__link">{{title}}{{#if core}}<span class="nsw-brand">&#128313;</span>{{/if}}</a>
-                <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span>
-              </h2>
-            </div>
+
+  <p class="nsw-intro nsw-p-top-md">The NSW Digital Design System is a toolkit to help digital product teams create good customer experiences quickly.</p>
+
+
+
+  <div class="nsw-grid nsw-m-top-lg">
+    <div class="nsw-row">
+      <div class="nsw-col nsw-col-md-6 nsw-col-xl-4">
+        <div class="nsw-section nsw-section--brand-light nsw-p-x-md nsw-docs__element">
+          <h3>About</h3>
+          <p>Who, what and how of the NSW Design System. </p>
+          <p><a href="/docs/content/about/what-is-design-system.html">Discover the benefits</a></p>
+          <p><a href="/docs/content/about/supporting-different-roles.html">How it supports your role</a></p>
+          <p><a href="/docs/content/about/our-ecosystem.html">Explore the ecosystem</a></p>
+        </div>
+      </div>
+      <div class="nsw-col nsw-col-md-6 nsw-col-xl-4">
+        <div class="nsw-section nsw-section--brand-light nsw-p-x-md nsw-docs__element">
+          <h3>Getting started</h3>
+          <p>Step-by-step guides to get you up and running with the NSW Design System.</p>
+          <p><a href="/docs/content/design/getting-started.html">Design</a></p>
+          <p><a href="/docs/content/develop/getting-started.html">Develop</a></p>
+        </div>
+      </div>
+      <div class="nsw-col nsw-col-md-6 nsw-col-xl-4">
+        <div class="nsw-section nsw-section--brand-light nsw-p-x-md nsw-docs__element">
+          <h3>Stay on brand 🔹</h3>
+          <p>You’ll need to use some features of the design system to be brand compliant. These are indicated with a 🔹 blue diamond.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="nsw-row nsw-m-top-md">
+      <div class="nsw-col nsw-col-xl-4">
+        <h3>Core styles</h3>
+        <p>Core styles create the distinctly NSW Government look and feel.</p>
+      </div>
+      <div class="nsw-col nsw-col-xl-8">
+        <ul class="nsw-docs__list nsw-docs__list--3">
+          {{#each collections.corenav}}
+          <li><a href="{{change-extention path}}">{{title}}{{#if core}}<span class="nsw-brand">&#128313;</span>{{/if}}</a></li>
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+
+    <div class="nsw-row">
+      <div class="nsw-col"><div class="nsw-m-y-md"><hr></div></div>
+    </div>
+
+    <div class="nsw-row">
+      <div class="nsw-col nsw-col-xl-4">
+        <h3>Components</h3>
+        <p>Each component contains a snippet of HTML for use in static environments. If you're using react, you can find our react kit documentation on <a target="_blank" href="https://digitalnsw.github.io/nsw-design-system-react">storybook</a>.</p>
+      </div>
+      <div class="nsw-col nsw-col-xl-8">
+        <ul class="nsw-docs__list nsw-docs__list--3">
+          {{#each collections.componentsnav}}
+          <li><a href="{{change-extention path}}">{{title}}{{#if core}}<span class="nsw-brand">&#128313;</span>{{/if}}</a></li>
+          {{/each}}
+        </ul>
+      </div>    
+    </div>
+
+    <div class="nsw-row">
+      <div class="nsw-col"><div class="nsw-m-y-md"><hr></div></div>
+    </div>
+
+    <div class="nsw-row">
+      <div class="nsw-col nsw-col-xl-4">
+        <h3>Methods</h3>
+        <p>Best practice design solutions for specific user-focused tasks and page types.</p>
+      </div>
+      <div class="nsw-col nsw-col-xl-8">
+        <ul class="nsw-docs__list">
+          {{#each collections.methods}}
+          <li><a href="{{change-extention path}}">{{title}}{{#if core}}<span class="nsw-brand">&#128313;</span>{{/if}}</a></li>
+          {{/each}}
+        </ul>
+      </div>   
+    </div>
+
+    <div class="nsw-row">
+      <div class="nsw-col"><div class="nsw-m-y-md"><hr></div></div>
+    </div>
+
+    <div class="nsw-row">
+      <div class="nsw-col nsw-col-xl-4">
+        <h3>Templates</h3>
+        <p>Sample templates using the design system components and style to help you build pages.</p>
+      </div>
+      <div class="nsw-col nsw-col-xl-8">
+        <ul class="nsw-docs__list">
+          <li><a href="/templates/index.html#section-homepage">Homepage</a></li>
+          <li><a href="/templates/index.html#section-content">Content</a></li>
+          <li><a href="/templates/index.html#section-search">Search</a></li>
+          <li><a href="/templates/index.html#section-map">Map</a></li>
+        </ul>
+      </div>   
+    </div>
+
+    <div class="nsw-row">
+      <div class="nsw-col"><div class="nsw-m-y-md"><hr></div></div>
+    </div>
+
+    <div class="nsw-row">
+      <div class="nsw-col nsw-col-md-6 nsw-col-xl-4">
+        <div class="nsw-card nsw-card--dark">
+          <div class="nsw-card__content">
+            <div class="nsw-card__title"><a href="docs/content/about/whats-happening.html">What’s happening</a></div>
+            <div class="nsw-card__copy">Keep up to date with releases and what’s on the roadmap.</div>
+            <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span>
           </div>
         </div>
-    {{/each}}
+      </div>
+      <div class="nsw-col nsw-col-md-6 nsw-col-xl-4">
+        <div class="nsw-card nsw-card--dark">
+          <div class="nsw-card__content">
+            <div class="nsw-card__title"><a target="_blank" href="https://community.digital.nsw.gov.au/">Join the community</a></div>
+            <div class="nsw-card__copy">Collaborate, share and learn with teams across NSW Government.</div>
+            <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span>
+          </div>
+        </div>
+      </div>
+      <div class="nsw-col nsw-col-md-6 nsw-col-xl-4">
+        <div class="nsw-card nsw-card--dark">
+          <div class="nsw-card__content">
+            <div class="nsw-card__title"><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system">Follow us on Github</a></div>
+            <div class="nsw-card__copy">Follow our dev work in progress, report bugs and make code contributions. </div>
+            <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <h3>Components</h3>
-  <p>Pre-built, accessible and well tested user interface for your digital products.</p>
-
-  <ul class="nsw-docs__list nsw-docs__list--4">
-    {{#each collections.componentsnav}}
-      <li><a href="{{change-extention path}}">{{title}}{{#if core}}<span class="nsw-brand">&#128313;</span>{{/if}}</a></li>
-    {{/each}}
-  </ul>
-  <h3>Example pages</h3>
-  <p>Examples of page types, layouts and universal page components.</p>
-  <ul class="nsw-docs__list nsw-docs__list--2">
-  </ul>
-  <h3>Backlog</h3>
-  <p>Our backlog contains components and patterns that have been requested by our community. We also include elements that the Design System team have identified for potential use by digital creators. </p>
-
-  <div class="nsw-table nsw-table--striped">
-    <table>
-      <thead>
-      <tr>
-        <th width="30%">Component</th>
-        <th width="30%">Status</th>
-        <th width="40%">Contribute</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td>Maps</td>
-        <td><span class="nsw-tag">Released</span></td>
-        <td><a target="_blank" href="/docs/content/methods/maps.html">View method</a></td>
-      </tr>
-      <tr>
-        <td>Data visualisation</td>
-        <td><span class="nsw-tag">Released</span></td>
-        <td><a target="_blank" href="/docs/content/methods/data-visualisation.html">View method</a></td>
-      </tr>
-      <tr>
-        <td>Dialogue</td>
-        <td><span class="nsw-tag">In progress</span></td>
-        <td><a target="_blank" href="https://community.digital.nsw.gov.au/t/collab-space-dialogue/807">Join the community thread</a></td>
-      </tr>
-      <tr>
-        <td>Landing page header section</td>
-        <td><span class="nsw-tag">Not started</span></td>
-        <td><a target="_blank" href="https://community.digital.nsw.gov.au/">Start a community thread</a></td>
-      </tr>
-      <tr>
-        <td>File upload</td>
-        <td><span class="nsw-tag">Not started</span></td>
-        <td><a target="_blank" href="https://community.digital.nsw.gov.au/">Start a community thread</a></td>
-      </tr>
-      <tr>
-        <td>Back to top</td>
-        <td><span class="nsw-tag">Not started</span></td>
-        <td><a target="_blank" href="https://community.digital.nsw.gov.au/">Start a community thread</a></td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-  <h2>Getting updates</h2>
-  <p>To be notified when there’s a new release, you can either join the <a target="_blank" href="https://community.digital.nsw.gov.au/">NSW Design System community</a> or <a target="_blank" href="https://github.com/digitalnsw/nsw-design-system">watch the NSW Design System Github</a>.</p>
 </div>

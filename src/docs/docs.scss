@@ -345,6 +345,15 @@ $header-height: 151px;
       }
     }
 
+    &--3 {
+      column-gap: rem(36px);
+      column-count: 2;
+
+      @include breakpoint($nsw-desktop-breakpoint) {
+        column-count: 3;
+      }
+    }
+
     &--2 {
       @include breakpoint($nsw-desktop-breakpoint) {
         column-gap: rem(36px);
@@ -352,8 +361,14 @@ $header-height: 151px;
       }
     }
 
+    li {
+      margin: 0;
+    }
+
     a {
       position: relative;
+      display: inline-block;
+      margin: rem(4px) 0;
     }
 
     .nsw-brand {
@@ -533,4 +548,8 @@ $header-height: 151px;
   text-decoration: none;
   display: inline-block;
   margin-left: rem(16px);
+}
+
+.nsw-docs__element {
+  height: 100%;
 }

@@ -112,5 +112,11 @@ Get access to the latest Design System UI patterns and styles via the [Design Sy
 
 
 ## Getting updates
-
 To be notified when there’s a new release, you can either join the [NSW Design System community](https://community.digital.nsw.gov.au/) or [watch the NSW Design System Github](https://github.com/digitalnsw/nsw-design-system)
+
+
+## Versioning
+We are using semantic versioning so our version number are increments of MAJOR.MINOR.PATCH where:
+- MAJOR version used for incompatible global changes
+- MINOR version used for large backwards-compatible updates and release of new components
+- PATCH version used for small backwards-compatible updates, new component variations and bug fixes

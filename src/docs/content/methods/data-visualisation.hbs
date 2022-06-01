@@ -3,6 +3,8 @@ title: Data visualisation
 no-blank: true
 intro: Graphs and charts allow data to be comprehended quickly, allowing for faster analysis and conclusions
 order: 30
+meta-description: NSW Design System data visualisation method allows users to comprehend data comprehended quickly, allowing for faster analysis and conclusions.  
+meta-index: true
 ---
 
 <!-- TODO: Move to header -->
@@ -13,7 +15,7 @@ order: 30
       <div id="in-page-nav" class="nsw-in-page-nav__title">On this page</div>
       <ul>
         <li>
-          <a href="#when-to-use">When to use graphs and charts</a>
+          <a href="#when-to-use">When to use</a>
         </li>
         <li>
           <a href="#colours-and-theming">Colours and theming</a>
@@ -41,7 +43,7 @@ order: 30
   <li>Mapping and diagramming</li>
 </ul>
 
-<h3 id="colours-and-theming">Colours and theming</h3>
+<h2 id="colours-and-theming">Colours and theming</h2>
 <p>Colour plays a large role in data visualisation to communicate insights. </p>
 <p>Use colours from your website’s colour sets. If you need extra colours, use the NSW palette.</p>
 <p>Where possible, use either:</p>
@@ -51,7 +53,7 @@ order: 30
 </ul>
 <p>For corporate websites, your colours are blue, grey, and red. For campaigns and brand-exempt sites, you'll have your own colours.</p>
 
-<h4>Colour contrast</h4>
+<h3>Colour contrast</h3>
 <p>The colours in the NSW Design System follow a pattern from the darkest (e.g. Blue 01) to lightest (e.g. Row 04). Prioritise the colours with the best constrast to your background.</p>
 
 <div class="nsw-section nsw-section--white nsw-block nsw-p-x-sm nsw-p-top-sm">
@@ -77,16 +79,16 @@ order: 30
   </div>
 </div>
 
-<h3 id="code-implementation">Code implementation</h3>
+<h2 id="code-implementation">Code implementation</h2>
 <p class="intro">
   The NSW Design System uses charts.js, the leading open-source library, to create charts and graphs. The instructions below show how it can be used in a brand compliant and accessible way.
 </p>
 
-<h4>Installing and Usage</h4>
+<h3>Installing and Usage</h3>
 <p>Follow the <a href="https://www.chartjs.org/docs/latest/getting-started/installation.html" target="_blank">charts.js installation instructions</a> in their documentation.</p>
 <p>Once installed, follow the normal <a href="https://www.chartjs.org/docs/latest/getting-started/usage.html" target="_blank">charts.js usage instructions</a> - we'll change some config settings to folow NSW best practice.</p>
 
-<h4>Screen readers</h4>
+<h3>Screen readers</h3>
 <p>Canvas elements cannot be read by screen readers, similar to images. Use the NSW Design System <code>.sr-only</code> class - this will hide elements from screens but allow screen readers to read them. To make your graphs accessible to screen readers, create screen-reader friendly in an <code>.sr-only</code> container, and make sure to include content on the graphic so screen readers can give context to users:</p>
 {{#>_docs-example hidden="true" open="true" code="language-html"}}
 <canvas id="accessibleGraph" width="400" height="400" aria-label="Graph showing value of bitcoin over time" role="img"></canvas>
@@ -94,7 +96,7 @@ order: 30
 
 <p>For maximum accessibility, we recommend offering a text-based alternative to all users.</p>
 
-<h4>Theming with the NSW Government Palette</h4>
+<h3>Theming with the NSW Government Palette</h3>
 <p>Use the design guidance above to decide which colours your chart or graph should use. You can access the full palette via javascript.</p>
 <p>First, set fonts and a default theme. These will be the default colours for your charts and graphs, but you can override them if needed.</p>
 
@@ -117,7 +119,7 @@ Chart.defaults.font.weight = 400;
 <\/script>
 {{/_docs-example}}
 
-<h4>Setting colours for a specific graph</h4>
+<h3>Setting colours for a specific graph</h3>
 <p>You can theme each chart or graph individually.</p>
 
 {{#>_docs-example hidden="true" open="true" code="language-html"}}
@@ -149,7 +151,7 @@ var myChart = new Chart(
 <\/script>
 {{/_docs-example}}
 
-<h3 id="full-docs">Full Documentation</h3>
+<h2 id="full-docs">Full Documentation</h2>
 <p>The information above shows you how to configure charts.js for use in a way that meets the digital brand framework, and the digital standards. For full documentation see the <a target="_blank" href="https://www.chartjs.org/docs/latest/">charts.js documentation</a></p>
 
 <script>

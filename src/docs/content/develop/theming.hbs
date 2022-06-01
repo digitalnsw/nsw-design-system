@@ -1,133 +1,142 @@
 ---
 title: Theming
 width: narrow
-intro: NSW Design System supports multiple levels of customisation depending on your branding requirements.
+intro: NSW Design System supports multiple levels of customisation based on your branding requirements.
 no-blank: true
 order: 2
+meta-description: NSW Design System supports multiple levels of based depending on your branding requirements.
+meta-index: true
 ---
-  <h3>Variables</h3>
-  <p>CSS variables allow easy and on the fly customisation whether you have a build setup or a vanilla css implementation. These variables allow customising the following:</p>
+
+<nav class="nsw-in-page-nav" aria-labelledby="in-page-nav">
+  <div id="in-page-nav" class="nsw-in-page-nav__title">On this page</div>
   <ul>
-    <li>Colour Variables</li>
-    <li>Font family</li>
-    <li>Font size and line height</li>
-    <li>Border radius</li>
+    <li><a href="#css-variables">CSS Variables</a></li>
+    <li><a href="#theming-examples">Theming examples</a></li>
   </ul>
-  <p>To theme the NSW Design System, make sure to <a href="/docs/content/develop/getting-started.html">install</a> or <a href="https://github.com/digitalnsw/nsw-design-system/blob/master/HTMLstarterkit.zip">download</a> the NSW Design System.</p>
-  <p>Below are the exposed variables for the NSW Design System's base theme. Simply copy the variables and update the values to match your theming requirements. Please refer <a href="/core/colour/index.html">here</a> for the available list of brand colours or create a customised <code>palette.scss</code></p>
-  {{#>_docs-example hidden="true" open="true" code="language-css"}}
-:root {
-/* Colours */
---nsw-brand-dark: var(--nsw-palette-blue-01);
---nsw-brand-light: var(--nsw-palette-blue-04);
---nsw-brand-accent: var(--nsw-palette-red-02);
---nsw-brand-supplementary: var(--nsw-palette-blue-02);
+</nav>
 
---nsw-text-dark: var(--nsw-palette-grey-01);
---nsw-text-light: var(--nsw-palette-white);
---nsw-focus: var(--nsw-palette-focus);
---nsw-text-hover: var(--nsw-palette-hover);
---nsw-text-visited: var(--nsw-palette-visited);
-
---nsw-black: var(--nsw-palette-black);
---nsw-white: var(--nsw-palette-white);
---nsw-off-white: var(--nsw-palette-off-white);
---nsw-grey-01: var(--nsw-palette-grey-01);
---nsw-grey-02: var(--nsw-palette-grey-02);
---nsw-grey-03: var(--nsw-palette-grey-03);
---nsw-grey-04: var(--nsw-palette-grey-04);
-
---nsw-status-info: var(--nsw-palette-info-blue);
---nsw-status-info-bg: var(--nsw-palette-info-blue-bg);
---nsw-status-success: var(--nsw-palette-success-green);
---nsw-status-success-bg: var(--nsw-palette-success-green-bg);
---nsw-status-warning: var(--nsw-palette-warning-orange);
---nsw-status-warning-bg: var(--nsw-palette-warning-orange-bg);
---nsw-status-error: var(--nsw-palette-error-red);
---nsw-status-error-bg: var(--nsw-palette-error-red-bg);
-
---nsw-black-rgb: 0, 0, 0;
---nsw-white-rgb: 255, 255, 255;
-
-/* Font */
---nsw-font-family: 'Public Sans', sans-serif;
---nsw-font-size: 16px;
---nsw-line-height: 1.5;
---nsw-font-normal: 400;
---nsw-font-bold: 700;
-
---nsw-font-size-xxs-mobile: 12px;
---nsw-font-size-xxs-desktop: 12px;
---nsw-line-height-xxs-mobile: 1.5;
---nsw-line-height-xxs-desktop: 1.5;
-
---nsw-font-size-xs-mobile: 14px;
---nsw-font-size-xs-desktop: 14px;
---nsw-line-height-xs-mobile: 1.35;
---nsw-line-height-xs-desktop: 1.35;
-
---nsw-font-size-sm-mobile: 16px;
---nsw-font-size-sm-desktop: 16px;
---nsw-line-height-sm-mobile: 1.5;
---nsw-line-height-sm-desktop: 1.5;
-
---nsw-font-size-md-mobile: 18px;
---nsw-font-size-md-desktop: 20px;
---nsw-line-height-md-mobile: 1.33;
---nsw-line-height-md-desktop: 1.4;
-
---nsw-font-size-lg-mobile: 22px;
---nsw-font-size-lg-desktop: 24px;
---nsw-line-height-lg-mobile: 1.25;
---nsw-line-height-lg-desktop: 1.33;
-
---nsw-font-size-xl-mobile: 28px;
---nsw-font-size-xl-desktop: 32px;
---nsw-line-height-xl-mobile: 1.25;
---nsw-line-height-xl-desktop: 1.25;
-
---nsw-font-size-xxl-mobile: 36px;
---nsw-font-size-xxl-desktop: 48px;
---nsw-line-height-xxl-mobile: 1.25;
---nsw-line-height-xxl-desktop: 1.25;
-
-/* Borders */
---nsw-border-radius: 4px;
-  {{/_docs-example}}
-  <h3>With CSS</h3>
-  <p>Enclose the CSS variables in style tag in your html page after the head tag.</p>
-  {{#>_docs-example hidden="true" open="true" code="language-css"}}
-<style>
+<h2 id="css-variables">CSS Variables</h2>
+<p><a target="_blank" href="https://www.w3schools.com/css/css3_variables.asp">CSS variables</a> allow easy and on the fly customisation as they have access to the DOM, which means that you can change variables with local or global scope using plain CSS or  JavaScript. We used CSS variables to control <strong>colours, typography settings, border radius, shadows and maximum container width</strong> to enable easy theming to match your <a href="/docs/content/design/theming.html">Brand requirements</a>.</p>
+<p>Below you can find full list of variables that we made availible. To theme you can simply copy the variables you want to update and assign them new values using <a href="/core/colour/index.html#gov-colour">NSW Government colour palette</a> or your own custom settings.</p>
+{{#>_docs-example hidden="true" open="true" code="language-css"}}
 :root {
   /* Colours */
   --nsw-brand-dark: var(--nsw-palette-blue-01);
   --nsw-brand-light: var(--nsw-palette-blue-04);
   --nsw-brand-accent: var(--nsw-palette-red-02);
   --nsw-brand-supplementary: var(--nsw-palette-blue-02);
-...
 
+  --nsw-text-dark: var(--nsw-palette-grey-01);
+  --nsw-text-light: var(--nsw-palette-white);
+  --nsw-focus: var(--nsw-palette-focus);
+  --nsw-text-hover: var(--nsw-palette-hover);
+  --nsw-text-visited: var(--nsw-palette-visited);
+
+  --nsw-black: var(--nsw-palette-black);
+  --nsw-white: var(--nsw-palette-white);
+  --nsw-off-white: var(--nsw-palette-off-white);
+  --nsw-grey-01: var(--nsw-palette-grey-01);
+  --nsw-grey-02: var(--nsw-palette-grey-02);
+  --nsw-grey-03: var(--nsw-palette-grey-03);
+  --nsw-grey-04: var(--nsw-palette-grey-04);
+
+  --nsw-status-info: var(--nsw-palette-info-blue);
+  --nsw-status-info-bg: var(--nsw-palette-info-blue-bg);
+  --nsw-status-success: var(--nsw-palette-success-green);
+  --nsw-status-success-bg: var(--nsw-palette-success-green-bg);
+  --nsw-status-warning: var(--nsw-palette-warning-orange);
+  --nsw-status-warning-bg: var(--nsw-palette-warning-orange-bg);
+  --nsw-status-error: var(--nsw-palette-error-red);
+  --nsw-status-error-bg: var(--nsw-palette-error-red-bg);
+
+  --nsw-black-rgb: 0, 0, 0;
+  --nsw-white-rgb: 255, 255, 255;
+
+  /* Font */
+  --nsw-font-family: 'Public Sans', sans-serif;
+  --nsw-font-size: 16px;
+  --nsw-line-height: 1.5;
+  --nsw-font-normal: 400;
+  --nsw-font-bold: 700;
+
+  --nsw-font-size-xxs-mobile: 0.75rem;
+  --nsw-font-size-xxs-desktop: 0.75rem;
+  --nsw-line-height-xxs-mobile: 1.5;
+  --nsw-line-height-xxs-desktop: 1.5;
+
+  --nsw-font-size-xs-mobile: 0.875rem;
+  --nsw-font-size-xs-desktop: 0.875rem;
+  --nsw-line-height-xs-mobile: 1.35;
+  --nsw-line-height-xs-desktop: 1.35;
+
+  --nsw-font-size-sm-mobile: 1rem;
+  --nsw-font-size-sm-desktop: 1rem;
+  --nsw-line-height-sm-mobile: 1.5;
+  --nsw-line-height-sm-desktop: 1.5;
+
+  --nsw-font-size-md-mobile: 1.125rem;
+  --nsw-font-size-md-desktop: 1.25rem;
+  --nsw-line-height-md-mobile: 1.33;
+  --nsw-line-height-md-desktop: 1.4;
+
+  --nsw-font-size-lg-mobile: 1.375rem;
+  --nsw-font-size-lg-desktop: 1.5rem;
+  --nsw-line-height-lg-mobile: 1.25;
+  --nsw-line-height-lg-desktop: 1.33;
+
+  --nsw-font-size-xl-mobile: 1.75rem;
+  --nsw-font-size-xl-desktop: 2rem;
+  --nsw-line-height-xl-mobile: 1.25;
+  --nsw-line-height-xl-desktop: 1.25;
+
+  --nsw-font-size-xxl-mobile: 2.25rem;
+  --nsw-font-size-xxl-desktop: 3rem;
+  --nsw-line-height-xxl-mobile: 1.25;
+  --nsw-line-height-xxl-desktop: 1.25;
+
+  /* Borders */
+  --nsw-border-radius: 0.25rem;
+
+  /* Shadows */
+  --nsw-box-shadow: 0 0.25rem 0.75rem 0 rgba(var(--nsw-black-rgb),0.15);
+
+  /* Maximum width of container */
+  --nsw-container-width: 75rem;
+{{/_docs-example}}
+
+<h2 id="theming-examples">Theming examples</h2>
+<p>We’ve created a few page examples to show the most commonly used theming applications that can easily modify the <a target="_blank" href="/templates/theming/default.html">masterbrand (default)</a> theme.</p>
+
+<h3>Full page</h3>
+<p><a target="_blank" href="/templates/theming/full-page.html">Full page re-theming example</a> has full brand colour palette updated to new theme and applied to full page/site. This includes global elements (header, navigation, footer etc) but excludes masthead. To implement it you need to apply new colours to global scope.</p>
+
+{{#>_docs-example hidden="true" open="true" code="language-css"}}
+:root {
+  --nsw-brand-dark: var(--nsw-palette-purple-01);
+  --nsw-brand-light: var(--nsw-palette-pink-04);
+  --nsw-brand-accent: var(--nsw-palette-pink-02);
+  --nsw-brand-supplementary: var(--nsw-palette-purple-02);
 }
-</style>
-    {{/_docs-example}}
-    <p>For a more local scope, use a selector to target instead of <code>:root</code>.
-      Read more on custom properties <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/--*#css">here</a>.</p>
-    <h3>With SCSS</h3>
-    <p>The NSW Design System has a <code>theme.scss</code> file that defines its
-      look and feel.</p>
-    <p>Create your own theme file and import it in your <code>main.scss</code> file</p>
-    {{#>_docs-example hidden="true" open="true" code="language-scss"}}
-// Base styles
-@import 'node_modules/nsw-design-system/src/global/scss/settings/settings';
-@import 'node_modules/nsw-design-system/src/global/scss/base/all';
-@import 'node_modules/nsw-design-system/src/global/scss/helpers/all';
-@import 'node_modules/nsw-design-system/src/core/all';
+{{/_docs-example}}
 
-// Add your custom theme file here or drop all the variables here
-@import 'node_modules/nsw-design-system/src/global/scss/settings/palette';
-@import './path/to/myTheme';
+<h3>Content only</h3>
+<p><a target="_blank" href="/templates/theming/content-only.html">Content only re-theming example</a> has full brand colour palette updated to new theme, but only applied to content section of the page. Global elements (header, navigation, footer etc) remain aligned to masterbrand corporate colour palette. To implement it you need to apply new colours to the container that wraps around content that you are re-theming.</p>
 
-// Components
-@import 'node_modules/nsw-design-system/src/components/accordion/accordion';
-@import 'node_modules/nsw-design-system/src/components/card/card';
-@import 'node_modules/nsw-design-system/src/components/in-page-alert/in-page-alert';
-    {{/_docs-example}}
+{{#>_docs-example hidden="true" open="true" code="language-css"}}
+.nsw-layout {
+  --nsw-brand-dark: var(--nsw-palette-orange-01);
+  --nsw-brand-light: var(--nsw-palette-yellow-04);
+  --nsw-brand-accent: var(--nsw-palette-yellow-02);
+  --nsw-brand-supplementary: var(--nsw-palette-orange-02);
+}
+{{/_docs-example}}
+  
+<h3>Partial</h3>
+<p><a target="_blank" href="/templates/theming/partial.html">Partial re-theming example</a> has brand accent colour updated to give that branding ‘pop’ while still aligning to materbrand corporate. This is applied to full page/site so to implement it you need to apply new colours to global scope.</p>
+
+{{#>_docs-example hidden="true" open="true" code="language-css"}}
+:root {
+  --nsw-brand-accent: var(--nsw-palette-green-02);
+}
+{{/_docs-example}}

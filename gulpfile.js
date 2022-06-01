@@ -188,6 +188,11 @@ function metalsmithBuild(callback) {
       refer: false,
       sortBy: sortByAlpha,
     },
+    about: {
+      pattern: config.metalSmith.collection.contentnav.about,
+      refer: false,
+      sortBy: 'order',
+    },
     design: {
       pattern: config.metalSmith.collection.contentnav.design,
       refer: false,
@@ -255,6 +260,11 @@ function copyFavicon() {
     .pipe(dest(config.favicon.build))
 }
 
+function moveSitemap() {
+  return src(config.sitemap.src)
+    .pipe(dest(config.sitemap.build))
+}
+
 function zipDistFolder() {
   return src(config.zipfile.src)
     .pipe(zip(config.zipfile.filename))
@@ -281,6 +291,13 @@ function renamePathForProd() {
     .pipe(dest(config.dir.build))
 }
 
+function addAnalytics() {
+  return src(`${config.dir.build}/**/*.html`)
+    .pipe(inject.before('</head>', '<script async src="https://www.googletagmanager.com/gtag/js?id=G-TMEHXHFJXJ"></script>\n'))
+    .pipe(inject.before('</head>', '<script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-TMEHXHFJXJ");</script>\n'))
+    .pipe(dest(config.dir.build))
+}  
+
 function bumping() {
   return src('./package.json')
     .pipe(bump({ type: argv.type }))
@@ -303,12 +320,14 @@ function watchFiles(done) {
 const buildprod = series(
   cleanUp,
   copyFavicon,
+  moveSitemap,
   metalsmithBuild,
   styles,
   javascript,
   moveImages,
   moveBrand,
   renamePathForProd,
+  addAnalytics,
   zipDistFolder,
   generateSitemap,
 )
@@ -316,6 +335,7 @@ const buildprod = series(
 const build = series(
   cleanUp,
   copyFavicon,
+  moveSitemap,
   metalsmithBuild,
   styles,
   javascript,
@@ -327,6 +347,7 @@ const build = series(
 const dev = series(
   cleanUp,
   copyFavicon,
+  moveSitemap,
   metalsmithBuild,
   styles,
   javascript,

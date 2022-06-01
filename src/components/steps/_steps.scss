@@ -1,0 +1,315 @@
+.nsw-steps {
+  @include component-spacing();
+  counter-reset: step;
+
+  &__item {
+    position: relative;
+
+    &:last-child {
+      .nsw-steps__content {
+        padding-bottom: 0;
+
+        &::before {
+          bottom: 0;
+        }
+      }
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: rem(1px);
+      left: 0;
+      width: rem(32px);
+      height: rem(32px);
+      border: rem(4px) solid var(--nsw-brand-accent);
+      border-radius: 100%;
+
+      @include breakpoint('lg') { 
+        width: rem(48px);
+        height: rem(48px);
+        top: rem(-4px);
+      }
+    }
+
+    &::after {
+      @include font-size('md');
+      counter-increment: step;
+      content: counter(step);
+      position: absolute;
+      top: rem(1px);
+      left: 0;
+      width: rem(32px);
+      height: rem(32px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: var(--nsw-brand-accent);
+      font-weight: var(--nsw-font-bold);
+      visibility: hidden;
+
+      @include breakpoint('lg') { 
+        width: rem(48px);
+        height: rem(48px);
+        top: rem(-4px);
+      }    
+    }
+
+    &--fill {
+      &::before {
+        background-color: var(--nsw-brand-accent);
+      }
+      
+      &::after {
+        color: var(--nsw-text-light);
+      }
+
+      .nsw-steps--dark & {
+        &::before {
+          background-color: var(--nsw-brand-dark);
+        }   
+      }
+
+      .nsw-steps--light & {
+        &::before {
+          background-color: var(--nsw-brand-light);
+        }
+      }
+
+      .nsw-steps--supplementary & {
+        &::before {
+          background-color: var(--nsw-brand-supplementary);
+        }
+      }
+    }
+  }
+
+  &__content {
+    position: relative;
+    padding: 0 0 rem(24px) rem(48px);
+
+    @include breakpoint('lg') { 
+      padding: 0 0 rem(32px) rem(72px);
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: rem(33px);
+      bottom: rem(-1px);
+      left: rem(14px);
+      width: rem(4px);
+      background-color: var(--nsw-brand-accent);
+
+      @include breakpoint('lg') { 
+        top: rem(44px);
+        left: rem(22px);
+        bottom: rem(4px);
+      }
+    }
+  }
+
+  &--dark {
+    .nsw-steps__item {
+      &::before {
+        border-color: var(--nsw-brand-dark);
+      }
+
+      &::after {
+        color: var(--nsw-brand-dark);
+      }
+
+      &--fill {
+        &::after {
+          color: var(--nsw-text-light);
+        }
+      }
+    }
+
+    .nsw-steps__content {
+      &::before {
+        background-color: var(--nsw-brand-dark);
+      }
+    }
+  }
+
+  &--light {
+    .nsw-steps__item {
+      &::before {
+        border-color: var(--nsw-brand-light);
+      }
+
+      &::after {
+        color: var(--nsw-brand-light);
+      }
+
+      &--fill {
+        &::after {
+          color: var(--nsw-text-dark);
+        }
+      }
+    }
+
+    .nsw-steps__content {
+      &::before {
+        background-color: var(--nsw-brand-light);
+      }
+    }
+  }
+
+  &--supplementary {
+    .nsw-steps__item {
+      &::before {
+        border-color: var(--nsw-brand-supplementary);
+      }
+
+      &::after {
+        color: var(--nsw-brand-supplementary);
+      }
+
+      &--fill {
+        &::after {
+          color: var(--nsw-text-light);
+        }
+      }
+    }
+
+    .nsw-steps__content {
+      &::before {
+        background-color: var(--nsw-brand-supplementary);
+      }
+    }
+  }
+
+  &--counters {
+    .nsw-steps__item {
+      &::after {
+        visibility: visible;
+      }
+    }
+  }
+
+  &--fill {
+    .nsw-steps__item {
+      &::before {
+        background-color: var(--nsw-brand-accent);
+      }
+      
+      &::after {
+        color: var(--nsw-text-light);
+      }
+    }
+
+    &.nsw-steps--dark {
+      .nsw-steps__item {
+        &::before {
+          background-color: var(--nsw-brand-dark);
+        }
+      }      
+    }
+
+    &.nsw-steps--light {
+      .nsw-steps__item {
+        &::before {
+          background-color: var(--nsw-brand-light);
+        }
+      
+        &::after {
+          color: var(--nsw-text-dark);
+        }
+      }      
+    }
+
+    &.nsw-steps--supplementary {
+      .nsw-steps__item {
+        &::before {
+          background-color: var(--nsw-brand-supplementary);
+        }
+      }      
+    }
+  }
+
+  &--medium {
+    .nsw-steps__item {
+      &::before {
+        top: rem(-2px);
+
+        @include breakpoint('lg') { 
+          width: rem(40px);
+          height: rem(40px);
+          top: rem(-4px);
+        }
+      }
+
+      &::after {
+        top: rem(-2px);
+
+        @include breakpoint('lg') { 
+          font-size: var(--nsw-font-size-md-mobile);
+          width: rem(40px);
+          height: rem(40px);
+          top: rem(-4px);
+        }    
+      }
+    }
+
+    .nsw-steps__content {
+      @include breakpoint('lg') { 
+        padding-left: rem(64px);
+      }
+
+      &::before {
+        top: rem(30px);
+        bottom: rem(2px);
+
+        @include breakpoint('lg') { 
+          top: rem(36px);
+          bottom: rem(4px);
+          left: rem(18px);
+        }
+      }
+    }
+  }
+
+  &--small {
+    .nsw-steps__item {
+      &::before {
+        top: rem(-4px);
+
+        @include breakpoint('lg') { 
+          width: rem(32px);
+          height: rem(32px);
+          top: rem(-2px);
+        }
+      }
+
+      &::after {
+        top: rem(-4px);
+
+        @include breakpoint('lg') { 
+          font-size: var(--nsw-font-size-md-mobile);
+          width: rem(32px);
+          height: rem(32px);
+          top: rem(-2px);
+        }    
+      }
+    }
+
+    .nsw-steps__content {
+      @include breakpoint('lg') { 
+        padding-left: rem(56px);
+      }
+
+      &::before {
+        top: rem(28px);
+        bottom: rem(4px);
+
+        @include breakpoint('lg') { 
+          top: rem(30px);
+          bottom: rem(2px);
+          left: rem(14px);
+        }
+      }
+    }
+  }
+}
