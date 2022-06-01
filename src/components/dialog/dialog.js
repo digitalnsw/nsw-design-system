@@ -1,17 +1,16 @@
 class Dialog {
   constructor(element) {
     this.dialog = element
-    this.dialogContainerClass = '.nsw-dialog__container'
-    this.dialogs = element.querySelectorAll(this.dialogContainerClass)
-    this.openBtn = element.querySelectorAll('.nsw-dialog__open')
-    this.closeBtn = element.querySelectorAll('.nsw-dialog__close')
+    this.dialogWrapper = element.querySelector('.nsw-dialog__wrapper')
+    this.openBtn = document.querySelectorAll('.js-open-dialog-'.concat(element.getAttribute('id')))
+    this.closeBtn = element.querySelectorAll('.js-close-dialog')
     this.openEvent = (e) => this.openDialog(e)
     this.closeEvent = (e) => this.closeDialog(e)
+    this.clickEvent = (e) => this.clickDialog(e)
   }
 
   init() {
     this.controls()
-    this.closeAll()
   }
 
   controls() {
@@ -21,35 +20,26 @@ class Dialog {
     this.closeBtn.forEach((btn) => {
       btn.addEventListener('click', this.closeEvent, false)
     })
-  }
 
-  // eslint-disable-next-line class-methods-use-this
-  setDialogState(dialogRef, state) {
-    if (state === 'open') {
-      dialogRef.setAttribute('aria-expanded', 'true')
-      dialogRef.removeAttribute('hidden')
-    } else if (state === 'close') {
-      dialogRef.setAttribute('aria-expanded', 'false')
-      dialogRef.setAttribute('hidden', 'true')
+    if (this.dialog.classList.contains('js-dialog-dismiss')) {
+      this.dialog.addEventListener('click', this.clickEvent, false)
     }
   }
 
-  openDialog(e) {
-    const { currentTarget } = e
-    const dialogRef = currentTarget.parentNode.previousElementSibling
-    this.setDialogState(dialogRef, 'open')
+  openDialog() {
+    this.dialog.setAttribute('aria-expanded', 'true')
+    this.dialog.classList.add('active')
   }
 
-  closeDialog(e) {
-    const { currentTarget } = e
-    const dialogRef = currentTarget.parentNode.parentNode.parentNode
-    this.setDialogState(dialogRef, 'close')
+  closeDialog() {
+    this.dialog.setAttribute('aria-expanded', 'false')
+    this.dialog.classList.remove('active')
   }
 
-  closeAll() {
-    this.dialogs.forEach((element) => {
-      this.setDialogState(element, 'close')
-    })
+  clickDialog(e) {
+    if (!this.dialogWrapper.contains(e.target)) {
+      this.closeDialog()
+    }
   }
 }
 

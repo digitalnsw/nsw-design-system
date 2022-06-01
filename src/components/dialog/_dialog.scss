@@ -1,111 +1,152 @@
 .nsw-dialog {
-  @include component-spacing();
+  @include z-index('upper');
+  display: none;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(var(--nsw-black-rgb), 0.7);
+  justify-content: center;
+  align-items: flex-end;
 
-  &__container {
-    position: fixed;
-    z-index: 9999;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(var(--nsw-black-rgb), 0.7);
-    overflow-x: hidden;
-    overflow-y: auto;
+  @include breakpoint('sm') {
+    align-items: center;
+    padding: 0 rem(16px);
   }
 
-  &__container[aria-expanded='true'] {
+  &.active {
     display: flex;
-    align-items: flex-end;
   }
 
-  &__body {
-    background-color: var(--nsw-off-white);
+  &__wrapper {
+    background-color: var(--nsw-white);
     width: 100%;
-    height: 100%;
-    outline: 0;
+    max-width: rem(736px);
     position: relative;
-    pointer-events: all;
-    font-size: 1rem;
-    line-height: 1.5;
+    padding-bottom: rem(145px);
 
     @include breakpoint('sm') {
-      width: calc(100% - 2rem);
-      margin: auto;
-      height: auto;
+      border-radius: var(--nsw-border-radius);
+      align-items: center;
       max-height: 90%;
-      border-radius: 0.25rem;
     }
 
     @include breakpoint('md') {
-      max-width: 736px;
+      padding-bottom: rem(81px);
     }
 
     @include breakpoint('lg') {
-      width: 100%;
+      padding-bottom: rem(113px);
     }
 
+    .nsw-dialog--single-action & {
+      padding-bottom: rem(81px);
+
+      @include breakpoint('lg') {
+        padding-bottom: rem(113px);
+      }
+    }
   }
 
-  &__header {
-    h2 {
-      margin: 0;
+  &__container {
+    height: 100%;
+    max-height: calc(100vh - #{rem(145px)});
+    overflow-y: auto;
+
+    @include breakpoint('sm') {
+      max-height: calc(90vh - #{rem(145px)});
     }
 
-    button {
-      margin: -0.5rem -0.5rem 0 0;
-      height: 2.5rem;
+    @include breakpoint('md') {
+      max-height: calc(90vh - #{rem(81px)});
     }
+
+    @include breakpoint('lg') {
+      max-height: calc(90vh - #{rem(113px)});
+    }
+
+    .nsw-dialog--single-action & {
+      max-height: calc(100vh - #{rem(81px)});
+
+      @include breakpoint('sm') {
+        max-height: calc(90vh - #{rem(81px)});
+      }
+
+      @include breakpoint('lg') {
+        max-height: calc(90vh - #{rem(113px)});
+      }
+    }
+  }
+
+  &__top {
+    border-bottom: 1px solid var(--nsw-grey-04);
     display: flex;
-    justify-content: space-between;
-    border-bottom: 1px solid var(--nsw-grey-03);
+  }
+
+  &__title {
     padding: rem(16px);
+    width: 100%;
 
     @include breakpoint('lg') {
       padding: rem(32px);
+    }
+  }
+
+  &__close {
+    min-width: rem(48px);
+    max-width: rem(48px);
+    padding: rem(8px) rem(8px) rem(8px) 0;
+
+    @include breakpoint('lg') {
+      min-width: rem(64px);
+      max-width: rem(64px);
+      padding: rem(24px) rem(24px) rem(24px) 0;
     }
   }
 
   &__content {
-    border-bottom: 1px solid var(--nsw-grey-03);
     padding: rem(16px);
-    overflow-y: auto;
-    height: 100%;
-    max-height: 67%;
-
-    @include breakpoint('sm') {
-      height: auto;
-      max-height: rem(450px);
-    }
 
     @include breakpoint('lg') {
       padding: rem(32px);
     }
   }
 
-  &__footer {
+  &__bottom {
+    border-top: 1px solid var(--nsw-grey-04);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
     padding: rem(16px);
+
+    @include breakpoint('md') {
+      flex-direction: row-reverse;
+      justify-content: flex-start;
+    }
 
     @include breakpoint('lg') {
       padding: rem(32px);
     }
 
     button {
-      margin-bottom: 1rem;
-    }
+      margin-bottom: rem(16px);
 
-    @include breakpoint('md') {
-      flex-direction: row;
-      justify-content: flex-end;
-
-      button {
-        margin-left: 1rem;
+      @include breakpoint('md') {
+        margin-left: rem(16px);
         margin-bottom: 0;
       }
 
+      &:last-child {
+        margin-bottom: 0;
+
+        @include breakpoint('md') {
+          margin-left: 0;
+        }
+      }
     }
-
   }
-
 }
