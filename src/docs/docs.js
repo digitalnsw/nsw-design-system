@@ -19,24 +19,16 @@ function initDocs() {
   })
 
   const autoCompleteJS = new autoComplete({
-    selector: "#search-input",
+    selector: "#nsw-header-input",
     wrapper: false,
     data: {
       src: async () => {
         try {
-          // Loading placeholder text
-          document
-            .getElementById("search-input")
-            .setAttribute("placeholder", "Loading...");
           // Fetch External Data Source
           const source = await fetch(
             "search.json"
           );
           const data = await source.json();
-          // Post Loading placeholder text
-          document
-            .getElementById("search-input")
-            .setAttribute("placeholder", autoCompleteJS.placeHolder);
           // Returns Fetched data
           return data;
         } catch (error) {
@@ -56,7 +48,6 @@ function initDocs() {
         return filteredResults;
       }
     },
-    placeHolder: "Search the Design System",
     resultsList: {
       tag: "ul",
       id: "nsw-predictive-list",
