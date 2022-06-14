@@ -56,15 +56,15 @@ function initDocs() {
         return filteredResults;
       }
     },
-    placeHolder: "Search the Design System",
+    placeHolder: "",
     resultsList: {
       tag: "ul",
       id: "nsw-predictive-list",
-      class: "nsw-form__predictive-list nsw-form__predictive-list--large",
+      class: "nsw-form__predictive-list",
       noResults: true,
       destination: ".nsw-form__predictive",
       position: "beforeend",
-      maxResults: 15,
+      maxResults: 5,
       tabSelect: true,
       element: (list, data) => {
         if (!data.results.length) {
@@ -72,8 +72,7 @@ function initDocs() {
           const message = document.createElement("li");
           message.setAttribute("class", "no-result");
           // Add message text content
-          message.innerHTML = message.innerHTML =
-            `<span>Found No Results for "${data.query}"</span>`;
+          message.innerHTML = `<span>Found No Results for "${data.query}"</span>`;
           // Add message list element to the list
           list.appendChild(message);
         }
