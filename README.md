@@ -4,9 +4,7 @@
 [![](https://data.jsdelivr.com/v1/package/npm/nsw-design-system/badge)](https://www.jsdelivr.com/package/npm/nsw-design-system)
 [![This project is using Percy.io for visual regression testing.](https://percy.io/static/images/percy-badge.svg)](https://percy.io/b183fe4d/nsw-design-system)
 
-NSW Design system is a collection of reusable UI components used on the NSW government websites.
-
-See live examples of NSW Digital Design system components and guidance on how to use them on you website at [NSW Design System](https://nswdesignsystem.surge.sh).
+View documentation for [NSW Design System](https://digitalnsw.github.io/nsw-design-system/).
 
 ## Using the design system
 
@@ -17,7 +15,6 @@ How you use the NSW Design System depends on your team's capabilities. We recomm
  3. [Adding the font and icons](#adding-the-font-and-the-icons)
  4. [Importing javascript into your project](#importing-javascript-into-your-project)
  5. [Using JSDelivr CDN](#using-jsdelivr-cdn)
- 6. [Download starter kit](#download-starter-kit)
 
 ### Installing with NPM
 1.  Install  `Node/npm`.
@@ -103,16 +100,8 @@ You can add the files to your main html document
 </html>
 ```
 
-### Download starter kit
-You can download the compiled design system assets (HTML, CSS, JavaScript) in the [HTMLStarterkit zip file](https://github.com/digitalnsw/nsw-design-system/blob/master/HTMLstarterkit.zip) from the latest release.
-
-
 ## Design System Figma UI kit
-Get access to the latest Design System UI patterns and styles via the [Design System Figma UI kit](https://www.digital.nsw.gov.au/design-system/getting-started/design-system-figma-ui-kit).
-
-
-## Getting updates
-To be notified when there’s a new release, you can either join the [NSW Design System community](https://community.digital.nsw.gov.au/) or [watch the NSW Design System Github](https://github.com/digitalnsw/nsw-design-system)
+Access all the design assets required to design, share and prototype in our [Figma UI Kit](https://digitalnsw.github.io/nsw-design-system/docs/content/design/figma-ui-kit.html).
 
 
 ## Versioning
