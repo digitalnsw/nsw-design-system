@@ -686,6 +686,93 @@
     return Accordion;
   }();
 
+  var Dialog = /*#__PURE__*/function () {
+    function Dialog(element) {
+      var _this = this;
+
+      _classCallCheck(this, Dialog);
+
+      this.dialog = element;
+      this.dialogWrapper = element.querySelector('.nsw-dialog__wrapper');
+      this.openBtn = document.querySelectorAll('.js-open-dialog-'.concat(element.getAttribute('id')));
+      this.closeBtn = element.querySelectorAll('.js-close-dialog'); // eslint-disable-next-line max-len
+
+      this.focusableEls = element.querySelectorAll('a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])');
+      this.body = document.body;
+
+      this.openEvent = function (e) {
+        return _this.openDialog(e);
+      };
+
+      this.closeEvent = function (e) {
+        return _this.closeDialog(e);
+      };
+
+      this.clickEvent = function (e) {
+        return _this.clickDialog(e);
+      };
+
+      this.trapEvent = function (e) {
+        return _this.trapFocus(e);
+      };
+    }
+
+    _createClass(Dialog, [{
+      key: "init",
+      value: function init() {
+        this.controls();
+      }
+    }, {
+      key: "controls",
+      value: function controls() {
+        var _this2 = this;
+
+        this.openBtn.forEach(function (btn) {
+          btn.addEventListener('click', _this2.openEvent, false);
+        });
+        this.closeBtn.forEach(function (btn) {
+          btn.addEventListener('click', _this2.closeEvent, false);
+        });
+
+        if (this.dialog.classList.contains('js-dialog-dismiss')) {
+          this.dialog.addEventListener('click', this.clickEvent, false);
+        }
+
+        this.focusableEls[this.focusableEls.length - 1].addEventListener('blur', this.trapEvent, false);
+      }
+    }, {
+      key: "openDialog",
+      value: function openDialog() {
+        this.dialog.setAttribute('aria-expanded', 'true');
+        this.dialog.classList.add('active');
+        this.body.classList.add('dialog-active');
+        this.focusableEls[0].focus();
+      }
+    }, {
+      key: "closeDialog",
+      value: function closeDialog() {
+        this.dialog.setAttribute('aria-expanded', 'false');
+        this.dialog.classList.remove('active');
+        this.body.classList.remove('dialog-active');
+      }
+    }, {
+      key: "clickDialog",
+      value: function clickDialog(e) {
+        if (!this.dialogWrapper.contains(e.target)) {
+          this.closeDialog();
+        }
+      }
+    }, {
+      key: "trapFocus",
+      value: function trapFocus(e) {
+        e.preventDefault();
+        this.focusableEls[0].focus();
+      }
+    }]);
+
+    return Dialog;
+  }();
+
   var Filters = /*#__PURE__*/function () {
     function Filters(element) {
       var _this = this;
@@ -1001,6 +1088,7 @@
     var openSearchButton = document.querySelectorAll('.js-open-search');
     var closeSearchButton = document.querySelectorAll('.js-close-search');
     var accordions = document.querySelectorAll('.js-accordion');
+    var dialogs = document.querySelectorAll('.js-dialog');
     var filters = document.querySelectorAll('.js-filters');
     var tabs = document.querySelectorAll('.js-tabs');
     var globalAlert = document.querySelectorAll('.js-global-alert');
@@ -1014,6 +1102,9 @@
     new Navigation().init();
     accordions.forEach(function (element) {
       new Accordion(element).init();
+    });
+    dialogs.forEach(function (element) {
+      new Dialog(element).init();
     });
 
     if (filters) {
