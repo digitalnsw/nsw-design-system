@@ -1,6 +1,7 @@
 import SiteSearch from './components/header/header'
 import Navigation from './components/main-nav/main-nav'
 import Accordion from './components/accordion/accordion'
+import Dialog from './components/dialog/dialog'
 import Filters from './components/filters/filters'
 import Tabs from './components/tabs/tabs'
 import GlobalAlert from './components/global-alert/global-alert'
@@ -30,6 +31,7 @@ function initSite() {
   const openSearchButton = document.querySelectorAll('.js-open-search')
   const closeSearchButton = document.querySelectorAll('.js-close-search')
   const accordions = document.querySelectorAll('.js-accordion')
+  const dialogs = document.querySelectorAll('.js-dialog')
   const filters = document.querySelectorAll('.js-filters')
   const tabs = document.querySelectorAll('.js-tabs')
   const globalAlert = document.querySelectorAll('.js-global-alert')
@@ -47,6 +49,10 @@ function initSite() {
 
   accordions.forEach((element) => {
     new Accordion(element).init()
+  })
+
+  dialogs.forEach((element) => {
+    new Dialog(element).init()
   })
 
   if (filters) {

@@ -1,0 +1,32 @@
+<div class="nsw-block">
+  <button class="nsw-button nsw-button--dark js-open-dialog-{{id}}" aria-haspopup="dialog">{{#if button-title}}{{button-title}}{{else}}Launch dialog{{/if}}</button>
+</div>
+
+<div class="nsw-dialog{{#unless secondary}} nsw-dialog--single-action{{/unless}} js-dialog{{#if dismiss}} js-dialog-dismiss{{/if}}{{#if active}} active{{/if}}" id="{{id}}" role="dialog" aria-labelledby="{{id}}-title">
+  <div class="nsw-dialog__wrapper">
+    <div class="nsw-dialog__container">
+      <div class="nsw-dialog__top">
+        <div class="nsw-dialog__title">
+          <h2 id="{{id}}-title">{{#if title}}{{title}}{{else}}Dialog{{/if}}</h2>
+        </div>
+        {{#if dismiss}}
+        <div class="nsw-dialog__close">
+          <button class="nsw-icon-button js-close-dialog">
+            <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">close</span>
+            <span class="sr-only">Close</span>
+          </button>
+        </div>
+        {{/if}}
+        </div>
+      <div class="nsw-dialog__content">
+        {{#if content}}{{{content}}}{{else}}<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p>{{/if}}
+      </div>
+    </div>
+    <div class="nsw-dialog__bottom">
+      <button class="nsw-button nsw-button--dark{{#if danger}} nsw-button--danger{{/if}} js-close-dialog">{{#if primary}}{{primary}}{{else}}Primary action{{/if}}</button>
+      {{#if secondary}}
+      <button class="nsw-button nsw-button--dark-outline-solid js-close-dialog">{{#if secondary}}{{secondary}}{{else}}Secondary action{{/if}}</button>
+      {{/if}}
+    </div>
+  </div>
+</div>

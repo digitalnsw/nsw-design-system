@@ -1,0 +1,17 @@
+---
+title: Dialog
+width: narrow
+page: true
+model:
+    dialog-transactional: json/dialog-transactional.json
+    dialog-single-cta: json/dialog-single-cta.json
+    dialog-danger: json/dialog-danger.json
+    dialog-dismissible: json/dialog-dismissible.json
+---
+
+{{#>_layout-container}}
+{{>_dialog model.dialog-transactional button-title="Launch transactional dialog"}}
+{{>_dialog model.dialog-single-cta button-title="Launch single CTA dialog"}}
+{{>_dialog model.dialog-danger button-title="Launch danger dialog"}}
+{{>_dialog model.dialog-dismissible button-title="Launch dismissible dialog"}}
+{{/_layout-container}}
