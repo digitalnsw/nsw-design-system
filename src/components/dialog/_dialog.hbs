@@ -1,13 +1,13 @@
 <div class="nsw-block">
-  <button class="nsw-button nsw-button--dark js-open-dialog-{{id}}">{{#if button-title}}{{button-title}}{{else}}Launch dialog{{/if}}</button>
+  <button class="nsw-button nsw-button--dark js-open-dialog-{{id}}" aria-haspopup="dialog">{{#if button-title}}{{button-title}}{{else}}Launch dialog{{/if}}</button>
 </div>
 
-<div class="nsw-dialog{{#unless secondary}} nsw-dialog--single-action{{/unless}} js-dialog{{#if dismiss}} js-dialog-dismiss{{/if}}{{#if active}} active{{/if}}" id="{{id}}">
+<div class="nsw-dialog{{#unless secondary}} nsw-dialog--single-action{{/unless}} js-dialog{{#if dismiss}} js-dialog-dismiss{{/if}}{{#if active}} active{{/if}}" id="{{id}}" role="dialog" aria-labelledby="{{id}}-title">
   <div class="nsw-dialog__wrapper">
     <div class="nsw-dialog__container">
       <div class="nsw-dialog__top">
         <div class="nsw-dialog__title">
-          <h2>{{#if title}}{{title}}{{else}}Dialog{{/if}}</h2>
+          <h2 id="{{id}}-title">{{#if title}}{{title}}{{else}}Dialog{{/if}}</h2>
         </div>
         {{#if dismiss}}
         <div class="nsw-dialog__close">
