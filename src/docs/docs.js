@@ -43,7 +43,7 @@ function initDocs() {
           return error;
         }
       },
-      keys: ["title"],
+      keys: ["title", "keywords"],
       cache: true,
       filter: (list) => {
         // Filter duplicates
@@ -57,6 +57,7 @@ function initDocs() {
       }
     },
     placeHolder: "",
+    threshold: 2,
     resultsList: {
       tag: "ul",
       id: "nsw-predictive-list",
@@ -81,8 +82,8 @@ function initDocs() {
     },
     resultItem: {
       element: (item, data) => {
-        item.innerHTML =
-          `<li><a href="${data.value.url}">${data.match}</a></li>`;
+        item.innerHTML = `<li><a href="${data.value.url}">${data.value.title}</a></li>`;
+        console.log(data);
       },
       highlight: true
     },
