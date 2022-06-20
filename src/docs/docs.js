@@ -27,7 +27,7 @@ function initDocs() {
           // Loading placeholder text
           document
             .getElementById("nsw-header-input-autocomplete")
-            .setAttribute("placeholder", "Loading...");
+            .setAttribute("placeholder", "");
           // Fetch External Data Source
           const source = await fetch(
             "/search.json"
