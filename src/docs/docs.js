@@ -19,14 +19,14 @@ function initDocs() {
   })
 
   const autoCompleteJS = new autoComplete({
-    selector: "#nsw-header-input",
+    selector: "#nsw-header-input-autocomplete",
     wrapper: false,
     data: {
       src: async () => {
         try {
           // Loading placeholder text
           document
-            .getElementById("nsw-header-input")
+            .getElementById("nsw-header-input-autocomplete")
             .setAttribute("placeholder", "Loading...");
           // Fetch External Data Source
           const source = await fetch(
@@ -35,7 +35,7 @@ function initDocs() {
           const data = await source.json();
           // Post Loading placeholder text
           document
-            .getElementById("nsw-header-input")
+            .getElementById("nsw-header-input-autocomplete")
             .setAttribute("placeholder", autoCompleteJS.placeHolder);
           // Returns Fetched data
           return data;
