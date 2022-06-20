@@ -30,7 +30,7 @@ function initDocs() {
             .setAttribute("placeholder", "Loading...");
           // Fetch External Data Source
           const source = await fetch(
-            "search.json"
+            "/search.json"
           );
           const data = await source.json();
           // Post Loading placeholder text
