@@ -51,7 +51,7 @@ function initDocs() {
         const filteredResults = Array.from(
           new Set(list.map((value) => value.match))
         ).map((title) => {
-          return list.find((value) => value.match === title);
+          return list.find((value) => value.match.title === title);
         });
         return filteredResults;
       }
@@ -83,7 +83,6 @@ function initDocs() {
     resultItem: {
       element: (item, data) => {
         item.innerHTML = `<li><a href="${data.value.url}">${data.value.title}</a></li>`;
-        console.log(data);
       },
       highlight: true
     },
