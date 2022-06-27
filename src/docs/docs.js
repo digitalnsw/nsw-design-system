@@ -51,7 +51,7 @@ function initDocs() {
         const filteredResults = Array.from(
           new Set(list.map((value) => value.match))
         ).map((title) => {
-          return list.find((value) => value.match.title === title);
+          return list.find((value) => value.title === title);
         });
         return filteredResults;
       }
