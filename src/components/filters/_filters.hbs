@@ -1,9 +1,18 @@
-<{{#if instant}}div{{else}}form{{/if}} class="nsw-filters{{#if js}} nsw-filters--fixed js-filters{{/if}}{{#if instant}} nsw-filters--instant{{/if}}">
+<{{#if instant}}div{{else}}form{{/if}} class="nsw-filters{{#if js}} nsw-filters--fixed js-filters{{/if}}{{#if instant}} nsw-filters--instant{{/if}}{{#if collapse}} nsw-filters--collapse{{/if}}">
   {{#if js}}
   <div class="nsw-filters__controls{{#if results}} active{{/if}}">
     <button>
       <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">tune</span>
       <span>{{#if name}}{{name}}{{else}}Filter results{{/if}}{{#if results}}  ({{results}}){{/if}}</span>
+    </button>
+  </div>
+  {{/if}}
+  {{#if collapse}}
+  <div class="nsw-filters__collapse{{#if results}} active{{/if}}">
+    <button data-target=".nsw-filters__wrapper">
+      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">tune</span>
+      <span>{{#if name}}{{name}}{{else}}Filter results{{/if}}{{#if results}}  ({{results}}){{/if}}</span>
+      <span class="material-icons nsw-material-icons-down" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
     </button>
   </div>
   {{/if}}

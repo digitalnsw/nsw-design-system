@@ -4,6 +4,7 @@ page: true
 width: menu
 model:
   instant: ../../components/filters/json/filters-instant.json
+  collapse: ../../components/filters/json/filters-collapse.json
   batch: ../../components/filters/json/filters-batch.json
   all: ../../components/filters/json/filters-all.json
 ---
@@ -13,6 +14,11 @@ model:
   <div class="nsw-col nsw-col-xl-4">
     <div class="nsw-docs__component">
       {{>_filters model.instant}}
+    </div>
+  </div>
+  <div class="nsw-col nsw-col-xl-4">
+    <div class="nsw-docs__component">
+      {{>_filters model.collapse}}
     </div>
   </div>
   <div class="nsw-col nsw-col-xl-4">
