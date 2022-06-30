@@ -57,6 +57,7 @@ function initDocs() {
       }
     },
     placeHolder: "",
+    searchEngine: "loose",
     threshold: 2,
     resultsList: {
       tag: "ul",
