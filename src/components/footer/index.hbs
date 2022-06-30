@@ -11,4 +11,55 @@ meta-description: The footer displays across the bottom of all NSW Government we
 meta-index: true
 ---
 
-{{#>_docs-example}}{{>_footer model}}{{/_docs-example}}
+<h3>Default</h3>
+{{#>_docs-example}}
+{{>_footer model}}
+{{/_docs-example}}
+
+<h3>Brand palette</h3>
+<div class="nsw-tabs js-tabs">
+  <ul class="nsw-tabs__list">
+    <li><a href="#footer-brand-dark" class="js-tabs-fixed">Brand Dark</a></li>
+    <li><a href="#footer-brand-light" class="js-tabs-fixed">Brand Light</a></li>
+    <li><a href="#footer-custom" class="js-tabs-fixed">Custom</a></li>
+  </ul>
+  <section id="footer-brand-dark" class="nsw-tabs__content nsw-tabs__content--side-flush">
+{{#>_docs-example}}
+{{>_footer model theme="dark" sectionLinks=""}}
+{{/_docs-example}}
+  </section>
+  <section id="footer-brand-light" class="nsw-tabs__content nsw-tabs__content--side-flush">
+{{#>_docs-example}}
+{{>_footer model theme="light" sectionLinks=""}}
+{{/_docs-example}}
+  </section>
+  <section id="footer-custom" class="nsw-tabs__content nsw-tabs__content--side-flush">
+{{#>_docs-example}}
+<style type="text/css">
+  .nsw-footer--custom {
+    --nsw-grey-01: var(--nsw-palette-teal-01);
+  }
+</style>
+{{>_footer model theme="custom" sectionLinks=""}}
+{{/_docs-example}}
+  </section>
+</div>
+
+<h3>Social</h3>
+<div class="nsw-tabs js-tabs">
+  <ul class="nsw-tabs__list">
+    <li><a href="#footer-social-dark" class="js-tabs-fixed">Brand Dark</a></li>
+    <li><a href="#footer-social-light" class="js-tabs-fixed">Brand Light</a></li>
+  </ul>
+  <section id="footer-social-dark" class="nsw-tabs__content nsw-tabs__content--side-flush">
+{{#>_docs-example}}
+{{>_footer model theme="dark" social="true" sectionLinks=""}}
+{{/_docs-example}}
+  </section>
+  <section id="footer-social-light" class="nsw-tabs__content nsw-tabs__content--side-flush">
+{{#>_docs-example}}
+{{>_footer model theme="light" social="true" sectionLinks=""}}
+{{/_docs-example}}
+  </section>
+</div>
+

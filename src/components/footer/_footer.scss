@@ -104,6 +104,30 @@
     }
   }
 
+  &__links {
+    @include breakpoint('md') {
+      display: flex;
+      justify-content: space-between;
+      margin-top: rem(-16px);
+    }
+  }
+
+  &__social {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 0 rem(-16px);
+    padding: rem(8px) 0 rem(12px) 0;
+
+    @include breakpoint('md') {
+      padding-bottom: rem(8px);
+    }
+
+    a {
+      margin: 0 rem(8px);
+    }
+  }
+
   &__info {
     @include breakpoint('md') {
       display: flex;
@@ -122,6 +146,27 @@
 
     @include breakpoint('md') {
       text-align: right;
+    }
+  }
+
+  &--dark {
+    .nsw-footer__lower {
+      background-color: var(--nsw-brand-dark);
+    }
+  }
+
+  &--light {
+    hr {
+      background-color: var(--nsw-grey-02);
+    }
+
+    .nsw-footer__lower {
+      background-color: var(--nsw-brand-light);
+      color: var(--nsw-text-dark);
+
+      a {
+        @include link-dark;
+      }
     }
   }
 }
