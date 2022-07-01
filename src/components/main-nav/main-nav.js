@@ -139,10 +139,15 @@ class Navigation {
   }
 
   buttonClickDesktop(e) {
-    if (this.openSubNavElements.length < 1) {
+    const isDesktop = this.breakpoint.matches
+    if (!isDesktop) {
       this.saveElements(e)
-      e.preventDefault()
       this.toggleSubNavDesktop()
+      e.preventDefault()
+    } else if (this.openSubNavElements.length < 1) {
+      this.saveElements(e)
+      this.toggleSubNavDesktop()
+      e.preventDefault()
     }
   }
 
