@@ -139,9 +139,11 @@ class Navigation {
   }
 
   buttonClickDesktop(e) {
-    this.saveElements(e)
-    this.toggleSubNavDesktop()
-    e.preventDefault()
+    if (this.openSubNavElements.length < 1) {
+      this.saveElements(e)
+      e.preventDefault()
+      this.toggleSubNavDesktop()
+    }
   }
 
   buttonKeydownDesktop(e) {
