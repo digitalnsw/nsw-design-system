@@ -139,9 +139,12 @@ class Navigation {
   }
 
   buttonClickDesktop(e) {
-    this.saveElements(e)
-    this.toggleSubNavDesktop()
-    e.preventDefault()
+    const isDesktop = this.breakpoint.matches
+    if (!isDesktop || !e.target.closest('.nsw-main-nav__sub-nav')) {
+      this.saveElements(e)
+      this.toggleSubNavDesktop()
+      e.preventDefault()
+    }
   }
 
   buttonKeydownDesktop(e) {
