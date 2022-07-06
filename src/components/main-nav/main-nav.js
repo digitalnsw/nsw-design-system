@@ -139,8 +139,8 @@ class Navigation {
   }
 
   buttonClickDesktop(e) {
-    const clickParents = e.target.parentNode.parentNode.parentNode.parentNode
-    if (!clickParents.classList.contains('nsw-main-nav__sub-nav')) {
+    const isDesktop = this.breakpoint.matches
+    if (!isDesktop || !e.target.closest('.nsw-main-nav__sub-nav')) {
       this.saveElements(e)
       this.toggleSubNavDesktop()
       e.preventDefault()
