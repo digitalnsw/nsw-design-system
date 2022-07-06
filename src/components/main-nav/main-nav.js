@@ -139,12 +139,8 @@ class Navigation {
   }
 
   buttonClickDesktop(e) {
-    const isDesktop = this.breakpoint.matches
-    if (!isDesktop) {
-      this.saveElements(e)
-      this.toggleSubNavDesktop()
-      e.preventDefault()
-    } else if (this.openSubNavElements.length < 1) {
+    const clickParents = e.target.parentNode.parentNode.parentNode.parentNode
+    if (!clickParents.classList.contains('nsw-main-nav__sub-nav')) {
       this.saveElements(e)
       this.toggleSubNavDesktop()
       e.preventDefault()
