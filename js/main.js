@@ -383,9 +383,13 @@
     }, {
       key: "buttonClickDesktop",
       value: function buttonClickDesktop(e) {
-        this.saveElements(e);
-        this.toggleSubNavDesktop();
-        e.preventDefault();
+        var isDesktop = this.breakpoint.matches;
+
+        if (!isDesktop || !e.target.closest('.nsw-main-nav__sub-nav')) {
+          this.saveElements(e);
+          this.toggleSubNavDesktop();
+          e.preventDefault();
+        }
       }
     }, {
       key: "buttonKeydownDesktop",
