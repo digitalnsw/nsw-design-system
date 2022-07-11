@@ -71,6 +71,19 @@ $header-height: 151px;
     .nsw-header__container {
       margin: 0;
     }
+
+    @include breakpoint($nsw-desktop-breakpoint) {
+      .nsw-container,
+      .nsw-header__container {
+        padding-left: rem(32px);
+        max-width: rem(1240px);
+      }
+
+      .nsw-header__container .nsw-header__inner {
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
   }
 
   &__wrapper {
@@ -552,4 +565,19 @@ $header-height: 151px;
 
 .nsw-docs__element {
   height: 100%;
+}
+
+.nsw-form__predictive-list {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-y: auto;
+  list-style: none;
+  max-height: rem(296px);
+  overflow-y: auto;
+}
+
+.autocomplete-result:hover,
+.autocomplete-result[aria-selected='true'] {
+  background-color: var(--nsw-palette-hover);
 }

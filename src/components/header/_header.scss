@@ -85,6 +85,8 @@
 
     button {      
       @include breakpoint($nsw-desktop-breakpoint) {
+        z-index: 2;
+
         > span:last-child {
           @include sr-only;
         }
@@ -271,7 +273,8 @@
       }
     }
 
-    form {
+    form,
+    [role=search] {
       button {
         display: none;
         padding: 0;

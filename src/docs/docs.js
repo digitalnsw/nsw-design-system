@@ -67,6 +67,42 @@ function initDocs() {
       }
     }
   })
+
+  // eslint-disable-next-line no-new, no-undef
+  new Autocomplete('#autocomplete', {
+
+    search: input => {
+      const url = '/docs/search.json'
+
+      return new Promise(resolve => {
+        if (input.length < 1) { return resolve([]) }
+
+        fetch(url)
+          .then(response => response.json())
+          .then(data => {
+            resolve(data.filter(item => {
+              // eslint-disable-next-line max-len
+              return item.title.toLowerCase().includes(input.toLowerCase()) || item.keywords.toLowerCase().includes(input.toLowerCase())
+            })
+            )
+          })
+      })
+    },
+
+    renderResult: (result, props) => `
+      <li ${props}>
+        <a href="${result.url}">
+          ${result.title}
+        </a>
+      </li>
+    `,
+
+    getResultValue: (result) => result.title,
+
+    onSubmit: (result) => {
+      window.open(`${result.url}`, '_self')
+    },
+  })
 }
 
 initDocs();
