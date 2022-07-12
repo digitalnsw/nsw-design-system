@@ -68,23 +68,29 @@ function initDocs() {
     }
   })
 
+  let inputValue = ''
+  let showNoResults = false
+
+  const autocomplete = document.querySelector('#autocomplete')
+  const input = document.querySelector('.autocomplete-input')
+
   // eslint-disable-next-line no-new, no-undef
   new Autocomplete('#autocomplete', {
 
-    search: input => {
+    search: (input) => {
       const url = '/docs/search.json'
+      inputValue = input
 
       return new Promise(resolve => {
         if (input.length < 1) { return resolve([]) }
 
         fetch(url)
-          .then(response => response.json())
-          .then(data => {
-            resolve(data.filter(item => {
-              // eslint-disable-next-line max-len
-              return item.title.toLowerCase().includes(input.toLowerCase()) || item.keywords.toLowerCase().includes(input.toLowerCase())
-            })
-            )
+          .then((response) => response.json())
+          .then((data) => {
+            resolve(data.filter((item) =>
+              // eslint-disable-next-line max-len, implicit-arrow-linebreak
+              item.title.toLowerCase().includes(input.toLowerCase()) || item.keywords.toLowerCase().includes(input.toLowerCase()),
+            ))
           })
       })
     },
@@ -97,11 +103,31 @@ function initDocs() {
       </li>
     `,
 
+    onUpdate: (results) => {
+      showNoResults = inputValue && results.length === 0
+
+      if (showNoResults) {
+        autocomplete.classList.add('no-results')
+        input.setAttribute('aria-describedby', 'no-results')
+      } else {
+        autocomplete.classList.remove('no-results')
+        input.removeAttribute('aria-describedby')
+      }
+    },
+
     getResultValue: (result) => result.title,
 
     onSubmit: (result) => {
       window.open(`${result.url}`, '_self')
     },
+  })
+
+  input.addEventListener('focus', () => {
+    input.classList.add('focused')
+  })
+
+  input.addEventListener('blur', () => {
+    input.classList.remove('focused')
   })
 }
 
