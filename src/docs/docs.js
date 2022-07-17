@@ -74,21 +74,20 @@ function initDocs() {
   const autocomplete = document.querySelector('#autocomplete')
   const input = document.querySelector('.autocomplete-input')
 
-  // eslint-disable-next-line no-new, no-undef
+  /* eslint-disable */
   new Autocomplete('#autocomplete', {
 
     search: (input) => {
       const url = '/docs/search.json'
       inputValue = input
 
-      return new Promise(resolve => {
+      return new Promise((resolve) => {
         if (input.length < 1) { return resolve([]) }
 
         fetch(url)
           .then((response) => response.json())
           .then((data) => {
             resolve(data.filter((item) =>
-              // eslint-disable-next-line max-len, implicit-arrow-linebreak
               item.title.toLowerCase().includes(input.toLowerCase()) || item.keywords.toLowerCase().includes(input.toLowerCase()),
             ))
           })
@@ -131,4 +130,4 @@ function initDocs() {
   })
 }
 
-initDocs();
+initDocs()
