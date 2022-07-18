@@ -117,6 +117,8 @@ function initDocs() {
     getResultValue: (result) => result.title,
 
     onSubmit: (result) => {
+      autocomplete.classList.remove('no-results')
+      input.removeAttribute('aria-describedby')
       window.open(`${result.url}`, '_self')
     },
   })
