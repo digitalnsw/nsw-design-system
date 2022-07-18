@@ -102,8 +102,8 @@ function initDocs() {
       </li>
     `,
 
-    onUpdate: (results) => {
-      showNoResults = inputValue && results.length === 0
+    onUpdate: (result) => {
+      showNoResults = inputValue && result.length === 0
 
       if (showNoResults) {
         autocomplete.classList.add('no-results')
