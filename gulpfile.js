@@ -248,6 +248,18 @@ function compileDocsJS() {
     .pipe(dest(config.jsDocs.build))
 }
 
+function compileSearchJS() {
+  return src(config.jsSearch.src)
+    .pipe(
+      rollup(
+        {
+          plugins: [babel()],
+        },
+      ),
+    )
+    .pipe(dest(config.jsSearch.build))
+}
+
 function lintJavascript() {
   return src(config.js.watch)
     .pipe(eslint())
@@ -305,12 +317,13 @@ function bumping() {
 }
 
 const styles = series(lintStyles, buildStyles, buildCoreStyles, buildDocStyles)
-const javascript = series(lintJavascript, compileJS, compileDocsJS)
+const javascript = series(lintJavascript, compileJS, compileDocsJS, compileSearchJS)
 
 function watchFiles(done) {
   watch(config.scss.watch, series(styles, reload))
   watch(config.js.watch, series(javascript, reload))
   watch(config.jsDocs.watch, series(javascript, reload))
+  watch(config.jsSearch.watch, series(javascript, reload))
   watch(config.images.watch, series(moveImages, reload))
   watch(config.brand.watch, series(moveBrand, reload))
   watch(config.metalSmith.watch, series(metalsmithBuild, reload))
