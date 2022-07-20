@@ -12,7 +12,7 @@
     <button data-target=".nsw-filters__wrapper">
       <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">tune</span>
       <span>{{#if name}}{{name}}{{else}}Filter results{{/if}}{{#if results}}  ({{results}}){{/if}}</span>
-      <span class="material-icons nsw-material-icons-down" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
+      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
     </button>
   </div>
   {{/if}}
@@ -30,7 +30,7 @@
       {{#if input}}
       <div class="nsw-filters__item">
         <label class="nsw-form__label" for="{{input.id}}">{{input.name}}</label>
-        <input class="nsw-form__input" type="text" id="{{input.id}}" name="filters-keyword"{{#if input.value}} value="{{input.value}}"{{/if}}>
+          <input class="nsw-form__input" type="text" id="{{input.id}}" name="filters-keyword"{{#if input.value}} value="{{input.value}}"{{/if}}>
       </div>
       {{/if}}
       {{#if select}}

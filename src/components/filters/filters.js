@@ -53,7 +53,6 @@ class Filters {
 
 export default Filters
 
-
 const triggers = Array.from(document.querySelectorAll('.nsw-filters__collapse button'))
 
 const fnmap = {
