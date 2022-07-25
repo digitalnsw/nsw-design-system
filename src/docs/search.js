@@ -1,7 +1,4 @@
-/* eslint-disable no-shadow */
 /* eslint-disable no-new */
-/* eslint-disable no-undef */
-/* eslint-disable no-unused-vars */
 /* eslint-disable max-len */
 const data = [
   {
@@ -357,11 +354,15 @@ const data = [
 let inputValue = ''
 let showNoResults = false
 
-const autocomplete = document.querySelector('#autocomplete')
-const input = document.querySelector('.autocomplete-input')
-const noResults = document.querySelector('#no-results')
+const autocomplete = document.querySelector('.autocomplete')
+const autocompleteInput = document.querySelector('.autocomplete-input')
 
-new Autocomplete('#autocomplete', {
+const noResult = document.createElement('div')
+noResult.classList = 'no-result'
+noResult.innerText = 'No results found'
+autocomplete.insertAdjacentElement('beforeend', noResult)
+
+const newAutocomplete = new Autocomplete(autocomplete, {
 
   search: (input) => {
     inputValue = input
@@ -377,30 +378,30 @@ new Autocomplete('#autocomplete', {
     </li>
   `,
 
-  onUpdate: (results, selectedIndex) => {
+  onUpdate: (results) => {
     showNoResults = inputValue && results.length === 0
 
     if (showNoResults) {
-      autocomplete.classList.add('no-results')
-      input.setAttribute('aria-describedby', 'no-results')
+      autocomplete.classList.add('active')
+      autocompleteInput.setAttribute('aria-describedby', 'active')
     } else {
-      autocomplete.classList.remove('no-results')
-      input.removeAttribute('aria-describedby')
+      autocomplete.classList.remove('active')
+      autocompleteInput.removeAttribute('aria-describedby')
     }
   },
 
   getResultValue: (result) => result.title,
 
   onSubmit: (result) => {
-    autocomplete.classList.remove('no-results')
-    input.removeAttribute('aria-describedby')
+    autocomplete.classList.remove('active')
+    autocompleteInput.removeAttribute('aria-describedby')
     window.open(`${result.url}`, '_self')
   },
 })
 
-input.addEventListener('focus', () => {
-  input.classList.add('focused')
+autocompleteInput.addEventListener('focus', () => {
+  autocompleteInput.classList.add('focused')
 })
-input.addEventListener('blur', () => {
-  input.classList.remove('focused')
+autocompleteInput.addEventListener('blur', () => {
+  autocompleteInput.classList.remove('focused')
 })
