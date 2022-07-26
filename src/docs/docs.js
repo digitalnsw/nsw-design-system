@@ -1,3 +1,6 @@
+/* eslint-disable no-new */
+import { searchData } from '../global/scripts/helpers/searchdata'
+
 function initDocs() {
   const codeButtons = document.querySelectorAll('.js-code-button')
 
@@ -66,6 +69,61 @@ function initDocs() {
         link.classList.add('current-section')
       }
     }
+  })
+  let inputValue = ''
+  let showNoResults = false
+
+  const autocomplete = document.querySelector('.autocomplete')
+  const autocompleteInput = document.querySelector('.autocomplete-input')
+
+  const noResult = document.createElement('div')
+  noResult.classList = 'no-result'
+  noResult.innerText = 'No results found'
+  autocomplete.insertAdjacentElement('beforeend', noResult)
+
+  const newAutocomplete = new Autocomplete(autocomplete, {
+
+    search: (input) => {
+      inputValue = input
+      if (input.length < 1) { return [] }
+      return searchData.filter((item) => item.title.toLowerCase().includes(input.toLowerCase())
+      || item.keywords.toLowerCase().includes(input.toLowerCase()))
+    },
+
+    renderResult: (result, props) => `
+      <li ${props}>
+        <a href="${result.url}">
+          ${result.title}
+        </a>
+      </li>
+    `,
+
+    onUpdate: (results) => {
+      showNoResults = inputValue && results.length === 0
+
+      if (showNoResults) {
+        autocomplete.classList.add('active')
+        autocompleteInput.setAttribute('aria-describedby', 'active')
+      } else {
+        autocomplete.classList.remove('active')
+        autocompleteInput.removeAttribute('aria-describedby')
+      }
+    },
+
+    getResultValue: (result) => result.title,
+
+    onSubmit: (result) => {
+      autocomplete.classList.remove('active')
+      autocompleteInput.removeAttribute('aria-describedby')
+      window.open(`${result.url}`, '_self')
+    },
+  })
+
+  autocompleteInput.addEventListener('focus', () => {
+    autocompleteInput.classList.add('focused')
+  })
+  autocompleteInput.addEventListener('blur', () => {
+    autocompleteInput.classList.remove('focused')
   })
 }
 

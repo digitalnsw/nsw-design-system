@@ -1,6 +1,5 @@
-/* eslint-disable no-new */
 /* eslint-disable max-len */
-const data = [
+export const searchData = [
   {
     objectID: '1',
     title: 'Digital NSW Community',
@@ -351,57 +350,4 @@ const data = [
   },
 ]
 
-let inputValue = ''
-let showNoResults = false
-
-const autocomplete = document.querySelector('.autocomplete')
-const autocompleteInput = document.querySelector('.autocomplete-input')
-
-const noResult = document.createElement('div')
-noResult.classList = 'no-result'
-noResult.innerText = 'No results found'
-autocomplete.insertAdjacentElement('beforeend', noResult)
-
-const newAutocomplete = new Autocomplete(autocomplete, {
-
-  search: (input) => {
-    inputValue = input
-    if (input.length < 1) { return [] }
-    return data.filter((item) => item.title.toLowerCase().includes(input.toLowerCase()) || item.keywords.toLowerCase().includes(input.toLowerCase()))
-  },
-
-  renderResult: (result, props) => `
-    <li ${props}>
-      <a href="${result.url}">
-        ${result.title}
-      </a>
-    </li>
-  `,
-
-  onUpdate: (results) => {
-    showNoResults = inputValue && results.length === 0
-
-    if (showNoResults) {
-      autocomplete.classList.add('active')
-      autocompleteInput.setAttribute('aria-describedby', 'active')
-    } else {
-      autocomplete.classList.remove('active')
-      autocompleteInput.removeAttribute('aria-describedby')
-    }
-  },
-
-  getResultValue: (result) => result.title,
-
-  onSubmit: (result) => {
-    autocomplete.classList.remove('active')
-    autocompleteInput.removeAttribute('aria-describedby')
-    window.open(`${result.url}`, '_self')
-  },
-})
-
-autocompleteInput.addEventListener('focus', () => {
-  autocompleteInput.classList.add('focused')
-})
-autocompleteInput.addEventListener('blur', () => {
-  autocompleteInput.classList.remove('focused')
-})
+export default searchData
