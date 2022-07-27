@@ -1,4 +1,3 @@
-/* eslint-disable no-new */
 import { searchData } from '../global/scripts/helpers/searchdata'
 
 function initDocs() {
@@ -70,21 +69,17 @@ function initDocs() {
       }
     }
   })
-  let inputValue = ''
-  let showNoResults = false
 
-  const autocomplete = document.querySelector('.autocomplete')
-  const autocompleteInput = document.querySelector('.autocomplete-input')
+  const autocomplete = document.querySelector('.nsw-autocomplete')
+  const autocompleteInput = autocomplete.querySelector('.nsw-autocomplete__input')
+  const autocompleteNoResult = autocomplete.querySelector('.nsw-autocomplete__no-result')
 
-  const noResult = document.createElement('div')
-  noResult.classList = 'no-result'
-  noResult.innerText = 'No results found'
-  autocomplete.insertAdjacentElement('beforeend', noResult)
+  let autocompleteInputValue = ''
 
   const newAutocomplete = new Autocomplete(autocomplete, {
 
     search: (input) => {
-      inputValue = input
+      autocompleteInputValue = input
       if (input.length < 1) { return [] }
       return searchData.filter((item) => item.title.toLowerCase().includes(input.toLowerCase())
       || item.keywords.toLowerCase().includes(input.toLowerCase()))
@@ -99,31 +94,27 @@ function initDocs() {
     `,
 
     onUpdate: (results) => {
-      showNoResults = inputValue && results.length === 0
-
-      if (showNoResults) {
-        autocomplete.classList.add('active')
-        autocompleteInput.setAttribute('aria-describedby', 'active')
+      if (autocompleteInputValue && results.length === 0) {
+        autocompleteNoResult.classList.add('show')
       } else {
-        autocomplete.classList.remove('active')
-        autocompleteInput.removeAttribute('aria-describedby')
+        autocompleteNoResult.classList.remove('show')
       }
     },
 
     getResultValue: (result) => result.title,
 
     onSubmit: (result) => {
-      autocomplete.classList.remove('active')
-      autocompleteInput.removeAttribute('aria-describedby')
+      autocompleteNoResult.classList.remove('show')
       window.open(`${result.url}`, '_self')
     },
   })
 
   autocompleteInput.addEventListener('focus', () => {
-    autocompleteInput.classList.add('focused')
+    autocompleteNoResult.classList.add('active')
   })
+
   autocompleteInput.addEventListener('blur', () => {
-    autocompleteInput.classList.remove('focused')
+    autocompleteNoResult.classList.remove('active')
   })
 }
 
