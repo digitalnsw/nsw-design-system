@@ -265,6 +265,11 @@ function moveSitemap() {
     .pipe(dest(config.sitemap.build))
 }
 
+function moveSearch() {
+  return src(config.search.src)
+    .pipe(dest(config.search.build))
+}
+
 function zipDistFolder() {
   return src(config.zipfile.src)
     .pipe(zip(config.zipfile.filename))
@@ -321,6 +326,7 @@ const buildprod = series(
   cleanUp,
   copyFavicon,
   moveSitemap,
+  moveSearch,
   metalsmithBuild,
   styles,
   javascript,
@@ -336,6 +342,7 @@ const build = series(
   cleanUp,
   copyFavicon,
   moveSitemap,
+  moveSearch,
   metalsmithBuild,
   styles,
   javascript,
@@ -348,6 +355,7 @@ const dev = series(
   cleanUp,
   copyFavicon,
   moveSitemap,
+  moveSearch,
   metalsmithBuild,
   styles,
   javascript,
