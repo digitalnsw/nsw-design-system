@@ -1,5 +1,3 @@
-import { searchData } from '../global/scripts/helpers/searchdata'
-
 function initDocs() {
   const codeButtons = document.querySelectorAll('.js-code-button')
 
@@ -70,6 +68,15 @@ function initDocs() {
     }
   })
 
+  let searchData = []
+
+  fetch('./docs/js/search.json')
+    .then((response) => {
+      return response.json()
+    })
+    .then((data) => {
+      searchData = data
+    })
   const autocomplete = document.querySelector('.nsw-autocomplete')
   const autocompleteInput = autocomplete.querySelector('.nsw-autocomplete__input')
   const autocompleteNoResult = autocomplete.querySelector('.nsw-autocomplete__no-result')
