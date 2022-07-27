@@ -70,7 +70,7 @@ function initDocs() {
 
   let searchData = []
 
-  fetch('./docs/js/search.json')
+  fetch('/docs/js/search.json')
     .then((response) => response.json())
     .then((data) => {
       searchData = data
