@@ -4,8 +4,15 @@ page: true
 width: menu
 model:
   instant: ../../components/filters/json/filters-instant.json
-  batch: ../../components/filters/json/filters-batch.json
-  all: ../../components/filters/json/filters-all.json
+  instant-accordion: ../../components/filters/json/filters-instant-accordion.json
+  instant-down: ../../components/filters/json/filters-instant-down.json
+  instant-down-accordion: ../../components/filters/json/filters-instant-down-accordion.json
+  batch-right: ../../components/filters/json/filters-batch-right.json
+  batch-right-accordion: ../../components/filters/json/filters-batch-right-accordion.json
+  batch-left: ../../components/filters/json/filters-batch-left.json
+  batch-left-accordion: ../../components/filters/json/filters-batch-left-accordion.json
+  batch-down: ../../components/filters/json/filters-batch-down.json
+  batch-down-accordion: ../../components/filters/json/filters-batch-down-accordion.json
 ---
 
 {{#>_layout-container}}
@@ -15,14 +22,57 @@ model:
       {{>_filters model.instant}}
     </div>
   </div>
+</div>
+<div class="nsw-grid">
   <div class="nsw-col nsw-col-xl-4">
     <div class="nsw-docs__component">
-      {{>_filters model.batch}}
+      {{>_filters model.instant-accordion}}
     </div>
   </div>
   <div class="nsw-col nsw-col-xl-4">
     <div class="nsw-docs__component">
-      {{>_filters model.all}}
+      {{>_filters model.instant-down}}
+    </div>
+  </div>
+  <div class="nsw-col nsw-col-xl-4">
+    <div class="nsw-docs__component">
+      {{>_filters model.instant-down-accordion}}
+    </div>
+  </div>
+</div>
+<div class="nsw-grid">
+  <div class="nsw-col nsw-col-xl-4">
+    <div class="nsw-docs__component">
+      {{>_filters model.batch-right}}
+    </div>
+  </div>
+  <div class="nsw-col nsw-col-xl-4">
+    <div class="nsw-docs__component">
+      {{>_filters model.batch-right-accordion}}
+    </div>
+  </div>
+</div>
+<div class="nsw-grid">
+  <div class="nsw-col nsw-col-xl-4">
+    <div class="nsw-docs__component">
+      {{>_filters model.batch-left}}
+    </div>
+  </div>
+  <div class="nsw-col nsw-col-xl-4">
+    <div class="nsw-docs__component">
+      {{>_filters model.batch-left-accordion}}
+    </div>
+  </div>
+</div>
+<div class="nsw-grid">
+  <div class="nsw-col nsw-col-xl-4">
+    <div class="nsw-docs__component">
+      {{>_filters model.batch-down}}
+    </div>
+  </div>
+  <div class="nsw-col nsw-col-xl-4">
+    <div class="nsw-docs__component">
+      {{>_filters model.batch-down-accordion}}
     </div>
   </div>
 </div>
