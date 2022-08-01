@@ -4,23 +4,42 @@ page: true
 width: menu
 model:
   instant: ../../components/filters/json/filters-instant.json
+  batch: ../../components/filters/json/filters-batch.json
+  all: ../../components/filters/json/filters-all.json
 ---
 
 {{#>_layout-container}}
 <div class="nsw-grid">
   <div class="nsw-col nsw-col-xl-4">
     <div class="nsw-docs__component">
-      {{>_filters model.instant down='true'}}
+      {{>_filters model.instant instant='true'}}
     </div>
   </div>
   <div class="nsw-col nsw-col-xl-4">
     <div class="nsw-docs__component">
-      {{>_filters model.instant}}
+      {{>_filters model.all instant='true' down='true'}}
     </div>
   </div>
   <div class="nsw-col nsw-col-xl-4">
     <div class="nsw-docs__component">
-      {{>_filters model.instant}}
+      {{>_filters model.batch instant='true' accordion='true'}}
+    </div>
+  </div>
+</div>
+<div class="nsw-grid">
+  <div class="nsw-col nsw-col-xl-4">
+    <div class="nsw-docs__component">
+      {{>_filters model.instant instant='true'}}
+    </div>
+  </div>
+  <div class="nsw-col nsw-col-xl-4">
+    <div class="nsw-docs__component">
+      {{>_filters model.all instant='true' accordion='true'}}
+    </div>
+  </div>
+  <div class="nsw-col nsw-col-xl-4">
+    <div class="nsw-docs__component">
+      {{>_filters model.batch instant='true'}}
     </div>
   </div>
 </div>

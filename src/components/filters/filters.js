@@ -17,7 +17,6 @@ class Filters {
     this.content = []
     this.toggleEvent = (e) => this.toggle(e)
     // Selected
-    this.filtersList = element.querySelector('.nsw-filters__list')
     this.filtersItems = element.querySelectorAll('.nsw-filters__item')
     this.openButtonText = element.querySelector('.nsw-filters__controls-name')
     this.selected = []
@@ -133,7 +132,7 @@ class Filters {
     this.filtersItems.forEach((filter) => {
       const button = filter.querySelector('.nsw-filters__item-name')
       const content = filter.querySelector('.nsw-filters__item-content')
-      const openButtonTextname = this.openButtonText.innerText
+      const openButtonTextname = (this.openButtonText) ? this.openButtonText.innerText : ''
       // Text Inputs
       const text = content.querySelectorAll('input[type="text"]')
       if (text.length >= 0 && button) {
