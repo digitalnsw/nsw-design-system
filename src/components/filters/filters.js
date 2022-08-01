@@ -129,6 +129,7 @@ class Filters {
   }
 
   selectedItems() {
+    const checkIcon = '<span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span>'
     this.filtersItems.forEach((filter) => {
       const button = filter.querySelector('.nsw-filters__item-name')
       const content = filter.querySelector('.nsw-filters__item-content')
@@ -141,13 +142,13 @@ class Filters {
           if (input.value !== '') {
             this.selected.push(input.value)
             button.innerText = buttonText
-            button.innerHTML = `${button.innerText} <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span>`
+            button.innerHTML = `${button.innerText} ${checkIcon}`
           }
           let timer
           input.addEventListener('keyup', () => {
             if (input.value !== '') {
               button.innerText = buttonText
-              button.innerHTML = `${button.innerText} <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span>`
+              button.innerHTML = `${button.innerText} ${checkIcon}`
               clearTimeout(timer)
               timer = setTimeout(() => {
                 this.selected.push(input.value)
@@ -177,13 +178,13 @@ class Filters {
           if (select.value !== '') {
             this.selected.push(select)
             button.innerText = buttonText
-            button.innerHTML = `${button.innerText} <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span>`
+            button.innerHTML = `${button.innerText} ${checkIcon}`
           }
           select.addEventListener('change', () => {
             if (select.value !== '') {
               this.selected.push(select)
               button.innerText = buttonText
-              button.innerHTML = `${button.innerText} <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span>`
+              button.innerHTML = `${button.innerText} ${checkIcon}`
               if (this.openButtonText && this.selected.length > 0) {
                 this.openButtonText.innerText = `${openButtonTextname} (${this.selected.length})`
               } else {
@@ -211,7 +212,7 @@ class Filters {
             this.selected.push(input.value)
             checks.push(input.value)
             button.innerText = buttonText
-            button.innerHTML = `${button.innerText} <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span>`
+            button.innerHTML = `${button.innerText} ${checkIcon}`
             if (this.openButtonText && this.selected.length > 0) {
               this.openButtonText.innerText = `${openButtonTextname} (${this.selected.length})`
             } else {
@@ -238,7 +239,7 @@ class Filters {
             }
             if (checks.length > 0) {
               button.innerText = buttonText
-              button.innerHTML = `${button.innerText} <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span>`
+              button.innerHTML = `${button.innerText} ${checkIcon}`
             } else {
               button.innerText = buttonText
             }

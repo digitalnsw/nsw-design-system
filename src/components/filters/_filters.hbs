@@ -4,7 +4,11 @@
     <button>
       <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">tune</span>
       <span class="nsw-filters__controls-name">{{#if name}}{{name}}{{else}}Filters{{/if}}{{#if results}}  ({{results}}){{/if}}</span>
+      {{#if down}}
       <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
+      {{else}}
+      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_right</span>
+      {{/if}}
     </button>
   </div>
   {{/if}}
