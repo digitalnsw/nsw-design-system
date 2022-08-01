@@ -3,7 +3,7 @@
   <div class="nsw-filters__controls{{#if results}} active{{/if}}">
     <button>
       <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">tune</span>
-      <span>{{#if name}}{{name}}{{else}}Filter results{{/if}}{{#if results}}  ({{results}}){{/if}}</span>
+      <span class="nsw-filters__controls-name">{{#if name}}{{name}}{{else}}Filters{{/if}}{{#if results}}  ({{results}}){{/if}}</span>
       <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
     </button>
   </div>
@@ -13,7 +13,7 @@
     <div class="nsw-filters__controls{{#if results}} active{{/if}}">
       <button>
         <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">tune</span>
-        <span>{{#if name}}{{name}}{{else}}Filter results{{/if}}{{#if results}}  ({{results}}){{/if}}</span>
+        <span class="nsw-filters__controls-name">{{#if name}}{{name}}{{else}}Filters{{/if}}{{#if results}}  ({{results}}){{/if}}</span>
         <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
       </button>
     </div>
@@ -25,8 +25,8 @@
       {{else}}
       <div class="nsw-filters__back">
         <button class="nsw-icon-button nsw-icon-button--flex js-close-sub-nav" type="button" aria-expanded="true" aria-controls="sub-nav-{{id}}">
-          <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_left</span>
-          <span>Back</span> 
+          <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">close</span>
+          <span class="sr-only">Close filters</span> 
         </button>
       </div>
       {{/if}}
@@ -37,7 +37,7 @@
       <div class="nsw-filters__item">
         {{#if accordion}}
         <button class="nsw-filters__item-button">
-          <span>{{input.name}}</span>
+          <span class="nsw-filters__item-name">{{input.name}}</span>
           <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
         </button>
         {{/if}}
@@ -51,7 +51,7 @@
       <div class="nsw-filters__item">
         {{#if accordion}}
         <button class="nsw-filters__item-button">
-          <span>{{select.name}}</span>
+          <span class="nsw-filters__item-name">{{select.name}}</span>
           <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
         </button>
         {{/if}}
@@ -70,7 +70,7 @@
       <div class="nsw-filters__item">
         {{#if accordion}}
         <button class="nsw-filters__item-button">
-          <span>{{checkboxes.name}}</span>
+          <span class="nsw-filters__item-name">{{checkboxes.name}}</span>
           <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
         </button>
         {{/if}}
@@ -98,7 +98,7 @@
       <div class="nsw-filters__item">
         {{#if accordion}}
         <button class="nsw-filters__item-button">
-          <span>Date</span>
+          <span class="nsw-filters__item-name">Date</span>
           <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
         </button>
         {{/if}}

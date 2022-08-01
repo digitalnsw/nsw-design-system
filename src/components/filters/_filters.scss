@@ -121,16 +121,18 @@
   &__back {
     .nsw-filters--fixed & {
       @include z-index('upper');
-      position: fixed;
-      top: 0;
+      position: absolute;
+      top: rem(16px);
+      padding-right: rem(16px);
       background-color: var(--nsw-white);
-      padding: rem(16px) rem(8px);
-      border-bottom: 1px solid var(--nsw-grey-04);
-      width: 100%;
       transition: 0.3s linear;
 
       @include breakpoint('lg') {
         display: none;
+      }
+
+      .nsw-material-icons {
+        font-size: rem(map-get($nsw-icon-sizes, 30));
       }
     }
 
@@ -165,7 +167,7 @@
       transition: 0.3s linear;
       overflow-y: auto;
       background-color: var(--nsw-white);
-      padding: rem(73px) rem(16px) rem(101px) rem(16px);
+      padding: 0 rem(16px) rem(101px) rem(16px);
       
       .nsw-section--invert & {    
         background-color: var(--nsw-brand-dark);
@@ -260,6 +262,21 @@
         .nsw-material-icons:last-child {
           transform: rotate(180deg);
         }
+
+        .nsw-filters__item-name .nsw-material-icons:last-child {
+          transform: none;
+        }
+      }
+    }
+
+    &-name {
+      display: flex;
+      align-items: center;
+
+      .nsw-material-icons:last-child {
+        font-size: rem(17px);
+        color: var(--nsw-status-success);
+        padding-left: rem(6px);
       }
     }
 

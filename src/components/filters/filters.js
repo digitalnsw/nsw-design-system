@@ -16,11 +16,17 @@ class Filters {
     this.buttons = []
     this.content = []
     this.toggleEvent = (e) => this.toggle(e)
+    // Selected
+    this.filtersList = element.querySelector('.nsw-filters__list')
+    this.filtersItems = element.querySelectorAll('.nsw-filters__item')
+    this.openButtonText = element.querySelector('.nsw-filters__controls-name')
+    this.selected = []
   }
 
   init() {
     this.setUpDom()
     this.controls()
+    this.selectedItems()
   }
 
   setUpDom() {
@@ -120,6 +126,126 @@ class Filters {
     } else {
       this.setAccordionState(currentTarget, 'close')
     }
+  }
+
+  selectedItems() {
+    this.filtersItems.forEach((filter) => {
+      const button = filter.querySelector('.nsw-filters__item-name')
+      const content = filter.querySelector('.nsw-filters__item-content')
+      const openButtonTextname = this.openButtonText.innerText
+      // Text Inputs
+      const text = content.querySelectorAll('input[type="text"]')
+      if (text.length >= 0 && button) {
+        const buttonText = button.innerText
+        text.forEach((input) => {
+          if (input.value !== '') {
+            this.selected.push(input.value)
+            button.innerText = buttonText
+            button.innerHTML = `${button.innerText} <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span>`
+          }
+          let timer
+          input.addEventListener('keyup', () => {
+            if (input.value !== '') {
+              button.innerText = buttonText
+              button.innerHTML = `${button.innerText} <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span>`
+              clearTimeout(timer)
+              timer = setTimeout(() => {
+                this.selected.push(input.value)
+              }, 1000)
+              if (this.openButtonText && this.selected.length > 0) {
+                this.openButtonText.innerText = `${openButtonTextname} (${this.selected.length})`
+              } else {
+                this.openButtonText.innerText = `${openButtonTextname}`
+              }
+            } else {
+              this.selected.splice(this.selected.indexOf(input.value), 1)
+              button.innerText = buttonText
+              if (this.openButtonText && this.selected.length > 0) {
+                this.openButtonText.innerText = `${openButtonTextname} (${this.selected.length})`
+              } else {
+                this.openButtonText.innerText = `${openButtonTextname}`
+              }
+            }
+          })
+        })
+      }
+      // Select Options
+      const selects = content.querySelectorAll('select')
+      if (selects.length > 0 && button) {
+        const buttonText = button.innerText
+        selects.forEach((select) => {
+          if (select.value !== '') {
+            this.selected.push(select)
+            button.innerText = buttonText
+            button.innerHTML = `${button.innerText} <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span>`
+          }
+          select.addEventListener('change', () => {
+            if (select.value !== '') {
+              this.selected.push(select)
+              button.innerText = buttonText
+              button.innerHTML = `${button.innerText} <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span>`
+              if (this.openButtonText && this.selected.length > 0) {
+                this.openButtonText.innerText = `${openButtonTextname} (${this.selected.length})`
+              } else {
+                this.openButtonText.innerText = `${openButtonTextname}`
+              }
+            } else {
+              this.selected.splice(this.selected.indexOf(select.value), 1)
+              button.innerText = buttonText
+              if (this.openButtonText && this.selected.length > 0) {
+                this.openButtonText.innerText = `${openButtonTextname} (${this.selected.length})`
+              } else {
+                this.openButtonText.innerText = `${openButtonTextname}`
+              }
+            }
+          })
+        })
+      }
+      // Checkboxes
+      const checkboxes = content.querySelectorAll('input[type="checkbox"]')
+      if (checkboxes.length > 0 && button) {
+        const buttonText = button.innerText
+        const checks = []
+        checkboxes.forEach((input) => {
+          if (input.checked) {
+            this.selected.push(input.value)
+            checks.push(input.value)
+            button.innerText = buttonText
+            button.innerHTML = `${button.innerText} <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span>`
+            if (this.openButtonText && this.selected.length > 0) {
+              this.openButtonText.innerText = `${openButtonTextname} (${this.selected.length})`
+            } else {
+              this.openButtonText.innerText = `${openButtonTextname}`
+            }
+          }
+          input.addEventListener('change', () => {
+            if (input.checked) {
+              this.selected.push(input.value)
+              checks.push(input.value)
+              if (this.openButtonText && this.selected.length > 0) {
+                this.openButtonText.innerText = `${openButtonTextname} (${this.selected.length})`
+              } else {
+                this.openButtonText.innerText = `${openButtonTextname}`
+              }
+            } else {
+              this.selected.splice(this.selected.indexOf(input.value), 1)
+              checks.splice(checks.indexOf(input.value), 1)
+              if (this.openButtonText && this.selected.length > 0) {
+                this.openButtonText.innerText = `${openButtonTextname} (${this.selected.length})`
+              } else {
+                this.openButtonText.innerText = `${openButtonTextname}`
+              }
+            }
+            if (checks.length > 0) {
+              button.innerText = buttonText
+              button.innerHTML = `${button.innerText} <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span>`
+            } else {
+              button.innerText = buttonText
+            }
+          })
+        })
+      }
+    })
   }
 }
 
