@@ -129,10 +129,11 @@ class Filters {
 
   selectedItems() {
     const checkIcon = '<span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span>'
+    const openButtonTextname = (this.openButtonText) ? this.openButtonText.innerText : ''
+
     this.filtersItems.forEach((filter) => {
       const button = filter.querySelector('.nsw-filters__item-name')
       const content = filter.querySelector('.nsw-filters__item-content')
-      const openButtonTextname = (this.openButtonText) ? this.openButtonText.innerText : ''
       // Text Inputs
       const text = content.querySelectorAll('input[type="text"]')
       if (text.length >= 0 && button) {
@@ -151,20 +152,12 @@ class Filters {
               clearTimeout(timer)
               timer = setTimeout(() => {
                 this.selected.push(input.value)
+                this.filtersSelected(this.selected, openButtonTextname)
               }, 1000)
-              if (this.openButtonText && this.selected.length > 0) {
-                this.openButtonText.innerText = `${openButtonTextname} (${this.selected.length})`
-              } else {
-                this.openButtonText.innerText = `${openButtonTextname}`
-              }
             } else {
               this.selected.splice(this.selected.indexOf(input.value), 1)
               button.innerText = buttonText
-              if (this.openButtonText && this.selected.length > 0) {
-                this.openButtonText.innerText = `${openButtonTextname} (${this.selected.length})`
-              } else {
-                this.openButtonText.innerText = `${openButtonTextname}`
-              }
+              this.filtersSelected(this.selected, openButtonTextname)
             }
           })
         })
@@ -184,19 +177,11 @@ class Filters {
               this.selected.push(select)
               button.innerText = buttonText
               button.innerHTML = `${button.innerText} ${checkIcon}`
-              if (this.openButtonText && this.selected.length > 0) {
-                this.openButtonText.innerText = `${openButtonTextname} (${this.selected.length})`
-              } else {
-                this.openButtonText.innerText = `${openButtonTextname}`
-              }
+              this.filtersSelected(this.selected, openButtonTextname)
             } else {
               this.selected.splice(this.selected.indexOf(select.value), 1)
               button.innerText = buttonText
-              if (this.openButtonText && this.selected.length > 0) {
-                this.openButtonText.innerText = `${openButtonTextname} (${this.selected.length})`
-              } else {
-                this.openButtonText.innerText = `${openButtonTextname}`
-              }
+              this.filtersSelected(this.selected, openButtonTextname)
             }
           })
         })
@@ -212,29 +197,17 @@ class Filters {
             checks.push(input.value)
             button.innerText = buttonText
             button.innerHTML = `${button.innerText} ${checkIcon}`
-            if (this.openButtonText && this.selected.length > 0) {
-              this.openButtonText.innerText = `${openButtonTextname} (${this.selected.length})`
-            } else {
-              this.openButtonText.innerText = `${openButtonTextname}`
-            }
+            this.filtersSelected(this.selected, openButtonTextname)
           }
           input.addEventListener('change', () => {
             if (input.checked) {
               this.selected.push(input.value)
               checks.push(input.value)
-              if (this.openButtonText && this.selected.length > 0) {
-                this.openButtonText.innerText = `${openButtonTextname} (${this.selected.length})`
-              } else {
-                this.openButtonText.innerText = `${openButtonTextname}`
-              }
+              this.filtersSelected(this.selected, openButtonTextname)
             } else {
               this.selected.splice(this.selected.indexOf(input.value), 1)
               checks.splice(checks.indexOf(input.value), 1)
-              if (this.openButtonText && this.selected.length > 0) {
-                this.openButtonText.innerText = `${openButtonTextname} (${this.selected.length})`
-              } else {
-                this.openButtonText.innerText = `${openButtonTextname}`
-              }
+              this.filtersSelected(this.selected, openButtonTextname)
             }
             if (checks.length > 0) {
               button.innerText = buttonText
@@ -245,7 +218,16 @@ class Filters {
           })
         })
       }
+      // Radio
     })
+  }
+
+  filtersSelected(array, buttonText) {
+    if (this.openButtonText && array.length > 0) {
+      this.openButtonText.innerText = `${buttonText} (${array.length})`
+    } else {
+      this.openButtonText.innerText = `${buttonText}`
+    }
   }
 }
 

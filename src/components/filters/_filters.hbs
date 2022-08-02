@@ -46,7 +46,7 @@
         </button>
         {{/if}}
         <div class="nsw-filters__item-content">
-          <label class="nsw-form__label{{#if accordion}} sr-only{{/if}}" for="{{input.id}}">{{input.name}}</label>
+          <label class="nsw-form__label{{#if accordion}} sr-only{{else}} nsw-filters__item-name{{/if}}" for="{{input.id}}">{{input.name}}</label>
           <input class="nsw-form__input" type="text" id="{{input.id}}" name="filters-keyword"{{#if input.value}} value="{{input.value}}"{{/if}}>
         </div>
       </div>
@@ -60,7 +60,7 @@
         </button>
         {{/if}}
         <div class="nsw-filters__item-content">
-          <label class="nsw-form__label{{#if accordion}} sr-only{{/if}}" for="{{select.id}}">{{select.name}}</label>
+          <label class="nsw-form__label {{#if accordion}} sr-only{{else}} nsw-filters__item-name{{/if}}" for="{{select.id}}">{{select.name}}</label>
           <select class="nsw-form__select" id="{{select.id}}" name="{{select.id}}">
             <option value="">Please select</option>  
             {{#each select.list}}
@@ -80,7 +80,7 @@
         {{/if}}
         <div class="nsw-filters__item-content">
           <fieldset class="nsw-form__fieldset">
-            <legend class="nsw-form__legend{{#if accordion}} sr-only{{/if}}">{{checkboxes.name}}</legend>
+            <legend class="nsw-form__legend{{#if accordion}} sr-only{{else}} nsw-filters__item-name{{/if}}">{{checkboxes.name}}</legend>
             {{#each checkboxes.list}}
             <input class="nsw-form__checkbox-input" type="checkbox" name="{{name}}" value="{{title}}" id="{{id}}{{@index}}{{../uID}}"{{#if checked}} checked{{/if}}>
             <label class="nsw-form__checkbox-label" for="{{id}}{{@index}}{{../uID}}">{{title}}</label>
@@ -110,7 +110,7 @@
           {{#each dates.list}}
           <div class="nsw-form__group">
             <fieldset class="nsw-form__date">
-              <legend class="nsw-form__label{{#if accordion}} sr-only{{/if}}">{{title}}</legend>
+              <legend class="nsw-form__label{{#if accordion}} sr-only{{else}} nsw-filters__item-name{{/if}}">{{title}}</legend>
               <div class="nsw-form__date-wrapper">
                 <div class="nsw-form__date-input">
                   <label class="nsw-form__label nsw-form__label--small" for="{{id}}-day">Day</label>
