@@ -82,14 +82,14 @@
           <fieldset class="nsw-form__fieldset">
             <legend class="nsw-form__legend{{#if accordion}} sr-only{{/if}}">{{checkboxes.name}}</legend>
             {{#each checkboxes.list}}
-            <input class="nsw-form__checkbox-input" type="checkbox" name="{{name}}" value="{{title}}" id="{{id}}"{{#if checked}} checked{{/if}}>
-            <label class="nsw-form__checkbox-label" for="{{id}}">{{title}}</label>
+            <input class="nsw-form__checkbox-input" type="checkbox" name="{{name}}" value="{{title}}" id="{{id}}{{@index}}{{../uID}}"{{#if checked}} checked{{/if}}>
+            <label class="nsw-form__checkbox-label" for="{{id}}{{@index}}{{../uID}}">{{title}}</label>
             {{/each}}
             {{#if checkboxes.all}}
             <div class="nsw-filters__all hidden">
               {{#each checkboxes.all}}
-              <input class="nsw-form__checkbox-input" type="checkbox" name="{{name}}" value="{{title}}" id="{{id}}"{{#if checked}} checked{{/if}}>
-              <label class="nsw-form__checkbox-label" for="{{id}}">{{title}}</label>
+              <input class="nsw-form__checkbox-input" type="checkbox" name="{{name}}" value="{{title}}" id="{{id}}{{@index}}{{../uID}}"{{#if checked}} checked{{/if}}>
+              <label class="nsw-form__checkbox-label" for="{{id}}{{@index}}{{../uID}}">{{title}}</label>
               {{/each}}
             </div>
             <button class="nsw-filters__more">{{#if checkboxes.more}}{{checkboxes.more}}{{else}}Show all{{/if}}{{#if checkboxes.count}} ({{checkboxes.count}}){{/if}}</button>
