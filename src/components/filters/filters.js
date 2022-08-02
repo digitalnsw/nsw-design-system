@@ -129,104 +129,123 @@ class Filters {
 
   selectedItems() {
     const checkIcon = '<span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span>'
-    const openButtonTextname = (this.openButtonText) ? this.openButtonText.innerText : ''
+    const buttonLabel = (this.openButtonText) ? this.openButtonText.innerText : ''
 
     this.filtersItems.forEach((filter) => {
       const button = filter.querySelector('.nsw-filters__item-name')
+      const label = filter.querySelector('.nsw-form__label')
+      const legend = filter.querySelector('.nsw-form__legend')
       const content = filter.querySelector('.nsw-filters__item-content')
-      // Text Inputs
       const text = content.querySelectorAll('input[type="text"]')
-      if (text.length >= 0 && button) {
-        const buttonText = button.innerText
-        text.forEach((input) => {
-          if (input.value !== '') {
-            this.selected.push(input.value)
-            button.innerText = buttonText
-            button.innerHTML = `${button.innerText} ${checkIcon}`
-          }
-          let timer
-          input.addEventListener('keyup', () => {
-            if (input.value !== '') {
-              button.innerText = buttonText
-              button.innerHTML = `${button.innerText} ${checkIcon}`
-              clearTimeout(timer)
-              timer = setTimeout(() => {
-                this.selected.push(input.value)
-                this.filtersSelected(this.selected, openButtonTextname)
-              }, 1000)
-            } else {
-              this.selected.splice(this.selected.indexOf(input.value), 1)
-              button.innerText = buttonText
-              this.filtersSelected(this.selected, openButtonTextname)
-            }
-          })
-        })
-      }
-      // Select Options
       const selects = content.querySelectorAll('select')
-      if (selects.length > 0 && button) {
-        const buttonText = button.innerText
-        selects.forEach((select) => {
-          if (select.value !== '') {
-            this.selected.push(select)
-            button.innerText = buttonText
-            button.innerHTML = `${button.innerText} ${checkIcon}`
-          }
-          select.addEventListener('change', () => {
-            if (select.value !== '') {
-              this.selected.push(select)
-              button.innerText = buttonText
-              button.innerHTML = `${button.innerText} ${checkIcon}`
-              this.filtersSelected(this.selected, openButtonTextname)
-            } else {
-              this.selected.splice(this.selected.indexOf(select.value), 1)
-              button.innerText = buttonText
-              this.filtersSelected(this.selected, openButtonTextname)
-            }
-          })
-        })
-      }
-      // Checkboxes
       const checkboxes = content.querySelectorAll('input[type="checkbox"]')
-      if (checkboxes.length > 0 && button) {
-        const buttonText = button.innerText
-        const checks = []
-        checkboxes.forEach((input) => {
-          if (input.checked) {
-            this.selected.push(input.value)
-            checks.push(input.value)
-            button.innerText = buttonText
-            button.innerHTML = `${button.innerText} ${checkIcon}`
-            this.filtersSelected(this.selected, openButtonTextname)
-          }
-          input.addEventListener('change', () => {
-            if (input.checked) {
-              this.selected.push(input.value)
-              checks.push(input.value)
-              this.filtersSelected(this.selected, openButtonTextname)
-            } else {
-              this.selected.splice(this.selected.indexOf(input.value), 1)
-              checks.splice(checks.indexOf(input.value), 1)
-              this.filtersSelected(this.selected, openButtonTextname)
-            }
-            if (checks.length > 0) {
-              button.innerText = buttonText
-              button.innerHTML = `${button.innerText} ${checkIcon}`
-            } else {
-              button.innerText = buttonText
-            }
-          })
-        })
+      if (button) {
+        this.getInputLabel(text, button, checkIcon, buttonLabel)
+        this.getSelectLabel(selects, button, checkIcon, buttonLabel)
+        this.getCheckboxLabel(checkboxes, button, checkIcon, buttonLabel)
+      } else {
+        this.getInputLabel(text, label, checkIcon, buttonLabel)
+        this.getSelectLabel(selects, label, checkIcon, buttonLabel)
+        this.getCheckboxLabel(checkboxes, legend, checkIcon, buttonLabel)
       }
-      // Radio
     })
   }
 
-  filtersSelected(array, buttonText) {
+  resultsCount(array, buttonText) {
     if (this.openButtonText && array.length > 0) {
       this.openButtonText.innerText = `${buttonText} (${array.length})`
     } else {
       this.openButtonText.innerText = `${buttonText}`
+    }
+  }
+
+  getCheckboxLabel(array, title, icon, name) {
+    const text = title
+    if (array.length > 0 && text) {
+      const labelText = text.innerText
+      const checks = []
+      array.forEach((input) => {
+        if (input.checked) {
+          this.selected.push(input.value)
+          checks.push(input.value)
+          text.innerText = labelText
+          text.innerHTML = `${text.innerText} ${icon}`
+          this.resultsCount(this.selected, name)
+        }
+        input.addEventListener('change', () => {
+          if (input.checked) {
+            this.selected.push(input.value)
+            checks.push(input.value)
+            this.resultsCount(this.selected, name)
+          } else {
+            this.selected.splice(this.selected.indexOf(input.value), 1)
+            checks.splice(checks.indexOf(input.value), 1)
+            this.resultsCount(this.selected, name)
+          }
+          if (checks.length > 0) {
+            text.innerText = labelText
+            text.innerHTML = `${text.innerText} ${icon}`
+          } else {
+            text.innerText = labelText
+          }
+        })
+      })
+    }
+  }
+
+  getSelectLabel(array, title, icon, name) {
+    const text = title
+    if (array.length > 0 && title) {
+      const labelText = text.innerText
+      array.forEach((select) => {
+        if (select.value !== '') {
+          this.selected.push(select)
+          text.innerText = labelText
+          text.innerHTML = `${text.innerText} ${icon}`
+        }
+        select.addEventListener('change', () => {
+          if (select.value !== '') {
+            this.selected.push(select)
+            text.innerText = labelText
+            text.innerHTML = `${text.innerText} ${icon}`
+            this.resultsCount(this.selected, name)
+          } else {
+            this.selected.splice(this.selected.indexOf(select.value), 1)
+            text.innerText = labelText
+            this.resultsCount(this.selected, name)
+          }
+        })
+      })
+    }
+  }
+
+  getInputLabel(array, title, icon, name) {
+    const text = title
+    if (array.length >= 0 && text) {
+      const labelText = text.innerText
+      array.forEach((input) => {
+        if (input.value !== '') {
+          this.selected.push(input.value)
+          text.innerText = labelText
+          text.innerHTML = `${text.innerText} ${icon}`
+        }
+        let timer
+        input.addEventListener('keyup', () => {
+          if (input.value !== '') {
+            text.innerText = labelText
+            text.innerHTML = `${text.innerText} ${icon}`
+            clearTimeout(timer)
+            timer = setTimeout(() => {
+              this.selected.push(input.value)
+              this.resultsCount(this.selected, name)
+            }, 1000)
+          } else {
+            this.selected.splice(this.selected.indexOf(input.value), 1)
+            text.innerText = labelText
+            this.resultsCount(this.selected, name)
+          }
+        })
+      })
     }
   }
 }

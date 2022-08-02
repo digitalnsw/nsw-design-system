@@ -136,18 +136,12 @@
       }
     }
 
-    .nsw-filters--left & {
-      left: -100vw;
-    }
-
+    .nsw-filters--left &,
     .nsw-filters--right & {
       right: -100vw;
     }
 
-    .nsw-filters--left.active & {
-      left: 0;
-    }
-
+    .nsw-filters--left.active &,
     .nsw-filters--right.active & {
       right: 0;
     }
@@ -269,7 +263,9 @@
       }
     }
 
-    &-name {
+    &-name,
+    .nsw-form__label,
+    .nsw-form__legend {
       display: flex;
       align-items: center;
 
@@ -289,6 +285,10 @@
     .nsw-filters--down & {
       &:first-child {
         border: 0;
+
+        @include breakpoint('lg') {
+          border-top: 1px solid var(--nsw-grey-04);
+        }
       }
       
       @include breakpoint('lg') {
