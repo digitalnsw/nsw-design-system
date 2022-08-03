@@ -18,7 +18,6 @@ function initDocs() {
     }, false);
   });
 
-
   const copyButtons = document.querySelectorAll('.js-code-copy');
 
   copyButtons.forEach((button) => {
@@ -117,6 +116,7 @@ function initDocs() {
 
     onSubmit: (result) => {
       autocompleteNoResult.classList.remove('show');
+      window.open(`${result.url}`, '_self');
     },
   });
 
