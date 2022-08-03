@@ -70,13 +70,13 @@ function initDocs() {
 
   let baseURL = window.location.pathname;
   let searchData = [];
-  var searchJson = '/docs/js/search.json';
+  var searchUrl = '';
 
   if(baseURL.startsWith('/nsw-design-system')) {
-    searchJson = '/nsw-design-system' + searchJson;
+    searchUrl = '/nsw-design-system';
   }
 
-  fetch(searchJson)
+  fetch(searchUrl + '/docs/js/search.json')
     .then((response) => response.json())
     .then((data) => {
       searchData = data;
@@ -99,7 +99,7 @@ function initDocs() {
 
     renderResult: (result, props) => `
       <li ${props}>
-        <a href="${result.url}">
+        <a href="${searchUrl}${result.url}">
           ${result.title}
         </a>
       </li>
