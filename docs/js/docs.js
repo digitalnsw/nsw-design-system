@@ -67,6 +67,60 @@ function initDocs() {
       }
     }
   });
+
+  let searchData = [];
+
+  fetch('/docs/js/search.json')
+    .then((response) => response.json())
+    .then((data) => {
+      searchData = data;
+    });
+
+  const autocomplete = document.querySelector('.nsw-autocomplete');
+  const autocompleteInput = autocomplete.querySelector('.nsw-autocomplete__input');
+  const autocompleteNoResult = autocomplete.querySelector('.nsw-autocomplete__no-result');
+
+  let autocompleteInputValue = '';
+
+  const newAutocomplete = new Autocomplete(autocomplete, {
+
+    search: (input) => {
+      autocompleteInputValue = input;
+      if (input.length < 1) { return [] }
+      return searchData.filter((item) => item.title.toLowerCase().includes(input.toLowerCase())
+      || item.keywords.toLowerCase().includes(input.toLowerCase()))
+    },
+
+    renderResult: (result, props) => `
+      <li ${props}>
+        <a href="${result.url}">
+          ${result.title}
+        </a>
+      </li>
+    `,
+
+    onUpdate: (results) => {
+      if (autocompleteInputValue && results.length === 0) {
+        autocompleteNoResult.classList.add('show');
+      } else {
+        autocompleteNoResult.classList.remove('show');
+      }
+    },
+
+    getResultValue: (result) => result.title,
+
+    onSubmit: (result) => {
+      autocompleteNoResult.classList.remove('show');
+    },
+  });
+
+  autocompleteInput.addEventListener('focus', () => {
+    autocompleteNoResult.classList.add('active');
+  });
+
+  autocompleteInput.addEventListener('blur', () => {
+    autocompleteNoResult.classList.remove('active');
+  });
 }
 
 initDocs();
