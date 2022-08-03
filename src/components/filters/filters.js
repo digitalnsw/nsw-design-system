@@ -3,8 +3,8 @@ import { uniqueId } from '../../global/scripts/helpers/utilities'
 class Filters {
   constructor(element) {
     this.filters = element
-    this.openButtons = element.querySelectorAll('.nsw-filters__controls button')
-    this.closeButtons = element.querySelectorAll('.nsw-filters__back button')
+    this.openButton = element.querySelector('.nsw-filters__controls button')
+    this.closeButton = element.querySelector('.nsw-filters__back button')
     this.all = element.querySelectorAll('.nsw-filters__all')
     this.allBlocks = Array.prototype.slice.call(this.all)
     this.showMoreButtons = Array.prototype.slice.call(element.querySelectorAll('.nsw-filters__more'))
@@ -16,9 +16,11 @@ class Filters {
     this.buttons = []
     this.content = []
     this.toggleEvent = (e) => this.toggle(e)
-    // Selected
+    this.resetEvent = (e) => this.clearAllFilters(e)
+    this.clearButton = element.querySelector('.nsw-filters__cancel')
     this.filtersItems = element.querySelectorAll('.nsw-filters__item')
     this.openButtonText = element.querySelector('.nsw-filters__controls-name')
+    this.buttonLabel = (this.openButtonText) ? this.openButtonText.innerText : ''
     this.selected = []
   }
 
@@ -48,15 +50,12 @@ class Filters {
   }
 
   controls() {
-    if (this.openButtons) {
-      this.openButtons.forEach((element) => {
-        element.addEventListener('click', this.showEvent, false)
-      })
+    if (this.openButton) {
+      this.openButton.addEventListener('click', this.showEvent, false)
     }
-    if (this.closeButtons) {
-      this.closeButtons.forEach((element) => {
-        element.addEventListener('click', this.hideEvent, false)
-      })
+
+    if (this.closeButton) {
+      this.closeButton.addEventListener('click', this.hideEvent, false)
     }
 
     this.all.forEach((element) => {
@@ -68,6 +67,10 @@ class Filters {
       this.buttons.forEach((element) => {
         element.addEventListener('click', this.toggleEvent, false)
       })
+    }
+
+    if (this.clearButton) {
+      this.clearButton.addEventListener('click', this.resetEvent, false)
     }
   }
 
@@ -129,7 +132,6 @@ class Filters {
 
   selectedItems() {
     const checkIcon = '<span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span>'
-    const buttonLabel = (this.openButtonText) ? this.openButtonText.innerText : ''
 
     this.filtersItems.forEach((filter) => {
       const button = filter.querySelector('.nsw-filters__item-name')
@@ -140,25 +142,79 @@ class Filters {
       const selects = content.querySelectorAll('select')
       const checkboxes = content.querySelectorAll('input[type="checkbox"]')
       if (button) {
-        this.getInputLabel(text, button, checkIcon, buttonLabel)
-        this.getSelectLabel(selects, button, checkIcon, buttonLabel)
-        this.getCheckboxLabel(checkboxes, button, checkIcon, buttonLabel)
+        this.getInputLabel(text, button, checkIcon, this.buttonLabel)
+        this.getSelectLabel(selects, button, checkIcon, this.buttonLabel)
+        this.getCheckboxLabel(checkboxes, button, checkIcon, this.buttonLabel)
       } else {
-        this.getInputLabel(text, label, checkIcon, buttonLabel)
-        this.getSelectLabel(selects, label, checkIcon, buttonLabel)
-        this.getCheckboxLabel(checkboxes, legend, checkIcon, buttonLabel)
+        this.getInputLabel(text, label, checkIcon, this.buttonLabel)
+        this.getSelectLabel(selects, label, checkIcon, this.buttonLabel)
+        this.getCheckboxLabel(checkboxes, legend, checkIcon, this.buttonLabel)
       }
     })
   }
 
-  clearAllFilters() {
-    console.log(this.filters)
+  clearAllFilters(e) {
+    e.preventDefault()
+    this.filtersItems.forEach((filter) => {
+      const content = filter.querySelector('.nsw-filters__item-content')
+      const text = content.querySelectorAll('input[type="text"]')
+      const selects = content.querySelectorAll('select')
+      const checkboxes = content.querySelectorAll('input[type="checkbox"]')
+      const button = filter.querySelector('.nsw-filters__item-name')
+      const label = filter.querySelector('.nsw-form__label')
+      const legend = filter.querySelector('.nsw-form__legend')
+
+      if (text.length > 0) {
+        text.forEach((input) => {
+          const field = input
+          if (input.value.length > 0) {
+            field.value = ''
+          }
+        })
+      }
+
+      if (selects.length > 0) {
+        selects.forEach((select) => {
+          const option = select
+          if (option.value !== '') {
+            option.value = ''
+          }
+        })
+      }
+
+      if (checkboxes.length > 0) {
+        checkboxes.forEach((input) => {
+          const checkbox = input
+          if (checkbox.checked) {
+            checkbox.checked = false
+          }
+        })
+      }
+
+      this.selected = []
+      this.resultsCount(this.selected, this.buttonLabel)
+      if (button) {
+        const buttonCheck = button.querySelector('span.nsw-material-icons')
+        if (buttonCheck) {
+          buttonCheck.remove()
+        }
+      } else if (label) {
+        const lableCheck = label.querySelector('span.nsw-material-icons')
+        if (lableCheck) {
+          lableCheck.remove()
+        }
+      } else {
+        const legendCheck = legend.querySelector('span.nsw-material-icons')
+        if (legendCheck) {
+          legendCheck.remove()
+        }
+      }
+    })
   }
 
   resultsCount(array, buttonText) {
     if (this.openButtonText) {
       if (array.length > 0) {
-        console.log(this.openButtonText)
         this.openButtonText.innerText = `${buttonText} (${array.length})`
       } else {
         this.openButtonText.innerText = `${buttonText}`
@@ -212,12 +268,14 @@ class Filters {
         }
         select.addEventListener('change', () => {
           if (select.value !== '') {
-            this.selected.push(select)
+            if (!this.selected.includes('select')) {
+              this.selected.push('select')
+            }
             text.innerText = labelText
             text.innerHTML = `${text.innerText} ${icon}`
             this.resultsCount(this.selected, name)
           } else {
-            this.selected.splice(this.selected.indexOf(select.value), 1)
+            this.selected.splice(this.selected.indexOf('select'), 1)
             text.innerText = labelText
             this.resultsCount(this.selected, name)
           }
@@ -236,18 +294,16 @@ class Filters {
           text.innerText = labelText
           text.innerHTML = `${text.innerText} ${icon}`
         }
-        let timer
         input.addEventListener('keyup', () => {
           if (input.value !== '') {
+            if (!this.selected.includes(`input-${labelText}`)) {
+              this.selected.push(`input-${labelText}`)
+            }
             text.innerText = labelText
             text.innerHTML = `${text.innerText} ${icon}`
-            clearTimeout(timer)
-            timer = setTimeout(() => {
-              this.selected.push(input.value)
-              this.resultsCount(this.selected, name)
-            }, 1000)
+            this.resultsCount(this.selected, name)
           } else {
-            this.selected.splice(this.selected.indexOf(input.value), 1)
+            this.selected.splice(this.selected.indexOf(`input-${labelText}`), 1)
             text.innerText = labelText
             this.resultsCount(this.selected, name)
           }
