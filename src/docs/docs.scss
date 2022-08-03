@@ -1,6 +1,7 @@
 @import './src/main';
 
 $content-width: 768px;
+$nav-width: 300px;
 $header-height: 151px;
 
 .nsw-palette {
@@ -126,8 +127,7 @@ $header-height: 151px;
     @include breakpoint($nsw-desktop-breakpoint) {
       .nsw-container,
       .nsw-header__container {
-        padding-left: rem(32px);
-        max-width: rem(1240px);
+        max-width: rem($content-width + $nav-width + 172px);
       }
 
       .nsw-header__container .nsw-header__inner {
@@ -145,8 +145,8 @@ $header-height: 151px;
 
   &__nav {
     @include breakpoint($nsw-desktop-breakpoint) {
-      min-width: rem(300px);
-      max-width: rem(300px);
+      min-width: rem($nav-width);
+      max-width: rem($nav-width);
     }
 
     &-wrapper {
@@ -156,7 +156,7 @@ $header-height: 151px;
         top: rem($header-height);
         bottom: 0;
         left: 0;
-        width: rem(300px);
+        width: rem($nav-width);
         overflow-y: auto;
         border-right: 1px solid var(--nsw-grey-04);
         background-color: var(--nsw-white);
@@ -337,7 +337,7 @@ $header-height: 151px;
     flex-grow: 1;
 
     @include breakpoint($nsw-desktop-breakpoint) {
-      padding: rem(48px) rem(52px);
+      padding: rem(48px) rem(16px) rem(48px) rem(52px);
     }
   }
 
