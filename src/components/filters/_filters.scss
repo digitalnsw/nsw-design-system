@@ -27,9 +27,6 @@
   }
 
   &__controls {
-    padding: rem(24px) 0;
-    border-bottom: 1px solid var(--nsw-grey-04);
-
     @include breakpoint('lg') {
       display: none;
     }
@@ -92,11 +89,6 @@
     .nsw-material-icons:last-child {
       border: 0;
       margin-left: auto;
-    }
-
-    .nsw-filters--down & {
-      border: 0;
-      padding: 0;
     }
 
     .active & {  
@@ -263,22 +255,23 @@
       }
     }
 
+    .nsw-filters--accordion & {
+      &-content {
+        padding-top: rem(6px);
+      }
+    }
+
     &-name,
     .nsw-form__label,
     .nsw-form__legend {
       display: flex;
       align-items: center;
+      padding: 0;
 
       .nsw-material-icons:last-child {
         font-size: rem(17px);
         color: var(--nsw-status-success);
         padding-left: rem(6px);
-      }
-    }
-
-    .nsw-filters--accordion & {
-      &-content {
-        padding: rem(6px);
       }
     }
 
@@ -356,8 +349,7 @@
     border-top: 1px solid var(--nsw-grey-04);
     padding: rem(32px) 0;
 
-    .nsw-filters--fixed &,
-    .nsw-filters--down & {
+    .nsw-filters--fixed & {
       @include breakpoint('lg') {
         padding-top: 0;
         border: 0;

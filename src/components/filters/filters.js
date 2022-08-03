@@ -151,11 +151,18 @@ class Filters {
     })
   }
 
+  clearAllFilters() {
+    console.log(this.filters)
+  }
+
   resultsCount(array, buttonText) {
-    if (this.openButtonText && array.length > 0) {
-      this.openButtonText.innerText = `${buttonText} (${array.length})`
-    } else {
-      this.openButtonText.innerText = `${buttonText}`
+    if (this.openButtonText) {
+      if (array.length > 0) {
+        console.log(this.openButtonText)
+        this.openButtonText.innerText = `${buttonText} (${array.length})`
+      } else {
+        this.openButtonText.innerText = `${buttonText}`
+      }
     }
   }
 
