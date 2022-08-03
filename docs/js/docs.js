@@ -68,9 +68,15 @@ function initDocs() {
     }
   });
 
+  let baseURL = window.location.pathname;
   let searchData = [];
+  var searchJson = '/docs/js/search.json';
 
-  fetch('/docs/js/search.json')
+  if(baseURL.startsWith('/nsw-design-system')) {
+    searchJson = '/nsw-design-system' + searchJson;
+  }
+
+  fetch(searchJson)
     .then((response) => response.json())
     .then((data) => {
       searchData = data;
