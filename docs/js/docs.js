@@ -116,7 +116,7 @@ function initDocs() {
 
     onSubmit: (result) => {
       autocompleteNoResult.classList.remove('show');
-      window.open(`${result.url}`, '_self');
+      window.open(`${searchUrl}${result.url}`, '_self');
     },
   });
 
