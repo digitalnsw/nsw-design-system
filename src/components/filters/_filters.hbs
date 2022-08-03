@@ -28,7 +28,7 @@
       {{#if down}}
       {{else}}
       <div class="nsw-filters__back">
-        <button class="nsw-icon-button nsw-icon-button--flex js-close-sub-nav" type="button" aria-expanded="true" aria-controls="sub-nav-{{id}}{{../uID}}">
+        <button class="nsw-icon-button nsw-icon-button--flex js-close-sub-nav" type="button" aria-expanded="true" aria-controls="sub-nav-{{id}}{{uID}}">
           <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">close</span>
           <span class="sr-only">Close filters</span> 
         </button>
@@ -46,8 +46,8 @@
         </button>
         {{/if}}
         <div class="nsw-filters__item-content">
-          <label class="nsw-form__label{{#if accordion}} sr-only{{/if}}" for="{{input.id}}{{../uID}}">{{input.name}}</label>
-          <input class="nsw-form__input" type="text" id="{{input.id}}{{../uID}}" name="filters-keyword"{{#if input.value}} value="{{input.value}}"{{/if}}>
+          <label class="nsw-form__label{{#if accordion}} sr-only{{/if}}" for="{{input.id}}{{uID}}">{{input.name}}</label>
+          <input class="nsw-form__input" type="text" id="{{input.id}}{{uID}}" name="filters-keyword"{{#if input.value}} value="{{input.value}}"{{/if}}>
         </div>
       </div>
       {{/if}}
@@ -60,8 +60,8 @@
         </button>
         {{/if}}
         <div class="nsw-filters__item-content">
-          <label class="nsw-form__label {{#if accordion}} sr-only{{/if}}" for="{{select.id}}{{../uID}}">{{select.name}}</label>
-          <select class="nsw-form__select" id="{{select.id}}{{../uID}}" name="{{select.id}}{{../uID}}">
+          <label class="nsw-form__label{{#if accordion}} sr-only{{/if}}" for="{{select.id}}{{uID}}">{{select.name}}</label>
+          <select class="nsw-form__select" id="{{select.id}}{{uID}}" name="{{select.id}}{{uID}}">
             <option value="">Please select</option>  
             {{#each select.list}}
             <option value="{{this}}">{{this}}</option>
