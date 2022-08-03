@@ -46,8 +46,8 @@
         </button>
         {{/if}}
         <div class="nsw-filters__item-content">
-          <label class="nsw-form__label{{#if accordion}} sr-only{{/if}}" for="{{input.id}}">{{input.name}}</label>
-          <input class="nsw-form__input" type="text" id="{{input.id}}" name="filters-keyword"{{#if input.value}} value="{{input.value}}"{{/if}}>
+          <label class="nsw-form__label{{#if accordion}} sr-only{{/if}}" for="{{input.id}}{{../uID}}">{{input.name}}</label>
+          <input class="nsw-form__input" type="text" id="{{input.id}}{{../uID}}" name="filters-keyword"{{#if input.value}} value="{{input.value}}"{{/if}}>
         </div>
       </div>
       {{/if}}
@@ -60,8 +60,8 @@
         </button>
         {{/if}}
         <div class="nsw-filters__item-content">
-          <label class="nsw-form__label {{#if accordion}} sr-only{{/if}}" for="{{select.id}}">{{select.name}}</label>
-          <select class="nsw-form__select" id="{{select.id}}" name="{{select.id}}">
+          <label class="nsw-form__label {{#if accordion}} sr-only{{/if}}" for="{{select.id}}{{../uID}}">{{select.name}}</label>
+          <select class="nsw-form__select" id="{{select.id}}{{../uID}}" name="{{select.id}}{{../uID}}">
             <option value="">Please select</option>  
             {{#each select.list}}
             <option value="{{this}}">{{this}}</option>
@@ -113,16 +113,16 @@
               <legend class="nsw-form__label{{#if accordion}} sr-only{{/if}}">{{title}}</legend>
               <div class="nsw-form__date-wrapper">
                 <div class="nsw-form__date-input">
-                  <label class="nsw-form__label nsw-form__label--small" for="{{id}}-day">Day</label>
-                  <input class="nsw-form__input" type="text" maxlength="2" id="{{id}}-day" name="{{id}}-day">
+                  <label class="nsw-form__label nsw-form__label--small" for="{{id}}{{../uID}}-day">Day</label>
+                  <input class="nsw-form__input" type="text" maxlength="2" id="{{id}}{{../uID}}-day" name="{{id}}{{../uID}}-day">
                 </div>
                 <div class="nsw-form__date-input">
-                  <label class="nsw-form__label nsw-form__label--small" for="{{id}}-month">Month</label>
-                  <input class="nsw-form__input" type="text" maxlength="2" id="{{id}}-month" name="{{id}}-month">
+                  <label class="nsw-form__label nsw-form__label--small" for="{{id}}{{../uID}}-month">Month</label>
+                  <input class="nsw-form__input" type="text" maxlength="2" id="{{id}}{{../uID}}-month" name="{{id}}{{../uID}}-month">
                 </div>
                 <div class="nsw-form__date-input nsw-form__date-input--large">
-                  <label class="nsw-form__label nsw-form__label--small" for="{{id}}-year">Year</label>
-                  <input class="nsw-form__input" type="text" maxlength="4" id="{{id}}-year" name="{{id}}-year">
+                  <label class="nsw-form__label nsw-form__label--small" for="{{id}}{{../uID}}-year">Year</label>
+                  <input class="nsw-form__input" type="text" maxlength="4" id="{{id}}{{../uID}}-year" name="{{id}}{{../uID}}-year">
                 </div>
               </div>
             </fieldset>
