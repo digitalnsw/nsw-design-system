@@ -12,17 +12,46 @@ model:
 <div class="nsw-grid">
   <div class="nsw-col nsw-col-xl-4">
     <div class="nsw-docs__component">
-      {{>_filters model.instant}}
+      {{>_filters model.instant instant='true' uID='_0'}}
     </div>
   </div>
   <div class="nsw-col nsw-col-xl-4">
     <div class="nsw-docs__component">
-      {{>_filters model.batch}}
+      {{>_filters model.instant instant='true' uID='_1' down='true'}}
     </div>
   </div>
   <div class="nsw-col nsw-col-xl-4">
     <div class="nsw-docs__component">
-      {{>_filters model.all}}
+      {{>_filters model.batch instant='true' uID='_2' accordion='true'}}
+    </div>
+  </div>
+</div>
+<div class="nsw-grid">
+  <div class="nsw-col nsw-col-xl-4">
+    <div class="nsw-docs__component">
+      {{>_filters model.all instant='true' uID='_3' down='true' accordion='true' active='true'}}
+    </div>
+  </div>
+  <div class="nsw-col nsw-col-xl-4">
+    <div class="nsw-docs__component">
+      {{>_filters model.batch js='true' uID='_4' right='true'}}
+    </div>
+  </div>
+  <div class="nsw-col nsw-col-xl-4">
+    <div class="nsw-docs__component">
+      {{>_filters model.all js='true' uID='_5' right='true' accordion='true' active='true'}}
+    </div>
+  </div>
+</div>
+<div class="nsw-grid">
+  <div class="nsw-col nsw-col-xl-4">
+    <div class="nsw-docs__component">
+      {{>_filters model.all js='true' uID='_6' left='true' accordion='true' active='true'}}
+    </div>
+  </div>
+  <div class="nsw-col nsw-col-xl-4">
+    <div class="nsw-docs__component">
+      {{>_filters model.all js='true' uID='_7' down='true' accordion='true' active='true'}}
     </div>
   </div>
 </div>
