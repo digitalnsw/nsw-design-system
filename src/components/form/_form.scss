@@ -174,7 +174,7 @@ $nsw-form-tick: '<svg fill="#ffffff" version="1.1" xmlns="http://www.w3.org/2000
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 0 rem(36px);
+      padding: 0 rem(24px);
       margin: 0;
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;
@@ -188,20 +188,21 @@ $nsw-form-tick: '<svg fill="#ffffff" version="1.1" xmlns="http://www.w3.org/2000
 
     .nsw-material-icons {
       display: block;
-      color: var(--nsw-brand-dark);
-      font-size: rem(map-get($nsw-icon-sizes, 30));
+      font-size: rem(map-get($nsw-icon-sizes, 36));
       position: static;
     }
 
     &--icon {
       .nsw-button {
         padding: 0;
-        min-width: rem(48px);
+        min-width: rem(60px);
         border-color: var(--nsw-grey-01);
         border-left-width: 0;
+      }
 
-        &:hover {
-          background-image: linear-gradient(var(--nsw-text-hover), var(--nsw-text-hover));
+      .nsw-button--white {
+        .nsw-material-icons {
+          color: var(--nsw-brand-dark);
         }
       }
     }
@@ -209,14 +210,6 @@ $nsw-form-tick: '<svg fill="#ffffff" version="1.1" xmlns="http://www.w3.org/2000
     &--large {
       .nsw-form__input {
         padding: rem(16px);
-      }
-
-      .nsw-button {
-        min-width: rem(58px);
-      }
-
-      .nsw-material-icons {
-        font-size: rem(map-get($nsw-icon-sizes, 36));
       }
     }
   }
