@@ -232,7 +232,9 @@ class Filters {
           this.selected.push(input.value)
           checks.push(input.value)
           text.innerText = labelText
-          text.innerHTML = `${text.innerText} ${icon}`
+          if (title.classList.contains('nsw-filters__item-name')) {
+            text.innerHTML = `${text.innerText} ${icon}`
+          }
           this.resultsCount(this.selected, name)
         }
         input.addEventListener('change', () => {
@@ -247,7 +249,9 @@ class Filters {
           }
           if (checks.length > 0) {
             text.innerText = labelText
-            text.innerHTML = `${text.innerText} ${icon}`
+            if (title.classList.contains('nsw-filters__item-name')) {
+              text.innerHTML = `${text.innerText} ${icon}`
+            }
           } else {
             text.innerText = labelText
           }
@@ -264,7 +268,9 @@ class Filters {
         if (select.value !== '') {
           this.selected.push(select)
           text.innerText = labelText
-          text.innerHTML = `${text.innerText} ${icon}`
+          if (title.classList.contains('nsw-filters__item-name')) {
+            text.innerHTML = `${text.innerText} ${icon}`
+          }
         }
         select.addEventListener('change', () => {
           if (select.value !== '') {
@@ -272,7 +278,9 @@ class Filters {
               this.selected.push('select')
             }
             text.innerText = labelText
-            text.innerHTML = `${text.innerText} ${icon}`
+            if (title.classList.contains('nsw-filters__item-name')) {
+              text.innerHTML = `${text.innerText} ${icon}`
+            }
             this.resultsCount(this.selected, name)
           } else {
             this.selected.splice(this.selected.indexOf('select'), 1)
@@ -290,9 +298,11 @@ class Filters {
       const labelText = text.innerText
       array.forEach((input) => {
         if (input.value !== '') {
-          this.selected.push(input.value)
+          this.selected.push(`input-${labelText}`)
           text.innerText = labelText
-          text.innerHTML = `${text.innerText} ${icon}`
+          if (title.classList.contains('nsw-filters__item-name')) {
+            text.innerHTML = `${text.innerText} ${icon}`
+          }
         }
         input.addEventListener('keyup', () => {
           if (input.value !== '') {
@@ -300,9 +310,11 @@ class Filters {
               this.selected.push(`input-${labelText}`)
             }
             text.innerText = labelText
-            text.innerHTML = `${text.innerText} ${icon}`
+            if (title.classList.contains('nsw-filters__item-name')) {
+              text.innerHTML = `${text.innerText} ${icon}`
+            }
             this.resultsCount(this.selected, name)
-          } else {
+          } else if ((this.selected.indexOf(`input-${labelText}`) !== -1)) {
             this.selected.splice(this.selected.indexOf(`input-${labelText}`), 1)
             text.innerText = labelText
             this.resultsCount(this.selected, name)
