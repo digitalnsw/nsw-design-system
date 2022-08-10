@@ -198,6 +198,7 @@ class Navigation {
       submenu.removeEventListener('keydown', this.mobileSubNavTrapTabKeyEvent, false)
     }
     submenu.classList.remove('active')
+    submenu.parentElement.parentElement.parentElement.style.overflowY = 'auto'
     this.openSubNavElements.pop()
   }
 
@@ -213,6 +214,7 @@ class Navigation {
       submenu.addEventListener('keydown', this.mobileSubNavTrapTabKeyEvent, false)
       submenu.addEventListener(this.transitionEvent, this.showSubNavTransitionEndEvent, false)
     }
+    submenu.parentElement.parentElement.parentElement.style.overflowY = 'hidden'
     submenu.classList.add('active')
   }
 
