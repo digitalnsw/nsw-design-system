@@ -21,6 +21,14 @@
     visibility: visible;
   }
 
+  &.no-scroll {
+    overflow-y: hidden;
+  
+    @include breakpoint($nsw-desktop-breakpoint) {
+      overflow-y: visible;
+    }
+  }
+
   &.closing {
     transform: translateX(-100%);
   }
@@ -198,6 +206,14 @@
     &.active {
       transform: translateX(0);
       visibility: visible;
+    }
+
+    &.no-scroll {
+      overflow-y: hidden;
+    
+      @include breakpoint($nsw-desktop-breakpoint) {
+        overflow-y: visible;
+      }
     }
 
     @include breakpoint($nsw-desktop-breakpoint) {
