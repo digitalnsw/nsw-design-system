@@ -22,6 +22,7 @@ layout: blank-layout.hbs
 </ul>
 
 <h2>How this component works</h2>
+<h3>Filtering</h3>
 <p>Filters can be returned in instant or batch updates. Instant updates return results after each individual selection is made by the user. Consider instant update filters when:</p>
 <ul>
   <li>a user would only expect to make one filter selection at a time</li>
@@ -32,6 +33,24 @@ layout: blank-layout.hbs
   <li>users would be expected to select multiple related filters</li>
   <li>filters require multiple actions, ie keywords or date ranges</li>
 </ul>
+
+<h3>Filtering</h3>
+<p>There are two ways filters can be displayed:</p>
+<ul>
+  <li><strong>Default</strong>: Individual filters are exposed</li>
+  <li><strong>Collasped</strong>: Individual filters are collasped on load and can be expanded by the user</li>
+</ul>
+
+<p>Instant filters can be further customised:</p>
+
+<ul>
+  <li><strong>Default</strong> -  Filter panel is exposed on large and small screens</li>
+  <li><strong>Down</strong>  -  Filter panel is exposed on large screens but expandable on small screens</li>
+</ul>
+
+<h3>Count</h3>
+
+<p>Visual cues assit users where filters have been selected and may not always be visible. When filters are collasped, a tick indicates to the user that a selection has been made within that field. Down filters also track the total number of active selections via a counter next to the filters title.</p>
 
 <h3>Small screens</h3>
 <p>On small screens, filters can be are launched using the mobile filter icon. When a user selects “Filter results” the filters open in full screen so the user can navigate and select desired filters.</p>
