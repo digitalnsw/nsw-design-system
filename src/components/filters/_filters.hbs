@@ -1,5 +1,6 @@
-<{{#if instant}}div{{else}}form{{/if}} class="nsw-filters{{#if js}} js-filters{{#if left}} nsw-filters--fixed nsw-filters--left{{/if}}{{#if right}} nsw-filters--fixed nsw-filters--right{{/if}}{{#if down}} nsw-filters--down{{/if}}{{#if accordion}} nsw-filters--accordion{{/if}}{{/if}}{{#if instant}} nsw-filters--instant{{#if down}} nsw-filters--down js-filters{{/if}}{{#if accordion}} nsw-filters--accordion js-filters{{/if}}{{/if}}">
-  {{#if js}}
+<{{#if instant}}div{{else}}form{{/if}} class="nsw-filters{{#if js}}{{#if instant}} nsw-filters--instant{{/if}}{{#if left}} nsw-filters--fixed nsw-filters--left{{/if}}{{#if right}} nsw-filters--fixed nsw-filters--right{{/if}}{{#if down}} nsw-filters--down{{/if}}{{#if collapsed}} nsw-filters--collapsed{{/if}} js-filters{{else}}{{#if instant}} nsw-filters--instant{{/if}}{{/if}}">
+
+  {{#if (or right left down)}}
   <div class="nsw-filters__controls{{#if results}} active{{/if}}">
     <button>
       <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">tune</span>
@@ -12,56 +13,42 @@
     </button>
   </div>
   {{/if}}
-  {{#if instant}}
-    {{#if down}}
-    <div class="nsw-filters__controls{{#if results}} active{{/if}}">
-      <button>
-        <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">tune</span>
-        <span class="nsw-filters__controls-name">{{#if name}}{{name}}{{else}}Filters{{/if}}{{#if results}}  ({{results}}){{/if}}</span>
-        <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
+  <div class="nsw-filters__wrapper">
+    {{#if (or right left)}}
+    <div class="nsw-filters__back">
+      <button class="nsw-icon-button nsw-icon-button--flex js-close-sub-nav" type="button" aria-expanded="true" aria-controls="sub-nav-{{id}}{{unique-id}}">
+        <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">close</span>
+        <span class="sr-only">Close filters</span> 
       </button>
     </div>
     {{/if}}
-  {{/if}}
-  <div class="nsw-filters__wrapper">
-    {{#if js}}
-      {{#if down}}
-      {{else}}
-      <div class="nsw-filters__back">
-        <button class="nsw-icon-button nsw-icon-button--flex js-close-sub-nav" type="button" aria-expanded="true" aria-controls="sub-nav-{{id}}{{uID}}">
-          <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">close</span>
-          <span class="sr-only">Close filters</span> 
-        </button>
-      </div>
-      {{/if}}
-    {{/if}}
-    <div class="nsw-filters__title">{{#if name}}{{name}}{{else}}Filter results{{/if}}</div>
+    <div class="nsw-filters__title">{{#if name}}{{name}}{{else}}Filters{{/if}}</div>
     <div class="nsw-filters__list">
       {{#if input}}
       <div class="nsw-filters__item">
-        {{#if accordion}}
+        {{#if collapsed}}
         <button class="nsw-filters__item-button">
           <span class="nsw-filters__item-name">{{input.name}}</span>
           <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
         </button>
         {{/if}}
         <div class="nsw-filters__item-content">
-          <label class="nsw-form__label{{#if accordion}} sr-only{{/if}}" for="{{input.id}}{{uID}}">{{input.name}}</label>
-          <input class="nsw-form__input" type="text" id="{{input.id}}{{uID}}" name="filters-keyword"{{#if input.value}} value="{{input.value}}"{{/if}}>
+          <label class="nsw-form__label{{#if collapsed}} sr-only{{/if}}" for="{{input.id}}{{unique-id}}">{{input.name}}</label>
+          <input class="nsw-form__input" type="text" id="{{input.id}}{{unique-id}}" name="filters-keyword"{{#if input.value}} value="{{input.value}}"{{/if}}>
         </div>
       </div>
       {{/if}}
       {{#if select}}
       <div class="nsw-filters__item">
-        {{#if accordion}}
+        {{#if collapsed}}
         <button class="nsw-filters__item-button">
           <span class="nsw-filters__item-name">{{select.name}}</span>
           <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
         </button>
         {{/if}}
         <div class="nsw-filters__item-content">
-          <label class="nsw-form__label{{#if accordion}} sr-only{{/if}}" for="{{select.id}}{{uID}}">{{select.name}}</label>
-          <select class="nsw-form__select" id="{{select.id}}{{uID}}" name="{{select.id}}{{uID}}">
+          <label class="nsw-form__label{{#if collapsed}} sr-only{{/if}}" for="{{select.id}}{{unique-id}}">{{select.name}}</label>
+          <select class="nsw-form__select" id="{{select.id}}{{unique-id}}" name="{{select.id}}{{unique-id}}">
             <option value="">Please select</option>  
             {{#each select.list}}
             <option value="{{this}}">{{this}}</option>
@@ -72,7 +59,7 @@
       {{/if}}
       {{#if checkboxes}}
       <div class="nsw-filters__item">
-        {{#if accordion}}
+        {{#if collapsed}}
         <button class="nsw-filters__item-button">
           <span class="nsw-filters__item-name">{{checkboxes.name}}</span>
           <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
@@ -80,16 +67,16 @@
         {{/if}}
         <div class="nsw-filters__item-content">
           <fieldset class="nsw-form__fieldset">
-            <legend class="nsw-form__legend{{#if accordion}} sr-only{{/if}}">{{checkboxes.name}}</legend>
+            <legend class="nsw-form__legend{{#if collapsed}} sr-only{{/if}}">{{checkboxes.name}}</legend>
             {{#each checkboxes.list}}
-            <input class="nsw-form__checkbox-input" type="checkbox" name="{{name}}" value="{{title}}" id="{{id}}{{@index}}{{../uID}}"{{#if checked}} checked{{/if}}>
-            <label class="nsw-form__checkbox-label" for="{{id}}{{@index}}{{../uID}}">{{title}}</label>
+            <input class="nsw-form__checkbox-input" type="checkbox" name="{{name}}" value="{{title}}" id="{{id}}{{@index}}{{../unique-id}}"{{#if checked}} checked{{/if}}>
+            <label class="nsw-form__checkbox-label" for="{{id}}{{@index}}{{../unique-id}}">{{title}}</label>
             {{/each}}
             {{#if checkboxes.all}}
             <div class="nsw-filters__all hidden">
               {{#each checkboxes.all}}
-              <input class="nsw-form__checkbox-input" type="checkbox" name="{{name}}" value="{{title}}" id="{{id}}{{@index}}{{../uID}}"{{#if checked}} checked{{/if}}>
-              <label class="nsw-form__checkbox-label" for="{{id}}{{@index}}{{../uID}}">{{title}}</label>
+              <input class="nsw-form__checkbox-input" type="checkbox" name="{{name}}" value="{{title}}" id="{{id}}{{@index}}{{../unique-id}}"{{#if checked}} checked{{/if}}>
+              <label class="nsw-form__checkbox-label" for="{{id}}{{@index}}{{../unique-id}}">{{title}}</label>
               {{/each}}
             </div>
             <button class="nsw-filters__more">{{#if checkboxes.more}}{{checkboxes.more}}{{else}}Show all{{/if}}{{#if checkboxes.count}} ({{checkboxes.count}}){{/if}}</button>
@@ -100,7 +87,7 @@
       {{/if}}
       {{#if dates}}
       <div class="nsw-filters__item">
-        {{#if accordion}}
+        {{#if collapsed}}
         <button class="nsw-filters__item-button">
           <span class="nsw-filters__item-name">Date</span>
           <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
@@ -110,19 +97,19 @@
           {{#each dates.list}}
           <div class="nsw-form__group">
             <fieldset class="nsw-form__date">
-              <legend class="nsw-form__label{{#if accordion}} sr-only{{/if}}">{{title}}</legend>
+              <legend class="nsw-form__label{{#if collapsed}} sr-only{{/if}}">{{title}}</legend>
               <div class="nsw-form__date-wrapper">
                 <div class="nsw-form__date-input">
-                  <label class="nsw-form__label nsw-form__label--small" for="{{id}}{{../uID}}-day">Day</label>
-                  <input class="nsw-form__input" type="text" maxlength="2" id="{{id}}{{../uID}}-day" name="{{id}}{{../uID}}-day">
+                  <label class="nsw-form__label nsw-form__label--small" for="{{id}}{{../unique-id}}-day">Day</label>
+                  <input class="nsw-form__input" type="text" maxlength="2" id="{{id}}{{../unique-id}}-day" name="{{id}}{{../unique-id}}-day">
                 </div>
                 <div class="nsw-form__date-input">
-                  <label class="nsw-form__label nsw-form__label--small" for="{{id}}{{../uID}}-month">Month</label>
-                  <input class="nsw-form__input" type="text" maxlength="2" id="{{id}}{{../uID}}-month" name="{{id}}{{../uID}}-month">
+                  <label class="nsw-form__label nsw-form__label--small" for="{{id}}{{../unique-id}}-month">Month</label>
+                  <input class="nsw-form__input" type="text" maxlength="2" id="{{id}}{{../unique-id}}-month" name="{{id}}{{../unique-id}}-month">
                 </div>
                 <div class="nsw-form__date-input nsw-form__date-input--large">
-                  <label class="nsw-form__label nsw-form__label--small" for="{{id}}{{../uID}}-year">Year</label>
-                  <input class="nsw-form__input" type="text" maxlength="4" id="{{id}}{{../uID}}-year" name="{{id}}{{../uID}}-year">
+                  <label class="nsw-form__label nsw-form__label--small" for="{{id}}{{../unique-id}}-year">Year</label>
+                  <input class="nsw-form__input" type="text" maxlength="4" id="{{id}}{{../unique-id}}-year" name="{{id}}{{../unique-id}}-year">
                 </div>
               </div>
             </fieldset>

@@ -6,27 +6,27 @@ directory: filters
 intro: Filters allows a user to narrow down results using multiple attributes.
 figma: https://www.figma.com/file/PVrERKnckLTlJSPk12gbtS/NSW-Digital-Design-System?node-id=21298%3A24466
 model:
-  instant: ../../components/filters/json/filters-instant.json
-  batch: ../../components/filters/json/filters-batch.json
-  all: ../../components/filters/json/filters-all.json
+  options-1: ../../components/filters/json/options-1.json
+  options-2: ../../components/filters/json/options-2.json
+  options-3: ../../components/filters/json/options-3.json
 meta-description: Filters allows a user to narrow down results using multiple attributes.
 meta-index: true
 ---
 
 <h3>Instant filtering</h3>
-{{#>_docs-example}}{{>_filters model.instant instant='true' uID='_1'}}{{/_docs-example}}
+{{#>_docs-example}}{{>_filters model.options-1 instant='true' uID='_1'}}{{/_docs-example}}
 
 <h3>Instant filtering (collapsed)</h3>
-{{#>_docs-example}}{{>_filters model.all instant='true' uID='_2' accordion='true' active='true'}}{{/_docs-example}}
+{{#>_docs-example}}{{>_filters model.options-3 instant='true' uID='_2' accordion='true' active='true'}}{{/_docs-example}}
 
 <h3>Instant filtering (drop down mobile implementation)</h3>
-{{#>_docs-example}}{{>_filters model.instant instant='true' uID='_3' down='true'}}{{/_docs-example}}
+{{#>_docs-example}}{{>_filters model.options-1 instant='true' uID='_3' down='true'}}{{/_docs-example}}
 
 <h3>Instant filtering (collapsed with drop down mobile implementation)</h3>
-{{#>_docs-example}}{{>_filters model.all instant='true' uID='_4' down='true' accordion='true'}}{{/_docs-example}}
+{{#>_docs-example}}{{>_filters model.options-3 instant='true' uID='_4' down='true' accordion='true'}}{{/_docs-example}}
 
 <h3>Batch filtering (with compact mobile implementation)</h3>
-{{#>_docs-example}}{{>_filters model.batch js='true' uID='_5' right='true'}}{{/_docs-example}}
+{{#>_docs-example}}{{>_filters model.options-2 js='true' uID='_5' right='true'}}{{/_docs-example}}
 
 <h3>Batch filtering (collapsed with expanding multiselect and compact mobile implementation)</h3>
-{{#>_docs-example}}{{>_filters model.all js='true' uID='_6' right='true' accordion='true' active='true'}}{{/_docs-example}}
+{{#>_docs-example}}{{>_filters model.options-3 js='true' uID='_6' right='true' accordion='true' active='true'}}{{/_docs-example}}

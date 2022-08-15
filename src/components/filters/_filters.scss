@@ -255,7 +255,7 @@
       }
     }
 
-    .nsw-filters--accordion & {
+    .nsw-filters--collapsed & {
       &-content {
         padding-top: rem(6px);
       }
@@ -278,12 +278,12 @@
     .nsw-filters--down & {
       border-top: 1px solid var(--nsw-grey-03);
 
+      @include breakpoint('lg') {
+        border-top: 1px solid var(--nsw-grey-04);
+      }
+
       &:first-child {
         border: 0;
-
-        @include breakpoint('lg') {
-          border-top: 1px solid var(--nsw-grey-04);
-        }
       }
       
       @include breakpoint('lg') {
@@ -360,6 +360,10 @@
 
     .nsw-filters--down & {
       border-top: 1px solid var(--nsw-grey-03);
+
+      @include breakpoint('lg') {
+        border-top: 1px solid var(--nsw-grey-04);
+      }
     }
 
     button {

@@ -3,63 +3,104 @@ title: Filters
 page: true
 width: menu
 model:
-  instant: ../../components/filters/json/filters-instant.json
-  batch: ../../components/filters/json/filters-batch.json
-  all: ../../components/filters/json/filters-all.json
+  options-1: ../../components/filters/json/options-1.json
+  options-2: ../../components/filters/json/options-2.json
+  options-3: ../../components/filters/json/options-3.json
 ---
 
 {{#>_layout-container}}
 <div class="nsw-grid">
-  <div class="nsw-col nsw-col-xl-4">
-    <h3>Instant Visible Open</h3>
-    <div class="nsw-docs__component">
-      {{>_filters model.instant instant='true' uID='_0'}}
-    </div>
-  </div>
-  <div class="nsw-col nsw-col-xl-4">
-    <h3>Instant Down Open</h3>
-    <div class="nsw-docs__component">
-      {{>_filters model.instant instant='true' uID='_1' down='true'}}
-    </div>
-  </div>
-  <div class="nsw-col nsw-col-xl-4">
-    <h3>Instant Visible Collapsed</h3>
-    <div class="nsw-docs__component">
-      {{>_filters model.batch instant='true' uID='_2' accordion='true'}}
-    </div>
+  <div class="nsw-col">
+    <h3>Instant Visible</h3>
   </div>
 </div>
 <div class="nsw-grid">
   <div class="nsw-col nsw-col-xl-4">
-    <h3>Instant Down Collapsed</h3>
+    <h4>Open</h4>
     <div class="nsw-docs__component">
-      {{>_filters model.all instant='true' uID='_3' down='true' accordion='true' active='true'}}
+      {{>_filters model.options-1 instant='true' unique-id='0'}}
     </div>
   </div>
   <div class="nsw-col nsw-col-xl-4">
-    <h3>Batch Right Open</h3>
+    <h4>Collapsed</h4>
     <div class="nsw-docs__component">
-      {{>_filters model.batch js='true' uID='_4' right='true'}}
-    </div>
-  </div>
-  <div class="nsw-col nsw-col-xl-4">
-    <h3>Batch Right Collapsed</h3>
-    <div class="nsw-docs__component">
-      {{>_filters model.all js='true' uID='_5' right='true' accordion='true' active='true'}}
+      {{>_filters model.options-2 instant='true' collapsed='true' js='true' unique-id='2'}}
     </div>
   </div>
 </div>
 <div class="nsw-grid">
+  <div class="nsw-col">
+    <h3>Instant Down</h3>
+  </div>
+</div>
+<div class="nsw-grid">
   <div class="nsw-col nsw-col-xl-4">
-    <h3>Batch Left Collapsed</h3>
+    <h4>Open</h4>
     <div class="nsw-docs__component">
-      {{>_filters model.all js='true' uID='_6' left='true' accordion='true' active='true'}}
+      {{>_filters model.options-1 instant='true' down='true' js='true' unique-id='1'}}
     </div>
   </div>
   <div class="nsw-col nsw-col-xl-4">
-    <h3>Batch Down Collapsed</h3>
+    <h4>Collapsed</h4>
     <div class="nsw-docs__component">
-      {{>_filters model.all js='true' uID='_7' down='true' accordion='true' active='true'}}
+      {{>_filters model.options-3 instant='true' down='true' collapsed='true' js='true' unique-id='3'}}
+    </div>
+  </div>
+</div>
+<div class="nsw-grid">
+  <div class="nsw-col">
+    <h3>Batch Right</h3>
+  </div>
+</div>
+<div class="nsw-grid">
+  <div class="nsw-col nsw-col-xl-4">
+    <h4>Open</h4>
+    <div class="nsw-docs__component">
+      {{>_filters model.options-2 batch='true' right='true' js='true' unique-id='4'}}
+    </div>
+  </div>
+  <div class="nsw-col nsw-col-xl-4">
+    <h4>Collapsed</h4>
+    <div class="nsw-docs__component">
+      {{>_filters model.options-3 batch='true' right='true' collapsed='true' js='true' unique-id='5'}}
+    </div>
+  </div>
+</div>
+<div class="nsw-grid">
+  <div class="nsw-col">
+    <h3>Batch Left</h3>
+  </div>
+</div>
+<div class="nsw-grid">
+  <div class="nsw-col nsw-col-xl-4">
+    <h4>Open</h4>
+    <div class="nsw-docs__component">
+      {{>_filters model.options-2 batch='true' left='true' js='true' unique-id='6' }}
+    </div>
+  </div>
+  <div class="nsw-col nsw-col-xl-4">
+    <h4>Collapsed</h4>
+    <div class="nsw-docs__component">
+      {{>_filters model.options-3 batch='true' left='true' collapsed='true' js='true' unique-id='7'}}
+    </div>
+  </div>
+</div>
+<div class="nsw-grid">
+  <div class="nsw-col">
+    <h3>Batch Down</h3>
+  </div>
+</div>
+<div class="nsw-grid">
+  <div class="nsw-col nsw-col-xl-4">
+    <h4>Open</h4>
+    <div class="nsw-docs__component">
+      {{>_filters model.options-2 batch='true' down='true' js='true' unique-id='8'}}
+    </div>
+  </div>
+  <div class="nsw-col nsw-col-xl-4">
+    <h4>Collapsed</h4>
+    <div class="nsw-docs__component">
+      {{>_filters model.options-3 batch='true' down='true' collapsed='true' js='true' unique-id='9'}}
     </div>
   </div>
 </div>
