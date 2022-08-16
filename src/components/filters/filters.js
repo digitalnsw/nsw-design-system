@@ -4,24 +4,28 @@ class Filters {
   constructor(element) {
     this.filters = element
     this.openButton = element.querySelector('.nsw-filters__controls button')
+    this.selectedCount = element.querySelector('.js-filters--count')
+    if (this.selectedCount) {
+      this.openButtonText = this.selectedCount.querySelector('span:not(.nsw-material-icons)')
+      this.buttonLabel = this.openButtonText.innerText
+    }
     this.closeButton = element.querySelector('.nsw-filters__back button')
-    this.all = element.querySelectorAll('.nsw-filters__all')
-    this.allBlocks = Array.prototype.slice.call(this.all)
+    this.acceptButton = element.querySelector('.nsw-filters__accept button')
+    this.clearButton = element.querySelector('.nsw-filters__cancel button')
     this.showMoreButtons = Array.prototype.slice.call(element.querySelectorAll('.nsw-filters__more'))
+    this.accordionButtons = element.querySelectorAll('.nsw-filters__item-button')
     this.showEvent = (e) => this.showFilters(e)
     this.hideEvent = (e) => this.hideFilters(e)
     this.showMoreEvent = (e) => this.showMore(e)
-    this.body = document.body
-    this.accordionButtons = element.querySelectorAll('.nsw-filters__item-button')
-    this.buttons = []
-    this.content = []
     this.toggleEvent = (e) => this.toggle(e)
     this.resetEvent = (e) => this.clearAllFilters(e)
-    this.clearButton = element.querySelector('.nsw-filters__cancel')
-    this.filtersItems = element.querySelectorAll('.nsw-filters__item')
-    this.openButtonText = element.querySelector('.nsw-filters__controls-name')
-    this.buttonLabel = (this.openButtonText) ? this.openButtonText.innerText : ''
+    this.buttons = []
+    this.content = []
     this.selected = []
+    this.all = element.querySelectorAll('.nsw-filters__all')
+    this.allBlocks = Array.prototype.slice.call(this.all)
+    this.filtersItems = element.querySelectorAll('.nsw-filters__item')
+    this.body = document.body
   }
 
   init() {
@@ -35,7 +39,7 @@ class Filters {
 
     this.accordionButtons.forEach((button) => {
       const buttonElem = button
-      const uID = uniqueId('accordion')
+      const uID = uniqueId('collapsed')
       buttonElem.setAttribute('type', 'button')
       buttonElem.setAttribute('aria-expanded', 'false')
       buttonElem.setAttribute('aria-controls', uID)
@@ -52,6 +56,10 @@ class Filters {
   controls() {
     if (this.openButton) {
       this.openButton.addEventListener('click', this.showEvent, false)
+    }
+
+    if (this.acceptButton) {
+      this.acceptButton.disabled = true
     }
 
     if (this.closeButton) {
@@ -130,25 +138,173 @@ class Filters {
     }
   }
 
+  toggleAccept(array) {
+    if (this.acceptButton) {
+      if (array.length > 0) {
+        this.acceptButton.disabled = false
+      } else {
+        this.acceptButton.disabled = true
+      }
+    }
+  }
+
+  toggleSelectedState(array) {
+    if (array.length > 0) {
+      this.openButton.parentElement.classList.add('active')
+    } else {
+      this.openButton.parentElement.classList.remove('active')
+    }
+  }
+
+  resultsCount(array, buttonText) {
+    if (this.openButtonText) {
+      if (array.length > 0) {
+        this.openButtonText.innerText = `${buttonText} (${array.length})`
+      } else {
+        this.openButtonText.innerText = `${buttonText}`
+      }
+    }
+  }
+
+  updateDom() {
+    this.resultsCount(this.selected, this.buttonLabel)
+    this.toggleAccept(this.selected)
+    this.toggleSelectedState(this.selected)
+  }
+
+  getCheckboxLabel(options) {
+    const text = options.title
+    if (options.array.length > 0) {
+      const labelText = (text) ? text.innerText : ''
+      const checks = []
+      options.array.forEach((input) => {
+        if (input.checked) {
+          this.selected.push(input.value)
+          checks.push(input.value)
+          if (text) {
+            text.innerText = labelText
+            text.innerHTML = `${text.innerText} ${options.icon}`
+          }
+          this.updateDom()
+        }
+        input.addEventListener('change', () => {
+          if (input.checked) {
+            this.selected.push(input.value)
+            checks.push(input.value)
+            this.updateDom()
+          } else {
+            this.selected.splice(this.selected.indexOf(input.value), 1)
+            checks.splice(checks.indexOf(input.value), 1)
+            this.updateDom()
+          }
+          if (text) {
+            if (checks.length > 0) {
+              text.innerText = labelText
+              text.innerHTML = `${text.innerText} ${options.icon}`
+            } else {
+              text.innerText = labelText
+            }
+          }
+        })
+      })
+    }
+  }
+
+  getSelectLabel(options) {
+    const text = options.title
+
+    if (options.array.length > 0) {
+      const labelText = (text) ? text.innerText : ''
+      options.array.forEach((select) => {
+        if (select.value !== '') {
+          this.selected.push(select)
+          if (text) {
+            text.innerText = labelText
+            text.innerHTML = `${text.innerText} ${options.icon}`
+          }
+        }
+        select.addEventListener('change', () => {
+          if (select.value !== '') {
+            if (!this.selected.includes('select')) {
+              this.selected.push('select')
+            }
+            if (text) {
+              text.innerText = labelText
+              text.innerHTML = `${text.innerText} ${options.icon}`
+            }
+            this.updateDom()
+          } else {
+            this.selected.splice(this.selected.indexOf('select'), 1)
+            text.innerText = labelText
+            this.updateDom()
+          }
+        })
+      })
+    }
+  }
+
+  getInputLabel(options) {
+    const text = options.title
+    if (options.array.length >= 0) {
+      const labelText = (text) ? text.innerText : ''
+      options.array.forEach((input) => {
+        if (input.value !== '') {
+          this.selected.push(`input-${labelText}`)
+          if (text) {
+            text.innerText = labelText
+            text.innerHTML = `${text.innerText} ${options.icon}`
+          }
+        }
+        input.addEventListener('keyup', () => {
+          if (input.value !== '') {
+            if (!this.selected.includes(`input-${labelText}`)) {
+              this.selected.push(`input-${labelText}`)
+            }
+            if (text) {
+              text.innerText = labelText
+              text.innerHTML = `${text.innerText} ${options.icon}`
+            }
+            this.updateDom()
+          } else if ((this.selected.indexOf(`input-${labelText}`) !== -1)) {
+            this.selected.splice(this.selected.indexOf(`input-${labelText}`), 1)
+            text.innerText = labelText
+            this.updateDom()
+          }
+        })
+      })
+    }
+  }
+
   selectedItems() {
     const checkIcon = '<span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span>'
 
     this.filtersItems.forEach((filter) => {
       const button = filter.querySelector('.nsw-filters__item-name')
-      const label = filter.querySelector('.nsw-form__label')
-      const legend = filter.querySelector('.nsw-form__legend')
       const content = filter.querySelector('.nsw-filters__item-content')
       const text = content.querySelectorAll('input[type="text"]')
       const selects = content.querySelectorAll('select')
       const checkboxes = content.querySelectorAll('input[type="checkbox"]')
+
       if (button) {
-        this.getInputLabel(text, button, checkIcon, this.buttonLabel)
-        this.getSelectLabel(selects, button, checkIcon, this.buttonLabel)
-        this.getCheckboxLabel(checkboxes, button, checkIcon, this.buttonLabel)
+        this.getInputLabel({
+          array: text,
+          title: button,
+          icon: checkIcon,
+        })
+        this.getSelectLabel({
+          array: selects,
+          title: button,
+          icon: checkIcon,
+        })
+        this.getCheckboxLabel({
+          array: checkboxes,
+          title: button,
+          icon: checkIcon,
+        })
       } else {
-        this.getInputLabel(text, label, checkIcon, this.buttonLabel)
-        this.getSelectLabel(selects, label, checkIcon, this.buttonLabel)
-        this.getCheckboxLabel(checkboxes, legend, checkIcon, this.buttonLabel)
+        this.getInputLabel({ array: text })
+        this.getSelectLabel({ array: selects })
+        this.getCheckboxLabel({ array: checkboxes })
       }
     })
   }
@@ -156,13 +312,11 @@ class Filters {
   clearAllFilters(e) {
     e.preventDefault()
     this.filtersItems.forEach((filter) => {
+      const button = filter.querySelector('.nsw-filters__item-name')
       const content = filter.querySelector('.nsw-filters__item-content')
       const text = content.querySelectorAll('input[type="text"]')
       const selects = content.querySelectorAll('select')
       const checkboxes = content.querySelectorAll('input[type="checkbox"]')
-      const button = filter.querySelector('.nsw-filters__item-name')
-      const label = filter.querySelector('.nsw-form__label')
-      const legend = filter.querySelector('.nsw-form__legend')
 
       if (text.length > 0) {
         text.forEach((input) => {
@@ -191,137 +345,16 @@ class Filters {
         })
       }
 
-      this.selected = []
-      this.resultsCount(this.selected, this.buttonLabel)
       if (button) {
         const buttonCheck = button.querySelector('span.nsw-material-icons')
         if (buttonCheck) {
           buttonCheck.remove()
         }
-      } else if (label) {
-        const lableCheck = label.querySelector('span.nsw-material-icons')
-        if (lableCheck) {
-          lableCheck.remove()
-        }
-      } else {
-        const legendCheck = legend.querySelector('span.nsw-material-icons')
-        if (legendCheck) {
-          legendCheck.remove()
-        }
       }
+
+      this.selected = []
+      this.updateDom()
     })
-  }
-
-  resultsCount(array, buttonText) {
-    if (this.openButtonText) {
-      if (array.length > 0) {
-        this.openButtonText.innerText = `${buttonText} (${array.length})`
-      } else {
-        this.openButtonText.innerText = `${buttonText}`
-      }
-    }
-  }
-
-  getCheckboxLabel(array, title, icon, name) {
-    const text = title
-    if (array.length > 0 && text) {
-      const labelText = text.innerText
-      const checks = []
-      array.forEach((input) => {
-        if (input.checked) {
-          this.selected.push(input.value)
-          checks.push(input.value)
-          text.innerText = labelText
-          if (title.classList.contains('nsw-filters__item-name')) {
-            text.innerHTML = `${text.innerText} ${icon}`
-          }
-          this.resultsCount(this.selected, name)
-        }
-        input.addEventListener('change', () => {
-          if (input.checked) {
-            this.selected.push(input.value)
-            checks.push(input.value)
-            this.resultsCount(this.selected, name)
-          } else {
-            this.selected.splice(this.selected.indexOf(input.value), 1)
-            checks.splice(checks.indexOf(input.value), 1)
-            this.resultsCount(this.selected, name)
-          }
-          if (checks.length > 0) {
-            text.innerText = labelText
-            if (title.classList.contains('nsw-filters__item-name')) {
-              text.innerHTML = `${text.innerText} ${icon}`
-            }
-          } else {
-            text.innerText = labelText
-          }
-        })
-      })
-    }
-  }
-
-  getSelectLabel(array, title, icon, name) {
-    const text = title
-    if (array.length > 0 && title) {
-      const labelText = text.innerText
-      array.forEach((select) => {
-        if (select.value !== '') {
-          this.selected.push(select)
-          text.innerText = labelText
-          if (title.classList.contains('nsw-filters__item-name')) {
-            text.innerHTML = `${text.innerText} ${icon}`
-          }
-        }
-        select.addEventListener('change', () => {
-          if (select.value !== '') {
-            if (!this.selected.includes('select')) {
-              this.selected.push('select')
-            }
-            text.innerText = labelText
-            if (title.classList.contains('nsw-filters__item-name')) {
-              text.innerHTML = `${text.innerText} ${icon}`
-            }
-            this.resultsCount(this.selected, name)
-          } else {
-            this.selected.splice(this.selected.indexOf('select'), 1)
-            text.innerText = labelText
-            this.resultsCount(this.selected, name)
-          }
-        })
-      })
-    }
-  }
-
-  getInputLabel(array, title, icon, name) {
-    const text = title
-    if (array.length >= 0 && text) {
-      const labelText = text.innerText
-      array.forEach((input) => {
-        if (input.value !== '') {
-          this.selected.push(`input-${labelText}`)
-          text.innerText = labelText
-          if (title.classList.contains('nsw-filters__item-name')) {
-            text.innerHTML = `${text.innerText} ${icon}`
-          }
-        }
-        input.addEventListener('keyup', () => {
-          if (input.value !== '') {
-            if (!this.selected.includes(`input-${labelText}`)) {
-              this.selected.push(`input-${labelText}`)
-            }
-            text.innerText = labelText
-            if (title.classList.contains('nsw-filters__item-name')) {
-              text.innerHTML = `${text.innerText} ${icon}`
-            }
-            this.resultsCount(this.selected, name)
-          } else if ((this.selected.indexOf(`input-${labelText}`) !== -1)) {
-            this.selected.splice(this.selected.indexOf(`input-${labelText}`), 1)
-            text.innerText = labelText
-            this.resultsCount(this.selected, name)
-          }
-        })
-      })
-    }
   }
 }
 

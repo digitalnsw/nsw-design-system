@@ -1,0 +1,31 @@
+---
+title: Filters
+page: true
+width: wide
+model:
+  options-1: ../../components/filters/json/options-1.json
+  options-2: ../../components/filters/json/options-2.json
+  options-3: ../../components/filters/json/options-3.json
+---
+
+{{#>_layout-container}}
+<div class="nsw-grid">
+  <div class="nsw-col">
+    <h3>Batch filtering</h3>
+  </div>
+</div>
+<div class="nsw-grid">
+  <div class="nsw-col nsw-col-xl-4">
+    <h4>Popup Open</h4>
+    <div class="nsw-docs__component">
+      {{>_filters model.options-2 batch='true' popup='true' js='true' unique-id='10'}}
+    </div>
+  </div>
+  <div class="nsw-col nsw-col-xl-4">
+    <h4>Popup Collapsed</h4>
+    <div class="nsw-docs__component">
+      {{>_filters model.options-3 batch='true' popup='true' collapsed='true' js='true' unique-id='11'}}
+    </div>
+  </div>
+</div>
+{{/_layout-container}}

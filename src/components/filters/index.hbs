@@ -1,6 +1,6 @@
 ---
 title: Filters
-width: menu
+width: wide
 tabs: true
 directory: filters
 intro: Filters allows a user to narrow down results using multiple attributes.
@@ -14,19 +14,57 @@ meta-index: true
 ---
 
 <h3>Instant filtering</h3>
-{{#>_docs-example}}{{>_filters model.options-1 instant='true' uID='_1'}}{{/_docs-example}}
 
-<h3>Instant filtering (collapsed)</h3>
-{{#>_docs-example}}{{>_filters model.options-3 instant='true' uID='_2' accordion='true' active='true'}}{{/_docs-example}}
+{{#>_docs-example}}
+<div class="nsw-grid">
+  <div class="nsw-col nsw-col-md-6">
+    <h4>Visible Open</h4>
+    {{>_filters model.options-1 instant='true' unique-id='1'}}
+  </div>
+  <div class="nsw-col nsw-col-md-6">
+    <h4>Visible Collapsed</h4>
+    {{>_filters model.options-2 instant='true' collapsed='true' js='true' unique-id='2'}}
+  </div>
+</div>
+{{/_docs-example}}
 
-<h3>Instant filtering (drop down mobile implementation)</h3>
-{{#>_docs-example}}{{>_filters model.options-1 instant='true' uID='_3' down='true'}}{{/_docs-example}}
+{{#>_docs-example}}
+<div class="nsw-grid">
+  <div class="nsw-col nsw-col-md-6">
+    <h4>Down Open (no counter)</h4>
+    {{>_filters model.options-1 instant='true' count='false' down='true' js='true' unique-id='3'}}
+  </div>
+  <div class="nsw-col nsw-col-md-6">
+    <h4>Down Collapsed</h4>
+    {{>_filters model.options-3 instant='true' down='true' collapsed='true' js='true' unique-id='4'}}
+  </div>
+</div>
+{{/_docs-example}}
 
-<h3>Instant filtering (collapsed with drop down mobile implementation)</h3>
-{{#>_docs-example}}{{>_filters model.options-3 instant='true' uID='_4' down='true' accordion='true'}}{{/_docs-example}}
+<h3>Batch filtering</h3>
 
-<h3>Batch filtering (with compact mobile implementation)</h3>
-{{#>_docs-example}}{{>_filters model.options-2 js='true' uID='_5' right='true'}}{{/_docs-example}}
+{{#>_docs-example}}
+<div class="nsw-grid">
+  <div class="nsw-col nsw-col-md-6">
+    <h4>Right Open</h4>
+    {{>_filters model.options-1 batch='true' right='true' js='true' unique-id='5'}}
+  </div>
+  <div class="nsw-col nsw-col-md-6">
+    <h4>Right Collapsed</h4>
+    {{>_filters model.options-1 batch='true' right='true' collapsed='true' js='true' unique-id='6'}}
+  </div>
+</div>
+{{/_docs-example}}
 
-<h3>Batch filtering (collapsed with expanding multiselect and compact mobile implementation)</h3>
-{{#>_docs-example}}{{>_filters model.options-3 js='true' uID='_6' right='true' accordion='true' active='true'}}{{/_docs-example}}
+{{#>_docs-example}}
+<div class="nsw-grid">
+  <div class="nsw-col nsw-col-md-6">
+    <h4>Down Open</h4>
+    {{>_filters model.options-1 batch='true' down='true' js='true' unique-id='7'}}
+  </div>
+  <div class="nsw-col nsw-col-md-6">
+    <h4>Down Collapsed (no counter)</h4>
+    {{>_filters model.options-1 batch='true' down='true' collapsed='true' js='true' count='false' unique-id='8'}}
+  </div>
+</div>
+{{/_docs-example}}

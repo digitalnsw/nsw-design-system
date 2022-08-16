@@ -91,21 +91,21 @@
       margin-left: auto;
     }
 
-    .active & {  
-      button {
+    &.active {
+      .nsw-material-icons {
         background-color: var(--nsw-brand-dark);
         color: var(--nsw-text-light);
-        outline: 2px solid var(--nsw-brand-dark);
-
-        .nsw-material-icons {
-          color: var(--nsw-text-light);
-          outline: 2px solid var(--nsw-white);
+      
+        .nsw-section--invert & {    
+          background-color: var(--nsw-white);
+          color: var(--nsw-brand-dark);
         }
+      }
 
-        .nsw-material-icons:last-child {
-          transform: rotate(180deg);
-          outline: 0;
-        }
+      .nsw-material-icons:last-child {
+        background-color: transparent;
+        color: var(--nsw-brand-dark);
+        outline: 0;
       }
     }
   }
@@ -113,11 +113,31 @@
   &__back {
     .nsw-filters--fixed & {
       @include z-index('upper');
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background-color: var(--nsw-white);
+      padding: rem(16px) rem(8px);
+      border-bottom: 1px solid var(--nsw-grey-04);
+
+      @include breakpoint('lg') {
+        display: none;
+      }
+
+      .nsw-section--invert & {
+        background-color: var(--nsw-brand-dark);
+      }
+    }
+
+    .nsw-filters--right & {
+      @include z-index('upper');
       position: absolute;
       top: rem(16px);
       padding-right: rem(16px);
       background-color: var(--nsw-white);
       transition: 0.3s linear;
+      right: -100vw;
 
       @include breakpoint('lg') {
         display: none;
@@ -126,35 +146,51 @@
       .nsw-material-icons {
         font-size: rem(map-get($nsw-icon-sizes, 30));
       }
+
+      .nsw-section--invert & {
+        background-color: var(--nsw-brand-dark);
+      }
     }
 
-    .nsw-filters--left &,
-    .nsw-filters--right & {
-      right: -100vw;
-    }
-
-    .nsw-filters--left.active &,
     .nsw-filters--right.active & {
       right: 0;
-    }
-
-    .nsw-section--invert & {
-      background-color: var(--nsw-brand-dark);
     }
   }
 
   &__wrapper {
     .nsw-filters--fixed & {
-      @include z-index('middle');
-      position: fixed;
+      display: none;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: rem(73px) rem(16px) rem(101px) rem(16px);
+      
+      .nsw-section--invert & {    
+        background-color: var(--nsw-brand-dark);
+      }
+    }
+
+    .nsw-filters--right & {
       top: 0;
       bottom: 0;
       width: 100%;
       transition: 0.3s linear;
+      padding: 0 rem(16px) rem(101px) rem(16px);
+      right: -100vw;
+    }
+
+    .nsw-filters--right.active & {
+      right: 0;
+    }
+
+    .nsw-filters--fixed &,
+    .nsw-filters--right & {
+      @include z-index('middle');
+      position: fixed;
       overflow-y: auto;
       background-color: var(--nsw-white);
-      padding: 0 rem(16px) rem(101px) rem(16px);
-      
+
       .nsw-section--invert & {    
         background-color: var(--nsw-brand-dark);
       }
@@ -171,21 +207,9 @@
         }
       }
     }
-    
-    .nsw-filters--left & {
-      left: -100vw;
-    }
 
-    .nsw-filters--right & {
-      right: -100vw;
-    }
-
-    .nsw-filters--left.active & {
-      left: 0;
-    }
-
-    .nsw-filters--right.active & {
-      right: 0;
+    .nsw-filters--fixed.nsw-filters--instant & {
+      padding-bottom: 0;
     }
 
     .nsw-filters--down & {
@@ -210,13 +234,11 @@
       }
     }
 
-    .nsw-filters--fixed.nsw-filters--instant & {
-      padding-bottom: 0;
-    }
-
     .active & {
       display: block;
     }
+
+
   }
 
   &__item {
@@ -261,7 +283,7 @@
       }
     }
 
-    &-name,
+    span:not(.nsw-material-icons),
     .nsw-form__label,
     .nsw-form__legend {
       display: flex;
@@ -280,14 +302,15 @@
 
       @include breakpoint('lg') {
         border-top: 1px solid var(--nsw-grey-04);
+        display: block;
       }
 
       &:first-child {
         border: 0;
-      }
-      
-      @include breakpoint('lg') {
-        display: block;
+
+        @include breakpoint('lg') {
+          border-top: 1px solid var(--nsw-grey-04);
+        }
       }
     }
   }
@@ -297,15 +320,15 @@
   }
 
   &__accept {
-    .nsw-filters--fixed & {
+    padding: rem(32px) 0;
+    border-top: 1px solid var(--nsw-grey-04);
+
+    .nsw-filters--fixed &,
+    .nsw-filters--right & {
       @include z-index('upper');
-      padding: rem(24px) rem(16px);
-      border-top: 1px solid var(--nsw-grey-04);
       position: fixed;
-      bottom: 0;
       background-color: var(--nsw-white);
-      width: 100%;
-      transition: 0.3s linear;
+      padding: rem(24px) rem(16px);
 
       .nsw-section--invert & {
         background-color: var(--nsw-brand-dark);
@@ -322,40 +345,22 @@
       }
     }
 
-    .nsw-filters--down & {
-      @include breakpoint('lg') {
-        border-top: 1px solid var(--nsw-grey-04);
-        padding: rem(32px) 0;
-      }
-    }
-
-    .nsw-filters--left & {
-      left: -100vw;
+    .nsw-filters--fixed & {
+      bottom: 0;
+      left: 0;
+      right: 0;
     }
 
     .nsw-filters--right & {
+      border-top: 1px solid var(--nsw-grey-04);
+      bottom: 0;
+      width: 100%;
+      transition: 0.3s linear;
       right: -100vw;
-    }
-
-    .nsw-filters--left.active & {
-      left: 0;
     }
 
     .nsw-filters--right.active & {
       right: 0;
-    }
-  }
-
-  &__cancel {
-    padding-bottom: rem(32px);
-    border-top: 1px solid var(--nsw-grey-04);
-    padding: rem(32px) 0;
-
-    .nsw-filters--fixed & {
-      @include breakpoint('lg') {
-        padding-top: 0;
-        border: 0;
-      }
     }
 
     .nsw-filters--down & {
@@ -365,6 +370,17 @@
         border-top: 1px solid var(--nsw-grey-04);
       }
     }
+
+    ~.nsw-filters__cancel {
+      border: 0;
+      padding-top: 0;
+    }
+  }
+
+  &__cancel {
+    padding-bottom: rem(32px);
+    border-top: 1px solid var(--nsw-grey-04);
+    padding: rem(32px) 0;
 
     button {
       @include link-button;
