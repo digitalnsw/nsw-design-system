@@ -26,6 +26,8 @@ class Filters {
     this.allBlocks = Array.prototype.slice.call(this.all)
     this.filtersItems = element.querySelectorAll('.nsw-filters__item')
     this.body = document.body
+    // eslint-disable-next-line max-len
+    this.focusableEls = element.querySelectorAll('a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])')
   }
 
   init() {
@@ -89,6 +91,7 @@ class Filters {
     } else {
       this.filters.classList.add('active')
       this.body.classList.add('filters-open')
+      this.trapFocus(this.filters)
     }
   }
 
@@ -136,6 +139,32 @@ class Filters {
     } else {
       this.setAccordionState(currentTarget, 'close')
     }
+  }
+
+  trapFocus(element) {
+    const firstFocusableEl = this.focusableEls[0]
+    const lastFocusableEl = this.focusableEls[this.focusableEls.length - 1]
+    const KEYCODE_TAB = 9
+
+    element.addEventListener('keydown', (e) => {
+      const isTabPressed = (e.key === 'Tab' || e.keyCode === KEYCODE_TAB)
+
+      if (!isTabPressed) {
+        return
+      }
+
+      if (e.shiftKey) {
+        if (document.activeElement === firstFocusableEl) {
+          lastFocusableEl.focus()
+          // lastFocusableEl.scrollIntoView(true)
+          e.preventDefault()
+        }
+      } else if (document.activeElement === lastFocusableEl) {
+        firstFocusableEl.focus()
+        // firstFocusableEl.scrollIntoView(true)
+        e.preventDefault()
+      }
+    })
   }
 
   toggleAccept(array) {
