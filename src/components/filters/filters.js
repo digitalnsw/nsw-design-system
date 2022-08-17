@@ -156,12 +156,10 @@ class Filters {
       if (e.shiftKey) {
         if (document.activeElement === firstFocusableEl) {
           lastFocusableEl.focus()
-          // lastFocusableEl.scrollIntoView(true)
           e.preventDefault()
         }
       } else if (document.activeElement === lastFocusableEl) {
         firstFocusableEl.focus()
-        // firstFocusableEl.scrollIntoView(true)
         e.preventDefault()
       }
     })
