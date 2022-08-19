@@ -5,10 +5,8 @@ class Filters {
     this.filters = element
     this.openButton = element.querySelector('.nsw-filters__controls button')
     this.selectedCount = element.querySelector('.js-filters--count')
-    if (this.selectedCount) {
-      this.openButtonText = this.selectedCount.querySelector('span:not(.nsw-material-icons)')
-      this.buttonLabel = this.openButtonText.innerText
-    }
+    this.openButtonText = this.selectedCount ? this.selectedCount.querySelector('span:not(.nsw-material-icons)') : null
+    this.buttonLabel = this.openButtonText ? this.openButtonText.innerText : null
     this.closeButton = element.querySelector('.nsw-filters__back button')
     this.acceptButton = element.querySelector('.nsw-filters__accept button')
     this.clearButton = element.querySelector('.nsw-filters__cancel button')
@@ -19,13 +17,13 @@ class Filters {
     this.showMoreEvent = (e) => this.showMore(e)
     this.toggleEvent = (e) => this.toggle(e)
     this.resetEvent = (e) => this.clearAllFilters(e)
-    this.buttons = []
-    this.content = []
-    this.selected = []
     this.all = element.querySelectorAll('.nsw-filters__all')
     this.allBlocks = Array.prototype.slice.call(this.all)
     this.filtersItems = element.querySelectorAll('.nsw-filters__item')
     this.body = document.body
+    this.buttons = []
+    this.content = []
+    this.selected = []
     // eslint-disable-next-line max-len
     this.focusableEls = element.querySelectorAll('a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])')
   }
@@ -202,7 +200,7 @@ class Filters {
   getCheckboxLabel(options) {
     const text = options.title
     if (options.array.length > 0) {
-      const labelText = (text) ? text.innerText : ''
+      const labelText = (text) ? text.innerText : null
       const checks = []
       options.array.forEach((input) => {
         if (input.checked) {
@@ -241,7 +239,7 @@ class Filters {
     const text = options.title
 
     if (options.array.length > 0) {
-      const labelText = (text) ? text.innerText : ''
+      const labelText = (text) ? text.innerText : null
       options.array.forEach((select) => {
         if (select.value !== '') {
           this.selected.push(select)
@@ -274,10 +272,10 @@ class Filters {
     console.log(this)
   }
 
-  getFieldsetLabel(options) {
+  getInputLabel(options) {
     const text = options.title
     if (options.array.length > 0) {
-      const labelText = (text) ? text.innerText : ''
+      const labelText = (text) ? text.innerText : null
       const checks = []
       options.array.forEach((input, index) => {
         if (input.value !== '') {
@@ -318,55 +316,17 @@ class Filters {
     }
   }
 
-  getInputLabel(options) {
-    const text = options.title
-    if (options.array.length > 0) {
-      const labelText = (text) ? text.innerText : ''
-      options.array.forEach((input) => {
-        if (input.value !== '' && !input.closest('fieldset')) {
-          this.selected.push(`input-${labelText}`)
-          if (text) {
-            text.innerText = labelText
-            text.innerHTML = `${text.innerText} ${options.icon}`
-          }
-        }
-        input.addEventListener('keyup', () => {
-          if (input.value !== '' && !input.closest('fieldset')) {
-            if (!this.selected.includes(`input-${labelText}`)) {
-              this.selected.push(`input-${labelText}`)
-            }
-            if (text) {
-              text.innerText = labelText
-              text.innerHTML = `${text.innerText} ${options.icon}`
-            }
-            this.updateDom()
-          } else if ((this.selected.indexOf(`input-${labelText}`) !== -1)) {
-            this.selected.splice(this.selected.indexOf(`input-${labelText}`), 1)
-            text.innerText = labelText
-            this.updateDom()
-          }
-        })
-      })
-    }
-  }
-
   selectedItems() {
     const checkIcon = '<span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span>'
 
     this.filtersItems.forEach((filter) => {
       const button = filter.querySelector('.nsw-filters__item-name')
       const content = filter.querySelector('.nsw-filters__item-content')
-      const text = content.querySelectorAll('input[name="filters-keyword"]')
-      const fieldset = content.querySelectorAll('fieldset input[type="text"]')
+      const text = content.querySelectorAll('input[type="text"]')
       const selects = content.querySelectorAll('select')
       const checkboxes = content.querySelectorAll('input[type="checkbox"]')
 
       if (button) {
-        this.getFieldsetLabel({
-          array: fieldset,
-          title: button,
-          icon: checkIcon,
-        })
         this.getInputLabel({
           array: text,
           title: button,
