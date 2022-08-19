@@ -270,12 +270,60 @@ class Filters {
     }
   }
 
+  label() {
+    console.log(this)
+  }
+
+  getFieldsetLabel(options) {
+    const text = options.title
+    if (options.array.length > 0) {
+      const labelText = (text) ? text.innerText : ''
+      const checks = []
+      options.array.forEach((input, index) => {
+        if (input.value !== '') {
+          this.selected.push(`input-${labelText}`)
+          checks.push(`input-${labelText}-${index}`)
+          if (text) {
+            text.innerText = labelText
+            text.innerHTML = `${text.innerText} ${options.icon}`
+          }
+          this.updateDom()
+        }
+        input.addEventListener('keyup', () => {
+          if (input.value !== '') {
+            if (!this.selected.includes(`input-${labelText}`)) {
+              this.selected.push(`input-${labelText}`)
+            }
+            if (!checks.includes(`input-${labelText}-${index}`)) {
+              checks.push(`input-${labelText}-${index}`)
+            }
+            this.updateDom()
+          } else {
+            if ((this.selected.indexOf(`input-${labelText}`) !== -1) && checks.length === 1) {
+              this.selected.splice(this.selected.indexOf(`input-${labelText}`), 1)
+            }
+            checks.splice(checks.indexOf(`input-${labelText}-${index}`), 1)
+            this.updateDom()
+          }
+          if (text) {
+            if (checks.length > 0) {
+              text.innerText = labelText
+              text.innerHTML = `${text.innerText} ${options.icon}`
+            } else {
+              text.innerText = labelText
+            }
+          }
+        })
+      })
+    }
+  }
+
   getInputLabel(options) {
     const text = options.title
-    if (options.array.length >= 0) {
+    if (options.array.length > 0) {
       const labelText = (text) ? text.innerText : ''
       options.array.forEach((input) => {
-        if (input.value !== '') {
+        if (input.value !== '' && !input.closest('fieldset')) {
           this.selected.push(`input-${labelText}`)
           if (text) {
             text.innerText = labelText
@@ -283,7 +331,7 @@ class Filters {
           }
         }
         input.addEventListener('keyup', () => {
-          if (input.value !== '') {
+          if (input.value !== '' && !input.closest('fieldset')) {
             if (!this.selected.includes(`input-${labelText}`)) {
               this.selected.push(`input-${labelText}`)
             }
@@ -308,11 +356,17 @@ class Filters {
     this.filtersItems.forEach((filter) => {
       const button = filter.querySelector('.nsw-filters__item-name')
       const content = filter.querySelector('.nsw-filters__item-content')
-      const text = content.querySelectorAll('input[type="text"]')
+      const text = content.querySelectorAll('input[name="filters-keyword"]')
+      const fieldset = content.querySelectorAll('fieldset input[type="text"]')
       const selects = content.querySelectorAll('select')
       const checkboxes = content.querySelectorAll('input[type="checkbox"]')
 
       if (button) {
+        this.getFieldsetLabel({
+          array: fieldset,
+          title: button,
+          icon: checkIcon,
+        })
         this.getInputLabel({
           array: text,
           title: button,
