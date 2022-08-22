@@ -26,6 +26,7 @@ class Filters {
     this.selected = []
     // eslint-disable-next-line max-len
     this.focusableEls = element.querySelectorAll('a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])')
+    this.checkIcon = '<span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span>'
   }
 
   init() {
@@ -197,37 +198,68 @@ class Filters {
     this.toggleSelectedState(this.selected)
   }
 
-  getCheckboxLabel(options) {
+  updateCount(options) {
     const text = options.title
     if (options.array.length > 0) {
-      const labelText = (text) ? text.innerText : null
-      const checks = []
-      options.array.forEach((input) => {
-        if (input.checked) {
-          this.selected.push(input.value)
-          checks.push(input.value)
-          if (text) {
-            text.innerText = labelText
-            text.innerHTML = `${text.innerText} ${options.icon}`
-          }
-          this.updateDom()
+      const groupedElements = []
+      options.array.forEach((element, index) => {
+        const labelText = (text) ? text.innerText : null
+        const singleElement = `input-${labelText}`
+        const multipleElements = `input-${labelText}-${index}`
+        // Get field type
+        let getEventType
+        if (element.type === 'text') {
+          getEventType = 'keyup'
+        } else {
+          getEventType = 'change'
         }
-        input.addEventListener('change', () => {
-          if (input.checked) {
-            this.selected.push(input.value)
-            checks.push(input.value)
-            this.updateDom()
-          } else {
-            this.selected.splice(this.selected.indexOf(input.value), 1)
-            checks.splice(checks.indexOf(input.value), 1)
+        // update count on load
+        if (element.type === 'text' || element.type === 'select-one') {
+          if (element.value !== '') {
+            this.selected.push(singleElement)
+            groupedElements.push(multipleElements)
             this.updateDom()
           }
-          if (text) {
-            if (checks.length > 0) {
-              text.innerText = labelText
-              text.innerHTML = `${text.innerText} ${options.icon}`
+        } else if (element.type === 'checkbox' || element.type === 'radio') {
+          if (element.checked) {
+            this.selected.push(multipleElements)
+            groupedElements.push(multipleElements)
+            this.updateDom()
+          }
+        }
+        // update count on eventType
+        element.addEventListener(getEventType, () => {
+          if (element.type === 'text' || element.type === 'select-one') {
+            if (element.value !== '') {
+              if (!this.selected.includes(singleElement)) {
+                this.selected.push(singleElement)
+              }
+              if (!groupedElements.includes(multipleElements)) {
+                groupedElements.push(multipleElements)
+              }
+              this.updateDom()
             } else {
-              text.innerText = labelText
+              if ((this.selected.indexOf(singleElement) !== -1) && groupedElements.length === 1) {
+                this.selected.splice(this.selected.indexOf(singleElement), 1)
+              }
+              groupedElements.splice(groupedElements.indexOf(multipleElements), 1)
+              this.updateDom()
+            }
+          } else if (element.type === 'checkbox' || element.type === 'radio') {
+            if (element.checked) {
+              if (!this.selected.includes(multipleElements)) {
+                this.selected.push(multipleElements)
+              }
+              if (!groupedElements.includes(multipleElements)) {
+                groupedElements.push(multipleElements)
+              }
+              this.updateDom()
+            } else {
+              if (this.selected.indexOf(multipleElements) !== -1) {
+                this.selected.splice(this.selected.indexOf(multipleElements), 1)
+              }
+              groupedElements.splice(groupedElements.indexOf(multipleElements), 1)
+              this.updateDom()
             }
           }
         })
@@ -235,78 +267,61 @@ class Filters {
     }
   }
 
-  getSelectLabel(options) {
+  updateLabel(options) {
     const text = options.title
-
+    const elementsArray = []
     if (options.array.length > 0) {
       const labelText = (text) ? text.innerText : null
-      options.array.forEach((select) => {
-        if (select.value !== '') {
-          this.selected.push(select)
-          if (text) {
-            text.innerText = labelText
-            text.innerHTML = `${text.innerText} ${options.icon}`
-          }
+      options.array.forEach((element, index) => {
+        const arrayItems = `input-${labelText}-${index}`
+        // Get field type
+        let getEventType
+        if (element.type === 'text') {
+          getEventType = 'keyup'
+        } else {
+          getEventType = 'change'
         }
-        select.addEventListener('change', () => {
-          if (select.value !== '') {
-            if (!this.selected.includes('select')) {
-              this.selected.push('select')
-            }
+        // update label on load
+        if (element.type === 'text' || element.type === 'select-one') {
+          if (element.value !== '') {
+            elementsArray.push(arrayItems)
             if (text) {
               text.innerText = labelText
-              text.innerHTML = `${text.innerText} ${options.icon}`
+              text.innerHTML = `${text.innerText} ${this.checkIcon}`
             }
-            this.updateDom()
-          } else {
-            this.selected.splice(this.selected.indexOf('select'), 1)
-            text.innerText = labelText
-            this.updateDom()
           }
-        })
-      })
-    }
-  }
-
-  label() {
-    console.log(this)
-  }
-
-  getInputLabel(options) {
-    const text = options.title
-    if (options.array.length > 0) {
-      const labelText = (text) ? text.innerText : null
-      const checks = []
-      options.array.forEach((input, index) => {
-        if (input.value !== '') {
-          this.selected.push(`input-${labelText}`)
-          checks.push(`input-${labelText}-${index}`)
-          if (text) {
-            text.innerText = labelText
-            text.innerHTML = `${text.innerText} ${options.icon}`
-          }
-          this.updateDom()
-        }
-        input.addEventListener('keyup', () => {
-          if (input.value !== '') {
-            if (!this.selected.includes(`input-${labelText}`)) {
-              this.selected.push(`input-${labelText}`)
-            }
-            if (!checks.includes(`input-${labelText}-${index}`)) {
-              checks.push(`input-${labelText}-${index}`)
-            }
-            this.updateDom()
-          } else {
-            if ((this.selected.indexOf(`input-${labelText}`) !== -1) && checks.length === 1) {
-              this.selected.splice(this.selected.indexOf(`input-${labelText}`), 1)
-            }
-            checks.splice(checks.indexOf(`input-${labelText}-${index}`), 1)
-            this.updateDom()
-          }
-          if (text) {
-            if (checks.length > 0) {
+        } else if (element.type === 'checkbox' || element.type === 'radio') {
+          if (element.checked) {
+            elementsArray.push(arrayItems)
+            if (text) {
               text.innerText = labelText
-              text.innerHTML = `${text.innerText} ${options.icon}`
+              text.innerHTML = `${text.innerText} ${this.checkIcon}`
+            }
+          }
+        }
+        // update label on eventType
+        element.addEventListener(getEventType, () => {
+          if (element.type === 'text' || element.type === 'select-one') {
+            if (element.value !== '') {
+              if (!elementsArray.includes(arrayItems)) {
+                elementsArray.push(arrayItems)
+              }
+            } else {
+              elementsArray.splice(elementsArray.indexOf(arrayItems), 1)
+            }
+          } else if (element.type === 'checkbox' || element.type === 'radio') {
+            if (element.checked) {
+              if (!elementsArray.includes(arrayItems)) {
+                elementsArray.push(arrayItems)
+              }
+            } else {
+              elementsArray.splice(elementsArray.indexOf(arrayItems), 1)
+            }
+          }
+          if (text) {
+            if (elementsArray.length > 0) {
+              text.innerText = labelText
+              text.innerHTML = `${text.innerText} ${this.checkIcon}`
             } else {
               text.innerText = labelText
             }
@@ -317,8 +332,6 @@ class Filters {
   }
 
   selectedItems() {
-    const checkIcon = '<span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span>'
-
     this.filtersItems.forEach((filter) => {
       const button = filter.querySelector('.nsw-filters__item-name')
       const content = filter.querySelector('.nsw-filters__item-content')
@@ -326,27 +339,13 @@ class Filters {
       const selects = content.querySelectorAll('select')
       const checkboxes = content.querySelectorAll('input[type="checkbox"]')
 
-      if (button) {
-        this.getInputLabel({
-          array: text,
-          title: button,
-          icon: checkIcon,
-        })
-        this.getSelectLabel({
-          array: selects,
-          title: button,
-          icon: checkIcon,
-        })
-        this.getCheckboxLabel({
-          array: checkboxes,
-          title: button,
-          icon: checkIcon,
-        })
-      } else {
-        this.getInputLabel({ array: text })
-        this.getSelectLabel({ array: selects })
-        this.getCheckboxLabel({ array: checkboxes })
-      }
+      this.updateCount({ array: text, title: button })
+      this.updateCount({ array: selects, title: button })
+      this.updateCount({ array: checkboxes, title: button })
+
+      this.updateLabel({ array: text, title: button })
+      this.updateLabel({ array: selects, title: button })
+      this.updateLabel({ array: checkboxes, title: button })
     })
   }
 
