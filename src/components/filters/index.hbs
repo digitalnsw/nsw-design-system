@@ -14,56 +14,88 @@ meta-index: true
 ---
 
 <h3>Instant filtering</h3>
+<div class="nsw-show-lg">
+  <div class="nsw-grid">
+    <div class="nsw-col nsw-col-md-6">
+      <h4>Visible Open</h4>
+    </div>
+    <div class="nsw-col nsw-col-md-6">
+      <h4>Visible Collapsed</h4>
+    </div>
+  </div>
+</div>
 
 {{#>_docs-example}}
-<div class="nsw-grid">
+<div class="nsw-row">
   <div class="nsw-col nsw-col-md-6">
-    <h4>Visible Open</h4>
     {{>_filters model.options-1 instant='true' filters-id='1'}}
   </div>
   <div class="nsw-col nsw-col-md-6">
-    <h4>Visible Collapsed</h4>
     {{>_filters model.options-2 instant='true' collapsed='true' js='true' filters-id='2'}}
   </div>
 </div>
 {{/_docs-example}}
 
+<div class="nsw-show-lg">
+  <div class="nsw-grid">
+    <div class="nsw-col nsw-col-md-6">
+      <h4>Down Open (no counter)</h4>
+    </div>
+    <div class="nsw-col nsw-col-md-6">
+      <h4>Down Collapsed</h4>
+    </div>
+  </div>
+</div>
 {{#>_docs-example}}
-<div class="nsw-grid">
+<div class="nsw-row">
   <div class="nsw-col nsw-col-md-6">
-    <h4>Down Open (no counter)</h4>
     {{>_filters model.options-1 instant='true' down='true' js='true' no-count='true' filters-id='3'}}
   </div>
   <div class="nsw-col nsw-col-md-6">
-    <h4>Down Collapsed</h4>
     {{>_filters model.options-3 instant='true' down='true' collapsed='true' js='true' filters-id='4'}}
   </div>
 </div>
 {{/_docs-example}}
 
 <h3>Batch filtering</h3>
-
+<div class="nsw-show-lg">
+  <div class="nsw-grid">
+    <div class="nsw-col nsw-col-md-6">
+      <h4>Right Open</h4>
+    </div>
+    <div class="nsw-col nsw-col-md-6">
+      <h4>Right Collapsed</h4>
+    </div>
+  </div>
+</div>
 {{#>_docs-example}}
-<div class="nsw-grid">
+<div class="nsw-row">
   <div class="nsw-col nsw-col-md-6">
-    <h4>Right Open</h4>
     {{>_filters model.options-1 batch='true' right='true' js='true' filters-id='5'}}
   </div>
   <div class="nsw-col nsw-col-md-6">
-    <h4>Right Collapsed</h4>
     {{>_filters model.options-1 batch='true' right='true' collapsed='true' js='true' filters-id='6'}}
   </div>
 </div>
 {{/_docs-example}}
 
+<div class="nsw-show-lg">
+  <div class="nsw-grid">
+    <div class="nsw-col nsw-col-md-6">
+      <h4>Down Open</h4>
+    </div>
+    <div class="nsw-col nsw-col-md-6">
+      <h4>Down Collapsed (no counter)</h4>
+    </div>
+  </div>
+</div>
+
 {{#>_docs-example}}
-<div class="nsw-grid">
+<div class="nsw-row">
   <div class="nsw-col nsw-col-md-6">
-    <h4>Down Open</h4>
     {{>_filters model.options-1 batch='true' down='true' js='true' filters-id='7'}}
   </div>
   <div class="nsw-col nsw-col-md-6">
-    <h4>Down Collapsed (no counter)</h4>
     {{>_filters model.options-1 batch='true' down='true' collapsed='true' js='true' no-count='true' filters-id='8'}}
   </div>
 </div>
