@@ -297,7 +297,73 @@ model:
         <div class="nsw-col">
           <h2>Filters</h2>
         </div>
-        <div class="nsw-col nsw-col-lg-4" style="max-width: 368px;">
+      </div>
+
+      <div class="nsw-row">
+        <div class="nsw-col nsw-col-xl-4">
+          <div class="nsw-docs__component">
+            <h4>Visible Open</h4>
+            {{>_filters model.filters-options-1 instant='true' filters-id='1'}}
+          </div>
+        </div>
+        <div class="nsw-col nsw-col-xl-4">
+          <div class="nsw-docs__component">
+            <h4>Visible Collapsed</h4>
+            {{>_filters model.filters-options-2 instant='true' collapsed='true' js='true' filters-id='2'}}
+          </div>
+        </div>
+      </div>
+
+      <div class="nsw-row">
+        <div class="nsw-col nsw-col-xl-4">
+          <div class="nsw-docs__component">
+            <h4>Down Open (no counter)</h4>
+            {{>_filters model.filters-options-2 instant='true' down='true' js='true' no-count='true' filters-id='3'}}
+          </div>
+        </div>
+        <div class="nsw-col nsw-col-xl-4">
+          <div class="nsw-docs__component">
+            <h4>Down Collapsed</h4>
+            {{>_filters model.filters-options-3 instant='true' down='true' collapsed='true' js='true' filters-id='4'}}
+          </div>
+        </div>
+      </div>
+
+      <div class="nsw-row">
+        <div class="nsw-col nsw-col-xl-4">
+          <div class="nsw-docs__component">
+            <h4>Right Open</h4>
+            {{>_filters model.filters-options-2 batch='true' right='true' js='true' filters-id='5'}}
+          </div>
+        </div>
+        <div class="nsw-col nsw-col-xl-4">
+          <div class="nsw-docs__component">
+            <h4>Right Collapsed</h4>
+            {{>_filters model.filters-options-3 batch='true' right='true' collapsed='true' js='true' filters-id='6'}}
+          </div>
+        </div>
+      </div>
+
+      <div class="nsw-row">
+        <div class="nsw-col nsw-col-xl-4">
+          <h4>Down Open</h4>
+          <div class="nsw-docs__component">
+            {{>_filters model.filters-options-2 batch='true' down='true' js='true' filters-id='7'}}
+          </div>
+        </div>
+        <div class="nsw-col nsw-col-xl-4">
+          <h4>Down Collapsed (no counter)</h4>
+          <div class="nsw-docs__component">
+            {{>_filters model.filters-options-3 batch='true' down='true' collapsed='true' js='true' no-count='true' filters-id='8'}}
+          </div>
+        </div>
+      </div>
+
+      <div class="nsw-row">
+        <div class="nsw-col">
+          <h2>Filters</h2>
+        </div>
+        <div class="nsw-col nsw-col-lg-4">
           <form class="nsw-filters nsw-filters--fixed js-filters">
             <div class="nsw-filters__controls active">
               <button>
@@ -408,7 +474,7 @@ model:
             </div>
           </form>
         </div>
-        <div class="nsw-col nsw-col-lg-4" style="max-width: 368px;">
+        <div class="nsw-col nsw-col-lg-4">
           <form class="nsw-filters nsw-filters--fixed js-filters">
             <div class="nsw-filters__controls">
               <button>
@@ -464,7 +530,7 @@ model:
             </div>
           </form>
         </div>
-        <div class="nsw-col nsw-col-lg-4" style="max-width: 368px;">
+        <div class="nsw-col nsw-col-lg-4">
           <div class="nsw-filters nsw-filters--instant">
             <div class="nsw-filters__wrapper">
               <div class="nsw-filters__title">Filter results</div>
