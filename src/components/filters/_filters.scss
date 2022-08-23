@@ -107,6 +107,12 @@
         }
       }
     }
+
+    .active & {
+      .nsw-material-icons:last-child {
+        transform: rotate(180deg);
+      }
+    }
   }
 
   &__back {
@@ -201,6 +207,7 @@
       transition: $nsw-transition-duration;
       padding: 0 rem(16px) rem(101px) rem(16px);
       right: -100vw;
+      visibility: hidden;
 
       @include breakpoint('lg') {
         display: block;
@@ -210,6 +217,7 @@
 
     .nsw-filters--right.active & {
       right: 0;
+      visibility: visible;
     }
 
     .nsw-filters--fixed.nsw-filters--instant & {
@@ -246,8 +254,11 @@
   }
 
   &__item {
-    padding: rem(24px) 0;
     border-top: 1px solid var(--nsw-grey-04);
+
+    &-content {
+      padding: rem(24px) 0;
+    }
 
     &-button {
       font-size: var(--nsw-font-size-sm-mobile);
@@ -259,7 +270,7 @@
       justify-content: space-between;
       border: 0;
       background: none;
-      padding: 0;
+      padding: rem(24px) 0;
 
       @include breakpoint('lg') {
         font-size: var(--nsw-font-size-sm-desktop);
@@ -268,6 +279,10 @@
 
       .nsw-material-icons {
         font-size: rem(map-get($nsw-icon-sizes, 30));
+      }
+
+      &:focus {
+        @include nsw-focus;
       }
 
       &.active {

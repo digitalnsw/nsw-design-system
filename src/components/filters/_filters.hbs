@@ -1,6 +1,6 @@
 <{{#if instant}}div{{else}}form{{/if}} class="nsw-filters{{#if instant}} nsw-filters--instant{{/if}}{{#if popup}} nsw-filters--fixed{{/if}}{{#if right}} nsw-filters--right{{/if}}{{#if down}} nsw-filters--down{{/if}}{{#if js}} js-filters{{/if}}">
   {{#if (or right popup down)}}
-  <div class="nsw-filters__controls{{#unless nocount}} js-filters--count{{/unless}}">
+  <div class="nsw-filters__controls{{#unless no-count}} js-filters--count{{/unless}}">
     <button>
       <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">tune</span>
       <span>{{#if name}}{{name}}{{else}}Filters{{/if}}</span>
@@ -15,7 +15,7 @@
   <div class="nsw-filters__wrapper">
     {{#if (or right popup)}}
     <div class="nsw-filters__back">
-      <button class="nsw-icon-button nsw-icon-button--flex js-close-sub-nav" type="button" aria-expanded="true" aria-controls="sub-nav-{{filters-id}}">
+      <button class="nsw-icon-button nsw-icon-button--flex js-close-sub-nav" type="button">
         {{#if right}}
         <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">close</span>
         <span class="sr-only">Close filters</span>
@@ -97,7 +97,7 @@
           <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
         </button>
         {{/if}}
-        <div class="nsw-filters__item-content">
+        <div class="nsw-filters__item-content js-filters--single-count">
           {{#each dates.list}}
           <div class="nsw-form__group">
             <fieldset class="nsw-form__date">

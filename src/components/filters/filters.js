@@ -3,8 +3,10 @@ import { uniqueId } from '../../global/scripts/helpers/utilities'
 class Filters {
   constructor(element) {
     this.filters = element
+    this.filtersWrapper = element.querySelector('.nsw-filters__wrapper')
     this.openButton = element.querySelector('.nsw-filters__controls button')
     this.selectedCount = element.querySelector('.js-filters--count')
+    this.isSingleCount = element.querySelectorAll('.js-filters--single-count')
     this.openButtonText = this.selectedCount ? this.selectedCount.querySelector('span:not(.nsw-material-icons)') : null
     this.buttonLabel = this.openButtonText ? this.openButtonText.innerText : null
     this.closeButton = element.querySelector('.nsw-filters__back button')
@@ -25,8 +27,9 @@ class Filters {
     this.content = []
     this.selected = []
     // eslint-disable-next-line max-len
-    this.focusableEls = element.querySelectorAll('a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])')
+    this.focusableEls = this.filtersWrapper.querySelectorAll('a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])')
     this.checkIcon = '<span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span>'
+    this.eventType = ''
   }
 
   init() {
@@ -88,9 +91,9 @@ class Filters {
     if (this.filters.classList.contains('nsw-filters--down')) {
       this.filters.classList.toggle('active')
     } else {
+      this.trapFocus(this.filtersWrapper)
       this.filters.classList.add('active')
       this.body.classList.add('filters-open')
-      this.trapFocus(this.filters)
     }
   }
 
@@ -148,18 +151,16 @@ class Filters {
     element.addEventListener('keydown', (e) => {
       const isTabPressed = (e.key === 'Tab' || e.keyCode === KEYCODE_TAB)
 
-      if (!isTabPressed) {
-        return
-      }
+      if (!isTabPressed) { return }
 
       if (e.shiftKey) {
         if (document.activeElement === firstFocusableEl) {
-          lastFocusableEl.focus()
           e.preventDefault()
+          lastFocusableEl.focus()
         }
       } else if (document.activeElement === lastFocusableEl) {
-        firstFocusableEl.focus()
         e.preventDefault()
+        firstFocusableEl.focus()
       }
     })
   }
@@ -198,132 +199,100 @@ class Filters {
     this.toggleSelectedState(this.selected)
   }
 
+  getEventType(type) {
+    if (type === 'text') {
+      this.eventType = 'input'
+    } else {
+      this.eventType = 'change'
+    }
+    return this.eventType
+  }
+
+  getCondition(element) {
+    this.body = document.body
+    if (element.type === 'text' || element.type === 'select-one') {
+      return element.value !== ''
+    }
+    return element.checked
+  }
+
+  singleCount(element, index, id) {
+    this.body = document.body
+    const isSingleCount = element.closest('.js-filters--single-count')
+    if (!isSingleCount) {
+      return { uniqueID: `${id}-${index}`, singleID: `${id}-${index}`, isSingleCount }
+    }
+    return { uniqueID: `${id}`, singleID: `${id}-${index}`, isSingleCount }
+  }
+
   updateCount(options) {
-    const text = options.title
+    const id = uniqueId()
+    const GroupArray = []
     if (options.array.length > 0) {
-      const groupedElements = []
       options.array.forEach((element, index) => {
-        const labelText = (text) ? text.innerText : null
-        const singleElement = `input-${labelText}`
-        const multipleElements = `input-${labelText}-${index}`
-        // Get field type
-        let getEventType
-        if (element.type === 'text') {
-          getEventType = 'keyup'
-        } else {
-          getEventType = 'change'
-        }
-        // update count on load
-        if (element.type === 'text' || element.type === 'select-one') {
-          if (element.value !== '') {
-            this.selected.push(singleElement)
-            groupedElements.push(multipleElements)
-            this.updateDom()
+        const getEventType = this.getEventType(element.type)
+        const { uniqueID, singleID, isSingleCount } = this.singleCount(element, index, id)
+        if (this.getCondition(element)) {
+          this.selected.push(uniqueID)
+          if (isSingleCount) {
+            GroupArray.push(singleID)
           }
-        } else if (element.type === 'checkbox' || element.type === 'radio') {
-          if (element.checked) {
-            this.selected.push(multipleElements)
-            groupedElements.push(multipleElements)
-            this.updateDom()
-          }
+          this.updateDom()
         }
-        // update count on eventType
         element.addEventListener(getEventType, () => {
-          if (element.type === 'text' || element.type === 'select-one') {
-            if (element.value !== '') {
-              if (!this.selected.includes(singleElement)) {
-                this.selected.push(singleElement)
-              }
-              if (!groupedElements.includes(multipleElements)) {
-                groupedElements.push(multipleElements)
-              }
-              this.updateDom()
-            } else {
-              if ((this.selected.indexOf(singleElement) !== -1) && groupedElements.length === 1) {
-                this.selected.splice(this.selected.indexOf(singleElement), 1)
-              }
-              groupedElements.splice(groupedElements.indexOf(multipleElements), 1)
+          if (this.getCondition(element)) {
+            if (!this.selected.includes(uniqueID)) {
+              this.selected.push(uniqueID)
               this.updateDom()
             }
-          } else if (element.type === 'checkbox' || element.type === 'radio') {
-            if (element.checked) {
-              if (!this.selected.includes(multipleElements)) {
-                this.selected.push(multipleElements)
-              }
-              if (!groupedElements.includes(multipleElements)) {
-                groupedElements.push(multipleElements)
-              }
-              this.updateDom()
-            } else {
-              if (this.selected.indexOf(multipleElements) !== -1) {
-                this.selected.splice(this.selected.indexOf(multipleElements), 1)
-              }
-              groupedElements.splice(groupedElements.indexOf(multipleElements), 1)
-              this.updateDom()
+            if (isSingleCount && !GroupArray.includes(singleID)) {
+              GroupArray.push(singleID)
             }
+          } else {
+            if (isSingleCount && GroupArray.indexOf(singleID) !== -1) {
+              GroupArray.splice(GroupArray.indexOf(singleID), 1)
+            }
+            if (!isSingleCount && this.selected.indexOf(uniqueID) !== -1) {
+              this.selected.splice(this.selected.indexOf(uniqueID), 1)
+            } else if (GroupArray.length <= 0) {
+              this.selected.splice(this.selected.indexOf(uniqueID), 1)
+            }
+            this.updateDom()
           }
         })
       })
     }
   }
 
-  updateLabel(options) {
+  updateStatus(options) {
+    const id = uniqueId()
     const text = options.title
-    const elementsArray = []
+    const GroupArray = []
     if (options.array.length > 0) {
-      const labelText = (text) ? text.innerText : null
+      const labelText = (text) ? text.textContent : null
       options.array.forEach((element, index) => {
-        const arrayItems = `input-${labelText}-${index}`
-        // Get field type
-        let getEventType
-        if (element.type === 'text') {
-          getEventType = 'keyup'
-        } else {
-          getEventType = 'change'
-        }
-        // update label on load
-        if (element.type === 'text' || element.type === 'select-one') {
-          if (element.value !== '') {
-            elementsArray.push(arrayItems)
-            if (text) {
-              text.innerText = labelText
-              text.innerHTML = `${text.innerText} ${this.checkIcon}`
-            }
-          }
-        } else if (element.type === 'checkbox' || element.type === 'radio') {
-          if (element.checked) {
-            elementsArray.push(arrayItems)
-            if (text) {
-              text.innerText = labelText
-              text.innerHTML = `${text.innerText} ${this.checkIcon}`
-            }
+        const getEventType = this.getEventType(element.type)
+        const { singleID } = this.singleCount(element, index, id)
+        if (this.getCondition(element)) {
+          if (text) {
+            text.textContent = labelText
+            text.innerHTML = `${text.textContent} ${this.checkIcon}`
           }
         }
-        // update label on eventType
         element.addEventListener(getEventType, () => {
-          if (element.type === 'text' || element.type === 'select-one') {
-            if (element.value !== '') {
-              if (!elementsArray.includes(arrayItems)) {
-                elementsArray.push(arrayItems)
-              }
-            } else {
-              elementsArray.splice(elementsArray.indexOf(arrayItems), 1)
+          if (this.getCondition(element)) {
+            if (!GroupArray.includes(singleID)) {
+              GroupArray.push(singleID)
             }
-          } else if (element.type === 'checkbox' || element.type === 'radio') {
-            if (element.checked) {
-              if (!elementsArray.includes(arrayItems)) {
-                elementsArray.push(arrayItems)
-              }
-            } else {
-              elementsArray.splice(elementsArray.indexOf(arrayItems), 1)
-            }
+          } else if (GroupArray.indexOf(singleID) !== -1) {
+            GroupArray.splice(GroupArray.indexOf(singleID), 1)
           }
           if (text) {
-            if (elementsArray.length > 0) {
-              text.innerText = labelText
-              text.innerHTML = `${text.innerText} ${this.checkIcon}`
+            if (GroupArray.length > 0) {
+              text.textContent = labelText
+              text.innerHTML = `${text.textContent} ${this.checkIcon}`
             } else {
-              text.innerText = labelText
+              text.textContent = labelText
             }
           }
         })
@@ -335,17 +304,18 @@ class Filters {
     this.filtersItems.forEach((filter) => {
       const button = filter.querySelector('.nsw-filters__item-name')
       const content = filter.querySelector('.nsw-filters__item-content')
-      const text = content.querySelectorAll('input[type="text"]')
-      const selects = content.querySelectorAll('select')
-      const checkboxes = content.querySelectorAll('input[type="checkbox"]')
+      const text = content ? content.querySelectorAll('input[type="text"]') : null
+      const selects = content ? content.querySelectorAll('select') : null
+      const checkboxes = content ? content.querySelectorAll('input[type="checkbox"]') : null
 
-      this.updateCount({ array: text, title: button })
-      this.updateCount({ array: selects, title: button })
-      this.updateCount({ array: checkboxes, title: button })
-
-      this.updateLabel({ array: text, title: button })
-      this.updateLabel({ array: selects, title: button })
-      this.updateLabel({ array: checkboxes, title: button })
+      if (content) {
+        this.updateCount({ array: text, title: button })
+        this.updateCount({ array: selects, title: button })
+        this.updateCount({ array: checkboxes, title: button })
+        this.updateStatus({ array: text, title: button })
+        this.updateStatus({ array: selects, title: button })
+        this.updateStatus({ array: checkboxes, title: button })
+      }
     })
   }
 
