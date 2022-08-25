@@ -228,6 +228,8 @@ class Filters {
       options.array.forEach((element, index) => {
         const getEventType = this.constructor.getEventType(element.type)
         const { uniqueID, singleID, isSingleCount } = this.constructor.singleCount(element, index, id)
+        const selectedIndex = this.selected.indexOf(uniqueID)
+        const singleSelectedIndex = GroupArray.indexOf(singleID)
         if (this.constructor.getCondition(element)) {
           this.selected.push(uniqueID)
           if (isSingleCount) {
@@ -245,13 +247,13 @@ class Filters {
               GroupArray.push(singleID)
             }
           } else {
-            if (isSingleCount && GroupArray.indexOf(singleID) !== -1) {
-              GroupArray.splice(GroupArray.indexOf(singleID), 1)
+            if (isSingleCount && singleSelectedIndex !== -1) {
+              GroupArray.splice(singleSelectedIndex, 1)
             }
-            if (!isSingleCount && this.selected.indexOf(uniqueID) !== -1) {
-              this.selected.splice(this.selected.indexOf(uniqueID), 1)
+            if (!isSingleCount && selectedIndex !== -1) {
+              this.selected.splice(selectedIndex, 1)
             } else if (GroupArray.length <= 0) {
-              this.selected.splice(this.selected.indexOf(uniqueID), 1)
+              this.selected.splice(selectedIndex, 1)
             }
             this.updateDom()
           }
