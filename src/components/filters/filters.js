@@ -6,7 +6,6 @@ class Filters {
     this.filtersWrapper = element.querySelector('.nsw-filters__wrapper')
     this.openButton = element.querySelector('.nsw-filters__controls button')
     this.selectedCount = element.querySelector('.js-filters--count')
-    this.isSingleCount = element.querySelectorAll('.js-filters--single-count')
     this.openButtonText = this.selectedCount ? this.selectedCount.querySelector('span:not(.nsw-material-icons)') : null
     this.buttonLabel = this.openButtonText ? this.openButtonText.innerText : null
     this.closeButton = element.querySelector('.nsw-filters__back button')
@@ -30,6 +29,7 @@ class Filters {
     this.focusableEls = this.filtersWrapper.querySelectorAll('a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])')
     this.checkIcon = '<span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span>'
     this.eventType = ''
+    this.fieldType = ''
   }
 
   init() {
@@ -199,25 +199,21 @@ class Filters {
     this.toggleSelectedState(this.selected)
   }
 
-  getEventType(type) {
+  static getEventType(type) {
     if (type === 'text') {
-      this.eventType = 'input'
-    } else {
-      this.eventType = 'change'
+      return 'input'
     }
-    return this.eventType
+    return 'change'
   }
 
-  getCondition(element) {
-    this.body = document.body
+  static getCondition(element) {
     if (element.type === 'text' || element.type === 'select-one') {
       return element.value !== ''
     }
     return element.checked
   }
 
-  singleCount(element, index, id) {
-    this.body = document.body
+  static singleCount(element, index, id) {
     const isSingleCount = element.closest('.js-filters--single-count')
     if (!isSingleCount) {
       return { uniqueID: `${id}-${index}`, singleID: `${id}-${index}`, isSingleCount }
@@ -230,9 +226,9 @@ class Filters {
     const GroupArray = []
     if (options.array.length > 0) {
       options.array.forEach((element, index) => {
-        const getEventType = this.getEventType(element.type)
-        const { uniqueID, singleID, isSingleCount } = this.singleCount(element, index, id)
-        if (this.getCondition(element)) {
+        const getEventType = this.constructor.getEventType(element.type)
+        const { uniqueID, singleID, isSingleCount } = this.constructor.singleCount(element, index, id)
+        if (this.constructor.getCondition(element)) {
           this.selected.push(uniqueID)
           if (isSingleCount) {
             GroupArray.push(singleID)
@@ -240,7 +236,7 @@ class Filters {
           this.updateDom()
         }
         element.addEventListener(getEventType, () => {
-          if (this.getCondition(element)) {
+          if (this.constructor.getCondition(element)) {
             if (!this.selected.includes(uniqueID)) {
               this.selected.push(uniqueID)
               this.updateDom()
@@ -271,16 +267,16 @@ class Filters {
     if (options.array.length > 0) {
       const labelText = (text) ? text.textContent : null
       options.array.forEach((element, index) => {
-        const getEventType = this.getEventType(element.type)
-        const { singleID } = this.singleCount(element, index, id)
-        if (this.getCondition(element)) {
+        const getEventType = this.constructor.getEventType(element.type)
+        const { singleID } = this.constructor.singleCount(element, index, id)
+        if (this.constructor.getCondition(element)) {
           if (text) {
             text.textContent = labelText
             text.innerHTML = `${text.textContent} ${this.checkIcon}`
           }
         }
         element.addEventListener(getEventType, () => {
-          if (this.getCondition(element)) {
+          if (this.constructor.getCondition(element)) {
             if (!GroupArray.includes(singleID)) {
               GroupArray.push(singleID)
             }
@@ -308,14 +304,14 @@ class Filters {
       const selects = content ? content.querySelectorAll('select') : null
       const checkboxes = content ? content.querySelectorAll('input[type="checkbox"]') : null
 
-      if (content) {
-        this.updateCount({ array: text, title: button })
-        this.updateCount({ array: selects, title: button })
-        this.updateCount({ array: checkboxes, title: button })
-        this.updateStatus({ array: text, title: button })
-        this.updateStatus({ array: selects, title: button })
-        this.updateStatus({ array: checkboxes, title: button })
-      }
+      if (!content) return
+
+      this.updateCount({ array: text, title: button })
+      this.updateCount({ array: selects, title: button })
+      this.updateCount({ array: checkboxes, title: button })
+      this.updateStatus({ array: text, title: button })
+      this.updateStatus({ array: selects, title: button })
+      this.updateStatus({ array: checkboxes, title: button })
     })
   }
 
@@ -323,43 +319,28 @@ class Filters {
     e.preventDefault()
     this.filtersItems.forEach((filter) => {
       const button = filter.querySelector('.nsw-filters__item-name')
+      const buttonCheck = button ? button.querySelector('span.nsw-material-icons') : null
       const content = filter.querySelector('.nsw-filters__item-content')
       const text = content.querySelectorAll('input[type="text"]')
       const selects = content.querySelectorAll('select')
       const checkboxes = content.querySelectorAll('input[type="checkbox"]')
+      const allFields = [...text, ...selects, ...checkboxes]
 
-      if (text.length > 0) {
-        text.forEach((input) => {
+      if (!content) return
+
+      if (allFields.length > 0) {
+        allFields.forEach((input) => {
           const field = input
-          if (input.value.length > 0) {
+          if (this.constructor.getCondition(field) && (field.type === 'text' || field.type === 'select-one')) {
             field.value = ''
+          } else {
+            field.checked = false
           }
         })
       }
 
-      if (selects.length > 0) {
-        selects.forEach((select) => {
-          const option = select
-          if (option.value !== '') {
-            option.value = ''
-          }
-        })
-      }
-
-      if (checkboxes.length > 0) {
-        checkboxes.forEach((input) => {
-          const checkbox = input
-          if (checkbox.checked) {
-            checkbox.checked = false
-          }
-        })
-      }
-
-      if (button) {
-        const buttonCheck = button.querySelector('span.nsw-material-icons')
-        if (buttonCheck) {
-          buttonCheck.remove()
-        }
+      if (buttonCheck) {
+        buttonCheck.remove()
       }
 
       this.selected = []
