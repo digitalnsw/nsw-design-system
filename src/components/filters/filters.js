@@ -28,8 +28,6 @@ class Filters {
     // eslint-disable-next-line max-len
     this.focusableEls = this.filtersWrapper.querySelectorAll('a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])')
     this.checkIcon = '<span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span>'
-    this.eventType = ''
-    this.fieldType = ''
   }
 
   init() {
