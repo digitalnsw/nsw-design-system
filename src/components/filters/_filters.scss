@@ -138,8 +138,35 @@
     }
 
     .active & {
+      button {
+        background-color: var(--nsw-brand-dark);
+        color: var(--nsw-text-light);
+
+        .nsw-section--invert & {
+          background-color: var(--nsw-brand-light);
+          color: var(--nsw-brand-dark);
+        }
+      }
+
+      .nsw-material-icons {
+        color: var(--nsw-text-light);
+        outline: 2px solid var(--nsw-white);
+
+        .nsw-section--invert & {
+          background-color: var(--nsw-brand-light);
+          color: var(--nsw-brand-dark);
+          outline: 2px solid var(--nsw-brand-dark);
+        }
+      }
+      
       .nsw-material-icons:last-child {
         transform: rotate(180deg);
+
+        .nsw-section--invert & {
+          background-color: var(--nsw-brand-light);
+          color: var(--nsw-brand-dark);
+          outline: 0;
+        }
       }
     }
   }
