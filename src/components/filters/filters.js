@@ -13,21 +13,21 @@ class Filters {
     this.clearButton = element.querySelector('.nsw-filters__cancel button')
     this.showMoreButtons = Array.prototype.slice.call(element.querySelectorAll('.nsw-filters__more'))
     this.accordionButtons = element.querySelectorAll('.nsw-filters__item-button')
+    this.showAll = element.querySelectorAll('.nsw-filters__all')
+    this.showAllBlocks = Array.prototype.slice.call(this.showAll)
+    this.filtersItems = element.querySelectorAll('.nsw-filters__item')
+    // eslint-disable-next-line max-len
+    this.focusableEls = this.filtersWrapper.querySelectorAll('a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])')
+    this.checkIcon = '<span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span>'
     this.showEvent = (e) => this.showFilters(e)
     this.hideEvent = (e) => this.hideFilters(e)
     this.showMoreEvent = (e) => this.showMore(e)
-    this.toggleEvent = (e) => this.toggle(e)
+    this.toggleEvent = (e) => this.toggleAccordion(e)
     this.resetEvent = (e) => this.clearAllFilters(e)
-    this.all = element.querySelectorAll('.nsw-filters__all')
-    this.allBlocks = Array.prototype.slice.call(this.all)
-    this.filtersItems = element.querySelectorAll('.nsw-filters__item')
     this.body = document.body
     this.buttons = []
     this.content = []
     this.selected = []
-    // eslint-disable-next-line max-len
-    this.focusableEls = this.filtersWrapper.querySelectorAll('a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])')
-    this.checkIcon = '<span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span>'
   }
 
   init() {
@@ -68,7 +68,7 @@ class Filters {
       this.closeButton.addEventListener('click', this.hideEvent, false)
     }
 
-    this.all.forEach((element) => {
+    this.showAll.forEach((element) => {
       const showMoreButton = element.nextElementSibling
       showMoreButton.addEventListener('click', this.showMoreEvent, false)
     })
@@ -105,7 +105,7 @@ class Filters {
     e.preventDefault()
     const currentShowMore = e.target
     const currentIndex = this.showMoreButtons.indexOf(currentShowMore)
-    const currentAll = this.allBlocks[currentIndex]
+    const currentAll = this.showAllBlocks[currentIndex]
     currentAll.classList.remove('hidden')
     currentShowMore.classList.add('hidden')
   }
@@ -129,7 +129,7 @@ class Filters {
     }
   }
 
-  toggle(e) {
+  toggleAccordion(e) {
     const { currentTarget } = e
     const targetContent = this.getTargetContent(currentTarget)
     const isHidden = targetContent.hidden
@@ -226,24 +226,27 @@ class Filters {
       options.array.forEach((element, index) => {
         const getEventType = this.constructor.getEventType(element.type)
         const { uniqueID, singleID, isSingleCount } = this.constructor.singleCount(element, index, id)
-        const selectedIndex = this.selected.indexOf(uniqueID)
-        const singleSelectedIndex = GroupArray.indexOf(singleID)
+
         if (this.constructor.getCondition(element)) {
           this.selected.push(uniqueID)
           if (isSingleCount) {
             GroupArray.push(singleID)
           }
           this.updateDom()
+          console.log(this.selected)
         }
         element.addEventListener(getEventType, () => {
+          const selectedIndex = this.selected.indexOf(uniqueID)
+          const singleSelectedIndex = GroupArray.indexOf(singleID)
           if (this.constructor.getCondition(element)) {
             if (!this.selected.includes(uniqueID)) {
               this.selected.push(uniqueID)
-              this.updateDom()
             }
             if (isSingleCount && !GroupArray.includes(singleID)) {
               GroupArray.push(singleID)
             }
+            this.updateDom()
+            console.log(this.selected)
           } else {
             if (isSingleCount && singleSelectedIndex !== -1) {
               GroupArray.splice(singleSelectedIndex, 1)
@@ -254,6 +257,9 @@ class Filters {
               this.selected.splice(selectedIndex, 1)
             }
             this.updateDom()
+            console.log(this.selected)
+            console.log(GroupArray)
+            console.log(singleSelectedIndex)
           }
         })
       })
