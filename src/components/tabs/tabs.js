@@ -75,6 +75,7 @@ class Tabs {
   }
 
   clickTab(e) {
+    e.stopPropagation()
     e.preventDefault()
     this.switchTabs(e.currentTarget)
   }
@@ -82,7 +83,7 @@ class Tabs {
   switchTabs(elem) {
     const clickedTab = elem
     if (clickedTab !== this.selectedTab) {
-      clickedTab.focus()
+      clickedTab.focus({ preventScroll: true })
       clickedTab.removeAttribute('tabindex')
       clickedTab.setAttribute('aria-selected', true)
       clickedTab.classList.add('active')
@@ -95,7 +96,11 @@ class Tabs {
       this.tabPanel[selectedTabIndex].hidden = true
       this.selectedTab = clickedTab
       if (!clickedTab.classList.contains('js-tabs-fixed')) {
-        this.selectedTab.scrollIntoView()
+        clickedTab.scrollIntoView({
+          behavior: 'smooth',
+          block: 'nearest',
+          inline: 'nearest',
+        })
       }
     }
   }
