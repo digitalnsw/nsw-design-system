@@ -83,7 +83,7 @@ class Tabs {
   switchTabs(elem) {
     const clickedTab = elem
     if (clickedTab !== this.selectedTab) {
-      clickedTab.focus({ preventScroll: true })
+      clickedTab.focus()
       clickedTab.removeAttribute('tabindex')
       clickedTab.setAttribute('aria-selected', true)
       clickedTab.classList.add('active')
