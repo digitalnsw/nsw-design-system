@@ -13,25 +13,53 @@ meta-index: true
 
 
 <h3>Single select</h3>
-{{#>_docs-example}}{{>_multi-select model.region}}{{/_docs-example}}
+{{#>_docs-example}}
+<div class="nsw-form">
+  <div class="nsw-form__group">
+    {{>_multi-select model.region}}
+  </div>
+</div>
+{{/_docs-example}}
 
 <h3>Multiple select</h3>
-{{#>_docs-example}}{{>_multi-select model.savings-program}}{{/_docs-example}}
+{{#>_docs-example}}
+<div class="nsw-form">
+  <div class="nsw-form__group">
+    {{>_multi-select model.savings-program}}
+  </div>
+</div>
+{{/_docs-example}}
 
 <h3>Helper text</h3>
 {{#>_docs-example}}
-{{>_multi-select model.region}}
-{{>_multi-select model.savings-program}}
+<div class="nsw-form">
+  <div class="nsw-form__group">
+    {{>_multi-select model.region helper='true'}}
+    <br>
+    <br>
+    {{>_multi-select model.savings-program helper='true'}}
+  </div>
+</div>
 {{/_docs-example}}
 
 <h3>Error</h3>
 {{#>_docs-example}}
-{{>_multi-select model.region}}
-{{>_multi-select model.savings-program}}
+<div class="nsw-form">
+  <div class="nsw-form__group">
+    {{>_multi-select model.region error='true'}}
+    <br />
+    {{>_multi-select model.savings-program error='true'}}
+  </div>
+</div>
 {{/_docs-example}}
 
 <h3>Validation</h3>
 {{#>_docs-example}}
-{{>_multi-select model.region}}
-{{>_multi-select model.savings-program}}
+<div class="nsw-form">
+  <div class="nsw-form__group">
+    {{>_multi-select model.region valid='true'}}
+    <br />
+    {{>_multi-select model.savings-program valid='true'}}
+  </div>
+</div>
 {{/_docs-example}}
