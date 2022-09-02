@@ -75,7 +75,6 @@ class Tabs {
   }
 
   clickTab(e) {
-    e.stopPropagation()
     e.preventDefault()
     this.switchTabs(e.currentTarget)
   }
