@@ -1,6 +1,6 @@
 class FileUpload {
   constructor(element) {
-    this.fileUpload = element
+    this.element = element
   }
 
   init() {
