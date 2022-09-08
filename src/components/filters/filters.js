@@ -5,6 +5,7 @@ class Filters {
     this.filters = element
     this.filtersWrapper = element.querySelector('.nsw-filters__wrapper')
     this.openButton = element.querySelector('.nsw-filters__controls button')
+    this.openButtonIcons = this.openButton ? this.openButton.querySelectorAll('span') : null
     this.selectedCount = element.querySelector('.js-filters--count')
     this.openButtonText = this.selectedCount ? this.selectedCount.querySelector('span:not(.nsw-material-icons)') : null
     this.buttonLabel = this.openButtonText ? this.openButtonText.innerText : null
@@ -16,9 +17,11 @@ class Filters {
     this.showAll = element.querySelectorAll('.nsw-filters__all')
     this.showAllBlocks = Array.prototype.slice.call(this.showAll)
     this.filtersItems = element.querySelectorAll('.nsw-filters__item')
-    // eslint-disable-next-line max-len
+    /* eslint-disable max-len */
     this.focusableEls = this.filtersWrapper.querySelectorAll('a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])')
     this.checkIcon = '<span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span>'
+    this.arrowIcon = '<span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_right</span>'
+    /* eslint-ensable max-len */
     this.showEvent = (e) => this.showFilters(e)
     this.hideEvent = (e) => this.hideFilters(e)
     this.showMoreEvent = (e) => this.showMore(e)
@@ -38,6 +41,12 @@ class Filters {
 
   setUpDom() {
     this.filters.classList.add('ready')
+
+    if (this.openButton) {
+      if (this.openButtonIcons.length < 3) {
+        this.openButton.insertAdjacentHTML('beforeend', this.arrowIcon)
+      }
+    }
 
     this.accordionButtons.forEach((button) => {
       const buttonElem = button
@@ -233,7 +242,6 @@ class Filters {
             GroupArray.push(singleID)
           }
           this.updateDom()
-          console.log(this.selected)
         }
         element.addEventListener(getEventType, () => {
           const selectedIndex = this.selected.indexOf(uniqueID)
@@ -246,7 +254,6 @@ class Filters {
               GroupArray.push(singleID)
             }
             this.updateDom()
-            console.log(this.selected)
           } else {
             if (isSingleCount && singleSelectedIndex !== -1) {
               GroupArray.splice(singleSelectedIndex, 1)
@@ -257,9 +264,6 @@ class Filters {
               this.selected.splice(selectedIndex, 1)
             }
             this.updateDom()
-            console.log(this.selected)
-            console.log(GroupArray)
-            console.log(singleSelectedIndex)
           }
         })
       })
