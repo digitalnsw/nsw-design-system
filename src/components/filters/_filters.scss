@@ -447,15 +447,12 @@
         }
       }
 
-      .nsw-section--invert.nsw-section--grey-01 & {    
+      .nsw-section--invert.nsw-section--grey-01 & {  
         color: var(--nsw-grey-01);
 
-        &:disabled {
-          color: var(--nsw-grey-01);
-        }
-
         &:hover {
-          color: var(--nsw-white);
+          background-color: var(--nsw-grey-04);
+          background-image: linear-gradient(rgba(var(--nsw-white-rgb), 0.15), rgba(var(--nsw-white-rgb), 0.15));
         }
       }
 
@@ -467,11 +464,10 @@
         }
 
         &:hover {
-          color: var(--nsw-white);
+          color: var(--nsw-text-light);
+          background-image: linear-gradient(rgba(var(--nsw-white-rgb), 0.15), rgba(var(--nsw-white-rgb), 0.15));
         }
       }
-      
-      
     }
 
     .nsw-filters--fixed &,
@@ -539,6 +535,60 @@
 
     .nsw-section--invert & {
       @include link-light;
+    }
+  }
+
+  &.nsw-filters--down {
+    .nsw-section--invert & {
+      background-color: var(--nsw-white);
+      color: var(--nsw-text-dark);
+
+      @include breakpoint('lg') {
+        color: var(--nsw-text-light);
+        background-color: transparent;
+      }
+    }
+
+    .nsw-filters__item-button {
+      .nsw-section--invert & {
+        color: var(--nsw-text-dark);
+      
+        @include breakpoint('lg') {
+          color: var(--nsw-text-light);
+        }
+      }
+    }
+
+    .nsw-filters__cancel button {
+      @include link-button;
+
+      .nsw-section--invert & {
+        @include breakpoint('lg') {
+          @include link-light;
+        }
+      }
+    }
+
+    .nsw-filters__accept button {
+      .nsw-section--invert.nsw-section--grey-01 & {    
+        background-color: var(--nsw-grey-01);
+        color: var(--nsw-text-light);
+
+        @include breakpoint('lg') {
+          background-color: var(--nsw-white);
+          color: var(--nsw-grey-01);
+        }
+      }
+
+      .nsw-section--invert.nsw-section--brand-dark & {    
+        background-color: var(--nsw-brand-dark);
+        color: var(--nsw-text-light);
+
+        @include breakpoint('lg') {
+          background-color: var(--nsw-white);
+          color: var(--nsw-brand-dark);
+        }
+      }
     }
   }
 
