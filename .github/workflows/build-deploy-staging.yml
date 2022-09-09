@@ -36,10 +36,6 @@ jobs:
       - run: |
           npm install -g pa11y-ci
           pa11y-ci ./dist/{components,core,templates}/**/index.html ./dist/{components,core}/**/blank.html
-      - name: Visual test
-        run: npx percy snapshot dist/ --ignore-files "{components,core}/**/index.html"
-        env:
-          PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
   deploy-staging:
     needs: test-staging
     runs-on: ubuntu-latest
