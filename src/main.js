@@ -5,6 +5,7 @@ import Dialog from './components/dialog/dialog'
 import Filters from './components/filters/filters'
 import Tabs from './components/tabs/tabs'
 import GlobalAlert from './components/global-alert/global-alert'
+import Select from './components/select/select'
 
 if (window.NodeList && !NodeList.prototype.forEach) {
   NodeList.prototype.forEach = Array.prototype.forEach
@@ -33,6 +34,7 @@ function initSite() {
   const accordions = document.querySelectorAll('.js-accordion')
   const dialogs = document.querySelectorAll('.js-dialog')
   const filters = document.querySelectorAll('.js-filters')
+  const multiSelect = document.querySelectorAll('.js-multi-select')
   const tabs = document.querySelectorAll('.js-tabs')
   const globalAlert = document.querySelectorAll('.js-global-alert')
 
@@ -55,6 +57,12 @@ function initSite() {
     new Dialog(element).init()
   })
 
+  if (multiSelect) {
+    multiSelect.forEach((element) => {
+      new Select(element).init()
+    })
+  }
+
   if (filters) {
     filters.forEach((element) => {
       new Filters(element).init()
@@ -75,5 +83,5 @@ function initSite() {
 }
 
 export {
-  initSite, SiteSearch, Navigation, Accordion, Tabs, GlobalAlert,
+  initSite, SiteSearch, Navigation, Accordion, Tabs, GlobalAlert, Select,
 }
