@@ -4,8 +4,8 @@
   <span class="nsw-form__helper" id="{{id}}-helper-text">{{helper-text}}</span>
 {{/if}}
 {{#if multiple}}<div class="nsw-multi-select js-multi-select" data-no-select-text="Select options" data-multi-select-text="{n} items selected" data-n-multi-select="3">{{/if}}
-  <select class="nsw-form__select" name="{{id}}" {{#if helper}} aria-describedby="{{#if helper}}{{id}}-helper-text{{/if}}"{{/if}}{{#if error}} aria-invalid="true"{{/if}}{{#if multiple}}multiple{{/if}}>
-    <option value="">Please select</option>
+  <select class="nsw-form__select" id="{{id}}" name="{{id}}" {{#if helper}} aria-describedby="{{#if helper}}{{id}}-helper-text{{/if}}"{{/if}}{{#if error}} aria-invalid="true"{{/if}}{{#if multiple}}multiple{{/if}}>
+    {{#unless multiple}}<option value="">Please select</option>{{/unless}}
     {{#each list}}
     <option value="{{this}}">{{this}}</option>
     {{/each}}
