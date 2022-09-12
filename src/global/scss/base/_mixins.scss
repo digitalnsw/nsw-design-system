@@ -34,6 +34,11 @@
   background-color: var(--nsw-text-hover);
 }
 
+// Default text link hover state
+@mixin nsw-link-hover {
+  background-color: var(--nsw-text-link-hover);
+}
+
 // A block to click around the link
 @mixin pseudo-clickable-block {
   &::after {
@@ -102,7 +107,7 @@
   text-decoration: underline;
 
   &:hover {
-    @include nsw-hover;
+    @include nsw-link-hover;
     outline: 2px solid var(--nsw-text-link-hover);
   }
 
