@@ -15,14 +15,12 @@ class Select {
     this.optionIndex = 0
     // label options
     this.noSelectText = this.element.getAttribute('data-no-select-text') || 'Select'
+    this.allText = this.element.getAttribute('data-all-text')
+    this.allTextSelected = this.element.getAttribute('data-all-text-selected')
     this.multiSelectText = this.element.getAttribute('data-multi-select-text') || '{n} items selected'
     this.nMultiSelect = this.element.getAttribute('data-n-multi-select') || 1
     this.noUpdateLabel = this.element.getAttribute('data-update-text') && this.element.getAttribute('data-update-text') === 'off'
     this.insetLabel = this.element.getAttribute('data-inset-label') && this.element.getAttribute('data-inset-label') === 'on'
-
-    this.dropdown = this.element.querySelector('js-multi-select__dropdown')
-    this.trigger = this.element.querySelector('js-multi-select__button')
-    this.customOptions = this.dropdown ? this.dropdown.querySelectorAll('js-multi-select__option') : null
   }
 
   init() {
@@ -37,7 +35,15 @@ class Select {
     // save custom elements
     this.dropdown = this.element.querySelector('.js-multi-select__dropdown')
     this.trigger = this.element.querySelector('.js-multi-select__button')
-    this.customOptions = this.dropdown ? this.dropdown.querySelectorAll('js-multi-select__option') : null
+    this.multiSelectList = this.dropdown.querySelector('.nsw-multi-select__list')
+    this.customOptions = this.multiSelectList.querySelectorAll('.js-multi-select__option')
+
+    // create the HTML for the all button element
+    this.multiSelectList.insertAdjacentHTML('afterbegin', this.initAllButton())
+
+    // save custom elements
+    this.allButton = this.multiSelectList.querySelector('.js-multi-select__all')
+    this.allButtonInput = this.allButton.querySelector('.nsw-form__checkbox-input')
 
     // hide default select
     this.constructor.addClass(this.select, 'hidden')
@@ -134,29 +140,67 @@ class Select {
     // option selection
     if (!this.dropdown) return
 
-    this.dropdown.addEventListener('change', (event) => {
-      const option = event.target.closest('.js-multi-select__option')
+    this.customOptions.forEach((opt) => {
+      opt.addEventListener('change', (event) => {
+        const option = event.currentTarget.closest('.js-multi-select__option')
+        if (!option) return
+        this.selectOption(option)
+      })
 
-      if (!option) return
-
-      this.selectOption(option)
+      opt.addEventListener('click', (event) => {
+        const option = event.currentTarget.closest('.js-multi-select__option')
+        if (!option || !this.constructor.hasClass(event.target, 'js-multi-select__option')) return
+        this.selectOption(option)
+      })
     })
 
-    this.dropdown.addEventListener('click', (event) => {
-      const option = event.target.closest('.js-multi-select__option')
-      if (!option || !this.constructor.hasClass(event.target, 'js-multi-select__option')) return
+    if (this.allText) {
+      this.allButton.addEventListener('change', (event) => {
+        event.preventDefault()
+        this.toggleAllOptions()
+      })
+    }
+  }
 
-      this.selectOption(option)
+  toggleAllOptions() {
+    const totalOptions = this.options.length
+    const allCompleted = Array.from(this.customOptions).filter((option) => option.ariaSelected === 'true').length === totalOptions
+
+    this.customOptions.forEach((check) => {
+      const input = check.querySelector('.js-multi-select__checkbox')
+      if (allCompleted) {
+        // deselecting that option
+        input.checked = false
+        input.removeAttribute('checked')
+        check.setAttribute('aria-selected', 'false')
+        // update native select element
+        this.updateNativeSelect(check.getAttribute('data-index'), false)
+      } else {
+        input.checked = true
+        input.setAttribute('checked', '')
+        check.setAttribute('aria-selected', 'true')
+        // update native select element
+        this.updateNativeSelect(check.getAttribute('data-index'), true)
+      }
     })
+    const [label, ariaLabel] = this.getSelectedOptionText()
+    this.trigger.querySelector('.js-multi-select__label').innerHTML = label // update trigger label
+    this.constructor.toggleClass(this.trigger, 'active', this.selectedOptCounter > 0)
+    this.updateTriggerAria(ariaLabel) // update trigger aria-label
   }
 
   selectOption(option) {
+    const input = option.querySelector('.js-multi-select__checkbox')
     if (option.hasAttribute('aria-selected') && option.getAttribute('aria-selected') === 'true') {
       // deselecting that option
+      input.checked = false
+      input.removeAttribute('checked')
       option.setAttribute('aria-selected', 'false')
       // update native select element
       this.updateNativeSelect(option.getAttribute('data-index'), false)
     } else {
+      input.checked = true
+      input.setAttribute('checked', '')
       option.setAttribute('aria-selected', 'true')
       // update native select element
       this.updateNativeSelect(option.getAttribute('data-index'), true)
@@ -176,6 +220,18 @@ class Select {
       <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
       </button>`
     return button
+  }
+
+  initAllButton() {
+    const allButton = `
+      <li class="js-multi-select__all nsw-multi-select__option" role="option" data-value="${this.allText}" aria-selected="false" data-label="${this.allText}" data-all-text="${this.allTextSelected}">
+        <input aria-hidden="true" class="nsw-form__checkbox-input js-multi-select__checkbox" type="checkbox" id="${this.selectId}-${this.allText}" name="${this.selectId}-${this.allText}">
+        <label class="nsw-form__checkbox-label multi-select__item multi-select__item--option" aria-hidden="true" for="${this.selectId}-${this.allText}">
+          <span>${this.allText}</span>
+        </label>
+      </li>`
+
+    return allButton
   }
 
   getSelectedOptionText() {
