@@ -3,6 +3,7 @@ import Navigation from './components/main-nav/main-nav'
 import Accordion from './components/accordion/accordion'
 import Dialog from './components/dialog/dialog'
 import Filters from './components/filters/filters'
+import FileUpload from './components/file-upload/file-upload'
 import Tabs from './components/tabs/tabs'
 import GlobalAlert from './components/global-alert/global-alert'
 
@@ -32,6 +33,7 @@ function initSite() {
   const closeSearchButton = document.querySelectorAll('.js-close-search')
   const accordions = document.querySelectorAll('.js-accordion')
   const dialogs = document.querySelectorAll('.js-dialog')
+  const fileUpload = document.querySelectorAll('.js-file-upload')
   const filters = document.querySelectorAll('.js-filters')
   const tabs = document.querySelectorAll('.js-tabs')
   const globalAlert = document.querySelectorAll('.js-global-alert')
@@ -54,6 +56,12 @@ function initSite() {
   dialogs.forEach((element) => {
     new Dialog(element).init()
   })
+
+  if (fileUpload) {
+    fileUpload.forEach((element) => {
+      new FileUpload(element).init()
+    })
+  }
 
   if (filters) {
     filters.forEach((element) => {
