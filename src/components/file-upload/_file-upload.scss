@@ -1,4 +1,10 @@
 .nsw-file-upload {
+  display: block;
+
+  &__helper {
+    @include nsw-form__helper;
+  }
+
   &__label {
     display: initial;
   }
@@ -12,19 +18,59 @@
   }
 
   &__list {
-    display: initial;
+    margin: 0;
+    padding: 0;
+    border: 0;
   }
 
   &__item {
-    display: initial;
+    max-width: rem(500px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--nsw-off-white);
+    border-radius: var(--nsw-border-radius);
+    box-shadow: var(--nsw-box-shadow);
+    padding: rem(16px);
+
+    &:not(:last-child) {
+      margin-bottom: rem(16px);
+    }
   }
 
   &__file-name {
-    display: initial;
+    margin-left: rem(16px);
+
+    &.truncate {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
   }
 
   &__remove-btn {
-    display: initial;
+    font-size: rem(map-get($nsw-icon-sizes, 20));
+    background-color: var(--nsw-white);
+    color: var(--nsw-brand-dark);
+    border-radius: 50%;
+    width: rem(16px);
+    height: rem(16px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    flex-shrink: 0;
+    border: 0;
+
+    &:hover {
+      cursor: pointer;
+      outline: none;
+      color: var(--nsw-brand-accent);
+    }
+
+    &:focus {
+      @include nsw-focus;
+    }
   }
 
   .hidden {

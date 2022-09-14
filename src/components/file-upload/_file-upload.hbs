@@ -1,20 +1,29 @@
-<div class="nsw-file-upload js-file-upload" data-replace-files>
+<div class="nsw-file-upload js-file-upload" data-max-files="5" data-max-file-size="3000" data-replace-files>
+
+    <span class="nsw-file-upload__helper nsw-file-upload__helper--error hidden" id="{{id}}-error">
+        <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span>
+        This field is required
+    </span>
+
     <label for="{{id}}" class="nsw-file-upload__label nsw-button nsw-button--dark-outline-solid">
         <span class="nsw-file-upload__text">Upload a file</span>
     </label>
 
-    <input type="file" class="nsw-file-upload__input" name="{{id}}" id="{{id}}" accept="image/*,.txt" multiple>
+    <input type="file" class="nsw-file-upload__input" name="{{id}}" id="{{id}}" accept="image/*,.pdf" multiple>
+
 
     <ul class="nsw-file-upload__list js-file-upload__list hidden">
         <li class="nsw-file-upload__item js-file-upload__item">
+            <span class="material-icons nsw-material-icons">upload_file</span>
 
             <span class="nsw-file-upload__file-name js-file-upload__file-name truncate"><!-- file name created in JS --></span>
 
-            <button class="nsw-file-upload__remove-btn js-file-upload__remove-btn reset">
+            <button class="nsw-file-upload__remove-btn js-file-upload__remove-btn">
                 <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span>
             </button>
         </li>
     </ul>
+
 </div>
 
 

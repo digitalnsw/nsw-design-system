@@ -4,30 +4,27 @@ class FileUpload {
     this.element = element
     this.input = this.element.querySelector('.nsw-file-upload__input')
     this.label = this.element.querySelector('.nsw-file-upload__label')
-    this.accept = this.input.getAttribute('accept')
-    this.multipleUpload = this.input.hasAttribute('multiple') // allow for multiple files selection
-    // when user selects a file, it will be changed from the default value to the name of the file
     this.labelText = this.element.querySelector('.nsw-file-upload__text')
+    this.errorMessage = this.element.querySelector('.nsw-file-upload__helper')
     this.initialLabel = this.labelText.textContent
-    //
+    this.filesList = false
+    this.fileItems = false
     this.uploadedFiles = []
     this.lastUploadedFiles = []
     this.acceptFile = []
-    //
-    this.filesList = false
-    this.fileItems = false
-    // options
-    this.showFiles = true
+    // file-upload options
+    this.multipleUpload = this.input.hasAttribute('multiple') // allow for multiple files selection
+    this.accept = this.input.hasAttribute('accept') ? this.input.getAttribute('accept') : null
     this.replaceFiles = this.element.hasAttribute('data-replace-files')
-    this.maxSize = ''
-    this.maxFiles = ''
+    this.maxFiles = this.element.hasAttribute('data-max-files') ? this.element.getAttribute('data-max-files') : null
+    this.maxSize = this.element.hasAttribute('data-max-file-size') ? this.element.getAttribute('data-max-file-size') : null
   }
 
   init() {
-    this.initInputFileEvents()
     this.initshowFiles()
     this.initFileAccept()
     this.initFileInput()
+    this.customEvents()
   }
 
   initshowFiles() {
@@ -49,12 +46,27 @@ class FileUpload {
   }
 
   initFileInput() {
-    // listen to changes in the input file element
     if (!this.input) return
+
+    // make label focusable
+    this.label.setAttribute('tabindex', '0')
+    this.input.setAttribute('tabindex', '-1')
+
+    // move focus from input to label -> this is triggered when a file is selected or the file picker modal is closed
+    this.input.addEventListener('focusin', () => {
+      this.label.focus()
+    })
+
+    // press 'Enter' key on label element -> trigger file selection
+    this.label.addEventListener('keydown', (event) => {
+      if ((event.keyCode && event.keyCode === 13) || (event.key && event.key.toLowerCase() === 'enter')) { this.input.click() }
+    })
+
+    // listen to changes in the input file element
     this.input.addEventListener('change', () => {
       if (this.input.value === '') return
       this.storeUploadedFiles(this.input.files)
-      this.input.value = ''
+      // this.input.value = ''
       this.updateFileInput()
     })
   }
@@ -67,12 +79,27 @@ class FileUpload {
     this.filterUploadedFiles() // remove files that do not respect format/size
     this.uploadedFiles = this.uploadedFiles.concat(this.lastUploadedFiles)
     if (this.maxFiles) this.filterMaxFiles() // check max number of files
+    this.updateInputLabelText(this.uploadedFiles)
   }
 
   updateFileInput() {
     // update UI + emit events
     this.updateFileList()
     this.emitCustomEvents('filesUploaded', false)
+  }
+
+  updateInputLabelText(uploadedFiles) {
+    // when user selects a file, it will be changed from the default value to the name of the file or number of files
+    let label = ''
+    if (uploadedFiles && uploadedFiles.length < 1) {
+      label = this.initialLabel // no selection -> revert to initial label
+    } else if (this.multipleUpload && uploadedFiles && uploadedFiles.length > 1) {
+      label = `${uploadedFiles.length} files` // multiple selection -> show number of files
+    } else {
+      const singleFile = this.input.value.split('\\').pop()
+      label = this.constructor.truncateString(singleFile, 35) // single file selection -> show name of the file
+    }
+    this.labelText.textContent = label
   }
 
   filterUploadedFiles() {
@@ -92,7 +119,7 @@ class FileUpload {
       }
     }
     if (rejected.length > 0) {
-      this.emitCustomEvents('rejectedWeight', rejected)
+      this.emitCustomEvents('rejectedSize', rejected)
     }
   }
 
@@ -136,21 +163,6 @@ class FileUpload {
     return accepted
   }
 
-  static extensionInList(extensionList, extension) {
-    // extension could be .svg, .pdf, ..
-    // extensionList could be png, svg+xml, ...
-    if (`.${extensionList}` === extension) return true
-    let accepted = false
-    const extensionListArray = extensionList.split('+')
-    for (let i = 0; i < extensionListArray.length; i += 1) {
-      if (`.${extensionListArray[i]}` === extension) {
-        accepted = true
-        break
-      }
-    }
-    return accepted
-  }
-
   filterMaxFiles() {
     // check number of uploaded files
     if (this.maxFiles >= this.uploadedFiles.length) return
@@ -173,7 +185,8 @@ class FileUpload {
     let string = ''
     this.constructor.removeClass(clone, 'hidden')
     for (let i = 0; i < this.lastUploadedFiles.length; i += 1) {
-      clone.querySelectorAll('.js-file-upload__file-name')[0].textContent = this.lastUploadedFiles[i].name
+      const { name } = this.lastUploadedFiles[i]
+      clone.querySelectorAll('.js-file-upload__file-name')[0].textContent = this.constructor.truncateString(name, 50)
       string = clone.outerHTML + string
     }
 
@@ -184,7 +197,7 @@ class FileUpload {
     } else {
       this.fileItems[0].insertAdjacentHTML('afterend', string)
     }
-
+    this.constructor.toggleClass(this.errorMessage, 'hidden', this.uploadedFiles.length !== 0)
     this.constructor.toggleClass(this.filesList, 'hidden', this.uploadedFiles.length === 0)
   }
 
@@ -204,8 +217,8 @@ class FileUpload {
         this.lastUploadedFiles.splice(this.lastUploadedFiles.length - index, 1)
       }
       item.remove()
+      this.updateInputLabelText(this.uploadedFiles)
       this.emitCustomEvents('fileRemoved', removedFile)
-      this.updateInputLabelText()
     })
   }
 
@@ -214,39 +227,51 @@ class FileUpload {
     this.element.dispatchEvent(event)
   }
 
-  initInputFileEvents() {
-    // make label focusable
-    this.label.setAttribute('tabindex', '0')
-    this.input.setAttribute('tabindex', '-1')
-
-    // move focus from input to label -> this is triggered when a file is selected or the file picker modal is closed
-    this.input.addEventListener('focusin', () => {
-      this.label.focus()
+  customEvents() {
+    this.element.addEventListener('filesUploaded', () => {
+      // new files have been selected
+      // this.uploadedFiles -> gives you the list of all selected files
+      // console.log(this.uploadedFiles)
+      // this.lastUploadedFiles -> gives you the list of the last selected files. It may be different from this.uploadedFiles if replaceFiles option is false
+      // console.log(this.lastUploadedFiles)
     })
 
-    // press 'Enter' key on label element -> trigger file selection
-    this.label.addEventListener('keydown', (event) => {
-      if ((event.keyCode && event.keyCode === 13) || (event.key && event.key.toLowerCase() === 'enter')) { this.input.click() }
+    this.element.addEventListener('rejectedSize', (event) => {
+      // event.detail gives you the list of the rejected files
+      console.log(`rejectedSize: ${event.detail}`)
+      this.constructor.toggleClass(this.errorMessage, 'hidden', this.uploadedFiles.length !== 0)
     })
 
-    // file(s) has been selected -> update label text
-    this.input.addEventListener('change', () => {
-      this.updateInputLabelText()
+    this.element.addEventListener('rejectedFormat', (event) => {
+      // event.detail gives you the list of the rejected files
+      console.log(`rejectedFormat: ${event.detail}`)
+    })
+
+    this.element.addEventListener('rejectedNumber', (event) => {
+      // event.detail gives you the list of the rejected files
+      console.log(`rejectedNumber: ${event.detail}`)
+    })
+
+    this.element.addEventListener('fileRemoved', (event) => {
+      // event.detail gives you the removed file
+      console.log(`fileRemoved: ${event.detail}`)
     })
   }
 
-  updateInputLabelText() {
-    let label = ''
-    if (this.input.files && this.input.files.length < 1) {
-      label = this.initialLabel // no selection -> revert to initial label
-    } else if (this.multipleUpload && this.input.files && this.input.files.length > 1) {
-      label = `${this.input.files.length} files` // multiple selection -> show number of files
-    } else {
-      label = this.input.value.split('\\').pop() // single file selection -> show name of the file
+  static extensionInList(extensionList, extension) {
+    // extension could be .svg, .pdf, ..
+    // extensionList could be png, svg+xml, ...
+    if (`.${extensionList}` === extension) return true
+    let accepted = false
+    const extensionListArray = extensionList.split('+')
+    for (let i = 0; i < extensionListArray.length; i += 1) {
+      if (`.${extensionListArray[i]}` === extension) {
+        accepted = true
+        break
+      }
     }
-    this.labelText.textContent = label
+    return accepted
   }
-  // End Original Function
 
   static getIndexInArray(array, el) {
     return Array.prototype.indexOf.call(array, el)
@@ -276,6 +301,13 @@ class FileUpload {
   static preventDefaults(event) {
     event.preventDefault()
     event.stopPropagation()
+  }
+
+  static truncateString(str, num) {
+    if (str.length <= num) {
+      return str
+    }
+    return `${str.slice(0, num)}...`
   }
 }
 
