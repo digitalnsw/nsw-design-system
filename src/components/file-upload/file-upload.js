@@ -239,17 +239,23 @@ class FileUpload {
     this.element.addEventListener('rejectedSize', (event) => {
       // event.detail gives you the list of the rejected files
       console.log(`rejectedSize: ${event.detail}`)
+
+      this.errorMessage.innerText = `The selected file must be smaller than ${this.maxSize} KB`
       this.constructor.toggleClass(this.errorMessage, 'hidden', this.uploadedFiles.length !== 0)
     })
 
     this.element.addEventListener('rejectedFormat', (event) => {
       // event.detail gives you the list of the rejected files
       console.log(`rejectedFormat: ${event.detail}`)
+      this.errorMessage.innerText = `The selected file must be a ${this.accept}`
+      this.constructor.toggleClass(this.errorMessage, 'hidden', this.uploadedFiles.length !== 0)
     })
 
     this.element.addEventListener('rejectedNumber', (event) => {
       // event.detail gives you the list of the rejected files
       console.log(`rejectedNumber: ${event.detail}`)
+      this.errorMessage.innerText = `You can only select up to ${this.maxFiles} files at the same time`
+      this.constructor.toggleClass(this.errorMessage, 'hidden', this.uploadedFiles.length !== 0)
     })
 
     this.element.addEventListener('fileRemoved', (event) => {

@@ -2,11 +2,47 @@
   display: block;
 
   &__helper {
-    @include nsw-form__helper;
+    @include font-size('xs');
+    display: block;
+    margin-bottom: rem(4px);
+
+    &--error,
+    &--valid {
+      margin-top: rem(8px);
+      padding: rem(8px);
+      font-weight: var(--nsw-font-bold);
+      color: var(--nsw-text-dark);
+      background-repeat: no-repeat;
+      background-position: left rem(8px) top rem(8px);
+      background-size: 1rem auto;
+      display: flex;
+      align-items: center;
+
+      .nsw-material-icons {
+        font-size: rem(map-get($nsw-icon-sizes, 20));
+        margin-right: rem(4px);
+      }
+    }
+
+    &--error {
+      background-color: var(--nsw-status-error-bg);
+
+      .nsw-material-icons {
+        color: var(--nsw-status-error);
+      }
+    }
+
+    &--valid {
+      background-color: var(--nsw-status-success-bg);
+
+      .nsw-material-icons {
+        color: var(--nsw-status-success);
+      }
+    }
   }
 
   &__label {
-    display: initial;
+    margin: 0;
   }
 
   &__text {
