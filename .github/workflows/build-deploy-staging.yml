@@ -13,7 +13,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
-          node-version: 8
+          node-version: 19
       - run: npm install
       - run: npm run starterkit:build
       - uses: actions/upload-artifact@v2
@@ -36,16 +36,4 @@ jobs:
       - run: |
           npm install -g pa11y-ci
           pa11y-ci ./dist/{components,core,templates}/**/index.html ./dist/{components,core}/**/blank.html
-  deploy-staging:
-    needs: test-staging
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-      - run: npm install -g surge
-      - uses: actions/download-artifact@v2
-        with:
-          name: dist
-          path: |
-            dist
-      - run: surge ./dist ${{ secrets.SURGE_DOMAIN_STAGING }} --token ${{ secrets.SURGE_TOKEN }}
+ 
