@@ -13,7 +13,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
-          node-version: 12
+          node-version: 8
       - run: npm install
       - run: npm run starterkit:build
       - uses: actions/upload-artifact@v2
@@ -33,6 +33,10 @@ jobs:
           name: dist
           path: |
             dist
+      - name: Visual test
+        run: npx @percy/cli snapshot ./dist  --ignore-files "{components,core}/**/index.html"
+        env:
+          PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}            
       - run: |
           npm install -g pa11y-ci
           pa11y-ci ./dist/{components,core,templates}/**/index.html ./dist/{components,core}/**/blank.html
