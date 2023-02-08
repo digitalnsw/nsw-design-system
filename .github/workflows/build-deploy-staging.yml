@@ -34,7 +34,10 @@ jobs:
           path: |
             dist
       - name: Visual test
-        run: npx @percy/cli snapshot / --ignore-files "{components,core}/**/index.html"
+        run: npx percy/exec-action@v0.3.1
+        # run: npx @percy/cli snapshot / --ignore-files "{components,core}/**/index.html"
+        with:
+          build-directory: dist
         env:
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}            
       - run: |
