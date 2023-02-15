@@ -20,6 +20,7 @@
   "homepage": "https://www.digital.nsw.gov.au/digital-design-system",
   "scripts": {
     "dev": "gulp",
+    "percy": "node percy-snapshot.js",
     "starterkit:build": "gulp build",
     "prod:build": "gulp buildprod",
     "surge": "gulp surge",
@@ -50,6 +51,7 @@
     "browser-sync": "^2.26.13",
     "cssnano": "^4.1.10",
     "del": "^5.1.0",
+    "dotenv": "^16.0.3",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.1.0",
     "eslint-plugin-import": "^2.20.1",
@@ -95,5 +97,8 @@
     "stylelint-scss": "^3.16.0",
     "yargs": "^15.3.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "nvm": "0.0.4",
+    "patch-package": "^6.5.1"
+  }
 }

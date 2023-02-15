@@ -1,8 +1,14 @@
-# NSW Design System
+
+
+# <img src="src/assets/brand/logo.svg" width="55" alt="NSW Government">NSW Design System 
 
 [![npm version](https://badge.fury.io/js/nsw-design-system.svg)](https://badge.fury.io/js/nsw-design-system)
 [![](https://data.jsdelivr.com/v1/package/npm/nsw-design-system/badge)](https://www.jsdelivr.com/package/npm/nsw-design-system)
 [![This project is using Percy.io for visual regression testing.](https://percy.io/static/images/percy-badge.svg)](https://percy.io/b183fe4d/nsw-design-system)
+
+The NSW Design System utilises a collection of reuseable components and provides guidance on implementation in accordance with standards and best practices.
+
+Following the NSW Government Brand Framework, the NSW Design System will assist you to apply the NSW Government brand.
 
 View documentation for [NSW Design System](https://digitalnsw.github.io/nsw-design-system/).
 
@@ -28,6 +34,11 @@ How you use the NSW Design System depends on your team's capabilities. We recomm
 
 The NSW Design System is now installed as a dependancy of your project, check out how to [import styles](#importing-styles-into-your-project) and [javascript](#importing-javascript-into-your-project) in to your project build.
 
+
+#### Troubleshooting
+- We recommend using node version 14 to avoid unexpected dependancy issues.
+- If mac users encounter 
+
 ### Importing styles
 #### All styles
 To import all styles as a single package you need to add following snippet at the start of your main SCSS file:
@@ -48,6 +59,10 @@ Our core library includes the design system's base theme, typography, mixins and
 @import 'node_modules/nsw-design-system/src/core/all';
 
 ```
+
+  628  export PERCY_TOKEN="78ef291138b49fd0ca765b2d86b051a312331e32f177b850306cda1554c9c7e0"
+bart.zabielski@DCS-G2YR6QVMP6-bart example-percy-puppeteer % export PERCY_BRANCH=local 
+bart.zabielski@DCS-G2YR6QVMP6-bart example-percy-puppeteer % npx @percy/cli snapshot ./
 
 Once you have installed the core library you can start importing components as you need it. To import individual components you need to add following snippets to your main SASS file under core libraries import:
 
@@ -109,3 +124,18 @@ We are using semantic versioning so our version number are increments of MAJOR.M
 - MAJOR version used for incompatible global changes
 - MINOR version used for large backwards-compatible updates and release of new components
 - PATCH version used for small backwards-compatible updates, new component variations and bug fixes
+
+## Troubleshooting Percy Snapshot Testing
+[@percy/cli api token](https://docs.percy.io/docs/environment-variables)
+
+@percy/cli visual regression testing package is using new SDKs which requires a version of node version that is imcompatible with our codebase. Please follow these steps to resolve the dependnacy issue untill we release our new build boilerplate.
+1. copy env-sample to .env
+2. add percy api token that is generated when you create new project online [percy](https://percy.io/)
+3. nvm install 10.23 
+4. nvm use 10.23
+5. npm install 
+6. npm run dev 
+7. nvm install --lts
+8. nvm use --lts
+9. export PERCY_TOKEN=$PERCY_TOKEN
+10. npx @percy/cli snapshot ./dist --exclude "{components,core}/**/index.html"
