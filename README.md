@@ -126,10 +126,9 @@ We are using semantic versioning so our version number are increments of MAJOR.M
 - PATCH version used for small backwards-compatible updates, new component variations and bug fixes
 
 ## Troubleshooting Percy Snapshot Testing
-[@percy/cli api token](https://docs.percy.io/docs/environment-variables)
+[@percy/cli ](https://docs.percy.io/docs/cli-snapshot) visual regression testing package is using new SDKs which requires a version of node version that is imcompatible with our codebase. Please follow these steps to resolve the dependnacy issue untill we release our new build boilerplate.
 
-@percy/cli visual regression testing package is using new SDKs which requires a version of node version that is imcompatible with our codebase. Please follow these steps to resolve the dependnacy issue untill we release our new build boilerplate.
-1. copy env-sample to .env
+1. copy env-sample to .env 
 2. add percy api token that is generated when you create new project online [percy](https://percy.io/)
 3. nvm install 10.23 
 4. nvm use 10.23
@@ -137,5 +136,5 @@ We are using semantic versioning so our version number are increments of MAJOR.M
 6. npm run dev 
 7. nvm install --lts
 8. nvm use --lts
-9. export PERCY_TOKEN=$PERCY_TOKEN
+9. export PERCY_TOKEN=$PERCY_TOKEN [@percy/cli api token](https://docs.percy.io/docs/environment-variables)
 10. npx @percy/cli snapshot ./dist --exclude "{components,core}/**/index.html"
