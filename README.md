@@ -1,8 +1,14 @@
-# NSW Design System
+
+
+# <img src="src/assets/brand/logo.svg" width="55" alt="NSW Government">NSW Design System 
 
 [![npm version](https://badge.fury.io/js/nsw-design-system.svg)](https://badge.fury.io/js/nsw-design-system)
 [![](https://data.jsdelivr.com/v1/package/npm/nsw-design-system/badge)](https://www.jsdelivr.com/package/npm/nsw-design-system)
 [![This project is using Percy.io for visual regression testing.](https://percy.io/static/images/percy-badge.svg)](https://percy.io/b183fe4d/nsw-design-system)
+
+The NSW Design System utilises a collection of reuseable components and provides guidance on implementation in accordance with standards and best practices.
+
+Following the NSW Government Brand Framework, the NSW Design System will assist you to apply the NSW Government brand.
 
 View documentation for [NSW Design System](https://digitalnsw.github.io/nsw-design-system/).
 
@@ -16,17 +22,58 @@ How you use the NSW Design System depends on your team's capabilities. We recomm
  4. [Importing javascript into your project](#importing-javascript-into-your-project)
  5. [Using JSDelivr CDN](#using-jsdelivr-cdn)
 
-### Installing with NPM
-1.  Install  `Node/npm`.
+### Installing with Node Version Manager (NVM)
+We recommend using [NVM](https://github.com/nvm-sh/nvm) to install dependancies for its node version flexibility.
 
-    -   More information can be found via the nodejs [Installation guides](https://nodejs.org/en/download/)
+Windows Users
+Please follow this guide [nvm windows](https://github.com/coreybutler/nvm-windows). It contains installation file and a visual tutorial.
 
-2.  Generate a `package.json` file using the `npm init` command in the terminal. You will be prompted to enter several pieces of information, like the name of your application, version, description etc.
+Linux & Mac Users
+1. Download and install NVM
+    ```
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+    ```
 
-4.  Add  `nsw-design-system`  to your project’s  `package.json`:
+    Update your profile configuration
+    The installation process from step 1 should also automatically add the nvm configuration to your profile. If you're using zsh, that would be ~/.zshrc. If you're using bash, that would be ~/.bash_profile...or some other profile.
+
+    If it doesn't automatically add nvm configuration, you can programmatically load it yourself to your profile file:
+
+    ```
+    export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+    ```
+
+    Reload the shell configuration
+    With your profile configuration updated, now you will reload the configuration for your terminal to use:
+
+    ```
+    source ~/.bashrc
+    ```
+
+    verify nvm is installed by running:
+    ```
+    nvm -v
+
+
+    ```
+<br>
+
+2. Install and use recommended node version
+  ```
+  nvm install 10.23
+  nvm use 10.23
+  ```
+
+  The latest node version compatible with this codebase is 14.0.0
+  <br/>
+
+3.  Add  `nsw-design-system` to your project’s `package.json`:
     - `npm install --save nsw-design-system`
 
 The NSW Design System is now installed as a dependancy of your project, check out how to [import styles](#importing-styles-into-your-project) and [javascript](#importing-javascript-into-your-project) in to your project build.
+
+***
 
 ### Importing styles
 #### All styles
@@ -34,6 +81,7 @@ To import all styles as a single package you need to add following snippet at th
 ```css
 @import 'node_modules/nsw-design-system/src/main';
 ```
+***
 
 #### Core and selected components
 Our core library includes the design system's base theme, typography, mixins and helper functions. Once you imported it, you can take full advantage of our variables and helpers. To import core library you need to add following snippet at the start of your main SASS file:
@@ -58,8 +106,11 @@ Once you have installed the core library you can start importing components as y
 @import 'node_modules/nsw-design-system/src/components/notification/notification';
 ```
 
+Component examples include rendered component variants and code snippets. Click [here](https://digitalnsw.github.io/nsw-design-system/components/accordion/index.html) to view all component examples.
+
 With this setup you can also start theming with a few sets of variable changes.
 
+***
 #### Adding the font and the icons
 In your main html document add this line of code inside the `<head>` tag. Make sure that it's placed before the NSW Design System styles import.
 ```html
@@ -70,6 +121,9 @@ Another way is to import it in css:
 ```css
 @import url('https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,700;1,400&display=swap');
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+***
+
 ```
 ### Importing javascript into your project
 Some NSW Design System components require javascript to provide advanced functionality. To ensure the page is ready for javascript to run, include the follow scripts tags at the end of the html document.
@@ -81,6 +135,7 @@ Some NSW Design System components require javascript to provide advanced functio
 ```
 Depending on your project set up, you might wish to copy the file into your project from `node_modules` or add the reference to your build workflow.
 
+***
 
 ### Using JSDelivr CDN
 The bundled css and js files are also hosted in [JSDelivr](https://www.jsdelivr.com).
@@ -100,6 +155,8 @@ You can add the files to your main html document
 </html>
 ```
 
+***
+
 ## Design System Figma UI kit
 Access all the design assets required to design, share and prototype in our [Figma UI Kit](https://digitalnsw.github.io/nsw-design-system/docs/content/design/figma-ui-kit.html).
 
@@ -109,3 +166,17 @@ We are using semantic versioning so our version number are increments of MAJOR.M
 - MAJOR version used for incompatible global changes
 - MINOR version used for large backwards-compatible updates and release of new components
 - PATCH version used for small backwards-compatible updates, new component variations and bug fixes
+
+## Troubleshooting Percy Snapshots
+[@percy/cli ](https://docs.percy.io/docs/cli-snapshot) visual regression testing package is using new SDKs which requires a version of node version that is imcompatible with our codebase. Please follow these steps to resolve the dependnacy issue untill we release our new build boilerplate.
+
+1. copy env-sample to .env 
+2. add percy api token that is generated when you create new project online [percy](https://percy.io/)
+3. nvm install 10.23 
+4. nvm use 10.23
+5. npm install 
+6. npm run dev 
+7. nvm install --lts
+8. nvm use --lts
+9. export PERCY_TOKEN=$PERCY_TOKEN [@percy/cli api token](https://docs.percy.io/docs/environment-variables)
+10. npx @percy/cli snapshot ./dist --exclude "{components,core}/**/index.html"
