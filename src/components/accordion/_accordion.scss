@@ -41,7 +41,7 @@
 
     button {
       @include font-size('sm');
-      color: var(--nsw-brand-dark);
+      color: var(--nsw-text-link);
       text-decoration: underline;
       text-decoration-skip-ink: auto;
       font-weight: var(--nsw-font-bold);
@@ -50,8 +50,8 @@
       background: none;
 
       &:hover:enabled {
-        @include nsw-hover;
-        outline: 2px solid var(--nsw-text-hover);
+        @include nsw-link-hover;
+        outline: 2px solid var(--nsw-text-link-hover);
 
         .nsw-section--invert & {    
           background-color: var(--nsw-text-hover-light);
