@@ -34,6 +34,11 @@
   background-color: var(--nsw-text-hover);
 }
 
+// Default text link hover state
+@mixin nsw-link-hover {
+  background-color: var(--nsw-text-link-hover);
+}
+
 // A block to click around the link
 @mixin pseudo-clickable-block {
   &::after {
@@ -98,12 +103,12 @@
 //Links
 @mixin link() {
   font-weight: var(--nsw-font-bold);
-  color: var(--nsw-brand-dark);
+  color: var(--nsw-text-link);
   text-decoration: underline;
 
   &:hover {
-    @include nsw-hover;
-    outline: 2px solid var(--nsw-text-hover);
+    @include nsw-link-hover;
+    outline: 2px solid var(--nsw-text-link-hover);
   }
 
   &:focus {
@@ -116,11 +121,11 @@
 }
 
 @mixin link-dark() {
-  color: var(--nsw-brand-dark);
+  color: var(--nsw-text-link);
 
   &:hover {
-    background-color: var(--nsw-text-hover);
-    outline-color: var(--nsw-text-hover);
+    background-color: var(--nsw-text-link-hover);
+    outline-color: var(--nsw-text-link-hover);
   }
 
   &:focus {
