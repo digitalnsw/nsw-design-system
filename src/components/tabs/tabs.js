@@ -95,7 +95,11 @@ class Tabs {
       this.tabPanel[selectedTabIndex].hidden = true
       this.selectedTab = clickedTab
       if (!clickedTab.classList.contains('js-tabs-fixed')) {
-        this.selectedTab.scrollIntoView()
+        clickedTab.scrollIntoView({
+          behavior: 'smooth',
+          block: 'nearest',
+          inline: 'nearest',
+        })
       }
     }
   }
