@@ -30,8 +30,20 @@
     return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
   }
 
+  function _toConsumableArray(arr) {
+    return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();
+  }
+
+  function _arrayWithoutHoles(arr) {
+    if (Array.isArray(arr)) return _arrayLikeToArray(arr);
+  }
+
   function _arrayWithHoles(arr) {
     if (Array.isArray(arr)) return arr;
+  }
+
+  function _iterableToArray(iter) {
+    if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter);
   }
 
   function _iterableToArrayLimit(arr, i) {
@@ -76,6 +88,10 @@
     for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i];
 
     return arr2;
+  }
+
+  function _nonIterableSpread() {
+    throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
   }
 
   function _nonIterableRest() {
@@ -787,11 +803,26 @@
       _classCallCheck(this, Filters);
 
       this.filters = element;
+      this.filtersWrapper = element.querySelector('.nsw-filters__wrapper');
       this.openButton = element.querySelector('.nsw-filters__controls button');
-      this.closeButtons = element.querySelectorAll('.nsw-filters__back button');
-      this.all = element.querySelectorAll('.nsw-filters__all');
-      this.allBlocks = Array.prototype.slice.call(this.all);
+      this.openButtonIcons = this.openButton ? this.openButton.querySelectorAll('span') : null;
+      this.selectedCount = element.querySelector('.js-filters--count');
+      this.openButtonText = this.selectedCount ? this.selectedCount.querySelector('span:not(.nsw-material-icons)') : null;
+      this.buttonLabel = this.openButtonText ? this.openButtonText.innerText : null;
+      this.closeButton = element.querySelector('.nsw-filters__back button');
+      this.acceptButton = element.querySelector('.nsw-filters__accept button');
+      this.clearButton = element.querySelector('.nsw-filters__cancel button');
       this.showMoreButtons = Array.prototype.slice.call(element.querySelectorAll('.nsw-filters__more'));
+      this.accordionButtons = element.querySelectorAll('.nsw-filters__item-button');
+      this.showAll = element.querySelectorAll('.nsw-filters__all');
+      this.showAllBlocks = Array.prototype.slice.call(this.showAll);
+      this.filtersItems = element.querySelectorAll('.nsw-filters__item');
+      /* eslint-disable max-len */
+
+      this.focusableEls = this.filtersWrapper.querySelectorAll('a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])');
+      this.checkIcon = '<span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span>';
+      this.arrowIcon = '<span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_right</span>';
+      /* eslint-ensable max-len */
 
       this.showEvent = function (e) {
         return _this.showFilters(e);
@@ -805,34 +836,99 @@
         return _this.showMore(e);
       };
 
+      this.toggleEvent = function (e) {
+        return _this.toggleAccordion(e);
+      };
+
+      this.resetEvent = function (e) {
+        return _this.clearAllFilters(e);
+      };
+
       this.body = document.body;
+      this.buttons = [];
+      this.content = [];
+      this.selected = [];
     }
 
     _createClass(Filters, [{
       key: "init",
       value: function init() {
+        this.setUpDom();
         this.controls();
+        this.selectedItems();
+      }
+    }, {
+      key: "setUpDom",
+      value: function setUpDom() {
+        var _this2 = this;
+
+        this.filters.classList.add('ready');
+
+        if (this.openButton) {
+          if (this.openButtonIcons.length < 3) {
+            this.openButton.insertAdjacentHTML('beforeend', this.arrowIcon);
+          }
+        }
+
+        this.accordionButtons.forEach(function (button) {
+          var buttonElem = button;
+          var uID = uniqueId('collapsed');
+          buttonElem.setAttribute('type', 'button');
+          buttonElem.setAttribute('aria-expanded', 'false');
+          buttonElem.setAttribute('aria-controls', uID);
+          var contentElem = buttonElem.nextElementSibling;
+          contentElem.id = buttonElem.getAttribute('aria-controls');
+          contentElem.hidden = true;
+
+          _this2.content.push(contentElem);
+
+          _this2.buttons.push(buttonElem);
+        });
       }
     }, {
       key: "controls",
       value: function controls() {
-        var _this2 = this;
+        var _this3 = this;
 
-        this.openButton.addEventListener('click', this.showEvent, false);
-        this.closeButtons.forEach(function (element) {
-          element.addEventListener('click', _this2.hideEvent, false);
-        });
-        this.all.forEach(function (element) {
+        if (this.openButton) {
+          this.openButton.addEventListener('click', this.showEvent, false);
+        }
+
+        if (this.acceptButton) {
+          this.acceptButton.disabled = true;
+        }
+
+        if (this.closeButton) {
+          this.closeButton.addEventListener('click', this.hideEvent, false);
+        }
+
+        this.showAll.forEach(function (element) {
           var showMoreButton = element.nextElementSibling;
-          showMoreButton.addEventListener('click', _this2.showMoreEvent, false);
+          showMoreButton.addEventListener('click', _this3.showMoreEvent, false);
         });
+
+        if (this.buttons) {
+          this.buttons.forEach(function (element) {
+            element.addEventListener('click', _this3.toggleEvent, false);
+          });
+        }
+
+        if (this.clearButton) {
+          this.clearButton.addEventListener('click', this.resetEvent, false);
+        }
       }
     }, {
       key: "showFilters",
       value: function showFilters(e) {
         e.preventDefault();
-        this.filters.classList.add('active');
-        this.body.classList.add('filters-open');
+
+        if (this.filters.classList.contains('nsw-filters--down')) {
+          this.filters.classList.toggle('active');
+        } else {
+          this.trapFocus(this.filtersWrapper);
+          this.filters.classList.add('active');
+          this.body.classList.add('filters-open');
+        }
       }
     }, {
       key: "hideFilters",
@@ -847,9 +943,327 @@
         e.preventDefault();
         var currentShowMore = e.target;
         var currentIndex = this.showMoreButtons.indexOf(currentShowMore);
-        var currentAll = this.allBlocks[currentIndex];
+        var currentAll = this.showAllBlocks[currentIndex];
         currentAll.classList.remove('hidden');
         currentShowMore.classList.add('hidden');
+      }
+    }, {
+      key: "getTargetContent",
+      value: function getTargetContent(element) {
+        var currentIndex = this.buttons.indexOf(element);
+        return this.content[currentIndex];
+      }
+    }, {
+      key: "setAccordionState",
+      value: function setAccordionState(element, state) {
+        var targetContent = this.getTargetContent(element);
+
+        if (state === 'open') {
+          element.classList.add('active');
+          element.setAttribute('aria-expanded', 'true');
+          targetContent.hidden = false;
+        } else if (state === 'close') {
+          element.classList.remove('active');
+          element.setAttribute('aria-expanded', 'false');
+          targetContent.hidden = true;
+        }
+      }
+    }, {
+      key: "toggleAccordion",
+      value: function toggleAccordion(e) {
+        var currentTarget = e.currentTarget;
+        var targetContent = this.getTargetContent(currentTarget);
+        var isHidden = targetContent.hidden;
+
+        if (isHidden) {
+          this.setAccordionState(currentTarget, 'open');
+        } else {
+          this.setAccordionState(currentTarget, 'close');
+        }
+      }
+    }, {
+      key: "trapFocus",
+      value: function trapFocus(element) {
+        var firstFocusableEl = this.focusableEls[0];
+        var lastFocusableEl = this.focusableEls[this.focusableEls.length - 1];
+        var KEYCODE_TAB = 9;
+        element.addEventListener('keydown', function (e) {
+          var isTabPressed = e.key === 'Tab' || e.keyCode === KEYCODE_TAB;
+
+          if (!isTabPressed) {
+            return;
+          }
+
+          if (e.shiftKey) {
+            if (document.activeElement === firstFocusableEl) {
+              e.preventDefault();
+              lastFocusableEl.focus();
+            }
+          } else if (document.activeElement === lastFocusableEl) {
+            e.preventDefault();
+            firstFocusableEl.focus();
+          }
+        });
+      }
+    }, {
+      key: "toggleAccept",
+      value: function toggleAccept(array) {
+        if (this.acceptButton) {
+          if (array.length > 0) {
+            this.acceptButton.disabled = false;
+          } else {
+            this.acceptButton.disabled = true;
+          }
+        }
+      }
+    }, {
+      key: "toggleSelectedState",
+      value: function toggleSelectedState(array) {
+        if (array.length > 0) {
+          this.openButton.parentElement.classList.add('active');
+        } else {
+          this.openButton.parentElement.classList.remove('active');
+        }
+      }
+    }, {
+      key: "resultsCount",
+      value: function resultsCount(array, buttonText) {
+        if (this.openButtonText) {
+          if (array.length > 0) {
+            this.openButtonText.innerText = "".concat(buttonText, " (").concat(array.length, ")");
+          } else {
+            this.openButtonText.innerText = "".concat(buttonText);
+          }
+        }
+      }
+    }, {
+      key: "updateDom",
+      value: function updateDom() {
+        this.resultsCount(this.selected, this.buttonLabel);
+        this.toggleAccept(this.selected);
+        this.toggleSelectedState(this.selected);
+      }
+    }, {
+      key: "updateCount",
+      value: function updateCount(options) {
+        var _this4 = this;
+
+        var id = uniqueId();
+        var GroupArray = [];
+
+        if (options.array.length > 0) {
+          options.array.forEach(function (element, index) {
+            var getEventType = _this4.constructor.getEventType(element.type);
+
+            var _this4$constructor$si = _this4.constructor.singleCount(element, index, id),
+                uniqueID = _this4$constructor$si.uniqueID,
+                singleID = _this4$constructor$si.singleID,
+                isSingleCount = _this4$constructor$si.isSingleCount;
+
+            if (_this4.constructor.getCondition(element)) {
+              _this4.selected.push(uniqueID);
+
+              if (isSingleCount) {
+                GroupArray.push(singleID);
+              }
+
+              _this4.updateDom();
+            }
+
+            element.addEventListener(getEventType, function () {
+              var selectedIndex = _this4.selected.indexOf(uniqueID);
+
+              var singleSelectedIndex = GroupArray.indexOf(singleID);
+
+              if (_this4.constructor.getCondition(element)) {
+                if (!_this4.selected.includes(uniqueID)) {
+                  _this4.selected.push(uniqueID);
+                }
+
+                if (isSingleCount && !GroupArray.includes(singleID)) {
+                  GroupArray.push(singleID);
+                }
+
+                _this4.updateDom();
+              } else {
+                if (isSingleCount && singleSelectedIndex !== -1) {
+                  GroupArray.splice(singleSelectedIndex, 1);
+                }
+
+                if (!isSingleCount && selectedIndex !== -1) {
+                  _this4.selected.splice(selectedIndex, 1);
+                } else if (GroupArray.length <= 0) {
+                  _this4.selected.splice(selectedIndex, 1);
+                }
+
+                _this4.updateDom();
+              }
+            });
+          });
+        }
+      }
+    }, {
+      key: "updateStatus",
+      value: function updateStatus(options) {
+        var _this5 = this;
+
+        var id = uniqueId();
+        var text = options.title;
+        var GroupArray = [];
+
+        if (options.array.length > 0) {
+          var labelText = text ? text.textContent : null;
+          options.array.forEach(function (element, index) {
+            var getEventType = _this5.constructor.getEventType(element.type);
+
+            var _this5$constructor$si = _this5.constructor.singleCount(element, index, id),
+                singleID = _this5$constructor$si.singleID;
+
+            if (_this5.constructor.getCondition(element)) {
+              if (text) {
+                text.textContent = labelText;
+                text.innerHTML = "".concat(text.textContent, " ").concat(_this5.checkIcon);
+              }
+            }
+
+            element.addEventListener(getEventType, function () {
+              if (_this5.constructor.getCondition(element)) {
+                if (!GroupArray.includes(singleID)) {
+                  GroupArray.push(singleID);
+                }
+              } else if (GroupArray.indexOf(singleID) !== -1) {
+                GroupArray.splice(GroupArray.indexOf(singleID), 1);
+              }
+
+              if (text) {
+                if (GroupArray.length > 0) {
+                  text.textContent = labelText;
+                  text.innerHTML = "".concat(text.textContent, " ").concat(_this5.checkIcon);
+                } else {
+                  text.textContent = labelText;
+                }
+              }
+            });
+          });
+        }
+      }
+    }, {
+      key: "selectedItems",
+      value: function selectedItems() {
+        var _this6 = this;
+
+        this.filtersItems.forEach(function (filter) {
+          var button = filter.querySelector('.nsw-filters__item-name');
+          var content = filter.querySelector('.nsw-filters__item-content');
+          var text = content ? content.querySelectorAll('input[type="text"]') : null;
+          var selects = content ? content.querySelectorAll('select') : null;
+          var checkboxes = content ? content.querySelectorAll('input[type="checkbox"]') : null;
+          if (!content) return;
+
+          _this6.updateCount({
+            array: text,
+            title: button
+          });
+
+          _this6.updateCount({
+            array: selects,
+            title: button
+          });
+
+          _this6.updateCount({
+            array: checkboxes,
+            title: button
+          });
+
+          _this6.updateStatus({
+            array: text,
+            title: button
+          });
+
+          _this6.updateStatus({
+            array: selects,
+            title: button
+          });
+
+          _this6.updateStatus({
+            array: checkboxes,
+            title: button
+          });
+        });
+      }
+    }, {
+      key: "clearAllFilters",
+      value: function clearAllFilters(e) {
+        var _this7 = this;
+
+        e.preventDefault();
+        this.filtersItems.forEach(function (filter) {
+          var button = filter.querySelector('.nsw-filters__item-name');
+          var buttonCheck = button ? button.querySelector('span.nsw-material-icons') : null;
+          var content = filter.querySelector('.nsw-filters__item-content');
+          var text = content.querySelectorAll('input[type="text"]');
+          var selects = content.querySelectorAll('select');
+          var checkboxes = content.querySelectorAll('input[type="checkbox"]');
+          var allFields = [].concat(_toConsumableArray(text), _toConsumableArray(selects), _toConsumableArray(checkboxes));
+          if (!content) return;
+
+          if (allFields.length > 0) {
+            allFields.forEach(function (input) {
+              var field = input;
+
+              if (_this7.constructor.getCondition(field) && (field.type === 'text' || field.type === 'select-one')) {
+                field.value = '';
+              } else {
+                field.checked = false;
+              }
+            });
+          }
+
+          if (buttonCheck) {
+            buttonCheck.remove();
+          }
+
+          _this7.selected = [];
+
+          _this7.updateDom();
+        });
+      }
+    }], [{
+      key: "getEventType",
+      value: function getEventType(type) {
+        if (type === 'text') {
+          return 'input';
+        }
+
+        return 'change';
+      }
+    }, {
+      key: "getCondition",
+      value: function getCondition(element) {
+        if (element.type === 'text' || element.type === 'select-one') {
+          return element.value !== '';
+        }
+
+        return element.checked;
+      }
+    }, {
+      key: "singleCount",
+      value: function singleCount(element, index, id) {
+        var isSingleCount = element.closest('.js-filters--single-count');
+
+        if (!isSingleCount) {
+          return {
+            uniqueID: "".concat(id, "-").concat(index),
+            singleID: "".concat(id, "-").concat(index),
+            isSingleCount: isSingleCount
+          };
+        }
+
+        return {
+          uniqueID: "".concat(id),
+          singleID: "".concat(id, "-").concat(index),
+          isSingleCount: isSingleCount
+        };
       }
     }]);
 

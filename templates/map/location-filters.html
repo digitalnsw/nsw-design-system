@@ -199,54 +199,61 @@
     </div>
     <div class="nsw-layout">
       <div class="nsw-layout__sidebar">
-        <div class="nsw-filters nsw-filters--fixed js-filters">
-          <div class="nsw-filters__controls">
+        <div class="nsw-filters nsw-filters--right js-filters">
+          <div class="nsw-filters__controls js-filters--count">
             <button>
               <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">tune</span>
-              <span>Filter results</span>
+              <span>Filters</span>
+              <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_right</span>
             </button>
           </div>
           <div class="nsw-filters__wrapper">          
             <div class="nsw-filters__back">
               <button class="nsw-icon-button nsw-icon-button--flex js-close-sub-nav" type="button" aria-expanded="true">
-                <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_left</span>
-                <span>Back</span> 
+                <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">close</span>
+                <span class="sr-only">Close filters</span>
               </button>
             </div>
-            <div class="nsw-filters__title">Filter results</div>
+            <div class="nsw-filters__title">Filters</div>
             <div class="nsw-filters__list">
               <div class="nsw-filters__item">
-                <label class="nsw-form__label" for="form-radius">Radius</label>
-                <select class="nsw-form__select" id="form-radius" name="radius">
-                  <option value="">Please select</option>  
-                  <option value="5">5 km</option>
-                  <option value="10">10 km</option>
-                  <option value="15" selected="selected">15 km</option>
-                  <option value="20">20 km</option>
-                  <option value="50">50 km</option>
-                </select>
+                <div class="nsw-filters__item-content">
+                  <label class="nsw-form__label" for="form-radius">Radius</label>
+                  <select class="nsw-form__select" id="form-radius" name="radius">
+                    <option value="">Please select</option>  
+                    <option value="5">5 km</option>
+                    <option value="10">10 km</option>
+                    <option value="15" selected="selected">15 km</option>
+                    <option value="20">20 km</option>
+                    <option value="50">50 km</option>
+                  </select>
+                </div>
               </div>
               <div class="nsw-filters__item">
-                <fieldset class="nsw-form__fieldset">
-                  <legend class="nsw-form__legend">Facilities</legend>
-                  <input class="nsw-form__checkbox-input" type="checkbox" name="form-facilities" value="Wheelchair accessible" id="form-facilities-1">
-                  <label class="nsw-form__checkbox-label" for="form-facilities-1">Wheelchair accessible</label>
-                  <input class="nsw-form__checkbox-input" type="checkbox" name="form-facilities" value="Payment facilities" id="form-facilities-2">
-                  <label class="nsw-form__checkbox-label" for="form-facilities-2">Payment facilities</label>
-                  <input class="nsw-form__checkbox-input" type="checkbox" name="form-facilities" value="Free parking" id="form-facilities-3">
-                  <label class="nsw-form__checkbox-label" for="form-facilities-3">Free parking</label>
-                  <input class="nsw-form__checkbox-input" type="checkbox" name="form-facilities" value="Childcare services" id="form-facilities-4">
-                  <label class="nsw-form__checkbox-label" for="form-facilities-4">Childcare services</label>
-                </fieldset>
+                <div class="nsw-filters__item-content">
+                  <fieldset class="nsw-form__fieldset">
+                    <legend class="nsw-form__legend">Facilities</legend>
+                    <input class="nsw-form__checkbox-input" type="checkbox" name="form-facilities" value="Wheelchair accessible" id="form-facilities-1">
+                    <label class="nsw-form__checkbox-label" for="form-facilities-1">Wheelchair accessible</label>
+                    <input class="nsw-form__checkbox-input" type="checkbox" name="form-facilities" value="Payment facilities" id="form-facilities-2">
+                    <label class="nsw-form__checkbox-label" for="form-facilities-2">Payment facilities</label>
+                    <input class="nsw-form__checkbox-input" type="checkbox" name="form-facilities" value="Free parking" id="form-facilities-3">
+                    <label class="nsw-form__checkbox-label" for="form-facilities-3">Free parking</label>
+                    <input class="nsw-form__checkbox-input" type="checkbox" name="form-facilities" value="Childcare services" id="form-facilities-4">
+                    <label class="nsw-form__checkbox-label" for="form-facilities-4">Childcare services</label>
+                  </fieldset>
+                </div>
               </div>
               <div class="nsw-filters__item">
-                <fieldset class="nsw-form__fieldset">
-                  <legend class="nsw-form__legend">Opening hours</legend>
-                  <input class="nsw-form__checkbox-input" type="checkbox" name="form-hours" value="Weekends" id="form-hours-1">
-                  <label class="nsw-form__checkbox-label" for="form-hours-1">Weekends</label>
-                  <input class="nsw-form__checkbox-input" type="checkbox" name="form-hours" value="Out of hours services" id="form-hours-2">
-                  <label class="nsw-form__checkbox-label" for="form-hours-2">Out of hours services</label>
-                </fieldset>
+                <div class="nsw-filters__item-content">
+                  <fieldset class="nsw-form__fieldset">
+                    <legend class="nsw-form__legend">Opening hours</legend>
+                    <input class="nsw-form__checkbox-input" type="checkbox" name="form-hours" value="Weekends" id="form-hours-1">
+                    <label class="nsw-form__checkbox-label" for="form-hours-1">Weekends</label>
+                    <input class="nsw-form__checkbox-input" type="checkbox" name="form-hours" value="Out of hours services" id="form-hours-2">
+                    <label class="nsw-form__checkbox-label" for="form-hours-2">Out of hours services</label>
+                  </fieldset>
+                </div>
               </div>
             </div>
             <div class="nsw-filters__accept">
