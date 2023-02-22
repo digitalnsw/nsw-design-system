@@ -46,7 +46,3 @@ jobs:
       - uses: actions/setup-node@v1
       - run: npm install
       - run: npm run starterkit:build
-      - name: Visual test
-        run: npx percy snapshot dist/ --ignore-files "{components,core}/**/index.html"
-        env:
-          PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}

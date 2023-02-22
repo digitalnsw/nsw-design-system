@@ -21,6 +21,14 @@
     visibility: visible;
   }
 
+  &.no-scroll {
+    overflow-y: hidden;
+  
+    @include breakpoint($nsw-desktop-breakpoint) {
+      overflow-y: visible;
+    }
+  }
+
   &.closing {
     transform: translateX(-100%);
   }
@@ -115,6 +123,10 @@
       justify-content: space-between;
       flex-wrap: nowrap;
 
+      &:hover {
+        @include nsw-hover;
+      }
+
       .nsw-material-icons {
         color: var(--nsw-brand-dark);
         margin-right: rem(-8px);
@@ -198,6 +210,14 @@
     &.active {
       transform: translateX(0);
       visibility: visible;
+    }
+
+    &.no-scroll {
+      overflow-y: hidden;
+    
+      @include breakpoint($nsw-desktop-breakpoint) {
+        overflow-y: visible;
+      }
     }
 
     @include breakpoint($nsw-desktop-breakpoint) {
