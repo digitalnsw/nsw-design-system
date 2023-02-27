@@ -7,7 +7,7 @@ model:
   breadcrumbs: ../../components/breadcrumbs/json/breadcrumbs-search.json
   results-bar: ../../components/results-bar/json/results-bar.json
   list-item: ../../components/list-item/json/list-item-label-date.json
-  filters: ../../components/filters/json/filters-instant.json
+  filters: ../../components/filters/json/options-1.json
   footer: ../../components/footer/json/footer.json
 ---
 
@@ -35,7 +35,7 @@ model:
   </div>
   <div class="nsw-layout">
     <div class="nsw-layout__sidebar">
-      {{>_filters model.filters}}
+      {{>_filters model.filters instant='true' filters-id='1'}}
     </div>
     <div class="nsw-layout__main">
       {{>_results-bar model.results-bar}}

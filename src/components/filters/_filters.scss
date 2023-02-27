@@ -16,41 +16,111 @@
       @include font-size('md');
       margin-top: rem(24px);
     }
+
+    .nsw-filters--down & {
+      display: none;
+      
+      @include breakpoint('lg') {
+        display: block;
+      }
+    }
   }
 
   &__controls {
-    padding: rem(24px) 0;
-    border-bottom: 1px solid var(--nsw-grey-04);
-
     @include breakpoint('lg') {
       display: none;
     }
 
     button {
-      @include link-button;
+      @include font-size('md');
+      font-weight: var(--nsw-font-bold);
+      background-color: var(--nsw-off-white);
+      width: 100%;
+      border: 0;
+      padding: rem(16px);
       display: flex;
       align-items: center;
       text-decoration: none;
+      text-align: left;
+      cursor: pointer;
       
       .nsw-section--invert & {    
-        color: var(--nsw-white);
+        color: var(--nsw-text-dark);
+        background-color: var(--nsw-white);
       }
 
       span {
-        text-decoration: underline;
+        text-decoration: none;
         padding-left: rem(8px);
+      }
+
+      &:hover:enabled {
+        background-color: var(--nsw-brand-dark);
+        color: var(--nsw-text-light);
+
+        .nsw-section--invert & {
+          background-color: var(--nsw-brand-light);
+          color: var(--nsw-brand-dark);
+        }
+
+        .nsw-material-icons {
+          color: var(--nsw-text-light);
+          outline: 2px solid var(--nsw-white);
+        }
+
+        .nsw-material-icons:last-child {
+          color: var(--nsw-text-light);
+          outline: 0;
+        }
+      }
+
+      &:hover:enabled .nsw-material-icons {
+        .nsw-section--invert & {
+          background-color: var(--nsw-brand-light);
+        }
+
+        .nsw-section--invert.nsw-section--grey-01 & {    
+          color: var(--nsw-grey-01);
+          outline: 2px solid var(--nsw-grey-01);
+        }
+  
+        .nsw-section--invert.nsw-section--brand-dark & {    
+          color: var(--nsw-brand-dark);
+          outline: 2px solid var(--nsw-brand-dark);
+        }
+      }
+
+      &:hover:enabled .nsw-material-icons:last-child {
+        .nsw-section--invert & {
+          background-color: var(--nsw-brand-light);
+          outline: 0;
+        }
+
+        .nsw-section--invert.nsw-section--grey-01 & {    
+          color: var(--nsw-grey-01);
+        }
+  
+        .nsw-section--invert.nsw-section--brand-dark & {    
+          color: var(--nsw-brand-dark);
+        }
+      }
+
+      &:focus {
+        @include nsw-focus($offset: false);
       }
     }
 
     .nsw-material-icons {
-      font-size: rem(map-get($nsw-icon-sizes, 24));
+      font-size: rem(map-get($nsw-icon-sizes, 30));
       border-radius: var(--nsw-border-radius);
-      padding: rem(1px);
-      border: 2px solid var(--nsw-brand-dark);
+      padding: 0;
       text-decoration: none;
-      
-      .nsw-section--invert & {    
-        border-color: var(--nsw-white);
+      outline: 2px solid var(--nsw-brand-dark);
+
+      &:last-child {
+        border: 0;
+        margin-left: auto;
+        outline: 0;
       }
     }
 
@@ -58,56 +128,124 @@
       .nsw-material-icons {
         background-color: var(--nsw-brand-dark);
         color: var(--nsw-text-light);
-      
-        .nsw-section--invert & {    
-          background-color: var(--nsw-white);
+
+        &:last-child {
+          background-color: transparent;
           color: var(--nsw-brand-dark);
+          outline: 0;
+        }
+      }
+    }
+
+    .active & {
+      button {
+        background-color: var(--nsw-brand-dark);
+        color: var(--nsw-text-light);
+
+        .nsw-section--invert & {
+          background-color: var(--nsw-brand-light);
+          color: var(--nsw-brand-dark);
+        }
+      }
+
+      .nsw-material-icons {
+        color: var(--nsw-text-light);
+        outline: 2px solid var(--nsw-white);
+
+        .nsw-section--invert & {
+          background-color: var(--nsw-brand-light);
+          color: var(--nsw-brand-dark);
+          outline: 2px solid var(--nsw-brand-dark);
+        }
+      }
+      
+      .nsw-material-icons:last-child {
+        transform: rotate(180deg);
+
+        .nsw-section--invert & {
+          background-color: var(--nsw-brand-light);
+          color: var(--nsw-brand-dark);
+          outline: 0;
         }
       }
     }
   }
 
   &__back {
-    @include z-index('upper');
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    background-color: var(--nsw-white);
-    padding: rem(16px) rem(8px);
-    border-bottom: 1px solid var(--nsw-grey-04);
+    .nsw-filters--fixed & {
+      @include z-index('upper');
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background-color: var(--nsw-white);
+      padding: rem(16px) rem(8px);
+      border-bottom: 1px solid var(--nsw-grey-04);
 
-    @include breakpoint('lg') {
-      display: none;
+      @include breakpoint('lg') {
+        display: none;
+      }
+
+      .nsw-section--invert.nsw-section--grey-01 & {    
+        background-color: var(--nsw-grey-01);
+      }
+
+      .nsw-section--invert.nsw-section--brand-dark & {    
+        background-color: var(--nsw-brand-dark);
+      }
     }
 
-    .nsw-section--invert & {
-      background-color: var(--nsw-brand-dark);
+    .nsw-filters--right & {
+      @include z-index('upper');
+      position: absolute;
+      top: rem(16px);
+      padding-right: rem(16px);
+      background-color: var(--nsw-white);
+      transition: $nsw-transition-duration;
+      right: -100vw;
+
+      @include breakpoint('lg') {
+        display: none;
+      }
+
+      .nsw-material-icons {
+        font-size: rem(map-get($nsw-icon-sizes, 30));
+      }
+
+      .nsw-section--invert.nsw-section--grey-01 & {    
+        background-color: var(--nsw-grey-01);
+      }
+
+      .nsw-section--invert.nsw-section--brand-dark & {    
+        background-color: var(--nsw-brand-dark);
+      }
+    }
+
+    .nsw-filters--right.active & {
+      right: 0;
     }
   }
 
   &__wrapper {
-    .nsw-filters--fixed & {
+    .nsw-filters--fixed &,
+    .nsw-filters--right & {
       @include z-index('middle');
-      display: none;
       position: fixed;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
       overflow-y: auto;
       background-color: var(--nsw-white);
-      padding: rem(73px) rem(16px) rem(101px) rem(16px);
-      
-      .nsw-section--invert & {    
+      scroll-padding-bottom: rem(122px);
+
+      .nsw-section--invert.nsw-section--grey-01 & {    
+        background-color: var(--nsw-grey-01);
+      }
+
+      .nsw-section--invert.nsw-section--brand-dark & {    
         background-color: var(--nsw-brand-dark);
       }
 
       @include breakpoint('lg') {
-        display: block;
         position: static;
         background-color: transparent;
-        padding: 0;
         overflow-y: visible;
         
         .nsw-section--invert & {    
@@ -116,8 +254,65 @@
       }
     }
 
+    .nsw-filters--fixed & {
+      display: none;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: rem(73px) rem(16px) rem(97px) rem(16px);
+
+      @include breakpoint('lg') {
+        display: block;
+        padding: 0;
+      }
+    }
+
+    .nsw-filters--right & {
+      top: 0;
+      bottom: 0;
+      width: 100%;
+      transition: $nsw-transition-duration;
+      padding: 0 rem(16px) rem(97px) rem(16px);
+      right: -100vw;
+      visibility: hidden;
+
+      @include breakpoint('lg') {
+        display: block;
+        visibility: visible;
+        padding: 0;
+      }
+    }
+
+    .nsw-filters--right.active & {
+      right: 0;
+      visibility: visible;
+    }
+
     .nsw-filters--fixed.nsw-filters--instant & {
       padding-bottom: 0;
+    }
+
+    .nsw-filters--down & {
+      @include z-index('middle');
+      display: none;
+      background-color: var(--nsw-off-white);
+      padding: 0 rem(16px);
+      
+      .nsw-section--invert & {    
+        background-color: transparent;
+      }
+
+      @include breakpoint('lg') {
+        display: block;
+        position: static;
+        background-color: transparent;
+        padding: 0;
+        
+        .nsw-section--invert & {    
+          background-color: transparent;
+        }
+      }
     }
 
     .active & {
@@ -126,28 +321,167 @@
   }
 
   &__item {
-    padding: rem(24px) 0;
     border-top: 1px solid var(--nsw-grey-04);
+    padding: rem(24px) 0;
+
+    &-button {
+      font-size: var(--nsw-font-size-sm-mobile);
+      line-height: var(--nsw-line-height-sm-mobile);
+      font-weight: var(--nsw-font-bold);
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: space-between;
+      border: 0;
+      background: none;
+
+      @include breakpoint('lg') {
+        font-size: var(--nsw-font-size-sm-desktop);
+        line-height: var(--nsw-line-height-sm-desktop);
+      }
+
+      .nsw-material-icons {
+        font-size: rem(map-get($nsw-icon-sizes, 30));
+      }
+
+      &:focus {
+        @include nsw-focus;
+      }
+
+      &.active {
+        >.nsw-material-icons:last-child {
+          transform: rotate(180deg);
+        }
+      }
+
+      .nsw-section--invert & {    
+        background-color: transparent;
+        color: var(--nsw-off-white);
+      }
+    }
+
+    &-button ~ &-content {
+      padding: rem(6px) 0 0 0;
+    }
+
+    span:not(.nsw-material-icons) {
+      display: flex;
+      align-items: center;
+      padding: 0;
+
+      .nsw-material-icons:last-child {
+        font-size: rem(map-get($nsw-icon-sizes, 20));
+        background-color: var(--nsw-white);
+        color: var(--nsw-status-success);
+        margin-left: rem(8px);
+        border-radius: 50%;
+        width: rem(16px);
+        height: rem(16px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+
+    .nsw-filters--down & {
+      border-top: 1px solid var(--nsw-grey-03);
+
+      @include breakpoint('lg') {
+        border-top: 1px solid var(--nsw-grey-04);
+        display: block;
+      }
+
+      &:first-child {
+        border: 0;
+
+        @include breakpoint('lg') {
+          border-top: 1px solid var(--nsw-grey-04);
+        }
+      }
+    }
   }
 
   &__all {
     padding-top: rem(16px);
   }
 
+  &__cancel {
+    padding-bottom: rem(32px);
+    border-top: 1px solid var(--nsw-grey-04);
+    padding: rem(32px) 0;
+
+    .nsw-filters--down & {
+      border-top: 1px solid var(--nsw-grey-03);
+
+      @include breakpoint('lg') {
+        border-top: 1px solid var(--nsw-grey-04);
+      }
+    }
+
+    button {
+      @include link-button;
+
+      .nsw-section--invert & {
+        @include link-light;
+      }
+    }
+  }
+
   &__accept {
     padding: rem(32px) 0;
     border-top: 1px solid var(--nsw-grey-04);
 
-    .nsw-filters--fixed & {
+    @include breakpoint('lg') {
+      ~.nsw-filters__cancel {
+        border: 0;
+        padding-top: 0;
+      }
+    }
+
+    button {
+      .nsw-section--invert & {
+        background-color: var(--nsw-white);
+
+        &:disabled {
+          background-color: var(--nsw-white);
+        }
+      }
+
+      .nsw-section--invert.nsw-section--grey-01 & {  
+        color: var(--nsw-grey-01);
+
+        &:hover {
+          background-color: var(--nsw-grey-04);
+          background-image: linear-gradient(rgba(var(--nsw-white-rgb), 0.15), rgba(var(--nsw-white-rgb), 0.15));
+        }
+      }
+
+      .nsw-section--invert.nsw-section--brand-dark & {    
+        color: var(--nsw-brand-dark);
+
+        &:disabled {
+          color: var(--nsw-brand-dark);
+        }
+
+        &:hover {
+          color: var(--nsw-text-light);
+          background-image: linear-gradient(rgba(var(--nsw-white-rgb), 0.15), rgba(var(--nsw-white-rgb), 0.15));
+        }
+      }
+    }
+
+    .nsw-filters--fixed &,
+    .nsw-filters--right & {
       @include z-index('upper');
       position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
       background-color: var(--nsw-white);
       padding: rem(24px) rem(16px);
 
-      .nsw-section--invert & {
+      .nsw-section--invert.nsw-section--grey-01 & {    
+        background-color: var(--nsw-grey-01);
+      }
+
+      .nsw-section--invert.nsw-section--brand-dark & {    
         background-color: var(--nsw-brand-dark);
       }
 
@@ -161,32 +495,35 @@
         }
       }
     }
-  }
-
-  &__cancel {
-    padding-bottom: rem(32px);
 
     .nsw-filters--fixed & {
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+
+    .nsw-filters--right & {
       border-top: 1px solid var(--nsw-grey-04);
-      padding: rem(32px) 0;
+      bottom: 0;
+      width: 100%;
+      transition: $nsw-transition-duration;
+      right: -100vw;
+    }
+
+    .nsw-filters--right.active & {
+      right: 0;
+    }
+
+    .nsw-filters--down & {
+      border-top: 1px solid var(--nsw-grey-03);
 
       @include breakpoint('lg') {
-        padding-top: 0;
-        border: 0;
-        background-color: transparent;
+        border-top: 1px solid var(--nsw-grey-04);
       }
-    }
 
-    .nsw-filters--instant & {
-      border-top: 1px solid var(--nsw-grey-04);
-      padding: rem(32px) 0;
-    }
-
-    button {
-      @include link-button;
-
-      .nsw-section--invert & {
-        @include link-light;
+      ~.nsw-filters__cancel {
+        border: 0;
+        padding-top: 0;
       }
     }
   }
@@ -198,6 +535,60 @@
 
     .nsw-section--invert & {
       @include link-light;
+    }
+  }
+
+  &.nsw-filters--down {
+    .nsw-section--invert & {
+      background-color: var(--nsw-white);
+      color: var(--nsw-text-dark);
+
+      @include breakpoint('lg') {
+        color: var(--nsw-text-light);
+        background-color: transparent;
+      }
+    }
+
+    .nsw-filters__item-button {
+      .nsw-section--invert & {
+        color: var(--nsw-text-dark);
+      
+        @include breakpoint('lg') {
+          color: var(--nsw-text-light);
+        }
+      }
+    }
+
+    .nsw-filters__cancel button {
+      @include link-button;
+
+      .nsw-section--invert & {
+        @include breakpoint('lg') {
+          @include link-light;
+        }
+      }
+    }
+
+    .nsw-filters__accept button {
+      .nsw-section--invert.nsw-section--grey-01 & {    
+        background-color: var(--nsw-grey-01);
+        color: var(--nsw-text-light);
+
+        @include breakpoint('lg') {
+          background-color: var(--nsw-white);
+          color: var(--nsw-grey-01);
+        }
+      }
+
+      .nsw-section--invert.nsw-section--brand-dark & {    
+        background-color: var(--nsw-brand-dark);
+        color: var(--nsw-text-light);
+
+        @include breakpoint('lg') {
+          background-color: var(--nsw-white);
+          color: var(--nsw-brand-dark);
+        }
+      }
     }
   }
 
