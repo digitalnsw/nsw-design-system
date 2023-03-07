@@ -4,12 +4,34 @@ width: narrow
 tabs: true
 directory: file-upload
 intro: File uploaders help users to select and upload files.
-model:
-  file-upload: ../../components/file-upload/json/file-upload.json
 meta-description: File uploaders help users to select and upload files.
 meta-index: true
 ---
 
 {{#>_docs-example}}
-{{>_file-upload model.file-upload}}
+<div class="nsw-form">
+  <div class="nsw-form__group">
+    {{>_file-upload
+    id="file-upload-helper"
+    label="Upload drivers license"
+    helper-text="Formats accepted: JPG, PNG or PDF <br /> File size must not exceed 350MB"
+    required=false
+    }}
+  </div>
+</div>
+{{/_docs-example}}
+
+<h3>Error messages</h3>
+{{#>_docs-example}}
+<div class="nsw-form">
+  <div class="nsw-form__group">
+    {{>_file-upload
+    id="file-upload-error"
+    label="Upload drivers license"
+    helper-text="Formats accepted: JPG, PNG or PDF <br /> File size must not exceed 350MB"
+    required=false
+    error-text="The selected file must be smaller than 350MB"
+    }}
+  </div>
+</div>
 {{/_docs-example}}

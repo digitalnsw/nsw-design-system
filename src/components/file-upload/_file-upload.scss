@@ -1,52 +1,12 @@
 .nsw-file-upload {
   display: block;
 
-  &__helper {
-    @include font-size('xs');
-    display: block;
-    margin-bottom: rem(4px);
-
-    &--error,
-    &--valid {
-      margin-top: rem(8px);
-      padding: rem(8px);
-      font-weight: var(--nsw-font-bold);
-      color: var(--nsw-text-dark);
-      background-repeat: no-repeat;
-      background-position: left rem(8px) top rem(8px);
-      background-size: 1rem auto;
-      display: flex;
-      align-items: center;
-
-      .nsw-material-icons {
-        font-size: rem(map-get($nsw-icon-sizes, 20));
-        margin-right: rem(4px);
-      }
-    }
-
-    &--error {
-      background-color: var(--nsw-status-error-bg);
-
-      .nsw-material-icons {
-        color: var(--nsw-status-error);
-      }
-    }
-
-    &--valid {
-      background-color: var(--nsw-status-success-bg);
-
-      .nsw-material-icons {
-        color: var(--nsw-status-success);
-      }
-    }
-  }
-
   &__label {
     margin: 0;
-  }
 
-  &__text {
-    display: initial;
+    &-content {
+      display: initial;
+    }
   }
 
   &__input {
@@ -61,55 +21,26 @@
 
   &__item {
     max-width: rem(500px);
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: space-between;
     background-color: var(--nsw-off-white);
     border-radius: var(--nsw-border-radius);
-    box-shadow: var(--nsw-box-shadow);
-    padding: rem(16px);
+    padding: rem(8px);
 
     &:not(:last-child) {
-      margin-bottom: rem(16px);
+      margin-bottom: rem(8px);
     }
-  }
 
-  &__file-name {
-    margin-left: rem(16px);
-
-    &.truncate {
+    &-filename {
+      margin-left: rem(8px);
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
     }
-  }
 
-  &__remove-btn {
-    font-size: rem(map-get($nsw-icon-sizes, 20));
-    background-color: var(--nsw-white);
-    color: var(--nsw-brand-dark);
-    border-radius: 50%;
-    width: rem(16px);
-    height: rem(16px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: auto;
-    flex-shrink: 0;
-    border: 0;
-
-    &:hover {
-      cursor: pointer;
-      outline: none;
-      color: var(--nsw-brand-accent);
+    &.active {
+      display: flex;
     }
-
-    &:focus {
-      @include nsw-focus;
-    }
-  }
-
-  .hidden {
-    display: none;
   }
 }

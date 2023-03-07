@@ -1,9 +1,30 @@
 ---
 title: File upload
 width: narrow
-model:
-  file-upload: ../../components/file-upload/json/file-upload.json
 page: true
 ---
 
-{{#>_layout-container}}{{>_file-upload model.file-upload}}{{/_layout-container}}
+{{#>_layout-container}}
+<div class="nsw-form">
+  <div class="nsw-form__group">
+    {{>_file-upload
+    id="file-upload-helper"
+    label="Upload drivers license"
+    helper-text="Formats accepted: JPG, PNG or PDF <br /> File size must not exceed 350MB"
+    required=false
+    }}
+  </div>
+</div>
+
+<div class="nsw-form">
+  <div class="nsw-form__group">
+    {{>_file-upload
+    id="file-upload-error"
+    label="Upload drivers license"
+    helper-text="Formats accepted: JPG, PNG or PDF <br /> File size must not exceed 350MB"
+    required=false
+    error-text="The selected file must be smaller than 350MB"
+    }}
+  </div>
+</div>
+{{/_layout-container}}
