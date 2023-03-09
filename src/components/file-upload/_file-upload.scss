@@ -1,27 +1,46 @@
 .nsw-file-upload {
+  margin-top: rem(8px);
   display: block;
 
   &__label {
     margin: 0;
-
-    &-content {
-      display: initial;
-    }
   }
 
   &__input {
-    display: none;
+    position: absolute;
+    opacity: 0;
+
+    &:disabled {
+      + .nsw-file-upload__label {
+        cursor: not-allowed;
+      }
+
+      + .nsw-file-upload__label {
+        opacity: 0.4;
+        cursor: not-allowed;
+      }
+    }
+    
+    &:focus + .nsw-file-upload__label {
+      @include nsw-focus;
+    }
+
+    &[aria-invalid='true'] + .nsw-file-upload__label,
+    &.has-error + .nsw-file-upload__label {
+      border-color: var(--nsw-status-error);
+      border-width: 2px;
+    }
   }
 
-  &__list {
+  ul {
     margin: 0;
     padding: 0;
     border: 0;
   }
 
   &__item {
-    max-width: rem(500px);
     display: none;
+    max-width: rem(500px);
     align-items: center;
     justify-content: space-between;
     background-color: var(--nsw-off-white);

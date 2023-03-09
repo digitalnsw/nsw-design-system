@@ -8,10 +8,13 @@ page: true
 <div class="nsw-form">
   <div class="nsw-form__group">
     {{>_file-upload
+    js=true
     id="file-upload-helper"
     label="Upload drivers license"
     helper-text="Formats accepted: JPG, PNG or PDF <br /> File size must not exceed 350MB"
-    required=false
+    accept=true
+    multiple=true
+    data-replace=true
     }}
   </div>
 </div>
@@ -19,11 +22,12 @@ page: true
 <div class="nsw-form">
   <div class="nsw-form__group">
     {{>_file-upload
+    js=true
     id="file-upload-error"
     label="Upload drivers license"
     helper-text="Formats accepted: JPG, PNG or PDF <br /> File size must not exceed 350MB"
-    required=false
     error-text="The selected file must be smaller than 350MB"
+    accept=true
     }}
   </div>
 </div>
