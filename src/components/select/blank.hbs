@@ -7,12 +7,39 @@ model:
   savings-program: ../../components/select/json/select-savings-program.json
 ---
 {{#>_layout-container}}
-{{>_multi-select model.region}}
-{{>_multi-select model.savings-program multiple='true'}}
-{{>_multi-select model.region helper='true'}}
-{{>_multi-select model.savings-program helper='true'}}
-{{>_multi-select model.region error='true'}}
-{{>_multi-select model.savings-program error='true'}}
-{{>_multi-select model.region valid='true'}}
-{{>_multi-select model.savings-program valid='true'}}
+<div class="nsw-form">
+
+  <div class="nsw-form__group">
+    {{>_multi-select model.region}}
+  </div>
+
+  <div class="nsw-form__group">
+    {{>_multi-select model.savings-program multiple="true"}}
+  </div>
+
+  <div class="nsw-form__group">
+    {{>_multi-select model.region helper="true"}}
+  </div>
+
+  <div class="nsw-form__group">
+    {{>_multi-select model.savings-program helper="true" multiple="true"}}
+  </div>
+
+  <div class="nsw-form__group">
+    {{>_multi-select model.region error="true"}}
+  </div>
+
+  <div class="nsw-form__group">
+    {{>_multi-select model.savings-program error="true" multiple="true"}}
+  </div>
+
+  <div class="nsw-form__group">
+    {{>_multi-select model.region valid="true"}}
+  </div>
+
+  <div class="nsw-form__group">
+    {{>_multi-select model.savings-program valid="true" multiple="true"}}
+  </div>
+</div>
+
 {{/_layout-container}}
