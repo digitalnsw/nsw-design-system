@@ -10,35 +10,61 @@ model:
 <div class="nsw-form">
 
   <div class="nsw-form__group">
-    {{>_select model.region}}
+    {{>_select model.region id="filters-all-regions-1" }}
   </div>
 
   <div class="nsw-form__group">
-    {{>_select model.savings-program multiple="true"}}
+    {{>_select model.savings-program 
+    id="filters-all-savings-programs-1"
+    multiple="true"
+    }}
   </div>
 
   <div class="nsw-form__group">
-    {{>_select model.region helper="true"}}
+    {{>_select model.region
+    id="filters-all-regions-2"
+    helper-text="Your region of residence"
+    }}
   </div>
 
   <div class="nsw-form__group">
-    {{>_select model.savings-program helper="true" multiple="true"}}
+    {{>_select model.savings-program
+    id="filters-all-savings-programs-2"
+    multiple="true"
+    helper-text="Select all that apply"
+    }}
   </div>
 
   <div class="nsw-form__group">
-    {{>_select model.region error="true"}}
+    {{>_select model.region
+    id="filters-all-regions-3"
+    required="true"
+    error-text="Please select a region of residence"
+    }}
   </div>
 
   <div class="nsw-form__group">
-    {{>_select model.savings-program error="true" multiple="true"}}
+    {{>_select model.savings-program
+    id="filters-all-savings-programs-3"
+    multiple="true"
+    required="true"
+    error-text="Please select the savings programs you would like to claim"
+    }}
   </div>
 
   <div class="nsw-form__group">
-    {{>_select model.region valid="true"}}
+    {{>_select model.region
+    id="filters-all-regions-4"
+    valid-text="Your region is eligible for savings benefits"
+    }}
   </div>
 
   <div class="nsw-form__group">
-    {{>_select model.savings-program valid="true" multiple="true"}}
+    {{>_select model.savings-program
+    id="filters-all-savings-programs-4"
+    multiple="true"
+    valid-text="The programs you have selected are available"
+    }}
   </div>
 </div>
 

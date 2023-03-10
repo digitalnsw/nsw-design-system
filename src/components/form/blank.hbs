@@ -2,6 +2,8 @@
 title: Forms
 width: narrow
 page: true
+model:
+  select: ../../components/select/json/select-region.json
 ---
 {{#>_layout-container}}
 
@@ -95,12 +97,8 @@ page: true
   </div>
 
   <div class="nsw-form__group">
-    {{>_select
+    {{>_select model.select
       id="form-select-1"
-      label="Region"
-      option-1="Central Coast"
-      option-2="North Coast"
-      option-3="New England & North West"
     }}
   </div>
 
@@ -176,12 +174,8 @@ page: true
   </div>
 
   <div class="nsw-form__group">
-    {{>_select
+    {{>_select model.select
       id="form-select-2"
-      label="Region"
-      option-1="Central Coast"
-      option-2="North Coast"
-      option-3="New England & North West"
       helper-text="Your region of residence"
     }}
   </div>
@@ -254,12 +248,8 @@ page: true
   </div>
 
   <div class="nsw-form__group">
-    {{>_select
+    {{>_select model.select
       id="form-select-3"
-      label="Region"
-      option-1="Central Coast"
-      option-2="North Coast"
-      option-3="New England & North West"
       required=true
       error-text="This field is required"
     }}
@@ -338,12 +328,8 @@ page: true
   </div>
 
   <div class="nsw-form__group">
-    {{>_select
+    {{>_select model.select
       id="form-select-4"
-      label="Region"
-      option-1="Central Coast"
-      option-2="North Coast"
-      option-3="New England & North West"
       valid-text="This field has been validated"
     }}
   </div>
