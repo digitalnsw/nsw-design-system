@@ -22,14 +22,19 @@
     }
   }
 
-  ul {
+  &__list {
+    display: none;
     margin: 0;
     padding: 0;
     border: 0;
+
+    &.active {
+      display: block;
+    }
   }
 
   &__item {
-    display: none;
+    display: flex;
     max-width: rem(500px);
     align-items: center;
     justify-content: space-between;
@@ -39,10 +44,6 @@
 
     &:not(:last-child) {
       margin-bottom: rem(8px);
-    }
-
-    &.active {
-      display: flex;
     }
   }
 

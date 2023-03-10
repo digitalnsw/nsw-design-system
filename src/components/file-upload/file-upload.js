@@ -6,62 +6,60 @@ class FileUpload {
     this.label = this.element.querySelector('.nsw-file-upload__label')
     this.multipleUpload = this.input.hasAttribute('multiple')
     this.replaceFiles = this.element.hasAttribute('data-replace-files')
-    this.filesList = this.element.querySelector('ul')
-    this.fileItems = false
-    this.uploadedFiles = []
-    this.lastUploadedFiles = []
+    this.filesList = false
   }
 
   init() {
-    this.initshowFiles()
-    this.initFileInput()
-  }
-
-  initshowFiles() {
-    if (this.filesList) {
-      this.fileItems = this.filesList.querySelectorAll('.nsw-file-upload__item')
-      this.removeFile()
-    }
-  }
-
-  initFileInput() {
     if (!this.input) return
 
     this.input.addEventListener('change', () => {
       if (this.input.value === '') return
-      this.storeUploadedFiles(this.input.files)
       this.updateFileList()
     })
   }
 
-  storeUploadedFiles(fileData) {
-    this.lastUploadedFiles = []
-    if (this.replaceFiles) this.uploadedFiles = []
-    Array.prototype.push.apply(this.lastUploadedFiles, fileData)
-    this.uploadedFiles = this.uploadedFiles.concat(this.lastUploadedFiles)
+  createFileList() {
+    const ul = document.createElement('ul')
+    ul.classList.add('nsw-file-upload__list')
+    this.label.insertAdjacentElement('afterend', ul)
+    this.filesList = this.element.querySelector('.nsw-file-upload__list')
+  }
+
+  createFileItem(file) {
+    const li = document.createElement('li')
+    li.classList.add('nsw-file-upload__item')
+    const html = `
+    <span class="nsw-file-upload__item-filename"></span>
+    <button type="button" class="nsw-icon-button">
+        <span class="sr-only">Remove file</span>
+        <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span>
+    </button>`
+
+    li.insertAdjacentHTML('afterbegin', html)
+    li.querySelector('.nsw-file-upload__item-filename').textContent = this.constructor.truncateString(file.name, 50)
+    return li.outerHTML
   }
 
   updateFileList() {
-    if (!this.fileItems || this.fileItems.length === 0) return
-    const clone = this.fileItems[0].cloneNode(true)
+    if (!this.filesList) {
+      this.createFileList()
+    }
+
+    this.filesList.classList.add('active')
+
     let string = ''
-    clone.classList.add('active')
-    for (let i = 0; i < this.lastUploadedFiles.length; i += 1) {
-      const { name } = this.lastUploadedFiles[i]
-      clone.querySelectorAll('.nsw-file-upload__item-filename')[0].textContent = this.constructor.truncateString(name, 50)
-      string = clone.outerHTML + string
+    for (let i = 0; i < this.input.files.length; i += 1) {
+      const file = this.input.files[i]
+      string = this.createFileItem(file) + string
     }
 
     if (this.replaceFiles) {
-      string = this.fileItems[0].outerHTML + string
       this.filesList.innerHTML = string
     } else {
-      this.fileItems[0].insertAdjacentHTML('afterend', string)
+      this.filesList.insertAdjacentHTML('beforeend', string)
     }
 
-    if (this.uploadedFiles.length === 0) {
-      this.filesList.classList.toggle('active')
-    }
+    this.removeFile()
   }
 
   removeFile() {
@@ -69,12 +67,12 @@ class FileUpload {
       if (!event.target.closest('.nsw-icon-button')) return
       event.preventDefault()
       const item = event.target.closest('.nsw-file-upload__item')
-      const index = Array.prototype.indexOf.call(this.filesList.querySelectorAll('.nsw-file-upload__item'), item)
-      const lastUploadedIndex = this.lastUploadedFiles.length - index
-      if (lastUploadedIndex >= 0 && lastUploadedIndex < this.lastUploadedFiles.length - 1) {
-        this.lastUploadedFiles.splice(this.lastUploadedFiles.length - index, 1)
-      }
+
       item.remove()
+
+      if (event.currentTarget.children.length === 0) {
+        this.filesList.classList.remove('active')
+      }
     })
   }
 
