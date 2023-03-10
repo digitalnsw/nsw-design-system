@@ -27,17 +27,6 @@ class FileUpload {
   initFileInput() {
     if (!this.input) return
 
-    this.label.setAttribute('tabindex', '0')
-    this.input.setAttribute('tabindex', '-1')
-
-    this.input.addEventListener('focusin', () => {
-      this.label.focus()
-    })
-
-    this.label.addEventListener('keydown', (event) => {
-      if ((event.keyCode && event.keyCode === 13) || (event.key && event.key.toLowerCase() === 'enter')) { this.input.click() }
-    })
-
     this.input.addEventListener('change', () => {
       if (this.input.value === '') return
       this.storeUploadedFiles(this.input.files)

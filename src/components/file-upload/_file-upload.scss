@@ -12,10 +12,6 @@
 
     &:disabled {
       + .nsw-file-upload__label {
-        cursor: not-allowed;
-      }
-
-      + .nsw-file-upload__label {
         opacity: 0.4;
         cursor: not-allowed;
       }
@@ -45,15 +41,15 @@
       margin-bottom: rem(8px);
     }
 
-    &-filename {
-      margin-left: rem(8px);
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
     &.active {
       display: flex;
     }
+  }
+
+  &__item-filename {
+    margin-left: rem(8px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 }
