@@ -10,7 +10,6 @@ class Select {
     this.trigger = false
     this.dropdown = false
     this.customOptions = false
-    this.label = this.element.closest('.nsw-form__label')
     this.selectedOptCounter = 0
     this.optionIndex = 0
     // label options
@@ -33,10 +32,10 @@ class Select {
     this.element.insertAdjacentHTML('beforeend', this.initButtonSelect() + this.initListSelect())
 
     // save custom elements
-    this.dropdown = this.element.querySelector('.js-multi-select__dropdown')
-    this.trigger = this.element.querySelector('.js-multi-select__button')
+    this.dropdown = this.element.querySelector('.nsw-multi-select__dropdown')
+    this.trigger = this.element.querySelector('.nsw-multi-select__button')
     this.multiSelectList = this.dropdown.querySelector('.nsw-multi-select__list')
-    this.customOptions = this.multiSelectList.querySelectorAll('.js-multi-select__option')
+    this.customOptions = this.multiSelectList.querySelectorAll('.nsw-multi-select__option')
 
     // create the HTML for the all button element
     this.multiSelectList.insertAdjacentHTML('afterbegin', this.initAllButton())
@@ -44,9 +43,6 @@ class Select {
     // save custom elements
     this.allButton = this.multiSelectList.querySelector('.js-multi-select__all')
     this.allButtonInput = this.allButton.querySelector('.nsw-form__checkbox-input')
-
-    // hide default select
-    this.constructor.addClass(this.select, 'hidden')
   }
 
   initCustomSelectEvents() {
@@ -59,12 +55,6 @@ class Select {
       this.toggleCustomSelect(false)
     })
 
-    if (this.label) {
-      // move focus to custom trigger when clicking on <select> label
-      this.label.addEventListener('click', () => {
-        this.constructor.moveFocus(this.trigger)
-      })
-    }
     // keyboard navigation
     this.dropdown.addEventListener('keydown', (event) => {
       if ((event.keyCode && event.keyCode === 38) || (event.key && event.key.toLowerCase() === 'arrowup')) {
@@ -109,6 +99,8 @@ class Select {
         this.dropdown.removeEventListener('transitionend', cb)
       })
 
+      this.constructor.trapFocus(this.dropdown)
+
       this.placeDropdown() // place dropdown based on available space
     }
   }
@@ -129,11 +121,11 @@ class Select {
   keyboardCustomSelect(direction, event) {
     // navigate custom dropdown with keyboard
     event.preventDefault()
-    let index = this.constructor.getIndexInArray(this.customOptions, document.activeElement.closest('.js-multi-select__option'))
+    let index = Array.prototype.indexOf.call(this.customOptions, document.activeElement.closest('.nsw-multi-select__option'))
     index = (direction === 'next') ? index + 1 : index - 1
     if (index < 0) index = this.customOptions.length - 1
     if (index >= this.customOptions.length) index = 0
-    this.constructor.moveFocus(this.customOptions[index].querySelector('.js-multi-select__checkbox'))
+    this.constructor.moveFocus(this.customOptions[index].querySelector('.nsw-form__checkbox-input'))
   }
 
   initSelection() {
@@ -142,14 +134,14 @@ class Select {
 
     this.customOptions.forEach((opt) => {
       opt.addEventListener('change', (event) => {
-        const option = event.currentTarget.closest('.js-multi-select__option')
+        const option = event.currentTarget.closest('.nsw-multi-select__option')
         if (!option) return
         this.selectOption(option)
       })
 
       opt.addEventListener('click', (event) => {
-        const option = event.currentTarget.closest('.js-multi-select__option')
-        if (!option || !this.constructor.hasClass(event.target, 'js-multi-select__option')) return
+        const option = event.currentTarget.closest('.nsw-multi-select__option')
+        if (!option || !event.target.classList.contains('nsw-multi-select__option')) return
         this.selectOption(option)
       })
     })
@@ -167,7 +159,7 @@ class Select {
     const allCompleted = Array.from(this.customOptions).filter((option) => option.ariaSelected === 'true').length === totalOptions
 
     this.customOptions.forEach((check) => {
-      const input = check.querySelector('.js-multi-select__checkbox')
+      const input = check.querySelector('.nsw-form__checkbox-input')
       if (allCompleted) {
         // deselecting that option
         input.checked = false
@@ -184,13 +176,13 @@ class Select {
       }
     })
     const [label, ariaLabel] = this.getSelectedOptionText()
-    this.trigger.querySelector('.js-multi-select__label').innerHTML = label // update trigger label
+    this.trigger.querySelector('.nsw-multi-select__label').innerHTML = label // update trigger label
     this.constructor.toggleClass(this.trigger, 'active', this.selectedOptCounter > 0)
     this.updateTriggerAria(ariaLabel) // update trigger aria-label
   }
 
   selectOption(option) {
-    const input = option.querySelector('.js-multi-select__checkbox')
+    const input = option.querySelector('.nsw-form__checkbox-input')
     if (option.hasAttribute('aria-selected') && option.getAttribute('aria-selected') === 'true') {
       // deselecting that option
       input.checked = false
@@ -206,7 +198,7 @@ class Select {
       this.updateNativeSelect(option.getAttribute('data-index'), true)
     }
     const [label, ariaLabel] = this.getSelectedOptionText()
-    this.trigger.querySelector('.js-multi-select__label').innerHTML = label // update trigger label
+    this.trigger.querySelector('.nsw-multi-select__label').innerHTML = label // update trigger label
     this.constructor.toggleClass(this.trigger, 'active', this.selectedOptCounter > 0)
     this.updateTriggerAria(ariaLabel) // update trigger aria-label
   }
@@ -215,8 +207,8 @@ class Select {
     // create the button element -> custom select trigger
     const triggerLabel = this.getSelectedOptionText(this.element)
 
-    const button = `<button class="nsw-button js-multi-select__button nsw-multi-select__button" aria-label="${triggerLabel[1]}" aria-expanded="false" aria-controls="${this.selectId}-dropdown">
-      <span aria-hidden="true" class="js-multi-select__label nsw-multi-select__label">${triggerLabel[0]}</span>
+    const button = `<button class="nsw-button nsw-multi-select__button" aria-label="${triggerLabel[1]}" aria-expanded="false" aria-controls="${this.selectId}-dropdown">
+      <span aria-hidden="true" class="nsw-multi-select__label">${triggerLabel[0]}</span>
       <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
       </button>`
     return button
@@ -225,7 +217,7 @@ class Select {
   initAllButton() {
     const allButton = `
       <li class="js-multi-select__all nsw-multi-select__option" role="option" data-value="${this.allText}" aria-selected="false" data-label="${this.allText}" data-all-text="${this.allTextSelected}">
-        <input aria-hidden="true" class="nsw-form__checkbox-input js-multi-select__checkbox" type="checkbox" id="${this.selectId}-${this.allText}" name="${this.selectId}-${this.allText}">
+        <input aria-hidden="true" class="nsw-form__checkbox-input" type="checkbox" id="${this.selectId}-${this.allText}" name="${this.selectId}-${this.allText}">
         <label class="nsw-form__checkbox-label multi-select__item multi-select__item--option" aria-hidden="true" for="${this.selectId}-${this.allText}">
           <span>${this.allText}</span>
         </label>
@@ -267,13 +259,12 @@ class Select {
 
   initListSelect() {
     // create custom select dropdown
-    let list = `<div class="js-multi-select__dropdown nsw-multi-select__dropdown" aria-describedby=${this.selectId}-description" id="${this.selectId}-dropdown">`
-    list += this.getSelectLabelSR()
+    let list = `<div class="nsw-multi-select__dropdown" aria-describedby=${this.selectId}-description" id="${this.selectId}-dropdown">`
 
     if (this.optGroups.length > 0) {
       this.optGroups.forEach((optionGroup) => {
         const optGroupList = optionGroup.querySelectorAll('option')
-        const optGroupLabel = `<li><span class="nsw-multi-select__item nsw-multi-select__item--optgroup">${optionGroup.getAttribute('label')}</span></li>`
+        const optGroupLabel = `<li><span>${optionGroup.getAttribute('label')}</span></li>`
         list += `<ul class="nsw-multi-select__list" role="listbox" aria-multiselectable="true">
           ${optGroupLabel + this.getOptionsList(optGroupList)}
         </ul>`
@@ -284,13 +275,6 @@ class Select {
     return list
   }
 
-  getSelectLabelSR() {
-    if (this.label) {
-      return `<p class="sr-only" id="${this.selectId}-description">${this.label.textContent}</p>`
-    }
-    return ''
-  }
-
   getOptionsList(options) {
     let list = ''
 
@@ -299,8 +283,8 @@ class Select {
       const checked = option.hasAttribute('selected') ? 'checked' : ''
 
       list += `
-      <li class="js-multi-select__option nsw-multi-select__option" role="option" data-value="${option.value}" ${selected} data-label="${option.text}" data-index="${this.optionIndex}">
-        <input aria-hidden="true" class="nsw-form__checkbox-input js-multi-select__checkbox" type="checkbox" id="${this.selectId}-${option.value}-${this.optionIndex}" name="${this.selectId}-${option.value}-${this.optionIndex}" ${checked}>
+      <li class="nsw-multi-select__option" role="option" data-value="${option.value}" ${selected} data-label="${option.text}" data-index="${this.optionIndex}">
+        <input aria-hidden="true" class="nsw-form__checkbox-input" type="checkbox" id="${this.selectId}-${option.value}-${this.optionIndex}" name="${this.selectId}-${option.value}-${this.optionIndex}" ${checked}>
         <label class="nsw-form__checkbox-label multi-select__item multi-select__item--option" aria-hidden="true" for="${this.selectId}-${option.value}-${this.optionIndex}">
           <span>${option.text}</span>
         </label>
@@ -317,10 +301,10 @@ class Select {
     const option = this.dropdown.querySelector('[aria-selected="true"]')
 
     if (option) {
-      return option.querySelector('.js-multi-select__checkbox')
+      return option.querySelector('.nsw-form__checkbox-input')
     }
 
-    return this.dropdown.querySelector('.js-multi-select__option').querySelector('.js-multi-select__checkbox')
+    return this.dropdown.querySelector('.nsw-multi-select__option').querySelector('.nsw-form__checkbox-input')
   }
 
   moveFocusToSelectTrigger() {
@@ -345,37 +329,39 @@ class Select {
     this.trigger.setAttribute('aria-label', ariaLabel)
   }
 
+  static trapFocus(element) {
+    /* eslint-disable max-len */
+    const focusableEls = element.querySelectorAll('a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])')
+    const firstFocusableEl = focusableEls[0]
+    const lastFocusableEl = focusableEls[focusableEls.length - 1]
+    const KEYCODE_TAB = 9
+
+    element.addEventListener('keydown', (e) => {
+      const isTabPressed = (e.key === 'Tab' || e.keyCode === KEYCODE_TAB)
+
+      if (!isTabPressed) { return }
+
+      if (e.shiftKey) {
+        if (document.activeElement === firstFocusableEl) {
+          e.preventDefault()
+          lastFocusableEl.focus()
+        }
+      } else if (document.activeElement === lastFocusableEl) {
+        e.preventDefault()
+        firstFocusableEl.focus()
+      }
+    })
+  }
+
   static moveFocus(element) {
-    element.focus()
     if (document.activeElement !== element) {
-      element.setAttribute('tabindex', '-1')
       element.focus()
     }
   }
 
-  static getIndexInArray(array, el) {
-    return Array.prototype.indexOf.call(array, el)
-  }
-
-  static hasClass(el, className) {
-    return el.classList.contains(className)
-  }
-
-  static addClass(el, className) {
-    el.classList.add(className)
-  }
-
-  static removeClass(el, className) {
-    el.classList.remove(className)
-  }
-
   static toggleClass(el, className, bool) {
-    if (bool) this.addClass(el, className)
-    else this.removeClass(el, className)
-  }
-
-  static setAttributes(el, attrs) {
-    Object.entries(attrs).forEach(([key, value]) => el.setAttribute(key, value))
+    if (bool) el.classList.add(className)
+    else el.classList.remove(className)
   }
 }
 

@@ -1,6 +1,10 @@
 .nsw-multi-select {
   position: relative;
 
+  .nsw-form__select {
+    display: none;
+  }
+
   &__button {
     background-color: var(--nsw-white);
     color: var(--nsw-text-dark);
@@ -45,8 +49,6 @@
   &__list {
     list-style-type: none;
     padding: rem(11px) rem(16px);
-
-    /* For Options Group */
     
     &:not(:first-of-type) {
       padding-top: rem(16px);
@@ -60,9 +62,5 @@
 
   &__option {
     padding: rem(8px) 0;
-  }
-
-  .hidden {
-    display: none;
   }
 }
