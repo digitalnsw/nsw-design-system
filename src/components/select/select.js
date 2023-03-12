@@ -1,5 +1,3 @@
-/* eslint-disable prefer-template */
-/* eslint-disable max-len */
 class Select {
   constructor(element) {
     this.element = element
@@ -13,13 +11,9 @@ class Select {
     this.selectedOptCounter = 0
     this.optionIndex = 0
     // label options
-    this.noSelectText = this.element.getAttribute('data-no-select-text') || 'Select'
-    this.allText = this.element.getAttribute('data-all-text')
-    this.allTextSelected = this.element.getAttribute('data-all-text-selected')
+    this.allTextSelected = this.element.getAttribute('data-all-text-selected') || 'All items selected'
     this.multiSelectText = this.element.getAttribute('data-multi-select-text') || '{n} items selected'
     this.nMultiSelect = this.element.getAttribute('data-n-multi-select') || 1
-    this.noUpdateLabel = this.element.getAttribute('data-update-text') && this.element.getAttribute('data-update-text') === 'off'
-    this.insetLabel = this.element.getAttribute('data-inset-label') && this.element.getAttribute('data-inset-label') === 'on'
   }
 
   init() {
@@ -66,14 +60,17 @@ class Select {
 
     window.addEventListener('keyup', (event) => {
       if (event.key && event.key.toLowerCase() === 'escape') {
-        // close custom select on 'Esc'
-        this.moveFocusToSelectTrigger() // if focus is within dropdown, move it to dropdown trigger
-        this.toggleCustomSelect('false') // close dropdown
+        this.constructor.moveFocusToSelectTrigger(event.target)
+        this.toggleCustomSelect('false')
       }
     })
     // close custom select when clicking outside it
     window.addEventListener('click', (event) => {
       this.checkCustomSelectClick(event.target)
+    })
+
+    this.allButton.addEventListener('change', () => {
+      this.toggleAllOptions()
     })
   }
 
@@ -107,11 +104,8 @@ class Select {
 
   placeDropdown() {
     const triggerBoundingRect = this.trigger.getBoundingClientRect()
-    this.constructor.toggleClass(this.dropdown, 'nsw-multi-select__dropdown--right', (window.innerWidth < triggerBoundingRect.left + this.dropdown.offsetWidth))
-
     // check if there's enough space up or down
     const moveUp = (window.innerHeight - triggerBoundingRect.bottom) < triggerBoundingRect.top
-    this.constructor.toggleClass(this.dropdown, 'nsw-multi-select__dropdown--up', moveUp)
     // check if we need to set a max height
     const maxHeight = moveUp ? triggerBoundingRect.top - 20 : window.innerHeight - triggerBoundingRect.bottom - 20
     // set max-height (based on available space) and width
@@ -145,23 +139,27 @@ class Select {
         this.selectOption(option)
       })
     })
+  }
 
-    if (this.allText) {
-      this.allButton.addEventListener('change', (event) => {
-        event.preventDefault()
-        this.toggleAllOptions()
-      })
+  getSelectedOptionCount() {
+    this.selectedOptCounter = 0
+
+    for (let i = 0; i < this.options.length; i += 1) {
+      if (this.options[i].selected) {
+        this.selectedOptCounter += 1
+      }
     }
+
+    return this.selectedOptCounter
   }
 
   toggleAllOptions() {
-    const totalOptions = this.options.length
-    const allCompleted = Array.from(this.customOptions).filter((option) => option.ariaSelected === 'true').length === totalOptions
+    const count = this.getSelectedOptionCount()
 
     this.customOptions.forEach((check) => {
       const input = check.querySelector('.nsw-form__checkbox-input')
-      if (allCompleted) {
-        // deselecting that option
+
+      if (count === this.options.length) {
         input.checked = false
         input.removeAttribute('checked')
         check.setAttribute('aria-selected', 'false')
@@ -174,6 +172,7 @@ class Select {
         // update native select element
         this.updateNativeSelect(check.getAttribute('data-index'), true)
       }
+      //
     })
     const [label, ariaLabel] = this.getSelectedOptionText()
     this.trigger.querySelector('.nsw-multi-select__label').innerHTML = label // update trigger label
@@ -183,6 +182,7 @@ class Select {
 
   selectOption(option) {
     const input = option.querySelector('.nsw-form__checkbox-input')
+
     if (option.hasAttribute('aria-selected') && option.getAttribute('aria-selected') === 'true') {
       // deselecting that option
       input.checked = false
@@ -197,7 +197,18 @@ class Select {
       // update native select element
       this.updateNativeSelect(option.getAttribute('data-index'), true)
     }
+
     const [label, ariaLabel] = this.getSelectedOptionText()
+    const count = this.getSelectedOptionCount()
+    if (count === this.options.length) {
+      this.allButtonInput.checked = true
+      this.allButtonInput.setAttribute('checked', '')
+      this.allButton.setAttribute('aria-selected', 'true')
+    } else {
+      this.allButtonInput.checked = false
+      this.allButtonInput.removeAttribute('checked')
+      this.allButton.setAttribute('aria-selected', 'false')
+    }
     this.trigger.querySelector('.nsw-multi-select__label').innerHTML = label // update trigger label
     this.constructor.toggleClass(this.trigger, 'active', this.selectedOptCounter > 0)
     this.updateTriggerAria(ariaLabel) // update trigger aria-label
@@ -216,10 +227,10 @@ class Select {
 
   initAllButton() {
     const allButton = `
-      <li class="js-multi-select__all nsw-multi-select__option" role="option" data-value="${this.allText}" aria-selected="false" data-label="${this.allText}" data-all-text="${this.allTextSelected}">
-        <input aria-hidden="true" class="nsw-form__checkbox-input" type="checkbox" id="${this.selectId}-${this.allText}" name="${this.selectId}-${this.allText}">
-        <label class="nsw-form__checkbox-label multi-select__item multi-select__item--option" aria-hidden="true" for="${this.selectId}-${this.allText}">
-          <span>${this.allText}</span>
+      <li class="js-multi-select__all nsw-multi-select__option" role="option" data-value="All" aria-selected="false" data-label="All" data-all-text="${this.allTextSelected}">
+        <input aria-hidden="true" class="nsw-form__checkbox-input" type="checkbox" id="${this.selectId}-All" name="${this.selectId}-All">
+        <label class="nsw-form__checkbox-label" aria-hidden="true" for="${this.selectId}-All">
+          <span>All</span>
         </label>
       </li>`
 
@@ -228,8 +239,7 @@ class Select {
 
   getSelectedOptionText() {
     // used to initialize the label of the custom select button
-    const noSelectionText = `<span class="multi-select__term">${this.noSelectText}</span>`
-    if (this.noUpdateLabel) return [noSelectionText, this.noSelectText]
+    const noSelectionText = '<span class="multi-select__term">Please select</span>'
     let label = ''
     let ariaLabel = ''
     this.selectedOptCounter = 0
@@ -242,18 +252,20 @@ class Select {
       }
     }
 
-    if (this.selectedOptCounter > this.nMultiSelect) {
+    if (this.selectedOptCounter === this.options.length) {
+      label = this.allTextSelected
+      ariaLabel = this.allTextSelected
+    } else if (this.selectedOptCounter > this.nMultiSelect) {
       label = `<span class="multi-select__details">${this.multiSelectText.replace('{n}', this.selectedOptCounter)}</span>`
-      ariaLabel = `${this.multiSelectText.replace('{n}', this.selectedOptCounter)}, ${this.noSelectText}`
+      ariaLabel = `${this.multiSelectText.replace('{n}', this.selectedOptCounter)}, Please select`
     } else if (this.selectedOptCounter > 0) {
-      ariaLabel += `${label}, ${this.noSelectText}`
+      ariaLabel += `${label}, Please select`
       label = `<span class="multi-select__details">${label}</span>`
     } else {
       label = noSelectionText
-      ariaLabel = this.noSelectText
+      ariaLabel = 'Please select'
     }
 
-    if (this.insetLabel && this.selectedOptCounter > 0) label = noSelectionText + label
     return [label, ariaLabel]
   }
 
@@ -285,7 +297,7 @@ class Select {
       list += `
       <li class="nsw-multi-select__option" role="option" data-value="${option.value}" ${selected} data-label="${option.text}" data-index="${this.optionIndex}">
         <input aria-hidden="true" class="nsw-form__checkbox-input" type="checkbox" id="${this.selectId}-${option.value}-${this.optionIndex}" name="${this.selectId}-${option.value}-${this.optionIndex}" ${checked}>
-        <label class="nsw-form__checkbox-label multi-select__item multi-select__item--option" aria-hidden="true" for="${this.selectId}-${option.value}-${this.optionIndex}">
+        <label class="nsw-form__checkbox-label" aria-hidden="true" for="${this.selectId}-${option.value}-${this.optionIndex}">
           <span>${option.text}</span>
         </label>
       </li>`
@@ -307,13 +319,7 @@ class Select {
     return this.dropdown.querySelector('.nsw-multi-select__option').querySelector('.nsw-form__checkbox-input')
   }
 
-  moveFocusToSelectTrigger() {
-    if (!document.activeElement.closest('.js-multi-select')) return
-    this.trigger.focus()
-  }
-
   checkCustomSelectClick(target) {
-    // close select when clicking outside it
     if (!this.element.contains(target)) this.toggleCustomSelect('false')
   }
 
@@ -329,28 +335,39 @@ class Select {
     this.trigger.setAttribute('aria-label', ariaLabel)
   }
 
+  static moveFocusToSelectTrigger(target) {
+    const multiSelect = target.closest('.js-multi-select')
+    if (!multiSelect) return
+    multiSelect.querySelector('.nsw-multi-select__button').focus()
+  }
+
   static trapFocus(element) {
-    /* eslint-disable max-len */
-    const focusableEls = element.querySelectorAll('a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])')
-    const firstFocusableEl = focusableEls[0]
-    const lastFocusableEl = focusableEls[focusableEls.length - 1]
-    const KEYCODE_TAB = 9
+    const focusableElements = 'a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])'
 
-    element.addEventListener('keydown', (e) => {
-      const isTabPressed = (e.key === 'Tab' || e.keyCode === KEYCODE_TAB)
+    const firstFocusableElement = element.querySelectorAll(focusableElements)[0]
+    const focusableContent = element.querySelectorAll(focusableElements)
+    const lastFocusableElement = focusableContent[focusableContent.length - 1]
 
-      if (!isTabPressed) { return }
 
-      if (e.shiftKey) {
-        if (document.activeElement === firstFocusableEl) {
-          e.preventDefault()
-          lastFocusableEl.focus()
+    document.addEventListener('keydown', (event) => {
+      const isTabPressed = event.key === 'Tab' || event.keyCode === 9
+
+      if (!isTabPressed) {
+        return
+      }
+
+      if (event.shiftKey) {
+        if (document.activeElement === firstFocusableElement) {
+          lastFocusableElement.focus()
+          event.preventDefault()
         }
-      } else if (document.activeElement === lastFocusableEl) {
-        e.preventDefault()
-        firstFocusableEl.focus()
+      } else if (document.activeElement === lastFocusableElement) {
+        firstFocusableElement.focus()
+        event.preventDefault()
       }
     })
+
+    firstFocusableElement.focus()
   }
 
   static moveFocus(element) {
