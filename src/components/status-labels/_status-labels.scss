@@ -34,8 +34,9 @@ $nsw-status-labels: (
 
   @each $color, $variant in $nsw-status-labels {
     &--#{"" + $color} {
-      background-color: map-get($variant, background);
       border-color: map-get($variant, border);
+      background-color: map-get($variant, background);
+      color: map-get($variant, color);
     }
   }
 }
