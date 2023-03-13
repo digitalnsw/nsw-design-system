@@ -1,5 +1,10 @@
-<div class="nsw-loader">
-  <svg role="progressbar" viewBox="0 0 100 100">
-    <circle cx="50" cy="50" r="45" fill="none" />
-  </svg>
+<div class="nsw-grid">
+  {{#each size}}
+    <div class="nsw-col nsw-col-md-2">
+      <div class="nsw-loader" role="status">
+        <span aria-label="Loading" class="nsw-loader__circle nsw-loader__circle--{{this}}"></span>
+        <span class="nsw-loader__label">Loading</span>
+      </div>
+    </div>
+  {{/each}}
 </div>

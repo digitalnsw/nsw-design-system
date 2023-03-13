@@ -1,51 +1,63 @@
 //Variations
 $nsw-loaders: (
   sm: (
-    border: var(--nsw-status-info),
-    background: var(--nsw-status-info-bg),
-    fill: var(--nsw-status-info),
+    width: rem(24px),
+    height: rem(24px),
+    border-width: 3px,
+    transform-origin: 50% 50% calc((1.5rem / 2) + 3px)
   ),
   md: (
-    border: var(--nsw-status-success),
-    background: var(--nsw-status-success-bg),
-    fill: var(--nsw-status-success),
+    width: rem(32px),
+    height: rem(32px),
+    border-width: 3px,
+    transform-origin: 50% 50% calc((2rem / 2) + 3px)
   ),
   lg: (
-    border: var(--nsw-status-warning),
-    background: var(--nsw-status-warning-bg),
-    fill: var(--nsw-status-warning),
+    width: rem(48px),
+    height: rem(48px),
+    border-width: 4px,
+    transform-origin: 50% 50% calc((3rem / 2) + 4px)
   ),
   xl: (
-    border: var(--nsw-status-error),
-    background: var(--nsw-status-error-bg),
-    fill: var(--nsw-status-error),
+    width: rem(64px),
+    height: rem(64px),
+    border-width: 4px,
+    transform-origin: 50% 50% calc((4rem / 2) + 4px)
   ),
 );
 
 .nsw-loader {
-  display: inline-block;
-  width: min-content;
-  min-height: 0;
-  // aspect-ratio: 1 / 1;
-  width: 3.375rem;
-  height: 3.375rem;
-  font-size: 3.375rem;
+  text-align: center;
 
-  svg {
-    overflow: hidden;
-    animation: alternate;
+  &__circle {
+    position: relative;
+    display: inline-flex;
+    border-radius: 50%;
+    border-style: solid;
+    margin: 0 auto;
+    animation-name: nsw-loader-animation-rotate;
+    animation-duration: 1.4s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    width: rem(32px);
+    height: rem(32px);
+    border-width: 3px;
+    transform-origin: 50% 50% calc((rem(24px) / 2) + 3px);
+    border-color: var(--nsw-grey-03);
+    border-top-color: var(--nsw-brand-accent);
+
+    @each $size, $variant in $nsw-loaders {
+      &--#{"" + $size} {
+        width: map-get($variant, width);
+        height: map-get($variant, height);
+        border-width: map-get($variant, border-width);
+        transform-origin: map-get($variant, transform-origin);
+      }
+    }
   }
-  
-  circle {
-    width: 100%;
-    height: 100%;
-    transform-origin: 50% 50%;
-    stroke-linecap: round;
-    stroke-dasharray: 283;
-    stroke-dashoffset: 280;
-    stroke: var(--nsw-brand-accent);
-    stroke-width: 10;
-    animation: nsw-loader-animation-dash 1.4s ease-in-out infinite;
+
+  &__label {
+    display: block;    
   }
 }
 
@@ -56,26 +68,5 @@ $nsw-loaders: (
 
   100% {
     transform: rotate(360deg);
-  }
-}
-
-@keyframes nsw-loader-animation-dash {
-  0% {
-    stroke-dashoffset: 280;
-    transform: rotate(0);
-  }
-
-  15% {
-    stroke-width: calc(10 - 4);
-  }
-
-  40% {
-    stroke-dashoffset: 150;
-    stroke-dasharray: 220;
-  }
-
-  100% {
-    stroke-dashoffset: 280;
-    transform: rotate(720deg);
   }
 }
