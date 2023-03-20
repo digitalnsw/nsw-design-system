@@ -1,10 +1,6 @@
-<div class="nsw-grid">
-  {{#each size}}
-    <div class="nsw-col nsw-col-md-2">
-      <div class="nsw-loader" role="status">
-        <span aria-label="Loading" class="nsw-loader__circle nsw-loader__circle--{{this}}"></span>
-        <span class="nsw-loader__label">Loading</span>
-      </div>
-    </div>
-  {{/each}}
-</div>
+{{#each size}}
+  <div class="nsw-loader">
+    <span aria-hidden="true" class="nsw-loader__circle nsw-loader__circle--{{this}}"></span>
+    <span role="status" class="nsw-loader__label">Loading</span>
+  </div>
+{{/each}}
