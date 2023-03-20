@@ -1,42 +1,19 @@
-$nsw-status-labels: (
-  info: (
-    border: var(--nsw-status-info),
-    background: var(--nsw-status-info),
-    color: var(--nsw-white)
-  ),
-  success: (
-    border: var(--nsw-status-success),
-    background: var(--nsw-status-success),
-    color: var(--nsw-white)
-  ),
-  warning: (
-    border: var(--nsw-status-warning),
-    background: var(--nsw-status-warning),
-    color: var(--nsw-white)
-  ),
-  error: (
-    border: var(--nsw-status-error),
-    background: var(--nsw-status-error),
-    color: var(--nsw-white)
-  ),
-);
+$nsw-status-labels: ( info, success, warning, error );
 
 .nsw-status-label {
   @include font-size('xs');
-  font-weight: var(--nsw-font-normal);
   padding: rem(2px) rem(16px);
   border: solid 1px var(--nsw-off-white);
   background-color: var(--nsw-off-white);
   border-radius: rem(24px);
   color: var(--nsw-text-dark);
-  text-decoration: none;
   display: inline-block;
 
   @each $color, $variant in $nsw-status-labels {
     &--#{"" + $color} {
-      border-color: map-get($variant, border);
-      background-color: map-get($variant, background);
-      color: map-get($variant, color);
+      border-color: var(--nsw-status-#{$color});
+      background-color: var(--nsw-status-#{$color});
+      color: var(--nsw-white);
     }
   }
 }
