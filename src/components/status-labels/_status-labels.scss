@@ -1,0 +1,19 @@
+$nsw-status-labels: ( info, success, warning, error );
+
+.nsw-status-label {
+  @include font-size('xs');
+  padding: rem(2px) rem(16px);
+  border: solid 1px var(--nsw-off-white);
+  background-color: var(--nsw-off-white);
+  border-radius: rem(24px);
+  color: var(--nsw-text-dark);
+  display: inline-block;
+
+  @each $color, $variant in $nsw-status-labels {
+    &--#{"" + $color} {
+      border-color: var(--nsw-status-#{$color});
+      background-color: var(--nsw-status-#{$color});
+      color: var(--nsw-white);
+    }
+  }
+}
