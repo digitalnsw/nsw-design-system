@@ -1,0 +1,56 @@
+.nsw-file-upload {
+  margin-top: rem(8px);
+  display: block;
+
+  &__label {
+    margin: 0;
+  }
+
+  &__input {
+    position: absolute;
+    opacity: 0;
+
+    &:disabled {
+      + .nsw-file-upload__label {
+        opacity: 0.4;
+        cursor: not-allowed;
+      }
+    }
+    
+    &:focus + .nsw-file-upload__label {
+      @include nsw-focus;
+    }
+  }
+
+  &__list {
+    display: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+
+    &.active {
+      display: block;
+    }
+  }
+
+  &__item {
+    display: flex;
+    max-width: rem(500px);
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--nsw-off-white);
+    border-radius: var(--nsw-border-radius);
+    padding: rem(8px);
+
+    &:not(:last-child) {
+      margin-bottom: rem(8px);
+    }
+  }
+
+  &__item-filename {
+    margin-left: rem(8px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}

@@ -1,0 +1,74 @@
+---
+title: File upload
+layout: blank-layout.hbs
+---
+
+<h2>Usage</h2>
+<p>Use file upload when a user is required to upload a file from their device to a specific location. Only ask users to upload files when it's critical to the delivery of your service.</p>
+
+<p>Do:</p>
+
+<ul>
+  <li>Use help text to highlight any input restrictions to the users upfront, for example format or size</li>
+  <li>Allow multiple file formats as not everyone has access to the same software</li>
+  <li>Be considerate of asking for large files, as some users may have limited band width or data</li>
+  <li>Let users know exactly what errors occurred during an upload process so they can fix them</li>
+</ul>
+
+<h3>When to avoid</h3>
+<p>Avoid asking users to provide documents if you don't require them. Be considerate of file size and don't ask users to upload large files.</p>
+
+<h2>How this component works</h2>
+
+<h3>Truncate file names</h3>
+<p>Truncate file names when they extend beyond the width of the parent element</p>
+
+<h3>Upload status</h3>
+
+<div class="nsw-m-top-xs nsw-in-page-alert nsw-in-page-alert--info nsw-in-page-alert--compact">
+  <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">info</span>
+  <div class="nsw-in-page-alert__content">
+    <p class="nsw-small">This functionailty is not included in the base component.</p>
+  </div>
+</div>
+
+<p>Where a user would benefit from knowing the status of their upload consider adding indicators.</p>
+
+<div class="nsw-grid">
+  <div class="nsw-col nsw-col-md-6">
+    <figure class="nsw-media nsw-media--light nsw-m-top-xs">
+      <img src="/assets/images/file-upload-progress.png" alt="A loader showing the process is pending.">
+    </figure>
+    <div class="nsw-bg--brand-light nsw-p-sm">
+      <p>A loader can show the process is pending.</p>
+    </div>
+  </div>
+  <div class="nsw-col nsw-col-md-6">
+    <figure class="nsw-media nsw-media--light nsw-m-top-xs">
+      <img src="/assets/images/file-upload-complete.png" alt="A tick showing the process is complete.">
+    </figure>
+    <div class="nsw-bg--brand-light nsw-p-sm">
+      <p>A tick can show the process is complete.</p>
+    </div>
+  </div>
+</div>
+
+<h3>Multiple uploads</h3>
+<p>Clearly communicate if a user can upload multiple files and consider displaying additional files vertically.</p>
+
+<div class="nsw-grid">
+  <div class="nsw-col nsw-col-md-6">
+    <figure class="nsw-media nsw-media--light nsw-m-top-xs">
+      <img src="/assets/images/file-upload-multiple.png" alt="A loader showing the process is pending.">
+    </figure>
+    <div class="nsw-bg--brand-light nsw-p-sm">
+      <p>Clearly group the files and allow users to remove each individually.</p>
+    </div>
+  </div>
+</div>
+
+<h3>Error messages</h3>
+<p>Error messages inform the user when there is an issue with the data they have input. Provide helpful error messages to clearly explain to the user what the issue is and how they can effectively address the errors. Check out <a href="https://design-system.service.gov.uk/components/file-upload/#error-messages">GOV.UK Design System's error messages for file uploads</a> for some best practice examples.</p>
+
+<h2>Accessibility</h2>
+<p>All components are responsive and meet WCAG 2.1 AA accessibility guidelines.</p>
