@@ -1270,6 +1270,102 @@
     return Filters;
   }();
 
+  /* eslint-disable max-len */
+  var FileUpload = /*#__PURE__*/function () {
+    function FileUpload(element) {
+      _classCallCheck(this, FileUpload);
+
+      this.element = element;
+      this.input = this.element.querySelector('.nsw-file-upload__input');
+      this.label = this.element.querySelector('.nsw-file-upload__label');
+      this.multipleUpload = this.input.hasAttribute('multiple');
+      this.replaceFiles = this.element.hasAttribute('data-replace-files');
+      this.filesList = false;
+    }
+
+    _createClass(FileUpload, [{
+      key: "init",
+      value: function init() {
+        var _this = this;
+
+        if (!this.input) return;
+        this.input.addEventListener('change', function () {
+          if (_this.input.value === '') return;
+
+          _this.updateFileList();
+        });
+      }
+    }, {
+      key: "createFileList",
+      value: function createFileList() {
+        var ul = document.createElement('ul');
+        ul.classList.add('nsw-file-upload__list');
+        this.label.insertAdjacentElement('afterend', ul);
+        this.filesList = this.element.querySelector('.nsw-file-upload__list');
+      }
+    }, {
+      key: "createFileItem",
+      value: function createFileItem(file) {
+        var li = document.createElement('li');
+        li.classList.add('nsw-file-upload__item');
+        var html = "\n    <span class=\"nsw-file-upload__item-filename\"></span>\n    <button type=\"button\" class=\"nsw-icon-button\">\n        <span class=\"sr-only\">Remove file</span>\n        <span class=\"material-icons nsw-material-icons\" focusable=\"false\" aria-hidden=\"true\">cancel</span>\n    </button>";
+        li.insertAdjacentHTML('afterbegin', html);
+        li.querySelector('.nsw-file-upload__item-filename').textContent = this.constructor.truncateString(file.name, 50);
+        return li.outerHTML;
+      }
+    }, {
+      key: "updateFileList",
+      value: function updateFileList() {
+        if (!this.filesList) {
+          this.createFileList();
+        }
+
+        this.filesList.classList.add('active');
+        var string = '';
+
+        for (var i = 0; i < this.input.files.length; i += 1) {
+          var file = this.input.files[i];
+          string = this.createFileItem(file) + string;
+        }
+
+        if (this.replaceFiles) {
+          this.filesList.innerHTML = string;
+        } else {
+          this.filesList.insertAdjacentHTML('beforeend', string);
+        }
+
+        this.removeFile();
+      }
+    }, {
+      key: "removeFile",
+      value: function removeFile() {
+        var _this2 = this;
+
+        this.filesList.addEventListener('click', function (event) {
+          if (!event.target.closest('.nsw-icon-button')) return;
+          event.preventDefault();
+          var item = event.target.closest('.nsw-file-upload__item');
+          item.remove();
+
+          if (event.currentTarget.children.length === 0) {
+            _this2.filesList.classList.remove('active');
+          }
+        });
+      }
+    }], [{
+      key: "truncateString",
+      value: function truncateString(str, num) {
+        if (str.length <= num) {
+          return str;
+        }
+
+        return "".concat(str.slice(0, num), "...");
+      }
+    }]);
+
+    return FileUpload;
+  }();
+
   var Tabs = /*#__PURE__*/function () {
     function Tabs(element, showTab) {
       var _this = this;
@@ -1514,6 +1610,7 @@
     var closeSearchButton = document.querySelectorAll('.js-close-search');
     var accordions = document.querySelectorAll('.js-accordion');
     var dialogs = document.querySelectorAll('.js-dialog');
+    var fileUpload = document.querySelectorAll('.js-file-upload');
     var filters = document.querySelectorAll('.js-filters');
     var tabs = document.querySelectorAll('.js-tabs');
     var globalAlert = document.querySelectorAll('.js-global-alert');
@@ -1531,6 +1628,12 @@
     dialogs.forEach(function (element) {
       new Dialog(element).init();
     });
+
+    if (fileUpload) {
+      fileUpload.forEach(function (element) {
+        new FileUpload(element).init();
+      });
+    }
 
     if (filters) {
       filters.forEach(function (element) {
@@ -1552,6 +1655,9 @@
   }
 
   exports.Accordion = Accordion;
+  exports.Dialog = Dialog;
+  exports.FileUpload = FileUpload;
+  exports.Filters = Filters;
   exports.GlobalAlert = GlobalAlert;
   exports.Navigation = Navigation;
   exports.SiteSearch = SiteSearch;

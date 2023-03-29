@@ -1,11 +1,11 @@
 <!doctype html>
 <html lang="en" class="no-js">
 <head>
-  <title>NSW Digital Design System - Theming</title>
+  <title>NSW Digital Design System - File upload</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="description" content="The NSW Design System theming framework for how colours are used and inherited to ensure a consistent and accessible user experience." />
+  <meta name="description" content="File uploaders help users to select and upload files." />
   <link rel="icon" href="/nsw-design-system/favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -297,323 +297,218 @@
       </div>
     </div>
     <div class="nsw-docs__main nsw-docs__main--narrow">
-      <div class="nsw-docs__intro">
+      <div class="nsw-docs__intro nsw-docs__intro--tabs">
         <div class="nsw-docs__container">
-          <h1>Theming</h1>
+          <h1>File upload</h1>
           
-          
+          <p class="nsw-intro">File uploaders help users to select and upload files.</p>
           
         </div>
       </div>
-      <div class="nsw-docs__content">
-        <div class="nsw-docs__container">
-<p>The NSW Design System has a built-in framework for how colours are used and inherited to ensure a consistent and accessible user experience. The following guidance walks through how each branding classification can apply colour to its digital products and services using the NSW Design System.</p>
+<div class="nsw-docs__tabs">
+  <div class="nsw-tabs js-tabs nsw-docs-tabs">
+    <ul class="nsw-tabs__list">
+      <li class="nsw-tabs__list-item">
+        <a href="#section-guidance" class="nsw-tabs__link js-tabs-fixed">Guidance</a>
+      </li>
+      <li class="nsw-tabs__list-item">
+        <a href="#section-interactive-demo" class="nsw-tabs__link js-tabs-fixed">Demo &amp; Code</a>
+      </li>
+    </ul>
+    <section id="section-guidance" class="nsw-tabs__content">
+      <div class="nsw-docs__container">
+        
+<h2>Usage</h2>
+<p>Use file upload when a user is required to upload a file from their device to a specific location. Only ask users to upload files when it's critical to the delivery of your service.</p>
 
-<nav class="nsw-in-page-nav" aria-labelledby="in-page-nav">
-  <div id="in-page-nav" class="nsw-in-page-nav__title">On this page</div>
-  <ul class="nsw-in-page-nav__list">
-    <li>
-      <a href="#palette">NSW Government colour palette</a>
-    </li>
-    <li>
-      <a href="#colour-framework">Colour framework</a>
-    </li>
-    <li>
-      <a href="#corporate">Masterbrand corporate</a>
-    </li>
-    <li>
-      <a href="#non-corporate">Masterbrand non-corporate, co-brand and independent</a>
-    </li>
-  </ul>
-</nav>
-<h2 id="palette">NSW Government colour palette</h2>
-<p>The NSW Government colour palette has been developed to accommodate the wide range of expression required by our brand. The palette contains 10 colours sets (columns), each with four different tones, plus white. </p>
-<p>Black and off-white have been added to the digital palette to allow for greater contrast to be applied.</p>
-<br>
-<div class="nsw-palette nsw-grid nsw-m-left-xs nsw-m-top-sm"
-     style="font-size:var(--nsw-font-size-xxs-desktop);">
-  <div style="background: var(--nsw-palette-grey-01);">
-    Grey 01<br/><br/>#22272B
-  </div>
-  <div style="background: var(--nsw-palette-green-01);">
-    Green 01<br/><br/>#004000
-  </div>
-  <div style="background: var(--nsw-palette-teal-01);">
-    Teal 01<br/><br/>#0B3F47
-  </div>
-  <div style="background: var(--nsw-palette-blue-01);">
-    Blue 01<br/><br/>#002664
-  </div>
-  <div style="background: var(--nsw-palette-purple-01);">
-    Purple 01<br/><br/>#441170
-  </div>
-  <div style="background: var(--nsw-palette-pink-01);">
-    Pink 01<br/><br/>#65004D
-  </div>
-  <div style="background: var(--nsw-palette-red-01);">
-    Red 01<br/><br/>#630019
-  </div>
-  <div style="background: var(--nsw-palette-orange-01);">
-    Orange 01<br/><br/>#941B00
-  </div>
-  <div style="background: var(--nsw-palette-yellow-01);">
-    Yellow 01<br/><br/>#694800
-  </div>
-  <div style="background: var(--nsw-palette-brown-01);">
-    Brown 01<br/><br/>#523719
-  </div>
-  <div></div>
-  <div style=" background: var(--nsw-palette-black);">
-    Black<br/><br/>#000000
-  </div>
+<p>Do:</p>
 
-  <div style="background:var(--nsw-palette-grey-02);">
-    Grey 02<br/><br/>#495054
-  </div>
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-green-02);">
-    Green 02<br/><br/>#00AA45
-  </div>
-  <div style="background:var(--nsw-palette-teal-02);">
-    Teal 02<br/><br/>#2E808E
-  </div>
-  <div style="background:var(--nsw-palette-blue-02);">
-    Blue 02<br/><br/>#146CFD
-  </div>
-  <div style="background:var(--nsw-palette-purple-02);">
-    Purple 02<br/><br/>#8055F1
-  </div>
-  <div style="background:var(--nsw-palette-pink-02);">
-    Pink 02<br/><br/>#D912AE
-  </div>
-  <div style="background:var(--nsw-palette-red-02);">
-    Red 02<br/><br/>#D7153A
-  </div>
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-orange-02);">
-    Orange 02<br/><br/>#F3631B
-  </div>
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-yellow-02);">
-    Yellow 02<br/><br/>#FAAF05
-  </div>
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-brown-02);">
-    Brown 02<br/><br/>#B68D5D
-  </div>
-  <div></div>
-  <div class="nsw-text--dark" style="background: var(--nsw-palette-white);">
-    White<br/><br/>#FFFFFF
-  </div>
+<ul>
+  <li>Use help text to highlight any input restrictions to the users upfront, for example format or size</li>
+  <li>Allow multiple file formats as not everyone has access to the same software</li>
+  <li>Be considerate of asking for large files, as some users may have limited band width or data</li>
+  <li>Let users know exactly what errors occurred during an upload process so they can fix them</li>
+</ul>
 
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-grey-03);">
-    Grey 03<br/><br/>#CDD3D6
-  </div>
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-green-03);">
-    Green 03<br/><br/>#A8EDB3
-  </div>
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-teal-03);">
-    Teal 03<br/><br/>#8CDBE5
-  </div>
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-blue-03);">
-    Blue 03<br/><br/>#8CE0FF
-  </div>
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-purple-03);">
-    Purple 03<br/><br/>#CEBFFF
-  </div>
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-pink-03);">
-    Pink 03<br/><br/>#F4B5E6
-  </div>
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-red-03);">
-    Red 03<br/><br/>#FFB8C1
-  </div>
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-orange-03);">
-    Orange 03<br/><br/>#FFCE99
-  </div>
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-yellow-03);">
-    Yellow 03<br/><br/>#FDE79A
-  </div>
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-brown-03);">
-    Brown 03<br/><br/>#E8D0B5
-  </div>
-  <div></div>
-  <div class="nsw-text--dark" style="background: var(--nsw-palette-off-white); border: 1px #CDD3D6 solid">
-    Off-white<br/><br/>#F2F2F2
-  </div>
+<h3>When to avoid</h3>
+<p>Avoid asking users to provide documents if you don't require them. Be considerate of file size and don't ask users to upload large files.</p>
 
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-grey-04);">
-    Grey 04<br/><br/>#EBEBEB
+<h2>How this component works</h2>
+
+<h3>Truncate file names</h3>
+<p>Truncate file names when they extend beyond the width of the parent element</p>
+
+<h3>Upload status</h3>
+
+<div class="nsw-m-top-xs nsw-in-page-alert nsw-in-page-alert--info nsw-in-page-alert--compact">
+  <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">info</span>
+  <div class="nsw-in-page-alert__content">
+    <p class="nsw-small">This functionailty is not included in the base component.</p>
   </div>
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-green-04);">
-    Green 04<br/><br/>#DBFADF
-  </div>
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-teal-04);">
-    Teal 04<br/><br/>#D1EEEA
-  </div>
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-blue-04);">
-    Blue 04<br/><br/>#CBEDFD
-  </div>
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-purple-04);">
-    Purple 04<br/><br/>#E6E1FD
-  </div>
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-pink-04);">
-    Pink 04<br/><br/>#FDDEF2
-  </div>
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-red-04);">
-    Red 04<br/><br/>#FFE6EA
-  </div>
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-orange-04);">
-    Orange 04<br/><br/>#FDEDDF
-  </div>
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-yellow-04);">
-    Yellow 04<br/><br/>#FFF4CF
-  </div>
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-brown-04);">
-    Brown 04<br/><br/>#EDE3D7
-  </div>
-  <div></div>
-  <div></div>
 </div>
 
-<h2 id="colour-framework">Colour framework</h2>
+<p>Where a user would benefit from knowing the status of their upload consider adding indicators.</p>
 
-<p>The Design System has a built in framework for how colours are used and inherited to ensure a consistent and accessible user experience.</p>
-
-<h3>Colour classifications</h3>
-
-<p>Colours are classified as either a:</p>
-
-<ul>
-  <li><strong>Dark colour:</strong> colours that meet 4.5:1 contrast ratio with Text Light #FFFFFF.</li>
-  <li><strong>Light colour:</strong> colours that meet 4.5:1 contrast ratio with Text Dark #22272B. </li>
-</ul>
-
-<h3>Brand Colour Palette</h3>
-
-<p>Brand colour palettes denote the connection to NSW Government or brand and have four core usage guidelines and applications:</p>
-
-<ul>
-  <li><strong>Brand Dark</strong> - the primary interaction colour and is used for buttons, text links, icons, dark variants of components and backgrounds. To ensure the required 4.5:1 contrast ratio for accessibility, this colour must always be selected from row 01 of the NSW Government colour palette.</li>
-  <li><strong>Brand Light</strong> - your contrasting colour to Brand Dark and is used for secondary buttons, light variants of components, backgrounds and content sections. To ensure the required 4.5:1 contrast ratio for accessibility, this colour must be a <strong>light colour</strong>.</li>
-  <li><strong>Brand Supplementary</strong> - an optional third colour which should be used sparingly in instances such as pictograms, dark variants of components and background. To ensure the required 4.5:1 contrast ratio for accessibility, this colour must be a <strong>dark colour</strong>.</li>
-  <li><strong>Brand Accent</strong> - the highlight colour to capture attention and draw the users eye. You’ll find its use in highlight bars and pictograms. This colour has different selection rules depending on your brand classification.</li>
-</ul>
-
-<h3>NSW Design System Default colour theme</h3>
-
-<p>The Design System default colour theme reflects <strong>masterbrand corporate</strong> colour usage. It uses blues, reds and greys from the NSW Government wider colour palette to communicate a strong association with NSW Government.</p>
-
-<div class="nsw-table-responsive nsw-section nsw-section--white nsw-p-x-sm nsw-m-top-sm nsw-p-top-sm">
-  <table class="nsw-table nsw-table--valign-middle">
-    <tbody>
-    <tr>
-      <th style="width: 10%">
-        <div>
-          <p>Swatch</p>
-        </div>
-      </th>
-      <th style="width: 30%">
-        <div>
-          <p>Colour</p>
-        </div>
-      </th>
-      <th>
-        <div>
-          <p><strong>Value</strong></p>
-        </div>
-      </th>
-    </tr>
-    <tr>
-      <td>
-        <div class="nsw-docs__swatch"
-             style="background-color: var(--nsw-brand-dark)"></div>
-      </td>
-      <td>
-        <p>Brand dark</p>
-      </td>
-      <td>
-        <p>Blue 01 (<code>#002664</code>)
-        </p>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <div class="nsw-docs__swatch"
-             style="background-color: var(--nsw-brand-light)"></div>
-      </td>
-      <td>
-        <p>Brand light</p>
-      </td>
-      <td>
-        <p>Blue 04 (<code
-        >#CBEDFD</code>)
-        </p>
-      </td>
-    <tr>
-      <td>
-        <div class="nsw-docs__swatch"
-             style="background-color: var(--nsw-brand-supplementary)"></div>
-      </td>
-      <td>
-        <p>Brand supplementary</p>
-      </td>
-      <td>
-        <p>Blue 02 (<code
-        >#C3EBFD</code>)
-        </p>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <div class="nsw-docs__swatch"
-             style="background-color: var(--nsw-brand-accent)"></div>
-      </td>
-      <td>
-        <p>Brand accent</p>
-      </td>
-      <td>
-        <p>Red 02 (<code
-        >#D7153A</code>)
-        </p>
-      </td>
-    </tr>
-    </tbody>
-  </table>
+<div class="nsw-grid">
+  <div class="nsw-col nsw-col-md-6">
+    <figure class="nsw-media nsw-media--light nsw-m-top-xs">
+      <img src="/nsw-design-system/assets/images/file-upload-progress.png" alt="A loader showing the process is pending.">
+    </figure>
+    <div class="nsw-bg--brand-light nsw-p-sm">
+      <p>A loader can show the process is pending.</p>
+    </div>
+  </div>
+  <div class="nsw-col nsw-col-md-6">
+    <figure class="nsw-media nsw-media--light nsw-m-top-xs">
+      <img src="/nsw-design-system/assets/images/file-upload-complete.png" alt="A tick showing the process is complete.">
+    </figure>
+    <div class="nsw-bg--brand-light nsw-p-sm">
+      <p>A tick can show the process is complete.</p>
+    </div>
+  </div>
 </div>
 
+<h3>Multiple uploads</h3>
+<p>Clearly communicate if a user can upload multiple files and consider displaying additional files vertically.</p>
 
-<h2 id="corporate">Masterbrand corporate</h2>
-<p>The only defined colour for masterbrand corporate is Brand Dark (Blue 01). Brand Light, Supplementary and Accent are variable colours and can be altered if required. If you wish to change a variable brand colour, it must be selected from the blue, red or grey colour sets and:</p>
-<ul>
-  <li><strong>Brand Light</strong> must be a light colour (accessible with Text Dark).</li>
-  <li><strong>Brand Supplementary</strong> must be a dark colour (accessible with Text Light).</li>
-  <li><strong>Brand Accent</strong> can be selected from any row in wider colour palette (row 02 and 03 recommended).</li>
-</ul>
-<p>Guidance on applying these in Figma can be found on the <strong>Colour</strong> page of the <a href="/nsw-design-system/docs/content/design/figma-ui-kit.html">Figma UI Kit</a>.</p>
+<div class="nsw-grid">
+  <div class="nsw-col nsw-col-md-6">
+    <figure class="nsw-media nsw-media--light nsw-m-top-xs">
+      <img src="/nsw-design-system/assets/images/file-upload-multiple.png" alt="A loader showing the process is pending.">
+    </figure>
+    <div class="nsw-bg--brand-light nsw-p-sm">
+      <p>Clearly group the files and allow users to remove each individually.</p>
+    </div>
+  </div>
+</div>
 
-<h2 id="non-corporate">Masterbrand non-corporate, co-brand and independent</h2>
-<p>Masterbrand non-corporate, co-brand and independent have access to the full colour palette for all brand colours.</p>
+<h3>Error messages</h3>
+<p>Error messages inform the user when there is an issue with the data they have input. Provide helpful error messages to clearly explain to the user what the issue is and how they can effectively address the errors. Check out <a href="https://design-system.service.gov.uk/components/file-upload/#error-messages">GOV.UK Design System's error messages for file uploads</a> for some best practice examples.</p>
 
-<p>As per brand guidelines, you may select up to two colour sets, plus the grey colour set:</p>
-
-<ul>
-  <li>For brands that have existing equity, select a combination that is closest to the existing palette.</li>
-  <li>For brands that require a strong connection to the NSW Government, select a colour combination that includes core red or blue.</li>
-</ul>
-
-<p><strong>For programs and co-brand agencies</strong>, these colour sets become your available colour palette. You cannot re-select colour sets once you have chosen.</p>
-<p><strong>For campaigns</strong>, colour sets may be re-selected with new iterations of that campaign (e.g. for a new year of a campaign, the available colours may change.)</p>
+<h2>Accessibility</h2>
+<p>All components are responsive and meet WCAG 2.1 AA accessibility guidelines.</p>
 
 
-<p>Colour selection rules:</p>
-<ul>
-  <li><strong>Brand Dark</strong> must be selected from row 01.</li>
-  <li><strong>Brand Light</strong> must be a light colour (accessible with Text Dark).
-  </li>
-  <li><strong> Brand Supplementary</strong> must be a dark colour (accessible with Text Light). This is an additional colour option only available if your Brand Light is not from row 02.</li>
-  <li><strong> Brand Accent</strong> can be selected from any row from your chosen colour sets (row 02 and 03 recommended).</li>
-</ul>
-<p>Guidance on applying your new brand colours in Figma can be found on the <strong>Colour</strong> page of the <a href="/nsw-design-system/docs/content/design/figma-ui-kit.html">Figma UI Kit</a>.</p>
-<p>As core styles and components inherit colours from the base colour theme, changing a brand colour will automatically filter down to all instances where that colour is used. Alternatively, colour instances can be updated on an individual basis as required. Where possible, it is indicated in the guidance on the <strong>Components</strong> page.</p>
+      </div>
+    </section>
+    <section id="section-interactive-demo" class="nsw-tabs__content">
+      <div class="nsw-docs__demo">
+        <div class="nsw-docs__external">
+          <a class="nsw-small nsw-link nsw-link--icon" target="_blank" href="/nsw-design-system/components/file-upload/blank.html"><span>View in new window</span><i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">launch</i></a>
+        </div>
 
+<div class="nsw-docs__example">
+  <div class="nsw-docs__component">
+    <div class="nsw-form">
+      <div class="nsw-form__group">
+        <label class="nsw-form__label" for="file-upload-helper">Upload drivers license</label>
+        <span class="nsw-form__helper" id="file-upload-helper-helper-text">Formats accepted: JPG, PNG or PDF <br /> File size must not exceed 350MB</span>
+        <div class="nsw-file-upload js-file-upload">
+            <input type="file" class="nsw-file-upload__input" name="file-upload-helper" id="file-upload-helper" aria-describedby="file-upload-helper-helper-text" accept="image/*,.pdf" multiple>
+            <label for="file-upload-helper" class="nsw-file-upload__label nsw-button nsw-button--dark-outline-solid">Select file</label>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+<div class="nsw-docs-code">
+  <button class="nsw-link nsw-link--button nsw-link--icon nsw-small js-code-button">
+    <span>Show code</span>
+    <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
+  </button>
+  <div class="nsw-docs-code__content">
+    <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
+      <span>Copy</span>
+      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
+    </button>
+    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`<div class="nsw-form">
+  <div class="nsw-form__group">
+    <label class="nsw-form__label" for="file-upload-helper">Upload drivers license</label>
+    <span class="nsw-form__helper" id="file-upload-helper-helper-text">Formats accepted: JPG, PNG or PDF <br /> File size must not exceed 350MB</span>
+    <div class="nsw-file-upload js-file-upload">
+        <input type="file" class="nsw-file-upload__input" name="file-upload-helper" id="file-upload-helper" aria-describedby="file-upload-helper-helper-text" accept="image/*,.pdf" multiple>
+        <label for="file-upload-helper" class="nsw-file-upload__label nsw-button nsw-button--dark-outline-solid">Select file</label>
+    </div>
+  </div>
+</div>
+`).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
+    <div class="nsw-docs-code__wrapper">
+<pre><code class="html"><script>document.write((`<div class="nsw-form">
+  <div class="nsw-form__group">
+    <label class="nsw-form__label" for="file-upload-helper">Upload drivers license</label>
+    <span class="nsw-form__helper" id="file-upload-helper-helper-text">Formats accepted: JPG, PNG or PDF <br /> File size must not exceed 350MB</span>
+    <div class="nsw-file-upload js-file-upload">
+        <input type="file" class="nsw-file-upload__input" name="file-upload-helper" id="file-upload-helper" aria-describedby="file-upload-helper-helper-text" accept="image/*,.pdf" multiple>
+        <label for="file-upload-helper" class="nsw-file-upload__label nsw-button nsw-button--dark-outline-solid">Select file</label>
+    </div>
+  </div>
+</div>
+`).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
+    </div>
+  </div>
+</div>
+
+
+<h3>Error messages</h3>
+<div class="nsw-docs__example">
+  <div class="nsw-docs__component">
+    <div class="nsw-form">
+      <div class="nsw-form__group">
+        <label class="nsw-form__label" for="file-upload-error">Upload drivers license</label>
+        <span class="nsw-form__helper" id="file-upload-error-helper-text">Formats accepted: JPG, PNG or PDF <br /> File size must not exceed 350MB</span>
+        <span class="nsw-form__helper nsw-form__helper--error" id="file-upload-error-error-text"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span>The selected file must be smaller than 350MB</span>
+        <div class="nsw-file-upload js-file-upload">
+            <input type="file" class="nsw-file-upload__input" name="file-upload-error" id="file-upload-error" aria-describedby="file-upload-error-helper-text" aria-invalid="true" accept="image/*,.pdf">
+            <label for="file-upload-error" class="nsw-file-upload__label nsw-button nsw-button--dark-outline-solid">Select file</label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="nsw-docs-code">
+  <button class="nsw-link nsw-link--button nsw-link--icon nsw-small js-code-button">
+    <span>Show code</span>
+    <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
+  </button>
+  <div class="nsw-docs-code__content">
+    <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
+      <span>Copy</span>
+      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
+    </button>
+    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`<div class="nsw-form">
+  <div class="nsw-form__group">
+    <label class="nsw-form__label" for="file-upload-error">Upload drivers license</label>
+    <span class="nsw-form__helper" id="file-upload-error-helper-text">Formats accepted: JPG, PNG or PDF <br /> File size must not exceed 350MB</span>
+    <span class="nsw-form__helper nsw-form__helper--error" id="file-upload-error-error-text"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span>The selected file must be smaller than 350MB</span>
+    <div class="nsw-file-upload js-file-upload">
+        <input type="file" class="nsw-file-upload__input" name="file-upload-error" id="file-upload-error" aria-describedby="file-upload-error-helper-text" aria-invalid="true" accept="image/*,.pdf">
+        <label for="file-upload-error" class="nsw-file-upload__label nsw-button nsw-button--dark-outline-solid">Select file</label>
+    </div>
+  </div>
+</div>
+`).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
+    <div class="nsw-docs-code__wrapper">
+<pre><code class="html"><script>document.write((`<div class="nsw-form">
+  <div class="nsw-form__group">
+    <label class="nsw-form__label" for="file-upload-error">Upload drivers license</label>
+    <span class="nsw-form__helper" id="file-upload-error-helper-text">Formats accepted: JPG, PNG or PDF <br /> File size must not exceed 350MB</span>
+    <span class="nsw-form__helper nsw-form__helper--error" id="file-upload-error-error-text"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span>The selected file must be smaller than 350MB</span>
+    <div class="nsw-file-upload js-file-upload">
+        <input type="file" class="nsw-file-upload__input" name="file-upload-error" id="file-upload-error" aria-describedby="file-upload-error-helper-text" aria-invalid="true" accept="image/*,.pdf">
+        <label for="file-upload-error" class="nsw-file-upload__label nsw-button nsw-button--dark-outline-solid">Select file</label>
+    </div>
+  </div>
+</div>
+`).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
+    </div>
+  </div>
+</div>
+
+
+      </div>
+    </section>
+  </div>
+</div>
       <footer class="nsw-footer nsw-docs-footer">
         <div class="nsw-footer__lower">
           <div class="nsw-container">
