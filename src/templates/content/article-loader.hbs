@@ -1,0 +1,120 @@
+---
+title: Content page - Article
+order: 22
+page: true
+directory: Article
+model:
+  nav-basic: ../../components/main-nav/json/main-nav.json
+  nav-mega: ../../components/main-nav/json/main-nav-mega.json
+  breadcrumbs: ../../components/breadcrumbs/json/breadcrumbs.json
+  tag: ../../components/tag/json/tag-link.json
+  link-list: ../../components/link-list/json/link-list-3.json
+  card-blog-1: ../../components/card/json/card-blog-1.json
+  card-blog-2: ../../components/card/json/card-blog-2.json
+  card-blog-3: ../../components/card/json/card-blog-3.json
+  footer: ../../components/footer/json/footer.json
+---
+
+{{>_masthead content="#content" nav="#main-nav"}}
+{{>_header header-title="Premier & Cabinet"}}
+{{>_main-nav model.nav-basic}}
+<div class="nsw-container nsw-p-bottom-xs">
+  {{>_breadcrumbs model.breadcrumbs}}
+</div>
+<div class="nsw-container nsw-p-top-sm nsw-p-bottom-lg">
+  <div class="nsw-layout">
+    <main id="content" class="nsw-layout__main">
+      <div class="nsw-block">
+        <h1>Scaling a design system</h1>
+        <p>
+          16 Sep 2020<br>
+          <strong>Design System Team</strong>
+        </p>
+        <hr>
+        <div class="nsw-m-bottom-md">
+          {{>_tag model.tag}}
+        </div>
+
+        <p>When we launched the public beta of the NSW Design System in December 2018, we had no idea that what we delivered as a test-and-learn product would become one of the most talked about whole of government projects in NSW. </p>
+        <p>Our upcoming plans for scaling the NSW Design System are addressing the following friction points our users are facing when delivering digital products and services.</p>
+
+        <ol>
+          <li>Teams with less digital experience within government that are thirsty for knowledge, guidance and a community to help support them delivering digital things.</li>
+          <li>High digital capability teams who wanted to share what they’ve learned, collaborate and contribute back to reduce design and development time and cost as teams build the same components over and over.</li>
+          <li>External service providers delivering products and services for government agencies needing direction and approval on style, brand, templates, patterns and reusable components.</li>
+        </ol>
+
+        <blockquote>
+          Our upcoming plans for scaling the NSW Design System are addressing the following friction points our users are facing when delivering digital products and services. Watch this space, there’s more to come.
+          <cite>The Design System Team</cite>
+        </blockquote>
+
+        <p>Our research has shown what is possible in the delivery of digital products and services across whole of government. We’re excited to take these learnings to the next stage of service delivery. Watch this space!</p>
+      </div>
+
+      {{>_callout heading= "Keep up-to date" copy="Join our <a href='#'>community</a> and register for updates to stay up-to-date with all the latest patterns releases."}}
+
+    </main>
+    <div class="nsw-layout__sidebar">
+      <div class="nsw-section nsw-section--box">
+        <form class="nsw-form" action="#">
+          <h4 class="nsw-section-title">Want to stay in touch?</h4>
+          <p>Find out about work happening across NSW Government in the digital space. </p>
+          <div class="nsw-form__group">
+            {{>_text-input
+              id="subscribe-full-name"
+              label="Full name"
+              required=true
+            }}
+          </div>
+          <div class="nsw-form__group">
+            {{>_text-input
+              id="subscribe-email"
+              label="Email"
+              required=true
+            }}
+          </div>
+          <div class="nsw-form__group">
+            {{>_checkbox
+              id="subscribe-tc"
+              name="subscribe-terms"
+              label="I have read the information regarding <a href='#'>privacy policy</a>"
+            }}
+          </div>
+          <div class="nsw-form__group">
+            {{>_button-input type="submit" style="dark" text="Submit"}}
+          </div>          
+        </form>
+      </div>
+
+      {{>_link-list model.link-list}}
+    </div>
+  </div>
+</div>
+
+<div class="nsw-section nsw-section--off-white">
+  <div class="nsw-container">
+    <div class="nsw-layout">
+      <div class="nsw-layout__main">
+        <h3 class="nsw-section-title">Similar blog posts</h3>
+        <div class="nsw-grid">
+          <div class="nsw-col nsw-col-md-4">
+            {{>_card model.card-blog-1 highlight=true}}
+          </div>
+          <div class="nsw-col nsw-col-md-4">
+            {{>_card model.card-blog-2 highlight=true}}
+          </div>
+          <div class="nsw-col nsw-col-md-4">
+            {{>_card model.card-blog-3 highlight=true}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{>_footer model.footer}}
+
+<div class="nsw-docs__loader">
+  {{>_loader}}
+</div>

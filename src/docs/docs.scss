@@ -479,6 +479,22 @@ $header-height: 151px;
     border-radius: 100%;
   }
 
+  &__loader {
+    @include z-index('upper');
+    height: 100%;
+    max-height: 100vh;
+    overflow-y: auto;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(var(--nsw-white-rgb), 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   .nsw-in-page-alert + h1 {
     margin-top: rem(24px);
 
