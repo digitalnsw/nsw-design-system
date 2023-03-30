@@ -80,3 +80,21 @@ export const popupWindow = (url, width, height) => {
     width=${width}, height=${height}, top=${y}, left=${x}`,
   )
 }
+
+export const createSafeCssClassname = (str) => {
+  const nonCssSafeCharacters = /[!"#$%&'()*+,./:;<=>?@[\\\]^`{|}~\s]/
+  const invalidBeginningOfClassname = /^([0-9]|--|-[0-9])/
+
+  if (typeof str !== 'string') {
+    return ''
+  }
+
+  const strippedClassname = str.replace(
+    new RegExp(nonCssSafeCharacters, 'g'),
+    '',
+  ).toLowerCase()
+
+  return invalidBeginningOfClassname.test(strippedClassname)
+    ? `_${strippedClassname}`
+    : strippedClassname
+}

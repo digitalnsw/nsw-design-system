@@ -10,26 +10,26 @@ model:
 <div class="nsw-form">
 
   <div class="nsw-form__group">
-    {{>_select model.region id="filters-all-regions-1" }}
+    {{>_select model.region id="select-all-regions-1" }}
   </div>
 
   <div class="nsw-form__group">
     {{>_select model.savings-program 
-    id="filters-all-savings-programs-1"
+    id="select-all-savings-programs-1"
     multiple="true"
     }}
   </div>
 
   <div class="nsw-form__group">
     {{>_select model.region
-    id="filters-all-regions-2"
+    id="select-all-regions-2"
     helper-text="Your region of residence"
     }}
   </div>
 
   <div class="nsw-form__group">
     {{>_select model.savings-program
-    id="filters-all-savings-programs-2"
+    id="select-all-savings-programs-2"
     multiple="true"
     helper-text="Select all that apply"
     }}
@@ -37,7 +37,7 @@ model:
 
   <div class="nsw-form__group">
     {{>_select model.region
-    id="filters-all-regions-3"
+    id="select-all-regions-3"
     required="true"
     error-text="Please select a region of residence"
     }}
@@ -45,7 +45,7 @@ model:
 
   <div class="nsw-form__group">
     {{>_select model.savings-program
-    id="filters-all-savings-programs-3"
+    id="select-all-savings-programs-3"
     multiple="true"
     required="true"
     error-text="Please select the savings programs you would like to claim"
@@ -54,18 +54,48 @@ model:
 
   <div class="nsw-form__group">
     {{>_select model.region
-    id="filters-all-regions-4"
+    id="select-all-regions-4"
     valid-text="Your region is eligible for savings benefits"
     }}
   </div>
 
   <div class="nsw-form__group">
     {{>_select model.savings-program
-    id="filters-all-savings-programs-4"
+    id="select-all-savings-programs-4"
     multiple="true"
     valid-text="The programs you have selected are available"
     }}
   </div>
 </div>
 
+<form id="form" class="nsw-form">
+  <div class="nsw-form__group nsw-m-bottom-sm">
+    {{>_select model.savings-program 
+    id="select-all-savings-programs-test"
+    multiple="true"
+    }}
+  </div>
+
+  {{>_button-input type="submit" style="dark" text="Submit"}}
+  <p id="log"></p>
+</form>
+
+<script>
+function logSubmit(event) {
+  event.preventDefault();
+  const formData = new FormData(form);
+  log.textContent = formData.get("select-all-savings-programs-test");
+  for (const value of formData.entries()) {
+  console.log(value);
+}
+}
+
+const form = document.querySelector("form");
+const log = document.getElementById("log");
+form.addEventListener("submit", logSubmit);
+</script>
+
+
+
 {{/_layout-container}}
+

@@ -1,3 +1,7 @@
+/* eslint-disable max-len */
+
+import { createSafeCssClassname } from '../../global/scripts/helpers/utilities'
+
 class Select {
   constructor(element) {
     this.element = element
@@ -10,10 +14,7 @@ class Select {
     this.customOptions = false
     this.selectedOptCounter = 0
     this.optionIndex = 0
-    // label options
-    this.allTextSelected = this.element.getAttribute('data-all-text-selected') || 'All items selected'
-    this.multiSelectText = this.element.getAttribute('data-multi-select-text') || '{n} items selected'
-    this.nMultiSelect = this.element.getAttribute('data-n-multi-select') || 1
+    this.textSelected = this.element.getAttribute('data-selection-text')
   }
 
   init() {
@@ -35,7 +36,7 @@ class Select {
     this.multiSelectList.insertAdjacentHTML('afterbegin', this.initAllButton())
 
     // save custom elements
-    this.allButton = this.multiSelectList.querySelector('.js-multi-select__all')
+    this.allButton = this.multiSelectList.querySelector('.js-multi-select-all')
     this.allButtonInput = this.allButton.querySelector('.nsw-form__checkbox-input')
   }
 
@@ -49,11 +50,18 @@ class Select {
       this.toggleCustomSelect(false)
     })
 
+    this.trigger.addEventListener('keydown', (event) => {
+      if (((event.code && event.code === 38) || (event.key && event.key.toLowerCase() === 'arrowup')) || ((event.code && event.code === 40) || (event.key && event.key.toLowerCase() === 'arrowdown'))) {
+        event.preventDefault()
+        this.toggleCustomSelect(false)
+      }
+    })
+
     // keyboard navigation
     this.dropdown.addEventListener('keydown', (event) => {
-      if ((event.keyCode && event.keyCode === 38) || (event.key && event.key.toLowerCase() === 'arrowup')) {
+      if ((event.code && event.code === 38) || (event.key && event.key.toLowerCase() === 'arrowup')) {
         this.keyboardCustomSelect('prev', event)
-      } else if ((event.keyCode && event.keyCode === 40) || (event.key && event.key.toLowerCase() === 'arrowdown')) {
+      } else if ((event.code && event.code === 40) || (event.key && event.key.toLowerCase() === 'arrowdown')) {
         this.keyboardCustomSelect('next', event)
       }
     })
@@ -115,11 +123,12 @@ class Select {
   keyboardCustomSelect(direction, event) {
     // navigate custom dropdown with keyboard
     event.preventDefault()
-    let index = Array.prototype.indexOf.call(this.customOptions, document.activeElement.closest('.nsw-multi-select__option'))
+    const allOptions = [...this.customOptions, this.allButton]
+    let index = Array.prototype.indexOf.call(allOptions, document.activeElement.closest('.nsw-multi-select__option'))
     index = (direction === 'next') ? index + 1 : index - 1
-    if (index < 0) index = this.customOptions.length - 1
-    if (index >= this.customOptions.length) index = 0
-    this.constructor.moveFocus(this.customOptions[index].querySelector('.nsw-form__checkbox-input'))
+    if (index < 0) index = allOptions.length - 1
+    if (index >= allOptions.length) index = 0
+    this.constructor.moveFocus(allOptions[index].querySelector('.nsw-form__checkbox-input'))
   }
 
   initSelection() {
@@ -192,6 +201,7 @@ class Select {
       this.updateNativeSelect(option.getAttribute('data-index'), false)
     } else {
       input.checked = true
+      input.value = true
       input.setAttribute('checked', '')
       option.setAttribute('aria-selected', 'true')
       // update native select element
@@ -227,10 +237,10 @@ class Select {
 
   initAllButton() {
     const allButton = `
-      <li class="js-multi-select__all nsw-multi-select__option" role="option" data-value="All" aria-selected="false" data-label="All" data-all-text="${this.allTextSelected}">
-        <input aria-hidden="true" class="nsw-form__checkbox-input" type="checkbox" id="${this.selectId}-All" name="${this.selectId}-All">
-        <label class="nsw-form__checkbox-label" aria-hidden="true" for="${this.selectId}-All">
-          <span>All</span>
+      <li class="js-multi-select-all nsw-multi-select__option" role="option" data-value="Select all" aria-selected="false" data-label="Select all">
+        <input aria-hidden="true" class="nsw-form__checkbox-input" type="checkbox" id="${this.selectId}-all" name="${this.selectId}-all">
+        <label class="nsw-form__checkbox-label" aria-hidden="true" for="${this.selectId}-all">
+          <span>Select all</span>
         </label>
       </li>`
 
@@ -253,11 +263,11 @@ class Select {
     }
 
     if (this.selectedOptCounter === this.options.length) {
-      label = this.allTextSelected
-      ariaLabel = this.allTextSelected
-    } else if (this.selectedOptCounter > this.nMultiSelect) {
-      label = `<span class="multi-select__details">${this.multiSelectText.replace('{n}', this.selectedOptCounter)}</span>`
-      ariaLabel = `${this.multiSelectText.replace('{n}', this.selectedOptCounter)}, Please select`
+      label = `All ${this.textSelected}`
+      ariaLabel = `All ${this.textSelected}`
+    } else if (this.selectedOptCounter > 1) {
+      label = `<span class="multi-select__details">${this.selectedOptCounter} ${this.textSelected} selected</span>`
+      ariaLabel = `${this.selectedOptCounter} ${this.textSelected} selected, Please select`
     } else if (this.selectedOptCounter > 0) {
       ariaLabel += `${label}, Please select`
       label = `<span class="multi-select__details">${label}</span>`
@@ -293,11 +303,12 @@ class Select {
     options.forEach((option) => {
       const selected = option.hasAttribute('selected') ? ' aria-selected="true"' : ' aria-selected="false"'
       const checked = option.hasAttribute('selected') ? 'checked' : ''
+      const uniqueName = createSafeCssClassname(`${this.selectId}-${option.value}-${this.optionIndex.toString()}`)
 
       list += `
       <li class="nsw-multi-select__option" role="option" data-value="${option.value}" ${selected} data-label="${option.text}" data-index="${this.optionIndex}">
-        <input aria-hidden="true" class="nsw-form__checkbox-input" type="checkbox" id="${this.selectId}-${option.value}-${this.optionIndex}" name="${this.selectId}-${option.value}-${this.optionIndex}" ${checked}>
-        <label class="nsw-form__checkbox-label" aria-hidden="true" for="${this.selectId}-${option.value}-${this.optionIndex}">
+        <input aria-hidden="true" class="nsw-form__checkbox-input" type="checkbox" id="${uniqueName}" name="${uniqueName}" ${checked}>
+        <label class="nsw-form__checkbox-label" aria-hidden="true" for="${uniqueName}">
           <span>${option.text}</span>
         </label>
       </li>`
@@ -325,9 +336,7 @@ class Select {
 
   updateNativeSelect(index, bool) {
     this.options[index].selected = bool
-    this.select.dispatchEvent(new CustomEvent('change', {
-      bubbles: true,
-    })) // trigger change event
+    this.select.dispatchEvent(new CustomEvent('update', { bubbles: true })) // trigger change event
   }
 
   updateTriggerAria(ariaLabel) {
@@ -350,7 +359,7 @@ class Select {
 
 
     document.addEventListener('keydown', (event) => {
-      const isTabPressed = event.key === 'Tab' || event.keyCode === 9
+      const isTabPressed = event.key === 'Tab' || event.code === 9
 
       if (!isTabPressed) {
         return
