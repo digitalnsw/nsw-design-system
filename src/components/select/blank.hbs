@@ -1,0 +1,101 @@
+---
+title: Select
+width: narrow
+page: true
+model:
+  region: ../../components/select/json/select-region.json
+  savings-program: ../../components/select/json/select-savings-program.json
+---
+{{#>_layout-container}}
+<div class="nsw-form">
+
+  <div class="nsw-form__group">
+    {{>_select model.region id="select-all-regions-1" }}
+  </div>
+
+  <div class="nsw-form__group">
+    {{>_select model.savings-program 
+    id="select-all-savings-programs-1"
+    multiple="true"
+    }}
+  </div>
+
+  <div class="nsw-form__group">
+    {{>_select model.region
+    id="select-all-regions-2"
+    helper-text="Your region of residence"
+    }}
+  </div>
+
+  <div class="nsw-form__group">
+    {{>_select model.savings-program
+    id="select-all-savings-programs-2"
+    multiple="true"
+    helper-text="Select all that apply"
+    }}
+  </div>
+
+  <div class="nsw-form__group">
+    {{>_select model.region
+    id="select-all-regions-3"
+    required="true"
+    error-text="Please select a region of residence"
+    }}
+  </div>
+
+  <div class="nsw-form__group">
+    {{>_select model.savings-program
+    id="select-all-savings-programs-3"
+    multiple="true"
+    required="true"
+    error-text="Please select the savings programs you would like to claim"
+    }}
+  </div>
+
+  <div class="nsw-form__group">
+    {{>_select model.region
+    id="select-all-regions-4"
+    valid-text="Your region is eligible for savings benefits"
+    }}
+  </div>
+
+  <div class="nsw-form__group">
+    {{>_select model.savings-program
+    id="select-all-savings-programs-4"
+    multiple="true"
+    valid-text="The programs you have selected are available"
+    }}
+  </div>
+</div>
+
+<form id="form" class="nsw-form">
+  <div class="nsw-form__group nsw-m-bottom-sm">
+    {{>_select model.savings-program 
+    id="select-all-savings-programs-test"
+    multiple="true"
+    }}
+  </div>
+
+  {{>_button-input type="submit" style="dark" text="Submit"}}
+  <p id="log"></p>
+</form>
+
+<script>
+function logSubmit(event) {
+  event.preventDefault();
+  const formData = new FormData(form);
+  log.textContent = formData.get("select-all-savings-programs-test");
+  for (const value of formData.entries()) {
+  console.log(value);
+}
+}
+
+const form = document.querySelector("form");
+const log = document.getElementById("log");
+form.addEventListener("submit", logSubmit);
+</script>
+
+
+
+{{/_layout-container}}
+

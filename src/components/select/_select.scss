@@ -1,0 +1,66 @@
+.nsw-multi-select {
+  position: relative;
+
+  select {
+    display: none;
+  }
+
+  &__button {
+    background-color: var(--nsw-white);
+    color: var(--nsw-text-dark);
+    border: 1px solid var(--nsw-grey-01);
+    font-weight: normal;
+    margin-top: rem(4px);
+    padding: rem(10px) rem(10px) rem(10px) rem(16px);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    .nsw-material-icons {
+      font-size: rem(32px);
+    }
+  }
+
+  &__label {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__dropdown {
+    @include z-index('upper');
+    position: absolute;
+    left: 0;
+    top: 100%;
+    min-width: rem(200px);
+    background-color: var(--nsw-white);
+    border-radius: var(--nsw-border-radius);
+    box-shadow: var(--nsw-box-shadow);
+    overflow: auto;
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  &__button[aria-expanded=true] + &__dropdown {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  &__list {
+    list-style-type: none;
+    padding: rem(11px) rem(16px);
+    
+    &:not(:first-of-type) {
+      padding-top: rem(16px);
+    }
+
+    &:not(:last-of-type) {
+      border-bottom: 1px solid var(--nsw-grey-04);
+      padding-bottom: rem(16px);
+    }
+  }
+
+  &__option {
+    padding: rem(8px) 0;
+  }
+}
