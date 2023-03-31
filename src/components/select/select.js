@@ -342,24 +342,24 @@ class Select {
     this.trigger.setAttribute('aria-label', ariaLabel)
   }
 
-  static createSafeCssClassname = str => {
+  static createSafeCssClassname(str) {
     const nonCssSafeCharacters = /[!"#$%&'()*+,./:;<=>?@[\\\]^`{|}~\s]/
     const invalidBeginningOfClassname = /^([0-9]|--|-[0-9])/
 
     if (typeof str !== 'string') {
       return ''
     }
-  
+
     const strippedClassname = str.replace(
       new RegExp(nonCssSafeCharacters, 'g'),
-      ''
+      '',
     ).toLowerCase()
-  
+
     return invalidBeginningOfClassname.test(strippedClassname)
       ? `_${strippedClassname}`
       : strippedClassname
   }
-  
+
   static moveFocusToSelectTrigger(target) {
     const multiSelect = target.closest('.js-multi-select')
     if (!multiSelect) return
