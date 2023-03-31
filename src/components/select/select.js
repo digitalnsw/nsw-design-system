@@ -1,5 +1,4 @@
 /* eslint-disable max-len */
-
 class Select {
   constructor(element) {
     this.element = element
@@ -10,7 +9,6 @@ class Select {
     this.trigger = false
     this.dropdown = false
     this.customOptions = false
-    this.selectedOptCounter = 0
     this.optionIndex = 0
     this.textSelected = this.element.getAttribute('data-selection-text')
   }
@@ -75,6 +73,8 @@ class Select {
       this.checkCustomSelectClick(event.target)
     })
 
+    window.addEventListener('resize', this.placeDropdown)
+
     this.allButton.addEventListener('change', () => {
       this.toggleAllOptions()
     })
@@ -109,13 +109,15 @@ class Select {
   }
 
   placeDropdown() {
-    const triggerBoundingRect = this.trigger.getBoundingClientRect()
+    const { top, bottom } = this.trigger.getBoundingClientRect()
+
     // check if there's enough space up or down
-    const moveUp = (window.innerHeight - triggerBoundingRect.bottom) < triggerBoundingRect.top
+    const moveUp = (window.innerHeight - bottom) < top
     // check if we need to set a max height
-    const maxHeight = moveUp ? triggerBoundingRect.top - 20 : window.innerHeight - triggerBoundingRect.bottom - 20
+    const maxHeight = moveUp ? top - 20 : window.innerHeight - bottom - 20
     // set max-height (based on available space) and width
-    this.dropdown.setAttribute('style', `max-height: ${maxHeight}px; width: ${triggerBoundingRect.width}px;`)
+
+    this.dropdown.setAttribute('style', `max-height: ${(100 * maxHeight) / window.innerHeight}vh;`)
   }
 
   keyboardCustomSelect(direction, event) {
@@ -149,15 +151,15 @@ class Select {
   }
 
   getSelectedOptionCount() {
-    this.selectedOptCounter = 0
+    let selectedOptCounter = 0
 
     for (let i = 0; i < this.options.length; i += 1) {
       if (this.options[i].selected) {
-        this.selectedOptCounter += 1
+        selectedOptCounter += 1
       }
     }
 
-    return this.selectedOptCounter
+    return selectedOptCounter
   }
 
   toggleAllOptions() {
@@ -183,7 +185,7 @@ class Select {
     })
     const [label, ariaLabel] = this.getSelectedOptionText()
     this.trigger.querySelector('.nsw-multi-select__label').innerHTML = label // update trigger label
-    this.constructor.toggleClass(this.trigger, 'active', this.selectedOptCounter > 0)
+    this.constructor.toggleClass(this.trigger, 'active', count > 0)
     this.updateTriggerAria(ariaLabel) // update trigger aria-label
   }
 
@@ -218,7 +220,7 @@ class Select {
       this.allButton.setAttribute('aria-selected', 'false')
     }
     this.trigger.querySelector('.nsw-multi-select__label').innerHTML = label // update trigger label
-    this.constructor.toggleClass(this.trigger, 'active', this.selectedOptCounter > 0)
+    this.constructor.toggleClass(this.trigger, 'active', count > 0)
     this.updateTriggerAria(ariaLabel) // update trigger aria-label
   }
 
@@ -234,9 +236,13 @@ class Select {
   }
 
   initAllButton() {
+    const all = this.getSelectedOptionCount() === this.options.length
+    const selected = all ? ' aria-selected="true"' : ' aria-selected="false"'
+    const checked = all ? 'checked' : ''
+
     const allButton = `
-      <li class="js-multi-select-all nsw-multi-select__option" role="option" data-value="Select all" aria-selected="false" data-label="Select all">
-        <input aria-hidden="true" class="nsw-form__checkbox-input" type="checkbox" id="${this.selectId}-all" name="${this.selectId}-all">
+      <li class="js-multi-select-all nsw-multi-select__option" role="option" data-value="Select all" aria-selected="false" ${selected} data-label="Select all">
+        <input aria-hidden="true" class="nsw-form__checkbox-input" type="checkbox" id="${this.selectId}-all" ${checked}>
         <label class="nsw-form__checkbox-label" aria-hidden="true" for="${this.selectId}-all">
           <span>Select all</span>
         </label>
@@ -250,25 +256,17 @@ class Select {
     const noSelectionText = '<span class="multi-select__term">Please select</span>'
     let label = ''
     let ariaLabel = ''
-    this.selectedOptCounter = 0
+    const count = this.getSelectedOptionCount()
 
-    for (let i = 0; i < this.options.length; i += 1) {
-      if (this.options[i].selected) {
-        if (this.selectedOptCounter !== 0) label += ', '
-        label += this.options[i].text
-        this.selectedOptCounter += 1
-      }
-    }
-
-    if (this.selectedOptCounter === this.options.length) {
+    if (count === this.options.length) {
       label = `All ${this.textSelected}`
       ariaLabel = `All ${this.textSelected}`
-    } else if (this.selectedOptCounter > 1) {
-      label = `<span class="multi-select__details">${this.selectedOptCounter} ${this.textSelected} selected</span>`
-      ariaLabel = `${this.selectedOptCounter} ${this.textSelected} selected, Please select`
-    } else if (this.selectedOptCounter > 0) {
-      ariaLabel += `${label}, Please select`
-      label = `<span class="multi-select__details">${label}</span>`
+    } else if (count > 1) {
+      label = `${count} ${this.textSelected} selected`
+      ariaLabel = `${count} ${this.textSelected} selected, Please select`
+    } else if (count > 0) {
+      ariaLabel += `${this.options[0].text}, Please select`
+      label = this.options[0].text
     } else {
       label = noSelectionText
       ariaLabel = 'Please select'
@@ -305,7 +303,7 @@ class Select {
 
       list += `
       <li class="nsw-multi-select__option" role="option" data-value="${option.value}" ${selected} data-label="${option.text}" data-index="${this.optionIndex}">
-        <input aria-hidden="true" class="nsw-form__checkbox-input" type="checkbox" id="${uniqueName}" name="${uniqueName}" ${checked}>
+        <input aria-hidden="true" class="nsw-form__checkbox-input" type="checkbox" id="${uniqueName}" ${checked}>
         <label class="nsw-form__checkbox-label" aria-hidden="true" for="${uniqueName}">
           <span>${option.text}</span>
         </label>
@@ -343,17 +341,16 @@ class Select {
   }
 
   static createSafeCssClassname(str) {
-    const nonCssSafeCharacters = /[!"#$%&'()*+,./:;<=>?@[\\\]^`{|}~\s]/
     const invalidBeginningOfClassname = /^([0-9]|--|-[0-9])/
 
     if (typeof str !== 'string') {
       return ''
     }
 
-    const strippedClassname = str.replace(
-      new RegExp(nonCssSafeCharacters, 'g'),
-      '',
-    ).toLowerCase()
+    const strippedClassname = str
+      .match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)
+      .map((x) => x.toLowerCase())
+      .join('-')
 
     return invalidBeginningOfClassname.test(strippedClassname)
       ? `_${strippedClassname}`

@@ -1,7 +1,7 @@
 <label class="nsw-form__label{{#if required}} nsw-form__required{{/if}}" for="{{id}}">{{label}}{{#if required}}<span class="sr-only"> (required)</span>{{/if}}</label>{{#if helper-text}}
 <span class="nsw-form__helper" id="{{id}}-helper-text">{{helper-text}}</span>{{/if}}{{#if multiple}}
 <div class="nsw-multi-select js-multi-select" data-selection-text="savings programs">{{/if}}
-<select class="nsw-form__select" id="{{id}}"{{#if helper-text}} aria-describedby="{{#if helper-text}}{{id}}-helper-text{{/if}}"{{/if}}{{#if error-text}} aria-invalid="true"{{/if}}{{#if multiple}} multiple{{/if}}>{{#unless multiple}}<option value="">Please select</option>{{/unless}}
+<select{{#unless multiple}} class="nsw-form__select"{{/unless}} name="{{id}}" id="{{id}}"{{#if helper-text}} aria-describedby="{{#if helper-text}}{{id}}-helper-text{{/if}}"{{/if}}{{#if error-text}} aria-invalid="true"{{/if}}{{#if multiple}} multiple{{/if}}>{{#unless multiple}}<option disabled selected value="">Please select</option>{{/unless}}
 {{#each list}}
   <option value="{{this}}">{{this}}</option>
 {{/each}}
