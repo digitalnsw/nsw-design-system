@@ -1,7 +1,5 @@
 /* eslint-disable max-len */
 
-// import { createSafeCssClassname } from '../../global/scripts/helpers/utilities'
-
 class Select {
   constructor(element) {
     this.element = element
@@ -303,8 +301,7 @@ class Select {
     options.forEach((option) => {
       const selected = option.hasAttribute('selected') ? ' aria-selected="true"' : ' aria-selected="false"'
       const checked = option.hasAttribute('selected') ? 'checked' : ''
-      const uniqueName = `${this.selectId}-${option.value}-${this.optionIndex.toString()}`
-      // const uniqueName = createSafeCssClassname(`${this.selectId}-${option.value}-${this.optionIndex.toString()}`)
+      const uniqueName = this.constructor.createSafeCssClassname(`${this.selectId}-${option.value}-${this.optionIndex.toString()}`)
 
       list += `
       <li class="nsw-multi-select__option" role="option" data-value="${option.value}" ${selected} data-label="${option.text}" data-index="${this.optionIndex}">
@@ -345,6 +342,24 @@ class Select {
     this.trigger.setAttribute('aria-label', ariaLabel)
   }
 
+  static createSafeCssClassname = str => {
+    const nonCssSafeCharacters = /[!"#$%&'()*+,./:;<=>?@[\\\]^`{|}~\s]/
+    const invalidBeginningOfClassname = /^([0-9]|--|-[0-9])/
+
+    if (typeof str !== 'string') {
+      return ''
+    }
+  
+    const strippedClassname = str.replace(
+      new RegExp(nonCssSafeCharacters, 'g'),
+      ''
+    ).toLowerCase()
+  
+    return invalidBeginningOfClassname.test(strippedClassname)
+      ? `_${strippedClassname}`
+      : strippedClassname
+  }
+  
   static moveFocusToSelectTrigger(target) {
     const multiSelect = target.closest('.js-multi-select')
     if (!multiSelect) return
