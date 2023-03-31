@@ -6,6 +6,7 @@ import Filters from './components/filters/filters'
 import FileUpload from './components/file-upload/file-upload'
 import Tabs from './components/tabs/tabs'
 import GlobalAlert from './components/global-alert/global-alert'
+import Select from './components/select/select'
 
 if (window.NodeList && !NodeList.prototype.forEach) {
   NodeList.prototype.forEach = Array.prototype.forEach
@@ -37,6 +38,7 @@ function initSite() {
   const filters = document.querySelectorAll('.js-filters')
   const tabs = document.querySelectorAll('.js-tabs')
   const globalAlert = document.querySelectorAll('.js-global-alert')
+  const multiSelect = document.querySelectorAll('.js-multi-select')
 
   openSearchButton.forEach((element) => {
     new SiteSearch(element).init()
@@ -80,8 +82,14 @@ function initSite() {
       new GlobalAlert(element).init()
     })
   }
+
+  if (multiSelect) {
+    multiSelect.forEach((element) => {
+      new Select(element).init()
+    })
+  }
 }
 
 export {
-  initSite, SiteSearch, Navigation, Accordion, Tabs, GlobalAlert, Dialog, Filters, FileUpload,
+  initSite, SiteSearch, Navigation, Accordion, Tabs, GlobalAlert, Dialog, Filters, FileUpload, Select,
 }
