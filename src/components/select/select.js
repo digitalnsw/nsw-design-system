@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 
-import { createSafeCssClassname } from '../../global/scripts/helpers/utilities'
+// import { createSafeCssClassname } from '../../global/scripts/helpers/utilities'
 
 class Select {
   constructor(element) {
@@ -303,7 +303,8 @@ class Select {
     options.forEach((option) => {
       const selected = option.hasAttribute('selected') ? ' aria-selected="true"' : ' aria-selected="false"'
       const checked = option.hasAttribute('selected') ? 'checked' : ''
-      const uniqueName = createSafeCssClassname(`${this.selectId}-${option.value}-${this.optionIndex.toString()}`)
+      const uniqueName = `${this.selectId}-${option.value}-${this.optionIndex.toString()}`
+      // const uniqueName = createSafeCssClassname(`${this.selectId}-${option.value}-${this.optionIndex.toString()}`)
 
       list += `
       <li class="nsw-multi-select__option" role="option" data-value="${option.value}" ${selected} data-label="${option.text}" data-index="${this.optionIndex}">
