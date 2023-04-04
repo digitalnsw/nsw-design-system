@@ -10,7 +10,7 @@ class Select {
     this.dropdown = false
     this.customOptions = false
     this.optionIndex = 0
-    this.textSelected = this.element.getAttribute('data-selection-text')
+    this.textSelected = this.element.getAttribute('data-selection-text') || 'selected'
   }
 
   init() {
@@ -116,8 +116,9 @@ class Select {
     // check if we need to set a max height
     const maxHeight = moveUp ? top - 20 : window.innerHeight - bottom - 20
     // set max-height (based on available space) and width
+    const vhCalc = Math.ceil((100 * maxHeight) / window.innerHeight)
 
-    this.dropdown.setAttribute('style', `max-height: ${(100 * maxHeight) / window.innerHeight}vh;`)
+    this.dropdown.setAttribute('style', `max-height: ${vhCalc}vh;`)
   }
 
   keyboardCustomSelect(direction, event) {
@@ -262,8 +263,8 @@ class Select {
       label = `All ${this.textSelected}`
       ariaLabel = `All ${this.textSelected}`
     } else if (count > 1) {
-      label = `${count} ${this.textSelected} selected`
-      ariaLabel = `${count} ${this.textSelected} selected, Please select`
+      label = `${count} ${this.textSelected}`
+      ariaLabel = `${count} ${this.textSelected}, Please select`
     } else if (count > 0) {
       ariaLabel += `${this.options[0].text}, Please select`
       label = this.options[0].text
