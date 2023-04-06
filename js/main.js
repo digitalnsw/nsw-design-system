@@ -1581,6 +1581,404 @@
     return GlobalAlert;
   }();
 
+  /* eslint-disable max-len */
+  var Select = /*#__PURE__*/function () {
+    function Select(element) {
+      _classCallCheck(this, Select);
+
+      this.element = element;
+      this.select = this.element.querySelector('select');
+      this.options = this.select.querySelectorAll('option');
+      this.optGroups = this.select.querySelectorAll('optgroup');
+      this.selectId = this.select.getAttribute('id');
+      this.trigger = false;
+      this.dropdown = false;
+      this.customOptions = false;
+      this.optionIndex = 0;
+      this.textSelected = this.element.getAttribute('data-selection-text') || 'selected';
+    }
+
+    _createClass(Select, [{
+      key: "init",
+      value: function init() {
+        this.initCustomSelect();
+        this.initCustomSelectEvents();
+      }
+    }, {
+      key: "initCustomSelect",
+      value: function initCustomSelect() {
+        this.element.insertAdjacentHTML('beforeend', this.initButtonSelect() + this.initListSelect());
+        this.dropdown = this.element.querySelector('.nsw-multi-select__dropdown');
+        this.trigger = this.element.querySelector('.nsw-multi-select__button');
+        this.multiSelectList = this.dropdown.querySelector('.nsw-multi-select__list');
+        this.customOptions = this.multiSelectList.querySelectorAll('.nsw-multi-select__option');
+        this.multiSelectList.insertAdjacentHTML('afterbegin', this.initAllButton());
+        this.allButton = this.multiSelectList.querySelector('.js-multi-select-all');
+        this.allButtonInput = this.allButton.querySelector('.nsw-form__checkbox-input');
+      }
+    }, {
+      key: "initCustomSelectEvents",
+      value: function initCustomSelectEvents() {
+        var _this = this;
+
+        this.initSelection();
+        this.trigger.addEventListener('click', function (event) {
+          event.preventDefault();
+
+          _this.toggleCustomSelect(false);
+        });
+        this.trigger.addEventListener('keydown', function (event) {
+          if (event.code && event.code === 38 || event.key && event.key.toLowerCase() === 'arrowup' || event.code && event.code === 40 || event.key && event.key.toLowerCase() === 'arrowdown') {
+            event.preventDefault();
+
+            _this.toggleCustomSelect(false);
+          }
+        });
+        this.dropdown.addEventListener('keydown', function (event) {
+          if (event.code && event.code === 38 || event.key && event.key.toLowerCase() === 'arrowup') {
+            _this.keyboardCustomSelect('prev', event);
+          } else if (event.code && event.code === 40 || event.key && event.key.toLowerCase() === 'arrowdown') {
+            _this.keyboardCustomSelect('next', event);
+          }
+        });
+        window.addEventListener('keyup', function (event) {
+          if (event.key && event.key.toLowerCase() === 'escape') {
+            _this.constructor.moveFocusToSelectTrigger(event.target);
+
+            _this.toggleCustomSelect('false');
+          }
+        });
+        window.addEventListener('click', function (event) {
+          _this.checkCustomSelectClick(event.target);
+        });
+        window.addEventListener('resize', this.placeDropdown);
+        this.allButton.addEventListener('change', function () {
+          _this.toggleAllOptions();
+        });
+      }
+    }, {
+      key: "toggleCustomSelect",
+      value: function toggleCustomSelect(bool) {
+        var ariaExpanded;
+
+        if (bool) {
+          ariaExpanded = bool;
+        } else {
+          ariaExpanded = this.trigger.getAttribute('aria-expanded') === 'true' ? 'false' : 'true';
+        }
+
+        this.trigger.setAttribute('aria-expanded', ariaExpanded);
+
+        if (ariaExpanded === 'true') {
+          var selectedOption = this.getSelectedOption();
+          this.constructor.moveFocus(selectedOption);
+          this.dropdown.addEventListener('transitionend', function cb() {
+            this.constructor.moveFocus(selectedOption);
+            this.dropdown.removeEventListener('transitionend', cb);
+          });
+          this.constructor.trapFocus(this.dropdown);
+          this.placeDropdown();
+        }
+      }
+    }, {
+      key: "placeDropdown",
+      value: function placeDropdown() {
+        var _this$trigger$getBoun = this.trigger.getBoundingClientRect(),
+            top = _this$trigger$getBoun.top,
+            bottom = _this$trigger$getBoun.bottom;
+
+        var moveUp = window.innerHeight - bottom < top;
+        var maxHeight = moveUp ? top - 20 : window.innerHeight - bottom - 20;
+        var vhCalc = Math.ceil(100 * maxHeight / window.innerHeight);
+        this.dropdown.setAttribute('style', "max-height: ".concat(vhCalc, "vh;"));
+      }
+    }, {
+      key: "keyboardCustomSelect",
+      value: function keyboardCustomSelect(direction, event) {
+        event.preventDefault();
+        var allOptions = [].concat(_toConsumableArray(this.customOptions), [this.allButton]);
+        var index = Array.prototype.indexOf.call(allOptions, document.activeElement.closest('.nsw-multi-select__option'));
+        index = direction === 'next' ? index + 1 : index - 1;
+        if (index < 0) index = allOptions.length - 1;
+        if (index >= allOptions.length) index = 0;
+        this.constructor.moveFocus(allOptions[index].querySelector('.nsw-form__checkbox-input'));
+      }
+    }, {
+      key: "initSelection",
+      value: function initSelection() {
+        var _this2 = this;
+
+        if (!this.dropdown) return;
+        this.customOptions.forEach(function (opt) {
+          opt.addEventListener('change', function (event) {
+            var option = event.currentTarget.closest('.nsw-multi-select__option');
+            if (!option) return;
+
+            _this2.selectOption(option);
+          });
+          opt.addEventListener('click', function (event) {
+            var option = event.currentTarget.closest('.nsw-multi-select__option');
+            if (!option || !event.target.classList.contains('nsw-multi-select__option')) return;
+
+            _this2.selectOption(option);
+          });
+        });
+      }
+    }, {
+      key: "getSelectedOptionCount",
+      value: function getSelectedOptionCount() {
+        var selectedOptCounter = 0;
+
+        for (var i = 0; i < this.options.length; i += 1) {
+          if (this.options[i].selected) {
+            selectedOptCounter += 1;
+          }
+        }
+
+        return selectedOptCounter;
+      }
+    }, {
+      key: "toggleAllOptions",
+      value: function toggleAllOptions() {
+        var _this3 = this;
+
+        var count = this.getSelectedOptionCount();
+        this.customOptions.forEach(function (check) {
+          var input = check.querySelector('.nsw-form__checkbox-input');
+
+          if (count === _this3.options.length) {
+            input.checked = false;
+            input.removeAttribute('checked');
+            check.setAttribute('aria-selected', 'false');
+
+            _this3.updateNativeSelect(check.getAttribute('data-index'), false);
+          } else {
+            input.checked = true;
+            input.setAttribute('checked', '');
+            check.setAttribute('aria-selected', 'true');
+
+            _this3.updateNativeSelect(check.getAttribute('data-index'), true);
+          } //
+
+        });
+
+        var _this$getSelectedOpti = this.getSelectedOptionText(),
+            _this$getSelectedOpti2 = _slicedToArray(_this$getSelectedOpti, 2),
+            label = _this$getSelectedOpti2[0],
+            ariaLabel = _this$getSelectedOpti2[1];
+
+        this.trigger.querySelector('.nsw-multi-select__label').innerHTML = label;
+        this.constructor.toggleClass(this.trigger, 'active', count > 0);
+        this.updateTriggerAria(ariaLabel);
+      }
+    }, {
+      key: "selectOption",
+      value: function selectOption(option) {
+        var input = option.querySelector('.nsw-form__checkbox-input');
+
+        if (option.hasAttribute('aria-selected') && option.getAttribute('aria-selected') === 'true') {
+          input.checked = false;
+          input.removeAttribute('checked');
+          option.setAttribute('aria-selected', 'false');
+          this.updateNativeSelect(option.getAttribute('data-index'), false);
+        } else {
+          input.checked = true;
+          input.value = true;
+          input.setAttribute('checked', '');
+          option.setAttribute('aria-selected', 'true');
+          this.updateNativeSelect(option.getAttribute('data-index'), true);
+        }
+
+        var _this$getSelectedOpti3 = this.getSelectedOptionText(),
+            _this$getSelectedOpti4 = _slicedToArray(_this$getSelectedOpti3, 2),
+            label = _this$getSelectedOpti4[0],
+            ariaLabel = _this$getSelectedOpti4[1];
+
+        var count = this.getSelectedOptionCount();
+
+        if (count === this.options.length) {
+          this.allButtonInput.checked = true;
+          this.allButtonInput.setAttribute('checked', '');
+          this.allButton.setAttribute('aria-selected', 'true');
+        } else {
+          this.allButtonInput.checked = false;
+          this.allButtonInput.removeAttribute('checked');
+          this.allButton.setAttribute('aria-selected', 'false');
+        }
+
+        this.trigger.querySelector('.nsw-multi-select__label').innerHTML = label;
+        this.constructor.toggleClass(this.trigger, 'active', count > 0);
+        this.updateTriggerAria(ariaLabel);
+      }
+    }, {
+      key: "initButtonSelect",
+      value: function initButtonSelect() {
+        var triggerLabel = this.getSelectedOptionText(this.element);
+        var button = "<button class=\"nsw-button nsw-multi-select__button\" aria-label=\"".concat(triggerLabel[1], "\" aria-expanded=\"false\" aria-controls=\"").concat(this.selectId, "-dropdown\">\n      <span aria-hidden=\"true\" class=\"nsw-multi-select__label\">").concat(triggerLabel[0], "</span>\n      <span class=\"material-icons nsw-material-icons\" focusable=\"false\" aria-hidden=\"true\">keyboard_arrow_down</span>\n      </button>");
+        return button;
+      }
+    }, {
+      key: "initAllButton",
+      value: function initAllButton() {
+        var all = this.getSelectedOptionCount() === this.options.length;
+        var selected = all ? ' aria-selected="true"' : ' aria-selected="false"';
+        var checked = all ? 'checked' : '';
+        var allButton = "\n      <li class=\"js-multi-select-all nsw-multi-select__option\" role=\"option\" data-value=\"Select all\" aria-selected=\"false\" ".concat(selected, " data-label=\"Select all\">\n        <input aria-hidden=\"true\" class=\"nsw-form__checkbox-input\" type=\"checkbox\" id=\"").concat(this.selectId, "-all\" ").concat(checked, ">\n        <label class=\"nsw-form__checkbox-label\" aria-hidden=\"true\" for=\"").concat(this.selectId, "-all\">\n          <span>Select all</span>\n        </label>\n      </li>");
+        return allButton;
+      }
+    }, {
+      key: "getSelectedOptionText",
+      value: function getSelectedOptionText() {
+        var noSelectionText = '<span class="multi-select__term">Please select</span>';
+        var label = '';
+        var ariaLabel = '';
+        var count = this.getSelectedOptionCount();
+
+        if (count === this.options.length) {
+          label = "All ".concat(this.textSelected);
+          ariaLabel = "All ".concat(this.textSelected);
+        } else if (count > 1) {
+          label = "".concat(count, " ").concat(this.textSelected);
+          ariaLabel = "".concat(count, " ").concat(this.textSelected, ", Please select");
+        } else if (count > 0) {
+          ariaLabel += "".concat(this.options[0].text, ", Please select");
+          label = this.options[0].text;
+        } else {
+          label = noSelectionText;
+          ariaLabel = 'Please select';
+        }
+
+        return [label, ariaLabel];
+      }
+    }, {
+      key: "initListSelect",
+      value: function initListSelect() {
+        var _this4 = this;
+
+        var list = "<div class=\"nsw-multi-select__dropdown\" aria-describedby=".concat(this.selectId, "-description\" id=\"").concat(this.selectId, "-dropdown\">");
+
+        if (this.optGroups.length > 0) {
+          this.optGroups.forEach(function (optionGroup) {
+            var optGroupList = optionGroup.querySelectorAll('option');
+            var optGroupLabel = "<li><span>".concat(optionGroup.getAttribute('label'), "</span></li>");
+            list += "<ul class=\"nsw-multi-select__list\" role=\"listbox\" aria-multiselectable=\"true\">\n          ".concat(optGroupLabel + _this4.getOptionsList(optGroupList), "\n        </ul>");
+          });
+        } else {
+          list += "<ul class=\"nsw-multi-select__list\" role=\"listbox\" aria-multiselectable=\"true\">".concat(this.getOptionsList(this.options), "</ul>");
+        }
+
+        return list;
+      }
+    }, {
+      key: "getOptionsList",
+      value: function getOptionsList(options) {
+        var _this5 = this;
+
+        var list = '';
+        options.forEach(function (option) {
+          var selected = option.hasAttribute('selected') ? ' aria-selected="true"' : ' aria-selected="false"';
+          var checked = option.hasAttribute('selected') ? 'checked' : '';
+
+          var uniqueName = _this5.constructor.createSafeCssClassname("".concat(_this5.selectId, "-").concat(option.value, "-").concat(_this5.optionIndex.toString()));
+
+          list += "\n      <li class=\"nsw-multi-select__option\" role=\"option\" data-value=\"".concat(option.value, "\" ").concat(selected, " data-label=\"").concat(option.text, "\" data-index=\"").concat(_this5.optionIndex, "\">\n        <input aria-hidden=\"true\" class=\"nsw-form__checkbox-input\" type=\"checkbox\" id=\"").concat(uniqueName, "\" ").concat(checked, ">\n        <label class=\"nsw-form__checkbox-label\" aria-hidden=\"true\" for=\"").concat(uniqueName, "\">\n          <span>").concat(option.text, "</span>\n        </label>\n      </li>");
+          _this5.optionIndex += 1;
+        });
+        return list;
+      }
+    }, {
+      key: "getSelectedOption",
+      value: function getSelectedOption() {
+        var option = this.dropdown.querySelector('[aria-selected="true"]');
+
+        if (option) {
+          return option.querySelector('.nsw-form__checkbox-input');
+        }
+
+        return this.dropdown.querySelector('.nsw-multi-select__option').querySelector('.nsw-form__checkbox-input');
+      }
+    }, {
+      key: "checkCustomSelectClick",
+      value: function checkCustomSelectClick(target) {
+        if (!this.element.contains(target)) this.toggleCustomSelect('false');
+      }
+    }, {
+      key: "updateNativeSelect",
+      value: function updateNativeSelect(index, bool) {
+        this.options[index].selected = bool;
+        this.select.dispatchEvent(new CustomEvent('update', {
+          bubbles: true
+        }));
+      }
+    }, {
+      key: "updateTriggerAria",
+      value: function updateTriggerAria(ariaLabel) {
+        this.trigger.setAttribute('aria-label', ariaLabel);
+      }
+    }], [{
+      key: "createSafeCssClassname",
+      value: function createSafeCssClassname(str) {
+        var invalidBeginningOfClassname = /^([0-9]|--|-[0-9])/;
+
+        if (typeof str !== 'string') {
+          return '';
+        }
+
+        var strippedClassname = str.match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g).map(function (x) {
+          return x.toLowerCase();
+        }).join('-');
+        return invalidBeginningOfClassname.test(strippedClassname) ? "_".concat(strippedClassname) : strippedClassname;
+      }
+    }, {
+      key: "moveFocusToSelectTrigger",
+      value: function moveFocusToSelectTrigger(target) {
+        var multiSelect = target.closest('.js-multi-select');
+        if (!multiSelect) return;
+        multiSelect.querySelector('.nsw-multi-select__button').focus();
+      }
+    }, {
+      key: "trapFocus",
+      value: function trapFocus(element) {
+        var focusableElements = 'a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])';
+        var firstFocusableElement = element.querySelectorAll(focusableElements)[0];
+        var focusableContent = element.querySelectorAll(focusableElements);
+        var lastFocusableElement = focusableContent[focusableContent.length - 1];
+        document.addEventListener('keydown', function (event) {
+          var isTabPressed = event.key === 'Tab' || event.code === 9;
+
+          if (!isTabPressed) {
+            return;
+          }
+
+          if (event.shiftKey) {
+            if (document.activeElement === firstFocusableElement) {
+              lastFocusableElement.focus();
+              event.preventDefault();
+            }
+          } else if (document.activeElement === lastFocusableElement) {
+            firstFocusableElement.focus();
+            event.preventDefault();
+          }
+        });
+        firstFocusableElement.focus();
+      }
+    }, {
+      key: "moveFocus",
+      value: function moveFocus(element) {
+        if (document.activeElement !== element) {
+          element.focus();
+        }
+      }
+    }, {
+      key: "toggleClass",
+      value: function toggleClass(el, className, bool) {
+        if (bool) el.classList.add(className);else el.classList.remove(className);
+      }
+    }]);
+
+    return Select;
+  }();
+
   if (window.NodeList && !NodeList.prototype.forEach) {
     NodeList.prototype.forEach = Array.prototype.forEach;
   }
@@ -1614,6 +2012,7 @@
     var filters = document.querySelectorAll('.js-filters');
     var tabs = document.querySelectorAll('.js-tabs');
     var globalAlert = document.querySelectorAll('.js-global-alert');
+    var multiSelect = document.querySelectorAll('.js-multi-select');
     openSearchButton.forEach(function (element) {
       new SiteSearch(element).init();
     });
@@ -1652,6 +2051,12 @@
         new GlobalAlert(element).init();
       });
     }
+
+    if (multiSelect) {
+      multiSelect.forEach(function (element) {
+        new Select(element).init();
+      });
+    }
   }
 
   exports.Accordion = Accordion;
@@ -1660,6 +2065,7 @@
   exports.Filters = Filters;
   exports.GlobalAlert = GlobalAlert;
   exports.Navigation = Navigation;
+  exports.Select = Select;
   exports.SiteSearch = SiteSearch;
   exports.Tabs = Tabs;
   exports.initSite = initSite;
