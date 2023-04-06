@@ -19,28 +19,22 @@ class Select {
   }
 
   initCustomSelect() {
-    // create the HTML for the custom dropdown element
     this.element.insertAdjacentHTML('beforeend', this.initButtonSelect() + this.initListSelect())
 
-    // save custom elements
     this.dropdown = this.element.querySelector('.nsw-multi-select__dropdown')
     this.trigger = this.element.querySelector('.nsw-multi-select__button')
     this.multiSelectList = this.dropdown.querySelector('.nsw-multi-select__list')
     this.customOptions = this.multiSelectList.querySelectorAll('.nsw-multi-select__option')
 
-    // create the HTML for the all button element
     this.multiSelectList.insertAdjacentHTML('afterbegin', this.initAllButton())
 
-    // save custom elements
     this.allButton = this.multiSelectList.querySelector('.js-multi-select-all')
     this.allButtonInput = this.allButton.querySelector('.nsw-form__checkbox-input')
   }
 
   initCustomSelectEvents() {
-    // option selection in dropdown
     this.initSelection()
 
-    // click events
     this.trigger.addEventListener('click', (event) => {
       event.preventDefault()
       this.toggleCustomSelect(false)
@@ -53,7 +47,6 @@ class Select {
       }
     })
 
-    // keyboard navigation
     this.dropdown.addEventListener('keydown', (event) => {
       if ((event.code && event.code === 38) || (event.key && event.key.toLowerCase() === 'arrowup')) {
         this.keyboardCustomSelect('prev', event)
@@ -68,7 +61,7 @@ class Select {
         this.toggleCustomSelect('false')
       }
     })
-    // close custom select when clicking outside it
+
     window.addEventListener('click', (event) => {
       this.checkCustomSelectClick(event.target)
     })
@@ -94,7 +87,7 @@ class Select {
     if (ariaExpanded === 'true') {
       const selectedOption = this.getSelectedOption()
 
-      this.constructor.moveFocus(selectedOption) // fallback if transition is not supported
+      this.constructor.moveFocus(selectedOption)
 
       this.dropdown.addEventListener('transitionend', function cb() {
         this.constructor.moveFocus(selectedOption)
@@ -104,25 +97,23 @@ class Select {
 
       this.constructor.trapFocus(this.dropdown)
 
-      this.placeDropdown() // place dropdown based on available space
+      this.placeDropdown()
     }
   }
 
   placeDropdown() {
     const { top, bottom } = this.trigger.getBoundingClientRect()
 
-    // check if there's enough space up or down
     const moveUp = (window.innerHeight - bottom) < top
-    // check if we need to set a max height
+
     const maxHeight = moveUp ? top - 20 : window.innerHeight - bottom - 20
-    // set max-height (based on available space) and width
+
     const vhCalc = Math.ceil((100 * maxHeight) / window.innerHeight)
 
     this.dropdown.setAttribute('style', `max-height: ${vhCalc}vh;`)
   }
 
   keyboardCustomSelect(direction, event) {
-    // navigate custom dropdown with keyboard
     event.preventDefault()
     const allOptions = [...this.customOptions, this.allButton]
     let index = Array.prototype.indexOf.call(allOptions, document.activeElement.closest('.nsw-multi-select__option'))
@@ -133,7 +124,6 @@ class Select {
   }
 
   initSelection() {
-    // option selection
     if (!this.dropdown) return
 
     this.customOptions.forEach((opt) => {
@@ -173,39 +163,36 @@ class Select {
         input.checked = false
         input.removeAttribute('checked')
         check.setAttribute('aria-selected', 'false')
-        // update native select element
+
         this.updateNativeSelect(check.getAttribute('data-index'), false)
       } else {
         input.checked = true
         input.setAttribute('checked', '')
         check.setAttribute('aria-selected', 'true')
-        // update native select element
+
         this.updateNativeSelect(check.getAttribute('data-index'), true)
       }
       //
     })
     const [label, ariaLabel] = this.getSelectedOptionText()
-    this.trigger.querySelector('.nsw-multi-select__label').innerHTML = label // update trigger label
+    this.trigger.querySelector('.nsw-multi-select__label').innerHTML = label
     this.constructor.toggleClass(this.trigger, 'active', count > 0)
-    this.updateTriggerAria(ariaLabel) // update trigger aria-label
+    this.updateTriggerAria(ariaLabel)
   }
 
   selectOption(option) {
     const input = option.querySelector('.nsw-form__checkbox-input')
 
     if (option.hasAttribute('aria-selected') && option.getAttribute('aria-selected') === 'true') {
-      // deselecting that option
       input.checked = false
       input.removeAttribute('checked')
       option.setAttribute('aria-selected', 'false')
-      // update native select element
       this.updateNativeSelect(option.getAttribute('data-index'), false)
     } else {
       input.checked = true
       input.value = true
       input.setAttribute('checked', '')
       option.setAttribute('aria-selected', 'true')
-      // update native select element
       this.updateNativeSelect(option.getAttribute('data-index'), true)
     }
 
@@ -220,13 +207,12 @@ class Select {
       this.allButtonInput.removeAttribute('checked')
       this.allButton.setAttribute('aria-selected', 'false')
     }
-    this.trigger.querySelector('.nsw-multi-select__label').innerHTML = label // update trigger label
+    this.trigger.querySelector('.nsw-multi-select__label').innerHTML = label
     this.constructor.toggleClass(this.trigger, 'active', count > 0)
-    this.updateTriggerAria(ariaLabel) // update trigger aria-label
+    this.updateTriggerAria(ariaLabel)
   }
 
   initButtonSelect() {
-    // create the button element -> custom select trigger
     const triggerLabel = this.getSelectedOptionText(this.element)
 
     const button = `<button class="nsw-button nsw-multi-select__button" aria-label="${triggerLabel[1]}" aria-expanded="false" aria-controls="${this.selectId}-dropdown">
@@ -253,7 +239,6 @@ class Select {
   }
 
   getSelectedOptionText() {
-    // used to initialize the label of the custom select button
     const noSelectionText = '<span class="multi-select__term">Please select</span>'
     let label = ''
     let ariaLabel = ''
@@ -277,7 +262,6 @@ class Select {
   }
 
   initListSelect() {
-    // create custom select dropdown
     let list = `<div class="nsw-multi-select__dropdown" aria-describedby=${this.selectId}-description" id="${this.selectId}-dropdown">`
 
     if (this.optGroups.length > 0) {
@@ -317,7 +301,6 @@ class Select {
   }
 
   getSelectedOption() {
-    // return first selected option
     const option = this.dropdown.querySelector('[aria-selected="true"]')
 
     if (option) {
@@ -333,11 +316,10 @@ class Select {
 
   updateNativeSelect(index, bool) {
     this.options[index].selected = bool
-    this.select.dispatchEvent(new CustomEvent('update', { bubbles: true })) // trigger change event
+    this.select.dispatchEvent(new CustomEvent('update', { bubbles: true }))
   }
 
   updateTriggerAria(ariaLabel) {
-    // new label for custom trigger
     this.trigger.setAttribute('aria-label', ariaLabel)
   }
 
