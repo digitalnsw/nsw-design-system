@@ -37,18 +37,29 @@
   		    </div>
   		  </div>
   		
-  		  <div class="nsw-form__group nsw-m-bottom-sm">
-  		    <label class="nsw-form__label" for="select-all-savings-programs-test">Savings programs you would like to claim</label>
-  		    <div class="nsw-multi-select js-multi-select" data-selection-text="savings programs">
-  		      <select name="select-all-savings-programs-test" id="select-all-savings-programs-test" multiple>
-  		        <option value="Stay NSW voucher">Stay NSW voucher</option>
-  		        <option value="Regional seniors travel card">Regional seniors travel card</option>
-  		        <option value="Toll relief">Toll relief</option>
-  		        <option value="First lap swimming voucher">First lap swimming voucher</option>
-  		        <option value="Active kids voucher">Active kids voucher</option>
-  		        <option value="Creative kids voucher">Creative kids voucher</option>
-  		        <option value="Energy made easy">Energy made easy</option>
-  		      </select>
+  		  <div class="nsw-form__group">
+  		    <fieldset class="nsw-form__fieldset">
+  		      <legend>
+  		        <span class="nsw-form__legend">Category</span>
+  		      </legend>
+  		      <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-multi-1" id="form-checkbox-multi-1-a">
+  		      <label class="nsw-form__checkbox-label" for="form-checkbox-multi-1-a">Customer Service</label>
+  		      <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-multi-1" id="form-checkbox-multi-1-b">
+  		      <label class="nsw-form__checkbox-label" for="form-checkbox-multi-1-b">Communities and Justice</label>
+  		    </fieldset>
+  		
+  		    <div class="nsw-form__group nsw-m-bottom-sm">
+  		      <label class="nsw-form__label" for="select-all-regions-1">Region</label>
+  		        <select class="nsw-form__select" name="select-all-regions-1" id="select-all-regions-1"><option value="">Please select</option>
+  		          <option value="Central Coast">Central Coast</option>
+  		          <option value="Central West &amp; Orana">Central West &amp; Orana</option>
+  		          <option value="Far West">Far West</option>
+  		          <option value="Hunter">Hunter</option>
+  		          <option value="Illawarra-Shoalhaven">Illawarra-Shoalhaven</option>
+  		          <option value="New England &amp; North West">New England &amp; North West</option>
+  		          <option value="North Coast">North Coast</option>
+  		          <option value="Riverina Murray">Riverina Murray</option>
+  		        </select>
   		    </div>
   		  </div>
   		
@@ -94,33 +105,8 @@
   		    </fieldset>
   		  </div>
   		
-  		  <div class="nsw-form__group">
-  		    <fieldset class="nsw-form__fieldset">
-  		      <legend>
-  		        <span class="nsw-form__legend">Category</span>
-  		      </legend>
-  		      <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-multi-1" id="form-checkbox-multi-1-a">
-  		      <label class="nsw-form__checkbox-label" for="form-checkbox-multi-1-a">Customer Service</label>
-  		      <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-multi-1" id="form-checkbox-multi-1-b">
-  		      <label class="nsw-form__checkbox-label" for="form-checkbox-multi-1-b">Communities and Justice</label>
-  		    </fieldset>
-  		
-  		    <div class="nsw-form__group nsw-m-bottom-sm">
-  		      <label class="nsw-form__label" for="select-all-regions-1">Region</label>
-  		        <select class="nsw-form__select" name="select-all-regions-1" id="select-all-regions-1"><option value="">Please select</option>
-  		          <option value="Central Coast">Central Coast</option>
-  		          <option value="Central West &amp; Orana">Central West &amp; Orana</option>
-  		          <option value="Far West">Far West</option>
-  		          <option value="Hunter">Hunter</option>
-  		          <option value="Illawarra-Shoalhaven">Illawarra-Shoalhaven</option>
-  		          <option value="New England &amp; North West">New England &amp; North West</option>
-  		          <option value="North Coast">North Coast</option>
-  		          <option value="Riverina Murray">Riverina Murray</option>
-  		        </select>
-  		    </div>
-  		  </div>
-  		
   		  <input type="submit" class="nsw-button nsw-button--dark" value="Submit">
+  		
   		  <p id="log"></p>
   		</form>
   		
@@ -132,7 +118,7 @@
   		  for (const [key, value] of formData) {
   		    log.innerHTML += `<pre>${key}: ${value}</pre>\n`;
   		  }
-  		  }
+  		}
   		
   		const form = document.querySelector("form");
   		const log = document.getElementById("log");
