@@ -1,7 +1,7 @@
 const {
   src, dest, watch, series,
 } = require('gulp')
-const sass = require('gulp-sass')(require('node-sass'))
+const sass = require('gulp-sass')(require('sass'))
 const postcss = require('gulp-postcss')
 const autoprefixer = require('autoprefixer')
 const cssnano = require('cssnano')
@@ -36,7 +36,7 @@ const config = require('./config')
 const package = require('./package')
 
 const server = browsersync.create()
-sass.compiler = require('node-sass')
+sass.compiler = require('sass')
 
 const postcssProcessors = [
   postcssNormalize({ forceImport: true }),

@@ -1,3 +1,5 @@
+@use 'sass:math';
+
 .nsw-container {
   @include container;
 
@@ -81,8 +83,8 @@
 
   @for $i from 1 through 12 {
     &-#{$i} {
-      width: percentage($i / 12);
-      max-width: percentage($i / 12);
+      width: percentage(math.div($i, 12));
+      max-width: percentage(math.div($i, 12));
     }
   }
 
@@ -90,8 +92,8 @@
     @include breakpoint($breakpoint) {
       @for $i from 1 through 12 {
         &-#{$breakpoint}-#{$i} {
-          width: percentage($i / 12);
-          max-width: percentage($i / 12);
+          width: percentage(math.div($i, 12));
+          max-width: percentage(math.div($i, 12));
         }
       }
     }
@@ -101,7 +103,7 @@
 .nsw-offset {
   @for $i from 1 through 12 {
     &-#{$i} {
-      margin-left: percentage($i / 12);
+      margin-left: percentage(math.div($i, 12));
     }
   }
 
@@ -109,7 +111,7 @@
     @include breakpoint($breakpoint) {
       @for $i from 1 through 12 {
         &-#{$breakpoint}-#{$i} {
-          margin-left: percentage($i / 12);
+          margin-left: percentage(math.div($i, 12));
         }
       }
     }

@@ -1,9 +1,11 @@
+@use 'sass:math';
+
 @function rem($value) {
   @if (unitless($value)) {
     $value: $value * 1px;
   }
 
-  @return $value / $nsw-base-font-size * 1rem;
+  @return math.div($value, $nsw-base-font-size) * 1rem;
 }
 
 @function svg-url($svg) {
@@ -14,7 +16,7 @@
   $encoded: '';
   $slice: 2000;
   $index: 0;
-  $loops: ceil(str-length($svg)/$slice);
+  $loops: ceil(math.div(str-length($svg), $slice));
 
   @for $i from 1 through $loops {
     $chunk: str-slice($svg, $index, $index + $slice - 1);
