@@ -353,7 +353,6 @@ class Select {
     const focusableContent = element.querySelectorAll(focusableElements)
     const lastFocusableElement = focusableContent[focusableContent.length - 1]
 
-
     document.addEventListener('keydown', (event) => {
       const isTabPressed = event.key === 'Tab' || event.code === 9
 
