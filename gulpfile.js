@@ -24,7 +24,7 @@ const dynamicCollections = require('metalsmith-dynamic-collections')
 const discoverHelpers = require('metalsmith-discover-helpers')
 const rollup = require('gulp-better-rollup')
 const sitemap = require('gulp-sitemap')
-const babel = require('rollup-plugin-babel')
+const babel = require('@rollup/plugin-babel')
 const eslint = require('gulp-eslint-new')
 const gulpStylelint = require('gulp-stylelint')
 const replace = require('gulp-replace')
@@ -225,7 +225,7 @@ function compileJS() {
     .pipe(
       rollup(
         {
-          plugins: [babel()],
+          plugins: [babel({ babelHelpers: 'bundled' })],
         },
         {
           name: 'NSW',
