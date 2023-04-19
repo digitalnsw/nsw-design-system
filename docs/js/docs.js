@@ -87,7 +87,7 @@ function initDocs() {
 
   let autocompleteInputValue = '';
 
-  const newAutocomplete = new Autocomplete(autocomplete, {
+  new Autocomplete(autocomplete, {
 
     search: (input) => {
       autocompleteInputValue = input;

@@ -1,8 +1,8 @@
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
   typeof define === 'function' && define.amd ? define('NSW', ['exports'], factory) :
-  (global = global || self, factory(global.NSW = {}));
-}(this, (function (exports) { 'use strict';
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.NSW = {}));
+})(this, (function (exports) { 'use strict';
 
   class SiteSearch {
     constructor(element) {
@@ -1471,6 +1471,4 @@
   exports.Tabs = Tabs;
   exports.initSite = initSite;
 
-  Object.defineProperty(exports, '__esModule', { value: true });
-
-})));
+}));
