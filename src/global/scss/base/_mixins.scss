@@ -1,3 +1,5 @@
+@use 'sass:math';
+
 @mixin breakpoint( $size, $width-type: min-width) {
   @if type-of( $size ) != 'string' {
     @error 'NSW-DS Breakpoint mixin accepts only strings';
@@ -227,20 +229,20 @@
 @mixin column($size, $breakpoint: null, $offset: null) {
   @if ($breakpoint) {
     @include breakpoint($breakpoint) {
-      width: percentage($size / 12);
-      max-width: percentage($size / 12);
+      width: percentage(math.div($size, 12));
+      max-width: percentage(math.div($size, 12));
 
       @if ($offset) {
-        margin-left: percentage($offset / 12);
+        margin-left: percentage(math.div($offset, 12));
       }
     }
 
   } @else {
-    width: percentage($size / 12);
-    max-width: percentage($size / 12);
+    width: percentage(math.div($size, 12));
+    max-width: percentage(math.div($size, 12));
 
     @if ($offset) {
-      margin-left: percentage($offset / 12);
+      margin-left: percentage(math.div($offset, 12));
     }
   }
 }

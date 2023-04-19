@@ -1,7 +1,7 @@
 const {
   src, dest, watch, series,
 } = require('gulp')
-const sass = require('gulp-sass')
+const sass = require('gulp-sass')(require('sass'))
 const postcss = require('gulp-postcss')
 const autoprefixer = require('autoprefixer')
 const cssnano = require('cssnano')
@@ -25,7 +25,7 @@ const discoverHelpers = require('metalsmith-discover-helpers')
 const rollup = require('gulp-better-rollup')
 const sitemap = require('gulp-sitemap')
 const babel = require('rollup-plugin-babel')
-const eslint = require('gulp-eslint')
+const eslint = require('gulp-eslint-new')
 const gulpStylelint = require('gulp-stylelint')
 const replace = require('gulp-replace')
 const inject = require('gulp-inject-string')
@@ -36,7 +36,7 @@ const config = require('./config')
 const package = require('./package')
 
 const server = browsersync.create()
-sass.compiler = require('node-sass')
+sass.compiler = require('sass')
 
 const postcssProcessors = [
   postcssNormalize({ forceImport: true }),

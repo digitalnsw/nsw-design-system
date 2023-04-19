@@ -11,10 +11,10 @@ $nsw-helper-list-sizes: (8, 16, 32);
 
   @each $size in $nsw-helper-list-sizes {
     &--#{"" + $size} {
-      margin: rem(-$size / 2);
+      margin: rem(-$size * 0.5);
 
       > * {
-        margin: rem($size / 2);
+        margin: rem($size * 0.5);
       }
     }
   }

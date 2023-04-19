@@ -87,7 +87,7 @@ $nsw-sections: (
   }
 
   @each $name, $variant in $nsw-sections {
-    &--#{$name} {
+    &--#{"" + $name} {
       background-color: map-get($variant, background);
       color: map-get($variant, color);
     }
