@@ -18,13 +18,14 @@ jobs:
           fetch-depth: 0
       - uses: actions/setup-node@v3
         with:
-          node-version: '10.x'
+          node-version: '16.x'
           registry-url: 'https://registry.npmjs.org'
       - run: . ./build-script/verify-branch.sh ${GITHUB_REF##*/}
       - run:  |
           npm install
           npm run release:${{ github.event.inputs.semver }}
-          git config --global user.name ${{ github.actor }}
+          git config --global user.email ${{ github.actor }}
+          git config --global user.name "${GITHUB_ACTOR}@users.noreply.github.com"
           npm run commit && npm run git-tag
       - run: npm publish --access public
         env:
