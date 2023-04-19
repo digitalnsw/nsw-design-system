@@ -18,7 +18,7 @@ jobs:
           fetch-depth: 0
       - uses: actions/setup-node@v3
         with:
-          node-version: '10.x'
+          node-version: '16.x'
           registry-url: 'https://registry.npmjs.org'
       - run: . ./build-script/verify-branch.sh ${GITHUB_REF##*/}
       - run:  |
