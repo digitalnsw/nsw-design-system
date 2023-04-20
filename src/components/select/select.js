@@ -160,12 +160,14 @@ class Select {
       const input = check.querySelector('.nsw-form__checkbox-input')
 
       if (count === this.options.length) {
+        input.click()
         input.checked = false
         input.removeAttribute('checked')
         check.setAttribute('aria-selected', 'false')
 
         this.updateNativeSelect(check.getAttribute('data-index'), false)
       } else {
+        input.click()
         input.checked = true
         input.setAttribute('checked', '')
         check.setAttribute('aria-selected', 'true')

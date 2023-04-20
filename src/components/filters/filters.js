@@ -321,7 +321,7 @@ class Filters {
           const content = filter.querySelector('.nsw-filters__item-content')
           const text = content ? content.querySelectorAll('input[type="text"]') : null
           const selects = content ? content.querySelectorAll('select') : null
-          const checkboxes = content ? content.querySelectorAll('input[type="checkbox"]') : null
+          const checkboxes = content ? content.querySelectorAll('input[type="checkbox"]:not([id$="-all"])') : null
 
           if (!content) return
 
