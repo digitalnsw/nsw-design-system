@@ -231,11 +231,6 @@ class Filters {
   updateCount(options) {
     const id = uniqueId()
     const GroupArray = []
-    const optionsArray = options.array[0]
-
-    if (options.array.length === 1 && optionsArray.getAttribute('id').endsWith('-all')) {
-      //
-    }
 
     if (options.array.length > 0) {
       options.array.forEach((element, index) => {
