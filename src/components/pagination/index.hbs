@@ -8,6 +8,15 @@ figma: https://www.figma.com/file/PVrERKnckLTlJSPk12gbtS/NSW-Digital-Design-Syst
 react: https://digitalnsw.github.io/nsw-design-system-react/?path=/docs/navigation-pagination--pagination
 meta-description: Pagination breaks down large amounts of content across a series of pages.
 meta-index: true
+model:
+  pagination: ../../components/pagination/json/pagination.json
 ---
 
-{{#>_docs-example}}{{>_pagination}}{{/_docs-example}}
+{{#>_docs-example}}
+{{>_pagination model.pagination}}
+{{/_docs-example}}
+
+<h3>Disabled and active states</h3>
+{{#>_docs-example}}
+{{>_pagination model.pagination disabled="true" active="1"}}
+{{/_docs-example}}
