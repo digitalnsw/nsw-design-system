@@ -51,13 +51,14 @@
         </button>
         {{/if}}
         <div class="nsw-filters__item-content">
-          <label class="nsw-form__label{{#if collapsed}} sr-only{{/if}}" for="{{select.id}}-{{filters-id}}">{{select.name}}</label>
-          <select class="nsw-form__select" id="{{select.id}}-{{filters-id}}" name="{{select.id}}-{{filters-id}}">
-            <option value="">Please select</option>  
+          <label class="nsw-form__label{{#if collapsed}} sr-only{{/if}}" for="{{select.id}}-{{filters-id}}">{{select.name}}</label>{{#if multiple}}
+          <div class="nsw-multi-select js-multi-select" data-selection-text="savings programs">{{/if}}
+            <select{{#unless multiple}} class="nsw-form__select"{{/unless}} name="{{select.id}}-{{filters-id}}" id="{{select.id}}-{{filters-id}}"{{#if helper-text}} aria-describedby="{{#if helper-text}}{{select.id}}-{{filters-id}}-helper-text{{/if}}"{{/if}}{{#if error-text}} aria-invalid="true"{{/if}}{{#if multiple}} multiple{{/if}}>{{#unless multiple}}<option value="">Please select</option>{{/unless}}
             {{#each select.list}}
-            <option value="{{this}}">{{this}}</option>
+              <option value="{{this}}">{{this}}</option>
             {{/each}}
-          </select>
+            </select>{{#if multiple}}
+          </div>{{/if}}
         </div>
       </div>
       {{/if}}

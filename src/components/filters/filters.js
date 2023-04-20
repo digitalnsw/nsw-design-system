@@ -231,6 +231,12 @@ class Filters {
   updateCount(options) {
     const id = uniqueId()
     const GroupArray = []
+    const optionsArray = options.array[0]
+
+    if (options.array.length === 1 && optionsArray.getAttribute('id').endsWith('-all')) {
+      //
+    }
+
     if (options.array.length > 0) {
       options.array.forEach((element, index) => {
         const getEventType = this.constructor.getEventType(element.type)
@@ -307,22 +313,27 @@ class Filters {
   }
 
   selectedItems() {
-    this.filtersItems.forEach((filter) => {
-      const button = filter.querySelector('.nsw-filters__item-name')
-      const content = filter.querySelector('.nsw-filters__item-content')
-      const text = content ? content.querySelectorAll('input[type="text"]') : null
-      const selects = content ? content.querySelectorAll('select') : null
-      const checkboxes = content ? content.querySelectorAll('input[type="checkbox"]') : null
+    const stateCheck = setInterval(() => {
+      if (document.readyState === 'complete') {
+        clearInterval(stateCheck)
+        this.filtersItems.forEach((filter) => {
+          const button = filter.querySelector('.nsw-filters__item-name')
+          const content = filter.querySelector('.nsw-filters__item-content')
+          const text = content ? content.querySelectorAll('input[type="text"]') : null
+          const selects = content ? content.querySelectorAll('select') : null
+          const checkboxes = content ? content.querySelectorAll('input[type="checkbox"]') : null
 
-      if (!content) return
+          if (!content) return
 
-      this.updateCount({ array: text, title: button })
-      this.updateCount({ array: selects, title: button })
-      this.updateCount({ array: checkboxes, title: button })
-      this.updateStatus({ array: text, title: button })
-      this.updateStatus({ array: selects, title: button })
-      this.updateStatus({ array: checkboxes, title: button })
-    })
+          this.updateCount({ array: text, title: button })
+          this.updateCount({ array: selects, title: button })
+          this.updateCount({ array: checkboxes, title: button })
+          this.updateStatus({ array: text, title: button })
+          this.updateStatus({ array: selects, title: button })
+          this.updateStatus({ array: checkboxes, title: button })
+        })
+      }
+    }, 100)
   }
 
   clearAllFilters(e) {
