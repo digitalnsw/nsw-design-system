@@ -344,7 +344,7 @@ class Filters {
       const content = filter.querySelector('.nsw-filters__item-content')
       const text = content.querySelectorAll('input[type="text"]')
       const selects = content.querySelectorAll('select')
-      const checkboxes = content.querySelectorAll('input[type="checkbox"]')
+      const checkboxes = content.querySelectorAll('input[type="checkbox"]:not([id$="-all"])')
       const allFields = [...text, ...selects, ...checkboxes]
 
       if (!content) return
@@ -355,6 +355,7 @@ class Filters {
           if (this.constructor.getCondition(field) && (field.type === 'text' || field.type === 'select-one')) {
             field.value = ''
           } else {
+            field.click()
             field.checked = false
           }
         })
