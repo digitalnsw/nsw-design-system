@@ -2,4 +2,195 @@
 title: Landing page - Hero banner
 order: 16
 page: true
+model:
+  nav: ../../components/main-nav/json/main-nav-digital-nsw.json
+  breadcrumbs: ../../components/breadcrumbs/json/breadcrumbs-landing.json
+  footer: ../../components/footer/json/footer-landing.json
 ---
+
+
+{{>_masthead content="#content" nav="#main-nav"}}
+{{>_header header-title="digital.nsw"}}
+{{>_main-nav model.nav}}
+
+<div class="nsw-container nsw-p-bottom-sm">
+  {{>_breadcrumbs model.breadcrumbs}}
+</div>
+
+{{>_hero-banner
+  wide=true
+  lines=true
+  theme="dark"
+  heading="Beyond Digital"
+  copy="Beyond Digital sets the strategic directions and objectives for NSW to continue its exciting journey in becoming a leading customer-centric, digitally-enabled government."
+}}
+
+  <main id="content">
+    <section class="nsw-section">
+      <div class="nsw-container">
+        <div class="nsw-layout">
+          <div class="nsw-layout__main">
+            <h2 class="nsw-section-title">Explore the strategy</h2>
+            <div class="nsw-grid">
+              <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+              {{>_card
+                headline=true
+                heading="Strategy in action"
+              }}
+              </div>
+              <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+              {{>_card
+                headline=true
+                heading="NSW Connectivity strategy"
+              }}
+              </div>
+              <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+              {{>_card
+                headline=true
+                heading="Our customer commitments"
+              }}
+              </div>
+              <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+              {{>_card
+                headline=true
+                heading="Strategy directions"
+              }}
+              </div>
+              <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+              {{>_card
+                headline=true
+                heading="Capabilities for the future"
+              }}
+              </div>
+              <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+              {{>_card
+                headline=true
+                heading="The minister’s involvement"
+              }}
+              </div>
+              <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+              {{>_card
+                headline=true
+                heading="Use of data insights"
+              }}
+              </div>
+              <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+              {{>_card
+                headline=true
+                heading="What’s new"
+              }}
+              </div>
+              <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+              {{>_card
+                headline=true
+                heading="Summary of the strategy"
+              }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+  <section class="nsw-section nsw-section--brand-light">
+    <div class="nsw-container">
+      <div class="nsw-layout">
+        <div class="nsw-layout__main">
+
+          <div class="nsw-grid nsw-align-items-center nsw-justify-content-center">
+            <div class="nsw-col nsw-col-md-6">
+              {{>_media
+                image="https://picsum.photos/id/237/2000/1050"
+                title="A picture of a black dog"
+              }}
+            </div>
+            <div class="nsw-col nsw-col-md-6">
+              <h2>NSW Government Data Strategy</h2>
+              <p class="nsw-m-bottom-sm">The NSW Government Data Strategy sets a collaborative, coordinated, consistent and safe approach to using and sharing data and insights across government to inform decisions and actions to achieve the best possible outcomes for the people and businesses of NSW.</p>
+              {{>_button-link url="#" style="dark" text="NSW Government Data Strategy"}}
+            </div>
+          </div>
+          <div class="nsw-grid nsw-align-items-center nsw-justify-content-center">
+            <div class="nsw-col nsw-col-md-6 nsw-order-lg-last">
+              {{>_media
+                image="https://picsum.photos/id/237/2000/1050"
+                title="A picture of a black dog"
+              }}
+            </div>
+            <div class="nsw-col nsw-col-md-6 nsw-order-lg-first">
+              <h2>NSW Connectivity Strategy</h2>
+              <p class="nsw-m-bottom-sm">NSW Telco Authority has developed the NSW Connectivity Strategy to align and optimise state-wide programs and opportunities to ensure modern, high speed digital networks are available to all.</p>
+              {{>_button-link url="#" style="dark" text="NSW Connectivity Strategy"}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+    <section class="nsw-section">
+      <div class="nsw-container">
+        <div class="nsw-layout">
+          <div class="nsw-layout__main">
+            <h2 class="nsw-section-title">Related initiatives</h2>
+            <div class="nsw-grid">
+              <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+                {{>_card
+                headline=true
+                theme="dark"
+                heading="Bringing your digital identity to life"
+                copy="We’re working hard to deliver a convenient, secure, and private digital identity solution for our customers across NSW."
+                }}
+              </div>
+              <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+                {{>_card
+                headline=true
+                theme="dark"
+                heading="Helping students plan and implement employment and education pathways"
+                copy="With the NSW Education Wallet students will plan and implement employment and education pathways that suit them."
+                }}
+              </div>
+              <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+                {{>_card
+                headline=true
+                theme="dark"
+                heading="Digital solutions improve water licensing processes"
+                copy="The water licensing improvement program will simplify processes, policies and ICT systems to deliver a better experience for NSW water users."
+                }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  <section class="nsw-section nsw-section--off-white">
+    <div class="nsw-container">
+      <div class="nsw-layout">
+        <div class="nsw-layout__main">
+          <h2 class="nsw-section-title">Stay in the loop and sign up to the digital.nsw newsletter</h2>
+          <p class="nsw-section-text">Find out about work happening across NSW Government in the digital space.</p>
+          <div class="nsw-grid nsw-align-items-center nsw-justify-content-center">
+            <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+              {{>_text-input id="form-first-name" label="First Name" required=true }}
+            </div>
+            <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+              {{>_text-input id="form-last-name" label="Last Name" required=true }}
+            </div>
+
+            <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+              {{>_text-input id="form-email" label="Email" required=true }}
+            </div>
+          </div>
+          <div class="nsw-grid nsw-align-items-center nsw-justify-content-center">
+            <div class="nsw-col nsw-col-md-6 nsw-col-lg-4 nsw-p-top-0">
+              {{>_button type="button" style="dark" text="Submit"}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  </main>
+
+  {{>_footer model.footer}}

@@ -1,0 +1,240 @@
+/* stylelint-disable declaration-no-important */
+
+/* stylelint-disable string-quotes */
+
+$nsw-helper-vertical-align: (baseline, top, middle, bottom, text-bottom, text-top);
+
+@each $vertical-align in $nsw-helper-vertical-align {
+  .nsw-align-#{"" + $vertical-align} {
+    vertical-align: $vertical-align !important;
+  }
+}
+
+$nsw-helper-text-align: (left, right, center);
+
+@each $text-align in $nsw-helper-text-align {
+  .nsw-text-align-#{"" + $text-align} {
+    text-align: $text-align !important;
+  }
+}
+
+$nsw-helper-text-decoration: (none, underline, line-through);
+
+@each $text-decoration in $nsw-helper-text-decoration {
+  .nsw-text-decoration-#{"" + $text-decoration} {
+    text-decoration: $text-decoration !important;
+  }
+}
+
+$nsw-helper-text-transform: (lowercase, uppercase, capitalize);
+
+@each $text-transform in $nsw-helper-text-transform {
+  .nsw-text-transform-#{"" + $text-transform} {
+    text-transform: $text-transform !important;
+  }
+}
+
+$nsw-helper-float: (left, right, none);
+
+@each $float in $nsw-helper-float {
+  .nsw-float-#{"" + $float} {
+    float: $float !important;
+  }
+}
+
+$nsw-helper-object-fit: (
+  contain: contain,
+  cover: cover,
+  fill: fill,
+  scale: scale-down,
+  none: none,
+);
+
+@each $name, $object-fit in $nsw-helper-object-fit {
+  .nsw-object-fit-#{"" + $name} {
+    object-fit: $object-fit !important;
+  }
+}
+
+$nsw-helper-overflow: (auto, hidden, visible, scroll);
+
+@each $overflow in $nsw-helper-overflow {
+  .nsw-overflow-#{"" + $overflow} {
+    overflow: $overflow !important;
+  }
+}
+
+$nsw-helper-overflow-x: (auto, hidden, visible, scroll);
+
+@each $overflow-x in $nsw-helper-overflow-x {
+  .nsw-overflow-x-#{"" + $overflow-x} {
+    overflow-x: $overflow-x !important;
+  }
+}
+
+$nsw-helper-overflow-y: (auto, hidden, visible, scroll);
+
+@each $overflow-y in $nsw-helper-overflow-y {
+  .nsw-overflow-y-#{"" + $overflow-y} {
+    overflow-y: $overflow-y !important;
+  }
+}
+
+$nsw-helper-display: (inline, inline-block, block grid, inline-grid, table, table-row, table-cell, flex, inline-flex, none);
+
+@each $display in $nsw-helper-display {
+  .nsw-display-#{"" + $display} {
+    display: $display !important;
+  }
+}
+
+$nsw-helper-position: (static, relative, absolute, fixed, sticky);
+
+$nsw-helper-position-sides: ('top', 'bottom', 'left', 'right');
+
+.nsw-position {
+  @each $position in $nsw-helper-position {
+    &-#{"" + $position} {
+      border: #{$position} !important;
+    }
+
+    @each $side in $nsw-helper-position-sides {
+      &-#{"" + $side}-#{"" + $position} {
+        border-#{"" + $side}: #{$position} !important;
+      }
+    }
+  }
+}
+
+$nsw-helper-flex: (
+  fill: 1 1 auto
+);
+
+@each $name, $flex in $nsw-helper-flex {
+  .nsw-flex-#{"" + $name} {
+    flex: $flex !important;
+  }
+}
+
+$nsw-helper-flex-direction: (row, column, row-reverse, column-reverse);
+
+@each $flex-direction in $nsw-helper-flex-direction {
+  .nsw-flex-direction-#{"" + $flex-direction} {
+    flex-direction: $flex-direction !important;
+  }
+}
+
+$nsw-helper-flex-grow: (
+  grow-0: 0,
+  grow-1: 1,
+);
+
+@each $name, $flex-grow in $nsw-helper-flex-grow {
+  .nsw-flex-grow-#{"" + $name} {
+    flex-grow: $flex-grow !important;
+  }
+}
+
+$nsw-helper-flex-shrink: (
+  shrink-0: 0,
+  shrink-1: 1,
+);
+
+@each $name, $flex-shrink in $nsw-helper-flex-shrink {
+  .nsw-flex-shrink-#{"" + $name} {
+    flex-shrink: $flex-shrink !important;
+  }
+}
+
+$nsw-helper-flex-wrap: (wrap, nowrap, wrap-reverse);
+
+@each $flex-wrap in $nsw-helper-flex-wrap {
+  .nsw-flex-wrap-#{"" + $flex-wrap} {
+    flex-wrap: $flex-wrap !important;
+  }
+}
+
+$nsw-helper-justify-content: (
+  start: flex-start,
+  end: flex-end,
+  center: center,
+  between: space-between,
+  around: space-around,
+  evenly: space-evenly,
+);
+
+@each $name, $justify-content in $nsw-helper-justify-content {
+  .nsw-justify-content-#{"" + $name} {
+    object-fit: $justify-content !important;
+  }
+}
+
+$nsw-helper-align-items: (
+  start: flex-start,
+  end: flex-end,
+  center: center,
+  baseline: baseline,
+  stretch: stretch,
+);
+
+@each $name, $align-items in $nsw-helper-align-items {
+  .nsw-align-items-#{"" + $name} {
+    align-items: $align-items !important;
+  }
+}
+
+$nsw-helper-align-content: (
+  start: flex-start,
+  end: flex-end,
+  center: center,
+  between: space-between,
+  around: space-around,
+  stretch: stretch,
+);
+
+@each $name, $align-content in $nsw-helper-align-content {
+  .nsw-align-content-#{"" + $name} {
+    align-content: $align-content !important;
+  }
+}
+
+$nsw-helper-align-self: (
+  auto: auto,
+  start: flex-start,
+  end: flex-end,
+  center: center,
+  baseline: baseline,
+  stretch: stretch,
+);
+
+@each $name, $align-self in $nsw-helper-align-self {
+  .nsw-align-self-#{"" + $name} {
+    align-self: $align-self !important;
+  }
+}
+
+$nsw-helper-order: (
+  first: -1,
+  0: 0,
+  1: 1,
+  2: 2,
+  3: 3,
+  4: 4,
+  5: 5,
+  last: 6,
+);
+
+.nsw-order {
+  @each $breakpoint, $breakpoint-size in $nsw-breakpoints {
+    @include breakpoint($breakpoint) {
+      @each $name, $order in $nsw-helper-order {
+        &-#{$breakpoint}-#{$name} {
+          order: $order !important;
+        }
+      }
+    }
+  }
+}
+
+/* stylelint-enable string-quotes */
+/* stylelint-enable declaration-no-important */

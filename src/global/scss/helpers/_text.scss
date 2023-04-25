@@ -1,7 +1,3 @@
-$nsw-helper-text-align: (left, right, center);
-$nsw-helper-text-decoration: (none, underline, line-through);
-$nsw-helper-text-transform: (lowercase, uppercase, capitalize);
-
 .nsw-word-break { 
   word-break: break-all;
 
@@ -11,31 +7,3 @@ $nsw-helper-text-transform: (lowercase, uppercase, capitalize);
     }
   }
 }
-
-/* stylelint-disable declaration-no-important */
-
-.nsw-text-align {
-  @each $align in $nsw-helper-text-align {
-    &--#{"" + $align} {
-      text-align: #{$align} !important;
-    }
-  }
-}
-
-.nsw-text-decoration {
-  @each $decoration in $nsw-helper-text-decoration {
-    &--#{"" + $decoration} {
-      text-decoration: #{$decoration} !important;
-    }
-  }
-}
-
-.nsw-text-transform {
-  @each $transform in $nsw-helper-text-transform {
-    &--#{"" + $transform} {
-      text-transform: #{$transform} !important;
-    }
-  }
-}
-
-/* stylelint-enable declaration-no-important */
