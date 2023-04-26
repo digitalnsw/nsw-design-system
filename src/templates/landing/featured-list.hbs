@@ -2,4 +2,179 @@
 title: Landing page - Featured list
 order: 17
 page: true
+model:
+  nav: ../../components/main-nav/json/main-nav-digital-nsw.json
+  breadcrumbs: ../../components/breadcrumbs/json/breadcrumbs-landing.json
+  footer: ../../components/footer/json/footer-landing.json
 ---
+{{>_masthead content="#content" nav="#main-nav"}}
+{{>_header header-title="Education"}}
+{{>_main-nav model.nav}}
+
+{{>_hero-banner 
+  wide=false 
+  theme="light"
+  heading="Assisted School Travel Program" 
+  copy="We are making it easier to deal with government by driving improvements in customer service."
+  links-title="Important information"
+  links=(split "About us;Eligibility;Program policy;ASTP Guidelines")
+}}
+
+  <main id="content">
+
+  <section class="nsw-section nsw-section--off-white nsw-section--half-padding">
+    <div class="nsw-container">
+      <div class="nsw-layout">
+        <div class="nsw-layout__main">
+
+          <div class="nsw-grid nsw-align-items-center nsw-justify-content-center">
+            <div class="nsw-col nsw-col-md-6">
+              {{>_media
+                image="https://picsum.photos/id/838/2000/1050"
+                title="A picture of a black dog"
+              }}
+            </div>
+            <div class="nsw-col nsw-col-md-6">
+              <h2>Covid-19 advice</h2>
+              <p class="nsw-m-bottom-sm">Read the department's latest advice on COVID-19 requirements in our schools in Greater Sydney and throughout NSW.</p>
+              {{>_button-link url="#" style="dark" text="COVID-19"}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="nsw-section">
+    <div class="nsw-container">
+      <div class="nsw-layout">
+        <div class="nsw-layout__main">
+          <h2 class="nsw-section-title">In this section</h2>
+          <div class="nsw-grid">
+            <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+            {{>_card
+              highlight=true
+              heading="Key dates"
+              copy="Important dates and submission deadlines for the Assisted School Travel Program."
+            }}
+            </div>
+            <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+            {{>_card
+              highlight=true
+              heading="Parents"
+              copy="Families who have a child with a disability may be eligible for transport through the Assisted School Travel Program (ASTP)."
+            }}
+            </div>
+            <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+            {{>_card
+              highlight=true
+              heading="Schools"
+              copy="Schools are important partners with families in assessing and supporting the safe travel needs of students to and from school."
+            }}
+            </div>
+            <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+            {{>_card
+              highlight=true
+              heading="ATSOs"
+              copy="Assisted Travel Support Officers (ATSOs) are Department employees who provide a high level of supervision and support for students on transport."
+            }}
+            </div>
+            <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+            {{>_card
+              highlight=true
+              heading="Eligible Service Providers"
+              copy="Contractors provide vehicles and drivers to transport eligible students with a disability to and from school."
+            }}
+            </div>
+            <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+            {{>_card
+              highlight=true
+              heading="ASTP and the NDIS"
+              copy="Transport through the ASTP is provided as an in-kind support for NDIS participants who are eligible to receive an ASTP service."
+            }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="nsw-section nsw-section--brand-light">
+    <div class="nsw-container">
+      <div class="nsw-layout">
+        <div class="nsw-layout__main">
+
+          <div class="nsw-grid nsw-grid--spaced">
+            <div class="nsw-col nsw-col-md-6">
+              {{>_content-block
+                heading="For Contractors"
+                copy="ASTP Online for Contractors is a secure web portal that allows ASTP contractors to access run cards, view routes and submit pay claims."
+                link="ASTP Online for Contractors"
+                icon="<svg viewBox='0 0 64 64' fill='none' xmlns='http://www.w3.org/2000/svg'><rect x='3' y='10' width='58' height='43.818' rx='1' stroke='#333' stroke-width='2'/><rect x='3' y='10' width='58' height='8.313' rx='1' stroke='#333' stroke-width='2'/><path d='M22.563 27.75c0 2.48-2.204 4.625-5.094 4.625s-5.094-2.145-5.094-4.625 2.204-4.625 5.094-4.625 5.093 2.145 5.093 4.625zM7.925 45.453c.363-2.767 1.178-5.313 2.664-7.15 1.45-1.79 3.605-2.99 6.88-2.99s5.429 1.2 6.879 2.99c1.486 1.837 2.301 4.383 2.665 7.15.197 1.498-1.06 2.86-2.763 2.86H10.687c-1.703 0-2.96-1.362-2.762-2.86z' stroke='#333' stroke-width='2'/><path stroke='#0085B3' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' d='M33 25.813h20.5M33 32.375h20.5M33 38.938h20.5'/></svg>"
+              }}
+            </div>
+            <div class="nsw-col nsw-col-md-6">
+              {{>_content-block
+                heading="For Schools"
+                copy="ASTP Online for Schools is a secure web portal that allows schools to access student details, submit rollover eligibility, view run details and verify contractor pay claims."
+                link="ASTP Online for Schools"
+                icon="<svg viewBox='0 0 64 64' fill='none' xmlns='http://www.w3.org/2000/svg'><circle cx='22.248' cy='16.831' r='9.83' stroke='#333' stroke-width='2'/><path d='M3.121 53.864c.377-5.925 1.682-11.782 4.62-16.133 2.896-4.287 7.426-7.187 14.507-7.187 7.082 0 11.611 2.9 14.507 7.187 2.939 4.35 4.244 10.208 4.62 16.133.101 1.585-1.202 2.934-2.878 2.934H6c-1.676 0-2.98-1.349-2.879-2.934z' stroke='#333' stroke-width='2'/><circle cx='48.01' cy='28.552' r='6.483' stroke='#0085B3' stroke-width='2'/><path d='M60.924 52.86l-.997.073.997-.074zM44.38 55.856a1 1 0 100 2v-2zm-3.297-16.99a1 1 0 10.943 1.764l-.943-1.764zm6.927.41c4.58 0 7.346 1.613 9.076 4.007 1.78 2.461 2.563 5.88 2.841 9.649l1.995-.148c-.288-3.887-1.107-7.758-3.215-10.673-2.157-2.984-5.566-4.834-10.697-4.834v2zm-3.63 18.58h12.678v-2H44.38v2zM42.026 40.63c1.586-.847 3.548-1.353 5.984-1.353v-2c-2.72 0-5.014.567-6.927 1.59l.943 1.763zm17.901 12.302c.116 1.57-1.186 2.924-2.869 2.924v2c2.736 0 5.073-2.235 4.864-5.072l-1.995.148z' fill='#0085B3'/></svg>"
+              }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="nsw-section">
+    <div class="nsw-container">
+      <div class="nsw-layout">
+        <div class="nsw-layout__main">
+          <h2 class="nsw-section-title">Related information</h2>
+          <div class="nsw-grid">
+            <div class="nsw-col nsw-col-md-6">
+              {{>_card
+              img="https://picsum.photos/id/29/200/200"
+              horizontal=true
+              theme="dark"
+              heading="Update your details"
+              copy="Help us keep your records accurate and up to date."
+              }}
+            </div>
+            <div class="nsw-col nsw-col-md-6">
+              {{>_card
+              img="https://picsum.photos/id/28/800/800"
+              horizontal=true
+              theme="dark"
+              heading="Rollover"
+              copy="Rollover is the process of reviewing the transport services for all students at the end of each school year"
+              }}
+            </div>
+            <div class="nsw-col nsw-col-md-6">
+              {{>_card
+              img="https://picsum.photos/id/27/800/800"
+              horizontal=true
+              theme="dark"
+              heading="School safety"
+              copy="Get up-to-date information on schools that have temporarily ceased operations."
+              }}
+            </div>
+            <div class="nsw-col nsw-col-md-6">
+              {{>_card
+              img="https://picsum.photos/id/26/800/800"
+              horizontal=true
+              theme="dark"
+              heading="Contact us"
+              copy="Call 1300 338 278 (toll free) during our business hours, 8am to 5pm, Monday to Friday during school terms."
+              }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+{{>_footer model.footer}}
