@@ -2,4 +2,180 @@
 title: Landing page - Events
 order: 18
 page: true
+model:
+  nav: ../../components/main-nav/json/main-nav-digital-nsw.json
+  breadcrumbs: ../../components/breadcrumbs/json/breadcrumbs-landing.json
+  footer: ../../components/footer/json/footer-landing.json
 ---
+
+
+{{>_masthead content="#content" nav="#main-nav"}}
+{{>_header }}
+{{>_main-nav model.nav}}
+
+<div class="nsw-container nsw-p-bottom-sm">
+  {{>_breadcrumbs model.breadcrumbs}}
+</div>
+
+{{>_hero-banner
+  wide=false
+  theme="off-white"
+  heading="What's happening"
+  copy="Find out what is happening in NSW, including NSW government news and announcements, and events."
+  img="https://picsum.photos/id/456/2000/1250"
+}}
+
+<main id="content">
+
+  <section class="nsw-section">
+    <div class="nsw-container">
+      <div class="nsw-layout">
+        <div class="nsw-layout__main">
+
+          <div class="nsw-grid">
+            <div class="nsw-col nsw-col-md-9 nsw-col-lg-8">
+              <p>Whether you&rsquo;re looking for events today, tomorrow, the next 14 days or beyond, the Sydney calendar is full of vibrant, exciting, intriguing and memorable experiences. The UNESCO World Heritage-listed <a href="#">Sydney Opera House</a> hosts hundreds of outstanding performances every year.</p>
+
+              <p>Reserve your seats for musicals, shows and concerts in Sydney. Other fabulous venues in Sydney include the Capitol Theatre, the State Theatre, Sydney Lyric, the Roslyn Packer Theatre, the Theatre Royal, and the ICC in <a href="#">Darling Harbour</a>. Big spectacles are held at <a href="#">Sydney Olympic Park</a> arenas as well.</p>
+              
+              <p>You&rsquo;ll discover cutting-edge shows at smaller venues, such as the <a href="#">Belvoir St Theatre</a> and the <a href="#">Enmore Theatre</a>. There are wonderful festivals, too. The eclectic Sydney Festival is in January. <a href="#">Vivid Sydney</a> is held over several weeks in May and June, illuminating the city with amazing digital light shows.</p>
+
+              <p>There are special occasions on NSW public holidays. Australia Day is January 26. The national day celebrates Australia&rsquo;s diversity and achievements. The main stage is <a href="#">Sydney Harbour</a>, one of the world&rsquo;s great natural harbours. A lovely way to enjoy the waterway is on a ferry or harbour cruise.</p>
+            </div>
+            <div class="nsw-col nsw-col-md-3 nsw-col-lg-4">
+              <div class="nsw-content-block nsw-border--1 nsw-border--off-white nsw-border--radius nsw-p-md nsw-p-bottom-lg">
+                {{>_link-list
+                  title="Upcoming holidays"
+                  list=(split "2023 NSW public holidays;2023 public school holidays")
+                }}
+              </div>
+            </div>
+          </div>
+
+          <hr class="nsw-section-separator" />
+
+          <h2 class="nsw-section-title">Explore the strategy</h2>
+          <div class="nsw-grid">
+            <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+            {{>_card
+              headline=true
+              img="https://picsum.photos/id/68/400/200"
+              heading="Find upcoming events in NSW"
+            }}
+            </div>
+            <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+            {{>_card
+              headline=true
+              img="https://picsum.photos/id/76/400/200"
+              heading="What's on in Sydney"
+            }}
+            </div>
+            <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+            {{>_card
+              headline=true
+              img="https://picsum.photos/id/89/400/200"
+              heading="What's on in regional NSW"
+            }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="nsw-section nsw-section--brand-light">
+    <div class="nsw-container">
+      <div class="nsw-layout">
+        <div class="nsw-layout__main">
+          <div class="nsw-grid nsw-align-items-center nsw-justify-content-center">
+            <div class="nsw-col nsw-col-md-6 nsw-order-lg-last">
+              {{>_media
+                video="https://www.youtube.com/embed/3JKQ2NyPoto"
+                title="Surfest 2023 - Finals Day of the Burton Automotive Pro & Speaking in Colour Pro"
+              }}
+            </div>
+            <div class="nsw-col nsw-col-md-6 nsw-order-lg-first">
+              <h2>SURFEST Newcastle Australia</h2>
+
+              <p>SURFEST Newcastle, Australia will celebrate its 37th anniversary in 2023. The event is the largest surfing festival in the southern hemisphere hosted at Merewether beach.</p>
+              <p>The event features international fields of competitive surfers in the:</p>
+
+              <ul>
+                <li>The World Surf League (WSL) Men&rsquo;s Qualifying Series 5000 point Burton Automotive Pro.</li>
+                <li>The WSL Women&rsquo;s Qualifying Series 5000 point Speaking in Colour Womens Pro</li>
+                <li>And other surf competitions.</li>
+              </ul>
+
+              <p class="nsw-m-bottom-sm">Surfest started on 11 February 2023 with the Lake Mac City Pro Junior Trials at Red Head beach and will end on 24 March 2023 with The Mutual Bank High Schools Team Challenge at South Bar beach.</p>
+
+              {{>_button-link url="#" style="dark" text="Surfest"}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="nsw-section">
+    <div class="nsw-container">
+      <div class="nsw-layout">
+        <div class="nsw-layout__main">
+          <h2 class="nsw-section-title">Supporting the community</h2>
+          <div class="nsw-grid">
+            <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+              {{>_card
+              headline=true
+              heading="Have your say"
+              copy="Find NSW Government consultations happening in your community and share your opinion on new projects, services and government policies."
+              }}
+            </div>
+            <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+              {{>_card
+              headline=true
+              heading="Projects and initiatives"
+              copy="Projects and programs funded by the NSW Government to support the state’s economy, education, trade and investment community."
+              }}
+            </div>
+            <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+              {{>_card
+              headline=true
+              heading="Grants and funding"
+              copy="Find a government initiative, grant or funding program to help support your business, your project or your community."
+              }}
+            </div>
+          </div>
+
+          <hr class="nsw-section-separator" />
+
+          <h2 class="nsw-section-title">Related information</h2>
+          <p>The following pages are also helpful when planning your holiday, short break or weekend escape:</p>
+          
+          <div class="nsw-grid">
+            <div class="nsw-col nsw-col-md-6">
+              {{>_link-list
+                title=false
+                list=(split "Places to visit in Sydney;Things to do in Sydney;Tours in Sydney")
+              }}
+            </div>
+            <div class="nsw-col nsw-col-md-6">
+              {{>_link-list
+                title=false
+                list=(split "Sydney accommodation;Sydney attractions")
+              }}
+            </div>
+          </div>
+
+          {{>_in-page-alert
+          type="info"
+          icon="info"
+          heading="Keep up-to date"
+          raw='<p>Join our community and register for updates to stay up-to-date with all the latest events and releases.</p><p><a href="#">Join our community</a></p>'
+          }}
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+{{>_footer model.footer}}

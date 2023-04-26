@@ -42,20 +42,6 @@ $nsw-helper-text-colours: (
   brand-supplementary: var(--nsw-brand-supplementary)
 );
 
-$nsw-helper-border-colours: (
-  brand-dark: var(--nsw-brand-dark),
-  brand-light: var(--nsw-brand-light),
-  brand-supplementary: var(--nsw-brand-supplementary),
-  brand-accent: var(--nsw-brand-accent),
-  black: var(--nsw-black),
-  white: var(--nsw-white),
-  off-white: var(--nsw-off-white),
-  grey-01: var(--nsw-grey-01),
-  grey-02: var(--nsw-grey-02),
-  grey-03: var(--nsw-grey-03),
-  grey-04: var(--nsw-grey-04)
-);
-
 /* stylelint-disable declaration-no-important */
 
 @each $name, $color in $nsw-helper-bg-colours {
@@ -75,16 +61,6 @@ $nsw-helper-border-colours: (
 
   .hover\:nsw-text--#{"" + $name}:hover {
     color: $color !important;
-  }
-}
-
-@each $name, $color in $nsw-helper-border-colours {
-  .nsw-border--#{"" + $name} {
-    border-color: $color !important;
-  }
-
-  .hover\:nsw-border--#{"" + $name}:hover {
-    border-color: $color !important;
   }
 }
 
