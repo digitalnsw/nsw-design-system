@@ -7,6 +7,8 @@ import FileUpload from './components/file-upload/file-upload'
 import Tabs from './components/tabs/tabs'
 import GlobalAlert from './components/global-alert/global-alert'
 import Select from './components/select/select'
+import Tooltip from './components/tooltip/tooltip'
+import Toggletip from './components/tooltip/toggletip'
 
 if (window.NodeList && !NodeList.prototype.forEach) {
   NodeList.prototype.forEach = Array.prototype.forEach
@@ -39,6 +41,8 @@ function initSite() {
   const tabs = document.querySelectorAll('.js-tabs')
   const globalAlert = document.querySelectorAll('.js-global-alert')
   const multiSelect = document.querySelectorAll('.js-multi-select')
+  const tooltip = document.querySelectorAll('.js-tooltip')
+  const toggletip = document.querySelectorAll('.js-toggletip')
 
   openSearchButton.forEach((element) => {
     new SiteSearch(element).init()
@@ -88,8 +92,20 @@ function initSite() {
       new Select(element).init()
     })
   }
+
+  if (tooltip) {
+    tooltip.forEach((element) => {
+      new Tooltip(element).init()
+    })
+  }
+
+  if (toggletip) {
+    toggletip.forEach((element) => {
+      new Toggletip(element).init()
+    })
+  }
 }
 
 export {
-  initSite, SiteSearch, Navigation, Accordion, Tabs, GlobalAlert, Dialog, Filters, FileUpload, Select,
+  initSite, SiteSearch, Navigation, Accordion, Tabs, GlobalAlert, Dialog, Filters, FileUpload, Select, Tooltip, Toggletip,
 }
