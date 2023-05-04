@@ -2,41 +2,71 @@
 
 $nsw-helper-vertical-align: (baseline, top, middle, bottom, text-bottom, text-top);
 
-@each $vertical-align in $nsw-helper-vertical-align {
-  .nsw-align-#{"" + $vertical-align} {
-    vertical-align: $vertical-align !important;
+.nsw-vertical-align {
+  @each $breakpoint, $breakpoint-size in $nsw-breakpoints {
+    @include breakpoint($breakpoint) {
+      @each $name, $vertical-align in $nsw-helper-vertical-align {
+        &-#{$breakpoint}-#{$name} {
+          vertical-align: $vertical-align !important;
+        }
+      }
+    }
   }
 }
 
 $nsw-helper-text-align: (left, right, center);
 
-@each $text-align in $nsw-helper-text-align {
-  .nsw-text-align-#{"" + $text-align} {
-    text-align: $text-align !important;
+.nsw-text-align {
+  @each $breakpoint, $breakpoint-size in $nsw-breakpoints {
+    @include breakpoint($breakpoint) {
+      @each $name, $text-align in $nsw-helper-text-align {
+        &-#{$breakpoint}-#{$name} {
+          text-align: $text-align !important;
+        }
+      }
+    }
   }
 }
 
 $nsw-helper-text-decoration: (none, underline, line-through);
 
-@each $text-decoration in $nsw-helper-text-decoration {
-  .nsw-text-decoration-#{"" + $text-decoration} {
-    text-decoration: $text-decoration !important;
+.nsw-text-decoration {
+  @each $breakpoint, $breakpoint-size in $nsw-breakpoints {
+    @include breakpoint($breakpoint) {
+      @each $name, $text-decoration in $nsw-helper-text-decoration {
+        &-#{$breakpoint}-#{$name} {
+          text-decoration: $text-decoration !important;
+        }
+      }
+    }
   }
 }
 
 $nsw-helper-text-transform: (lowercase, uppercase, capitalize);
 
-@each $text-transform in $nsw-helper-text-transform {
-  .nsw-text-transform-#{"" + $text-transform} {
-    text-transform: $text-transform !important;
+.nsw-text-transform {
+  @each $breakpoint, $breakpoint-size in $nsw-breakpoints {
+    @include breakpoint($breakpoint) {
+      @each $name, $text-transform in $nsw-helper-text-transform {
+        &-#{$breakpoint}-#{$name} {
+          text-transform: $text-transform !important;
+        }
+      }
+    }
   }
 }
 
 $nsw-helper-float: (left, right, none);
 
-@each $float in $nsw-helper-float {
-  .nsw-float-#{"" + $float} {
-    float: $float !important;
+.nsw-float {
+  @each $breakpoint, $breakpoint-size in $nsw-breakpoints {
+    @include breakpoint($breakpoint) {
+      @each $name, $float in $nsw-helper-float {
+        &-#{$breakpoint}-#{$name} {
+          float: $float !important;
+        }
+      }
+    }
   }
 }
 
@@ -48,65 +78,99 @@ $nsw-helper-object-fit: (
   none: none,
 );
 
-@each $name, $object-fit in $nsw-helper-object-fit {
-  .nsw-object-fit-#{"" + $name} {
-    object-fit: $object-fit !important;
+.nsw-object-fit {
+  @each $breakpoint, $breakpoint-size in $nsw-breakpoints {
+    @include breakpoint($breakpoint) {
+      @each $name, $object-fit in $nsw-helper-object-fit {
+        &-#{$breakpoint}-#{$name} {
+          object-fit: $object-fit !important;
+        }
+      }
+    }
   }
 }
 
 $nsw-helper-overflow: (auto, hidden, visible, scroll);
 
-@each $overflow in $nsw-helper-overflow {
-  .nsw-overflow-#{"" + $overflow} {
-    overflow: $overflow !important;
+.nsw-overflow {
+  @each $breakpoint, $breakpoint-size in $nsw-breakpoints {
+    @include breakpoint($breakpoint) {
+      @each $name, $overflow in $nsw-helper-overflow {
+        &-#{$breakpoint}-#{$name} {
+          overflow: $overflow !important;
+        }
+      }
+    }
   }
 }
 
 $nsw-helper-overflow-x: (auto, hidden, visible, scroll);
 
-@each $overflow-x in $nsw-helper-overflow-x {
-  .nsw-overflow-x-#{"" + $overflow-x} {
-    overflow-x: $overflow-x !important;
+.nsw-overflow-x {
+  @each $breakpoint, $breakpoint-size in $nsw-breakpoints {
+    @include breakpoint($breakpoint) {
+      @each $name, $overflow-x in $nsw-helper-overflow-x {
+        &-#{$breakpoint}-#{$name} {
+          overflow-x: $overflow-x !important;
+        }
+      }
+    }
   }
 }
 
 $nsw-helper-overflow-y: (auto, hidden, visible, scroll);
 
-@each $overflow-y in $nsw-helper-overflow-y {
-  .nsw-overflow-y-#{"" + $overflow-y} {
-    overflow-y: $overflow-y !important;
-  }
-}
-
-$nsw-helper-display: (inline, inline-block, block grid, inline-grid, table, table-row, table-cell, flex, inline-flex, none);
-
-@each $display in $nsw-helper-display {
-  .nsw-display-#{"" + $display} {
-    display: $display !important;
+.nsw-overflow-y {
+  @each $breakpoint, $breakpoint-size in $nsw-breakpoints {
+    @include breakpoint($breakpoint) {
+      @each $name, $overflow-y in $nsw-helper-overflow-y {
+        &-#{$breakpoint}-#{$name} {
+          overflow-y: $overflow-y !important;
+        }
+      }
+    }
   }
 }
 
 $nsw-helper-position: (static, relative, absolute, fixed, sticky);
 
-@each $position in $nsw-helper-position {
-  .nsw-display-#{"" + $position} {
-    position: $position !important;
+.nsw-position {
+  @each $breakpoint, $breakpoint-size in $nsw-breakpoints {
+    @include breakpoint($breakpoint) {
+      @each $name, $position in $nsw-helper-position {
+        &-#{$breakpoint}-#{$name} {
+          position: $position !important;
+        }
+      }
+    }
+  }
+}
+
+$nsw-helper-display: (inline, inline-block, block grid, inline-grid, table, table-row, table-cell, flex, inline-flex, none);
+
+.nsw-display {
+  @each $breakpoint, $breakpoint-size in $nsw-breakpoints {
+    @include breakpoint($breakpoint) {
+      @each $name, $display in $nsw-helper-display {
+        &-#{$breakpoint}-#{$name} {
+          display: $display !important;
+        }
+      }
+    }
   }
 }
 
 $nsw-helper-flex-direction: (row, column, row-reverse, column-reverse);
 
-@each $flex-direction in $nsw-helper-flex-direction {
-  .nsw-flex-direction-#{"" + $flex-direction} {
-    flex-direction: $flex-direction !important;
-  }
-}
-
-$nsw-helper-flex-wrap: (wrap, nowrap, wrap-reverse);
-
-@each $flex-wrap in $nsw-helper-flex-wrap {
-  .nsw-flex-wrap-#{"" + $flex-wrap} {
-    flex-wrap: $flex-wrap !important;
+.nsw-flex-direction {
+  @each $breakpoint, $breakpoint-size in $nsw-breakpoints {
+    @include breakpoint($breakpoint) {
+      @each $name, $flex-direction in $nsw-helper-flex-direction {
+        &-#{$breakpoint}-#{$name} {
+          flex-direction: $flex-direction !important;
+        }
+      }
+    }
   }
 }
 
@@ -144,24 +208,15 @@ $nsw-helper-align-items: (
   stretch: stretch,
 );
 
-@each $name, $align-items in $nsw-helper-align-items {
-  .nsw-align-items-#{"" + $name} {
-    align-items: $align-items !important;
-  }
-}
-
-$nsw-helper-align-content: (
-  start: flex-start,
-  end: flex-end,
-  center: center,
-  between: space-between,
-  around: space-around,
-  stretch: stretch,
-);
-
-@each $name, $align-content in $nsw-helper-align-content {
-  .nsw-align-content-#{"" + $name} {
-    align-content: $align-content !important;
+.nsw-align-items {
+  @each $breakpoint, $breakpoint-size in $nsw-breakpoints {
+    @include breakpoint($breakpoint) {
+      @each $name, $align-items in $nsw-helper-align-items {
+        &-#{$breakpoint}-#{$name} {
+          align-items: $align-items !important;
+        }
+      }
+    }
   }
 }
 
@@ -174,9 +229,29 @@ $nsw-helper-align-self: (
   stretch: stretch,
 );
 
-@each $name, $align-self in $nsw-helper-align-self {
-  .nsw-align-self-#{"" + $name} {
-    align-self: $align-self !important;
+.nsw-align-self {
+  @each $breakpoint, $breakpoint-size in $nsw-breakpoints {
+    @include breakpoint($breakpoint) {
+      @each $name, $align-self in $nsw-helper-align-self {
+        &-#{$breakpoint}-#{$name} {
+          align-self: $align-self !important;
+        }
+      }
+    }
+  }
+}
+
+$nsw-helper-flex-wrap: (wrap, nowrap, wrap-reverse);
+
+.nsw-flex-wrap {
+  @each $breakpoint, $breakpoint-size in $nsw-breakpoints {
+    @include breakpoint($breakpoint) {
+      @each $name, $flex-wrap in $nsw-helper-flex-wrap {
+        &-#{$breakpoint}-#{$name} {
+          flex-wrap: $flex-wrap !important;
+        }
+      }
+    }
   }
 }
 
@@ -197,6 +272,27 @@ $nsw-helper-order: (
       @each $name, $order in $nsw-helper-order {
         &-#{$breakpoint}-#{$name} {
           order: $order !important;
+        }
+      }
+    }
+  }
+}
+
+$nsw-helper-align-content: (
+  start: flex-start,
+  end: flex-end,
+  center: center,
+  between: space-between,
+  around: space-around,
+  stretch: stretch,
+);
+
+.nsw-align-content {
+  @each $breakpoint, $breakpoint-size in $nsw-breakpoints {
+    @include breakpoint($breakpoint) {
+      @each $name, $align-content in $nsw-helper-align-content {
+        &-#{$breakpoint}-#{$name} {
+          align-content: $align-content !important;
         }
       }
     }
