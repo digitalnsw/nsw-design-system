@@ -1,300 +1,399 @@
-/* stylelint-disable declaration-no-important, string-quotes */
+/* stylelint-disable declaration-no-important, string-quotes, number-leading-zero, scss/dollar-variable-default */
+$utilities: () !default;
 
-$nsw-helper-vertical-align: (baseline, top, middle, bottom, text-bottom, text-top);
-
-.nsw-vertical-align {
-  @each $breakpoint, $breakpoint-size in $nsw-breakpoints {
-    @include breakpoint($breakpoint) {
-      @each $name, $vertical-align in $nsw-helper-vertical-align {
-        &-#{$breakpoint}-#{$name} {
-          vertical-align: $vertical-align !important;
-        }
-      }
-    }
-  }
-}
-
-$nsw-helper-text-align: (left, right, center);
-
-.nsw-text-align {
-  @each $breakpoint, $breakpoint-size in $nsw-breakpoints {
-    @include breakpoint($breakpoint) {
-      @each $name, $text-align in $nsw-helper-text-align {
-        &-#{$breakpoint}-#{$name} {
-          text-align: $text-align !important;
-        }
-      }
-    }
-  }
-}
-
-$nsw-helper-text-decoration: (none, underline, line-through);
-
-.nsw-text-decoration {
-  @each $breakpoint, $breakpoint-size in $nsw-breakpoints {
-    @include breakpoint($breakpoint) {
-      @each $name, $text-decoration in $nsw-helper-text-decoration {
-        &-#{$breakpoint}-#{$name} {
-          text-decoration: $text-decoration !important;
-        }
-      }
-    }
-  }
-}
-
-$nsw-helper-text-transform: (lowercase, uppercase, capitalize);
-
-.nsw-text-transform {
-  @each $breakpoint, $breakpoint-size in $nsw-breakpoints {
-    @include breakpoint($breakpoint) {
-      @each $name, $text-transform in $nsw-helper-text-transform {
-        &-#{$breakpoint}-#{$name} {
-          text-transform: $text-transform !important;
-        }
-      }
-    }
-  }
-}
-
-$nsw-helper-float: (left, right, none);
-
-.nsw-float {
-  @each $breakpoint, $breakpoint-size in $nsw-breakpoints {
-    @include breakpoint($breakpoint) {
-      @each $name, $float in $nsw-helper-float {
-        &-#{$breakpoint}-#{$name} {
-          float: $float !important;
-        }
-      }
-    }
-  }
-}
-
-$nsw-helper-object-fit: (
-  contain: contain,
-  cover: cover,
-  fill: fill,
-  scale: scale-down,
-  none: none,
-);
-
-.nsw-object-fit {
-  @each $breakpoint, $breakpoint-size in $nsw-breakpoints {
-    @include breakpoint($breakpoint) {
-      @each $name, $object-fit in $nsw-helper-object-fit {
-        &-#{$breakpoint}-#{$name} {
-          object-fit: $object-fit !important;
-        }
-      }
-    }
-  }
-}
-
-$nsw-helper-overflow: (auto, hidden, visible, scroll);
-
-.nsw-overflow {
-  @each $breakpoint, $breakpoint-size in $nsw-breakpoints {
-    @include breakpoint($breakpoint) {
-      @each $name, $overflow in $nsw-helper-overflow {
-        &-#{$breakpoint}-#{$name} {
-          overflow: $overflow !important;
-        }
-      }
-    }
-  }
-}
-
-$nsw-helper-overflow-x: (auto, hidden, visible, scroll);
-
-.nsw-overflow-x {
-  @each $breakpoint, $breakpoint-size in $nsw-breakpoints {
-    @include breakpoint($breakpoint) {
-      @each $name, $overflow-x in $nsw-helper-overflow-x {
-        &-#{$breakpoint}-#{$name} {
-          overflow-x: $overflow-x !important;
-        }
-      }
-    }
-  }
-}
-
-$nsw-helper-overflow-y: (auto, hidden, visible, scroll);
-
-.nsw-overflow-y {
-  @each $breakpoint, $breakpoint-size in $nsw-breakpoints {
-    @include breakpoint($breakpoint) {
-      @each $name, $overflow-y in $nsw-helper-overflow-y {
-        &-#{$breakpoint}-#{$name} {
-          overflow-y: $overflow-y !important;
-        }
-      }
-    }
-  }
-}
-
-$nsw-helper-position: (static, relative, absolute, fixed, sticky);
-
-.nsw-position {
-  @each $breakpoint, $breakpoint-size in $nsw-breakpoints {
-    @include breakpoint($breakpoint) {
-      @each $name, $position in $nsw-helper-position {
-        &-#{$breakpoint}-#{$name} {
-          position: $position !important;
-        }
-      }
-    }
-  }
-}
-
-$nsw-helper-display: (inline, inline-block, block grid, inline-grid, table, table-row, table-cell, flex, inline-flex, none);
-
-.nsw-display {
-  @each $breakpoint, $breakpoint-size in $nsw-breakpoints {
-    @include breakpoint($breakpoint) {
-      @each $name, $display in $nsw-helper-display {
-        &-#{$breakpoint}-#{$name} {
-          display: $display !important;
-        }
-      }
-    }
-  }
-}
-
-$nsw-helper-flex-direction: (row, column, row-reverse, column-reverse);
-
-.nsw-flex-direction {
-  @each $breakpoint, $breakpoint-size in $nsw-breakpoints {
-    @include breakpoint($breakpoint) {
-      @each $name, $flex-direction in $nsw-helper-flex-direction {
-        &-#{$breakpoint}-#{$name} {
-          flex-direction: $flex-direction !important;
-        }
-      }
-    }
-  }
-}
-
-$nsw-helper-justify-content: (
-  start: start,
-  end: end,
-  flex-start: flex-start,
-  flex-end: flex-end,
-  center: center,
-  left: left,
-  right: right,
-  stretch: stretch,
-  between: space-between,
-  around: space-around,
-  evenly: space-evenly,
-);
-
-.nsw-justify-content {
-  @each $breakpoint, $breakpoint-size in $nsw-breakpoints {
-    @include breakpoint($breakpoint) {
-      @each $name, $justify-content in $nsw-helper-justify-content {
-        &-#{$breakpoint}-#{$name} {
-          justify-content: $justify-content !important;
-        }
-      }
-    }
-  }
-}
-
-$nsw-helper-align-items: (
-  start: flex-start,
-  end: flex-end,
-  center: center,
-  baseline: baseline,
-  stretch: stretch,
-);
-
-.nsw-align-items {
-  @each $breakpoint, $breakpoint-size in $nsw-breakpoints {
-    @include breakpoint($breakpoint) {
-      @each $name, $align-items in $nsw-helper-align-items {
-        &-#{$breakpoint}-#{$name} {
-          align-items: $align-items !important;
-        }
-      }
-    }
-  }
-}
-
-$nsw-helper-align-self: (
-  auto: auto,
-  start: flex-start,
-  end: flex-end,
-  center: center,
-  baseline: baseline,
-  stretch: stretch,
-);
-
-.nsw-align-self {
-  @each $breakpoint, $breakpoint-size in $nsw-breakpoints {
-    @include breakpoint($breakpoint) {
-      @each $name, $align-self in $nsw-helper-align-self {
-        &-#{$breakpoint}-#{$name} {
-          align-self: $align-self !important;
-        }
-      }
-    }
-  }
-}
-
-$nsw-helper-flex-wrap: (wrap, nowrap, wrap-reverse);
-
-.nsw-flex-wrap {
-  @each $breakpoint, $breakpoint-size in $nsw-breakpoints {
-    @include breakpoint($breakpoint) {
-      @each $name, $flex-wrap in $nsw-helper-flex-wrap {
-        &-#{$breakpoint}-#{$name} {
-          flex-wrap: $flex-wrap !important;
-        }
-      }
-    }
-  }
-}
-
-$nsw-helper-order: (
-  first: -1,
-  0: 0,
-  1: 1,
-  2: 2,
-  3: 3,
-  4: 4,
-  5: 5,
-  last: 6,
-);
-
-.nsw-order {
-  @each $breakpoint, $breakpoint-size in $nsw-breakpoints {
-    @include breakpoint($breakpoint) {
-      @each $name, $order in $nsw-helper-order {
-        &-#{$breakpoint}-#{$name} {
-          order: $order !important;
-        }
-      }
-    }
-  }
-}
-
-$nsw-helper-align-content: (
-  start: flex-start,
-  end: flex-end,
-  center: center,
-  between: space-between,
-  around: space-around,
-  stretch: stretch,
-);
-
-.nsw-align-content {
-  @each $breakpoint, $breakpoint-size in $nsw-breakpoints {
-    @include breakpoint($breakpoint) {
-      @each $name, $align-content in $nsw-helper-align-content {
-        &-#{$breakpoint}-#{$name} {
-          align-content: $align-content !important;
-        }
-      }
-    }
-  }
-}
+$utilities: map-merge((
+  "align": (
+    property: vertical-align,
+    class: nsw-align,
+    values: baseline top middle bottom text-bottom text-top
+  ),
+  "float": (
+    responsive: true,
+    property: float,
+    class: nsw-float,
+    values: left right none
+  ),
+  "object-fit": (
+    responsive: true,
+    property: object-fit,
+    class: nsw-object-fit,
+    values: (
+      contain: contain,
+      cover: cover,
+      fill: fill,
+      scale: scale-down,
+      none: none,
+    )
+  ),
+  "opacity": (
+    property: opacity,
+    class: nsw-opacity,
+    state: hover,
+    values: (
+      0: 0,
+      25: .25,
+      50: .5,
+      75: .75,
+      100: 1,
+    )
+  ),
+  "overflow": (
+    property: overflow,
+    class: nsw-overflow,
+    values: auto hidden visible scroll,
+  ),
+  "overflow-x": (
+    property: overflow-x,
+    class: nsw-overflow-x,
+    values: auto hidden visible scroll,
+  ),
+  "overflow-y": (
+    property: overflow-y,
+    class: nsw-overflow-y,
+    values: auto hidden visible scroll,
+  ),
+  "display": (
+    responsive: true,
+    print: true,
+    property: display,
+    class: nsw-display,
+    values: inline inline-block block grid inline-grid table table-row table-cell flex inline-flex none
+  ),
+  "position": (
+    property: position,
+    class: nsw-position,
+    values: static relative absolute fixed sticky
+  ),
+  "top": (
+    property: top,
+    class: nsw-top,
+    values: $nsw-position-values
+  ),
+  "bottom": (
+    property: bottom,
+    class: nsw-bottom,
+    values: $nsw-position-values
+  ),
+  "left": (
+    property: left,
+    class: nsw-left,
+    values: $nsw-position-values
+  ),
+  "right": (
+    property: right,
+    class: nsw-right,
+    values: $nsw-position-values
+  ),
+  "translate-middle": (
+    property: transform,
+    class: nsw-translate-middle,
+    values: (
+      null: translate(-50%, -50%),
+      x: translateX(-50%),
+      y: translateY(-50%),
+    )
+  ),
+  "border": (
+    property: border,
+    class: nsw-border,
+    values: (
+      null: var(--nsw-border-width) var(--nsw-border-style) var(--nsw-border-color),
+      0: 0,
+    )
+  ),
+  "border-top": (
+    property: border-top,
+    values: (
+      null: var(--nsw-border-width) var(--nsw-border-style) var(--nsw-border-color),
+      0: 0,
+    )
+  ),
+  "border-right": (
+    property: border-right,
+    class: nsw-border-right,
+    values: (
+      null: var(--nsw-border-width) var(--nsw-border-style) var(--nsw-border-color),
+      0: 0,
+    )
+  ),
+  "border-bottom": (
+    property: border-bottom,
+    values: (
+      null: var(--nsw-border-width) var(--nsw-border-style) var(--nsw-border-color),
+      0: 0,
+    )
+  ),
+  "border-left": (
+    property: border-left,
+    class: nsw-border-left,
+    values: (
+      null: var(--nsw-border-width) var(--nsw-border-style) var(--nsw-border-color),
+      0: 0,
+    )
+  ),
+  "border-color": (
+    property: border-color,
+    class: nsw-border,
+    state: hover,
+    values: $nsw-base-colours,
+  ),
+  "border-width": (
+    property: border-width,
+    class: nsw-border,
+    values: $nsw-border-widths,
+  ),
+  "border-radius": (
+    property: border-radius,
+    class: nsw-border-radius,
+    values: (
+      null: var(--nsw-border-radius),
+      0: 0,
+      circle: 50%,
+    )
+  ),
+  "box-shadow": (
+    property: box-shadow,
+    class: nsw-box-shadow,
+    values: (
+      null: var(--nsw-box-shadow),
+      none: none,
+    )
+  ),
+  "width": (
+    property: width,
+    class: nsw-width,
+    values: (
+      25: 25%,
+      50: 50%,
+      75: 75%,
+      100: 100%,
+      auto: auto
+    )
+  ),
+  "max-width": (
+    property: max-width,
+    class: nsw-mw,
+    values: (100: 100%)
+  ),
+  "viewport-width": (
+    property: width,
+    class: nsw-vw,
+    values: (100: 100vw)
+  ),
+  "min-viewport-width": (
+    property: min-width,
+    class: nsw-min-vw,
+    values: (100: 100vw)
+  ),
+  "height": (
+    property: height,
+    class: nsw-height,
+    values: (
+      25: 25%,
+      50: 50%,
+      75: 75%,
+      100: 100%,
+      auto: auto
+    )
+  ),
+  "max-height": (
+    property: max-height,
+    class: nsw-mh,
+    values: (100: 100%)
+  ),
+  "viewport-height": (
+    property: height,
+    class: nsw-vh,
+    values: (100: 100vh)
+  ),
+  "min-viewport-height": (
+    property: min-height,
+    class: nsw-min-vh,
+    values: (100: 100vh)
+  ),
+  "flex": (
+    responsive: true,
+    property: flex,
+    class: nsw-flex,
+    values: (fill: 1 1 auto)
+  ),
+  "flex-direction": (
+    responsive: true,
+    property: flex-direction,
+    class: nsw-flex,
+    values: row column row-reverse column-reverse
+  ),
+  "flex-grow": (
+    responsive: true,
+    property: flex-grow,
+    class: nsw-flex,
+    values: (
+      grow-0: 0,
+      grow-1: 1,
+    )
+  ),
+  "flex-shrink": (
+    responsive: true,
+    property: flex-shrink,
+    class: nsw-flex,
+    values: (
+      shrink-0: 0,
+      shrink-1: 1,
+    )
+  ),
+  "flex-wrap": (
+    responsive: true,
+    property: flex-wrap,
+    class: nsw-flex,
+    values: wrap nowrap wrap-reverse
+  ),
+  "justify-content": (
+    responsive: true,
+    property: justify-content,
+    class: nsw-justify-content,
+    values: (
+      start: flex-start,
+      end: flex-end,
+      center: center,
+      between: space-between,
+      around: space-around,
+      evenly: space-evenly,
+    )
+  ),
+  "align-items": (
+    responsive: true,
+    property: align-items,
+    class: nsw-align-items,
+    values: (
+      start: flex-start,
+      end: flex-end,
+      center: center,
+      baseline: baseline,
+      stretch: stretch,
+    )
+  ),
+  "align-content": (
+    responsive: true,
+    property: align-content,
+    class: nsw-align-content,
+    values: (
+      start: flex-start,
+      end: flex-end,
+      center: center,
+      between: space-between,
+      around: space-around,
+      stretch: stretch,
+    )
+  ),
+  "align-self": (
+    responsive: true,
+    property: align-self,
+    class: nsw-align-self,
+    values: (
+      auto: auto,
+      start: flex-start,
+      end: flex-end,
+      center: center,
+      baseline: baseline,
+      stretch: stretch,
+    )
+  ),
+  "order": (
+    responsive: true,
+    property: order,
+    class: nsw-order,
+    values: (
+      first: -1,
+      0: 0,
+      1: 1,
+      2: 2,
+      3: 3,
+      4: 4,
+      5: 5,
+      last: 6,
+    ),
+  ),
+  "font-style": (
+    property: font-style,
+    class: nsw-fst,
+    values: italic normal
+  ),
+  "text-align": (
+    responsive: true,
+    property: text-align,
+    class: nsw-text,
+    values: left right center
+  ),
+  "text-decoration": (
+    property: text-decoration,
+    class: nsw-text,
+    values: none underline line-through
+  ),
+  "text-transform": (
+    property: text-transform,
+    class: nsw-text,
+    values: lowercase uppercase capitalize
+  ),
+  "white-space": (
+    property: white-space,
+    class: nsw-text,
+    values: (
+      wrap: normal,
+      nowrap: nowrap,
+    )
+  ),
+  "overflow-wrap": (
+    responsive: true,
+    property: overflow-wrap,
+    class: nsw-overflow,
+    values: (
+      break: break-word,
+    ),
+    rtl: false
+  ),
+  "word-break": (
+    responsive: true,
+    property: word-break,
+    class: nsw-word-break,
+    values: normal break-all keep-all,
+    rtl: false
+  ),
+  "background-color": (
+    property: background-color,
+    class: nsw-bg,
+    state: hover,
+    values: $nsw-bg-colours,
+  ),
+  "fill": (
+    property: fill,
+    class: nsw-fill,
+    state: hover,
+    values: $nsw-base-colours,
+  ),
+  "stroke": (
+    property: stroke,
+    class: nsw-stroke,
+    state: hover,
+    values: $nsw-base-colours,
+  ),
+  "user-select": (
+    property: user-select,
+    class: nsw-user-select,
+    values: all auto none
+  ),
+  "pointer-events": (
+    property: pointer-events,
+    class: nsw-pointer,
+    values: none auto,
+  ),
+  "visibility": (
+    property: visibility,
+    class: nsw,
+    values: visible hidden
+  ),
+  "z-index": (
+    property: z-index,
+    class: nsw-z,
+    values: $nsw-z-index,
+  )),
+  $utilities);

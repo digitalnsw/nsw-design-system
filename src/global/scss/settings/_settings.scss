@@ -1,3 +1,6 @@
+$prefix: 'nsw-';
+$enable-important-utilities: true !default;
+
 // Breakpoints
 $nsw-breakpoints: (
   xs: 0,
@@ -24,6 +27,58 @@ $nsw-z-index: (
   middle: 200,
   base: 100,
   below: -100,
+) !default;
+
+// Base Colours
+$nsw-base-colours: (
+  brand-dark: var(--nsw-brand-dark),
+  brand-light: var(--nsw-brand-light),
+  brand-supplementary: var(--nsw-brand-supplementary),
+  brand-accent: var(--nsw-brand-accent),
+  black: var(--nsw-black),
+  white: var(--nsw-white),
+  off-white: var(--nsw-off-white),
+  grey-01: var(--nsw-grey-01),
+  grey-02: var(--nsw-grey-02),
+  grey-03: var(--nsw-grey-03),
+  grey-04: var(--nsw-grey-04)
+);
+
+// Background Colours
+$nsw-bg-colours: map-merge($nsw-base-colours, (
+  transparent: transparent,
+  info: var(--nsw-status-info),
+  info-bg: var(--nsw-status-info-bg),
+  success: var(--nsw-status-success),
+  success-bg: var(--nsw-status-success-bg),
+  warning: var(--nsw-status-warning),
+  warning-bg: var(--nsw-status-warning-bg),
+  error: var(--nsw-status-error),
+  error-bg: var(--nsw-status-error-bg)
+));
+
+// Text Colours
+$nsw-text-colours: map-merge($nsw-base-colours, (
+  dark: var(--nsw-text-dark),
+  light: var(--nsw-text-light),
+));
+
+$nsw-border-widths: (
+  1: 1px,
+  2: 2px,
+  3: 3px,
+  4: 4px,
+  5: 5px
+) !default;
+
+// Box shadow
+$nsw-box-shadow: var(--nsw-box-shadow) !default;
+
+// Position
+$nsw-position-values: (
+  0: 0,
+  50: 50%,
+  100: 100%
 ) !default;
 
 // Transitions

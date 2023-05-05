@@ -1,7 +1,7 @@
-/* stylelint-disable declaration-no-important */
-
-$nsw-helper-border-sizes: (1, 2, 4, 6);
+$nsw-helper-border-sizes: (2, 4, 6);
 $nsw-helper-border-sides: ('left', 'right', 'top', 'bottom');
+
+/* stylelint-disable declaration-no-important */
 
 .nsw-border {
   @each $size in $nsw-helper-border-sizes {
@@ -14,34 +14,6 @@ $nsw-helper-border-sides: ('left', 'right', 'top', 'bottom');
         border-#{"" + $side}: #{$size+'px'} solid var(--nsw-brand-accent) !important;
       }
     }
-  }
-}
-
-.nsw-border--radius {
-  border-radius: var(--nsw-border-radius) !important;
-}
-
-$nsw-helper-border-colours: (
-  brand-dark: var(--nsw-brand-dark),
-  brand-light: var(--nsw-brand-light),
-  brand-supplementary: var(--nsw-brand-supplementary),
-  brand-accent: var(--nsw-brand-accent),
-  black: var(--nsw-black),
-  white: var(--nsw-white),
-  off-white: var(--nsw-off-white),
-  grey-01: var(--nsw-grey-01),
-  grey-02: var(--nsw-grey-02),
-  grey-03: var(--nsw-grey-03),
-  grey-04: var(--nsw-grey-04)
-);
-
-@each $name, $color in $nsw-helper-border-colours {
-  .nsw-border--#{"" + $name} {
-    border-color: $color !important;
-  }
-
-  .hover\:nsw-border--#{"" + $name}:hover {
-    border-color: $color !important;
   }
 }
 
