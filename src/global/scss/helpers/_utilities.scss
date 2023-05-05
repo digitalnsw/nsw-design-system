@@ -103,6 +103,7 @@ $utilities: map-merge((
   ),
   "border-top": (
     property: border-top,
+    class: nsw-border-top,
     values: (
       null: var(--nsw-border-width) var(--nsw-border-style) var(--nsw-border-color),
       0: 0,
@@ -118,6 +119,7 @@ $utilities: map-merge((
   ),
   "border-bottom": (
     property: border-bottom,
+    class: nsw-border-bottom,
     values: (
       null: var(--nsw-border-width) var(--nsw-border-style) var(--nsw-border-color),
       0: 0,
@@ -315,8 +317,21 @@ $utilities: map-merge((
   ),
   "font-style": (
     property: font-style,
-    class: nsw-fst,
+    class: nsw-text,
     values: italic normal
+  ),
+  "font-weight": (
+    property: font-weight,
+    class: nsw-font-weight,
+    values: (
+      lighter: $nsw-font-weight-lighter,
+      light: $nsw-font-weight-light,
+      normal: $nsw-font-weight-normal,
+      medium: $nsw-font-weight-medium,
+      semibold: $nsw-font-weight-semibold,
+      bold: $nsw-font-weight-bold,
+      bolder: $nsw-font-weight-bolder
+    )
   ),
   "text-align": (
     responsive: true,
