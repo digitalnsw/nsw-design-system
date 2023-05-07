@@ -1,0 +1,414 @@
+/* stylelint-disable declaration-no-important, string-quotes, number-leading-zero, scss/dollar-variable-default */
+$utilities: () !default;
+
+$utilities: map-merge((
+  "align": (
+    property: vertical-align,
+    class: nsw-align,
+    values: baseline top middle bottom text-bottom text-top
+  ),
+  "float": (
+    responsive: true,
+    property: float,
+    class: nsw-float,
+    values: left right none
+  ),
+  "object-fit": (
+    responsive: true,
+    property: object-fit,
+    class: nsw-object-fit,
+    values: (
+      contain: contain,
+      cover: cover,
+      fill: fill,
+      scale: scale-down,
+      none: none,
+    )
+  ),
+  "opacity": (
+    property: opacity,
+    class: nsw-opacity,
+    state: hover,
+    values: (
+      0: 0,
+      25: .25,
+      50: .5,
+      75: .75,
+      100: 1,
+    )
+  ),
+  "overflow": (
+    property: overflow,
+    class: nsw-overflow,
+    values: auto hidden visible scroll,
+  ),
+  "overflow-x": (
+    property: overflow-x,
+    class: nsw-overflow-x,
+    values: auto hidden visible scroll,
+  ),
+  "overflow-y": (
+    property: overflow-y,
+    class: nsw-overflow-y,
+    values: auto hidden visible scroll,
+  ),
+  "display": (
+    responsive: true,
+    print: true,
+    property: display,
+    class: nsw-display,
+    values: inline inline-block block grid inline-grid table table-row table-cell flex inline-flex none
+  ),
+  "position": (
+    property: position,
+    class: nsw-position,
+    values: static relative absolute fixed sticky
+  ),
+  "top": (
+    property: top,
+    class: nsw-top,
+    values: $nsw-position-values
+  ),
+  "bottom": (
+    property: bottom,
+    class: nsw-bottom,
+    values: $nsw-position-values
+  ),
+  "left": (
+    property: left,
+    class: nsw-left,
+    values: $nsw-position-values
+  ),
+  "right": (
+    property: right,
+    class: nsw-right,
+    values: $nsw-position-values
+  ),
+  "translate-middle": (
+    property: transform,
+    class: nsw-translate-middle,
+    values: (
+      null: translate(-50%, -50%),
+      x: translateX(-50%),
+      y: translateY(-50%),
+    )
+  ),
+  "border": (
+    property: border,
+    class: nsw-border,
+    values: (
+      null: var(--nsw-border-width) var(--nsw-border-style) var(--nsw-border-color),
+      0: 0,
+    )
+  ),
+  "border-top": (
+    property: border-top,
+    class: nsw-border-top,
+    values: (
+      null: var(--nsw-border-width) var(--nsw-border-style) var(--nsw-border-color),
+      0: 0,
+    )
+  ),
+  "border-right": (
+    property: border-right,
+    class: nsw-border-right,
+    values: (
+      null: var(--nsw-border-width) var(--nsw-border-style) var(--nsw-border-color),
+      0: 0,
+    )
+  ),
+  "border-bottom": (
+    property: border-bottom,
+    class: nsw-border-bottom,
+    values: (
+      null: var(--nsw-border-width) var(--nsw-border-style) var(--nsw-border-color),
+      0: 0,
+    )
+  ),
+  "border-left": (
+    property: border-left,
+    class: nsw-border-left,
+    values: (
+      null: var(--nsw-border-width) var(--nsw-border-style) var(--nsw-border-color),
+      0: 0,
+    )
+  ),
+  "border-color": (
+    property: border-color,
+    class: nsw-border,
+    state: hover,
+    values: $nsw-base-colours,
+  ),
+  "border-width": (
+    property: border-width,
+    class: nsw-border,
+    values: $nsw-border-widths,
+  ),
+  "border-radius": (
+    property: border-radius,
+    class: nsw-border-radius,
+    values: (
+      null: var(--nsw-border-radius),
+      0: 0,
+      circle: 50%,
+    )
+  ),
+  "box-shadow": (
+    property: box-shadow,
+    class: nsw-box-shadow,
+    values: (
+      null: var(--nsw-box-shadow),
+      none: none,
+    )
+  ),
+  "width": (
+    property: width,
+    class: nsw-width,
+    values: (
+      25: 25%,
+      50: 50%,
+      75: 75%,
+      100: 100%,
+      auto: auto
+    )
+  ),
+  "max-width": (
+    property: max-width,
+    class: nsw-mw,
+    values: (100: 100%)
+  ),
+  "viewport-width": (
+    property: width,
+    class: nsw-vw,
+    values: (100: 100vw)
+  ),
+  "min-viewport-width": (
+    property: min-width,
+    class: nsw-min-vw,
+    values: (100: 100vw)
+  ),
+  "height": (
+    property: height,
+    class: nsw-height,
+    values: (
+      25: 25%,
+      50: 50%,
+      75: 75%,
+      100: 100%,
+      auto: auto
+    )
+  ),
+  "max-height": (
+    property: max-height,
+    class: nsw-mh,
+    values: (100: 100%)
+  ),
+  "viewport-height": (
+    property: height,
+    class: nsw-vh,
+    values: (100: 100vh)
+  ),
+  "min-viewport-height": (
+    property: min-height,
+    class: nsw-min-vh,
+    values: (100: 100vh)
+  ),
+  "flex": (
+    responsive: true,
+    property: flex,
+    class: nsw-flex,
+    values: (fill: 1 1 auto)
+  ),
+  "flex-direction": (
+    responsive: true,
+    property: flex-direction,
+    class: nsw-flex,
+    values: row column row-reverse column-reverse
+  ),
+  "flex-grow": (
+    responsive: true,
+    property: flex-grow,
+    class: nsw-flex,
+    values: (
+      grow-0: 0,
+      grow-1: 1,
+    )
+  ),
+  "flex-shrink": (
+    responsive: true,
+    property: flex-shrink,
+    class: nsw-flex,
+    values: (
+      shrink-0: 0,
+      shrink-1: 1,
+    )
+  ),
+  "flex-wrap": (
+    responsive: true,
+    property: flex-wrap,
+    class: nsw-flex,
+    values: wrap nowrap wrap-reverse
+  ),
+  "justify-content": (
+    responsive: true,
+    property: justify-content,
+    class: nsw-justify-content,
+    values: (
+      start: flex-start,
+      end: flex-end,
+      center: center,
+      between: space-between,
+      around: space-around,
+      evenly: space-evenly,
+    )
+  ),
+  "align-items": (
+    responsive: true,
+    property: align-items,
+    class: nsw-align-items,
+    values: (
+      start: flex-start,
+      end: flex-end,
+      center: center,
+      baseline: baseline,
+      stretch: stretch,
+    )
+  ),
+  "align-content": (
+    responsive: true,
+    property: align-content,
+    class: nsw-align-content,
+    values: (
+      start: flex-start,
+      end: flex-end,
+      center: center,
+      between: space-between,
+      around: space-around,
+      stretch: stretch,
+    )
+  ),
+  "align-self": (
+    responsive: true,
+    property: align-self,
+    class: nsw-align-self,
+    values: (
+      auto: auto,
+      start: flex-start,
+      end: flex-end,
+      center: center,
+      baseline: baseline,
+      stretch: stretch,
+    )
+  ),
+  "order": (
+    responsive: true,
+    property: order,
+    class: nsw-order,
+    values: (
+      first: -1,
+      0: 0,
+      1: 1,
+      2: 2,
+      3: 3,
+      4: 4,
+      5: 5,
+      last: 6,
+    ),
+  ),
+  "font-style": (
+    property: font-style,
+    class: nsw-text,
+    values: italic normal
+  ),
+  "font-weight": (
+    property: font-weight,
+    class: nsw-font-weight,
+    values: (
+      lighter: $nsw-font-weight-lighter,
+      light: $nsw-font-weight-light,
+      normal: $nsw-font-weight-normal,
+      medium: $nsw-font-weight-medium,
+      semibold: $nsw-font-weight-semibold,
+      bold: $nsw-font-weight-bold,
+      bolder: $nsw-font-weight-bolder
+    )
+  ),
+  "text-align": (
+    responsive: true,
+    property: text-align,
+    class: nsw-text,
+    values: left right center
+  ),
+  "text-decoration": (
+    property: text-decoration,
+    class: nsw-text,
+    values: none underline line-through
+  ),
+  "text-transform": (
+    property: text-transform,
+    class: nsw-text,
+    values: lowercase uppercase capitalize
+  ),
+  "white-space": (
+    property: white-space,
+    class: nsw-text,
+    values: (
+      wrap: normal,
+      nowrap: nowrap,
+    )
+  ),
+  "overflow-wrap": (
+    responsive: true,
+    property: overflow-wrap,
+    class: nsw-overflow,
+    values: (
+      break: break-word,
+    ),
+    rtl: false
+  ),
+  "word-break": (
+    responsive: true,
+    property: word-break,
+    class: nsw-word-break,
+    values: normal break-all keep-all,
+    rtl: false
+  ),
+  "background-color": (
+    property: background-color,
+    class: nsw-bg,
+    state: hover,
+    values: $nsw-bg-colours,
+  ),
+  "fill": (
+    property: fill,
+    class: nsw-fill,
+    state: hover,
+    values: $nsw-base-colours,
+  ),
+  "stroke": (
+    property: stroke,
+    class: nsw-stroke,
+    state: hover,
+    values: $nsw-base-colours,
+  ),
+  "user-select": (
+    property: user-select,
+    class: nsw-user-select,
+    values: all auto none
+  ),
+  "pointer-events": (
+    property: pointer-events,
+    class: nsw-pointer,
+    values: none auto,
+  ),
+  "visibility": (
+    property: visibility,
+    class: nsw,
+    values: visible hidden
+  ),
+  "z-index": (
+    property: z-index,
+    class: nsw-z,
+    values: $nsw-z-index,
+  )),
+  $utilities);
