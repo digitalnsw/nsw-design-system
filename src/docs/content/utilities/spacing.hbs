@@ -1,0 +1,24 @@
+---
+title: Spacing
+width: narrow
+intro: 
+no-blank: true
+order: 13
+model: json/utilities.json
+meta-description: 
+meta-index: true
+---
+
+<h3></h3>
+
+{{#>_docs-example}}  
+  {{#each model.colours as |value property|}}
+    {{#each this}}
+      <div class="nsw-col {{@key}}">
+        <!-- START: Column content -->
+        <div class="{{@key}}"><p>.{{@key}}</p></div>
+        <!-- END: Column content -->
+      </div>
+    {{/each}}
+  {{/each}}
+{{/_docs-example}}

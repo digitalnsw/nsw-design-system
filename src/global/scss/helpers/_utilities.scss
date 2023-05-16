@@ -4,19 +4,19 @@ $utilities: () !default;
 $utilities: map-merge((
   "align": (
     property: vertical-align,
-    class: nsw-align,
+    class: nsw-align-,
     values: baseline top middle bottom text-bottom text-top
   ),
   "float": (
     responsive: true,
     property: float,
-    class: nsw-float,
+    class: nsw-float-,
     values: left right none
   ),
   "object-fit": (
     responsive: true,
     property: object-fit,
-    class: nsw-object-fit,
+    class: nsw-object-fit-,
     values: (
       contain: contain,
       cover: cover,
@@ -27,7 +27,7 @@ $utilities: map-merge((
   ),
   "opacity": (
     property: opacity,
-    class: nsw-opacity,
+    class: nsw-opacity-,
     state: hover,
     values: (
       0: 0,
@@ -39,49 +39,49 @@ $utilities: map-merge((
   ),
   "overflow": (
     property: overflow,
-    class: nsw-overflow,
+    class: nsw-overflow-,
     values: auto hidden visible scroll,
   ),
   "overflow-x": (
     property: overflow-x,
-    class: nsw-overflow-x,
+    class: nsw-overflow--x,
     values: auto hidden visible scroll,
   ),
   "overflow-y": (
     property: overflow-y,
-    class: nsw-overflow-y,
+    class: nsw-overflow--y,
     values: auto hidden visible scroll,
   ),
   "display": (
     responsive: true,
     print: true,
     property: display,
-    class: nsw-display,
+    class: nsw-display-,
     values: inline inline-block block grid inline-grid table table-row table-cell flex inline-flex none
   ),
   "position": (
     property: position,
-    class: nsw-position,
+    class: nsw-position-,
     values: static relative absolute fixed sticky
   ),
   "top": (
     property: top,
-    class: nsw-top,
+    class: nsw-position--top,
     values: $nsw-position-values
   ),
   "bottom": (
     property: bottom,
-    class: nsw-bottom,
+    class: nsw-position--bottom,
     values: $nsw-position-values
   ),
   "left": (
     property: left,
-    class: nsw-left,
+    class: nsw-position--left,
     values: $nsw-position-values
   ),
   "right": (
     property: right,
-    class: nsw-right,
+    class: nsw-position--right,
     values: $nsw-position-values
   ),
   "translate-middle": (
@@ -96,53 +96,45 @@ $utilities: map-merge((
   "border": (
     property: border,
     class: nsw-border,
-    values: (
-      null: var(--nsw-border-width) var(--nsw-border-style) var(--nsw-border-color),
-      0: 0,
-    )
+    values: $nsw-border-widths,
   ),
   "border-top": (
     property: border-top,
-    class: nsw-border-top,
+    class: nsw-border--top,
     values: (
-      null: var(--nsw-border-width) var(--nsw-border-style) var(--nsw-border-color),
+      null: $nsw-border,
       0: 0,
     )
   ),
   "border-right": (
     property: border-right,
-    class: nsw-border-right,
+    class: nsw-border--right,
     values: (
-      null: var(--nsw-border-width) var(--nsw-border-style) var(--nsw-border-color),
+      null: $nsw-border,
       0: 0,
     )
   ),
   "border-bottom": (
     property: border-bottom,
-    class: nsw-border-bottom,
+    class: nsw-border--bottom,
     values: (
-      null: var(--nsw-border-width) var(--nsw-border-style) var(--nsw-border-color),
+      null: $nsw-border,
       0: 0,
     )
   ),
   "border-left": (
     property: border-left,
-    class: nsw-border-left,
+    class: nsw-border--left,
     values: (
-      null: var(--nsw-border-width) var(--nsw-border-style) var(--nsw-border-color),
+      null: $nsw-border,
       0: 0,
     )
   ),
   "border-color": (
     property: border-color,
-    class: nsw-border,
+    class: nsw-border-,
     state: hover,
     values: $nsw-base-colours,
-  ),
-  "border-width": (
-    property: border-width,
-    class: nsw-border,
-    values: $nsw-border-widths,
   ),
   "border-radius": (
     property: border-radius,
@@ -333,25 +325,31 @@ $utilities: map-merge((
       bolder: $nsw-font-weight-bolder
     )
   ),
+  "text-color": (
+    property: color,
+    class: nsw-text-,
+    state: hover,
+    values: $nsw-text-colours
+  ),
   "text-align": (
     responsive: true,
     property: text-align,
-    class: nsw-text,
+    class: nsw-text-,
     values: left right center
   ),
   "text-decoration": (
     property: text-decoration,
-    class: nsw-text,
+    class: nsw-text-,
     values: none underline line-through
   ),
   "text-transform": (
     property: text-transform,
-    class: nsw-text,
+    class: nsw-text-,
     values: lowercase uppercase capitalize
   ),
   "white-space": (
     property: white-space,
-    class: nsw-text,
+    class: nsw-text-,
     values: (
       wrap: normal,
       nowrap: nowrap,
@@ -375,19 +373,34 @@ $utilities: map-merge((
   ),
   "background-color": (
     property: background-color,
-    class: nsw-bg,
+    local-vars: (
+      "bg-opacity": 1
+    ),
+    class: nsw-bg-,
     state: hover,
     values: $nsw-bg-colours,
   ),
+  "bg-opacity": (
+    css-var: true,
+    css-variable-name: bg-opacity,
+    class: nsw-bg-opacity-,
+    values: (
+      10: .1,
+      25: .25,
+      50: .5,
+      75: .75,
+      100: 1
+    )
+  ),
   "fill": (
     property: fill,
-    class: nsw-fill,
+    class: nsw-fill-,
     state: hover,
     values: $nsw-base-colours,
   ),
   "stroke": (
     property: stroke,
-    class: nsw-stroke,
+    class: nsw-stroke-,
     state: hover,
     values: $nsw-base-colours,
   ),

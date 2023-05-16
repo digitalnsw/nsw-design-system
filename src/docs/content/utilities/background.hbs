@@ -1,0 +1,40 @@
+---
+title: Background
+width: narrow
+intro: Convey meaning through background-color and add decoration with gradients.
+no-blank: true
+order: 1
+model: json/utilities.json
+meta-description: Convey meaning through background-color and add decoration with gradients.
+meta-index: true
+---
+
+<h3>Background</h3>
+
+{{#>_docs-example separated="true"}}  
+  {{#each model.background as |value property|}}
+<div class="nsw-col {{@key}}">
+  <div class="{{this.text}}">.{{@key}}</div>
+</div>
+  {{/each}}
+{{/_docs-example}}
+
+<h3>Hover</h3>
+
+{{#>_docs-example separated="true"}}  
+  {{#each model.background as |value property|}}
+<div class="nsw-col {{this.hover}}">
+  <div class="{{this.text}}">.{{this.hover}}</div>
+</div>
+  {{/each}}
+{{/_docs-example}}
+
+<h3>Opacity</h3>
+
+{{#>_docs-example separated="true"}}  
+  {{#each model.background-opacity as |value property|}}
+<div class="nsw-col nsw-bg--brand-dark {{this.class}}">
+  <div class="{{this.text}}">.{{this.class}}</div>
+</div>
+  {{/each}}
+{{/_docs-example}}

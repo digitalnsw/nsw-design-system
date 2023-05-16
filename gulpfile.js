@@ -203,6 +203,11 @@ function metalsmithBuild(callback) {
       refer: false,
       sortBy: 'order',
     },
+    utilities: {
+      pattern: config.metalSmith.collection.contentnav.utilities,
+      refer: false,
+      sortBy: 'order',
+    },
     methods: {
       pattern: config.metalSmith.collection.contentnav.methods,
       refer: false,
