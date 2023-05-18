@@ -1,24 +1,55 @@
 ---
 title: Z-index
 width: narrow
-intro: 
+intro: Utilities for controlling the stack order of an element.
 no-blank: true
 order: 18
 model: json/utilities.json
-meta-description: 
+meta-description: Utilities for controlling the stack order of an element.
 meta-index: true
 ---
 
-<h3></h3>
+<h3>Setting the z-index</h3>
+<p>Control the stack order (or three-dimensional positioning) of an element, regardless of order it has been displayed, using the z-{index} utilities.</p>
 
-{{#>_docs-example}}  
-  {{#each model.colours as |value property|}}
-    {{#each this}}
-      <div class="nsw-col {{@key}}">
-        <!-- START: Column content -->
-        <div class="{{@key}}"><p>.{{@key}}</p></div>
-        <!-- END: Column content -->
-      </div>
-    {{/each}}
+<div class="nsw-section nsw-section--white nsw-block nsw-p-sm">
+  <div class="nsw-table nsw-table--bordered nsw-table--valign-middle">
+    <table>
+      <tbody>
+        <tr>
+          <th style="width: 435px">
+            <p>Class</p>
+          </th>
+          <th style="width: 50%">
+            <p>Properties</p>
+          </th>
+        </tr>
+  {{#each model.z-index as |value property|}}
+        <tr>
+          <td>
+            <p>{{this.class}}</p>
+          </td>
+          <td>
+            <p>{{this.property}}</p>
+          </td>
+        </tr>
   {{/each}}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{{#>_docs-example showcode=true separated=true}} 
+<div class="nsw-list nsw-list---16">
+  <span class="nsw-z-0 nsw-display--flex nsw-status-label nsw-border--1 nsw-border--grey-03 nsw-status-label--off-white">-100</span>
+  {{#each model.z-index as |value property|}}
+  <span class="{{this.class}} nsw-display--flex nsw-status-label nsw-border--1 nsw-border--grey-03 nsw-status-label--off-white">{{@key}}</span>
+  {{/each}}
+  </div>
 {{/_docs-example}}
+
+{{#>_docs-code open=true}}  
+  {{#each model.z-index as |value property|}}
+<div class="{{this.class}}">{{@key}}</div>
+  {{/each}}
+{{/_docs-code}}

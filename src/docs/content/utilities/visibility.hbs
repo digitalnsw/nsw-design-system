@@ -1,24 +1,25 @@
 ---
 title: Visibility
 width: narrow
-intro: 
+intro: Control the visibility of elements, without modifying their display, with visibility utilities.
 no-blank: true
 order: 17
 model: json/utilities.json
-meta-description: 
+meta-description: Control the visibility of elements, without modifying their display, with visibility utilities.
 meta-index: true
 ---
 
 <h3></h3>
 
-{{#>_docs-example}}  
-  {{#each model.colours as |value property|}}
-    {{#each this}}
-      <div class="nsw-col {{@key}}">
-        <!-- START: Column content -->
-        <div class="{{@key}}"><p>.{{@key}}</p></div>
-        <!-- END: Column content -->
-      </div>
-    {{/each}}
-  {{/each}}
-{{/_docs-example}}
+{{#>_docs-code open=true}} 
+<div class="nsw-col">
+</div>
+{{/_docs-code}}
+
+<h3>Visually hidden</h3>
+<p>Visually hide an element while still allowing it to be exposed to assistive technologies (such as screen readers) with .visually-hidden. Use .visually-hidden-focusable to visually hide an element by default, but to display it when it’s focused (e.g. by a keyboard-only user). .visually-hidden-focusable can also be applied to a container–thanks to :focus-within, the container will be displayed when any child element of the container receives focus.</p>
+
+{{#>_docs-code open=true}} 
+<div class="nsw-col">
+</div>
+{{/_docs-code}}
