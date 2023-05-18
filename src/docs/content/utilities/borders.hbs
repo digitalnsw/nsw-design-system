@@ -9,32 +9,74 @@ meta-description: Utilities for controlling the border radius, width, style and 
 meta-index: true
 ---
 
-<h3>Border Radius</h3>
+<h3>Additive</h3>
+<p>Add borders to custom elements:</p>
 
-{{#>_docs-example separated="true"}}  
-  {{#each model.background-opacity as |value property|}}
-<div class="nsw-col nsw-bg--brand-dark {{this.class}}">
-  <div class="{{this.text}}">.{{this.class}}</div>
-</div>
+{{#>_docs-example showcode=true separated="true"}}
+  {{#each model.border.additive as |value property|}}
+<div class="nsw-display-inline-block nsw-width-2xl nsw-height-2xl nsw-p-xs nsw-m-xs nsw-bg-opacity--50 nsw-bg--off-white {{this}}"></div>
   {{/each}}
 {{/_docs-example}}
+
+{{#>_docs-code open=true}}  
+  {{#each model.border.additive as |value property|}}
+<div class="nsw-border {{this}}"></div>
+  {{/each}}
+{{/_docs-code}}
+
+<h3>Subtractive</h3>
+<p>Or remove borders:</p>
+
+{{#>_docs-example showcode=true separated="true"}}
+  {{#each model.border.subtractive as |value property|}}
+<div class="nsw-display-inline-block nsw-width-2xl nsw-height-2xl nsw-p-xs nsw-m-xs nsw-bg-opacity--50 nsw-bg--off-white nsw-border {{this}}"></div>
+  {{/each}}
+{{/_docs-example}}
+
+{{#>_docs-code open=true}}  
+  {{#each model.border.subtractive as |value property|}}
+<div class="nsw-border {{this}}"></div>
+  {{/each}}
+{{/_docs-code}}
+
+<h3>Border Radius</h3>
+
+{{#>_docs-example showcode=true separated="true"}}
+  {{#each model.border.radius as |value property|}}
+<div class="nsw-display-inline-block nsw-width-2xl nsw-height-2xl nsw-p-xs nsw-m-xs nsw-bg-opacity--50 nsw-bg--off-white nsw-border {{this}}"></div>
+  {{/each}}
+{{/_docs-example}}
+
+{{#>_docs-code open=true}}  
+  {{#each model.border.radius as |value property|}}
+<div class="nsw-border {{this}}"></div>
+  {{/each}}
+{{/_docs-code}}
 
 <h3>Border Width</h3>
 
-{{#>_docs-example separated="true"}}  
-  {{#each model.background-opacity as |value property|}}
-<div class="nsw-col nsw-bg--brand-dark {{this.class}}">
-  <div class="{{this.text}}">.{{this.class}}</div>
-</div>
+{{#>_docs-example showcode=true separated="true"}}
+  {{#each model.border.width as |value property|}}
+<div class="nsw-display-inline-block nsw-width-2xl nsw-height-2xl nsw-p-xs nsw-m-xs nsw-bg-opacity--50 nsw-bg--off-white nsw-border {{this}}"></div>
   {{/each}}
 {{/_docs-example}}
+
+{{#>_docs-code open=true}}  
+  {{#each model.border.width as |value property|}}
+<div class="nsw-border {{this}}"></div>
+  {{/each}}
+{{/_docs-code}}
 
 <h3>Border Color</h3>
 
-{{#>_docs-example separated="true"}}  
-  {{#each model.background-opacity as |value property|}}
-<div class="nsw-col nsw-bg--brand-dark {{this.class}}">
-  <div class="{{this.text}}">.{{this.class}}</div>
-</div>
+{{#>_docs-example showcode=true separated="true"}}
+  {{#each model.border.color as |value property|}}
+<div class="nsw-display-inline-block nsw-width-2xl nsw-height-2xl nsw-p-xs nsw-m-xs nsw-bg-opacity--50 nsw-bg--off-white nsw-border {{this}}"></div>
   {{/each}}
 {{/_docs-example}}
+
+{{#>_docs-code open=true}}  
+  {{#each model.border.color as |value property|}}
+<div class="nsw-border {{this}}"></div>
+  {{/each}}
+{{/_docs-code}}

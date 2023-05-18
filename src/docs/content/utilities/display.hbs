@@ -9,8 +9,141 @@ meta-description: Utilities for controlling the display box type of an element.
 meta-index: true
 ---
 
-<h3>Block & Inline</h3>
+<p>Change the value of the display property with our responsive display utility classes. Classes can be combined for various effects as you need.</p>
 
-{{#>_docs-example}}  
+<h3>Notation</h3>
 
+<p>Display utility classes that apply to all breakpoints, from xs to xxl, have no breakpoint abbreviation in them. This is because those classes are applied from min-width: 0; and up, and thus are not bound by a media query. The remaining breakpoints, however, do include a breakpoint abbreviation.</p>
+
+<p>As such, the classes are named using the format:</p>
+
+<ul>
+  <li><code>.nsw-display-{value}</code> for xs</li>
+  <li><code>.nsw-display-{breakpoint}-{value}</code> for sm, md, lg, xl, and xxl.</li>
+</ul>
+
+<p>Where value is one of:</p>
+
+<ul>
+  {{#each model.display as |value property|}}
+    <li>{{this}}</li>
+  {{/each}}
+</ul>
+
+<h3>Examples</h3>
+
+{{#>_docs-example showcode=true separated="true"}}  
+<div class="nsw-display-inline-block nsw-p-lg nsw-m-xs nsw-bg-opacity--50 nsw-bg--brand-light"></div>
+<div class="nsw-display-inline-block nsw-p-lg nsw-m-xs nsw-bg-opacity--50 nsw-bg--brand-light"></div>
+{{/_docs-example}}
+
+{{#>_docs-code open=true}}  
+<div class="nsw-display-inline-block"></div>
+<div class="nsw-display-inline-block"></div>
+{{/_docs-code}}
+
+{{#>_docs-example separated="true"}}  
+<div>
+  <p>When controlling the flow of text, using the CSS property <span class="nsw-text-bold nsw-bg--brand-light nsw-display-inline">display: inline</span> will cause the text inside the element to wrap normally.</p>
+
+  <p>While using the property <span class="nsw-text-bold nsw-bg--brand-light nsw-display-inline-block">display: inline-block</span> will wrap the element to prevent the text inside from extending beyond its parent.</p>
+
+  <p>Lastly, using the property <span class="nsw-text-bold nsw-bg--brand-light nsw-display-block">display: block</span> will put the element on its own line and fill its parent.</p>
+</div>
+{{/_docs-example}}
+
+
+
+{{#>_docs-example showcode=true separated="true"}}  
+<div class="nsw-display-block nsw-p-md nsw-m-xs nsw-bg-opacity--50 nsw-bg--brand-light"></div>
+<div class="nsw-display-block nsw-p-md nsw-m-xs nsw-bg-opacity--50 nsw-bg--brand-light"></div>
+{{/_docs-example}}
+
+{{#>_docs-code open=true}}  
+<div class="nsw-display-block"></div>
+<div class="nsw-display-block"></div>
+{{/_docs-code}}
+
+<h3>Hiding elements</h3>
+
+<p>For faster mobile-friendly development, use responsive display classes for showing and hiding elements by device. Avoid creating entirely different versions of the same site, instead hide elements responsively for each screen size.</p>
+
+<p>To hide elements simply use the <code>.nsw-display-none</code> class or one of the <code>.nsw-display-{sm,md,lg,xl,xxl}-none</code> classes for any responsive screen variation.</p>
+
+<p>To show an element only on a given interval of screen sizes you can combine one <code>.nsw-display-*-none</code> class with a <code>.nsw-display-*-*</code> class, for example <code>.nsw-display-none .nsw-display-md-block .nsw-display-xl-none .nsw-display-xxl-none</code> will hide the element for all screen sizes except on medium and large devices.</p>
+
+<div class="nsw-section nsw-section--white nsw-block nsw-p-sm">
+  <div class="nsw-table nsw-table--valign-middle">
+    <table>
+      <thead>
+        <tr>
+          <th class="nsw-p-top-0">Screen size</th>
+          <th class="nsw-p-top-0">Class</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Hidden on all</td>
+          <td><code>.nsw-display-none</code></td>
+        </tr>
+        <tr>
+          <td>Hidden only on xs</td>
+          <td><code>.nsw-display-none .nsw-display-sm-block</code></td>
+        </tr>
+        <tr>
+          <td>Hidden only on sm</td>
+          <td><code>.nsw-display-sm-none .nsw-display-md-block</code></td>
+        </tr>
+        <tr>
+          <td>Hidden only on md</td>
+          <td><code>.nsw-display-md-none .nsw-display-lg-block</code></td>
+        </tr>
+        <tr>
+          <td>Hidden only on lg</td>
+          <td><code>.nsw-display-lg-none .nsw-display-xl-block</code></td>
+        </tr>
+        <tr>
+          <td>Hidden only on xl</td>
+          <td><code>.nsw-display-xl-none .nsw-display-xxl-block</code></td>
+        </tr>
+        <tr>
+          <td>Hidden only on xxl</td>
+          <td><code>.nsw-display-xxl-none</code></td>
+        </tr>
+        <tr>
+          <td>Visible on all</td>
+          <td><code>.nsw-display-block</code></td>
+        </tr>
+        <tr>
+          <td>Visible only on xs</td>
+          <td><code>.nsw-display-block .nsw-display-sm-none</code></td>
+        </tr>
+        <tr>
+          <td>Visible only on sm</td>
+          <td><code>.nsw-display-none .nsw-display-sm-block .nsw-display-md-none</code></td>
+        </tr>
+        <tr>
+          <td>Visible only on md</td>
+          <td><code>.nsw-display-none .nsw-display-md-block .nsw-display-lg-none</code></td>
+        </tr>
+        <tr>
+          <td>Visible only on lg</td>
+          <td><code>.nsw-display-none .nsw-display-lg-block .nsw-display-xl-none</code></td>
+        </tr>
+        <tr>
+          <td>Visible only on xl</td>
+          <td><code>.nsw-display-none .nsw-display-xl-block .nsw-display-xxl-none</code></td>
+        </tr>
+        <tr>
+          <td>Visible only on xxl</td>
+          <td><code>.nsw-display-none .nsw-display-xxl-block</code></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{{#>_docs-example open=true separated="true"}}  
+<div class="nsw-display-lg-none">hide on lg and wider screens</div>
+<div class="nsw-display-none nsw-display-lg-block">hide on screens smaller than lg</div>
 {{/_docs-example}}

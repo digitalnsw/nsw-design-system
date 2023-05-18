@@ -4,19 +4,19 @@ $utilities: () !default;
 $utilities: map-merge((
   "align": (
     property: vertical-align,
-    class: nsw-align-,
+    class: nsw-align,
     values: baseline top middle bottom text-bottom text-top
   ),
   "float": (
     responsive: true,
     property: float,
-    class: nsw-float-,
+    class: nsw-float,
     values: left right none
   ),
   "object-fit": (
     responsive: true,
     property: object-fit,
-    class: nsw-object-fit-,
+    class: nsw-object-fit,
     values: (
       contain: contain,
       cover: cover,
@@ -27,7 +27,7 @@ $utilities: map-merge((
   ),
   "opacity": (
     property: opacity,
-    class: nsw-opacity-,
+    class: nsw-opacity,
     state: hover,
     values: (
       0: 0,
@@ -39,49 +39,49 @@ $utilities: map-merge((
   ),
   "overflow": (
     property: overflow,
-    class: nsw-overflow-,
+    class: nsw-overflow,
     values: auto hidden visible scroll,
   ),
   "overflow-x": (
     property: overflow-x,
-    class: nsw-overflow--x,
+    class: nsw-overflow-x,
     values: auto hidden visible scroll,
   ),
   "overflow-y": (
     property: overflow-y,
-    class: nsw-overflow--y,
+    class: nsw-overflow-y,
     values: auto hidden visible scroll,
   ),
   "display": (
     responsive: true,
     print: true,
     property: display,
-    class: nsw-display-,
+    class: nsw-display,
     values: inline inline-block block grid inline-grid table table-row table-cell flex inline-flex none
   ),
   "position": (
     property: position,
-    class: nsw-position-,
+    class: nsw-position,
     values: static relative absolute fixed sticky
   ),
   "top": (
     property: top,
-    class: nsw-position--top,
+    class: nsw-position-top,
     values: $nsw-position-values
   ),
   "bottom": (
     property: bottom,
-    class: nsw-position--bottom,
+    class: nsw-position-bottom,
     values: $nsw-position-values
   ),
   "left": (
     property: left,
-    class: nsw-position--left,
+    class: nsw-position-left,
     values: $nsw-position-values
   ),
   "right": (
     property: right,
-    class: nsw-position--right,
+    class: nsw-position-right,
     values: $nsw-position-values
   ),
   "translate-middle": (
@@ -91,6 +91,14 @@ $utilities: map-merge((
       null: translate(-50%, -50%),
       x: translateX(-50%),
       y: translateY(-50%),
+    )
+  ),
+  "border-std": (
+    property: border,
+    class: nsw-border,
+    values: (
+      null: $nsw-border,
+      0: 0,
     )
   ),
   "border": (
@@ -177,13 +185,7 @@ $utilities: map-merge((
   "height": (
     property: height,
     class: nsw-height,
-    values: (
-      25: 25%,
-      50: 50%,
-      75: 75%,
-      100: 100%,
-      auto: auto
-    )
+    values: $sizes
   ),
   "max-height": (
     property: max-height,
@@ -309,7 +311,7 @@ $utilities: map-merge((
   ),
   "font-weight": (
     property: font-weight,
-    class: nsw-font-weight,
+    class: nsw-text,
     values: (
       lighter: $nsw-font-weight-lighter,
       light: $nsw-font-weight-light,
@@ -329,22 +331,22 @@ $utilities: map-merge((
   "text-align": (
     responsive: true,
     property: text-align,
-    class: nsw-text-,
+    class: nsw-text,
     values: left right center
   ),
   "text-decoration": (
     property: text-decoration,
-    class: nsw-text-,
+    class: nsw-text,
     values: none underline line-through
   ),
   "text-transform": (
     property: text-transform,
-    class: nsw-text-,
+    class: nsw-text,
     values: lowercase uppercase capitalize
   ),
   "white-space": (
     property: white-space,
-    class: nsw-text-,
+    class: nsw-text,
     values: (
       wrap: normal,
       nowrap: nowrap,
@@ -389,25 +391,15 @@ $utilities: map-merge((
   ),
   "fill": (
     property: fill,
-    class: nsw-fill-,
+    class: nsw-fill,
     state: hover,
     values: $nsw-base-colours,
   ),
   "stroke": (
     property: stroke,
-    class: nsw-stroke-,
+    class: nsw-stroke,
     state: hover,
     values: $nsw-base-colours,
-  ),
-  "user-select": (
-    property: user-select,
-    class: nsw-user-select,
-    values: all auto none
-  ),
-  "pointer-events": (
-    property: pointer-events,
-    class: nsw-pointer,
-    values: none auto,
   ),
   "visibility": (
     property: visibility,
