@@ -1,4 +1,4 @@
-/* eslint-disable max-len, import/no-extraneous-dependencies */
+/* eslint-disable max-len */
 import {
   computePosition,
   flip,
@@ -6,69 +6,66 @@ import {
   offset,
   arrow,
 } from '@floating-ui/dom'
+import { uniqueId } from '../../global/scripts/helpers/utilities'
 
 class Tooltip {
   constructor(element) {
-    this.element = element
-    this.tooltip = false
+    this.tooltip = element
+    this.uID = uniqueId('tooltip')
+    this.tooltipElement = false
     this.arrowElement = false
     this.tooltipContent = false
-    this.tooltipId = 'nsw-tooltip'
-    this.tooltipTriggers = document.querySelectorAll('.nsw-tooltip-trigger')
 
-    this.showTooltip = (event) => {
-      this.createTooltipElement(event.target)
-      this.tooltip.style.display = 'inline-block'
+    this.showTooltip = () => {
+      this.createTooltipElement()
+      this.tooltipElement.style.display = 'inline-block'
       // Set dynamic width
       const range = document.createRange()
-      const text = this.tooltip.childNodes[0]
+      const text = this.tooltipElement.childNodes[0]
       range.setStartBefore(text)
       range.setEndAfter(text)
       const clientRect = range.getBoundingClientRect()
-      this.tooltip.style.width = `${clientRect.width + 32}px`
+      this.tooltipElement.style.width = `${clientRect.width + 32}px`
 
-      this.updateTooltip(event.target, this.tooltip, this.arrowElement)
+      this.updateTooltip(this.tooltip, this.tooltipElement, this.arrowElement)
     }
 
     this.hideTooltip = () => {
-      this.tooltip.style.display = ''
-      this.tooltip.style.width = ''
+      this.tooltipElement.style.display = ''
+      this.tooltipElement.style.width = ''
     }
   }
 
   init() {
+    this.tooltip.setAttribute('aria-labelledby', this.uID)
+
     const eventArray = [['mouseenter', this.showTooltip], ['mouseleave', this.hideTooltip], ['focus', this.showTooltip], ['blur', this.hideTooltip]]
 
-    const triggerArray = [...this.tooltipTriggers]
-
-    triggerArray.forEach((trigger) => {
-      eventArray.forEach(([event, listener]) => {
-        trigger.addEventListener(event, listener)
-      })
+    eventArray.forEach(([event, listener]) => {
+      this.tooltip.addEventListener(event, listener)
     })
   }
 
-  createTooltipElement(trigger) {
-    this.tooltip = document.getElementById(this.tooltipId)
-
-    if (!this.tooltip) {
-      this.tooltip = document.createElement('div')
-      document.body.appendChild(this.tooltip)
+  createTooltipElement() {
+    if (!this.tooltipElement) {
+      this.tooltipElement = document.createElement('div')
+      document.body.appendChild(this.tooltipElement)
     }
 
-    this.constructor.setAttributes(this.tooltip, { id: this.tooltipId, class: 'nsw-tooltip nsw-section--invert', role: 'tooltip' })
+    this.constructor.setAttributes(this.tooltipElement, { id: this.uID, class: 'nsw-tooltip__element nsw-section--invert', role: 'tooltip' })
 
     if (this.tooltip) {
       this.arrowElement = document.createElement('div')
       this.arrowElement.className = 'nsw-tooltip__arrow'
     }
 
-    this.tooltipContent = trigger.getAttribute('title')
-    this.tooltip.innerHTML = this.tooltipContent
-    this.tooltip.insertAdjacentElement('beforeend', this.arrowElement)
+    this.tooltipContent = this.tooltip.getAttribute('title')
+    this.tooltipElement.innerHTML = this.tooltipContent
+    this.tooltipElement.insertAdjacentElement('beforeend', this.arrowElement)
   }
 
   updateTooltip(anchor, tooltip, arrowElement) {
+    console.log(this)
     computePosition(anchor, tooltip, {
       placement: 'top',
       middleware: [
@@ -80,7 +77,7 @@ class Tooltip {
     }).then(({
       x, y, placement, middlewareData,
     }) => {
-      Object.assign(this.tooltip.style, {
+      Object.assign(tooltip.style, {
         left: `${x}px`,
         top: `${y}px`,
       })
@@ -107,18 +104,6 @@ class Tooltip {
 
   static setAttributes(el, attrs) {
     Object.keys(attrs).forEach((key) => el.setAttribute(key, attrs[key]))
-  }
-
-  static addClass(el, className) {
-    const classList = className.split(' ')
-    el.classList.add(classList[0])
-    if (classList.length > 1) this.constructor.addClass(el, classList.slice(1).join(' '))
-  }
-
-  static removeClass(el, className) {
-    const classList = className.split(' ')
-    el.classList.remove(classList[0])
-    if (classList.length > 1) this.constructor.removeClass(el, classList.slice(1).join(' '))
   }
 }
 

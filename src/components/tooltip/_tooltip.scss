@@ -1,4 +1,4 @@
-.nsw-tooltip-trigger {
+.nsw-tooltip {
   white-space: nowrap;
   border-bottom: 1px dotted var(--nsw-text-dark);
   cursor: help;
@@ -6,22 +6,28 @@
 
 .nsw-tooltip,
 .nsw-toggletip {
-  box-sizing: border-box;
-  display: none;
-  width: max-content;
-  position: absolute;
-  top: 0;
-  left: 0;
-  max-inline-size: 250px;
-  padding: rem(16px);
-  background-color: var(--nsw-grey-02);
-  border-radius: var(--nsw-border-radius);
-  box-shadow: var(--nsw-box-shadow);
-  color: var(--nsw-white);
-  line-height: var(--nsw-line-height-md-desktop);
+  &__element {
+    box-sizing: border-box;
+    display: none;
+    width: max-content;
+    position: absolute;
+    top: 0;
+    left: 0;
+    max-inline-size: 250px;
+    padding: rem(16px);
+    background-color: var(--nsw-grey-02);
+    border-radius: var(--nsw-border-radius);
+    box-shadow: var(--nsw-box-shadow);
+    color: var(--nsw-white);
+    line-height: var(--nsw-line-height-md-desktop);
 
-  @include z-index('upper');
-  @include font-size('xs');
+    @include z-index('upper');
+    @include font-size('xs');
+
+    &.active {
+      display: block;
+    }
+  }
 
   &__arrow {
     position: absolute;
@@ -29,10 +35,6 @@
     width: rem(8px);
     height: rem(8px);
     transform: rotate(45deg);
-  }
-
-  &.active {
-    display: block;
   }
 }
 
