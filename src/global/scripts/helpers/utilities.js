@@ -1,3 +1,12 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { v4 as uuidv4 } from 'uuid'
+
+export const uniqueId = (prefix) => {
+  const prefixValue = (prefix === undefined ? 'nsw' : prefix)
+  const uuid = uuidv4()
+  return `${prefixValue}-${uuid}`
+}
+
 export const focusObjectGenerator = (arr) => {
   const focusableElements = {
     all: arr,
@@ -60,12 +69,6 @@ export const whichTransitionEvent = () => {
 
   const found = Object.keys(transitions).filter((key) => el.style[key] !== undefined)
   return transitions[found[0]]
-}
-
-export const uniqueId = (prefix) => {
-  const prefixValue = (prefix === undefined ? 'nsw' : prefix)
-  return `${prefixValue}-${Math.random().toString(36)
-    .substr(2, 16)}`
 }
 
 export const popupWindow = (url, width, height) => {
