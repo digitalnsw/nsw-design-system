@@ -15,35 +15,36 @@ class Tooltip {
     this.tooltipElement = false
     this.arrowElement = false
     this.tooltipContent = false
-
-    this.showTooltip = () => {
-      this.createTooltipElement()
-      this.tooltipElement.style.display = 'inline-block'
-      // Set dynamic width
-      const range = document.createRange()
-      const text = this.tooltipElement.childNodes[0]
-      range.setStartBefore(text)
-      range.setEndAfter(text)
-      const clientRect = range.getBoundingClientRect()
-      this.tooltipElement.style.width = `${clientRect.width + 32}px`
-
-      this.updateTooltip(this.tooltip, this.tooltipElement, this.arrowElement)
-    }
-
-    this.hideTooltip = () => {
-      this.tooltipElement.style.display = ''
-      this.tooltipElement.style.width = ''
-    }
+    this.tooltipDelay = 400
   }
 
   init() {
-    this.tooltip.setAttribute('aria-labelledby', this.uID)
+    this.tooltipContent = this.tooltip.getAttribute('title')
+    this.tooltip.setAttribute('data-tooltip-content', this.tooltipContent)
+    this.tooltip.removeAttribute('title')
+    this.tooltip.setAttribute('tabindex', '0')
 
-    const eventArray = [['mouseenter', this.showTooltip], ['mouseleave', this.hideTooltip], ['focus', this.showTooltip], ['blur', this.hideTooltip]]
+    const eventArray = ['mouseenter', 'mouseleave', 'focus', 'blur']
 
-    eventArray.forEach(([event, listener]) => {
+    eventArray.forEach((event, { listener = this.handleEvent.bind(this) }) => {
       this.tooltip.addEventListener(event, listener)
     })
+  }
+
+  handleEvent(event) {
+    switch (event.type) {
+      case 'mouseenter':
+      case 'focus':
+        this.showTooltip(this, event)
+        break
+      case 'mouseleave':
+      case 'blur':
+        this.hideTooltip(this, event)
+        break
+      default:
+        console.log(`Unexpected event type: ${event.type}`)
+        break
+    }
   }
 
   createTooltipElement() {
@@ -52,20 +53,49 @@ class Tooltip {
       document.body.appendChild(this.tooltipElement)
     }
 
-    this.constructor.setAttributes(this.tooltipElement, { id: this.uID, class: 'nsw-tooltip__element nsw-section--invert', role: 'tooltip' })
+    this.constructor.setAttributes(this.tooltipElement, {
+      id: this.uID,
+      class: 'nsw-tooltip__element nsw-section--invert',
+      role: 'tooltip',
+    })
 
     if (this.tooltip) {
       this.arrowElement = document.createElement('div')
       this.arrowElement.className = 'nsw-tooltip__arrow'
     }
 
-    this.tooltipContent = this.tooltip.getAttribute('title')
+    this.tooltipContent = this.tooltip.getAttribute('data-tooltip-content')
+
     this.tooltipElement.innerHTML = this.tooltipContent
     this.tooltipElement.insertAdjacentElement('beforeend', this.arrowElement)
   }
 
-  updateTooltip(anchor, tooltip, arrowElement) {
-    console.log(this)
+  showTooltip() {
+    setTimeout(() => {
+      this.createTooltipElement()
+
+      this.tooltipElement.classList.add('active')
+
+      const range = document.createRange()
+      const text = this.tooltipElement.childNodes[0]
+      range.setStartBefore(text)
+      range.setEndAfter(text)
+      const clientRect = range.getBoundingClientRect()
+      this.tooltipElement.style.width = `${clientRect.width + 32}px`
+
+      this.updateTooltip(this.tooltipElement, this.arrowElement)
+    }, this.tooltipDelay)
+  }
+
+  hideTooltip() {
+    setTimeout(() => {
+      this.tooltipElement.classList.remove('active')
+
+      this.tooltipElement.style.width = ''
+    }, this.tooltipDelay)
+  }
+
+  updateTooltip(tooltip, arrowElement, anchor = this.tooltip) {
     computePosition(anchor, tooltip, {
       placement: 'top',
       middleware: [

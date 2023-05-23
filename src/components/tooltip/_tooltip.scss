@@ -1,11 +1,13 @@
-.nsw-tooltip {
-  white-space: nowrap;
-  border-bottom: 1px dotted var(--nsw-text-dark);
-  cursor: help;
-}
-
 .nsw-tooltip,
 .nsw-toggletip {
+  white-space: nowrap;
+  border-bottom: 1px dotted var(--nsw-text-dark);
+
+  &:focus,
+  &:active {
+    @include nsw-focus;
+  }
+
   &__element {
     box-sizing: border-box;
     display: none;
@@ -14,7 +16,6 @@
     top: 0;
     left: 0;
     max-width: 250px;
-    padding: rem(16px);
     background-color: var(--nsw-grey-02);
     border-radius: var(--nsw-border-radius);
     box-shadow: var(--nsw-box-shadow);
@@ -25,7 +26,7 @@
     @include font-size('xs');
 
     &.active {
-      display: block;
+      display: inline-block;
     }
   }
 
@@ -38,7 +39,17 @@
   }
 }
 
+.nsw-tooltip {
+  cursor: help;
+
+  &__element {
+    padding: rem(16px);
+  }
+}
+
 .nsw-toggletip {
+  cursor: pointer;
+
   &__header {
     display: flex;
     justify-content: space-between;
