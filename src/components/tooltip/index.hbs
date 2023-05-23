@@ -8,10 +8,29 @@ meta-description: A tooltip is a short descriptive message that appears when a u
 meta-index: true
 ---
 
-{{#>_docs-example separated=true}}
-  {{>_tooltip}}
-{{/_docs-example}}
+<div class="nsw-tabs js-tabs">
+  <ul class="nsw-tabs__list">
+    <li><a href="#light" class="js-tabs-fixed">Dark</a></li>
+    <li><a href="#dark" class="js-tabs-fixed">Light</a></li>
+  </ul>
+  
+  <section id="light"  class="nsw-tabs__content nsw-tabs__content--side-flush">
+    {{#>_docs-example}}
+      {{>_tooltip dark=true}}
+    {{/_docs-example}}
 
-{{#>_docs-example separated=true}}
-  {{>_toggletip}}
-{{/_docs-example}}
+    {{#>_docs-example separated=true}}
+      {{>_toggletip dark=true id="dark"}}
+    {{/_docs-example}}
+  </section>
+  
+  <section id="dark" class="nsw-section--invert nsw-tabs__content nsw-tabs__content--side-flush">
+    {{#>_docs-example dark=true}}
+      {{>_tooltip light=true}}
+    {{/_docs-example}}
+
+    {{#>_docs-example dark=true separated=true}}
+      {{>_toggletip light=true id="light"}}
+    {{/_docs-example}}
+  </section>
+</div>

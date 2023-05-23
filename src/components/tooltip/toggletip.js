@@ -29,27 +29,23 @@ class Toggletip {
   }
 
   initEvents() {
-    window.addEventListener('keyup', (event) => {
-      if ((event.code && event.code.toLowerCase() === 'escape') || (event.key && event.key.toLowerCase() === 'escape')) {
-        if (!this.toggletipIsOpen) return
+    this.toggletip.addEventListener('click', this.toggleToggletip.bind(this))
+
+    this.toggletip.addEventListener('keyup', (event) => {
+      if ((event.code && event.code.toLowerCase() === 'enter') || (event.key && event.key.toLowerCase() === 'enter')) {
         this.toggleToggletip()
       }
     })
 
-    this.toggletipElement.addEventListener('keydown', (event) => {
-      if ((event.code && event.code.toLowerCase() === 'tab') || (event.key && event.key.toLowerCase() === 'tab')) {
-        this.trapFocus(event)
-      }
-    })
-
-    this.toggletip.addEventListener('click', this.toggleToggletip.bind(this))
+    this.toggletipElement.addEventListener('keydown', this.trapFocus.bind(this))
 
     window.addEventListener('click', (event) => {
       this.checkToggletipClick(event.target)
     })
 
-    this.toggletip.addEventListener('keyup', (event) => {
-      if ((event.code && event.code.toLowerCase() === 'enter') || (event.key && event.key.toLowerCase() === 'enter')) {
+    window.addEventListener('keyup', (event) => {
+      if ((event.code && event.code.toLowerCase() === 'escape') || (event.key && event.key.toLowerCase() === 'escape')) {
+        if (!this.toggletipIsOpen) return
         this.toggleToggletip()
       }
     })
@@ -97,7 +93,6 @@ class Toggletip {
   }
 
   showToggletip() {
-    this.toggletip.focus()
     this.createToggletipElement()
     this.arrowElement = this.toggletipElement.querySelector('.nsw-toggletip__arrow')
     this.closeButton = this.toggletipElement.querySelector('.nsw-icon-button')
@@ -108,9 +103,7 @@ class Toggletip {
     this.getFocusableElements()
     this.focusToggletip()
 
-    this.toggletip.addEventListener('transitionend', () => {
-      this.focusToggletip()
-    }, { once: true })
+    this.toggletip.addEventListener('transitionend', () => { this.focusToggletip() }, { once: true })
 
     this.updateToggletip(this.toggletipElement, this.arrowElement)
     this.closeButton.addEventListener('click', this.toggleToggletip.bind(this))
@@ -165,14 +158,13 @@ class Toggletip {
 
   focusToggletip() {
     if (this.firstFocusable) {
-      this.firstFocusable.focus()
+      this.firstFocusable.focus({ preventScroll: true })
     } else {
-      this.constructor.moveFocus(this.toggletip)
+      this.constructor.moveFocus(this.toggletipElement)
     }
   }
 
   getFocusableElements() {
-    // get all focusable elements inside the toggletip
     const focusableElString = '[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex]:not([tabindex="-1"]), [contenteditable], audio[controls], video[controls], summary'
     const allFocusable = this.toggletipElement.querySelectorAll(focusableElString)
     this.getFirstVisible(allFocusable)
@@ -180,7 +172,6 @@ class Toggletip {
   }
 
   getFirstVisible(elements) {
-    // get first visible focusable element inside the toggletip
     for (let i = 0; i < elements.length; i += 1) {
       if (this.constructor.isVisible(elements[i])) {
         this.firstFocusable = elements[i]
@@ -190,7 +181,6 @@ class Toggletip {
   }
 
   getLastVisible(elements) {
-    // get last visible focusable element inside the toggletip
     for (let i = elements.length - 1; i >= 0; i -= 1) {
       if (this.constructor.isVisible(elements[i])) {
         this.lastFocusable = elements[i]
@@ -214,7 +204,7 @@ class Toggletip {
     return element.offsetWidth || element.offsetHeight || element.getClientRects().length
   }
 
-  static moveFocus(element = document.getElementsByTagName('body')[0]) {
+  static moveFocus(element) {
     element.focus()
     if (document.activeElement !== element) {
       element.setAttribute('tabindex', '-1')
