@@ -43,6 +43,7 @@ class Toggletip {
     this.toggletipElement.addEventListener('keydown', this.trapFocus.bind(this))
 
     window.addEventListener('click', (event) => {
+      console.log(event.target)
       this.checkToggletipClick(event.target)
     })
 
@@ -158,7 +159,7 @@ class Toggletip {
 
   checkToggletipClick(target) {
     if (!this.toggletipIsOpen) return
-    if (!this.toggletip.contains(target) && !target.closest(`[aria-controls="${this.toggletipId}"]`)) this.toggleToggletip()
+    if (!this.toggletipElement.contains(target) && !target.closest(`[aria-controls="${this.toggletipId}"]`)) this.toggleToggletip()
   }
 
   checkToggletipFocus() {
