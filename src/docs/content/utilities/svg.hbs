@@ -3,7 +3,7 @@ title: SVG
 width: narrow
 intro: Utilities for styling the fill, stroke and stroke width of SVG elements.
 no-blank: true
-order: 18
+order: 14
 model: json/utilities.json
 meta-description: Utilities for styling the fill, stroke and stroke width of SVG elements.
 meta-index: true
@@ -11,17 +11,12 @@ meta-index: true
 
 <h3></h3>
 
-{{#>_docs-example showcode=true separated=true}} 
-<div class="nsw-list nsw-list---16">
-  <span class="nsw-z-0 nsw-display--flex nsw-status-label nsw-border--1 nsw-border--grey-03 nsw-status-label--off-white">-100</span>
-  {{#each model.z-index as |value property|}}
-  <span class="{{this.class}} nsw-display--flex nsw-status-label nsw-border--1 nsw-border--grey-03 nsw-status-label--off-white">{{@key}}</span>
+{{#>_docs-example}}  
+  {{#each model.colours as |value property|}}
+    {{#each this}}
+      <div class="nsw-col {{@key}}">
+        <div class="{{@key}}"><p>.{{@key}}</p></div>
+      </div>
+    {{/each}}
   {{/each}}
-  </div>
 {{/_docs-example}}
-
-{{#>_docs-code open=true}}  
-  {{#each model.z-index as |value property|}}
-<div class="{{this.class}}">{{@key}}</div>
-  {{/each}}
-{{/_docs-code}}
