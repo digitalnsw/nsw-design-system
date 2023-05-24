@@ -4,8 +4,11 @@ width: narrow
 page: true
 ---
 {{#>_layout-container}}
-{{>_tooltip dark=true}}
-{{>_toggletip dark=true id="1"}}
-{{>_tooltip light=true}}
-{{>_toggletip light=true id="2"}}
+  {{>_tooltip dark-tooltip=true}}
+  {{>_toggletip dark-toggletip=true id="dark"}}
+{{/_layout-container}}
+
+{{#>_layout-container invert=true dark=true}}
+  {{>_tooltip light-tooltip=true}}
+  {{>_toggletip light-toggletip=true id="light"}}
 {{/_layout-container}}

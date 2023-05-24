@@ -45,8 +45,7 @@ class Toggletip {
 
     window.addEventListener('keyup', (event) => {
       if ((event.code && event.code.toLowerCase() === 'escape') || (event.key && event.key.toLowerCase() === 'escape')) {
-        if (!this.toggletipIsOpen) return
-        this.toggleToggletip()
+        this.checkToggletipFocus()
       }
     })
 
@@ -97,6 +96,7 @@ class Toggletip {
     this.arrowElement = this.toggletipElement.querySelector('.nsw-toggletip__arrow')
     this.closeButton = this.toggletipElement.querySelector('.nsw-icon-button')
 
+    this.toggletipElement.setAttribute('aria-expanded', 'true')
     this.toggletipElement.classList.add('active')
     this.toggletipIsOpen = true
 
@@ -110,6 +110,7 @@ class Toggletip {
   }
 
   hideToggletip() {
+    this.toggletipElement.setAttribute('aria-expanded', 'false')
     this.toggletipElement.classList.remove('active')
 
     this.toggletipIsOpen = false
@@ -154,6 +155,12 @@ class Toggletip {
   checkToggletipClick(target) {
     if (!this.toggletipIsOpen) return
     if (!this.toggletip.contains(target) && !target.closest(`[aria-controls="${this.toggletipId}"]`)) this.toggleToggletip()
+  }
+
+  checkToggletipFocus() {
+    if (!this.toggletipIsOpen) return
+    this.constructor.moveFocus(this.toggletip)
+    this.toggleToggletip()
   }
 
   focusToggletip() {

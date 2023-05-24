@@ -1,3 +1,5 @@
+/* stylelint-disable scss/at-extend-no-missing-placeholder */
+
 .nsw-tooltip,
 .nsw-toggletip {
   white-space: nowrap;
@@ -9,21 +11,55 @@
   }
 
   &__element {
-    box-sizing: border-box;
     display: none;
     width: max-content;
     position: absolute;
     top: 0;
     left: 0;
     max-width: 250px;
-    background-color: var(--nsw-grey-02);
     border-radius: var(--nsw-border-radius);
     box-shadow: var(--nsw-box-shadow);
-    color: var(--nsw-white);
     line-height: var(--nsw-line-height-md-desktop);
 
     @include z-index('upper');
     @include font-size('xs');
+
+    &--dark {
+      background-color: var(--nsw-grey-02);
+      color: var(--nsw-text-light);
+
+      a {
+        @include link-light();
+      }
+
+      .nsw-icon-button {
+        color: var(--nsw-text-light);
+        text-decoration: none;
+
+        @include link-light();
+      }
+    }
+
+    &--light {
+      background-color: var(--nsw-white);
+      color: var(--nsw-text-dark);
+
+      a {
+        @include link;
+      }
+
+      .nsw-icon-button {
+        color: var(--nsw-brand-dark);
+        text-decoration: none;
+
+        @include link-dark;
+      }
+
+      .nsw-tooltip__arrow,
+      .nsw-toggletip__arrow {
+        background-color: var(--nsw-white);
+      }
+    }
 
     &.active {
       display: inline-block;
@@ -36,6 +72,10 @@
     width: rem(8px);
     height: rem(8px);
     transform: rotate(45deg);
+  }
+
+  .nsw-section--invert & {    
+    border-bottom: 1px dotted var(--nsw-text-light);
   }
 }
 

@@ -16,6 +16,7 @@ class Tooltip {
     this.arrowElement = false
     this.tooltipContent = false
     this.tooltipDelay = 400
+    this.tooltipTheme = this.tooltip.getAttribute('data-theme') || 'dark'
   }
 
   init() {
@@ -55,7 +56,7 @@ class Tooltip {
 
     this.constructor.setAttributes(this.tooltipElement, {
       id: this.uID,
-      class: 'nsw-tooltip__element nsw-section--invert',
+      class: `nsw-tooltip__element nsw-tooltip__element--${this.tooltipTheme}`,
       role: 'tooltip',
     })
 
