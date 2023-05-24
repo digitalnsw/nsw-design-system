@@ -13,8 +13,8 @@ class Toggletip {
     this.toggletipId = this.toggletip.getAttribute('aria-controls')
     this.toggletipElement = document.querySelector(`#${this.toggletipId}`)
     this.toggletipContent = this.toggletipElement.innerHTML
-    this.toggletipHeading = this.toggletip.getAttribute('data-title')
     this.toggletipText = this.toggletip.innerText
+    this.toggletipHeading = this.toggletip.getAttribute('data-title') || this.toggletipText
     this.arrowElement = false
     this.closeButton = false
     this.toggletipIsOpen = false
@@ -74,7 +74,7 @@ class Toggletip {
       this.toggletipElement.innerHTML = ''
       const createToggletip = `
       <div class="nsw-toggletip__header">
-        <div id="nsw-toggletip__header" class="nsw-text-truncate nsw-h6">${this.toggletipHeading ? this.toggletipHeading : this.toggletipText}</div>
+        <div id="nsw-toggletip__header" class="nsw-text-truncate nsw-h6">${this.toggletipHeading}</div>
         <button type="button" class="nsw-icon-button">
           <span class="sr-only">Remove file</span>
           <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">close</span>
