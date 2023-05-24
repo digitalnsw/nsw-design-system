@@ -43,7 +43,6 @@ class Toggletip {
     this.toggletipElement.addEventListener('keydown', this.trapFocus.bind(this))
 
     window.addEventListener('click', (event) => {
-      console.log(event.target)
       this.checkToggletipClick(event.target)
     })
 
