@@ -24,7 +24,10 @@ class Toggletip {
   }
 
   init() {
-    this.toggletip.setAttribute('tabindex', '0')
+    this.constructor.setAttributes(this.toggletip, {
+      tabindex: '0',
+      'aria-haspopup': 'dialog',
+    })
     this.initEvents()
   }
 
@@ -71,13 +74,13 @@ class Toggletip {
       this.toggletipElement.innerHTML = ''
       const createToggletip = `
       <div class="nsw-toggletip__header">
-        <div class="nsw-text-truncate nsw-h6">${this.toggletipHeading ? this.toggletipHeading : this.toggletipText}</div>
+        <div id="nsw-toggletip__header" class="nsw-text-truncate nsw-h6">${this.toggletipHeading ? this.toggletipHeading : this.toggletipText}</div>
         <button type="button" class="nsw-icon-button">
           <span class="sr-only">Remove file</span>
           <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">close</span>
         </button>
       </div>
-      <div class="nsw-toggletip__content">
+      <div id="nsw-toggletip__content" class="nsw-toggletip__content">
         ${this.toggletipContent}
       </div>
       <div class="nsw-toggletip__arrow"></div>`
@@ -85,8 +88,9 @@ class Toggletip {
     }
 
     this.constructor.setAttributes(this.toggletipElement, {
+      'aria-labelledby': 'nsw-toggletip__header',
+      'aria-describedby': 'nsw-toggletip__content',
       'aria-expanded': 'false',
-      'aria-haspopup': 'true',
       role: 'dialog',
     })
   }
