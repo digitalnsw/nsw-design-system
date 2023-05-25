@@ -113,7 +113,7 @@ class Tooltip {
     computePosition(anchor, tooltip, {
       placement: 'top',
       middleware: [
-        offset(10),
+        offset(8),
         flip(),
         shift({ padding: 5 }),
         arrow({ element: arrowElement }),
@@ -141,7 +141,7 @@ class Tooltip {
         top: arrowY != null ? `${arrowY}px` : '',
         right: '',
         bottom: '',
-        [staticSide]: '-8px',
+        [staticSide]: '-6px',
       })
     })
   }

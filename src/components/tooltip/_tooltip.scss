@@ -16,7 +16,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    max-width: 280px;
+    max-width: 260px;
     border-radius: var(--nsw-border-radius);
     box-shadow: var(--nsw-box-shadow);
     line-height: var(--nsw-line-height-md-desktop);
@@ -84,11 +84,9 @@
   &__arrow {
     position: absolute;
     background-color: var(--nsw-grey-02);
-    width: 16px;
-    height: 16px;
+    width: 12px;
+    height: 12px;
     transform: rotate(45deg);
-
-    @include z-index('below');
   }
 
   .nsw-section--invert & {    
@@ -130,11 +128,7 @@
   }
 
   &__content {
-    padding: 0 rem(8px) rem(8px);
-
-    @include breakpoint('lg') {
-      padding: 0 rem(16px) rem(16px);
-    }
+    padding: 0 rem(16px) rem(16px);
     
     &:first-child {
       margin-top: 0;
