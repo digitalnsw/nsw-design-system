@@ -22,9 +22,12 @@ class Tooltip {
 
   init() {
     this.tooltipContent = this.tooltip.getAttribute('title')
-    this.tooltip.setAttribute('data-tooltip-content', this.tooltipContent)
+    this.constructor.setAttributes(this.tooltip, {
+      'data-tooltip-content': this.tooltipContent,
+      'aria-describedby': this.uID,
+      tabindex: '0',
+    })
     this.tooltip.removeAttribute('title')
-    this.tooltip.setAttribute('tabindex', '0')
 
     const eventArray = ['mouseenter', 'mouseleave', 'focus', 'blur']
 
