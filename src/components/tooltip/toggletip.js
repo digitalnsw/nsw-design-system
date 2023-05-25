@@ -1,4 +1,4 @@
-/* eslint-disable max-len */
+/* eslint-disable max-len, import/no-extraneous-dependencies */
 import {
   computePosition,
   flip,
@@ -6,6 +6,7 @@ import {
   offset,
   arrow,
 } from '@floating-ui/dom'
+import cleanHTML from '../../global/scripts/helpers/sanitize'
 
 class Toggletip {
   constructor(element) {
@@ -82,7 +83,7 @@ class Toggletip {
         </button>
       </div>
       <div id="nsw-toggletip__content" class="nsw-toggletip__content">
-        ${this.toggletipContent}
+        ${cleanHTML(this.toggletipContent)}
       </div>
       <div class="nsw-toggletip__arrow"></div>`
       this.toggletipElement.insertAdjacentHTML('afterbegin', createToggletip)
@@ -125,7 +126,7 @@ class Toggletip {
     computePosition(anchor, toggletip, {
       placement: 'top',
       middleware: [
-        offset(6),
+        offset(10),
         flip(),
         shift({ padding: 5 }),
         arrow({ element: arrowElement }),
@@ -152,7 +153,7 @@ class Toggletip {
         top: arrowY != null ? `${arrowY}px` : '',
         right: '',
         bottom: '',
-        [staticSide]: '-4px',
+        [staticSide]: '-8px',
       })
     })
   }
