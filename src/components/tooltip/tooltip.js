@@ -16,6 +16,7 @@ class Tooltip {
     this.arrowElement = false
     this.tooltipContent = false
     this.tooltipDelay = 400
+    this.screenSize = false
     this.tooltipTheme = this.tooltip.getAttribute('data-theme') || 'dark'
   }
 
@@ -82,7 +83,7 @@ class Tooltip {
       range.setStartBefore(text)
       range.setEndAfter(text)
       const clientRect = range.getBoundingClientRect()
-      this.tooltipElement.style.width = `${clientRect.width + 32}px`
+      this.tooltipElement.style.width = `${clientRect.width + this.screenSize}px`
 
       this.updateTooltip(this.tooltipElement, this.arrowElement)
     }, this.tooltipDelay)
@@ -94,6 +95,14 @@ class Tooltip {
 
       this.tooltipElement.style.width = ''
     }, this.tooltipDelay)
+  }
+
+  static matchMedia() {
+    if (window.matchMedia('(min-width: 576px)').matches) {
+      this.screenSize = 32
+    } else {
+      this.screenSize = 16
+    }
   }
 
   updateTooltip(tooltip, arrowElement, anchor = this.tooltip) {
