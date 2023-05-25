@@ -24,12 +24,22 @@
     @include z-index('upper');
     @include font-size('xs');
 
+    &:focus,
+    &:active {
+      @include nsw-focus;
+    }
+
     &--dark {
       background-color: var(--nsw-grey-02);
       color: var(--nsw-text-light);
 
       a {
         @include link-light();
+
+        &:focus,
+        &:active {
+          @include nsw-focus;
+        }
       }
 
       .nsw-icon-button {
@@ -46,6 +56,11 @@
 
       a {
         @include link;
+
+        &:focus,
+        &:active {
+          @include nsw-focus;
+        }
       }
 
       .nsw-icon-button {
@@ -69,9 +84,11 @@
   &__arrow {
     position: absolute;
     background-color: var(--nsw-grey-02);
-    width: rem(8px);
-    height: rem(8px);
+    width: rem(24px);
+    height: rem(24px);
     transform: rotate(45deg);
+
+    @include z-index('lower');
   }
 
   .nsw-section--invert & {    

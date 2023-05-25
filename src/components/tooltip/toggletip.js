@@ -65,6 +65,7 @@ class Toggletip {
     if (this.toggletipElement.classList.contains('active')) {
       this.hideToggletip()
     } else {
+      this.toggletipElement.focus()
       this.showToggletip()
     }
   }
@@ -91,6 +92,7 @@ class Toggletip {
       'aria-labelledby': 'nsw-toggletip__header',
       'aria-describedby': 'nsw-toggletip__content',
       'aria-expanded': 'false',
+      tabindex: '0',
       role: 'dialog',
     })
   }
@@ -105,8 +107,7 @@ class Toggletip {
     this.toggletipIsOpen = true
 
     this.getFocusableElements()
-    this.focusToggletip()
-
+    this.toggletipElement.focus({ preventScroll: true })
     this.toggletip.addEventListener('transitionend', () => { this.focusToggletip() }, { once: true })
 
     this.updateToggletip(this.toggletipElement, this.arrowElement)
@@ -216,7 +217,7 @@ class Toggletip {
   }
 
   static moveFocus(element) {
-    element.focus()
+    element.focus({ preventScroll: true })
     if (document.activeElement !== element) {
       element.setAttribute('tabindex', '-1')
       element.focus()

@@ -83,6 +83,7 @@ class Tooltip {
       range.setStartBefore(text)
       range.setEndAfter(text)
       const clientRect = range.getBoundingClientRect()
+      this.matchMedia()
       this.tooltipElement.style.width = `${clientRect.width + this.screenSize}px`
 
       this.updateTooltip(this.tooltipElement, this.arrowElement)
@@ -97,7 +98,7 @@ class Tooltip {
     }, this.tooltipDelay)
   }
 
-  static matchMedia() {
+  matchMedia() {
     if (window.matchMedia('(min-width: 576px)').matches) {
       this.screenSize = 32
     } else {
