@@ -14,7 +14,7 @@ layout: blank-layout.hbs
 <p>Tooltips should only provide concise additional information for inline text elements. Do not use tooltips for:</p>
 
 <ul>
-  <li>displaying vital information</li>
+  <li>displaying vital information.</li>
   <li>non-text elements such as icons, images, buttons or form fields</li>
 </ul>
 
@@ -25,16 +25,40 @@ layout: blank-layout.hbs
 <h3>Default:</h3>
 
 <ul>
-  <li>displayed on hover or focus</li>
-  <li>should be used for text only content</li>
+  <li>Displayed when the trigger element is hovered by the mouse or when it receives keyboard focus.</li>
+  <li>Focus remains on the trigger element while the tooltip is displayed.</li>
+  <li>Dismissed by navigating outside.</li>
+  <li>Positioning adjusts itself dynamically based on collisions and available space.</li>
+  <li>Make sure to provide a short and succinct label for the tooltip.</li>
+  <li>Should be used for text only content.</li>
+  <li>A short delay (~400ms) before displaying the tooltip is in place to avoid accidental activations and a jarring user experience.</li>
 </ul>
 
 <h4>Toggletip:</h4>
 
 <ul>
-  <li>displayed on click</li>
-  <li>should be used when links are included in the content.</li>
+  <li>Opens via keyboard or when the trigger element is clicked by the mouse.</li>
+  <li>Dismissed with the <code>Escape</code> key, the close button or by navigating outside.</li>
+  <li>Traps focus inside the toggletip, and restores it when dismissed.</li>
+  <li>Positioning adjusts itself dynamically based on collisions and available space.</li>
+  <li>Since a Toggletip remains visible after user interaction, you should only be using it for rich content, such as images, links, and lists. If the content of a Toggletip is plain text and not meant to be interacted with, consider using a Tooltip instead.</li>
 </ul>
 
 <h2>Accessibility</h2>
 <p>All components are responsive and meet WCAG 2.1 AA accessibility guidelines.</p>
+
+<h3>Toggletip keyboard interaction and focus</h3>
+
+<ul>
+  <li>Opens via the <code>Enter</code> or <code>Space</code> keys, or by clicking the trigger element.</li>
+  <li>On open, focus moves into the Toggletip container to navigate elements inside with the <code>Tab</code> key.</li>
+  <li>Dismissed by tabbing out of the Toggletip, pressing the <code>Escape</code> key, or clicking outside.</li>
+  <li>When dismissed, focus returns to the trigger element.</li>
+</ul>
+
+<h3>ARIA attributes</h3>
+<ul>
+  <li>The trigger element has <a target="_blank" rel="noopener noreferrer" href="https://www.w3.org/TR/wai-aria/#aria-expanded"><code>aria-expanded</code></a> set to <code>true</code> or <code>false</code> based on the open state.</li>
+  <li>The trigger element has <a target="_blank" rel="noopener noreferrer" href="https://www.w3.org/TR/wai-aria/#aria-controls"><code>aria-controls</code></a> set to the <code>id</code> of the Toggletip element.</li>
+  <li>The trigger element has <a target="_blank" rel="noopener noreferrer" href="https://www.w3.org/TR/wai-aria/#aria-haspopup"><code>aria-haspopup</code></a> set to the suitable <code>role</code> attribute of the Toggletip, depending on the type of content.</li>
+</ul>

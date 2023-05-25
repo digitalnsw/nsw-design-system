@@ -3,7 +3,7 @@
 .nsw-tooltip,
 .nsw-toggletip {
   white-space: nowrap;
-  border-bottom: 1px dotted var(--nsw-text-dark);
+  border-bottom: 2px dotted var(--nsw-brand-dark);
 
   &:focus,
   &:active {
@@ -16,7 +16,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    max-width: 250px;
+    max-width: 280px;
     border-radius: var(--nsw-border-radius);
     box-shadow: var(--nsw-box-shadow);
     line-height: var(--nsw-line-height-md-desktop);
@@ -69,13 +69,13 @@
   &__arrow {
     position: absolute;
     background-color: var(--nsw-grey-02);
-    width: rem(8px);
-    height: rem(8px);
+    width: rem(24px);
+    height: rem(24px);
     transform: rotate(45deg);
   }
 
   .nsw-section--invert & {    
-    border-bottom: 1px dotted var(--nsw-text-light);
+    border-bottom: 2px dotted var(--nsw-text-light);
   }
 }
 
@@ -83,7 +83,11 @@
   cursor: help;
 
   &__element {
-    padding: rem(16px);
+    padding: rem(8px);
+
+    @include breakpoint('lg') {
+      padding: rem(16px);
+    }
   }
 }
 
@@ -92,15 +96,11 @@
 
   &__header {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
 
-    div {
-      margin: 0 rem(16px);
-    }
-
     .nsw-icon-button {
-      margin: rem(8px);
+      margin: rem(4px);
 
       .nsw-material-icons {
         font-size: var(--nsw-font-size-sm-mobile);
@@ -113,8 +113,12 @@
   }
 
   &__content {
-    padding: 0 rem(16px) rem(16px);
+    padding: 0 rem(8px) rem(8px);
 
+    @include breakpoint('lg') {
+      padding: 0 rem(16px) rem(16px);
+    }
+    
     &:first-child {
       margin-top: 0;
     }

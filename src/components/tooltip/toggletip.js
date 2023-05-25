@@ -74,7 +74,7 @@ class Toggletip {
       this.toggletipElement.innerHTML = ''
       const createToggletip = `
       <div class="nsw-toggletip__header">
-        <div id="nsw-toggletip__header" class="nsw-text-truncate nsw-h6">${this.toggletipHeading}</div>
+        <div id="nsw-toggletip__header" class="sr-only">${this.toggletipHeading}</div>
         <button type="button" class="nsw-icon-button">
           <span class="sr-only">Remove file</span>
           <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">close</span>
