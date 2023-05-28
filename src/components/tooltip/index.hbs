@@ -1,0 +1,48 @@
+---
+title: Tooltip
+width: narrow
+tabs: true
+directory: tooltip
+intro: A tooltip is a short descriptive message that appears when a user hovers or focuses on an element.
+meta-description: A tooltip is a short descriptive message that appears when a user hovers or focuses on an element.
+meta-index: true
+---
+
+<div class="nsw-tabs js-tabs">
+  <ul class="nsw-tabs__list">
+    <li><a href="#light" class="js-tabs-fixed">Dark</a></li>
+    <li><a href="#dark" class="js-tabs-fixed">Light</a></li>
+  </ul>
+
+  <section id="light"  class="nsw-tabs__content nsw-tabs__content--side-flush">
+    
+    <h3 class="nsw-m-bottom-sm">Tooltip</h3>
+
+    {{#>_docs-example}}
+{{>_tooltip dark-tooltip=true}}
+    {{/_docs-example}}
+
+    <h3 class="nsw-m-bottom-sm">Toggletip</h3>
+
+    {{#>_docs-example}}
+{{>_toggletip dark-toggletip=true id="dark"}}
+    {{/_docs-example}}
+
+  </section>
+  
+  <section id="dark" class="nsw-section--invert nsw-tabs__content nsw-tabs__content--side-flush">
+
+    <h3 class="nsw-text--dark nsw-m-bottom-sm">Tooltip</h3>
+
+    {{#>_docs-example dark=true}}
+{{>_tooltip light-tooltip=true}}
+    {{/_docs-example}}
+
+    <h3 class="nsw-text--dark nsw-m-bottom-sm">Toggletip</h3>
+
+    {{#>_docs-example dark=true}}
+{{>_toggletip light-toggletip=true id="light"}}
+    {{/_docs-example}}
+
+  </section>
+</div>
