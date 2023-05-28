@@ -1,11 +1,11 @@
 <!doctype html>
 <html lang="en" class="no-js">
 <head>
-  <title>NSW Digital Design System - What is Design System</title>
+  <title>NSW Digital Design System - Tooltip</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="description" content="The NSW Design System is a single source of truth for the design and development of digital products and services in NSW Government." />
+  <meta name="description" content="A tooltip is a short descriptive message that appears when a user hovers or focuses on an element." />
   <link rel="icon" href="/nsw-design-system/favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -299,42 +299,301 @@
       </div>
     </div>
     <div class="nsw-docs__main nsw-docs__main--narrow">
-      <div class="nsw-docs__intro">
+      <div class="nsw-docs__intro nsw-docs__intro--tabs">
         <div class="nsw-docs__container">
-          <h1>What is Design System</h1>
+          <h1>Tooltip</h1>
           
-          
+          <p class="nsw-intro">A tooltip is a short descriptive message that appears when a user hovers or focuses on an element.</p>
           
         </div>
       </div>
-      <div class="nsw-docs__content">
-        <div class="nsw-docs__container">
+<div class="nsw-docs__tabs">
+  <div class="nsw-tabs js-tabs nsw-docs-tabs">
+    <ul class="nsw-tabs__list">
+      <li class="nsw-tabs__list-item">
+        <a href="#section-guidance" class="nsw-tabs__link js-tabs-fixed">Guidance</a>
+      </li>
+      <li class="nsw-tabs__list-item">
+        <a href="#section-interactive-demo" class="nsw-tabs__link js-tabs-fixed">Demo &amp; Code</a>
+      </li>
+    </ul>
+    <section id="section-guidance" class="nsw-tabs__content">
+      <div class="nsw-docs__container">
+        
+<h2>Usage</h2>
+<p>Use tooltips on inline text elements that appear in the main content of the page to:</p>
+<ul>
+  <li>provide more context or brief explanations for technical or industry-specific terms.</li>
+  <li>describe acronyms or abbreviations.</li>
+</ul>
 
-<p>The NSW Design System is a single source of truth for the design and development of digital products and services in NSW Government. Our mission is to help teams build products and services that meet user needs and deliver great user experiences.</p>
-<p>Our <a href="/nsw-design-system/docs/content/design/getting-started.html">design guidelines</a> and <a href="/nsw-design-system/docs/content/develop/getting-started.html">development documentation</a> guide you on how to use the NSW Design System. Embracing a code first approach, all parts of the design system have been built in alignment to deliver simple and consistent solutions.</p>
-<p>Building from a single, best practice base ensures consistency with how our users engage and interact with NSW Government digitally. Resulting in easy to use products and services.</p>
+<h3>When to avoid</h3>
+<p>Tooltips should only provide concise additional information for inline text elements. Do not use tooltips for:</p>
 
-<h2>Benefits</h2>
+<ul>
+  <li>displaying vital information.</li>
+  <li>non-text elements such as icons, images, buttons or form fields.</li>
+</ul>
 
-<h3>Build faster and at scale</h3>
-<p>Save time and money with an <a href="/nsw-design-system/docs/content/about/our-ecosystem.html">ecosystem</a> that is made to work together. The design system features a library of styles, components and templates, and well as advice and guidance for how and when to use each one. Delivered in ready to go UI and code kits, say goodbye to building from scratch.</p>
+<h3>Types of tooltips</h3>
 
-<h3>Out-of-the-box brand and accessibility compliance</h3>
-<p>Understand, apply and meet brand standards, with features required for brand compliance indicated with a 🔹 blue diamond. Supporting the <a href="https://www.nsw.gov.au/branding" target="_blank">NSW Government brand framework</a>, the design system can be used by, and bring value to any brand classification. All components and styles are also built and tested to WCAG 2.1 AA standards.</p>
+<p>There are two types of tooltips based on their purpose.</p>
 
-<h3>Consistent code and design language</h3>
-<p>When using our foundations, components and themes, get access to fully synchronised UI and code kits for both designers and developers. This means everyone uses the same atomic components, with extended guidance also bridging the gap to help avoid design drift.</p>
+<h4>Default:</h4>
 
-<h3>Quality across all layers</h3>
-<p>The design system provides full-stack foundations and base components which are engineered for a good user experience. They go beyond the look-and-feel to also include branding, UX guidance, and front-end components.</p>
+<ul>
+  <li>displayed when the trigger element is hovered by the mouse or when it receives keyboard focus.</li>
+  <li>focus remains on the trigger element while the tooltip is displayed.</li>
+  <li>dismissed by navigating outside.</li>
+  <li>positioning adjusts itself dynamically based on collisions and available space.</li>
+  <li>should be used for text only content.</li>
+  <li>to enhance user experience and prevent unintended activations, a brief delay (~400ms) is implemented prior to showing the tooltip.</li>
+</ul>
 
-<h2>Support</h2>
-<h3>Questions</h3>
-<p>If you have any questions or would like to chat to us further about using the NSW Design System reach out to us at <a href="mailto:digital@customerservice.nsw.gov.au">digital@customerservice.nsw.gov.au.</a></p>
-<h3>Report issues</h3>
-<p>View and raise issues and bugs through our <a href="https://github.com/digitalnsw/nsw-design-system/issues" target="_blank">Issues tracker</a> on Github or via <a href="https://community.digital.nsw.gov.au/c/components/report-a-bug/27" target="_blank">Report a bug</a> on the Community.</p>
-        </div>
+<h4>Toggletip:</h4>
+
+<ul>
+  <li>opens via keyboard or when the trigger element is clicked by the mouse.</li>
+  <li>dismissed with the <code>Escape</code> key, the close button or by navigating outside.</li>
+  <li>traps focus inside the toggletip, and restores it when dismissed.</li>
+  <li>positioning adjusts itself dynamically based on collisions and available space.</li>
+  <li>use Toggletips for interactive content like links, since they stay visible after user interaction. For plain text without interaction, go for Tooltips instead.</li>
+</ul>
+
+<h2>Accessibility</h2>
+<p>All components are responsive and meet WCAG 2.1 AA accessibility guidelines.</p>
+
+<h3>Tooltip keyboard interaction and focus</h3>
+<ul>
+  <li>Focus stays on the triggering element while the Tooltip is displayed.</li>
+  <li>The Tooltip is invoked when the trigger element receives focus, then it is dismissed when it no longer has focus (onBlur). If the Tooltip is invoked with mouseIn, then it is dismissed with on mouseOut.</li>
+  <li>The element that serves as the Tooltip container has role tooltip.</li>
+  <li>The element that triggers the tooltip references the tooltip element with aria-describedby.</li>
+</ul>
+
+<h3>Toggletip keyboard interaction and focus</h3>
+
+<ul>
+  <li>Opens via the <code>Enter</code> or <code>Space</code> keys, or by clicking the trigger element.</li>
+  <li>On open, focus moves into the Toggletip container to navigate elements inside with the <code>Tab</code> key.</li>
+  <li>Dismissed by tabbing out of the Toggletip, pressing the <code>Escape</code> key, or clicking outside.</li>
+  <li>When dismissed, focus returns to the trigger element.</li>
+</ul>
+
+<h3>ARIA attributes</h3>
+<ul>
+  <li>The trigger element has <a target="_blank" rel="noopener noreferrer" href="https://www.w3.org/TR/wai-aria/#aria-expanded"><code>aria-expanded</code></a> set to <code>true</code> or <code>false</code> based on the open state.</li>
+  <li>The trigger element has <a target="_blank" rel="noopener noreferrer" href="https://www.w3.org/TR/wai-aria/#aria-controls"><code>aria-controls</code></a> set to the <code>id</code> of the Toggletip element.</li>
+  <li>The trigger element has <a target="_blank" rel="noopener noreferrer" href="https://www.w3.org/TR/wai-aria/#aria-haspopup"><code>aria-haspopup</code></a> set to the suitable <code>role</code> attribute of the Toggletip, depending on the type of content.</li>
+</ul>
+
       </div>
+    </section>
+    <section id="section-interactive-demo" class="nsw-tabs__content">
+      <div class="nsw-docs__demo">
+        <div class="nsw-docs__external">
+          <a class="nsw-small nsw-link nsw-link--icon" target="_blank" href="/nsw-design-system/components/tooltip/blank.html"><span>View in new window</span><i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">launch</i></a>
+        </div>
+
+<div class="nsw-tabs js-tabs">
+  <ul class="nsw-tabs__list">
+    <li><a href="#light" class="js-tabs-fixed">Dark</a></li>
+    <li><a href="#dark" class="js-tabs-fixed">Light</a></li>
+  </ul>
+
+  <section id="light"  class="nsw-tabs__content nsw-tabs__content--side-flush">
+    
+    <h3 class="nsw-m-bottom-sm">Tooltip</h3>
+
+<div class="nsw-docs__example">
+  <div class="nsw-docs__component">
+    <p>Apparently we had reached a <span class="nsw-tooltip js-tooltip" title="Lorem ipsum dolor sit" data-theme="dark">great height</span> in the atmosphere, for the sky was a dead black, and <span class="nsw-tooltip js-tooltip" title="Lorem ipsum dolor sit." data-theme="dark">the stars</span> had ceased to twinkle. By the <span class="nsw-tooltip js-tooltip" title="Lorem ipsum dolor, sit amet consectetur adipisicing" data-theme="dark">same illusion</span> which lifts the horizon of the sea to the level of the spectator on a hillside, the sable cloud beneath was dished out, and the car seemed to float in the middle of an immense dark sphere, whose upper half was strewn with silver. Looking down into the dark gulf below, I could see a <span class="nsw-tooltip js-tooltip" title="Lorem ipsum dolor" data-theme="dark">ruddy light</span> streaming through a rift in the clouds.</p>
+    
+    <p>By reducing how severe the illness is, you are less likely to:</p>
+    
+    <ul>
+      <li>go to hospital</li>
+      <li>develop breathing difficulties</li>
+      <li>need assistance with oxygen or intensive care treatment, or</li>
+      <li>die from <span class="nsw-tooltip js-tooltip" title="Coronavirus Disease 2019" data-theme="dark">COVID-19</span>.</li>
+    </ul>  </div>
+</div>
+<div class="nsw-docs-code">
+  <button class="nsw-link nsw-link--button nsw-link--icon nsw-small js-code-button">
+    <span>Show code</span>
+    <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
+  </button>
+  <div class="nsw-docs-code__content">
+    <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
+      <span>Copy</span>
+      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
+    </button>
+    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`<p>Apparently we had reached a <span class="nsw-tooltip js-tooltip" title="Lorem ipsum dolor sit" data-theme="dark">great height</span> in the atmosphere, for the sky was a dead black, and <span class="nsw-tooltip js-tooltip" title="Lorem ipsum dolor sit." data-theme="dark">the stars</span> had ceased to twinkle. By the <span class="nsw-tooltip js-tooltip" title="Lorem ipsum dolor, sit amet consectetur adipisicing" data-theme="dark">same illusion</span> which lifts the horizon of the sea to the level of the spectator on a hillside, the sable cloud beneath was dished out, and the car seemed to float in the middle of an immense dark sphere, whose upper half was strewn with silver. Looking down into the dark gulf below, I could see a <span class="nsw-tooltip js-tooltip" title="Lorem ipsum dolor" data-theme="dark">ruddy light</span> streaming through a rift in the clouds.</p>
+
+<p>By reducing how severe the illness is, you are less likely to:</p>
+
+<ul>
+  <li>go to hospital</li>
+  <li>develop breathing difficulties</li>
+  <li>need assistance with oxygen or intensive care treatment, or</li>
+  <li>die from <span class="nsw-tooltip js-tooltip" title="Coronavirus Disease 2019" data-theme="dark">COVID-19</span>.</li>
+</ul>`).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
+    <div class="nsw-docs-code__wrapper">
+<pre><code class="html"><script>document.write((`<p>Apparently we had reached a <span class="nsw-tooltip js-tooltip" title="Lorem ipsum dolor sit" data-theme="dark">great height</span> in the atmosphere, for the sky was a dead black, and <span class="nsw-tooltip js-tooltip" title="Lorem ipsum dolor sit." data-theme="dark">the stars</span> had ceased to twinkle. By the <span class="nsw-tooltip js-tooltip" title="Lorem ipsum dolor, sit amet consectetur adipisicing" data-theme="dark">same illusion</span> which lifts the horizon of the sea to the level of the spectator on a hillside, the sable cloud beneath was dished out, and the car seemed to float in the middle of an immense dark sphere, whose upper half was strewn with silver. Looking down into the dark gulf below, I could see a <span class="nsw-tooltip js-tooltip" title="Lorem ipsum dolor" data-theme="dark">ruddy light</span> streaming through a rift in the clouds.</p>
+
+<p>By reducing how severe the illness is, you are less likely to:</p>
+
+<ul>
+  <li>go to hospital</li>
+  <li>develop breathing difficulties</li>
+  <li>need assistance with oxygen or intensive care treatment, or</li>
+  <li>die from <span class="nsw-tooltip js-tooltip" title="Coronavirus Disease 2019" data-theme="dark">COVID-19</span>.</li>
+</ul>`).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
+    </div>
+  </div>
+</div>
+
+
+    <h3 class="nsw-m-bottom-sm">Toggletip</h3>
+
+<div class="nsw-docs__example">
+  <div class="nsw-docs__component">
+    <h3>How do antivirals for COVID-19 work?</h3>
+    <p>Antiviral medicines target the virus (<span aria-controls="toggletip-example-dark" class="nsw-toggletip js-toggletip" data-title="SARS-CoV-2">SARS-CoV-2</span>) that causes COVID-19 to prevent it infecting healthy cells in your body and multiplying. This helps stop the spread of the virus inside your body and helps your immune system to fight off the infection.</p>
+    
+    <div id="toggletip-example-dark" class="nsw-toggletip__element nsw-toggletip__element--dark">
+      <p>SARS-CoV-2 is a single-stranded RNA betacoronavirus in the same subgenus as the severe acute respiratory syndrome (SARS) virus. <a href="https://www.health.gov.au/our-work/covid-19-vaccines/advice-for-providers/clinical-guidance/clinical-features">Learn more</a></p>
+    </div>  </div>
+</div>
+<div class="nsw-docs-code">
+  <button class="nsw-link nsw-link--button nsw-link--icon nsw-small js-code-button">
+    <span>Show code</span>
+    <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
+  </button>
+  <div class="nsw-docs-code__content">
+    <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
+      <span>Copy</span>
+      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
+    </button>
+    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`<h3>How do antivirals for COVID-19 work?</h3>
+<p>Antiviral medicines target the virus (<span aria-controls="toggletip-example-dark" class="nsw-toggletip js-toggletip" data-title="SARS-CoV-2">SARS-CoV-2</span>) that causes COVID-19 to prevent it infecting healthy cells in your body and multiplying. This helps stop the spread of the virus inside your body and helps your immune system to fight off the infection.</p>
+
+<div id="toggletip-example-dark" class="nsw-toggletip__element nsw-toggletip__element--dark">
+  <p>SARS-CoV-2 is a single-stranded RNA betacoronavirus in the same subgenus as the severe acute respiratory syndrome (SARS) virus. <a href="https://www.health.gov.au/our-work/covid-19-vaccines/advice-for-providers/clinical-guidance/clinical-features">Learn more</a></p>
+</div>`).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
+    <div class="nsw-docs-code__wrapper">
+<pre><code class="html"><script>document.write((`<h3>How do antivirals for COVID-19 work?</h3>
+<p>Antiviral medicines target the virus (<span aria-controls="toggletip-example-dark" class="nsw-toggletip js-toggletip" data-title="SARS-CoV-2">SARS-CoV-2</span>) that causes COVID-19 to prevent it infecting healthy cells in your body and multiplying. This helps stop the spread of the virus inside your body and helps your immune system to fight off the infection.</p>
+
+<div id="toggletip-example-dark" class="nsw-toggletip__element nsw-toggletip__element--dark">
+  <p>SARS-CoV-2 is a single-stranded RNA betacoronavirus in the same subgenus as the severe acute respiratory syndrome (SARS) virus. <a href="https://www.health.gov.au/our-work/covid-19-vaccines/advice-for-providers/clinical-guidance/clinical-features">Learn more</a></p>
+</div>`).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
+    </div>
+  </div>
+</div>
+
+
+  </section>
+  
+  <section id="dark" class="nsw-section--invert nsw-tabs__content nsw-tabs__content--side-flush">
+
+    <h3 class="nsw-text--dark nsw-m-bottom-sm">Tooltip</h3>
+
+<div class="nsw-docs__example nsw-docs__example--dark">
+  <div class="nsw-docs__component">
+    <p>Apparently we had reached a <span class="nsw-tooltip js-tooltip" title="Lorem ipsum dolor sit" data-theme="light">great height</span> in the atmosphere, for the sky was a dead black, and <span class="nsw-tooltip js-tooltip" title="Lorem ipsum dolor sit." data-theme="light">the stars</span> had ceased to twinkle. By the <span class="nsw-tooltip js-tooltip" title="Lorem ipsum dolor, sit amet consectetur adipisicing" data-theme="light">same illusion</span> which lifts the horizon of the sea to the level of the spectator on a hillside, the sable cloud beneath was dished out, and the car seemed to float in the middle of an immense dark sphere, whose upper half was strewn with silver. Looking down into the dark gulf below, I could see a <span class="nsw-tooltip js-tooltip" title="Lorem ipsum dolor" data-theme="light">ruddy light</span> streaming through a rift in the clouds.</p>
+    
+    <p>By reducing how severe the illness is, you are less likely to:</p>
+    
+    <ul>
+      <li>go to hospital</li>
+      <li>develop breathing difficulties</li>
+      <li>need assistance with oxygen or intensive care treatment, or</li>
+      <li>die from <span class="nsw-tooltip js-tooltip" title="Coronavirus Disease 2019" data-theme="light">COVID-19</span>.</li>
+    </ul>  </div>
+</div>
+<div class="nsw-docs-code">
+  <button class="nsw-link nsw-link--button nsw-link--icon nsw-small js-code-button">
+    <span>Show code</span>
+    <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
+  </button>
+  <div class="nsw-docs-code__content">
+    <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
+      <span>Copy</span>
+      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
+    </button>
+    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`<p>Apparently we had reached a <span class="nsw-tooltip js-tooltip" title="Lorem ipsum dolor sit" data-theme="light">great height</span> in the atmosphere, for the sky was a dead black, and <span class="nsw-tooltip js-tooltip" title="Lorem ipsum dolor sit." data-theme="light">the stars</span> had ceased to twinkle. By the <span class="nsw-tooltip js-tooltip" title="Lorem ipsum dolor, sit amet consectetur adipisicing" data-theme="light">same illusion</span> which lifts the horizon of the sea to the level of the spectator on a hillside, the sable cloud beneath was dished out, and the car seemed to float in the middle of an immense dark sphere, whose upper half was strewn with silver. Looking down into the dark gulf below, I could see a <span class="nsw-tooltip js-tooltip" title="Lorem ipsum dolor" data-theme="light">ruddy light</span> streaming through a rift in the clouds.</p>
+
+<p>By reducing how severe the illness is, you are less likely to:</p>
+
+<ul>
+  <li>go to hospital</li>
+  <li>develop breathing difficulties</li>
+  <li>need assistance with oxygen or intensive care treatment, or</li>
+  <li>die from <span class="nsw-tooltip js-tooltip" title="Coronavirus Disease 2019" data-theme="light">COVID-19</span>.</li>
+</ul>`).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
+    <div class="nsw-docs-code__wrapper">
+<pre><code class="html"><script>document.write((`<p>Apparently we had reached a <span class="nsw-tooltip js-tooltip" title="Lorem ipsum dolor sit" data-theme="light">great height</span> in the atmosphere, for the sky was a dead black, and <span class="nsw-tooltip js-tooltip" title="Lorem ipsum dolor sit." data-theme="light">the stars</span> had ceased to twinkle. By the <span class="nsw-tooltip js-tooltip" title="Lorem ipsum dolor, sit amet consectetur adipisicing" data-theme="light">same illusion</span> which lifts the horizon of the sea to the level of the spectator on a hillside, the sable cloud beneath was dished out, and the car seemed to float in the middle of an immense dark sphere, whose upper half was strewn with silver. Looking down into the dark gulf below, I could see a <span class="nsw-tooltip js-tooltip" title="Lorem ipsum dolor" data-theme="light">ruddy light</span> streaming through a rift in the clouds.</p>
+
+<p>By reducing how severe the illness is, you are less likely to:</p>
+
+<ul>
+  <li>go to hospital</li>
+  <li>develop breathing difficulties</li>
+  <li>need assistance with oxygen or intensive care treatment, or</li>
+  <li>die from <span class="nsw-tooltip js-tooltip" title="Coronavirus Disease 2019" data-theme="light">COVID-19</span>.</li>
+</ul>`).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
+    </div>
+  </div>
+</div>
+
+
+    <h3 class="nsw-text--dark nsw-m-bottom-sm">Toggletip</h3>
+
+<div class="nsw-docs__example nsw-docs__example--dark">
+  <div class="nsw-docs__component">
+    <h3>How do antivirals for COVID-19 work?</h3>
+    <p>Antiviral medicines target the virus (<span aria-controls="toggletip-example-light" class="nsw-toggletip js-toggletip" data-title="SARS-CoV-2">SARS-CoV-2</span>) that causes COVID-19 to prevent it infecting healthy cells in your body and multiplying. This helps stop the spread of the virus inside your body and helps your immune system to fight off the infection.</p>
+    
+    <div id="toggletip-example-light" class="nsw-toggletip__element nsw-toggletip__element--light">
+      <p>SARS-CoV-2 is a single-stranded RNA betacoronavirus in the same subgenus as the severe acute respiratory syndrome (SARS) virus. <a href="https://www.health.gov.au/our-work/covid-19-vaccines/advice-for-providers/clinical-guidance/clinical-features">Learn more</a></p>
+    </div>  </div>
+</div>
+<div class="nsw-docs-code">
+  <button class="nsw-link nsw-link--button nsw-link--icon nsw-small js-code-button">
+    <span>Show code</span>
+    <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
+  </button>
+  <div class="nsw-docs-code__content">
+    <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
+      <span>Copy</span>
+      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
+    </button>
+    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`<h3>How do antivirals for COVID-19 work?</h3>
+<p>Antiviral medicines target the virus (<span aria-controls="toggletip-example-light" class="nsw-toggletip js-toggletip" data-title="SARS-CoV-2">SARS-CoV-2</span>) that causes COVID-19 to prevent it infecting healthy cells in your body and multiplying. This helps stop the spread of the virus inside your body and helps your immune system to fight off the infection.</p>
+
+<div id="toggletip-example-light" class="nsw-toggletip__element nsw-toggletip__element--light">
+  <p>SARS-CoV-2 is a single-stranded RNA betacoronavirus in the same subgenus as the severe acute respiratory syndrome (SARS) virus. <a href="https://www.health.gov.au/our-work/covid-19-vaccines/advice-for-providers/clinical-guidance/clinical-features">Learn more</a></p>
+</div>`).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
+    <div class="nsw-docs-code__wrapper">
+<pre><code class="html"><script>document.write((`<h3>How do antivirals for COVID-19 work?</h3>
+<p>Antiviral medicines target the virus (<span aria-controls="toggletip-example-light" class="nsw-toggletip js-toggletip" data-title="SARS-CoV-2">SARS-CoV-2</span>) that causes COVID-19 to prevent it infecting healthy cells in your body and multiplying. This helps stop the spread of the virus inside your body and helps your immune system to fight off the infection.</p>
+
+<div id="toggletip-example-light" class="nsw-toggletip__element nsw-toggletip__element--light">
+  <p>SARS-CoV-2 is a single-stranded RNA betacoronavirus in the same subgenus as the severe acute respiratory syndrome (SARS) virus. <a href="https://www.health.gov.au/our-work/covid-19-vaccines/advice-for-providers/clinical-guidance/clinical-features">Learn more</a></p>
+</div>`).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
+    </div>
+  </div>
+</div>
+
+
+  </section>
+</div>
+
+      </div>
+    </section>
+  </div>
+</div>
       <footer class="nsw-footer nsw-docs-footer">
         <div class="nsw-footer__lower">
           <div class="nsw-container">
