@@ -41,6 +41,10 @@ class Toggletip {
       }
     })
 
+    window.addEventListener('DOMContentLoaded', () => {
+      this.toggletipContent = this.toggletipElement.innerHTML
+    })
+
     this.toggletipElement.addEventListener('keydown', this.trapFocus.bind(this))
 
     window.addEventListener('click', (event) => {
@@ -73,7 +77,6 @@ class Toggletip {
 
   createToggletipElement() {
     if (this.toggletipElement) {
-      this.toggletipContent = this.toggletipElement.innerHTML
       this.toggletipElement.innerHTML = ''
       const createToggletip = `
       <div class="nsw-toggletip__header">
