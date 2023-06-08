@@ -13,7 +13,7 @@ class Toggletip {
     this.toggletip = element
     this.toggletipId = this.toggletip.getAttribute('aria-controls')
     this.toggletipElement = document.querySelector(`#${this.toggletipId}`)
-    this.toggletipContent = this.toggletipElement.innerHTML
+    this.toggletipContent = false
     this.toggletipText = this.toggletip.innerText
     this.toggletipHeading = this.toggletip.getAttribute('data-title') || this.toggletipText
     this.arrowElement = false
@@ -73,6 +73,7 @@ class Toggletip {
 
   createToggletipElement() {
     if (this.toggletipElement) {
+      this.toggletipContent = this.toggletipElement.innerHTML
       this.toggletipElement.innerHTML = ''
       const createToggletip = `
       <div class="nsw-toggletip__header">
