@@ -14,6 +14,7 @@ class Toggletip {
     this.toggletipId = this.toggletip.getAttribute('aria-controls')
     this.toggletipElement = document.querySelector(`#${this.toggletipId}`)
     this.toggletipContent = false
+    this.toggletipAnchor = this.toggletip.querySelector('[data-anchor]') || this.toggletip
     this.toggletipText = this.toggletip.innerText
     this.toggletipHeading = this.toggletip.getAttribute('data-title') || this.toggletipText
     this.arrowElement = false
@@ -126,7 +127,7 @@ class Toggletip {
     this.toggletipIsOpen = false
   }
 
-  updateToggletip(toggletip, arrowElement, anchor = this.toggletip) {
+  updateToggletip(toggletip, arrowElement, anchor = this.toggletipAnchor) {
     computePosition(anchor, toggletip, {
       placement: 'top',
       middleware: [
