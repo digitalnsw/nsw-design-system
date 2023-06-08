@@ -2906,7 +2906,8 @@
       this.toggletip = element;
       this.toggletipId = this.toggletip.getAttribute('aria-controls');
       this.toggletipElement = document.querySelector(`#${this.toggletipId}`);
-      this.toggletipContent = this.toggletipElement.innerHTML;
+      this.toggletipContent = false;
+      this.toggletipAnchor = this.toggletip.querySelector('[data-anchor]') || this.toggletip;
       this.toggletipText = this.toggletip.innerText;
       this.toggletipHeading = this.toggletip.getAttribute('data-title') || this.toggletipText;
       this.arrowElement = false;
@@ -2929,6 +2930,9 @@
         if (event.code && event.code.toLowerCase() === 'enter' || event.key && event.key.toLowerCase() === 'enter') {
           this.toggleToggletip();
         }
+      });
+      window.addEventListener('DOMContentLoaded', () => {
+        this.toggletipContent = this.toggletipElement.innerHTML;
       });
       this.toggletipElement.addEventListener('keydown', this.trapFocus.bind(this));
       window.addEventListener('click', event => {
@@ -3004,7 +3008,7 @@
       this.toggletipIsOpen = false;
     }
     updateToggletip(toggletip, arrowElement) {
-      let anchor = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : this.toggletip;
+      let anchor = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : this.toggletipAnchor;
       computePosition(anchor, toggletip, {
         placement: 'top',
         middleware: [offset(8), flip(), shift({
