@@ -1,10 +1,13 @@
-<nav class="nsw-in-page-nav" aria-labelledby="in-page-nav">
-  <div id="in-page-nav" class="nsw-in-page-nav__title">{{title}}</div>
-  <ul>
-    {{#each pageSections}}
-    <li>
-      <a href="{{#if anchor}}{{anchor}}{{else}}#{{/if}}">{{text}}</a>
-    </li>
-    {{/each}}
-  </ul>
-</nav>
+<div class="nsw-container">
+  <div class="nsw-layout">
+    <main class="nsw-layout__main">
+      <div class="nsw-block js-in-page-nav" data-title="{{title}}">
+        {{#each pageSections}}
+        <h2>{{text}}</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sagittis est luctus, tincidunt elit et, vehicula orci. Quisque massa felis, auctor id tristique eu, ullamcorper in nisi. Vestibulum luctus efficitur quam, ac vehicula nisl eleifend vitae. Suspendisse sed tortor orci. Integer vestibulum nibh eget fermentum lobortis. Cras viverra gravida bibendum. Nulla facilisi. Donec vel purus porttitor, condimentum magna in, elementum sapien. Aenean malesuada tellus lectus, et varius arcu ultricies sed. Vivamus in suscipit urna. Suspendisse iaculis rhoncus enim, vitae consequat risus ultrices tincidunt. Phasellus volutpat pharetra tellus id varius.</p>
+        <p>Sed id tellus cursus libero mattis elementum. Fusce nec est mauris. Aliquam ultricies vitae sapien eget pulvinar. Quisque suscipit urna nisl, vel dictum nulla fringilla sit amet. Nunc neque enim, mattis non pharetra quis, eleifend nec neque. Duis eu sapien sodales, vestibulum est sit amet, vestibulum nisi. Curabitur tincidunt finibus nulla, quis porta enim rhoncus quis. Maecenas dapibus arcu vel ante malesuada rutrum.</p>
+        {{/each}}
+      </div>
+    </main>
+  </div>
+</div>

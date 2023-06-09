@@ -9,6 +9,7 @@ import GlobalAlert from './components/global-alert/global-alert'
 import Select from './components/select/select'
 import Tooltip from './components/tooltip/tooltip'
 import Toggletip from './components/tooltip/toggletip'
+import InPageNav from './components/in-page-nav/in-page-nav'
 
 if (window.NodeList && !NodeList.prototype.forEach) {
   NodeList.prototype.forEach = Array.prototype.forEach
@@ -43,6 +44,7 @@ function initSite() {
   const multiSelect = document.querySelectorAll('.js-multi-select')
   const tooltip = document.querySelectorAll('.js-tooltip')
   const toggletip = document.querySelectorAll('.js-toggletip')
+  const inPageNav = document.querySelectorAll('.js-in-page-nav')
 
   openSearchButton.forEach((element) => {
     new SiteSearch(element).init()
@@ -72,6 +74,12 @@ function initSite() {
   if (filters) {
     filters.forEach((element) => {
       new Filters(element).init()
+    })
+  }
+
+  if (inPageNav) {
+    inPageNav.forEach((element) => {
+      new InPageNav(element).init()
     })
   }
 
@@ -107,5 +115,5 @@ function initSite() {
 }
 
 export {
-  initSite, SiteSearch, Navigation, Accordion, Tabs, GlobalAlert, Dialog, Filters, FileUpload, Select, Tooltip, Toggletip,
+  initSite, SiteSearch, Navigation, Accordion, Tabs, GlobalAlert, Dialog, Filters, FileUpload, Select, Tooltip, Toggletip, InPageNav,
 }
