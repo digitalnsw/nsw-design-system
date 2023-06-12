@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+
 import SiteSearch from './components/header/header'
 import Navigation from './components/main-nav/main-nav'
 import Accordion from './components/accordion/accordion'
@@ -109,7 +111,8 @@ function initSite() {
 
   if (utilityList) {
     utilityList.forEach((element) => {
-      new UtilityList(element).init()
+      const shareItems = element.querySelector('.js-share')
+      new UtilityList(element, shareItems).init()
     })
   }
 }

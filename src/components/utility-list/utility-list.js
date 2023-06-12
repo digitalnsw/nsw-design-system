@@ -1,16 +1,19 @@
-class UtilityList {
-  constructor(element) {
+import Toggletip from '../tooltip/toggletip'
+
+class UtilityList extends Toggletip {
+  constructor(element, toggletip) {
+    super(toggletip)
     this.utility = element
+    this.share = toggletip
     this.print = this.utility.querySelectorAll('.js-print-page')
     this.copy = this.utility.querySelectorAll('.js-copy-clipboard')
-    this.share = this.utility.querySelector('.js-share')
     this.shareItems = this.share.querySelectorAll('a')
     this.urlLocation = window.location.href
-    this.shareLinks = false
     this.copyElement = false
   }
 
   init() {
+    super.init()
     this.shareItems.forEach((share) => {
       const shareLocation = share.getAttribute('data-url')
       if (!shareLocation) {
@@ -20,7 +23,7 @@ class UtilityList {
 
     this.share.addEventListener('click', (event) => {
       event.preventDefault()
-      const button = event.target.closest('.js-social')
+      const button = event.target.closest('a')
       const social = button.getAttribute('data-social')
       const url = this.getSocialUrl(button, social)
       if (social === 'mail') {
@@ -29,6 +32,7 @@ class UtilityList {
         window.open(url, `${social}-share-dialog`, 'width=626,height=436')
       }
     })
+
     this.print.forEach((element) => {
       element.setAttribute('tabindex', '0')
       element.addEventListener('click', () => {
