@@ -13,7 +13,24 @@ meta-description: Forms are used to capture data from users.
 meta-index: true
 ---
 
+<div class="nsw-tabs js-tabs">
+
+  <ul class="nsw-tabs__list">
+    <li><a href="#default" class="js-tabs-fixed">Default</a></li>
+    <li><a href="#error" class="js-tabs-fixed">Error</a></li>
+    <li><a href="#success" class="js-tabs-fixed">Success</a></li>
+  </ul>
+
+  <section id="default" class="nsw-tabs__content nsw-tabs__content--side-flush">
 {{>_form-default}}
-{{>_form-helper}}
+  </section>
+
+    <section id="error" class="nsw-tabs__content nsw-tabs__content--side-flush">
 {{>_form-error}}
-{{>_form-valid}}
+  </section>
+
+  <section id="success" class="nsw-tabs__content nsw-tabs__content--side-flush">
+{{>_form-success}}
+  </section>
+
+</div>
