@@ -11,13 +11,9 @@
   li {
     display: none;
 
-    &:first-of-type {
-      .nsw-material-icons {
-        display: none;
-      }
-    }
-
-    .nsw-material-icons {
+    &::before {
+      @include material-icons;
+      content: 'keyboard_arrow_right' / '';
       font-size: rem(map-get($nsw-icon-sizes, 20));
       line-height: rem(8px);
       display: inline-block;
