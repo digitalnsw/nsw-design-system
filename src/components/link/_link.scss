@@ -1,0 +1,40 @@
+.nsw-link {
+  &--button {
+    @include font-size('sm');
+    @include link;
+    background-color: transparent;
+    border: 0;
+    padding: 0;
+
+    &.nsw-small {
+      @include font-size('xs');
+    }
+  }
+
+  &--icon {
+    display: inline-block;
+    font-weight: var(--nsw-font-bold);
+    text-decoration: none;
+
+    span {
+      text-decoration: underline;
+    }
+
+    .nsw-material-icons,
+    svg {
+      font-size: rem(map-get($nsw-icon-sizes, 20));
+      line-height: rem(10px);
+      position: relative;
+      bottom: rem(-5px);
+      text-decoration: none;
+
+      &:first-child {
+        margin-right: rem(4px);
+      }
+
+      &:last-child {
+        margin-left: rem(4px);
+      }
+    }
+  }
+}

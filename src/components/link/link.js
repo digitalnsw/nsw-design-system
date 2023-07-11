@@ -4,33 +4,35 @@ class ExternalLink {
   constructor(element) {
     this.link = element
     this.uID = uniqueId('external')
-    this.linkText = this.link.innerText
+    this.linkIcon = this.link.querySelector('.nsw-material-icons')
+    this.linkIconTitle = this.linkIcon.getAttribute('title')
     this.linkElement = false
-    this.icon = false
   }
 
   init() {
     this.link.classList.add('nsw-link', 'nsw-link--icon')
-    this.link.innerText = ''
     this.constructor.setAttributes(this.link, {
       target: '_blank',
       rel: 'noopener',
-      'aria-describedby': this.uID,
     })
-    this.createElement()
+    this.constructor.setAttributes(this.linkIcon, {
+      focusable: 'false',
+      'aria-hidden': 'true',
+    })
+    this.createElement(this.linkIconTitle)
   }
 
-  createElement() {
-    this.linkItem = document.createElement('span')
-    this.linkItem.innerText = this.linkText
-    this.link.insertAdjacentElement('afterbegin', this.linkItem)
-    this.linkElement = document.createElement('span')
-    this.linkElement.id = this.uID
-    this.linkElement.classList.add('sr-only')
-    this.linkElement.innerText = '(opens in new window)'
-    this.link.insertAdjacentElement('afterend', this.linkElement)
-    this.icon = '<span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">open_in_new</span>'
-    this.link.insertAdjacentHTML('beforeend', this.icon)
+  createElement(title) {
+    if (title) {
+      this.linkElement = document.createElement('span')
+      this.linkElement.id = this.uID
+      this.linkElement.classList.add('sr-only')
+      this.linkElement.innerText = title
+      this.link.insertAdjacentElement('afterend', this.linkElement)
+      this.constructor.setAttributes(this.link, {
+        'aria-describedby': this.uID,
+      })
+    }
   }
 
   static setAttributes(el, attrs) {

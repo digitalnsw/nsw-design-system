@@ -44,7 +44,7 @@ function initSite() {
   const multiSelect = document.querySelectorAll('.js-multi-select')
   const tooltip = document.querySelectorAll('.js-tooltip')
   const toggletip = document.querySelectorAll('.js-toggletip')
-  const external = document.querySelectorAll('.js-external')
+  const link = document.querySelectorAll('.js-link')
 
   openSearchButton.forEach((element) => {
     new SiteSearch(element).init()
@@ -107,8 +107,8 @@ function initSite() {
     })
   }
 
-  if (external) {
-    external.forEach((element) => {
+  if (link) {
+    link.forEach((element) => {
       new ExternalLink(element).init()
     })
   }
