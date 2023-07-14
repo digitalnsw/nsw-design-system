@@ -160,6 +160,7 @@
       this.desktopButtonKeydownEvent = e => this.buttonKeydownDesktop(e);
       this.checkFocusEvent = e => this.checkIfContainsFocus(e);
       this.escapeCloseEvent = e => this.escapeClose(e);
+      this.outsideClickEvent = e => this.handleOutsideClick(e);
       this.openSubNavElements = [];
       this.breakpoint = window.matchMedia('(min-width: 62em)');
       this.body = document.body;
@@ -169,6 +170,21 @@
         this.setUpMobileControls();
         this.responsiveCheck(this.breakpoint);
         this.breakpoint.addListener(e => this.responsiveCheck(e));
+        this.addOutsideClickListener();
+      }
+    }
+    addOutsideClickListener() {
+      document.addEventListener('click', this.outsideClickEvent, false);
+    }
+    removeOutsideClickListener() {
+      document.removeEventListener('click', this.outsideClickEvent, false);
+    }
+    handleOutsideClick(event) {
+      const isOutsideNav = !this.mainNavElement.contains(event.target);
+      if (isOutsideNav) {
+        this.saveElements(event);
+        this.toggleSubNavDesktop(true);
+        event.preventDefault();
       }
     }
     responsiveCheck(e) {
