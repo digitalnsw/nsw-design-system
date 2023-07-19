@@ -6,6 +6,7 @@ import Filters from './components/filters/filters'
 import FileUpload from './components/file-upload/file-upload'
 import Tabs from './components/tabs/tabs'
 import GlobalAlert from './components/global-alert/global-alert'
+import ProgressIndicatorPage from './components/progress-indicator/page-scroll-indicator'
 import Select from './components/select/select'
 import Tooltip from './components/tooltip/tooltip'
 import Toggletip from './components/tooltip/toggletip'
@@ -40,6 +41,7 @@ function initSite() {
   const filters = document.querySelectorAll('.js-filters')
   const tabs = document.querySelectorAll('.js-tabs')
   const globalAlert = document.querySelectorAll('.js-global-alert')
+  const progressIndicatorPage = document.querySelectorAll('.js-progress-indicator-page')
   const multiSelect = document.querySelectorAll('.js-multi-select')
   const tooltip = document.querySelectorAll('.js-tooltip')
   const toggletip = document.querySelectorAll('.js-toggletip')
@@ -84,6 +86,12 @@ function initSite() {
   if (globalAlert) {
     globalAlert.forEach((element) => {
       new GlobalAlert(element).init()
+    })
+  }
+
+  if (progressIndicatorPage) {
+    progressIndicatorPage.forEach((element) => {
+      new ProgressIndicatorPage(element).init()
     })
   }
 

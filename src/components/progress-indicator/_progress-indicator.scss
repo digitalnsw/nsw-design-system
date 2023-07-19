@@ -24,3 +24,31 @@
     }
   }
 }
+
+.nsw-progress-indicator-page {
+  &__bar {
+    z-index: 350;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 4px;
+    background-color: var(--nsw-brand-accent);
+  }
+
+  @include breakpoint('lg') {
+    &__bar {
+      top: 150px;
+    }
+  }
+
+  &__circle {
+    transform: rotate(-90deg);
+
+    circle {
+      fill: none;
+      stroke: var(--nsw-brand-accent);
+      stroke-width: 4px;
+      stroke-dasharray: 100;
+    }
+  }
+}
