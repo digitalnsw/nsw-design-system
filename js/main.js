@@ -147,6 +147,7 @@
       this.openSubNavButtons = document.querySelectorAll('.js-open-sub-nav');
       this.closeSubNavButtons = document.querySelectorAll('.js-close-sub-nav');
       this.mainNavElement = document.getElementById('main-nav');
+      this.mainNavIsOpen = false;
       this.isMegaMenuElement = !!document.querySelector('.js-mega-menu');
       this.transitionEvent = whichTransitionEvent();
       this.mobileToggleMainNavEvent = e => this.mobileToggleMainNav(e);
@@ -180,10 +181,10 @@
       document.removeEventListener('click', this.outsideClickEvent, false);
     }
     handleOutsideClick(event) {
+      if (!this.mainNavIsOpen) return;
       const isOutsideNav = !this.mainNavElement.contains(event.target);
       if (isOutsideNav) {
         this.toggleSubNavDesktop(true);
-        event.preventDefault();
       }
     }
     responsiveCheck(e) {
@@ -382,8 +383,10 @@
       } = this.whichSubNavLatest();
       const isExpanded = link.getAttribute('aria-expanded') === 'true';
       if (isExpanded) {
+        this.mainNavIsOpen = false;
         this.closeSubNav();
       } else {
+        this.mainNavIsOpen = true;
         this.openSubNav();
       }
     }
