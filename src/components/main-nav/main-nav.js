@@ -49,7 +49,7 @@ class Navigation {
     const isOutsideNav = !this.mainNavElement.contains(event.target)
 
     if (isOutsideNav) {
-      this.saveElements(event)
+      // this.saveElements(event)
       this.toggleSubNavDesktop(true)
       event.preventDefault()
     }
