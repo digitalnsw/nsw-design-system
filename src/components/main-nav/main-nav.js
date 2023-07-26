@@ -239,6 +239,9 @@ class Navigation {
   }
 
   toggleSubNavDesktop() {
+    if (this.openSubNavElements.length === 0) {
+      return
+    }
     const { link } = this.whichSubNavLatest()
     const isExpanded = link.getAttribute('aria-expanded') === 'true'
     if (isExpanded) {
