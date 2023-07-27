@@ -111,7 +111,7 @@ class Navigation {
   }
 
   mobileShowMainNav({ propertyName }) {
-    if (!propertyName === 'transform') return
+    if (propertyName !== 'transform') return
     getFocusableElementBySelector(this.navID, ['> div button', '> ul > li > a']).all[1].focus()
     this.nav.classList.add('active')
     this.nav.classList.remove('activating')
@@ -120,7 +120,7 @@ class Navigation {
   }
 
   mobileHideMainNav({ propertyName }) {
-    if (!propertyName === 'transform') return
+    if (propertyName !== 'transform') return
 
     this.nav.classList.remove('active')
     this.nav.classList.remove('closing')
@@ -194,7 +194,7 @@ class Navigation {
 
   showSubNav({ propertyName }) {
     const { submenu } = this.whichSubNavLatest()
-    if (!propertyName === 'transform') return
+    if (propertyName !== 'transform') return
     getFocusableElementBySelector(submenu.id, ['> div button', '> .nsw-main-nav__title a', '> ul > li > a']).all[2].focus()
     submenu.removeEventListener(this.transitionEvent, this.showSubNavTransitionEndEvent, false)
   }
