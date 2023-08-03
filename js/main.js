@@ -141,17 +141,15 @@
   };
 
   class Navigation {
-    constructor() {
+    constructor(element) {
+      this.nav = element;
+      this.navID = this.nav.id;
       this.openNavButton = document.querySelector('.js-open-nav');
-      this.closeNavButtons = document.querySelectorAll('.js-close-nav');
-      this.openSubNavButtons = document.querySelectorAll('.js-open-sub-nav');
-      this.closeSubNavButtons = document.querySelectorAll('.js-close-sub-nav');
-      this.mainNavElement = document.getElementById('main-nav');
+      this.closeNavButtons = this.nav.querySelectorAll('.js-close-nav');
+      this.closeSubNavButtons = this.nav.querySelectorAll('.js-close-sub-nav');
+      this.isMegaMenuElement = this.nav.classList.contains('js-mega-menu');
       this.mainNavIsOpen = false;
-      this.isMegaMenuElement = !!document.querySelector('.js-mega-menu');
       this.transitionEvent = whichTransitionEvent();
-      this.mobileToggleMainNavEvent = e => this.mobileToggleMainNav(e);
-      this.mobileToggleSubNavEvent = () => this.closeSubNav();
       this.mobileShowMainTransitionEndEvent = e => this.mobileShowMainNav(e);
       this.mobileHideMainTransitionEndEvent = e => this.mobileHideMainNav(e);
       this.showSubNavTransitionEndEvent = e => this.showSubNav(e);
@@ -160,47 +158,50 @@
       this.desktopButtonClickEvent = e => this.buttonClickDesktop(e);
       this.desktopButtonKeydownEvent = e => this.buttonKeydownDesktop(e);
       this.checkFocusEvent = e => this.checkIfContainsFocus(e);
-      this.escapeCloseEvent = e => this.escapeClose(e);
-      this.outsideClickEvent = e => this.handleOutsideClick(e);
       this.openSubNavElements = [];
       this.breakpoint = window.matchMedia('(min-width: 62em)');
-      this.body = document.body;
     }
     init() {
-      if (this.mainNavElement) {
-        this.setUpMobileControls();
-        this.responsiveCheck(this.breakpoint);
-        this.breakpoint.addListener(e => this.responsiveCheck(e));
-        this.addOutsideClickListener();
+      this.initEvents();
+      this.responsiveCheck(this.breakpoint);
+      if (this.nav) {
+        this.breakpoint.addEventListener('change', event => this.responsiveCheck(event));
       }
     }
-    addOutsideClickListener() {
-      document.addEventListener('click', this.outsideClickEvent, false);
-    }
-    removeOutsideClickListener() {
-      document.removeEventListener('click', this.outsideClickEvent, false);
-    }
-    handleOutsideClick(event) {
-      if (!this.mainNavIsOpen) return;
-      const isOutsideNav = !this.mainNavElement.contains(event.target);
-      if (isOutsideNav) {
-        this.toggleSubNavDesktop(true);
+    initEvents() {
+      if (this.isMegaMenuElement) {
+        document.addEventListener('click', this.handleOutsideClick.bind(this), false);
+        document.addEventListener('keydown', this.escapeClose.bind(this), false);
       }
+      this.openNavButton.addEventListener('click', this.mobileToggleMainNav.bind(this), false);
+      this.closeNavButtons.forEach(element => {
+        element.addEventListener('click', this.mobileToggleMainNav.bind(this), false);
+      });
+      this.closeSubNavButtons.forEach(element => {
+        element.addEventListener('click', this.closeSubNav.bind(this), false);
+      });
     }
-    responsiveCheck(e) {
+    responsiveCheck(event) {
       let megaMenuListItems = [];
-      if (e.matches) {
-        megaMenuListItems = [].slice.call(this.mainNavElement.querySelectorAll('ul > li'));
-        this.body.classList.remove('main-nav-active');
+      if (event.matches) {
+        megaMenuListItems = [].slice.call(this.nav.querySelectorAll('ul > li'));
+        document.body.classList.remove('main-nav-active');
       } else {
-        megaMenuListItems = [].slice.call(this.mainNavElement.querySelectorAll('li'));
+        megaMenuListItems = [].slice.call(this.nav.querySelectorAll('li'));
       }
       this.tearDownNavControls();
       this.setUpNavControls(megaMenuListItems);
     }
+    handleOutsideClick(event) {
+      if (!this.mainNavIsOpen) return;
+      const isOutsideNav = !this.nav.contains(event.target);
+      if (isOutsideNav) {
+        this.toggleSubNavDesktop(true);
+      }
+    }
     tearDownNavControls() {
       if (this.isMegaMenuElement) {
-        const listItems = [].slice.call(this.mainNavElement.querySelectorAll('li'));
+        const listItems = [].slice.call(this.nav.querySelectorAll('li'));
         listItems.forEach(item => {
           const submenu = item.querySelector('[id^=sub-nav-]');
           const link = item.querySelector('a');
@@ -214,19 +215,6 @@
         });
       }
     }
-    setUpMobileControls() {
-      this.openNavButton.addEventListener('click', this.mobileToggleMainNavEvent, false);
-      this.closeNavButtons.forEach(element => {
-        element.addEventListener('click', this.mobileToggleMainNavEvent, false);
-      });
-      this.closeSubNavButtons.forEach(element => {
-        element.addEventListener('click', this.mobileToggleSubNavEvent, false);
-      });
-    }
-    mobileMainNavTrapTabs(e) {
-      const elemObj = getFocusableElementBySelector(this.mainNavElement.id, ['> div button', '> ul > li > a']);
-      trapTabKey(e, elemObj);
-    }
     setUpNavControls(listItems) {
       if (this.isMegaMenuElement) {
         listItems.forEach(item => {
@@ -238,29 +226,32 @@
             link.setAttribute('aria-controls', submenu.id);
             link.addEventListener('click', this.desktopButtonClickEvent, false);
             link.addEventListener('keydown', this.desktopButtonKeydownEvent, false);
-            document.addEventListener('keydown', this.escapeCloseEvent, false);
           }
         });
       }
+    }
+    mobileMainNavTrapTabs(e) {
+      const elemObj = getFocusableElementBySelector(this.navID, ['> div button', '> ul > li > a']);
+      trapTabKey(e, elemObj);
     }
     mobileShowMainNav(_ref) {
       let {
         propertyName
       } = _ref;
-      if (!propertyName === 'transform') return;
-      getFocusableElementBySelector(this.mainNavElement.id, ['> div button', '> ul > li > a']).all[1].focus();
-      this.mainNavElement.classList.add('active');
-      this.mainNavElement.classList.remove('activating');
-      this.mainNavElement.removeEventListener(this.transitionEvent, this.mobileShowMainTransitionEndEvent, false);
-      this.mainNavElement.addEventListener('keydown', this.mobileTrapTabKeyEvent, false);
+      if (propertyName !== 'transform') return;
+      getFocusableElementBySelector(this.navID, ['> div button', '> ul > li > a']).all[1].focus();
+      this.nav.classList.add('active');
+      this.nav.classList.remove('activating');
+      this.nav.removeEventListener(this.transitionEvent, this.mobileShowMainTransitionEndEvent, false);
+      this.nav.addEventListener('keydown', this.mobileTrapTabKeyEvent, false);
     }
     mobileHideMainNav(_ref2) {
       let {
         propertyName
       } = _ref2;
-      if (!propertyName === 'transform') return;
-      this.mainNavElement.classList.remove('active');
-      this.mainNavElement.classList.remove('closing');
+      if (propertyName !== 'transform') return;
+      this.nav.classList.remove('active');
+      this.nav.classList.remove('closing');
       while (this.openSubNavElements.length > 0) {
         const {
           submenu
@@ -270,8 +261,8 @@
         submenu.classList.remove('closing');
         this.openSubNavElements.pop();
       }
-      this.mainNavElement.removeEventListener(this.transitionEvent, this.mobileHideMainTransitionEndEvent, false);
-      this.mainNavElement.removeEventListener('keydown', this.mobileTrapTabKeyEvent, false);
+      this.nav.removeEventListener(this.transitionEvent, this.mobileHideMainTransitionEndEvent, false);
+      this.nav.removeEventListener('keydown', this.mobileTrapTabKeyEvent, false);
     }
     mobileToggleMainNav(e) {
       const {
@@ -279,29 +270,29 @@
       } = e;
       const isExpanded = currentTarget.getAttribute('aria-expanded') === 'true';
       if (isExpanded) {
-        this.body.classList.remove('main-nav-active');
+        document.body.classList.remove('main-nav-active');
         this.openNavButton.focus();
-        this.mainNavElement.classList.add('closing');
-        this.mainNavElement.addEventListener(this.transitionEvent, this.mobileHideMainTransitionEndEvent, false);
+        this.nav.classList.add('closing');
+        this.nav.addEventListener(this.transitionEvent, this.mobileHideMainTransitionEndEvent, false);
       } else {
-        this.body.classList.add('main-nav-active');
-        this.mainNavElement.classList.add('activating');
-        this.mainNavElement.addEventListener(this.transitionEvent, this.mobileShowMainTransitionEndEvent, false);
+        document.body.classList.add('main-nav-active');
+        this.nav.classList.add('activating');
+        this.nav.addEventListener(this.transitionEvent, this.mobileShowMainTransitionEndEvent, false);
       }
     }
-    buttonClickDesktop(e) {
+    buttonClickDesktop(event) {
       const isDesktop = this.breakpoint.matches;
-      if (!isDesktop || !e.target.closest('.nsw-main-nav__sub-nav')) {
-        this.saveElements(e);
+      if (!isDesktop || !event.target.closest('.nsw-main-nav__sub-nav')) {
+        this.saveElements(event);
         this.toggleSubNavDesktop();
-        e.preventDefault();
+        event.preventDefault();
       }
     }
-    buttonKeydownDesktop(e) {
-      if (e.key === ' ' || e.key === 'Enter' || e.key === 'Spacebar') {
-        this.saveElements(e);
+    buttonKeydownDesktop(event) {
+      if (event.key === ' ' || event.key === 'Enter' || event.key === 'Spacebar') {
+        this.saveElements(event);
         this.toggleSubNavDesktop();
-        e.preventDefault();
+        event.preventDefault();
       }
     }
     escapeClose(e) {
@@ -335,7 +326,7 @@
       const {
         submenu
       } = this.whichSubNavLatest();
-      if (!propertyName === 'transform') return;
+      if (propertyName !== 'transform') return;
       getFocusableElementBySelector(submenu.id, ['> div button', '> .nsw-main-nav__title a', '> ul > li > a']).all[2].focus();
       submenu.removeEventListener(this.transitionEvent, this.showSubNavTransitionEndEvent, false);
     }
@@ -347,9 +338,9 @@
       if (this.breakpoint.matches) {
         link.setAttribute('aria-expanded', false);
         link.classList.remove('active');
-        this.mainNavElement.removeEventListener('focus', this.checkFocusEvent, true);
+        this.nav.removeEventListener('focus', this.checkFocusEvent, true);
         // fix: workaround for safari because it doesn't support focus event
-        this.mainNavElement.removeEventListener('click', this.checkFocusEvent, true);
+        this.nav.removeEventListener('click', this.checkFocusEvent, true);
       } else {
         link.focus();
         submenu.removeEventListener('keydown', this.mobileSubNavTrapTabKeyEvent, false);
@@ -366,9 +357,9 @@
       if (this.breakpoint.matches) {
         link.setAttribute('aria-expanded', true);
         link.classList.add('active');
-        this.mainNavElement.addEventListener('focus', this.checkFocusEvent, true);
+        this.nav.addEventListener('focus', this.checkFocusEvent, true);
         // fix: workaround for safari because it doesn't support focus event
-        this.mainNavElement.addEventListener('click', this.checkFocusEvent, true);
+        this.nav.addEventListener('click', this.checkFocusEvent, true);
       } else {
         submenu.addEventListener('keydown', this.mobileSubNavTrapTabKeyEvent, false);
         submenu.addEventListener(this.transitionEvent, this.showSubNavTransitionEndEvent, false);
@@ -3190,6 +3181,7 @@
     // Header Search
     const openSearchButton = document.querySelectorAll('.js-open-search');
     const closeSearchButton = document.querySelectorAll('.js-close-search');
+    const navigation = document.getElementById('main-nav');
     const accordions = document.querySelectorAll('.js-accordion');
     const dialogs = document.querySelectorAll('.js-dialog');
     const fileUpload = document.querySelectorAll('.js-file-upload');
@@ -3206,9 +3198,9 @@
     closeSearchButton.forEach(element => {
       new SiteSearch(element).init();
     });
-
-    // Navigation
-    new Navigation().init();
+    if (navigation) {
+      new Navigation(navigation).init();
+    }
     accordions.forEach(element => {
       new Accordion(element).init();
     });
