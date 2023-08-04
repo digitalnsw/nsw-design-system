@@ -9,16 +9,48 @@ meta-description: Easily change the vertical alignment of inline, inline-block, 
 meta-index: true
 ---
 
-<h3></h3>
+<p>Change the alignment of elements with the vertical-alignment utilities. Please note that vertical-align only affects inline, inline-block, inline-table, and table cell elements.</p>
 
-{{#>_docs-example}}  
-  {{#each model.colours as |value property|}}
-    {{#each this}}
-      <div class="nsw-col {{@key}}">
-        <!-- START: Column content -->
-        <div class="{{@key}}"><p>.{{@key}}</p></div>
-        <!-- END: Column content -->
-      </div>
-    {{/each}}
-  {{/each}}
+Classes for the value of <code>nsw-align</code> are named using the format <code>.nsw-align-{value}</code>. Choose from the following values:
+
+<ul>
+<li>baseline</li>
+<li>top</li>
+<li>middel</li>
+<li>bottom</li>
+<li>text-bottom</li>
+<li>text-top</li>
+</ul>
+
+<p>To vertically center non-inline content (like &lt;div&gt;s and more), use our <a href="docs/content/utilities/flex.html">flex box utilities</a>.</p>
+
+<p>With inline elements:</p>
+
+{{#>_docs-example open=true separated=true}} 
+<span class="nsw-align-baseline">baseline</span>
+<span class="nsw-align-top">top</span>
+<span class="nsw-align-middle">middle</span>
+<span class="nsw-align-bottom">bottom</span>
+<span class="nsw-align-text-top">text-top</span>
+<span class="nsw-align-text-bottom">text-bottom</span>
 {{/_docs-example}}
+
+<p>With table cells:</p>
+
+{{#>_docs-example open=true separated=true}}
+<div class="nsw-table">
+  <table style="height: 100px;">
+    <tbody>
+      <tr>
+        <td class="nsw-align-baseline">baseline</td>
+        <td class="nsw-align-top">top</td>
+        <td class="nsw-align-middle">middle</td>
+        <td class="nsw-align-bottom">bottom</td>
+        <td class="nsw-align-text-top">text-top</td>
+        <td class="nsw-align-text-bottom">text-bottom</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+{{/_docs-example}}
+
