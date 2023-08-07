@@ -40,6 +40,9 @@
           <label class="nsw-form__label{{#if collapsed}} sr-only{{/if}}" for="{{input.id}}-{{filters-id}}">{{input.name}}</label>
           <input class="nsw-form__input" type="text" id="{{input.id}}-{{filters-id}}" name="filters-keyword"{{#if input.value}} value="{{input.value}}"{{/if}}>
         </div>
+        {{#if input.error}}
+          <span class="nsw-form__helper nsw-form__helper--error"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span>This field is required</span>
+        {{/if}}
       </div>
       {{/if}}
       {{#if select}}
@@ -60,6 +63,9 @@
             </select>{{#if multiple}}
           </div>{{/if}}
         </div>
+        {{#if input.error}}
+          <span class="nsw-form__helper nsw-form__helper--error"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span>This field is required</span>
+        {{/if}}
       </div>
       {{/if}}
       {{#if checkboxes}}
@@ -88,6 +94,9 @@
             {{/if}}
           </fieldset>
         </div>
+        {{#if input.error}}
+          <span class="nsw-form__helper nsw-form__helper--error"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span>This field is required</span>
+        {{/if}}
       </div>
       {{/if}}
       {{#if dates}}
@@ -121,6 +130,9 @@
           </div>
           {{/each}}
         </div>
+        {{#if input.error}}
+          <span class="nsw-form__helper nsw-form__helper--error"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span>This field is required</span>
+        {{/if}}
       </div>
       {{/if}}    
     </div>

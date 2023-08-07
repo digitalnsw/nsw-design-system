@@ -9,6 +9,7 @@ model:
   options-1: ../../components/filters/json/options-1.json
   options-2: ../../components/filters/json/options-2.json
   options-3: ../../components/filters/json/options-3.json
+  options-4: ../../components/filters/json/options-4.json
 meta-description: Filters allows a user to narrow down results using multiple attributes.
 meta-index: true
 ---
@@ -97,6 +98,28 @@ meta-index: true
   </div>
   <div class="nsw-col nsw-col-md-6">
     {{>_filters model.options-1 batch='true' multiple='true' down='true' collapsed='true' js='true' no-count='true' filters-id='8'}}
+  </div>
+</div>
+{{/_docs-example}}
+
+<h3>Error handling</h3>
+<div class="nsw-show-lg">
+  <div class="nsw-grid">
+    <div class="nsw-col nsw-col-md-6">
+      <h4>Down Open (no counter)</h4>
+    </div>
+    <div class="nsw-col nsw-col-md-6">
+      <h4>Down Collapsed</h4>
+    </div>
+  </div>
+</div>
+{{#>_docs-example}}
+<div class="nsw-row">
+  <div class="nsw-col nsw-col-md-6">
+    {{>_filters model.options-4 instant='true' down='true' js='true' no-count='true' filters-id='3'}}
+  </div>
+  <div class="nsw-col nsw-col-md-6">
+    {{>_filters model.options-4 instant='true' down='true' collapsed='true' js='true' filters-id='4'}}
   </div>
 </div>
 {{/_docs-example}}
