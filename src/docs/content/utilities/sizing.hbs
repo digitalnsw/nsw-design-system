@@ -9,16 +9,165 @@ meta-description: Utilities for setting the width, minimum width, maximum width,
 meta-index: true
 ---
 
-<h3></h3>
+<h3>Fixed widths</h3>
 
-{{#>_docs-example}}  
-  {{#each model.colours as |value property|}}
-    {{#each this}}
-      <div class="nsw-col {{@key}}">
-        <!-- START: Column content -->
-        <div class="{{@key}}"><p>.{{@key}}</p></div>
-        <!-- END: Column content -->
-      </div>
-    {{/each}}
-  {{/each}}
+<p>Use <code>.nsw-width-{number}</code> to set an element to a fixed width.</p>
+
+<div class="nsw-section nsw-section--white nsw-block nsw-p-sm">
+  <div class="nsw-table nsw-table--bordered nsw-table--valign-middle">
+    <table>
+      <tbody>
+        <tr>
+          <th style="width: 25%">
+            <p>Class</p>
+          </th>
+          <th style="width: 50%">
+            <p>Properties</p>
+          </th>
+        </tr>
+        {{#each model.sizing as |value property|}}
+        <tr>
+          <td>
+            <p>nsw-width-{{@key}}</p>
+          </td>
+          <td>
+            <p>width: {{this}}</p>
+          </td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<h3>Fixed heights</h3>
+
+<p>Use <code>.nsw-height-{number}</code> to set an element to a fixed height.</p>
+
+<div class="nsw-section nsw-section--white nsw-block nsw-p-sm">
+  <div class="nsw-table nsw-table--bordered nsw-table--valign-middle">
+    <table>
+      <tbody>
+        <tr>
+          <th style="width: 25%">
+            <p>Class</p>
+          </th>
+          <th style="width: 50%">
+            <p>Properties</p>
+          </th>
+        </tr>
+        {{#each model.sizing as |value property|}}
+        <tr>
+          <td>
+            <p>nsw-height-{{@key}}</p>
+          </td>
+          <td>
+            <p>height: {{this}}</p>
+          </td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<h3>Relative to the parent</h3>
+
+<p>Width and height utilities include support for 10%, 20%, 25%, 30%, 33%, 40% 50%, 60%, 70%, 75%, 80%, 90%, 100% and auto by default.</p>
+
+{{#>_docs-example showcode=true separated=true}} 
+<div class="nsw-width-10 nsw-p-xs nsw-m-bottom-xs nsw-bg-opacity--50 nsw-bg--off-white nsw-border nsw-border--grey-01">Width 10%</div>
+<div class="nsw-width-20 nsw-p-xs nsw-m-bottom-xs nsw-bg-opacity--50 nsw-bg--off-white nsw-border nsw-border--grey-01">Width 20%</div>
+<div class="nsw-width-25 nsw-p-xs nsw-m-bottom-xs nsw-bg-opacity--50 nsw-bg--off-white nsw-border nsw-border--grey-01">Width 25%</div>
+<div class="nsw-width-30 nsw-p-xs nsw-m-bottom-xs nsw-bg-opacity--50 nsw-bg--off-white nsw-border nsw-border--grey-01">Width 30%</div>
+<div class="nsw-width-33 nsw-p-xs nsw-m-bottom-xs nsw-bg-opacity--50 nsw-bg--off-white nsw-border nsw-border--grey-01">Width 33%</div>
+<div class="nsw-width-40 nsw-p-xs nsw-m-bottom-xs nsw-bg-opacity--50 nsw-bg--off-white nsw-border nsw-border--grey-01">Width 40%</div>
+<div class="nsw-width-50 nsw-p-xs nsw-m-bottom-xs nsw-bg-opacity--50 nsw-bg--off-white nsw-border nsw-border--grey-01">Width 50%</div>
+<div class="nsw-width-60 nsw-p-xs nsw-m-bottom-xs nsw-bg-opacity--50 nsw-bg--off-white nsw-border nsw-border--grey-01">Width 60%</div>
+<div class="nsw-width-70 nsw-p-xs nsw-m-bottom-xs nsw-bg-opacity--50 nsw-bg--off-white nsw-border nsw-border--grey-01">Width 70%</div>
+<div class="nsw-width-75 nsw-p-xs nsw-m-bottom-xs nsw-bg-opacity--50 nsw-bg--off-white nsw-border nsw-border--grey-01">Width 75%</div>
+<div class="nsw-width-80 nsw-p-xs nsw-m-bottom-xs nsw-bg-opacity--50 nsw-bg--off-white nsw-border nsw-border--grey-01">Width 80%</div>
+<div class="nsw-width-90 nsw-p-xs nsw-m-bottom-xs nsw-bg-opacity--50 nsw-bg--off-white nsw-border nsw-border--grey-01">Width 90%</div>
+<div class="nsw-width-100 nsw-p-xs nsw-m-bottom-xs nsw-bg-opacity--50 nsw-bg--off-white nsw-border nsw-border--grey-01">Width 100%</div>
+<div class="nsw-width-auto nsw-p-xs nsw-m-bottom-xs nsw-bg-opacity--50 nsw-bg--off-white nsw-border nsw-border--grey-01">Width auto</div>
 {{/_docs-example}}
+
+{{#>_docs-code open=true}}
+<div class="nsw-width-10">Width 10%</div>
+<div class="nsw-width-20">Width 20%</div>
+<div class="nsw-width-25">Width 25%</div>
+<div class="nsw-width-30">Width 30%</div>
+<div class="nsw-width-33">Width 33%</div>
+<div class="nsw-width-40">Width 40%</div>
+<div class="nsw-width-50">Width 50%</div>
+<div class="nsw-width-60">Width 60%</div>
+<div class="nsw-width-70">Width 70%</div>
+<div class="nsw-width-75">Width 75%</div>
+<div class="nsw-width-80">Width 80%</div>
+<div class="nsw-width-90">Width 90%</div>
+<div class="nsw-width-100">Width 100%</div>
+<div class="nsw-width-auto">Width auto</div>
+{{/_docs-code}}
+
+{{#>_docs-example showcode=true separated=true}}
+<div style="height: 160px;">
+  <div class="nsw-display-inline-block nsw-height-10 nsw-width-lg nsw-p-xs nsw-m-bottom-xs nsw-bg-opacity--50 nsw-bg--off-white nsw-border nsw-border--grey-01">Height 10%</div>
+  <div class="nsw-display-inline-block nsw-height-20 nsw-width-lg nsw-p-xs nsw-m-bottom-xs nsw-bg-opacity--50 nsw-bg--off-white nsw-border nsw-border--grey-01">Height 20%</div>
+  <div class="nsw-display-inline-block nsw-height-25 nsw-width-lg nsw-p-xs nsw-m-bottom-xs nsw-bg-opacity--50 nsw-bg--off-white nsw-border nsw-border--grey-01">Height 25%</div>
+  <div class="nsw-display-inline-block nsw-height-30 nsw-width-lg nsw-p-xs nsw-m-bottom-xs nsw-bg-opacity--50 nsw-bg--off-white nsw-border nsw-border--grey-01">Height 30%</div>
+  <div class="nsw-display-inline-block nsw-height-33 nsw-width-lg nsw-p-xs nsw-m-bottom-xs nsw-bg-opacity--50 nsw-bg--off-white nsw-border nsw-border--grey-01">Height 33%</div>
+  <div class="nsw-display-inline-block nsw-height-40 nsw-width-lg nsw-p-xs nsw-m-bottom-xs nsw-bg-opacity--50 nsw-bg--off-white nsw-border nsw-border--grey-01">Height 40%</div>
+  <div class="nsw-display-inline-block nsw-height-50 nsw-width-lg nsw-p-xs nsw-m-bottom-xs nsw-bg-opacity--50 nsw-bg--off-white nsw-border nsw-border--grey-01">Height 50%</div>
+  <div class="nsw-display-inline-block nsw-height-60 nsw-width-lg nsw-p-xs nsw-m-bottom-xs nsw-bg-opacity--50 nsw-bg--off-white nsw-border nsw-border--grey-01">Height 60%</div>
+  <div class="nsw-display-inline-block nsw-height-70 nsw-width-lg nsw-p-xs nsw-m-bottom-xs nsw-bg-opacity--50 nsw-bg--off-white nsw-border nsw-border--grey-01">Height 70%</div>
+  <div class="nsw-display-inline-block nsw-height-75 nsw-width-lg nsw-p-xs nsw-m-bottom-xs nsw-bg-opacity--50 nsw-bg--off-white nsw-border nsw-border--grey-01">Height 75%</div>
+  <div class="nsw-display-inline-block nsw-height-80 nsw-width-lg nsw-p-xs nsw-m-bottom-xs nsw-bg-opacity--50 nsw-bg--off-white nsw-border nsw-border--grey-01">Height 80%</div>
+  <div class="nsw-display-inline-block nsw-height-90 nsw-width-lg nsw-p-xs nsw-m-bottom-xs nsw-bg-opacity--50 nsw-bg--off-white nsw-border nsw-border--grey-01">Height 90%</div>
+  <div class="nsw-display-inline-block nsw-height-100 nsw-width-lg nsw-p-xs nsw-m-bottom-xs nsw-bg-opacity--50 nsw-bg--off-white nsw-border nsw-border--grey-01">Height 100%</div>
+  <div class="nsw-display-inline-block nsw-height-auto nsw-width-lg nsw-p-xs nsw-m-bottom-xs nsw-bg-opacity--50 nsw-bg--off-white nsw-border nsw-border--grey-01">Height auto</div>
+</div>
+{{/_docs-example}}
+
+{{#>_docs-code open=true}}
+<div style="height: 100px;">
+<div class="nsw-height-10">Height 10%</div>
+<div class="nsw-height-20">Height 20%</div>
+<div class="nsw-height-25">Height 25%</div>
+<div class="nsw-height-30">Height 30%</div>
+<div class="nsw-height-33">Height 33%</div>
+<div class="nsw-height-40">Height 40%</div>
+<div class="nsw-height-50">Height 50%</div>
+<div class="nsw-height-60">Height 60%</div>
+<div class="nsw-height-70">Height 70%</div>
+<div class="nsw-height-75">Height 75%</div>
+<div class="nsw-height-80">Height 80%</div>
+<div class="nsw-height-90">Height 90%</div>
+<div class="nsw-height-100">Height 100%</div>
+<div class="nsw-height-auto">Height auto</div>
+</div>
+{{/_docs-code}}
+
+<p>You can also use max-width: 100%; and max-height: 100%; utilities as needed.</p>
+
+{{#>_docs-example open=true separated=true}} 
+<div class="nsw-width-50 nsw-height-2xl nsw-bg-opacity--50 nsw-bg--off-white nsw-border nsw-border--grey-01">
+  <div class="nsw-mw-100 nsw-bg-opacity--50 nsw-bg--brand-light nsw-border nsw-border--brand-light" style="width: 200%;">Max-width 100%</div>
+</div>
+{{/_docs-example}}
+
+{{#>_docs-example open=true separated=true}} 
+<div class="nsw-width-50 nsw-height-2xl nsw-bg-opacity--50 nsw-bg--off-white nsw-border nsw-border--grey-01">
+  <div class="nsw-mh-100 nsw-bg-opacity--50 nsw-bg--brand-light nsw-border nsw-border--brand-light" style="width: 100px; height: 200px;">Max-height 100%</div>
+</div>
+{{/_docs-example}}
+
+<h3>Relative to the viewport</h3>
+
+<p>You can also use utilities to set the width and height relative to the viewport.</p>
+
+{{#>_docs-code open=true separated=true}} 
+<div class="min-vw-100">Min-width 100vw</div>
+<div class="min-vh-100">Min-height 100vh</div>
+<div class="vw-100">Width 100vw</div>
+<div class="vh-100">Height 100vh</div>
+{{/_docs-code}}

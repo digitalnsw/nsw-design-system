@@ -11,14 +11,110 @@ meta-index: true
 
 <h3></h3>
 
-{{#>_docs-example}}  
-  {{#each model.colours as |value property|}}
-    {{#each this}}
-      <div class="nsw-col {{@key}}">
-        <!-- START: Column content -->
-        <div class="{{@key}}"><p>.{{@key}}</p></div>
-        <!-- END: Column content -->
-      </div>
-    {{/each}}
-  {{/each}}
+{{#>_docs-code open=true}} 
+<div class="nsw-position-static">...</div>
+<div class="nsw-position-relative">...</div>
+<div class="nsw-position-absolute">...</div>
+<div class="nsw-position-fixed">...</div>
+<div class="nsw-position-sticky">...</div>
+{{/_docs-code}}
+
+<div class="nsw-docs__example nsw-m-top-md">
+  <div class="nsw-docs__component nsw-position-relative" style="height:200px;">
+
+  <div class="nsw-position-absolute nsw-position-top-0 nsw-position-left-0 nsw-width-lg nsw-height-lg nsw-bg--brand-dark"></div>
+  <div class="nsw-position-absolute nsw-position-top-0 nsw-position-right-0 nsw-width-lg nsw-height-lg nsw-bg--brand-dark"></div>
+  <div class="nsw-position-absolute nsw-position-top-50 nsw-position-left-50 nsw-width-lg nsw-height-lg nsw-bg--brand-dark"></div>
+  <div class="nsw-position-absolute nsw-position-bottom-50 nsw-position-right-50 nsw-width-lg nsw-height-lg nsw-bg--brand-dark"></div>
+  <div class="nsw-position-absolute nsw-position-bottom-0 nsw-position-left-0 nsw-width-lg nsw-height-lg nsw-bg--brand-dark"></div>
+  <div class="nsw-position-absolute nsw-position-bottom-0 nsw-position-right-0 nsw-width-lg nsw-height-lg nsw-bg--brand-dark"></div>
+
+  </div>
+</div>
+
+{{#>_docs-code open=true}}
+<div class="nsw-position-relative">
+  <div class="nsw-position-absolute nsw-position-top-0 nsw-position-left-0"></div>
+  <div class="nsw-position-absolute nsw-position-top-0 nsw-position-right-0"></div>
+  <div class="nsw-position-absolute nsw-position-top-50 nsw-position-left-50"></div>
+  <div class="nsw-position-absolute nsw-position-bottom-50 nsw-position-right-50"></div>
+  <div class="nsw-position-absolute nsw-position-bottom-0 nsw-position-left-0"></div>
+  <div class="nsw-position-absolute nsw-position-bottom-0 nsw-position-right-0"></div>
+</div>
+{{/_docs-code}}
+
+<h3>Center elements</h3>
+
+<p>In addition, you can also center the elements with the transform utility class <code>.nsw-translate-middle</code>.</p>
+
+<p>This class applies the transformations translateX(-50%) and translateY(-50%) to the element which, in combination with the edge positioning utilities, allows you to absolute center an element.</p>
+
+<div class="nsw-docs__example nsw-m-top-md nsw-m-bottom-lg nsw-p-0">
+  <div class="nsw-docs__component nsw-position-relative" style="height:200px;">
+
+  <div class="nsw-position-absolute nsw-position-top-0 nsw-position-left-0 nsw-width-lg nsw-height-lg nsw-bg--brand-dark nsw-translate-middle"></div>
+  <div class="nsw-position-absolute nsw-position-top-0 nsw-position-left-50 nsw-width-lg nsw-height-lg nsw-bg--brand-dark nsw-translate-middle"></div>
+  <div class="nsw-position-absolute nsw-position-top-0 nsw-position-left-100 nsw-width-lg nsw-height-lg nsw-bg--brand-dark nsw-translate-middle"></div>
+  <div class="nsw-position-absolute nsw-position-top-50 nsw-position-left-0 nsw-width-lg nsw-height-lg nsw-bg--brand-dark nsw-translate-middle"></div>
+  <div class="nsw-position-absolute nsw-position-top-50 nsw-position-left-50 nsw-width-lg nsw-height-lg nsw-bg--brand-dark nsw-translate-middle"></div>
+  <div class="nsw-position-absolute nsw-position-top-50 nsw-position-left-100 nsw-width-lg nsw-height-lg nsw-bg--brand-dark nsw-translate-middle"></div>
+  <div class="nsw-position-absolute nsw-position-top-100 nsw-position-left-0 nsw-width-lg nsw-height-lg nsw-bg--brand-dark nsw-translate-middle"></div>
+  <div class="nsw-position-absolute nsw-position-top-100 nsw-position-left-50 nsw-width-lg nsw-height-lg nsw-bg--brand-dark nsw-translate-middle"></div>
+  <div class="nsw-position-absolute nsw-position-top-100 nsw-position-left-100 nsw-width-lg nsw-height-lg nsw-bg--brand-dark nsw-translate-middle"></div>
+
+  </div>
+</div>
+
+{{#>_docs-code open=true}}
+<div class="nsw-position-relative">
+  <div class="nsw-position-absolute nsw-position-top-0 nsw-position-left-0 nsw-translate-middle"></div>
+  <div class="nsw-position-absolute nsw-position-top-0 nsw-position-left-50 nsw-translate-middle"></div>
+  <div class="nsw-position-absolute nsw-position-top-0 nsw-position-left-100 nsw-translate-middle"></div>
+  <div class="nsw-position-absolute nsw-position-top-50 nsw-position-left-0 nsw-translate-middle"></div>
+  <div class="nsw-position-absolute nsw-position-top-50 nsw-position-left-50 nsw-translate-middle"></div>
+  <div class="nsw-position-absolute nsw-position-top-50 nsw-position-left-100 nsw-translate-middle"></div>
+  <div class="nsw-position-absolute nsw-position-top-100 nsw-position-left-0 nsw-translate-middle"></div>
+  <div class="nsw-position-absolute nsw-position-top-100 nsw-position-left-50 nsw-translate-middle"></div>
+  <div class="nsw-position-absolute nsw-position-top-100 nsw-position-left-100 nsw-translate-middle"></div>
+</div>
+{{/_docs-code}}
+
+<p>By adding <code>.nsw-translate-middle-x</code> or <code>.nsw-translate-middle-y</code> classes, elements can be positioned only in horizontal or vertical direction.</p>
+
+<div class="nsw-docs__example nsw-m-top-md nsw-m-bottom-lg nsw-p-0">
+  <div class="nsw-docs__component nsw-position-relative" style="height:200px;">
+
+  <div class="nsw-position-absolute nsw-position-top-0 nsw-position-left-0 nsw-width-lg nsw-height-lg nsw-bg--brand-dark"></div>
+  <div class="nsw-position-absolute nsw-position-top-0 nsw-position-left-50 nsw-translate-middle-x nsw-width-lg nsw-height-lg nsw-bg--brand-dark"></div>
+  <div class="nsw-position-absolute nsw-position-top-0 nsw-position-right-0 nsw-width-lg nsw-height-lg nsw-bg--brand-dark"></div>
+
+  <div class="nsw-position-absolute nsw-position-top-50 nsw-position-left-0 nsw-translate-middle-y nsw-width-lg nsw-height-lg nsw-bg--brand-dark"></div>
+  <div class="nsw-position-absolute nsw-position-top-50 nsw-position-left-50 nsw-translate-middle nsw-width-lg nsw-height-lg nsw-bg--brand-dark"></div>
+  <div class="nsw-position-absolute nsw-position-top-50 nsw-position-right-0 nsw-translate-middle-y nsw-width-lg nsw-height-lg nsw-bg--brand-dark"></div>
+
+  <div class="nsw-position-absolute nsw-position-bottom-0 nsw-position-left-0 nsw-width-lg nsw-height-lg nsw-bg--brand-dark"></div>
+  <div class="nsw-position-absolute nsw-position-bottom-0 nsw-position-left-50 nsw-translate-middle-x nsw-width-lg nsw-height-lg nsw-bg--brand-dark"></div>
+  <div class="nsw-position-absolute nsw-position-bottom-0 nsw-position-right-0 nsw-width-lg nsw-height-lg nsw-bg--brand-dark"></div>
+
+  </div>
+</div>
+
+{{#>_docs-code open=true}}
+<div class="nsw-position-relative">
+  <div class="nsw-position-absolute nsw-position-top-0 nsw-position-left-0"></div>
+  <div class="nsw-position-absolute nsw-position-top-0 nsw-position-left-50 nsw-translate-middle-x"></div>
+  <div class="nsw-position-absolute nsw-position-top-0 nsw-position-right-0"></div>
+  <div class="nsw-position-absolute nsw-position-top-50 nsw-position-left-0 nsw-translate-middle-y"></div>
+  <div class="nsw-position-absolute nsw-position-top-50 nsw-position-left-50 nsw-translate-middle"></div>
+  <div class="nsw-position-absolute nsw-position-top-50 nsw-position-right-0 nsw-translate-middle-y"></div>
+  <div class="nsw-position-absolute nsw-position-bottom-0 nsw-position-left-0"></div>
+  <div class="nsw-position-absolute nsw-position-bottom-0 nsw-position-left-50 nsw-translate-middle-x"></div>
+  <div class="nsw-position-absolute nsw-position-bottom-0 nsw-position-right-0"></div>
+</div>
+{{/_docs-code}}
+
+<h3>Example</h3>
+
+{{#>_docs-example open=true separated=true}} 
+<button type="button" class="nsw-button nsw-button--dark nsw-position-relative">Button <span class="nsw-position-absolute nsw-position-top-0 nsw-position-left-100 nsw-translate-middle nsw-tag nsw-bg--brand-light">+99 <span class="sr-only">unread messages</span></span></button>
 {{/_docs-example}}
