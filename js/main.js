@@ -193,6 +193,8 @@
       this.setUpNavControls(megaMenuListItems);
     }
     handleOutsideClick(event) {
+      // removes handleOutsideClick functionality from docs site
+      if (this.nav.closest('.nsw-docs')) return;
       if (!this.mainNavIsOpen) return;
       const isOutsideNav = !this.nav.contains(event.target);
       if (isOutsideNav) {
