@@ -7,6 +7,9 @@ import FileUpload from './components/file-upload/file-upload'
 import Tabs from './components/tabs/tabs'
 import GlobalAlert from './components/global-alert/global-alert'
 import Select from './components/select/select'
+import Tooltip from './components/tooltip/tooltip'
+import Toggletip from './components/tooltip/toggletip'
+import ExternalLink from './components/link/link'
 
 if (window.NodeList && !NodeList.prototype.forEach) {
   NodeList.prototype.forEach = Array.prototype.forEach
@@ -32,6 +35,7 @@ function initSite() {
   // Header Search
   const openSearchButton = document.querySelectorAll('.js-open-search')
   const closeSearchButton = document.querySelectorAll('.js-close-search')
+  const navigation = document.getElementById('main-nav')
   const accordions = document.querySelectorAll('.js-accordion')
   const dialogs = document.querySelectorAll('.js-dialog')
   const fileUpload = document.querySelectorAll('.js-file-upload')
@@ -39,6 +43,9 @@ function initSite() {
   const tabs = document.querySelectorAll('.js-tabs')
   const globalAlert = document.querySelectorAll('.js-global-alert')
   const multiSelect = document.querySelectorAll('.js-multi-select')
+  const tooltip = document.querySelectorAll('.js-tooltip')
+  const toggletip = document.querySelectorAll('.js-toggletip')
+  const link = document.querySelectorAll('.js-link')
 
   openSearchButton.forEach((element) => {
     new SiteSearch(element).init()
@@ -48,8 +55,9 @@ function initSite() {
     new SiteSearch(element).init()
   })
 
-  // Navigation
-  new Navigation().init()
+  if (navigation) {
+    new Navigation(navigation).init()
+  }
 
   accordions.forEach((element) => {
     new Accordion(element).init()
@@ -88,8 +96,26 @@ function initSite() {
       new Select(element).init()
     })
   }
+
+  if (tooltip) {
+    tooltip.forEach((element) => {
+      new Tooltip(element).init()
+    })
+  }
+
+  if (toggletip) {
+    toggletip.forEach((element) => {
+      new Toggletip(element).init()
+    })
+  }
+
+  if (link) {
+    link.forEach((element) => {
+      new ExternalLink(element).init()
+    })
+  }
 }
 
 export {
-  initSite, SiteSearch, Navigation, Accordion, Tabs, GlobalAlert, Dialog, Filters, FileUpload, Select,
+  initSite, SiteSearch, Navigation, Accordion, Tabs, GlobalAlert, Dialog, Filters, FileUpload, Select, Tooltip, Toggletip, ExternalLink,
 }

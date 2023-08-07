@@ -4,81 +4,133 @@ width: wide
 page: true
 ---
 {{#>_layout-container}}
-<div class="nsw-docs__section nsw-docs__section--white"> 
-  <div class="nsw-list nsw-list--8">
-    {{>_button-link url="#" style="dark" text="Link"}}
-    {{>_button-link url="#" style="dark" text="Link icon" icon="upload"}}
-    {{>_button type="button" style="dark" text="Button"}}
-    {{>_button type="button" style="dark" text="Button link" icon="download" icon-after="true"}}
-    {{>_button-input type="button" style="dark" text="Input"}}
-    {{>_button-input type="button" style="dark" text="Disabled" isDisabled=true}}
-    {{>_button type="button" style="dark" text="Full Width" isFullWidth=true}}
+<div class="nsw-tabs js-tabs">
+  <ul class="nsw-tabs__list">
+    <li><a href="#primary-brand-dark" class="js-tabs-fixed">Brand Dark</a></li>
+    <li><a href="#primary-brand-light" class="js-tabs-fixed">Brand Light</a></li>
+    <li><a href="#primary-white" class="js-tabs-fixed">White</a></li>
+    <li><a href="#primary-danger" class="js-tabs-fixed">Danger</a></li>
+  </ul>
+  <section id="primary-brand-dark" class="nsw-tabs__content nsw-tabs__content--side-flush">
+    <h4>Brand Dark</h4>
+{{#>_docs-example separated="true"}}
+  <div class="nsw-docs__section nsw-docs__section--white"> 
+    <div class="nsw-list nsw-list--8">
+      {{>_button-link url="#" style="dark" text="Link"}}
+      {{>_button-link url="#" style="dark" text="Link icon" icon="upload"}}
+      {{>_button type="button" style="dark" text="Button"}}
+      {{>_button type="button" style="dark" text="Button link" icon="download" icon-after="true"}}
+      {{>_button-input type="button" style="dark" text="Input"}}
+      {{>_button-input type="button" style="dark" text="Disabled" isDisabled=true}}
+      {{>_button type="button" style="dark" text="Full Width" isFullWidth=true}}
+    </div>
   </div>
-</div>
-<div class="nsw-docs__section nsw-docs__section--light"> 
-  <div class="nsw-list nsw-list--8">
-    {{>_button-link url="#" style="dark-outline" text="Link"}}
-    {{>_button-link url="#" style="dark-outline" text="Link icon" icon="upload"}}
-    {{>_button type="button" style="dark-outline" text="Button"}}
-    {{>_button type="button" style="dark-outline" text="Button link" icon="download" icon-after="true"}}
-    {{>_button-input type="button" style="dark-outline" text="Input"}}
-    {{>_button-input type="button" style="dark-outline" text="Disabled" isDisabled=true}}
-    {{>_button type="button" style="dark-outline" text="Full Width" isFullWidth=true}}
+{{/_docs-example}}
+    <h4>Brand Dark Outline</h4>
+{{#>_docs-example separated="true" light="true"}}
+  <div class="nsw-docs__section nsw-docs__section--light">
+    <div class="nsw-list nsw-list--8">
+      {{>_button-link url="#" style="dark-outline" text="Link"}}
+      {{>_button-link url="#" style="dark-outline" text="Link icon" icon="upload"}}
+      {{>_button type="button" style="dark-outline" text="Button"}}
+      {{>_button type="button" style="dark-outline" text="Button link" icon="download" icon-after="true"}}
+      {{>_button-input type="button" style="dark-outline" text="Input"}}
+      {{>_button-input type="button" style="dark-outline" text="Disabled" isDisabled=true}}
+      {{>_button type="button" style="dark-outline" text="Full Width" isFullWidth=true}}
+    </div>
   </div>
-</div>
-<div class="nsw-docs__section nsw-docs__section--light"> 
-  <div class="nsw-list nsw-list--8">
-    {{>_button-link url="#" style="dark-outline-solid" text="Link"}}
-    {{>_button-link url="#" style="dark-outline-solid" text="Link icon" icon="upload"}}
-    {{>_button type="button" style="dark-outline-solid" text="Button"}}
-    {{>_button type="button" style="dark-outline-solid" text="Button link" icon="download" icon-after="true"}}
-    {{>_button-input type="button" style="dark-outline-solid" text="Input"}}
-    {{>_button-input type="button" style="dark-outline-solid" text="Disabled" isDisabled=true}}
-    {{>_button type="button" style="dark-outline-solid" text="Full Width" isFullWidth=true}}
+{{/_docs-example}}
+    <h4>Brand Dark Outline Solid</h4>
+{{#>_docs-example separated="true" light="true"}}
+  <div class="nsw-docs__section nsw-docs__section--light"> 
+    <div class="nsw-list nsw-list--8">
+      {{>_button-link url="#" style="dark-outline-solid" text="Link"}}
+      {{>_button-link url="#" style="dark-outline-solid" text="Link icon" icon="upload"}}
+      {{>_button type="button" style="dark-outline-solid" text="Button"}}
+      {{>_button type="button" style="dark-outline-solid" text="Button link" icon="download" icon-after="true"}}
+      {{>_button-input type="button" style="dark-outline-solid" text="Input"}}
+      {{>_button-input type="button" style="dark-outline-solid" text="Disabled" isDisabled=true}}
+      {{>_button type="button" style="dark-outline-solid" text="Full Width" isFullWidth=true}}
+    </div>
   </div>
-</div>
-<div class="nsw-docs__section nsw-docs__section--dark"> 
-  <div class="nsw-list nsw-list--8">
-    {{>_button-link url="#" style="light" text="Link"}}
-    {{>_button-link url="#" style="light" text="Link icon" icon="upload"}}
-    {{>_button type="button" style="light" text="Button"}}
-    {{>_button type="button" style="light" text="Button link" icon="download" icon-after="true"}}
-    {{>_button-input type="button" style="light" text="Input"}}
-    {{>_button-input type="button" style="light" text="Disabled" isDisabled=true}}
-    {{>_button type="button" style="light" text="Full Width" isFullWidth=true}}
+{{/_docs-example}}
+  </section>
+  <section id="primary-brand-light" class="nsw-tabs__content nsw-tabs__content--side-flush">
+    <h4>Brand Light</h4>
+{{#> _docs-example separated="true" dark="true"}}
+  <div class="nsw-docs__section nsw-docs__section--dark"> 
+    <div class="nsw-list nsw-list--8">
+      {{>_button-link url="#" style="light" text="Link"}}
+      {{>_button-link url="#" style="light" text="Link icon" icon="upload"}}
+      {{>_button type="button" style="light" text="Button"}}
+      {{>_button type="button" style="light" text="Button link" icon="download" icon-after="true"}}
+      {{>_button-input type="button" style="light" text="Input"}}
+      {{>_button-input type="button" style="light" text="Disabled" isDisabled=true}}
+      {{>_button type="button" style="light" text="Full Width" isFullWidth=true}}
+    </div>
   </div>
-</div>
-<div class="nsw-docs__section nsw-docs__section--dark"> 
-  <div class="nsw-list nsw-list--8">
-    {{>_button-link url="#" style="light-outline" text="Link"}}
-    {{>_button-link url="#" style="light-outline" text="Link icon" icon="upload"}}
-    {{>_button type="button" style="light-outline" text="Button"}}
-    {{>_button type="button" style="light-outline" text="Button link" icon="download" icon-after="true"}}
-    {{>_button-input type="button" style="light-outline" text="Input"}}
-    {{>_button-input type="button" style="light-outline" text="Disabled" isDisabled=true}}
-    {{>_button type="button" style="light-outline" text="Full Width" isFullWidth=true}}
+{{/_docs-example}}
+    <h4>Brand Light Outline</h4>
+{{#> _docs-example separated="true" dark="true"}}
+  <div class="nsw-docs__section nsw-docs__section--dark"> 
+    <div class="nsw-list nsw-list--8">
+      {{>_button-link url="#" style="light-outline" text="Link"}}
+      {{>_button-link url="#" style="light-outline" text="Link icon" icon="upload"}}
+      {{>_button type="button" style="light-outline" text="Button"}}
+      {{>_button type="button" style="light-outline" text="Button link" icon="download" icon-after="true"}}
+      {{>_button-input type="button" style="light-outline" text="Input"}}
+      {{>_button-input type="button" style="light-outline" text="Disabled" isDisabled=true}}
+      {{>_button type="button" style="light-outline" text="Full Width" isFullWidth=true}}
+    </div>
   </div>
-</div>
-<div class="nsw-docs__section nsw-docs__section--dark"> 
-  <div class="nsw-list nsw-list--8">
-    {{>_button-link url="#" style="white" text="Link"}}
-    {{>_button-link url="#" style="white" text="Link icon" icon="upload"}}
-    {{>_button type="button" style="white" text="Button"}}
-    {{>_button type="button" style="white" text="Button link" icon="download" icon-after="true"}}
-    {{>_button-input type="button" style="white" text="Input"}}
-    {{>_button-input type="button" style="white" text="Disabled" isDisabled=true}}
-    {{>_button type="button" style="white" text="Full Width" isFullWidth=true}}
+{{/_docs-example}}
+  </section>
+  <section id="primary-white" class="nsw-tabs__content nsw-tabs__content--side-flush">
+    <h4>White</h4>
+{{#> _docs-example separated="true" dark="true"}}
+  <div class="nsw-docs__section nsw-docs__section--dark"> 
+    <div class="nsw-list nsw-list--8">
+      {{>_button-link url="#" style="white" text="Link"}}
+      {{>_button-link url="#" style="white" text="Link icon" icon="upload"}}
+      {{>_button type="button" style="white" text="Button"}}
+      {{>_button type="button" style="white" text="Button link" icon="download" icon-after="true"}}
+      {{>_button-input type="button" style="white" text="Input"}}
+      {{>_button-input type="button" style="white" text="Disabled" isDisabled=true}}
+      {{>_button type="button" style="white" text="Full Width" isFullWidth=true}}
+    </div>
   </div>
-</div>
-<div class="nsw-docs__section nsw-docs__section--white"> 
-  <div class="nsw-list nsw-list--8">
-    {{>_button-link url="#" style="danger" text="Link"}}
-    {{>_button-link url="#" style="danger" text="Link icon" icon="upload"}}
-    {{>_button type="button" style="danger" text="Button"}}
-    {{>_button type="button" style="danger" text="Button link" icon="download" icon-after="true"}}
-    {{>_button-input type="button" style="danger" text="Input"}}
-    {{>_button-input type="button" style="danger" text="Disabled" isDisabled=true}}
-    {{>_button type="button" style="danger" text="Full Width" isFullWidth=true}}
+{{/_docs-example}}
+
+    <h4>White Outline</h4>
+{{#> _docs-example separated="true" dark="true"}}
+  <div class="nsw-docs__section nsw-docs__section--dark">
+    <div class="nsw-list nsw-list--8">
+      {{>_button-link url="#" style="white-outline" text="Link"}}
+      {{>_button-link url="#" style="white-outline" text="Link icon" icon="upload"}}
+      {{>_button type="button" style="white-outline" text="Button"}}
+      {{>_button type="button" style="white-outline" text="Button link" icon="download" icon-after="true"}}
+      {{>_button-input type="button" style="white-outline" text="Input"}}
+      {{>_button-input type="button" style="white-outline" text="Disabled" isDisabled=true}}
+      {{>_button type="button" style="white-outline" text="Full Width" isFullWidth=true}}
+    </div>
   </div>
+{{/_docs-example}}
+  </section>
+  <section id="primary-danger" class="nsw-tabs__content nsw-tabs__content--side-flush">
+    <h4>Danger</h4>
+{{#>_docs-example separated="true"}}
+  <div class="nsw-docs__section nsw-docs__section--white">
+    <div class="nsw-list nsw-list--8">
+      {{>_button-link url="#" style="danger" text="Link"}}
+      {{>_button-link url="#" style="danger" text="Link icon" icon="upload"}}
+      {{>_button type="button" style="danger" text="Button"}}
+      {{>_button type="button" style="danger" text="Button link" icon="download" icon-after="true"}}
+      {{>_button-input type="button" style="danger" text="Input"}}
+      {{>_button-input type="button" style="danger" text="Disabled" isDisabled=true}}
+      {{>_button type="button" style="danger" text="Full Width" isFullWidth=true}}
+    </div>
+  </div>
+{{/_docs-example}}
+  </section>
 </div>
 {{/_layout-container}}

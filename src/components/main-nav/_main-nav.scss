@@ -81,6 +81,14 @@
       position: relative;
     }
 
+    > li {      
+      @include breakpoint($nsw-desktop-breakpoint) {
+        &.active {
+          box-shadow: inset 0 -4px 0 var(--nsw-brand-dark);
+        }
+      }
+    }
+
     > li > a {      
       @include breakpoint($nsw-desktop-breakpoint) {
         .nsw-material-icons {
@@ -90,6 +98,7 @@
 
         &.active {
           background-color: var(--nsw-white);
+          box-shadow: inset 0 -4px 0 var(--nsw-brand-dark);
         }
 
         &.active .nsw-material-icons {
@@ -261,7 +270,7 @@
         }
 
         &:nth-last-child(-n+3) {
-          border-bottom: solid 1px var(--nsw-grey-04);
+          box-shadow: inset 0 -1px 0 var(--nsw-grey-04);
         }
 
         a {

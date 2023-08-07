@@ -14,6 +14,7 @@
     &::before {
       @include material-icons;
       content: 'keyboard_arrow_right';
+      content: 'keyboard_arrow_right' / '';
       font-size: rem(map-get($nsw-icon-sizes, 20));
       line-height: rem(8px);
       display: inline-block;
@@ -61,6 +62,27 @@
 
       .nsw-section--invert & {    
         color: var(--nsw-text-light);
+      }
+    }
+  }
+}
+
+@supports (content: 'x' / 'y') {
+  .nsw-breadcrumbs {  
+    li {
+      &::before {
+        content: 'keyboard_arrow_right' / '';
+      }
+    }
+  }
+}
+
+@media speech {
+  .nsw-breadcrumbs {  
+    li {
+      &::before {
+        display: none;
+        visibility: hidden;
       }
     }
   }
