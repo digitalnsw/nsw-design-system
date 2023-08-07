@@ -41,7 +41,7 @@
           <input class="nsw-form__input" type="text" id="{{input.id}}-{{filters-id}}" name="filters-keyword"{{#if input.value}} value="{{input.value}}"{{/if}}>
         </div>
         {{#if input.error}}
-          <span class="nsw-form__helper nsw-form__helper--error"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span>This field is required</span>
+          <span class="nsw-form__helper nsw-form__helper--error"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span>{{#if input.error-text}}{{input.error-text}}{{else}}This field is required{{/if}}</span>
         {{/if}}
       </div>
       {{/if}}
@@ -63,8 +63,8 @@
             </select>{{#if multiple}}
           </div>{{/if}}
         </div>
-        {{#if input.error}}
-          <span class="nsw-form__helper nsw-form__helper--error"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span>This field is required</span>
+        {{#if select.error}}
+          <span class="nsw-form__helper nsw-form__helper--error"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span>{{#if select.error-text}}{{select.error-text}}{{else}}This field is required{{/if}}</span>
         {{/if}}
       </div>
       {{/if}}
@@ -94,8 +94,8 @@
             {{/if}}
           </fieldset>
         </div>
-        {{#if input.error}}
-          <span class="nsw-form__helper nsw-form__helper--error"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span>This field is required</span>
+        {{#if checkboxes.error}}
+          <span class="nsw-form__helper nsw-form__helper--error"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span>{{#if input.error-text}}{{input.error-text}}{{else}}This field is required{{/if}}</span>
         {{/if}}
       </div>
       {{/if}}
@@ -130,8 +130,8 @@
           </div>
           {{/each}}
         </div>
-        {{#if input.error}}
-          <span class="nsw-form__helper nsw-form__helper--error"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span>This field is required</span>
+        {{#if dates.error}}
+          <span class="nsw-form__helper nsw-form__helper--error"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span>{{#if dates.error-text}}{{dates.error-text}}{{else}}This field is required{{/if}}</span>
         {{/if}}
       </div>
       {{/if}}    
