@@ -211,6 +211,14 @@ $header-height: 151px;
               border-top: 0;
             }
           }
+
+          > li > a {      
+            @include breakpoint($nsw-desktop-breakpoint) {      
+              &.active {
+                box-shadow: none;
+              }
+            }
+          }
         }
 
         &__sub-nav {
