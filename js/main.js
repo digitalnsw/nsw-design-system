@@ -587,7 +587,7 @@
       this.filtersItems = element.querySelectorAll('.nsw-filters__item');
       /* eslint-disable max-len */
       this.focusableEls = this.filtersWrapper.querySelectorAll('a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])');
-      this.checkIcon = '<span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span>';
+      this.checkIcon = '<span class="material-icons nsw-material-icons nsw-material-icons--valid" focusable="false" aria-hidden="true">check_circle</span>';
       this.arrowIcon = '<span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_right</span>';
       /* eslint-ensable max-len */
       this.showEvent = e => this.showFilters(e);
