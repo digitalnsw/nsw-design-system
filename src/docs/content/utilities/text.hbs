@@ -93,6 +93,8 @@ meta-index: true
 
 <h3>Text color</h3>
 
+<p>Control the text color of an element using the <code>nsw-text--{color}</code> utilities.</p>
+
 <div class="nsw-section nsw-section--white nsw-block nsw-p-sm">
   <div class="nsw-table nsw-table--bordered nsw-table--valign-middle">
     <table>
@@ -126,8 +128,20 @@ meta-index: true
   </div>
 </div>
  
-{{#>_docs-example open=true separated=true}}
-{{#each model.textColour as |value property|}}
+{{#>_docs-example showcode=true separated=true}}
+{{#each model.textLight as |value property|}}
 <p class="{{@key}}">.{{@key}}</p>
 {{/each}}
 {{/_docs-example}}
+
+{{#>_docs-example showcode=true separated=true dark=true}}
+{{#each model.textDark as |value property|}}
+<p class="{{@key}}">.{{@key}}</p>
+{{/each}}
+{{/_docs-example}}
+
+{{#>_docs-code open=true}}  
+{{#each model.textColour as |value property|}}
+<p class="{{@key}}">.{{@key}}</p>
+{{/each}}
+{{/_docs-code}}
