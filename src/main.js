@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import SiteSearch from './components/header/header'
 import Navigation from './components/main-nav/main-nav'
 import Accordion from './components/accordion/accordion'
