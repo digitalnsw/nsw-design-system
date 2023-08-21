@@ -44,7 +44,8 @@ meta-index: true
 <p>Add an icon next to text to support the action.</p>
 
 {{#>_docs-example simple="true" separated="true"}}
-  <a class="nsw-link nsw-link--icon nsw-p-right-sm" href="#">
+<div class="nsw-list nsw-list--8">
+  <a class="nsw-link nsw-link--icon" href="#">
     <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">west</span>
     <span>Back <span class="sr-only">a page</span></span>
   </a>
@@ -52,6 +53,7 @@ meta-index: true
     <span>Download PDF schedule</span>
     <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">download</span>
   </a>
+</div>
 {{/_docs-example}}
 
 <h3>Button Icons</h3>
@@ -62,6 +64,25 @@ meta-index: true
     {{>_button-link url="#" style="dark" text="Upload file" icon="upload"}}
     {{>_button type="button" style="dark-outline" text="Send a message" icon="email" icon-after="true"}}
   </div>
+{{/_docs-example}}
+
+{{#>_docs-example simple="true" separated="true"}}
+<div class="nsw-list nsw-list--8">
+  <a class="nsw-icon-button">
+    {{>_icon code="home"}}
+    <span class="sr-only">Home</span>
+  </a>
+
+  <button class="nsw-icon-button" type="button">
+    {{>_icon code="search"}}
+    <span class="sr-only">Search</span>
+  </button>
+
+  <a class="nsw-icon-button" href="#" target="_blank" rel="noopener">
+    <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path fill="#1578f2" d="M32 16.098C32 7.207 24.837 0 16 0S0 7.207 0 16.098C0 24.133 5.851 30.793 13.5 32V20.751H9.437v-4.653H13.5v-3.547c0-4.035 2.389-6.263 6.043-6.263 1.751 0 3.582.314 3.582.314v3.962h-2.018c-1.988 0-2.607 1.241-2.607 2.514v3.02h4.438l-.709 4.653h-3.728V32c7.649-1.208 13.5-7.867 13.5-15.902z"/></svg>
+    <span class="sr-only">Facebook</span>
+  </a>
+</div>
 {{/_docs-example}}
 
 <h3>Component Icons</h3>
