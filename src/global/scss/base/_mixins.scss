@@ -67,26 +67,27 @@
 
 //Screen reader text
 /* stylelint-disable declaration-no-important  */
-@mixin sr-only {
-  border: 0 !important;
-  clip: rect(1px, 1px, 1px, 1px) !important;
-  clip-path: inset(50%) !important;
-  height: 1px !important;
-  overflow: hidden !important;
-  padding: 0 !important;
-  position: absolute !important;
+@mixin sr-only() {
   width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
   white-space: nowrap !important;
+  border: 0 !important;
+
+  &:not(caption) {
+    position: absolute !important;
+  }
 }
 
-@mixin sr-only-focus {
-  clip: auto !important;
-  clip-path: none !important;
-  height: auto !important;
-  overflow: visible !important;
-  width: auto !important;
-  white-space: normal !important;
+@mixin sr-only-focus() {
+  &:not(:focus):not(:focus-within) {
+    @include sr-only();
+  }
 }
+
 /* stylelint-enable declaration-no-important  */
 
 //Component spacing

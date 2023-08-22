@@ -1,0 +1,56 @@
+---
+title: Visibility
+width: narrow
+intro: Control the visibility of elements, without modifying their display, with visibility utilities.
+no-blank: true
+model: json/utilities.json
+meta-description: Control the visibility of elements, without modifying their display, with visibility utilities.
+meta-index: true
+---
+
+<p>Grid classes give you the option to show or hide elements in certain breakpoints. For example, displaying an image on a large screen when it supports the content, but hiding it on a small screen when it hinders the users access to information.</p>
+<p>The classes are named using the format <code>nsw-{display}-{breakpoint}</code></p>
+<p>Where <strong>breakpoint</strong> is one of <strong>xs, sm, md, lg, xl</strong>.</p>
+<p>Where <strong>display</strong> is one of:</p>
+<ul>
+  <li><strong>show</strong> - displays the elements</li>
+  <li><strong>hide</strong> - hides the elements</li>
+</ul>
+
+<h4>Showing</h4>
+{{#>_docs-example separated="true"}}
+  <div class="nsw-show-lg">
+    <p>This text is only visible in large breakpoint and up</p>
+  </div>
+{{/_docs-example}}
+
+<h4>Hiding</h4>
+{{#>_docs-example separated="true"}}
+  <div class="nsw-hide-lg">
+    <p>This text is only visible from large breakpoint and lower</p>
+  </div>
+{{/_docs-example}}
+
+<h3>Visually hidden</h3>
+
+<p>Visually hide an element while still allowing it to be exposed to assistive technologies (such as screen readers) with <code>.sr-only</code>. Use <code>.sr-only-focusable</code> to visually hide an element by default, but to display it when it’s focused (e.g. by a keyboard-only user). <code>.sr-only-focusable</code> can also be applied to a container – thanks to :focus-within, the container will be displayed when any child element of the container receives focus.</p>
+
+{{#>_docs-example open=true separated="true"}}
+  <h2 class="sr-only">Title for screen readers</h2>
+  <a class="sr-only-focusable" href="#content">Skip to main content</a>
+  <div class="sr-only-focusable">A container with a <a href="#">focusable element</a>.</div>
+{{/_docs-example}}
+
+<p>Both <code>.sr-only</code> and <code>.sr-only-focusable</code> can also be used as mixins.</p>
+
+{{#>_docs-code open=true separated=true}} 
+// Usage as a mixin
+
+.visually-hidden-title {
+  @include sr-only;
+}
+
+.skip-navigation {
+  @include sr-only-focusable;
+}
+{{/_docs-code}}
