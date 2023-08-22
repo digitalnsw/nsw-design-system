@@ -1,17 +1,16 @@
 <!doctype html>
 <html lang="en" class="no-js">
 <head>
-  <title>NSW Digital Design System - Utility Classes</title>
+  <title>NSW Digital Design System - Borders</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="description" content="Single-responsibility classes for re-use and customisation." />
+  <meta name="description" content="Utilities for controlling the border radius, width, style and the color of an element&#x27;s borders." />
   <link rel="icon" href="/nsw-design-system/favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone" rel="stylesheet">
-
   <link rel="stylesheet" href="/nsw-design-system/docs/css/docs.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/atom-one-light.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
@@ -165,7 +164,6 @@
                 <ul class="nsw-main-nav__sub-list">
                   <li><a href="/nsw-design-system/docs/content/develop/getting-started.html"><span>Getting Started</span></a></li>
                   <li><a href="/nsw-design-system/docs/content/develop/theming.html"><span>Theming</span></a></li>
-                  <li><a href="/nsw-design-system/docs/content/develop/helpers.html"><span>Utility Classes</span></a></li>
                 </ul>
               </div>
             </li>
@@ -198,7 +196,6 @@
                   <li><a href="/nsw-design-system/core/grid/index.html"><span>Grid</span></a></li>
                   <li><a href="/nsw-design-system/core/layout/index.html"><span>Layout</span></a></li>
                   <li><a href="/nsw-design-system/core/section/index.html"><span>Section</span></a></li>
-                  <li><a href="/nsw-design-system/core/spacing/index.html"><span>Spacing</span></a></li>
                   <li><a href="/nsw-design-system/core/graphic-elements/index.html"><span>Graphic elements</span><span class="nsw-brand">&#128313;</span></a></li>
                 </ul>
               </div>
@@ -264,6 +261,44 @@
             </li>
         
             <li>
+              <a role="button" aria-expanded="false" aria-controls="sub-nav-utilities">
+                <span>Utility Classes</span>
+                <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_right</span>
+              </a>
+        
+              <div class="nsw-main-nav__sub-nav" id="sub-nav-utilities" role="region" aria-label="Utilities Submenu">
+                <div class="nsw-main-nav__header">
+                  <button class="nsw-icon-button nsw-icon-button--flex js-close-sub-nav" type="button" aria-expanded="true" aria-controls="sub-nav-utilities">
+                    <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_left</span>
+                    <span>Back<span class="sr-only"> to Main Menu</span></span>
+                  </button>
+        
+                  <button class="nsw-icon-button js-close-nav" type="button" aria-expanded="true">
+                    <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">close</span>
+                    <span class="sr-only">Close Menu</span>
+                  </button>
+                </div>
+        
+                <ul class="nsw-main-nav__sub-list">
+                  <li><a href="/nsw-design-system/docs/content/utilities/background.html"><span>Background</span></a></li>
+                  <li><a href="/nsw-design-system/docs/content/utilities/borders.html"><span>Borders</span></a></li>
+                  <li><a href="/nsw-design-system/docs/content/utilities/box-shadow.html"><span>Box Shadow</span></a></li>
+                  <li><a href="/nsw-design-system/docs/content/utilities/display.html"><span>Display</span></a></li>
+                  <li><a href="/nsw-design-system/docs/content/utilities/flex.html"><span>Flex</span></a></li>
+                  <li><a href="/nsw-design-system/docs/content/utilities/float.html"><span>Float</span></a></li>
+                  <li><a href="/nsw-design-system/docs/content/utilities/overflow.html"><span>Overflow</span></a></li>
+                  <li><a href="/nsw-design-system/docs/content/utilities/position.html"><span>Position</span></a></li>
+                  <li><a href="/nsw-design-system/docs/content/utilities/spacing.html"><span>Spacing</span></a></li>
+                  <li><a href="/nsw-design-system/docs/content/utilities/svg.html"><span>SVG</span></a></li>
+                  <li><a href="/nsw-design-system/docs/content/utilities/text.html"><span>Text</span></a></li>
+                  <li><a href="/nsw-design-system/docs/content/utilities/vertical-align.html"><span>Vertical align</span></a></li>
+                  <li><a href="/nsw-design-system/docs/content/utilities/visibility.html"><span>Visibility</span></a></li>
+                  <li><a href="/nsw-design-system/docs/content/utilities/z-index.html"><span>Z-index</span></a></li>
+                </ul>
+              </div>
+            </li>
+        
+            <li>
               <a role="button" aria-expanded="false" aria-controls="sub-nav-methods">
                 <span>Methods</span>
                 <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_right</span>
@@ -303,540 +338,194 @@
     <div class="nsw-docs__main nsw-docs__main--narrow">
       <div class="nsw-docs__intro">
         <div class="nsw-docs__container">
-          <h1>Utility Classes</h1>
+          <h1>Borders</h1>
           
-          <p class="nsw-intro">Single-responsibility classes for re-use and customisation</p>
+          <p class="nsw-intro">Utilities for controlling the border radius, width, style and the color of an element&#x27;s borders.</p>
           
         </div>
       </div>
       <div class="nsw-docs__content">
         <div class="nsw-docs__container">
 
-<nav class="nsw-in-page-nav" aria-labelledby="in-page-nav">
-  <div id="in-page-nav" class="nsw-in-page-nav__title">On this page</div>
-  <ul>
-    <li><a href="#background-colour">Background colour</a></li>
-    <li><a href="#text-colour">Text colour</a></li>
-    <li><a href="#border-colour">Border colour</a></li>
-    <li><a href="#font-size">Font size</a></li>
-    <li><a href="#border-size">Border size</a></li>
-    <li><a href="#box-shadow">Box shadow</a></li>
-    <li><a href="#viewport-visibility">Viewport visibility</a></li>
-  </ul>
-</nav>
+<h3>Additive</h3>
+<p>Add borders to custom elements:</p>
 
-<h2 id="background-colour">Background colour</h2>
-<div class="nsw-section nsw-section--white nsw-block nsw-p-sm">
-  <div class="nsw-table nsw-table--bordered nsw-table--valign-middle">
-    <table>
-      <tbody>
-        <tr>
-          <th style="width: 25%">
-            <p>Class</p>
-          </th>
-          <th style="width: 25%">
-            <p>Hover Class</p>
-          </th>
-          <th style="width: 50%">
-            <p>Description</p>
-          </th>
-        </tr>
-        <tr>
-          <td>
-            <p>nsw-bg--brand-dark</p>
-          </td>
-          <td>
-            <p>hover:nsw-bg--brand-dark</p>
-          </td>
-          <td>
-            <p>Applies background colour <code>var(--nsw-brand-dark)</code> to element</p>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <p>nsw-bg--brand-light</p>
-          </td>
-          <td>
-            <p>hover:nsw-bg--brand-light</p>
-          </td>
-          <td>
-            <p>Applies background colour <code>var(--nsw-brand-light)</code> to element</p>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <p>nsw-bg--brand-supplementary</p>
-          </td>
-          <td>
-            <p>hover:nsw-bg--brand-supplementary</p>
-          </td>
-          <td>
-            <p>Applies background colour <code>var(--nsw-brand-supplementary)</code> to element</p>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-<h2 id="text-colour">Text colour</h2>
-<div class="nsw-section nsw-section--white nsw-block nsw-p-sm">
-  <div class="nsw-table nsw-table--bordered nsw-table--valign-middle">
-    <table>
-      <tbody>
-        <tr>
-          <th style="width: 25%">
-            <p>Class</p>
-          </th>
-          <th style="width: 25%">
-            <p>Hover Class</p>
-          </th>
-          <th style="width: 50%">
-            <p>Description</p>
-          </th>
-        </tr>
-        <tr>
-          <td>
-            <p>nsw-text--dark</p>
-          </td>
-          <td>
-            <p>hover:nsw-text--dark</p>
-          </td>
-          <td>
-            <p>Applies text colour <code>var(--nsw-text-dark)</code> to element</p>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <p>nsw-text--light</p>
-          </td>
-          <td>
-            <p>hover:nsw-text--light</p>
-          </td>
-          <td>
-            <p>Applies text colour <code>var(--nsw-text-light)</code> to element</p>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <p>nsw-text--brand-dark</p>
-          </td>
-          <td>
-            <p>hover:nsw-text--brand-dark</p>
-          </td>
-          <td>
-            <p>Applies text colour <code>var(--nsw-brand-dark)</code> to element</p>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <p>nsw-text--brand-light</p>
-          </td>
-          <td>
-            <p>hover:nsw-text--brand-light</p>
-          </td>
-          <td>
-            <p>Applies text colour <code>var(--nsw-brand-light)</code> to element</p>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <p>nsw-text--brand-supplementary</p>
-          </td>
-          <td>
-            <p>hover:nsw-text--brand-supplementary</p>
-          </td>
-          <td>
-            <p>Applies text colour <code>var(--nsw-brand-supplementary)</code> to element</p>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-<h2 id="border-colour">Border colour</h2>
-<div class="nsw-section nsw-section--white nsw-block nsw-p-sm">
-  <div class="nsw-table nsw-table--bordered nsw-table--valign-middle">
-    <table>
-      <tbody>
-        <tr>
-          <th style="width: 25%">
-            <p>Class</p>
-          </th>
-          <th style="width: 25%">
-            <p>Hover Class</p>
-          </th>
-          <th style="width: 50%">
-            <p>Description</p>
-          </th>
-        </tr>
-        <tr>
-          <td>
-            <p>nsw-border--text-dark</p>
-          </td>
-          <td>
-            <p>hover:nsw-border--text-dark</p>
-          </td>
-          <td>
-            <p>Applies border colour <code>var(--nsw-text-dark)</code> to element</p>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <p>nsw-border--text-light</p>
-          </td>
-          <td>
-            <p>hover:nsw-border--text-light</p>
-          </td>
-          <td>
-            <p>Applies border colour <code>var(--nsw-text-light)</code> to element</p>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <p>nsw-border--brand-dark</p>
-          </td>
-          <td>
-            <p>hover:nsw-border--brand-dark</p>
-          </td>
-          <td>
-            <p>Applies border colour <code>var(--nsw-brand-dark)</code> to element</p>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <p>nsw-border--brand-light</p>
-          </td>
-          <td>
-            <p>hover:nsw-border--brand-light</p>
-          </td>
-          <td>
-            <p>Applies border colour <code>var(--nsw-brand-light)</code> to element</p>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <p>nsw-border--brand-supplementary</p>
-          </td>
-          <td>
-            <p>hover:nsw-border--brand-supplementary</p>
-          </td>
-          <td>
-            <p>Applies border colour <code>var(--nsw-brand-supplementary)</code> to element</p>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-
-<h2 id="font-size">Font size</h2>
-<div class="nsw-section nsw-section--white nsw-block nsw-p-sm">
-  <div class="nsw-table nsw-table--bordered nsw-table--valign-middle">
-    <table>
-      <tbody>
-        <tr>
-          <th style="width: 435px">
-            <p>Class</p>
-          </th>
-          <th style="width: 50%">
-            <p>Description</p>
-          </th>
-        </tr>
-        <tr>
-          <td>
-            <p>nsw-h1</p>
-          </td>
-          <td>
-            <p>Applies h1 font size to element</p>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <p>nsw-h2</p>
-          </td>
-          <td>
-            <p>Applies h2 font size to element</p>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <p>nsw-h3</p>
-          </td>
-          <td>
-            <p>Applies h3 font size to element</p>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <p>nsw-h4</p>
-          </td>
-          <td>
-            <p>Applies h4 font size to element</p>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <p>nsw-h5</p>
-          </td>
-          <td>
-            <p>Applies h5 font size to element</p>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <p>nsw-h6</p>
-          </td>
-          <td>
-            <p>Applies h6 font size to element</p>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-
-<h2 id="border-size">Border size</h2>
-<div class="nsw-section nsw-section--white nsw-block nsw-p-sm">
-  <div class="nsw-table nsw-table--bordered nsw-table--valign-middle">
-    <table>
-      <tbody>
-        <tr>
-          <th style="width: 435px">
-            <p>Class</p>
-          </th>
-          <th style="width: 50%">
-            <p>Description</p>
-          </th>
-        </tr>
-        <tr>
-          <td>
-            <p>nsw-border--2</p>
-          </td>
-          <td>
-            <p>Applies 2px Brand Accent border to element</p>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <p>nsw-border--4</p>
-          </td>
-          <td>
-            <p>Applies 4px Brand Accent border to element</p>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <p>nsw-border--6</p>
-          </td>
-          <td>
-            <p>Applies 6px Brand Accent border to element</p>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <p>nsw-border--left-2</p>
-          </td>
-          <td>
-            <p>Applies 2px left Brand Accent border to element</p>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <p>nsw-border--right-2</p>
-          </td>
-          <td>
-            <p>Applies 2px right Brand Accent border to element</p>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <p>nsw-border--top-2</p>
-          </td>
-          <td>
-            <p>Applies 2px top Brand Accent border to element</p>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <p>nsw-border--bottom-2</p>
-          </td>
-          <td>
-            <p>Applies 2px bottom Brand Accent border to element</p>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <p>nsw-border--left-4</p>
-          </td>
-          <td>
-            <p>Applies 4px left Brand Accent border to element</p>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <p>nsw-border--right-4</p>
-          </td>
-          <td>
-            <p>Applies 4px right Brand Accent border to element</p>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <p>nsw-border--top-4</p>
-          </td>
-          <td>
-            <p>Applies 4px top Brand Accent border to element</p>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <p>nsw-border--bottom-4</p>
-          </td>
-          <td>
-            <p>Applies 4px bottom Brand Accent border to element</p>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <p>nsw-border--left-6</p>
-          </td>
-          <td>
-            <p>Applies 6px left Brand Accent border to element</p>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <p>nsw-border--right-6</p>
-          </td>
-          <td>
-            <p>Applies 6px right Brand Accent border to element</p>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <p>nsw-border--top-6</p>
-          </td>
-          <td>
-            <p>Applies 6px top Brand Accent border to element</p>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <p>nsw-border--bottom-6</p>
-          </td>
-          <td>
-            <p>Applies 6px bottom Brand Accent border to element</p>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-
-
-<h2 id="box-shadow">Box shadow</h2>
-<div class="nsw-section nsw-section--white nsw-block nsw-p-sm">
-  <div class="nsw-table nsw-table--bordered nsw-table--valign-middle">
-    <table>
-      <tbody>
-        <tr>
-          <th style="width: 435px">
-            <div>
-              <p>Class</p>
-            </div>
-          </th>
-          <th style="width: 50%">
-            <div>
-              <p>Description</p>
-            </div>
-          </th>
-        </tr>
-        <tr>
-          <td>
-            <p>nsw-box-shadow</p>
-          </td>
-          <td>
-            <p>Applies box-shadow to element</p>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-
-<h2 id="viewport-visibility">Viewport Visibility</h2>
-<p>Grid classes give you the option to show or hide elements in certain breakpoints. For example, displaying an image on a large screen when it supports the content, but hiding it on a small screen when it hinders the users access to information.</p>
-<p>The classes are named using the format <code>nsw-{display}-{breakpoint}</code></p>
-<p>Where <strong>breakpoint</strong> is one of <strong>xs, sm, md, lg, xl</strong>.</p>
-<p>Where <strong>display</strong> is one of:</p>
-<ul>
-  <li><strong>show</strong> - displays the elements</li>
-  <li><strong>hide</strong> - hides the elements</li>
-</ul>
-
-<p>Showing</p>
 <div class="nsw-docs__example nsw-m-top-sm">
   <div class="nsw-docs__component">
-      <div class="nsw-show-lg">
-        <p>This text is only visible in large breakpoint and up</p>
-      </div>
+    <div class="nsw-display-inline-block nsw-width-2xl nsw-height-2xl nsw-p-xs nsw-m-xs nsw-bg-opacity--50 nsw-bg--off-white nsw-border"></div>
+    <div class="nsw-display-inline-block nsw-width-2xl nsw-height-2xl nsw-p-xs nsw-m-xs nsw-bg-opacity--50 nsw-bg--off-white nsw-border--top"></div>
+    <div class="nsw-display-inline-block nsw-width-2xl nsw-height-2xl nsw-p-xs nsw-m-xs nsw-bg-opacity--50 nsw-bg--off-white nsw-border--right"></div>
+    <div class="nsw-display-inline-block nsw-width-2xl nsw-height-2xl nsw-p-xs nsw-m-xs nsw-bg-opacity--50 nsw-bg--off-white nsw-border--bottom"></div>
+    <div class="nsw-display-inline-block nsw-width-2xl nsw-height-2xl nsw-p-xs nsw-m-xs nsw-bg-opacity--50 nsw-bg--off-white nsw-border--left"></div>
   </div>
 </div>
+
 <div class="nsw-docs-code">
-  <button class="nsw-link nsw-link--button nsw-link--icon nsw-small js-code-button">
-    <span>Show code</span>
-    <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
-  </button>
-  <div class="nsw-docs-code__content">
+  <div class="nsw-docs-code__content active">
     <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
       <span>Copy</span>
       <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
     </button>
-    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`  <div class="nsw-show-lg">
-    <p>This text is only visible in large breakpoint and up</p>
-  </div>
+    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`<div class="nsw-border nsw-border"></div>
+<div class="nsw-border nsw-border--top"></div>
+<div class="nsw-border nsw-border--right"></div>
+<div class="nsw-border nsw-border--bottom"></div>
+<div class="nsw-border nsw-border--left"></div>
 `).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
     <div class="nsw-docs-code__wrapper">
-<pre><code class="html"><script>document.write((`  <div class="nsw-show-lg">
-    <p>This text is only visible in large breakpoint and up</p>
-  </div>
+<pre><code class="html"><script>document.write((`<div class="nsw-border nsw-border"></div>
+<div class="nsw-border nsw-border--top"></div>
+<div class="nsw-border nsw-border--right"></div>
+<div class="nsw-border nsw-border--bottom"></div>
+<div class="nsw-border nsw-border--left"></div>
 `).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
     </div>
   </div>
 </div>
 
+<h3>Subtractive</h3>
+<p>Or remove borders:</p>
 
-<p>Hiding</p>
 <div class="nsw-docs__example nsw-m-top-sm">
   <div class="nsw-docs__component">
-      <div class="nsw-hide-lg">
-        <p>This text is only visible from large breakpoint and lower</p>
-      </div>
+    <div class="nsw-display-inline-block nsw-width-2xl nsw-height-2xl nsw-p-xs nsw-m-xs nsw-bg-opacity--50 nsw-bg--off-white nsw-border nsw-border-0"></div>
+    <div class="nsw-display-inline-block nsw-width-2xl nsw-height-2xl nsw-p-xs nsw-m-xs nsw-bg-opacity--50 nsw-bg--off-white nsw-border nsw-border--top-0"></div>
+    <div class="nsw-display-inline-block nsw-width-2xl nsw-height-2xl nsw-p-xs nsw-m-xs nsw-bg-opacity--50 nsw-bg--off-white nsw-border nsw-border--right-0"></div>
+    <div class="nsw-display-inline-block nsw-width-2xl nsw-height-2xl nsw-p-xs nsw-m-xs nsw-bg-opacity--50 nsw-bg--off-white nsw-border nsw-border--bottom-0"></div>
+    <div class="nsw-display-inline-block nsw-width-2xl nsw-height-2xl nsw-p-xs nsw-m-xs nsw-bg-opacity--50 nsw-bg--off-white nsw-border nsw-border--left-0"></div>
   </div>
 </div>
+
 <div class="nsw-docs-code">
-  <button class="nsw-link nsw-link--button nsw-link--icon nsw-small js-code-button">
-    <span>Show code</span>
-    <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
-  </button>
-  <div class="nsw-docs-code__content">
+  <div class="nsw-docs-code__content active">
     <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
       <span>Copy</span>
       <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
     </button>
-    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`  <div class="nsw-hide-lg">
-    <p>This text is only visible from large breakpoint and lower</p>
-  </div>
+    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`<div class="nsw-border nsw-border-0"></div>
+<div class="nsw-border nsw-border--top-0"></div>
+<div class="nsw-border nsw-border--right-0"></div>
+<div class="nsw-border nsw-border--bottom-0"></div>
+<div class="nsw-border nsw-border--left-0"></div>
 `).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
     <div class="nsw-docs-code__wrapper">
-<pre><code class="html"><script>document.write((`  <div class="nsw-hide-lg">
-    <p>This text is only visible from large breakpoint and lower</p>
-  </div>
+<pre><code class="html"><script>document.write((`<div class="nsw-border nsw-border-0"></div>
+<div class="nsw-border nsw-border--top-0"></div>
+<div class="nsw-border nsw-border--right-0"></div>
+<div class="nsw-border nsw-border--bottom-0"></div>
+<div class="nsw-border nsw-border--left-0"></div>
 `).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
     </div>
   </div>
 </div>
 
+<h3>Border Radius</h3>
+
+<div class="nsw-docs__example nsw-m-top-sm">
+  <div class="nsw-docs__component">
+    <div class="nsw-display-inline-block nsw-width-2xl nsw-height-2xl nsw-p-xs nsw-m-xs nsw-bg-opacity--50 nsw-bg--off-white nsw-border nsw-border-radius"></div>
+  </div>
+</div>
+
+<div class="nsw-docs-code">
+  <div class="nsw-docs-code__content active">
+    <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
+      <span>Copy</span>
+      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
+    </button>
+    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`<div class="nsw-border nsw-border-radius"></div>
+`).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
+    <div class="nsw-docs-code__wrapper">
+<pre><code class="html"><script>document.write((`<div class="nsw-border nsw-border-radius"></div>
+`).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
+    </div>
+  </div>
+</div>
+
+<h3>Border Width</h3>
+
+<div class="nsw-docs__example nsw-m-top-sm">
+  <div class="nsw-docs__component">
+    <div class="nsw-display-inline-block nsw-width-2xl nsw-height-2xl nsw-p-xs nsw-m-xs nsw-bg-opacity--50 nsw-bg--off-white nsw-border nsw-border--1"></div>
+    <div class="nsw-display-inline-block nsw-width-2xl nsw-height-2xl nsw-p-xs nsw-m-xs nsw-bg-opacity--50 nsw-bg--off-white nsw-border nsw-border--2"></div>
+    <div class="nsw-display-inline-block nsw-width-2xl nsw-height-2xl nsw-p-xs nsw-m-xs nsw-bg-opacity--50 nsw-bg--off-white nsw-border nsw-border--4"></div>
+    <div class="nsw-display-inline-block nsw-width-2xl nsw-height-2xl nsw-p-xs nsw-m-xs nsw-bg-opacity--50 nsw-bg--off-white nsw-border nsw-border--6"></div>
+  </div>
+</div>
+
+<div class="nsw-docs-code">
+  <div class="nsw-docs-code__content active">
+    <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
+      <span>Copy</span>
+      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
+    </button>
+    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`<div class="nsw-border nsw-border--1"></div>
+<div class="nsw-border nsw-border--2"></div>
+<div class="nsw-border nsw-border--4"></div>
+<div class="nsw-border nsw-border--6"></div>
+`).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
+    <div class="nsw-docs-code__wrapper">
+<pre><code class="html"><script>document.write((`<div class="nsw-border nsw-border--1"></div>
+<div class="nsw-border nsw-border--2"></div>
+<div class="nsw-border nsw-border--4"></div>
+<div class="nsw-border nsw-border--6"></div>
+`).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
+    </div>
+  </div>
+</div>
+
+<h3>Border Color</h3>
+
+<div class="nsw-docs__example nsw-m-top-sm">
+  <div class="nsw-docs__component">
+    <div class="nsw-display-inline-block nsw-width-2xl nsw-height-2xl nsw-p-xs nsw-m-xs nsw-bg-opacity--50 nsw-bg--off-white nsw-border nsw-border--brand-dark"></div>
+    <div class="nsw-display-inline-block nsw-width-2xl nsw-height-2xl nsw-p-xs nsw-m-xs nsw-bg-opacity--50 nsw-bg--off-white nsw-border nsw-border--brand-light"></div>
+    <div class="nsw-display-inline-block nsw-width-2xl nsw-height-2xl nsw-p-xs nsw-m-xs nsw-bg-opacity--50 nsw-bg--off-white nsw-border nsw-border--brand-supplementary"></div>
+    <div class="nsw-display-inline-block nsw-width-2xl nsw-height-2xl nsw-p-xs nsw-m-xs nsw-bg-opacity--50 nsw-bg--off-white nsw-border nsw-border--brand-accent"></div>
+    <div class="nsw-display-inline-block nsw-width-2xl nsw-height-2xl nsw-p-xs nsw-m-xs nsw-bg-opacity--50 nsw-bg--off-white nsw-border nsw-border--black"></div>
+    <div class="nsw-display-inline-block nsw-width-2xl nsw-height-2xl nsw-p-xs nsw-m-xs nsw-bg-opacity--50 nsw-bg--off-white nsw-border nsw-border--white"></div>
+    <div class="nsw-display-inline-block nsw-width-2xl nsw-height-2xl nsw-p-xs nsw-m-xs nsw-bg-opacity--50 nsw-bg--off-white nsw-border nsw-border--off-white"></div>
+    <div class="nsw-display-inline-block nsw-width-2xl nsw-height-2xl nsw-p-xs nsw-m-xs nsw-bg-opacity--50 nsw-bg--off-white nsw-border nsw-border--grey-01"></div>
+    <div class="nsw-display-inline-block nsw-width-2xl nsw-height-2xl nsw-p-xs nsw-m-xs nsw-bg-opacity--50 nsw-bg--off-white nsw-border nsw-border--grey-02"></div>
+    <div class="nsw-display-inline-block nsw-width-2xl nsw-height-2xl nsw-p-xs nsw-m-xs nsw-bg-opacity--50 nsw-bg--off-white nsw-border nsw-border--grey-03"></div>
+    <div class="nsw-display-inline-block nsw-width-2xl nsw-height-2xl nsw-p-xs nsw-m-xs nsw-bg-opacity--50 nsw-bg--off-white nsw-border nsw-border--grey-04"></div>
+  </div>
+</div>
+
+<div class="nsw-docs-code">
+  <div class="nsw-docs-code__content active">
+    <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
+      <span>Copy</span>
+      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
+    </button>
+    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`<div class="nsw-border nsw-border--brand-dark"></div>
+<div class="nsw-border nsw-border--brand-light"></div>
+<div class="nsw-border nsw-border--brand-supplementary"></div>
+<div class="nsw-border nsw-border--brand-accent"></div>
+<div class="nsw-border nsw-border--black"></div>
+<div class="nsw-border nsw-border--white"></div>
+<div class="nsw-border nsw-border--off-white"></div>
+<div class="nsw-border nsw-border--grey-01"></div>
+<div class="nsw-border nsw-border--grey-02"></div>
+<div class="nsw-border nsw-border--grey-03"></div>
+<div class="nsw-border nsw-border--grey-04"></div>
+`).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
+    <div class="nsw-docs-code__wrapper">
+<pre><code class="html"><script>document.write((`<div class="nsw-border nsw-border--brand-dark"></div>
+<div class="nsw-border nsw-border--brand-light"></div>
+<div class="nsw-border nsw-border--brand-supplementary"></div>
+<div class="nsw-border nsw-border--brand-accent"></div>
+<div class="nsw-border nsw-border--black"></div>
+<div class="nsw-border nsw-border--white"></div>
+<div class="nsw-border nsw-border--off-white"></div>
+<div class="nsw-border nsw-border--grey-01"></div>
+<div class="nsw-border nsw-border--grey-02"></div>
+<div class="nsw-border nsw-border--grey-03"></div>
+<div class="nsw-border nsw-border--grey-04"></div>
+`).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
+    </div>
+  </div>
+</div>
 
         </div>
       </div>

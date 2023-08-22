@@ -1,17 +1,16 @@
 <!doctype html>
 <html lang="en" class="no-js">
 <head>
-  <title>NSW Digital Design System - Spacing</title>
+  <title>NSW Digital Design System - Overflow</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="description" content="The NSW Design System defined set of spacing units for alignment and consistent spacing relationships in components and layout." />
+  <meta name="description" content="Utilities for controlling how an element handles content that is too large for the container." />
   <link rel="icon" href="/nsw-design-system/favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone" rel="stylesheet">
-
   <link rel="stylesheet" href="/nsw-design-system/docs/css/docs.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/atom-one-light.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
@@ -165,7 +164,6 @@
                 <ul class="nsw-main-nav__sub-list">
                   <li><a href="/nsw-design-system/docs/content/develop/getting-started.html"><span>Getting Started</span></a></li>
                   <li><a href="/nsw-design-system/docs/content/develop/theming.html"><span>Theming</span></a></li>
-                  <li><a href="/nsw-design-system/docs/content/develop/helpers.html"><span>Utility Classes</span></a></li>
                 </ul>
               </div>
             </li>
@@ -198,7 +196,6 @@
                   <li><a href="/nsw-design-system/core/grid/index.html"><span>Grid</span></a></li>
                   <li><a href="/nsw-design-system/core/layout/index.html"><span>Layout</span></a></li>
                   <li><a href="/nsw-design-system/core/section/index.html"><span>Section</span></a></li>
-                  <li><a href="/nsw-design-system/core/spacing/index.html"><span>Spacing</span></a></li>
                   <li><a href="/nsw-design-system/core/graphic-elements/index.html"><span>Graphic elements</span><span class="nsw-brand">&#128313;</span></a></li>
                 </ul>
               </div>
@@ -264,6 +261,44 @@
             </li>
         
             <li>
+              <a role="button" aria-expanded="false" aria-controls="sub-nav-utilities">
+                <span>Utility Classes</span>
+                <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_right</span>
+              </a>
+        
+              <div class="nsw-main-nav__sub-nav" id="sub-nav-utilities" role="region" aria-label="Utilities Submenu">
+                <div class="nsw-main-nav__header">
+                  <button class="nsw-icon-button nsw-icon-button--flex js-close-sub-nav" type="button" aria-expanded="true" aria-controls="sub-nav-utilities">
+                    <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_left</span>
+                    <span>Back<span class="sr-only"> to Main Menu</span></span>
+                  </button>
+        
+                  <button class="nsw-icon-button js-close-nav" type="button" aria-expanded="true">
+                    <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">close</span>
+                    <span class="sr-only">Close Menu</span>
+                  </button>
+                </div>
+        
+                <ul class="nsw-main-nav__sub-list">
+                  <li><a href="/nsw-design-system/docs/content/utilities/background.html"><span>Background</span></a></li>
+                  <li><a href="/nsw-design-system/docs/content/utilities/borders.html"><span>Borders</span></a></li>
+                  <li><a href="/nsw-design-system/docs/content/utilities/box-shadow.html"><span>Box Shadow</span></a></li>
+                  <li><a href="/nsw-design-system/docs/content/utilities/display.html"><span>Display</span></a></li>
+                  <li><a href="/nsw-design-system/docs/content/utilities/flex.html"><span>Flex</span></a></li>
+                  <li><a href="/nsw-design-system/docs/content/utilities/float.html"><span>Float</span></a></li>
+                  <li><a href="/nsw-design-system/docs/content/utilities/overflow.html"><span>Overflow</span></a></li>
+                  <li><a href="/nsw-design-system/docs/content/utilities/position.html"><span>Position</span></a></li>
+                  <li><a href="/nsw-design-system/docs/content/utilities/spacing.html"><span>Spacing</span></a></li>
+                  <li><a href="/nsw-design-system/docs/content/utilities/svg.html"><span>SVG</span></a></li>
+                  <li><a href="/nsw-design-system/docs/content/utilities/text.html"><span>Text</span></a></li>
+                  <li><a href="/nsw-design-system/docs/content/utilities/vertical-align.html"><span>Vertical align</span></a></li>
+                  <li><a href="/nsw-design-system/docs/content/utilities/visibility.html"><span>Visibility</span></a></li>
+                  <li><a href="/nsw-design-system/docs/content/utilities/z-index.html"><span>Z-index</span></a></li>
+                </ul>
+              </div>
+            </li>
+        
+            <li>
               <a role="button" aria-expanded="false" aria-controls="sub-nav-methods">
                 <span>Methods</span>
                 <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_right</span>
@@ -300,136 +335,151 @@
         </nav>
       </div>
     </div>
-    <div class="nsw-docs__main">
+    <div class="nsw-docs__main nsw-docs__main--narrow">
       <div class="nsw-docs__intro">
         <div class="nsw-docs__container">
-          <h1>Spacing</h1>
+          <h1>Overflow</h1>
           
-          <p class="nsw-intro">A defined set of spacing units provides good alignment and consistent spacing relationships in components and layout.</p>
+          <p class="nsw-intro">Utilities for controlling how an element handles content that is too large for the container.</p>
           
         </div>
       </div>
       <div class="nsw-docs__content">
         <div class="nsw-docs__container">
 
-<h2>Responsive spacing</h2>
-<p>Spacing is recommended using an 8-pixel grid with pre-set responsive spacing units that can be used to create consistent spacing relationships across breakpoints.</p>
-<div class="nsw-section nsw-section--white nsw-block nsw-p-x-sm nsw-p-top-sm">
-  <div class="nsw-table nsw-table--valign-middle">
-    <table>
-      <tbody>
-      <tr>
-        <th>Spacing token</th>
-        <th>0 - 767px</th>
-        <th>768px +</th>
-      </tr>
-      <tr>
-        <td>xs</td>
-        <td>4px</td>
-        <td>8px</td>
-      </tr>
-      <tr>
-        <td>sm</td>
-        <td>8px</td>
-        <td>16px</td>
-      </tr>
-      <tr>
-        <td>md</td>
-        <td>16px</td>
-        <td>32px</td>
-      </tr>
-      <tr>
-        <td>lg</td>
-        <td>24px</td>
-        <td>48px</td>
-      </tr>
-      <tr>
-        <td>xl</td>
-        <td>32px</td>
-        <td>64px</td>
-      </tr>
-      <tr>
-        <td>xxl</td>
-        <td>40px</td>
-        <td>80px</td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
+<p>Adjust the <code>overflow</code> property on the fly with four default values and classes. These classes are not responsive by default.</p>
 
-<h2>Helper classes</h2>
-<p>Add responsive margin or padding values to entire element or its sides with shorthand classes.</p>
-<p>The classes are named using the format <code>nsw-{property}-{sides}-{size}</code>.</p>
-<p>Where <strong>property</strong> is one of:</p>
-<ul>
-  <li><strong>m</strong> - for classes that set margin</li>
-  <li><strong>p</strong> - for classes that set padding</li>
-</ul>
-<p>Where <strong>sides</strong> is one of:</p>
-<ul>
-  <li><strong>top</strong> - for classes that set margin-top or padding-top</li>
-  <li><strong>bottom</strong> - for classes that set margin-bottom or padding-bottom
-  </li>
-  <li><strong>left</strong> - for classes that set margin-left or padding-left
-  </li>
-  <li><strong>right</strong> - for classes that set margin-right or padding-right
-  </li>
-  <li><strong>x</strong> - for classes that set margin or padding on both left and right
-  </li>
-  <li><strong>y</strong> - for classes that set margin or padding on both top and bottom
-  </li>
-  <li><strong>blank</strong> - for classes that set a margin or padding on all 4 sides of the element
-  </li>
-</ul>
-<p>Where <strong>size</strong> is one of the responsive spacing tokens: <strong>xs, sm, md, lg, xl, xxl</strong>. </p>
-<p>Here is a demo of creating a banner component using utility classes alone:</p>
-
-<div class="nsw-docs__example nsw-docs__example--simple nsw-m-top-sm">
+<div class="nsw-docs__example nsw-m-top-sm">
   <div class="nsw-docs__component">
-      <div class="nsw-section nsw-section--brand-dark nsw-p-x-md">
-        <small>label</small>
-        <h1 class="nsw-m-top-md">This is a heading</h1>
-        <div class="nsw-m-bottom-lg">
-          <p class="nsw-intro">This is a intro text with longer vertical space to the button</p>
-        </div>
-        <button class="nsw-button nsw-button--white">Button</button>
+    <div class="nsw-list nsw-list--8">
+      <div style="max-width: 260px; max-height: 100px;" class="nsw-overflow-auto nsw-p-sm nsw-m-xs nsw-bg-opacity--50 nsw-bg--brand-light">
+        This is an example of using <code>.overflow-auto</code> on an element with set width and height dimensions. By design, this content will vertically scroll.
       </div>
+      <div style="max-width: 260px; max-height: 100px;" class="nsw-overflow-hidden nsw-p-sm nsw-m-xs nsw-bg-opacity--50 nsw-bg--brand-light">
+        This is an example of using <code>.overflow-hidden</code> on an element with set width and height dimensions.
+      </div>
+      <div style="max-width: 260px; max-height: 100px;" class="nsw-overflow-visible nsw-p-sm nsw-m-xs nsw-bg-opacity--50 nsw-bg--brand-light">
+        This is an example of using <code>.overflow-visible</code> on an element with set width and height dimensions.
+      </div>
+      <div style="max-width: 260px; max-height: 100px;" class="nsw-overflow-scroll nsw-p-sm nsw-m-xs nsw-bg-opacity--50 nsw-bg--brand-light">
+        This is an example of using <code>.overflow-scroll</code> on an element with set width and height dimensions.
+      </div>
+    </div>
   </div>
 </div>
+
 <div class="nsw-docs-code">
-  <button class="nsw-link nsw-link--button nsw-link--icon nsw-small js-code-button">
-    <span>Show code</span>
-    <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
-  </button>
-  <div class="nsw-docs-code__content">
+  <div class="nsw-docs-code__content active">
     <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
       <span>Copy</span>
       <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
     </button>
-    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`  <div class="nsw-section nsw-section--brand-dark nsw-p-x-md">
-    <small>label</small>
-    <h1 class="nsw-m-top-md">This is a heading</h1>
-    <div class="nsw-m-bottom-lg">
-      <p class="nsw-intro">This is a intro text with longer vertical space to the button</p>
-    </div>
-    <button class="nsw-button nsw-button--white">Button</button>
-  </div>
+    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`<div class="nsw-overflow-auto">...</div>
+<div class="nsw-overflow-hidden">...</div>
+<div class="nsw-overflow-visible">...</div>
+<div class="nsw-overflow-scroll">...</div>
 `).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
     <div class="nsw-docs-code__wrapper">
-<pre><code class="html"><script>document.write((`  <div class="nsw-section nsw-section--brand-dark nsw-p-x-md">
-    <small>label</small>
-    <h1 class="nsw-m-top-md">This is a heading</h1>
-    <div class="nsw-m-bottom-lg">
-      <p class="nsw-intro">This is a intro text with longer vertical space to the button</p>
-    </div>
-    <button class="nsw-button nsw-button--white">Button</button>
-  </div>
+<pre><code class="html"><script>document.write((`<div class="nsw-overflow-auto">...</div>
+<div class="nsw-overflow-hidden">...</div>
+<div class="nsw-overflow-visible">...</div>
+<div class="nsw-overflow-scroll">...</div>
 `).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
     </div>
   </div>
 </div>
 
+<h3>overflow-x</h3>
+
+<p>Adjust the overflow-x property to affect the overflow of content horizontally.</p>
+
+<div class="nsw-docs__example nsw-m-top-sm">
+  <div class="nsw-docs__component">
+    <div class="nsw-list nsw-list--8">
+      <div class="nsw-overflow-x-auto nsw-p-sm nsw-m-xs nsw-bg-opacity--50 nsw-bg--brand-light nsw-width-100" style="max-width: 200px; max-height: 100px; white-space: nowrap;">
+        <div><code>.overflow-x-auto</code> example on an element</div>
+        <div> with set width and height dimensions.</div>
+      </div>
+      <div class="nsw-overflow-x-hidden nsw-p-sm nsw-m-xs nsw-bg-opacity--50 nsw-bg--brand-light nsw-width-100" style="max-width: 200px; max-height: 100px;white-space: nowrap;">
+        <div><code>.overflow-x-hidden</code> example</div>
+        <div>on an element with set width and height dimensions.</div>
+      </div>
+      <div class="nsw-overflow-x-visible nsw-p-sm nsw-m-xs nsw-bg-opacity--50 nsw-bg--brand-light nsw-width-100" style="max-width: 200px; max-height: 100px;white-space: nowrap;">
+        <div><code>.overflow-x-visible</code> example </div>
+        <div>on an element with set width and height dimensions.</div>
+      </div>
+      <div class="nsw-overflow-x-scroll nsw-p-sm nsw-m-xs nsw-bg-opacity--50 nsw-bg--brand-light nsw-width-100" style="max-width: 200px; max-height: 100px;white-space: nowrap;">
+        <div><code>.overflow-x-scroll</code> example on an element</div>
+        <div> with set width and height dimensions.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="nsw-docs-code">
+  <div class="nsw-docs-code__content active">
+    <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
+      <span>Copy</span>
+      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
+    </button>
+    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`<div class="nsw-overflow-x-auto">...</div>
+<div class="nsw-overflow-x-hidden">...</div>
+<div class="nsw-overflow-x-visible">...</div>
+<div class="nsw-overflow-x-scroll">...</div>
+`).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
+    <div class="nsw-docs-code__wrapper">
+<pre><code class="html"><script>document.write((`<div class="nsw-overflow-x-auto">...</div>
+<div class="nsw-overflow-x-hidden">...</div>
+<div class="nsw-overflow-x-visible">...</div>
+<div class="nsw-overflow-x-scroll">...</div>
+`).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
+    </div>
+  </div>
+</div>
+
+<h3>overflow-y</h3>
+
+<p>Adjust the overflow-y property to affect the overflow of content vertically.</p>
+
+<div class="nsw-docs__example nsw-m-top-sm">
+  <div class="nsw-docs__component">
+    <div class="nsw-list nsw-list--8">
+      <div class="nsw-overflow-y-auto nsw-p-sm nsw-m-xs nsw-bg-opacity--50 nsw-bg--brand-light nsw-width-100" style="max-width: 200px; max-height: 100px;">
+        <code>.overflow-y-auto</code> example on an element with set width and height dimensions.
+      </div>
+      <div class="nsw-overflow-y-hidden nsw-p-sm nsw-m-xs nsw-bg-opacity--50 nsw-bg--brand-light nsw-width-100" style="max-width: 200px; max-height: 100px;">
+        <code>.overflow-y-hidden</code> example on an element with set width and height dimensions.
+      </div>
+      <div class="nsw-overflow-y-visible nsw-p-sm nsw-m-xs nsw-bg-opacity--50 nsw-bg--brand-light nsw-width-100" style="max-width: 200px; max-height: 100px;">
+        <code>.overflow-y-visible</code> example on an element with set width and height dimensions.
+      </div>
+      <div class="nsw-overflow-y-scroll nsw-p-sm nsw-m-xs nsw-bg-opacity--50 nsw-bg--brand-light nsw-width-100" style="max-width: 200px; max-height: 100px;">
+        <code>.overflow-y-scroll</code> example on an element with set width and height dimensions.
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="nsw-docs-code">
+  <div class="nsw-docs-code__content active">
+    <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
+      <span>Copy</span>
+      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
+    </button>
+    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`<div class="nsw-overflow-y-auto">...</div>
+<div class="nsw-overflow-y-hidden">...</div>
+<div class="nsw-overflow-y-visible">...</div>
+<div class="nsw-overflow-y-scroll">...</div>
+`).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
+    <div class="nsw-docs-code__wrapper">
+<pre><code class="html"><script>document.write((`<div class="nsw-overflow-y-auto">...</div>
+<div class="nsw-overflow-y-hidden">...</div>
+<div class="nsw-overflow-y-visible">...</div>
+<div class="nsw-overflow-y-scroll">...</div>
+`).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
+    </div>
+  </div>
+</div>
 
         </div>
       </div>
