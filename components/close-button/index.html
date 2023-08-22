@@ -1,11 +1,11 @@
 <!doctype html>
 <html lang="en" class="no-js">
 <head>
-  <title>NSW Digital Design System - Dialog</title>
+  <title>NSW Digital Design System - Close button</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="robots" content="noindex" />
+  <meta name="description" content="A close button is a graphical element used to dismiss or close windows, dialogs, or other UI elements." />
   <link rel="icon" href="/nsw-design-system/favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -337,473 +337,117 @@
       </div>
     </div>
     <div class="nsw-docs__main nsw-docs__main--narrow">
-      <div class="nsw-docs__intro nsw-docs__intro--tabs">
+      <div class="nsw-docs__intro">
         <div class="nsw-docs__container">
-          <h1>Dialog</h1>
+          <h1>Close button</h1>
           
-          <p class="nsw-intro">Dialogs make a user stop and think by presenting them with a critical action or piece of information required to continue.</p>
+          <p class="nsw-intro">A close button is a graphical element used to dismiss or close windows, dialogs, or other UI elements.</p>
           
         </div>
       </div>
-<div class="nsw-docs__tabs">
-  <div class="nsw-tabs js-tabs nsw-docs-tabs">
-    <ul class="nsw-tabs__list">
-      <li class="nsw-tabs__list-item">
-        <a href="#section-guidance" class="nsw-tabs__link js-tabs-fixed">Guidance</a>
-      </li>
-      <li class="nsw-tabs__list-item">
-        <a href="#section-interactive-demo" class="nsw-tabs__link js-tabs-fixed">Demo &amp; Code</a>
-      </li>
-    </ul>
-    <section id="section-guidance" class="nsw-tabs__content">
-      <div class="nsw-docs__container">
-        
-<h2>Usage</h2>
-<p>Dialogs make a user stop and think by presenting them with a critical action or piece of information required to continue.</p>
-<p>Use dialogs to:</p>
-<ul>
-	<li>notify a user of an immediate response required to continue</li>
-	<li>confirm a user's action when it cannot be undone</li>
-  <li>notify a user of urgent information that affects their current process</li>
-</ul>
-<p>Do:</p>
-<ul>
-  <li>ensure the headline and call to actions are clear and reflect the action or task</li>
-  <li>clearly explain the potential consequences of the action</li>
-  <li>use danger dialogs for destructive or irreversible actions</li>
-  <li>when required, give the user an option to close the dialog with no change</li>
-  <li>use sparingly and only when necessary. Overuse can cause disruption to the user</li>
-</ul>
+      <div class="nsw-docs__content">
+        <div class="nsw-docs__container">
 
-<h3>Types of dialogs</h3>
-<ul>
-	<li><strong>Transactional</strong> - alert a user to urgent information they must acknowledge before continuing</li>
-	<li><strong>Single call to action</strong> - when a single acknowledgement is required from the user</li>
-	<li><strong>Danger</strong> - alert a user to a destructive or irreversible action they must confirm before continuing</li>
-	<li><strong>Dismissible</strong> - when an action does not need to be selected and the user can return to the previous state with no change</li>
-</ul>
+<p>A close button is a <code>&lt;button&gt;</code> element with the class <code>.nsw-icon-button</code>. We use the 'close' material icon as the X icon. This icon is wrapped in a <code>&lt;span&gt;</code> with the attribute <code>aria-hidden="true"</code>, so screen readers don't read the X icon.</p>
 
-<h3>Dismissible vs non-dismissible</h3>
+<p>The button also includes a <code>&lt;span&gt;</code> with the <code>.sr-only</code> class to tell screen readers what the button's purpose is.</p>
 
-<p>Dismissible dialogs allow a user to close the dialog with no action taken via a close button in the top right corner or clicking outside the dialog container. Non-dismissible dialogs do not have a close button and a user must select a call to action button in order to proceed.</p>
+<div class="nsw-docs__example nsw-m-top-sm">
+  <div class="nsw-docs__component">
+    <button class="nsw-icon-button" type="button">
+      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">close</span>  <span class="sr-only">Close</span>
+    </button>  </div>
+</div>
+<div class="nsw-docs-code">
+  <button class="nsw-link nsw-link--button nsw-link--icon nsw-small js-code-button">
+    <span>Show code</span>
+    <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
+  </button>
+  <div class="nsw-docs-code__content">
+    <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
+      <span>Copy</span>
+      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
+    </button>
+    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`<button class="nsw-icon-button" type="button">
+  <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">close</span>  <span class="sr-only">Close</span>
+</button>`).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
+    <div class="nsw-docs-code__wrapper">
+<pre><code class="html"><script>document.write((`<button class="nsw-icon-button" type="button">
+  <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">close</span>  <span class="sr-only">Close</span>
+</button>`).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
+    </div>
+  </div>
+</div>
 
-<h2>When to avoid</h2>
-<p>Do not use:</p>
-<ul>
-	<li>to display simple alerts, consider in-page alerts</li>
-	<li>to capture user details, consider simple forms</li>
-	<li>to display large amounts of information</li>
-</ul>
 
-<h2>Accessibility</h2>
+<h3>Sizing</h3>
+<p>The NSW Design System displays icons at four sizes (20px, 24px, 30px, 36px) depending on their type, use and screen size:</p>
+
+<div class="nsw-docs__example nsw-m-top-sm">
+  <div class="nsw-docs__component">
+    <div class="nsw-list nsw-list--8">
+      <button class="nsw-icon-button" type="button">
+        <span class="material-icons nsw-material-icons nsw-material-icons--20" focusable="false" aria-hidden="true">close</span>  <span class="sr-only">Close</span>
+      </button>  <button class="nsw-icon-button" type="button">
+        <span class="material-icons nsw-material-icons nsw-material-icons--24" focusable="false" aria-hidden="true">close</span>  <span class="sr-only">Close</span>
+      </button>  <button class="nsw-icon-button" type="button">
+        <span class="material-icons nsw-material-icons nsw-material-icons--30" focusable="false" aria-hidden="true">close</span>  <span class="sr-only">Close</span>
+      </button>  <button class="nsw-icon-button" type="button">
+        <span class="material-icons nsw-material-icons nsw-material-icons--36" focusable="false" aria-hidden="true">close</span>  <span class="sr-only">Close</span>
+      </button></div>
+  </div>
+</div>
+<div class="nsw-docs-code">
+  <button class="nsw-link nsw-link--button nsw-link--icon nsw-small js-code-button">
+    <span>Show code</span>
+    <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
+  </button>
+  <div class="nsw-docs-code__content">
+    <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
+      <span>Copy</span>
+      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
+    </button>
+    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`<div class="nsw-list nsw-list--8">
+  <button class="nsw-icon-button" type="button">
+    <span class="material-icons nsw-material-icons nsw-material-icons--20" focusable="false" aria-hidden="true">close</span>  <span class="sr-only">Close</span>
+  </button>  <button class="nsw-icon-button" type="button">
+    <span class="material-icons nsw-material-icons nsw-material-icons--24" focusable="false" aria-hidden="true">close</span>  <span class="sr-only">Close</span>
+  </button>  <button class="nsw-icon-button" type="button">
+    <span class="material-icons nsw-material-icons nsw-material-icons--30" focusable="false" aria-hidden="true">close</span>  <span class="sr-only">Close</span>
+  </button>  <button class="nsw-icon-button" type="button">
+    <span class="material-icons nsw-material-icons nsw-material-icons--36" focusable="false" aria-hidden="true">close</span>  <span class="sr-only">Close</span>
+  </button></div>
+`).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
+    <div class="nsw-docs-code__wrapper">
+<pre><code class="html"><script>document.write((`<div class="nsw-list nsw-list--8">
+  <button class="nsw-icon-button" type="button">
+    <span class="material-icons nsw-material-icons nsw-material-icons--20" focusable="false" aria-hidden="true">close</span>  <span class="sr-only">Close</span>
+  </button>  <button class="nsw-icon-button" type="button">
+    <span class="material-icons nsw-material-icons nsw-material-icons--24" focusable="false" aria-hidden="true">close</span>  <span class="sr-only">Close</span>
+  </button>  <button class="nsw-icon-button" type="button">
+    <span class="material-icons nsw-material-icons nsw-material-icons--30" focusable="false" aria-hidden="true">close</span>  <span class="sr-only">Close</span>
+  </button>  <button class="nsw-icon-button" type="button">
+    <span class="material-icons nsw-material-icons nsw-material-icons--36" focusable="false" aria-hidden="true">close</span>  <span class="sr-only">Close</span>
+  </button></div>
+`).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
+    </div>
+  </div>
+</div>
+
+
+<h3>Accessibility</h3>
 <p>All components are responsive and meet WCAG 2.1 AA accessibility guidelines.</p>
 
+<p>Do:</p>
+<ul>
+  <li>Wrap icons within their interactive component</li>
+  <li>Specify if an icon is decorative and informative by assigning the appropriate property.</li>
+  <li>Use descriptive and meaningful titles for informative icons</li>
+</ul>
 
-      </div>
-    </section>
-    <section id="section-interactive-demo" class="nsw-tabs__content">
-      <div class="nsw-docs__demo">
-        <div class="nsw-docs__external">
-          <a class="nsw-small nsw-link nsw-link--icon" target="_blank" href="/nsw-design-system/components/dialog/blank.html"><span>View in new window</span><i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">launch</i></a>
-        </div>
 
-<h3>Transactional</h3>
-<div class="nsw-docs__example">
-  <div class="nsw-docs__component">
-    <div class="nsw-block">
-      <button class="nsw-button nsw-button--dark js-open-dialog-transactional" aria-haspopup="dialog">Launch dialog</button>
-    </div>
-    
-    <div class="nsw-dialog js-dialog" id="transactional" role="dialog" aria-labelledby="transactional-title">
-      <div class="nsw-dialog__wrapper">
-        <div class="nsw-dialog__container">
-          <div class="nsw-dialog__top">
-            <div class="nsw-dialog__title">
-              <h2 id="transactional-title">Your submission was successful</h2>
-            </div>
-            </div>
-          <div class="nsw-dialog__content">
-            <p>Thank you for your submission, it has been successfully received. We aim to respond within 3 business days by your preferred contact method. You can now make another submission or view your active submission.</p>
-          </div>
-        </div>
-        <div class="nsw-dialog__bottom">
-          <button class="nsw-button nsw-button--dark js-close-dialog">Make new submission</button>
-          <button class="nsw-button nsw-button--dark-outline-solid js-close-dialog">View submissions</button>
         </div>
       </div>
-    </div>
-  </div>
-</div>
-<div class="nsw-docs-code">
-  <button class="nsw-link nsw-link--button nsw-link--icon nsw-small js-code-button">
-    <span>Show code</span>
-    <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
-  </button>
-  <div class="nsw-docs-code__content">
-    <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
-      <span>Copy</span>
-      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
-    </button>
-    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`<div class="nsw-block">
-  <button class="nsw-button nsw-button--dark js-open-dialog-transactional" aria-haspopup="dialog">Launch dialog</button>
-</div>
-
-<div class="nsw-dialog js-dialog" id="transactional" role="dialog" aria-labelledby="transactional-title">
-  <div class="nsw-dialog__wrapper">
-    <div class="nsw-dialog__container">
-      <div class="nsw-dialog__top">
-        <div class="nsw-dialog__title">
-          <h2 id="transactional-title">Your submission was successful</h2>
-        </div>
-        </div>
-      <div class="nsw-dialog__content">
-        <p>Thank you for your submission, it has been successfully received. We aim to respond within 3 business days by your preferred contact method. You can now make another submission or view your active submission.</p>
-      </div>
-    </div>
-    <div class="nsw-dialog__bottom">
-      <button class="nsw-button nsw-button--dark js-close-dialog">Make new submission</button>
-      <button class="nsw-button nsw-button--dark-outline-solid js-close-dialog">View submissions</button>
-    </div>
-  </div>
-</div>
-`).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
-    <div class="nsw-docs-code__wrapper">
-<pre><code class="html"><script>document.write((`<div class="nsw-block">
-  <button class="nsw-button nsw-button--dark js-open-dialog-transactional" aria-haspopup="dialog">Launch dialog</button>
-</div>
-
-<div class="nsw-dialog js-dialog" id="transactional" role="dialog" aria-labelledby="transactional-title">
-  <div class="nsw-dialog__wrapper">
-    <div class="nsw-dialog__container">
-      <div class="nsw-dialog__top">
-        <div class="nsw-dialog__title">
-          <h2 id="transactional-title">Your submission was successful</h2>
-        </div>
-        </div>
-      <div class="nsw-dialog__content">
-        <p>Thank you for your submission, it has been successfully received. We aim to respond within 3 business days by your preferred contact method. You can now make another submission or view your active submission.</p>
-      </div>
-    </div>
-    <div class="nsw-dialog__bottom">
-      <button class="nsw-button nsw-button--dark js-close-dialog">Make new submission</button>
-      <button class="nsw-button nsw-button--dark-outline-solid js-close-dialog">View submissions</button>
-    </div>
-  </div>
-</div>
-`).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
-    </div>
-  </div>
-</div>
-
-
-
-<h3>Single call to action</h3>
-<div class="nsw-docs__example">
-  <div class="nsw-docs__component">
-    <div class="nsw-block">
-      <button class="nsw-button nsw-button--dark js-open-dialog-single-cta" aria-haspopup="dialog">Launch dialog</button>
-    </div>
-    
-    <div class="nsw-dialog nsw-dialog--single-action js-dialog js-dialog-dismiss" id="single-cta" role="dialog" aria-labelledby="single-cta-title">
-      <div class="nsw-dialog__wrapper">
-        <div class="nsw-dialog__container">
-          <div class="nsw-dialog__top">
-            <div class="nsw-dialog__title">
-              <h2 id="single-cta-title">Changing how we design services</h2>
-            </div>
-            <div class="nsw-dialog__close">
-              <button class="nsw-icon-button js-close-dialog">
-                <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">close</span>
-                <span class="sr-only">Close</span>
-              </button>
-            </div>
-            </div>
-          <div class="nsw-dialog__content">
-            <p>A service is any activity that helps someone complete a task. With that in mind, all public servants – whether they work in digital, communications, policy or operations – are involved in designing services.</p><p>Services are groups of transactions, activities or information that work together. They might take place online or offline.</p><p>Government services often require people to go through the service in the way that government designs it, and often this design is not simple or easy to follow.</p><p>A service may need smaller products to meet user needs. If these products are delivered by different parts of government that are working in different ways it can make it harder for the user to do what they need to do.</p><p>This is why we need to design together to deliver the whole experience.</p><p>Proceeding with the service design process will help your team build services that solve a real customer need, based on evidence. </p>
-          </div>
-        </div>
-        <div class="nsw-dialog__bottom">
-          <button class="nsw-button nsw-button--dark js-close-dialog">Continue</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="nsw-docs-code">
-  <button class="nsw-link nsw-link--button nsw-link--icon nsw-small js-code-button">
-    <span>Show code</span>
-    <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
-  </button>
-  <div class="nsw-docs-code__content">
-    <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
-      <span>Copy</span>
-      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
-    </button>
-    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`<div class="nsw-block">
-  <button class="nsw-button nsw-button--dark js-open-dialog-single-cta" aria-haspopup="dialog">Launch dialog</button>
-</div>
-
-<div class="nsw-dialog nsw-dialog--single-action js-dialog js-dialog-dismiss" id="single-cta" role="dialog" aria-labelledby="single-cta-title">
-  <div class="nsw-dialog__wrapper">
-    <div class="nsw-dialog__container">
-      <div class="nsw-dialog__top">
-        <div class="nsw-dialog__title">
-          <h2 id="single-cta-title">Changing how we design services</h2>
-        </div>
-        <div class="nsw-dialog__close">
-          <button class="nsw-icon-button js-close-dialog">
-            <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">close</span>
-            <span class="sr-only">Close</span>
-          </button>
-        </div>
-        </div>
-      <div class="nsw-dialog__content">
-        <p>A service is any activity that helps someone complete a task. With that in mind, all public servants – whether they work in digital, communications, policy or operations – are involved in designing services.</p><p>Services are groups of transactions, activities or information that work together. They might take place online or offline.</p><p>Government services often require people to go through the service in the way that government designs it, and often this design is not simple or easy to follow.</p><p>A service may need smaller products to meet user needs. If these products are delivered by different parts of government that are working in different ways it can make it harder for the user to do what they need to do.</p><p>This is why we need to design together to deliver the whole experience.</p><p>Proceeding with the service design process will help your team build services that solve a real customer need, based on evidence. </p>
-      </div>
-    </div>
-    <div class="nsw-dialog__bottom">
-      <button class="nsw-button nsw-button--dark js-close-dialog">Continue</button>
-    </div>
-  </div>
-</div>
-`).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
-    <div class="nsw-docs-code__wrapper">
-<pre><code class="html"><script>document.write((`<div class="nsw-block">
-  <button class="nsw-button nsw-button--dark js-open-dialog-single-cta" aria-haspopup="dialog">Launch dialog</button>
-</div>
-
-<div class="nsw-dialog nsw-dialog--single-action js-dialog js-dialog-dismiss" id="single-cta" role="dialog" aria-labelledby="single-cta-title">
-  <div class="nsw-dialog__wrapper">
-    <div class="nsw-dialog__container">
-      <div class="nsw-dialog__top">
-        <div class="nsw-dialog__title">
-          <h2 id="single-cta-title">Changing how we design services</h2>
-        </div>
-        <div class="nsw-dialog__close">
-          <button class="nsw-icon-button js-close-dialog">
-            <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">close</span>
-            <span class="sr-only">Close</span>
-          </button>
-        </div>
-        </div>
-      <div class="nsw-dialog__content">
-        <p>A service is any activity that helps someone complete a task. With that in mind, all public servants – whether they work in digital, communications, policy or operations – are involved in designing services.</p><p>Services are groups of transactions, activities or information that work together. They might take place online or offline.</p><p>Government services often require people to go through the service in the way that government designs it, and often this design is not simple or easy to follow.</p><p>A service may need smaller products to meet user needs. If these products are delivered by different parts of government that are working in different ways it can make it harder for the user to do what they need to do.</p><p>This is why we need to design together to deliver the whole experience.</p><p>Proceeding with the service design process will help your team build services that solve a real customer need, based on evidence. </p>
-      </div>
-    </div>
-    <div class="nsw-dialog__bottom">
-      <button class="nsw-button nsw-button--dark js-close-dialog">Continue</button>
-    </div>
-  </div>
-</div>
-`).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
-    </div>
-  </div>
-</div>
-
-
-
-<h3>Danger</h3>
-<div class="nsw-docs__example">
-  <div class="nsw-docs__component">
-    <div class="nsw-block">
-      <button class="nsw-button nsw-button--dark js-open-dialog-danger" aria-haspopup="dialog">Launch dialog</button>
-    </div>
-    
-    <div class="nsw-dialog js-dialog" id="danger" role="dialog" aria-labelledby="danger-title">
-      <div class="nsw-dialog__wrapper">
-        <div class="nsw-dialog__container">
-          <div class="nsw-dialog__top">
-            <div class="nsw-dialog__title">
-              <h2 id="danger-title">Delete file permanently?</h2>
-            </div>
-            </div>
-          <div class="nsw-dialog__content">
-            <p>If you delete this file, you will not be able to recover it. Do you want to delete?</p>
-          </div>
-        </div>
-        <div class="nsw-dialog__bottom">
-          <button class="nsw-button nsw-button--dark nsw-button--danger js-close-dialog">Delete</button>
-          <button class="nsw-button nsw-button--dark-outline-solid js-close-dialog">Cancel</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="nsw-docs-code">
-  <button class="nsw-link nsw-link--button nsw-link--icon nsw-small js-code-button">
-    <span>Show code</span>
-    <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
-  </button>
-  <div class="nsw-docs-code__content">
-    <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
-      <span>Copy</span>
-      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
-    </button>
-    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`<div class="nsw-block">
-  <button class="nsw-button nsw-button--dark js-open-dialog-danger" aria-haspopup="dialog">Launch dialog</button>
-</div>
-
-<div class="nsw-dialog js-dialog" id="danger" role="dialog" aria-labelledby="danger-title">
-  <div class="nsw-dialog__wrapper">
-    <div class="nsw-dialog__container">
-      <div class="nsw-dialog__top">
-        <div class="nsw-dialog__title">
-          <h2 id="danger-title">Delete file permanently?</h2>
-        </div>
-        </div>
-      <div class="nsw-dialog__content">
-        <p>If you delete this file, you will not be able to recover it. Do you want to delete?</p>
-      </div>
-    </div>
-    <div class="nsw-dialog__bottom">
-      <button class="nsw-button nsw-button--dark nsw-button--danger js-close-dialog">Delete</button>
-      <button class="nsw-button nsw-button--dark-outline-solid js-close-dialog">Cancel</button>
-    </div>
-  </div>
-</div>
-`).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
-    <div class="nsw-docs-code__wrapper">
-<pre><code class="html"><script>document.write((`<div class="nsw-block">
-  <button class="nsw-button nsw-button--dark js-open-dialog-danger" aria-haspopup="dialog">Launch dialog</button>
-</div>
-
-<div class="nsw-dialog js-dialog" id="danger" role="dialog" aria-labelledby="danger-title">
-  <div class="nsw-dialog__wrapper">
-    <div class="nsw-dialog__container">
-      <div class="nsw-dialog__top">
-        <div class="nsw-dialog__title">
-          <h2 id="danger-title">Delete file permanently?</h2>
-        </div>
-        </div>
-      <div class="nsw-dialog__content">
-        <p>If you delete this file, you will not be able to recover it. Do you want to delete?</p>
-      </div>
-    </div>
-    <div class="nsw-dialog__bottom">
-      <button class="nsw-button nsw-button--dark nsw-button--danger js-close-dialog">Delete</button>
-      <button class="nsw-button nsw-button--dark-outline-solid js-close-dialog">Cancel</button>
-    </div>
-  </div>
-</div>
-`).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
-    </div>
-  </div>
-</div>
-
-
-
-<h3>Dismissible</h3>
-<div class="nsw-docs__example">
-  <div class="nsw-docs__component">
-    <div class="nsw-block">
-      <button class="nsw-button nsw-button--dark js-open-dialog-dismissible" aria-haspopup="dialog">Launch dialog</button>
-    </div>
-    
-    <div class="nsw-dialog js-dialog js-dialog-dismiss" id="dismissible" role="dialog" aria-labelledby="dismissible-title">
-      <div class="nsw-dialog__wrapper">
-        <div class="nsw-dialog__container">
-          <div class="nsw-dialog__top">
-            <div class="nsw-dialog__title">
-              <h2 id="dismissible-title">Changes will be lost</h2>
-            </div>
-            <div class="nsw-dialog__close">
-              <button class="nsw-icon-button js-close-dialog">
-                <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">close</span>
-                <span class="sr-only">Close</span>
-              </button>
-            </div>
-            </div>
-          <div class="nsw-dialog__content">
-            <p>This form contains unsaved changes. By exiting, all unsaved changes will be permanently lost. If you wish to save your changes, return to form and follow the prompts to save your progress. If you do not wish to keep any unsaved changes you can proceed to exit the form. </p>
-          </div>
-        </div>
-        <div class="nsw-dialog__bottom">
-          <button class="nsw-button nsw-button--dark nsw-button--danger js-close-dialog">Exit form</button>
-          <button class="nsw-button nsw-button--dark-outline-solid js-close-dialog">Return to form</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="nsw-docs-code">
-  <button class="nsw-link nsw-link--button nsw-link--icon nsw-small js-code-button">
-    <span>Show code</span>
-    <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
-  </button>
-  <div class="nsw-docs-code__content">
-    <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
-      <span>Copy</span>
-      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
-    </button>
-    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`<div class="nsw-block">
-  <button class="nsw-button nsw-button--dark js-open-dialog-dismissible" aria-haspopup="dialog">Launch dialog</button>
-</div>
-
-<div class="nsw-dialog js-dialog js-dialog-dismiss" id="dismissible" role="dialog" aria-labelledby="dismissible-title">
-  <div class="nsw-dialog__wrapper">
-    <div class="nsw-dialog__container">
-      <div class="nsw-dialog__top">
-        <div class="nsw-dialog__title">
-          <h2 id="dismissible-title">Changes will be lost</h2>
-        </div>
-        <div class="nsw-dialog__close">
-          <button class="nsw-icon-button js-close-dialog">
-            <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">close</span>
-            <span class="sr-only">Close</span>
-          </button>
-        </div>
-        </div>
-      <div class="nsw-dialog__content">
-        <p>This form contains unsaved changes. By exiting, all unsaved changes will be permanently lost. If you wish to save your changes, return to form and follow the prompts to save your progress. If you do not wish to keep any unsaved changes you can proceed to exit the form. </p>
-      </div>
-    </div>
-    <div class="nsw-dialog__bottom">
-      <button class="nsw-button nsw-button--dark nsw-button--danger js-close-dialog">Exit form</button>
-      <button class="nsw-button nsw-button--dark-outline-solid js-close-dialog">Return to form</button>
-    </div>
-  </div>
-</div>
-`).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
-    <div class="nsw-docs-code__wrapper">
-<pre><code class="html"><script>document.write((`<div class="nsw-block">
-  <button class="nsw-button nsw-button--dark js-open-dialog-dismissible" aria-haspopup="dialog">Launch dialog</button>
-</div>
-
-<div class="nsw-dialog js-dialog js-dialog-dismiss" id="dismissible" role="dialog" aria-labelledby="dismissible-title">
-  <div class="nsw-dialog__wrapper">
-    <div class="nsw-dialog__container">
-      <div class="nsw-dialog__top">
-        <div class="nsw-dialog__title">
-          <h2 id="dismissible-title">Changes will be lost</h2>
-        </div>
-        <div class="nsw-dialog__close">
-          <button class="nsw-icon-button js-close-dialog">
-            <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">close</span>
-            <span class="sr-only">Close</span>
-          </button>
-        </div>
-        </div>
-      <div class="nsw-dialog__content">
-        <p>This form contains unsaved changes. By exiting, all unsaved changes will be permanently lost. If you wish to save your changes, return to form and follow the prompts to save your progress. If you do not wish to keep any unsaved changes you can proceed to exit the form. </p>
-      </div>
-    </div>
-    <div class="nsw-dialog__bottom">
-      <button class="nsw-button nsw-button--dark nsw-button--danger js-close-dialog">Exit form</button>
-      <button class="nsw-button nsw-button--dark-outline-solid js-close-dialog">Return to form</button>
-    </div>
-  </div>
-</div>
-`).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
-    </div>
-  </div>
-</div>
-
-
-
-      </div>
-    </section>
-  </div>
-</div>
       <footer class="nsw-footer nsw-docs-footer">
         <div class="nsw-footer__lower">
           <div class="nsw-container">
