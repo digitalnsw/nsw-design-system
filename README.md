@@ -144,7 +144,7 @@ View and raise issues and bugs through our [Issues tracker on Github](https://gi
 
 ## Design System Figma UI Kit
 
-Access the complete set of design assets required for designing, sharing, and prototyping using our Figma UI Kit.
+Access the complete set of design assets required for designing, sharing, and prototyping using our [Figma UI Kit](https://digitalnsw.github.io/nsw-design-system/docs/content/design/figma-ui-kit.html).
 
 ## Versioning
 
