@@ -3,7 +3,6 @@
 import {
   computePosition,
   flip,
-  // autoPlacement,
   shift,
   limitShift,
   offset,
@@ -109,7 +108,6 @@ class Popover {
           fallbackAxisSideDirection: 'start',
           crossAxis: false,
         }),
-        // autoPlacement(),
         shift({
           limiter: limitShift(),
         }),
