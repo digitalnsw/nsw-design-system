@@ -2,9 +2,10 @@
 /* eslint-disable max-len, import/no-extraneous-dependencies */
 import {
   computePosition,
-  // flip,
-  autoPlacement,
+  flip,
+  // autoPlacement,
   shift,
+  limitShift,
   offset,
 } from '@floating-ui/dom'
 
@@ -104,9 +105,21 @@ class Popover {
       placement,
       middleware: [
         offset(parseInt(this.popoverGap)),
-        // flip(),
-        autoPlacement(),
-        shift({ padding: 5 }),
+        flip({
+          fallbackAxisSideDirection: 'start',
+          crossAxis: false,
+        }),
+        // autoPlacement(),
+        shift({
+          padding: 4,
+          limiter: limitShift({
+            crossAxis: false,
+            offset: {
+              mainAxis: 8,
+              crossAxis: 4,
+            },
+          }),
+        }),
       ],
     }).then(({
       x, y,
