@@ -174,6 +174,9 @@ class Navigation {
 
   escapeClose(e) {
     if (e.key === 'Escape') {
+    // removes handleOutsideClick functionality from docs site
+      if (this.nav.closest('.nsw-docs')) return
+
       const { link } = this.whichSubNavLatest()
       const isExpanded = link.getAttribute('aria-expanded') === 'true'
       if (isExpanded) {
