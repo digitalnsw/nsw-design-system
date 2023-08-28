@@ -1,36 +1,22 @@
-<div class="nsw-list nsw-list--8">
-  <button aria-controls="popover-example-button" class="nsw-button nsw-button--dark js-popover" data-popover-position="bottom-start" data-popover-class="" data-popover-gap="10">Toggle Popover</button>
+<button {{#if type}}type="{{type}}"{{else}}type="button"{{/if}} class="nsw-button nsw-button--{{style}} js-popover{{#if isFullWidth}} nsw-button--full-width{{/if}}" aria-controls="popover-{{id}}" data-popover-position="{{position}}" data-popover-class="" data-popover-gap="{{gap}}"{{#if isDisabled}} disabled{{/if}}>{{#if icon}}{{#if icon-after}}<span>{{text}}</span>{{/if}}<span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">{{icon}}</span>{{#unless icon-after}}<span>{{text}}</span>{{/unless}}{{else}}{{text}}{{/if}}</button>
 
-  <div id="popover-example-button" class="nsw-popover">
-    <div class="nsw-p-sm">
-      <h4>Family rebate</h4>
-      <p>Helps families with dependants to pay their energy bills. Applications opening late July for the 2019-20 rebate.</p>
-    </div>
-  </div>
+<div id="popover-{{id}}" class="nsw-popover">
+  <nav class="nsw-side-nav">
+    <ul>
+      <li>
+        <a href="#" class="nsw-text--brand-dark nsw-link nsw-link--icon"><span class="material-icons-outlined nsw-material-icons">account_circle</span> Profile</a>
+      </li>
+      <li>
+        <a href="#" class="nsw-text--brand-dark nsw-link nsw-link--icon"><span class="material-icons-outlined nsw-material-icons">settings</span> Settings</a></a>
+      </li>
+      <li>
+        <a href="#" class="nsw-text--brand-dark nsw-link nsw-link--icon"><span class="material-icons-outlined nsw-material-icons">manage_history</span> History</a>
+      </li>
 
-  <a aria-controls="popover-example-icon-button" class="nsw-icon-button js-popover" data-popover-position="bottom-start" data-popover-class="" data-popover-gap="10">
-    {{>_icon code="more_vert"}}
-    <span class="sr-only">Show more</span>
-  </a>
-
-  <div id="popover-example-icon-button" class="nsw-popover">
-
-    <nav class="nsw-side-nav">
-      <ul>
-        <li>
-          <a href="#">Item 1</a>
-        </li>
-        <li>
-          <a href="#">Item 2</a>
-        </li>
-        <li>
-          <a href="#">Item 3</a>
-        </li>
-        <li>
-          <a href="#">Item 4</a>
-        </li>
-      </ul>
-    </nav>
-
-  </div>
+      <li>
+        <a href="#" class="nsw-text--brand-dark nsw-link nsw-link--icon"><span class="material-icons-outlined nsw-material-icons">logout</span> Logout</a>
+      </li>
+    </ul>
+  </nav>
 </div>
+

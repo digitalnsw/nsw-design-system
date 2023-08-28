@@ -3,11 +3,44 @@ title: Popover
 width: narrow
 tabs: true
 directory: popover
-intro: 
-meta-description: Popover is a non-modal dialog that floats around its disclosure. It's commonly used for displaying additional rich content on top of something.
+intro: Floating elements that display an anchored interactive dialog on click.
+meta-description: Floating elements that display an anchored interactive dialog on click.
+model: ../../components/popover/json/popover.json
 meta-index: true
 ---
 
-{{#>_docs-example}}
-{{>_popover}}
+<h3>Top</h3>
+{{#>_docs-example separated="true"}}
+<div class="nsw-list nsw-list--8">
+  {{#each model.top}}
+{{>_popover style="dark" icon="expand_less" icon-after="true" text=this id=@index position=@key gap="10"}}
+  {{/each}}
+</div>
+{{/_docs-example}}
+
+<h3>Right</h3>
+{{#>_docs-example separated="true"}}
+<div class="nsw-list nsw-list--8">
+  {{#each model.right}}
+{{>_popover style="dark" icon="chevron_right" icon-after="true" text=this id=@index position=@key gap="10"}}
+  {{/each}}
+</div>
+{{/_docs-example}}
+
+<h3>Bottom</h3>
+{{#>_docs-example separated="true"}}
+<div class="nsw-list nsw-list--8">
+  {{#each model.bottom}}
+{{>_popover style="dark" icon="expand_more" icon-after="true" text=this id=@index position=@key gap="10"}}
+  {{/each}}
+</div>
+{{/_docs-example}}
+
+<h3>Left</h3>
+{{#>_docs-example separated="true"}}
+<div class="nsw-list nsw-list--8">
+  {{#each model.left}}
+{{>_popover style="dark" icon="expand_more" icon-after="true" text=this id=@index position=@key gap="10"}}
+  {{/each}}
+</div>
 {{/_docs-example}}

@@ -3,13 +3,26 @@ title: Tooltip
 layout: blank-layout.hbs
 ---
 
-<p>A popover is a layer that appears above all other content on the page. Only one popover can appear at a time and can contain varying text and interactive elements. Popovers are used as a base layer in some of our components like tooltips and toggletips.</p>
+<p>Popovers support a wide range of different use cases and are commonly used to reveal more information or details about an element or content on a page. Unlike tooltips, the content expanded by a Popover may contain interactive elements.</p>
 
-<h2>Usage</h2>
+<p>Essentially, a popover consists of two components: a trigger, which the user clicks or interacts with and a container that opens up to reveal the content.</p>
 
+<p>Popovers remain actively open until a user dismisses it in one of the following ways:</p>
+
+<ul>
+  <li>Presses the Esc key</li>
+  <li>Clicks outside of the Popover</li>
+  <li>Performs another action that closes the Popover</li>
+</ul>
 
 <h3>When to avoid</h3>
-
+<ul>
+  <li>Do not hide important information inside of a popover that the user may need in order to complete a task or workflow.</li>
+  <li>Do not use on non-interactive elements (for example, div, span, p).</li>
+  <li>Do not use if the popover needs take up a large amount of the size of the screen.</li>
+  <li>Do not have multiple popovers open at the same time.</li>
+  <li>Do not nest one popover within another popover.</li>
+</ul>
 
 <h2>Accessibility</h2>
 <p>All components are responsive and meet WCAG 2.1 AA accessibility guidelines.</p>
