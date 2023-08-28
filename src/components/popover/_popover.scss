@@ -4,20 +4,24 @@
   position: absolute;
   top: 0;
   left: 0;
-  min-width: 260px;
-  max-width: 260px;
+  min-width: calc(48vw - 16px);
+  max-width: calc(100vw - 16px);
   border-radius: var(--nsw-border-radius);
   box-shadow: var(--nsw-box-shadow);
   line-height: var(--nsw-line-height-md-desktop);
   background-color: var(--nsw-white);
   color: var(--nsw-text-dark);
 
+  @include breakpoint($nsw-desktop-breakpoint) {
+    min-width: calc(28.226vw - 16px);
+  }
+
   @include z-index('upper');
   @include font-size('xs');
 
   &:focus,
   &:active {
-    @include nsw-focus();
+    @include nsw-focus(false);
   }
 
   &.active {

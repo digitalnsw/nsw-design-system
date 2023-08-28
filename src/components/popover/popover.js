@@ -103,8 +103,15 @@ class Popover {
       placement,
       middleware: [
         offset(parseInt(this.popoverGap)),
-        flip(),
-        shift({ padding: 5 }),
+        flip({
+          mainAxis: true,
+          crossAxis: false,
+          fallbackAxisSideDirection: 'end',
+          flipAlignment: false,
+          fallbackPlacements: 'top',
+          fallbackStrategy: 'bestFit',
+        }),
+        shift({ padding: 24 }),
       ],
     }).then(({
       x, y,

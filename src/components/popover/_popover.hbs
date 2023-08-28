@@ -1,7 +1,7 @@
 <button {{#if type}}type="{{type}}"{{else}}type="button"{{/if}} class="nsw-button nsw-button--{{style}} js-popover{{#if isFullWidth}} nsw-button--full-width{{/if}}" aria-controls="popover-{{id}}" data-popover-position="{{position}}" data-popover-class="" data-popover-gap="{{gap}}"{{#if isDisabled}} disabled{{/if}}>{{#if icon}}{{#if icon-after}}<span>{{text}}</span>{{/if}}<span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">{{icon}}</span>{{#unless icon-after}}<span>{{text}}</span>{{/unless}}{{else}}{{text}}{{/if}}</button>
 
 <div id="popover-{{id}}" class="nsw-popover">
-  <nav class="nsw-side-nav">
+  <nav class="nsw-side-nav nsw-border-radius">
     <ul>
       <li>
         <a href="#" class="nsw-text--brand-dark nsw-link nsw-link--icon"><span class="material-icons-outlined nsw-material-icons">account_circle</span> Profile</a>
