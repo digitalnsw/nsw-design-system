@@ -111,14 +111,7 @@ class Popover {
         }),
         // autoPlacement(),
         shift({
-          padding: 4,
-          limiter: limitShift({
-            crossAxis: false,
-            offset: {
-              mainAxis: 8,
-              crossAxis: 4,
-            },
-          }),
+          limiter: limitShift(),
         }),
       ],
     }).then(({
