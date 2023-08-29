@@ -4,8 +4,8 @@
   position: absolute;
   top: 0;
   left: 0;
-  min-width: calc(48vw - 16px);
-  max-width: calc(100vw - 16px);
+  min-width: rem(280px);
+  max-width: rem(280px);
   border-radius: var(--nsw-border-radius);
   box-shadow: var(--nsw-box-shadow);
   line-height: var(--nsw-line-height-md-desktop);
@@ -14,10 +14,6 @@
 
   @include z-index('upper');
   @include font-size('xs');
-
-  @include breakpoint('md') {
-    min-width: calc(24vw - 16px);
-  }
 
   &:focus,
   &:active {
