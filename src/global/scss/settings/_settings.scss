@@ -34,10 +34,26 @@ $nsw-z-index: (
   upper: 300,
   middle: 200,
   base: 100,
+  0:0,
   below: -100,
 ) !default;
 
 // Base Colours
+
+$nsw-base-colours-rgb: (
+  brand-dark: rgba(var(--nsw-palette-blue-01-rgb), var(--nsw-bg-opacity)),
+  brand-light: rgba(var(--nsw-palette-blue-04-rgb), var(--nsw-bg-opacity)),
+  brand-supplementary: rgba(var(--nsw-palette-blue-02-rgb), var(--nsw-bg-opacity)),
+  brand-accent: rgba(var(--nsw-palette-red-02-rgb), var(--nsw-bg-opacity)),
+  black: rgba(var(--nsw-palette-black-rgb), var(--nsw-bg-opacity)),
+  white: rgba(var(--nsw-palette-white-rgb), var(--nsw-bg-opacity)),
+  off-white: rgba(var(--nsw-palette-off-white-rgb), var(--nsw-bg-opacity)),
+  grey-01: rgba(var(--nsw-palette-grey-01-rgb), var(--nsw-bg-opacity)),
+  grey-02: rgba(var(--nsw-palette-grey-02-rgb), var(--nsw-bg-opacity)),
+  grey-03: rgba(var(--nsw-palette-grey-03-rgb), var(--nsw-bg-opacity)),
+  grey-04: rgba(var(--nsw-palette-grey-04-rgb), var(--nsw-bg-opacity))
+);
+
 $nsw-base-colours: (
   brand-dark: var(--nsw-brand-dark),
   brand-light: var(--nsw-brand-light),
@@ -53,16 +69,16 @@ $nsw-base-colours: (
 );
 
 // Background Colours
-$nsw-bg-colours: map-merge($nsw-base-colours, (
+$nsw-bg-colours: map-merge($nsw-base-colours-rgb, (
   transparent: transparent,
-  info: var(--nsw-status-info),
-  info-bg: var(--nsw-status-info-bg),
-  success: var(--nsw-status-success),
-  success-bg: var(--nsw-status-success-bg),
-  warning: var(--nsw-status-warning),
-  warning-bg: var(--nsw-status-warning-bg),
-  error: var(--nsw-status-error),
-  error-bg: var(--nsw-status-error-bg)
+  info-dark: rgba(var(--nsw-palette-info-blue-rgb), var(--nsw-bg-opacity)),
+  info-light: rgba(var(--nsw-palette-info-blue-bg-rgb), var(--nsw-bg-opacity)),
+  success-dark: rgba(var(--nsw-palette-success-green-rgb), var(--nsw-bg-opacity)),
+  success-light: rgba(var(--nsw-palette-success-green-bg-rgb), var(--nsw-bg-opacity)),
+  warning-dark: rgba(var(--nsw-palette-warning-orange-rgb), var(--nsw-bg-opacity)),
+  warning-light: rgba(var(--nsw-palette-warning-orange-bg-rgb), var(--nsw-bg-opacity)),
+  error-dark: rgba(var(--nsw-palette-error-red-rgb), var(--nsw-bg-opacity)),
+  error-light: rgba(var(--nsw-palette-error-red-bg-rgb), var(--nsw-bg-opacity))
 ));
 
 // Text Colours
@@ -71,12 +87,15 @@ $nsw-text-colours: map-merge($nsw-base-colours, (
   light: var(--nsw-text-light),
 ));
 
+$nsw-border: var(--nsw-border-width) var(--nsw-border-style) var(--nsw-border-color);
+
 $nsw-border-widths: (
-  1: 1px,
-  2: 2px,
-  3: 3px,
-  4: 4px,
-  5: 5px
+  1: var(--nsw-border-width) var(--nsw-border-style) var(--nsw-border-color),
+  2: 2px var(--nsw-border-style) var(--nsw-border-color),
+  3: 3px var(--nsw-border-style) var(--nsw-border-color),
+  4: 4px var(--nsw-border-style) var(--nsw-border-color),
+  5: 5px var(--nsw-border-style) var(--nsw-border-color),
+  6: 6px var(--nsw-border-style) var(--nsw-border-color)
 ) !default;
 
 // Box shadow
@@ -86,6 +105,67 @@ $nsw-box-shadow: var(--nsw-box-shadow) !default;
 $nsw-position-values: (
   0: 0,
   50: 50%,
+  100: 100%
+) !default;
+
+// Spaces
+$spacers: (
+  0: (
+    mobile: 0,
+    desktop: 0
+  ),
+  xs: (
+    mobile: 4px,
+    desktop: 8px
+  ),
+  sm: (
+    mobile: 8px,
+    desktop: 16px
+  ),
+  md: (
+    mobile: 16px,
+    desktop: 32px
+  ),
+  lg: (
+    mobile: 24px,
+    desktop: 48px
+  ),
+  xl: (
+    mobile: 32px,
+    desktop: 64px
+  ),
+  xxl: (
+    mobile: 40px,
+    desktop: 80px
+  )
+);
+
+// Width and height
+$sizes: (
+  4xs: 0.25rem,
+  3xs: 0.5rem,
+  2xs: 0.75rem,
+  xs: 1rem,
+  sm: 1.5rem,
+  md: 2rem,
+  lg: 3rem,
+  xl: 4rem,
+  2xl: 6rem,
+  3xl: 8rem,
+  4xl: 16rem,
+  0: 0,
+  10: 10%,
+  20: 20%,
+  25: 25%,
+  30: 30%,
+  33: 33%,
+  40: 40%,
+  50: 50%,
+  60: 60%,
+  70: 70%,
+  75: 75%,
+  80: 80%,
+  90: 90%,
   100: 100%
 ) !default;
 

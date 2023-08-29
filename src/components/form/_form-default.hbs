@@ -1,25 +1,27 @@
 <h3>Default</h3>
 
 <h4>Text Fields</h4>
-{{#>_docs-example}}
+{{#>_docs-example separated=true}}
 <div class="nsw-form">
   <div class="nsw-form__group">
     {{>_text-input
-      id="form-text-1"
+      id="form-text-2"
       label="Name"
+      helper-text="As it appears on your identity document"
     }}
   </div>
   <div class="nsw-form__group">
     {{>_textarea
-      id="form-textarea-1"
+      id="form-textarea-2"
       label="Comment"
+      helper-text="Maximum 500 characters"
     }}
   </div>
 </div>
 {{/_docs-example}}
 
 <h4>Input groups</h4>
-{{#>_docs-example}}
+{{#>_docs-example separated=true}}
 <div class="nsw-form">
   <div class="nsw-form__group">
     {{>_input-group
@@ -46,7 +48,7 @@
 {{/_docs-example}}
 
 <h4>Predictive list</h4>
-{{#>_docs-example}}
+{{#>_docs-example separated=true}}
 <div class="nsw-form">
   <div class="nsw-form__group">
     <label class="nsw-form__label" for="form-predictive-text-1">Suburb</label>
@@ -98,54 +100,49 @@
 {{/_docs-example}}
 
 <h4>Date</h4>
-{{#>_docs-example}}
+{{#>_docs-example separated=true}}
 <div class="nsw-form">
   <div class="nsw-form__group">
     {{>_date
-      id="form-date-1"
+      id="form-date-2"
       label="Date of birth"
+      helper-text="For example 08 12 1990"
     }}
   </div>
 </div>
 {{/_docs-example}}
 
 <h4>Select</h4>
-{{#>_docs-example}}
+{{#>_docs-example separated=true}}
 <div class="nsw-form">
   <div class="nsw-form__group">
     {{>_select model.select
-      id="form-select-1"
+      id="form-select-2"
       label="Region"
+      helper-text="Your region of residence"
     }}
   </div>
 </div>
 {{/_docs-example}}
 
 <h4>Checkboxes</h4>
-{{#>_docs-example}}
+{{#>_docs-example separated=true}}
 <div class="nsw-form">
-  <div class="nsw-form__group">
-    {{>_checkbox
-      id="form-checkbox-1"
-      name="form-checkbox-1"
-      label="I agree to terms and conditions"
-    }}
-  </div>
   <div class="nsw-form__group">
     <fieldset class="nsw-form__fieldset">
       <legend>
         <span class="nsw-form__legend">Category</span>
+        <span class="nsw-form__helper">Select all that applies to you</span>
       </legend>
       {{>_checkbox
-        id="form-checkbox-multi-1-a"
-        name="form-checkbox-multi-1"
+        id="form-checkbox-multi-2-a"
+        name="form-checkbox-multi-2"
         label="Customer Service"
       }}
       {{>_checkbox
-        id="form-checkbox-multi-1-b"
-        name="form-checkbox-multi-1"
+        id="form-checkbox-multi-2-b"
+        name="form-checkbox-multi-2"
         label="Communities and Justice"
-        checked=true
       }}
     </fieldset>
   </div>
@@ -153,22 +150,22 @@
 {{/_docs-example}}
 
 <h4>Radio buttons</h4>
-{{#>_docs-example}}
+{{#>_docs-example separated=true}}
 <div class="nsw-form">
   <div class="nsw-form__group">
     <fieldset class="nsw-form__fieldset">
       <legend>
         <span class="nsw-form__legend">Topic</span>
+        <span class="nsw-form__helper">Select closest match</span>
       </legend>
       {{>_radio
-        id="form-radio-1-a"
-        name="form-radio-1"
+        id="form-radio-2-a"
+        name="form-radio-2"
         label="NSW Government"
-        checked=true
       }}
       {{>_radio
-        id="form-radio-1-b"
-        name="form-radio-1"
+        id="form-radio-2-b"
+        name="form-radio-2"
         label="Business and Economy"
       }}
     </fieldset>

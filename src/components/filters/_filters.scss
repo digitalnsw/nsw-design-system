@@ -334,6 +334,7 @@
       justify-content: space-between;
       border: 0;
       background: none;
+      padding: 0;
 
       @include breakpoint('lg') {
         font-size: var(--nsw-font-size-sm-desktop);
@@ -367,19 +368,26 @@
     span:not(.nsw-material-icons) {
       display: flex;
       align-items: center;
-      padding: 0;
+    }
 
-      .nsw-material-icons:last-child {
-        font-size: rem(map-get($nsw-icon-sizes, 20));
-        background-color: var(--nsw-white);
+    .nsw-material-icons {
+      font-size: rem(map-get($nsw-icon-sizes, 20));
+      margin-left: rem(8px);
+      border-radius: 50%;
+      width: rem(16px);
+      height: rem(16px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &--error {
+        background-color: var(--nsw-status-error-bg);
+        color: var(--nsw-status-error);
+      }
+  
+      &--valid {
+        background-color: var(--nsw-status-success-bg);
         color: var(--nsw-status-success);
-        margin-left: rem(8px);
-        border-radius: 50%;
-        width: rem(16px);
-        height: rem(16px);
-        display: flex;
-        justify-content: center;
-        align-items: center;
       }
     }
 

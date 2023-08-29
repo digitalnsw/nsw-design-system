@@ -211,6 +211,14 @@ $header-height: 151px;
               border-top: 0;
             }
           }
+
+          > li > a {      
+            @include breakpoint($nsw-desktop-breakpoint) {      
+              &.active {
+                box-shadow: none;
+              }
+            }
+          }
         }
 
         &__sub-nav {
@@ -527,7 +535,7 @@ $header-height: 151px;
     position: relative;
     display: none;
     margin-top: rem(24px);
-    max-width: rem(800px);
+    max-width: rem(872px);
 
     &.active {
       display: block;
@@ -562,7 +570,7 @@ $header-height: 151px;
 
   &__wrapper {
     min-height: rem(68px);
-    max-width: rem(800px);
+    max-width: rem(872px);
     max-height: rem(400px);
     overflow: auto;
     background-color: var(--nsw-white);

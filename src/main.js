@@ -11,6 +11,7 @@ import GlobalAlert from './components/global-alert/global-alert'
 import Select from './components/select/select'
 import Tooltip from './components/tooltip/tooltip'
 import Toggletip from './components/tooltip/toggletip'
+
 import UtilityList from './components/utility-list/utility-list'
 import ExternalLink from './components/link/link'
 
@@ -38,6 +39,7 @@ function initSite() {
   // Header Search
   const openSearchButton = document.querySelectorAll('.js-open-search')
   const closeSearchButton = document.querySelectorAll('.js-close-search')
+  const navigation = document.getElementById('main-nav')
   const accordions = document.querySelectorAll('.js-accordion')
   const dialogs = document.querySelectorAll('.js-dialog')
   const fileUpload = document.querySelectorAll('.js-file-upload')
@@ -58,8 +60,9 @@ function initSite() {
     new SiteSearch(element).init()
   })
 
-  // Navigation
-  new Navigation().init()
+  if (navigation) {
+    new Navigation(navigation).init()
+  }
 
   accordions.forEach((element) => {
     new Accordion(element).init()
