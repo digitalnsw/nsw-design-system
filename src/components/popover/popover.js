@@ -1,5 +1,4 @@
-/* eslint-disable radix */
-/* eslint-disable max-len, import/no-extraneous-dependencies */
+/* eslint-disable max-len */
 import {
   computePosition,
   flip,
@@ -103,7 +102,7 @@ class Popover {
     computePosition(anchor, popover, {
       placement,
       middleware: [
-        offset(parseInt(this.popoverGap)),
+        offset(parseInt(this.popoverGap, 10)),
         flip({
           fallbackAxisSideDirection: 'start',
           crossAxis: false,
