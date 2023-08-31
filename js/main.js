@@ -299,6 +299,8 @@
     }
     escapeClose(e) {
       if (e.key === 'Escape') {
+        // removes handleOutsideClick functionality from docs site
+        if (this.nav.closest('.nsw-docs')) return;
         const {
           link
         } = this.whichSubNavLatest();
@@ -2110,6 +2112,74 @@
       }
     };
   };
+  /**
+   * Built-in `limiter` that will stop `shift()` at a certain point.
+   */
+  const limitShift = function (options) {
+    if (options === void 0) {
+      options = {};
+    }
+    return {
+      options,
+      fn(state) {
+        const {
+          x,
+          y,
+          placement,
+          rects,
+          middlewareData
+        } = state;
+        const {
+          offset = 0,
+          mainAxis: checkMainAxis = true,
+          crossAxis: checkCrossAxis = true
+        } = options;
+        const coords = {
+          x,
+          y
+        };
+        const mainAxis = getMainAxisFromPlacement(placement);
+        const crossAxis = getCrossAxis(mainAxis);
+        let mainAxisCoord = coords[mainAxis];
+        let crossAxisCoord = coords[crossAxis];
+        const rawOffset = typeof offset === 'function' ? offset(state) : offset;
+        const computedOffset = typeof rawOffset === 'number' ? {
+          mainAxis: rawOffset,
+          crossAxis: 0
+        } : {
+          mainAxis: 0,
+          crossAxis: 0,
+          ...rawOffset
+        };
+        if (checkMainAxis) {
+          const len = mainAxis === 'y' ? 'height' : 'width';
+          const limitMin = rects.reference[mainAxis] - rects.floating[len] + computedOffset.mainAxis;
+          const limitMax = rects.reference[mainAxis] + rects.reference[len] - computedOffset.mainAxis;
+          if (mainAxisCoord < limitMin) {
+            mainAxisCoord = limitMin;
+          } else if (mainAxisCoord > limitMax) {
+            mainAxisCoord = limitMax;
+          }
+        }
+        if (checkCrossAxis) {
+          var _middlewareData$offse, _middlewareData$offse2;
+          const len = mainAxis === 'y' ? 'width' : 'height';
+          const isOriginSide = ['top', 'left'].includes(getSide(placement));
+          const limitMin = rects.reference[crossAxis] - rects.floating[len] + (isOriginSide ? ((_middlewareData$offse = middlewareData.offset) == null ? void 0 : _middlewareData$offse[crossAxis]) || 0 : 0) + (isOriginSide ? 0 : computedOffset.crossAxis);
+          const limitMax = rects.reference[crossAxis] + rects.reference[len] + (isOriginSide ? 0 : ((_middlewareData$offse2 = middlewareData.offset) == null ? void 0 : _middlewareData$offse2[crossAxis]) || 0) - (isOriginSide ? computedOffset.crossAxis : 0);
+          if (crossAxisCoord < limitMin) {
+            crossAxisCoord = limitMin;
+          } else if (crossAxisCoord > limitMax) {
+            crossAxisCoord = limitMax;
+          }
+        }
+        return {
+          [mainAxis]: mainAxisCoord,
+          [crossAxis]: crossAxisCoord
+        };
+      }
+    };
+  };
 
   function getWindow(node) {
     var _node$ownerDocument;
@@ -3162,6 +3232,175 @@
   }
 
   /* eslint-disable max-len */
+  class Popover {
+    constructor(element) {
+      this.popover = element;
+      this.popoverId = this.popover.getAttribute('aria-controls');
+      this.popoverPosition = this.popover.dataset.popoverPosition || 'bottom';
+      this.popoverClassList = this.popover.dataset.popoverClass;
+      this.popoverGap = this.popover.dataset.popoverGap || 5;
+      this.popoverAnchor = this.popover.querySelector('[data-anchor]') || this.popover;
+      this.popoverElement = document.querySelector(`#${this.popoverId}`);
+      this.popoverVisibleClass = 'active';
+      this.popoverContent = false;
+      this.popoverIsOpen = false;
+      this.firstFocusable = false;
+      this.lastFocusable = false;
+    }
+    init() {
+      this.constructor.setAttributes(this.popover, {
+        tabindex: '0',
+        'aria-haspopup': 'dialog'
+      });
+      this.initEvents();
+    }
+    initEvents() {
+      this.popover.addEventListener('click', this.togglePopover.bind(this));
+      this.popover.addEventListener('keyup', event => {
+        if (event.code && event.code.toLowerCase() === 'enter' || event.key && event.key.toLowerCase() === 'enter') {
+          this.togglePopover();
+        }
+      });
+      window.addEventListener('DOMContentLoaded', () => {
+        this.popoverContent = this.popoverElement.innerHTML;
+      });
+      this.popoverElement.addEventListener('keydown', this.trapFocus.bind(this));
+      window.addEventListener('click', event => {
+        this.checkPopoverClick(event.target);
+      });
+      window.addEventListener('keyup', event => {
+        if (event.code && event.code.toLowerCase() === 'escape' || event.key && event.key.toLowerCase() === 'escape') {
+          this.checkPopoverFocus();
+        }
+      });
+      window.addEventListener('resize', () => {
+        if (this.popoverIsOpen) this.togglePopover();
+      });
+      window.addEventListener('scroll', () => {
+        if (this.popoverIsOpen) this.togglePopover();
+      });
+    }
+    togglePopover() {
+      if (this.popoverElement.classList.contains('active')) {
+        this.hidePopover();
+      } else {
+        this.popoverElement.focus();
+        this.showPopover();
+      }
+    }
+    showPopover() {
+      this.constructor.setAttributes(this.popoverElement, {
+        tabindex: '0',
+        role: 'dialog'
+      });
+      this.popoverElement.setAttribute('aria-expanded', 'true');
+      this.popoverElement.classList.add('active');
+      this.popoverIsOpen = true;
+      this.getFocusableElements();
+      this.popoverElement.focus({
+        preventScroll: true
+      });
+      this.popover.addEventListener('transitionend', () => {
+        this.focusPopover();
+      }, {
+        once: true
+      });
+      this.updatePopover(this.popoverElement, this.popoverPosition);
+    }
+    hidePopover() {
+      this.popoverElement.setAttribute('aria-expanded', 'false');
+      this.popoverElement.classList.remove('active');
+      this.popoverIsOpen = false;
+    }
+    updatePopover(popover, placement) {
+      let anchor = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : this.popoverAnchor;
+      computePosition(anchor, popover, {
+        placement,
+        middleware: [offset(parseInt(this.popoverGap, 10)), flip({
+          fallbackAxisSideDirection: 'start',
+          crossAxis: false
+        }), shift({
+          limiter: limitShift()
+        })]
+      }).then(_ref => {
+        let {
+          x,
+          y
+        } = _ref;
+        Object.assign(popover.style, {
+          left: `${x}px`,
+          top: `${y}px`
+        });
+      });
+    }
+    checkPopoverClick(target) {
+      if (!this.popoverIsOpen) return;
+      if (!this.popoverElement.contains(target) && !target.closest(`[aria-controls="${this.popoverId}"]`)) this.togglePopover();
+    }
+    checkPopoverFocus() {
+      if (!this.popoverIsOpen) return;
+      this.constructor.moveFocus(this.popover);
+      this.togglePopover();
+    }
+    focusPopover() {
+      if (this.firstFocusable) {
+        this.firstFocusable.focus({
+          preventScroll: true
+        });
+      } else {
+        this.constructor.moveFocus(this.popoverElement);
+      }
+    }
+    getFocusableElements() {
+      const focusableElString = '[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex]:not([tabindex="-1"]), [contenteditable], audio[controls], video[controls], summary';
+      const allFocusable = this.popoverElement.querySelectorAll(focusableElString);
+      this.getFirstVisible(allFocusable);
+      this.getLastVisible(allFocusable);
+    }
+    getFirstVisible(elements) {
+      for (let i = 0; i < elements.length; i += 1) {
+        if (this.constructor.isVisible(elements[i])) {
+          this.firstFocusable = elements[i];
+          break;
+        }
+      }
+    }
+    getLastVisible(elements) {
+      for (let i = elements.length - 1; i >= 0; i -= 1) {
+        if (this.constructor.isVisible(elements[i])) {
+          this.lastFocusable = elements[i];
+          break;
+        }
+      }
+    }
+    trapFocus(event) {
+      if (this.firstFocusable === document.activeElement && event.shiftKey) {
+        event.preventDefault();
+        this.lastFocusable.focus();
+      }
+      if (this.lastFocusable === document.activeElement && !event.shiftKey) {
+        event.preventDefault();
+        this.firstFocusable.focus();
+      }
+    }
+    static isVisible(element) {
+      return element.offsetWidth || element.offsetHeight || element.getClientRects().length;
+    }
+    static moveFocus(element) {
+      element.focus({
+        preventScroll: true
+      });
+      if (document.activeElement !== element) {
+        element.setAttribute('tabindex', '-1');
+        element.focus();
+      }
+    }
+    static setAttributes(el, attrs) {
+      Object.keys(attrs).forEach(key => el.setAttribute(key, attrs[key]));
+    }
+  }
+
+  /* eslint-disable max-len */
   if (window.NodeList && !NodeList.prototype.forEach) {
     NodeList.prototype.forEach = Array.prototype.forEach;
   }
@@ -3195,6 +3434,7 @@
     const tooltip = document.querySelectorAll('.js-tooltip');
     const toggletip = document.querySelectorAll('.js-toggletip');
     const link = document.querySelectorAll('.js-link');
+    const popover = document.querySelectorAll('.js-popover');
     openSearchButton.forEach(element => {
       new SiteSearch(element).init();
     });
@@ -3250,6 +3490,11 @@
         new ExternalLink(element).init();
       });
     }
+    if (popover) {
+      popover.forEach(element => {
+        new Popover(element).init();
+      });
+    }
   }
 
   exports.Accordion = Accordion;
@@ -3259,6 +3504,7 @@
   exports.Filters = Filters;
   exports.GlobalAlert = GlobalAlert;
   exports.Navigation = Navigation;
+  exports.Popover = Popover;
   exports.Select = Select;
   exports.SiteSearch = SiteSearch;
   exports.Tabs = Tabs;
