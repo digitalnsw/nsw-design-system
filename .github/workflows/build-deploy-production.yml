@@ -7,7 +7,7 @@ jobs:
   build-production:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: actions/setup-node@v3
         with:
           node-version: 16
@@ -23,7 +23,7 @@ jobs:
     needs: build-production
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: actions/setup-node@v3
       - uses: actions/download-artifact@v3
         with:
@@ -42,7 +42,7 @@ jobs:
     needs: deploy-production
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: actions/setup-node@v3
       - run: npm install
       - run: npm run starterkit:build
