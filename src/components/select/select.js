@@ -215,7 +215,7 @@ class Select {
   }
 
   initButtonSelect() {
-    const triggerLabel = this.getSelectedOptionText(this.element)
+    const triggerLabel = this.getSelectedOptionText()
 
     const button = `<button class="nsw-button nsw-multi-select__button" aria-label="${triggerLabel[1]}" aria-expanded="false" aria-controls="${this.selectId}-dropdown">
       <span aria-hidden="true" class="nsw-multi-select__label">${triggerLabel[0]}</span>
@@ -246,7 +246,7 @@ class Select {
     let ariaLabel = ''
     const count = this.getSelectedOptionCount()
 
-    if (count === this.options.length) {
+    if (count === this.options.length && this.dropdown) {
       label = `All ${this.textSelected}`
       ariaLabel = `All ${this.textSelected}`
     } else if (count > 1) {
@@ -254,7 +254,7 @@ class Select {
       ariaLabel = `${count} ${this.textSelected}, Please select`
     } else if (count > 0) {
       ariaLabel += `${this.options[0].text}, Please select`
-      label = this.options[0].text
+      label = this.getSelectedOption().closest('.nsw-multi-select__option').dataset.label
     } else {
       label = noSelectionText
       ariaLabel = 'Please select'
