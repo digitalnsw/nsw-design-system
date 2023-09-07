@@ -245,9 +245,6 @@ class Select {
     let label = ''
     let ariaLabel = ''
     const count = this.getSelectedOptionCount()
-    if (this.dropdown) {
-      console.log()
-    }
 
     if (count === this.options.length && this.dropdown) {
       label = `All ${this.textSelected}`
