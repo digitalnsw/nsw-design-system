@@ -1364,9 +1364,10 @@
       } else if (count > 1) {
         label = `${count} ${this.textSelected}`;
         ariaLabel = `${count} ${this.textSelected}, Please select`;
-      } else if (count > 0) {
-        ariaLabel += `${this.options[0].text}, Please select`;
-        label = this.getSelectedOption().closest('.nsw-multi-select__option').dataset.label;
+      } else if (count === 1) {
+        const selectedOption = this.getSelectedOption();
+        label = selectedOption.closest('.nsw-multi-select__option').getAttribute('data-label');
+        ariaLabel = `${label}, Please select`;
       } else {
         label = noSelectionText;
         ariaLabel = 'Please select';
