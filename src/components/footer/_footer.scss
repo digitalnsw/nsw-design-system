@@ -29,7 +29,6 @@
     padding: 0 rem(8px) rem(16px) rem(8px);
     flex: 1 0 auto;
     min-width: rem(256px);
-    max-width: 50%;
 
     @include breakpoint('md') {
       flex-basis: 50%;
@@ -48,7 +47,15 @@
       padding: 0;
 
       a {
+        display: flex;
         font-weight: var(--nsw-font-normal);
+        padding: rem(8px) rem(24px) rem(8px) 0;
+
+        @include breakpoint('md') {
+          display: inline;
+          line-height: 1.75;
+          padding: rem(4px) rem(4px) rem(4px) 0;
+        }
       }
     }
 
@@ -59,6 +66,16 @@
 
   &__heading {
     @include font-size('sm');
+
+    a {
+      display: flex;
+      padding: rem(8px) rem(24px) rem(8px) 0;
+
+      @include breakpoint('md') {
+        display: inline;
+        padding: rem(4px) rem(4px) rem(4px) 0;
+      }
+    }
   }
 
   &__lower {
@@ -67,8 +84,16 @@
     color: var(--nsw-text-light);
     padding: rem(16px) 0 rem(24px) 0;
 
-    a {
+    a:not(.nsw-icon-button) {
       @include link-light;
+      display: flex;
+      padding: rem(8px) rem(24px) rem(8px) 0;
+
+      @include breakpoint('md') {
+        display: inline;
+        line-height: 1.75;
+        padding: rem(4px) rem(4px) rem(4px) 0;
+      }
     }
 
     p {
@@ -124,6 +149,7 @@
     }
 
     a {
+      @include link-light;
       margin: 0 rem(4px);
     }
   }
