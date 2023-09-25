@@ -434,6 +434,7 @@
       this.headings = element.querySelectorAll(this.accordionHeadingClass);
       this.expandAllBtn = expandAll;
       this.collapseAllBtn = collapseAll;
+      this.isExpandedOnLoad = element.querySelectorAll('.nsw-accordion__open');
       this.buttons = [];
       this.content = [];
       this.toggleEvent = e => this.toggle(e);
@@ -461,6 +462,12 @@
         this.content.push(contentElem);
         this.buttons.push(buttonElem);
       });
+      if (this.isExpandedOnLoad) {
+        this.isExpandedOnLoad.forEach(element => {
+          const openButton = element.querySelector('button');
+          this.setAccordionState(openButton, 'open');
+        });
+      }
     }
     controls() {
       this.buttons.forEach(element => {
