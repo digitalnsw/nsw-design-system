@@ -14,6 +14,7 @@ import Toggletip from './components/tooltip/toggletip'
 
 import UtilityList from './components/utility-list/utility-list'
 import ExternalLink from './components/link/link'
+import Popover from './components/popover/popover'
 
 if (window.NodeList && !NodeList.prototype.forEach) {
   NodeList.prototype.forEach = Array.prototype.forEach
@@ -51,6 +52,7 @@ function initSite() {
   const toggletip = document.querySelectorAll('.js-toggletip')
   const utilityList = document.querySelectorAll('.js-utility-list')
   const link = document.querySelectorAll('.js-link')
+  const popover = document.querySelectorAll('.js-popover')
 
   openSearchButton.forEach((element) => {
     new SiteSearch(element).init()
@@ -126,8 +128,14 @@ function initSite() {
       new ExternalLink(element).init()
     })
   }
+
+  if (popover) {
+    popover.forEach((element) => {
+      new Popover(element).init()
+    })
+  }
 }
 
 export {
-  initSite, SiteSearch, Navigation, Accordion, Tabs, GlobalAlert, Dialog, Filters, FileUpload, Select, Tooltip, Toggletip, UtilityList, ExternalLink,
+  initSite, SiteSearch, Navigation, Accordion, Tabs, GlobalAlert, Dialog, Filters, FileUpload, Select, Tooltip, Toggletip, UtilityList, ExternalLink, Popover,
 }

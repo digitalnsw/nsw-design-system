@@ -1,0 +1,61 @@
+---
+title: Popover
+width: narrow
+tabs: true
+directory: popover
+intro: A floating box controlled by a trigger element.
+meta-description: A floating box controlled by a trigger element.
+meta-index: true
+model: ../../components/popover/json/popover.json
+---
+
+<h2 class="nsw-p-top-0">Position</h2>
+<p>Places the Popover relative to the trigger element.</p>
+
+<h3 class="h4 nsw-p-0">Top</h3>
+{{#>_docs-example separated="true"}}
+<div class="nsw-list nsw-list--8">
+  {{#each model.top}}
+{{>_popover style="dark-outline" icon="info" text=this id=@key position=@key gap="10"}}
+  {{/each}}
+</div>
+{{/_docs-example}}
+
+<h3 class="h4 nsw-p-0">Right</h3>
+{{#>_docs-example separated="true"}}
+<div class="nsw-list nsw-list--8">
+  {{#each model.right}}
+{{>_popover style="dark-outline" icon="info" text=this id=@key position=@key gap="10"}}
+  {{/each}}
+</div>
+{{/_docs-example}}
+
+<h3 class="h4 nsw-p-0">Bottom</h3>
+{{#>_docs-example separated="true"}}
+<div class="nsw-list nsw-list--8">
+  {{#each model.bottom}}
+{{>_popover style="dark-outline" icon="info" text=this id=@key position=@key gap="10"}}
+  {{/each}}
+</div>
+{{/_docs-example}}
+
+<h3 class="h4 nsw-p-0">Left</h3>
+{{#>_docs-example separated="true"}}
+<div class="nsw-list nsw-list--8">
+  {{#each model.left}}
+{{>_popover style="dark-outline" icon="info" text=this id=@key position=@key gap="10"}}
+  {{/each}}
+</div>
+{{/_docs-example}}
+
+<h2>Offset</h2>
+
+<p>A data-attribute <code>data-popover-gap</code> argument that offsets the distance between the trigger and Popover.</p>
+
+{{#>_docs-example separated="true"}}
+<div class="nsw-list nsw-list--8">
+  {{#each model.gap}}
+{{>_popover style="dark-outline" icon="info" text="Open Top" id=this position="top" gap=this}}
+  {{/each}}
+</div>
+{{/_docs-example}}
