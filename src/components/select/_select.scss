@@ -72,6 +72,14 @@ $nsw-form-chevron-down: '<svg fill="#333333" version="1.1" xmlns="http://www.w3.
 
     .nsw-material-icons {
       font-size: rem(32px);
+      transform: rotate(0deg);
+      transition: transform $nsw-transition-duration, color $nsw-transition-duration;
+    }
+
+    &[aria-expanded='true'] {
+      .nsw-material-icons {
+        transform: rotate(180deg);
+      }
     }
   }
 
