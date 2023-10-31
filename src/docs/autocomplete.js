@@ -18,16 +18,6 @@ const defaults = {
     cb(data)
   },
   onClick(option, obj, event, cb) {
-    // const { value } = input
-    // const base = window.location.origin
-    // const append = '/design-system'
-    // window.location.href = `${baseURL}${searchUrl}/example`
-    // window.location.replace()
-
-    // console.log(value)
-    // console.log(option)
-    // console.log(event)
-
     // update input value
     const input = obj.querySelector('input')
     const linkElement = option.querySelector('a')
@@ -52,26 +42,24 @@ class Autocomplete {
     this.searching = false
     this.searchingClass = 'searching'
     this.dropdownActiveClass = 'active'
-    // truncate dropdown
+
     this.truncateDropdown = !!(this.element.getAttribute('data-autocomplete-dropdown-truncate') && this.element.getAttribute('data-autocomplete-dropdown-truncate') === 'on')
-    this.autocompleteClosed = false // fix issue when selecting an option from the list
+    this.autocompleteClosed = false
     this.clone = false
     this.selectedLabelElement = false
   }
 
   init() {
-    this.initAutocompleteAria() // set aria attributes for SR and keyboard users
+    this.initAutocompleteAria()
     this.initAutocompleteTemplates()
     this.initAutocompleteEvents()
   }
 
   initAutocompleteAria() {
-    // set aria attributes for input element
     this.input.setAttribute('role', 'combobox')
     this.input.setAttribute('aria-autocomplete', 'list')
     const listId = this.resultsList.getAttribute('id')
     if (listId) this.input.setAttribute('aria-owns', listId)
-    // set aria attributes for autocomplete list
     this.resultsList.setAttribute('role', 'list')
   }
 
@@ -88,17 +76,14 @@ class Autocomplete {
   }
 
   initAutocompleteEvents() {
-    // input - keyboard navigation
     this.input.addEventListener('keyup', (event) => {
       this.handleInputTyped(event)
     })
 
-    // if input type="search" -> detect when clicking on 'x' to clear input
     this.input.addEventListener('search', () => {
       this.updateSearch()
     })
 
-    // make sure dropdown is open on click
     this.input.addEventListener('click', () => {
       this.updateSearch(true)
     })
@@ -111,22 +96,18 @@ class Autocomplete {
       this.updateSearch(true)
     })
 
-    // input loses focus -> close menu
     this.input.addEventListener('blur', (event) => {
       this.checkFocusLost(event)
     })
 
-    // results list - keyboard navigation
     this.resultsList.addEventListener('keydown', (event) => {
       this.navigateList(event)
     })
 
-    // results list loses focus -> close menu
     this.resultsList.addEventListener('focusout', (event) => {
       this.checkFocusLost(event)
     })
 
-    // close on esc
     window.addEventListener('keyup', (event) => {
       if (event.key && event.key.toLowerCase() === 'escape') {
         this.toggleOptionsList(false)
@@ -135,7 +116,6 @@ class Autocomplete {
       }
     })
 
-    // select element from list
     this.resultsList.addEventListener('click', (event) => {
       this.selectResult(event.target.closest(`.${this.resultClassName}`), event)
     })
@@ -156,8 +136,7 @@ class Autocomplete {
 
   moveFocusToList() {
     if (!this.element.classList.contains(this.dropdownActiveClass)) return
-    this.resetSearch() // clearTimeout
-    // make sure first element is focusable
+    this.resetSearch()
     let index = 0
     if (!this.elementListIsFocusable(index)) {
       index = this.getElementFocusbleIndex(index, true)
@@ -167,14 +146,14 @@ class Autocomplete {
 
   updateSearch(bool) {
     const inputValue = this.input.value
-    if (inputValue === this.inputVal && !bool) return // input value did not change
+    if (inputValue === this.inputVal && !bool) return
     this.inputVal = inputValue
-    if (this.typeId) clearInterval(this.typeId) // clearTimeout
-    if (this.inputVal.length < this.options.characters) { // not enough characters to start searching
+    if (this.typeId) clearInterval(this.typeId)
+    if (this.inputVal.length < this.options.characters) {
       this.toggleOptionsList(false)
       return
     }
-    if (bool) { // on focus -> update result list without waiting for the debounce
+    if (bool) {
       this.updateResultsList('focus')
       return
     }
@@ -184,7 +163,6 @@ class Autocomplete {
   }
 
   toggleOptionsList(bool) {
-    // toggle visibility of options list
     if (bool) {
       if (this.element.classList.contains(this.dropdownActiveClass)) return
       this.element.classList.add(this.dropdownActiveClass)
@@ -198,7 +176,7 @@ class Autocomplete {
       }
       this.element.classList.remove(this.dropdownActiveClass)
       this.input.removeAttribute('aria-expanded')
-      this.resetSearch() // clearTimeout
+      this.resetSearch()
     }
   }
 
@@ -220,9 +198,8 @@ class Autocomplete {
   updateResultsList(eventType) {
     if (this.searching) return
     this.searching = true
-    this.element.classList.add(this.searchingClass) // show loader
+    this.element.classList.add(this.searchingClass)
     this.options.searchData(this.inputVal, (data, cb) => {
-      // data = custom results
       this.populateResults(data, cb)
       this.element.classList.remove(this.searchingClass)
       this.toggleOptionsList(true)
