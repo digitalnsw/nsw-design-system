@@ -33,7 +33,6 @@ $header-height: 151px;
     border-radius: var(--nsw-border-radius);
   }
 
-
   // fix to offset height of fixed nav to trick anchor links' positioning
 
   :target::before {
@@ -71,57 +70,6 @@ $header-height: 151px;
     .nsw-container,
     .nsw-header__container {
       margin: 0;
-    }
-
-    .nsw-form__predictive-list {
-      max-height: rem(176px);
-    
-      @include breakpoint($nsw-desktop-breakpoint) {
-        @include z-index('upper');
-        max-height: rem(264px);
-      }
-
-      .autocomplete-result:hover {
-        background-color: var(--nsw-text-hover);
-      }
-
-      .autocomplete-result[aria-selected='true'] {
-        @include nsw-focus;
-        outline-offset: -3px;
-      }
-    }
-    
-    .nsw-autocomplete__no-result {
-      @include z-index('upper');
-      display: none;
-      position: absolute;
-      padding: rem(10px);
-      color: var(--nsw-text-dark);
-      font-weight: var(--nsw-font-normal);
-      background-color: var(--nsw-white);
-      box-shadow: 0 4px 12px 0 rgba(var(--nsw-black-rgb), 0.15);
-      width: 100%;
-      top: 100%;
-
-      &.show.active {
-        display: block;
-      }
-    }
-
-    .nsw-autocomplete {
-      .nsw-material-icons {
-        display: none;
-        font-size: rem(map-get($nsw-icon-sizes, 36));
-        color: var(--nsw-brand-dark);
-        position: absolute;
-        right: rem(6px);
-        top: rem(6px);
-        bottom: 0;
-
-        @include breakpoint($nsw-desktop-breakpoint) {
-          display: block;
-        }
-      }
     }
 
     @include breakpoint($nsw-desktop-breakpoint) {
@@ -640,4 +588,75 @@ $header-height: 151px;
 
 .nsw-docs__element {
   height: 100%;
+}
+
+.nsw-autocomplete {
+  .nsw-material-icons {
+    font-size: 2.25rem;
+  }
+
+  &__item {
+    cursor: pointer;
+    transition: 0.2s;
+    padding-left: 0;
+    margin-top: 0;
+
+    &.nsw-autocomplete__no-results {
+      padding: 0.5rem 0.75rem;
+
+      @include media-breakpoint-up(md) {
+        padding: 0.75rem 1.125rem;
+      }
+    }
+
+    > *:first-child,
+    > *:last-child {
+      margin-top: 0;
+    }
+
+    a {
+      display: block;
+      width: 100%;
+      margin: 0;
+      padding: 0.5rem 0.75rem;
+      font-weight: 400;
+      color: var(--nsw-text-dark);
+
+      @include media-breakpoint-up(md) {
+        padding: 0.75rem 1.125rem;
+      }
+    }
+  }
+
+  &__results {
+    position: absolute;
+    z-index: 5;
+    width: 100%;
+    left: 0;
+    top: calc(100% + 3px);
+    transform: translateY(4px);
+    background-color: var(--nsw-white);
+    box-shadow: var(--nsw-box-shadow);
+    border-radius: 0.25em;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0s 0.3s, transform 0.3s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    overflow: hidden;
+  }
+
+  &.active {
+    .nsw-autocomplete__results {
+      opacity: 1;
+      visibility: visible;
+      transition: opacity 0.3s, transform 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+      transform: translateY(0);
+    }
+  }
+
+  &__list {
+    list-style: none;
+    padding-left: 0;
+    max-height: 250px;
+    overflow: auto;
+  }
 }
