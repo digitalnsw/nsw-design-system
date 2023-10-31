@@ -3443,12 +3443,16 @@
     const toggletip = document.querySelectorAll('.js-toggletip');
     const link = document.querySelectorAll('.js-link');
     const popover = document.querySelectorAll('.js-popover');
-    openSearchButton.forEach(element => {
-      new SiteSearch(element).init();
-    });
-    closeSearchButton.forEach(element => {
-      new SiteSearch(element).init();
-    });
+    if (openSearchButton) {
+      openSearchButton.forEach(element => {
+        new SiteSearch(element).init();
+      });
+    }
+    if (closeSearchButton) {
+      closeSearchButton.forEach(element => {
+        new SiteSearch(element).init();
+      });
+    }
     if (navigation) {
       new Navigation(navigation).init();
     }
