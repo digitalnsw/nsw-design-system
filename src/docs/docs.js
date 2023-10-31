@@ -1,3 +1,6 @@
+import Autocomplete from './autocomplete'
+import ExpandableSearch from './expandable-search'
+
 function initDocs() {
   const codeButtons = document.querySelectorAll('.js-code-button')
 
@@ -28,33 +31,33 @@ function initDocs() {
     script.remove()
 
     button.addEventListener('click', (event) => {
-      const elem = document.createElement('textarea');
-      elem.value = code.innerHTML.replace(/&lt;/g, "<").replace(/&gt;/g, ">")
-      document.body.appendChild(elem);
-      elem.select();
-      document.execCommand('copy');
+      const elem = document.createElement('textarea')
+      elem.value = code.innerHTML.replace(/&lt;/g, '<').replace(/&gt;/g, '>')
+      document.body.appendChild(elem)
+      elem.select()
+      document.execCommand('copy')
       text.textContent = 'Copied'
-      document.body.removeChild(elem);
+      document.body.removeChild(elem)
 
-      setTimeout(function() {
+      setTimeout(() => {
         text.textContent = 'Copy'
       }, 2000)
     }, false)
   })
 
   const navLinks = document.querySelectorAll('.nsw-docs__nav a')
-  var currentURL = window.location.pathname
+  let currentURL = window.location.pathname
 
-  if (currentURL == '/' || currentURL == '/nsw-design-system/') currentURL = '/home/index.html'
+  if (currentURL === '/' || currentURL === '/nsw-design-system/') currentURL = '/home/index.html'
 
   navLinks.forEach((link) => {
-    var linkURL = link.getAttribute('href')
+    let linkURL = link.getAttribute('href')
     if (linkURL == '/' || linkURL == '/nsw-design-system/') linkURL = '/home/index.html'
 
     if (currentURL.match(linkURL)) {
       link.classList.add('current')
 
-      if(link.closest('ul').classList.contains('nsw-main-nav__sub-list')) {
+      if (link.closest('ul').classList.contains('nsw-main-nav__sub-list')) {
         const list = link.closest('.nsw-main-nav__sub-nav')
         const button = list.previousElementSibling
 
@@ -67,66 +70,21 @@ function initDocs() {
     }
   })
 
-  let baseURL = window.location.pathname
-  let searchData = []
-  var searchUrl = ''
+  const autoComplete = document.querySelectorAll('.js-autocomplete')
 
-  if(baseURL.startsWith('/nsw-design-system')) {
-    searchUrl = '/nsw-design-system'
+  if (autoComplete) {
+    autoComplete.forEach((element) => {
+      new Autocomplete(element).init()
+    })
   }
 
-  fetch(searchUrl + '/docs/js/search.json')
-    .then((response) => response.json())
-    .then((data) => {
-      searchData = data
+  const expandableSearch = document.querySelectorAll('.js-header')
+
+  if (expandableSearch) {
+    expandableSearch.forEach((element) => {
+      new ExpandableSearch(element).init()
     })
-
-  const autocomplete = document.querySelector('.nsw-autocomplete')
-  const autocompleteInput = autocomplete.querySelector('.nsw-autocomplete__input')
-  const autocompleteNoResult = autocomplete.querySelector('.nsw-autocomplete__no-result')
-
-  let autocompleteInputValue = ''
-
-  const newAutocomplete = new Autocomplete(autocomplete, {
-
-    search: (input) => {
-      autocompleteInputValue = input
-      if (input.length < 1) { return [] }
-      return searchData.filter((item) => item.title.toLowerCase().includes(input.toLowerCase())
-      || item.keywords.toLowerCase().includes(input.toLowerCase()))
-    },
-
-    renderResult: (result, props) => `
-      <li ${props}>
-        <a href="${searchUrl}${result.url}">
-          ${result.title}
-        </a>
-      </li>
-    `,
-
-    onUpdate: (results) => {
-      if (autocompleteInputValue && results.length === 0) {
-        autocompleteNoResult.classList.add('show')
-      } else {
-        autocompleteNoResult.classList.remove('show')
-      }
-    },
-
-    getResultValue: (result) => result.title,
-
-    onSubmit: (result) => {
-      autocompleteNoResult.classList.remove('show')
-      window.open(`${searchUrl}${result.url}`, '_self')
-    },
-  })
-
-  autocompleteInput.addEventListener('focus', () => {
-    autocompleteNoResult.classList.add('active')
-  })
-
-  autocompleteInput.addEventListener('blur', () => {
-    autocompleteNoResult.classList.remove('active')
-  })
+  }
 }
 
-initDocs();
+initDocs()
