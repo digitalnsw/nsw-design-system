@@ -43,7 +43,7 @@ class Tabs {
       this.enhanceTabLink(itemLink, uID)
       this.enhanceTabPanel(panel, uID)
     })
-    this.tabList.setAttribute('aria-owns', this.owns)
+    this.tabList.setAttribute('aria-owns', this.owns.replace(/(^,)|(,$)/g, ''))
   }
 
   enhanceTabLink(link, id) {
