@@ -16,6 +16,7 @@ class Tabs {
     this.selectedTab = null
     this.clickTabEvent = (e) => this.clickTab(e)
     this.arrowKeysEvent = (e) => this.arrowKeys(e)
+    this.owns = []
   }
 
   init() {
@@ -36,11 +37,13 @@ class Tabs {
       const itemLink = item.querySelector(this.tablistLinkClass)
       const panel = this.tab.querySelector(itemLink.hash)
       const uID = uniqueId('tab')
+      this.owns.push(uID)
 
       itemElem.setAttribute('role', 'presentation')
       this.enhanceTabLink(itemLink, uID)
       this.enhanceTabPanel(panel, uID)
     })
+    this.tabList.setAttribute('aria-owns', this.owns)
   }
 
   enhanceTabLink(link, id) {
