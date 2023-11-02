@@ -44,7 +44,6 @@ class Tabs {
       this.enhanceTabPanel(panel, uID)
     })
     this.tabList.setAttribute('aria-owns', this.owns.join(' '))
-    this.tabList.setAttribute('aria-labelledby', this.owns[0])
   }
 
   enhanceTabLink(link, id) {
