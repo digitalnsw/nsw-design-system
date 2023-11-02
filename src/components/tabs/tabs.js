@@ -32,6 +32,7 @@ class Tabs {
     tabListWrapper.prepend(this.tabList)
 
     this.tabList.setAttribute('role', 'tablist')
+    this.tabList.setAttribute('aria-label', 'Tabs')
     this.tabItems.forEach((item) => {
       const itemElem = item
       const itemLink = item.querySelector(this.tablistLinkClass)
