@@ -32,7 +32,6 @@ class Tabs {
     tabListWrapper.prepend(this.tabList)
 
     this.tabList.setAttribute('role', 'tablist')
-    this.tabList.setAttribute('aria-label', 'Tabs')
     this.tabItems.forEach((item) => {
       const itemElem = item
       const itemLink = item.querySelector(this.tablistLinkClass)
@@ -45,7 +44,7 @@ class Tabs {
       this.enhanceTabPanel(panel, uID)
     })
     this.tabList.setAttribute('aria-owns', this.owns.join(' '))
-    console.log(this.owns)
+    this.tabList.setAttribute('aria-labelledby', this.owns[0])
   }
 
   enhanceTabLink(link, id) {
