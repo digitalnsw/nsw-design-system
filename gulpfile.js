@@ -209,6 +209,11 @@ function metalsmithBuild(callback) {
       refer: false,
       sortBy: 'order',
     },
+    contribute: {
+      pattern: config.metalSmith.collection.contentnav.contribute,
+      refer: false,
+      sortBy: 'order',
+    },
     methods: {
       pattern: config.metalSmith.collection.contentnav.methods,
       refer: false,
