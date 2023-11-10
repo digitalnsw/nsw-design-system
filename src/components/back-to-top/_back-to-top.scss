@@ -1,13 +1,18 @@
 .nsw-back-to-top {
   display: flex;
+  flex-direction: column-reverse;
   position: fixed;
-  right: 2rem;
-  bottom: 2rem;
+  right: 1rem;
+  bottom: 1rem;
   z-index: 10;
   visibility: hidden;
   opacity: 0;
   transition: 0.2s;
   text-decoration: none;
+
+  @include breakpoint('md') {
+    flex-direction: row;
+  }
 
   &.active {
     visibility: visible;
