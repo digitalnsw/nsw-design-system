@@ -1,5 +1,3 @@
-import ScreenSizeDetector from '../../global/scripts/helpers/screen-size-detector'
-
 class BackTop {
   constructor(element) {
     this.element = element
@@ -8,16 +6,12 @@ class BackTop {
     this.text = this.element.querySelector('span:not(.material-icons)')
     this.icon = this.element.querySelector('span.material-icons')
     this.scrollElement = this.dataElement ? document.querySelector(this.dataElement) : window
-    this.scrolling = false
-    this.screen = new ScreenSizeDetector()
     this.scrollPosition = 0
+    this.width = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
+    this.height = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
   }
 
   init() {
-    this.createButtonContent()
-    this.screen.setMainCallback('widthchange', () => this.createButtonContent())
-
-    // detect click on back-to-top link
     this.element.addEventListener('click', (event) => {
       event.preventDefault()
 
@@ -30,25 +24,29 @@ class BackTop {
       }
     })
 
-    // listen to the window scroll and update back-to-top visibility
+    this.createButtonContent()
     this.checkBackToTop()
+    this.scrollUp()
+
+    const debounceOffset = this.debounce(this.checkBackToTop)
+    const debounceScroll = this.debounce(this.scrollUp)
+    const debounceResize = this.debounce(this.resizeHandler)
+
+    window.addEventListener('resize', () => { debounceResize() }, false)
 
     if (this.scrollOffset > 0) {
       this.scrollElement.addEventListener('scroll', () => {
-        if (!this.scrolling) {
-          this.scrolling = true
-          if (!window.requestAnimationFrame) {
-            setTimeout(() => { this.checkBackToTop() }, 250)
-          } else {
-            window.requestAnimationFrame(() => this.checkBackToTop())
-          }
-        }
+        debounceOffset()
+      })
+    } else {
+      this.scrollElement.addEventListener('scroll', () => {
+        debounceScroll()
       })
     }
   }
 
   createButtonContent() {
-    if (this.screen.is.tablet) {
+    if (this.width < 768) {
       this.text.innerText = 'Top'
       this.icon.innerText = 'keyboard_arrow_up'
     } else {
@@ -65,32 +63,51 @@ class BackTop {
       const condition = windowTop >= this.scrollOffset
 
       this.element.classList.toggle('active', condition)
-
-      this.scrolling = false
-    } else {
-      this.scrollEventThrottle((scrollPos, previousScrollPos) => {
-        if (previousScrollPos > scrollPos && scrollPos > 200) {
-          this.element.classList.add('active')
-        } else {
-          this.element.classList.remove('active')
-        }
-      })
     }
   }
 
-  scrollEventThrottle(fn) {
-    let ticking = false
-    window.addEventListener('scroll', () => {
-      const scroll = this.scrollPosition
-      this.scrollPosition = window.scrollY
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          fn(this.scrollPosition, scroll)
-          ticking = false
+  scrollUp() {
+    const scroll = this.scrollPosition
+    this.scrollPosition = window.scrollY
+
+    if (scroll > this.scrollPosition && this.scrollPosition > 200) {
+      this.element.classList.add('active')
+    } else {
+      this.element.classList.remove('active')
+    }
+  }
+
+  resizeHandler() {
+    const oldWidth = this.width
+    const oldHeight = this.height
+
+    this.width = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
+    this.height = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
+
+    if (oldWidth !== this.width && oldHeight === this.height) {
+      this.createButtonContent()
+    }
+  }
+
+  debounce(fn, wait = 250) {
+    let timeout
+
+    return (...args) => {
+      const context = this
+
+      if (!window.requestAnimationFrame) {
+        clearTimeout(timeout)
+        timeout = setTimeout(() => fn.apply(context, args), wait)
+      } else {
+        if (timeout) {
+          window.cancelAnimationFrame(timeout)
+        }
+
+        timeout = window.requestAnimationFrame(() => {
+          fn.apply(context, args)
         })
-        ticking = true
       }
-    })
+    }
   }
 }
 
