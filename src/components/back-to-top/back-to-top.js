@@ -9,6 +9,7 @@ class BackTop {
     this.scrollPosition = 0
     this.width = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
     this.height = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
+    this.condition = false
   }
 
   init() {
@@ -26,23 +27,12 @@ class BackTop {
 
     this.createButtonContent()
     this.checkBackToTop()
-    this.scrollUp()
 
-    const debounceOffset = this.debounce(this.checkBackToTop)
-    const debounceScroll = this.debounce(this.scrollUp)
+    const debounceEvent = this.debounce(this.checkBackToTop)
+    this.scrollElement.addEventListener('scroll', () => { debounceEvent() })
+
     const debounceResize = this.debounce(this.resizeHandler)
-
-    window.addEventListener('resize', () => { debounceResize() }, false)
-
-    if (this.scrollOffset > 0) {
-      this.scrollElement.addEventListener('scroll', () => {
-        debounceOffset()
-      })
-    } else {
-      this.scrollElement.addEventListener('scroll', () => {
-        debounceScroll()
-      })
-    }
+    window.addEventListener('resize', () => { debounceResize() })
   }
 
   createButtonContent() {
@@ -59,21 +49,15 @@ class BackTop {
     let windowTop = this.scrollElement.scrollTop || document.documentElement.scrollTop
     if (!this.dataElement) windowTop = window.scrollY || document.documentElement.scrollTop
 
-    if (this.scrollOffset) {
-      const condition = windowTop >= this.scrollOffset
-
-      this.element.classList.toggle('active', condition)
-    }
-  }
-
-  scrollUp() {
     const scroll = this.scrollPosition
     this.scrollPosition = window.scrollY
 
-    if (scroll > this.scrollPosition && this.scrollPosition > 200) {
-      this.element.classList.add('active')
+    if (this.scrollOffset && this.scrollOffset > 0) {
+      this.condition = windowTop >= this.scrollOffset
+      this.element.classList.toggle('active', this.condition)
     } else {
-      this.element.classList.remove('active')
+      this.condition = scroll > this.scrollPosition && this.scrollPosition > 200
+      this.element.classList.toggle('active', this.condition)
     }
   }
 
