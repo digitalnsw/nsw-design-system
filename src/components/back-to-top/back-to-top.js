@@ -13,6 +13,9 @@ class BackTop {
   }
 
   init() {
+    this.icon.setAttribute('focusable', 'false')
+    this.icon.setAttribute('aria-hidden', 'true')
+
     this.element.addEventListener('click', (event) => {
       event.preventDefault()
 
@@ -92,6 +95,10 @@ class BackTop {
         })
       }
     }
+  }
+
+  static setAttributes(el, attrs) {
+    Object.keys(attrs).forEach((key) => el.setAttribute(key, attrs[key]))
   }
 }
 
