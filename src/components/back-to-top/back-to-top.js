@@ -3,8 +3,8 @@ class BackTop {
     this.element = element
     this.dataElement = this.element.getAttribute('data-element')
     this.scrollOffset = this.element.getAttribute('data-offset')
-    this.text = this.element.querySelector('span:not(.material-icons)')
-    this.icon = this.element.querySelector('span.material-icons')
+    this.text = false
+    this.icon = false
     this.scrollElement = this.dataElement ? document.querySelector(this.dataElement) : window
     this.scrollPosition = 0
     this.width = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
@@ -13,8 +13,7 @@ class BackTop {
   }
 
   init() {
-    this.icon.setAttribute('focusable', 'false')
-    this.icon.setAttribute('aria-hidden', 'true')
+    this.createButton()
 
     this.element.addEventListener('click', (event) => {
       event.preventDefault()
@@ -28,7 +27,6 @@ class BackTop {
       }
     })
 
-    this.createButtonContent()
     this.checkBackToTop()
 
     const debounceEvent = this.debounce(this.checkBackToTop)
@@ -36,6 +34,23 @@ class BackTop {
 
     const debounceResize = this.debounce(this.resizeHandler)
     window.addEventListener('resize', () => { debounceResize() })
+  }
+
+  createButton() {
+    const textSpan = document.createElement('span')
+    const iconSpan = document.createElement('span')
+    iconSpan.classList.add('material-icons', 'nsw-material-icons')
+    iconSpan.setAttribute('title', 'back to top')
+    iconSpan.setAttribute('focusable', 'false')
+    iconSpan.setAttribute('aria-hidden', 'true')
+
+    this.element.appendChild(textSpan)
+    this.element.appendChild(iconSpan)
+
+    this.text = this.element.querySelector('span:not(.material-icons)')
+    this.icon = this.element.querySelector('span.material-icons')
+
+    this.createButtonContent()
   }
 
   createButtonContent() {
