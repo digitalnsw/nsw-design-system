@@ -37,15 +37,14 @@ class BackTop {
   }
 
   createButton() {
-    const textSpan = document.createElement('span')
-    const iconSpan = document.createElement('span')
-    iconSpan.classList.add('material-icons', 'nsw-material-icons')
-    iconSpan.setAttribute('title', 'back to top')
-    iconSpan.setAttribute('focusable', 'false')
-    iconSpan.setAttribute('aria-hidden', 'true')
+    const textSpan = this.constructor.createElement('span')
+    const iconSpan = this.constructor.createElement('span', ['material-icons', 'nsw-material-icons'], {
+      title: 'back to top',
+      focusable: 'false',
+      'aria-hidden': 'true',
+    })
 
-    this.element.appendChild(textSpan)
-    this.element.appendChild(iconSpan)
+    this.element.append(textSpan, iconSpan)
 
     this.text = this.element.querySelector('span:not(.material-icons)')
     this.icon = this.element.querySelector('span.material-icons')
@@ -110,6 +109,19 @@ class BackTop {
         })
       }
     }
+  }
+
+  static createElement(tag, classes = [], attributes = {}) {
+    const element = document.createElement(tag)
+    if (classes.length > 0) {
+      element.classList.add(...classes)
+    }
+
+    Object.entries(attributes).forEach(([key, value]) => {
+      element.setAttribute(key, value)
+    })
+
+    return element
   }
 }
 
