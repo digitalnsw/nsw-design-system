@@ -39,7 +39,7 @@ class BackTop {
   createButton() {
     const textSpan = this.constructor.createElement('span')
     const iconSpan = this.constructor.createElement('span', ['material-icons', 'nsw-material-icons'], {
-      title: 'back to top',
+      title: 'Back to top',
       focusable: 'false',
       'aria-hidden': 'true',
     })
