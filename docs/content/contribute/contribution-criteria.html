@@ -1,11 +1,11 @@
 <!doctype html>
 <html lang="en" class="no-js">
 <head>
-  <title>NSW Digital Design System - Maps</title>
+  <title>NSW Digital Design System - Contribution criteria</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="description" content="NSW Design System maps method allows users to visualise data relative to a physical location." />
+  <meta name="description" content="All components must meet the contribution criteria before it can be published." />
   <link rel="icon" href="/nsw-design-system/favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -389,284 +389,186 @@
     <div class="nsw-docs__main nsw-docs__main--narrow">
       <div class="nsw-docs__intro">
         <div class="nsw-docs__container">
-          <h1>Maps</h1>
+          <h1>Contribution criteria</h1>
           
-          <p class="nsw-intro">Maps allow you to show data relative to a physical location.</p>
           
-          <p>
-            <a class="nsw-link nsw-link--icon" target="_blank" href="https://www.figma.com/file/nJOsPzjVMG609Cs3Ng8xaw/V3.0-NSW-Design-System?node-id&#x3D;4319%3A24995">
-              <svg width="20" height="20" viewBox="0 0 33 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.003 48c4.416 0 8-3.584 8-8v-8h-8c-4.416 0-8 3.584-8 8s3.584 8 8 8z" fill="#0ACF83"></path><path d="M.003 24c0-4.416 3.584-8 8-8h8v16h-8c-4.416 0-8-3.584-8-8z" fill="#A259FF"></path><path d="M.003 8c0-4.416 3.584-8 8-8h8v16h-8c-4.416 0-8-3.584-8-8z" fill="#F24E1E"></path><path d="M16.003 0h8c4.416 0 8 3.584 8 8s-3.584 8-8 8h-8V0z" fill="#FF7262"></path><path d="M32.003 24c0 4.416-3.584 8-8 8s-8-3.584-8-8 3.584-8 8-8 8 3.584 8 8z" fill="#1ABCFE"></path></svg>
-              <span>Figma</span>
-            </a>
-          </p>
+          
         </div>
       </div>
       <div class="nsw-docs__content">
         <div class="nsw-docs__container">
 
+<p>The Design System belongs to you, not us.</p>
+
+<p>We are just caretakers of the design system. To help us with the caretaking we need a few things from newly proposed component contributions. Our aim is to foster an inclusive atmosphere for all contributors to our projects. If you’re unsure about anything, just ask — or submit your issue or pull request anyway. The worst that can happen is we’ll politely ask you to change something.</p>
+
+<p>We value and thank you for all your well-intentioned contributions.</p>
+
 <nav class="nsw-in-page-nav" aria-labelledby="in-page-nav">
   <div id="in-page-nav" class="nsw-in-page-nav__title">On this page</div>
-  <ul>
+  <ul class="nsw-in-page-nav__list">
     <li>
-      <a href="#when-to-use">When to use</a>
+      <a href="#suggested-components">Suggested components</a>
     </li>
     <li>
-      <a href="#how-it-works">How it works</a>
+      <a href="#before-publication">Before publication</a>
     </li>
     <li>
-      <a href="#data-info-styling">Data &amp; information styling</a>
+      <a href="#supporting-evidence">Supporting evidence</a>
     </li>
     <li>
-      <a href="#code-implementation">Code implementation</a>
-    </li>
-    <li>
-      <a href="#example-page-layouts">Example page layouts</a>
+      <a href="#community">Community</a>
     </li>
   </ul>
 </nav>
 
-<h2 id="when-to-use">When to use</h2>
-<figure class="nsw-media nsw-media--right-30 nsw-media--transparent">
-  <img src="/nsw-design-system/assets/images/page-maps.png" alt="Map example page">
-</figure>
-<p>Use a map when your users need to see the location of things relative to each other - for example locations where they can access a service.</p>
-<p><strong>Test your solution</strong></p>
-<p>Maps can be a challenge for users on small screens, so it is important to carefully consider if it brings value to your product or service. Ensure on mobile, users can still scroll the page by keeping the map’s aspect ratio different to the user’s screen. </p>
-<p><strong>Provide a text-based alternative</strong></p>
-<p>Do not rely on users being able to use a map. Make the content available without using the map by offering a text-based alternative.</p>
+<h2 id="suggested-components">Suggested components</h2>
 
-<h2 id="how-it-works">How it works</h2>
-<h3>Navigating the map interface</h3>
-<p>Allow spacing around the map area on mobile devices to ensure users can scroll past map and give an option to close or minimise the map option where appropriate.</p>
-<p>To ensure users have a consistent and smooth experience with the map interface:</p>
-<ul>
-  <li>update data points as the user pans based on centre of map</li>
-  <li>use an appropriate zoom level by default</li>
-  <li>consider each zoom level carefully and what information should be visualised</li>
-  <li>use clear and legible labels</li>
-</ul>
-<h3>Data points</h3>
-<figure class="nsw-media nsw-media--right-50 nsw-media--transparent">
-  <div id='map' style='width: 100%; height: 300px;'></div>
-</figure>
-<p>Markers are used to indicate relevant data points for the user to focus and interact. When a user selects a data point, it should centre on the map and it’s listing should move to the top of the results. On selection, a pop up can also be triggered to provide a snapshot of the data point and link to further information (if requried). Pop ups should be dismissable by the close icon and also close when an alternate data point is selected.</p>
-<p>When implementing data points:</p>
-<ul>
-  <li>ensure touch target size is minimum 44px x 44px (this can include white space around the target) to ensure ease of selection on touch screen devices and comply with WCAG 2.2 accessibility requirements</li>
-  <li>if multiple data points overlap in a view, consider using the clustering symbol</li>
-</ul>
-<h3>Filtering</h3>
-<p>Filters allow a user to narrow down the visible data points by their requirements -  for example the location or available facilities. Fields labels should be descriptive and clearly identify the input required of the user (ie. postcode, suburb or full address).</p>
-<h3>Displaying results</h3>
-<p>When a user selects a result from the listing, it should move to the top of the results and centre the data point on the map with an active pop up (if applicable). Use title of the result to link user to further information.</p>
-<p>When displaying results, consider what information is important to the user and what they require to make an informed decision.</p>
-<p>When displaying results:</p>
-<ul>
-  <li>make phone numbers clickable on mobile</li>
-  <li>update results as user pans based on centre of map</li>
-</ul>
+<p>To be considered for inclusion in the design system, components and patterns must be:</p>
 
-<h2 id="data-info-styling">Data &amp; information styling</h2>
-<p>Maps in NSW Government should have a consistent look and feel. Configure your map to use the following styles.</p>
-<h3>Designing</h3>
-<figure class="nsw-media nsw-media--right-50 nsw-media--transparent">
-  <div id='mapTwo' style='width: 100%; height: 300px;'></div>
-</figure>
-<p>Use pins, cirlces or lines to represent data points. Markers are implemented using a hosted marker generator. We’ve created a sample set in Figma that can used to show example styling to developers.</p>
-<p><strong>Colour:</strong> The reccomended colour set is Blue 02, Red 02 and Grey 02. When using pins and circles you can also use an outline to ensure contrast with the map interface. If additional colours are required from the NSW Governement colour palette, be mindful of users with colour blindness and test to ensure sufficient contrast. </p>
-<p><strong>Icons:</strong> Icons can be used to highlight specific offerings of a data point. Use familiar and easily recognisable icons.</p>
-<p><strong>Pop ups:</strong> Where possible, align your pop ups to NSW Governement visual langauge. This can be done by:</p>
-<ul>
-  <li>4px border radius to indicate an interactive element</li>
-  <li>drop shadow for layering</li>
-  <li>close button in top right corner</li>
-</ul>
+<div class="nsw-table">
+  <table>
+    <thead>
+      <tr>
+        <th>Criteria</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <h4>Useful</h4>
+        </td>
+        <td>
+          <p>It addresses a user need that’s shared by multiple services or products</p>
 
-<h2 id="code-implementation">Code implementation</h2>
-<p>We recommend using a well supported maps platform, such as mapbox or leaflet.js.</p>
-<p>When adding markers, use a generator to make sure you have the flexibility needed. We've used <a href="https://www.mapbox.com" target="_blank">Mapbox</a> in our demo which contains an icon generator. If you're using leaflet, <a href="https://www.mapmarker.io" target="_blank">MapMarker.io</a> is a publicly available (CC licence) resource to generate markers on-the fly, or the SVGs below can be modified in figma.</p>
-<p>Use hex colours from the NSW Brand Palette, and work with designers if you've not been given specific colours, as your branding colours may be different to NSW corporate branding.</p>
-<h3>Marker examples</h3>
-<div class="nsw-list nsw-list--8 nsw-m-top-md">
-  <svg display="block" height="41px" width="27px" viewBox="0 0 27 41">
-    <g fill-rule="nonzero">
-      <g fill="#146cfd">
-        <path d="M27,13.5 C27,19.074644 20.250001,27.000002 14.75,34.500002 C14.016665,35.500004 12.983335,35.500004 12.25,34.500002 C6.7499993,27.000002 0,19.222562 0,13.5 C0,6.0441559 6.0441559,0 13.5,0 C20.955844,0 27,6.0441559 27,13.5 Z"></path>
-      </g>
-      <g opacity="0.25" fill="#000000">
-        <path d="M13.5,0 C6.0441559,0 0,6.0441559 0,13.5 C0,19.222562 6.7499993,27 12.25,34.5 C13,35.522727 14.016664,35.500004 14.75,34.5 C20.250001,27 27,19.074644 27,13.5 C27,6.0441559 20.955844,0 13.5,0 Z M13.5,1 C20.415404,1 26,6.584596 26,13.5 C26,15.898657 24.495584,19.181431 22.220703,22.738281 C19.945823,26.295132 16.705119,30.142167 13.943359,33.908203 C13.743445,34.180814 13.612715,34.322738 13.5,34.441406 C13.387285,34.322738 13.256555,34.180814 13.056641,33.908203 C10.284481,30.127985 7.4148684,26.314159 5.015625,22.773438 C2.6163816,19.232715 1,15.953538 1,13.5 C1,6.584596 6.584596,1 13.5,1 Z"></path>
-      </g>
-      <g transform="translate(6.0, 7.0)" fill="#FFFFFF"></g><g transform="translate(8.0, 8.0)">
-        <circle fill="#000000" opacity="0.25" cx="5.5" cy="5.5" r="5.4999962"></circle>
-        <circle fill="#FFFFFF" cx="5.5" cy="5.5" r="5.4999962"></circle>
-      </g>
-    </g>
-  </svg>
+          <p>We can't accept components that are for just one project or one specific use-case. If a component is going to be added into the system it must be designed with the intention of being reusable in a variety of circumstances by many teams or departments. We ask contributors to provide examples of the versatility of a proposed component or provide reference to community discussion about it's wider intended use.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h4>Unique</h4>
+        </td>
+        <td>
+          <p>It doesn't duplicate something which already exists in the design system, unless it's intended to replace it.</p>
 
-  <svg display="block" height="41px" width="27px" viewBox="0 0 27 41">
-    <g fill-rule="nonzero">
-      <g fill="#D7153A">
-        <path d="M27,13.5 C27,19.074644 20.250001,27.000002 14.75,34.500002 C14.016665,35.500004 12.983335,35.500004 12.25,34.500002 C6.7499993,27.000002 0,19.222562 0,13.5 C0,6.0441559 6.0441559,0 13.5,0 C20.955844,0 27,6.0441559 27,13.5 Z"></path>
-      </g>
-      <g opacity="0.25" fill="#000000">
-        <path d="M13.5,0 C6.0441559,0 0,6.0441559 0,13.5 C0,19.222562 6.7499993,27 12.25,34.5 C13,35.522727 14.016664,35.500004 14.75,34.5 C20.250001,27 27,19.074644 27,13.5 C27,6.0441559 20.955844,0 13.5,0 Z M13.5,1 C20.415404,1 26,6.584596 26,13.5 C26,15.898657 24.495584,19.181431 22.220703,22.738281 C19.945823,26.295132 16.705119,30.142167 13.943359,33.908203 C13.743445,34.180814 13.612715,34.322738 13.5,34.441406 C13.387285,34.322738 13.256555,34.180814 13.056641,33.908203 C10.284481,30.127985 7.4148684,26.314159 5.015625,22.773438 C2.6163816,19.232715 1,15.953538 1,13.5 C1,6.584596 6.584596,1 13.5,1 Z"></path>
-      </g>
-      <g transform="translate(6.0, 7.0)" fill="#FFFFFF"></g><g transform="translate(8.0, 8.0)">
-        <circle fill="#000000" opacity="0.25" cx="5.5" cy="5.5" r="5.4999962"></circle>
-        <circle fill="#FFFFFF" cx="5.5" cy="5.5" r="5.4999962"></circle>
-      </g>
-    </g>
-  </svg>
+          <p>Components shouldn't duplicate the functionality of another component. We need to keep the system slim; the more components that are in the system, the harder it is to maintain and the possibility for code-bloat and technical debt is increased.</p>
 
-  <svg display="block" height="41px" width="27px" viewBox="0 0 27 41">
-    <g fill-rule="nonzero">
-      <g fill="#495054">
-        <path d="M27,13.5 C27,19.074644 20.250001,27.000002 14.75,34.500002 C14.016665,35.500004 12.983335,35.500004 12.25,34.500002 C6.7499993,27.000002 0,19.222562 0,13.5 C0,6.0441559 6.0441559,0 13.5,0 C20.955844,0 27,6.0441559 27,13.5 Z"></path>
-      </g>
-      <g opacity="0.25" fill="#000000">
-        <path d="M13.5,0 C6.0441559,0 0,6.0441559 0,13.5 C0,19.222562 6.7499993,27 12.25,34.5 C13,35.522727 14.016664,35.500004 14.75,34.5 C20.250001,27 27,19.074644 27,13.5 C27,6.0441559 20.955844,0 13.5,0 Z M13.5,1 C20.415404,1 26,6.584596 26,13.5 C26,15.898657 24.495584,19.181431 22.220703,22.738281 C19.945823,26.295132 16.705119,30.142167 13.943359,33.908203 C13.743445,34.180814 13.612715,34.322738 13.5,34.441406 C13.387285,34.322738 13.256555,34.180814 13.056641,33.908203 C10.284481,30.127985 7.4148684,26.314159 5.015625,22.773438 C2.6163816,19.232715 1,15.953538 1,13.5 C1,6.584596 6.584596,1 13.5,1 Z"></path>
-      </g>
-      <g transform="translate(6.0, 7.0)" fill="#FFFFFF"></g><g transform="translate(8.0, 8.0)">
-        <circle fill="#000000" opacity="0.25" cx="5.5" cy="5.5" r="5.4999962"></circle>
-        <circle fill="#FFFFFF" cx="5.5" cy="5.5" r="5.4999962"></circle>
-      </g>
-    </g>
-  </svg>
-</div>
-<div class="nsw-docs__example nsw-docs__example--hidden">
-  <div class="nsw-docs__component">
-  </div>
-</div>
-<div class="nsw-docs-code">
-  <button class="nsw-link nsw-link--button nsw-link--icon nsw-small js-code-button">
-    <span>Show code</span>
-    <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
-  </button>
-  <div class="nsw-docs-code__content">
-    <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
-      <span>Copy</span>
-      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
-    </button>
-    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`<svg display="block" height="41px" width="27px" viewBox="0 0 27 41">
-  <g fill-rule="nonzero">
-    <g fill="#146cfd">
-      <path d="M27,13.5 C27,19.074644 20.250001,27.000002 14.75,34.500002 C14.016665,35.500004 12.983335,35.500004 12.25,34.500002 C6.7499993,27.000002 0,19.222562 0,13.5 C0,6.0441559 6.0441559,0 13.5,0 C20.955844,0 27,6.0441559 27,13.5 Z"></path>
-    </g>
-    <g opacity="0.25" fill="#000000">
-      <path d="M13.5,0 C6.0441559,0 0,6.0441559 0,13.5 C0,19.222562 6.7499993,27 12.25,34.5 C13,35.522727 14.016664,35.500004 14.75,34.5 C20.250001,27 27,19.074644 27,13.5 C27,6.0441559 20.955844,0 13.5,0 Z M13.5,1 C20.415404,1 26,6.584596 26,13.5 C26,15.898657 24.495584,19.181431 22.220703,22.738281 C19.945823,26.295132 16.705119,30.142167 13.943359,33.908203 C13.743445,34.180814 13.612715,34.322738 13.5,34.441406 C13.387285,34.322738 13.256555,34.180814 13.056641,33.908203 C10.284481,30.127985 7.4148684,26.314159 5.015625,22.773438 C2.6163816,19.232715 1,15.953538 1,13.5 C1,6.584596 6.584596,1 13.5,1 Z"></path>
-    </g>
-    <g transform="translate(6.0, 7.0)" fill="#FFFFFF"></g><g transform="translate(8.0, 8.0)">
-      <circle fill="#000000" opacity="0.25" cx="5.5" cy="5.5" r="5.4999962"></circle>
-      <circle fill="#FFFFFF" cx="5.5" cy="5.5" r="5.4999962"></circle>
-    </g>
-  </g>
-</svg>
-`).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
-    <div class="nsw-docs-code__wrapper">
-<pre><code class="language-html"><script>document.write((`<svg display="block" height="41px" width="27px" viewBox="0 0 27 41">
-  <g fill-rule="nonzero">
-    <g fill="#146cfd">
-      <path d="M27,13.5 C27,19.074644 20.250001,27.000002 14.75,34.500002 C14.016665,35.500004 12.983335,35.500004 12.25,34.500002 C6.7499993,27.000002 0,19.222562 0,13.5 C0,6.0441559 6.0441559,0 13.5,0 C20.955844,0 27,6.0441559 27,13.5 Z"></path>
-    </g>
-    <g opacity="0.25" fill="#000000">
-      <path d="M13.5,0 C6.0441559,0 0,6.0441559 0,13.5 C0,19.222562 6.7499993,27 12.25,34.5 C13,35.522727 14.016664,35.500004 14.75,34.5 C20.250001,27 27,19.074644 27,13.5 C27,6.0441559 20.955844,0 13.5,0 Z M13.5,1 C20.415404,1 26,6.584596 26,13.5 C26,15.898657 24.495584,19.181431 22.220703,22.738281 C19.945823,26.295132 16.705119,30.142167 13.943359,33.908203 C13.743445,34.180814 13.612715,34.322738 13.5,34.441406 C13.387285,34.322738 13.256555,34.180814 13.056641,33.908203 C10.284481,30.127985 7.4148684,26.314159 5.015625,22.773438 C2.6163816,19.232715 1,15.953538 1,13.5 C1,6.584596 6.584596,1 13.5,1 Z"></path>
-    </g>
-    <g transform="translate(6.0, 7.0)" fill="#FFFFFF"></g><g transform="translate(8.0, 8.0)">
-      <circle fill="#000000" opacity="0.25" cx="5.5" cy="5.5" r="5.4999962"></circle>
-      <circle fill="#FFFFFF" cx="5.5" cy="5.5" r="5.4999962"></circle>
-    </g>
-  </g>
-</svg>
-`).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
-    </div>
-  </div>
+          <p>If a component is similar in function consider extending it rather than duplicating it.</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
+<h2 id="before-publication">Before publication</h2>
 
+<p>Before new components and patterns are published into the design system, the team of core contributors will review them to make sure that they are::</p>
 
-<h2 id="example-page-layouts">Example page layouts</h2>
-<div class="nsw-grid nsw-m-top-md">
-  <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
-    <div class="nsw-card nsw-card--headline">
-      <div class="nsw-card__content">
-        <div class="nsw-card__title">
-          <a target="_blank" href="/nsw-design-system/templates/map/location-filters.html">Location primary with sub filters</a>
-        </div>
-        <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span>
-      </div>
-    </div>
-  </div>
-  <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
-    <div class="nsw-card nsw-card--headline">
-      <div class="nsw-card__content">
-        <div class="nsw-card__title">
-          <a target="_blank" href="/nsw-design-system/templates/map/equal-filters.html">Equal value filters</a>
-        </div>
-        <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span>
-      </div>
-    </div>
-  </div>
-  <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
-    <div class="nsw-card nsw-card--headline">
-      <div class="nsw-card__content">
-        <div class="nsw-card__title">
-          <a target="_blank" href="/nsw-design-system/templates/map/location-only.html">Location based only</a>
-        </div>
-        <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span>
-      </div>
-    </div>
-  </div>
+<div class="nsw-table">
+  <table>
+    <thead>
+      <tr>
+        <th>Criteria</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <h4>Distinctly NSW</h4>
+        </td>
+        <td>
+          <p>We would like NSW Government website users to feel like they are on a NSW Government website, to ensure this is the case all suggested components must be aligned to the distinctly NSW look and feel. Access the latest <a href="https://digitalnsw.github.io/nsw-design-system/docs/content/design/figma-ui-kit.html">NSW Design System Figma UI kit</a>.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h4>Usable</h4>
+        </td>
+        <td>
+          <p>It's been tested and shown to work with a representative sample of users, including those with disabilities.</p>
+          <p>We need to know that any new components are working as intended for the end-user.<br>
+            Task-based testing for a specific component is preferred. But at a minimum components in the design system should be tested as part of a product or service and have been operating in a live or beta environment for a period of time before being integrated into the system.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h4>Consistent</h4>
+        </td>
+        <td>
+          <p>It uses existing styles and components in the design system where relevant.</p>
+          <p>Components that follow the system are much more themeable and reusable by other teams. New components must follow the system as closely as possible, particularly the specifics of colour, spacing, and typescale in ~/src/global/scss/settings/settings.scss.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h4>Versatile</h4>
+        </td>
+        <td>
+          <p>It can be easily applied in different contexts.</p>
+          <p><strong>Responsive</strong>: All components should fill the width of their parent element. This is so that layouts aren't dictated by components, but rather components fit the required layouts.</p>
+          <p><strong>Robust</strong>: Components should accommodate varied content and varied content lengths. For example, what happens with a navigation component that has more items than demonstrated?</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h4>Coded</h4>
+        </td>
+        <td>
+          <p>Components are ready to merge in.</p>
+          <p><strong>Code is for humans:</strong> Please look at our coding style and work with it, not against it. We add spacing, and prefer readable code over clever code. Yes, code is actually for computers, but it is humans that need to maintain it.</p>
+          <p><strong>Code comments:</strong> Our stance on commenting code is that we encourage code to be cleanly and logically written to minimize the need to comment. Sensible and clear naming of functions and variables would also help readability without the need for excess comments.</p>
+          <p><strong>Follow the folder structure:</strong> New components should follow the same folder structure as the existing components.</p>
+          <p><strong>CSS </strong>can be dependent on other components, but must use core functions and mixins at a minimum.</p>
+          <ul>
+            <li>For spacing, padding, or other metrics like border-width, reference ~/src/global/scss/helpers/_spacing.scss</li>
+            <li>For font-sizes and line-height, reference ~/src/global/scss/tools/_typograpghy.scss</li>
+            <li>For colours, reference ~/src/global/scss/settings/settings.scss.</li>
+          </ul>
+          <p><strong>JavaScript</strong>: The Design System vanilla JavaScript which gets transpiled to ES5. We would rather avoid using jquery if possible.</p>
+          <p>PS: Don't forget to remove your debugging! :)</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h4>Tested</h4>
+        </td>
+        <td>
+          <p>It's been tested and shown to work with a range of browsers, assistive technologies and devices.</p>
+          <p><strong>Accessibility</strong>: A component on its own must be accessible to WCAG 2.1 level AA. Some documentation on how this has been checked, tested, or decisions made to support accessibility should be supplied.</p>
+          <p><strong>Browser and device tested</strong>: All components should meet our browser support requirements.</p>
+          <p><strong>No JavaScript fallbacks</strong>: All components must degrade gracefully when JavaScript is disabled. We expect that a user can still complete their task without JavaScript enabled, it just might not be beautiful. For example, accordions default to 'open' when JavaScript is disabled so that users can still use the content.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h4>Considered</h4>
+        </td>
+        <td>
+          <p>Documentation and rationale have been provided. Include a high-level description for what the pattern is, and what it's for.</p>
+          <p>We aim to explain design and code decisions as openly as possible. Explanations about why decisions have been made help others understand the work involved but also help them understand the consequences of overriding.</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
-<link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
-<style>
-  .mapboxgl-popup-content {
-    border-radius: 4px!important;
-    box-shadow: 0px 4px 12px rgb(0 0 0 / 15%)!important;
-    min-width: 150px;
-    font-family: var(--nsw-font-family);
-  }
-</style>
+<h2 id="supporting-evidence">Supporting evidence</h2>
 
-<script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
-<script>
-  mapboxgl.accessToken = 'pk.eyJ1IjoidGpoYXJyb3AiLCJhIjoiY2tuZ3piMDk0MGF4bDJwcGtlengzNzN6OCJ9.ER-_rNkxtWlkntifNoVZdw';
-  var map = new mapboxgl.Map({
-    container: 'map',
-    style: 'mapbox://styles/tjharrop/ckngzc5t308ca17to11dloj89'
-  });
+<p>When making a new component, we would be very grateful if you <a href="https://community.digital.nsw.gov.au/" target="_blank">post the research, design decisions and use cases for the component</a>. Accessibility considerations should be documented or sourced from the community forum before submitting a pull request.</p>
 
-  var mapTwo = new mapboxgl.Map({
-    container: 'mapTwo',
-    style: 'mapbox://styles/tjharrop/ckngzc5t308ca17to11dloj89',
-    center: [151.179428, -33.947346],
-    zoom: 10 // starting zoom
-  });
+<p>This may be in the form of a code snippet, screenshots, sketch files or written text on your research with references. This gives a chance for members of the community to respond and share any work they may have done in the past on a similar component.</p>
 
-  const markerAirport = new mapboxgl.Marker({
-    color: "#D7153A"
-  }).setLngLat([151.179428, -33.947346])
-  .addTo(map);
+<h2 id="community">Community</h2>
 
-  const markerSNSW = new mapboxgl.Marker({
-    color: "#366CFD"
-  }).setLngLat([151.1966803,-33.9405222])
-  .addTo(map);
+<p>The <a href="https://community.digital.nsw.gov.au/" target="_blank">Digital NSW Community</a> brings together like-minded digital creators to collaborate, share and leverage learnings to create better customer experiences.</p>
 
-  const markerThree = new mapboxgl.Marker({
-    color: "#495054"
-  }).setLngLat([151.205065,-33.95535])
-  .addTo(map);
+<p>We encourage you to ask questions, pose problems/solutions and share your work so we can grow the design system. </p>
 
-  const popup = new mapboxgl.Popup({ closeOnClick: false })
-  .setLngLat([151.179428, -33.947346])
-  .setHTML('<strong>Sydney Airport</strong><br>Airport Dr<br>Sydney, NSW<br> 2020')
-  .addTo(mapTwo);
+<h4>Attribution</h4>
 
-  map.scrollZoom.disable();
-  mapTwo.scrollZoom.disable();
-</script>
-
+<p>This Contribution Guide is adapted from <a href="https://github.com/govau/design-system-components/blob/master/CONTRIBUTING.md">Contributing to Australian Government Design System Components</a>.</p>
         </div>
       </div>
       <footer class="nsw-footer nsw-docs-footer">
