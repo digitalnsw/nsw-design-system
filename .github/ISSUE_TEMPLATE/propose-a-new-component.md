@@ -7,9 +7,9 @@ assignees: ''
 
 ---
 
-## Contribution Criteria
-•    Useful: The component is commonly used or required and this need cannot be met with an existing component.
-•    Unique: It doesn’t duplicate something which already exists in the design system, unless it’s intended to replace it.
+## Does it meet the contribution criteria?
+> Is it useful: Is the component is commonly used or required and this need cannot be met with an existing component.
+> Is it unique: It doesn’t duplicate something which already exists in the design system, unless it’s intended to replace it.
 
 ## What
 > Give a brief description of the style, component or pattern you want to propose.
