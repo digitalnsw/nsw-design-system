@@ -1,18 +1,19 @@
 /* eslint-disable max-len */
-import SiteSearch from './components/header/header'
-import Navigation from './components/main-nav/main-nav'
 import Accordion from './components/accordion/accordion'
-import Dialog from './components/dialog/dialog'
-import Filters from './components/filters/filters'
-import FileUpload from './components/file-upload/file-upload'
-import Tabs from './components/tabs/tabs'
-import GlobalAlert from './components/global-alert/global-alert'
-import Select from './components/select/select'
-import Tooltip from './components/tooltip/tooltip'
-import Toggletip from './components/tooltip/toggletip'
-import ExternalLink from './components/link/link'
-import Popover from './components/popover/popover'
 import BackTop from './components/back-to-top/back-to-top'
+import Dialog from './components/dialog/dialog'
+import ExternalLink from './components/link/link'
+import FileUpload from './components/file-upload/file-upload'
+import Filters from './components/filters/filters'
+import GlobalAlert from './components/global-alert/global-alert'
+import Navigation from './components/main-nav/main-nav'
+import Popover from './components/popover/popover'
+import Select from './components/select/select'
+import SiteSearch from './components/header/header'
+import Tabs from './components/tabs/tabs'
+import Toggletip from './components/tooltip/toggletip'
+import Tooltip from './components/tooltip/tooltip'
+import UtilityList from './components/utility-list/utility-list'
 
 if (window.NodeList && !NodeList.prototype.forEach) {
   NodeList.prototype.forEach = Array.prototype.forEach
@@ -35,26 +36,32 @@ if (!Element.prototype.closest) {
 }
 
 function initSite() {
-  // Header Search
-  const openSearchButton = document.querySelectorAll('.js-open-search')
-  const closeSearchButton = document.querySelectorAll('.js-close-search')
-  const navigation = document.getElementById('main-nav')
   const accordions = document.querySelectorAll('.js-accordion')
+  const backTop = document.querySelectorAll('.js-back-to-top')
+  const closeSearchButton = document.querySelectorAll('.js-close-search')
   const dialogs = document.querySelectorAll('.js-dialog')
   const fileUpload = document.querySelectorAll('.js-file-upload')
   const filters = document.querySelectorAll('.js-filters')
-  const tabs = document.querySelectorAll('.js-tabs')
   const globalAlert = document.querySelectorAll('.js-global-alert')
-  const multiSelect = document.querySelectorAll('.js-multi-select')
-  const tooltip = document.querySelectorAll('.js-tooltip')
-  const toggletip = document.querySelectorAll('.js-toggletip')
   const link = document.querySelectorAll('.js-link')
+  const multiSelect = document.querySelectorAll('.js-multi-select')
+  const navigation = document.getElementById('main-nav')
+  const openSearchButton = document.querySelectorAll('.js-open-search')
   const popover = document.querySelectorAll('.js-popover')
-  const backTop = document.querySelectorAll('.js-back-to-top')
+  const tabs = document.querySelectorAll('.js-tabs')
+  const toggletip = document.querySelectorAll('.js-toggletip')
+  const tooltip = document.querySelectorAll('.js-tooltip')
+  const utilityList = document.querySelectorAll('.js-utility-list')
 
-  if (openSearchButton) {
-    openSearchButton.forEach((element) => {
-      new SiteSearch(element).init()
+  if (accordions) {
+    accordions.forEach((element) => {
+      new Accordion(element).init()
+    })
+  }
+
+  if (backTop) {
+    backTop.forEach((element) => {
+      new BackTop(element).init()
     })
   }
 
@@ -64,17 +71,11 @@ function initSite() {
     })
   }
 
-  if (navigation) {
-    new Navigation(navigation).init()
+  if (dialogs) {
+    dialogs.forEach((element) => {
+      new Dialog(element).init()
+    })
   }
-
-  accordions.forEach((element) => {
-    new Accordion(element).init()
-  })
-
-  dialogs.forEach((element) => {
-    new Dialog(element).init()
-  })
 
   if (fileUpload) {
     fileUpload.forEach((element) => {
@@ -88,33 +89,9 @@ function initSite() {
     })
   }
 
-  if (tabs) {
-    tabs.forEach((element) => {
-      new Tabs(element).init()
-    })
-  }
-
   if (globalAlert) {
     globalAlert.forEach((element) => {
       new GlobalAlert(element).init()
-    })
-  }
-
-  if (multiSelect) {
-    multiSelect.forEach((element) => {
-      new Select(element).init()
-    })
-  }
-
-  if (tooltip) {
-    tooltip.forEach((element) => {
-      new Tooltip(element).init()
-    })
-  }
-
-  if (toggletip) {
-    toggletip.forEach((element) => {
-      new Toggletip(element).init()
     })
   }
 
@@ -124,19 +101,54 @@ function initSite() {
     })
   }
 
+  if (multiSelect) {
+    multiSelect.forEach((element) => {
+      new Select(element).init()
+    })
+  }
+
+  if (navigation) {
+    new Navigation(navigation).init()
+  }
+
+  if (openSearchButton) {
+    openSearchButton.forEach((element) => {
+      new SiteSearch(element).init()
+    })
+  }
+
   if (popover) {
     popover.forEach((element) => {
       new Popover(element).init()
     })
   }
 
-  if (backTop) {
-    backTop.forEach((element) => {
-      new BackTop(element).init()
+  if (tabs) {
+    tabs.forEach((element) => {
+      new Tabs(element).init()
+    })
+  }
+
+  if (toggletip) {
+    toggletip.forEach((element) => {
+      new Toggletip(element).init()
+    })
+  }
+
+  if (tooltip) {
+    tooltip.forEach((element) => {
+      new Tooltip(element).init()
+    })
+  }
+
+  if (utilityList) {
+    utilityList.forEach((element) => {
+      const shareItem = element.querySelector('.js-share')
+      new UtilityList(element, shareItem).init()
     })
   }
 }
 
 export {
-  initSite, SiteSearch, Navigation, Accordion, Tabs, GlobalAlert, Dialog, Filters, FileUpload, Select, Tooltip, Toggletip, ExternalLink, Popover, BackTop,
+  initSite, Accordion, BackTop, Dialog, ExternalLink, FileUpload, Filters, GlobalAlert, Navigation, Popover, Select, SiteSearch, Tabs, Toggletip, Tooltip, UtilityList,
 }
