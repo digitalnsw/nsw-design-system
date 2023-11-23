@@ -2,10 +2,17 @@
 title: Utility list
 width: narrow
 page: true
-model:
-  utility-list: ../../components/utility-list/json/utility-list.json
+model: ../../components/utility-list/json/utility-list.json
 ---
 
 {{#>_layout-container}}
+
+{{#each model}}
+  {{#each this}}
+    {{#each this}}
+      {{>_utility-list}}
+    {{/each}}
+  {{/each}}
+{{/each}}
 
 {{/_layout-container}}
