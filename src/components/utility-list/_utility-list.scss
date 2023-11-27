@@ -1,4 +1,6 @@
 .nsw-utility-list {
+  background-color: var(--nsw-off-white);
+
   @include component-spacing();
 
   &__title {
@@ -46,6 +48,31 @@
 
     .nsw-section--invert & {    
       color: var(--nsw-text-light);
+      background-color: rgba(var(--nsw-palette-blue-01-rgb), 1);
+      color: var(--nsw-text-light);
+      
+      span:not(.nsw-toggletip__element .nsw-material-icons) {
+        color: var(--nsw-text-light);
+      }
+
+      svg {  
+        path {
+          fill: var(--nsw-brand-dark);
+        }
+      }
+      
+      &:hover {
+        background-color: rgba(var(--nsw-palette-blue-01-rgb), 0.8);
+      }
+    
+      &:focus {
+        outline: solid 3px var(--nsw-focus);
+        outline-offset: 0;
+      }
+    
+      &:visited {
+        color: var(--nsw-text-visited);
+      }
     }
 
     svg {
@@ -53,8 +80,12 @@
       height: rem(24px);
 
       path {
-        fill: var(--nsw-white);
+        fill: var(--nsw-brand-dark);
       }
+    }
+
+    span {
+      color: var(--nsw-brand-dark);
     }
   }
 
@@ -78,67 +109,6 @@
       }
 
       span:not(.nsw-toggletip__element .nsw-material-icons) {
-        color: var(--nsw-brand-dark);
-      }
-    }
-  }
-
-  &--dark {
-    .nsw-utility-list__item {
-      background-color: rgba(var(--nsw-palette-blue-01-rgb), 1);
-      color: var(--nsw-text-light);
-      
-      span:not(.nsw-toggletip__element .nsw-material-icons) {
-        color: var(--nsw-text-light);
-      }
-
-      svg {  
-        path {
-          fill: var(--nsw-brand-dark);
-        }
-      }
-
-      &:hover {
-        background-color: rgba(var(--nsw-palette-blue-01-rgb), 0.8);
-      }
-    
-      &:focus {
-        outline: solid 3px var(--nsw-focus);
-        outline-offset: 0;
-      }
-    
-      &:visited {
-        color: var(--nsw-text-visited);
-      }
-    }
-  }
-
-  &--light {
-    background-color: var(--nsw-brand-light);
-    color: var(--nsw-text-dark);
-
-    .nsw-utility-list__item {
-      border-color: var(--nsw-off-white);
-
-      svg {  
-        path {
-          fill: var(--nsw-brand-dark);
-        }
-      }
-    }
-  }
-
-  &--off-white {
-    background-color: var(--nsw-off-white);
-
-    .nsw-utility-list__item {
-      svg {  
-        path {
-          fill: var(--nsw-brand-dark);
-        }
-      }
-
-      span {
         color: var(--nsw-brand-dark);
       }
     }

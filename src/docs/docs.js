@@ -1,5 +1,6 @@
 import Autocomplete from './autocomplete'
 import ExpandableSearch from './expandable-search'
+import DownloadPDF from './download-pdf'
 
 function initDocs() {
   const codeButtons = document.querySelectorAll('.js-code-button')
@@ -83,6 +84,14 @@ function initDocs() {
   if (expandableSearch) {
     expandableSearch.forEach((element) => {
       new ExpandableSearch(element).init()
+    })
+  }
+
+  const downloadPDF = document.querySelectorAll('.js-download-page')
+
+  if (downloadPDF) {
+    downloadPDF.forEach((element) => {
+      new DownloadPDF(element).init()
     })
   }
 }

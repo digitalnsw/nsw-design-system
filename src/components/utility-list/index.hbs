@@ -9,25 +9,11 @@ meta-description: A Utility list contains a list of common actions or tools for 
 meta-index: true
 ---
 
-<div class="nsw-tabs js-tabs">
-  <ul class="nsw-tabs__list">
-    <li><a href="#off-white" class="js-tabs-fixed">Off-White</a></li>
-    <li><a href="#white" class="js-tabs-fixed">White</a></li>
-    <li><a href="#dark" class="js-tabs-fixed">Brand Dark</a></li>
-    <li><a href="#light" class="js-tabs-fixed">Brand Light</a></li>
-  </ul>
-
 {{#each model}}
-  <section id="{{@key}}" class="nsw-tabs__content nsw-tabs__content--side-flush">
+  <h3>{{@key}}</h3>
   {{#each this}}
-    <h3>{{@key}}</h3>
-    {{#each this}}
-{{#>_docs-example separated=true}}
-{{>_utility-list}}
-{{/_docs-example}}
-    {{/each}}
+    {{#>_docs-example separated=true}}
+{{>_utility-list pdf="nsw-docs__main"}}
+    {{/_docs-example}}
   {{/each}}
-  </section>
 {{/each}}
-
-</div>
