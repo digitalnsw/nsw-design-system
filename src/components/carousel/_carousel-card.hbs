@@ -1,13 +1,24 @@
-<li class="nsw-carousel__item nsw-col nsw-col-md-6 nsw-col-lg-4">
-  <div class="nsw-card">
-    <div class="nsw-card__content">
-      <div class="nsw-card__title">
-        <a href="#">1</a>
-      </div>
-      <div class="nsw-card__copy">
-        <p>Helps you compare electricity and gas and switch providers.</p>
-      </div>
-      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span>
-    </div>
+  <div class="nsw-carousel__wrapper">
+    <ol class="nsw-carousel__list nsw-grid">
+      {{#each cards}}
+      <li class="nsw-carousel__item nsw-col nsw-col-md-6 nsw-col-lg-4">
+        <div class="nsw-card nsw-card--headline">
+          {{#if img}}
+          <div class="nsw-card__image">
+            <img src="{{img}}" alt="{{heading}}">
+          </div>
+          {{/if}}
+          <div class="nsw-card__content">
+            <div class="nsw-card__title">
+              <a href="#">{{heading}}</a>
+            </div>{{#if copy}}
+            <div class="nsw-card__copy">
+              <p>{{copy}}</p>
+            </div>{{/if}}
+            <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span>
+          </div>
+        </div>
+      </li>
+      {{/each}}
+    </ol>
   </div>
-</li>
