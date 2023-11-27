@@ -6,6 +6,7 @@ class UtilityList extends Toggletip {
     this.utility = element
     this.share = toggletip
     this.print = this.utility.querySelectorAll('.js-print-page')
+    this.download = this.utility.querySelectorAll('.js-download-page')
     this.copy = this.utility.querySelectorAll('.js-copy-clipboard')
     this.shareItems = this.share.querySelectorAll('a')
     this.urlLocation = window.location.href
@@ -38,11 +39,28 @@ class UtilityList extends Toggletip {
       element.addEventListener('click', () => {
         window.print()
       })
+
+      element.addEventListener('keyup', (event) => {
+        if ((event.code && event.code.toLowerCase() === 'enter') || (event.key && event.key.toLowerCase() === 'enter')) {
+          window.print()
+        }
+      })
     })
+
+    this.download.forEach((element) => {
+      element.setAttribute('tabindex', '0')
+    })
+
     this.copy.forEach((element) => {
       element.setAttribute('tabindex', '0')
       element.addEventListener('click', () => {
         this.copyToClipboard(element)
+      })
+
+      element.addEventListener('keyup', (event) => {
+        if ((event.code && event.code.toLowerCase() === 'enter') || (event.key && event.key.toLowerCase() === 'enter')) {
+          this.copyToClipboard(element)
+        }
       })
     })
   }
