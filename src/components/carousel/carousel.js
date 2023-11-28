@@ -1,60 +1,23 @@
 import SwipeContent from './swipe-content'
 
-/* eslint-disable */
-function extendProps() {
-  // Variables
-  const extended = {}
-  let deep = false
-  let i = 0
-  const { length } = arguments
-  // Check if a deep merge
-  if (Object.prototype.toString.call(arguments[0]) === '[object Boolean]') {
-    deep = arguments[0]
-    i++
-  }
-  // Merge the object into the extended object
-  const merge = function (obj) {
-    for (const prop in obj) {
-      if (Object.prototype.hasOwnProperty.call(obj, prop)) {
-      // If deep merge and property is an object, merge properties
-        if (deep && Object.prototype.toString.call(obj[prop]) === '[object Object]') {
-          extended[prop] = extend(true, extended[prop], obj[prop])
-        } else {
-          extended[prop] = obj[prop]
-        }
-      }
-    }
-  }
-  // Loop through each object and conduct a merge
-  for (; i < length; i++) {
-    const obj = arguments[i]
-    merge(obj)
-  }
-  return extended
-}
 /* eslint-disable no-new, max-len */
-
-const defaults = {
-  element: '',
-  autoplay: false,
-  autoplayOnHover: false,
-  autoplayOnFocus: false,
-  autoplayInterval: 5000,
-  loop: true,
-  nav: false,
-  navigationItemClass: 'nsw-carousel__nav-item',
-  navigationClass: 'nsw-carousel__navigation',
-  navigationPagination: false,
-  drag: false,
-  justifyContent: false,
-  alignControls: false,
-  overflowItems: false,
-}
-
 class Carousel {
-  constructor(opts) {
-    this.options = extendProps(defaults, opts)
-    this.element = this.options.element
+  constructor(element) {
+    this.element = element
+    this.autoplay = !!((element.getAttribute('data-autoplay') && element.getAttribute('data-autoplay') === 'on'))
+    this.autoplayInterval = (element.getAttribute('data-autoplay-interval')) ? element.getAttribute('data-autoplay-interval') : 5000
+    this.autoplayOnHover = !!((element.getAttribute('data-autoplay-hover') && element.getAttribute('data-autoplay-hover') === 'on'))
+    this.autoplayOnFocus = !!((element.getAttribute('data-autoplay-focus') && element.getAttribute('data-autoplay-focus') === 'on'))
+    this.drag = !!((element.getAttribute('data-drag') && element.getAttribute('data-drag') === 'on'))
+    this.ariaLive = true
+    this.loop = !((element.getAttribute('data-loop') && element.getAttribute('data-loop') === 'off'))
+    this.nav = !!((element.getAttribute('data-navigation') && element.getAttribute('data-navigation') === 'on'))
+    this.navigationItemClass = element.getAttribute('data-navigation-item-class') ? element.getAttribute('data-navigation-item-class') : 'nsw-carousel__nav-item'
+    this.navigationClass = element.getAttribute('data-navigation-class') ? element.getAttribute('data-navigation-class') : 'nsw-carousel__navigation'
+    this.navigationPagination = !!((element.getAttribute('data-navigation-pagination') && element.getAttribute('data-navigation-pagination') === 'on'))
+    this.overflowItems = !!((element.getAttribute('data-overflow-items') && element.getAttribute('data-overflow-items') === 'off'))
+    this.alignControls = element.getAttribute('data-align-controls') ? element.getAttribute('data-align-controls') : false
+    this.justifyContent = !!((element.getAttribute('data-justify-content') && element.getAttribute('data-justify-content') === 'on'))
     this.listWrapper = this.element.querySelector('.nsw-carousel__wrapper')
     this.list = this.element.querySelector('.nsw-carousel__list')
     this.items = this.element.getElementsByClassName('nsw-carousel__item')
@@ -76,7 +39,7 @@ class Carousel {
     this.cloneList = [] // used to re-initialize js
     this.itemAutoSize = false // store items min-width
     this.totTranslate = 0 // store translate value (loop = off)
-    if (this.options.nav) this.options.loop = false // modify loop option if navigation is on
+    if (this.nav) this.loop = false // modify loop option if navigation is on
     this.counter = this.element.querySelectorAll('.js-carousel__counter') // store counter elements (if present)
     this.counterTor = this.element.querySelectorAll('.js-carousel__counter-tot')
     this.element.classList.add('carousel--loaded')
@@ -150,7 +113,7 @@ class Carousel {
     if (this.items.length <= this.visibItemsNb) this.totTranslate = 0
 
     this.centerItems() // center items if this.items.length < visibItemsNb
-    this.alignControls() // check if controls need to be aligned to a different element
+    this.alignControlsFunc() // check if controls need to be aligned to a different element
   }
 
   setItemsWidth(bool) {
@@ -161,7 +124,7 @@ class Carousel {
   }
 
   updateCarouselClones() {
-    if (!this.options.loop) return
+    if (!this.loop) return
     // take care of clones after visible items (needs to run after the update of clones before visible items)
     if (this.items.length < this.visibItemsNb * 3) {
       this.insertAfter(this.visibItemsNb * 3 - this.items.length, this.items.length - this.visibItemsNb * 2)
@@ -175,7 +138,7 @@ class Carousel {
   initCarouselEvents() {
     // listen for click on previous/next arrow
     // dots navigation
-    if (this.options.nav) {
+    if (this.nav) {
       this.carouselCreateNavigation()
       this.carouselInitNavigationEvents()
     }
@@ -198,10 +161,10 @@ class Carousel {
       this.emitCarouselActiveItemsEvent()
     }
     // autoplay
-    if (this.options.autoplay) {
+    if (this.autoplay) {
       this.startAutoplay()
       // pause autoplay if user is interacting with the carousel
-      if (!this.options.autoplayOnHover) {
+      if (!this.autoplayOnHover) {
         this.element.addEventListener('mouseenter', () => {
           this.pauseAutoplay()
           this.autoplayPaused = true
@@ -211,7 +174,7 @@ class Carousel {
           this.startAutoplay()
         })
       }
-      if (!this.options.autoplayOnFocus) {
+      if (!this.autoplayOnFocus) {
         this.element.addEventListener('focusin', () => {
           this.pauseAutoplay()
           this.autoplayPaused = true
@@ -224,7 +187,7 @@ class Carousel {
       }
     }
     // drag events
-    if (this.options.drag && window.requestAnimationFrame) {
+    if (this.drag && window.requestAnimationFrame) {
       // init dragging
       new SwipeContent(this.element)
       this.element.addEventListener('dragStart', (event) => {
@@ -241,7 +204,7 @@ class Carousel {
         if (!this.dragStart) return
         if (this.animating || Math.abs(event.detail.x - this.dragStart) < 10) return
         let translate = event.detail.x - this.dragStart + this.translateContainer
-        if (!this.options.loop) {
+        if (!this.loop) {
           translate = event.detail.x - this.dragStart + this.totTranslate
         }
         this.setTranslate(`translateX(${translate}px)`)
@@ -259,7 +222,7 @@ class Carousel {
         this.setCounterItem()
         this.startAutoplay()
         this.centerItems() // center items if this.items.length < visibItemsNb
-        this.alignControls()
+        this.alignControlsFunc()
         // emit custom event - items visible
         this.emitCarouselActiveItemsEvent()
       }, 250)
@@ -314,7 +277,7 @@ class Carousel {
     this.pauseAutoplay()
     this.list.classList.add('nsw-carousel__list--animating')
     const initTranslate = this.totTranslate
-    if (!this.options.loop) {
+    if (!this.loop) {
       trans = this.noLoopTranslateValue(direction)
     }
     setTimeout(() => { this.setTranslate(`translateX(${trans})`) })
@@ -333,7 +296,7 @@ class Carousel {
     } else {
       this.animateListCb(direction)
     }
-    if (!this.options.loop && (initTranslate === this.totTranslate)) {
+    if (!this.loop && (initTranslate === this.totTranslate)) {
       // translate value was not updated -> trigger transitionend event to restart carousel
       this.list.dispatchEvent(new CustomEvent('transitionend'))
     }
@@ -375,7 +338,7 @@ class Carousel {
   }
 
   updateClones(direction) {
-    if (!this.options.loop) return
+    if (!this.loop) return
     // at the end of each animation, we need to update the clones before and after the visible items
     const index = (direction === 'next') ? 0 : this.items.length - this.visibItemsNb
     // remove clones you do not need anymore
@@ -391,7 +354,7 @@ class Carousel {
   }
 
   insertBefore(nb, delta) {
-    if (!this.options.loop) return
+    if (!this.loop) return
     const clones = document.createDocumentFragment()
     let start = 0
     if (delta) start = delta
@@ -406,7 +369,7 @@ class Carousel {
   }
 
   insertAfter(nb, init) {
-    if (!this.options.loop) return
+    if (!this.loop) return
     const clones = document.createDocumentFragment()
     for (let i = init; i < nb + init; i += 1) {
       const index = this.getIndex(this.selectedItem + this.visibItemsNb + i)
@@ -420,7 +383,7 @@ class Carousel {
 
   removeClones(index, bool) {
     let newBool = bool
-    if (!this.options.loop) return
+    if (!this.loop) return
     if (!bool) {
       newBool = this.visibItemsNb
     }
@@ -436,7 +399,7 @@ class Carousel {
     this.initCarouselLayout()
     this.setItemsWidth(false)
     this.resetItemsWidth() // update the array of original items -> array used to create clones
-    if (this.options.loop) {
+    if (this.loop) {
       if (visibleItems > this.visibItemsNb) {
         this.removeClones(0, visibleItems - this.visibItemsNb)
       } else if (visibleItems < this.visibItemsNb) {
@@ -469,7 +432,7 @@ class Carousel {
     const carouselActive = this.items.length > this.visibItemsNb
     let j = this.items.length
     for (let i = 0; i < this.items.length; i += 1) {
-      if (this.options.loop) {
+      if (this.loop) {
         if (i < this.visibItemsNb || i >= 2 * this.visibItemsNb) {
           this.items[i].setAttribute('tabindex', '-1')
         } else {
@@ -487,22 +450,22 @@ class Carousel {
   }
 
   startAutoplay() {
-    if (this.options.autoplay && !this.autoplayId && !this.autoplayPaused) {
+    if (this.autoplay && !this.autoplayId && !this.autoplayPaused) {
       this.autoplayId = setInterval(() => {
         this.showNextItems()
-      }, this.options.autoplayInterval)
+      }, this.autoplayInterval)
     }
   }
 
   pauseAutoplay() {
-    if (this.options.autoplay) {
+    if (this.autoplay) {
       clearInterval(this.autoplayId)
       this.autoplayId = false
     }
   }
 
   initAriaLive() { // create an aria-live region for SR
-    if (!this.options.ariaLive) return
+    if (!this.ariaLive) return
     // create an element that will be used to announce the new visible slide to SR
     const srLiveArea = document.createElement('div')
     srLiveArea.setAttribute('class', 'sr-only js-carousel__aria-live')
@@ -513,7 +476,7 @@ class Carousel {
   }
 
   updateAriaLive() { // announce to SR which items are now visible
-    if (!this.options.ariaLive) return
+    if (!this.ariaLive) return
     this.ariaLive.innerHTML = `Item ${this.selectedItem + 1} selected. ${this.visibItemsNb} items of ${this.initItems.length} visible`
   }
 
@@ -564,7 +527,7 @@ class Carousel {
   }
 
   resetCarouselControls() {
-    if (this.options.loop) return
+    if (this.loop) return
     // update arrows status
     if (this.controls.length > 0) {
       if (this.totTranslate === 0) {
@@ -580,15 +543,15 @@ class Carousel {
       }
     }
     // update carousel dots
-    if (this.options.nav) {
-      const selectedDot = this.navigation.querySelectorAll(`.${this.options.navigationItemClass}--selected`)
-      if (selectedDot.length > 0) selectedDot[0].classList.remove(`${this.options.navigationItemClass}--selected`)
+    if (this.nav) {
+      const selectedDot = this.navigation.querySelectorAll(`.${this.navigationItemClass}--selected`)
+      if (selectedDot.length > 0) selectedDot[0].classList.remove(`${this.navigationItemClass}--selected`)
 
       let newSelectedIndex = this.getSelectedDot()
       if (this.totTranslate === (-this.translateContainer - this.containerWidth)) {
         newSelectedIndex = this.navDots.length - 1
       }
-      this.navDots[newSelectedIndex].classList.add(`${this.options.navigationItemClass}--selected`)
+      this.navDots[newSelectedIndex].classList.add(`${this.navigationItemClass}--selected`)
     }
 
     if (this.totTranslate === 0 && (this.totTranslate === (-this.translateContainer - this.containerWidth) || this.items.length <= this.visibItemsNb)) {
@@ -614,7 +577,7 @@ class Carousel {
     const navigation = document.createElement('ol')
     let navChildren = ''
 
-    let navClasses = `${this.options.navigationClass} js-carousel__navigation`
+    let navClasses = `${this.navigationClass} js-carousel__navigation`
     if (this.items.length <= this.visibItemsNb) {
       navClasses += ' hide'
     }
@@ -622,9 +585,9 @@ class Carousel {
 
     const dotsNr = Math.ceil(this.items.length / this.visibItemsNb)
     const selectedDot = this.getSelectedDot()
-    const indexClass = this.options.navigationPagination ? '' : 'sr-only'
+    const indexClass = this.navigationPagination ? '' : 'sr-only'
     for (let i = 0; i < dotsNr; i += 1) {
-      const className = (i === selectedDot) ? `class="${this.options.navigationItemClass} ${this.options.navigationItemClass}--selected js-carousel__nav-item"` : `class="${this.options.navigationItemClass} js-carousel__nav-item"`
+      const className = (i === selectedDot) ? `class="${this.navigationItemClass} ${this.navigationItemClass}--selected js-carousel__nav-item"` : `class="${this.navigationItemClass} js-carousel__nav-item"`
       navChildren = `${navChildren}<li ${className}><button style="outline: none;"><span class="${indexClass}">${i + 1}</span></button></li>`
     }
     navigation.innerHTML = navChildren
@@ -644,7 +607,7 @@ class Carousel {
   }
 
   resetDotsNavigation() {
-    if (!this.options.nav) return
+    if (!this.nav) return
     this.carouselRemoveNavigation()
     this.carouselCreateNavigation()
     this.carouselInitNavigationEvents()
@@ -678,14 +641,14 @@ class Carousel {
   }
 
   centerItems() {
-    if (!this.options.justifyContent) return
+    if (!this.justifyContent) return
     this.list.classList.toggle('justify-center', this.items.length < this.visibItemsNb)
   }
 
-  alignControls() {
-    if (this.controls.length < 1 || !this.options.alignControls) return
+  alignControlsFunc() {
+    if (this.controls.length < 1 || !this.alignControls) return
     if (!this.controlsAlignEl) {
-      this.controlsAlignEl = this.element.querySelector(this.options.alignControls)
+      this.controlsAlignEl = this.element.querySelector(this.alignControls)
     }
     if (!this.controlsAlignEl) return
     const translate = (this.element.offsetHeight - this.controlsAlignEl.offsetHeight)
@@ -704,7 +667,7 @@ class Carousel {
   }
 
   resetVisibilityOverflowItems(j) {
-    if (!this.options.overflowItems) return
+    if (!this.overflowItems) return
     const itemWidth = this.containerWidth / this.items.length
     const delta = (window.innerWidth - itemWidth * this.visibItemsNb) / 2
     const overflowItems = Math.ceil(delta / itemWidth)

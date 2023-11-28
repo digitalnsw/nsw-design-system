@@ -67,23 +67,7 @@ function initSite() {
 
   if (carousel) {
     carousel.forEach((element) => {
-      const autoplay = !!((element.getAttribute('data-autoplay') && element.getAttribute('data-autoplay') === 'on'))
-      const autoplayInterval = (element.getAttribute('data-autoplay-interval')) ? element.getAttribute('data-autoplay-interval') : 5000
-      const autoplayOnHover = !!((element.getAttribute('data-autoplay-hover') && element.getAttribute('data-autoplay-hover') === 'on'))
-      const autoplayOnFocus = !!((element.getAttribute('data-autoplay-focus') && element.getAttribute('data-autoplay-focus') === 'on'))
-      const drag = !!((element.getAttribute('data-drag') && element.getAttribute('data-drag') === 'on'))
-      const loop = !((element.getAttribute('data-loop') && element.getAttribute('data-loop') === 'off'))
-      const nav = !!((element.getAttribute('data-navigation') && element.getAttribute('data-navigation') === 'on'))
-      const navigationItemClass = element.getAttribute('data-navigation-item-class') ? element.getAttribute('data-navigation-item-class') : 'nsw-carousel__nav-item'
-      const navigationClass = element.getAttribute('data-navigation-class') ? element.getAttribute('data-navigation-class') : 'nsw-carousel__navigation'
-      const navigationPagination = !!((element.getAttribute('data-navigation-pagination') && element.getAttribute('data-navigation-pagination') === 'on'))
-      const overflowItems = !!((element.getAttribute('data-overflow-items') && element.getAttribute('data-overflow-items') === 'off'))
-      const alignControls = element.getAttribute('data-align-controls') ? element.getAttribute('data-align-controls') : false
-      const justifyContent = !!((element.getAttribute('data-justify-content') && element.getAttribute('data-justify-content') === 'on'))
-
-      new Carousel({
-        element, autoplay, autoplayOnHover, autoplayOnFocus, autoplayInterval, drag, ariaLive: true, loop, nav, navigationItemClass, navigationPagination, navigationClass, overflowItems, justifyContent, alignControls,
-      }).init()
+      new Carousel(element).init()
     })
   }
 

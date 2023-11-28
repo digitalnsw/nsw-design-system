@@ -2,10 +2,12 @@
   position: relative;
   display: flex;
   flex-direction: column;
+  width: 100%;
 
   ul,
   ol {
     list-style-type: none;
+    padding-inline-start: 0;
   }
 
   &__list {
@@ -27,11 +29,8 @@
 
   nav {
     order: 1;
-    margin-bottom: 0.5rem;
-
-    @include breakpoint('md') {
-      margin-bottom: 0.75rem;
-    }
+    padding-left: 1rem;
+    padding-right: 1rem;
 
     ul {
       display: flex;
@@ -71,10 +70,9 @@
     width: 40px;
     height: 40px;
     display: flex;
-    background-color: var(--nsw-white);
+    background-color: transparent;
     border-radius: 50%;
     border: 2px solid var(--nsw-brand-dark);
-    box-shadow: var(--nsw-box-shadow);
     z-index: 1;
     transition: 0.2s;
 
@@ -87,7 +85,6 @@
     }
   
     &:hover {
-      background-color: var(--nsw-white);
       box-shadow: var(--nsw-box-shadow);
     }
   
@@ -200,14 +197,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 0.5rem;
-
-    @include breakpoint('md') {
-      margin-bottom: 0.75rem;
-    }
 
     p {
       font-size: 0.833rem;
+      padding-left: 1rem;
+      padding-right: 1rem;
 
       @include breakpoint('md') {
         font-size: 1rem;
@@ -224,3 +218,5 @@
 .hide {
   display: none;
 }
+
+
