@@ -1,11 +1,70 @@
-<div class="nsw-carousel js-carousel" data-drag="on"{{#if loop}} data-loop="off" data-navigation="on" data-navigation-class="nsw-carousel__navigation"{{/if}}{{#if pagination}} data-loop="off" data-navigation="on" data-navigation-class="nsw-carousel__navigation nsw-carousel__navigation--pagination" data-navigation-pagination="on"{{/if}}{{#if counter}} data-loop="off"{{/if}}>
+<!-- V3 -->
+<div class="nsw-overflow-hidden">
+  <div class="carousel carousel-v3 js-carousel" data-drag="on" data-loop="off" data-overflow-items="on">
+    <p class="sr-only">Carousel items</p>
+    <div class="carousel__wrapper js-carousel__wrapper">
+      <ol class="carousel__list">
+        {{#each cards}}<li class="carousel__item">
+          <div class="example">{{@key}}</div>
+        </li>{{/each}}
+      </ol>
+      <nav>
+        <ul>
+          <li>
+            <button class="carousel-v3__control carousel-v3__control--prev js-carousel__control">
+              <svg class="nsw-icon" viewBox="0 0 20 20"><title>Show previous items</title><polyline points="13 2 5 10 13 18" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>
+            </button>
+          </li>
+          <li>
+            <button class="carousel-v3__control carousel-v3__control--next js-carousel__control">
+              <svg class="nsw-icon" viewBox="0 0 20 20"><title>Show next items</title><polyline points="7 2 15 10 7 18" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+<!-- V2 -->
+<div class="carousel carousel-v2 js-carousel" data-drag="on" data-loop="off" data-navigation="on" data-navigation-class="carousel-v2__navigation" data-navigation-item-class="carousel-v2__navigation-item">
   <p class="sr-only">Carousel items</p>
-  {{>_carousel-card}}
-  {{#unless counter}}
+  <div class="carousel__wrapper js-carousel__wrapper">
+    <ol class="carousel__list">
+      {{#each cards}}<li class="carousel__item">
+        <div class="example">{{@key}}</div>
+      </li>{{/each}}
+    </ol>
+    <nav>
+      <ul>
+        <li>
+          <button class="carousel-v2__control carousel-v2__control--prev js-carousel__control">
+            <svg class="nsw-icon" viewBox="0 0 20 20"><title>Show previous items</title><polyline points="13 2 5 10 13 18" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>
+          </button>
+        </li>
+        <li>
+          <button class="carousel-v2__control carousel-v2__control--next js-carousel__control">
+            <svg class="nsw-icon" viewBox="0 0 20 20"><title>Show next items</title><polyline points="7 2 15 10 7 18" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>
+<!-- Default -->
+<div class="carousel js-carousel" data-drag="on">
+  <p class="sr-only">Carousel items</p>
+  <div class="carousel__wrapper js-carousel__wrapper">
+    <ol class="carousel__list">
+      {{#each cards}}<li class="carousel__item">
+        <div class="example">{{@key}}</div>
+      </li>{{/each}}
+    </ol>
+  </div>
+
   <nav>
     <ul>
       <li>
-        <button class="nsw-carousel__control carousel__control--prev js-carousel__control">
+        <button class="carousel__control carousel__control--prev js-carousel__control">
           <svg class="nsw-icon" viewBox="0 0 20 20">
             <title>Show previous items</title>
             <polyline points="13 2 5 10 13 18" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
@@ -13,7 +72,7 @@
         </button>
       </li>
       <li>
-        <button class="nsw-carousel__control carousel__control--next js-carousel__control">
+        <button class="carousel__control carousel__control--next js-carousel__control">
           <svg class="nsw-icon" viewBox="0 0 20 20">
             <title>Show next items</title>
             <polyline points="7 2 15 10 7 18" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
@@ -21,29 +80,103 @@
         </button>
       </li>
     </ul>
-  </nav>{{/unless}}{{#if counter}}
-  <div class="nsw-carousel__counter">
-    <p><i class="js-carousel__counter"></i> / <i class="js-carousel__counter-tot"></i></p>
-    <nav>
-      <ul>
-        <li>
-          <button class="nsw-carousel__control carousel__control--prev js-carousel__control">
-            <svg class="nsw-icon" viewBox="0 0 20 20">
-              <title>Show previous items</title>
-              <polyline points="13 18 5 10 13 2" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="2" />
-            </svg>
-          </button>
-        </li>
-        <li>
-          <button class="nsw-carousel__control carousel__control--next js-carousel__control">
-            <svg class="nsw-icon" viewBox="0 0 20 20">
-              <title>Show next items</title>
-              <polyline points="7 18 15 10 7 2" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="2" />
-            </svg>
-          </button>
-        </li>
-      </ul>
-    </nav>
+  </nav>
+</div>
+<!-- Loop Off -->
+<div class="carousel js-carousel" data-drag="on" data-loop="off" data-navigation="on" data-navigation-class="carousel__navigation">
+  <p class="sr-only">Carousel items</p>
+  <div class="carousel__wrapper js-carousel__wrapper">
+    <ol class="carousel__list">
+      {{#each cards}}<li class="carousel__item">
+        <div class="example">{{@key}}</div>
+      </li>{{/each}}
+    </ol>
   </div>
-  {{/if}}
+  <nav>
+    <ul>
+      <li>
+        <button class="carousel__control carousel__control--prev js-carousel__control">
+          <svg class="nsw-icon" viewBox="0 0 20 20">
+            <title>Show previous items</title>
+            <polyline points="13 2 5 10 13 18" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+          </svg>
+        </button>
+      </li>
+      <li>
+        <button class="carousel__control carousel__control--next js-carousel__control">
+          <svg class="nsw-icon" viewBox="0 0 20 20">
+            <title>Show next items</title>
+            <polyline points="7 2 15 10 7 18" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+          </svg>
+        </button>
+      </li>
+    </ul>
+  </nav>
+</div>
+<!-- Counter -->
+<div class="carousel js-carousel" data-drag="on" data-loop="off">
+  <p class="sr-only">Carousel items</p>
+  <div class="carousel__wrapper js-carousel__wrapper">
+    <ol class="carousel__list">
+      {{#each cards}}<li class="carousel__item">
+        <div class="example">{{@key}}</div>
+      </li>{{/each}}
+    </ol>
+  </div>
+  <div class="carousel__counter">
+    <div>
+      <p><i class="js-carousel__counter"></i> / <i class="js-carousel__counter-tot"></i></p>
+      <nav>
+        <ul>
+          <li>
+            <button class="carousel__control carousel__control--prev js-carousel__control">
+              <svg class="nsw-icon" viewBox="0 0 20 20">
+                <title>Show previous items</title>
+                <polyline points="13 18 5 10 13 2" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="2" />
+              </svg>
+            </button>
+          </li>
+          <li>
+            <button class="carousel__control carousel__control--next js-carousel__control">
+              <svg class="nsw-icon" viewBox="0 0 20 20">
+                <title>Show next items</title>
+                <polyline points="7 18 15 10 7 2" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="2" />
+              </svg>
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+<!-- Pagination -->
+<div class="carousel js-carousel" data-drag="on" data-loop="off" data-navigation="on" data-navigation-class="carousel__navigation carousel__navigation--pagination" data-navigation-pagination="on">
+  <p class="sr-only">Carousel items</p>
+  <div class="carousel__wrapper js-carousel__wrapper">
+    <ol class="carousel__list">
+      {{#each cards}}<li class="carousel__item">
+        <div class="example">{{@key}}</div>
+      </li>{{/each}}
+    </ol>
+  </div>
+  <nav>
+    <ul>
+      <li>
+        <button class="carousel__control carousel__control--prev js-carousel__control">
+          <svg class="nsw-icon" viewBox="0 0 20 20">
+            <title>Show previous items</title>
+            <polyline points="13 2 5 10 13 18" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+          </svg>
+        </button>
+      </li>
+      <li>
+        <button class="carousel__control carousel__control--next js-carousel__control">
+          <svg class="nsw-icon" viewBox="0 0 20 20">
+            <title>Show next items</title>
+            <polyline points="7 2 15 10 7 18" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+          </svg>
+        </button>
+      </li>
+    </ul>
+  </nav>
 </div>

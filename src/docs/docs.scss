@@ -26,6 +26,20 @@ $header-height: 151px;
   }
 }
 
+.example {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 16rem;
+  font-size: 1.2rem;
+  --bg-opacity: 1;
+  background-color: rgba(var(--nsw-palette-grey-03-rgb), var(--bg-opacity, 1));
+
+  @include breakpoint('md') {
+    font-size: 1.5625rem;
+  }
+}
+
 .nsw-docs {
   :not(pre) code {
     padding: rem(3px);

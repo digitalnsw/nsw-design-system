@@ -3,34 +3,54 @@ import SwipeContent from './swipe-content'
 /* eslint-disable no-new, max-len */
 class Carousel {
   constructor(element) {
+    // Class Names
+    this.controlClass = 'js-carousel__control'
+    this.wrapperClass = 'js-carousel__wrapper'
+    this.counterClass = 'js-carousel__counter'
+    this.counterTorClass = 'js-carousel__counter-tot'
+    this.navClass = 'js-carousel__navigation'
+    this.navItemClass = 'js-carousel__nav-item'
+    this.navigationItemClass = element.getAttribute('data-navigation-item-class') ? element.getAttribute('data-navigation-item-class') : 'carousel__nav-item'
+    this.navigationClass = element.getAttribute('data-navigation-class') ? element.getAttribute('data-navigation-class') : 'carousel__navigation'
+    this.draggingClass = 'carousel--is-dragging'
+    this.animateClass = 'carousel__list--animating'
+    this.cloneClass = 'js-clone'
+    this.srClass = 'sr-only'
+    this.srLiveAreaClass = 'js-carousel__aria-live'
+    this.hideControlsClass = 'carousel--hide-controls'
+    this.hideClass = 'nsw-display-none'
+    this.centerClass = 'nsw-justify-content-center'
+    // Elements in the DOM
     this.element = element
+    this.listWrapper = this.element.querySelector(`.${this.wrapperClass}`)
+    this.list = this.listWrapper ? this.listWrapper.querySelector('ol') : false
+    this.items = this.list ? this.list.getElementsByTagName('li') : false
+    this.controls = this.element.querySelectorAll(`.${this.controlClass}`)
+    this.counter = this.element.querySelectorAll(`.${this.counterClass}`)
+    this.counterTor = this.element.querySelectorAll(`.${this.counterTorClass}`)
+    // Options
     this.autoplay = !!((element.getAttribute('data-autoplay') && element.getAttribute('data-autoplay') === 'on'))
     this.autoplayInterval = (element.getAttribute('data-autoplay-interval')) ? element.getAttribute('data-autoplay-interval') : 5000
     this.autoplayOnHover = !!((element.getAttribute('data-autoplay-hover') && element.getAttribute('data-autoplay-hover') === 'on'))
     this.autoplayOnFocus = !!((element.getAttribute('data-autoplay-focus') && element.getAttribute('data-autoplay-focus') === 'on'))
     this.drag = !!((element.getAttribute('data-drag') && element.getAttribute('data-drag') === 'on'))
-    this.ariaLive = true
     this.loop = !((element.getAttribute('data-loop') && element.getAttribute('data-loop') === 'off'))
     this.nav = !!((element.getAttribute('data-navigation') && element.getAttribute('data-navigation') === 'on'))
-    this.navigationItemClass = element.getAttribute('data-navigation-item-class') ? element.getAttribute('data-navigation-item-class') : 'nsw-carousel__nav-item'
-    this.navigationClass = element.getAttribute('data-navigation-class') ? element.getAttribute('data-navigation-class') : 'nsw-carousel__navigation'
     this.navigationPagination = !!((element.getAttribute('data-navigation-pagination') && element.getAttribute('data-navigation-pagination') === 'on'))
     this.overflowItems = !!((element.getAttribute('data-overflow-items') && element.getAttribute('data-overflow-items') === 'off'))
     this.alignControls = element.getAttribute('data-align-controls') ? element.getAttribute('data-align-controls') : false
     this.justifyContent = !!((element.getAttribute('data-justify-content') && element.getAttribute('data-justify-content') === 'on'))
-    this.listWrapper = this.element.querySelector('.nsw-carousel__wrapper')
-    this.list = this.element.querySelector('.nsw-carousel__list')
-    this.items = this.element.getElementsByClassName('nsw-carousel__item')
+    // Initial Attributes
+    this.ariaLive = true
     this.initItems = [] // store only the original elements - will need this for cloning
     this.itemsNb = this.items.length // original number of items
     this.visibItemsNb = 1 // tot number of visible items
     this.itemsWidth = 1 // this will be updated with the right width of items
     this.itemOriginalWidth = false // store the initial width to use it on resize
     this.selectedItem = 0 // index of first visible item
-    this.translateContainer = 0 // this will be the amount the container has to be translated each time a new group has to be shown (negative)
+    this.translateContainer = 0 // this will be the amount the container has to be translated each time a new group has to be shown (-)
     this.containerWidth = 0 // this will be used to store the total width of the carousel (including the overflowing part)
     this.ariaLive = false
-    this.controls = this.element.querySelectorAll('.js-carousel__control') // navigation
     this.animating = false
     this.autoplayId = false // autoplay
     this.autoplayPaused = false
@@ -40,10 +60,7 @@ class Carousel {
     this.itemAutoSize = false // store items min-width
     this.totTranslate = 0 // store translate value (loop = off)
     if (this.nav) this.loop = false // modify loop option if navigation is on
-    this.counter = this.element.querySelectorAll('.js-carousel__counter') // store counter elements (if present)
-    this.counterTor = this.element.querySelectorAll('.js-carousel__counter-tot')
     this.element.classList.add('carousel--loaded')
-
     // CSS Supported
     this.flexSupported = CSS.supports('align-items', 'stretch')
     this.transitionSupported = CSS.supports('transition', 'transform')
@@ -191,10 +208,10 @@ class Carousel {
       // init dragging
       new SwipeContent(this.element)
       this.element.addEventListener('dragStart', (event) => {
-        if (event.detail.origin && event.detail.origin.closest('.js-carousel__control')) return
-        if (event.detail.origin && event.detail.origin.closest('.js-carousel__navigation')) return
-        if (event.detail.origin && !event.detail.origin.closest('.nsw-carousel__wrapper')) return
-        this.element.classList.add('carousel--is-dragging')
+        if (event.detail.origin && event.detail.origin.closest(`.${this.controlClass}`)) return
+        if (event.detail.origin && event.detail.origin.closest(`.${this.navClass}`)) return
+        if (event.detail.origin && !event.detail.origin.closest(`.${this.wrapperClass}`)) return
+        this.element.classList.add(this.draggingClass)
         this.pauseAutoplay()
         this.dragStart = event.detail.x
         this.animateDragEnd()
@@ -254,7 +271,7 @@ class Carousel {
   animateDragEnd() { // end-of-dragging animation
     const cb = (event) => {
       this.element.removeEventListener('dragEnd', cb)
-      this.element.classList.remove('carousel--is-dragging')
+      this.element.classList.remove(this.draggingClass)
       if (event.detail.x - this.dragStart < -40) {
         this.animating = false
         this.showNextItems()
@@ -275,7 +292,7 @@ class Carousel {
   animateList(translate, direction) { // takes care of changing visible items
     let trans = translate
     this.pauseAutoplay()
-    this.list.classList.add('nsw-carousel__list--animating')
+    this.list.classList.add(this.animateClass)
     const initTranslate = this.totTranslate
     if (!this.loop) {
       trans = this.noLoopTranslateValue(direction)
@@ -285,7 +302,7 @@ class Carousel {
       const cb = (event) => {
         if (event.propertyName && event.propertyName !== 'transform') return
         if (this.list) {
-          this.list.classList.remove('nsw-carousel__list--animating')
+          this.list.classList.remove(this.animateClass)
           this.list.removeEventListener('transitionend', cb)
         }
 
@@ -361,7 +378,7 @@ class Carousel {
     for (let i = start; i < nb; i += 1) {
       const index = this.getIndex(this.selectedItem - i - 1)
       const clone = this.initItems[index].cloneNode(true)
-      clone.classList.add('js-clone')
+      clone.classList.add(this.cloneClass)
       clones.insertBefore(clone, clones.firstChild)
     }
     this.list.insertBefore(clones, this.list.firstChild)
@@ -374,7 +391,7 @@ class Carousel {
     for (let i = init; i < nb + init; i += 1) {
       const index = this.getIndex(this.selectedItem + this.visibItemsNb + i)
       const clone = this.initItems[index].cloneNode(true)
-      clone.classList.add('js-clone')
+      clone.classList.add(this.cloneClass)
       clones.appendChild(clone)
     }
     this.list.appendChild(clones)
@@ -468,7 +485,7 @@ class Carousel {
     if (!this.ariaLive) return
     // create an element that will be used to announce the new visible slide to SR
     const srLiveArea = document.createElement('div')
-    srLiveArea.setAttribute('class', 'sr-only js-carousel__aria-live')
+    srLiveArea.setAttribute('class', `${this.srClass} ${this.srLiveAreaClass}`)
     srLiveArea.setAttribute('aria-live', 'polite')
     srLiveArea.setAttribute('aria-atomic', 'true')
     this.element.appendChild(srLiveArea)
@@ -501,11 +518,11 @@ class Carousel {
 
   getCarouselWidth(computedWidth) { // retrieve carousel width if carousel is initially hidden
     let comWidth = computedWidth
-    const closestHidden = this.listWrapper.closest('.sr-only')
+    const closestHidden = this.listWrapper.closest(`.${this.srClass}`)
     if (closestHidden) { // carousel is inside an .sr-only (visually hidden) element
-      closestHidden.classList.remove('sr-only')
+      closestHidden.classList.remove(this.srClass)
       comWidth = this.listWrapper.offsetWidth
-      closestHidden.classList.add('sr-only')
+      closestHidden.classList.add(this.srClass)
     } else if (Number.isNaN(comWidth)) {
       comWidth = this.getHiddenParentWidth(this.element)
     }
@@ -555,39 +572,39 @@ class Carousel {
     }
 
     if (this.totTranslate === 0 && (this.totTranslate === (-this.translateContainer - this.containerWidth) || this.items.length <= this.visibItemsNb)) {
-      this.element.classList.add('carousel--hide-controls')
+      this.element.classList.add(this.hideControlsClass)
     } else {
-      this.element.classList.remove('carousel--hide-controls')
+      this.element.classList.remove(this.hideControlsClass)
     }
   }
 
   emitCarouselUpdateEvent() {
     this.cloneList = []
-    const clones = this.element.querySelectorAll('.js-clone')
+    const clones = this.element.querySelectorAll(`.${this.cloneClass}`)
     for (let i = 0; i < clones.length; i += 1) {
-      clones[i].classList.remove('js-clone')
+      clones[i].classList.remove(this.cloneClass)
       this.cloneList.push(clones[i])
     }
     this.emitCarouselEvents('carousel-updated', this.cloneList)
   }
 
   carouselCreateNavigation() {
-    if (this.element.querySelectorAll('.js-carousel__navigation').length > 0) return
+    if (this.element.querySelectorAll(`.${this.navClass}`).length > 0) return
 
     const navigation = document.createElement('ol')
     let navChildren = ''
 
-    let navClasses = `${this.navigationClass} js-carousel__navigation`
+    let navClasses = `${this.navigationClass} ${this.navClass}`
     if (this.items.length <= this.visibItemsNb) {
-      navClasses += ' hide'
+      navClasses += ` ${this.hideClass}`
     }
     navigation.setAttribute('class', navClasses)
 
     const dotsNr = Math.ceil(this.items.length / this.visibItemsNb)
     const selectedDot = this.getSelectedDot()
-    const indexClass = this.navigationPagination ? '' : 'sr-only'
+    const indexClass = this.navigationPagination ? '' : this.srClass
     for (let i = 0; i < dotsNr; i += 1) {
-      const className = (i === selectedDot) ? `class="${this.navigationItemClass} ${this.navigationItemClass}--selected js-carousel__nav-item"` : `class="${this.navigationItemClass} js-carousel__nav-item"`
+      const className = (i === selectedDot) ? `class="${this.navigationItemClass} ${this.navigationItemClass}--selected ${this.navItemClass}"` : `class="${this.navigationItemClass} ${this.navItemClass}"`
       navChildren = `${navChildren}<li ${className}><button style="outline: none;"><span class="${indexClass}">${i + 1}</span></button></li>`
     }
     navigation.innerHTML = navChildren
@@ -595,8 +612,8 @@ class Carousel {
   }
 
   carouselInitNavigationEvents() {
-    this.navigation = this.element.querySelector('.js-carousel__navigation')
-    this.navDots = this.element.querySelectorAll('.js-carousel__nav-item')
+    this.navigation = this.element.querySelector(`.${this.navClass}`)
+    this.navDots = this.element.querySelectorAll(`.${this.navItemClass}`)
     this.navIdEvent = this.carouselNavigationClick.bind(this)
     this.navigation.addEventListener('click', this.navIdEvent)
   }
@@ -614,7 +631,7 @@ class Carousel {
   }
 
   carouselNavigationClick(event) {
-    const dot = event.target.closest('.js-carousel__nav-item')
+    const dot = event.target.closest(`.${this.navItemClass}`)
     if (!dot) return
     if (this.animating) return
     this.animating = true
@@ -642,7 +659,7 @@ class Carousel {
 
   centerItems() {
     if (!this.justifyContent) return
-    this.list.classList.toggle('justify-center', this.items.length < this.visibItemsNb)
+    this.list.classList.toggle(this.centerClass, this.items.length < this.visibItemsNb)
   }
 
   alignControlsFunc() {
