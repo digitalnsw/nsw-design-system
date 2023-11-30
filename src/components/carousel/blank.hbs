@@ -7,6 +7,22 @@ page: true
 ---
 
 {{#>_layout-container}}
-{{>_carousel model.carousel}}
+{{>_carousel model.carousel default=true}}
+
+<h3>Loop Off</h3>
+{{>_carousel model.carousel default=true loop=true}}
+
+<h3>Counter</h3>
+{{>_carousel model.carousel default=true counter=true}}
+
+<h3>Pagination</h3>
+{{>_carousel model.carousel pagination=true default=true}}
+
+<h3 class="nsw-m-bottom-md">V2</h3>
+{{>_carousel model.carousel v2=true}}
+
+<h3>V3</h3>
 {{/_layout-container}}
+
+{{>_carousel model.carousel v3=true}}
 
