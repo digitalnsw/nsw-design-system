@@ -52,7 +52,7 @@
         {{/if}}
         <div class="nsw-filters__item-content">
           <label class="nsw-form__label{{#if collapsed}} sr-only{{/if}}" for="{{select.id}}-{{filters-id}}">{{select.name}}</label>{{#if multiple}}
-          <div class="nsw-multi-select js-multi-select" data-selection-text="savings programs">{{/if}}
+          <div class="nsw-multi-select js-multi-select" data-no-select-text="Select savings programs" data-multi-select-text="{n} items selected" data-n-multi-select="2">{{/if}}
             <select{{#unless multiple}} class="nsw-form__select"{{/unless}} name="{{select.id}}-{{filters-id}}" id="{{select.id}}-{{filters-id}}"{{#if helper-text}} aria-describedby="{{#if helper-text}}{{select.id}}-{{filters-id}}-helper-text{{/if}}"{{/if}}{{#if error-text}} aria-invalid="true"{{/if}}{{#if multiple}} multiple{{/if}}>{{#unless multiple}}<option value="">Please select</option>{{/unless}}
             {{#each select.list}}
               <option value="{{this}}">{{this}}</option>

@@ -1,35 +1,57 @@
-/* eslint-disable max-len */
 class Select {
   constructor(element) {
     this.element = element
     this.select = this.element.querySelector('select')
-    this.options = this.select.querySelectorAll('option')
-    this.optGroups = this.select.querySelectorAll('optgroup')
+    this.optGroups = this.select.getElementsByTagName('optgroup')
+    this.options = this.select.getElementsByTagName('option')
     this.selectId = this.select.getAttribute('id')
     this.trigger = false
     this.dropdown = false
     this.customOptions = false
+    this.list = false
+    this.allButton = false
+    this.arrowIcon = this.element.getElementsByTagName('svg')
+    this.label = document.querySelector(`[for="${this.selectId}"]`)
+    this.selectedOptCounter = 0
     this.optionIndex = 0
-    this.textSelected = this.element.getAttribute('data-selection-text') || 'selected'
+    this.noSelectText = this.element.getAttribute('data-select-text') || 'Select'
+    this.multiSelectText = this.element.getAttribute('data-multi-select-text') || '{n} items selected'
+    this.nMultiSelect = this.element.getAttribute('data-n-multi-select') || 1
+    this.noUpdateLabel = this.element.getAttribute('data-update-text') && this.element.getAttribute('data-update-text') === 'off'
+    this.insetLabel = this.element.getAttribute('data-inset-label') && this.element.getAttribute('data-inset-label') === 'on'
+    this.hideClass = 'nsw-display-none'
+    this.showClass = 'active'
+    this.srClass = 'sr-only'
+    this.prefix = 'nsw-'
+    this.class = 'multi-select'
+    this.buttonClass = `${this.class}__button`
+    this.allButtonClass = `${this.class}__all`
+    this.listClass = `${this.class}__list`
+    this.optionClass = `${this.class}__option`
+    this.dropdownClass = `${this.class}__dropdown`
+    this.checkboxClass = `${this.class}__checkbox`
+    this.itemClass = `${this.class}__item`
+    this.labelClass = `${this.class}__label`
+    this.termClass = `${this.class}__term`
+    this.detailsClass = `${this.class}__details`
+    this.selectClass = 'form__select'
+    this.checkboxLabelClass = 'form__checkbox-label'
+    this.checkboxInputClass = 'form__checkbox-input'
   }
 
   init() {
-    this.initCustomSelect()
-    this.initCustomSelectEvents()
-  }
-
-  initCustomSelect() {
     this.element.insertAdjacentHTML('beforeend', this.initButtonSelect() + this.initListSelect())
 
-    this.dropdown = this.element.querySelector('.nsw-multi-select__dropdown')
-    this.trigger = this.element.querySelector('.nsw-multi-select__button')
-    this.multiSelectList = this.dropdown.querySelector('.nsw-multi-select__list')
-    this.customOptions = this.multiSelectList.querySelectorAll('.nsw-multi-select__option')
+    this.dropdown = this.element.querySelector(`.js-${this.dropdownClass}`)
+    this.trigger = this.element.querySelector(`.js-${this.buttonClass}`)
+    this.customOptions = this.dropdown.querySelectorAll(`.js-${this.optionClass}`)
+    this.list = this.dropdown.querySelector(`.js-${this.listClass}`)
+    this.list.insertAdjacentHTML('afterbegin', this.initAllButton())
+    this.allButton = this.list.querySelector(`.js-${this.allButtonClass}`)
 
-    this.multiSelectList.insertAdjacentHTML('afterbegin', this.initAllButton())
-
-    this.allButton = this.multiSelectList.querySelector('.js-multi-select-all')
-    this.allButtonInput = this.allButton.querySelector('.nsw-form__checkbox-input')
+    this.select.classList.add(this.hideClass)
+    if (this.arrowIcon.length > 0) this.arrowIcon[0].style.display = 'none'
+    this.initCustomSelectEvents()
   }
 
   initCustomSelectEvents() {
@@ -40,24 +62,23 @@ class Select {
       this.toggleCustomSelect(false)
     })
 
-    this.trigger.addEventListener('keydown', (event) => {
-      if (((event.code && event.code === 38) || (event.key && event.key.toLowerCase() === 'arrowup')) || ((event.code && event.code === 40) || (event.key && event.key.toLowerCase() === 'arrowdown'))) {
-        event.preventDefault()
-        this.toggleCustomSelect(false)
-      }
-    })
+    if (this.label) {
+      this.label.addEventListener('click', () => {
+        this.constructor.moveFocusFn(this.trigger)
+      })
+    }
 
     this.dropdown.addEventListener('keydown', (event) => {
-      if ((event.code && event.code === 38) || (event.key && event.key.toLowerCase() === 'arrowup')) {
+      if (event.key && event.key.toLowerCase() === 'arrowup') {
         this.keyboardCustomSelect('prev', event)
-      } else if ((event.code && event.code === 40) || (event.key && event.key.toLowerCase() === 'arrowdown')) {
+      } else if (event.key && event.key.toLowerCase() === 'arrowdown') {
         this.keyboardCustomSelect('next', event)
       }
     })
 
     window.addEventListener('keyup', (event) => {
       if (event.key && event.key.toLowerCase() === 'escape') {
-        this.constructor.moveFocusToSelectTrigger(event.target)
+        this.moveFocusToSelectTrigger()
         this.toggleCustomSelect('false')
       }
     })
@@ -65,125 +86,84 @@ class Select {
     window.addEventListener('click', (event) => {
       this.checkCustomSelectClick(event.target)
     })
-
-    window.addEventListener('resize', this.placeDropdown)
-
-    this.allButton.addEventListener('change', () => {
-      this.toggleAllOptions()
-    })
   }
 
   toggleCustomSelect(bool) {
     let ariaExpanded
-
     if (bool) {
       ariaExpanded = bool
     } else {
       ariaExpanded = this.trigger.getAttribute('aria-expanded') === 'true' ? 'false' : 'true'
     }
-
     this.trigger.setAttribute('aria-expanded', ariaExpanded)
-
     if (ariaExpanded === 'true') {
       const selectedOption = this.getSelectedOption()
+      this.constructor.moveFocusFn(selectedOption)
 
-      this.constructor.moveFocus(selectedOption)
-
-      this.dropdown.addEventListener('transitionend', function cb() {
-        this.constructor.moveFocus(selectedOption)
-
+      const cb = () => {
+        this.constructor.moveFocusFn(selectedOption)
         this.dropdown.removeEventListener('transitionend', cb)
-      })
+      }
 
+      this.dropdown.addEventListener('transitionend', cb)
       this.constructor.trapFocus(this.dropdown)
-
       this.placeDropdown()
     }
   }
 
   placeDropdown() {
-    const { top, bottom } = this.trigger.getBoundingClientRect()
-
-    const moveUp = (window.innerHeight - bottom) < top
-
-    const maxHeight = moveUp ? top - 20 : window.innerHeight - bottom - 20
-
-    const vhCalc = Math.ceil((100 * maxHeight) / window.innerHeight)
-
-    this.dropdown.setAttribute('style', `max-height: ${vhCalc}vh;`)
+    const triggerBoundingRect = this.trigger.getBoundingClientRect()
+    this.dropdown.classList.toggle(`${this.prefix}${this.dropdownClass}--right`, (window.innerWidth < triggerBoundingRect.left + this.dropdown.offsetWidth))
+    const moveUp = (window.innerHeight - triggerBoundingRect.bottom) < triggerBoundingRect.top
+    this.dropdown.classList.toggle(`${this.prefix}${this.dropdownClass}--up`, moveUp)
+    const maxHeight = moveUp ? triggerBoundingRect.top - 20 : window.innerHeight - triggerBoundingRect.bottom - 20
+    this.dropdown.setAttribute('style', `max-height: ${maxHeight}px; width: ${triggerBoundingRect.width}px;`)
   }
 
   keyboardCustomSelect(direction, event) {
     event.preventDefault()
-    const allOptions = [...this.customOptions, this.allButton]
-    let index = Array.prototype.indexOf.call(allOptions, document.activeElement.closest('.nsw-multi-select__option'))
+    let index = Array.prototype.indexOf.call(this.customOptions, document.activeElement.closest(`.js-${this.optionClass}`))
     index = (direction === 'next') ? index + 1 : index - 1
-    if (index < 0) index = allOptions.length - 1
-    if (index >= allOptions.length) index = 0
-    this.constructor.moveFocus(allOptions[index].querySelector('.nsw-form__checkbox-input'))
+    if (index < 0) index = this.customOptions.length - 1
+    if (index >= this.customOptions.length) index = 0
+    this.constructor.moveFocusFn(this.customOptions[index].getElementsByClassName(`js-${this.checkboxClass}`)[0])
+  }
+
+  toggleAllButton() {
+    const status = !this.allButton.classList.contains(this.showClass)
+    this.allButton.classList.toggle(this.showClass, status)
+
+    const [optionsArray, totalOptions, selectedOptions] = this.getOptions()
+
+    optionsArray.forEach((option) => {
+      option.setAttribute('aria-selected', 'false')
+      this.selectOption(option)
+    })
+
+    if (selectedOptions === totalOptions) {
+      optionsArray.forEach((option) => this.selectOption(option))
+    }
   }
 
   initSelection() {
-    if (!this.dropdown) return
-
-    this.customOptions.forEach((opt) => {
-      opt.addEventListener('change', (event) => {
-        const option = event.currentTarget.closest('.nsw-multi-select__option')
-        if (!option) return
-        this.selectOption(option)
-      })
-
-      opt.addEventListener('click', (event) => {
-        const option = event.currentTarget.closest('.nsw-multi-select__option')
-        if (!option || !event.target.classList.contains('nsw-multi-select__option')) return
-        this.selectOption(option)
-      })
+    this.allButton.addEventListener('click', (event) => {
+      event.preventDefault()
+      this.toggleAllButton()
     })
-  }
-
-  getSelectedOptionCount() {
-    let selectedOptCounter = 0
-
-    for (let i = 0; i < this.options.length; i += 1) {
-      if (this.options[i].selected) {
-        selectedOptCounter += 1
-      }
-    }
-
-    return selectedOptCounter
-  }
-
-  toggleAllOptions() {
-    const count = this.getSelectedOptionCount()
-
-    this.customOptions.forEach((check) => {
-      const input = check.querySelector('.nsw-form__checkbox-input')
-
-      if (count === this.options.length) {
-        input.click()
-        input.checked = false
-        input.removeAttribute('checked')
-        check.setAttribute('aria-selected', 'false')
-
-        this.updateNativeSelect(check.getAttribute('data-index'), false)
-      } else {
-        input.click()
-        input.checked = true
-        input.setAttribute('checked', '')
-        check.setAttribute('aria-selected', 'true')
-
-        this.updateNativeSelect(check.getAttribute('data-index'), true)
-      }
-      //
+    this.dropdown.addEventListener('change', (event) => {
+      const option = event.target.closest(`.js-${this.optionClass}`)
+      if (!option) return
+      this.selectOption(option)
     })
-    const [label, ariaLabel] = this.getSelectedOptionText()
-    this.trigger.querySelector('.nsw-multi-select__label').innerHTML = label
-    this.constructor.toggleClass(this.trigger, 'active', count > 0)
-    this.updateTriggerAria(ariaLabel)
+    this.dropdown.addEventListener('click', (event) => {
+      const option = event.target.closest(`.js-${this.optionClass}`)
+      if (!option || !event.target.classList.contains(`js-${this.optionClass}`)) return
+      this.selectOption(option)
+    })
   }
 
   selectOption(option) {
-    const input = option.querySelector('.nsw-form__checkbox-input')
+    const input = option.querySelector(`.js-${this.checkboxClass}`)
 
     if (option.hasAttribute('aria-selected') && option.getAttribute('aria-selected') === 'true') {
       input.checked = false
@@ -198,155 +178,135 @@ class Select {
       this.updateNativeSelect(option.getAttribute('data-index'), true)
     }
 
-    const [label, ariaLabel] = this.getSelectedOptionText()
-    const count = this.getSelectedOptionCount()
-    if (count === this.options.length) {
-      this.allButtonInput.checked = true
-      this.allButtonInput.setAttribute('checked', '')
-      this.allButton.setAttribute('aria-selected', 'true')
-    } else {
-      this.allButtonInput.checked = false
-      this.allButtonInput.removeAttribute('checked')
-      this.allButton.setAttribute('aria-selected', 'false')
-    }
-    this.trigger.querySelector('.nsw-multi-select__label').innerHTML = label
-    this.constructor.toggleClass(this.trigger, 'active', count > 0)
-    this.updateTriggerAria(ariaLabel)
-  }
-
-  initButtonSelect() {
     const triggerLabel = this.getSelectedOptionText()
 
-    const button = `<button class="nsw-button nsw-multi-select__button" aria-label="${triggerLabel[1]}" aria-expanded="false" aria-controls="${this.selectId}-dropdown">
-      <span aria-hidden="true" class="nsw-multi-select__label">${triggerLabel[0]}</span>
-      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
-      </button>`
-    return button
+    const [selectedLabel] = triggerLabel
+    this.trigger.querySelector(`.js-${this.labelClass}`).innerHTML = selectedLabel
+
+    this.trigger.classList.toggle(`${this.prefix}${this.buttonClass}--active`, this.selectedOptCounter > 0)
+    this.updateTriggerAria(triggerLabel[1])
+    this.updateAllButton()
   }
 
-  initAllButton() {
-    const all = this.getSelectedOptionCount() === this.options.length
-    const selected = all ? ' aria-selected="true"' : ' aria-selected="false"'
-    const checked = all ? 'checked' : ''
+  updateAllButton() {
+    const [, totalOptions, selectedOptions] = this.getOptions()
 
-    const allButton = `
-      <li class="js-multi-select-all nsw-multi-select__option" role="option" data-value="Select all" aria-selected="false" ${selected} data-label="Select all">
-        <input aria-hidden="true" class="nsw-form__checkbox-input" type="checkbox" id="${this.selectId}-all" ${checked}>
-        <label class="nsw-form__checkbox-label" aria-hidden="true" for="${this.selectId}-all">
-          <span>Select all</span>
-        </label>
-      </li>`
-
-    return allButton
-  }
-
-  getSelectedOptionText() {
-    const noSelectionText = '<span class="multi-select__term">Please select</span>'
-    let label = ''
-    let ariaLabel = ''
-    const count = this.getSelectedOptionCount()
-
-    if (count === this.options.length && this.dropdown) {
-      label = `All ${this.textSelected}`
-      ariaLabel = `All ${this.textSelected}`
-    } else if (count > 1) {
-      label = `${count} ${this.textSelected}`
-      ariaLabel = `${count} ${this.textSelected}, Please select`
-    } else if (count === 1) {
-      const selectedOption = this.getSelectedOption()
-      label = selectedOption.closest('.nsw-multi-select__option').getAttribute('data-label')
-      ariaLabel = `${label}, Please select`
+    if (selectedOptions === totalOptions) {
+      this.allButton.classList.add(this.showClass)
     } else {
-      label = noSelectionText
-      ariaLabel = 'Please select'
+      this.allButton.classList.remove(this.showClass)
     }
-
-    return [label, ariaLabel]
-  }
-
-  initListSelect() {
-    let list = `<div class="nsw-multi-select__dropdown" aria-describedby=${this.selectId}-description" id="${this.selectId}-dropdown">`
-
-    if (this.optGroups.length > 0) {
-      this.optGroups.forEach((optionGroup) => {
-        const optGroupList = optionGroup.querySelectorAll('option')
-        const optGroupLabel = `<li><span>${optionGroup.getAttribute('label')}</span></li>`
-        list += `<ul class="nsw-multi-select__list" role="listbox" aria-multiselectable="true">
-          ${optGroupLabel + this.getOptionsList(optGroupList)}
-        </ul>`
-      })
-    } else {
-      list += `<ul class="nsw-multi-select__list" role="listbox" aria-multiselectable="true">${this.getOptionsList(this.options)}</ul>`
-    }
-    return list
-  }
-
-  getOptionsList(options) {
-    let list = ''
-
-    options.forEach((option) => {
-      const selected = option.hasAttribute('selected') ? ' aria-selected="true"' : ' aria-selected="false"'
-      const checked = option.hasAttribute('selected') ? 'checked' : ''
-      const uniqueName = this.constructor.createSafeCssClassname(`${this.selectId}-${option.value}-${this.optionIndex.toString()}`)
-
-      list += `
-      <li class="nsw-multi-select__option" role="option" data-value="${option.value}" ${selected} data-label="${option.text}" data-index="${this.optionIndex}">
-        <input aria-hidden="true" class="nsw-form__checkbox-input" type="checkbox" id="${uniqueName}" ${checked}>
-        <label class="nsw-form__checkbox-label" aria-hidden="true" for="${uniqueName}">
-          <span>${option.text}</span>
-        </label>
-      </li>`
-
-      this.optionIndex += 1
-    })
-
-    return list
-  }
-
-  getSelectedOption() {
-    const option = this.dropdown.querySelector('[aria-selected="true"]')
-
-    if (option) {
-      return option.querySelector('.nsw-form__checkbox-input')
-    }
-
-    return this.dropdown.querySelector('.nsw-multi-select__option').querySelector('.nsw-form__checkbox-input')
-  }
-
-  checkCustomSelectClick(target) {
-    if (!this.element.contains(target)) this.toggleCustomSelect('false')
   }
 
   updateNativeSelect(index, bool) {
     this.options[index].selected = bool
-    this.select.dispatchEvent(new CustomEvent('update', { bubbles: true }))
+    this.select.dispatchEvent(new CustomEvent('change', { bubbles: true }))
   }
 
   updateTriggerAria(ariaLabel) {
     this.trigger.setAttribute('aria-label', ariaLabel)
   }
 
-  static createSafeCssClassname(str) {
-    const invalidBeginningOfClassname = /^([0-9]|--|-[0-9])/
+  getSelectedOptionText() {
+    const noSelectionText = `<span class="${this.prefix}${this.termClass}">${this.noSelectText}</span>`
+    if (this.noUpdateLabel) return [noSelectionText, this.noSelectText]
+    let label = ''
+    let ariaLabel = ''
+    this.selectedOptCounter = 0
 
-    if (typeof str !== 'string') {
-      return ''
+    for (let i = 0; i < this.options.length; i += 1) {
+      if (this.options[i].selected) {
+        if (this.selectedOptCounter !== 0) label += ', '
+        label = `${label}${this.options[i].text}`
+        this.selectedOptCounter += 1
+      }
     }
 
-    const strippedClassname = str
-      .match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)
-      .map((x) => x.toLowerCase())
-      .join('-')
+    if (this.selectedOptCounter > this.nMultiSelect) {
+      label = `<span class="${this.prefix}${this.detailsClass}">${this.multiSelectText.replace('{n}', this.selectedOptCounter)}</span>`
+      ariaLabel = `${this.multiSelectText.replace('{n}', this.selectedOptCounter)}, ${this.noSelectText}`
+    } else if (this.selectedOptCounter > 0) {
+      ariaLabel = `${label}, ${this.noSelectText}`
+      label = `<span class="${this.prefix}${this.detailsClass}">${label}</span>`
+    } else {
+      label = noSelectionText
+      ariaLabel = this.noSelectText
+    }
 
-    return invalidBeginningOfClassname.test(strippedClassname)
-      ? `_${strippedClassname}`
-      : strippedClassname
+    if (this.insetLabel && this.selectedOptCounter > 0) label = noSelectionText + label
+    return [label, ariaLabel]
   }
 
-  static moveFocusToSelectTrigger(target) {
-    const multiSelect = target.closest('.js-multi-select')
-    if (!multiSelect) return
-    multiSelect.querySelector('.nsw-multi-select__button').focus()
+  initButtonSelect() {
+    const customClasses = this.element.getAttribute('data-trigger-class') ? ` ${this.element.getAttribute('data-trigger-class')}` : ''
+
+    const triggerLabel = this.getSelectedOptionText()
+    const activeSelectionClass = this.selectedOptCounter > 0 ? ` ${this.buttonClass}--active` : ''
+
+    let button = `<button class="js-${this.buttonClass} ${this.prefix}${this.selectClass} ${this.prefix}${this.buttonClass}${customClasses}${activeSelectionClass}" aria-label="${triggerLabel[1]}" aria-expanded="false" aria-controls="${this.selectId}-dropdown"><span aria-hidden="true" class="js-${this.labelClass} ${this.prefix}${this.labelClass}">${triggerLabel[0]}</span><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>`
+    if (this.arrowIcon.length > 0 && this.arrowIcon[0].outerHTML) {
+      button += this.arrowIcon[0].outerHTML
+    }
+
+    return `${button}</button>`
+  }
+
+  initListSelect() {
+    let list = `<div class="js-${this.dropdownClass} ${this.prefix}${this.dropdownClass}" aria-describedby="${this.selectId}-description" id="${this.selectId}-dropdown">`
+    list += this.getSelectLabelSR()
+    if (this.optGroups.length > 0) {
+      for (let i = 0; i < this.optGroups.length; i += 1) {
+        const optGroupList = this.optGroups[i].getElementsByTagName('option')
+        const optGroupLabel = `<li><span class="${this.prefix}${this.itemClass} ${this.prefix}${this.itemClass}--optgroup">${this.optGroups[i].getAttribute('label')}</span></li>`
+        list = `${list}<ul class="${this.prefix}${this.listClass}" role="listbox" aria-multiselectable="true">${optGroupLabel}${this.getOptionsList(optGroupList)}</ul>`
+      }
+    } else {
+      list = `${list}<ul class="${this.prefix}${this.listClass} js-${this.listClass}" role="listbox" aria-multiselectable="true">${this.getOptionsList(this.options)}</ul>`
+    }
+    return list
+  }
+
+  initAllButton() {
+    const allButton = `<button class="${this.prefix}${this.allButtonClass} js-${this.allButtonClass}"><span>All</span></button>`
+    return allButton
+  }
+
+  getSelectLabelSR() {
+    if (this.label) {
+      return `<p class="${this.srClass}" id="${this.selectId}-description">${this.label.textContent}</p>`
+    }
+    return ''
+  }
+
+  getOptionsList(options) {
+    let list = ''
+    for (let i = 0; i < options.length; i += 1) {
+      const selected = options[i].hasAttribute('selected') ? ' aria-selected="true"' : ' aria-selected="false"'
+      const disabled = options[i].hasAttribute('disabled') ? 'disabled' : ''
+      const checked = options[i].hasAttribute('selected') ? 'checked' : ''
+      const uniqueName = this.constructor.createSafeCss(`${this.selectId}-${options[i].value}-${this.optionIndex.toString()}`)
+      list = `${list}<li class="js-${this.optionClass}" role="option" data-value="${options[i].value}" ${selected} data-label="${options[i].text}" data-index="${this.optionIndex}"><input aria-hidden="true" class="${this.prefix}${this.checkboxInputClass} js-${this.checkboxClass}" type="checkbox" id="${uniqueName}" ${checked} ${disabled}><label class="${this.prefix}${this.checkboxLabelClass} ${this.prefix}${this.itemClass} ${this.prefix}${this.itemClass}--option" aria-hidden="true" for="${uniqueName}"><span>${options[i].text}</span></label></li>`
+      this.optionIndex += 1
+    }
+    return list
+  }
+
+  getSelectedOption() {
+    const option = this.dropdown.querySelector('[aria-selected="true"]')
+    if (option) return option.getElementsByClassName(`js-${this.checkboxClass}`)[0]
+    return this.dropdown.getElementsByClassName(`js-${this.optionClass}`)[0].getElementsByClassName(`js-${this.checkboxClass}`)[0]
+  }
+
+  getOptions() {
+    const options = Array.from(this.dropdown.querySelectorAll(`.js-${this.optionClass}`))
+    const total = options.length
+    const selected = options.filter((option) => option.getAttribute('aria-selected') === 'true').length
+    return [options, total, selected]
+  }
+
+  moveFocusToSelectTrigger() {
+    if (!document.activeElement.closest(`.js-${this.class}`)) return
+    this.trigger.focus()
   }
 
   static trapFocus(element) {
@@ -377,15 +337,33 @@ class Select {
     firstFocusableElement.focus()
   }
 
-  static moveFocus(element) {
-    if (document.activeElement !== element) {
-      element.focus()
-    }
+  checkCustomSelectClick(target) {
+    if (!this.element.contains(target)) this.toggleCustomSelect('false')
   }
 
-  static toggleClass(el, className, bool) {
-    if (bool) el.classList.add(className)
-    else el.classList.remove(className)
+  static createSafeCss(str) {
+    const invalidBeginningOfClassname = /^([0-9]|--|-[0-9])/
+
+    if (typeof str !== 'string') {
+      return ''
+    }
+
+    const strippedClassname = str
+      .match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)
+      .map((x) => x.toLowerCase())
+      .join('-')
+
+    return invalidBeginningOfClassname.test(strippedClassname)
+      ? `_${strippedClassname}`
+      : strippedClassname
+  }
+
+  static moveFocusFn(element) {
+    element.focus()
+    if (document.activeElement !== element) {
+      element.setAttribute('tabindex', '-1')
+      element.focus()
+    }
   }
 }
 
