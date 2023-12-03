@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { uniqueId } from '../../global/scripts/helpers/utilities'
 
 class Filters {
@@ -17,11 +18,9 @@ class Filters {
     this.showAll = element.querySelectorAll('.nsw-filters__all')
     this.showAllBlocks = Array.prototype.slice.call(this.showAll)
     this.filtersItems = element.querySelectorAll('.nsw-filters__item')
-    /* eslint-disable max-len */
     this.focusableEls = this.filtersWrapper.querySelectorAll('a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])')
     this.checkIcon = '<span class="material-icons nsw-material-icons nsw-material-icons--valid" focusable="false" aria-hidden="true">check_circle</span>'
     this.arrowIcon = '<span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_right</span>'
-    /* eslint-ensable max-len */
     this.showEvent = (e) => this.showFilters(e)
     this.hideEvent = (e) => this.hideFilters(e)
     this.showMoreEvent = (e) => this.showMore(e)
@@ -31,6 +30,8 @@ class Filters {
     this.buttons = []
     this.content = []
     this.selected = []
+    this.hideClass = 'nsw-display-none'
+    this.showClass = 'active'
   }
 
   init() {
@@ -96,17 +97,17 @@ class Filters {
   showFilters(e) {
     e.preventDefault()
     if (this.filters.classList.contains('nsw-filters--down')) {
-      this.filters.classList.toggle('active')
+      this.filters.classList.toggle(this.showClass)
     } else {
       this.trapFocus(this.filtersWrapper)
-      this.filters.classList.add('active')
+      this.filters.classList.add(this.showClass)
       this.body.classList.add('filters-open')
     }
   }
 
   hideFilters(e) {
     e.preventDefault()
-    this.filters.classList.remove('active')
+    this.filters.classList.remove(this.showClass)
     this.body.classList.remove('filters-open')
   }
 
@@ -115,8 +116,8 @@ class Filters {
     const currentShowMore = e.target
     const currentIndex = this.showMoreButtons.indexOf(currentShowMore)
     const currentAll = this.showAllBlocks[currentIndex]
-    currentAll.classList.remove('hidden')
-    currentShowMore.classList.add('hidden')
+    currentAll.classList.remove(this.hideClass)
+    currentShowMore.classList.add(this.hideClass)
   }
 
   getTargetContent(element) {
@@ -128,11 +129,11 @@ class Filters {
     const targetContent = this.getTargetContent(element)
 
     if (state === 'open') {
-      element.classList.add('active')
+      element.classList.add(this.showClass)
       element.setAttribute('aria-expanded', 'true')
       targetContent.hidden = false
     } else if (state === 'close') {
-      element.classList.remove('active')
+      element.classList.remove(this.showClass)
       element.setAttribute('aria-expanded', 'false')
       targetContent.hidden = true
     }
@@ -184,9 +185,9 @@ class Filters {
 
   toggleSelectedState(array) {
     if (array.length > 0) {
-      this.openButton.parentElement.classList.add('active')
+      this.openButton.parentElement.classList.add(this.showClass)
     } else {
-      this.openButton.parentElement.classList.remove('active')
+      this.openButton.parentElement.classList.remove(this.showClass)
     }
   }
 
