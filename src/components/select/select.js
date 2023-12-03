@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 class Select {
   constructor(element) {
     this.element = element
@@ -97,7 +98,7 @@ class Select {
     }
     this.trigger.setAttribute('aria-expanded', ariaExpanded)
     if (ariaExpanded === 'true') {
-      const selectedOption = this.getSelectedOption()
+      const selectedOption = this.getSelectedOption() || this.allButton
       this.constructor.moveFocusFn(selectedOption)
 
       const cb = () => {
@@ -122,11 +123,13 @@ class Select {
 
   keyboardCustomSelect(direction, event) {
     event.preventDefault()
-    let index = Array.prototype.indexOf.call(this.customOptions, document.activeElement.closest(`.js-${this.optionClass}`))
+    const allOptions = [...this.customOptions, this.allButton]
+    let index = allOptions.findIndex((option) => option === document.activeElement.closest(`.js-${this.optionClass}`))
     index = (direction === 'next') ? index + 1 : index - 1
-    if (index < 0) index = this.customOptions.length - 1
-    if (index >= this.customOptions.length) index = 0
-    this.constructor.moveFocusFn(this.customOptions[index].getElementsByClassName(`js-${this.checkboxClass}`)[0])
+    if (index < 0) index = allOptions.length - 1
+    if (index >= allOptions.length) index = 0
+    const targetOption = allOptions[index].querySelector(`.js-${this.checkboxClass}`) || this.allButton
+    this.constructor.moveFocusFn(targetOption)
   }
 
   toggleAllButton() {
@@ -293,8 +296,8 @@ class Select {
 
   getSelectedOption() {
     const option = this.dropdown.querySelector('[aria-selected="true"]')
-    if (option) return option.getElementsByClassName(`js-${this.checkboxClass}`)[0]
-    return this.dropdown.getElementsByClassName(`js-${this.optionClass}`)[0].getElementsByClassName(`js-${this.checkboxClass}`)[0]
+    if (option) return option.querySelector(`.js-${this.checkboxClass}`)
+    return this.allButton
   }
 
   getOptions() {
