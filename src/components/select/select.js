@@ -53,6 +53,7 @@ class Select {
     this.select.classList.add(this.hideClass)
     if (this.arrowIcon.length > 0) this.arrowIcon[0].style.display = 'none'
     this.initCustomSelectEvents()
+    this.updateAllButton()
   }
 
   initCustomSelectEvents() {

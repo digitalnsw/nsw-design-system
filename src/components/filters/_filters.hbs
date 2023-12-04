@@ -1,6 +1,6 @@
 <{{#if instant}}div{{else}}form{{/if}} class="nsw-filters{{#if instant}} nsw-filters--instant{{/if}}{{#if popup}} nsw-filters--fixed{{/if}}{{#if right}} nsw-filters--right{{/if}}{{#if down}} nsw-filters--down{{/if}}{{#if js}} js-filters{{/if}}">
   {{#if (or right popup down)}}
-  <div class="nsw-filters__controls{{#unless no-count}} js-filters--count{{/unless}}">
+  <div class="nsw-filters__controls{{#unless no-count}} js-filters__count{{/unless}}">
     <button>
       <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">tune</span>
       <span>{{#if name}}{{name}}{{else}}Filters{{/if}}</span>
@@ -55,7 +55,7 @@
           <div class="nsw-multi-select js-multi-select" data-no-select-text="Select savings programs" data-multi-select-text="{n} items selected" data-n-multi-select="2">{{/if}}
             <select{{#unless multiple}} class="nsw-form__select"{{/unless}} name="{{select.id}}-{{filters-id}}" id="{{select.id}}-{{filters-id}}"{{#if helper-text}} aria-describedby="{{#if helper-text}}{{select.id}}-{{filters-id}}-helper-text{{/if}}"{{/if}}{{#if error-text}} aria-invalid="true"{{/if}}{{#if multiple}} multiple{{/if}}>{{#unless multiple}}<option value="">Please select</option>{{/unless}}
             {{#each select.list}}
-              <option value="{{this}}">{{this}}</option>
+              <option value="{{this}}" selected="selected">{{this}}</option>
             {{/each}}
             </select>{{#if multiple}}
           </div>{{/if}}
@@ -78,7 +78,7 @@
             <label class="nsw-form__checkbox-label" for="{{id}}-{{../filters-id}}">{{title}}</label>
             {{/each}}
             {{#if checkboxes.all}}
-            <div class="nsw-filters__all hidden">
+            <div class="nsw-filters__all nsw-display-none">
               {{#each checkboxes.all}}
               <input class="nsw-form__checkbox-input" type="checkbox" name="{{name}}" value="{{title}}" id="{{id}}-{{../filters-id}}"{{#if checked}} checked{{/if}}>
               <label class="nsw-form__checkbox-label" for="{{id}}-{{../filters-id}}">{{title}}</label>
