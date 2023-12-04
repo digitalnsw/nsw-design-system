@@ -1,19 +1,13 @@
-<{{#if instant}}div{{else}}form{{/if}} class="nsw-filters{{#if instant}} nsw-filters--instant{{/if}}{{#if popup}} nsw-filters--fixed{{/if}}{{#if right}} nsw-filters--right{{/if}}{{#if down}} nsw-filters--down{{/if}}{{#if js}} js-filters{{/if}}">
-  {{#if (or right popup down)}}
+<{{#if instant}}div{{else}}form{{/if}} class="nsw-filters{{#if instant}} nsw-filters--instant{{/if}}{{#if popup}} nsw-filters--fixed{{/if}}{{#if right}} nsw-filters--right{{/if}}{{#if down}} nsw-filters--down{{/if}}{{#if js}} js-filters{{/if}}">{{#if (or right popup down)}}
   <div class="nsw-filters__controls{{#unless no-count}} js-filters__count{{/unless}}">
     <button>
       <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">tune</span>
-      <span>{{#if name}}{{name}}{{else}}Filters{{/if}}</span>
-      {{#if down}}
-      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
-      {{else}}
-      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_right</span>
-      {{/if}}
+      <span>{{#if name}}{{name}}{{else}}Filters{{/if}}</span>{{#if down}}
+      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>{{else}}
+      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_right</span>{{/if}}
     </button>
-  </div>
-  {{/if}}
-  <div class="nsw-filters__wrapper">
-    {{#if (or right popup)}}
+  </div>{{/if}}
+  <div class="nsw-filters__wrapper">{{#if (or right popup)}}
     <div class="nsw-filters__back">
       <button class="nsw-icon-button nsw-icon-button--flex js-close-sub-nav" type="button">
         {{#if right}}
@@ -24,82 +18,59 @@
         <span>Back</span> 
         {{/if}}
       </button>
-    </div>
-    {{/if}}
+    </div>{{/if}}
     <div class="nsw-filters__title">{{#if name}}{{name}}{{else}}Filters{{/if}}</div>
-    <div class="nsw-filters__list">
-      {{#if input}}
-      <div class="nsw-filters__item">
-        {{#if collapsed}}
+    <div class="nsw-filters__list">{{#if input}}
+      <div class="nsw-filters__item">{{#if collapsed}}
         <button class="nsw-filters__item-button">
           <span class="nsw-filters__item-name">{{input.name}}</span>
           <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
-        </button>
-        {{/if}}
+        </button>{{/if}}
         <div class="nsw-filters__item-content">
           <label class="nsw-form__label{{#if collapsed}} sr-only{{/if}}" for="{{input.id}}-{{filters-id}}">{{input.name}}</label>
           <input class="nsw-form__input" type="text" id="{{input.id}}-{{filters-id}}" name="filters-keyword"{{#if input.value}} value="{{input.value}}"{{/if}}>
         </div>
-      </div>
-      {{/if}}
-      {{#if select}}
-      <div class="nsw-filters__item">
-        {{#if collapsed}}
+      </div>{{/if}}{{#if select}}
+      <div class="nsw-filters__item">{{#if collapsed}}
         <button class="nsw-filters__item-button">
           <span class="nsw-filters__item-name">{{select.name}}</span>
           <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
-        </button>
-        {{/if}}
+        </button>{{/if}}
         <div class="nsw-filters__item-content">
           <label class="nsw-form__label{{#if collapsed}} sr-only{{/if}}" for="{{select.id}}-{{filters-id}}">{{select.name}}</label>{{#if multiple}}
           <div class="nsw-multi-select js-multi-select" data-no-select-text="Select savings programs" data-multi-select-text="{n} items selected" data-n-multi-select="2">{{/if}}
-            <select{{#unless multiple}} class="nsw-form__select"{{/unless}} name="{{select.id}}-{{filters-id}}" id="{{select.id}}-{{filters-id}}"{{#if helper-text}} aria-describedby="{{#if helper-text}}{{select.id}}-{{filters-id}}-helper-text{{/if}}"{{/if}}{{#if error-text}} aria-invalid="true"{{/if}}{{#if multiple}} multiple{{/if}}>{{#unless multiple}}<option value="">Please select</option>{{/unless}}
-            {{#each select.list}}
-              <option value="{{this}}" selected="selected">{{this}}</option>
-            {{/each}}
-            </select>{{#if multiple}}
+          <select{{#unless multiple}} class="nsw-form__select"{{/unless}} name="{{select.id}}-{{filters-id}}" id="{{select.id}}-{{filters-id}}"{{#if helper-text}} aria-describedby="{{#if helper-text}}{{select.id}}-{{filters-id}}-helper-text{{/if}}"{{/if}}{{#if error-text}} aria-invalid="true"{{/if}}{{#if multiple}} multiple{{/if}}>{{#unless multiple}}<option value="">Please select</option>{{/unless}}
+          {{#each select.list}}
+            <option value="{{this}}">{{this}}</option>
+          {{/each}}
+          </select>{{#if multiple}}
           </div>{{/if}}
         </div>
-      </div>
-      {{/if}}
-      {{#if checkboxes}}
-      <div class="nsw-filters__item">
-        {{#if collapsed}}
+      </div>{{/if}}{{#if checkboxes}}
+      <div class="nsw-filters__item">{{#if collapsed}}
         <button class="nsw-filters__item-button">
           <span class="nsw-filters__item-name">{{checkboxes.name}}</span>
           <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
-        </button>
-        {{/if}}
+        </button>{{/if}}
         <div class="nsw-filters__item-content">
           <fieldset class="nsw-form__fieldset">
-            <legend class="nsw-form__legend{{#if collapsed}} sr-only{{/if}}">{{checkboxes.name}}</legend>
-            {{#each checkboxes.list}}
+            <legend class="nsw-form__legend{{#if collapsed}} sr-only{{/if}}">{{checkboxes.name}}</legend>{{#each checkboxes.list}}
             <input class="nsw-form__checkbox-input" type="checkbox" name="{{name}}" value="{{title}}" id="{{id}}-{{../filters-id}}"{{#if checked}} checked{{/if}}>
-            <label class="nsw-form__checkbox-label" for="{{id}}-{{../filters-id}}">{{title}}</label>
-            {{/each}}
-            {{#if checkboxes.all}}
-            <div class="nsw-filters__all nsw-display-none">
-              {{#each checkboxes.all}}
+            <label class="nsw-form__checkbox-label" for="{{id}}-{{../filters-id}}">{{title}}</label>{{/each}}{{#if checkboxes.all}}
+            <div class="nsw-filters__all nsw-display-none">{{#each checkboxes.all}}
               <input class="nsw-form__checkbox-input" type="checkbox" name="{{name}}" value="{{title}}" id="{{id}}-{{../filters-id}}"{{#if checked}} checked{{/if}}>
-              <label class="nsw-form__checkbox-label" for="{{id}}-{{../filters-id}}">{{title}}</label>
-              {{/each}}
+              <label class="nsw-form__checkbox-label" for="{{id}}-{{../filters-id}}">{{title}}</label>{{/each}}
             </div>
-            <button class="nsw-filters__more">{{#if checkboxes.more}}{{checkboxes.more}}{{else}}Show all{{/if}}{{#if checkboxes.count}} ({{checkboxes.count}}){{/if}}</button>
-            {{/if}}
+            <button class="nsw-filters__more">{{#if checkboxes.more}}{{checkboxes.more}}{{else}}Show all{{/if}}{{#if checkboxes.count}} ({{checkboxes.count}}){{/if}}</button>{{/if}}
           </fieldset>
         </div>
-      </div>
-      {{/if}}
-      {{#if dates}}
-      <div class="nsw-filters__item">
-        {{#if collapsed}}
+      </div>{{/if}}{{#if dates}}
+      <div class="nsw-filters__item">{{#if collapsed}}
         <button class="nsw-filters__item-button">
           <span class="nsw-filters__item-name">Date</span>
           <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
-        </button>
-        {{/if}}
-        <div class="nsw-filters__item-content js-filters--single-count">
-          {{#each dates.list}}
+        </button>{{/if}}
+        <div class="nsw-filters__item-content">{{#each dates.list}}
           <div class="nsw-form__group">
             <fieldset class="nsw-form__date">
               <legend class="nsw-form__label{{#if collapsed}} sr-only{{/if}}">{{title}}</legend>
@@ -118,17 +89,13 @@
                 </div>
               </div>
             </fieldset>
-          </div>
-          {{/each}}
+          </div>{{/each}}
         </div>
-      </div>
-      {{/if}}    
-    </div>
-    {{#unless instant}}
+      </div>{{/if}}    
+    </div>{{#unless instant}}
     <div class="nsw-filters__accept">
       <button type="submit" class="nsw-button nsw-button--dark nsw-button--full-width">Apply filters</button>
-    </div>
-    {{/unless}}
+    </div>{{/unless}}
     <div class="nsw-filters__cancel">
       <button type="reset">Clear all filters</button>
     </div>

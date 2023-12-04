@@ -52,6 +52,8 @@ class Filters {
       buttonElem.setAttribute('type', 'button')
       buttonElem.setAttribute('aria-expanded', 'false')
       buttonElem.setAttribute('aria-controls', uID)
+      const label = buttonElem.querySelector(`.${this.prefix}${this.itemClass}-name`)
+      buttonElem.setAttribute('data-label', label.innerText)
 
       const contentElem = buttonElem.nextElementSibling
       contentElem.id = buttonElem.getAttribute('aria-controls')
@@ -201,8 +203,6 @@ class Filters {
     const multiSelectAll = multiSelect && multiSelect.querySelector('.js-multi-select__all')
     const multiSelectOptions = multiSelect && multiSelect.querySelectorAll('.js-multi-select__option')
 
-    this.getOptions()
-
     if (this.options.length > 0) {
       this.options.forEach((input) => {
         const option = input
@@ -232,32 +232,74 @@ class Filters {
     this.options = []
     this.items.forEach((element) => {
       const content = element.querySelector(`.${this.prefix}${this.itemClass}-content`)
-      const text = content.querySelectorAll('input[type="text"]')
-      const selects = content.querySelectorAll('select:not(.nsw-display-none)')
+      const textInputs = content.querySelectorAll('input[type="text"]')
+      const singleSelects = content.querySelectorAll('select:not([multiple]):not(.nsw-display-none)')
+      const multiSelects = content.querySelectorAll('select[multiple]:not(.nsw-display-none)')
       const checkboxes = content.querySelectorAll('input[type="checkbox"]')
-      this.options.push(...text, ...selects, ...checkboxes)
+      this.options.push(...textInputs, ...singleSelects, ...checkboxes, ...multiSelects)
     })
   }
 
   getSelected() {
+    this.selected = []
     if (this.options.length > 0) {
-      this.selected = []
-      const multiSelect = this.options.filter((option) => option.parentElement.getAttribute('aria-selected') === 'true')
-      const select = this.options.filter((option) => option.selected)
+      const select = this.options.filter((option) => option.type === 'select-one' && option.value !== '')
       const checkboxes = this.options.filter((option) => option.checked)
       const text = this.options.filter((option) => option.type === 'text' && option.value !== '')
-      this.selected = [...multiSelect, ...select, ...checkboxes, ...text]
+      const multiple = this.options.filter((option) => option.type === 'select-multiple' && option.value !== '')
+      const selectMultiple = this.constructor.getMultiSelectValues(multiple)
+      this.selected = [...select, ...checkboxes, ...text, ...selectMultiple]
     }
   }
 
   selectedCount(array) {
-    if (this.count) {
-      if (array.length > 0) {
-        this.controlsButtonText.innerText = `${this.controlsButtonTextContent} (${array.length})`
-      } else {
-        this.controlsButtonText.innerText = `${this.controlsButtonTextContent}`
-      }
+    if (!this.count) return
+
+    const dateInputs = array.filter((option) => option.closest('.nsw-form__date'))
+    const removedDateInputs = array.filter((option) => !option.closest('.nsw-form__date'))
+
+    let buttonText = `${this.controlsButtonTextContent}`
+
+    let countText = ''
+
+    if (dateInputs.length > 0) {
+      countText = ` (${removedDateInputs.length + 1})`
+    } else {
+      countText = ` (${array.length})`
     }
+
+    if (dateInputs.length === 0 && array.length === 0) {
+      this.controlsButtonText.innerText = buttonText
+    } else {
+      buttonText += countText
+      this.controlsButtonText.innerText = buttonText
+    }
+  }
+
+  setSelectedState() {
+    const formElements = 'textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled]):not(.nsw-display-none)'
+    const checkIcon = '<span class="material-icons nsw-material-icons nsw-material-icons--valid" focusable="false" aria-hidden="true">check_circle</span>'
+
+    this.buttons.forEach((element) => {
+      const buttonName = element.querySelector(`.${this.prefix}${this.itemClass}-name`)
+      const label = element.getAttribute('data-label')
+      const content = element.nextElementSibling
+      const values = content.querySelectorAll(formElements)
+
+      const selected = Array.from(values).filter((field) => {
+        if (field.type === 'checkbox' || field.type === 'radio') {
+          return field.checked
+        }
+        return field.value !== ''
+      })
+
+      if (selected.length > 0) {
+        buttonName.innerText = label
+        buttonName.innerHTML = `${label} ${checkIcon}`
+      } else if (selected.length === 0) {
+        buttonName.innerText = label
+      }
+    })
   }
 
   updateDom() {
@@ -265,6 +307,7 @@ class Filters {
     this.getSelected()
     this.toggleSubmit(this.selected)
     this.selectedCount(this.selected)
+    this.setSelectedState()
   }
 
   trapFocus(element) {
@@ -287,6 +330,18 @@ class Filters {
     })
 
     firstFocusableElement.focus()
+  }
+
+  static getMultiSelectValues(array) {
+    let selectedOptions = []
+
+    if (array.length > 0) {
+      array.forEach((element) => {
+        selectedOptions = Array.from(element.options).filter((option) => option.selected)
+      })
+    }
+
+    return selectedOptions
   }
 
   static moveFocusFn(element) {
