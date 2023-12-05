@@ -577,362 +577,307 @@
     }
   }
 
+  /* eslint-disable max-len */
   class Filters {
     constructor(element) {
-      this.filters = element;
-      this.filtersWrapper = element.querySelector('.nsw-filters__wrapper');
-      this.openButton = element.querySelector('.nsw-filters__controls button');
-      this.openButtonIcons = this.openButton ? this.openButton.querySelectorAll('span') : null;
-      this.selectedCount = element.querySelector('.js-filters--count');
-      this.openButtonText = this.selectedCount ? this.selectedCount.querySelector('span:not(.nsw-material-icons)') : null;
-      this.buttonLabel = this.openButtonText ? this.openButtonText.innerText : null;
-      this.closeButton = element.querySelector('.nsw-filters__back button');
-      this.acceptButton = element.querySelector('.nsw-filters__accept button');
-      this.clearButton = element.querySelector('.nsw-filters__cancel button');
-      this.showMoreButtons = Array.prototype.slice.call(element.querySelectorAll('.nsw-filters__more'));
-      this.accordionButtons = element.querySelectorAll('.nsw-filters__item-button');
-      this.showAll = element.querySelectorAll('.nsw-filters__all');
-      this.showAllBlocks = Array.prototype.slice.call(this.showAll);
-      this.filtersItems = element.querySelectorAll('.nsw-filters__item');
-      /* eslint-disable max-len */
-      this.focusableEls = this.filtersWrapper.querySelectorAll('a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])');
-      this.checkIcon = '<span class="material-icons nsw-material-icons nsw-material-icons--valid" focusable="false" aria-hidden="true">check_circle</span>';
-      this.arrowIcon = '<span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_right</span>';
-      /* eslint-ensable max-len */
-      this.showEvent = e => this.showFilters(e);
-      this.hideEvent = e => this.hideFilters(e);
-      this.showMoreEvent = e => this.showMore(e);
-      this.toggleEvent = e => this.toggleAccordion(e);
-      this.resetEvent = e => this.clearAllFilters(e);
-      this.body = document.body;
+      this.element = element;
+      // Classes
+      this.hideClass = 'nsw-display-none';
+      this.showClass = 'active';
+      this.openClass = 'filters-open';
+      this.prefix = 'nsw-';
+      this.class = 'filters';
+      this.controlsClass = `${this.class}__controls`;
+      this.wrapperClass = `${this.class}__wrapper`;
+      this.listClass = `${this.class}__list`;
+      this.itemClass = `${this.class}__item`;
+      this.resetClass = `${this.class}__cancel`;
+      this.submitClass = `${this.class}__accept`;
+      this.closeClass = `${this.class}__back`;
+      this.countClass = `${this.class}__count`;
+      this.allClass = `${this.class}__all`;
+      this.moreClass = `${this.class}__more`;
+      // Elements
+      this.count = this.element.querySelector(`.js-${this.countClass}`);
+      this.controls = this.element.querySelector(`.${this.prefix}${this.controlsClass}`);
+      this.controlsButton = this.controls && this.controls.querySelector('button');
+      this.controlsButtonIcons = this.controlsButton && this.controlsButton.querySelectorAll('span');
+      this.controlsButtonText = this.controlsButton && this.controlsButton.querySelector('span:not(.nsw-material-icons)');
+      this.controlsButtonTextContent = this.controlsButton && this.controlsButtonText.innerText;
+      this.wrapper = this.element.querySelector(`.${this.prefix}${this.wrapperClass}`);
+      this.closeButton = this.wrapper.querySelector(`.${this.prefix}${this.closeClass} button`);
+      this.submitButton = this.wrapper.querySelector(`.${this.prefix}${this.submitClass} button`);
+      this.resetButton = this.wrapper.querySelector(`.${this.prefix}${this.resetClass} button`);
+      this.items = this.wrapper.querySelectorAll(`.${this.prefix}${this.itemClass}`);
+      this.accordionButtons = this.wrapper.querySelectorAll(`.${this.prefix}${this.itemClass}-button`);
+      this.showMoreContent = this.element.querySelectorAll(`.${this.prefix}${this.allClass}`);
+      this.showMoreButtons = this.element.querySelectorAll(`.${this.prefix}${this.moreClass}`);
+      this.focusableElements = 'a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])';
+      // Accordion arrays
       this.buttons = [];
       this.content = [];
+      this.options = [];
       this.selected = [];
     }
     init() {
-      this.setUpDom();
-      this.controls();
-      this.selectedItems();
-    }
-    setUpDom() {
-      this.filters.classList.add('ready');
-      if (this.openButton) {
-        if (this.openButtonIcons.length < 3) {
-          this.openButton.insertAdjacentHTML('beforeend', this.arrowIcon);
-        }
-      }
+      this.element.classList.add('ready');
       this.accordionButtons.forEach(button => {
         const buttonElem = button;
         const uID = uniqueId('collapsed');
         buttonElem.setAttribute('type', 'button');
         buttonElem.setAttribute('aria-expanded', 'false');
         buttonElem.setAttribute('aria-controls', uID);
+        const label = buttonElem.querySelector(`.${this.prefix}${this.itemClass}-name`);
+        buttonElem.setAttribute('data-label', label.innerText);
         const contentElem = buttonElem.nextElementSibling;
         contentElem.id = buttonElem.getAttribute('aria-controls');
         contentElem.hidden = true;
         this.content.push(contentElem);
         this.buttons.push(buttonElem);
       });
+      this.updateDom();
+      this.initEvents();
     }
-    controls() {
-      if (this.openButton) {
-        this.openButton.addEventListener('click', this.showEvent, false);
-      }
-      if (this.acceptButton) {
-        this.acceptButton.disabled = true;
-      }
-      if (this.closeButton) {
-        this.closeButton.addEventListener('click', this.hideEvent, false);
-      }
-      this.showAll.forEach(element => {
-        const showMoreButton = element.nextElementSibling;
-        showMoreButton.addEventListener('click', this.showMoreEvent, false);
+    initEvents() {
+      document.addEventListener('DOMContentLoaded', () => {
+        this.updateDom();
       });
-      if (this.buttons) {
-        this.buttons.forEach(element => {
-          element.addEventListener('click', this.toggleEvent, false);
+      if (this.options) {
+        this.options.forEach(element => {
+          element.addEventListener('change', () => {
+            this.updateDom();
+          });
         });
       }
-      if (this.clearButton) {
-        this.clearButton.addEventListener('click', this.resetEvent, false);
+      if (this.controlsButton) {
+        this.controlsButton.addEventListener('click', event => {
+          this.showFilters(event);
+        });
       }
-    }
-    showFilters(e) {
-      e.preventDefault();
-      if (this.filters.classList.contains('nsw-filters--down')) {
-        this.filters.classList.toggle('active');
-      } else {
-        this.trapFocus(this.filtersWrapper);
-        this.filters.classList.add('active');
-        this.body.classList.add('filters-open');
+      if (this.submitButton) {
+        this.submitButton.disabled = true;
       }
-    }
-    hideFilters(e) {
-      e.preventDefault();
-      this.filters.classList.remove('active');
-      this.body.classList.remove('filters-open');
-    }
-    showMore(e) {
-      e.preventDefault();
-      const currentShowMore = e.target;
-      const currentIndex = this.showMoreButtons.indexOf(currentShowMore);
-      const currentAll = this.showAllBlocks[currentIndex];
-      currentAll.classList.remove('hidden');
-      currentShowMore.classList.add('hidden');
-    }
-    getTargetContent(element) {
-      const currentIndex = this.buttons.indexOf(element);
-      return this.content[currentIndex];
+      if (this.closeButton) {
+        this.closeButton.addEventListener('click', event => {
+          this.closeFilters(event);
+        });
+      }
+      if (this.buttons) {
+        this.buttons.forEach(element => {
+          element.addEventListener('click', event => {
+            this.toggleAccordion(event);
+          });
+        });
+      }
+      if (this.resetButton) {
+        this.resetButton.addEventListener('click', event => {
+          this.clearAll(event);
+        });
+        this.resetButton.addEventListener('change', event => {
+          this.clearAll(event);
+        });
+      }
+      if (this.showMoreButtons) {
+        this.showMoreButtons.forEach((element, index) => {
+          element.addEventListener('click', event => {
+            this.showMore(event, index);
+          });
+        });
+      }
     }
     setAccordionState(element, state) {
       const targetContent = this.getTargetContent(element);
+      const firstfocusable = targetContent.querySelector(this.focusableElements);
       if (state === 'open') {
-        element.classList.add('active');
+        element.classList.add(this.showClass);
         element.setAttribute('aria-expanded', 'true');
         targetContent.hidden = false;
+        this.constructor.moveFocusFn(firstfocusable);
       } else if (state === 'close') {
-        element.classList.remove('active');
+        element.classList.remove(this.showClass);
         element.setAttribute('aria-expanded', 'false');
         targetContent.hidden = true;
       }
     }
-    toggleAccordion(e) {
+    toggleAccordion(event) {
       const {
         currentTarget
-      } = e;
+      } = event;
       const targetContent = this.getTargetContent(currentTarget);
-      const isHidden = targetContent.hidden;
-      if (isHidden) {
+      if (targetContent.hidden) {
         this.setAccordionState(currentTarget, 'open');
       } else {
         this.setAccordionState(currentTarget, 'close');
       }
     }
-    trapFocus(element) {
-      const firstFocusableEl = this.focusableEls[0];
-      const lastFocusableEl = this.focusableEls[this.focusableEls.length - 1];
-      const KEYCODE_TAB = 9;
-      element.addEventListener('keydown', e => {
-        const isTabPressed = e.key === 'Tab' || e.keyCode === KEYCODE_TAB;
-        if (!isTabPressed) {
-          return;
+    getTargetContent(element) {
+      const currentIndex = this.buttons.indexOf(element);
+      return this.content[currentIndex];
+    }
+    toggleSubmit(array) {
+      if (this.submitButton) {
+        if (array.length > 0) {
+          this.submitButton.disabled = false;
+        } else {
+          this.submitButton.disabled = true;
         }
-        if (e.shiftKey) {
-          if (document.activeElement === firstFocusableEl) {
-            e.preventDefault();
-            lastFocusableEl.focus();
+      }
+    }
+    showMore(event, index) {
+      event.preventDefault();
+      const firstfocusable = this.showMoreContent[index].querySelector(this.focusableElements);
+      this.showMoreContent[index].classList.remove(this.hideClass);
+      event.target.classList.add(this.hideClass);
+      this.constructor.moveFocusFn(firstfocusable);
+    }
+    closeFilters(event) {
+      event.preventDefault();
+      this.element.classList.remove(this.showClass);
+      document.body.classList.remove(this.openClass);
+    }
+    showFilters(event) {
+      event.preventDefault();
+      if (this.element.classList.contains('nsw-filters--down')) {
+        this.element.classList.toggle(this.showClass);
+      } else {
+        this.trapFocus(this.wrapper);
+        this.element.classList.add(this.showClass);
+        document.body.classList.add(this.openClass);
+      }
+    }
+    clearAll(event) {
+      event.preventDefault();
+      const simulateEvent = new MouseEvent('change', {
+        view: window,
+        bubbles: true,
+        cancelable: true
+      });
+      const multiSelect = this.element.querySelector('.js-multi-select');
+      const multiSelectAll = multiSelect && multiSelect.querySelector('.js-multi-select__all');
+      const multiSelectOptions = multiSelect && multiSelect.querySelectorAll('.js-multi-select__option');
+      if (this.options.length > 0) {
+        this.options.forEach(input => {
+          const option = input;
+          if (option.type === 'text' || option.type === 'select-one') {
+            option.value = '';
+          } else if (!option.parentElement.classList.contains('js-multi-select__option')) {
+            option.value = false;
+            option.checked = false;
           }
-        } else if (document.activeElement === lastFocusableEl) {
-          e.preventDefault();
-          firstFocusableEl.focus();
-        }
+        });
+      }
+      if (multiSelect) {
+        multiSelectAll.classList.remove(this.showClass);
+        multiSelectOptions.forEach(element => {
+          element.setAttribute('aria-selected', 'true');
+          element.dispatchEvent(new Event(simulateEvent));
+          element.click();
+        });
+      }
+      this.updateDom();
+    }
+    getOptions() {
+      this.options = [];
+      this.items.forEach(element => {
+        const content = element.querySelector(`.${this.prefix}${this.itemClass}-content`);
+        const textInputs = content.querySelectorAll('input[type="text"]');
+        const singleSelects = content.querySelectorAll('select:not([multiple]):not(.nsw-display-none)');
+        const multiSelects = content.querySelectorAll('select[multiple]:not(.nsw-display-none)');
+        const checkboxes = content.querySelectorAll('input[type="checkbox"]');
+        this.options.push(...textInputs, ...singleSelects, ...checkboxes, ...multiSelects);
       });
     }
-    toggleAccept(array) {
-      if (this.acceptButton) {
-        if (array.length > 0) {
-          this.acceptButton.disabled = false;
-        } else {
-          this.acceptButton.disabled = true;
-        }
+    getSelected() {
+      this.selected = [];
+      if (this.options.length > 0) {
+        const select = this.options.filter(option => option.type === 'select-one' && option.value !== '');
+        const checkboxes = this.options.filter(option => option.checked);
+        const text = this.options.filter(option => option.type === 'text' && option.value !== '');
+        const multiple = this.options.filter(option => option.type === 'select-multiple' && option.value !== '');
+        const selectMultiple = this.constructor.getMultiSelectValues(multiple);
+        this.selected = [...select, ...checkboxes, ...text, ...selectMultiple];
       }
     }
-    toggleSelectedState(array) {
-      if (array.length > 0) {
-        this.openButton.parentElement.classList.add('active');
+    selectedCount(array) {
+      if (!this.count) return;
+      const dateInputs = array.filter(option => option.closest('.nsw-form__date'));
+      const removedDateInputs = array.filter(option => !option.closest('.nsw-form__date'));
+      let buttonText = `${this.controlsButtonTextContent}`;
+      let countText = '';
+      if (dateInputs.length > 0) {
+        countText = ` (${removedDateInputs.length + 1})`;
       } else {
-        this.openButton.parentElement.classList.remove('active');
+        countText = ` (${array.length})`;
+      }
+      if (dateInputs.length === 0 && array.length === 0) {
+        this.controlsButtonText.innerText = buttonText;
+      } else {
+        buttonText += countText;
+        this.controlsButtonText.innerText = buttonText;
       }
     }
-    resultsCount(array, buttonText) {
-      if (this.openButtonText) {
-        if (array.length > 0) {
-          this.openButtonText.innerText = `${buttonText} (${array.length})`;
-        } else {
-          this.openButtonText.innerText = `${buttonText}`;
+    setSelectedState() {
+      const formElements = 'textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled]):not(.nsw-display-none)';
+      const checkIcon = '<span class="material-icons nsw-material-icons nsw-material-icons--valid" focusable="false" aria-hidden="true">check_circle</span>';
+      this.buttons.forEach(element => {
+        const buttonName = element.querySelector(`.${this.prefix}${this.itemClass}-name`);
+        const label = element.getAttribute('data-label');
+        const content = element.nextElementSibling;
+        const values = content.querySelectorAll(formElements);
+        const selected = Array.from(values).filter(field => {
+          if (field.type === 'checkbox' || field.type === 'radio') {
+            return field.checked;
+          }
+          return field.value !== '';
+        });
+        if (selected.length > 0) {
+          buttonName.innerText = label;
+          buttonName.innerHTML = `${label} ${checkIcon}`;
+        } else if (selected.length === 0) {
+          buttonName.innerText = label;
         }
-      }
+      });
     }
     updateDom() {
-      this.resultsCount(this.selected, this.buttonLabel);
-      this.toggleAccept(this.selected);
-      this.toggleSelectedState(this.selected);
+      this.getOptions();
+      this.getSelected();
+      this.toggleSubmit(this.selected);
+      this.selectedCount(this.selected);
+      this.setSelectedState();
     }
-    static getEventType(type) {
-      if (type === 'text') {
-        return 'input';
-      }
-      return 'change';
-    }
-    static getCondition(element) {
-      if (element.type === 'text' || element.type === 'select-one') {
-        return element.value !== '';
-      }
-      return element.checked;
-    }
-    static singleCount(element, index, id) {
-      const isSingleCount = element.closest('.js-filters--single-count');
-      if (!isSingleCount) {
-        return {
-          uniqueID: `${id}-${index}`,
-          singleID: `${id}-${index}`,
-          isSingleCount
-        };
-      }
-      return {
-        uniqueID: `${id}`,
-        singleID: `${id}-${index}`,
-        isSingleCount
-      };
-    }
-    updateCount(options) {
-      const id = uniqueId();
-      const GroupArray = [];
-      if (options.array.length > 0) {
-        options.array.forEach((element, index) => {
-          const getEventType = this.constructor.getEventType(element.type);
-          const {
-            uniqueID,
-            singleID,
-            isSingleCount
-          } = this.constructor.singleCount(element, index, id);
-          if (this.constructor.getCondition(element)) {
-            this.selected.push(uniqueID);
-            if (isSingleCount) {
-              GroupArray.push(singleID);
-            }
-            this.updateDom();
-          }
-          element.addEventListener(getEventType, () => {
-            const selectedIndex = this.selected.indexOf(uniqueID);
-            const singleSelectedIndex = GroupArray.indexOf(singleID);
-            if (this.constructor.getCondition(element)) {
-              if (!this.selected.includes(uniqueID)) {
-                this.selected.push(uniqueID);
-              }
-              if (isSingleCount && !GroupArray.includes(singleID)) {
-                GroupArray.push(singleID);
-              }
-              this.updateDom();
-            } else {
-              if (isSingleCount && singleSelectedIndex !== -1) {
-                GroupArray.splice(singleSelectedIndex, 1);
-              }
-              if (!isSingleCount && selectedIndex !== -1) {
-                this.selected.splice(selectedIndex, 1);
-              } else if (GroupArray.length <= 0) {
-                this.selected.splice(selectedIndex, 1);
-              }
-              this.updateDom();
-            }
-          });
-        });
-      }
-    }
-    updateStatus(options) {
-      const id = uniqueId();
-      const text = options.title;
-      const GroupArray = [];
-      if (options.array.length > 0) {
-        const labelText = text ? text.textContent : null;
-        options.array.forEach((element, index) => {
-          const getEventType = this.constructor.getEventType(element.type);
-          const {
-            singleID
-          } = this.constructor.singleCount(element, index, id);
-          if (this.constructor.getCondition(element)) {
-            if (text) {
-              text.textContent = labelText;
-              text.innerHTML = `${text.textContent} ${this.checkIcon}`;
-            }
-          }
-          element.addEventListener(getEventType, () => {
-            if (this.constructor.getCondition(element)) {
-              if (!GroupArray.includes(singleID)) {
-                GroupArray.push(singleID);
-              }
-            } else if (GroupArray.indexOf(singleID) !== -1) {
-              GroupArray.splice(GroupArray.indexOf(singleID), 1);
-            }
-            if (text) {
-              if (GroupArray.length > 0) {
-                text.textContent = labelText;
-                text.innerHTML = `${text.textContent} ${this.checkIcon}`;
-              } else {
-                text.textContent = labelText;
-              }
-            }
-          });
-        });
-      }
-    }
-    selectedItems() {
-      const stateCheck = setInterval(() => {
-        if (document.readyState === 'complete') {
-          clearInterval(stateCheck);
-          this.filtersItems.forEach(filter => {
-            const button = filter.querySelector('.nsw-filters__item-name');
-            const content = filter.querySelector('.nsw-filters__item-content');
-            const text = content ? content.querySelectorAll('input[type="text"]') : null;
-            const selects = content ? content.querySelectorAll('select') : null;
-            const checkboxes = content ? content.querySelectorAll('input[type="checkbox"]:not([id$="-all"])') : null;
-            if (!content) return;
-            this.updateCount({
-              array: text,
-              title: button
-            });
-            this.updateCount({
-              array: selects,
-              title: button
-            });
-            this.updateCount({
-              array: checkboxes,
-              title: button
-            });
-            this.updateStatus({
-              array: text,
-              title: button
-            });
-            this.updateStatus({
-              array: selects,
-              title: button
-            });
-            this.updateStatus({
-              array: checkboxes,
-              title: button
-            });
-          });
+    trapFocus(element) {
+      const focusableContent = element.querySelectorAll(this.focusableElements);
+      const firstFocusableElement = focusableContent[0];
+      const lastFocusableElement = focusableContent[focusableContent.length - 1];
+      document.addEventListener('keydown', event => {
+        const tab = event.code && event.code === 9 || event.key && event.key === 'Tab';
+        if (!tab) return;
+        if (document.activeElement === firstFocusableElement && event.shiftKey) {
+          event.preventDefault();
+          lastFocusableElement.focus();
         }
-      }, 100);
-    }
-    clearAllFilters(e) {
-      e.preventDefault();
-      this.filtersItems.forEach(filter => {
-        const button = filter.querySelector('.nsw-filters__item-name');
-        const buttonCheck = button ? button.querySelector('span.nsw-material-icons') : null;
-        const content = filter.querySelector('.nsw-filters__item-content');
-        const text = content.querySelectorAll('input[type="text"]');
-        const selects = content.querySelectorAll('select');
-        const checkboxes = content.querySelectorAll('input[type="checkbox"]:not([id$="-all"])');
-        const allFields = [...text, ...selects, ...checkboxes];
-        if (!content) return;
-        if (allFields.length > 0) {
-          allFields.forEach(input => {
-            const field = input;
-            if (this.constructor.getCondition(field) && (field.type === 'text' || field.type === 'select-one')) {
-              field.value = '';
-            } else {
-              field.click();
-              field.checked = false;
-            }
-          });
+        if (document.activeElement === lastFocusableElement && !event.shiftKey) {
+          event.preventDefault();
+          firstFocusableElement.focus();
         }
-        if (buttonCheck) {
-          buttonCheck.remove();
-        }
-        this.selected = [];
-        this.updateDom();
       });
+      firstFocusableElement.focus();
+    }
+    static getMultiSelectValues(array) {
+      let selectedOptions = [];
+      if (array.length > 0) {
+        array.forEach(element => {
+          selectedOptions = Array.from(element.options).filter(option => option.selected);
+        });
+      }
+      return selectedOptions;
+    }
+    static moveFocusFn(element) {
+      element.focus();
+      if (document.activeElement !== element) {
+        element.setAttribute('tabindex', '-1');
+        element.focus();
+      }
     }
   }
 
@@ -1170,28 +1115,54 @@
     constructor(element) {
       this.element = element;
       this.select = this.element.querySelector('select');
-      this.options = this.select.querySelectorAll('option');
-      this.optGroups = this.select.querySelectorAll('optgroup');
+      this.optGroups = this.select.getElementsByTagName('optgroup');
+      this.options = this.select.getElementsByTagName('option');
       this.selectId = this.select.getAttribute('id');
       this.trigger = false;
       this.dropdown = false;
       this.customOptions = false;
+      this.list = false;
+      this.allButton = false;
+      this.arrowIcon = this.element.getElementsByTagName('svg');
+      this.label = document.querySelector(`[for="${this.selectId}"]`);
+      this.selectedOptCounter = 0;
       this.optionIndex = 0;
-      this.textSelected = this.element.getAttribute('data-selection-text') || 'selected';
+      this.noSelectText = this.element.getAttribute('data-select-text') || 'Select';
+      this.multiSelectText = this.element.getAttribute('data-multi-select-text') || '{n} items selected';
+      this.nMultiSelect = this.element.getAttribute('data-n-multi-select') || 1;
+      this.noUpdateLabel = this.element.getAttribute('data-update-text') && this.element.getAttribute('data-update-text') === 'off';
+      this.insetLabel = this.element.getAttribute('data-inset-label') && this.element.getAttribute('data-inset-label') === 'on';
+      this.hideClass = 'nsw-display-none';
+      this.showClass = 'active';
+      this.srClass = 'sr-only';
+      this.prefix = 'nsw-';
+      this.class = 'multi-select';
+      this.buttonClass = `${this.class}__button`;
+      this.allButtonClass = `${this.class}__all`;
+      this.listClass = `${this.class}__list`;
+      this.optionClass = `${this.class}__option`;
+      this.dropdownClass = `${this.class}__dropdown`;
+      this.checkboxClass = `${this.class}__checkbox`;
+      this.itemClass = `${this.class}__item`;
+      this.labelClass = `${this.class}__label`;
+      this.termClass = `${this.class}__term`;
+      this.detailsClass = `${this.class}__details`;
+      this.selectClass = 'form__select';
+      this.checkboxLabelClass = 'form__checkbox-label';
+      this.checkboxInputClass = 'form__checkbox-input';
     }
     init() {
-      this.initCustomSelect();
-      this.initCustomSelectEvents();
-    }
-    initCustomSelect() {
       this.element.insertAdjacentHTML('beforeend', this.initButtonSelect() + this.initListSelect());
-      this.dropdown = this.element.querySelector('.nsw-multi-select__dropdown');
-      this.trigger = this.element.querySelector('.nsw-multi-select__button');
-      this.multiSelectList = this.dropdown.querySelector('.nsw-multi-select__list');
-      this.customOptions = this.multiSelectList.querySelectorAll('.nsw-multi-select__option');
-      this.multiSelectList.insertAdjacentHTML('afterbegin', this.initAllButton());
-      this.allButton = this.multiSelectList.querySelector('.js-multi-select-all');
-      this.allButtonInput = this.allButton.querySelector('.nsw-form__checkbox-input');
+      this.dropdown = this.element.querySelector(`.js-${this.dropdownClass}`);
+      this.trigger = this.element.querySelector(`.js-${this.buttonClass}`);
+      this.customOptions = this.dropdown.querySelectorAll(`.js-${this.optionClass}`);
+      this.list = this.dropdown.querySelector(`.js-${this.listClass}`);
+      this.list.insertAdjacentHTML('afterbegin', this.initAllButton());
+      this.allButton = this.list.querySelector(`.js-${this.allButtonClass}`);
+      this.select.classList.add(this.hideClass);
+      if (this.arrowIcon.length > 0) this.arrowIcon[0].style.display = 'none';
+      this.initCustomSelectEvents();
+      this.updateAllButton();
     }
     initCustomSelectEvents() {
       this.initSelection();
@@ -1199,31 +1170,26 @@
         event.preventDefault();
         this.toggleCustomSelect(false);
       });
-      this.trigger.addEventListener('keydown', event => {
-        if (event.code && event.code === 38 || event.key && event.key.toLowerCase() === 'arrowup' || event.code && event.code === 40 || event.key && event.key.toLowerCase() === 'arrowdown') {
-          event.preventDefault();
-          this.toggleCustomSelect(false);
-        }
-      });
+      if (this.label) {
+        this.label.addEventListener('click', () => {
+          this.constructor.moveFocusFn(this.trigger);
+        });
+      }
       this.dropdown.addEventListener('keydown', event => {
-        if (event.code && event.code === 38 || event.key && event.key.toLowerCase() === 'arrowup') {
+        if (event.key && event.key.toLowerCase() === 'arrowup') {
           this.keyboardCustomSelect('prev', event);
-        } else if (event.code && event.code === 40 || event.key && event.key.toLowerCase() === 'arrowdown') {
+        } else if (event.key && event.key.toLowerCase() === 'arrowdown') {
           this.keyboardCustomSelect('next', event);
         }
       });
       window.addEventListener('keyup', event => {
         if (event.key && event.key.toLowerCase() === 'escape') {
-          this.constructor.moveFocusToSelectTrigger(event.target);
+          this.moveFocusToSelectTrigger();
           this.toggleCustomSelect('false');
         }
       });
       window.addEventListener('click', event => {
         this.checkCustomSelectClick(event.target);
-      });
-      window.addEventListener('resize', this.placeDropdown);
-      this.allButton.addEventListener('change', () => {
-        this.toggleAllOptions();
       });
     }
     toggleCustomSelect(bool) {
@@ -1235,86 +1201,65 @@
       }
       this.trigger.setAttribute('aria-expanded', ariaExpanded);
       if (ariaExpanded === 'true') {
-        const selectedOption = this.getSelectedOption();
-        this.constructor.moveFocus(selectedOption);
-        this.dropdown.addEventListener('transitionend', function cb() {
-          this.constructor.moveFocus(selectedOption);
+        const selectedOption = this.getSelectedOption() || this.allButton;
+        this.constructor.moveFocusFn(selectedOption);
+        const cb = () => {
+          this.constructor.moveFocusFn(selectedOption);
           this.dropdown.removeEventListener('transitionend', cb);
-        });
+        };
+        this.dropdown.addEventListener('transitionend', cb);
         this.constructor.trapFocus(this.dropdown);
         this.placeDropdown();
       }
     }
     placeDropdown() {
-      const {
-        top,
-        bottom
-      } = this.trigger.getBoundingClientRect();
-      const moveUp = window.innerHeight - bottom < top;
-      const maxHeight = moveUp ? top - 20 : window.innerHeight - bottom - 20;
-      const vhCalc = Math.ceil(100 * maxHeight / window.innerHeight);
-      this.dropdown.setAttribute('style', `max-height: ${vhCalc}vh;`);
+      const triggerBoundingRect = this.trigger.getBoundingClientRect();
+      this.dropdown.classList.toggle(`${this.prefix}${this.dropdownClass}--right`, window.innerWidth < triggerBoundingRect.left + this.dropdown.offsetWidth);
+      const moveUp = window.innerHeight - triggerBoundingRect.bottom < triggerBoundingRect.top;
+      this.dropdown.classList.toggle(`${this.prefix}${this.dropdownClass}--up`, moveUp);
+      const maxHeight = moveUp ? triggerBoundingRect.top - 20 : window.innerHeight - triggerBoundingRect.bottom - 20;
+      this.dropdown.setAttribute('style', `max-height: ${maxHeight}px; width: ${triggerBoundingRect.width}px;`);
     }
     keyboardCustomSelect(direction, event) {
       event.preventDefault();
       const allOptions = [...this.customOptions, this.allButton];
-      let index = Array.prototype.indexOf.call(allOptions, document.activeElement.closest('.nsw-multi-select__option'));
+      let index = allOptions.findIndex(option => option === document.activeElement.closest(`.js-${this.optionClass}`));
       index = direction === 'next' ? index + 1 : index - 1;
       if (index < 0) index = allOptions.length - 1;
       if (index >= allOptions.length) index = 0;
-      this.constructor.moveFocus(allOptions[index].querySelector('.nsw-form__checkbox-input'));
+      const targetOption = allOptions[index].querySelector(`.js-${this.checkboxClass}`) || this.allButton;
+      this.constructor.moveFocusFn(targetOption);
+    }
+    toggleAllButton() {
+      const status = !this.allButton.classList.contains(this.showClass);
+      this.allButton.classList.toggle(this.showClass, status);
+      const [optionsArray, totalOptions, selectedOptions] = this.getOptions();
+      optionsArray.forEach(option => {
+        option.setAttribute('aria-selected', 'false');
+        this.selectOption(option);
+      });
+      if (selectedOptions === totalOptions) {
+        optionsArray.forEach(option => this.selectOption(option));
+      }
     }
     initSelection() {
-      if (!this.dropdown) return;
-      this.customOptions.forEach(opt => {
-        opt.addEventListener('change', event => {
-          const option = event.currentTarget.closest('.nsw-multi-select__option');
-          if (!option) return;
-          this.selectOption(option);
-        });
-        opt.addEventListener('click', event => {
-          const option = event.currentTarget.closest('.nsw-multi-select__option');
-          if (!option || !event.target.classList.contains('nsw-multi-select__option')) return;
-          this.selectOption(option);
-        });
+      this.allButton.addEventListener('click', event => {
+        event.preventDefault();
+        this.toggleAllButton();
       });
-    }
-    getSelectedOptionCount() {
-      let selectedOptCounter = 0;
-      for (let i = 0; i < this.options.length; i += 1) {
-        if (this.options[i].selected) {
-          selectedOptCounter += 1;
-        }
-      }
-      return selectedOptCounter;
-    }
-    toggleAllOptions() {
-      const count = this.getSelectedOptionCount();
-      this.customOptions.forEach(check => {
-        const input = check.querySelector('.nsw-form__checkbox-input');
-        if (count === this.options.length) {
-          input.click();
-          input.checked = false;
-          input.removeAttribute('checked');
-          check.setAttribute('aria-selected', 'false');
-          this.updateNativeSelect(check.getAttribute('data-index'), false);
-        } else {
-          input.click();
-          input.checked = true;
-          input.setAttribute('checked', '');
-          check.setAttribute('aria-selected', 'true');
-          this.updateNativeSelect(check.getAttribute('data-index'), true);
-        }
-        //
+      this.dropdown.addEventListener('change', event => {
+        const option = event.target.closest(`.js-${this.optionClass}`);
+        if (!option) return;
+        this.selectOption(option);
       });
-
-      const [label, ariaLabel] = this.getSelectedOptionText();
-      this.trigger.querySelector('.nsw-multi-select__label').innerHTML = label;
-      this.constructor.toggleClass(this.trigger, 'active', count > 0);
-      this.updateTriggerAria(ariaLabel);
+      this.dropdown.addEventListener('click', event => {
+        const option = event.target.closest(`.js-${this.optionClass}`);
+        if (!option || !event.target.classList.contains(`js-${this.optionClass}`)) return;
+        this.selectOption(option);
+      });
     }
     selectOption(option) {
-      const input = option.querySelector('.nsw-form__checkbox-input');
+      const input = option.querySelector(`.js-${this.checkboxClass}`);
       if (option.hasAttribute('aria-selected') && option.getAttribute('aria-selected') === 'true') {
         input.checked = false;
         input.removeAttribute('checked');
@@ -1327,126 +1272,116 @@
         option.setAttribute('aria-selected', 'true');
         this.updateNativeSelect(option.getAttribute('data-index'), true);
       }
-      const [label, ariaLabel] = this.getSelectedOptionText();
-      const count = this.getSelectedOptionCount();
-      if (count === this.options.length) {
-        this.allButtonInput.checked = true;
-        this.allButtonInput.setAttribute('checked', '');
-        this.allButton.setAttribute('aria-selected', 'true');
-      } else {
-        this.allButtonInput.checked = false;
-        this.allButtonInput.removeAttribute('checked');
-        this.allButton.setAttribute('aria-selected', 'false');
-      }
-      this.trigger.querySelector('.nsw-multi-select__label').innerHTML = label;
-      this.constructor.toggleClass(this.trigger, 'active', count > 0);
-      this.updateTriggerAria(ariaLabel);
-    }
-    initButtonSelect() {
       const triggerLabel = this.getSelectedOptionText();
-      const button = `<button class="nsw-button nsw-multi-select__button" aria-label="${triggerLabel[1]}" aria-expanded="false" aria-controls="${this.selectId}-dropdown">
-      <span aria-hidden="true" class="nsw-multi-select__label">${triggerLabel[0]}</span>
-      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
-      </button>`;
-      return button;
+      const [selectedLabel] = triggerLabel;
+      this.trigger.querySelector(`.js-${this.labelClass}`).innerHTML = selectedLabel;
+      this.trigger.classList.toggle(`${this.prefix}${this.buttonClass}--active`, this.selectedOptCounter > 0);
+      this.updateTriggerAria(triggerLabel[1]);
+      this.updateAllButton();
     }
-    initAllButton() {
-      const all = this.getSelectedOptionCount() === this.options.length;
-      const selected = all ? ' aria-selected="true"' : ' aria-selected="false"';
-      const checked = all ? 'checked' : '';
-      const allButton = `
-      <li class="js-multi-select-all nsw-multi-select__option" role="option" data-value="Select all" aria-selected="false" ${selected} data-label="Select all">
-        <input aria-hidden="true" class="nsw-form__checkbox-input" type="checkbox" id="${this.selectId}-all" ${checked}>
-        <label class="nsw-form__checkbox-label" aria-hidden="true" for="${this.selectId}-all">
-          <span>Select all</span>
-        </label>
-      </li>`;
-      return allButton;
-    }
-    getSelectedOptionText() {
-      const noSelectionText = '<span class="multi-select__term">Please select</span>';
-      let label = '';
-      let ariaLabel = '';
-      const count = this.getSelectedOptionCount();
-      if (count === this.options.length && this.dropdown) {
-        label = `All ${this.textSelected}`;
-        ariaLabel = `All ${this.textSelected}`;
-      } else if (count > 1) {
-        label = `${count} ${this.textSelected}`;
-        ariaLabel = `${count} ${this.textSelected}, Please select`;
-      } else if (count === 1) {
-        const selectedOption = this.getSelectedOption();
-        label = selectedOption.closest('.nsw-multi-select__option').getAttribute('data-label');
-        ariaLabel = `${label}, Please select`;
+    updateAllButton() {
+      const [, totalOptions, selectedOptions] = this.getOptions();
+      if (selectedOptions === totalOptions) {
+        this.allButton.classList.add(this.showClass);
       } else {
-        label = noSelectionText;
-        ariaLabel = 'Please select';
+        this.allButton.classList.remove(this.showClass);
       }
-      return [label, ariaLabel];
-    }
-    initListSelect() {
-      let list = `<div class="nsw-multi-select__dropdown" aria-describedby=${this.selectId}-description" id="${this.selectId}-dropdown">`;
-      if (this.optGroups.length > 0) {
-        this.optGroups.forEach(optionGroup => {
-          const optGroupList = optionGroup.querySelectorAll('option');
-          const optGroupLabel = `<li><span>${optionGroup.getAttribute('label')}</span></li>`;
-          list += `<ul class="nsw-multi-select__list" role="listbox" aria-multiselectable="true">
-          ${optGroupLabel + this.getOptionsList(optGroupList)}
-        </ul>`;
-        });
-      } else {
-        list += `<ul class="nsw-multi-select__list" role="listbox" aria-multiselectable="true">${this.getOptionsList(this.options)}</ul>`;
-      }
-      return list;
-    }
-    getOptionsList(options) {
-      let list = '';
-      options.forEach(option => {
-        const selected = option.hasAttribute('selected') ? ' aria-selected="true"' : ' aria-selected="false"';
-        const checked = option.hasAttribute('selected') ? 'checked' : '';
-        const uniqueName = this.constructor.createSafeCssClassname(`${this.selectId}-${option.value}-${this.optionIndex.toString()}`);
-        list += `
-      <li class="nsw-multi-select__option" role="option" data-value="${option.value}" ${selected} data-label="${option.text}" data-index="${this.optionIndex}">
-        <input aria-hidden="true" class="nsw-form__checkbox-input" type="checkbox" id="${uniqueName}" ${checked}>
-        <label class="nsw-form__checkbox-label" aria-hidden="true" for="${uniqueName}">
-          <span>${option.text}</span>
-        </label>
-      </li>`;
-        this.optionIndex += 1;
-      });
-      return list;
-    }
-    getSelectedOption() {
-      const option = this.dropdown.querySelector('[aria-selected="true"]');
-      if (option) {
-        return option.querySelector('.nsw-form__checkbox-input');
-      }
-      return this.dropdown.querySelector('.nsw-multi-select__option').querySelector('.nsw-form__checkbox-input');
-    }
-    checkCustomSelectClick(target) {
-      if (!this.element.contains(target)) this.toggleCustomSelect('false');
     }
     updateNativeSelect(index, bool) {
       this.options[index].selected = bool;
-      this.select.dispatchEvent(new CustomEvent('update', {
+      this.select.dispatchEvent(new CustomEvent('change', {
         bubbles: true
       }));
     }
     updateTriggerAria(ariaLabel) {
       this.trigger.setAttribute('aria-label', ariaLabel);
     }
-    static createSafeCssClassname(str) {
-      const invalidBeginningOfClassname = /^([0-9]|--|-[0-9])/;
-      if (typeof str !== 'string') {
-        return '';
+    getSelectedOptionText() {
+      const noSelectionText = `<span class="${this.prefix}${this.termClass}">${this.noSelectText}</span>`;
+      if (this.noUpdateLabel) return [noSelectionText, this.noSelectText];
+      let label = '';
+      let ariaLabel = '';
+      this.selectedOptCounter = 0;
+      for (let i = 0; i < this.options.length; i += 1) {
+        if (this.options[i].selected) {
+          if (this.selectedOptCounter !== 0) label += ', ';
+          label = `${label}${this.options[i].text}`;
+          this.selectedOptCounter += 1;
+        }
       }
-      const strippedClassname = str.match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g).map(x => x.toLowerCase()).join('-');
-      return invalidBeginningOfClassname.test(strippedClassname) ? `_${strippedClassname}` : strippedClassname;
+      if (this.selectedOptCounter > this.nMultiSelect) {
+        label = `<span class="${this.prefix}${this.detailsClass}">${this.multiSelectText.replace('{n}', this.selectedOptCounter)}</span>`;
+        ariaLabel = `${this.multiSelectText.replace('{n}', this.selectedOptCounter)}, ${this.noSelectText}`;
+      } else if (this.selectedOptCounter > 0) {
+        ariaLabel = `${label}, ${this.noSelectText}`;
+        label = `<span class="${this.prefix}${this.detailsClass}">${label}</span>`;
+      } else {
+        label = noSelectionText;
+        ariaLabel = this.noSelectText;
+      }
+      if (this.insetLabel && this.selectedOptCounter > 0) label = noSelectionText + label;
+      return [label, ariaLabel];
     }
-    static moveFocusToSelectTrigger(target) {
-      const multiSelect = target.closest('.js-multi-select');
-      if (!multiSelect) return;
-      multiSelect.querySelector('.nsw-multi-select__button').focus();
+    initButtonSelect() {
+      const customClasses = this.element.getAttribute('data-trigger-class') ? ` ${this.element.getAttribute('data-trigger-class')}` : '';
+      const triggerLabel = this.getSelectedOptionText();
+      const activeSelectionClass = this.selectedOptCounter > 0 ? ` ${this.buttonClass}--active` : '';
+      let button = `<button class="js-${this.buttonClass} ${this.prefix}${this.selectClass} ${this.prefix}${this.buttonClass}${customClasses}${activeSelectionClass}" aria-label="${triggerLabel[1]}" aria-expanded="false" aria-controls="${this.selectId}-dropdown"><span aria-hidden="true" class="js-${this.labelClass} ${this.prefix}${this.labelClass}">${triggerLabel[0]}</span><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>`;
+      if (this.arrowIcon.length > 0 && this.arrowIcon[0].outerHTML) {
+        button += this.arrowIcon[0].outerHTML;
+      }
+      return `${button}</button>`;
+    }
+    initListSelect() {
+      let list = `<div class="js-${this.dropdownClass} ${this.prefix}${this.dropdownClass}" aria-describedby="${this.selectId}-description" id="${this.selectId}-dropdown">`;
+      list += this.getSelectLabelSR();
+      if (this.optGroups.length > 0) {
+        for (let i = 0; i < this.optGroups.length; i += 1) {
+          const optGroupList = this.optGroups[i].getElementsByTagName('option');
+          const optGroupLabel = `<li><span class="${this.prefix}${this.itemClass} ${this.prefix}${this.itemClass}--optgroup">${this.optGroups[i].getAttribute('label')}</span></li>`;
+          list = `${list}<ul class="${this.prefix}${this.listClass}" role="listbox" aria-multiselectable="true">${optGroupLabel}${this.getOptionsList(optGroupList)}</ul>`;
+        }
+      } else {
+        list = `${list}<ul class="${this.prefix}${this.listClass} js-${this.listClass}" role="listbox" aria-multiselectable="true">${this.getOptionsList(this.options)}</ul>`;
+      }
+      return list;
+    }
+    initAllButton() {
+      const allButton = `<button class="${this.prefix}${this.allButtonClass} js-${this.allButtonClass}"><span>All</span></button>`;
+      return allButton;
+    }
+    getSelectLabelSR() {
+      if (this.label) {
+        return `<p class="${this.srClass}" id="${this.selectId}-description">${this.label.textContent}</p>`;
+      }
+      return '';
+    }
+    getOptionsList(options) {
+      let list = '';
+      for (let i = 0; i < options.length; i += 1) {
+        const selected = options[i].hasAttribute('selected') ? ' aria-selected="true"' : ' aria-selected="false"';
+        const disabled = options[i].hasAttribute('disabled') ? 'disabled' : '';
+        const checked = options[i].hasAttribute('selected') ? 'checked' : '';
+        const uniqueName = this.constructor.createSafeCss(`${this.selectId}-${options[i].value}-${this.optionIndex.toString()}`);
+        list = `${list}<li class="js-${this.optionClass}" role="option" data-value="${options[i].value}" ${selected} data-label="${options[i].text}" data-index="${this.optionIndex}"><input aria-hidden="true" class="${this.prefix}${this.checkboxInputClass} js-${this.checkboxClass}" type="checkbox" id="${uniqueName}" ${checked} ${disabled}><label class="${this.prefix}${this.checkboxLabelClass} ${this.prefix}${this.itemClass} ${this.prefix}${this.itemClass}--option" aria-hidden="true" for="${uniqueName}"><span>${options[i].text}</span></label></li>`;
+        this.optionIndex += 1;
+      }
+      return list;
+    }
+    getSelectedOption() {
+      const option = this.dropdown.querySelector('[aria-selected="true"]');
+      if (option) return option.querySelector(`.js-${this.checkboxClass}`);
+      return this.allButton;
+    }
+    getOptions() {
+      const options = Array.from(this.dropdown.querySelectorAll(`.js-${this.optionClass}`));
+      const total = options.length;
+      const selected = options.filter(option => option.getAttribute('aria-selected') === 'true').length;
+      return [options, total, selected];
+    }
+    moveFocusToSelectTrigger() {
+      if (!document.activeElement.closest(`.js-${this.class}`)) return;
+      this.trigger.focus();
     }
     static trapFocus(element) {
       const focusableElements = 'a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])';
@@ -1470,13 +1405,23 @@
       });
       firstFocusableElement.focus();
     }
-    static moveFocus(element) {
+    checkCustomSelectClick(target) {
+      if (!this.element.contains(target)) this.toggleCustomSelect('false');
+    }
+    static createSafeCss(str) {
+      const invalidBeginningOfClassname = /^([0-9]|--|-[0-9])/;
+      if (typeof str !== 'string') {
+        return '';
+      }
+      const strippedClassname = str.match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g).map(x => x.toLowerCase()).join('-');
+      return invalidBeginningOfClassname.test(strippedClassname) ? `_${strippedClassname}` : strippedClassname;
+    }
+    static moveFocusFn(element) {
+      element.focus();
       if (document.activeElement !== element) {
+        element.setAttribute('tabindex', '-1');
         element.focus();
       }
-    }
-    static toggleClass(el, className, bool) {
-      if (bool) el.classList.add(className);else el.classList.remove(className);
     }
   }
 
@@ -2903,61 +2848,28 @@
     }
   }
 
-  /* eslint-disable no-shadow */
-  /* eslint-disable no-continue */
-  /* eslint-disable consistent-return */
-  /* eslint-disable no-script-url */
-  /* eslint-disable no-restricted-syntax */
-  /*!
-   * Sanitize an HTML string
-   * (c) 2021 Chris Ferdinandi, MIT License, https://gomakethings.com
-   * @param  {String}          str   The HTML string to sanitize
-   * @param  {Boolean}         nodes If true, returns HTML nodes instead of a string
-   * @return {String|NodeList}       The sanitized string or nodes
-   */
+  /* eslint-disable */
   function cleanHTML(str, nodes) {
-    /**
-    * Convert the string to an HTML document
-    * @return {Node} An HTML document
-    */
     function stringToHTML() {
       const parser = new DOMParser();
       const doc = parser.parseFromString(str, 'text/html');
       return doc.body || document.createElement('body');
     }
-
-    /**
-    * Remove <script> elements
-    * @param  {Node} html The HTML
-    */
     function removeScripts(html) {
       const scripts = html.querySelectorAll('script');
       for (const script of scripts) {
         script.remove();
       }
     }
-
-    /**
-    * Check if the attribute is potentially dangerous
-    * @param  {String}  name  The attribute name
-    * @param  {String}  value The attribute value
-    * @return {Boolean}       If true, the attribute is potentially dangerous
-    */
     function isPossiblyDangerous(name, value) {
       const val = value.replace(/\s+/g, '').toLowerCase();
       if (['src', 'href', 'xlink:href'].includes(name)) {
         if (val.includes('javascript:') || val.includes('data:text/html')) return true;
       }
       if (name.startsWith('on')) return true;
+      return false;
     }
-
-    /**
-    * Remove potentially dangerous attributes from an element
-    * @param  {Node} elem The element
-    */
     function removeAttributes(elem) {
-      // Loop through each attribute
-      // If it's dangerous, remove it
       const atts = elem.attributes;
       for (const {
         name,
@@ -2967,28 +2879,16 @@
         elem.removeAttribute(name);
       }
     }
-
-    /**
-    * Remove dangerous stuff from the HTML document's nodes
-    * @param  {Node} html The HTML document
-    */
     function clean(html) {
-      const nodes = html.children;
-      for (const node of nodes) {
+      const htmlNodes = html.children;
+      for (const node of htmlNodes) {
         removeAttributes(node);
         clean(node);
       }
     }
-
-    // Convert the string to HTML
     const html = stringToHTML();
-
-    // Sanitize it
     removeScripts(html);
     clean(html);
-
-    // If the user wants HTML nodes back, return them
-    // Otherwise, pass a sanitized string back
     return nodes ? html.childNodes : html.innerHTML;
   }
 
