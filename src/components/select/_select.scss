@@ -81,6 +81,17 @@ $nsw-form-tick: '<svg fill="#ffffff" version="1.1" xmlns="http://www.w3.org/2000
       background: rgba(var(--nsw-palette-blue-01-rgb), 0.01);
     }
 
+    &[aria-invalid='true'],
+    &.has-error {
+      border-color: var(--nsw-status-error);
+      border-width: 2px;
+
+      &:hover {
+        background: var(--nsw-status-error-bg);
+        background-size: revert;
+      }
+    }
+
     &[aria-expanded='true'] {
       + .nsw-multi-select__dropdown {
         visibility: visible;
@@ -124,7 +135,8 @@ $nsw-form-tick: '<svg fill="#ffffff" version="1.1" xmlns="http://www.w3.org/2000
     position: absolute;
     left: 0;
     top: 100%;
-    min-width: 200px;
+    width: 100%;
+    min-width: rem(200px);
     max-height: 1px;
     background-color: var(--nsw-white);
     box-shadow: var(--nsw-box-shadow);

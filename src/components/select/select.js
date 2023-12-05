@@ -22,6 +22,7 @@ class Select {
     this.insetLabel = this.element.getAttribute('data-inset-label') && this.element.getAttribute('data-inset-label') === 'on'
     this.hideClass = 'nsw-display-none'
     this.showClass = 'active'
+    this.errorClass = 'has-error'
     this.srClass = 'sr-only'
     this.prefix = 'nsw-'
     this.class = 'multi-select'
@@ -114,12 +115,16 @@ class Select {
   }
 
   placeDropdown() {
-    const triggerBoundingRect = this.trigger.getBoundingClientRect()
-    this.dropdown.classList.toggle(`${this.prefix}${this.dropdownClass}--right`, (window.innerWidth < triggerBoundingRect.left + this.dropdown.offsetWidth))
-    const moveUp = (window.innerHeight - triggerBoundingRect.bottom) < triggerBoundingRect.top
+    const {
+      top, bottom, left,
+    } = this.trigger.getBoundingClientRect()
+
+    this.dropdown.classList.toggle(`${this.prefix}${this.dropdownClass}--right`, (window.innerWidth < left + this.dropdown.offsetWidth))
+    const moveUp = (window.innerHeight - bottom) < top
     this.dropdown.classList.toggle(`${this.prefix}${this.dropdownClass}--up`, moveUp)
-    const maxHeight = moveUp ? triggerBoundingRect.top - 20 : window.innerHeight - triggerBoundingRect.bottom - 20
-    this.dropdown.setAttribute('style', `max-height: ${maxHeight}px; width: ${triggerBoundingRect.width}px;`)
+    const maxHeight = moveUp ? top - 20 : window.innerHeight - bottom - 20
+    const vhCalc = Math.ceil((100 * maxHeight) / window.innerHeight)
+    this.dropdown.setAttribute('style', `max-height: ${vhCalc}vh;`)
   }
 
   keyboardCustomSelect(direction, event) {
@@ -243,11 +248,13 @@ class Select {
 
   initButtonSelect() {
     const customClasses = this.element.getAttribute('data-trigger-class') ? ` ${this.element.getAttribute('data-trigger-class')}` : ''
+    const error = this.select.getAttribute('aria-invalid')
 
     const triggerLabel = this.getSelectedOptionText()
     const activeSelectionClass = this.selectedOptCounter > 0 ? ` ${this.buttonClass}--active` : ''
 
-    let button = `<button class="js-${this.buttonClass} ${this.prefix}${this.selectClass} ${this.prefix}${this.buttonClass}${customClasses}${activeSelectionClass}" aria-label="${triggerLabel[1]}" aria-expanded="false" aria-controls="${this.selectId}-dropdown"><span aria-hidden="true" class="js-${this.labelClass} ${this.prefix}${this.labelClass}">${triggerLabel[0]}</span><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>`
+    let button = `<button class="js-${this.buttonClass} ${error === 'true' ? this.errorClass : ''} ${this.prefix}${this.selectClass} ${this.prefix}${this.buttonClass}${customClasses}${activeSelectionClass}" aria-label="${triggerLabel[1]}" aria-expanded="false" aria-controls="${this.selectId}-dropdown"><span aria-hidden="true" class="js-${this.labelClass} ${this.prefix}${this.labelClass}">${triggerLabel[0]}</span><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>`
+
     if (this.arrowIcon.length > 0 && this.arrowIcon[0].outerHTML) {
       button += this.arrowIcon[0].outerHTML
     }
@@ -271,8 +278,7 @@ class Select {
   }
 
   initAllButton() {
-    const allButton = `<button class="${this.prefix}${this.allButtonClass} js-${this.allButtonClass}"><span>All</span></button>`
-    return allButton
+    return `<button class="${this.prefix}${this.allButtonClass} js-${this.allButtonClass}"><span>All</span></button>`
   }
 
   getSelectLabelSR() {
