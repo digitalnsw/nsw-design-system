@@ -4,33 +4,6 @@
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.NSW = {}));
 })(this, (function (exports) { 'use strict';
 
-  class SiteSearch {
-    constructor(element) {
-      this.triggerButton = element;
-      this.originalButton = document.querySelector('.js-open-search');
-      this.targetElement = document.getElementById(this.triggerButton.getAttribute('aria-controls'));
-      this.searchInput = this.targetElement.querySelector('.js-search-input');
-      this.pressed = this.triggerButton.getAttribute('aria-expanded') === 'true';
-    }
-    init() {
-      this.controls();
-    }
-    controls() {
-      this.triggerButton.addEventListener('click', this.showHide.bind(this), false);
-    }
-    showHide() {
-      if (this.pressed) {
-        this.targetElement.hidden = true;
-        this.originalButton.hidden = false;
-        this.originalButton.focus();
-      } else {
-        this.targetElement.hidden = false;
-        this.originalButton.hidden = true;
-        this.searchInput.focus();
-      }
-    }
-  }
-
   // Unique ID creation requires a high quality random # generator. In the browser we therefore
   // require the crypto API and do not support built-in fallback to lower quality random number
   // generators (like Math.random()).
@@ -139,274 +112,6 @@
     const found = Object.keys(transitions).filter(key => el.style[key] !== undefined);
     return transitions[found[0]];
   };
-
-  class Navigation {
-    constructor(element) {
-      this.nav = element;
-      this.navID = this.nav.id;
-      this.openNavButton = document.querySelector('.js-open-nav');
-      this.closeNavButtons = this.nav.querySelectorAll('.js-close-nav');
-      this.closeSubNavButtons = this.nav.querySelectorAll('.js-close-sub-nav');
-      this.isMegaMenuElement = this.nav.classList.contains('js-mega-menu');
-      this.mainNavIsOpen = false;
-      this.transitionEvent = whichTransitionEvent();
-      this.mobileShowMainTransitionEndEvent = e => this.mobileShowMainNav(e);
-      this.mobileHideMainTransitionEndEvent = e => this.mobileHideMainNav(e);
-      this.showSubNavTransitionEndEvent = e => this.showSubNav(e);
-      this.mobileTrapTabKeyEvent = e => this.mobileMainNavTrapTabs(e);
-      this.mobileSubNavTrapTabKeyEvent = e => this.trapkeyEventStuff(e);
-      this.desktopButtonClickEvent = e => this.buttonClickDesktop(e);
-      this.desktopButtonKeydownEvent = e => this.buttonKeydownDesktop(e);
-      this.checkFocusEvent = e => this.checkIfContainsFocus(e);
-      this.openSubNavElements = [];
-      this.breakpoint = window.matchMedia('(min-width: 62em)');
-    }
-    init() {
-      this.initEvents();
-      this.responsiveCheck(this.breakpoint);
-      if (this.nav) {
-        this.breakpoint.addEventListener('change', event => this.responsiveCheck(event));
-      }
-    }
-    initEvents() {
-      if (this.isMegaMenuElement) {
-        document.addEventListener('click', this.handleOutsideClick.bind(this), false);
-        document.addEventListener('keydown', this.escapeClose.bind(this), false);
-      }
-      this.openNavButton.addEventListener('click', this.mobileToggleMainNav.bind(this), false);
-      this.closeNavButtons.forEach(element => {
-        element.addEventListener('click', this.mobileToggleMainNav.bind(this), false);
-      });
-      this.closeSubNavButtons.forEach(element => {
-        element.addEventListener('click', this.closeSubNav.bind(this), false);
-      });
-    }
-    responsiveCheck(event) {
-      let megaMenuListItems = [];
-      if (event.matches) {
-        megaMenuListItems = [].slice.call(this.nav.querySelectorAll('ul > li'));
-        document.body.classList.remove('main-nav-active');
-      } else {
-        megaMenuListItems = [].slice.call(this.nav.querySelectorAll('li'));
-      }
-      this.tearDownNavControls();
-      this.setUpNavControls(megaMenuListItems);
-    }
-    handleOutsideClick(event) {
-      // removes handleOutsideClick functionality from docs site
-      if (this.nav.closest('.nsw-docs')) return;
-      if (!this.mainNavIsOpen) return;
-      const isOutsideNav = !this.nav.contains(event.target);
-      if (isOutsideNav) {
-        this.toggleSubNavDesktop(true);
-      }
-    }
-    tearDownNavControls() {
-      if (this.isMegaMenuElement) {
-        const listItems = [].slice.call(this.nav.querySelectorAll('li'));
-        listItems.forEach(item => {
-          const submenu = item.querySelector('[id^=sub-nav-]');
-          const link = item.querySelector('a');
-          if (submenu) {
-            link.removeAttribute('role');
-            link.removeAttribute('aria-expanded');
-            link.removeAttribute('aria-controls');
-            link.removeEventListener('click', this.desktopButtonClickEvent, false);
-            link.removeEventListener('keydown', this.desktopButtonKeydownEvent, false);
-          }
-        });
-      }
-    }
-    setUpNavControls(listItems) {
-      if (this.isMegaMenuElement) {
-        listItems.forEach(item => {
-          const submenu = item.querySelector('[id^=sub-nav-]');
-          const link = item.querySelector('a');
-          if (submenu) {
-            link.setAttribute('role', 'button');
-            link.setAttribute('aria-expanded', 'false');
-            link.setAttribute('aria-controls', submenu.id);
-            link.addEventListener('click', this.desktopButtonClickEvent, false);
-            link.addEventListener('keydown', this.desktopButtonKeydownEvent, false);
-          }
-        });
-      }
-    }
-    mobileMainNavTrapTabs(e) {
-      const elemObj = getFocusableElementBySelector(this.navID, ['> div button', '> ul > li > a']);
-      trapTabKey(e, elemObj);
-    }
-    mobileShowMainNav(_ref) {
-      let {
-        propertyName
-      } = _ref;
-      if (propertyName !== 'transform') return;
-      getFocusableElementBySelector(this.navID, ['> div button', '> ul > li > a']).all[1].focus();
-      this.nav.classList.add('active');
-      this.nav.classList.remove('activating');
-      this.nav.removeEventListener(this.transitionEvent, this.mobileShowMainTransitionEndEvent, false);
-      this.nav.addEventListener('keydown', this.mobileTrapTabKeyEvent, false);
-    }
-    mobileHideMainNav(_ref2) {
-      let {
-        propertyName
-      } = _ref2;
-      if (propertyName !== 'transform') return;
-      this.nav.classList.remove('active');
-      this.nav.classList.remove('closing');
-      while (this.openSubNavElements.length > 0) {
-        const {
-          submenu
-        } = this.whichSubNavLatest();
-        submenu.removeEventListener('keydown', this.mobileSubNavTrapTabKeyEvent, false);
-        submenu.classList.remove('active');
-        submenu.classList.remove('closing');
-        this.openSubNavElements.pop();
-      }
-      this.nav.removeEventListener(this.transitionEvent, this.mobileHideMainTransitionEndEvent, false);
-      this.nav.removeEventListener('keydown', this.mobileTrapTabKeyEvent, false);
-    }
-    mobileToggleMainNav(e) {
-      const {
-        currentTarget
-      } = e;
-      const isExpanded = currentTarget.getAttribute('aria-expanded') === 'true';
-      if (isExpanded) {
-        document.body.classList.remove('main-nav-active');
-        this.openNavButton.focus();
-        this.nav.classList.add('closing');
-        this.nav.addEventListener(this.transitionEvent, this.mobileHideMainTransitionEndEvent, false);
-      } else {
-        document.body.classList.add('main-nav-active');
-        this.nav.classList.add('activating');
-        this.nav.addEventListener(this.transitionEvent, this.mobileShowMainTransitionEndEvent, false);
-      }
-    }
-    buttonClickDesktop(event) {
-      const isDesktop = this.breakpoint.matches;
-      if (!isDesktop || !event.target.closest('.nsw-main-nav__sub-nav')) {
-        this.saveElements(event);
-        this.toggleSubNavDesktop();
-        event.preventDefault();
-      }
-    }
-    buttonKeydownDesktop(event) {
-      if (event.key === ' ' || event.key === 'Enter' || event.key === 'Spacebar') {
-        this.saveElements(event);
-        this.toggleSubNavDesktop();
-        event.preventDefault();
-      }
-    }
-    escapeClose(e) {
-      if (e.key === 'Escape') {
-        // removes handleOutsideClick functionality from docs site
-        if (this.nav.closest('.nsw-docs')) return;
-        const {
-          link
-        } = this.whichSubNavLatest();
-        const isExpanded = link.getAttribute('aria-expanded') === 'true';
-        if (isExpanded) {
-          this.toggleSubNavDesktop(true);
-          e.preventDefault();
-          link.focus();
-        }
-      }
-    }
-    saveElements(e) {
-      const {
-        currentTarget
-      } = e;
-      const temp = {
-        submenu: document.getElementById(currentTarget.getAttribute('aria-controls')),
-        link: currentTarget,
-        linkParent: currentTarget.parentNode
-      };
-      this.openSubNavElements.push(temp);
-    }
-    showSubNav(_ref3) {
-      let {
-        propertyName
-      } = _ref3;
-      const {
-        submenu
-      } = this.whichSubNavLatest();
-      if (propertyName !== 'transform') return;
-      getFocusableElementBySelector(submenu.id, ['> div button', '> .nsw-main-nav__title a', '> ul > li > a']).all[2].focus();
-      submenu.removeEventListener(this.transitionEvent, this.showSubNavTransitionEndEvent, false);
-    }
-    closeSubNav() {
-      const {
-        submenu,
-        link
-      } = this.whichSubNavLatest();
-      if (this.breakpoint.matches) {
-        link.setAttribute('aria-expanded', false);
-        link.classList.remove('active');
-        this.nav.removeEventListener('focus', this.checkFocusEvent, true);
-        // fix: workaround for safari because it doesn't support focus event
-        this.nav.removeEventListener('click', this.checkFocusEvent, true);
-      } else {
-        link.focus();
-        submenu.removeEventListener('keydown', this.mobileSubNavTrapTabKeyEvent, false);
-      }
-      submenu.classList.remove('active');
-      submenu.closest('ul').parentElement.classList.remove('no-scroll');
-      this.openSubNavElements.pop();
-    }
-    openSubNav() {
-      const {
-        submenu,
-        link
-      } = this.whichSubNavLatest();
-      if (this.breakpoint.matches) {
-        link.setAttribute('aria-expanded', true);
-        link.classList.add('active');
-        this.nav.addEventListener('focus', this.checkFocusEvent, true);
-        // fix: workaround for safari because it doesn't support focus event
-        this.nav.addEventListener('click', this.checkFocusEvent, true);
-      } else {
-        submenu.addEventListener('keydown', this.mobileSubNavTrapTabKeyEvent, false);
-        submenu.addEventListener(this.transitionEvent, this.showSubNavTransitionEndEvent, false);
-      }
-      submenu.closest('ul').parentElement.scrollTop = 0;
-      submenu.closest('ul').parentElement.classList.add('no-scroll');
-      submenu.classList.add('active');
-    }
-    toggleSubNavDesktop() {
-      const {
-        link
-      } = this.whichSubNavLatest();
-      const isExpanded = link.getAttribute('aria-expanded') === 'true';
-      if (isExpanded) {
-        this.mainNavIsOpen = false;
-        this.closeSubNav();
-      } else {
-        this.mainNavIsOpen = true;
-        this.openSubNav();
-      }
-    }
-    checkIfContainsFocus(e) {
-      const {
-        linkParent
-      } = this.whichSubNavLatest();
-      const focusWithin = linkParent.contains(e.target);
-      const isButton = e.target.getAttribute('role');
-      if (!focusWithin && isButton) {
-        this.toggleSubNavDesktop();
-      }
-    }
-    whichSubNavLatest() {
-      const lastSubNav = this.openSubNavElements.length - 1;
-      return this.openSubNavElements[lastSubNav];
-    }
-    trapkeyEventStuff(e) {
-      const {
-        submenu
-      } = this.whichSubNavLatest();
-      const elemObj = getFocusableElementBySelector(submenu.id, ['> div button', '> ul > li > a']);
-      trapTabKey(e, elemObj);
-    }
-  }
 
   function createButtons(_ref) {
     let {
@@ -526,6 +231,127 @@
     }
   }
 
+  class BackTop {
+    constructor(element) {
+      this.element = element;
+      this.dataElement = this.element.getAttribute('data-element');
+      this.scrollOffset = this.element.getAttribute('data-offset');
+      this.text = false;
+      this.icon = false;
+      this.scrollElement = this.dataElement ? document.querySelector(this.dataElement) : window;
+      this.scrollPosition = 0;
+      this.width = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+      this.height = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+      this.condition = false;
+    }
+    init() {
+      this.createButton();
+      this.element.addEventListener('click', event => {
+        event.preventDefault();
+        if (!window.requestAnimationFrame) {
+          this.scrollElement.scrollTo(0, 0);
+        } else if (this.dataElement) {
+          this.scrollElement.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+        } else {
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+        }
+      });
+      this.checkBackToTop();
+      const debounceEvent = this.debounce(this.checkBackToTop);
+      this.scrollElement.addEventListener('scroll', () => {
+        debounceEvent();
+      });
+      const debounceResize = this.debounce(this.resizeHandler);
+      window.addEventListener('resize', () => {
+        debounceResize();
+      });
+    }
+    createButton() {
+      const textSpan = this.constructor.createElement('span');
+      const iconSpan = this.constructor.createElement('span', ['material-icons', 'nsw-material-icons'], {
+        title: 'Back to top',
+        focusable: 'false',
+        'aria-hidden': 'true'
+      });
+      this.element.append(textSpan, iconSpan);
+      this.text = this.element.querySelector('span:not(.material-icons)');
+      this.icon = this.element.querySelector('span.material-icons');
+      this.createButtonContent();
+    }
+    createButtonContent() {
+      if (this.width < 768) {
+        this.text.innerText = 'Top';
+        this.icon.innerText = 'keyboard_arrow_up';
+      } else {
+        this.text.innerText = 'Back to top';
+        this.icon.innerText = 'north';
+      }
+    }
+    checkBackToTop() {
+      let windowTop = this.scrollElement.scrollTop || document.documentElement.scrollTop;
+      if (!this.dataElement) windowTop = window.scrollY || document.documentElement.scrollTop;
+      const scroll = this.scrollPosition;
+      this.scrollPosition = window.scrollY;
+      if (this.scrollOffset && this.scrollOffset > 0) {
+        this.condition = windowTop >= this.scrollOffset;
+        this.element.classList.toggle('active', this.condition);
+      } else {
+        this.condition = scroll > this.scrollPosition && this.scrollPosition > 200;
+        this.element.classList.toggle('active', this.condition);
+      }
+    }
+    resizeHandler() {
+      const oldWidth = this.width;
+      const oldHeight = this.height;
+      this.width = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+      this.height = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+      if (oldWidth !== this.width && oldHeight === this.height) {
+        this.createButtonContent();
+      }
+    }
+    debounce(fn) {
+      var _this = this;
+      let wait = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 250;
+      let timeout;
+      return function () {
+        for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+          args[_key] = arguments[_key];
+        }
+        const context = _this;
+        if (!window.requestAnimationFrame) {
+          clearTimeout(timeout);
+          timeout = setTimeout(() => fn.apply(context, args), wait);
+        } else {
+          if (timeout) {
+            window.cancelAnimationFrame(timeout);
+          }
+          timeout = window.requestAnimationFrame(() => {
+            fn.apply(context, args);
+          });
+        }
+      };
+    }
+    static createElement(tag) {
+      let classes = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
+      let attributes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+      const element = document.createElement(tag);
+      if (classes.length > 0) {
+        element.classList.add(...classes);
+      }
+      Object.entries(attributes).forEach(_ref => {
+        let [key, value] = _ref;
+        element.setAttribute(key, value);
+      });
+      return element;
+    }
+  }
+
   class Dialog {
     constructor(element) {
       this.dialog = element;
@@ -574,6 +400,115 @@
     trapFocus(e) {
       e.preventDefault();
       this.focusableEls[0].focus();
+    }
+  }
+
+  class ExternalLink {
+    constructor(element) {
+      this.link = element;
+      this.uID = uniqueId('external');
+      this.linkIcon = this.link.querySelector('.nsw-material-icons');
+      this.linkIconTitle = this.linkIcon.getAttribute('title');
+      this.linkElement = false;
+    }
+    init() {
+      this.link.classList.add('nsw-link', 'nsw-link--icon');
+      this.constructor.setAttributes(this.link, {
+        target: '_blank',
+        rel: 'noopener'
+      });
+      this.constructor.setAttributes(this.linkIcon, {
+        focusable: 'false',
+        'aria-hidden': 'true'
+      });
+      this.createElement(this.linkIconTitle);
+    }
+    createElement(title) {
+      if (title) {
+        this.linkElement = document.createElement('span');
+        this.linkElement.id = this.uID;
+        this.linkElement.classList.add('sr-only');
+        this.linkElement.innerText = title;
+        this.link.insertAdjacentElement('afterend', this.linkElement);
+        this.constructor.setAttributes(this.link, {
+          'aria-describedby': this.uID
+        });
+      }
+    }
+    static setAttributes(el, attrs) {
+      Object.keys(attrs).forEach(key => el.setAttribute(key, attrs[key]));
+    }
+  }
+
+  /* eslint-disable max-len */
+  class FileUpload {
+    constructor(element) {
+      this.element = element;
+      this.input = this.element.querySelector('.nsw-file-upload__input');
+      this.label = this.element.querySelector('.nsw-file-upload__label');
+      this.multipleUpload = this.input.hasAttribute('multiple');
+      this.replaceFiles = this.element.hasAttribute('data-replace-files');
+      this.filesList = false;
+    }
+    init() {
+      if (!this.input) return;
+      this.input.addEventListener('change', () => {
+        if (this.input.value === '') return;
+        this.updateFileList();
+      });
+    }
+    createFileList() {
+      const ul = document.createElement('ul');
+      ul.classList.add('nsw-file-upload__list');
+      this.label.insertAdjacentElement('afterend', ul);
+      this.filesList = this.element.querySelector('.nsw-file-upload__list');
+    }
+    createFileItem(file) {
+      const li = document.createElement('li');
+      li.classList.add('nsw-file-upload__item');
+      const html = `
+    <span class="nsw-file-upload__item-filename"></span>
+    <button type="button" class="nsw-icon-button">
+        <span class="sr-only">Remove file</span>
+        <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span>
+    </button>`;
+      li.insertAdjacentHTML('afterbegin', html);
+      li.querySelector('.nsw-file-upload__item-filename').textContent = this.constructor.truncateString(file.name, 50);
+      return li.outerHTML;
+    }
+    updateFileList() {
+      if (!this.filesList) {
+        this.createFileList();
+      }
+      this.filesList.classList.add('active');
+      let string = '';
+      for (let i = 0; i < this.input.files.length; i += 1) {
+        const file = this.input.files[i];
+        string = this.createFileItem(file) + string;
+      }
+      if (this.replaceFiles) {
+        this.filesList.innerHTML = string;
+      } else {
+        this.filesList.insertAdjacentHTML('beforeend', string);
+      }
+      this.removeFile();
+    }
+    removeFile() {
+      this.filesList.addEventListener('click', event => {
+        if (!event.target.closest('.nsw-icon-button')) return;
+        event.preventDefault();
+        const item = event.target.closest('.nsw-file-upload__item');
+        item.remove();
+        if (event.currentTarget.children.length === 0) {
+          this.filesList.classList.remove('active');
+        }
+      });
+    }
+    static truncateString(str, num) {
+      if (str.length <= num) {
+        return str;
+      }
+      return `${str.slice(0, num)}...`;
     }
   }
 
@@ -881,218 +816,6 @@
     }
   }
 
-  /* eslint-disable max-len */
-  class FileUpload {
-    constructor(element) {
-      this.element = element;
-      this.input = this.element.querySelector('.nsw-file-upload__input');
-      this.label = this.element.querySelector('.nsw-file-upload__label');
-      this.multipleUpload = this.input.hasAttribute('multiple');
-      this.replaceFiles = this.element.hasAttribute('data-replace-files');
-      this.filesList = false;
-    }
-    init() {
-      if (!this.input) return;
-      this.input.addEventListener('change', () => {
-        if (this.input.value === '') return;
-        this.updateFileList();
-      });
-    }
-    createFileList() {
-      const ul = document.createElement('ul');
-      ul.classList.add('nsw-file-upload__list');
-      this.label.insertAdjacentElement('afterend', ul);
-      this.filesList = this.element.querySelector('.nsw-file-upload__list');
-    }
-    createFileItem(file) {
-      const li = document.createElement('li');
-      li.classList.add('nsw-file-upload__item');
-      const html = `
-    <span class="nsw-file-upload__item-filename"></span>
-    <button type="button" class="nsw-icon-button">
-        <span class="sr-only">Remove file</span>
-        <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span>
-    </button>`;
-      li.insertAdjacentHTML('afterbegin', html);
-      li.querySelector('.nsw-file-upload__item-filename').textContent = this.constructor.truncateString(file.name, 50);
-      return li.outerHTML;
-    }
-    updateFileList() {
-      if (!this.filesList) {
-        this.createFileList();
-      }
-      this.filesList.classList.add('active');
-      let string = '';
-      for (let i = 0; i < this.input.files.length; i += 1) {
-        const file = this.input.files[i];
-        string = this.createFileItem(file) + string;
-      }
-      if (this.replaceFiles) {
-        this.filesList.innerHTML = string;
-      } else {
-        this.filesList.insertAdjacentHTML('beforeend', string);
-      }
-      this.removeFile();
-    }
-    removeFile() {
-      this.filesList.addEventListener('click', event => {
-        if (!event.target.closest('.nsw-icon-button')) return;
-        event.preventDefault();
-        const item = event.target.closest('.nsw-file-upload__item');
-        item.remove();
-        if (event.currentTarget.children.length === 0) {
-          this.filesList.classList.remove('active');
-        }
-      });
-    }
-    static truncateString(str, num) {
-      if (str.length <= num) {
-        return str;
-      }
-      return `${str.slice(0, num)}...`;
-    }
-  }
-
-  class Tabs {
-    constructor(element, showTab) {
-      this.tablistClass = '.nsw-tabs__list';
-      this.tablistItemClass = 'li';
-      this.tablistLinkClass = 'a';
-      this.tab = element;
-      this.showTab = showTab;
-      this.tabList = element.querySelector(this.tablistClass);
-      this.tabItems = this.tabList.querySelectorAll(this.tablistItemClass);
-      this.allowedKeys = [35, 36, 37, 39, 40];
-      this.tabLinks = [];
-      this.tabPanel = [];
-      this.selectedTab = null;
-      this.clickTabEvent = e => this.clickTab(e);
-      this.arrowKeysEvent = e => this.arrowKeys(e);
-      this.owns = [];
-    }
-    init() {
-      this.setUpDom();
-      this.controls();
-      this.setInitalTab();
-    }
-    setUpDom() {
-      const tabListWrapper = document.createElement('div');
-      tabListWrapper.classList.add('nsw-tabs__list-wrapper');
-      this.tab.prepend(tabListWrapper);
-      tabListWrapper.prepend(this.tabList);
-      this.tabList.setAttribute('role', 'tablist');
-      this.tabItems.forEach(item => {
-        const itemElem = item;
-        const itemLink = item.querySelector(this.tablistLinkClass);
-        const panel = this.tab.querySelector(itemLink.hash);
-        const uID = uniqueId('tab');
-        this.owns.push(uID);
-        itemElem.setAttribute('role', 'presentation');
-        this.enhanceTabLink(itemLink, uID);
-        this.enhanceTabPanel(panel, uID);
-      });
-      this.tabList.setAttribute('aria-owns', this.owns.join(' '));
-    }
-    enhanceTabLink(link, id) {
-      link.setAttribute('role', 'tab');
-      link.setAttribute('id', id);
-      link.setAttribute('aria-selected', false);
-      link.setAttribute('tabindex', '-1');
-      this.tabLinks.push(link);
-    }
-    enhanceTabPanel(panel, id) {
-      const panelElem = panel;
-      panelElem.setAttribute('role', 'tabpanel');
-      panelElem.setAttribute('role', 'tabpanel');
-      panelElem.setAttribute('aria-labelledBy', id);
-      panelElem.setAttribute('tabindex', '0');
-      panelElem.hidden = true;
-      this.tabPanel.push(panelElem);
-    }
-    setInitalTab() {
-      const {
-        tabLinks,
-        tabPanel,
-        showTab
-      } = this;
-      const index = showTab === undefined ? 0 : showTab;
-      const selectedLink = tabLinks[index];
-      selectedLink.classList.add('active');
-      selectedLink.removeAttribute('tabindex');
-      selectedLink.setAttribute('aria-selected', true);
-      tabPanel[index].hidden = false;
-      this.selectedTab = selectedLink;
-    }
-    clickTab(e) {
-      e.preventDefault();
-      this.switchTabs(e.currentTarget);
-    }
-    switchTabs(elem) {
-      const clickedTab = elem;
-      if (clickedTab !== this.selectedTab) {
-        clickedTab.focus();
-        clickedTab.removeAttribute('tabindex');
-        clickedTab.setAttribute('aria-selected', true);
-        clickedTab.classList.add('active');
-        this.selectedTab.setAttribute('aria-selected', false);
-        this.selectedTab.setAttribute('tabindex', '-1');
-        this.selectedTab.classList.remove('active');
-        const clickedTabIndex = this.tabLinks.indexOf(clickedTab);
-        const selectedTabIndex = this.tabLinks.indexOf(this.selectedTab);
-        this.tabPanel[clickedTabIndex].hidden = false;
-        this.tabPanel[selectedTabIndex].hidden = true;
-        this.selectedTab = clickedTab;
-        if (!clickedTab.classList.contains('js-tabs-fixed')) {
-          clickedTab.scrollIntoView({
-            behavior: 'smooth',
-            block: 'nearest',
-            inline: 'nearest'
-          });
-        }
-      }
-    }
-    arrowKeys(_ref) {
-      let {
-        which
-      } = _ref;
-      const linkLength = this.tabLinks.length - 1;
-      let index = this.tabLinks.indexOf(this.selectedTab);
-      let down = false;
-      if (this.allowedKeys.includes(which)) {
-        switch (which) {
-          case 35:
-            index = linkLength;
-            break;
-          case 36:
-            index = 0;
-            break;
-          case 37:
-            index = index === 0 ? -1 : index -= 1;
-            break;
-          case 39:
-            index = index === linkLength ? -1 : index += 1;
-            break;
-          case 40:
-            down = true;
-            break;
-        }
-        if (index > -1) {
-          if (down) {
-            this.tabPanel[index].focus();
-          } else {
-            this.switchTabs(this.tabLinks[index]);
-          }
-        }
-      }
-    }
-    controls() {
-      this.tabLinks.forEach(link => {
-        link.addEventListener('click', this.clickTabEvent, false);
-        link.addEventListener('keydown', this.arrowKeysEvent, false);
-      });
-    }
-  }
-
   class GlobalAlert {
     constructor(element) {
       this.messageElement = element;
@@ -1110,318 +833,271 @@
     }
   }
 
-  /* eslint-disable max-len */
-  class Select {
+  class Navigation {
     constructor(element) {
-      this.element = element;
-      this.select = this.element.querySelector('select');
-      this.optGroups = this.select.getElementsByTagName('optgroup');
-      this.options = this.select.getElementsByTagName('option');
-      this.selectId = this.select.getAttribute('id');
-      this.trigger = false;
-      this.dropdown = false;
-      this.customOptions = false;
-      this.list = false;
-      this.allButton = false;
-      this.arrowIcon = this.element.getElementsByTagName('svg');
-      this.label = document.querySelector(`[for="${this.selectId}"]`);
-      this.selectedOptCounter = 0;
-      this.optionIndex = 0;
-      this.noSelectText = this.element.getAttribute('data-select-text') || 'Select';
-      this.multiSelectText = this.element.getAttribute('data-multi-select-text') || '{n} items selected';
-      this.nMultiSelect = this.element.getAttribute('data-n-multi-select') || 1;
-      this.noUpdateLabel = this.element.getAttribute('data-update-text') && this.element.getAttribute('data-update-text') === 'off';
-      this.insetLabel = this.element.getAttribute('data-inset-label') && this.element.getAttribute('data-inset-label') === 'on';
-      this.hideClass = 'nsw-display-none';
-      this.showClass = 'active';
-      this.srClass = 'sr-only';
-      this.prefix = 'nsw-';
-      this.class = 'multi-select';
-      this.buttonClass = `${this.class}__button`;
-      this.allButtonClass = `${this.class}__all`;
-      this.listClass = `${this.class}__list`;
-      this.optionClass = `${this.class}__option`;
-      this.dropdownClass = `${this.class}__dropdown`;
-      this.checkboxClass = `${this.class}__checkbox`;
-      this.itemClass = `${this.class}__item`;
-      this.labelClass = `${this.class}__label`;
-      this.termClass = `${this.class}__term`;
-      this.detailsClass = `${this.class}__details`;
-      this.selectClass = 'form__select';
-      this.checkboxLabelClass = 'form__checkbox-label';
-      this.checkboxInputClass = 'form__checkbox-input';
+      this.nav = element;
+      this.navID = this.nav.id;
+      this.openNavButton = document.querySelector('.js-open-nav');
+      this.closeNavButtons = this.nav.querySelectorAll('.js-close-nav');
+      this.closeSubNavButtons = this.nav.querySelectorAll('.js-close-sub-nav');
+      this.isMegaMenuElement = this.nav.classList.contains('js-mega-menu');
+      this.mainNavIsOpen = false;
+      this.transitionEvent = whichTransitionEvent();
+      this.mobileShowMainTransitionEndEvent = e => this.mobileShowMainNav(e);
+      this.mobileHideMainTransitionEndEvent = e => this.mobileHideMainNav(e);
+      this.showSubNavTransitionEndEvent = e => this.showSubNav(e);
+      this.mobileTrapTabKeyEvent = e => this.mobileMainNavTrapTabs(e);
+      this.mobileSubNavTrapTabKeyEvent = e => this.trapkeyEventStuff(e);
+      this.desktopButtonClickEvent = e => this.buttonClickDesktop(e);
+      this.desktopButtonKeydownEvent = e => this.buttonKeydownDesktop(e);
+      this.checkFocusEvent = e => this.checkIfContainsFocus(e);
+      this.openSubNavElements = [];
+      this.breakpoint = window.matchMedia('(min-width: 62em)');
     }
     init() {
-      this.element.insertAdjacentHTML('beforeend', this.initButtonSelect() + this.initListSelect());
-      this.dropdown = this.element.querySelector(`.js-${this.dropdownClass}`);
-      this.trigger = this.element.querySelector(`.js-${this.buttonClass}`);
-      this.customOptions = this.dropdown.querySelectorAll(`.js-${this.optionClass}`);
-      this.list = this.dropdown.querySelector(`.js-${this.listClass}`);
-      this.list.insertAdjacentHTML('afterbegin', this.initAllButton());
-      this.allButton = this.list.querySelector(`.js-${this.allButtonClass}`);
-      this.select.classList.add(this.hideClass);
-      if (this.arrowIcon.length > 0) this.arrowIcon[0].style.display = 'none';
-      this.initCustomSelectEvents();
-      this.updateAllButton();
+      this.initEvents();
+      this.responsiveCheck(this.breakpoint);
+      if (this.nav) {
+        this.breakpoint.addEventListener('change', event => this.responsiveCheck(event));
+      }
     }
-    initCustomSelectEvents() {
-      this.initSelection();
-      this.trigger.addEventListener('click', event => {
-        event.preventDefault();
-        this.toggleCustomSelect(false);
+    initEvents() {
+      if (this.isMegaMenuElement) {
+        document.addEventListener('click', this.handleOutsideClick.bind(this), false);
+        document.addEventListener('keydown', this.escapeClose.bind(this), false);
+      }
+      this.openNavButton.addEventListener('click', this.mobileToggleMainNav.bind(this), false);
+      this.closeNavButtons.forEach(element => {
+        element.addEventListener('click', this.mobileToggleMainNav.bind(this), false);
       });
-      if (this.label) {
-        this.label.addEventListener('click', () => {
-          this.constructor.moveFocusFn(this.trigger);
+      this.closeSubNavButtons.forEach(element => {
+        element.addEventListener('click', this.closeSubNav.bind(this), false);
+      });
+    }
+    responsiveCheck(event) {
+      let megaMenuListItems = [];
+      if (event.matches) {
+        megaMenuListItems = [].slice.call(this.nav.querySelectorAll('ul > li'));
+        document.body.classList.remove('main-nav-active');
+      } else {
+        megaMenuListItems = [].slice.call(this.nav.querySelectorAll('li'));
+      }
+      this.tearDownNavControls();
+      this.setUpNavControls(megaMenuListItems);
+    }
+    handleOutsideClick(event) {
+      // removes handleOutsideClick functionality from docs site
+      if (this.nav.closest('.nsw-docs')) return;
+      if (!this.mainNavIsOpen) return;
+      const isOutsideNav = !this.nav.contains(event.target);
+      if (isOutsideNav) {
+        this.toggleSubNavDesktop(true);
+      }
+    }
+    tearDownNavControls() {
+      if (this.isMegaMenuElement) {
+        const listItems = [].slice.call(this.nav.querySelectorAll('li'));
+        listItems.forEach(item => {
+          const submenu = item.querySelector('[id^=sub-nav-]');
+          const link = item.querySelector('a');
+          if (submenu) {
+            link.removeAttribute('role');
+            link.removeAttribute('aria-expanded');
+            link.removeAttribute('aria-controls');
+            link.removeEventListener('click', this.desktopButtonClickEvent, false);
+            link.removeEventListener('keydown', this.desktopButtonKeydownEvent, false);
+          }
         });
       }
-      this.dropdown.addEventListener('keydown', event => {
-        if (event.key && event.key.toLowerCase() === 'arrowup') {
-          this.keyboardCustomSelect('prev', event);
-        } else if (event.key && event.key.toLowerCase() === 'arrowdown') {
-          this.keyboardCustomSelect('next', event);
-        }
-      });
-      window.addEventListener('keyup', event => {
-        if (event.key && event.key.toLowerCase() === 'escape') {
-          this.moveFocusToSelectTrigger();
-          this.toggleCustomSelect('false');
-        }
-      });
-      window.addEventListener('click', event => {
-        this.checkCustomSelectClick(event.target);
-      });
     }
-    toggleCustomSelect(bool) {
-      let ariaExpanded;
-      if (bool) {
-        ariaExpanded = bool;
-      } else {
-        ariaExpanded = this.trigger.getAttribute('aria-expanded') === 'true' ? 'false' : 'true';
-      }
-      this.trigger.setAttribute('aria-expanded', ariaExpanded);
-      if (ariaExpanded === 'true') {
-        const selectedOption = this.getSelectedOption() || this.allButton;
-        this.constructor.moveFocusFn(selectedOption);
-        const cb = () => {
-          this.constructor.moveFocusFn(selectedOption);
-          this.dropdown.removeEventListener('transitionend', cb);
-        };
-        this.dropdown.addEventListener('transitionend', cb);
-        this.constructor.trapFocus(this.dropdown);
-        this.placeDropdown();
-      }
-    }
-    placeDropdown() {
-      const triggerBoundingRect = this.trigger.getBoundingClientRect();
-      this.dropdown.classList.toggle(`${this.prefix}${this.dropdownClass}--right`, window.innerWidth < triggerBoundingRect.left + this.dropdown.offsetWidth);
-      const moveUp = window.innerHeight - triggerBoundingRect.bottom < triggerBoundingRect.top;
-      this.dropdown.classList.toggle(`${this.prefix}${this.dropdownClass}--up`, moveUp);
-      const maxHeight = moveUp ? triggerBoundingRect.top - 20 : window.innerHeight - triggerBoundingRect.bottom - 20;
-      this.dropdown.setAttribute('style', `max-height: ${maxHeight}px; width: ${triggerBoundingRect.width}px;`);
-    }
-    keyboardCustomSelect(direction, event) {
-      event.preventDefault();
-      const allOptions = [...this.customOptions, this.allButton];
-      let index = allOptions.findIndex(option => option === document.activeElement.closest(`.js-${this.optionClass}`));
-      index = direction === 'next' ? index + 1 : index - 1;
-      if (index < 0) index = allOptions.length - 1;
-      if (index >= allOptions.length) index = 0;
-      const targetOption = allOptions[index].querySelector(`.js-${this.checkboxClass}`) || this.allButton;
-      this.constructor.moveFocusFn(targetOption);
-    }
-    toggleAllButton() {
-      const status = !this.allButton.classList.contains(this.showClass);
-      this.allButton.classList.toggle(this.showClass, status);
-      const [optionsArray, totalOptions, selectedOptions] = this.getOptions();
-      optionsArray.forEach(option => {
-        option.setAttribute('aria-selected', 'false');
-        this.selectOption(option);
-      });
-      if (selectedOptions === totalOptions) {
-        optionsArray.forEach(option => this.selectOption(option));
-      }
-    }
-    initSelection() {
-      this.allButton.addEventListener('click', event => {
-        event.preventDefault();
-        this.toggleAllButton();
-      });
-      this.dropdown.addEventListener('change', event => {
-        const option = event.target.closest(`.js-${this.optionClass}`);
-        if (!option) return;
-        this.selectOption(option);
-      });
-      this.dropdown.addEventListener('click', event => {
-        const option = event.target.closest(`.js-${this.optionClass}`);
-        if (!option || !event.target.classList.contains(`js-${this.optionClass}`)) return;
-        this.selectOption(option);
-      });
-    }
-    selectOption(option) {
-      const input = option.querySelector(`.js-${this.checkboxClass}`);
-      if (option.hasAttribute('aria-selected') && option.getAttribute('aria-selected') === 'true') {
-        input.checked = false;
-        input.removeAttribute('checked');
-        option.setAttribute('aria-selected', 'false');
-        this.updateNativeSelect(option.getAttribute('data-index'), false);
-      } else {
-        input.checked = true;
-        input.value = true;
-        input.setAttribute('checked', '');
-        option.setAttribute('aria-selected', 'true');
-        this.updateNativeSelect(option.getAttribute('data-index'), true);
-      }
-      const triggerLabel = this.getSelectedOptionText();
-      const [selectedLabel] = triggerLabel;
-      this.trigger.querySelector(`.js-${this.labelClass}`).innerHTML = selectedLabel;
-      this.trigger.classList.toggle(`${this.prefix}${this.buttonClass}--active`, this.selectedOptCounter > 0);
-      this.updateTriggerAria(triggerLabel[1]);
-      this.updateAllButton();
-    }
-    updateAllButton() {
-      const [, totalOptions, selectedOptions] = this.getOptions();
-      if (selectedOptions === totalOptions) {
-        this.allButton.classList.add(this.showClass);
-      } else {
-        this.allButton.classList.remove(this.showClass);
-      }
-    }
-    updateNativeSelect(index, bool) {
-      this.options[index].selected = bool;
-      this.select.dispatchEvent(new CustomEvent('change', {
-        bubbles: true
-      }));
-    }
-    updateTriggerAria(ariaLabel) {
-      this.trigger.setAttribute('aria-label', ariaLabel);
-    }
-    getSelectedOptionText() {
-      const noSelectionText = `<span class="${this.prefix}${this.termClass}">${this.noSelectText}</span>`;
-      if (this.noUpdateLabel) return [noSelectionText, this.noSelectText];
-      let label = '';
-      let ariaLabel = '';
-      this.selectedOptCounter = 0;
-      for (let i = 0; i < this.options.length; i += 1) {
-        if (this.options[i].selected) {
-          if (this.selectedOptCounter !== 0) label += ', ';
-          label = `${label}${this.options[i].text}`;
-          this.selectedOptCounter += 1;
-        }
-      }
-      if (this.selectedOptCounter > this.nMultiSelect) {
-        label = `<span class="${this.prefix}${this.detailsClass}">${this.multiSelectText.replace('{n}', this.selectedOptCounter)}</span>`;
-        ariaLabel = `${this.multiSelectText.replace('{n}', this.selectedOptCounter)}, ${this.noSelectText}`;
-      } else if (this.selectedOptCounter > 0) {
-        ariaLabel = `${label}, ${this.noSelectText}`;
-        label = `<span class="${this.prefix}${this.detailsClass}">${label}</span>`;
-      } else {
-        label = noSelectionText;
-        ariaLabel = this.noSelectText;
-      }
-      if (this.insetLabel && this.selectedOptCounter > 0) label = noSelectionText + label;
-      return [label, ariaLabel];
-    }
-    initButtonSelect() {
-      const customClasses = this.element.getAttribute('data-trigger-class') ? ` ${this.element.getAttribute('data-trigger-class')}` : '';
-      const triggerLabel = this.getSelectedOptionText();
-      const activeSelectionClass = this.selectedOptCounter > 0 ? ` ${this.buttonClass}--active` : '';
-      let button = `<button class="js-${this.buttonClass} ${this.prefix}${this.selectClass} ${this.prefix}${this.buttonClass}${customClasses}${activeSelectionClass}" aria-label="${triggerLabel[1]}" aria-expanded="false" aria-controls="${this.selectId}-dropdown"><span aria-hidden="true" class="js-${this.labelClass} ${this.prefix}${this.labelClass}">${triggerLabel[0]}</span><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>`;
-      if (this.arrowIcon.length > 0 && this.arrowIcon[0].outerHTML) {
-        button += this.arrowIcon[0].outerHTML;
-      }
-      return `${button}</button>`;
-    }
-    initListSelect() {
-      let list = `<div class="js-${this.dropdownClass} ${this.prefix}${this.dropdownClass}" aria-describedby="${this.selectId}-description" id="${this.selectId}-dropdown">`;
-      list += this.getSelectLabelSR();
-      if (this.optGroups.length > 0) {
-        for (let i = 0; i < this.optGroups.length; i += 1) {
-          const optGroupList = this.optGroups[i].getElementsByTagName('option');
-          const optGroupLabel = `<li><span class="${this.prefix}${this.itemClass} ${this.prefix}${this.itemClass}--optgroup">${this.optGroups[i].getAttribute('label')}</span></li>`;
-          list = `${list}<ul class="${this.prefix}${this.listClass}" role="listbox" aria-multiselectable="true">${optGroupLabel}${this.getOptionsList(optGroupList)}</ul>`;
-        }
-      } else {
-        list = `${list}<ul class="${this.prefix}${this.listClass} js-${this.listClass}" role="listbox" aria-multiselectable="true">${this.getOptionsList(this.options)}</ul>`;
-      }
-      return list;
-    }
-    initAllButton() {
-      const allButton = `<button class="${this.prefix}${this.allButtonClass} js-${this.allButtonClass}"><span>All</span></button>`;
-      return allButton;
-    }
-    getSelectLabelSR() {
-      if (this.label) {
-        return `<p class="${this.srClass}" id="${this.selectId}-description">${this.label.textContent}</p>`;
-      }
-      return '';
-    }
-    getOptionsList(options) {
-      let list = '';
-      for (let i = 0; i < options.length; i += 1) {
-        const selected = options[i].hasAttribute('selected') ? ' aria-selected="true"' : ' aria-selected="false"';
-        const disabled = options[i].hasAttribute('disabled') ? 'disabled' : '';
-        const checked = options[i].hasAttribute('selected') ? 'checked' : '';
-        const uniqueName = this.constructor.createSafeCss(`${this.selectId}-${options[i].value}-${this.optionIndex.toString()}`);
-        list = `${list}<li class="js-${this.optionClass}" role="option" data-value="${options[i].value}" ${selected} data-label="${options[i].text}" data-index="${this.optionIndex}"><input aria-hidden="true" class="${this.prefix}${this.checkboxInputClass} js-${this.checkboxClass}" type="checkbox" id="${uniqueName}" ${checked} ${disabled}><label class="${this.prefix}${this.checkboxLabelClass} ${this.prefix}${this.itemClass} ${this.prefix}${this.itemClass}--option" aria-hidden="true" for="${uniqueName}"><span>${options[i].text}</span></label></li>`;
-        this.optionIndex += 1;
-      }
-      return list;
-    }
-    getSelectedOption() {
-      const option = this.dropdown.querySelector('[aria-selected="true"]');
-      if (option) return option.querySelector(`.js-${this.checkboxClass}`);
-      return this.allButton;
-    }
-    getOptions() {
-      const options = Array.from(this.dropdown.querySelectorAll(`.js-${this.optionClass}`));
-      const total = options.length;
-      const selected = options.filter(option => option.getAttribute('aria-selected') === 'true').length;
-      return [options, total, selected];
-    }
-    moveFocusToSelectTrigger() {
-      if (!document.activeElement.closest(`.js-${this.class}`)) return;
-      this.trigger.focus();
-    }
-    static trapFocus(element) {
-      const focusableElements = 'a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])';
-      const firstFocusableElement = element.querySelectorAll(focusableElements)[0];
-      const focusableContent = element.querySelectorAll(focusableElements);
-      const lastFocusableElement = focusableContent[focusableContent.length - 1];
-      document.addEventListener('keydown', event => {
-        const isTabPressed = event.key === 'Tab' || event.code === 9;
-        if (!isTabPressed) {
-          return;
-        }
-        if (event.shiftKey) {
-          if (document.activeElement === firstFocusableElement) {
-            lastFocusableElement.focus();
-            event.preventDefault();
+    setUpNavControls(listItems) {
+      if (this.isMegaMenuElement) {
+        listItems.forEach(item => {
+          const submenu = item.querySelector('[id^=sub-nav-]');
+          const link = item.querySelector('a');
+          if (submenu) {
+            link.setAttribute('role', 'button');
+            link.setAttribute('aria-expanded', 'false');
+            link.setAttribute('aria-controls', submenu.id);
+            link.addEventListener('click', this.desktopButtonClickEvent, false);
+            link.addEventListener('keydown', this.desktopButtonKeydownEvent, false);
           }
-        } else if (document.activeElement === lastFocusableElement) {
-          firstFocusableElement.focus();
-          event.preventDefault();
+        });
+      }
+    }
+    mobileMainNavTrapTabs(e) {
+      const elemObj = getFocusableElementBySelector(this.navID, ['> div button', '> ul > li > a']);
+      trapTabKey(e, elemObj);
+    }
+    mobileShowMainNav(_ref) {
+      let {
+        propertyName
+      } = _ref;
+      if (propertyName !== 'transform') return;
+      getFocusableElementBySelector(this.navID, ['> div button', '> ul > li > a']).all[1].focus();
+      this.nav.classList.add('active');
+      this.nav.classList.remove('activating');
+      this.nav.removeEventListener(this.transitionEvent, this.mobileShowMainTransitionEndEvent, false);
+      this.nav.addEventListener('keydown', this.mobileTrapTabKeyEvent, false);
+    }
+    mobileHideMainNav(_ref2) {
+      let {
+        propertyName
+      } = _ref2;
+      if (propertyName !== 'transform') return;
+      this.nav.classList.remove('active');
+      this.nav.classList.remove('closing');
+      while (this.openSubNavElements.length > 0) {
+        const {
+          submenu
+        } = this.whichSubNavLatest();
+        submenu.removeEventListener('keydown', this.mobileSubNavTrapTabKeyEvent, false);
+        submenu.classList.remove('active');
+        submenu.classList.remove('closing');
+        this.openSubNavElements.pop();
+      }
+      this.nav.removeEventListener(this.transitionEvent, this.mobileHideMainTransitionEndEvent, false);
+      this.nav.removeEventListener('keydown', this.mobileTrapTabKeyEvent, false);
+    }
+    mobileToggleMainNav(e) {
+      const {
+        currentTarget
+      } = e;
+      const isExpanded = currentTarget.getAttribute('aria-expanded') === 'true';
+      if (isExpanded) {
+        document.body.classList.remove('main-nav-active');
+        this.openNavButton.focus();
+        this.nav.classList.add('closing');
+        this.nav.addEventListener(this.transitionEvent, this.mobileHideMainTransitionEndEvent, false);
+      } else {
+        document.body.classList.add('main-nav-active');
+        this.nav.classList.add('activating');
+        this.nav.addEventListener(this.transitionEvent, this.mobileShowMainTransitionEndEvent, false);
+      }
+    }
+    buttonClickDesktop(event) {
+      const isDesktop = this.breakpoint.matches;
+      if (!isDesktop || !event.target.closest('.nsw-main-nav__sub-nav')) {
+        this.saveElements(event);
+        this.toggleSubNavDesktop();
+        event.preventDefault();
+      }
+    }
+    buttonKeydownDesktop(event) {
+      if (event.key === ' ' || event.key === 'Enter' || event.key === 'Spacebar') {
+        this.saveElements(event);
+        this.toggleSubNavDesktop();
+        event.preventDefault();
+      }
+    }
+    escapeClose(e) {
+      if (e.key === 'Escape') {
+        // removes handleOutsideClick functionality from docs site
+        if (this.nav.closest('.nsw-docs')) return;
+        const {
+          link
+        } = this.whichSubNavLatest();
+        const isExpanded = link.getAttribute('aria-expanded') === 'true';
+        if (isExpanded) {
+          this.toggleSubNavDesktop(true);
+          e.preventDefault();
+          link.focus();
         }
-      });
-      firstFocusableElement.focus();
-    }
-    checkCustomSelectClick(target) {
-      if (!this.element.contains(target)) this.toggleCustomSelect('false');
-    }
-    static createSafeCss(str) {
-      const invalidBeginningOfClassname = /^([0-9]|--|-[0-9])/;
-      if (typeof str !== 'string') {
-        return '';
       }
-      const strippedClassname = str.match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g).map(x => x.toLowerCase()).join('-');
-      return invalidBeginningOfClassname.test(strippedClassname) ? `_${strippedClassname}` : strippedClassname;
     }
-    static moveFocusFn(element) {
-      element.focus();
-      if (document.activeElement !== element) {
-        element.setAttribute('tabindex', '-1');
-        element.focus();
+    saveElements(e) {
+      const {
+        currentTarget
+      } = e;
+      const temp = {
+        submenu: document.getElementById(currentTarget.getAttribute('aria-controls')),
+        link: currentTarget,
+        linkParent: currentTarget.parentNode
+      };
+      this.openSubNavElements.push(temp);
+    }
+    showSubNav(_ref3) {
+      let {
+        propertyName
+      } = _ref3;
+      const {
+        submenu
+      } = this.whichSubNavLatest();
+      if (propertyName !== 'transform') return;
+      getFocusableElementBySelector(submenu.id, ['> div button', '> .nsw-main-nav__title a', '> ul > li > a']).all[2].focus();
+      submenu.removeEventListener(this.transitionEvent, this.showSubNavTransitionEndEvent, false);
+    }
+    closeSubNav() {
+      const {
+        submenu,
+        link
+      } = this.whichSubNavLatest();
+      if (this.breakpoint.matches) {
+        link.setAttribute('aria-expanded', false);
+        link.classList.remove('active');
+        this.nav.removeEventListener('focus', this.checkFocusEvent, true);
+        // fix: workaround for safari because it doesn't support focus event
+        this.nav.removeEventListener('click', this.checkFocusEvent, true);
+      } else {
+        link.focus();
+        submenu.removeEventListener('keydown', this.mobileSubNavTrapTabKeyEvent, false);
       }
+      submenu.classList.remove('active');
+      submenu.closest('ul').parentElement.classList.remove('no-scroll');
+      this.openSubNavElements.pop();
+    }
+    openSubNav() {
+      const {
+        submenu,
+        link
+      } = this.whichSubNavLatest();
+      if (this.breakpoint.matches) {
+        link.setAttribute('aria-expanded', true);
+        link.classList.add('active');
+        this.nav.addEventListener('focus', this.checkFocusEvent, true);
+        // fix: workaround for safari because it doesn't support focus event
+        this.nav.addEventListener('click', this.checkFocusEvent, true);
+      } else {
+        submenu.addEventListener('keydown', this.mobileSubNavTrapTabKeyEvent, false);
+        submenu.addEventListener(this.transitionEvent, this.showSubNavTransitionEndEvent, false);
+      }
+      submenu.closest('ul').parentElement.scrollTop = 0;
+      submenu.closest('ul').parentElement.classList.add('no-scroll');
+      submenu.classList.add('active');
+    }
+    toggleSubNavDesktop() {
+      const {
+        link
+      } = this.whichSubNavLatest();
+      const isExpanded = link.getAttribute('aria-expanded') === 'true';
+      if (isExpanded) {
+        this.mainNavIsOpen = false;
+        this.closeSubNav();
+      } else {
+        this.mainNavIsOpen = true;
+        this.openSubNav();
+      }
+    }
+    checkIfContainsFocus(e) {
+      const {
+        linkParent
+      } = this.whichSubNavLatest();
+      const focusWithin = linkParent.contains(e.target);
+      const isButton = e.target.getAttribute('role');
+      if (!focusWithin && isButton) {
+        this.toggleSubNavDesktop();
+      }
+    }
+    whichSubNavLatest() {
+      const lastSubNav = this.openSubNavElements.length - 1;
+      return this.openSubNavElements[lastSubNav];
+    }
+    trapkeyEventStuff(e) {
+      const {
+        submenu
+      } = this.whichSubNavLatest();
+      const elemObj = getFocusableElementBySelector(submenu.id, ['> div button', '> ul > li > a']);
+      trapTabKey(e, elemObj);
     }
   }
 
@@ -2715,136 +2391,653 @@
   };
 
   /* eslint-disable max-len */
-  class Tooltip {
+  class Popover {
     constructor(element) {
-      this.tooltip = element;
-      this.uID = uniqueId('tooltip');
-      this.tooltipElement = false;
-      this.arrowElement = false;
-      this.tooltipContent = false;
-      this.tooltipDelay = 400;
-      this.screenSize = false;
-      this.tooltipTheme = this.tooltip.getAttribute('data-theme') || 'dark';
+      this.popover = element;
+      this.popoverId = this.popover.getAttribute('aria-controls');
+      this.popoverPosition = this.popover.dataset.popoverPosition || 'bottom';
+      this.popoverClassList = this.popover.dataset.popoverClass;
+      this.popoverGap = this.popover.dataset.popoverGap || 5;
+      this.popoverAnchor = this.popover.querySelector('[data-anchor]') || this.popover;
+      this.popoverElement = document.querySelector(`#${this.popoverId}`);
+      this.popoverVisibleClass = 'active';
+      this.popoverContent = false;
+      this.popoverIsOpen = false;
+      this.firstFocusable = false;
+      this.lastFocusable = false;
     }
     init() {
-      this.tooltipContent = this.tooltip.getAttribute('title');
-      this.constructor.setAttributes(this.tooltip, {
-        'data-tooltip-content': this.tooltipContent,
-        'aria-describedby': this.uID,
-        tabindex: '0'
+      this.constructor.setAttributes(this.popover, {
+        tabindex: '0',
+        'aria-haspopup': 'dialog'
       });
-      this.tooltip.removeAttribute('title');
-      const eventArray = ['mouseenter', 'mouseleave', 'focus', 'blur'];
-      eventArray.forEach((event, _ref) => {
-        let {
-          listener = this.handleEvent.bind(this)
-        } = _ref;
-        this.tooltip.addEventListener(event, listener);
+      this.initEvents();
+    }
+    initEvents() {
+      this.popover.addEventListener('click', this.togglePopover.bind(this));
+      this.popover.addEventListener('keyup', event => {
+        if (event.code && event.code.toLowerCase() === 'enter' || event.key && event.key.toLowerCase() === 'enter') {
+          this.togglePopover();
+        }
+      });
+      window.addEventListener('DOMContentLoaded', () => {
+        this.popoverContent = this.popoverElement.innerHTML;
+      });
+      this.popoverElement.addEventListener('keydown', this.trapFocus.bind(this));
+      window.addEventListener('click', event => {
+        this.checkPopoverClick(event.target);
+      });
+      window.addEventListener('keyup', event => {
+        if (event.code && event.code.toLowerCase() === 'escape' || event.key && event.key.toLowerCase() === 'escape') {
+          this.checkPopoverFocus();
+        }
+      });
+      window.addEventListener('resize', () => {
+        if (this.popoverIsOpen) this.togglePopover();
+      });
+      window.addEventListener('scroll', () => {
+        if (this.popoverIsOpen) this.togglePopover();
       });
     }
-    handleEvent(event) {
-      switch (event.type) {
-        case 'mouseenter':
-        case 'focus':
-          this.showTooltip(this, event);
-          break;
-        case 'mouseleave':
-        case 'blur':
-          this.hideTooltip(this, event);
-          break;
-        default:
-          console.log(`Unexpected event type: ${event.type}`);
-          break;
-      }
-    }
-    createTooltipElement() {
-      if (!this.tooltipElement) {
-        this.tooltipElement = document.createElement('div');
-        document.body.appendChild(this.tooltipElement);
-      }
-      this.constructor.setAttributes(this.tooltipElement, {
-        id: this.uID,
-        class: `nsw-tooltip__element nsw-tooltip__element--${this.tooltipTheme}`,
-        role: 'tooltip'
-      });
-      if (this.tooltip) {
-        this.arrowElement = document.createElement('div');
-        this.arrowElement.className = 'nsw-tooltip__arrow';
-      }
-      this.tooltipContent = this.tooltip.getAttribute('data-tooltip-content');
-      this.tooltipElement.innerHTML = this.tooltipContent;
-      this.tooltipElement.insertAdjacentElement('beforeend', this.arrowElement);
-    }
-    showTooltip() {
-      setTimeout(() => {
-        this.createTooltipElement();
-        this.tooltipElement.classList.add('active');
-        const range = document.createRange();
-        const text = this.tooltipElement.childNodes[0];
-        range.setStartBefore(text);
-        range.setEndAfter(text);
-        const clientRect = range.getBoundingClientRect();
-        this.matchMedia();
-        this.tooltipElement.style.width = `${clientRect.width + this.screenSize}px`;
-        this.updateTooltip(this.tooltipElement, this.arrowElement);
-      }, this.tooltipDelay);
-    }
-    hideTooltip() {
-      setTimeout(() => {
-        this.tooltipElement.classList.remove('active');
-        this.tooltipElement.style.width = '';
-      }, this.tooltipDelay);
-    }
-    matchMedia() {
-      if (window.matchMedia('(min-width: 576px)').matches) {
-        this.screenSize = 32;
+    togglePopover() {
+      if (this.popoverElement.classList.contains('active')) {
+        this.hidePopover();
       } else {
-        this.screenSize = 16;
+        this.popoverElement.focus();
+        this.showPopover();
       }
     }
-    updateTooltip(tooltip, arrowElement) {
-      let anchor = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : this.tooltip;
-      computePosition(anchor, tooltip, {
-        placement: 'top',
-        middleware: [offset(8), flip(), shift({
-          padding: 5
-        }), arrow({
-          element: arrowElement
+    showPopover() {
+      this.constructor.setAttributes(this.popoverElement, {
+        tabindex: '0',
+        role: 'dialog'
+      });
+      this.popoverElement.setAttribute('aria-expanded', 'true');
+      this.popoverElement.classList.add('active');
+      this.popoverIsOpen = true;
+      this.getFocusableElements();
+      this.popoverElement.focus({
+        preventScroll: true
+      });
+      this.popover.addEventListener('transitionend', () => {
+        this.focusPopover();
+      }, {
+        once: true
+      });
+      this.updatePopover(this.popoverElement, this.popoverPosition);
+    }
+    hidePopover() {
+      this.popoverElement.setAttribute('aria-expanded', 'false');
+      this.popoverElement.classList.remove('active');
+      this.popoverIsOpen = false;
+    }
+    updatePopover(popover, placement) {
+      let anchor = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : this.popoverAnchor;
+      computePosition(anchor, popover, {
+        placement,
+        middleware: [offset(parseInt(this.popoverGap, 10)), flip({
+          fallbackAxisSideDirection: 'start',
+          crossAxis: false
+        }), shift({
+          limiter: limitShift()
         })]
-      }).then(_ref2 => {
+      }).then(_ref => {
         let {
           x,
-          y,
-          placement,
-          middlewareData
-        } = _ref2;
-        Object.assign(tooltip.style, {
+          y
+        } = _ref;
+        Object.assign(popover.style, {
           left: `${x}px`,
           top: `${y}px`
         });
-
-        // Accessing the data
-        const {
-          x: arrowX,
-          y: arrowY
-        } = middlewareData.arrow;
-        const staticSide = {
-          top: 'bottom',
-          right: 'left',
-          bottom: 'top',
-          left: 'right'
-        }[placement.split('-')[0]];
-        Object.assign(arrowElement.style, {
-          left: arrowX != null ? `${arrowX}px` : '',
-          top: arrowY != null ? `${arrowY}px` : '',
-          right: '',
-          bottom: '',
-          [staticSide]: '-6px'
-        });
       });
+    }
+    checkPopoverClick(target) {
+      if (!this.popoverIsOpen) return;
+      if (!this.popoverElement.contains(target) && !target.closest(`[aria-controls="${this.popoverId}"]`)) this.togglePopover();
+    }
+    checkPopoverFocus() {
+      if (!this.popoverIsOpen) return;
+      this.constructor.moveFocus(this.popover);
+      this.togglePopover();
+    }
+    focusPopover() {
+      if (this.firstFocusable) {
+        this.firstFocusable.focus({
+          preventScroll: true
+        });
+      } else {
+        this.constructor.moveFocus(this.popoverElement);
+      }
+    }
+    getFocusableElements() {
+      const focusableElString = '[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex]:not([tabindex="-1"]), [contenteditable], audio[controls], video[controls], summary';
+      const allFocusable = this.popoverElement.querySelectorAll(focusableElString);
+      this.getFirstVisible(allFocusable);
+      this.getLastVisible(allFocusable);
+    }
+    getFirstVisible(elements) {
+      for (let i = 0; i < elements.length; i += 1) {
+        if (this.constructor.isVisible(elements[i])) {
+          this.firstFocusable = elements[i];
+          break;
+        }
+      }
+    }
+    getLastVisible(elements) {
+      for (let i = elements.length - 1; i >= 0; i -= 1) {
+        if (this.constructor.isVisible(elements[i])) {
+          this.lastFocusable = elements[i];
+          break;
+        }
+      }
+    }
+    trapFocus(event) {
+      if (this.firstFocusable === document.activeElement && event.shiftKey) {
+        event.preventDefault();
+        this.lastFocusable.focus();
+      }
+      if (this.lastFocusable === document.activeElement && !event.shiftKey) {
+        event.preventDefault();
+        this.firstFocusable.focus();
+      }
+    }
+    static isVisible(element) {
+      return element.offsetWidth || element.offsetHeight || element.getClientRects().length;
+    }
+    static moveFocus(element) {
+      element.focus({
+        preventScroll: true
+      });
+      if (document.activeElement !== element) {
+        element.setAttribute('tabindex', '-1');
+        element.focus();
+      }
     }
     static setAttributes(el, attrs) {
       Object.keys(attrs).forEach(key => el.setAttribute(key, attrs[key]));
+    }
+  }
+
+  /* eslint-disable max-len */
+  class Select {
+    constructor(element) {
+      this.element = element;
+      this.select = this.element.querySelector('select');
+      this.optGroups = this.select.getElementsByTagName('optgroup');
+      this.options = this.select.getElementsByTagName('option');
+      this.selectId = this.select.getAttribute('id');
+      this.trigger = false;
+      this.dropdown = false;
+      this.customOptions = false;
+      this.list = false;
+      this.allButton = false;
+      this.arrowIcon = this.element.getElementsByTagName('svg');
+      this.label = document.querySelector(`[for="${this.selectId}"]`);
+      this.selectedOptCounter = 0;
+      this.optionIndex = 0;
+      this.noSelectText = this.element.getAttribute('data-select-text') || 'Select';
+      this.multiSelectText = this.element.getAttribute('data-multi-select-text') || '{n} items selected';
+      this.nMultiSelect = this.element.getAttribute('data-n-multi-select') || 1;
+      this.noUpdateLabel = this.element.getAttribute('data-update-text') && this.element.getAttribute('data-update-text') === 'off';
+      this.insetLabel = this.element.getAttribute('data-inset-label') && this.element.getAttribute('data-inset-label') === 'on';
+      this.hideClass = 'nsw-display-none';
+      this.showClass = 'active';
+      this.srClass = 'sr-only';
+      this.prefix = 'nsw-';
+      this.class = 'multi-select';
+      this.buttonClass = `${this.class}__button`;
+      this.allButtonClass = `${this.class}__all`;
+      this.listClass = `${this.class}__list`;
+      this.optionClass = `${this.class}__option`;
+      this.dropdownClass = `${this.class}__dropdown`;
+      this.checkboxClass = `${this.class}__checkbox`;
+      this.itemClass = `${this.class}__item`;
+      this.labelClass = `${this.class}__label`;
+      this.termClass = `${this.class}__term`;
+      this.detailsClass = `${this.class}__details`;
+      this.selectClass = 'form__select';
+      this.checkboxLabelClass = 'form__checkbox-label';
+      this.checkboxInputClass = 'form__checkbox-input';
+    }
+    init() {
+      this.element.insertAdjacentHTML('beforeend', this.initButtonSelect() + this.initListSelect());
+      this.dropdown = this.element.querySelector(`.js-${this.dropdownClass}`);
+      this.trigger = this.element.querySelector(`.js-${this.buttonClass}`);
+      this.customOptions = this.dropdown.querySelectorAll(`.js-${this.optionClass}`);
+      this.list = this.dropdown.querySelector(`.js-${this.listClass}`);
+      this.list.insertAdjacentHTML('afterbegin', this.initAllButton());
+      this.allButton = this.list.querySelector(`.js-${this.allButtonClass}`);
+      this.select.classList.add(this.hideClass);
+      if (this.arrowIcon.length > 0) this.arrowIcon[0].style.display = 'none';
+      this.initCustomSelectEvents();
+      this.updateAllButton();
+    }
+    initCustomSelectEvents() {
+      this.initSelection();
+      this.trigger.addEventListener('click', event => {
+        event.preventDefault();
+        this.toggleCustomSelect(false);
+      });
+      if (this.label) {
+        this.label.addEventListener('click', () => {
+          this.constructor.moveFocusFn(this.trigger);
+        });
+      }
+      this.dropdown.addEventListener('keydown', event => {
+        if (event.key && event.key.toLowerCase() === 'arrowup') {
+          this.keyboardCustomSelect('prev', event);
+        } else if (event.key && event.key.toLowerCase() === 'arrowdown') {
+          this.keyboardCustomSelect('next', event);
+        }
+      });
+      window.addEventListener('keyup', event => {
+        if (event.key && event.key.toLowerCase() === 'escape') {
+          this.moveFocusToSelectTrigger();
+          this.toggleCustomSelect('false');
+        }
+      });
+      window.addEventListener('click', event => {
+        this.checkCustomSelectClick(event.target);
+      });
+    }
+    toggleCustomSelect(bool) {
+      let ariaExpanded;
+      if (bool) {
+        ariaExpanded = bool;
+      } else {
+        ariaExpanded = this.trigger.getAttribute('aria-expanded') === 'true' ? 'false' : 'true';
+      }
+      this.trigger.setAttribute('aria-expanded', ariaExpanded);
+      if (ariaExpanded === 'true') {
+        const selectedOption = this.getSelectedOption() || this.allButton;
+        this.constructor.moveFocusFn(selectedOption);
+        const cb = () => {
+          this.constructor.moveFocusFn(selectedOption);
+          this.dropdown.removeEventListener('transitionend', cb);
+        };
+        this.dropdown.addEventListener('transitionend', cb);
+        this.constructor.trapFocus(this.dropdown);
+        this.placeDropdown();
+      }
+    }
+    placeDropdown() {
+      const triggerBoundingRect = this.trigger.getBoundingClientRect();
+      this.dropdown.classList.toggle(`${this.prefix}${this.dropdownClass}--right`, window.innerWidth < triggerBoundingRect.left + this.dropdown.offsetWidth);
+      const moveUp = window.innerHeight - triggerBoundingRect.bottom < triggerBoundingRect.top;
+      this.dropdown.classList.toggle(`${this.prefix}${this.dropdownClass}--up`, moveUp);
+      const maxHeight = moveUp ? triggerBoundingRect.top - 20 : window.innerHeight - triggerBoundingRect.bottom - 20;
+      this.dropdown.setAttribute('style', `max-height: ${maxHeight}px; width: ${triggerBoundingRect.width}px;`);
+    }
+    keyboardCustomSelect(direction, event) {
+      event.preventDefault();
+      const allOptions = [...this.customOptions, this.allButton];
+      let index = allOptions.findIndex(option => option === document.activeElement.closest(`.js-${this.optionClass}`));
+      index = direction === 'next' ? index + 1 : index - 1;
+      if (index < 0) index = allOptions.length - 1;
+      if (index >= allOptions.length) index = 0;
+      const targetOption = allOptions[index].querySelector(`.js-${this.checkboxClass}`) || this.allButton;
+      this.constructor.moveFocusFn(targetOption);
+    }
+    toggleAllButton() {
+      const status = !this.allButton.classList.contains(this.showClass);
+      this.allButton.classList.toggle(this.showClass, status);
+      const [optionsArray, totalOptions, selectedOptions] = this.getOptions();
+      optionsArray.forEach(option => {
+        option.setAttribute('aria-selected', 'false');
+        this.selectOption(option);
+      });
+      if (selectedOptions === totalOptions) {
+        optionsArray.forEach(option => this.selectOption(option));
+      }
+    }
+    initSelection() {
+      this.allButton.addEventListener('click', event => {
+        event.preventDefault();
+        this.toggleAllButton();
+      });
+      this.dropdown.addEventListener('change', event => {
+        const option = event.target.closest(`.js-${this.optionClass}`);
+        if (!option) return;
+        this.selectOption(option);
+      });
+      this.dropdown.addEventListener('click', event => {
+        const option = event.target.closest(`.js-${this.optionClass}`);
+        if (!option || !event.target.classList.contains(`js-${this.optionClass}`)) return;
+        this.selectOption(option);
+      });
+    }
+    selectOption(option) {
+      const input = option.querySelector(`.js-${this.checkboxClass}`);
+      if (option.hasAttribute('aria-selected') && option.getAttribute('aria-selected') === 'true') {
+        input.checked = false;
+        input.removeAttribute('checked');
+        option.setAttribute('aria-selected', 'false');
+        this.updateNativeSelect(option.getAttribute('data-index'), false);
+      } else {
+        input.checked = true;
+        input.value = true;
+        input.setAttribute('checked', '');
+        option.setAttribute('aria-selected', 'true');
+        this.updateNativeSelect(option.getAttribute('data-index'), true);
+      }
+      const triggerLabel = this.getSelectedOptionText();
+      const [selectedLabel] = triggerLabel;
+      this.trigger.querySelector(`.js-${this.labelClass}`).innerHTML = selectedLabel;
+      this.trigger.classList.toggle(`${this.prefix}${this.buttonClass}--active`, this.selectedOptCounter > 0);
+      this.updateTriggerAria(triggerLabel[1]);
+      this.updateAllButton();
+    }
+    updateAllButton() {
+      const [, totalOptions, selectedOptions] = this.getOptions();
+      if (selectedOptions === totalOptions) {
+        this.allButton.classList.add(this.showClass);
+      } else {
+        this.allButton.classList.remove(this.showClass);
+      }
+    }
+    updateNativeSelect(index, bool) {
+      this.options[index].selected = bool;
+      this.select.dispatchEvent(new CustomEvent('change', {
+        bubbles: true
+      }));
+    }
+    updateTriggerAria(ariaLabel) {
+      this.trigger.setAttribute('aria-label', ariaLabel);
+    }
+    getSelectedOptionText() {
+      const noSelectionText = `<span class="${this.prefix}${this.termClass}">${this.noSelectText}</span>`;
+      if (this.noUpdateLabel) return [noSelectionText, this.noSelectText];
+      let label = '';
+      let ariaLabel = '';
+      this.selectedOptCounter = 0;
+      for (let i = 0; i < this.options.length; i += 1) {
+        if (this.options[i].selected) {
+          if (this.selectedOptCounter !== 0) label += ', ';
+          label = `${label}${this.options[i].text}`;
+          this.selectedOptCounter += 1;
+        }
+      }
+      if (this.selectedOptCounter > this.nMultiSelect) {
+        label = `<span class="${this.prefix}${this.detailsClass}">${this.multiSelectText.replace('{n}', this.selectedOptCounter)}</span>`;
+        ariaLabel = `${this.multiSelectText.replace('{n}', this.selectedOptCounter)}, ${this.noSelectText}`;
+      } else if (this.selectedOptCounter > 0) {
+        ariaLabel = `${label}, ${this.noSelectText}`;
+        label = `<span class="${this.prefix}${this.detailsClass}">${label}</span>`;
+      } else {
+        label = noSelectionText;
+        ariaLabel = this.noSelectText;
+      }
+      if (this.insetLabel && this.selectedOptCounter > 0) label = noSelectionText + label;
+      return [label, ariaLabel];
+    }
+    initButtonSelect() {
+      const customClasses = this.element.getAttribute('data-trigger-class') ? ` ${this.element.getAttribute('data-trigger-class')}` : '';
+      const triggerLabel = this.getSelectedOptionText();
+      const activeSelectionClass = this.selectedOptCounter > 0 ? ` ${this.buttonClass}--active` : '';
+      let button = `<button class="js-${this.buttonClass} ${this.prefix}${this.selectClass} ${this.prefix}${this.buttonClass}${customClasses}${activeSelectionClass}" aria-label="${triggerLabel[1]}" aria-expanded="false" aria-controls="${this.selectId}-dropdown"><span aria-hidden="true" class="js-${this.labelClass} ${this.prefix}${this.labelClass}">${triggerLabel[0]}</span><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>`;
+      if (this.arrowIcon.length > 0 && this.arrowIcon[0].outerHTML) {
+        button += this.arrowIcon[0].outerHTML;
+      }
+      return `${button}</button>`;
+    }
+    initListSelect() {
+      let list = `<div class="js-${this.dropdownClass} ${this.prefix}${this.dropdownClass}" aria-describedby="${this.selectId}-description" id="${this.selectId}-dropdown">`;
+      list += this.getSelectLabelSR();
+      if (this.optGroups.length > 0) {
+        for (let i = 0; i < this.optGroups.length; i += 1) {
+          const optGroupList = this.optGroups[i].getElementsByTagName('option');
+          const optGroupLabel = `<li><span class="${this.prefix}${this.itemClass} ${this.prefix}${this.itemClass}--optgroup">${this.optGroups[i].getAttribute('label')}</span></li>`;
+          list = `${list}<ul class="${this.prefix}${this.listClass}" role="listbox" aria-multiselectable="true">${optGroupLabel}${this.getOptionsList(optGroupList)}</ul>`;
+        }
+      } else {
+        list = `${list}<ul class="${this.prefix}${this.listClass} js-${this.listClass}" role="listbox" aria-multiselectable="true">${this.getOptionsList(this.options)}</ul>`;
+      }
+      return list;
+    }
+    initAllButton() {
+      const allButton = `<button class="${this.prefix}${this.allButtonClass} js-${this.allButtonClass}"><span>All</span></button>`;
+      return allButton;
+    }
+    getSelectLabelSR() {
+      if (this.label) {
+        return `<p class="${this.srClass}" id="${this.selectId}-description">${this.label.textContent}</p>`;
+      }
+      return '';
+    }
+    getOptionsList(options) {
+      let list = '';
+      for (let i = 0; i < options.length; i += 1) {
+        const selected = options[i].hasAttribute('selected') ? ' aria-selected="true"' : ' aria-selected="false"';
+        const disabled = options[i].hasAttribute('disabled') ? 'disabled' : '';
+        const checked = options[i].hasAttribute('selected') ? 'checked' : '';
+        const uniqueName = this.constructor.createSafeCss(`${this.selectId}-${options[i].value}-${this.optionIndex.toString()}`);
+        list = `${list}<li class="js-${this.optionClass}" role="option" data-value="${options[i].value}" ${selected} data-label="${options[i].text}" data-index="${this.optionIndex}"><input aria-hidden="true" class="${this.prefix}${this.checkboxInputClass} js-${this.checkboxClass}" type="checkbox" id="${uniqueName}" ${checked} ${disabled}><label class="${this.prefix}${this.checkboxLabelClass} ${this.prefix}${this.itemClass} ${this.prefix}${this.itemClass}--option" aria-hidden="true" for="${uniqueName}"><span>${options[i].text}</span></label></li>`;
+        this.optionIndex += 1;
+      }
+      return list;
+    }
+    getSelectedOption() {
+      const option = this.dropdown.querySelector('[aria-selected="true"]');
+      if (option) return option.querySelector(`.js-${this.checkboxClass}`);
+      return this.allButton;
+    }
+    getOptions() {
+      const options = Array.from(this.dropdown.querySelectorAll(`.js-${this.optionClass}`));
+      const total = options.length;
+      const selected = options.filter(option => option.getAttribute('aria-selected') === 'true').length;
+      return [options, total, selected];
+    }
+    moveFocusToSelectTrigger() {
+      if (!document.activeElement.closest(`.js-${this.class}`)) return;
+      this.trigger.focus();
+    }
+    static trapFocus(element) {
+      const focusableElements = 'a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])';
+      const firstFocusableElement = element.querySelectorAll(focusableElements)[0];
+      const focusableContent = element.querySelectorAll(focusableElements);
+      const lastFocusableElement = focusableContent[focusableContent.length - 1];
+      document.addEventListener('keydown', event => {
+        const isTabPressed = event.key === 'Tab' || event.code === 9;
+        if (!isTabPressed) {
+          return;
+        }
+        if (event.shiftKey) {
+          if (document.activeElement === firstFocusableElement) {
+            lastFocusableElement.focus();
+            event.preventDefault();
+          }
+        } else if (document.activeElement === lastFocusableElement) {
+          firstFocusableElement.focus();
+          event.preventDefault();
+        }
+      });
+      firstFocusableElement.focus();
+    }
+    checkCustomSelectClick(target) {
+      if (!this.element.contains(target)) this.toggleCustomSelect('false');
+    }
+    static createSafeCss(str) {
+      const invalidBeginningOfClassname = /^([0-9]|--|-[0-9])/;
+      if (typeof str !== 'string') {
+        return '';
+      }
+      const strippedClassname = str.match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g).map(x => x.toLowerCase()).join('-');
+      return invalidBeginningOfClassname.test(strippedClassname) ? `_${strippedClassname}` : strippedClassname;
+    }
+    static moveFocusFn(element) {
+      element.focus();
+      if (document.activeElement !== element) {
+        element.setAttribute('tabindex', '-1');
+        element.focus();
+      }
+    }
+  }
+
+  class SiteSearch {
+    constructor(element) {
+      this.triggerButton = element;
+      this.originalButton = document.querySelector('.js-open-search');
+      this.targetElement = document.getElementById(this.triggerButton.getAttribute('aria-controls'));
+      this.searchInput = this.targetElement.querySelector('.js-search-input');
+      this.pressed = this.triggerButton.getAttribute('aria-expanded') === 'true';
+    }
+    init() {
+      this.controls();
+    }
+    controls() {
+      this.triggerButton.addEventListener('click', this.showHide.bind(this), false);
+    }
+    showHide() {
+      if (this.pressed) {
+        this.targetElement.hidden = true;
+        this.originalButton.hidden = false;
+        this.originalButton.focus();
+      } else {
+        this.targetElement.hidden = false;
+        this.originalButton.hidden = true;
+        this.searchInput.focus();
+      }
+    }
+  }
+
+  class Tabs {
+    constructor(element, showTab) {
+      this.tablistClass = '.nsw-tabs__list';
+      this.tablistItemClass = 'li';
+      this.tablistLinkClass = 'a';
+      this.tab = element;
+      this.showTab = showTab;
+      this.tabList = element.querySelector(this.tablistClass);
+      this.tabItems = this.tabList.querySelectorAll(this.tablistItemClass);
+      this.allowedKeys = [35, 36, 37, 39, 40];
+      this.tabLinks = [];
+      this.tabPanel = [];
+      this.selectedTab = null;
+      this.clickTabEvent = e => this.clickTab(e);
+      this.arrowKeysEvent = e => this.arrowKeys(e);
+      this.owns = [];
+    }
+    init() {
+      this.setUpDom();
+      this.controls();
+      this.setInitalTab();
+    }
+    setUpDom() {
+      const tabListWrapper = document.createElement('div');
+      tabListWrapper.classList.add('nsw-tabs__list-wrapper');
+      this.tab.prepend(tabListWrapper);
+      tabListWrapper.prepend(this.tabList);
+      this.tabList.setAttribute('role', 'tablist');
+      this.tabItems.forEach(item => {
+        const itemElem = item;
+        const itemLink = item.querySelector(this.tablistLinkClass);
+        const panel = this.tab.querySelector(itemLink.hash);
+        const uID = uniqueId('tab');
+        this.owns.push(uID);
+        itemElem.setAttribute('role', 'presentation');
+        this.enhanceTabLink(itemLink, uID);
+        this.enhanceTabPanel(panel, uID);
+      });
+      this.tabList.setAttribute('aria-owns', this.owns.join(' '));
+    }
+    enhanceTabLink(link, id) {
+      link.setAttribute('role', 'tab');
+      link.setAttribute('id', id);
+      link.setAttribute('aria-selected', false);
+      link.setAttribute('tabindex', '-1');
+      this.tabLinks.push(link);
+    }
+    enhanceTabPanel(panel, id) {
+      const panelElem = panel;
+      panelElem.setAttribute('role', 'tabpanel');
+      panelElem.setAttribute('role', 'tabpanel');
+      panelElem.setAttribute('aria-labelledBy', id);
+      panelElem.setAttribute('tabindex', '0');
+      panelElem.hidden = true;
+      this.tabPanel.push(panelElem);
+    }
+    setInitalTab() {
+      const {
+        tabLinks,
+        tabPanel,
+        showTab
+      } = this;
+      const index = showTab === undefined ? 0 : showTab;
+      const selectedLink = tabLinks[index];
+      selectedLink.classList.add('active');
+      selectedLink.removeAttribute('tabindex');
+      selectedLink.setAttribute('aria-selected', true);
+      tabPanel[index].hidden = false;
+      this.selectedTab = selectedLink;
+    }
+    clickTab(e) {
+      e.preventDefault();
+      this.switchTabs(e.currentTarget);
+    }
+    switchTabs(elem) {
+      const clickedTab = elem;
+      if (clickedTab !== this.selectedTab) {
+        clickedTab.focus();
+        clickedTab.removeAttribute('tabindex');
+        clickedTab.setAttribute('aria-selected', true);
+        clickedTab.classList.add('active');
+        this.selectedTab.setAttribute('aria-selected', false);
+        this.selectedTab.setAttribute('tabindex', '-1');
+        this.selectedTab.classList.remove('active');
+        const clickedTabIndex = this.tabLinks.indexOf(clickedTab);
+        const selectedTabIndex = this.tabLinks.indexOf(this.selectedTab);
+        this.tabPanel[clickedTabIndex].hidden = false;
+        this.tabPanel[selectedTabIndex].hidden = true;
+        this.selectedTab = clickedTab;
+        if (!clickedTab.classList.contains('js-tabs-fixed')) {
+          clickedTab.scrollIntoView({
+            behavior: 'smooth',
+            block: 'nearest',
+            inline: 'nearest'
+          });
+        }
+      }
+    }
+    arrowKeys(_ref) {
+      let {
+        which
+      } = _ref;
+      const linkLength = this.tabLinks.length - 1;
+      let index = this.tabLinks.indexOf(this.selectedTab);
+      let down = false;
+      if (this.allowedKeys.includes(which)) {
+        switch (which) {
+          case 35:
+            index = linkLength;
+            break;
+          case 36:
+            index = 0;
+            break;
+          case 37:
+            index = index === 0 ? -1 : index -= 1;
+            break;
+          case 39:
+            index = index === linkLength ? -1 : index += 1;
+            break;
+          case 40:
+            down = true;
+            break;
+        }
+        if (index > -1) {
+          if (down) {
+            this.tabPanel[index].focus();
+          } else {
+            this.switchTabs(this.tabLinks[index]);
+          }
+        }
+      }
+    }
+    controls() {
+      this.tabLinks.forEach(link => {
+        link.addEventListener('click', this.clickTabEvent, false);
+        link.addEventListener('keydown', this.arrowKeysEvent, false);
+      });
     }
   }
 
@@ -3105,330 +3298,272 @@
     }
   }
 
-  class ExternalLink {
-    constructor(element) {
-      this.link = element;
-      this.uID = uniqueId('external');
-      this.linkIcon = this.link.querySelector('.nsw-material-icons');
-      this.linkIconTitle = this.linkIcon.getAttribute('title');
-      this.linkElement = false;
-    }
-    init() {
-      this.link.classList.add('nsw-link', 'nsw-link--icon');
-      this.constructor.setAttributes(this.link, {
-        target: '_blank',
-        rel: 'noopener'
-      });
-      this.constructor.setAttributes(this.linkIcon, {
-        focusable: 'false',
-        'aria-hidden': 'true'
-      });
-      this.createElement(this.linkIconTitle);
-    }
-    createElement(title) {
-      if (title) {
-        this.linkElement = document.createElement('span');
-        this.linkElement.id = this.uID;
-        this.linkElement.classList.add('sr-only');
-        this.linkElement.innerText = title;
-        this.link.insertAdjacentElement('afterend', this.linkElement);
-        this.constructor.setAttributes(this.link, {
-          'aria-describedby': this.uID
-        });
-      }
-    }
-    static setAttributes(el, attrs) {
-      Object.keys(attrs).forEach(key => el.setAttribute(key, attrs[key]));
-    }
-  }
-
   /* eslint-disable max-len */
-  class Popover {
+  class Tooltip {
     constructor(element) {
-      this.popover = element;
-      this.popoverId = this.popover.getAttribute('aria-controls');
-      this.popoverPosition = this.popover.dataset.popoverPosition || 'bottom';
-      this.popoverClassList = this.popover.dataset.popoverClass;
-      this.popoverGap = this.popover.dataset.popoverGap || 5;
-      this.popoverAnchor = this.popover.querySelector('[data-anchor]') || this.popover;
-      this.popoverElement = document.querySelector(`#${this.popoverId}`);
-      this.popoverVisibleClass = 'active';
-      this.popoverContent = false;
-      this.popoverIsOpen = false;
-      this.firstFocusable = false;
-      this.lastFocusable = false;
+      this.tooltip = element;
+      this.uID = uniqueId('tooltip');
+      this.tooltipElement = false;
+      this.arrowElement = false;
+      this.tooltipContent = false;
+      this.tooltipDelay = 400;
+      this.screenSize = false;
+      this.tooltipTheme = this.tooltip.getAttribute('data-theme') || 'dark';
     }
     init() {
-      this.constructor.setAttributes(this.popover, {
-        tabindex: '0',
-        'aria-haspopup': 'dialog'
+      this.tooltipContent = this.tooltip.getAttribute('title');
+      this.constructor.setAttributes(this.tooltip, {
+        'data-tooltip-content': this.tooltipContent,
+        'aria-describedby': this.uID,
+        tabindex: '0'
       });
-      this.initEvents();
-    }
-    initEvents() {
-      this.popover.addEventListener('click', this.togglePopover.bind(this));
-      this.popover.addEventListener('keyup', event => {
-        if (event.code && event.code.toLowerCase() === 'enter' || event.key && event.key.toLowerCase() === 'enter') {
-          this.togglePopover();
-        }
-      });
-      window.addEventListener('DOMContentLoaded', () => {
-        this.popoverContent = this.popoverElement.innerHTML;
-      });
-      this.popoverElement.addEventListener('keydown', this.trapFocus.bind(this));
-      window.addEventListener('click', event => {
-        this.checkPopoverClick(event.target);
-      });
-      window.addEventListener('keyup', event => {
-        if (event.code && event.code.toLowerCase() === 'escape' || event.key && event.key.toLowerCase() === 'escape') {
-          this.checkPopoverFocus();
-        }
-      });
-      window.addEventListener('resize', () => {
-        if (this.popoverIsOpen) this.togglePopover();
-      });
-      window.addEventListener('scroll', () => {
-        if (this.popoverIsOpen) this.togglePopover();
+      this.tooltip.removeAttribute('title');
+      const eventArray = ['mouseenter', 'mouseleave', 'focus', 'blur'];
+      eventArray.forEach((event, _ref) => {
+        let {
+          listener = this.handleEvent.bind(this)
+        } = _ref;
+        this.tooltip.addEventListener(event, listener);
       });
     }
-    togglePopover() {
-      if (this.popoverElement.classList.contains('active')) {
-        this.hidePopover();
-      } else {
-        this.popoverElement.focus();
-        this.showPopover();
+    handleEvent(event) {
+      switch (event.type) {
+        case 'mouseenter':
+        case 'focus':
+          this.showTooltip(this, event);
+          break;
+        case 'mouseleave':
+        case 'blur':
+          this.hideTooltip(this, event);
+          break;
+        default:
+          console.log(`Unexpected event type: ${event.type}`);
+          break;
       }
     }
-    showPopover() {
-      this.constructor.setAttributes(this.popoverElement, {
-        tabindex: '0',
-        role: 'dialog'
+    createTooltipElement() {
+      if (!this.tooltipElement) {
+        this.tooltipElement = document.createElement('div');
+        document.body.appendChild(this.tooltipElement);
+      }
+      this.constructor.setAttributes(this.tooltipElement, {
+        id: this.uID,
+        class: `nsw-tooltip__element nsw-tooltip__element--${this.tooltipTheme}`,
+        role: 'tooltip'
       });
-      this.popoverElement.setAttribute('aria-expanded', 'true');
-      this.popoverElement.classList.add('active');
-      this.popoverIsOpen = true;
-      this.getFocusableElements();
-      this.popoverElement.focus({
-        preventScroll: true
-      });
-      this.popover.addEventListener('transitionend', () => {
-        this.focusPopover();
-      }, {
-        once: true
-      });
-      this.updatePopover(this.popoverElement, this.popoverPosition);
+      if (this.tooltip) {
+        this.arrowElement = document.createElement('div');
+        this.arrowElement.className = 'nsw-tooltip__arrow';
+      }
+      this.tooltipContent = this.tooltip.getAttribute('data-tooltip-content');
+      this.tooltipElement.innerHTML = this.tooltipContent;
+      this.tooltipElement.insertAdjacentElement('beforeend', this.arrowElement);
     }
-    hidePopover() {
-      this.popoverElement.setAttribute('aria-expanded', 'false');
-      this.popoverElement.classList.remove('active');
-      this.popoverIsOpen = false;
+    showTooltip() {
+      setTimeout(() => {
+        this.createTooltipElement();
+        this.tooltipElement.classList.add('active');
+        const range = document.createRange();
+        const text = this.tooltipElement.childNodes[0];
+        range.setStartBefore(text);
+        range.setEndAfter(text);
+        const clientRect = range.getBoundingClientRect();
+        this.matchMedia();
+        this.tooltipElement.style.width = `${clientRect.width + this.screenSize}px`;
+        this.updateTooltip(this.tooltipElement, this.arrowElement);
+      }, this.tooltipDelay);
     }
-    updatePopover(popover, placement) {
-      let anchor = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : this.popoverAnchor;
-      computePosition(anchor, popover, {
-        placement,
-        middleware: [offset(parseInt(this.popoverGap, 10)), flip({
-          fallbackAxisSideDirection: 'start',
-          crossAxis: false
-        }), shift({
-          limiter: limitShift()
+    hideTooltip() {
+      setTimeout(() => {
+        this.tooltipElement.classList.remove('active');
+        this.tooltipElement.style.width = '';
+      }, this.tooltipDelay);
+    }
+    matchMedia() {
+      if (window.matchMedia('(min-width: 576px)').matches) {
+        this.screenSize = 32;
+      } else {
+        this.screenSize = 16;
+      }
+    }
+    updateTooltip(tooltip, arrowElement) {
+      let anchor = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : this.tooltip;
+      computePosition(anchor, tooltip, {
+        placement: 'top',
+        middleware: [offset(8), flip(), shift({
+          padding: 5
+        }), arrow({
+          element: arrowElement
         })]
-      }).then(_ref => {
+      }).then(_ref2 => {
         let {
           x,
-          y
-        } = _ref;
-        Object.assign(popover.style, {
+          y,
+          placement,
+          middlewareData
+        } = _ref2;
+        Object.assign(tooltip.style, {
           left: `${x}px`,
           top: `${y}px`
         });
-      });
-    }
-    checkPopoverClick(target) {
-      if (!this.popoverIsOpen) return;
-      if (!this.popoverElement.contains(target) && !target.closest(`[aria-controls="${this.popoverId}"]`)) this.togglePopover();
-    }
-    checkPopoverFocus() {
-      if (!this.popoverIsOpen) return;
-      this.constructor.moveFocus(this.popover);
-      this.togglePopover();
-    }
-    focusPopover() {
-      if (this.firstFocusable) {
-        this.firstFocusable.focus({
-          preventScroll: true
+
+        // Accessing the data
+        const {
+          x: arrowX,
+          y: arrowY
+        } = middlewareData.arrow;
+        const staticSide = {
+          top: 'bottom',
+          right: 'left',
+          bottom: 'top',
+          left: 'right'
+        }[placement.split('-')[0]];
+        Object.assign(arrowElement.style, {
+          left: arrowX != null ? `${arrowX}px` : '',
+          top: arrowY != null ? `${arrowY}px` : '',
+          right: '',
+          bottom: '',
+          [staticSide]: '-6px'
         });
-      } else {
-        this.constructor.moveFocus(this.popoverElement);
-      }
-    }
-    getFocusableElements() {
-      const focusableElString = '[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex]:not([tabindex="-1"]), [contenteditable], audio[controls], video[controls], summary';
-      const allFocusable = this.popoverElement.querySelectorAll(focusableElString);
-      this.getFirstVisible(allFocusable);
-      this.getLastVisible(allFocusable);
-    }
-    getFirstVisible(elements) {
-      for (let i = 0; i < elements.length; i += 1) {
-        if (this.constructor.isVisible(elements[i])) {
-          this.firstFocusable = elements[i];
-          break;
-        }
-      }
-    }
-    getLastVisible(elements) {
-      for (let i = elements.length - 1; i >= 0; i -= 1) {
-        if (this.constructor.isVisible(elements[i])) {
-          this.lastFocusable = elements[i];
-          break;
-        }
-      }
-    }
-    trapFocus(event) {
-      if (this.firstFocusable === document.activeElement && event.shiftKey) {
-        event.preventDefault();
-        this.lastFocusable.focus();
-      }
-      if (this.lastFocusable === document.activeElement && !event.shiftKey) {
-        event.preventDefault();
-        this.firstFocusable.focus();
-      }
-    }
-    static isVisible(element) {
-      return element.offsetWidth || element.offsetHeight || element.getClientRects().length;
-    }
-    static moveFocus(element) {
-      element.focus({
-        preventScroll: true
       });
-      if (document.activeElement !== element) {
-        element.setAttribute('tabindex', '-1');
-        element.focus();
-      }
     }
     static setAttributes(el, attrs) {
       Object.keys(attrs).forEach(key => el.setAttribute(key, attrs[key]));
     }
   }
 
-  class BackTop {
-    constructor(element) {
-      this.element = element;
-      this.dataElement = this.element.getAttribute('data-element');
-      this.scrollOffset = this.element.getAttribute('data-offset');
-      this.text = false;
-      this.icon = false;
-      this.scrollElement = this.dataElement ? document.querySelector(this.dataElement) : window;
-      this.scrollPosition = 0;
-      this.width = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
-      this.height = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
-      this.condition = false;
+  class UtilityList extends Toggletip {
+    constructor(element, toggletip) {
+      super(toggletip);
+      this.utility = element;
+      this.share = toggletip;
+      this.print = this.utility.querySelectorAll('.js-print-page');
+      this.download = this.utility.querySelectorAll('.js-download-page');
+      this.copy = this.utility.querySelectorAll('.js-copy-clipboard');
+      this.shareItems = this.share.querySelectorAll('a');
+      this.urlLocation = window.location.href;
+      this.copyElement = false;
     }
     init() {
-      this.createButton();
-      this.element.addEventListener('click', event => {
+      super.init();
+      this.shareItems.forEach(share => {
+        const shareLocation = share.getAttribute('data-url');
+        if (!shareLocation) {
+          share.setAttribute('data-url', window.location.href);
+        }
+      });
+      this.share.addEventListener('click', event => {
         event.preventDefault();
-        if (!window.requestAnimationFrame) {
-          this.scrollElement.scrollTo(0, 0);
-        } else if (this.dataElement) {
-          this.scrollElement.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-          });
+        const button = event.target.closest('a');
+        const social = button.getAttribute('data-social');
+        const url = this.getSocialUrl(button, social);
+        if (social === 'mail') {
+          window.location.href = url;
         } else {
-          window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-          });
+          window.open(url, `${social}-share-dialog`, 'width=626,height=436');
         }
       });
-      this.checkBackToTop();
-      const debounceEvent = this.debounce(this.checkBackToTop);
-      this.scrollElement.addEventListener('scroll', () => {
-        debounceEvent();
-      });
-      const debounceResize = this.debounce(this.resizeHandler);
-      window.addEventListener('resize', () => {
-        debounceResize();
-      });
-    }
-    createButton() {
-      const textSpan = this.constructor.createElement('span');
-      const iconSpan = this.constructor.createElement('span', ['material-icons', 'nsw-material-icons'], {
-        title: 'Back to top',
-        focusable: 'false',
-        'aria-hidden': 'true'
-      });
-      this.element.append(textSpan, iconSpan);
-      this.text = this.element.querySelector('span:not(.material-icons)');
-      this.icon = this.element.querySelector('span.material-icons');
-      this.createButtonContent();
-    }
-    createButtonContent() {
-      if (this.width < 768) {
-        this.text.innerText = 'Top';
-        this.icon.innerText = 'keyboard_arrow_up';
-      } else {
-        this.text.innerText = 'Back to top';
-        this.icon.innerText = 'north';
-      }
-    }
-    checkBackToTop() {
-      let windowTop = this.scrollElement.scrollTop || document.documentElement.scrollTop;
-      if (!this.dataElement) windowTop = window.scrollY || document.documentElement.scrollTop;
-      const scroll = this.scrollPosition;
-      this.scrollPosition = window.scrollY;
-      if (this.scrollOffset && this.scrollOffset > 0) {
-        this.condition = windowTop >= this.scrollOffset;
-        this.element.classList.toggle('active', this.condition);
-      } else {
-        this.condition = scroll > this.scrollPosition && this.scrollPosition > 200;
-        this.element.classList.toggle('active', this.condition);
-      }
-    }
-    resizeHandler() {
-      const oldWidth = this.width;
-      const oldHeight = this.height;
-      this.width = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
-      this.height = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
-      if (oldWidth !== this.width && oldHeight === this.height) {
-        this.createButtonContent();
-      }
-    }
-    debounce(fn) {
-      var _this = this;
-      let wait = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 250;
-      let timeout;
-      return function () {
-        for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-          args[_key] = arguments[_key];
-        }
-        const context = _this;
-        if (!window.requestAnimationFrame) {
-          clearTimeout(timeout);
-          timeout = setTimeout(() => fn.apply(context, args), wait);
-        } else {
-          if (timeout) {
-            window.cancelAnimationFrame(timeout);
+      this.print.forEach(element => {
+        element.setAttribute('tabindex', '0');
+        element.addEventListener('click', () => {
+          window.print();
+        });
+        element.addEventListener('keyup', event => {
+          if (event.code && event.code.toLowerCase() === 'enter' || event.key && event.key.toLowerCase() === 'enter') {
+            window.print();
           }
-          timeout = window.requestAnimationFrame(() => {
-            fn.apply(context, args);
-          });
-        }
-      };
-    }
-    static createElement(tag) {
-      let classes = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
-      let attributes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-      const element = document.createElement(tag);
-      if (classes.length > 0) {
-        element.classList.add(...classes);
-      }
-      Object.entries(attributes).forEach(_ref => {
-        let [key, value] = _ref;
-        element.setAttribute(key, value);
+        });
       });
-      return element;
+      this.download.forEach(element => {
+        element.setAttribute('tabindex', '0');
+      });
+      this.copy.forEach(element => {
+        element.setAttribute('tabindex', '0');
+        element.addEventListener('click', () => {
+          this.copyToClipboard(element);
+        });
+        element.addEventListener('keyup', event => {
+          if (event.code && event.code.toLowerCase() === 'enter' || event.key && event.key.toLowerCase() === 'enter') {
+            this.copyToClipboard(element);
+          }
+        });
+      });
+    }
+    getSocialUrl(button, social) {
+      const params = this.getSocialParams(social);
+      let newUrl = '';
+      if (social === 'twitter') {
+        this.getTwitterText(button);
+      }
+      params.forEach(param => {
+        let paramValue = button.getAttribute(`data-${param}`);
+        if (param === 'hashtags') paramValue = encodeURI(paramValue.replace(/#| /g, ''));
+        if (paramValue) {
+          if (social === 'facebook') {
+            newUrl = `${newUrl}u=${encodeURIComponent(paramValue)}&`;
+          } else {
+            newUrl = `${newUrl + param}=${encodeURIComponent(paramValue)}&`;
+          }
+        }
+      });
+      if (social === 'linkedin') newUrl = `mini=true&${newUrl}`;
+      return `${button.getAttribute('href')}?${newUrl}`;
+    }
+    getSocialParams(social) {
+      switch (social) {
+        case 'twitter':
+          this.socialParams = ['text', 'hashtags'];
+          break;
+        case 'facebook':
+        case 'linkedin':
+          this.socialParams = ['url'];
+          break;
+        case 'mail':
+          this.socialParams = ['subject', 'body'];
+          break;
+        default:
+          console.log('No social links found');
+          break;
+      }
+      return this.socialParams;
+    }
+    getTwitterText(button) {
+      let twitText = button.getAttribute('data-text');
+      const twitUrl = button.getAttribute('data-url') || this.urlLocation;
+      const twitUsername = button.getAttribute('data-username');
+      if (twitUsername) {
+        twitText = `${twitText} ${twitUrl} via ${twitUsername}`;
+      } else {
+        twitText = `${twitText} ${twitUrl}`;
+      }
+      button.setAttribute('data-text', twitText);
+      button.removeAttribute('data-url');
+      button.removeAttribute('data-username');
+    }
+    copyToClipboard(element) {
+      if (!navigator.clipboard) {
+        const input = document.createElement('input');
+        input.setAttribute('value', this.urlLocation);
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand('copy');
+        document.body.removeChild(input);
+        this.copiedMessage(element);
+      } else {
+        navigator.clipboard.writeText(this.urlLocation).then(() => {
+          this.copiedMessage(element);
+        });
+      }
+    }
+    copiedMessage(element) {
+      this.copyElement = element;
+      const icon = '<span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">link</span>';
+      this.copyElement.classList.add('copied');
+      this.copyElement.innerHTML = `${icon} Copied`;
+      setTimeout(() => {
+        this.copyElement.classList.remove('copied');
+        this.copyElement.innerHTML = `${icon} Copy link`;
+      }, 3000);
     }
   }
 
@@ -3452,25 +3587,30 @@
     };
   }
   function initSite() {
-    // Header Search
-    const openSearchButton = document.querySelectorAll('.js-open-search');
-    const closeSearchButton = document.querySelectorAll('.js-close-search');
-    const navigation = document.getElementById('main-nav');
     const accordions = document.querySelectorAll('.js-accordion');
+    const backTop = document.querySelectorAll('.js-back-to-top');
+    const closeSearchButton = document.querySelectorAll('.js-close-search');
     const dialogs = document.querySelectorAll('.js-dialog');
     const fileUpload = document.querySelectorAll('.js-file-upload');
     const filters = document.querySelectorAll('.js-filters');
-    const tabs = document.querySelectorAll('.js-tabs');
     const globalAlert = document.querySelectorAll('.js-global-alert');
-    const multiSelect = document.querySelectorAll('.js-multi-select');
-    const tooltip = document.querySelectorAll('.js-tooltip');
-    const toggletip = document.querySelectorAll('.js-toggletip');
     const link = document.querySelectorAll('.js-link');
+    const multiSelect = document.querySelectorAll('.js-multi-select');
+    const navigation = document.getElementById('main-nav');
+    const openSearchButton = document.querySelectorAll('.js-open-search');
     const popover = document.querySelectorAll('.js-popover');
-    const backTop = document.querySelectorAll('.js-back-to-top');
-    if (openSearchButton) {
-      openSearchButton.forEach(element => {
-        new SiteSearch(element).init();
+    const tabs = document.querySelectorAll('.js-tabs');
+    const toggletip = document.querySelectorAll('.js-toggletip');
+    const tooltip = document.querySelectorAll('.js-tooltip');
+    const utilityList = document.querySelectorAll('.js-utility-list');
+    if (accordions) {
+      accordions.forEach(element => {
+        new Accordion(element).init();
+      });
+    }
+    if (backTop) {
+      backTop.forEach(element => {
+        new BackTop(element).init();
       });
     }
     if (closeSearchButton) {
@@ -3478,15 +3618,11 @@
         new SiteSearch(element).init();
       });
     }
-    if (navigation) {
-      new Navigation(navigation).init();
+    if (dialogs) {
+      dialogs.forEach(element => {
+        new Dialog(element).init();
+      });
     }
-    accordions.forEach(element => {
-      new Accordion(element).init();
-    });
-    dialogs.forEach(element => {
-      new Dialog(element).init();
-    });
     if (fileUpload) {
       fileUpload.forEach(element => {
         new FileUpload(element).init();
@@ -3497,29 +3633,9 @@
         new Filters(element).init();
       });
     }
-    if (tabs) {
-      tabs.forEach(element => {
-        new Tabs(element).init();
-      });
-    }
     if (globalAlert) {
       globalAlert.forEach(element => {
         new GlobalAlert(element).init();
-      });
-    }
-    if (multiSelect) {
-      multiSelect.forEach(element => {
-        new Select(element).init();
-      });
-    }
-    if (tooltip) {
-      tooltip.forEach(element => {
-        new Tooltip(element).init();
-      });
-    }
-    if (toggletip) {
-      toggletip.forEach(element => {
-        new Toggletip(element).init();
       });
     }
     if (link) {
@@ -3527,14 +3643,43 @@
         new ExternalLink(element).init();
       });
     }
+    if (multiSelect) {
+      multiSelect.forEach(element => {
+        new Select(element).init();
+      });
+    }
+    if (navigation) {
+      new Navigation(navigation).init();
+    }
+    if (openSearchButton) {
+      openSearchButton.forEach(element => {
+        new SiteSearch(element).init();
+      });
+    }
     if (popover) {
       popover.forEach(element => {
         new Popover(element).init();
       });
     }
-    if (backTop) {
-      backTop.forEach(element => {
-        new BackTop(element).init();
+    if (tabs) {
+      tabs.forEach(element => {
+        new Tabs(element).init();
+      });
+    }
+    if (toggletip) {
+      toggletip.forEach(element => {
+        new Toggletip(element).init();
+      });
+    }
+    if (tooltip) {
+      tooltip.forEach(element => {
+        new Tooltip(element).init();
+      });
+    }
+    if (utilityList) {
+      utilityList.forEach(element => {
+        const shareItem = element.querySelector('.js-share');
+        new UtilityList(element, shareItem).init();
       });
     }
   }
@@ -3553,6 +3698,7 @@
   exports.Tabs = Tabs;
   exports.Toggletip = Toggletip;
   exports.Tooltip = Tooltip;
+  exports.UtilityList = UtilityList;
   exports.initSite = initSite;
 
 }));
