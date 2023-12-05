@@ -1,6 +1,4 @@
 /* eslint-disable max-len */
-import cleanHTML from '../../global/scripts/helpers/sanitize'
-
 class Select {
   constructor(element) {
     this.element = element
@@ -186,7 +184,7 @@ class Select {
 
     const triggerLabel = this.getSelectedOptionText()
 
-    const [selectedLabel] = cleanHTML(triggerLabel)
+    const [selectedLabel] = triggerLabel
     this.trigger.querySelector(`.js-${this.labelClass}`).innerHTML = selectedLabel
 
     this.trigger.classList.toggle(`${this.prefix}${this.buttonClass}--active`, this.selectedOptCounter > 0)
