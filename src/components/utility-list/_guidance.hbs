@@ -1,0 +1,97 @@
+---
+title: Utility list
+layout: blank-layout.hbs
+---
+
+<h2>Usage</h2>
+
+<p>The utility list component simplifies user interaction by providing quick access to commonly used actions on content, including printing, downloading, copying, and sharing across different social media platforms.</p>
+  
+<p>It's important to create a utility list in a way that makes sense to users, matching their needs and what they'd expect in the page.</p>
+
+<p>The utility list can be either vertical or horizontal in its orientation. By default, a utility list is vertical. The horizontal option should be used for when vertical space is limited.</p>
+
+<h3>When to avoid</h3>
+<p>While a utility list can be helpful in many cases, there are situations where it might be best to avoid.</p>
+
+<p>Do not:</p>
+
+<ul>
+  <li>add too many actions.</li>
+  <li>use if the webpage's purpose is straightforward and doesn't need extra features.</li>
+  <li>use if it makes the user experience cluttered.</li>
+  <li>add to very simple pages; it could make things too complicated.</li>
+</ul>
+
+<h2>How to</h2>
+
+<p>Customise the shared content adding different <code>data</code> attributes to the <code>.js-share</code> anchor link elements.</p>
+
+<ol>
+  <li>
+    <p><strong><code>data-social</code>:</strong> Specifies the social media platform for sharing (e.g., "facebook", "linkedin", "twitter", "mail").</p>
+  </li>
+  <li>
+    <p><strong><code>data-text</code>:</strong> For social media sharing, particularly Twitter, specifies the text content to be shared along with the URL.</p>
+  </li>
+  <li>
+    <p><strong><code>data-hashtags</code>:</strong> Specifically for Twitter sharing, provides hashtags to be included in the tweet content.</p>
+  </li>
+  <li>
+    <p><strong><code>data-username</code>:</strong> For Twitter sharing, specifies the username to be included in the tweet.</p>
+  </li>
+  <li>
+    <p><strong><code>data-subject</code>:</strong> Used for specifying the subject line in email sharing.</p>
+  </li>
+  <li>
+    <p><strong><code>data-body</code>:</strong> Specifies the content/body of the email for email sharing.</p>
+  </li>
+</ol>
+
+<h2>Accessibility</h2>
+<p>All components are responsive and meet WCAG 2.1 AA accessibility guidelines.</p>
+
+<h3>Utility list keyboard interaction and focus</h3>
+
+<ul>
+  <li>Social share action opens via the
+    <code>Enter</code>
+    or
+    <code>Return</code>
+    keys, or by clicking the trigger element.
+  </li>
+  <li>On open, focus moves into the social share container to navigate elements
+    inside with the
+    <code>Tab</code>
+    key.
+  </li>
+  <li>Dismissed by tabbing out of the social share container, pressing the
+    <code>Escape</code>
+    key, or clicking outside.
+  </li>
+  <li>When dismissed, focus returns to the trigger element.</li>
+</ul>
+
+<h3>ARIA attributes</h3>
+<ul>
+  <li>The trigger element has
+    <a target="_blank" rel="noopener noreferrer" href="https://www.w3.org/TR/wai-aria/#aria-expanded"><code>aria-expanded</code></a>
+    set to
+    <code>true</code>
+    or
+    <code>false</code>
+    based on the open state.
+  </li>
+  <li>The trigger element has
+    <a target="_blank" rel="noopener noreferrer" href="https://www.w3.org/TR/wai-aria/#aria-controls"><code>aria-controls</code></a>
+    set to the
+    <code>id</code>
+    of the social share element.
+  </li>
+  <li>The trigger element has
+    <a target="_blank" rel="noopener noreferrer" href="https://www.w3.org/TR/wai-aria/#aria-haspopup"><code>aria-haspopup</code></a>
+    set to the suitable
+    <code>role</code>
+    attribute of the social share, depending on the type of content.
+  </li>
+</ul>

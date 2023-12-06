@@ -1,0 +1,131 @@
+.nsw-utility-list {
+  background-color: var(--nsw-off-white);
+
+  @include component-spacing();
+
+  &__title {
+    @include font-size('lg');
+    font-weight: var(--nsw-font-bold);
+    padding-bottom: rem(16px);
+    
+    @include breakpoint('md') {
+      padding-bottom: rem(24px);
+    }
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  }
+
+  &__item {
+    margin: 0;
+    padding: rem(16px);
+    display: flex;
+    gap: $grid-gutters;
+    align-items: center;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: var(--nsw-font-bold);
+    border-bottom: 1px solid var(--nsw-grey-04);
+    color: var(--nsw-brand-dark);
+
+    @include font-size('sm');
+
+    &:hover {
+      @include nsw-hover;
+      outline-width: 0;
+    }
+
+    &:focus {
+      @include nsw-focus;
+    }
+
+    &:last-child {
+      border-bottom: unset;
+    }
+
+    .nsw-section--invert & {    
+      color: var(--nsw-text-light);
+      background-color: rgba(var(--nsw-palette-blue-01-rgb), 1);
+      color: var(--nsw-text-light);
+      
+      span:not(.nsw-toggletip__element .nsw-material-icons) {
+        color: var(--nsw-text-light);
+      }
+
+      svg {  
+        path {
+          fill: var(--nsw-brand-dark);
+        }
+      }
+      
+      &:hover {
+        background-color: rgba(var(--nsw-palette-blue-01-rgb), 0.8);
+      }
+    
+      &:focus {
+        outline: solid 3px var(--nsw-focus);
+        outline-offset: 0;
+      }
+    
+      &:visited {
+        color: var(--nsw-text-visited);
+      }
+    }
+
+    svg {
+      width: rem(24px);
+      height: rem(24px);
+
+      path {
+        fill: var(--nsw-brand-dark);
+      }
+    }
+
+    span {
+      color: var(--nsw-brand-dark);
+    }
+  }
+
+  .nsw-toggletip {
+    border-bottom: unset;
+
+    &__header {
+      display: none;
+    }
+
+    &__content {
+      display: flex;
+      gap: $grid-gutters;
+      padding: rem(16px);
+
+      a {
+        display: flex;
+        padding: rem(8px);
+        border-radius: var(--nsw-border-radius);
+        text-decoration: none;
+      }
+
+      span:not(.nsw-toggletip__element .nsw-material-icons) {
+        color: var(--nsw-brand-dark);
+      }
+    }
+  }
+
+  &--horizontal {
+    @include breakpoint('md') {
+      display: flex;
+    
+      ul {
+        display: flex;
+        width: 100%;
+      }
+  
+      li {
+        border-bottom: unset;
+      }
+    }
+  }
+}

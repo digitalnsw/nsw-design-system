@@ -1,0 +1,19 @@
+---
+title: Utility list
+width: narrow
+tabs: true
+directory: utility-list
+intro: A Utility list contains commonly used actions or tools in a single, easily accessible menu.
+model: ../../components/utility-list/json/utility-list.json
+meta-description: A Utility list contains commonly used actions or tools in a single, easily accessible menu.
+meta-index: true
+---
+
+{{#each model}}
+  <h3>{{@key}}</h3>
+  {{#each this}}
+    {{#>_docs-example separated=true}}
+{{>_utility-list pdf="nsw-docs__main"}}
+    {{/_docs-example}}
+  {{/each}}
+{{/each}}

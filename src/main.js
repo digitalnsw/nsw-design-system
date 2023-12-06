@@ -14,6 +14,7 @@ import SiteSearch from './components/header/header'
 import Tabs from './components/tabs/tabs'
 import Toggletip from './components/tooltip/toggletip'
 import Tooltip from './components/tooltip/tooltip'
+import UtilityList from './components/utility-list/utility-list'
 
 if (window.NodeList && !NodeList.prototype.forEach) {
   NodeList.prototype.forEach = Array.prototype.forEach
@@ -52,6 +53,7 @@ function initSite() {
   const tabs = document.querySelectorAll('.js-tabs')
   const toggletip = document.querySelectorAll('.js-toggletip')
   const tooltip = document.querySelectorAll('.js-tooltip')
+  const utilityList = document.querySelectorAll('.js-utility-list')
 
   if (accordions) {
     accordions.forEach((element) => {
@@ -146,8 +148,15 @@ function initSite() {
       new Tooltip(element).init()
     })
   }
+
+  if (utilityList) {
+    utilityList.forEach((element) => {
+      const shareItem = element.querySelector('.js-share')
+      new UtilityList(element, shareItem).init()
+    })
+  }
 }
 
 export {
-  initSite, Accordion, BackTop, Carousel, Dialog, ExternalLink, FileUpload, Filters, GlobalAlert, Navigation, Popover, Select, SiteSearch, Tabs, Toggletip, Tooltip,
+  initSite, Accordion, BackTop, Carousel, Dialog, ExternalLink, FileUpload, Filters, GlobalAlert, Navigation, Popover, Select, SiteSearch, Tabs, Toggletip, Tooltip, UtilityList,
 }
