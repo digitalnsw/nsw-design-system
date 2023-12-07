@@ -1,16 +1,31 @@
-{{#if default}}<div class="carousel js-carousel" data-drag="on"{{#if loop}} data-loop="off" data-navigation="on" data-navigation-class="carousel__navigation"{{/if}}{{#if pagination}} data-loop="off" data-navigation="on" data-navigation-class="carousel__navigation carousel__navigation--pagination" data-navigation-pagination="on"{{/if}}>
+{{#if default}}<div class="carousel js-carousel" data-drag="on" data-description="Highlighted latest news"{{#if loop}} data-loop="off" data-navigation="on" data-navigation-class="carousel__navigation"{{/if}}{{#if pagination}} data-loop="off" data-navigation="on" data-navigation-class="carousel__navigation carousel__navigation--pagination" data-navigation-pagination="on"{{/if}}>
   <p class="sr-only">Carousel items</p>
   <div class="carousel__wrapper js-carousel__wrapper">
     <ol class="carousel__list">
       {{#each cards}}<li class="carousel__item">
-        <div class="example">{{@key}}</div>
+      <div class="nsw-card nsw-card--headline">
+        {{#if img}}
+        <div class="nsw-card__image">
+          <img src="{{img}}" alt="{{heading}}">
+        </div>
+        {{/if}}
+        <div class="nsw-card__content">
+          <div class="nsw-card__title">
+            <a href="https://www.digital.nsw.gov.au">{{heading}}</a>
+          </div>{{#if copy}}
+          <div class="nsw-card__copy">
+            <p>{{copy}}</p>
+          </div>{{/if}}
+          <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span>
+        </div>
+      </div>
       </li>{{/each}}
     </ol>
   </div>{{#unless counter}}
   <nav>
     <ul>
       <li>
-        <button class="carousel__control carousel__control--prev js-carousel__control">
+        <button aria-controls="carousel__list" aria-label="Show previous items" class="carousel__control carousel__control--prev js-carousel__control">
           <svg class="nsw-icon" viewBox="0 0 20 20">
             <title>Show previous items</title>
             <polyline points="13 2 5 10 13 18" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
@@ -18,7 +33,7 @@
         </button>
       </li>
       <li>
-        <button class="carousel__control carousel__control--next js-carousel__control">
+        <button aria-controls="carousel__list" aria-label="Show next items" class="carousel__control carousel__control--next js-carousel__control">
           <svg class="nsw-icon" viewBox="0 0 20 20">
             <title>Show next items</title>
             <polyline points="7 2 15 10 7 18" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
@@ -53,7 +68,7 @@
     </div>
   </div>{{/if}}
 </div>{{/if}}{{#if v2}}
-<div class="carousel carousel-v2 js-carousel" data-drag="on" data-loop="off" data-navigation="on" data-navigation-class="carousel-v2__navigation" data-navigation-item-class="carousel-v2__navigation-item">
+<div class="carousel carousel-v2 js-carousel" data-drag="on" data-description="Highlighted latest news" data-loop="off" data-navigation="on" data-navigation-class="carousel-v2__navigation" data-navigation-item-class="carousel-v2__navigation-item">
   <p class="sr-only">Carousel items</p>
   <div class="carousel__wrapper js-carousel__wrapper">
     <ol class="carousel__list">
@@ -78,7 +93,7 @@
   </div>
 </div>{{/if}}{{#if v3}}
 <div class="nsw-overflow-hidden">
-  <div class="carousel carousel-v3 js-carousel" data-drag="on" data-loop="off" data-overflow-items="on">
+  <div class="carousel carousel-v3 js-carousel" data-drag="on" data-description="Highlighted latest news" data-loop="off" data-overflow-items="on">
     <p class="sr-only">Carousel items</p>
     <div class="carousel__wrapper js-carousel__wrapper">
       <ol class="carousel__list">

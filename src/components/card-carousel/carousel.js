@@ -29,6 +29,7 @@ class Carousel {
     this.counter = this.element.querySelectorAll(`.${this.counterClass}`)
     this.counterTor = this.element.querySelectorAll(`.${this.counterTorClass}`)
     // Options
+    this.ariaLabel = (element.getAttribute('data-description')) ? element.getAttribute('data-description') : 'Card carousel'
     this.autoplay = !!((element.getAttribute('data-autoplay') && element.getAttribute('data-autoplay') === 'on'))
     this.autoplayInterval = (element.getAttribute('data-autoplay-interval')) ? element.getAttribute('data-autoplay-interval') : 5000
     this.autoplayOnHover = !!((element.getAttribute('data-autoplay-hover') && element.getAttribute('data-autoplay-hover') === 'on'))
@@ -50,7 +51,7 @@ class Carousel {
     this.selectedItem = 0 // index of first visible item
     this.translateContainer = 0 // this will be the amount the container has to be translated each time a new group has to be shown (-)
     this.containerWidth = 0 // this will be used to store the total width of the carousel (including the overflowing part)
-    this.ariaLive = false
+    this.ariaLive = true
     this.animating = false
     this.autoplayId = false // autoplay
     this.autoplayPaused = false
@@ -60,7 +61,6 @@ class Carousel {
     this.itemAutoSize = false // store items min-width
     this.totTranslate = 0 // store translate value (loop = off)
     if (this.nav) this.loop = false // modify loop option if navigation is on
-    this.element.classList.add('carousel--loaded')
     // CSS Supported
     this.flexSupported = CSS.supports('align-items', 'stretch')
     this.transitionSupported = CSS.supports('transition', 'transform')
@@ -87,6 +87,15 @@ class Carousel {
   }
 
   initCarouselLayout() {
+    this.element.classList.add('carousel--loaded')
+    this.element.setAttribute('aria-roledescription', 'carousel')
+    this.element.setAttribute('aria-label', this.ariaLabel)
+    const itemsArray = Array.from(this.items)
+    itemsArray.forEach((element, index) => {
+      element.setAttribute('role', 'group')
+      element.setAttribute('aria-roledescription', 'slide')
+      element.setAttribute('aria-label', `${index + 1} of ${itemsArray.length}`)
+    })
     // evaluate size of single elements + number of visible elements
     const itemStyle = window.getComputedStyle(this.items[0])
     const containerStyle = window.getComputedStyle(this.listWrapper)
