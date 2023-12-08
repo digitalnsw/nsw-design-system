@@ -30,10 +30,6 @@ class Carousel {
     this.counterTor = this.element.querySelectorAll(`.${this.counterTorClass}`)
     // Options
     this.ariaLabel = (element.getAttribute('data-description')) ? element.getAttribute('data-description') : 'Card carousel'
-    this.autoplay = !!((element.getAttribute('data-autoplay') && element.getAttribute('data-autoplay') === 'on'))
-    this.autoplayInterval = (element.getAttribute('data-autoplay-interval')) ? element.getAttribute('data-autoplay-interval') : 5000
-    this.autoplayOnHover = !!((element.getAttribute('data-autoplay-hover') && element.getAttribute('data-autoplay-hover') === 'on'))
-    this.autoplayOnFocus = !!((element.getAttribute('data-autoplay-focus') && element.getAttribute('data-autoplay-focus') === 'on'))
     this.drag = !!((element.getAttribute('data-drag') && element.getAttribute('data-drag') === 'on'))
     this.loop = !((element.getAttribute('data-loop') && element.getAttribute('data-loop') === 'off'))
     this.nav = !!((element.getAttribute('data-navigation') && element.getAttribute('data-navigation') === 'on'))
@@ -42,7 +38,6 @@ class Carousel {
     this.alignControls = element.getAttribute('data-align-controls') ? element.getAttribute('data-align-controls') : false
     this.justifyContent = !!((element.getAttribute('data-justify-content') && element.getAttribute('data-justify-content') === 'on'))
     // Initial Attributes
-    this.ariaLive = true
     this.initItems = [] // store only the original elements - will need this for cloning
     this.itemsNb = this.items.length // original number of items
     this.visibItemsNb = 1 // tot number of visible items
@@ -51,10 +46,7 @@ class Carousel {
     this.selectedItem = 0 // index of first visible item
     this.translateContainer = 0 // this will be the amount the container has to be translated each time a new group has to be shown (-)
     this.containerWidth = 0 // this will be used to store the total width of the carousel (including the overflowing part)
-    this.ariaLive = true
     this.animating = false
-    this.autoplayId = false // autoplay
-    this.autoplayPaused = false
     this.dragStart = false // drag
     this.resizeId = false // resize
     this.cloneList = [] // used to re-initialize js
@@ -186,32 +178,7 @@ class Carousel {
       // emit custom event - items visible
       this.emitCarouselActiveItemsEvent()
     }
-    // autoplay
-    if (this.autoplay) {
-      this.startAutoplay()
-      // pause autoplay if user is interacting with the carousel
-      if (!this.autoplayOnHover) {
-        this.element.addEventListener('mouseenter', () => {
-          this.pauseAutoplay()
-          this.autoplayPaused = true
-        })
-        this.element.addEventListener('mouseleave', () => {
-          this.autoplayPaused = false
-          this.startAutoplay()
-        })
-      }
-      if (!this.autoplayOnFocus) {
-        this.element.addEventListener('focusin', () => {
-          this.pauseAutoplay()
-          this.autoplayPaused = true
-        })
 
-        this.element.addEventListener('focusout', () => {
-          this.autoplayPaused = false
-          this.startAutoplay()
-        })
-      }
-    }
     // drag events
     if (this.drag && window.requestAnimationFrame) {
       // init dragging
@@ -221,7 +188,6 @@ class Carousel {
         if (event.detail.origin && event.detail.origin.closest(`.${this.navClass}`)) return
         if (event.detail.origin && !event.detail.origin.closest(`.${this.wrapperClass}`)) return
         this.element.classList.add(this.draggingClass)
-        this.pauseAutoplay()
         this.dragStart = event.detail.x
         this.animateDragEnd()
       })
@@ -238,7 +204,6 @@ class Carousel {
     }
     // reset on resize
     window.addEventListener('resize', () => {
-      this.pauseAutoplay()
       clearTimeout(this.resizeId)
       this.resizeId = setTimeout(() => {
         this.resetCarouselResize()
@@ -246,7 +211,6 @@ class Carousel {
         this.resetDotsNavigation()
         this.resetCarouselControls()
         this.setCounterItem()
-        this.startAutoplay()
         this.centerItems() // center items if this.items.length < visibItemsNb
         this.alignControlsFunc()
         // emit custom event - items visible
@@ -300,7 +264,6 @@ class Carousel {
 
   animateList(translate, direction) { // takes care of changing visible items
     let trans = translate
-    this.pauseAutoplay()
     this.list.classList.add(this.animateClass)
     const initTranslate = this.totTranslate
     if (!this.loop) {
@@ -357,8 +320,6 @@ class Carousel {
   animateListCb(direction) { // reset actions after carousel has been updated
     if (direction) this.updateClones(direction)
     this.animating = false
-    // reset autoplay
-    this.startAutoplay()
     // reset tab index
     this.resetItemsTabIndex()
   }
@@ -461,37 +422,27 @@ class Carousel {
       if (this.loop) {
         if (i < this.visibItemsNb || i >= 2 * this.visibItemsNb) {
           this.items[i].setAttribute('tabindex', '-1')
+          this.items[i].setAttribute('aria-hidden', 'true')
         } else {
           if (i < j) j = i
           this.items[i].removeAttribute('tabindex')
+          this.items[i].removeAttribute('aria-hidden')
+          this.items[i].setAttribute('aria-current', 'true')
         }
       } else if ((i < this.selectedItem || i >= this.selectedItem + this.visibItemsNb) && carouselActive) {
         this.items[i].setAttribute('tabindex', '-1')
+        this.items[i].setAttribute('aria-hidden', 'true')
       } else {
         if (i < j) j = i
         this.items[i].removeAttribute('tabindex')
+        this.items[i].removeAttribute('aria-hidden')
+        this.items[i].setAttribute('aria-current', 'true')
       }
     }
     this.resetVisibilityOverflowItems(j)
   }
 
-  startAutoplay() {
-    if (this.autoplay && !this.autoplayId && !this.autoplayPaused) {
-      this.autoplayId = setInterval(() => {
-        this.showNextItems()
-      }, this.autoplayInterval)
-    }
-  }
-
-  pauseAutoplay() {
-    if (this.autoplay) {
-      clearInterval(this.autoplayId)
-      this.autoplayId = false
-    }
-  }
-
-  initAriaLive() { // create an aria-live region for SR
-    if (!this.ariaLive) return
+  initAriaLive() {
     // create an element that will be used to announce the new visible slide to SR
     const srLiveArea = document.createElement('div')
     srLiveArea.setAttribute('class', `${this.srClass} ${this.srLiveAreaClass}`)
@@ -501,8 +452,7 @@ class Carousel {
     this.ariaLive = srLiveArea
   }
 
-  updateAriaLive() { // announce to SR which items are now visible
-    if (!this.ariaLive) return
+  updateAriaLive() {
     this.ariaLive.innerHTML = `Item ${this.selectedItem + 1} selected. ${this.visibItemsNb} items of ${this.initItems.length} visible`
   }
 

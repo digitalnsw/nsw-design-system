@@ -33,7 +33,7 @@ layout: blank-layout.hbs
 
 <p>Ensure that the content displayed in the carousel is relevant, engaging, and adds value to the user experience.</p>
 
-<h3>When to avoid</h3>
+<h3>How this component works</h3>
 
 <h2>Accessibility</h2>
 <p>All components are responsive and meet WCAG 2.1 AA accessibility guidelines.</p>
@@ -50,16 +50,18 @@ layout: blank-layout.hbs
 <h3>Keyboard Interactions and focus</h3>
 
 <ul>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
+  <li><code>Tab</code> key moves focus through interactive elements in the carousel. Rotation control, previous slide, and next slide buttons precede the slide content in the <code>Tab</code> sequence.</li>
+  <li><code>Shift + Tab</code> keys moves focus to the previous focusable element</li>
+  <li><code>Enter</code> , <code>Left Arrow</code> and <code>Right Arrow</code> keys display next or previous slide in the carousel.</li>
 </ul>
+
+<h3>Screen Reader Announcement of Slide Changes</h3>
+<p>The card carousel slide content is included in a live region. This makes it easier for screen reader users to scan through the carousel slides. When screen reader users activate the next or previous slide button, the new slide content is announced, giving users immediate feedback that helps them determine whether or not to interact with the content.</p>
 
 <h3>ARIA attributes</h3>
 <ul>
-  <li></li>
-  <li></li>
+  <li>The card carousel container has the <code>aria-roledescription</code> property set to carousel.</li>
+  <li>Each card container has role <a href="https://w3c.github.io/aria/#group">group</a> with the property <code>aria-roledescription</code> set to slide.</li>
   <li></li>
   <li></li>
 </ul>
