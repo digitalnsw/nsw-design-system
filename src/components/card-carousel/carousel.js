@@ -12,6 +12,7 @@ class Carousel {
     this.navItemClass = 'js-carousel__nav-item'
     this.navigationItemClass = element.getAttribute('data-navigation-item-class') ? element.getAttribute('data-navigation-item-class') : 'carousel__nav-item'
     this.navigationClass = element.getAttribute('data-navigation-class') ? element.getAttribute('data-navigation-class') : 'carousel__navigation'
+    this.paginationClass = element.getAttribute('data-pagination-class') ? element.getAttribute('data-pagination-class') : 'carousel__navigation--pagination'
     this.draggingClass = 'carousel--is-dragging'
     this.animateClass = 'carousel__list--animating'
     this.cloneClass = 'js-clone'
@@ -32,10 +33,9 @@ class Carousel {
     this.ariaLabel = (element.getAttribute('data-description')) ? element.getAttribute('data-description') : 'Card carousel'
     this.drag = !((element.getAttribute('data-drag') && element.getAttribute('data-drag') === 'off'))
     this.loop = !!((element.getAttribute('data-loop') && element.getAttribute('data-loop') === 'on'))
-    console.log(this.loop)
-    this.nav = !!((element.getAttribute('data-navigation') && element.getAttribute('data-navigation') === 'on'))
+    this.nav = !((element.getAttribute('data-navigation') && element.getAttribute('data-navigation') === 'off'))
     this.navigationPagination = !!((element.getAttribute('data-navigation-pagination') && element.getAttribute('data-navigation-pagination') === 'on'))
-    this.overflowItems = !!((element.getAttribute('data-overflow-items') && element.getAttribute('data-overflow-items') === 'off'))
+    this.overflowItems = !((element.getAttribute('data-overflow-items') && element.getAttribute('data-overflow-items') === 'off'))
     this.alignControls = element.getAttribute('data-align-controls') ? element.getAttribute('data-align-controls') : false
     this.justifyContent = !!((element.getAttribute('data-justify-content') && element.getAttribute('data-justify-content') === 'on'))
     // Initial Attributes
@@ -554,7 +554,14 @@ class Carousel {
     const navigation = document.createElement('ol')
     let navChildren = ''
 
-    let navClasses = `${this.navigationClass} ${this.navClass}`
+    let navClasses = ''
+
+    if (this.navigationPagination) {
+      navClasses = `${this.navigationClass} ${this.paginationClass} ${this.navClass}`
+    } else {
+      navClasses = `${this.navigationClass} ${this.navClass}`
+    }
+
     if (this.items.length <= this.visibItemsNb) {
       navClasses += ` ${this.hideClass}`
     }
