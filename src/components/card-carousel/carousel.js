@@ -564,7 +564,7 @@ class Carousel {
     const indexClass = this.navigationPagination ? '' : this.srClass
     for (let i = 0; i < dotsNr; i += 1) {
       const className = (i === selectedDot) ? `class="${this.navigationItemClass} ${this.navigationItemClass}--selected ${this.navItemClass}"` : `class="${this.navigationItemClass} ${this.navItemClass}"`
-      navChildren = `${navChildren}<li ${className}><button style="outline: none;"><span class="${indexClass}">${i + 1}</span></button></li>`
+      navChildren = `${navChildren}<li ${className}><button><span class="${indexClass}">${i + 1}</span></button></li>`
     }
     navigation.innerHTML = navChildren
     this.element.appendChild(navigation)
