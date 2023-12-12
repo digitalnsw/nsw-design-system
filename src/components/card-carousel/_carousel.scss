@@ -31,7 +31,7 @@
     appearance: none;
     margin: 0;
     padding: 0;
-    border: 0;
+    // border: 0;
   }
   
   img,
@@ -45,7 +45,7 @@
     height: var(--size, 1em);
     width: var(--size, 1em);
     display: inline-block;
-    color: inherit;
+    color: var(--nsw-brand-dark);
     fill: currentColor;
     line-height: 1;
     flex-shrink: 0;
@@ -73,7 +73,14 @@
 
   &__wrapper {
     order: 2;
-    overflow: hidden;
+    width: calc(100% - 2*2rem);
+    margin-left: auto;
+    margin-right: auto;
+
+    @include breakpoint('md') {
+      overflow: hidden;
+      width: 100%;
+    }
   }
 
   &__list {
@@ -115,7 +122,9 @@
   }
 
   &:not(.carousel--is-dragging) .carousel__list:not(.carousel__list--animating) .carousel__item[tabindex='-1'] > * {
-    visibility: hidden;
+    @include breakpoint('md') {
+      visibility: hidden;
+    }
   }
 
   &__control {
@@ -128,6 +137,7 @@
     box-shadow: var(--nsw-box-shadow);
     z-index: 1;
     transition: 0.2s;
+    border: 2px solid var(--nsw-brand-dark);
     
     &:hover {
       background-color: var(--nsw-white);
@@ -139,13 +149,20 @@
     }
 
     &:focus {
-      @include nsw-focus();
+      outline: solid 2px var(--nsw-focus);
+      outline-offset: 0;
+
+      @include breakpoint('md') {
+        outline: solid 3px var(--nsw-focus);
+        outline-offset: 2px;
+      }
     }
     
     &[disabled] {
       pointer-events: none;
       opacity: 0.5;
       box-shadow: none;
+      border: 2px solid rgba(var(--nsw-palette-blue-01-rgb), 0.2);
     }
     
     .nsw-icon {
