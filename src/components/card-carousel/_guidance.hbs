@@ -35,6 +35,36 @@ layout: blank-layout.hbs
 
 <h3>How this component works</h3>
 
+<h4>Options</h4>
+<p>You can edit the following data attributes to customize the carousel behavior:</p>
+<ul>
+<li><strong>drag</strong>: to disable drag on touch devices, add a <code>data-drag="off"</code> to the <code>js-carousel</code> element (default is on);</li>
+<li><strong>infinite loop</strong>: to enable infinite loop, add a <code>data-loop="on"</code> to the <code>js-carousel</code> element (default is off);</li>
+<li><strong>carousel navigation</strong>: to create the carousel dots navigation, add a <code>data-navigation="off"</code> (default is on); this option is only available when not using <code>data-loop="on"</code>.</li>
+</ul>
+
+<h4>Carousel Item Number</h4>
+
+<p>The number of items visible in a carousel cycle is determined based on:</p>
+<ul>
+  <li>item mininum width: this is equal to the width of the <code>.nsw-carousel__item</code> as defined in the card-carousel.scss file. To modify this value, you can change the <code>--carousel-item-auto-size</code> CSS variable (default is 300px);</li>
+</ul>
+
+<h4>Carousel Dots Navigation</h4>
+
+<p>To add a navigation to the carousel, add a <code>data-navigation="on"</code> attribute to the <code>.js-carousel</code> element (applicable if <code>data-loop="off"</code>):</p>
+
+<p>You can customize the carousel navigation using the following data attributes:</p>
+<ul>
+  <li><code>data-navigation-class</code>: pass a list of custom classes to be added to the navigation element (default is <code>nsw-carousel__navigation</code>);</li>
+  <li><code>data-navigation-item-class</code>: pass a custom class for the navigation list items (default is <code>nsw-carousel__nav-item</code>). When an item is selected, the class <code>{navigation-item-class}--selected</code> is added to that element (e.g., if <code>data-navigation-item-class='nsw-carousel__navigation-item'</code>, the selected class will be <code>nsw-carousel__navigation-item--selected</code>);</li>
+  <li><code>data-navigation-pagination</code>: set it to 'on' to use the carousel navigation as a pagination element.</li>
+</ul>
+
+<h4>Center Items</h4>
+
+<p>If the carousel items number is smaller than the number of visible items, and you want them to be centered in the viewport, add a <code>data-justify-content="on"</code> to the <code>.nsw-carousel</code> item. By default items will be aligned to the left.</p>
+
 <h2>Accessibility</h2>
 <p>All components are responsive and meet WCAG 2.1 AA accessibility guidelines.</p>
 

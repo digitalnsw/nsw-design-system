@@ -30,8 +30,9 @@ class Carousel {
     this.counterTor = this.element.querySelectorAll(`.${this.counterTorClass}`)
     // Options
     this.ariaLabel = (element.getAttribute('data-description')) ? element.getAttribute('data-description') : 'Card carousel'
-    this.drag = !!((element.getAttribute('data-drag') && element.getAttribute('data-drag') === 'on'))
-    this.loop = !((element.getAttribute('data-loop') && element.getAttribute('data-loop') === 'off'))
+    this.drag = !((element.getAttribute('data-drag') && element.getAttribute('data-drag') === 'off'))
+    this.loop = !!((element.getAttribute('data-loop') && element.getAttribute('data-loop') === 'on'))
+    console.log(this.loop)
     this.nav = !!((element.getAttribute('data-navigation') && element.getAttribute('data-navigation') === 'on'))
     this.navigationPagination = !!((element.getAttribute('data-navigation-pagination') && element.getAttribute('data-navigation-pagination') === 'on'))
     this.overflowItems = !!((element.getAttribute('data-overflow-items') && element.getAttribute('data-overflow-items') === 'off'))
