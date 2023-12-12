@@ -239,8 +239,8 @@
   &__nav-item {
     button {
       background-color: transparent;
-      width: 0.9em;
-      height: 0.9em;
+      width: 1.2em;
+      height: 1.2em;
       padding: 0;
       border-radius: 50%;
       border: 1px solid var(--nsw-brand-dark);
@@ -248,6 +248,11 @@
       cursor: pointer;
       line-height: 0;
       margin: 0 0.25em;
+
+      @include breakpoint('md') {
+        width: 0.9em;
+        height: 0.9em;
+      }
 
       &:focus {
         outline: solid 2px var(--nsw-focus);
@@ -258,7 +263,11 @@
     &--selected button {
       background-color: var(--nsw-brand-dark);
       border-radius: 7px;
-      width: 1.6em;
+      width: 2.2em;
+
+      @include breakpoint('md') {
+        width: 1.6em;
+      }
     }
   }
 
