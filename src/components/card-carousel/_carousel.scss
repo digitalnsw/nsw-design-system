@@ -18,7 +18,6 @@
   ul,
   menu {
     list-style: none;
-    margin: 0;
     padding: 0;
   }
   
@@ -31,7 +30,6 @@
     appearance: none;
     margin: 0;
     padding: 0;
-    border: 0;
   }
   
   img,
@@ -45,7 +43,7 @@
     height: var(--size, 1em);
     width: var(--size, 1em);
     display: inline-block;
-    color: inherit;
+    color: var(--nsw-brand-dark);
     fill: currentColor;
     line-height: 1;
     flex-shrink: 0;
@@ -124,8 +122,8 @@
     height: 40px;
     display: flex;
     background-color: var(--nsw-white);
+    border: 2px solid var(--nsw-brand-dark);
     border-radius: 50%;
-    box-shadow: var(--nsw-box-shadow);
     z-index: 1;
     transition: 0.2s;
 
@@ -134,8 +132,11 @@
     }
     
     &:hover {
-      background-color: var(--nsw-white);
-      box-shadow: var(--nsw-box-shadow);
+      @include nsw-hover();
+    }
+
+    &:focus {
+      @include nsw-focus();
     }
     
     &[disabled] {
