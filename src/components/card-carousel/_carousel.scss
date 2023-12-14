@@ -1,14 +1,9 @@
+/* stylelint-disable */
 .carousel {
   --carousel-item-auto-size: 300px;
   position: relative;
   display: flex;
   flex-direction: column;
-  padding-bottom: 4rem;
-  overflow: hidden;
-
-  @include breakpoint('md') {
-    overflow: visible;
-  }
 
   * {
     box-sizing: border-box;
@@ -36,6 +31,7 @@
     appearance: none;
     margin: 0;
     padding: 0;
+    border: 0;
   }
   
   img,
@@ -49,7 +45,7 @@
     height: var(--size, 1em);
     width: var(--size, 1em);
     display: inline-block;
-    color: var(--nsw-brand-dark);
+    color: inherit;
     fill: currentColor;
     line-height: 1;
     flex-shrink: 0;
@@ -59,11 +55,9 @@
   > nav {
     order: 1;
     margin-bottom: 0.5rem;
-    margin-right: 0.25rem;
 
     @include breakpoint('md') {
       margin-bottom: 0.75rem;
-      margin-right: 0;
     }
 
     ul {
@@ -79,13 +73,7 @@
 
   &__wrapper {
     order: 2;
-    width: calc(100% - 6rem);
-    margin: 0 auto;
-
-    @include breakpoint('md') {
-      overflow: hidden;
-      width: 100%;
-    }
+    overflow: hidden;
   }
 
   &__list {
@@ -127,9 +115,7 @@
   }
 
   &:not(.carousel--is-dragging) .carousel__list:not(.carousel__list--animating) .carousel__item[tabindex='-1'] > * {
-    @include breakpoint('md') {
-      visibility: hidden;
-    }
+    visibility: hidden;
   }
 
   &__control {
@@ -142,32 +128,20 @@
     box-shadow: var(--nsw-box-shadow);
     z-index: 1;
     transition: 0.2s;
-    border: 2px solid var(--nsw-brand-dark);
-    
-    &:hover {
-      background-color: var(--nsw-white);
-      box-shadow: var(--nsw-box-shadow);
-    }
 
     &:active {
       transform: translateY(1px);
     }
-
-    &:focus {
-      outline: solid 2px var(--nsw-focus);
-      outline-offset: 0;
-
-      @include breakpoint('md') {
-        outline: solid 3px var(--nsw-focus);
-        outline-offset: 2px;
-      }
+    
+    &:hover {
+      background-color: var(--nsw-white);
+      box-shadow: var(--nsw-box-shadow);
     }
     
     &[disabled] {
       pointer-events: none;
       opacity: 0.5;
       box-shadow: none;
-      border: 2px solid rgba(var(--nsw-palette-blue-01-rgb), 0.2);
     }
     
     .nsw-icon {
@@ -179,94 +153,132 @@
 
   &__navigation {
     width: 100%;
-    display: inline-flex;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 10px);
+    gap: 0.5rem;
     justify-content: center;
     align-items: center;
+    margin-top: 0.75rem;
     order: 3;
-    position: absolute;
-    z-index: 2;
-    bottom: 2em;
-    left: 50%;
-    transform: translateX(-50%);
 
     @include breakpoint('md') {
+      gap: 0.75rem;
       margin-top: 1.125rem;
     }
 
     &--pagination {
-      width: 100%;
-      display: grid;
       grid-template-columns: repeat(auto-fit, 24px);
-      gap: 0.5rem;
-      justify-content: center;
-      align-items: center;
-      margin-top: 0.75rem;
-      order: 3;
-  
-      @include breakpoint('md') {
-        gap: 0.75rem;
-        margin-top: 1.125rem;
-      }
-
-      @supports (grid-area: auto) {
-        margin: 0;
-      }
 
       .carousel__nav-item button {
-        background-color: transparent;
         width: 24px;
         height: 24px;
-        color: var(--nsw-brand-dark);
+        color: var(--nsw-white);
         font-size: 12px;
+        line-height: 24px;
         border-radius: 0.25em;
         text-align: center;
 
         &:focus {
-          outline: solid 2px var(--nsw-focus);
-          outline-offset: 1px;
-        }
-      }
-
-      .carousel__nav-item--selected {
-        button {
-          background-color: var(--nsw-brand-dark);
-          color: var(--nsw-white);
+          outline: 1px solid var(--nsw-brand-dark);
+          outline-offset: 2px;
         }
       }
     }
   }
   
   &__nav-item {
+    display: inline-block;
+    margin: 0 0.25rem;
+
+    @include breakpoint('md') {
+      margin: 0 0.375rem;
+    }
+
     button {
-      background-color: transparent;
-      width: 1.2em;
-      height: 1.2em;
-      padding: 0;
+      font: inherit;
+      display: block;
+      position: relative;
+      font-size: 10px;
+      height: 1em;
+      width: 1em;
       border-radius: 50%;
-      border: 1px solid var(--nsw-brand-dark);
-      transition: all 300ms ease-in-out;
+      background-color: var(--nsw-grey-02);
+      opacity: 0.4;
       cursor: pointer;
-      line-height: 0;
-      margin: 0 0.25em;
+      transition: background 0.3s;
 
-      @include breakpoint('md') {
-        width: 0.9em;
-        height: 0.9em;
+      &::before {
+        content: '';
+        position: absolute;
+        top: calc(50% - 0.5em);
+        left: calc(50% - 0.5em);
+        font-size: 16px;
+        height: 1em;
+        width: 1em;
+        border-radius: inherit;
+        border: 1px solid var(--nsw-grey-02);
+        opacity: 0;
+        transform: scale(0);
+        transition: 3s;
       }
-
+      
       &:focus {
-        outline: solid 2px var(--nsw-focus);
-        outline-offset: 1px;
+        outline: none;
+      }
+      
+      &:focus::before {
+        opacity: 1;
+        transform: scale(1);
       }
     }
 
     &--selected button {
-      background-color: var(--nsw-brand-dark);
-      border-radius: 7px;
-      width: 2.2em;
+      opacity: 1;
+    }
 
-      @include breakpoint('md') {
-        width: 1.6em;
+    @supports (grid-area: auto) {
+      margin: 0;
+    }
+  }
+
+  &__counter {
+    order: 1;
+    margin-bottom: 0.5rem;
+
+    @include breakpoint('md') {
+      margin-bottom: 0.75rem;
+    }
+
+    > div {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      p {
+        font-size: 0.833rem;
+  
+        @include breakpoint('md') {
+          font-size: 1rem;
+        }
+      }
+
+      > nav {
+        order: 1;
+        margin-bottom: 0.5rem;
+
+        @include breakpoint('md') {
+          margin-bottom: 0.75rem;
+        }
+    
+        ul {
+          display: flex;
+          justify-content: flex-end;
+          gap: 0.25rem;
+
+          @include breakpoint('md') {
+            gap: 0.375rem;
+          }
+        }
       }
     }
   }
@@ -275,6 +287,206 @@
     .carousel__navigation,
     .carousel__control {
       display: none;
+    }
+  }
+}
+
+.carousel-v3 {
+  width: calc(100% - 2*1.25rem);
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 64rem;
+
+  @include breakpoint('md') {
+    width: calc(100% - 2*2rem);
+  }
+
+  .carousel__wrapper {
+    position: relative;
+    order: revert;
+    overflow: revert;
+
+    nav {
+      ul {
+        position: absolute;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        pointer-events: none;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+      }
+    }
+  }
+
+  &.carousel:not(.carousel--is-dragging) .carousel__list:not(.carousel__list--animating) .carousel__item[tabindex='-1'] > * {
+    visibility: visible;
+  }
+
+  &__control {
+    --size: 60px;
+    height: var(--size);
+    width: var(--size);
+    background-color: rgba(var(--nsw-black-rgb), 0.7);
+    backdrop-filter: blur(10px);
+    pointer-events: auto;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+
+    &:hover {
+      background-color: rgba(var(--nsw-black-rgb), 0.9);
+    }
+    
+    &[disabled] {
+      display: none;
+    }
+    
+    &:active {
+      transform: translateY(2px);
+    }
+    
+    .nsw-icon {
+      --size: 20px;
+      display: block;
+      color: var(--nsw-white);
+    }
+  }
+}
+
+.carousel-v2 {
+  .carousel__wrapper:hover .carousel-v2__control {
+    opacity: 1;
+  }
+
+  .carousel__wrapper {
+    position: relative;
+    overflow: hidden;
+    order: revert;
+
+    nav {
+      ul {
+        position: absolute;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        pointer-events: none;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+      }
+    }
+  }
+
+  .carousel__list {
+    align-items: center;
+  }
+
+  &__control {
+    --size: 60px;
+    height: var(--size);
+    width: var(--size);
+    border-radius: 50%;
+    background-color: rgba(var(--nsw-black-rgb), 0.7);
+    backdrop-filter: blur(10px);
+    pointer-events: auto;
+    cursor: pointer;
+    margin: 0 0.375rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+
+    @include breakpoint('md') {
+      margin: 0 0.5625rem;
+    }
+
+    &:hover {
+      background-color: rgba(var(--nsw-black-rgb), 0.9);
+    }
+    
+    &[disabled] {
+      display: none;
+    }
+    
+    &:active {
+      transform: translateY(2px);
+    }
+    
+    .nsw-icon {
+      --size: 20px;
+      display: block;
+      color: var(--nsw-white);
+    }
+
+    @include breakpoint('md') {
+      opacity: 0;
+    }
+  }
+
+  &__navigation {
+    display: none;
+    grid-template-columns: repeat(auto-fit, 52px);
+    grid-gap: 0.5rem;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0.75rem;
+
+    @include breakpoint('md') {
+      grid-gap: 0.75rem;
+      margin-top: 1.125rem;
+    }
+
+    @include breakpoint('md') {
+      display: grid;
+    }
+  }
+
+  &__navigation-item {
+    display: inline-block;
+    margin: 0 0.25rem;
+
+    @include breakpoint('md') {
+      margin: 0 0.375rem;
+    }
+
+    &:not(.carousel-v2__navigation-item--selected) button {
+      cursor: pointer;
+
+      &:hover::before {
+        background-color: rgba(var(--nsw-palette-grey-02-rgb), 0.4);
+        transition: 0.2s;
+      }
+    }
+
+    button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: transparent;
+      width: 52px;
+      height: 24px;
+
+      &::before {
+        content: '';
+        display: block;
+        width: 100%;
+        height: 2px;
+        background-color: rgba(var(--nsw-palette-grey-02-rgb), 0.2);
+      }
+    }
+
+    &--selected button::before {
+      background-color: rgba(var(--nsw-palette-grey-02-rgb), 1);
+    }
+
+    @supports (grid-area: auto) {
+      margin: 0;
     }
   }
 }

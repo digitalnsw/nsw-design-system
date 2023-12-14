@@ -3,6 +3,7 @@ import SwipeContent from './swipe-content'
 /* eslint-disable no-new, max-len */
 class Carousel {
   constructor(element) {
+    // Class Names
     this.controlClass = 'js-carousel__control'
     this.wrapperClass = 'js-carousel__wrapper'
     this.counterClass = 'js-carousel__counter'
@@ -11,7 +12,6 @@ class Carousel {
     this.navItemClass = 'js-carousel__nav-item'
     this.navigationItemClass = element.getAttribute('data-navigation-item-class') ? element.getAttribute('data-navigation-item-class') : 'carousel__nav-item'
     this.navigationClass = element.getAttribute('data-navigation-class') ? element.getAttribute('data-navigation-class') : 'carousel__navigation'
-    this.paginationClass = element.getAttribute('data-pagination-class') ? element.getAttribute('data-pagination-class') : 'carousel__navigation--pagination'
     this.draggingClass = 'carousel--is-dragging'
     this.animateClass = 'carousel__list--animating'
     this.cloneClass = 'js-clone'
@@ -20,6 +20,7 @@ class Carousel {
     this.hideControlsClass = 'carousel--hide-controls'
     this.hideClass = 'nsw-display-none'
     this.centerClass = 'nsw-justify-content-center'
+    // Elements in the DOM
     this.element = element
     this.listWrapper = this.element.querySelector(`.${this.wrapperClass}`)
     this.list = this.listWrapper ? this.listWrapper.querySelector('ol') : false
@@ -27,57 +28,67 @@ class Carousel {
     this.controls = this.element.querySelectorAll(`.${this.controlClass}`)
     this.counter = this.element.querySelectorAll(`.${this.counterClass}`)
     this.counterTor = this.element.querySelectorAll(`.${this.counterTorClass}`)
+    // Options
     this.ariaLabel = (element.getAttribute('data-description')) ? element.getAttribute('data-description') : 'Card carousel'
-    this.drag = !((element.getAttribute('data-drag') && element.getAttribute('data-drag') === 'off'))
-    this.loop = !!((element.getAttribute('data-loop') && element.getAttribute('data-loop') === 'on'))
-    this.nav = !((element.getAttribute('data-navigation') && element.getAttribute('data-navigation') === 'off'))
+    this.drag = !!((element.getAttribute('data-drag') && element.getAttribute('data-drag') === 'on'))
+    this.loop = !((element.getAttribute('data-loop') && element.getAttribute('data-loop') === 'off'))
+    this.nav = !!((element.getAttribute('data-navigation') && element.getAttribute('data-navigation') === 'on'))
     this.navigationPagination = !!((element.getAttribute('data-navigation-pagination') && element.getAttribute('data-navigation-pagination') === 'on'))
-    this.overflowItems = !((element.getAttribute('data-overflow-items') && element.getAttribute('data-overflow-items') === 'off'))
+    this.overflowItems = !!((element.getAttribute('data-overflow-items') && element.getAttribute('data-overflow-items') === 'off'))
     this.alignControls = element.getAttribute('data-align-controls') ? element.getAttribute('data-align-controls') : false
     this.justifyContent = !!((element.getAttribute('data-justify-content') && element.getAttribute('data-justify-content') === 'on'))
-    this.initItems = []
-    this.itemsNb = this.items.length
-    this.visibItemsNb = 1
-    this.itemsWidth = 1
-    this.itemOriginalWidth = false
-    this.selectedItem = 0
-    this.translateContainer = 0
-    this.containerWidth = 0
+    // Initial Attributes
+    this.initItems = [] // store only the original elements - will need this for cloning
+    this.itemsNb = this.items.length // original number of items
+    this.visibItemsNb = 1 // tot number of visible items
+    this.itemsWidth = 1 // this will be updated with the right width of items
+    this.itemOriginalWidth = false // store the initial width to use it on resize
+    this.selectedItem = 0 // index of first visible item
+    this.translateContainer = 0 // this will be the amount the container has to be translated each time a new group has to be shown (-)
+    this.containerWidth = 0 // this will be used to store the total width of the carousel (including the overflowing part)
     this.animating = false
-    this.dragStart = false
-    this.resizeId = false
-    this.cloneList = []
-    this.itemAutoSize = false
-    this.totTranslate = 0
-    if (this.nav) this.loop = false
+    this.dragStart = false // drag
+    this.resizeId = false // resize
+    this.cloneList = [] // used to re-initialize js
+    this.itemAutoSize = false // store items min-width
+    this.totTranslate = 0 // store translate value (loop = off)
+    if (this.nav) this.loop = false // modify loop option if navigation is on
+    // CSS Supported
     this.flexSupported = CSS.supports('align-items', 'stretch')
     this.transitionSupported = CSS.supports('transition', 'transform')
     this.cssPropertiesSupported = ('CSS' in window && CSS.supports('color', 'var(--color-var)'))
   }
 
   init() {
-    this.initCarouselLayout()
+    this.initCarouselLayout() // get number visible items + width items
     this.setItemsWidth(true)
-    this.insertBefore(this.visibItemsNb)
-    this.updateCarouselClones()
-    this.resetItemsTabIndex()
-    this.initAriaLive()
-    this.initCarouselEvents()
+    this.insertBefore(this.visibItemsNb) // insert clones before visible elements
+    this.updateCarouselClones() // insert clones after visible elements
+    this.resetItemsTabIndex() // make sure not visible items are not focusable
+    this.initAriaLive() // set aria-live region for SR
+    this.initCarouselEvents() // listen to events
     this.initCarouselCounter()
+  }
+
+  showNext() {
+    this.showNextItems()
+  }
+
+  showPrev() {
+    this.showPrevItems()
   }
 
   initCarouselLayout() {
     this.element.classList.add('carousel--loaded')
     this.element.setAttribute('aria-roledescription', 'carousel')
     this.element.setAttribute('aria-label', this.ariaLabel)
-
     const itemsArray = Array.from(this.items)
     itemsArray.forEach((element, index) => {
       element.setAttribute('role', 'group')
       element.setAttribute('aria-roledescription', 'slide')
       element.setAttribute('aria-label', `${index + 1} of ${itemsArray.length}`)
     })
-
+    // evaluate size of single elements + number of visible elements
     const itemStyle = window.getComputedStyle(this.items[0])
     const containerStyle = window.getComputedStyle(this.listWrapper)
     let itemWidth = parseFloat(itemStyle.getPropertyValue('width'))
@@ -89,9 +100,10 @@ class Carousel {
       this.itemAutoSize = itemWidth
     }
 
+    // if this.listWrapper is hidden -> make sure to retrieve the proper width
     containerWidth = this.getCarouselWidth(containerWidth)
 
-    if (!this.itemOriginalWidth) {
+    if (!this.itemOriginalWidth) { // on resize -> use initial width of items to recalculate
       this.itemOriginalWidth = itemWidth
     } else {
       itemWidth = this.itemOriginalWidth
@@ -101,24 +113,25 @@ class Carousel {
       this.itemOriginalWidth = parseInt(this.itemAutoSize, 10)
       itemWidth = this.itemOriginalWidth
     }
-
+    // make sure itemWidth is smaller than container width
     if (containerWidth < itemWidth) {
       this.itemOriginalWidth = containerWidth
       itemWidth = this.itemOriginalWidth
     }
-
+    // get proper width of elements
     this.visibItemsNb = parseInt((containerWidth - 2 * containerPadding + itemMargin) / (itemWidth + itemMargin), 10)
     this.itemsWidth = parseFloat((((containerWidth - 2 * containerPadding + itemMargin) / this.visibItemsNb) - itemMargin).toFixed(1))
     this.containerWidth = (this.itemsWidth + itemMargin) * this.items.length
     this.translateContainer = 0 - ((this.itemsWidth + itemMargin) * this.visibItemsNb)
-
+    // flexbox fallback
     if (!this.flexSupported) this.list.style.width = `${(this.itemsWidth + itemMargin) * this.visibItemsNb * 3}px`
 
+    // this is used when loop == off
     this.totTranslate = 0 - this.selectedItem * (this.itemsWidth + itemMargin)
     if (this.items.length <= this.visibItemsNb) this.totTranslate = 0
 
-    this.centerItems()
-    this.alignControlsFunc()
+    this.centerItems() // center items if this.items.length < visibItemsNb
+    this.alignControlsFunc() // check if controls need to be aligned to a different element
   }
 
   setItemsWidth(bool) {
@@ -130,17 +143,19 @@ class Carousel {
 
   updateCarouselClones() {
     if (!this.loop) return
-
+    // take care of clones after visible items (needs to run after the update of clones before visible items)
     if (this.items.length < this.visibItemsNb * 3) {
       this.insertAfter(this.visibItemsNb * 3 - this.items.length, this.items.length - this.visibItemsNb * 2)
     } else if (this.items.length > this.visibItemsNb * 3) {
       this.removeClones(this.visibItemsNb * 3, this.items.length - this.visibItemsNb * 3)
     }
-
+    // set proper translate value for the container
     this.setTranslate(`translateX(${this.translateContainer}px)`)
   }
 
   initCarouselEvents() {
+    // listen for click on previous/next arrow
+    // dots navigation
     if (this.nav) {
       this.carouselCreateNavigation()
       this.carouselInitNavigationEvents()
@@ -158,11 +173,15 @@ class Carousel {
         this.updateAriaLive()
       })
 
+      // update arrow visility -> loop == off only
       this.resetCarouselControls()
+      // emit custom event - items visible
       this.emitCarouselActiveItemsEvent()
     }
 
+    // drag events
     if (this.drag && window.requestAnimationFrame) {
+      // init dragging
       new SwipeContent(this.element)
       this.element.addEventListener('dragStart', (event) => {
         if (event.detail.origin && event.detail.origin.closest(`.${this.controlClass}`)) return
@@ -183,25 +202,27 @@ class Carousel {
         this.setTranslate(`translateX(${translate}px)`)
       })
     }
-
+    // reset on resize
     window.addEventListener('resize', () => {
       clearTimeout(this.resizeId)
       this.resizeId = setTimeout(() => {
         this.resetCarouselResize()
+        // reset dots navigation
         this.resetDotsNavigation()
         this.resetCarouselControls()
         this.setCounterItem()
-        this.centerItems()
+        this.centerItems() // center items if this.items.length < visibItemsNb
         this.alignControlsFunc()
+        // emit custom event - items visible
         this.emitCarouselActiveItemsEvent()
       }, 250)
     })
-
+    // keyboard navigation
     this.element.addEventListener('keydown', (event) => {
       if (event.key && event.key.toLowerCase() === 'arrowright') {
-        this.showNextItems()
+        this.showNext()
       } else if (event.key && event.key.toLowerCase() === 'arrowleft') {
-        this.showPrevItems()
+        this.showPrev()
       }
     })
   }
@@ -220,7 +241,7 @@ class Carousel {
     this.animateList(`${this.translateContainer * 2}px`, 'next')
   }
 
-  animateDragEnd() {
+  animateDragEnd() { // end-of-dragging animation
     const cb = (event) => {
       this.element.removeEventListener('dragEnd', cb)
       this.element.classList.remove(this.draggingClass)
@@ -230,9 +251,9 @@ class Carousel {
       } else if (event.detail.x - this.dragStart > 40) {
         this.animating = false
         this.showPrevItems()
-      } else if (event.detail.x - this.dragStart === 0) {
+      } else if (event.detail.x - this.dragStart === 0) { // this is just a click -> no dragging
         return
-      } else {
+      } else { // not dragged enought -> do not update carousel, just reset
         this.animating = true
         this.animateList(`${this.translateContainer}px`, false)
       }
@@ -241,7 +262,7 @@ class Carousel {
     this.element.addEventListener('dragEnd', cb)
   }
 
-  animateList(translate, direction) {
+  animateList(translate, direction) { // takes care of changing visible items
     let trans = translate
     this.list.classList.add(this.animateClass)
     const initTranslate = this.totTranslate
@@ -265,10 +286,12 @@ class Carousel {
       this.animateListCb(direction)
     }
     if (!this.loop && (initTranslate === this.totTranslate)) {
+      // translate value was not updated -> trigger transitionend event to restart carousel
       this.list.dispatchEvent(new CustomEvent('transitionend'))
     }
     this.resetCarouselControls()
     this.setCounterItem()
+    // emit custom event - items visible
     this.emitCarouselActiveItemsEvent()
   }
 
@@ -294,22 +317,26 @@ class Carousel {
     return `${translate}px`
   }
 
-  animateListCb(direction) {
+  animateListCb(direction) { // reset actions after carousel has been updated
     if (direction) this.updateClones(direction)
     this.animating = false
+    // reset tab index
     this.resetItemsTabIndex()
   }
 
   updateClones(direction) {
     if (!this.loop) return
+    // at the end of each animation, we need to update the clones before and after the visible items
     const index = (direction === 'next') ? 0 : this.items.length - this.visibItemsNb
+    // remove clones you do not need anymore
     this.removeClones(index, false)
+    // add new clones
     if (direction === 'next') {
       this.insertAfter(this.visibItemsNb, 0)
     } else {
       this.insertBefore(this.visibItemsNb)
     }
-
+    // reset transform
     this.setTranslate(`translateX(${this.translateContainer}px)`)
   }
 
@@ -352,40 +379,40 @@ class Carousel {
     }
   }
 
-  resetCarouselResize() {
+  resetCarouselResize() { // reset carousel on resize
     const visibleItems = this.visibItemsNb
-
+    // get new items min-width value
     this.resetItemAutoSize()
     this.initCarouselLayout()
     this.setItemsWidth(false)
-    this.resetItemsWidth()
+    this.resetItemsWidth() // update the array of original items -> array used to create clones
     if (this.loop) {
       if (visibleItems > this.visibItemsNb) {
         this.removeClones(0, visibleItems - this.visibItemsNb)
       } else if (visibleItems < this.visibItemsNb) {
         this.insertBefore(this.visibItemsNb, visibleItems)
       }
-      this.updateCarouselClones()
+      this.updateCarouselClones() // this will take care of translate + after elements
     } else {
+      // reset default translate to a multiple value of (itemWidth + margin)
       const translate = this.noLoopTranslateValue()
       this.setTranslate(`translateX(${translate})`)
     }
-    this.resetItemsTabIndex()
+    this.resetItemsTabIndex() // reset focusable elements
   }
 
   resetItemAutoSize() {
     if (!this.cssPropertiesSupported) return
-
+    // remove inline style
     this.items[0].removeAttribute('style')
-
+    // get original item width
     this.itemAutoSize = getComputedStyle(this.items[0]).getPropertyValue('width')
   }
 
   resetItemsWidth() {
-    this.initItems.forEach((element) => {
-      const el = element
-      el.style.width = `${this.itemsWidth}px`
-    })
+    for (let i = 0; i < this.initItems.length; i += 1) {
+      this.initItems[i].style.width = `${this.itemsWidth}px`
+    }
   }
 
   resetItemsTabIndex() {
@@ -416,6 +443,7 @@ class Carousel {
   }
 
   initAriaLive() {
+    // create an element that will be used to announce the new visible slide to SR
     const srLiveArea = document.createElement('div')
     srLiveArea.setAttribute('class', `${this.srClass} ${this.srLiveAreaClass}`)
     srLiveArea.setAttribute('aria-live', 'polite')
@@ -447,10 +475,10 @@ class Carousel {
     this.list.style.msTransform = translate
   }
 
-  getCarouselWidth(computedWidth) {
+  getCarouselWidth(computedWidth) { // retrieve carousel width if carousel is initially hidden
     let comWidth = computedWidth
     const closestHidden = this.listWrapper.closest(`.${this.srClass}`)
-    if (closestHidden) {
+    if (closestHidden) { // carousel is inside an .sr-only (visually hidden) element
       closestHidden.classList.remove(this.srClass)
       comWidth = this.listWrapper.offsetWidth
       closestHidden.classList.add(this.srClass)
@@ -476,7 +504,7 @@ class Carousel {
 
   resetCarouselControls() {
     if (this.loop) return
-
+    // update arrows status
     if (this.controls.length > 0) {
       if (this.totTranslate === 0) {
         this.controls[0].setAttribute('disabled', true)
@@ -490,7 +518,7 @@ class Carousel {
         this.controls[1].removeAttribute('disabled')
       }
     }
-
+    // update carousel dots
     if (this.nav) {
       const selectedDot = this.navigation.querySelectorAll(`.${this.navigationItemClass}--selected`)
       if (selectedDot.length > 0) selectedDot[0].classList.remove(`${this.navigationItemClass}--selected`)
@@ -512,12 +540,10 @@ class Carousel {
   emitCarouselUpdateEvent() {
     this.cloneList = []
     const clones = this.element.querySelectorAll(`.${this.cloneClass}`)
-
-    clones.forEach((element) => {
-      element.classList.remove(this.cloneClass)
-      this.cloneList.push(element)
-    })
-
+    for (let i = 0; i < clones.length; i += 1) {
+      clones[i].classList.remove(this.cloneClass)
+      this.cloneList.push(clones[i])
+    }
     this.emitCarouselEvents('carousel-updated', this.cloneList)
   }
 
@@ -527,14 +553,7 @@ class Carousel {
     const navigation = document.createElement('ol')
     let navChildren = ''
 
-    let navClasses = ''
-
-    if (this.navigationPagination) {
-      navClasses = `${this.navigationClass} ${this.paginationClass} ${this.navClass}`
-    } else {
-      navClasses = `${this.navigationClass} ${this.navClass}`
-    }
-
+    let navClasses = `${this.navigationClass} ${this.navClass}`
     if (this.items.length <= this.visibItemsNb) {
       navClasses += ` ${this.hideClass}`
     }
@@ -545,7 +564,7 @@ class Carousel {
     const indexClass = this.navigationPagination ? '' : this.srClass
     for (let i = 0; i < dotsNr; i += 1) {
       const className = (i === selectedDot) ? `class="${this.navigationItemClass} ${this.navigationItemClass}--selected ${this.navItemClass}"` : `class="${this.navigationItemClass} ${this.navItemClass}"`
-      navChildren = `${navChildren}<li ${className}><button><span class="${indexClass}">${i + 1}</span></button></li>`
+      navChildren = `${navChildren}<li ${className}><button style="outline: none;"><span class="${indexClass}">${i + 1}</span></button></li>`
     }
     navigation.innerHTML = navChildren
     this.element.appendChild(navigation)
@@ -575,7 +594,7 @@ class Carousel {
     if (!dot) return
     if (this.animating) return
     this.animating = true
-    const index = Array.from(this.navDots).indexOf(dot)
+    const index = Array.prototype.indexOf.call(this.navDots, dot)
     this.selectedDotIndex = index
     this.selectedItem = index * this.visibItemsNb
     this.animateList(false, 'click')
@@ -609,11 +628,9 @@ class Carousel {
     }
     if (!this.controlsAlignEl) return
     const translate = (this.element.offsetHeight - this.controlsAlignEl.offsetHeight)
-
-    this.controls.forEach((element) => {
-      const el = element
-      el.style.marginBottom = `${translate}px`
-    })
+    for (let i = 0; i < this.controls.length; i += 1) {
+      this.controls[i].style.marginBottom = `${translate}px`
+    }
   }
 
   emitCarouselActiveItemsEvent() {
@@ -632,9 +649,9 @@ class Carousel {
     const overflowItems = Math.ceil(delta / itemWidth)
 
     for (let i = 0; i < overflowItems; i += 1) {
-      const indexPrev = j - 1 - i
+      const indexPrev = j - 1 - i // prev element
       if (indexPrev >= 0) this.items[indexPrev].removeAttribute('tabindex')
-      const indexNext = j + this.visibItemsNb + i
+      const indexNext = j + this.visibItemsNb + i // next element
       if (indexNext < this.items.length) this.items[indexNext].removeAttribute('tabindex')
     }
   }
