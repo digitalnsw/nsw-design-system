@@ -1,0 +1,21 @@
+---
+title: Card carousel
+width: wide
+model:
+  carousel-five: ../../components/card-carousel/json/carousel-five.json
+  carousel-nine: ../../components/card-carousel/json/carousel-nine.json
+page: true
+---
+
+{{#>_layout-container}}
+<h3>5 cards</h3>
+{{>_carousel model.carousel-five default=true loop=true}}
+
+<h3>9 cards</h3>
+{{>_carousel model.carousel-nine default=true loop=true}}
+
+<h3>Pagination</h3>
+{{>_carousel model.carousel-nine pagination=true default=true}}
+
+{{/_layout-container}}
+
