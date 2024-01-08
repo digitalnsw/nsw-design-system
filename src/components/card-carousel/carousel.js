@@ -3,21 +3,22 @@ import SwipeContent from './swipe-content'
 /* eslint-disable no-new, max-len */
 class Carousel {
   constructor(element) {
+    this.containerClass = 'nsw-carousel-container'
     this.controlClass = 'js-carousel__control'
     this.wrapperClass = 'js-carousel__wrapper'
     this.counterClass = 'js-carousel__counter'
     this.counterTorClass = 'js-carousel__counter-tot'
     this.navClass = 'js-carousel__navigation'
     this.navItemClass = 'js-carousel__nav-item'
-    this.navigationItemClass = element.getAttribute('data-navigation-item-class') ? element.getAttribute('data-navigation-item-class') : 'carousel__nav-item'
-    this.navigationClass = element.getAttribute('data-navigation-class') ? element.getAttribute('data-navigation-class') : 'carousel__navigation'
-    this.paginationClass = element.getAttribute('data-pagination-class') ? element.getAttribute('data-pagination-class') : 'carousel__navigation--pagination'
-    this.draggingClass = 'carousel--is-dragging'
-    this.animateClass = 'carousel__list--animating'
+    this.navigationItemClass = element.getAttribute('data-navigation-item-class') ? element.getAttribute('data-navigation-item-class') : 'nsw-carousel__nav-item'
+    this.navigationClass = element.getAttribute('data-navigation-class') ? element.getAttribute('data-navigation-class') : 'nsw-carousel__navigation'
+    this.paginationClass = element.getAttribute('data-pagination-class') ? element.getAttribute('data-pagination-class') : 'nsw-carousel__navigation--pagination'
+    this.draggingClass = 'nsw-carousel--is-dragging'
+    this.animateClass = 'nsw-carousel__list--animating'
     this.cloneClass = 'js-clone'
     this.srClass = 'sr-only'
     this.srLiveAreaClass = 'js-carousel__aria-live'
-    this.hideControlsClass = 'carousel--hide-controls'
+    this.hideControlsClass = 'nsw-carousel--hide-controls'
     this.hideClass = 'nsw-display-none'
     this.centerClass = 'nsw-justify-content-center'
     this.element = element
@@ -67,7 +68,7 @@ class Carousel {
   }
 
   initCarouselLayout() {
-    this.element.classList.add('carousel--loaded')
+    this.element.classList.add('nsw-carousel--loaded')
     this.element.setAttribute('aria-roledescription', 'carousel')
     this.element.setAttribute('aria-label', this.ariaLabel)
 
@@ -77,6 +78,8 @@ class Carousel {
       element.setAttribute('aria-roledescription', 'slide')
       element.setAttribute('aria-label', `${index + 1} of ${itemsArray.length}`)
     })
+
+    this.carouselCreateContainer()
 
     const itemStyle = window.getComputedStyle(this.items[0])
     const containerStyle = window.getComputedStyle(this.listWrapper)
@@ -119,6 +122,15 @@ class Carousel {
 
     this.centerItems()
     this.alignControlsFunc()
+  }
+
+  carouselCreateContainer() {
+    if (!this.element.parentElement.classList.contains(this.containerClass)) {
+      const el = document.createElement('div')
+      el.classList.add(this.containerClass)
+      this.element.parentNode.insertBefore(el, this.element)
+      el.appendChild(this.element)
+    }
   }
 
   setItemsWidth(bool) {

@@ -1,14 +1,13 @@
-.carousel {
+.nsw-carousel {
   --carousel-item-auto-size: 300px;
   position: relative;
   display: flex;
   flex-direction: column;
-  max-width: var(--nsw-container-width);
-  padding-bottom: 3rem;
-  overflow: hidden;
+  padding: 0 0.5rem 3rem;
 
-  @include breakpoint('md') {
-    overflow: visible;
+  &-container {
+    margin: 0 -0.5rem;
+    overflow: hidden;
   }
 
   * {
@@ -84,7 +83,6 @@
     margin: 0 auto;
 
     @include breakpoint('md') {
-      overflow: hidden;
       width: 100%;
     }
   }
@@ -115,11 +113,11 @@
     }
   }
 
-  &.carousel--loaded .carousel__item {
+  &.nsw-carousel--loaded .nsw-carousel__item {
     opacity: 1;
   }
 
-  &[data-drag=on] .carousel__item {
+  &[data-drag=on] .nsw-carousel__item {
     user-select: none;
   
     img {
@@ -127,7 +125,7 @@
     }
   }
 
-  &:not(.carousel--is-dragging) .carousel__list:not(.carousel__list--animating) .carousel__item[tabindex='-1'] > * {
+  &:not(.nsw-carousel--is-dragging) .nsw-carousel__list:not(.nsw-carousel__list--animating) .nsw-carousel__item[tabindex='-1'] > * {
     visibility: visible;
 
     @include breakpoint('md') {
@@ -206,7 +204,7 @@
         bottom: 0.5em;
       }
 
-      .carousel__nav-item button {
+      .nsw-carousel__nav-item button {
         background-color: transparent;
         width: 1.5rem;
         height: 1.5rem;
@@ -222,7 +220,7 @@
         }
       }
 
-      .carousel__nav-item--selected {
+      .nsw-carousel__nav-item--selected {
         button {
           background-color: var(--nsw-brand-dark);
           color: var(--nsw-white);
@@ -266,9 +264,9 @@
     }
   }
 
-  &.carousel--hide-controls {
-    .carousel__navigation,
-    .carousel__control {
+  &.nsw-carousel--hide-controls {
+    .nsw-carousel__navigation,
+    .nsw-carousel__control {
       display: none;
     }
   }
