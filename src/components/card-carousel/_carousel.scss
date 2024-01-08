@@ -5,6 +5,7 @@
   flex-direction: column;
   max-width: var(--nsw-container-width);
   padding-bottom: 3rem;
+  overflow: hidden;
 
   @include breakpoint('md') {
     overflow: visible;
@@ -23,6 +24,7 @@
   ul,
   menu {
     list-style: none;
+    // margin: 0;
     padding: 0;
   }
   
@@ -33,6 +35,8 @@
     color: inherit;
     line-height: inherit;
     appearance: none;
+    // margin: 0;
+    // padding: 0;
   }
   
   img,
@@ -76,6 +80,8 @@
 
   &__wrapper {
     order: 2;
+    width: calc(100% - 6rem);
+    margin: 0 auto;
 
     @include breakpoint('md') {
       overflow: hidden;
@@ -149,8 +155,8 @@
     }
 
     &:focus {
-      outline: solid 2px var(--nsw-focus);
-      outline-offset: 0;
+      @include nsw-focus(false);
+      outline-offset: 1px;
 
       @include breakpoint('md') {
         outline: solid 3px var(--nsw-focus);
@@ -194,7 +200,7 @@
     }
 
     &--pagination {
-      bottom: 0;
+      bottom: 0.3em;
 
       @include breakpoint('md') {
         bottom: 0.5em;
@@ -233,7 +239,7 @@
       padding: 0;
       border-radius: 50%;
       border: 1px solid var(--nsw-brand-dark);
-      // transition: all 300ms ease-in-out;
+      transition: all 300ms ease-in-out;
       cursor: pointer;
       line-height: 0;
       margin: 0 0.25em;
