@@ -1,6 +1,7 @@
 /* eslint-disable max-len */
 import Accordion from './components/accordion/accordion'
 import BackTop from './components/back-to-top/back-to-top'
+import DatePicker from './components/date-picker/date-picker'
 import Dialog from './components/dialog/dialog'
 import ExternalLink from './components/link/link'
 import FileUpload from './components/file-upload/file-upload'
@@ -39,6 +40,7 @@ function initSite() {
   const accordions = document.querySelectorAll('.js-accordion')
   const backTop = document.querySelectorAll('.js-back-to-top')
   const closeSearchButton = document.querySelectorAll('.js-close-search')
+  const datePicker = document.querySelectorAll('.js-date-picker')
   const dialogs = document.querySelectorAll('.js-dialog')
   const fileUpload = document.querySelectorAll('.js-file-upload')
   const filters = document.querySelectorAll('.js-filters')
@@ -68,6 +70,12 @@ function initSite() {
   if (closeSearchButton) {
     closeSearchButton.forEach((element) => {
       new SiteSearch(element).init()
+    })
+  }
+
+  if (datePicker) {
+    datePicker.forEach((element) => {
+      new DatePicker(element).init()
     })
   }
 
@@ -150,5 +158,5 @@ function initSite() {
 }
 
 export {
-  initSite, Accordion, BackTop, Dialog, ExternalLink, FileUpload, Filters, GlobalAlert, Navigation, Popover, Select, SiteSearch, Tabs, Toggletip, Tooltip, UtilityList,
+  initSite, Accordion, BackTop, DatePicker, Dialog, ExternalLink, FileUpload, Filters, GlobalAlert, Navigation, Popover, Select, SiteSearch, Tabs, Toggletip, Tooltip, UtilityList,
 }
