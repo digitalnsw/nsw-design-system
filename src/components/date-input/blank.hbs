@@ -2,11 +2,40 @@
 title: Date input
 width: wide
 page: true
-model:
-  date: ../../components/date-input/json/date-input.json
 ---
 {{#>_layout-container}}
 
-{{>_date-input model.date}}
+<div class="nsw-form">
+  <div class="nsw-form__group">
+    {{>_date-input
+      id="date"
+      label="Date of birth"
+      helper-text="For example 08 12 1990"
+    }}
+  </div>
+</div>
+
+<div class="nsw-form">
+  <div class="nsw-form__group">
+    {{>_date-input
+      id="date-error"
+      label="Date of birth"
+      required=true
+      error-text="This field is required"
+      helper-text="For example 08 12 1990"
+    }}
+  </div>
+</div>
+
+<div class="nsw-form">
+  <div class="nsw-form__group">
+    {{>_date-input
+      id="date-success"
+      label="Date of birth"
+      valid-text="This field has been validated"
+      helper-text="For example 08 12 1990"
+    }}
+  </div>
+</div>
 
 {{/_layout-container}}
