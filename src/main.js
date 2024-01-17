@@ -40,7 +40,7 @@ function initSite() {
   const accordions = document.querySelectorAll('.js-accordion')
   const backTop = document.querySelectorAll('.js-back-to-top')
   const closeSearchButton = document.querySelectorAll('.js-close-search')
-  const datePicker = document.querySelectorAll('.js-date-picker')
+  const datePicker = document.querySelectorAll('.js-date-input')
   const dialogs = document.querySelectorAll('.js-dialog')
   const fileUpload = document.querySelectorAll('.js-file-upload')
   const filters = document.querySelectorAll('.js-filters')
