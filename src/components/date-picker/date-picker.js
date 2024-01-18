@@ -13,6 +13,12 @@ class DatePicker {
     this.navigation = this.datePicker.querySelector('.js-date-picker__title-nav')
     this.heading = this.datePicker.querySelector('.js-date-picker__title-label')
     this.pickerVisible = false
+    // multiple inputs
+    this.multipleInput = this.element.querySelector('.js-date-input-multiple')
+    this.dateInput = this.multipleInput && this.multipleInput.querySelector('.js-datepicker-date')
+    this.monthInput = this.multipleInput && this.multipleInput.querySelector('.js-datepicker-month')
+    this.yearInput = this.multipleInput && this.multipleInput.querySelector('.js-datepicker-year')
+    this.multiDateArray = [this.dateInput, this.monthInput, this.yearInput]
     // date format
     this.dateIndexes = this.getDateIndexes() // store indexes of date parts (d, m, y)
     // selected date
@@ -54,9 +60,20 @@ class DatePicker {
   }
 
   initCalendarEvents() {
-    this.input.addEventListener('focus', () => {
-      this.toggleCalendar(true) // toggle calendar when focus is on input
-    })
+    if (this.input) {
+      this.input.addEventListener('focus', () => {
+        this.toggleCalendar(true) // toggle calendar when focus is on input
+      })
+    }
+
+    if (this.multipleInput) {
+      this.multiDateArray.forEach((element) => {
+        element.addEventListener('focus', () => {
+          this.hideCalendar()
+        })
+      })
+    }
+
     if (this.trigger) {
       this.trigger.addEventListener('click', (event) => { // open calendar when clicking on calendar button
         event.preventDefault()
@@ -76,7 +93,13 @@ class DatePicker {
         this.selectedMonth = this.currentMonth
         this.selectedYear = this.currentYear
         this.setInputValue()
-        this.input.focus() // focus on the input element and close picker
+        if (this.input) {
+          this.input.focus() // focus on the input element and close picker
+        } else if (this.multipleInput) {
+          this.trigger.focus()
+          this.toggleCalendar(true) // toggle calendar when focus is on input
+        }
+
         this.resetLabelCalendarTrigger()
         this.resetLabelCalendarValue()
       }
@@ -103,12 +126,14 @@ class DatePicker {
     window.addEventListener('keydown', (event) => { // close calendar on esc
       if ((event.code && event.code === 27) || (event.key && event.key.toLowerCase() === 'escape')) {
         if (document.activeElement.closest('.js-date-picker')) {
-          this.input.focus() // if focus is inside the calendar -> move the focus to the input element
+          const activeInput = document.activeElement.closest('.js-date-input').querySelector('input')
+          activeInput.focus() // focus on the input element and close picker
         } else { // do not move focus -> only close calendar
           this.hideCalendar()
         }
       }
     })
+
     window.addEventListener('click', (event) => {
       if (!event.target.closest('.js-date-picker') && !event.target.closest('.js-date-input') && this.pickerVisible) {
         this.hideCalendar()
@@ -155,17 +180,35 @@ class DatePicker {
       }
     })
 
-    this.input.addEventListener('keydown', (event) => {
-      if ((event.code && event.code === 13) || (event.key && event.key.toLowerCase() === 'enter')) {
-        // update calendar on input enter
-        this.resetCalendar()
-        this.resetLabelCalendarTrigger()
-        this.resetLabelCalendarValue()
-        this.hideCalendar()
-      } else if ((event.code && event.code === 40) || (event.key && event.key.toLowerCase() === 'arrowdown' && this.pickerVisible)) { // move focus to calendar using arrow down
-        this.body.querySelector('button[tabindex="0"]').focus()
-      }
-    })
+    if (this.input) {
+      this.input.addEventListener('keydown', (event) => {
+        if ((event.code && event.code === 13) || (event.key && event.key.toLowerCase() === 'enter')) {
+          // update calendar on input enter
+          this.resetCalendar()
+          this.resetLabelCalendarTrigger()
+          this.resetLabelCalendarValue()
+          this.hideCalendar()
+        } else if ((event.code && event.code === 40) || (event.key && event.key.toLowerCase() === 'arrowdown' && this.pickerVisible)) { // move focus to calendar using arrow down
+          this.body.querySelector('button[tabindex="0"]').focus()
+        }
+      })
+    }
+
+    if (this.multipleInput) {
+      this.multiDateArray.forEach((element) => {
+        element.addEventListener('keydown', (event) => {
+          if ((event.code && event.code === 13) || (event.key && event.key.toLowerCase() === 'enter')) {
+            // update calendar on input enter
+            this.resetCalendar()
+            this.resetLabelCalendarTrigger()
+            this.resetLabelCalendarValue()
+            this.hideCalendar()
+          } else if ((event.code && event.code === 40) || (event.key && event.key.toLowerCase() === 'arrowdown' && this.pickerVisible)) { // move focus to calendar using arrow down
+            this.body.querySelector('button[tabindex="0"]').focus()
+          }
+        })
+      })
+    }
   }
 
   getCurrentDay(date) {
@@ -247,7 +290,13 @@ class DatePicker {
 
   resetCalendar() {
     let currentDate = false
-    const selectedDate = this.input.value
+    let selectedDate
+
+    if (this.input) {
+      selectedDate = this.input.value
+    } else if (this.multipleInput) {
+      selectedDate = `${this.dateInput.value}/${this.monthInput.value}/${this.yearInput.value}`
+    }
 
     this.dateSelected = false
     if (selectedDate !== '') {
@@ -345,7 +394,13 @@ class DatePicker {
   }
 
   setInputValue() {
-    this.input.value = this.getDateForInput()
+    if (this.input) {
+      this.input.value = this.getDateForInput()
+    } else if (this.multipleInput) {
+      this.dateInput.value = this.constructor.getReadableDate(this.selectedDay)
+      this.monthInput.value = this.constructor.getReadableDate(this.selectedMonth + 1)
+      this.yearInput.value = this.selectedYear
+    }
   }
 
   getDateForInput() {
@@ -357,7 +412,13 @@ class DatePicker {
   }
 
   getDateFromInput() {
-    const dateArray = this.input.value.split(this.dateSeparator)
+    let dateArray
+
+    if (this.input) {
+      dateArray = this.input.value.split(this.dateSeparator)
+    } else if (this.multipleInput) {
+      dateArray = [this.dateInput.value, this.monthInput.value, this.yearInput.value]
+    }
     return `${dateArray[this.dateIndexes[2]]}-${dateArray[this.dateIndexes[1]]}-${dateArray[this.dateIndexes[0]]}`
   }
 
