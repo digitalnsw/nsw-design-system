@@ -212,6 +212,14 @@
       z-index: 2;
     }
 
+    &[disabled='true'],
+    &[aria-disabled='true'] {
+      background-color: rgba(var(--nsw-palette-grey-03-rgb), 0.5);
+      color: rgba(var(--nsw-palette-grey-01-rgb), 0.7);
+      border-radius: var(--nsw-border-radius);
+      pointer-events: none;
+    }
+
     &.nsw-date-picker__date--range {
       background-color: rgba(var(--nsw-palette-blue-01-rgb), 0.2);
       color: var(--nsw-text-dark);

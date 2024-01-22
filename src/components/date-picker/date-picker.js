@@ -5,6 +5,7 @@ class DatePicker {
     this.months = this.element.getAttribute('data-months') ? this.element.getAttribute('data-months') : ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
     this.dateFormat = this.element.getAttribute('data-date-format') ? this.element.getAttribute('data-date-format') : 'd-m-y'
     this.dateSeparator = this.element.getAttribute('data-date-separator') ? this.element.getAttribute('data-date-separator') : '/'
+    this.datesDisabled = this.element.getAttribute('data-dates-disabled') ? this.element.getAttribute('data-dates-disabled') : ''
     this.input = this.element.querySelector('.js-date-input__text')
     this.trigger = this.element.querySelector('.js-date-input__trigger')
     this.triggerLabel = this.trigger.getAttribute('aria-label')
@@ -31,6 +32,7 @@ class DatePicker {
     // focus trap
     this.firstFocusable = false
     this.lastFocusable = false
+    this.disabledArray = false
   }
 
   init() {
@@ -337,11 +339,23 @@ class DatePicker {
     this.selectedYear = this.dateSelected ? this.currentYear : false
   }
 
+  disabledDates() {
+    this.disabledArray = []
+    if (this.datesDisabled) {
+      const disabledDates = this.datesDisabled.split(' ')
+
+      disabledDates.forEach((element) => {
+        this.disabledArray.push(element)
+      })
+    }
+  }
+
   showCalendar(bool) {
     // show calendar element
     const firstDay = this.constructor.getDayOfWeek(this.currentYear, this.currentMonth, '01')
     this.body.innerHTML = ''
     this.heading.innerHTML = `${this.months[this.currentMonth]} ${this.currentYear}`
+    this.disabledDates()
 
     // creating all cells
     let date = 1
@@ -355,16 +369,20 @@ class DatePicker {
         } else {
           let classListDate = ''
           let tabindexValue = '-1'
+          let disabled
           if (date === this.currentDay) {
             tabindexValue = '0'
           }
           if (this.getCurrentMonth() === this.currentMonth && this.getCurrentYear() === this.currentYear && date === this.getCurrentDay()) {
             classListDate += ' nsw-date-picker__date--today'
           }
+          if (this.disabledArray.includes(this.getDateForInput(date, this.currentMonth, this.currentYear))) {
+            disabled = 'aria-disabled="true"'
+          }
           if (this.dateSelected && date === this.selectedDay && this.currentYear === this.selectedYear && this.currentMonth === this.selectedMonth) {
             classListDate += ' nsw-date-picker__date--selected'
           }
-          calendar = `${calendar}<li><button class="nsw-date-picker__date${classListDate}" tabindex="${tabindexValue}" type="button">${date}</button></li>`
+          calendar = `${calendar}<li><button class="nsw-date-picker__date${classListDate}" tabindex="${tabindexValue}" type="button" ${disabled || ''}>${date}</button></li>`
           date += 1
         }
       }
@@ -419,7 +437,7 @@ class DatePicker {
 
   setInputValue() {
     if (this.input) {
-      this.input.value = this.getDateForInput()
+      this.input.value = this.getDateForInput(this.selectedDay, this.selectedMonth, this.selectedYear)
     } else if (this.multipleInput) {
       this.dateInput.value = this.constructor.getReadableDate(this.selectedDay)
       this.monthInput.value = this.constructor.getReadableDate(this.selectedMonth + 1)
@@ -427,11 +445,11 @@ class DatePicker {
     }
   }
 
-  getDateForInput() {
+  getDateForInput(day, month, year) {
     const dateArray = []
-    dateArray[this.dateIndexes[0]] = this.constructor.getReadableDate(this.selectedDay)
-    dateArray[this.dateIndexes[1]] = this.constructor.getReadableDate(this.selectedMonth + 1)
-    dateArray[this.dateIndexes[2]] = this.selectedYear
+    dateArray[this.dateIndexes[0]] = this.constructor.getReadableDate(day)
+    dateArray[this.dateIndexes[1]] = this.constructor.getReadableDate(month + 1)
+    dateArray[this.dateIndexes[2]] = year
     return dateArray[0] + this.dateSeparator + dateArray[1] + this.dateSeparator + dateArray[2]
   }
 
