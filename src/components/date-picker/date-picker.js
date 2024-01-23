@@ -6,6 +6,8 @@ class DatePicker {
     this.dateFormat = this.element.getAttribute('data-date-format') ? this.element.getAttribute('data-date-format') : 'd-m-y'
     this.dateSeparator = this.element.getAttribute('data-date-separator') ? this.element.getAttribute('data-date-separator') : '/'
     this.datesDisabled = this.element.getAttribute('data-dates-disabled') ? this.element.getAttribute('data-dates-disabled') : ''
+    this.minDate = this.element.getAttribute('data-min-date') ? this.element.getAttribute('data-min-date') : ''
+    this.maxDate = this.element.getAttribute('data-max-date') ? this.element.getAttribute('data-max-date') : ''
     this.input = this.element.querySelector('.js-date-input__text')
     this.trigger = this.element.querySelector('.js-date-input__trigger')
     this.triggerLabel = this.trigger.getAttribute('aria-label')
@@ -32,11 +34,13 @@ class DatePicker {
     // focus trap
     this.firstFocusable = false
     this.lastFocusable = false
+    // disabled dates
     this.disabledArray = false
   }
 
   init() {
     // set initial date
+    this.disabledDates()
     this.resetCalendar()
     this.initCalendarAria()
     this.initCalendarEvents()
@@ -341,6 +345,7 @@ class DatePicker {
 
   disabledDates() {
     this.disabledArray = []
+
     if (this.datesDisabled) {
       const disabledDates = this.datesDisabled.split(' ')
 
@@ -350,12 +355,31 @@ class DatePicker {
     }
   }
 
+  isDisabledDate(date) {
+    let disabled = false
+
+    if (this.minDate && this.minDate > date) {
+      disabled = true
+    }
+
+    if (this.maxDate && this.maxDate < date) {
+      disabled = true
+    }
+
+    this.disabledArray.forEach((element) => {
+      if (date === element) {
+        disabled = true
+      }
+    })
+
+    return disabled
+  }
+
   showCalendar(bool) {
     // show calendar element
     const firstDay = this.constructor.getDayOfWeek(this.currentYear, this.currentMonth, '01')
     this.body.innerHTML = ''
     this.heading.innerHTML = `${this.months[this.currentMonth]} ${this.currentYear}`
-    this.disabledDates()
 
     // creating all cells
     let date = 1
@@ -376,7 +400,7 @@ class DatePicker {
           if (this.getCurrentMonth() === this.currentMonth && this.getCurrentYear() === this.currentYear && date === this.getCurrentDay()) {
             classListDate += ' nsw-date-picker__date--today'
           }
-          if (this.disabledArray.includes(this.getDateForInput(date, this.currentMonth, this.currentYear))) {
+          if (this.isDisabledDate(this.getDateForInput(date, this.currentMonth, this.currentYear))) {
             disabled = 'aria-disabled="true"'
           }
           if (this.dateSelected && date === this.selectedDay && this.currentYear === this.selectedYear && this.currentMonth === this.selectedMonth) {
