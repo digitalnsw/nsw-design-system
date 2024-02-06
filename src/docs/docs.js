@@ -1,6 +1,7 @@
 import Autocomplete from './autocomplete'
 import ExpandableSearch from './expandable-search'
 import DownloadPDF from './download-pdf'
+import ColorSwatches from './color-swatches'
 
 function initDocs() {
   const codeButtons = document.querySelectorAll('.js-code-button')
@@ -92,6 +93,14 @@ function initDocs() {
   if (downloadPDF) {
     downloadPDF.forEach((element) => {
       new DownloadPDF(element).init()
+    })
+  }
+
+  const colorSwatches = document.querySelectorAll('.js-color-swatches')
+
+  if (colorSwatches) {
+    colorSwatches.forEach((element) => {
+      new ColorSwatches(element).init()
     })
   }
 }

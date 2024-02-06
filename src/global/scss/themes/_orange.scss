@@ -1,0 +1,50 @@
+@use 'sass:color';
+
+// Purple Theme Colours
+$orange-dark: $orange-01 !default;
+$orange-light: $orange-04 !default;
+$orange-supplementary: $orange-02 !default;
+$orange-accent: $purple-02 !default;
+
+// Purple State Colours
+$orange-link: $orange-dark !default;
+$orange-link-light: tint($orange-dark, 90%) !default;
+$orange-visited: a11y-color(lighten(desaturate(adjust-hue($orange-dark, 54), 31.52), 12.75), #ffffff) !default;
+$orange-visited-light: tint($orange-visited, 80%) !default;
+$orange-hover: color.adjust($orange-dark, $alpha: -0.9) !default;
+$orange-hover-light: color.adjust($orange-link-light, $alpha: -0.9) !default;
+$orange-active: color.adjust($orange-dark, $alpha: -0.8) !default;
+$orange-active-light: color.adjust($orange-link-light, $alpha: -0.8) !default;
+$orange-focus: lighten(adjust-hue($orange-dark, -22), 15.49) !default;
+$orange-focus-light: tint($orange-focus, 80%);
+$orange-disabled: tint($orange-dark, 50%) !default;
+
+$orange-colors: (
+  'brand-dark': $orange-dark,
+  'brand-light': $orange-light,
+  'brand-supplementary': $orange-supplementary,
+  'brand-accent': $orange-accent,
+  'link': $orange-link,
+  'link-light': $orange-link-light,
+  'visited': $orange-visited,
+  'visited-light': $orange-visited-light,
+  'hover': $orange-hover,
+  'hover-light': $orange-hover-light,
+  'active': $orange-active,
+  'active-light': $orange-active-light,
+  'focus': $orange-focus,
+  'focus-light': $orange-focus-light,
+  'disabled': $orange-disabled
+) !default;
+
+$orange-colors-rgb: map-loop($orange-colors, to-rgb, '$value') !default;
+
+.orange {
+  @each $color, $value in $orange-colors {
+    --nsw-#{$color}: #{$value};
+  }
+
+  @each $color, $value in $orange-colors-rgb {
+    --nsw-#{$color}-rgb: #{$value};
+  }
+}

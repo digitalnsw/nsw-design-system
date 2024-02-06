@@ -1,0 +1,50 @@
+@use 'sass:color';
+
+// Purple Theme Colours
+$red-dark: $red-01 !default;
+$red-light: $red-04 !default;
+$red-supplementary: $red-02 !default;
+$red-accent: $brown-02 !default;
+
+// Purple State Colours
+$red-link: $red-dark !default;
+$red-link-light: tint($red-dark, 90%) !default;
+$red-visited: a11y-color(lighten(desaturate(adjust-hue($red-dark, 54), 31.52), 12.75), #ffffff) !default;
+$red-visited-light: tint($red-visited, 80%) !default;
+$red-hover: color.adjust($red-dark, $alpha: -0.9) !default;
+$red-hover-light: color.adjust($red-link-light, $alpha: -0.9) !default;
+$red-active: color.adjust($red-dark, $alpha: -0.8) !default;
+$red-active-light: color.adjust($red-link-light, $alpha: -0.8) !default;
+$red-focus: lighten(adjust-hue($red-dark, -22), 15.49) !default;
+$red-focus-light: tint($red-focus, 80%);
+$red-disabled: tint($red-dark, 50%) !default;
+
+$red-colors: (
+  'brand-dark': $red-dark,
+  'brand-light': $red-light,
+  'brand-supplementary': $red-supplementary,
+  'brand-accent': $red-accent,
+  'link': $red-link,
+  'link-light': $red-link-light,
+  'visited': $red-visited,
+  'visited-light': $red-visited-light,
+  'hover': $red-hover,
+  'hover-light': $red-hover-light,
+  'active': $red-active,
+  'active-light': $red-active-light,
+  'focus': $red-focus,
+  'focus-light': $red-focus-light,
+  'disabled': $red-disabled
+) !default;
+
+$red-colors-rgb: map-loop($red-colors, to-rgb, '$value') !default;
+
+.red {
+  @each $color, $value in $red-colors {
+    --nsw-#{$color}: #{$value};
+  }
+
+  @each $color, $value in $red-colors-rgb {
+    --nsw-#{$color}-rgb: #{$value};
+  }
+}

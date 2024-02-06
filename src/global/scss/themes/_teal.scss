@@ -1,0 +1,50 @@
+@use 'sass:color';
+
+// Purple Theme Colours
+$teal-dark: $teal-01 !default;
+$teal-light: $teal-04 !default;
+$teal-supplementary: $teal-02 !default;
+$teal-accent: $fuchsia-02 !default;
+
+// Purple State Colours
+$teal-link: $teal-dark !default;
+$teal-link-light: tint($teal-dark, 90%) !default;
+$teal-visited: a11y-color(lighten(desaturate(adjust-hue($teal-dark, 54), 31.52), 12.75), #ffffff) !default;
+$teal-visited-light: tint($teal-visited, 80%) !default;
+$teal-hover: color.adjust($teal-dark, $alpha: -0.9) !default;
+$teal-hover-light: color.adjust($teal-link-light, $alpha: -0.9) !default;
+$teal-active: color.adjust($teal-dark, $alpha: -0.8) !default;
+$teal-active-light: color.adjust($teal-link-light, $alpha: -0.8) !default;
+$teal-focus: lighten(adjust-hue($teal-dark, -22), 15.49) !default;
+$teal-focus-light: tint($teal-focus, 80%);
+$teal-disabled: tint($teal-dark, 50%) !default;
+
+$teal-colors: (
+  'brand-dark': $teal-dark,
+  'brand-light': $teal-light,
+  'brand-supplementary': $teal-supplementary,
+  'brand-accent': $teal-accent,
+  'link': $teal-link,
+  'link-light': $teal-link-light,
+  'visited': $teal-visited,
+  'visited-light': $teal-visited-light,
+  'hover': $teal-hover,
+  'hover-light': $teal-hover-light,
+  'active': $teal-active,
+  'active-light': $teal-active-light,
+  'focus': $teal-focus,
+  'focus-light': $teal-focus-light,
+  'disabled': $teal-disabled
+) !default;
+
+$teal-colors-rgb: map-loop($teal-colors, to-rgb, '$value') !default;
+
+.teal {
+  @each $color, $value in $teal-colors {
+    --nsw-#{$color}: #{$value};
+  }
+
+  @each $color, $value in $teal-colors-rgb {
+    --nsw-#{$color}-rgb: #{$value};
+  }
+}
