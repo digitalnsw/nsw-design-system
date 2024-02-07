@@ -33,12 +33,16 @@
 
 // Default hover state
 @mixin nsw-hover {
-  background-color: var(--nsw-text-hover);
+  background-color: var(--nsw-hover);
+}
+
+@mixin nsw-hover-light {
+  background-color: var(--nsw-hover-light);
 }
 
 // Default text link hover state
 @mixin nsw-link-hover {
-  background-color: var(--nsw-text-link-hover);
+  background-color: var(--nsw-hover);
 }
 
 // A block to click around the link
@@ -106,54 +110,64 @@
 //Links
 @mixin link() {
   font-weight: var(--nsw-font-bold);
-  color: var(--nsw-text-link);
+  color: var(--nsw-link);
   text-decoration: underline;
+
+  &:visited {
+    color: var(--nsw-visited);
+  }
 
   &:hover {
     @include nsw-link-hover;
-    outline: 2px solid var(--nsw-text-link-hover);
+    outline: 2px solid var(--nsw-hover);
   }
 
   &:focus {
     @include nsw-focus($offset: false);
   }
-
-  &:visited {
-    color: var(--nsw-text-visited);
-  }
 }
 
 @mixin link-dark() {
-  color: var(--nsw-text-link);
+  color: var(--nsw-link);
+
+  &:visited {
+    color: var(--nsw-visited);
+  }
 
   &:hover {
-    background-color: var(--nsw-text-link-hover);
-    outline-color: var(--nsw-text-link-hover);
+    background-color: var(--nsw-hover);
+    outline-color: var(--nsw-hover);
+  }
+
+  &:active {
+    background-color: var(--nsw-active);
+    outline-color: var(--nsw-active);
   }
 
   &:focus {
     outline-color: var(--nsw-focus);
   }
-
-  &:visited {
-    color: var(--nsw-text-visited);
-  }
 }
 
 @mixin link-light() {
-  color: var(--nsw-text-light);
+  color: var(--nsw-link-light);
+
+  &:visited {
+    color: var(--nsw-visited-light);
+  }
 
   &:hover {
-    background-color: var(--nsw-text-hover-light);
-    outline-color: var(--nsw-text-hover-light);
+    background-color: var(--nsw-hover-light);
+    outline-color: var(--nsw-hover-light);
+  }
+
+  &:active {
+    background-color: var(--nsw-active-light);
+    outline-color: var(--nsw-active-light);
   }
 
   &:focus {
-    outline-color: var(--nsw-white);
-  }
-
-  &:visited {
-    color: var(--nsw-text-light);
+    outline-color: var(--nsw-focus-light);
   }
 }
 

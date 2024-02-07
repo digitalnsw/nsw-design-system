@@ -18,6 +18,7 @@
     &:hover & {
       background-color: var(--nsw-brand-dark);
       color: var(--nsw-text-light);
+      cursor: pointer;
 
       .nsw-section--invert & {    
         background-color: var(--nsw-brand-light);
@@ -41,7 +42,7 @@
 
     button {
       @include font-size('sm');
-      color: var(--nsw-text-link);
+      color: var(--nsw-link);
       text-decoration: underline;
       text-decoration-skip-ink: auto;
       font-weight: var(--nsw-font-bold);
@@ -51,11 +52,11 @@
 
       &:hover:enabled {
         @include nsw-link-hover;
-        outline: 2px solid var(--nsw-text-link-hover);
+        outline: 2px solid var(--nsw-hover);
 
         .nsw-section--invert & {    
-          background-color: var(--nsw-text-hover-light);
-          outline-color: var(--nsw-text-hover-light);
+          background-color: var(--nsw-hover-light);
+          outline-color: var(--nsw-hover-light);
         }
       }
 

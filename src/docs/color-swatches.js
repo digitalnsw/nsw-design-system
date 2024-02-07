@@ -399,12 +399,12 @@ class ColorSwatches {
 
   init() {
     this.initOptions()
-    this.initCustomSelect() // replace <select> with custom <ul> list
-    this.initColorData()
+    this.initCustomSelect()
+    this.createColorData()
     this.initEvents()
   }
 
-  initColorData() {
+  createColorData() {
     if (this.dataTable) {
       const data = options[this.color].content
       let customContent = ''
@@ -412,7 +412,7 @@ class ColorSwatches {
       Object.keys(data).forEach((element) => {
         console.log(data[element].var)
         customContent = `${customContent}
-        <tr><td><div class="nsw-docs__swatch" style="background-color: var(${data[element].var})"></div></td>
+        <tr class="nsw-color-swatches__data"><td><div class="nsw-docs__swatch" style="background-color: var(${data[element].var})"></div></td>
         <td><p>${element}</p></td>               
         <td><p>${data[element].hex}</p></td>
         <td><p><code>${data[element].var}</code></p></td></tr>`
@@ -530,7 +530,7 @@ class ColorSwatches {
     document.body.classList.add(this.color)
     // update select element
     this.updateNativeSelect(this.select, option.getAttribute('data-value'))
-    this.initColorData()
+    this.createColorData()
   }
 
   resetSelectedLabel() {
