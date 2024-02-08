@@ -3,10 +3,14 @@ title: Dialog
 width: narrow
 page: true
 model:
-    dialog-transactional: json/dialog-transactional.json
-    dialog-single-cta: json/dialog-single-cta.json
-    dialog-danger: json/dialog-danger.json
-    dialog-dismissible: json/dialog-dismissible.json
+  dialog-transactional: ../../components/dialog/json/dialog-transactional.json
+  dialog-single-cta: ../../components/dialog/json/dialog-single-cta.json
+  dialog-danger: ../../components/dialog/json/dialog-danger.json
+  dialog-dismissible: ../../components/dialog/json/dialog-dismissible.json
+  dialog-transactional-dark: ../../components/dialog/json/dialog-transactional-dark.json
+  dialog-single-cta-dark: ../../components/dialog/json/dialog-single-cta-dark.json
+  dialog-danger-dark: ../../components/dialog/json/dialog-danger-dark.json
+  dialog-dismissible-dark: ../../components/dialog/json/dialog-dismissible-dark.json
 ---
 
 {{#>_layout-container}}
@@ -14,4 +18,11 @@ model:
 {{>_dialog model.dialog-single-cta button-title="Launch single CTA dialog"}}
 {{>_dialog model.dialog-danger button-title="Launch danger dialog"}}
 {{>_dialog model.dialog-dismissible button-title="Launch dismissible dialog"}}
+{{/_layout-container}}
+
+{{#>_layout-container brand-dark="true" invert="true"}}
+{{>_dialog model.dialog-transactional-dark button-title="Launch transactional dialog"}}
+{{>_dialog model.dialog-single-cta-dark button-title="Launch single CTA dialog"}}
+{{>_dialog model.dialog-danger-dark button-title="Launch danger dialog"}}
+{{>_dialog model.dialog-dismissible-dark button-title="Launch dismissible dialog"}}
 {{/_layout-container}}

@@ -1,0 +1,20 @@
+---
+title: Accordion
+width: narrow
+page: true
+model:
+    accordion-1: json/accordion.json
+    accordion-2: json/accordion-2.json
+---
+
+{{#>_theme}}
+  {{#>_layout-container}}
+    {{>_accordion model.accordion-1}}
+    {{>_accordion model.accordion-2}}
+  {{/_layout-container}}
+
+  {{#>_layout-container brand-dark="true" invert="true"}}
+    {{>_accordion model.accordion-1}}
+    {{>_accordion model.accordion-2}}
+  {{/_layout-container}}
+{{/_theme}}

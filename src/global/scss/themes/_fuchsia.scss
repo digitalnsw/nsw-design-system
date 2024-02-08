@@ -4,7 +4,7 @@
 $fuchsia-dark: $fuchsia-01 !default;
 $fuchsia-light: $fuchsia-04 !default;
 $fuchsia-supplementary: $fuchsia-02 !default;
-$fuchsia-accent: $yellow-02 !default;
+$fuchsia-accent: $orange-02 !default;
 
 // Purple State Colours
 $fuchsia-link: $fuchsia-dark !default;
@@ -47,4 +47,9 @@ $fuchsia-colors-rgb: map-loop($fuchsia-colors, to-rgb, '$value') !default;
   @each $color, $value in $fuchsia-colors-rgb {
     --nsw-#{$color}-rgb: #{$value};
   }
+}
+
+.fuchsia-accent {
+  --nsw-brand-accent: #{$fuchsia-02};
+  --nsw-brand-accent-rgb: #{to-rgb($fuchsia-02)};
 }

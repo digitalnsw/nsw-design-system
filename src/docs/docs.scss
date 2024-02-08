@@ -669,10 +669,8 @@ $header-height: 151px;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-
-  &__legend {
-    @include sr-only;
-  }
+  align-items: center;
+  gap: 0.5rem;
 
   &__list {
     list-style: none;
@@ -711,6 +709,8 @@ $header-height: 151px;
   }
 
   &__item {
+    margin-top: 0;
+
     &--selected {
       .nsw-color-swatches__swatch::before {
         border-color: rgba(var(--nsw-brand-dark-rgb), 0.8);

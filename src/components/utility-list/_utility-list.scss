@@ -1,6 +1,10 @@
 .nsw-utility-list {
   background-color: var(--nsw-off-white);
 
+  .nsw-section--invert & {    
+    background-color: transparent;
+  }
+
   @include component-spacing();
 
   &__title {
@@ -48,7 +52,7 @@
 
     .nsw-section--invert & {    
       color: var(--nsw-text-light);
-      background-color: rgba(var(--nsw-brand-dark-rgb), 1);
+      background-color: transparent;
       color: var(--nsw-text-light);
       
       span:not(.nsw-toggletip__element .nsw-material-icons) {
@@ -62,12 +66,11 @@
       }
       
       &:hover {
-        background-color: rgba(var(--nsw-brand-dark-rgb), 0.8);
+        @include nsw-hover-light();
       }
     
       &:focus {
-        outline: solid 3px var(--nsw-focus);
-        outline-offset: 0;
+        @include nsw-focus(false);
       }
     
       &:visited {

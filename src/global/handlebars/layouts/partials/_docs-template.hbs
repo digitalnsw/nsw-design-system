@@ -1,33 +1,23 @@
+{{#unless blank}}
+<!-- {{component}} Start -->
 <section class="nsw-section{{#if brand}} nsw-section--brand-dark nsw-section--invert{{/if}}{{#if grey}} nsw-section--grey-01 nsw-section--invert{{/if}}">
   <div class="nsw-container">
     <div class="nsw-grid">
 
       <div class="nsw-row">
-        <div class="nsw-col">
-          <h2 id="{{id}}">{{component}}</h2>
+        <div class="nsw-col{{#if col-8}} nsw-col-lg-8{{/if}}">
+          <!-- Template Start -->
+          {{> @partial-block }}
+          <!-- Template End -->
         </div>
       </div>
 
     </div>
   </div>
 </section>
-
-<!-- {{component}} Start -->
-
+<!-- {{component}} End -->
+{{/unless}}{{#if blank}}
 <!-- Template Start -->
 {{> @partial-block }}
 <!-- Template End -->
-
-<!-- {{component}} End -->
-
-<section class="nsw-section">
-  <div class="nsw-container">
-    <div class="nsw-grid">
-
-      <div class="nsw-row">
-        <div class="nsw-col"><hr></div>
-      </div>
-
-    </div>
-  </div>
-</section>
+{{/if}}

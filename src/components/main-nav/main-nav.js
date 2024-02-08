@@ -39,7 +39,9 @@ class Navigation {
       document.addEventListener('keydown', this.escapeClose.bind(this), false)
     }
 
-    this.openNavButton.addEventListener('click', this.mobileToggleMainNav.bind(this), false)
+    if (this.openNavButton) {
+      this.openNavButton.addEventListener('click', this.mobileToggleMainNav.bind(this), false)
+    }
 
     this.closeNavButtons.forEach((element) => {
       element.addEventListener('click', this.mobileToggleMainNav.bind(this), false)
