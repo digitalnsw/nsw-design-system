@@ -46,6 +46,11 @@
     &:hover {
       @include nsw-hover;
       outline-width: 0;
+
+      .nsw-section--invert & {    
+        @include nsw-hover-light;
+        outline-width: 0;
+      }
     }
 
     &:focus {
@@ -56,7 +61,7 @@
       background-color: var(--nsw-off-white);
       
       .nsw-section--invert & {    
-        background-color: var(--nsw-hover-light);
+        @include nsw-hover-light;
       }
     }
 
