@@ -40,7 +40,7 @@
   background-color: var(--nsw-hover-light);
 }
 
-// Default text link hover state
+// Default text link hover state // deprecated
 @mixin nsw-link-hover {
   background-color: var(--nsw-hover);
 }
@@ -117,13 +117,18 @@
     color: var(--nsw-visited);
   }
 
+  &:focus {
+    @include nsw-focus($offset: false);
+  }
+
   &:hover {
     @include nsw-link-hover;
     outline: 2px solid var(--nsw-hover);
   }
 
-  &:focus {
-    @include nsw-focus($offset: false);
+  &:active {
+    background-color: var(--nsw-active);
+    outline-color: var(--nsw-active);
   }
 }
 
@@ -132,6 +137,10 @@
 
   &:visited {
     color: var(--nsw-visited);
+  }
+
+  &:focus {
+    outline-color: var(--nsw-focus);
   }
 
   &:hover {
@@ -143,10 +152,6 @@
     background-color: var(--nsw-active);
     outline-color: var(--nsw-active);
   }
-
-  &:focus {
-    outline-color: var(--nsw-focus);
-  }
 }
 
 @mixin link-light() {
@@ -154,6 +159,10 @@
 
   &:visited {
     color: var(--nsw-visited-light);
+  }
+
+  &:focus {
+    outline-color: var(--nsw-focus-light);
   }
 
   &:hover {
@@ -164,10 +173,6 @@
   &:active {
     background-color: var(--nsw-active-light);
     outline-color: var(--nsw-active-light);
-  }
-
-  &:focus {
-    outline-color: var(--nsw-focus-light);
   }
 }
 
