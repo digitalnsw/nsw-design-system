@@ -5,17 +5,17 @@ layout: blank-layout.hbs
 
 <h2>Usage</h2>
 
-<p>Use the date input component to let users enter a date they already know such as their date of birth, or a date they can enter without needing a calendar. It consists of three separate text fields grouped together, prompting users to enter the day, month, and year individually.</p>
+<p>Use the date input component to let users enter memorable dates, like dates of birth. The date input component consists of three fields grouped together, to let users enter a day, month and year.</p>
 
-<p>This is the easiest way for users to enter dates they know well because it allows for precise input and reduces the chances of making mistakes.</p>
+<p>This approach is advised in most cases because it allows for precise input and reduces the chances of making mistakes.</p>
 
 <p>Do:</p>
 
 <ul>
-  <li>Adjust the order of day, month, and year fields according to the regional format familiar to your users.</li>
-  <li>Accept month names written out in full or abbreviated form (for example, ‘january’ or ‘jan’) as some users may enter months in this way.</li>
-  <li>Ensure each field is clearly labeled. It’s important that date and month are clearly distinguished to ensure correct date entry</li>
-  <li>use hint text to show the expected date format, for example, ‘07 11 2022’. Make sure that any example dates you use in hint text are valid for the question being asked.</li>
+  <li>adjust the order of day, month, and year fields according to the regional format familiar to your users.</li>
+  <li>accept month names written out in full or abbreviated form (for example, ‘january’ or ‘jan’) as some users may enter months in this way.</li>
+  <li>ensure each field is clearly labeled ‘Day’, ‘Month’, ‘Year’</li>
+  <li>use a hint to show the expected date format, for example, ‘07 11 2022’</li>
   <li>use a "text" vs "numeric" input type.</li>
   <li>limit individual field character length.</li>
   <li>require a four-digit year to avoid potential confusion.</li>
@@ -26,17 +26,9 @@ layout: blank-layout.hbs
 <ul>
   <li>auto-advance focus from one field to the next. This makes it difficult for keyboard-only users to navigate and correct mistakes.</li>
   <li>use placeholder text as it disappears when the user starts typing and may not be accessible to all users.</li>
-  <li>use without a form label or hint text specifying the expected date format.</li>
   <li>use visual separators between fields.</li>
   <li>disable copy and paste.</li>
-</ul>
-
-<h3>When to avoid</h3>
-<p>Don't use a date input:</p>
-<ul>
-  <li>when asking users for multiple dates, such as a range, or a start and finish date (use date picker instead)</li>
-  <li>if users are unlikely to know or cannot easily find the exact date of the event you're asking about.</li>
-  <li>for scenarios where only an approximate date is needed, like a month or a year without a specific day.</li>
+  <li>use in instances where only part of a date is needed, like a month or a year without a specific day.</li>
 </ul>
 
 <h2>How this component works</h2>
