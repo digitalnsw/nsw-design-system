@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+  <title>NSW Digital Design System - Date input</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="noindex" />
+  <link rel="icon" href="/nsw-design-system/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone" rel="stylesheet">
+  <link rel="stylesheet" href="/nsw-design-system/docs/css/docs.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TMEHXHFJXJ"></script>
+<script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-TMEHXHFJXJ");</script>
+</head>
+
+<body>
+<div class="nsw-container nsw-p-y-sm">
+  <div class="nsw-layout">
+    <main class="nsw-layout__main">
+  		
+  		<div class="nsw-form">
+  		  <div class="nsw-form__group">
+  		    <fieldset class="nsw-form__date">
+  		      <legend>
+  		        <span class="nsw-form__label">Date of birth</span>
+  		        <span id="date-helper-text" class="nsw-form__helper">For example 08 12 1990</span>
+  		      </legend>
+  		      <div class="nsw-form__date-wrapper">
+  		        <div class="nsw-form__date-input">
+  		          <label for="date-day" class="nsw-form__label nsw-form__label--small">Day</label>
+  		          <input type="text" maxlength="2" id="date-day" name="date-day" class="nsw-form__input">
+  		        </div>
+  		        <div class="nsw-form__date-input">
+  		          <label for="date-month" class="nsw-form__label nsw-form__label--small">Month</label>
+  		          <input type="text" maxlength="2" id="date-month" name="date-month" class="nsw-form__input">
+  		        </div>
+  		        <div class="nsw-form__date-input nsw-form__date-input--large">
+  		          <label for="date-year" class="nsw-form__label nsw-form__label--small">Year</label>
+  		          <input type="text" maxlength="4" id="date-year" name="date-year" class="nsw-form__input">
+  		        </div>
+  		      </div>
+  		    </fieldset>
+  		  </div>
+  		</div>
+  		
+  		<div class="nsw-form">
+  		  <div class="nsw-form__group">
+  		    <fieldset class="nsw-form__date">
+  		      <legend>
+  		        <span class="nsw-form__label nsw-form__required">Date of birth<span class="sr-only"> (required)</span></span>
+  		        <span id="date-error-helper-text" class="nsw-form__helper">For example 08 12 1990</span>
+  		      </legend>
+  		      <div class="nsw-form__date-wrapper">
+  		        <div class="nsw-form__date-input">
+  		          <label for="date-error-day" class="nsw-form__label nsw-form__label--small">Day</label>
+  		          <input type="text" maxlength="2" id="date-error-day" name="date-error-day" class="nsw-form__input" aria-invalid="true">
+  		        </div>
+  		        <div class="nsw-form__date-input">
+  		          <label for="date-error-month" class="nsw-form__label nsw-form__label--small">Month</label>
+  		          <input type="text" maxlength="2" id="date-error-month" name="date-error-month" class="nsw-form__input" aria-invalid="true">
+  		        </div>
+  		        <div class="nsw-form__date-input nsw-form__date-input--large">
+  		          <label for="date-error-year" class="nsw-form__label nsw-form__label--small">Year</label>
+  		          <input type="text" maxlength="4" id="date-error-year" name="date-error-year" class="nsw-form__input" aria-invalid="true">
+  		        </div>
+  		      </div>
+  		    </fieldset>
+  		    <span id="date-error-error-text" class="nsw-form__helper nsw-form__helper--error"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span>This field is required</span>
+  		  </div>
+  		</div>
+  		
+  		<div class="nsw-form">
+  		  <div class="nsw-form__group">
+  		    <fieldset class="nsw-form__date">
+  		      <legend>
+  		        <span class="nsw-form__label">Date of birth</span>
+  		        <span id="date-success-helper-text" class="nsw-form__helper">For example 08 12 1990</span>
+  		      </legend>
+  		      <div class="nsw-form__date-wrapper">
+  		        <div class="nsw-form__date-input">
+  		          <label for="date-success-day" class="nsw-form__label nsw-form__label--small">Day</label>
+  		          <input type="text" maxlength="2" id="date-success-day" name="date-success-day" class="nsw-form__input">
+  		        </div>
+  		        <div class="nsw-form__date-input">
+  		          <label for="date-success-month" class="nsw-form__label nsw-form__label--small">Month</label>
+  		          <input type="text" maxlength="2" id="date-success-month" name="date-success-month" class="nsw-form__input">
+  		        </div>
+  		        <div class="nsw-form__date-input nsw-form__date-input--large">
+  		          <label for="date-success-year" class="nsw-form__label nsw-form__label--small">Year</label>
+  		          <input type="text" maxlength="4" id="date-success-year" name="date-success-year" class="nsw-form__input">
+  		        </div>
+  		      </div>
+  		    </fieldset>
+  		    
+  		    <span id="date-success-valid-text" class="nsw-form__helper nsw-form__helper--valid"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span>This field has been validated</span>
+  		  </div>
+  		</div>
+  		
+  	</main>
+  	
+  </div>
+</div>
+
+  <script src="/nsw-design-system/js/main.js"></script>
+  <script>
+    window.NSW.initSite()
+  </script>
+</body>
+</html>

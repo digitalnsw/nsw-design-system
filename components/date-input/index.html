@@ -1,11 +1,11 @@
 <!doctype html>
 <html lang="en" class="no-js">
 <head>
-  <title>NSW Digital Design System - Layout</title>
+  <title>NSW Digital Design System - Date input</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="description" content="NSW Design System layouts for structuring components for NSW Government digital products and services." />
+  <meta name="description" content="A date input allows users to enter a date." />
   <link rel="icon" href="/nsw-design-system/favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -390,104 +390,107 @@
       </div>
     </div>
     <div class="nsw-docs__main nsw-docs__main--wide">
-      <div class="nsw-docs__intro">
+      <div class="nsw-docs__intro nsw-docs__intro--tabs">
         <div class="nsw-docs__container">
-          <h1>Layout</h1>
+          <h1>Date input</h1>
           
-          <p class="nsw-intro">Layouts are common page composition patterns that offer ways of structuring components and content.</p>
+          <p class="nsw-intro">A date input allows users to enter a date.</p>
           
-          <div class="nsw-docs__external">
-            <a class="nsw-small nsw-link nsw-link--icon" target="_blank" href="/nsw-design-system/core/layout/blank.html" class="nsw-docs__external">
-              <span>View in new window</span>
-              <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">launch</i>
+          <p>
+            <a class="nsw-link nsw-link--icon" target="_blank" href="URL">
+              <svg width="20" height="20" viewBox="0 0 33 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.003 48c4.416 0 8-3.584 8-8v-8h-8c-4.416 0-8 3.584-8 8s3.584 8 8 8z" fill="#0ACF83"></path><path d="M.003 24c0-4.416 3.584-8 8-8h8v16h-8c-4.416 0-8-3.584-8-8z" fill="#A259FF"></path><path d="M.003 8c0-4.416 3.584-8 8-8h8v16h-8c-4.416 0-8-3.584-8-8z" fill="#F24E1E"></path><path d="M16.003 0h8c4.416 0 8 3.584 8 8s-3.584 8-8 8h-8V0z" fill="#FF7262"></path><path d="M32.003 24c0 4.416-3.584 8-8 8s-8-3.584-8-8 3.584-8 8-8 8 3.584 8 8z" fill="#1ABCFE"></path></svg>
+              <span>Figma</span>
             </a>
-          </div>
-          
+          </p>
         </div>
       </div>
-      <div class="nsw-docs__content">
-        <div class="nsw-docs__container">
+<div class="nsw-docs__tabs">
+  <div class="nsw-tabs js-tabs nsw-docs-tabs">
+    <ul class="nsw-tabs__list">
+      <li class="nsw-tabs__list-item">
+        <a href="#section-guidance" class="nsw-tabs__link js-tabs-fixed">Guidance</a>
+      </li>
+      <li class="nsw-tabs__list-item">
+        <a href="#section-interactive-demo" class="nsw-tabs__link js-tabs-fixed">Demo &amp; Code</a>
+      </li>
+    </ul>
+    <section id="section-guidance" class="nsw-tabs__content">
+      <div class="nsw-docs__container">
+        
+<h2>Usage</h2>
 
-<h2>Page layouts</h2>
-<p>There are then 3 standard page layouts that can be used to enclose your grid:</p>
+<p>Use the date input component to let users enter memorable dates, like dates of birth. The date input component consists of three fields grouped together, to let users enter a day, month and year.</p>
+
+<p>This approach is advised in most cases because it allows for precise input and reduces the chances of making mistakes.</p>
+
+<p>Do:</p>
+
 <ul>
-  <li>Full width <a target="_blank" href="/nsw-design-system/templates/homepage/hero-banner.html">(Demo)</a></li>
-  <li>Two column - Left side desktop only <a target="_blank" href="/nsw-design-system/templates/content/side-nav.html">(Demo)</a></li>
-  <li>Two column - Right side <a target="_blank" href="/nsw-design-system/templates/content/article.html">(Demo)</a></li>
+  <li>adjust the order of day, month, and year fields according to the regional format familiar to your users.</li>
+  <li>accept month names written out in full or abbreviated form (for example, ‘january’ or ‘jan’) as some users may enter months in this way.</li>
+  <li>ensure each field is clearly labeled ‘Day’, ‘Month’, ‘Year’</li>
+  <li>use a hint to show the expected date format, for example, ‘07 11 2022’</li>
+  <li>use a "text" vs "numeric" input type.</li>
+  <li>limit individual field character length.</li>
+  <li>require a four-digit year to avoid potential confusion.</li>
 </ul>
 
-<h2>Usage</h2>
-<p>A <code>nsw-container</code> keeps a container width of 1200px and the <code>nsw-page-layout</code> acts as a wrapper to align the content's spacing.</p>
+<p>Do not:</p>
 
-<h3>Full width - Main content area</h3>
-<p>Displays main content area the full width of the container.</p>
-<div class="nsw-docs__example nsw-m-top-sm">
-  <div class="nsw-docs__component">
-      <div class="nsw-container">
-        <div class="nsw-layout">
-          <main class="nsw-layout__main">
-            <!-- START: Main content -->
-            <div class="nsw-docs__box nsw-docs__box--large"></div>
-            <!-- END: Main content -->
-          </main>
-        </div>
+<ul>
+  <li>auto-advance focus from one field to the next. This makes it difficult for keyboard-only users to navigate and correct mistakes.</li>
+  <li>use placeholder text as it disappears when the user starts typing and may not be accessible to all users.</li>
+  <li>use visual separators between fields.</li>
+  <li>disable copy and paste.</li>
+  <li>use in instances where only part of a date is needed, like a month or a year without a specific day.</li>
+</ul>
+
+<h2>How this component works</h2>
+
+<p>The three fields in the date input component are grouped together in a <code>fieldset</code> with a <code>legend</code> that describes them, as shown in the examples on this page. The legend is usually a question, such as 'What is your date of birth?'.</p>
+
+<p>Use the <code>autocomplete</code> attribute on the date input component when you're asking for a date of birth. This allows browsers to autofill the information on a user's behalf if they've entered it previously.</p>
+
+<p>The year input is set to accept only a four-digit number while the month and day inputs can accept up to a two-digit number.</p>
+
+<h2>Accessibility</h2>
+<p>All components are responsive and meet WCAG 2.1 AA accessibility guidelines.</p>
+
       </div>
-  </div>
-</div>
-<div class="nsw-docs-code">
-  <button class="nsw-link nsw-link--button nsw-link--icon nsw-small js-code-button">
-    <span>Show code</span>
-    <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
-  </button>
-  <div class="nsw-docs-code__content">
-    <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
-      <span>Copy</span>
-      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
-    </button>
-    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`  <div class="nsw-container">
-    <div class="nsw-layout">
-      <main class="nsw-layout__main">
-        <!-- START: Main content -->
-        <div class="nsw-docs__box nsw-docs__box--large"></div>
-        <!-- END: Main content -->
-      </main>
-    </div>
-  </div>
-`).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
-    <div class="nsw-docs-code__wrapper">
-<pre><code class="html"><script>document.write((`  <div class="nsw-container">
-    <div class="nsw-layout">
-      <main class="nsw-layout__main">
-        <!-- START: Main content -->
-        <div class="nsw-docs__box nsw-docs__box--large"></div>
-        <!-- END: Main content -->
-      </main>
-    </div>
-  </div>
-`).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
-    </div>
-  </div>
-</div>
+    </section>
+    <section id="section-interactive-demo" class="nsw-tabs__content">
+      <div class="nsw-docs__demo">
+        <div class="nsw-docs__external">
+          <a class="nsw-small nsw-link nsw-link--icon" target="_blank" href="/nsw-design-system/components/date-input/blank.html"><span>View in new window</span><i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">launch</i></a>
+        </div>
 
-
-<h3>Two column - Left side desktop only</h3>
-<p>Displays a left hand sidebar that is visible on 992px+ viewports, with a main content area that is always visible. (Recommended for side navigation).</p>
+<h4>Default</h4>
 <div class="nsw-docs__example nsw-m-top-sm">
   <div class="nsw-docs__component">
-      <div class="nsw-container">
-        <div class="nsw-layout">
-          <div class="nsw-layout__sidebar nsw-layout__sidebar--desktop">
-            <!-- START: Left sidebar content -->
-            <div class="nsw-docs__box nsw-docs__box--large"></div>
-            <!-- END: Left sidebar content -->
+    <div class="nsw-form">
+      <div class="nsw-form__group">
+        <fieldset class="nsw-form__date">
+          <legend>
+            <span class="nsw-form__label">Date of birth</span>
+            <span id="date-helper-text" class="nsw-form__helper">For example 08 12 1990</span>
+          </legend>
+          <div class="nsw-form__date-wrapper">
+            <div class="nsw-form__date-input">
+              <label for="date-day" class="nsw-form__label nsw-form__label--small">Day</label>
+              <input type="text" maxlength="2" id="date-day" name="date-day" class="nsw-form__input">
+            </div>
+            <div class="nsw-form__date-input">
+              <label for="date-month" class="nsw-form__label nsw-form__label--small">Month</label>
+              <input type="text" maxlength="2" id="date-month" name="date-month" class="nsw-form__input">
+            </div>
+            <div class="nsw-form__date-input nsw-form__date-input--large">
+              <label for="date-year" class="nsw-form__label nsw-form__label--small">Year</label>
+              <input type="text" maxlength="4" id="date-year" name="date-year" class="nsw-form__input">
+            </div>
           </div>
-          <main class="nsw-layout__main">
-            <!-- START: Main content -->
-            <div class="nsw-docs__box nsw-docs__box--large"></div>
-            <!-- END: Main content -->
-          </main>
-        </div>
+        </fieldset>
       </div>
+    </div>
   </div>
 </div>
 <div class="nsw-docs-code">
@@ -500,61 +503,90 @@
       <span>Copy</span>
       <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
     </button>
-    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`  <div class="nsw-container">
-    <div class="nsw-layout">
-      <div class="nsw-layout__sidebar nsw-layout__sidebar--desktop">
-        <!-- START: Left sidebar content -->
-        <div class="nsw-docs__box nsw-docs__box--large"></div>
-        <!-- END: Left sidebar content -->
+    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`<div class="nsw-form">
+  <div class="nsw-form__group">
+    <fieldset class="nsw-form__date">
+      <legend>
+        <span class="nsw-form__label">Date of birth</span>
+        <span id="date-helper-text" class="nsw-form__helper">For example 08 12 1990</span>
+      </legend>
+      <div class="nsw-form__date-wrapper">
+        <div class="nsw-form__date-input">
+          <label for="date-day" class="nsw-form__label nsw-form__label--small">Day</label>
+          <input type="text" maxlength="2" id="date-day" name="date-day" class="nsw-form__input">
+        </div>
+        <div class="nsw-form__date-input">
+          <label for="date-month" class="nsw-form__label nsw-form__label--small">Month</label>
+          <input type="text" maxlength="2" id="date-month" name="date-month" class="nsw-form__input">
+        </div>
+        <div class="nsw-form__date-input nsw-form__date-input--large">
+          <label for="date-year" class="nsw-form__label nsw-form__label--small">Year</label>
+          <input type="text" maxlength="4" id="date-year" name="date-year" class="nsw-form__input">
+        </div>
       </div>
-      <main class="nsw-layout__main">
-        <!-- START: Main content -->
-        <div class="nsw-docs__box nsw-docs__box--large"></div>
-        <!-- END: Main content -->
-      </main>
-    </div>
+    </fieldset>
   </div>
+</div>
 `).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
     <div class="nsw-docs-code__wrapper">
-<pre><code class="html"><script>document.write((`  <div class="nsw-container">
-    <div class="nsw-layout">
-      <div class="nsw-layout__sidebar nsw-layout__sidebar--desktop">
-        <!-- START: Left sidebar content -->
-        <div class="nsw-docs__box nsw-docs__box--large"></div>
-        <!-- END: Left sidebar content -->
+<pre><code class="html"><script>document.write((`<div class="nsw-form">
+  <div class="nsw-form__group">
+    <fieldset class="nsw-form__date">
+      <legend>
+        <span class="nsw-form__label">Date of birth</span>
+        <span id="date-helper-text" class="nsw-form__helper">For example 08 12 1990</span>
+      </legend>
+      <div class="nsw-form__date-wrapper">
+        <div class="nsw-form__date-input">
+          <label for="date-day" class="nsw-form__label nsw-form__label--small">Day</label>
+          <input type="text" maxlength="2" id="date-day" name="date-day" class="nsw-form__input">
+        </div>
+        <div class="nsw-form__date-input">
+          <label for="date-month" class="nsw-form__label nsw-form__label--small">Month</label>
+          <input type="text" maxlength="2" id="date-month" name="date-month" class="nsw-form__input">
+        </div>
+        <div class="nsw-form__date-input nsw-form__date-input--large">
+          <label for="date-year" class="nsw-form__label nsw-form__label--small">Year</label>
+          <input type="text" maxlength="4" id="date-year" name="date-year" class="nsw-form__input">
+        </div>
       </div>
-      <main class="nsw-layout__main">
-        <!-- START: Main content -->
-        <div class="nsw-docs__box nsw-docs__box--large"></div>
-        <!-- END: Main content -->
-      </main>
-    </div>
+    </fieldset>
   </div>
+</div>
 `).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
     </div>
   </div>
 </div>
 
 
-
-<h3>Two column - Right side</h3>
-<p>Displays a right hand sidebar that stacks on 0 - 991px viewports, with main content area that is always visible. </p>
+<h4>Error</h4>
 <div class="nsw-docs__example nsw-m-top-sm">
   <div class="nsw-docs__component">
-      <div class="nsw-container">
-        <div class="nsw-layout">
-          <main class="nsw-layout__main">
-            <!-- START: Main content -->
-            <div class="nsw-docs__box nsw-docs__box--large"></div>
-            <!-- END: Main content -->
-          </main>
-          <div class="nsw-layout__sidebar">
-            <!-- START: Right sidebar content -->
-            <div class="nsw-docs__box nsw-docs__box--large"></div>
-            <!-- END: Right sidebar content -->
+    <div class="nsw-form">
+      <div class="nsw-form__group">
+        <fieldset class="nsw-form__date">
+          <legend>
+            <span class="nsw-form__label nsw-form__required">Date of birth<span class="sr-only"> (required)</span></span>
+            <span id="date-error-helper-text" class="nsw-form__helper">For example 08 12 1990</span>
+          </legend>
+          <div class="nsw-form__date-wrapper">
+            <div class="nsw-form__date-input">
+              <label for="date-error-day" class="nsw-form__label nsw-form__label--small">Day</label>
+              <input type="text" maxlength="2" id="date-error-day" name="date-error-day" class="nsw-form__input" aria-invalid="true">
+            </div>
+            <div class="nsw-form__date-input">
+              <label for="date-error-month" class="nsw-form__label nsw-form__label--small">Month</label>
+              <input type="text" maxlength="2" id="date-error-month" name="date-error-month" class="nsw-form__input" aria-invalid="true">
+            </div>
+            <div class="nsw-form__date-input nsw-form__date-input--large">
+              <label for="date-error-year" class="nsw-form__label nsw-form__label--small">Year</label>
+              <input type="text" maxlength="4" id="date-error-year" name="date-error-year" class="nsw-form__input" aria-invalid="true">
+            </div>
           </div>
-        </div>
+        </fieldset>
+        <span id="date-error-error-text" class="nsw-form__helper nsw-form__helper--error"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span>This field is required</span>
       </div>
+    </div>
   </div>
 </div>
 <div class="nsw-docs-code">
@@ -567,44 +599,169 @@
       <span>Copy</span>
       <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
     </button>
-    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`  <div class="nsw-container">
-    <div class="nsw-layout">
-      <main class="nsw-layout__main">
-        <!-- START: Main content -->
-        <div class="nsw-docs__box nsw-docs__box--large"></div>
-        <!-- END: Main content -->
-      </main>
-      <div class="nsw-layout__sidebar">
-        <!-- START: Right sidebar content -->
-        <div class="nsw-docs__box nsw-docs__box--large"></div>
-        <!-- END: Right sidebar content -->
+    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`<div class="nsw-form">
+  <div class="nsw-form__group">
+    <fieldset class="nsw-form__date">
+      <legend>
+        <span class="nsw-form__label nsw-form__required">Date of birth<span class="sr-only"> (required)</span></span>
+        <span id="date-error-helper-text" class="nsw-form__helper">For example 08 12 1990</span>
+      </legend>
+      <div class="nsw-form__date-wrapper">
+        <div class="nsw-form__date-input">
+          <label for="date-error-day" class="nsw-form__label nsw-form__label--small">Day</label>
+          <input type="text" maxlength="2" id="date-error-day" name="date-error-day" class="nsw-form__input" aria-invalid="true">
+        </div>
+        <div class="nsw-form__date-input">
+          <label for="date-error-month" class="nsw-form__label nsw-form__label--small">Month</label>
+          <input type="text" maxlength="2" id="date-error-month" name="date-error-month" class="nsw-form__input" aria-invalid="true">
+        </div>
+        <div class="nsw-form__date-input nsw-form__date-input--large">
+          <label for="date-error-year" class="nsw-form__label nsw-form__label--small">Year</label>
+          <input type="text" maxlength="4" id="date-error-year" name="date-error-year" class="nsw-form__input" aria-invalid="true">
+        </div>
       </div>
-    </div>
+    </fieldset>
+    <span id="date-error-error-text" class="nsw-form__helper nsw-form__helper--error"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span>This field is required</span>
   </div>
+</div>
 `).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
     <div class="nsw-docs-code__wrapper">
-<pre><code class="html"><script>document.write((`  <div class="nsw-container">
-    <div class="nsw-layout">
-      <main class="nsw-layout__main">
-        <!-- START: Main content -->
-        <div class="nsw-docs__box nsw-docs__box--large"></div>
-        <!-- END: Main content -->
-      </main>
-      <div class="nsw-layout__sidebar">
-        <!-- START: Right sidebar content -->
-        <div class="nsw-docs__box nsw-docs__box--large"></div>
-        <!-- END: Right sidebar content -->
+<pre><code class="html"><script>document.write((`<div class="nsw-form">
+  <div class="nsw-form__group">
+    <fieldset class="nsw-form__date">
+      <legend>
+        <span class="nsw-form__label nsw-form__required">Date of birth<span class="sr-only"> (required)</span></span>
+        <span id="date-error-helper-text" class="nsw-form__helper">For example 08 12 1990</span>
+      </legend>
+      <div class="nsw-form__date-wrapper">
+        <div class="nsw-form__date-input">
+          <label for="date-error-day" class="nsw-form__label nsw-form__label--small">Day</label>
+          <input type="text" maxlength="2" id="date-error-day" name="date-error-day" class="nsw-form__input" aria-invalid="true">
+        </div>
+        <div class="nsw-form__date-input">
+          <label for="date-error-month" class="nsw-form__label nsw-form__label--small">Month</label>
+          <input type="text" maxlength="2" id="date-error-month" name="date-error-month" class="nsw-form__input" aria-invalid="true">
+        </div>
+        <div class="nsw-form__date-input nsw-form__date-input--large">
+          <label for="date-error-year" class="nsw-form__label nsw-form__label--small">Year</label>
+          <input type="text" maxlength="4" id="date-error-year" name="date-error-year" class="nsw-form__input" aria-invalid="true">
+        </div>
       </div>
-    </div>
+    </fieldset>
+    <span id="date-error-error-text" class="nsw-form__helper nsw-form__helper--error"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span>This field is required</span>
   </div>
+</div>
 `).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
     </div>
   </div>
 </div>
 
 
+<h4>Success</h4>
+<div class="nsw-docs__example nsw-m-top-sm">
+  <div class="nsw-docs__component">
+    <div class="nsw-form">
+      <div class="nsw-form__group">
+        <fieldset class="nsw-form__date">
+          <legend>
+            <span class="nsw-form__label">Date of birth</span>
+            <span id="date-success-helper-text" class="nsw-form__helper">For example 08 12 1990</span>
+          </legend>
+          <div class="nsw-form__date-wrapper">
+            <div class="nsw-form__date-input">
+              <label for="date-success-day" class="nsw-form__label nsw-form__label--small">Day</label>
+              <input type="text" maxlength="2" id="date-success-day" name="date-success-day" class="nsw-form__input">
+            </div>
+            <div class="nsw-form__date-input">
+              <label for="date-success-month" class="nsw-form__label nsw-form__label--small">Month</label>
+              <input type="text" maxlength="2" id="date-success-month" name="date-success-month" class="nsw-form__input">
+            </div>
+            <div class="nsw-form__date-input nsw-form__date-input--large">
+              <label for="date-success-year" class="nsw-form__label nsw-form__label--small">Year</label>
+              <input type="text" maxlength="4" id="date-success-year" name="date-success-year" class="nsw-form__input">
+            </div>
+          </div>
+        </fieldset>
+        
+        <span id="date-success-valid-text" class="nsw-form__helper nsw-form__helper--valid"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span>This field has been validated</span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="nsw-docs-code">
+  <button class="nsw-link nsw-link--button nsw-link--icon nsw-small js-code-button">
+    <span>Show code</span>
+    <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
+  </button>
+  <div class="nsw-docs-code__content">
+    <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
+      <span>Copy</span>
+      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
+    </button>
+    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`<div class="nsw-form">
+  <div class="nsw-form__group">
+    <fieldset class="nsw-form__date">
+      <legend>
+        <span class="nsw-form__label">Date of birth</span>
+        <span id="date-success-helper-text" class="nsw-form__helper">For example 08 12 1990</span>
+      </legend>
+      <div class="nsw-form__date-wrapper">
+        <div class="nsw-form__date-input">
+          <label for="date-success-day" class="nsw-form__label nsw-form__label--small">Day</label>
+          <input type="text" maxlength="2" id="date-success-day" name="date-success-day" class="nsw-form__input">
+        </div>
+        <div class="nsw-form__date-input">
+          <label for="date-success-month" class="nsw-form__label nsw-form__label--small">Month</label>
+          <input type="text" maxlength="2" id="date-success-month" name="date-success-month" class="nsw-form__input">
+        </div>
+        <div class="nsw-form__date-input nsw-form__date-input--large">
+          <label for="date-success-year" class="nsw-form__label nsw-form__label--small">Year</label>
+          <input type="text" maxlength="4" id="date-success-year" name="date-success-year" class="nsw-form__input">
         </div>
       </div>
+    </fieldset>
+    
+    <span id="date-success-valid-text" class="nsw-form__helper nsw-form__helper--valid"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span>This field has been validated</span>
+  </div>
+</div>
+`).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
+    <div class="nsw-docs-code__wrapper">
+<pre><code class="html"><script>document.write((`<div class="nsw-form">
+  <div class="nsw-form__group">
+    <fieldset class="nsw-form__date">
+      <legend>
+        <span class="nsw-form__label">Date of birth</span>
+        <span id="date-success-helper-text" class="nsw-form__helper">For example 08 12 1990</span>
+      </legend>
+      <div class="nsw-form__date-wrapper">
+        <div class="nsw-form__date-input">
+          <label for="date-success-day" class="nsw-form__label nsw-form__label--small">Day</label>
+          <input type="text" maxlength="2" id="date-success-day" name="date-success-day" class="nsw-form__input">
+        </div>
+        <div class="nsw-form__date-input">
+          <label for="date-success-month" class="nsw-form__label nsw-form__label--small">Month</label>
+          <input type="text" maxlength="2" id="date-success-month" name="date-success-month" class="nsw-form__input">
+        </div>
+        <div class="nsw-form__date-input nsw-form__date-input--large">
+          <label for="date-success-year" class="nsw-form__label nsw-form__label--small">Year</label>
+          <input type="text" maxlength="4" id="date-success-year" name="date-success-year" class="nsw-form__input">
+        </div>
+      </div>
+    </fieldset>
+    
+    <span id="date-success-valid-text" class="nsw-form__helper nsw-form__helper--valid"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span>This field has been validated</span>
+  </div>
+</div>
+`).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
+    </div>
+  </div>
+</div>
+
+
+      </div>
+    </section>
+  </div>
+</div>
       <footer class="nsw-footer nsw-docs-footer">
         <div class="nsw-footer__lower">
           <div class="nsw-container">
