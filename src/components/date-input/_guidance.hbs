@@ -1,0 +1,43 @@
+---
+title: Date input
+layout: blank-layout.hbs
+---
+
+<h2>Usage</h2>
+
+<p>Use the date input component to let users enter memorable dates, like dates of birth. The date input component consists of three fields grouped together, to let users enter a day, month and year.</p>
+
+<p>This approach is advised in most cases because it allows for precise input and reduces the chances of making mistakes.</p>
+
+<p>Do:</p>
+
+<ul>
+  <li>adjust the order of day, month, and year fields according to the regional format familiar to your users.</li>
+  <li>accept month names written out in full or abbreviated form (for example, ‘january’ or ‘jan’) as some users may enter months in this way.</li>
+  <li>ensure each field is clearly labeled ‘Day’, ‘Month’, ‘Year’</li>
+  <li>use a hint to show the expected date format, for example, ‘07 11 2022’</li>
+  <li>use a "text" vs "numeric" input type.</li>
+  <li>limit individual field character length.</li>
+  <li>require a four-digit year to avoid potential confusion.</li>
+</ul>
+
+<p>Do not:</p>
+
+<ul>
+  <li>auto-advance focus from one field to the next. This makes it difficult for keyboard-only users to navigate and correct mistakes.</li>
+  <li>use placeholder text as it disappears when the user starts typing and may not be accessible to all users.</li>
+  <li>use visual separators between fields.</li>
+  <li>disable copy and paste.</li>
+  <li>use in instances where only part of a date is needed, like a month or a year without a specific day.</li>
+</ul>
+
+<h2>How this component works</h2>
+
+<p>The three fields in the date input component are grouped together in a <code>fieldset</code> with a <code>legend</code> that describes them, as shown in the examples on this page. The legend is usually a question, such as 'What is your date of birth?'.</p>
+
+<p>Use the <code>autocomplete</code> attribute on the date input component when you're asking for a date of birth. This allows browsers to autofill the information on a user's behalf if they've entered it previously.</p>
+
+<p>The year input is set to accept only a four-digit number while the month and day inputs can accept up to a two-digit number.</p>
+
+<h2>Accessibility</h2>
+<p>All components are responsive and meet WCAG 2.1 AA accessibility guidelines.</p>

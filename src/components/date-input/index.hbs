@@ -1,0 +1,52 @@
+---
+title: Date input
+width: wide
+tabs: true
+directory: date-input
+intro: 'A date input allows users to enter a date.'
+figma: 'URL'
+meta-description: 'A date input allows users to enter a date.'
+meta-index: true
+---
+
+<h4>Default</h4>
+{{#>_docs-example separated=true}}
+<div class="nsw-form">
+  <div class="nsw-form__group">
+    {{>_date-input
+      id="date"
+      label="Date of birth"
+      helper-text="For example 08 12 1990"
+    }}
+  </div>
+</div>
+{{/_docs-example}}
+
+<h4>Error</h4>
+{{#>_docs-example separated=true}}
+<div class="nsw-form">
+  <div class="nsw-form__group">
+    {{>_date-input
+      id="date-error"
+      label="Date of birth"
+      required=true
+      error-text="This field is required"
+      helper-text="For example 08 12 1990"
+    }}
+  </div>
+</div>
+{{/_docs-example}}
+
+<h4>Success</h4>
+{{#>_docs-example separated=true}}
+<div class="nsw-form">
+  <div class="nsw-form__group">
+    {{>_date-input
+      id="date-success"
+      label="Date of birth"
+      valid-text="This field has been validated"
+      helper-text="For example 08 12 1990"
+    }}
+  </div>
+</div>
+{{/_docs-example}}
