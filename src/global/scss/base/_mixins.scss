@@ -40,73 +40,6 @@
   background-color: var(--nsw-hover-light);
 }
 
-// Default text link hover state // deprecated
-@mixin nsw-link-hover {
-  background-color: var(--nsw-hover);
-}
-
-// A block to click around the link
-@mixin pseudo-clickable-block {
-  &::after {
-    @include z-index;
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-  }
-}
-
-// Z-index
-@mixin z-index($index: 'base') {
-
-  @if map-has-key($nsw-z-index, $index) == false {
-    @error 'NSW-DS z-index mixin allows the following values for $index: #{map-keys($nsw-z-index)}. You have used "#{$index}"';
-  }
-  @else {
-    z-index: map-get($nsw-z-index, $index);
-  }
-}
-
-//Screen reader text
-/* stylelint-disable declaration-no-important  */
-@mixin sr-only() {
-  width: 1px !important;
-  height: 1px !important;
-  padding: 0 !important;
-  margin: -1px !important;
-  overflow: hidden !important;
-  clip: rect(0, 0, 0, 0) !important;
-  white-space: nowrap !important;
-  border: 0 !important;
-
-  &:not(caption) {
-    position: absolute !important;
-  }
-}
-
-@mixin sr-only-focus() {
-  &:not(:focus):not(:focus-within) {
-    @include sr-only();
-  }
-}
-
-/* stylelint-enable declaration-no-important  */
-
-//Component spacing
-@mixin component-spacing() {
-  margin-top: rem(24px);
-
-  &:first-child {
-    margin-top: 0;
-  }
-
-  @include breakpoint('md') {
-    margin-top: rem(32px);
-  }
-}
-
 //Links
 @mixin link() {
   font-weight: var(--nsw-font-bold);
@@ -122,7 +55,7 @@
   }
 
   &:hover {
-    @include nsw-link-hover;
+    @include nsw-hover;
     outline: 2px solid var(--nsw-hover);
   }
 
@@ -185,6 +118,68 @@
   border: 0;
   padding: 0;
   -webkit-appearance: none; /* stylelint-disable-line property-no-vendor-prefix */
+}
+
+// A block to click around the link
+@mixin pseudo-clickable-block {
+  &::after {
+    @include z-index;
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+}
+
+// Z-index
+@mixin z-index($index: 'base') {
+
+  @if map-has-key($nsw-z-index, $index) == false {
+    @error 'NSW-DS z-index mixin allows the following values for $index: #{map-keys($nsw-z-index)}. You have used "#{$index}"';
+  }
+  @else {
+    z-index: map-get($nsw-z-index, $index);
+  }
+}
+
+//Screen reader text
+/* stylelint-disable declaration-no-important  */
+@mixin sr-only() {
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+
+  &:not(caption) {
+    position: absolute !important;
+  }
+}
+
+@mixin sr-only-focus() {
+  &:not(:focus):not(:focus-within) {
+    @include sr-only();
+  }
+}
+
+/* stylelint-enable declaration-no-important  */
+
+//Component spacing
+@mixin component-spacing() {
+  margin-top: rem(24px);
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  @include breakpoint('md') {
+    margin-top: rem(32px);
+  }
 }
 
 // Font-size mixin - returns the font size for mobile and desktop based of the values in $font-sizes map
