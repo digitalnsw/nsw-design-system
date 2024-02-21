@@ -10,7 +10,7 @@ function initDocs() {
     const code = button.nextElementSibling
     const text = button.querySelector('span')
 
-    button.addEventListener('click', (event) => {
+    button.addEventListener('click', () => {
       if (code.classList.contains('active')) {
         button.classList.remove('active')
         code.classList.remove('active')
@@ -164,7 +164,7 @@ function initDocs() {
           var: '--nsw-link',
         },
         'Visited link colour': {
-          hex: '<code>#8A3866</code>',
+          hex: '<code>#575757</code>',
           var: '--nsw-visited',
         },
         'Hover background colour': {
@@ -206,7 +206,7 @@ function initDocs() {
           var: '--nsw-link',
         },
         'Visited link colour': {
-          hex: '<code>#8C2A1A</code>',
+          hex: '<code>#694F63</code>',
           var: '--nsw-visited',
         },
         'Hover background colour': {
@@ -248,7 +248,7 @@ function initDocs() {
           var: '--nsw-link',
         },
         'Visited link colour': {
-          hex: '<code>#70531D</code>',
+          hex: '<code>#6B5057</code>',
           var: '--nsw-visited',
         },
         'Hover background colour': {
@@ -290,7 +290,7 @@ function initDocs() {
           var: '--nsw-link',
         },
         'Visited link colour': {
-          hex: '<code>#575B26</code>',
+          hex: '<code>#64534F</code>',
           var: '--nsw-visited',
         },
         'Hover background colour': {
@@ -332,7 +332,7 @@ function initDocs() {
           var: '--nsw-link',
         },
         'Visited link colour': {
-          hex: '<code>#4F5C3E</code>',
+          hex: '<code>#575757</code>',
           var: '--nsw-visited',
         },
         'Hover background colour': {
@@ -374,7 +374,7 @@ function initDocs() {
           var: '--nsw-link',
         },
         'Visited link colour': {
-          hex: '<code>#3A611F</code>',
+          hex: '<code>#5D5749</code>',
           var: '--nsw-visited',
         },
         'Hover background colour': {
@@ -416,7 +416,7 @@ function initDocs() {
           var: '--nsw-link',
         },
         'Visited link colour': {
-          hex: '<code>#16635B</code>',
+          hex: '<code>#465D46</code>',
           var: '--nsw-visited',
         },
         'Hover background colour': {
@@ -458,7 +458,7 @@ function initDocs() {
           var: '--nsw-link',
         },
         'Visited link colour': {
-          hex: '<code>#2D2B68</code>',
+          hex: '<code>#575757</code>',
           var: '--nsw-visited',
         },
         'Hover background colour': {
