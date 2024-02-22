@@ -77,6 +77,7 @@ class Carousel {
       element.setAttribute('role', 'group')
       element.setAttribute('aria-roledescription', 'slide')
       element.setAttribute('aria-label', `${index + 1} of ${itemsArray.length}`)
+      element.setAttribute('data-index', index)
     })
 
     this.carouselCreateContainer()
@@ -214,6 +215,24 @@ class Carousel {
         this.showNextItems()
       } else if (event.key && event.key.toLowerCase() === 'arrowleft') {
         this.showPrevItems()
+      } else if (event.key && event.key.toLowerCase() === 'home') {
+        this.showPrevItems()
+      } else if (event.key && event.key.toLowerCase() === 'end') {
+        this.showNextItems()
+      } else if (event.key && event.key.toLowerCase() === 'enter') {
+        event.preventDefault()
+        event.target.click()
+      }
+    })
+
+    this.element.addEventListener('keyup', (event) => {
+      if (event.key && event.key.toLowerCase() === 'tab' && event.target.closest('.nsw-carousel__item')) {
+        const n = event.target.closest('.nsw-carousel__item')
+        const m = Number(n.getAttribute('data-index')) + 1
+
+        if (m % this.visibItemsNb === 0) {
+          this.showNextItems()
+        }
       }
     })
   }
@@ -404,6 +423,7 @@ class Carousel {
     const carouselActive = this.items.length > this.visibItemsNb
     let j = this.items.length
     for (let i = 0; i < this.items.length; i += 1) {
+      // const link = this.items[i].querySelector('a')
       if (this.loop) {
         if (i < this.visibItemsNb || i >= 2 * this.visibItemsNb) {
           this.items[i].setAttribute('tabindex', '-1')
@@ -411,17 +431,20 @@ class Carousel {
           this.items[i].removeAttribute('aria-current')
         } else {
           if (i < j) j = i
+
           this.items[i].removeAttribute('tabindex')
           this.items[i].removeAttribute('aria-hidden')
           this.items[i].setAttribute('aria-current', 'true')
         }
       } else if ((i < this.selectedItem || i >= this.selectedItem + this.visibItemsNb) && carouselActive) {
         this.items[i].setAttribute('tabindex', '-1')
+        // link.setAttribute('tabindex', '-1')
         this.items[i].setAttribute('aria-hidden', 'true')
         this.items[i].removeAttribute('aria-current')
       } else {
         if (i < j) j = i
         this.items[i].removeAttribute('tabindex')
+        // link.removeAttribute('tabindex')
         this.items[i].removeAttribute('aria-hidden')
         this.items[i].setAttribute('aria-current', 'true')
       }
