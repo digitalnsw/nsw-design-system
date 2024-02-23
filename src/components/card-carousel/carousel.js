@@ -234,7 +234,7 @@ class Carousel {
           const slider = link.closest('.js-carousel__wrapper')
           const carousel = slider.querySelector('.nsw-carousel__list')
           if (carousel) {
-            slide.focus({ preventScroll: true })
+            link.focus({ preventScroll: true })
           }
         })
 
