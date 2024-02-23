@@ -225,15 +225,18 @@ class Carousel {
       }
     })
 
-    this.element.addEventListener('keyup', (event) => {
-      if (event.key && event.key.toLowerCase() === 'tab' && event.target.closest('.nsw-carousel__item')) {
+    const slides = this.element.querySelectorAll('.nsw-carousel__item a')
+
+    slides.forEach((element, index) => {
+      element.addEventListener('focusout', (event) => {
         const n = event.target.closest('.nsw-carousel__item')
         const m = Number(n.getAttribute('data-index')) + 1
-
-        if (m % this.visibItemsNb === 0) {
+        if (m % this.visibItemsNb === 0 && m !== this.items.length) {
+          console.log(slides[index + 1])
+          slides[index + 1].focus({ preventScroll: true })
           this.showNextItems()
         }
-      }
+      })
     })
   }
 
@@ -423,7 +426,6 @@ class Carousel {
     const carouselActive = this.items.length > this.visibItemsNb
     let j = this.items.length
     for (let i = 0; i < this.items.length; i += 1) {
-      // const link = this.items[i].querySelector('a')
       if (this.loop) {
         if (i < this.visibItemsNb || i >= 2 * this.visibItemsNb) {
           this.items[i].setAttribute('tabindex', '-1')
@@ -438,13 +440,11 @@ class Carousel {
         }
       } else if ((i < this.selectedItem || i >= this.selectedItem + this.visibItemsNb) && carouselActive) {
         this.items[i].setAttribute('tabindex', '-1')
-        // link.setAttribute('tabindex', '-1')
         this.items[i].setAttribute('aria-hidden', 'true')
         this.items[i].removeAttribute('aria-current')
       } else {
         if (i < j) j = i
         this.items[i].removeAttribute('tabindex')
-        // link.removeAttribute('tabindex')
         this.items[i].removeAttribute('aria-hidden')
         this.items[i].setAttribute('aria-current', 'true')
       }
