@@ -14,6 +14,7 @@ class Carousel {
     this.navigationClass = element.getAttribute('data-navigation-class') ? element.getAttribute('data-navigation-class') : 'nsw-carousel__navigation'
     this.paginationClass = element.getAttribute('data-pagination-class') ? element.getAttribute('data-pagination-class') : 'nsw-carousel__navigation--pagination'
     this.draggingClass = 'nsw-carousel--is-dragging'
+    this.loadedClass = 'nsw-carousel--loaded'
     this.animateClass = 'nsw-carousel__list--animating'
     this.cloneClass = 'js-clone'
     this.srClass = 'sr-only'
@@ -68,7 +69,7 @@ class Carousel {
   }
 
   initCarouselLayout() {
-    this.element.classList.add('nsw-carousel--loaded')
+    this.element.classList.add(this.loadedClass)
     this.element.setAttribute('aria-roledescription', 'carousel')
     this.element.setAttribute('aria-label', this.ariaLabel)
 
@@ -225,19 +226,28 @@ class Carousel {
       }
     })
 
-    const slides = this.element.querySelectorAll('.nsw-carousel__item a')
+    const itemLinks = this.element.querySelectorAll('.nsw-carousel__item a')
 
-    slides.forEach((element, index) => {
-      element.addEventListener('focusout', (event) => {
-        const n = event.target.closest('.nsw-carousel__item')
-        const m = Number(n.getAttribute('data-index')) + 1
-        if (m % this.visibItemsNb === 0 && m !== this.items.length) {
-          console.log(slides[index + 1])
-          slides[index + 1].focus({ preventScroll: true })
-          this.showNextItems()
-        }
+    if (itemLinks.length > 0) {
+      itemLinks.forEach((link, index) => {
+        link.addEventListener('focus', () => {
+          const slider = link.closest('.js-carousel__wrapper')
+          const carousel = slider.querySelector('.nsw-carousel__list')
+          if (carousel) {
+            slide.focus({ preventScroll: true })
+          }
+        })
+
+        link.addEventListener('focusout', () => {
+          const item = link.closest('.nsw-carousel__item')
+          const dataIndex = Number(item.getAttribute('data-index')) + 1
+          if (dataIndex % this.visibItemsNb === 0 && dataIndex !== this.items.length) {
+            itemLinks[index + 1].focus({ preventScroll: true })
+            this.showNextItems()
+          }
+        })
       })
-    })
+    }
   }
 
   showPrevItems() {
