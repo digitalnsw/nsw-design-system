@@ -1,0 +1,19 @@
+---
+title: Pagination
+width: narrow
+page: true
+model:
+  pagination: ../../components/pagination/json/pagination.json
+---
+
+{{#>_theme}}
+{{#>_layout-container}}
+{{>_pagination model.pagination active="5"}}
+{{>_pagination model.pagination disabled="true" active="1"}}
+{{/_layout-container}}
+
+{{#>_layout-container brand-dark="true" invert="true"}}
+{{>_pagination model.pagination active="5"}}
+{{>_pagination model.pagination disabled="true" active="1"}}
+{{/_layout-container}}
+{{/_theme}}

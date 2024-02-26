@@ -33,12 +33,91 @@
 
 // Default hover state
 @mixin nsw-hover {
-  background-color: var(--nsw-text-hover);
+  background-color: var(--nsw-hover);
 }
 
-// Default text link hover state
-@mixin nsw-link-hover {
-  background-color: var(--nsw-text-link-hover);
+@mixin nsw-hover-light {
+  background-color: var(--nsw-hover-light);
+}
+
+//Links
+@mixin link() {
+  font-weight: var(--nsw-font-bold);
+  color: var(--nsw-link);
+  text-decoration: underline;
+
+  &:visited {
+    color: var(--nsw-visited);
+  }
+
+  &:focus {
+    @include nsw-focus($offset: false);
+  }
+
+  &:hover {
+    @include nsw-hover;
+    outline: 2px solid var(--nsw-hover);
+  }
+
+  &:active {
+    background-color: var(--nsw-active);
+    outline-color: var(--nsw-active);
+  }
+}
+
+@mixin link-dark() {
+  color: var(--nsw-link);
+
+  &:visited {
+    color: var(--nsw-visited);
+  }
+
+  &:focus {
+    outline-color: var(--nsw-focus);
+  }
+
+  &:hover {
+    background-color: var(--nsw-hover);
+    outline-color: var(--nsw-hover);
+  }
+
+  &:active {
+    background-color: var(--nsw-active);
+    outline-color: var(--nsw-active);
+  }
+}
+
+@mixin link-light() {
+  color: var(--nsw-link-light);
+
+  &:visited {
+    color: var(--nsw-visited-light);
+  }
+
+  &:focus {
+    outline-color: var(--nsw-focus-light);
+  }
+
+  &:hover {
+    background-color: var(--nsw-hover-light);
+    outline-color: var(--nsw-hover-light);
+  }
+
+  &:active {
+    background-color: var(--nsw-active-light);
+    outline-color: var(--nsw-active-light);
+  }
+}
+
+@mixin link-button() {
+  @include link();
+  @include font-size('sm');
+  display: inline-block;
+  cursor: pointer;
+  background-color: transparent;
+  border: 0;
+  padding: 0;
+  -webkit-appearance: none; /* stylelint-disable-line property-no-vendor-prefix */
 }
 
 // A block to click around the link
@@ -101,71 +180,6 @@
   @include breakpoint('md') {
     margin-top: rem(32px);
   }
-}
-
-//Links
-@mixin link() {
-  font-weight: var(--nsw-font-bold);
-  color: var(--nsw-text-link);
-  text-decoration: underline;
-
-  &:hover {
-    @include nsw-link-hover;
-    outline: 2px solid var(--nsw-text-link-hover);
-  }
-
-  &:focus {
-    @include nsw-focus($offset: false);
-  }
-
-  &:visited {
-    color: var(--nsw-text-visited);
-  }
-}
-
-@mixin link-dark() {
-  color: var(--nsw-text-link);
-
-  &:hover {
-    background-color: var(--nsw-text-link-hover);
-    outline-color: var(--nsw-text-link-hover);
-  }
-
-  &:focus {
-    outline-color: var(--nsw-focus);
-  }
-
-  &:visited {
-    color: var(--nsw-text-visited);
-  }
-}
-
-@mixin link-light() {
-  color: var(--nsw-text-light);
-
-  &:hover {
-    background-color: var(--nsw-text-hover-light);
-    outline-color: var(--nsw-text-hover-light);
-  }
-
-  &:focus {
-    outline-color: var(--nsw-white);
-  }
-
-  &:visited {
-    color: var(--nsw-text-light);
-  }
-}
-
-@mixin link-button() {
-  @include link();
-  @include font-size('sm');
-  display: inline-block;
-  cursor: pointer;
-  background-color: transparent;
-  border: 0;
-  padding: 0;
-  -webkit-appearance: none; /* stylelint-disable-line property-no-vendor-prefix */
 }
 
 // Font-size mixin - returns the font size for mobile and desktop based of the values in $font-sizes map

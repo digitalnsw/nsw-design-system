@@ -1,6 +1,10 @@
 <div class="nsw-utility-list js-utility-list{{#if align}} nsw-utility-list--{{align}}{{/if}}">{{#if title}}
   <div class="nsw-utility-list__title">{{title}}</div>{{/if}}
-  <ul>{{#if print}}
+  <ul>{{#if copy}}
+    <li class="nsw-utility-list__item js-copy-clipboard">
+      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">link</span>
+      Copy link
+    </li>{{/if}}{{#if print}}
     <li class="nsw-utility-list__item js-print-page">
       <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">print</span>
       <span>Print this page</span>

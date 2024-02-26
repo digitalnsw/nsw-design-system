@@ -1,6 +1,6 @@
-@use 'sass:math';
+/* stylelint-disable */
+@use "sass:math";
 
-/* stylelint-disable declaration-no-important, string-quotes, number-leading-zero */
 @function rem($value) {
   @if (unitless($value)) {
     $value: $value * 1px;
@@ -10,37 +10,42 @@
 }
 
 @function svg-url($svg) {
-  @if not str-index($svg,xmlns) {
-    $svg: str-replace($svg, '<svg', '<svg xmlns="http://www.w3.org/2000/svg"');
+  @if not str-index($svg, xmlns) {
+    $svg: str-replace($svg, "<svg", '<svg xmlns="http://www.w3.org/2000/svg"');
   }
 
-  $encoded: '';
+  $encoded: "";
   $slice: 2000;
   $index: 0;
   $loops: ceil(math.div(str-length($svg), $slice));
 
   @for $i from 1 through $loops {
     $chunk: str-slice($svg, $index, $index + $slice - 1);
-    $chunk: str-replace($chunk, '"', '\'');
-    $chunk: str-replace($chunk, '%', '%25');
-    $chunk: str-replace($chunk, '#', '%23');
-    $chunk: str-replace($chunk, '{', '%7B');
-    $chunk: str-replace($chunk, '}', '%7D');
-    $chunk: str-replace($chunk, '<', '%3C');
-    $chunk: str-replace($chunk, '>', '%3E');
+    $chunk: str-replace($chunk, '"', "'");
+    $chunk: str-replace($chunk, "%", "%25");
+    $chunk: str-replace($chunk, "#", "%23");
+    $chunk: str-replace($chunk, "{", "%7B");
+    $chunk: str-replace($chunk, "}", "%7D");
+    $chunk: str-replace($chunk, "<", "%3C");
+    $chunk: str-replace($chunk, ">", "%3E");
     $encoded: #{$encoded}#{$chunk};
     $index: $index + $slice;
   }
 
-  @return url('data:image/svg+xml,#{$encoded}');
+  @return url("data:image/svg+xml,#{$encoded}");
 }
 
 // Helper function to replace characters in a string
-@function str-replace($string, $search, $replace: '') {
+@function str-replace($string, $search, $replace: "") {
   $index: str-index($string, $search);
 
   @if $index {
-    @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+    @return str-slice($string, 1, $index - 1) + $replace +
+      str-replace(
+        str-slice($string, $index + str-length($search)),
+        $search,
+        $replace
+      );
   }
 
   @return $string;
@@ -55,9 +60,178 @@
 @function breakpoint-max($name, $breakpoints: $nsw-breakpoints) {
   $max: map-get($breakpoints, $name);
 
-  @return if($max and $max > 0, $max - .02, null);
+  @return if($max and $max > 0, $max - 0.02, null);
 }
 
 @function breakpoint-infix($name, $breakpoints: $nsw-breakpoints) {
   @return if(breakpoint-min($name, $breakpoints) == null, "", "-#{$name}");
+}
+
+@function to-rgb($value) {
+  @return red($value), green($value), blue($value);
+}
+
+@function map-loop($map, $func, $args...) {
+  $_map: ();
+
+  @each $key, $value in $map {
+    // allow to pass the $key and $value of the map as an function argument
+    $_args: ();
+
+    @each $arg in $args {
+      $_args: append(
+        $_args,
+        if($arg == "$key", $key, if($arg == "$value", $value, $arg))
+      );
+    }
+
+    $_map: map-merge(
+      $_map,
+      (
+        $key: call(get-function($func), $_args...),
+      )
+    );
+  }
+
+  @return $_map;
+}
+
+@function strip-unit($value) {
+  @return ($value / ($value * 0 + 1));
+}
+
+@function pow($base, $exponents) {
+  $raised: 1;
+  @for $i from 1 through $exponents {
+    $raised: $raised * $base;
+  }
+  @return $raised;
+}
+
+@function luminance($color) {
+  $rgba: red($color), green($color), blue($color);
+  $rgba2: ();
+  @for $i from 1 through 3 {
+    $rgb: nth($rgba, $i);
+    $rgb: calc($rgb / 255);
+    $rgb: if($rgb < .03928, calc($rgb / 12.92), pow(calc(($rgb + 0.055) / 1.055), 2));
+    $rgba2: append($rgba2, $rgb);
+  }
+  @return (.2126 * nth($rgba2, 1) + .7152 * nth($rgba2, 2) + 0.0722 * nth($rgba2, 3))*100;
+}
+
+@function contrast-ratio($fg, $bg) {
+  $luminance1: luminance($fg) + 0.05;
+  $luminance2: luminance($bg) + 0.05;
+  $ratio: calc($luminance1 / $luminance2);
+  @if $luminance2 > $luminance1 {
+    $ratio: calc(1 / $ratio);
+  }
+  $ratio: calc(round($ratio * 100) / 100);
+  @return $ratio;
+}
+
+@function validate-font-size($size) {
+  @if unit($size) == 'em' or unit($size) == 'rem' or unit($size) == 'px' or unit($size) == '' {
+
+    @if unit($size) == 'em' or unit($size) == 'rem' {
+      @return strip-unit($size * 16)
+    }
+    @if unit($size) == 'px' {
+      // We expect PX, so strip the value and return it
+      @return strip-unit($size);
+    }
+    @if unit($size) == '' {
+      @return $size;
+    }
+  } @else {
+    @error 'validate-font-size(): An unexpected font size unit was supplied.';
+  }
+}
+
+@function get-ratio($level: 'AAA', $size: 16, $bold: false) {
+  $ratio: 4.5;
+  @if $level == 'AAA' {
+    $ratio: 7;
+  }
+  
+  $size: validate-font-size($size);
+  
+  @if $size < 24 {
+
+    @if $size >= 19 and $bold == true {
+
+      @if $level == 'AAA' {
+        $ratio: 4.5;
+      } @else {
+        $ratio: 3;
+      }
+    }
+  } @else {
+    $ratio: 3;
+    @if $level == 'AAA' {
+      $ratio: 4.5;
+    }
+  }
+  @return $ratio;
+}
+
+@function light-or-dark($color) {
+  $light-contrast: contrast-ratio($color, $white);
+  $dark-contrast: contrast-ratio($color, $black);
+
+  @if $light-contrast > $dark-contrast {
+    @return "dark";
+  } @else {
+    @return "light";
+  }
+}
+//
+@function color-contrast($color) {
+  $color-lod: light-or-dark($color);
+
+  @if ($color-lod == "dark") {
+    @return $white;
+  } @else {
+    @return $black;
+  }
+}
+
+@function a11y-color($fg, $bg, $level: 'AAA', $size: 16, $bold: false) {
+  $font-size: validate-font-size($size);
+  $ratio: get-ratio($level, $font-size, $bold);
+  $original-contrast: contrast-ratio($fg, $bg);
+
+  @if $original-contrast >= $ratio {
+
+    @return $fg;
+  } @else {
+    $fg-lod: light-or-dark($fg);
+    $bg-lod: light-or-dark($bg);
+
+    $step: 1%;
+
+    @if $fg-lod == 'light' and $bg-lod == 'light' {
+      $step: - $step;
+    } @else if $fg-lod == 'dark' and $bg-lod == 'light' {
+      $step: - $step;
+    }
+
+    @while contrast-ratio($fg, $bg) < $ratio {
+      $sat-step: 0%;
+      @if saturation($fg) > 10 {
+        $sat-step: $step;
+      }
+      $fg: scale-color($fg, $lightness: $step, $saturation:$sat-step);
+    }
+    @return $fg;
+  }
+}
+
+@function tint($color, $percentage) {
+  @return mix(white, $color, $percentage);
+}
+
+@function shade($color, $percentage) {
+  @return mix(black, $color, $percentage);
 }

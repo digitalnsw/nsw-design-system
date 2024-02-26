@@ -39,21 +39,6 @@ $nsw-z-index: (
 ) !default;
 
 // Base Colours
-
-$nsw-base-colours-rgb: (
-  brand-dark: rgba(var(--nsw-palette-blue-01-rgb), var(--nsw-bg-opacity)),
-  brand-light: rgba(var(--nsw-palette-blue-04-rgb), var(--nsw-bg-opacity)),
-  brand-supplementary: rgba(var(--nsw-palette-blue-02-rgb), var(--nsw-bg-opacity)),
-  brand-accent: rgba(var(--nsw-palette-red-02-rgb), var(--nsw-bg-opacity)),
-  black: rgba(var(--nsw-palette-black-rgb), var(--nsw-bg-opacity)),
-  white: rgba(var(--nsw-palette-white-rgb), var(--nsw-bg-opacity)),
-  off-white: rgba(var(--nsw-palette-off-white-rgb), var(--nsw-bg-opacity)),
-  grey-01: rgba(var(--nsw-palette-grey-01-rgb), var(--nsw-bg-opacity)),
-  grey-02: rgba(var(--nsw-palette-grey-02-rgb), var(--nsw-bg-opacity)),
-  grey-03: rgba(var(--nsw-palette-grey-03-rgb), var(--nsw-bg-opacity)),
-  grey-04: rgba(var(--nsw-palette-grey-04-rgb), var(--nsw-bg-opacity))
-);
-
 $nsw-base-colours: (
   brand-dark: var(--nsw-brand-dark),
   brand-light: var(--nsw-brand-light),
@@ -68,17 +53,32 @@ $nsw-base-colours: (
   grey-04: var(--nsw-grey-04)
 );
 
+$nsw-base-colours-rgb: (
+  brand-dark: rgba(var(--nsw-brand-dark-rgb), var(--nsw-bg-opacity)),
+  brand-light: rgba(var(--nsw-brand-light-rgb), var(--nsw-bg-opacity)),
+  brand-supplementary: rgba(var(--nsw-brand-supplementary-rgb), var(--nsw-bg-opacity)),
+  brand-accent: rgba(var(--nsw-brand-accent-rgb), var(--nsw-bg-opacity)),
+  black: rgba(var(--nsw-black-rgb), var(--nsw-bg-opacity)),
+  white: rgba(var(--nsw-white-rgb), var(--nsw-bg-opacity)),
+  off-white: rgba(var(--nsw-off-white-rgb), var(--nsw-bg-opacity)),
+  grey-01: rgba(var(--nsw-grey-01-rgb), var(--nsw-bg-opacity)),
+  grey-02: rgba(var(--nsw-grey-02-rgb), var(--nsw-bg-opacity)),
+  grey-03: rgba(var(--nsw-grey-03-rgb), var(--nsw-bg-opacity)),
+  grey-04: rgba(var(--nsw-grey-04-rgb), var(--nsw-bg-opacity))
+);
+
+
 // Background Colours
 $nsw-bg-colours: map-merge($nsw-base-colours-rgb, (
   transparent: transparent,
-  info-dark: rgba(var(--nsw-palette-info-blue-rgb), var(--nsw-bg-opacity)),
-  info-light: rgba(var(--nsw-palette-info-blue-bg-rgb), var(--nsw-bg-opacity)),
-  success-dark: rgba(var(--nsw-palette-success-green-rgb), var(--nsw-bg-opacity)),
-  success-light: rgba(var(--nsw-palette-success-green-bg-rgb), var(--nsw-bg-opacity)),
-  warning-dark: rgba(var(--nsw-palette-warning-orange-rgb), var(--nsw-bg-opacity)),
-  warning-light: rgba(var(--nsw-palette-warning-orange-bg-rgb), var(--nsw-bg-opacity)),
-  error-dark: rgba(var(--nsw-palette-error-red-rgb), var(--nsw-bg-opacity)),
-  error-light: rgba(var(--nsw-palette-error-red-bg-rgb), var(--nsw-bg-opacity))
+  info-dark: rgba(var(--nsw-status-info-rgb), var(--nsw-bg-opacity)),
+  info-light: rgba(var(--nsw-status-info-bg-rgb), var(--nsw-bg-opacity)),
+  success-dark: rgba(var(--nsw-status-success-rgb), var(--nsw-bg-opacity)),
+  success-light: rgba(var(--nsw-status-success-bg-rgb), var(--nsw-bg-opacity)),
+  warning-dark: rgba(var(--nsw-status-warning-rgb), var(--nsw-bg-opacity)),
+  warning-light: rgba(var(--nsw-status-warning-bg-rgb), var(--nsw-bg-opacity)),
+  error-dark: rgba(var(--nsw-status-error-rgb), var(--nsw-bg-opacity)),
+  error-light: rgba(var(--nsw-status-error-bg-rgb), var(--nsw-bg-opacity))
 ));
 
 // Text Colours

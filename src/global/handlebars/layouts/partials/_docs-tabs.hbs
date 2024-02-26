@@ -21,8 +21,10 @@
     <section id="section-interactive-demo" class="nsw-tabs__content">
       <div class="nsw-docs__demo">
         {{#unless no-blank}}
-        <div class="nsw-docs__external">{{#if template}}<div class="nsw-list nsw-list--8">{{/if}}
-          <a class="nsw-small nsw-link nsw-link--icon" target="_blank" href="{{change-extention path 'blank'}}"><span>View in new window</span><i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">launch</i></a>{{#if template}}<a class="nsw-small nsw-link nsw-link--icon" target="_blank" href="{{template}}"><span>View in template</span><i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">launch</i></a></div>{{/if}}
+        <div class="nsw-docs__external">
+          <div class="nsw-list nsw-list--8">
+            <a class="nsw-small nsw-link nsw-link--icon" target="_blank" href="{{change-extention path 'blank'}}"><span>View in new window</span><i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">launch</i></a>{{#if template}}<a class="nsw-small nsw-link nsw-link--icon" target="_blank" href="{{template}}"><span>View in template</span><i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">launch</i></a>{{/if}}{{#if theme}}<a class="nsw-small nsw-link nsw-link--icon" target="_blank" href="{{change-extention path 'theme'}}"><span>View theming example</span><i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">launch</i></a>{{/if}}
+          </div>
         </div>
         {{/unless}}
 {{{contents}}}
