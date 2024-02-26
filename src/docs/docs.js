@@ -164,7 +164,7 @@ function initDocs() {
           var: '--nsw-link',
         },
         'Visited link colour': {
-          hex: '<code>#575757</code>',
+          hex: '<code>#70114D</code>',
           var: '--nsw-visited',
         },
         'Hover background colour': {
@@ -206,7 +206,7 @@ function initDocs() {
           var: '--nsw-link',
         },
         'Visited link colour': {
-          hex: '<code>#694F63</code>',
+          hex: '<code>#983379</code>',
           var: '--nsw-visited',
         },
         'Hover background colour': {
@@ -248,7 +248,7 @@ function initDocs() {
           var: '--nsw-link',
         },
         'Visited link colour': {
-          hex: '<code>#6B5057</code>',
+          hex: '<code>#9C3D1B</code>',
           var: '--nsw-visited',
         },
         'Hover background colour': {
@@ -290,7 +290,7 @@ function initDocs() {
           var: '--nsw-link',
         },
         'Visited link colour': {
-          hex: '<code>#64534F</code>',
+          hex: '<code>#7D4D27</code>',
           var: '--nsw-visited',
         },
         'Hover background colour': {
@@ -332,7 +332,7 @@ function initDocs() {
           var: '--nsw-link',
         },
         'Visited link colour': {
-          hex: '<code>#575757</code>',
+          hex: '<code>#914132</code>',
           var: '--nsw-visited',
         },
         'Hover background colour': {
@@ -374,7 +374,7 @@ function initDocs() {
           var: '--nsw-link',
         },
         'Visited link colour': {
-          hex: '<code>#5D5749</code>',
+          hex: '<code>#5B5A16</code>',
           var: '--nsw-visited',
         },
         'Hover background colour': {
@@ -416,7 +416,7 @@ function initDocs() {
           var: '--nsw-link',
         },
         'Visited link colour': {
-          hex: '<code>#465D46</code>',
+          hex: '<code>#016740</code>',
           var: '--nsw-visited',
         },
         'Hover background colour': {
@@ -458,7 +458,7 @@ function initDocs() {
           var: '--nsw-link',
         },
         'Visited link colour': {
-          hex: '<code>#575757</code>',
+          hex: '<code>#265E76</code>',
           var: '--nsw-visited',
         },
         'Hover background colour': {
