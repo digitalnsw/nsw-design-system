@@ -404,13 +404,56 @@
 <nav class="nsw-in-page-nav" aria-labelledby="in-page-nav">
   <div id="in-page-nav" class="nsw-in-page-nav__title">On this page</div>
   <ul>
+    <li><a href="#sass-variables">SASS variable defaults</a></li>
     <li><a href="#css-variables">CSS Variables</a></li>
     <li><a href="#theming-examples">Theming examples</a></li>
   </ul>
 </nav>
 
+<h2 id="sass-variables">SASS variable defaults</h2>
+
+<p>Every Sass variable in the design system includes the <code>!default</code> flag allowing you to override the variable’s default value in your own Sass without modifying our source code. Copy and paste variables as needed, modify their values, and remove the <code>!default</code> flag. If a variable has already been assigned, then it won’t be re-assigned by the default values in the design system.</p>
+
+<p>Variable overrides within the same Sass file can come before or after the default variables. However, when overriding across Sass files, your overrides must come before you import the design system's Sass files.</p>
+
+<p>Here’s an example that changes the theme colors when importing and compiling via npm:</p>
+
+<div class="nsw-docs__example nsw-docs__example--hidden">
+  <div class="nsw-docs__component">
+  </div>
+</div>
+<div class="nsw-docs-code">
+  <div class="nsw-docs-code__content active">
+    <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
+      <span>Copy</span>
+      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
+    </button>
+    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`$brand-dark: #0b3f47 !default;
+$brand-light: #d1eeea !default;
+$brand-supplementary: #2e808e !default;
+$brand-accent: #d7153a !default;
+
+/* NSW Design System and its default variables */
+@import "node_modules/nsw-design-system/src/main.scss";
+`).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
+    <div class="nsw-docs-code__wrapper">
+<pre><code class="language-scss"><script>document.write((`$brand-dark: #0b3f47 !default;
+$brand-light: #d1eeea !default;
+$brand-supplementary: #2e808e !default;
+$brand-accent: #d7153a !default;
+
+/* NSW Design System and its default variables */
+@import "node_modules/nsw-design-system/src/main.scss";
+`).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
+    </div>
+  </div>
+</div>
+
+
 <h2 id="css-variables">CSS Variables</h2>
-<p><a target="_blank" href="https://www.w3schools.com/css/css3_variables.asp">CSS variables</a> allow easy and on the fly customisation as they have access to the DOM, which means that you can change variables with local or global scope using plain CSS or  JavaScript. We used CSS variables to control <strong>colours, typography settings, border radius, shadows and maximum container width</strong> to enable easy theming to match your <a href="/nsw-design-system/docs/content/design/theming.html">Brand requirements</a>.</p>
+
+<p><a target="_blank" href="https://www.w3schools.com/css/css3_variables.asp">CSS variables</a> allow easy and on the fly customisation as they have access to the DOM, which means that you can change variables with local or global scope using plain CSS or JavaScript. We used CSS variables to control <strong>colours, typography settings, border radius, shadows and maximum container width</strong> to enable easy theming to match your <a href="/nsw-design-system/docs/content/design/theming.html">Brand requirements</a>.</p>
+
 <p>Below you can find full list of variables that we made availible. To theme you can simply copy the variables you want to update and assign them new values using <a href="/nsw-design-system/core/colour/index.html#gov-colour">NSW Government colour palette</a> or your own custom settings.</p>
 <div class="nsw-docs__example nsw-docs__example--hidden">
   <div class="nsw-docs__component">
@@ -424,42 +467,79 @@
     </button>
     <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`:root {
   /* Colours */
-  --nsw-brand-dark: var(--nsw-palette-blue-01);
-  --nsw-brand-light: var(--nsw-palette-blue-04);
-  --nsw-brand-accent: var(--nsw-palette-red-02);
-  --nsw-brand-supplementary: var(--nsw-palette-blue-02);
+  --nsw-brand-dark: #002664;
+  --nsw-brand-light: #cbedfd;
+  --nsw-brand-supplementary: #146cfd;
+  --nsw-brand-accent: #d7153a;
 
-  --nsw-text-dark: var(--nsw-palette-grey-01);
-  --nsw-text-light: var(--nsw-palette-white);
+  --nsw-black: #000;
+  --nsw-grey-01: #22272b;
+  --nsw-grey-02: #495054;
+  --nsw-grey-03: #cdd3d6;
+  --nsw-grey-04: #ebebeb;
+  --nsw-off-white: #f2f2f2;
+  --nsw-white: #fff;
 
-  --nsw-text-hover: rgba(var(--nsw-palette-blue-01-rgb), 0.1);
-  --nsw-text-hover-light: rgba(var(--nsw-palette-white-rgb), 0.1);
-
-  --nsw-text-link: var(--nsw-palette-blue-01);
-  --nsw-text-link-hover: rgba(var(--nsw-palette-blue-01-rgb), 0.1);
-
-  --nsw-text-visited: var(--nsw-palette-visited);
-  --nsw-focus: var(--nsw-palette-focus);
-
-  --nsw-black: var(--nsw-palette-black);
-  --nsw-white: var(--nsw-palette-white);
-  --nsw-off-white: var(--nsw-palette-off-white);
-  --nsw-grey-01: var(--nsw-palette-grey-01);
-  --nsw-grey-02: var(--nsw-palette-grey-02);
-  --nsw-grey-03: var(--nsw-palette-grey-03);
-  --nsw-grey-04: var(--nsw-palette-grey-04);
-
-  --nsw-status-info: var(--nsw-palette-info-blue);
-  --nsw-status-info-bg: var(--nsw-palette-info-blue-bg);
-  --nsw-status-success: var(--nsw-palette-success-green);
-  --nsw-status-success-bg: var(--nsw-palette-success-green-bg);
-  --nsw-status-warning: var(--nsw-palette-warning-orange);
-  --nsw-status-warning-bg: var(--nsw-palette-warning-orange-bg);
-  --nsw-status-error: var(--nsw-palette-error-red);
-  --nsw-status-error-bg: var(--nsw-palette-error-red-bg);
+  --nsw-brand-dark-rgb: 0, 38, 100;
+  --nsw-brand-light-rgb: 203, 237, 253;
+  --nsw-brand-supplementary-rgb: 20, 108, 253;
+  --nsw-brand-accent-rgb: 215, 21, 58;
 
   --nsw-black-rgb: 0, 0, 0;
+  --nsw-grey-01-rgb: 34, 39, 43;
+  --nsw-grey-02-rgb: 73, 80, 84;
+  --nsw-grey-03-rgb: 205, 211, 214;
+  --nsw-grey-04-rgb: 235, 235, 235;
+  --nsw-off-white-rgb: 242, 242, 242;
   --nsw-white-rgb: 255, 255, 255;
+
+  --nsw-text-dark: #22272b;
+  --nsw-text-light: #fff;
+
+  --nsw-text-dark-rgb: 34, 39, 43;
+  --nsw-text-light-rgb: 255, 255, 255;
+
+  --nsw-link: #002664;
+  --nsw-link-light: #e6e9f0;
+  --nsw-visited: #551a8b;
+  --nsw-visited-light: #ddd1e8;
+  --nsw-hover: rgba(0, 38, 100, 0.1);
+  --nsw-hover-light: rgba(230, 233, 240, 0.1);
+  --nsw-active: rgba(0, 38, 100, 0.2);
+  --nsw-active-light: rgba(230, 233, 240, 0.2);
+  --nsw-focus: #0086b3;
+  --nsw-focus-light: #cce7f0;
+  --nsw-disabled: #8093b2;
+
+  --nsw-link-rgb: 0, 38, 100;
+  --nsw-link-light-rgb: 230, 233, 240;
+  --nsw-visited-rgb: 85, 26, 139;
+  --nsw-visited-light-rgb: 221, 209, 232;
+  --nsw-hover-rgb: 0, 38, 100;
+  --nsw-hover-light-rgb: 230, 233, 240;
+  --nsw-active-rgb: 0, 38, 100;
+  --nsw-active-light-rgb: 230, 233, 240;
+  --nsw-focus-rgb: 0, 134, 179;
+  --nsw-focus-light-rgb: 204, 231, 240;
+  --nsw-disabled-rgb: 128, 147, 178;
+
+  --nsw-status-success: #008a07;
+  --nsw-status-success-bg: #e5f6e6;
+  --nsw-status-info: #2e5299;
+  --nsw-status-info-bg: #eaedf4;
+  --nsw-status-warning: #c95000;
+  --nsw-status-warning-bg: #fbeee5;
+  --nsw-status-error: #b81237;
+  --nsw-status-error-bg: #f7e7eb;
+
+  --nsw-status-success-rgb: 0, 138, 7;
+  --nsw-status-success-bg-rgb: 229, 246, 230;
+  --nsw-status-info-rgb: 46, 82, 153;
+  --nsw-status-info-bg-rgb: 234, 237, 244;
+  --nsw-status-warning-rgb: 201, 80, 0;
+  --nsw-status-warning-bg-rgb: 251, 238, 229;
+  --nsw-status-error-rgb: 184, 18, 55;
+  --nsw-status-error-bg-rgb: 247, 231, 235;
 
   /* Font */
   --nsw-font-family: 'Public Sans', sans-serif;
@@ -504,6 +584,9 @@
   --nsw-line-height-xxl-desktop: 1.25;
 
   /* Borders */
+  --nsw-border-width: 1px;
+  --nsw-border-style: solid;
+  --nsw-border-color: var(--nsw-brand-accent);
   --nsw-border-radius: 0.25rem;
 
   /* Shadows */
@@ -515,42 +598,79 @@
     <div class="nsw-docs-code__wrapper">
 <pre><code class="language-css"><script>document.write((`:root {
   /* Colours */
-  --nsw-brand-dark: var(--nsw-palette-blue-01);
-  --nsw-brand-light: var(--nsw-palette-blue-04);
-  --nsw-brand-accent: var(--nsw-palette-red-02);
-  --nsw-brand-supplementary: var(--nsw-palette-blue-02);
+  --nsw-brand-dark: #002664;
+  --nsw-brand-light: #cbedfd;
+  --nsw-brand-supplementary: #146cfd;
+  --nsw-brand-accent: #d7153a;
 
-  --nsw-text-dark: var(--nsw-palette-grey-01);
-  --nsw-text-light: var(--nsw-palette-white);
+  --nsw-black: #000;
+  --nsw-grey-01: #22272b;
+  --nsw-grey-02: #495054;
+  --nsw-grey-03: #cdd3d6;
+  --nsw-grey-04: #ebebeb;
+  --nsw-off-white: #f2f2f2;
+  --nsw-white: #fff;
 
-  --nsw-text-hover: rgba(var(--nsw-palette-blue-01-rgb), 0.1);
-  --nsw-text-hover-light: rgba(var(--nsw-palette-white-rgb), 0.1);
-
-  --nsw-text-link: var(--nsw-palette-blue-01);
-  --nsw-text-link-hover: rgba(var(--nsw-palette-blue-01-rgb), 0.1);
-
-  --nsw-text-visited: var(--nsw-palette-visited);
-  --nsw-focus: var(--nsw-palette-focus);
-
-  --nsw-black: var(--nsw-palette-black);
-  --nsw-white: var(--nsw-palette-white);
-  --nsw-off-white: var(--nsw-palette-off-white);
-  --nsw-grey-01: var(--nsw-palette-grey-01);
-  --nsw-grey-02: var(--nsw-palette-grey-02);
-  --nsw-grey-03: var(--nsw-palette-grey-03);
-  --nsw-grey-04: var(--nsw-palette-grey-04);
-
-  --nsw-status-info: var(--nsw-palette-info-blue);
-  --nsw-status-info-bg: var(--nsw-palette-info-blue-bg);
-  --nsw-status-success: var(--nsw-palette-success-green);
-  --nsw-status-success-bg: var(--nsw-palette-success-green-bg);
-  --nsw-status-warning: var(--nsw-palette-warning-orange);
-  --nsw-status-warning-bg: var(--nsw-palette-warning-orange-bg);
-  --nsw-status-error: var(--nsw-palette-error-red);
-  --nsw-status-error-bg: var(--nsw-palette-error-red-bg);
+  --nsw-brand-dark-rgb: 0, 38, 100;
+  --nsw-brand-light-rgb: 203, 237, 253;
+  --nsw-brand-supplementary-rgb: 20, 108, 253;
+  --nsw-brand-accent-rgb: 215, 21, 58;
 
   --nsw-black-rgb: 0, 0, 0;
+  --nsw-grey-01-rgb: 34, 39, 43;
+  --nsw-grey-02-rgb: 73, 80, 84;
+  --nsw-grey-03-rgb: 205, 211, 214;
+  --nsw-grey-04-rgb: 235, 235, 235;
+  --nsw-off-white-rgb: 242, 242, 242;
   --nsw-white-rgb: 255, 255, 255;
+
+  --nsw-text-dark: #22272b;
+  --nsw-text-light: #fff;
+
+  --nsw-text-dark-rgb: 34, 39, 43;
+  --nsw-text-light-rgb: 255, 255, 255;
+
+  --nsw-link: #002664;
+  --nsw-link-light: #e6e9f0;
+  --nsw-visited: #551a8b;
+  --nsw-visited-light: #ddd1e8;
+  --nsw-hover: rgba(0, 38, 100, 0.1);
+  --nsw-hover-light: rgba(230, 233, 240, 0.1);
+  --nsw-active: rgba(0, 38, 100, 0.2);
+  --nsw-active-light: rgba(230, 233, 240, 0.2);
+  --nsw-focus: #0086b3;
+  --nsw-focus-light: #cce7f0;
+  --nsw-disabled: #8093b2;
+
+  --nsw-link-rgb: 0, 38, 100;
+  --nsw-link-light-rgb: 230, 233, 240;
+  --nsw-visited-rgb: 85, 26, 139;
+  --nsw-visited-light-rgb: 221, 209, 232;
+  --nsw-hover-rgb: 0, 38, 100;
+  --nsw-hover-light-rgb: 230, 233, 240;
+  --nsw-active-rgb: 0, 38, 100;
+  --nsw-active-light-rgb: 230, 233, 240;
+  --nsw-focus-rgb: 0, 134, 179;
+  --nsw-focus-light-rgb: 204, 231, 240;
+  --nsw-disabled-rgb: 128, 147, 178;
+
+  --nsw-status-success: #008a07;
+  --nsw-status-success-bg: #e5f6e6;
+  --nsw-status-info: #2e5299;
+  --nsw-status-info-bg: #eaedf4;
+  --nsw-status-warning: #c95000;
+  --nsw-status-warning-bg: #fbeee5;
+  --nsw-status-error: #b81237;
+  --nsw-status-error-bg: #f7e7eb;
+
+  --nsw-status-success-rgb: 0, 138, 7;
+  --nsw-status-success-bg-rgb: 229, 246, 230;
+  --nsw-status-info-rgb: 46, 82, 153;
+  --nsw-status-info-bg-rgb: 234, 237, 244;
+  --nsw-status-warning-rgb: 201, 80, 0;
+  --nsw-status-warning-bg-rgb: 251, 238, 229;
+  --nsw-status-error-rgb: 184, 18, 55;
+  --nsw-status-error-bg-rgb: 247, 231, 235;
 
   /* Font */
   --nsw-font-family: 'Public Sans', sans-serif;
@@ -595,6 +715,9 @@
   --nsw-line-height-xxl-desktop: 1.25;
 
   /* Borders */
+  --nsw-border-width: 1px;
+  --nsw-border-style: solid;
+  --nsw-border-color: var(--nsw-brand-accent);
   --nsw-border-radius: 0.25rem;
 
   /* Shadows */
@@ -609,10 +732,11 @@
 
 
 <h2 id="theming-examples">Theming examples</h2>
-<p>We’ve created a few page examples to show the most commonly used theming applications that can easily modify the <a target="_blank" href="/nsw-design-system/templates/theming/default.html">masterbrand (default)</a> theme.</p>
+
+<p>We’ve created a few page examples to show the most commonly used theming applications that can easily modify the masterbrand (default)theme.</p>
 
 <h3>Full page</h3>
-<p><a target="_blank" href="/nsw-design-system/templates/theming/full-page.html">Full page re-theming example</a> has full brand colour palette updated to new theme and applied to full page/site. This includes global elements (header, navigation, footer etc) but excludes masthead. To implement it you need to apply new colours to global scope.</p>
+<p><a target="_blank" href="/nsw-design-system/templates/theming/full-page.html">Full page re-theming example</a> has full brand colour palette updated to new theme and applied to full page/site by clicking on the colour swatches in the top right corner. This includes global elements (header, navigation, footer etc) but excludes masthead. To implement it you need to apply new colours to global scope.</p>
 
 <div class="nsw-docs__example nsw-docs__example--hidden">
   <div class="nsw-docs__component">
@@ -625,18 +749,76 @@
       <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
     </button>
     <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`:root {
-  --nsw-brand-dark: var(--nsw-palette-purple-01);
-  --nsw-brand-light: var(--nsw-palette-fuchsia-04);
-  --nsw-brand-accent: var(--nsw-palette-fuchsia-02);
-  --nsw-brand-supplementary: var(--nsw-palette-purple-02);
+  --nsw-brand-dark: #0b3f47;
+  --nsw-brand-light: #d1eeea;
+  --nsw-brand-supplementary: #2e808e;
+  --nsw-brand-accent: #d912ae;
+
+  --nsw-link: #0b3f47;
+  --nsw-link-light: #e7eced;
+  --nsw-visited: #2d2b68;
+  --nsw-visited-light: #d5d5e1;
+  --nsw-hover: rgba(11, 63, 71, 0.1);
+  --nsw-hover-light: rgba(231, 236, 237, 0.1);
+  --nsw-active: rgba(11, 63, 71, 0.2);
+  --nsw-active-light: rgba(231, 236, 237, 0.2);
+  --nsw-focus: #168b70;
+  --nsw-focus-light: #d0e8e2;
+  --nsw-disabled: #859fa3;
+
+  --nsw-brand-dark-rgb: 11, 63, 71;
+  --nsw-brand-light-rgb: 209, 238, 234;
+  --nsw-brand-supplementary-rgb: 46, 128, 142;
+  --nsw-brand-accent-rgb: 217, 18, 174;
+
+  --nsw-link-rgb: 11, 63, 71;
+  --nsw-link-light-rgb: 231, 236, 237;
+  --nsw-visited-rgb: 45, 43, 104;
+  --nsw-visited-light-rgb: 213, 213, 225;
+  --nsw-hover-rgb: 11, 63, 71;
+  --nsw-hover-light-rgb: 231, 236, 237;
+  --nsw-active-rgb: 11, 63, 71;
+  --nsw-active-light-rgb: 231, 236, 237;
+  --nsw-focus-rgb: 22, 139, 112;
+  --nsw-focus-light-rgb: 208, 232, 226;
+  --nsw-disabled-rgb: 133, 159, 163;
 }
 `).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
     <div class="nsw-docs-code__wrapper">
 <pre><code class="language-css"><script>document.write((`:root {
-  --nsw-brand-dark: var(--nsw-palette-purple-01);
-  --nsw-brand-light: var(--nsw-palette-fuchsia-04);
-  --nsw-brand-accent: var(--nsw-palette-fuchsia-02);
-  --nsw-brand-supplementary: var(--nsw-palette-purple-02);
+  --nsw-brand-dark: #0b3f47;
+  --nsw-brand-light: #d1eeea;
+  --nsw-brand-supplementary: #2e808e;
+  --nsw-brand-accent: #d912ae;
+
+  --nsw-link: #0b3f47;
+  --nsw-link-light: #e7eced;
+  --nsw-visited: #2d2b68;
+  --nsw-visited-light: #d5d5e1;
+  --nsw-hover: rgba(11, 63, 71, 0.1);
+  --nsw-hover-light: rgba(231, 236, 237, 0.1);
+  --nsw-active: rgba(11, 63, 71, 0.2);
+  --nsw-active-light: rgba(231, 236, 237, 0.2);
+  --nsw-focus: #168b70;
+  --nsw-focus-light: #d0e8e2;
+  --nsw-disabled: #859fa3;
+
+  --nsw-brand-dark-rgb: 11, 63, 71;
+  --nsw-brand-light-rgb: 209, 238, 234;
+  --nsw-brand-supplementary-rgb: 46, 128, 142;
+  --nsw-brand-accent-rgb: 217, 18, 174;
+
+  --nsw-link-rgb: 11, 63, 71;
+  --nsw-link-light-rgb: 231, 236, 237;
+  --nsw-visited-rgb: 45, 43, 104;
+  --nsw-visited-light-rgb: 213, 213, 225;
+  --nsw-hover-rgb: 11, 63, 71;
+  --nsw-hover-light-rgb: 231, 236, 237;
+  --nsw-active-rgb: 11, 63, 71;
+  --nsw-active-light-rgb: 231, 236, 237;
+  --nsw-focus-rgb: 22, 139, 112;
+  --nsw-focus-light-rgb: 208, 232, 226;
+  --nsw-disabled-rgb: 133, 159, 163;
 }
 `).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
     </div>
@@ -658,18 +840,76 @@
       <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
     </button>
     <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`.nsw-layout {
-  --nsw-brand-dark: var(--nsw-palette-orange-01);
-  --nsw-brand-light: var(--nsw-palette-yellow-04);
-  --nsw-brand-accent: var(--nsw-palette-yellow-02);
-  --nsw-brand-supplementary: var(--nsw-palette-orange-02);
+  --nsw-brand-dark: #441170;
+  --nsw-brand-light: #e6e1fd;
+  --nsw-brand-supplementary: #8055f1;
+  --nsw-brand-accent: #faaf05;
+
+  --nsw-link: #441170;
+  --nsw-link-light: #ece7f1;
+  --nsw-visited: #8a3866;
+  --nsw-visited-light: #e8d7e0;
+  --nsw-hover: rgba(68, 17, 112, 0.1);
+  --nsw-hover-light: rgba(236, 231, 241, 0.1);
+  --nsw-active: rgba(68, 17, 112, 0.2);
+  --nsw-active-light: rgba(236, 231, 241, 0.2);
+  --nsw-focus: #351bb5;
+  --nsw-focus-light: #d7d1f0;
+  --nsw-disabled: #a288b8;
+
+  --nsw-brand-dark-rgb: 68, 17, 112;
+  --nsw-brand-light-rgb: 230, 225, 253;
+  --nsw-brand-supplementary-rgb: 128, 85, 241;
+  --nsw-brand-accent-rgb: 250, 175, 5;
+  --nsw-link-rgb: 68, 17, 112;
+  --nsw-link-light-rgb: 236, 231, 241;
+  --nsw-visited-rgb: 138, 56, 102;
+  --nsw-visited-light-rgb: 232, 215, 224;
+
+  --nsw-hover-rgb: 68, 17, 112;
+  --nsw-hover-light-rgb: 236, 231, 241;
+  --nsw-active-rgb: 68, 17, 112;
+  --nsw-active-light-rgb: 236, 231, 241;
+  --nsw-focus-rgb: 53, 27, 181;
+  --nsw-focus-light-rgb: 215, 209, 240;
+  --nsw-disabled-rgb: 162, 136, 184;
 }
 `).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
     <div class="nsw-docs-code__wrapper">
 <pre><code class="language-css"><script>document.write((`.nsw-layout {
-  --nsw-brand-dark: var(--nsw-palette-orange-01);
-  --nsw-brand-light: var(--nsw-palette-yellow-04);
-  --nsw-brand-accent: var(--nsw-palette-yellow-02);
-  --nsw-brand-supplementary: var(--nsw-palette-orange-02);
+  --nsw-brand-dark: #441170;
+  --nsw-brand-light: #e6e1fd;
+  --nsw-brand-supplementary: #8055f1;
+  --nsw-brand-accent: #faaf05;
+
+  --nsw-link: #441170;
+  --nsw-link-light: #ece7f1;
+  --nsw-visited: #8a3866;
+  --nsw-visited-light: #e8d7e0;
+  --nsw-hover: rgba(68, 17, 112, 0.1);
+  --nsw-hover-light: rgba(236, 231, 241, 0.1);
+  --nsw-active: rgba(68, 17, 112, 0.2);
+  --nsw-active-light: rgba(236, 231, 241, 0.2);
+  --nsw-focus: #351bb5;
+  --nsw-focus-light: #d7d1f0;
+  --nsw-disabled: #a288b8;
+
+  --nsw-brand-dark-rgb: 68, 17, 112;
+  --nsw-brand-light-rgb: 230, 225, 253;
+  --nsw-brand-supplementary-rgb: 128, 85, 241;
+  --nsw-brand-accent-rgb: 250, 175, 5;
+  --nsw-link-rgb: 68, 17, 112;
+  --nsw-link-light-rgb: 236, 231, 241;
+  --nsw-visited-rgb: 138, 56, 102;
+  --nsw-visited-light-rgb: 232, 215, 224;
+
+  --nsw-hover-rgb: 68, 17, 112;
+  --nsw-hover-light-rgb: 236, 231, 241;
+  --nsw-active-rgb: 68, 17, 112;
+  --nsw-active-light-rgb: 236, 231, 241;
+  --nsw-focus-rgb: 53, 27, 181;
+  --nsw-focus-light-rgb: 215, 209, 240;
+  --nsw-disabled-rgb: 162, 136, 184;
 }
 `).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
     </div>
@@ -691,12 +931,14 @@
       <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
     </button>
     <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`:root {
-  --nsw-brand-accent: var(--nsw-palette-green-02);
+  --nsw-brand-accent: #146cfd;
+  --nsw-brand-accent-rgb: 20, 108, 253;
 }
 `).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
     <div class="nsw-docs-code__wrapper">
 <pre><code class="language-css"><script>document.write((`:root {
-  --nsw-brand-accent: var(--nsw-palette-green-02);
+  --nsw-brand-accent: #146cfd;
+  --nsw-brand-accent-rgb: 20, 108, 253;
 }
 `).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
     </div>
@@ -704,6 +946,58 @@
 </div>
 
 
+<div class="nsw-grid nsw-m-top-lg">
+  <div class="nsw-row">
+    <div class="nsw-col nsw-col-xl-4">
+      <h3>Components</h3>
+      <p>Individual component re-theming examples has brand colour palette updated to new theme and applied to each component by clicking on the colour swatches in the top right corner</p>
+    </div>
+    <div class="nsw-col nsw-col-xl-8">
+      <ul class="nsw-docs__list nsw-docs__list--3">
+        <li><a href="/nsw-design-system/components/accordion/theme.html">Accordion</a></li>
+        <li><a href="/nsw-design-system/components/back-to-top/theme.html">Back to top</a></li>
+        <li><a href="/nsw-design-system/components/breadcrumbs/theme.html">Breadcrumbs</a></li>
+        <li><a href="/nsw-design-system/components/button/theme.html">Buttons<span class="nsw-brand">&#128313;</span></a></li>
+        <li><a href="/nsw-design-system/components/callout/theme.html">Callout</a></li>
+        <li><a href="/nsw-design-system/components/card/theme.html">Cards</a></li>
+        <li><a href="/nsw-design-system/components/close-button/theme.html">Close button</a></li>
+        <li><a href="/nsw-design-system/components/content-block/theme.html">Content blocks</a></li>
+        <li><a href="/nsw-design-system/components/date-input/theme.html">Date input</a></li>
+        <li><a href="/nsw-design-system/components/dialog/theme.html">Dialog</a></li>
+        <li><a href="/nsw-design-system/components/file-upload/theme.html">File upload</a></li>
+        <li><a href="/nsw-design-system/components/filters/theme.html">Filters</a></li>
+        <li><a href="/nsw-design-system/components/footer/theme.html">Footer<span class="nsw-brand">&#128313;</span></a></li>
+        <li><a href="/nsw-design-system/components/form/theme.html">Forms<span class="nsw-brand">&#128313;</span></a></li>
+        <li><a href="/nsw-design-system/components/global-alert/theme.html">Global alert</a></li>
+        <li><a href="/nsw-design-system/components/header/theme.html">Header<span class="nsw-brand">&#128313;</span></a></li>
+        <li><a href="/nsw-design-system/components/hero-banner/theme.html">Hero banner</a></li>
+        <li><a href="/nsw-design-system/components/hero-search/theme.html">Hero search</a></li>
+        <li><a href="/nsw-design-system/components/in-page-alert/theme.html">In-page alert</a></li>
+        <li><a href="/nsw-design-system/components/in-page-nav/theme.html">In-page navigation</a></li>
+        <li><a href="/nsw-design-system/components/link/theme.html">Link</a></li>
+        <li><a href="/nsw-design-system/components/link-list/theme.html">Link list</a></li>
+        <li><a href="/nsw-design-system/components/list-item/theme.html">List items</a></li>
+        <li><a href="/nsw-design-system/components/loader/theme.html">Loader</a></li>
+        <li><a href="/nsw-design-system/components/main-nav/theme.html">Main navigation</a></li>
+        <li><a href="/nsw-design-system/components/masthead/theme.html">Masthead<span class="nsw-brand">&#128313;</span></a></li>
+        <li><a href="/nsw-design-system/components/media/theme.html">Media</a></li>
+        <li><a href="/nsw-design-system/components/pagination/theme.html">Pagination</a></li>
+        <li><a href="/nsw-design-system/components/popover/theme.html">Popover</a></li>
+        <li><a href="/nsw-design-system/components/progress-indicator/theme.html">Progress Indicator</a></li>
+        <li><a href="/nsw-design-system/components/results-bar/theme.html">Results bar</a></li>
+        <li><a href="/nsw-design-system/components/select/theme.html">Select</a></li>
+        <li><a href="/nsw-design-system/components/side-nav/theme.html">Side navigation</a></li>
+        <li><a href="/nsw-design-system/components/status-labels/theme.html">Status labels</a></li>
+        <li><a href="/nsw-design-system/components/steps/theme.html">Steps</a></li>
+        <li><a href="/nsw-design-system/components/table/theme.html">Tables</a></li>
+        <li><a href="/nsw-design-system/components/tabs/theme.html">Tabs</a></li>
+        <li><a href="/nsw-design-system/components/tag/theme.html">Tags</a></li>
+        <li><a href="/nsw-design-system/components/tooltip/theme.html">Tooltip</a></li>
+        <li><a href="/nsw-design-system/components/utility-list/theme.html">Utility list</a></li>
+      </ul>
+    </div>    
+  </div>
+</div>
         </div>
       </div>
       <footer class="nsw-footer nsw-docs-footer">

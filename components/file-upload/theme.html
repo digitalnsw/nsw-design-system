@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+  <title>NSW Digital Design System - File upload</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="noindex" />
+  <link rel="icon" href="/nsw-design-system/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone" rel="stylesheet">
+  <link rel="stylesheet" href="/nsw-design-system/docs/css/docs.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TMEHXHFJXJ"></script>
+<script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-TMEHXHFJXJ");</script>
+</head>
+
+<body>
+
+<header class="nsw-header">
+  <div class="nsw-header__container">
+    <div class="nsw-header__inner">
+      <div class="nsw-header__main">
+        <div class="nsw-header__waratah">
+          <br>
+          <br>
+          <br>
+        </div>
+      </div>
+      <div class="nsw-color-swatches js-color-swatches">
+        <legend class="nsw-color-swatches__legend" aria-live="polite" aria-atomic="true"><span class="nsw-color-swatches__color js-color-swatches__color">Blue 01</span></legend>
+        <select class="js-color-swatches__select" aria-label="Select a color"></select>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<section class="nsw-section">
+  <div class="nsw-container nsw-p-y-sm">
+    <div class="nsw-layout">
+      <main class="nsw-layout__main">
+        <div class="nsw-form">
+          <div class="nsw-form__group">
+            <label class="nsw-form__label" for="file-upload-helper">Upload drivers license</label>
+            <span class="nsw-form__helper" id="file-upload-helper-helper-text">Formats accepted: JPG, PNG or PDF <br /> File size must not exceed 350MB</span>
+            <div class="nsw-file-upload js-file-upload" data-replace-files>
+                <input type="file" class="nsw-file-upload__input" name="file-upload-helper" id="file-upload-helper" aria-describedby="file-upload-helper-helper-text" accept="image/*,.pdf" multiple>
+                <label for="file-upload-helper" class="nsw-file-upload__label nsw-button nsw-button--dark-outline-solid">Select file</label>
+            </div>
+          </div>
+        </div>
+        
+        <div class="nsw-form">
+          <div class="nsw-form__group">
+            <label class="nsw-form__label" for="file-upload-error">Upload drivers license</label>
+            <span class="nsw-form__helper" id="file-upload-error-helper-text">Formats accepted: JPG, PNG or PDF <br /> File size must not exceed 350MB</span>
+            <span class="nsw-form__helper nsw-form__helper--error" id="file-upload-error-error-text"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span>The selected file must be smaller than 350MB</span>
+            <div class="nsw-file-upload js-file-upload">
+                <input type="file" class="nsw-file-upload__input" name="file-upload-error" id="file-upload-error" aria-describedby="file-upload-error-helper-text" aria-invalid="true" accept="image/*,.pdf">
+                <label for="file-upload-error" class="nsw-file-upload__label nsw-button nsw-button--dark-outline-solid">Select file</label>
+            </div>
+          </div>
+        </div>
+      </main>
+      <div class="nsw-layout__sidebar nsw-layout__sidebar--desktop"></div>
+    </div>
+  </div>
+</section>
+
+<section class="nsw-section nsw-section--brand-dark nsw-section--invert">
+  <div class="nsw-container nsw-p-y-sm">
+    <div class="nsw-layout">
+      <main class="nsw-layout__main">
+        <div class="nsw-form">
+          <div class="nsw-form__group">
+            <label class="nsw-form__label" for="file-upload-helper-dark">Upload drivers license</label>
+            <span class="nsw-form__helper" id="file-upload-helper-dark-helper-text">Formats accepted: JPG, PNG or PDF <br /> File size must not exceed 350MB</span>
+            <div class="nsw-file-upload js-file-upload" data-replace-files>
+                <input type="file" class="nsw-file-upload__input" name="file-upload-helper-dark" id="file-upload-helper-dark" aria-describedby="file-upload-helper-dark-helper-text" accept="image/*,.pdf" multiple>
+                <label for="file-upload-helper-dark" class="nsw-file-upload__label nsw-button nsw-button--dark-outline-solid">Select file</label>
+            </div>
+          </div>
+        </div>
+        
+        <div class="nsw-form">
+          <div class="nsw-form__group">
+            <label class="nsw-form__label" for="file-upload-error-dark">Upload drivers license</label>
+            <span class="nsw-form__helper" id="file-upload-error-dark-helper-text">Formats accepted: JPG, PNG or PDF <br /> File size must not exceed 350MB</span>
+            <span class="nsw-form__helper nsw-form__helper--error" id="file-upload-error-dark-error-text"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span>The selected file must be smaller than 350MB</span>
+            <div class="nsw-file-upload js-file-upload">
+                <input type="file" class="nsw-file-upload__input" name="file-upload-error-dark" id="file-upload-error-dark" aria-describedby="file-upload-error-dark-helper-text" aria-invalid="true" accept="image/*,.pdf">
+                <label for="file-upload-error-dark" class="nsw-file-upload__label nsw-button nsw-button--dark-outline-solid">Select file</label>
+            </div>
+          </div>
+        </div>
+      </main>
+      <div class="nsw-layout__sidebar nsw-layout__sidebar--desktop"></div>
+    </div>
+  </div>
+</section>
+<script src="/nsw-design-system/docs/js/docs.js"></script>
+
+  <script src="/nsw-design-system/js/main.js"></script>
+  <script>
+    window.NSW.initSite()
+  </script>
+</body>
+</html>
