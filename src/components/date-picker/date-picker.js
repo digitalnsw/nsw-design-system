@@ -2,6 +2,13 @@
 class DatePicker {
   constructor(element) {
     this.element = element
+    this.prefix = 'nsw-'
+    this.class = 'date-picker'
+    this.dateClass = `${this.prefix}${this.class}__date`
+    this.todayClass = `${this.dateClass}--today`
+    this.selectedClass = `${this.dateClass}--selected`
+    this.keyboardFocusClass = `${this.dateClass}--keyboard-focus`
+    this.visibleClass = `${this.prefix}${this.class}--is-visible`
     this.months = this.element.getAttribute('data-months') ? this.element.getAttribute('data-months') : ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
     this.dateFormat = this.element.getAttribute('data-date-format') ? this.element.getAttribute('data-date-format') : 'd-m-y'
     this.dateSeparator = this.element.getAttribute('data-date-separator') ? this.element.getAttribute('data-date-separator') : '/'
@@ -17,29 +24,23 @@ class DatePicker {
     this.heading = this.datePicker.querySelector('.js-date-picker__title-label')
     this.close = this.datePicker.querySelector('.js-date-picker__close')
     this.accept = this.datePicker.querySelector('.js-date-picker__accept')
-    this.pickerVisible = false
-    // multiple inputs
     this.multipleInput = this.element.querySelector('.js-date-input-multiple')
-    this.dateInput = this.multipleInput && this.multipleInput.querySelector('.js-datepicker-date')
-    this.monthInput = this.multipleInput && this.multipleInput.querySelector('.js-datepicker-month')
-    this.yearInput = this.multipleInput && this.multipleInput.querySelector('.js-datepicker-year')
+    this.dateInput = this.multipleInput && this.multipleInput.querySelector('.js-date-picker-date')
+    this.monthInput = this.multipleInput && this.multipleInput.querySelector('.js-date-picker-month')
+    this.yearInput = this.multipleInput && this.multipleInput.querySelector('.js-date-picker-year')
     this.multiDateArray = [this.dateInput, this.monthInput, this.yearInput]
-    // date format
-    this.dateIndexes = this.getDateIndexes() // store indexes of date parts (d, m, y)
-    // selected date
+    this.dateIndexes = this.getDateIndexes()
+    this.pickerVisible = false
     this.dateSelected = false
     this.selectedDay = false
     this.selectedMonth = false
     this.selectedYear = false
-    // focus trap
     this.firstFocusable = false
     this.lastFocusable = false
-    // disabled dates
     this.disabledArray = false
   }
 
   init() {
-    // set initial date
     this.disabledDates()
     this.resetCalendar()
     this.initCalendarAria()
@@ -48,10 +49,8 @@ class DatePicker {
   }
 
   initCalendarAria() {
-    // reset calendar button label
     this.resetLabelCalendarTrigger()
 
-    // create a live region used to announce new month selection to SR
     const srLiveReagion = document.createElement('div')
     srLiveReagion.setAttribute('aria-live', 'polite')
     srLiveReagion.classList.add('sr-only', 'js-date-input__sr-live')
@@ -62,7 +61,7 @@ class DatePicker {
   initCalendarEvents() {
     if (this.input) {
       this.input.addEventListener('focus', () => {
-        this.toggleCalendar(true) // toggle calendar when focus is on input
+        this.toggleCalendar(true)
       })
     }
 
@@ -75,7 +74,7 @@ class DatePicker {
     }
 
     if (this.trigger) {
-      this.trigger.addEventListener('click', (event) => { // open calendar when clicking on calendar button
+      this.trigger.addEventListener('click', (event) => {
         event.preventDefault()
         this.pickerVisible = false
         this.toggleCalendar()
@@ -84,14 +83,14 @@ class DatePicker {
     }
 
     if (this.close) {
-      this.close.addEventListener('click', (event) => { // open calendar when clicking on calendar button
+      this.close.addEventListener('click', (event) => {
         event.preventDefault()
         this.hideCalendar()
       })
     }
 
     if (this.accept) {
-      this.accept.addEventListener('click', (event) => { // open calendar when clicking on calendar button
+      this.accept.addEventListener('click', (event) => {
         event.preventDefault()
         const day = this.body.querySelector('button[tabindex="0"]')
         if (day) {
@@ -101,7 +100,7 @@ class DatePicker {
           this.selectedYear = this.currentYear
           this.setInputValue()
           if (this.input) {
-            this.input.focus() // focus on the input element and close picker
+            this.input.focus()
           } else if (this.multipleInput) {
             this.trigger.focus()
             this.hideCalendar()
@@ -112,7 +111,6 @@ class DatePicker {
       })
     }
 
-    // select a date inside the date picker
     this.body.addEventListener('click', (event) => {
       event.preventDefault()
       const day = event.target.closest('button')
@@ -123,7 +121,7 @@ class DatePicker {
         this.selectedYear = this.currentYear
         this.setInputValue()
         if (this.input) {
-          this.input.focus() // focus on the input element and close picker
+          this.input.focus()
         } else if (this.multipleInput) {
           this.trigger.focus()
           this.hideCalendar()
@@ -133,7 +131,6 @@ class DatePicker {
       }
     })
 
-    // navigate using title nav
     this.navigation.addEventListener('click', (event) => {
       event.preventDefault()
       const monthBtn = event.target.closest('.js-date-picker__month-nav-btn')
@@ -150,13 +147,12 @@ class DatePicker {
       }
     })
 
-    // hide calendar
-    window.addEventListener('keydown', (event) => { // close calendar on esc
+    window.addEventListener('keydown', (event) => {
       if ((event.code && event.code === 27) || (event.key && event.key.toLowerCase() === 'escape')) {
         if (document.activeElement.closest('.js-date-picker')) {
           const activeInput = document.activeElement.closest('.js-date-input').querySelector('input')
-          activeInput.focus() // focus on the input element and close picker
-        } else { // do not move focus -> only close calendar
+          activeInput.focus()
+        } else {
           this.hideCalendar()
         }
       }
@@ -168,7 +164,6 @@ class DatePicker {
       }
     })
 
-    // navigate through days of calendar
     this.body.addEventListener('keydown', (event) => {
       let day = this.currentDay
       if ((event.code && event.code === 40) || (event.key && event.key.toLowerCase() === 'arrowdown')) {
@@ -183,27 +178,25 @@ class DatePicker {
       } else if ((event.code && event.code === 38) || (event.key && event.key.toLowerCase() === 'arrowup')) {
         day -= 7
         this.resetDayValue(day)
-      } else if ((event.code && event.code === 35) || (event.key && event.key.toLowerCase() === 'end')) { // move focus to last day of week
+      } else if ((event.code && event.code === 35) || (event.key && event.key.toLowerCase() === 'end')) {
         event.preventDefault()
         day = day + 6 - this.getDayOfWeek(this.currentYear, this.currentMonth, day)
         this.resetDayValue(day)
-      } else if ((event.code && event.code === 36) || (event.key && event.key.toLowerCase() === 'home')) { // move focus to first day of week
+      } else if ((event.code && event.code === 36) || (event.key && event.key.toLowerCase() === 'home')) {
         event.preventDefault()
         day -= this.getDayOfWeek(this.currentYear, this.currentMonth, day)
         this.resetDayValue(day)
       } else if ((event.code && event.code === 34) || (event.key && event.key.toLowerCase() === 'pagedown')) {
         event.preventDefault()
-        this.showNextMonth() // show next month
+        this.showNextMonth()
       } else if ((event.code && event.code === 33) || (event.key && event.key.toLowerCase() === 'pageup')) {
         event.preventDefault()
-        this.showPrevMonth() // show prev month
+        this.showPrevMonth()
       }
     })
 
-    // trap focus inside calendar
     this.datePicker.addEventListener('keydown', (event) => {
       if ((event.code && event.code === 9) || (event.key && event.key === 'Tab')) {
-        // trap focus inside modal
         this.trapFocus(event)
       }
     })
@@ -211,11 +204,10 @@ class DatePicker {
     if (this.input) {
       this.input.addEventListener('keydown', (event) => {
         if ((event.code && event.code === 13) || (event.key && event.key.toLowerCase() === 'enter')) {
-          // update calendar on input enter
           this.resetCalendar()
           this.resetLabelCalendarTrigger()
           this.hideCalendar()
-        } else if ((event.code && event.code === 40) || (event.key && event.key.toLowerCase() === 'arrowdown' && this.pickerVisible)) { // move focus to calendar using arrow down
+        } else if ((event.code && event.code === 40) || (event.key && event.key.toLowerCase() === 'arrowdown' && this.pickerVisible)) {
           this.body.querySelector('button[tabindex="0"]').focus()
         }
       })
@@ -225,11 +217,10 @@ class DatePicker {
       this.multiDateArray.forEach((element) => {
         element.addEventListener('keydown', (event) => {
           if ((event.code && event.code === 13) || (event.key && event.key.toLowerCase() === 'enter')) {
-            // update calendar on input enter
             this.resetCalendar()
             this.resetLabelCalendarTrigger()
             this.hideCalendar()
-          } else if ((event.code && event.code === 40) || (event.key && event.key.toLowerCase() === 'arrowdown' && this.pickerVisible)) { // move focus to calendar using arrow down
+          } else if ((event.code && event.code === 40) || (event.key && event.key.toLowerCase() === 'arrowdown' && this.pickerVisible)) {
             this.body.querySelector('button[tabindex="0"]').focus()
           }
         })
@@ -271,7 +262,6 @@ class DatePicker {
   }
 
   showNextMonth(bool) {
-    // show next month
     this.currentYear = (this.currentMonth === 11) ? this.currentYear + 1 : this.currentYear
     this.currentMonth = (this.currentMonth + 1) % 12
     this.currentDay = this.checkDayInMonth()
@@ -280,7 +270,6 @@ class DatePicker {
   }
 
   showPrevMonth(bool) {
-    // show prev month
     this.currentYear = (this.currentMonth === 0) ? this.currentYear - 1 : this.currentYear
     this.currentMonth = (this.currentMonth === 0) ? 11 : this.currentMonth - 1
     this.currentDay = this.checkDayInMonth()
@@ -289,7 +278,6 @@ class DatePicker {
   }
 
   showNextYear(bool) {
-    // show next year
     this.currentYear += 1
     this.currentMonth %= 12
     this.currentDay = this.checkDayInMonth()
@@ -298,7 +286,6 @@ class DatePicker {
   }
 
   showPrevYear(bool) {
-    // show prev year
     this.currentYear -= 1
     this.currentMonth %= 12
     this.currentDay = this.checkDayInMonth()
@@ -355,33 +342,43 @@ class DatePicker {
     }
   }
 
-  isDisabledDate(date) {
+  convertDateToParse(date) {
+    const dateArray = date.split(this.dateSeparator)
+    return `${dateArray[this.dateIndexes[2]]}, ${dateArray[this.dateIndexes[1]]}, ${dateArray[this.dateIndexes[0]]}`
+  }
+
+  isDisabledDate(day, month, year) {
     let disabled = false
 
-    if (this.minDate && this.minDate > date) {
+    const dateParse = new Date(year, month, day)
+    const minDate = new Date(this.convertDateToParse(this.minDate))
+    const maxDate = new Date(this.convertDateToParse(this.maxDate))
+
+    if (this.minDate && minDate > dateParse) {
       disabled = true
     }
 
-    if (this.maxDate && this.maxDate < date) {
+    if (this.maxDate && maxDate < dateParse) {
       disabled = true
     }
 
-    this.disabledArray.forEach((element) => {
-      if (date === element) {
-        disabled = true
-      }
-    })
+    if (this.disabledArray.length > 0) {
+      this.disabledArray.forEach((element) => {
+        const disabledDate = new Date(this.convertDateToParse(element))
+        if (dateParse.getTime() === disabledDate.getTime()) {
+          disabled = true
+        }
+      })
+    }
 
     return disabled
   }
 
   showCalendar(bool) {
-    // show calendar element
     const firstDay = this.constructor.getDayOfWeek(this.currentYear, this.currentMonth, '01')
     this.body.innerHTML = ''
     this.heading.innerHTML = `${this.months[this.currentMonth]} ${this.currentYear}`
 
-    // creating all cells
     let date = 1
     let calendar = ''
     for (let i = 0; i < 6; i += 1) {
@@ -398,44 +395,40 @@ class DatePicker {
             tabindexValue = '0'
           }
           if (this.getCurrentMonth() === this.currentMonth && this.getCurrentYear() === this.currentYear && date === this.getCurrentDay()) {
-            classListDate += ' nsw-date-picker__date--today'
+            classListDate += ` ${this.todayClass}`
           }
-          if (this.isDisabledDate(this.getDateForInput(date, this.currentMonth, this.currentYear))) {
+
+          if (this.isDisabledDate(date, this.currentMonth, this.currentYear)) {
+            classListDate += ` ${this.dateClass}--disabled`
             disabled = 'aria-disabled="true"'
           }
           if (this.dateSelected && date === this.selectedDay && this.currentYear === this.selectedYear && this.currentMonth === this.selectedMonth) {
-            classListDate += ' nsw-date-picker__date--selected'
+            classListDate += ` ${this.selectedClass}`
           }
-          calendar = `${calendar}<li><button class="nsw-date-picker__date${classListDate}" tabindex="${tabindexValue}" type="button" ${disabled || ''}>${date}</button></li>`
+          calendar = `${calendar}<li><button class="${this.dateClass}${classListDate}" tabindex="${tabindexValue}" type="button" ${disabled || ''}>${date}</button></li>`
           date += 1
         }
       }
     }
-    this.body.innerHTML = calendar // appending days into calendar body
+    this.body.innerHTML = calendar
 
-    // show calendar
-    if (!this.pickerVisible) this.datePicker.classList.add('nsw-date-picker--is-visible')
+    if (!this.pickerVisible) this.datePicker.classList.add(this.visibleClass)
     this.pickerVisible = true
 
-    //  if bool is false, move focus to calendar day
     if (!bool) this.body.querySelector('button[tabindex="0"]').focus()
 
-    // store first/last focusable elements
     this.getFocusableElements()
 
-    // place calendar
     this.placeCalendar()
   }
 
   hideCalendar() {
-    this.datePicker.classList.remove('nsw-date-picker--is-visible')
+    this.datePicker.classList.remove(this.visibleClass)
     this.pickerVisible = false
 
-    // reset first/last focusable
     this.firstFocusable = false
     this.lastFocusable = false
 
-    // reset trigger aria-expanded attribute
     if (this.trigger) this.trigger.setAttribute('aria-expanded', 'false')
   }
 
@@ -505,24 +498,24 @@ class DatePicker {
       this.currentDay = day
       const focusItem = this.body.querySelector('button[tabindex="0"]')
       focusItem.setAttribute('tabindex', '-1')
-      focusItem.classList.remove('nsw-date-picker__date--keyboard-focus')
-      // set new tabindex to selected item
+      focusItem.classList.remove(this.keyboardFocusClass)
+
       const buttons = this.body.getElementsByTagName('button')
       for (let i = 0; i < buttons.length; i += 1) {
         if (parseInt(buttons[i].textContent, 10) === this.currentDay) {
           buttons[i].setAttribute('tabindex', '0')
-          buttons[i].classList.add('nsw-date-picker__date--keyboard-focus')
+          buttons[i].classList.add(this.keyboardFocusClass)
           buttons[i].focus()
           break
         }
       }
-      this.getFocusableElements() // update first focusable/last focusable element
+      this.getFocusableElements()
     }
   }
 
   resetLabelCalendarTrigger() {
     if (!this.trigger) return
-    // reset accessible label of the calendar trigger
+
     if (this.selectedYear && this.selectedMonth !== false && this.selectedDay) {
       this.trigger.setAttribute('aria-label', `${this.triggerLabel}, selected date is ${new Date(this.selectedYear, this.selectedMonth, this.selectedDay).toDateString()}`)
     } else {
@@ -548,7 +541,6 @@ class DatePicker {
   }
 
   getLastFocusable(elements) {
-    // get last visible focusable element inside the modal
     for (let i = elements.length - 1; i >= 0; i -= 1) {
       if ((elements[i].offsetWidth || elements[i].offsetHeight || elements[i].getClientRects().length) && elements[i].getAttribute('tabindex') !== '-1') {
         this.lastFocusable = elements[i]
@@ -561,23 +553,19 @@ class DatePicker {
 
   trapFocus(event) {
     if (this.firstFocusable === document.activeElement && event.shiftKey) {
-      // on Shift+Tab -> focus last focusable element when focus moves out of calendar
       event.preventDefault()
       this.lastFocusable.focus()
     }
     if (this.lastFocusable === document.activeElement && !event.shiftKey) {
-      // on Tab -> focus first focusable element when focus moves out of calendar
       event.preventDefault()
       this.firstFocusable.focus()
     }
   }
 
   placeCalendar() {
-    // reset position
     this.datePicker.style.left = '0px'
     this.datePicker.style.right = 'auto'
 
-    // check if you need to modify the calendar postion
     const pickerBoundingRect = this.datePicker.getBoundingClientRect()
 
     if (pickerBoundingRect.right > window.innerWidth) {
