@@ -1,0 +1,21 @@
+---
+title: Status labels
+width: narrow
+model:
+  status-labels: ../../components/status-labels/json/status-labels.json
+page: true
+---
+
+{{#>_theme}}
+{{#>_layout-container}}
+<div class="nsw-list nsw-list--8">
+  {{>_status-labels model.status-labels}}
+</div>
+{{/_layout-container}}
+
+{{#>_layout-container brand-dark="true" invert="true"}}
+<div class="nsw-list nsw-list--8">
+  {{>_status-labels model.status-labels}}
+</div>
+{{/_layout-container}}
+{{/_theme}}

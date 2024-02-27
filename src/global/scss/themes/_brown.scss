@@ -1,0 +1,57 @@
+@use 'sass:color';
+
+// Purple Theme Colours
+$brown-dark: $brown-01 !default;
+$brown-light: $brown-04 !default;
+$brown-supplementary: $brown-02 !default;
+$brown-accent: $teal-02 !default;
+
+// Purple State Colours
+$brown-link: $brown-dark !default;
+$brown-link-light: tint($brown-dark, 90%) !default;
+$brown-visited: a11y-color(lighten(adjust-hue($brown-dark, -22), 20.98), #ffffff) !default;
+$brown-visited-light: tint($brown-visited, 80%) !default;
+$brown-hover: color.adjust($brown-dark, $alpha: -0.9) !default;
+$brown-hover-light: color.adjust($brown-link-light, $alpha: -0.9) !default;
+$brown-active: color.adjust($brown-dark, $alpha: -0.8) !default;
+$brown-active-light: color.adjust($brown-link-light, $alpha: -0.8) !default;
+$brown-focus: lighten(adjust-hue($brown-dark, -22), 15.49) !default;
+$brown-focus-light: tint($brown-focus, 80%);
+$brown-disabled: tint($brown-dark, 50%) !default;
+
+
+
+$brown-colors: (
+  'brand-dark': $brown-dark,
+  'brand-light': $brown-light,
+  'brand-supplementary': $brown-supplementary,
+  'brand-accent': $brown-accent,
+  'link': $brown-link,
+  'link-light': $brown-link-light,
+  'visited': $brown-visited,
+  'visited-light': $brown-visited-light,
+  'hover': $brown-hover,
+  'hover-light': $brown-hover-light,
+  'active': $brown-active,
+  'active-light': $brown-active-light,
+  'focus': $brown-focus,
+  'focus-light': $brown-focus-light,
+  'disabled': $brown-disabled
+) !default;
+
+$brown-colors-rgb: map-loop($brown-colors, to-rgb, '$value') !default;
+
+.brown {
+  @each $color, $value in $brown-colors {
+    --nsw-#{$color}: #{$value};
+  }
+
+  @each $color, $value in $brown-colors-rgb {
+    --nsw-#{$color}-rgb: #{$value};
+  }
+}
+
+.brown-accent {
+  --nsw-brand-accent: #{$brown-02};
+  --nsw-brand-accent-rgb: #{to-rgb($brown-02)};
+}

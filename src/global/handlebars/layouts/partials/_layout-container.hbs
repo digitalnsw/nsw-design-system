@@ -1,8 +1,11 @@
-<div class="nsw-container nsw-p-y-sm{{#if light}} nsw-section--off-white{{/if}}{{#if dark}} nsw-section--grey-01{{/if}}{{#if invert}} nsw-section--invert{{/if}}{{#if-equals width "menu"}} nsw-docs__main--menu{{/if-equals}}">
-  <div class="nsw-layout">
-    <main class="nsw-layout__main">
-  		{{> @partial-block }}
-  	</main>
-  	{{#if-equals width "narrow"}}<div class="nsw-layout__sidebar nsw-layout__sidebar--desktop"></div>{{/if-equals}}
+
+<section class="nsw-section{{#if brand-dark}} nsw-section--brand-dark{{/if}}{{#if brand-light}} nsw-section--brand-light{{/if}}{{#if light}} nsw-section--off-white{{/if}}{{#if dark}} nsw-section--grey-01{{/if}}{{#if invert}} nsw-section--invert{{/if}}">
+  <div class="nsw-container nsw-p-y-sm{{#if-equals width "menu"}} nsw-docs__main--menu{{/if-equals}}">
+    <div class="nsw-layout">
+      <main class="nsw-layout__main">
+        {{> @partial-block }}
+      </main>
+      {{#if-equals width "narrow"}}<div class="nsw-layout__sidebar nsw-layout__sidebar--desktop"></div>{{/if-equals}}
+    </div>
   </div>
-</div>
+</section>

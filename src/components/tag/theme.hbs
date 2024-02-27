@@ -1,0 +1,48 @@
+---
+title: Tags
+width: narrow
+page: true
+model:
+  link: ../../components/tag/json/tag-link.json
+  text: ../../components/tag/json/tag-text.json
+  checkbox: ../../components/tag/json/tag-checkbox.json
+  checkbox-dark: ../../components/tag/json/tag-checkbox-dark.json
+---
+
+{{#>_theme}}
+{{#>_layout-container}}
+<div class="nsw-docs__section nsw-docs__section--spaced">
+  <div class="nsw-list nsw-list--8">
+    {{>_tag model.link}}
+  </div>
+</div>
+<div class="nsw-docs__section nsw-docs__section--spaced">
+  <div class="nsw-list nsw-list--8">
+    {{>_tag model.text}}
+  </div>
+</div>
+<div class="nsw-docs__section nsw-docs__section--spaced">
+  <div class="nsw-list nsw-list--8">
+    {{>_tag model.checkbox}}
+  </div>
+</div>
+{{/_layout-container}}
+
+{{#>_layout-container brand-dark="true" invert="true"}}
+<div class="nsw-docs__section nsw-docs__section--spaced">
+  <div class="nsw-list nsw-list--8">
+    {{>_tag model.link}}
+  </div>
+</div>
+<div class="nsw-docs__section nsw-docs__section--spaced">
+  <div class="nsw-list nsw-list--8">
+    {{>_tag model.text}}
+  </div>
+</div>
+<div class="nsw-docs__section nsw-docs__section--spaced">
+  <div class="nsw-list nsw-list--8">
+    {{>_tag model.checkbox-dark}}
+  </div>
+</div>
+{{/_layout-container}}
+{{/_theme}}

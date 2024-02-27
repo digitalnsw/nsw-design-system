@@ -6,13 +6,19 @@ model: ../../components/utility-list/json/utility-list.json
 ---
 
 {{#>_layout-container}}
-
 {{#each model}}
   {{#each this}}
 {{>_utility-list}}
   {{/each}}
 {{/each}}
+{{/_layout-container}}
 
+{{#>_layout-container brand-dark="true" invert="true"}}
+{{#each model}}
+  {{#each this}}
+{{>_utility-list}}
+  {{/each}}
+{{/each}}
 {{/_layout-container}}
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>

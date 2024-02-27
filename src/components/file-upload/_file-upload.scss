@@ -45,6 +45,21 @@
     &:not(:last-child) {
       margin-bottom: rem(8px);
     }
+
+    .nsw-section--invert & {    
+      background-color: var(--nsw-white);
+      color: var(--nsw-section-bg);
+    }
+
+    .nsw-icon-button {
+      @include link-dark();
+
+      &:hover {
+        .nsw-section--invert & {    
+          @include nsw-hover();
+        }
+      }
+    }
   }
 
   &__item-filename {

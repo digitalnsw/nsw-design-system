@@ -1,5 +1,7 @@
 @import './src/main';
 
+@import '../global/scss/themes/all';
+
 $content-width: 768px;
 $nav-width: 300px;
 $header-height: 151px;
@@ -140,7 +142,7 @@ $header-height: 151px;
             border-left: 2px solid var(--nsw-brand-accent);
 
             &:hover {
-              background-color: var(--nsw-text-hover);
+              background-color: var(--nsw-hover);
             }
           }
 
@@ -658,5 +660,71 @@ $header-height: 151px;
     padding-left: 0;
     max-height: 250px;
     overflow: auto;
+  }
+}
+
+.nsw-color-swatches {
+  border: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.5rem;
+
+  &__list {
+    list-style: none;
+    margin-top: 0;
+    padding: 0;
+    display: flex;
+    gap: 0.375rem;
+    align-items: center;
+  }
+  
+  &__swatch {
+    position: relative;
+    display: block;
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      height: 100%;
+      border: 1px solid rgba(var(--nsw-brand-dark-rgb), 0.1);
+      border-radius: inherit;
+      pointer-events: none;
+      transition: 0.2s;
+    }
+
+    &:hover::before {
+      border-color: rgba(var(--nsw-brand-dark-rgb), 0.3);
+    }
+  }
+
+  &__item {
+    margin-top: 0;
+
+    &--selected {
+      .nsw-color-swatches__swatch::before {
+        border-color: rgba(var(--nsw-brand-dark-rgb), 0.8);
+        width: calc(100% + 6px);
+        height: calc(100% + 6px);
+      }
+    }
+  }
+
+  &__data {
+    code {
+      background: var(--nsw-grey-04);
+      border-radius: var(--nsw-border-radius);
+      padding: 0.1875rem;
+    }
   }
 }

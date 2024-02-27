@@ -16,8 +16,8 @@ $nsw-form-tick: '<svg fill="#ffffff" version="1.1" xmlns="http://www.w3.org/2000
     background: var(--nsw-white) svg-url($nsw-form-chevron-down) no-repeat right rem(16px) center;
     background-size: rem(16px) auto;
 
-    &:hover {
-      background: svg-url($nsw-form-chevron-down) no-repeat right rem(16px) center, linear-gradient(var(--nsw-text-hover), var(--nsw-text-hover));
+    &:hover:not(.nsw-multi-select__button) {
+      background: svg-url($nsw-form-chevron-down) no-repeat right rem(16px) center, linear-gradient(var(--nsw-hover), var(--nsw-hover));
       background-size: rem(16px) auto, auto;
       background-color: var(--nsw-white);
     }
@@ -78,7 +78,8 @@ $nsw-form-tick: '<svg fill="#ffffff" version="1.1" xmlns="http://www.w3.org/2000
     }
 
     &:hover {
-      background: rgba(var(--nsw-palette-blue-01-rgb), 0.01);
+      background: linear-gradient(var(--nsw-hover), var(--nsw-hover));
+      background-color: var(--nsw-white);
     }
 
     &[aria-invalid='true'],
@@ -109,6 +110,10 @@ $nsw-form-tick: '<svg fill="#ffffff" version="1.1" xmlns="http://www.w3.org/2000
     list-style: none;
     margin: 0;
     padding: 0;
+
+    .nsw-section--invert & {    
+      color: var(--nsw-text-dark);
+    }
 
     > li {
       &:first-child {
@@ -213,7 +218,7 @@ $nsw-form-tick: '<svg fill="#ffffff" version="1.1" xmlns="http://www.w3.org/2000
   
     &.active {
       &:hover::before {
-        background-image: linear-gradient(var(--nsw-text-hover), var(--nsw-text-hover));
+        background-image: linear-gradient(var(--nsw-hover), var(--nsw-hover));
       }
   
       &::after {

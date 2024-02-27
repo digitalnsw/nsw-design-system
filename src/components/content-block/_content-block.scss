@@ -1,4 +1,7 @@
 .nsw-content-block {
+  --nsw-icon-colour-dark: var(--nsw-text-dark);
+  --nsw-icon-colour-accent: var(--nsw-brand-supplementary);
+
   &__title {
     @include font-size('lg');
     font-weight: var(--nsw-font-bold);
@@ -52,6 +55,10 @@
     svg {
       max-width: rem(64px);
       max-height: rem(64px);
+
+      .nsw-section--invert & {
+        --nsw-icon-colour-dark: var(--nsw-text-light);
+      }
     }
   }
 }

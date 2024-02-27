@@ -1,0 +1,55 @@
+@use 'sass:color';
+
+// Purple Theme Colours
+$green-dark: $green-01 !default;
+$green-light: $green-04 !default;
+$green-supplementary: $green-02 !default;
+$green-accent: $blue-02 !default;
+
+// Purple State Colours
+$green-link: $green-dark !default;
+$green-link-light: tint($green-dark, 90%) !default;
+$green-visited: a11y-color(lighten(adjust-hue($green-dark, 37), 8.04), #ffffff) !default;
+$green-visited-light: tint($green-visited, 80%) !default;
+$green-hover: color.adjust($green-dark, $alpha: -0.9) !default;
+$green-hover-light: color.adjust($green-link-light, $alpha: -0.9) !default;
+$green-active: color.adjust($green-dark, $alpha: -0.8) !default;
+$green-active-light: color.adjust($green-link-light, $alpha: -0.8) !default;
+$green-focus: lighten(adjust-hue($green-dark, -22), 15.49) !default;
+$green-focus-light: tint($green-focus, 80%);
+$green-disabled: tint($green-dark, 50%) !default;
+
+$green-colors: (
+  'brand-dark': $green-dark,
+  'brand-light': $green-light,
+  'brand-supplementary': $green-supplementary,
+  'brand-accent': $green-accent,
+  'link': $green-link,
+  'link-light': $green-link-light,
+  'visited': $green-visited,
+  'visited-light': $green-visited-light,
+  'hover': $green-hover,
+  'hover-light': $green-hover-light,
+  'active': $green-active,
+  'active-light': $green-active-light,
+  'focus': $green-focus,
+  'focus-light': $green-focus-light,
+  'disabled': $green-disabled
+) !default;
+
+$green-colors-rgb: map-loop($green-colors, to-rgb, '$value') !default;
+
+.green {
+  @each $color, $value in $green-colors {
+    --nsw-#{$color}: #{$value};
+  }
+
+  @each $color, $value in $green-colors-rgb {
+    --nsw-#{$color}-rgb: #{$value};
+  }
+}
+
+.green-accent {
+  --nsw-brand-accent: #{$green-02};
+  --nsw-brand-accent-rgb: #{to-rgb($green-02)};
+}
