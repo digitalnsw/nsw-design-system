@@ -63,6 +63,59 @@
     list-style: none;
   }
 
+  .nsw-section--invert & {
+    .nsw-icon-button {
+      color: rgba(var(--nsw-palette-grey-01-rgb), 0.6);
+
+      &:hover {
+        @include nsw-hover;
+        outline-width: 0;
+      }
+
+      &:focus {
+        @include nsw-focus();
+      }
+    }
+
+    .nsw-button--dark-outline-solid {
+      background-color: var(--nsw-white);
+      border-color: var(--nsw-brand-dark);
+      color: var(--nsw-brand-dark);
+
+      &:focus {
+        @include nsw-focus();
+      }
+
+      &:hover {
+        background-color: var(--nsw-brand-dark);
+        border-color: transparent;
+        color: var(--nsw-text-light);
+      }
+    }
+
+    .nsw-button--dark {
+      background-color: var(--nsw-brand-dark);
+      color: var(--nsw-text-light);
+
+      &:focus {
+        @include nsw-focus();
+      }
+
+      &:hover {
+        color: var(--nsw-text-light);
+        background-color: var(--nsw-brand-dark);
+        background-image: linear-gradient(rgba(var(--nsw-white-rgb), 0.15), rgba(var(--nsw-white-rgb), 0.15));
+        border-color: transparent;
+      }
+
+      &:active {
+        background-color: var(--nsw-brand-dark);
+        background-image: linear-gradient(rgba(var(--nsw-white-rgb), 0.075), rgba(var(--nsw-white-rgb), 0.075));
+        border-color: transparent;
+      }
+    }
+  }
+
   &--is-visible {
     visibility: visible;
     opacity: 1;
@@ -106,10 +159,6 @@
         &:hover {
           background-color: rgba(var(--nsw-palette-grey-01-rgb), 0.075);
           color: var(--nsw-text-dark);
-        }
-        
-        &:active {
-          transform: translateY(2px);
         }
       }
     }
