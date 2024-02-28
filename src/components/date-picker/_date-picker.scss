@@ -1,0 +1,324 @@
+:root {
+  --date-picker-calendar-gap: 4px;
+  --date-picker-calendar-item-size: 2.6em;
+}
+
+@media (min-width: 48rem) {
+  :root {
+    --date-picker-calendar-item-size: 3em;
+  }
+}
+
+.nsw-date-input {
+  position: relative;
+
+  &__button {
+    display: flex;
+
+    button {
+      height: rem(48px);
+      align-self: flex-end;
+    }
+  }
+
+  &__wrapper {
+    position: relative;
+
+    button {
+      .nsw-material-icons {
+        font-size: 1.25rem;
+      }
+    }
+  }
+}
+
+.nsw-date-picker {
+  display: inline-block;
+  position: absolute;
+  left: 0;
+  top: calc(var(--date-picker-calendar-gap) + 100%);
+  background-color: var(--nsw-white);
+  border-radius: var(--nsw-border-radius);
+  box-shadow: var(--nsw-box-shadow);
+  padding: 0.375rem;
+  z-index: 5;
+  user-select: none;
+  overflow: hidden;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s 0.2s, opacity 0.2s;
+
+  @include breakpoint('lg') {
+    padding: 0.5625rem;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+    
+  ol,
+  ul {
+    list-style: none;
+  }
+
+  .nsw-section--invert & {
+    .nsw-icon-button {
+      color: rgba(var(--nsw-palette-grey-01-rgb), 0.6);
+
+      &:hover {
+        @include nsw-hover;
+        outline-width: 0;
+      }
+
+      &:focus {
+        @include nsw-focus();
+      }
+    }
+
+    .nsw-button--dark-outline-solid {
+      background-color: var(--nsw-white);
+      border-color: var(--nsw-brand-dark);
+      color: var(--nsw-brand-dark);
+
+      &:focus {
+        @include nsw-focus();
+      }
+
+      &:hover {
+        background-color: var(--nsw-brand-dark);
+        border-color: transparent;
+        color: var(--nsw-text-light);
+      }
+    }
+
+    .nsw-button--dark {
+      background-color: var(--nsw-brand-dark);
+      color: var(--nsw-text-light);
+
+      &:focus {
+        @include nsw-focus();
+      }
+
+      &:hover {
+        color: var(--nsw-text-light);
+        background-color: var(--nsw-brand-dark);
+        background-image: linear-gradient(rgba(var(--nsw-white-rgb), 0.15), rgba(var(--nsw-white-rgb), 0.15));
+        border-color: transparent;
+      }
+
+      &:active {
+        background-color: var(--nsw-brand-dark);
+        background-image: linear-gradient(rgba(var(--nsw-white-rgb), 0.075), rgba(var(--nsw-white-rgb), 0.075));
+        border-color: transparent;
+      }
+    }
+  }
+
+  &--is-visible {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.2s;
+  }
+
+  &__title {
+    position: relative;
+
+    &-label {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: 600;
+      color: var(--nsw-text-dark);
+    }
+
+    &-nav {
+      display: flex;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+      justify-content: space-between;
+
+      li {
+        display: flex;
+      }
+
+      &-btn {
+        width: var(--date-picker-calendar-item-size);
+        height: var(--date-picker-calendar-item-size);
+        border-radius: var(--nsw-border-radius);
+        color: rgba(var(--nsw-palette-grey-01-rgb), 0.6);
+        transition: transform 0.2s;
+
+        &:hover {
+          background-color: rgba(var(--nsw-palette-grey-01-rgb), 0.075);
+          color: var(--nsw-text-dark);
+        }
+      }
+    }
+  }
+
+  &__week,
+  &__dates {
+    display: flex;
+    flex-wrap: wrap;
+
+    li {
+      width: var(--date-picker-calendar-item-size);
+      height: var(--date-picker-calendar-item-size);
+    }
+  }
+
+  &__day {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.833rem;
+    color: rgba(var(--nsw-palette-grey-01-rgb), 0.6);
+  }
+
+  &__dates {
+    width: calc(var(--date-picker-calendar-item-size) * 7);
+  }
+
+  &__date {
+    background-color: transparent;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    color: var(--nsw-text-dark);
+    line-height: inherit;
+    appearance: none;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    font-size: 1rem;
+
+    &:focus {
+      @include nsw-focus(false);
+    }
+
+    &:focus,
+    &:hover {
+      border-radius: var(--nsw-border-radius);
+    }
+
+    &:hover {
+      box-shadow: inset 0 0 0 2px var(--nsw-focus);
+    }
+
+    &:focus:not(:hover) {
+      box-shadow: 0 0 0 2px rgba(var(--nsw-palette-blue-01-rgb), 0.2), 0 2px 4px rgba(var(--nsw-palette-blue-01-rgb), 0.3);
+    }
+
+    &--today {
+      color: var(--nsw-brand-dark);
+      border-radius: var(--nsw-border-radius);
+
+      @include nsw-hover();
+
+      &::after {
+        content: '';
+        background-color: var(--nsw-brand-dark);
+        border-radius: 4px;
+        bottom: 6px;
+        height: 4px;
+        left: 50%;
+        margin-left: -2px;
+        position: absolute;
+        width: 4px;
+      }
+    }
+
+    &--keyboard-focus {
+      background-color: rgba(var(--nsw-palette-grey-01-rgb), 0.2);
+      border-radius: var(--nsw-border-radius);
+    }
+    
+    &::-moz-focus-inner {
+      border: 0;
+    }
+
+    &--selected {
+      border-radius: var(--nsw-border-radius);
+      background-color: var(--nsw-brand-dark);
+      box-shadow: 0 2px 4px rgba(var(--nsw-palette-blue-01-rgb), 0.3);
+      color: var(--nsw-white);
+      z-index: 2;
+    }
+
+    &[disabled='true'],
+    &[aria-disabled='true'] {
+      background-color: rgba(var(--nsw-palette-grey-03-rgb), 0.5);
+      color: rgba(var(--nsw-palette-grey-01-rgb), 0.7);
+      border-radius: var(--nsw-border-radius);
+      pointer-events: none;
+    }
+
+    &.nsw-date-picker__date--range {
+      background-color: rgba(var(--nsw-palette-blue-01-rgb), 0.2);
+      color: var(--nsw-text-dark);
+
+      &:focus,
+      &:hover {
+        border-radius: 0;
+      }
+
+      &:focus {
+        background-color: var(--nsw-focus);
+      }
+
+      &-start,
+      &-end {
+        background-color: var(--nsw-brand-dark);
+        box-shadow: 0 2px 4px rgba(var(--nsw-palette-blue-01-rgb), 0.3);
+        color: var(--nsw-white);
+        z-index: 2;
+
+        &:focus:not(:hover) {
+          box-shadow: 0 0 0 2px rgba(var(--nsw-palette-blue-01-rgb), 0.2), 0 2px 4px rgba(var(--nsw-palette-blue-01-rgb), 0.3);
+        }
+      }
+
+      &-start {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+      
+      &-end {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+    }
+  }
+
+  &__buttongroup {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0.375rem 0;
+    gap: 0.5rem;
+
+    @include breakpoint('lg') {
+      margin: 0.5625rem 0;
+    }
+
+    button {
+      height: var(--date-picker-calendar-item-size);
+      line-height: 1;
+      padding: 0;
+      flex-basis: 100%;
+      flex: 1;
+    }
+  }
+}

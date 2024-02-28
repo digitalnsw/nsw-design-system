@@ -1,0 +1,226 @@
+---
+title: Date picker
+layout: blank-layout.hbs
+---
+
+<h2>Usage</h2>
+
+<p>A date picker simplifies the process of entering dates by providing a visual calendar interface helping users to understand a date’s relationship to other days, such as the day of the week or how far away a date is from today.</p>
+
+<p>The date picker is a progressive enhancement to text inputs that lets users choose a date from a calendar interface or enter the date as text. To help with accessibility, it can be used with a keyboard, as well as mouse or touchscreen.</p>
+
+<p>Do:</p>
+<ul>
+  <li>display the date format above the text input</li>
+  <li>ensure users can enter dates via the calendar or text input</li>
+  <li>disable dates that aren’t available</li>
+</ul>
+
+<h3>When to use</h3>
+<p>Use a date picker:</p>
+<ul>
+  <li>when the date options are relatively close to the present day.</li>
+  <li>when users need to know the day of the week, or the week of the month, as well as the date.</li>
+  <li>when knowing the day of the week helps users choose a specific date.</li>
+</ul>
+
+<h3>When to avoid</h3>
+<p>Don't use a date picker:</p>
+<ul>
+  <li>when the user needs to select a set date that they know, like their birthday — use <a href="/components/date-input/index.html">date input</a> instead</li>
+  <li>when having a calendar is not likely to help the user - such as a date several years in the past</li>
+  <li>when screen size is limited, a full calendar view might not be practical.</li>
+</ul>
+
+<h2>How this component works</h2>
+
+<p>The date picker component relies on JavaScript so should be treated as an enhancement. Users should always be able to enter the date into a text field as well as use the control.</p>
+
+<p>Users select dates from a visual representation of the month and can skip through months and years. This allows them to easily see what day of the week and week of the month a particular date is in, which is particularly useful for tasks like appointment booking.</p>
+
+<p>The Date Picker component comes with the following customizations:</p>
+
+<h3>Month labels</h3>
+
+<p>By default, the calendar widget shows the full English name of the months; if you wish to change this default (e.g., passing a short version of the label or using a different language), add a data-months attribute to the .nsw-date-input element with the comma-separated list of the labels you want to use:</p>
+
+{{#>_docs-code open=true}}
+<div class="nsw-date-input js-date-input" data-months="Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec">
+  <!-- ... -->
+</div>
+{{/_docs-code}}
+
+<h3>Date format</h3>
+
+<p>By default, the date format of the text input field is 'dd/mm/yyyy'; if you want to change this order (e.g., yyyy/mm/dd), add a data-date-format attribute to the .nsw-date-input element with the new order you want to use:</p>
+
+{{#>_docs-code open=true}}
+<div class="nsw-date-input js-date-input" data-date-format="y-m-d">
+  <!-- ... -->
+</div>​​
+{{/_docs-code}}
+
+<h3>Date separator</h3>
+
+<p>By default, the slash ('/') is used as date separator; if you want to use a different character (e.g., '-'), add a data-date-separator attribute to the .nsw-date-input element:</p>
+
+{{#>_docs-code open=true}}
+<div class="nsw-date-input js-date-input" data-date-separator="-">
+  <!-- ... -->
+</div>
+{{/_docs-code}}
+
+<h3>Preselected date</h3>
+
+<p>If you want to prefill your Date Picker component with a date, use the <code>.js-date-input__text</code> input element and set its <code>value</code> equal to the date you want to use. Make sure to use the date format you specify in data-date-format or the default, d-m-y.</p>
+
+<h3>Date ranges and disabled dates</h3>
+
+<p>Allowed date ranges for a date picker can be set by specifying earliest and latest allowed dates. Individual dates can also be disabled.</p>
+
+<p>If you want to specify an earliest possible date for the calendar, add a data-min-date attribute to the .nsw-date-input element:</p>
+
+{{#>_docs-code open=true}}
+<div class="nsw-date-input js-date-input" data-min-date="02/01/2024">
+  <!-- ... -->
+</div>
+{{/_docs-code}}
+
+<p>If you want to specify a latest possible date for the calendar, add a data-max-date attribute to the .nsw-date-input element:</p>
+</p>
+
+{{#>_docs-code open=true}}
+<div class="nsw-date-input js-date-input" data-max-date="30/01/2024">
+  <!-- ... -->
+</div>
+{{/_docs-code}}
+
+<p>Use an attribute of data-dates-disabled to specify a list of dates that the user will not be able to select.</p>
+
+<p>The value of this attribute should be a space-separated list of dates in the format you specify in data-date-format or the default, d-m-y.</p>
+
+{{#>_docs-code open=true}}
+<div class="nsw-date-input js-date-input" data-dates-disabled="18/01/2024 19/01/2024 20/01/2025">
+  <!-- ... -->
+</div>
+{{/_docs-code}}
+
+<h2>Accessibility</h2>
+<p>All components are responsive and meet WCAG 2.1 AA accessibility guidelines.</p>
+
+<p>The dialog contains a calendar that uses the grid pattern to present buttons that enable the user to choose a day from the calendar. Choosing a date from the calendar closes the dialog and populates the date input field. When the dialog is opened, if the input field is empty, or does not contain a valid date, then the current date is focused in the calendar. Otherwise, the focus is placed on the day in the calendar that matches the value of the date input field.</p>
+
+<h3>Keyboard support</h3>
+
+<p>Users can navigate the calendar by using the cursor keys to move around the calendar, and can use the enter key or spacebar to select a date.</p>
+
+<p>The following table lists the keyboard commands that the date picker supports.</p>
+
+<div class="nsw-table" tabindex="0">
+  <table>
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Key</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Calendar button</td>
+        <td><code>Space</code>,<br>
+          <code>Enter</code>
+        </td>
+        <td>Opens the date picker. If there is a current date set in the text input, that date is focussed in the date picker. If not, today's date is focussed.</td>
+      </tr>
+      <tr>
+        <td>Date picker</td>
+        <td><code>Tab</code></td>
+        <td>Moves focus to the next element in the tab order. If tabbing away from the last focusable element in the tab order, moves focus to the first focusable element in the date picker.</td>
+      </tr>
+      <tr>
+        <td>Date picker</td>
+        <td><code>Shift + Tab</code></td>
+        <td>Moves focus to the previous element in the tab order. If tabbing away from the first focusable element in the tab order, moves focus to the last focusable element in the date picker.</td>
+      </tr>
+      <tr>
+        <td>Month and year buttons</td>
+        <td><code>Space</code>,<br>
+          <code>Enter</code>
+        </td>
+        <td>Change the current month or year displayed in the date picker.</td>
+      </tr>
+      <tr>
+        <td>Dates</td>
+        <td><code>Space</code>,<br>
+          <code>Enter</code>
+        </td>
+        <td>Selects the focussed date, closes the date picker and moves focus back to the calendar button. Updates the accessible name of the calendar button to indicate the selected date.</td>
+      </tr>
+      <tr>
+        <td>Dates</td>
+        <td><code>Up</code></td>
+        <td>Moves focus to the same day of the previous week, changing the displayed month if necessary.</td>
+      </tr>
+      <tr>
+        <td>Dates</td>
+        <td><code>Down</code></td>
+        <td>Moves focus to the same day of the next week, changing the displayed month if necessary.</td>
+      </tr>
+      <tr>
+        <td>Dates</td>
+        <td><code>Left</code></td>
+        <td>Moves focus to the previous day, changing the displayed month if necessary.</td>
+      </tr>
+      <tr>
+        <td>Dates</td>
+        <td><code>Right</code></td>
+        <td>Moves focus to the next day, changing the displayed month if necessary.</td>
+      </tr>
+      <tr>
+        <td>Dates</td>
+        <td><code>Home</code></td>
+        <td>Moves focus to the first day of the current week.</td>
+      </tr>
+      <tr>
+        <td>Dates</td>
+        <td><code>End</code></td>
+        <td>Moves focus to the last day of the current week.</td>
+      </tr>
+      <tr>
+        <td>Dates</td>
+        <td><code>Page Up</code></td>
+        <td>Shows the previous month and focuses on the same day of the month.</td>
+      </tr>
+      <tr>
+        <td>Dates</td>
+        <td><code>Shift + Page Up</code></td>
+        <td>Shows same month in the previous year and focuses on the same day of the month.</td>
+      </tr>
+      <tr>
+        <td>Dates</td>
+        <td><code>Page Down</code></td>
+        <td>Shows the next month and focuses on the same day of the month.</td>
+      </tr>
+      <tr>
+        <td>Dates</td>
+        <td><code>Shift + Page Down</code></td>
+        <td>Shows same month in the next year and focuses on the same day of the month.</td>
+      </tr>
+      <tr>
+        <td>Cancel button</td>
+        <td><code>Space</code>,<br>
+          <code>Enter</code>
+        </td>
+        <td>Closes the date picker and makes no change to the date in the text input. Focus is returned to the calendar button.</td>
+      </tr>
+      <tr>
+        <td>OK button</td>
+        <td><code>Space</code>,<br>
+          <code>Enter</code>
+        </td>
+        <td>Closes the date picker and updates the date in the text input with the chosen date in the date picker. Focus is returned to the calendar button.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
