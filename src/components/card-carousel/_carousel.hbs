@@ -1,0 +1,45 @@
+{{#if default}}<div class="nsw-carousel js-carousel" data-description="Highlighted latest news"{{#if pagination}} data-navigation-pagination="on"{{/if}}>
+  <p class="sr-only">Carousel items</p>
+  <div class="nsw-carousel__wrapper js-carousel__wrapper">
+    <ol class="nsw-carousel__list">
+      {{#each cards}}<li class="nsw-carousel__item">
+      <div class="nsw-card nsw-card--headline">
+        {{#if img}}
+        <div class="nsw-card__image">
+          <img src="{{img}}" alt="{{heading}}">
+        </div>
+        {{/if}}
+        <div class="nsw-card__content">
+          <div class="nsw-card__title">
+            <a href="https://www.digital.nsw.gov.au">{{heading}}</a>
+          </div>{{#if copy}}
+          <div class="nsw-card__copy">
+            <p>{{copy}}</p>
+          </div>{{/if}}
+          <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span>
+        </div>
+      </div>
+      </li>{{/each}}
+    </ol>
+  </div>{{#unless counter}}
+  <nav>
+    <ul>
+      <li>
+        <button aria-controls="nsw-carousel__list" aria-label="Show previous items" class="nsw-carousel__control nsw-carousel__control--prev js-carousel__control">
+          <svg class="nsw-icon" viewBox="0 0 20 20">
+            <title>Show previous items</title>
+            <polyline points="13 2 5 10 13 18" fill="none" stroke="currentColor" stroke-linecap="square" stroke-linejoin="square" stroke-width="2" />
+          </svg>
+        </button>
+      </li>
+      <li>
+        <button aria-controls="nsw-carousel__list" aria-label="Show next items" class="nsw-carousel__control nsw-carousel__control--next js-carousel__control">
+          <svg class="nsw-icon" viewBox="0 0 20 20">
+            <title>Show next items</title>
+            <polyline points="7 2 15 10 7 18" fill="none" stroke="currentColor" stroke-linecap="square" stroke-linejoin="square" stroke-width="2" />
+          </svg>
+        </button>
+      </li>
+    </ul>
+  </nav>{{/unless}}
+</div>{{/if}}
