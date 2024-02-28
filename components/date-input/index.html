@@ -253,6 +253,7 @@
                   <li><a href="/nsw-design-system/components/close-button/index.html"><span>Close button</span></a></li>
                   <li><a href="/nsw-design-system/components/content-block/index.html"><span>Content blocks</span></a></li>
                   <li><a href="/nsw-design-system/components/date-input/index.html"><span>Date input</span></a></li>
+                  <li><a href="/nsw-design-system/components/date-picker/index.html"><span>Date picker</span></a></li>
                   <li><a href="/nsw-design-system/components/dialog/index.html"><span>Dialog</span></a></li>
                   <li><a href="/nsw-design-system/components/file-upload/index.html"><span>File upload</span></a></li>
                   <li><a href="/nsw-design-system/components/filters/index.html"><span>Filters</span></a></li>
@@ -390,19 +391,13 @@
         </nav>
       </div>
     </div>
-    <div class="nsw-docs__main nsw-docs__main--wide">
+    <div class="nsw-docs__main nsw-docs__main--narrow">
       <div class="nsw-docs__intro nsw-docs__intro--tabs">
         <div class="nsw-docs__container">
           <h1>Date input</h1>
           
           <p class="nsw-intro">A date input allows users to enter a date.</p>
           
-          <p>
-            <a class="nsw-link nsw-link--icon" target="_blank" href="URL">
-              <svg width="20" height="20" viewBox="0 0 33 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.003 48c4.416 0 8-3.584 8-8v-8h-8c-4.416 0-8 3.584-8 8s3.584 8 8 8z" fill="#0ACF83"></path><path d="M.003 24c0-4.416 3.584-8 8-8h8v16h-8c-4.416 0-8-3.584-8-8z" fill="#A259FF"></path><path d="M.003 8c0-4.416 3.584-8 8-8h8v16h-8c-4.416 0-8-3.584-8-8z" fill="#F24E1E"></path><path d="M16.003 0h8c4.416 0 8 3.584 8 8s-3.584 8-8 8h-8V0z" fill="#FF7262"></path><path d="M32.003 24c0 4.416-3.584 8-8 8s-8-3.584-8-8 3.584-8 8-8 8 3.584 8 8z" fill="#1ABCFE"></path></svg>
-              <span>Figma</span>
-            </a>
-          </p>
         </div>
       </div>
 <div class="nsw-docs__tabs">
@@ -446,6 +441,10 @@
   <li>use in instances where only part of a date is needed, like a month or a year without a specific day.</li>
 </ul>
 
+<h2>Helping users pick a date</h2>
+
+<p>Users might need to pick a date from a selection, for example, to book an appointment. To do this, you can present dates in a calendar format using a <a href="/nsw-design-system/components/date-picker/index.html">date picker</a>.</p>
+
 <h2>How this component works</h2>
 
 <p>The three fields in the date input component are grouped together in a <code>fieldset</code> with a <code>legend</code> that describes them, as shown in the examples on this page. The legend is usually a question, such as 'What is your date of birth?'.</p>
@@ -464,7 +463,7 @@
       <div class="nsw-docs__demo">
         <div class="nsw-docs__external">
           <div class="nsw-list nsw-list--8">
-            <a class="nsw-small nsw-link nsw-link--icon" target="_blank" href="/nsw-design-system/components/date-input/blank.html"><span>View in new window</span><i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">launch</i></a>
+            <a class="nsw-small nsw-link nsw-link--icon" target="_blank" href="/nsw-design-system/components/date-input/blank.html"><span>View in new window</span><i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">launch</i></a><a class="nsw-small nsw-link nsw-link--icon" target="_blank" href="/nsw-design-system/components/date-input/theme.html"><span>View theming example</span><i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">launch</i></a>
           </div>
         </div>
 
@@ -481,15 +480,15 @@
           <div class="nsw-form__date-wrapper">
             <div class="nsw-form__date-input">
               <label for="date-day" class="nsw-form__label nsw-form__label--small">Day</label>
-              <input type="text" maxlength="2" id="date-day" name="date-day" class="nsw-form__input">
+              <input type="text" maxlength="2" id="date-day" name="date-day" autocomplete="bday-day" class="nsw-form__input">
             </div>
             <div class="nsw-form__date-input">
               <label for="date-month" class="nsw-form__label nsw-form__label--small">Month</label>
-              <input type="text" maxlength="2" id="date-month" name="date-month" class="nsw-form__input">
+              <input type="text" maxlength="2" id="date-month" name="date-month" autocomplete="bday-month" class="nsw-form__input">
             </div>
             <div class="nsw-form__date-input nsw-form__date-input--large">
               <label for="date-year" class="nsw-form__label nsw-form__label--small">Year</label>
-              <input type="text" maxlength="4" id="date-year" name="date-year" class="nsw-form__input">
+              <input type="text" maxlength="4" id="date-year" name="date-year" autocomplete="bday-year" class="nsw-form__input">
             </div>
           </div>
         </fieldset>
@@ -517,15 +516,15 @@
       <div class="nsw-form__date-wrapper">
         <div class="nsw-form__date-input">
           <label for="date-day" class="nsw-form__label nsw-form__label--small">Day</label>
-          <input type="text" maxlength="2" id="date-day" name="date-day" class="nsw-form__input">
+          <input type="text" maxlength="2" id="date-day" name="date-day" autocomplete="bday-day" class="nsw-form__input">
         </div>
         <div class="nsw-form__date-input">
           <label for="date-month" class="nsw-form__label nsw-form__label--small">Month</label>
-          <input type="text" maxlength="2" id="date-month" name="date-month" class="nsw-form__input">
+          <input type="text" maxlength="2" id="date-month" name="date-month" autocomplete="bday-month" class="nsw-form__input">
         </div>
         <div class="nsw-form__date-input nsw-form__date-input--large">
           <label for="date-year" class="nsw-form__label nsw-form__label--small">Year</label>
-          <input type="text" maxlength="4" id="date-year" name="date-year" class="nsw-form__input">
+          <input type="text" maxlength="4" id="date-year" name="date-year" autocomplete="bday-year" class="nsw-form__input">
         </div>
       </div>
     </fieldset>
@@ -543,15 +542,15 @@
       <div class="nsw-form__date-wrapper">
         <div class="nsw-form__date-input">
           <label for="date-day" class="nsw-form__label nsw-form__label--small">Day</label>
-          <input type="text" maxlength="2" id="date-day" name="date-day" class="nsw-form__input">
+          <input type="text" maxlength="2" id="date-day" name="date-day" autocomplete="bday-day" class="nsw-form__input">
         </div>
         <div class="nsw-form__date-input">
           <label for="date-month" class="nsw-form__label nsw-form__label--small">Month</label>
-          <input type="text" maxlength="2" id="date-month" name="date-month" class="nsw-form__input">
+          <input type="text" maxlength="2" id="date-month" name="date-month" autocomplete="bday-month" class="nsw-form__input">
         </div>
         <div class="nsw-form__date-input nsw-form__date-input--large">
           <label for="date-year" class="nsw-form__label nsw-form__label--small">Year</label>
-          <input type="text" maxlength="4" id="date-year" name="date-year" class="nsw-form__input">
+          <input type="text" maxlength="4" id="date-year" name="date-year" autocomplete="bday-year" class="nsw-form__input">
         </div>
       </div>
     </fieldset>
@@ -576,15 +575,15 @@
           <div class="nsw-form__date-wrapper">
             <div class="nsw-form__date-input">
               <label for="date-error-day" class="nsw-form__label nsw-form__label--small">Day</label>
-              <input type="text" maxlength="2" id="date-error-day" name="date-error-day" class="nsw-form__input" aria-invalid="true">
+              <input type="text" maxlength="2" id="date-error-day" name="date-error-day" autocomplete="bday-day" class="nsw-form__input" aria-invalid="true">
             </div>
             <div class="nsw-form__date-input">
               <label for="date-error-month" class="nsw-form__label nsw-form__label--small">Month</label>
-              <input type="text" maxlength="2" id="date-error-month" name="date-error-month" class="nsw-form__input" aria-invalid="true">
+              <input type="text" maxlength="2" id="date-error-month" name="date-error-month" autocomplete="bday-month" class="nsw-form__input" aria-invalid="true">
             </div>
             <div class="nsw-form__date-input nsw-form__date-input--large">
               <label for="date-error-year" class="nsw-form__label nsw-form__label--small">Year</label>
-              <input type="text" maxlength="4" id="date-error-year" name="date-error-year" class="nsw-form__input" aria-invalid="true">
+              <input type="text" maxlength="4" id="date-error-year" name="date-error-year" autocomplete="bday-year" class="nsw-form__input" aria-invalid="true">
             </div>
           </div>
         </fieldset>
@@ -613,15 +612,15 @@
       <div class="nsw-form__date-wrapper">
         <div class="nsw-form__date-input">
           <label for="date-error-day" class="nsw-form__label nsw-form__label--small">Day</label>
-          <input type="text" maxlength="2" id="date-error-day" name="date-error-day" class="nsw-form__input" aria-invalid="true">
+          <input type="text" maxlength="2" id="date-error-day" name="date-error-day" autocomplete="bday-day" class="nsw-form__input" aria-invalid="true">
         </div>
         <div class="nsw-form__date-input">
           <label for="date-error-month" class="nsw-form__label nsw-form__label--small">Month</label>
-          <input type="text" maxlength="2" id="date-error-month" name="date-error-month" class="nsw-form__input" aria-invalid="true">
+          <input type="text" maxlength="2" id="date-error-month" name="date-error-month" autocomplete="bday-month" class="nsw-form__input" aria-invalid="true">
         </div>
         <div class="nsw-form__date-input nsw-form__date-input--large">
           <label for="date-error-year" class="nsw-form__label nsw-form__label--small">Year</label>
-          <input type="text" maxlength="4" id="date-error-year" name="date-error-year" class="nsw-form__input" aria-invalid="true">
+          <input type="text" maxlength="4" id="date-error-year" name="date-error-year" autocomplete="bday-year" class="nsw-form__input" aria-invalid="true">
         </div>
       </div>
     </fieldset>
@@ -640,15 +639,15 @@
       <div class="nsw-form__date-wrapper">
         <div class="nsw-form__date-input">
           <label for="date-error-day" class="nsw-form__label nsw-form__label--small">Day</label>
-          <input type="text" maxlength="2" id="date-error-day" name="date-error-day" class="nsw-form__input" aria-invalid="true">
+          <input type="text" maxlength="2" id="date-error-day" name="date-error-day" autocomplete="bday-day" class="nsw-form__input" aria-invalid="true">
         </div>
         <div class="nsw-form__date-input">
           <label for="date-error-month" class="nsw-form__label nsw-form__label--small">Month</label>
-          <input type="text" maxlength="2" id="date-error-month" name="date-error-month" class="nsw-form__input" aria-invalid="true">
+          <input type="text" maxlength="2" id="date-error-month" name="date-error-month" autocomplete="bday-month" class="nsw-form__input" aria-invalid="true">
         </div>
         <div class="nsw-form__date-input nsw-form__date-input--large">
           <label for="date-error-year" class="nsw-form__label nsw-form__label--small">Year</label>
-          <input type="text" maxlength="4" id="date-error-year" name="date-error-year" class="nsw-form__input" aria-invalid="true">
+          <input type="text" maxlength="4" id="date-error-year" name="date-error-year" autocomplete="bday-year" class="nsw-form__input" aria-invalid="true">
         </div>
       </div>
     </fieldset>
@@ -674,15 +673,15 @@
           <div class="nsw-form__date-wrapper">
             <div class="nsw-form__date-input">
               <label for="date-success-day" class="nsw-form__label nsw-form__label--small">Day</label>
-              <input type="text" maxlength="2" id="date-success-day" name="date-success-day" class="nsw-form__input">
+              <input type="text" maxlength="2" id="date-success-day" name="date-success-day" autocomplete="bday-day" class="nsw-form__input">
             </div>
             <div class="nsw-form__date-input">
               <label for="date-success-month" class="nsw-form__label nsw-form__label--small">Month</label>
-              <input type="text" maxlength="2" id="date-success-month" name="date-success-month" class="nsw-form__input">
+              <input type="text" maxlength="2" id="date-success-month" name="date-success-month" autocomplete="bday-month" class="nsw-form__input">
             </div>
             <div class="nsw-form__date-input nsw-form__date-input--large">
               <label for="date-success-year" class="nsw-form__label nsw-form__label--small">Year</label>
-              <input type="text" maxlength="4" id="date-success-year" name="date-success-year" class="nsw-form__input">
+              <input type="text" maxlength="4" id="date-success-year" name="date-success-year" autocomplete="bday-year" class="nsw-form__input">
             </div>
           </div>
         </fieldset>
@@ -712,15 +711,15 @@
       <div class="nsw-form__date-wrapper">
         <div class="nsw-form__date-input">
           <label for="date-success-day" class="nsw-form__label nsw-form__label--small">Day</label>
-          <input type="text" maxlength="2" id="date-success-day" name="date-success-day" class="nsw-form__input">
+          <input type="text" maxlength="2" id="date-success-day" name="date-success-day" autocomplete="bday-day" class="nsw-form__input">
         </div>
         <div class="nsw-form__date-input">
           <label for="date-success-month" class="nsw-form__label nsw-form__label--small">Month</label>
-          <input type="text" maxlength="2" id="date-success-month" name="date-success-month" class="nsw-form__input">
+          <input type="text" maxlength="2" id="date-success-month" name="date-success-month" autocomplete="bday-month" class="nsw-form__input">
         </div>
         <div class="nsw-form__date-input nsw-form__date-input--large">
           <label for="date-success-year" class="nsw-form__label nsw-form__label--small">Year</label>
-          <input type="text" maxlength="4" id="date-success-year" name="date-success-year" class="nsw-form__input">
+          <input type="text" maxlength="4" id="date-success-year" name="date-success-year" autocomplete="bday-year" class="nsw-form__input">
         </div>
       </div>
     </fieldset>
@@ -740,15 +739,15 @@
       <div class="nsw-form__date-wrapper">
         <div class="nsw-form__date-input">
           <label for="date-success-day" class="nsw-form__label nsw-form__label--small">Day</label>
-          <input type="text" maxlength="2" id="date-success-day" name="date-success-day" class="nsw-form__input">
+          <input type="text" maxlength="2" id="date-success-day" name="date-success-day" autocomplete="bday-day" class="nsw-form__input">
         </div>
         <div class="nsw-form__date-input">
           <label for="date-success-month" class="nsw-form__label nsw-form__label--small">Month</label>
-          <input type="text" maxlength="2" id="date-success-month" name="date-success-month" class="nsw-form__input">
+          <input type="text" maxlength="2" id="date-success-month" name="date-success-month" autocomplete="bday-month" class="nsw-form__input">
         </div>
         <div class="nsw-form__date-input nsw-form__date-input--large">
           <label for="date-success-year" class="nsw-form__label nsw-form__label--small">Year</label>
-          <input type="text" maxlength="4" id="date-success-year" name="date-success-year" class="nsw-form__input">
+          <input type="text" maxlength="4" id="date-success-year" name="date-success-year" autocomplete="bday-year" class="nsw-form__input">
         </div>
       </div>
     </fieldset>

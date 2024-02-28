@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+  <title>NSW Digital Design System - Date picker</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="noindex" />
+  <link rel="icon" href="/nsw-design-system/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone" rel="stylesheet">
+  <link rel="stylesheet" href="/nsw-design-system/docs/css/docs.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TMEHXHFJXJ"></script>
+<script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-TMEHXHFJXJ");</script>
+</head>
+
+<body>
+
+
+<section class="nsw-section">
+  <div class="nsw-container nsw-p-y-sm">
+    <div class="nsw-layout">
+      <main class="nsw-layout__main">
+        
+        <div class="nsw-date-input js-date-input">
+          <legend>
+            <label for="date-input-1" class="nsw-form__label">Select date</label>
+            <span id="date-input-1-helper-text" class="nsw-form__helper">Use dd/mm/yyyy format. For example 28 10 2024</span>
+          </legend>
+          
+          <div class="nsw-date-input__wrapper nsw-form__input-group nsw-form__input-group--icon">
+            <input type="text" class="nsw-form__input js-date-input__text" autocomplete="off" id="date-input-1">
+            
+            <button class="nsw-button nsw-button--dark nsw-button--flex js-date-input__trigger" aria-label="Select date using calendar widget" type="button">
+              <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">calendar_today</span>
+            </button>
+          </div>
+          
+          <div class="nsw-date-picker js-date-picker" role="dialog" aria-labelledby="calendar-label-1">
+            <header class="nsw-date-picker__header">
+              <div class="nsw-date-picker__title">
+                <span class="nsw-date-picker__title-label js-date-picker__title-label" id="calendar-label-1"></span>
+        
+                <nav>
+                  <ul class="nsw-date-picker__title-nav js-date-picker__title-nav">
+                    <li>
+                      <button class="nsw-icon-button nsw-date-picker__title-nav-btn js-date-picker__year-nav-btn js-date-picker__year-nav-btn--prev" type="button">
+                        <span class="material-icons nsw-material-icons">keyboard_double_arrow_left</span>
+                      </button>
+                      <button class="nsw-icon-button nsw-date-picker__title-nav-btn js-date-picker__month-nav-btn js-date-picker__month-nav-btn--prev" type="button">
+                        <span class="material-icons nsw-material-icons">chevron_left</span>
+                      </button>
+                    </li>
+        
+                    <li>
+                      <button class="nsw-icon-button nsw-date-picker__title-nav-btn js-date-picker__month-nav-btn js-date-picker__month-nav-btn--next" type="button">
+                        <span class="material-icons nsw-material-icons">chevron_right</span>
+                      </button>
+                      <button class="nsw-icon-button nsw-date-picker__title-nav-btn js-date-picker__year-nav-btn js-date-picker__year-nav-btn--next" type="button">
+                        <span class="material-icons nsw-material-icons">keyboard_double_arrow_right</span>
+                      </button>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+        
+              <ol class="nsw-date-picker__week">
+                <li><div class="nsw-date-picker__day">M<span class="sr-only">onday</span></div></li>
+                <li><div class="nsw-date-picker__day">T<span class="sr-only">uesday</span></div></li>
+                <li><div class="nsw-date-picker__day">W<span class="sr-only">ednesday</span></div></li>
+                <li><div class="nsw-date-picker__day">T<span class="sr-only">hursday</span></div></li>
+                <li><div class="nsw-date-picker__day">F<span class="sr-only">riday</span></div></li>
+                <li><div class="nsw-date-picker__day">S<span class="sr-only">aturday</span></div></li>
+                <li><div class="nsw-date-picker__day">S<span class="sr-only">unday</span></div></li>
+              </ol>
+            </header>
+        
+            <ol class="nsw-date-picker__dates js-date-picker__dates" aria-labelledby="calendar-label-1">
+              <!-- days will be created using js -->
+            </ol>
+        
+            <div class="nsw-date-picker__buttongroup">
+              <button type="button" class="nsw-button nsw-button--dark-outline-solid js-date-picker__close" value="cancel">Cancel</button>
+              <button type="button" class="nsw-button nsw-button--dark js-date-picker__accept" value="ok">OK</button>
+            </div>
+          </div>
+        </div>
+        <br>
+        <br>
+        
+        <div class="nsw-date-input js-date-input" data-min-date="02/01/2024" data-max-date="28/01/2024" data-dates-disabled="18/01/2024 19/01/2024 20/01/2024">
+          <legend>
+            <label for="date-input-2" class="nsw-form__label">Select date</label>
+            <span id="date-input-2-helper-text" class="nsw-form__helper">Use dd/mm/yyyy format. For example 28 10 2024</span>
+          </legend>
+          
+          <div class="nsw-date-input__wrapper nsw-form__input-group nsw-form__input-group--icon">
+            <input type="text" class="nsw-form__input js-date-input__text" autocomplete="off" id="date-input-2" value="12/01/2024">
+            
+            <button class="nsw-button nsw-button--dark nsw-button--flex js-date-input__trigger" aria-label="Select date using calendar widget" type="button">
+              <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">calendar_today</span>
+            </button>
+          </div>
+          
+          <div class="nsw-date-picker js-date-picker" role="dialog" aria-labelledby="calendar-label-2">
+            <header class="nsw-date-picker__header">
+              <div class="nsw-date-picker__title">
+                <span class="nsw-date-picker__title-label js-date-picker__title-label" id="calendar-label-2"></span>
+        
+                <nav>
+                  <ul class="nsw-date-picker__title-nav js-date-picker__title-nav">
+                    <li>
+                      <button class="nsw-icon-button nsw-date-picker__title-nav-btn js-date-picker__year-nav-btn js-date-picker__year-nav-btn--prev" type="button">
+                        <span class="material-icons nsw-material-icons">keyboard_double_arrow_left</span>
+                      </button>
+                      <button class="nsw-icon-button nsw-date-picker__title-nav-btn js-date-picker__month-nav-btn js-date-picker__month-nav-btn--prev" type="button">
+                        <span class="material-icons nsw-material-icons">chevron_left</span>
+                      </button>
+                    </li>
+        
+                    <li>
+                      <button class="nsw-icon-button nsw-date-picker__title-nav-btn js-date-picker__month-nav-btn js-date-picker__month-nav-btn--next" type="button">
+                        <span class="material-icons nsw-material-icons">chevron_right</span>
+                      </button>
+                      <button class="nsw-icon-button nsw-date-picker__title-nav-btn js-date-picker__year-nav-btn js-date-picker__year-nav-btn--next" type="button">
+                        <span class="material-icons nsw-material-icons">keyboard_double_arrow_right</span>
+                      </button>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+        
+              <ol class="nsw-date-picker__week">
+                <li><div class="nsw-date-picker__day">M<span class="sr-only">onday</span></div></li>
+                <li><div class="nsw-date-picker__day">T<span class="sr-only">uesday</span></div></li>
+                <li><div class="nsw-date-picker__day">W<span class="sr-only">ednesday</span></div></li>
+                <li><div class="nsw-date-picker__day">T<span class="sr-only">hursday</span></div></li>
+                <li><div class="nsw-date-picker__day">F<span class="sr-only">riday</span></div></li>
+                <li><div class="nsw-date-picker__day">S<span class="sr-only">aturday</span></div></li>
+                <li><div class="nsw-date-picker__day">S<span class="sr-only">unday</span></div></li>
+              </ol>
+            </header>
+        
+            <ol class="nsw-date-picker__dates js-date-picker__dates" aria-labelledby="calendar-label-2">
+              <!-- days will be created using js -->
+            </ol>
+        
+            <div class="nsw-date-picker__buttongroup">
+              <button type="button" class="nsw-button nsw-button--dark-outline-solid js-date-picker__close" value="cancel">Cancel</button>
+              <button type="button" class="nsw-button nsw-button--dark js-date-picker__accept" value="ok">OK</button>
+            </div>
+          </div>
+        </div>
+        <br>
+        <br>
+        
+        
+        <fieldset class="nsw-form__date nsw-date-input js-date-input">
+          <legend>
+            <span class="nsw-form__label">Start date</span>
+            <span id="form-date-3-helper-text" class="nsw-form__helper">For example 28 10 2024</span>
+          </legend>
+          <div class="nsw-form__date-wrapper nsw-date-input__wrapper js-date-input-multiple">
+            <div class="nsw-form__date-input">
+              <label for="form-date-3-day" class="nsw-form__label nsw-form__label--small">Day</label>
+              <input type="text" maxlength="2" id="form-date-3-day" name="form-date-3-day" autocomplete="bday-day" class="nsw-form__input js-date-picker-date">
+            </div>
+            <div class="nsw-form__date-input">
+              <label for="form-date-3-month" class="nsw-form__label nsw-form__label--small">Month</label>
+              <input type="text" maxlength="2" id="form-date-3-month" name="form-date-3-month" autocomplete="bday-month" class="nsw-form__input js-date-picker-month">
+            </div>
+            <div class="nsw-form__date-input nsw-form__date-input--large">
+              <label for="form-date-3-year" class="nsw-form__label nsw-form__label--small">Year</label>
+              <input type="text" maxlength="4" id="form-date-3-year" name="form-date-3-year" autocomplete="bday-year" class="nsw-form__input js-date-picker-year">
+            </div>
+            <div class="nsw-date-input__button">
+              <button class="nsw-button nsw-button--dark nsw-button--flex js-date-input__trigger" aria-label="Select date using calendar widget" type="button">
+                <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">calendar_today</span>
+              </button>
+            </div>
+          </div>
+        
+          <div class="nsw-date-picker js-date-picker" role="dialog" aria-labelledby="calendar-label-3">
+            <header class="nsw-date-picker__header">
+              <div class="nsw-date-picker__title">
+                <span class="nsw-date-picker__title-label js-date-picker__title-label" id="calendar-label-3"><!-- this will contain month label + year --></span>
+                <nav>
+                  <ul class="nsw-date-picker__title-nav js-date-picker__title-nav">
+                    <li>
+                      <button class="nsw-icon-button nsw-date-picker__title-nav-btn js-date-picker__year-nav-btn js-date-picker__year-nav-btn--prev" type="button">
+                        <span class="material-icons nsw-material-icons">keyboard_double_arrow_left</span>
+                      </button>
+                      <button class="nsw-icon-button nsw-date-picker__title-nav-btn js-date-picker__month-nav-btn js-date-picker__month-nav-btn--prev" type="button">
+                        <span class="material-icons nsw-material-icons">chevron_left</span>
+                      </button>
+                    </li>
+        
+                    <li>
+                      <button class="nsw-icon-button nsw-date-picker__title-nav-btn js-date-picker__month-nav-btn js-date-picker__month-nav-btn--next" type="button">
+                        <span class="material-icons nsw-material-icons">chevron_right</span>
+                      </button>
+                      <button class="nsw-icon-button nsw-date-picker__title-nav-btn js-date-picker__year-nav-btn js-date-picker__year-nav-btn--next" type="button">
+                        <span class="material-icons nsw-material-icons">keyboard_double_arrow_right</span>
+                      </button>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+        
+              <ol class="nsw-date-picker__week">
+                <li><div class="nsw-date-picker__day">M<span class="sr-only">onday</span></div></li>
+                <li><div class="nsw-date-picker__day">T<span class="sr-only">uesday</span></div></li>
+                <li><div class="nsw-date-picker__day">W<span class="sr-only">ednesday</span></div></li>
+                <li><div class="nsw-date-picker__day">T<span class="sr-only">hursday</span></div></li>
+                <li><div class="nsw-date-picker__day">F<span class="sr-only">riday</span></div></li>
+                <li><div class="nsw-date-picker__day">S<span class="sr-only">aturday</span></div></li>
+                <li><div class="nsw-date-picker__day">S<span class="sr-only">unday</span></div></li>
+              </ol>
+            </header>
+        
+            <ol class="nsw-date-picker__dates js-date-picker__dates" aria-labelledby="calendar-label-3">
+              <!-- days will be created using js -->
+            </ol>
+        
+            <div class="nsw-date-picker__buttongroup">
+              <button type="button" class="nsw-button nsw-button--dark-outline-solid js-date-picker__close" value="cancel">Cancel</button>
+              <button type="button" class="nsw-button nsw-button--dark js-date-picker__accept" value="ok">OK</button>
+            </div>
+          </div>
+        </fieldset>
+        
+      </main>
+      <div class="nsw-layout__sidebar nsw-layout__sidebar--desktop"></div>
+    </div>
+  </div>
+</section>
+
+<section class="nsw-section nsw-section--brand-dark nsw-section--invert">
+  <div class="nsw-container nsw-p-y-sm">
+    <div class="nsw-layout">
+      <main class="nsw-layout__main">
+        
+        <div class="nsw-date-input js-date-input">
+          <legend>
+            <label for="date-input-1" class="nsw-form__label">Select date</label>
+            <span id="date-input-1-helper-text" class="nsw-form__helper">Use dd/mm/yyyy format. For example 28 10 2024</span>
+          </legend>
+          
+          <div class="nsw-date-input__wrapper nsw-form__input-group nsw-form__input-group--icon">
+            <input type="text" class="nsw-form__input js-date-input__text" autocomplete="off" id="date-input-1">
+            
+            <button class="nsw-button nsw-button--dark nsw-button--flex js-date-input__trigger" aria-label="Select date using calendar widget" type="button">
+              <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">calendar_today</span>
+            </button>
+          </div>
+          
+          <div class="nsw-date-picker js-date-picker" role="dialog" aria-labelledby="calendar-label-1">
+            <header class="nsw-date-picker__header">
+              <div class="nsw-date-picker__title">
+                <span class="nsw-date-picker__title-label js-date-picker__title-label" id="calendar-label-1"></span>
+        
+                <nav>
+                  <ul class="nsw-date-picker__title-nav js-date-picker__title-nav">
+                    <li>
+                      <button class="nsw-icon-button nsw-date-picker__title-nav-btn js-date-picker__year-nav-btn js-date-picker__year-nav-btn--prev" type="button">
+                        <span class="material-icons nsw-material-icons">keyboard_double_arrow_left</span>
+                      </button>
+                      <button class="nsw-icon-button nsw-date-picker__title-nav-btn js-date-picker__month-nav-btn js-date-picker__month-nav-btn--prev" type="button">
+                        <span class="material-icons nsw-material-icons">chevron_left</span>
+                      </button>
+                    </li>
+        
+                    <li>
+                      <button class="nsw-icon-button nsw-date-picker__title-nav-btn js-date-picker__month-nav-btn js-date-picker__month-nav-btn--next" type="button">
+                        <span class="material-icons nsw-material-icons">chevron_right</span>
+                      </button>
+                      <button class="nsw-icon-button nsw-date-picker__title-nav-btn js-date-picker__year-nav-btn js-date-picker__year-nav-btn--next" type="button">
+                        <span class="material-icons nsw-material-icons">keyboard_double_arrow_right</span>
+                      </button>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+        
+              <ol class="nsw-date-picker__week">
+                <li><div class="nsw-date-picker__day">M<span class="sr-only">onday</span></div></li>
+                <li><div class="nsw-date-picker__day">T<span class="sr-only">uesday</span></div></li>
+                <li><div class="nsw-date-picker__day">W<span class="sr-only">ednesday</span></div></li>
+                <li><div class="nsw-date-picker__day">T<span class="sr-only">hursday</span></div></li>
+                <li><div class="nsw-date-picker__day">F<span class="sr-only">riday</span></div></li>
+                <li><div class="nsw-date-picker__day">S<span class="sr-only">aturday</span></div></li>
+                <li><div class="nsw-date-picker__day">S<span class="sr-only">unday</span></div></li>
+              </ol>
+            </header>
+        
+            <ol class="nsw-date-picker__dates js-date-picker__dates" aria-labelledby="calendar-label-1">
+              <!-- days will be created using js -->
+            </ol>
+        
+            <div class="nsw-date-picker__buttongroup">
+              <button type="button" class="nsw-button nsw-button--dark-outline-solid js-date-picker__close" value="cancel">Cancel</button>
+              <button type="button" class="nsw-button nsw-button--dark js-date-picker__accept" value="ok">OK</button>
+            </div>
+          </div>
+        </div>
+        <br>
+        <br>
+        
+        <div class="nsw-date-input js-date-input" data-min-date="02/01/2024" data-max-date="28/01/2024" data-dates-disabled="18/01/2024 19/01/2024 20/01/2024">
+          <legend>
+            <label for="date-input-2" class="nsw-form__label">Select date</label>
+            <span id="date-input-2-helper-text" class="nsw-form__helper">Use dd/mm/yyyy format. For example 28 10 2024</span>
+          </legend>
+          
+          <div class="nsw-date-input__wrapper nsw-form__input-group nsw-form__input-group--icon">
+            <input type="text" class="nsw-form__input js-date-input__text" autocomplete="off" id="date-input-2" value="12/01/2024">
+            
+            <button class="nsw-button nsw-button--dark nsw-button--flex js-date-input__trigger" aria-label="Select date using calendar widget" type="button">
+              <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">calendar_today</span>
+            </button>
+          </div>
+          
+          <div class="nsw-date-picker js-date-picker" role="dialog" aria-labelledby="calendar-label-2">
+            <header class="nsw-date-picker__header">
+              <div class="nsw-date-picker__title">
+                <span class="nsw-date-picker__title-label js-date-picker__title-label" id="calendar-label-2"></span>
+        
+                <nav>
+                  <ul class="nsw-date-picker__title-nav js-date-picker__title-nav">
+                    <li>
+                      <button class="nsw-icon-button nsw-date-picker__title-nav-btn js-date-picker__year-nav-btn js-date-picker__year-nav-btn--prev" type="button">
+                        <span class="material-icons nsw-material-icons">keyboard_double_arrow_left</span>
+                      </button>
+                      <button class="nsw-icon-button nsw-date-picker__title-nav-btn js-date-picker__month-nav-btn js-date-picker__month-nav-btn--prev" type="button">
+                        <span class="material-icons nsw-material-icons">chevron_left</span>
+                      </button>
+                    </li>
+        
+                    <li>
+                      <button class="nsw-icon-button nsw-date-picker__title-nav-btn js-date-picker__month-nav-btn js-date-picker__month-nav-btn--next" type="button">
+                        <span class="material-icons nsw-material-icons">chevron_right</span>
+                      </button>
+                      <button class="nsw-icon-button nsw-date-picker__title-nav-btn js-date-picker__year-nav-btn js-date-picker__year-nav-btn--next" type="button">
+                        <span class="material-icons nsw-material-icons">keyboard_double_arrow_right</span>
+                      </button>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+        
+              <ol class="nsw-date-picker__week">
+                <li><div class="nsw-date-picker__day">M<span class="sr-only">onday</span></div></li>
+                <li><div class="nsw-date-picker__day">T<span class="sr-only">uesday</span></div></li>
+                <li><div class="nsw-date-picker__day">W<span class="sr-only">ednesday</span></div></li>
+                <li><div class="nsw-date-picker__day">T<span class="sr-only">hursday</span></div></li>
+                <li><div class="nsw-date-picker__day">F<span class="sr-only">riday</span></div></li>
+                <li><div class="nsw-date-picker__day">S<span class="sr-only">aturday</span></div></li>
+                <li><div class="nsw-date-picker__day">S<span class="sr-only">unday</span></div></li>
+              </ol>
+            </header>
+        
+            <ol class="nsw-date-picker__dates js-date-picker__dates" aria-labelledby="calendar-label-2">
+              <!-- days will be created using js -->
+            </ol>
+        
+            <div class="nsw-date-picker__buttongroup">
+              <button type="button" class="nsw-button nsw-button--dark-outline-solid js-date-picker__close" value="cancel">Cancel</button>
+              <button type="button" class="nsw-button nsw-button--dark js-date-picker__accept" value="ok">OK</button>
+            </div>
+          </div>
+        </div>
+        <br>
+        <br>
+        
+        
+        <fieldset class="nsw-form__date nsw-date-input js-date-input">
+          <legend>
+            <span class="nsw-form__label">Start date</span>
+            <span id="form-date-3-helper-text" class="nsw-form__helper">For example 28 10 2024</span>
+          </legend>
+          <div class="nsw-form__date-wrapper nsw-date-input__wrapper js-date-input-multiple">
+            <div class="nsw-form__date-input">
+              <label for="form-date-3-day" class="nsw-form__label nsw-form__label--small">Day</label>
+              <input type="text" maxlength="2" id="form-date-3-day" name="form-date-3-day" autocomplete="bday-day" class="nsw-form__input js-date-picker-date">
+            </div>
+            <div class="nsw-form__date-input">
+              <label for="form-date-3-month" class="nsw-form__label nsw-form__label--small">Month</label>
+              <input type="text" maxlength="2" id="form-date-3-month" name="form-date-3-month" autocomplete="bday-month" class="nsw-form__input js-date-picker-month">
+            </div>
+            <div class="nsw-form__date-input nsw-form__date-input--large">
+              <label for="form-date-3-year" class="nsw-form__label nsw-form__label--small">Year</label>
+              <input type="text" maxlength="4" id="form-date-3-year" name="form-date-3-year" autocomplete="bday-year" class="nsw-form__input js-date-picker-year">
+            </div>
+            <div class="nsw-date-input__button">
+              <button class="nsw-button nsw-button--dark nsw-button--flex js-date-input__trigger" aria-label="Select date using calendar widget" type="button">
+                <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">calendar_today</span>
+              </button>
+            </div>
+          </div>
+        
+          <div class="nsw-date-picker js-date-picker" role="dialog" aria-labelledby="calendar-label-3">
+            <header class="nsw-date-picker__header">
+              <div class="nsw-date-picker__title">
+                <span class="nsw-date-picker__title-label js-date-picker__title-label" id="calendar-label-3"><!-- this will contain month label + year --></span>
+                <nav>
+                  <ul class="nsw-date-picker__title-nav js-date-picker__title-nav">
+                    <li>
+                      <button class="nsw-icon-button nsw-date-picker__title-nav-btn js-date-picker__year-nav-btn js-date-picker__year-nav-btn--prev" type="button">
+                        <span class="material-icons nsw-material-icons">keyboard_double_arrow_left</span>
+                      </button>
+                      <button class="nsw-icon-button nsw-date-picker__title-nav-btn js-date-picker__month-nav-btn js-date-picker__month-nav-btn--prev" type="button">
+                        <span class="material-icons nsw-material-icons">chevron_left</span>
+                      </button>
+                    </li>
+        
+                    <li>
+                      <button class="nsw-icon-button nsw-date-picker__title-nav-btn js-date-picker__month-nav-btn js-date-picker__month-nav-btn--next" type="button">
+                        <span class="material-icons nsw-material-icons">chevron_right</span>
+                      </button>
+                      <button class="nsw-icon-button nsw-date-picker__title-nav-btn js-date-picker__year-nav-btn js-date-picker__year-nav-btn--next" type="button">
+                        <span class="material-icons nsw-material-icons">keyboard_double_arrow_right</span>
+                      </button>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+        
+              <ol class="nsw-date-picker__week">
+                <li><div class="nsw-date-picker__day">M<span class="sr-only">onday</span></div></li>
+                <li><div class="nsw-date-picker__day">T<span class="sr-only">uesday</span></div></li>
+                <li><div class="nsw-date-picker__day">W<span class="sr-only">ednesday</span></div></li>
+                <li><div class="nsw-date-picker__day">T<span class="sr-only">hursday</span></div></li>
+                <li><div class="nsw-date-picker__day">F<span class="sr-only">riday</span></div></li>
+                <li><div class="nsw-date-picker__day">S<span class="sr-only">aturday</span></div></li>
+                <li><div class="nsw-date-picker__day">S<span class="sr-only">unday</span></div></li>
+              </ol>
+            </header>
+        
+            <ol class="nsw-date-picker__dates js-date-picker__dates" aria-labelledby="calendar-label-3">
+              <!-- days will be created using js -->
+            </ol>
+        
+            <div class="nsw-date-picker__buttongroup">
+              <button type="button" class="nsw-button nsw-button--dark-outline-solid js-date-picker__close" value="cancel">Cancel</button>
+              <button type="button" class="nsw-button nsw-button--dark js-date-picker__accept" value="ok">OK</button>
+            </div>
+          </div>
+        </fieldset>
+        
+      </main>
+      <div class="nsw-layout__sidebar nsw-layout__sidebar--desktop"></div>
+    </div>
+  </div>
+</section>
+  <script src="/nsw-design-system/js/main.js"></script>
+  <script>
+    window.NSW.initSite()
+  </script>
+</body>
+</html>
