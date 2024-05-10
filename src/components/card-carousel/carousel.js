@@ -82,13 +82,12 @@ class Carousel {
     })
 
     this.carouselCreateContainer()
-
-    const itemStyle = window.getComputedStyle(this.items[0])
-    const containerStyle = window.getComputedStyle(this.listWrapper)
-    let itemWidth = parseFloat(itemStyle.getPropertyValue('width'))
-    const itemMargin = parseFloat(itemStyle.getPropertyValue('margin-right'))
-    const containerPadding = parseFloat(containerStyle.getPropertyValue('padding-left'))
-    let containerWidth = parseFloat(containerStyle.getPropertyValue('width'))
+    const itemStyle = this.items && window.getComputedStyle(this.items[0])
+    const containerStyle = this.listWrapper && window.getComputedStyle(this.listWrapper)
+    let itemWidth = itemStyle && parseFloat(itemStyle.getPropertyValue('width'))
+    const itemMargin = itemStyle && parseFloat(itemStyle.getPropertyValue('margin-right'))
+    const containerPadding = containerStyle && parseFloat(containerStyle.getPropertyValue('padding-left'))
+    let containerWidth = containerStyle && parseFloat(containerStyle.getPropertyValue('width'))
 
     if (!this.itemAutoSize) {
       this.itemAutoSize = itemWidth
@@ -496,7 +495,7 @@ class Carousel {
 
   getCarouselWidth(computedWidth) {
     let comWidth = computedWidth
-    const closestHidden = this.listWrapper.closest(`.${this.srClass}`)
+    const closestHidden = this.listWrapper && this.listWrapper.closest(`.${this.srClass}`)
     if (closestHidden) {
       closestHidden.classList.remove(this.srClass)
       comWidth = this.listWrapper.offsetWidth

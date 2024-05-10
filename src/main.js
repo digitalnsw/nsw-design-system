@@ -39,15 +39,15 @@ if (!Element.prototype.closest) {
 
 function initSite() {
   const accordions = document.querySelectorAll('.js-accordion')
-  const backTop = document.querySelectorAll('.js-back-to-top')
+  const backTop = document.querySelectorAll('button.js-back-to-top')
   const carousel = document.querySelectorAll('.js-carousel')
   const closeSearchButton = document.querySelectorAll('.js-close-search')
-  const datePicker = document.querySelectorAll('.js-date-input')
+  const datePicker = document.querySelectorAll('div.js-date-input')
   const dialogs = document.querySelectorAll('.js-dialog')
   const fileUpload = document.querySelectorAll('.js-file-upload')
   const filters = document.querySelectorAll('.js-filters')
   const globalAlert = document.querySelectorAll('.js-global-alert')
-  const link = document.querySelectorAll('.js-link')
+  const link = document.querySelectorAll('a.js-link')
   const multiSelect = document.querySelectorAll('.js-multi-select')
   const navigation = document.getElementById('main-nav')
   const openSearchButton = document.querySelectorAll('.js-open-search')

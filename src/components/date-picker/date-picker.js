@@ -17,13 +17,13 @@ class DatePicker {
     this.maxDate = this.element.getAttribute('data-max-date') ? this.element.getAttribute('data-max-date') : ''
     this.input = this.element.querySelector('.js-date-input__text')
     this.trigger = this.element.querySelector('.js-date-input__trigger')
-    this.triggerLabel = this.trigger.getAttribute('aria-label')
+    this.triggerLabel = this.trigger && this.trigger.getAttribute('aria-label')
     this.datePicker = this.element.querySelector('.js-date-picker')
-    this.body = this.datePicker.querySelector('.js-date-picker__dates')
-    this.navigation = this.datePicker.querySelector('.js-date-picker__title-nav')
-    this.heading = this.datePicker.querySelector('.js-date-picker__title-label')
-    this.close = this.datePicker.querySelector('.js-date-picker__close')
-    this.accept = this.datePicker.querySelector('.js-date-picker__accept')
+    this.body = this.datePicker && this.datePicker.querySelector('.js-date-picker__dates')
+    this.navigation = this.datePicker && this.datePicker.querySelector('.js-date-picker__title-nav')
+    this.heading = this.datePicker && this.datePicker.querySelector('.js-date-picker__title-label')
+    this.close = this.datePicker && this.datePicker.querySelector('.js-date-picker__close')
+    this.accept = this.datePicker && this.datePicker.querySelector('.js-date-picker__accept')
     this.multipleInput = this.element.querySelector('.js-date-input-multiple')
     this.dateInput = this.multipleInput && this.multipleInput.querySelector('.js-date-picker-date')
     this.monthInput = this.multipleInput && this.multipleInput.querySelector('.js-date-picker-month')
@@ -111,6 +111,8 @@ class DatePicker {
       })
     }
 
+    if (!this.body) return
+
     this.body.addEventListener('click', (event) => {
       event.preventDefault()
       const day = event.target.closest('button')
@@ -130,6 +132,8 @@ class DatePicker {
         this.resetLabelCalendarTrigger()
       }
     })
+
+    if (!this.navigation) return
 
     this.navigation.addEventListener('click', (event) => {
       event.preventDefault()
@@ -375,6 +379,7 @@ class DatePicker {
   }
 
   showCalendar(bool) {
+    if (!this.body) return
     const firstDay = this.constructor.getDayOfWeek(this.currentYear, this.currentMonth, '01')
     this.body.innerHTML = ''
     this.heading.innerHTML = `${this.months[this.currentMonth]} ${this.currentYear}`
@@ -477,7 +482,10 @@ class DatePicker {
       dateArray = this.input.value.split(this.dateSeparator)
     } else if (this.multipleInput) {
       dateArray = [this.dateInput.value, this.monthInput.value, this.yearInput.value]
+    } else {
+      return false
     }
+
     return `${dateArray[this.dateIndexes[2]]}-${dateArray[this.dateIndexes[1]]}-${dateArray[this.dateIndexes[0]]}`
   }
 
@@ -563,6 +571,7 @@ class DatePicker {
   }
 
   placeCalendar() {
+    if (!this.datePicker) return
     this.datePicker.style.left = '0px'
     this.datePicker.style.right = 'auto'
 
