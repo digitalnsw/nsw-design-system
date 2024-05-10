@@ -29,14 +29,14 @@ class Dialog {
       this.dialog.addEventListener('click', this.clickEvent, false)
     }
 
-    this.focusableEls[this.focusableEls.length - 1].addEventListener('blur', this.trapEvent, false)
+    if (!this.focusableEls) this.focusableEls[this.focusableEls.length - 1].addEventListener('blur', this.trapEvent, false)
   }
 
   openDialog() {
     this.dialog.setAttribute('aria-expanded', 'true')
     this.dialog.classList.add('active')
     this.body.classList.add('dialog-active')
-    this.focusableEls[0].focus()
+    if (!this.focusableEls) this.focusableEls[0].focus()
   }
 
   closeDialog() {
