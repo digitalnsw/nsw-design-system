@@ -4,7 +4,7 @@ class FileUpload {
     this.element = element
     this.input = this.element.querySelector('.nsw-file-upload__input')
     this.label = this.element.querySelector('.nsw-file-upload__label')
-    this.multipleUpload = this.input.hasAttribute('multiple')
+    this.multipleUpload = this.input && this.input.hasAttribute('multiple')
     this.replaceFiles = this.element.hasAttribute('data-replace-files')
     this.filesList = false
   }
