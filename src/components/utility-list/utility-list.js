@@ -23,8 +23,11 @@ class UtilityList extends Toggletip {
     })
 
     this.share.addEventListener('click', (event) => {
-      event.preventDefault()
       const button = event.target.closest('a')
+      if (!button) return
+
+      event.preventDefault()
+
       const social = button.getAttribute('data-social')
       const url = this.getSocialUrl(button, social)
       if (social === 'mail') {
