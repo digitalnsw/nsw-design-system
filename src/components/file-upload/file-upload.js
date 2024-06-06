@@ -2,8 +2,8 @@
 class FileUpload {
   constructor(element) {
     this.element = element
-    this.input = this.element.querySelector('.nsw-file-upload__input')
-    this.label = this.element.querySelector('.nsw-file-upload__label')
+    this.input = this.element.querySelector('input.nsw-file-upload__input')
+    this.label = this.element.querySelector('label.nsw-file-upload__label')
     this.multipleUpload = this.input && this.input.hasAttribute('multiple')
     this.replaceFiles = this.element.hasAttribute('data-replace-files')
     this.filesList = false
@@ -11,6 +11,15 @@ class FileUpload {
 
   init() {
     if (!this.input) return
+
+    if (!this.label) {
+      const label = document.createElement('label')
+      label.htmlFor = this.input.id
+      label.classList.add('nsw-file-upload__label', 'nsw-button', 'nsw-button--dark-outline-solid')
+      label.textContent = 'Select file'
+      this.element.insertAdjacentElement('beforeend', label)
+      this.label = this.element.querySelector('label.nsw-file-upload__label')
+    }
 
     this.input.addEventListener('change', () => {
       if (this.input.value === '') return
@@ -21,6 +30,7 @@ class FileUpload {
   createFileList() {
     const ul = document.createElement('ul')
     ul.classList.add('nsw-file-upload__list')
+
     this.label.insertAdjacentElement('afterend', ul)
     this.filesList = this.element.querySelector('.nsw-file-upload__list')
   }
