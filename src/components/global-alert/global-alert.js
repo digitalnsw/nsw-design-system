@@ -1,20 +1,22 @@
 class GlobalAlert {
   constructor(element) {
-    this.messageElement = element
-    this.closeButton = element.querySelector('.js-close-alert')
-    this.closeMessageEvent = (e) => this.closeMessage(e)
+    this.element = element
+    this.closeButton = this.element.querySelector('button.js-close-alert')
   }
 
   init() {
+    if (!this.closeButton) return
     this.controls()
   }
 
   controls() {
-    this.closeButton.addEventListener('click', this.closeMessageEvent, false)
+    this.closeButton.addEventListener('click', (event) => {
+      this.closeMessage(event)
+    }, false)
   }
 
   closeMessage() {
-    this.messageElement.hidden = true
+    this.element.hidden = true
   }
 }
 
