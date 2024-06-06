@@ -5,21 +5,24 @@ class ExternalLink {
     this.link = element
     this.uID = uniqueId('external')
     this.linkIcon = this.link.querySelector('.nsw-material-icons')
-    this.linkIconTitle = this.linkIcon.getAttribute('title')
+    this.linkIconTitle = this.linkIcon ? this.linkIcon.getAttribute('title') : false
     this.linkElement = false
   }
 
   init() {
+    if (this.link.tagName !== 'A') return
     this.link.classList.add('nsw-link', 'nsw-link--icon')
     this.constructor.setAttributes(this.link, {
       target: '_blank',
       rel: 'noopener',
     })
-    this.constructor.setAttributes(this.linkIcon, {
-      focusable: 'false',
-      'aria-hidden': 'true',
-    })
-    this.createElement(this.linkIconTitle)
+    if (this.linkIcon) {
+      this.constructor.setAttributes(this.linkIcon, {
+        focusable: 'false',
+        'aria-hidden': 'true',
+      })
+    }
+    if (this.linkIconTitle) this.createElement(this.linkIconTitle)
   }
 
   createElement(title) {
