@@ -39,35 +39,42 @@ class UtilityList extends Toggletip {
       })
     }
 
-    this.print.forEach((element) => {
-      element.setAttribute('tabindex', '0')
-      element.addEventListener('click', () => {
-        window.print()
-      })
+    if (this.print) {
+      this.print.forEach((element) => {
+        element.setAttribute('tabindex', '0')
 
-      element.addEventListener('keyup', (event) => {
-        if ((event.code && event.code.toLowerCase() === 'enter') || (event.key && event.key.toLowerCase() === 'enter')) {
+        element.addEventListener('click', () => {
           window.print()
-        }
+        })
+
+        element.addEventListener('keyup', (event) => {
+          if ((event.code && event.code.toLowerCase() === 'enter') || (event.key && event.key.toLowerCase() === 'enter')) {
+            window.print()
+          }
+        })
       })
-    })
+    }
 
-    this.download.forEach((element) => {
-      element.setAttribute('tabindex', '0')
-    })
-
-    this.copy.forEach((element) => {
-      element.setAttribute('tabindex', '0')
-      element.addEventListener('click', () => {
-        this.copyToClipboard(element)
+    if (this.download) {
+      this.download.forEach((element) => {
+        element.setAttribute('tabindex', '0')
       })
+    }
 
-      element.addEventListener('keyup', (event) => {
-        if ((event.code && event.code.toLowerCase() === 'enter') || (event.key && event.key.toLowerCase() === 'enter')) {
+    if (this.copy) {
+      this.copy.forEach((element) => {
+        element.setAttribute('tabindex', '0')
+        element.addEventListener('click', () => {
           this.copyToClipboard(element)
-        }
+        })
+
+        element.addEventListener('keyup', (event) => {
+          if ((event.code && event.code.toLowerCase() === 'enter') || (event.key && event.key.toLowerCase() === 'enter')) {
+            this.copyToClipboard(element)
+          }
+        })
       })
-    })
+    }
   }
 
   getSocialUrl(button, social) {
