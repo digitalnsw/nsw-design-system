@@ -2,17 +2,17 @@ import { uniqueId } from '../../global/scripts/helpers/utilities'
 
 class ExternalLink {
   constructor(element) {
-    this.link = element
+    this.element = element
     this.uID = uniqueId('external')
-    this.linkIcon = this.link.querySelector('.nsw-material-icons')
+    this.linkIcon = this.element.querySelector('.nsw-material-icons')
     this.linkIconTitle = this.linkIcon ? this.linkIcon.getAttribute('title') : false
     this.linkElement = false
   }
 
   init() {
-    if (this.link.tagName !== 'A') return
-    this.link.classList.add('nsw-link', 'nsw-link--icon')
-    this.constructor.setAttributes(this.link, {
+    if (this.element.tagName !== 'A') return
+    this.element.classList.add('nsw-link', 'nsw-link--icon')
+    this.constructor.setAttributes(this.element, {
       target: '_blank',
       rel: 'noopener',
     })
@@ -31,8 +31,8 @@ class ExternalLink {
       this.linkElement.id = this.uID
       this.linkElement.classList.add('sr-only')
       this.linkElement.innerText = title
-      this.link.insertAdjacentElement('afterend', this.linkElement)
-      this.constructor.setAttributes(this.link, {
+      this.element.insertAdjacentElement('afterend', this.linkElement)
+      this.constructor.setAttributes(this.element, {
         'aria-describedby': this.uID,
       })
     }
