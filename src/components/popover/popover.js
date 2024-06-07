@@ -9,12 +9,12 @@ import {
 
 class Popover {
   constructor(element) {
-    this.popover = element
-    this.popoverId = this.popover.getAttribute('aria-controls')
-    this.popoverPosition = this.popover.dataset.popoverPosition || 'bottom'
-    this.popoverClassList = this.popover.dataset.popoverClass
-    this.popoverGap = this.popover.dataset.popoverGap || 5
-    this.popoverAnchor = this.popover.querySelector('[data-anchor]') || this.popover
+    this.element = element
+    this.popoverId = this.element.getAttribute('aria-controls')
+    this.popoverPosition = this.element.dataset.popoverPosition || 'bottom'
+    this.popoverClassList = this.element.dataset.popoverClass
+    this.popoverGap = this.element.dataset.popoverGap || 5
+    this.popoverAnchor = this.element.querySelector('[data-anchor]') || this.popover
     this.popoverElement = document.querySelector(`#${this.popoverId}`)
     this.popoverVisibleClass = 'active'
     this.popoverContent = false
@@ -32,9 +32,9 @@ class Popover {
   }
 
   initEvents() {
-    this.popover.addEventListener('click', this.togglePopover.bind(this))
+    this.element.addEventListener('click', this.togglePopover.bind(this))
 
-    this.popover.addEventListener('keyup', (event) => {
+    this.element.addEventListener('keyup', (event) => {
       if ((event.code && event.code.toLowerCase() === 'enter') || (event.key && event.key.toLowerCase() === 'enter')) {
         this.togglePopover()
       }
@@ -86,7 +86,7 @@ class Popover {
 
     this.getFocusableElements()
     this.popoverElement.focus({ preventScroll: true })
-    this.popover.addEventListener('transitionend', () => { this.focusPopover() }, { once: true })
+    this.element.addEventListener('transitionend', () => { this.focusPopover() }, { once: true })
 
     this.updatePopover(this.popoverElement, this.popoverPosition)
   }
