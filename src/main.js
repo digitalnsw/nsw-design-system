@@ -159,8 +159,7 @@ function initSite() {
 
   if (utilityList) {
     utilityList.forEach((element) => {
-      const shareItem = element.querySelector('.js-share')
-      new UtilityList(element, shareItem).init()
+      new UtilityList(element).init()
     })
   }
 }

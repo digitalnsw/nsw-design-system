@@ -1,41 +1,43 @@
 import Toggletip from '../tooltip/toggletip'
 
 class UtilityList extends Toggletip {
-  constructor(element, toggletip) {
-    super(toggletip)
-    this.utility = element
+  constructor(element, toggletip = element.querySelector('.js-share')) {
+    super(toggletip === null ? element : toggletip)
+    this.element = element
     this.share = toggletip
-    this.print = this.utility.querySelectorAll('.js-print-page')
-    this.download = this.utility.querySelectorAll('.js-download-page')
-    this.copy = this.utility.querySelectorAll('.js-copy-clipboard')
-    this.shareItems = this.share.querySelectorAll('a')
+    this.print = this.element.querySelectorAll('.js-print-page')
+    this.download = this.element.querySelectorAll('.js-download-page')
+    this.copy = this.element.querySelectorAll('.js-copy-clipboard')
+    this.shareItems = this.share && this.share.querySelectorAll('a')
     this.urlLocation = window.location.href
     this.copyElement = false
   }
 
   init() {
-    super.init()
-    this.shareItems.forEach((share) => {
-      const shareLocation = share.getAttribute('data-url')
-      if (!shareLocation) {
-        share.setAttribute('data-url', window.location.href)
-      }
-    })
+    if (this.share) {
+      super.init()
+      this.shareItems.forEach((share) => {
+        const shareLocation = share.getAttribute('data-url')
+        if (!shareLocation) {
+          share.setAttribute('data-url', window.location.href)
+        }
+      })
 
-    this.share.addEventListener('click', (event) => {
-      const button = event.target.closest('a')
-      if (!button) return
+      this.share.addEventListener('click', (event) => {
+        const button = event.target.closest('a')
+        if (!button) return
 
-      event.preventDefault()
+        event.preventDefault()
 
-      const social = button.getAttribute('data-social')
-      const url = this.getSocialUrl(button, social)
-      if (social === 'mail') {
-        window.location.href = url
-      } else {
-        window.open(url, `${social}-share-dialog`, 'width=626,height=436')
-      }
-    })
+        const social = button.getAttribute('data-social')
+        const url = this.getSocialUrl(button, social)
+        if (social === 'mail') {
+          window.location.href = url
+        } else {
+          window.open(url, `${social}-share-dialog`, 'width=626,height=436')
+        }
+      })
+    }
 
     this.print.forEach((element) => {
       element.setAttribute('tabindex', '0')
