@@ -1,8 +1,9 @@
 import SwipeContent from './swipe-content'
 
-/* eslint-disable no-new, max-len */
+/* eslint-disable max-len */
 class Carousel {
   constructor(element) {
+    // super(element)
     this.element = element
     this.containerClass = 'nsw-carousel-container'
     this.controlClass = 'js-carousel__control'
@@ -29,13 +30,11 @@ class Carousel {
     this.controls = this.element.querySelectorAll(`.${this.controlClass}`)
     this.counter = this.element.querySelectorAll(`.${this.counterClass}`)
     this.counterTor = this.element.querySelectorAll(`.${this.counterTorClass}`)
-    this.ariaLabel = (this.element.getAttribute('data-description')) ? this.element.getAttribute('data-description') : 'Card carousel'
-    this.drag = !((this.element.getAttribute('data-drag') && this.element.getAttribute('data-drag') === 'off'))
+    this.ariaLabel = this.element.getAttribute('data-description') ? this.element.getAttribute('data-description') : 'Card carousel'
+    this.dragEnabled = !!((this.element.getAttribute('data-drag') && this.element.getAttribute('data-drag') === 'on'))
     this.loop = !!((this.element.getAttribute('data-loop') && this.element.getAttribute('data-loop') === 'on'))
     this.nav = !((this.element.getAttribute('data-navigation') && this.element.getAttribute('data-navigation') === 'off'))
     this.navigationPagination = !!((this.element.getAttribute('data-navigation-pagination') && this.element.getAttribute('data-navigation-pagination') === 'on'))
-    this.overflowItems = !((this.element.getAttribute('data-overflow-items') && this.element.getAttribute('data-overflow-items') === 'off'))
-    this.alignControls = this.element.getAttribute('data-align-controls') ? this.element.getAttribute('data-align-controls') : false
     this.justifyContent = !!((this.element.getAttribute('data-justify-content') && this.element.getAttribute('data-justify-content') === 'on'))
     this.initItems = []
     this.itemsNb = this.items.length
@@ -123,7 +122,6 @@ class Carousel {
     if (this.items.length <= this.visibItemsNb) this.totTranslate = 0
 
     this.centerItems()
-    this.alignControlsFunc()
   }
 
   carouselCreateContainer() {
@@ -176,7 +174,8 @@ class Carousel {
       this.emitCarouselActiveItemsEvent()
     }
 
-    if (this.drag && window.requestAnimationFrame) {
+    if (this.dragEnabled && window.requestAnimationFrame) {
+      // super.init()
       new SwipeContent(this.element).init()
       this.element.addEventListener('dragStart', (event) => {
         if (event.detail.origin && event.detail.origin.closest(`.${this.controlClass}`)) return
@@ -206,7 +205,6 @@ class Carousel {
         this.resetCarouselControls()
         this.setCounterItem()
         this.centerItems()
-        this.alignControlsFunc()
         this.emitCarouselActiveItemsEvent()
       }, 250)
     })
@@ -649,20 +647,6 @@ class Carousel {
     this.list.classList.toggle(this.centerClass, this.items.length < this.visibItemsNb)
   }
 
-  alignControlsFunc() {
-    if (this.controls.length < 1 || !this.alignControls) return
-    if (!this.controlsAlignEl) {
-      this.controlsAlignEl = this.element.querySelector(this.alignControls)
-    }
-    if (!this.controlsAlignEl) return
-    const translate = (this.element.offsetHeight - this.controlsAlignEl.offsetHeight)
-
-    this.controls.forEach((element) => {
-      const el = element
-      el.style.marginBottom = `${translate}px`
-    })
-  }
-
   emitCarouselActiveItemsEvent() {
     this.emitCarouselEvents('carousel-active-items', { firstSelectedItem: this.selectedItem, visibleItemsNb: this.visibItemsNb })
   }
@@ -673,7 +657,6 @@ class Carousel {
   }
 
   resetVisibilityOverflowItems(j) {
-    if (!this.overflowItems) return
     const itemWidth = this.containerWidth / this.items.length
     const delta = (window.innerWidth - itemWidth * this.visibItemsNb) / 2
     const overflowItems = Math.ceil(delta / itemWidth)
