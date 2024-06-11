@@ -1,9 +1,9 @@
 import SwipeContent from './swipe-content'
 
 /* eslint-disable max-len */
-class Carousel {
+class Carousel extends SwipeContent {
   constructor(element) {
-    // super(element)
+    super(element)
     this.element = element
     this.containerClass = 'nsw-carousel-container'
     this.controlClass = 'js-carousel__control'
@@ -175,8 +175,7 @@ class Carousel {
     }
 
     if (this.dragEnabled && window.requestAnimationFrame) {
-      // super.init()
-      new SwipeContent(this.element).init()
+      super.init()
       this.element.addEventListener('dragStart', (event) => {
         if (event.detail.origin && event.detail.origin.closest(`.${this.controlClass}`)) return
         if (event.detail.origin && event.detail.origin.closest(`.${this.navClass}`)) return
