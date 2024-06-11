@@ -3,6 +3,7 @@ import SwipeContent from './swipe-content'
 /* eslint-disable no-new, max-len */
 class Carousel {
   constructor(element) {
+    this.element = element
     this.containerClass = 'nsw-carousel-container'
     this.controlClass = 'js-carousel__control'
     this.wrapperClass = 'js-carousel__wrapper'
@@ -10,9 +11,9 @@ class Carousel {
     this.counterTorClass = 'js-carousel__counter-tot'
     this.navClass = 'js-carousel__navigation'
     this.navItemClass = 'js-carousel__nav-item'
-    this.navigationItemClass = element.getAttribute('data-navigation-item-class') ? element.getAttribute('data-navigation-item-class') : 'nsw-carousel__nav-item'
-    this.navigationClass = element.getAttribute('data-navigation-class') ? element.getAttribute('data-navigation-class') : 'nsw-carousel__navigation'
-    this.paginationClass = element.getAttribute('data-pagination-class') ? element.getAttribute('data-pagination-class') : 'nsw-carousel__navigation--pagination'
+    this.navigationItemClass = this.element.getAttribute('data-navigation-item-class') ? this.element.getAttribute('data-navigation-item-class') : 'nsw-carousel__nav-item'
+    this.navigationClass = this.element.getAttribute('data-navigation-class') ? this.element.getAttribute('data-navigation-class') : 'nsw-carousel__navigation'
+    this.paginationClass = this.element.getAttribute('data-pagination-class') ? this.element.getAttribute('data-pagination-class') : 'nsw-carousel__navigation--pagination'
     this.draggingClass = 'nsw-carousel--is-dragging'
     this.loadedClass = 'nsw-carousel--loaded'
     this.animateClass = 'nsw-carousel__list--animating'
@@ -22,21 +23,20 @@ class Carousel {
     this.hideControlsClass = 'nsw-carousel--hide-controls'
     this.hideClass = 'nsw-display-none'
     this.centerClass = 'nsw-justify-content-center'
-    this.element = element
     this.listWrapper = this.element.querySelector(`.${this.wrapperClass}`)
     this.list = this.listWrapper ? this.listWrapper.querySelector('ol') : false
     this.items = this.list ? this.list.getElementsByTagName('li') : false
     this.controls = this.element.querySelectorAll(`.${this.controlClass}`)
     this.counter = this.element.querySelectorAll(`.${this.counterClass}`)
     this.counterTor = this.element.querySelectorAll(`.${this.counterTorClass}`)
-    this.ariaLabel = (element.getAttribute('data-description')) ? element.getAttribute('data-description') : 'Card carousel'
-    this.drag = !((element.getAttribute('data-drag') && element.getAttribute('data-drag') === 'off'))
-    this.loop = !!((element.getAttribute('data-loop') && element.getAttribute('data-loop') === 'on'))
-    this.nav = !((element.getAttribute('data-navigation') && element.getAttribute('data-navigation') === 'off'))
-    this.navigationPagination = !!((element.getAttribute('data-navigation-pagination') && element.getAttribute('data-navigation-pagination') === 'on'))
-    this.overflowItems = !((element.getAttribute('data-overflow-items') && element.getAttribute('data-overflow-items') === 'off'))
-    this.alignControls = element.getAttribute('data-align-controls') ? element.getAttribute('data-align-controls') : false
-    this.justifyContent = !!((element.getAttribute('data-justify-content') && element.getAttribute('data-justify-content') === 'on'))
+    this.ariaLabel = (this.element.getAttribute('data-description')) ? this.element.getAttribute('data-description') : 'Card carousel'
+    this.drag = !((this.element.getAttribute('data-drag') && this.element.getAttribute('data-drag') === 'off'))
+    this.loop = !!((this.element.getAttribute('data-loop') && this.element.getAttribute('data-loop') === 'on'))
+    this.nav = !((this.element.getAttribute('data-navigation') && this.element.getAttribute('data-navigation') === 'off'))
+    this.navigationPagination = !!((this.element.getAttribute('data-navigation-pagination') && this.element.getAttribute('data-navigation-pagination') === 'on'))
+    this.overflowItems = !((this.element.getAttribute('data-overflow-items') && this.element.getAttribute('data-overflow-items') === 'off'))
+    this.alignControls = this.element.getAttribute('data-align-controls') ? this.element.getAttribute('data-align-controls') : false
+    this.justifyContent = !!((this.element.getAttribute('data-justify-content') && this.element.getAttribute('data-justify-content') === 'on'))
     this.initItems = []
     this.itemsNb = this.items.length
     this.visibItemsNb = 1
@@ -177,7 +177,7 @@ class Carousel {
     }
 
     if (this.drag && window.requestAnimationFrame) {
-      new SwipeContent(this.element)
+      new SwipeContent(this.element).init()
       this.element.addEventListener('dragStart', (event) => {
         if (event.detail.origin && event.detail.origin.closest(`.${this.controlClass}`)) return
         if (event.detail.origin && event.detail.origin.closest(`.${this.navClass}`)) return
