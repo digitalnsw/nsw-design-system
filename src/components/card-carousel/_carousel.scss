@@ -63,7 +63,8 @@
     max-width: initial;
   }
 
-  > nav {
+  > nav,
+  &__counter > nav {
     order: 1;
     margin-bottom: 0.5rem;
     margin-right: 0.25rem;
@@ -88,6 +89,16 @@
     order: 2;
     width: calc(100% - 6rem);
     margin: 0 auto;
+
+    @include breakpoint('md') {
+      width: 100%;
+    }
+  }
+
+  &__counter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
     @include breakpoint('md') {
       width: 100%;

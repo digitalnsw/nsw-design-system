@@ -57,6 +57,8 @@ class Carousel extends SwipeContent {
   }
 
   init() {
+    if (!this.items) return
+
     this.initCarouselLayout()
     this.setItemsWidth(true)
     this.insertBefore(this.visibItemsNb)
@@ -82,12 +84,13 @@ class Carousel extends SwipeContent {
 
     this.carouselCreateContainer()
 
-    const itemStyle = window.getComputedStyle(this.items[0])
-    const containerStyle = window.getComputedStyle(this.listWrapper)
-    let itemWidth = parseFloat(itemStyle.getPropertyValue('width'))
-    const itemMargin = parseFloat(itemStyle.getPropertyValue('margin-right'))
-    const containerPadding = parseFloat(containerStyle.getPropertyValue('padding-left'))
-    let containerWidth = parseFloat(containerStyle.getPropertyValue('width'))
+    const itemStyle = this.items && window.getComputedStyle(this.items[0])
+
+    const containerStyle = this.listWrapper && window.getComputedStyle(this.listWrapper)
+    let itemWidth = itemStyle ? parseFloat(itemStyle.getPropertyValue('width')) : 0
+    const itemMargin = itemStyle ? parseFloat(itemStyle.getPropertyValue('margin-right')) : 0
+    const containerPadding = containerStyle ? parseFloat(containerStyle.getPropertyValue('padding-left')) : 0
+    let containerWidth = containerStyle ? parseFloat(containerStyle.getPropertyValue('width')) : 0
 
     if (!this.itemAutoSize) {
       this.itemAutoSize = itemWidth
