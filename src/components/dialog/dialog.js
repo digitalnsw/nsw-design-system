@@ -7,10 +7,10 @@ class Dialog {
     this.closeBtn = this.element.querySelectorAll('.js-close-dialog')
     this.focusableEls = this.element.querySelectorAll('a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])')
     this.body = document.body
-    this.openEvent = (event) => this.openDialog(event)
-    this.closeEvent = (event) => this.closeDialog(event)
-    this.clickEvent = (event) => this.clickDialog(event)
-    this.trapEvent = (event) => this.trapFocus(event)
+    this.openEvent = this.openDialog.bind(this)
+    this.closeEvent = this.closeDialog.bind(this)
+    this.clickEvent = this.clickDialog.bind(this)
+    this.trapEvent = this.trapFocus.bind(this)
   }
 
   init() {
