@@ -4221,17 +4221,18 @@
 
   class SiteSearch {
     constructor(element) {
-      this.triggerButton = element;
+      this.element = element;
       this.originalButton = document.querySelector('.js-open-search');
-      this.targetElement = document.getElementById(this.triggerButton.getAttribute('aria-controls'));
-      this.searchInput = this.targetElement.querySelector('.js-search-input');
-      this.pressed = this.triggerButton.getAttribute('aria-expanded') === 'true';
+      this.targetElement = document.getElementById(this.element.getAttribute('aria-controls'));
+      this.searchInput = this.targetElement.querySelector('input.js-search-input');
+      this.pressed = this.element.getAttribute('aria-expanded') === 'true';
     }
     init() {
+      if (!this.originalButton) return;
       this.controls();
     }
     controls() {
-      this.triggerButton.addEventListener('click', this.showHide.bind(this), false);
+      this.element.addEventListener('click', this.showHide.bind(this), false);
     }
     showHide() {
       if (this.pressed) {
@@ -4937,7 +4938,7 @@
     const accordions = document.querySelectorAll('.js-accordion');
     const backTop = document.querySelectorAll('button.js-back-to-top');
     const carousel = document.querySelectorAll('.js-carousel');
-    const closeSearchButton = document.querySelectorAll('.js-close-search');
+    const closeSearchButton = document.querySelectorAll('button.js-close-search');
     const datePicker = document.querySelectorAll('.js-date-input');
     const dialogs = document.querySelectorAll('.js-dialog');
     const fileUpload = document.querySelectorAll('.js-file-upload');
@@ -4946,7 +4947,7 @@
     const link = document.querySelectorAll('a.js-link');
     const multiSelect = document.querySelectorAll('.js-multi-select');
     const navigation = document.getElementById('main-nav');
-    const openSearchButton = document.querySelectorAll('.js-open-search');
+    const openSearchButton = document.querySelectorAll('button.js-open-search');
     const popover = document.querySelectorAll('.js-popover');
     const tabs = document.querySelectorAll('.js-tabs');
     const toggletip = document.querySelectorAll('.js-toggletip');
