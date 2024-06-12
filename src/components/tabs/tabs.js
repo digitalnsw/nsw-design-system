@@ -2,24 +2,24 @@ import { uniqueId } from '../../global/scripts/helpers/utilities'
 
 class Tabs {
   constructor(element, showTab) {
+    this.element = element
     this.tablistClass = '.nsw-tabs__list'
     this.tablistItemClass = 'li'
     this.tablistLinkClass = 'a'
-
-    this.tab = element
     this.showTab = showTab
-    this.tabList = element.querySelector(this.tablistClass)
-    this.tabItems = this.tabList.querySelectorAll(this.tablistItemClass)
+    this.tabList = this.element.querySelector(this.tablistClass)
+    this.tabItems = this.tabList && this.tabList.querySelectorAll(this.tablistItemClass)
     this.allowedKeys = [35, 36, 37, 39, 40]
     this.tabLinks = []
     this.tabPanel = []
     this.selectedTab = null
-    this.clickTabEvent = (e) => this.clickTab(e)
-    this.arrowKeysEvent = (e) => this.arrowKeys(e)
+    this.clickTabEvent = (event) => this.clickTab(event)
+    this.arrowKeysEvent = (event) => this.arrowKeys(event)
     this.owns = []
   }
 
   init() {
+    if (!this.tabList) return
     this.setUpDom()
     this.controls()
     this.setInitalTab()
@@ -28,21 +28,21 @@ class Tabs {
   setUpDom() {
     const tabListWrapper = document.createElement('div')
     tabListWrapper.classList.add('nsw-tabs__list-wrapper')
-    this.tab.prepend(tabListWrapper)
+    this.element.prepend(tabListWrapper)
     tabListWrapper.prepend(this.tabList)
-
     this.tabList.setAttribute('role', 'tablist')
+
     this.tabItems.forEach((item) => {
       const itemElem = item
       const itemLink = item.querySelector(this.tablistLinkClass)
-      const panel = this.tab.querySelector(itemLink.hash)
+      const panel = this.element.querySelector(itemLink.hash)
       const uID = uniqueId('tab')
       this.owns.push(uID)
-
       itemElem.setAttribute('role', 'presentation')
       this.enhanceTabLink(itemLink, uID)
       this.enhanceTabPanel(panel, uID)
     })
+
     this.tabList.setAttribute('aria-owns', this.owns.join(' '))
   }
 
