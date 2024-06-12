@@ -3908,9 +3908,9 @@
     constructor(element) {
       this.element = element;
       this.select = this.element.querySelector('select');
-      this.optGroups = this.select.getElementsByTagName('optgroup');
-      this.options = this.select.getElementsByTagName('option');
-      this.selectId = this.select.getAttribute('id');
+      this.optGroups = this.select && this.select.getElementsByTagName('optgroup');
+      this.options = this.select && this.select.getElementsByTagName('option');
+      this.selectId = this.select && this.select.getAttribute('id');
       this.trigger = false;
       this.dropdown = false;
       this.customOptions = false;
@@ -3946,6 +3946,7 @@
       this.checkboxInputClass = 'form__checkbox-input';
     }
     init() {
+      if (!this.select) return;
       this.element.insertAdjacentHTML('beforeend', this.initButtonSelect() + this.initListSelect());
       this.dropdown = this.element.querySelector(`.js-${this.dropdownClass}`);
       this.trigger = this.element.querySelector(`.js-${this.buttonClass}`);
