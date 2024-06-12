@@ -12,7 +12,6 @@ class SwipeContent {
     this.dragging = false
     this.intervalId = false
     this.changedTouches = false
-    this.init()
   }
 
   init() {
@@ -107,12 +106,13 @@ class SwipeContent {
     this.dragging = false
   }
 
-  drag() {
+  drag(event) {
     if (!this.dragging) return
+
     if (!window.requestAnimationFrame) {
-      this.intervalId = setTimeout(() => { this.emitDrag.bind(this) }, 250)
+      this.intervalId = setTimeout(() => { this.emitDrag(event) }, 250)
     } else {
-      this.intervalId = window.requestAnimationFrame(this.emitDrag.bind(this))
+      this.intervalId = window.requestAnimationFrame(() => { this.emitDrag(event) })
     }
   }
 
