@@ -22,6 +22,7 @@ class Tooltip {
 
   init() {
     this.tooltipContent = this.tooltip.getAttribute('title')
+    if (!this.tooltipContent) return
     this.constructor.setAttributes(this.tooltip, {
       'data-tooltip-content': this.tooltipContent,
       'aria-describedby': this.uID,
