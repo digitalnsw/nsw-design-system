@@ -133,25 +133,25 @@
   }
   class Accordion {
     constructor(element) {
-      const [expandAll, collapseAll] = Array.from(element.querySelectorAll('.nsw-accordion__toggle button'));
+      this.element = element;
+      const [expandAll, collapseAll] = Array.from(this.element.querySelectorAll('.nsw-accordion__toggle button'));
       this.accordionHeadingClass = '.nsw-accordion__title';
-      this.accordion = element;
-      this.headings = element.querySelectorAll(this.accordionHeadingClass);
+      this.headings = this.element.querySelectorAll(this.accordionHeadingClass);
       this.expandAllBtn = expandAll;
       this.collapseAllBtn = collapseAll;
-      this.isExpandedOnLoad = element.querySelectorAll('.nsw-accordion__open');
+      this.isExpandedOnLoad = this.element.querySelectorAll('.nsw-accordion__open');
       this.buttons = [];
       this.content = [];
-      this.toggleEvent = e => this.toggle(e);
-      this.expandAllEvent = e => this.expandAll(e);
-      this.collapseAllEvent = e => this.collapseAll(e);
+      this.toggleEvent = event => this.toggle(event);
+      this.expandAllEvent = event => this.expandAll(event);
+      this.collapseAllEvent = event => this.collapseAll(event);
     }
     init() {
       this.setUpDom();
       this.controls();
     }
     setUpDom() {
-      this.accordion.classList.add('ready');
+      this.element.classList.add('ready');
       if (this.collapseAllBtn) {
         this.collapseAllBtn.disabled = true;
       }
@@ -162,9 +162,11 @@
         headingElem.textContent = '';
         headingElem.appendChild(buttonFrag);
         const buttonElem = headingElem.getElementsByTagName('button')[0];
-        contentElem.id = buttonElem.getAttribute('aria-controls');
-        contentElem.hidden = true;
-        this.content.push(contentElem);
+        if (contentElem) {
+          contentElem.id = buttonElem.getAttribute('aria-controls');
+          contentElem.hidden = true;
+          this.content.push(contentElem);
+        }
         this.buttons.push(buttonElem);
       });
       if (this.isExpandedOnLoad) {
@@ -199,20 +201,22 @@
         targetContent.hidden = true;
       }
     }
-    toggle(e) {
+    toggle(event) {
       const {
         currentTarget
-      } = e;
+      } = event;
       const targetContent = this.getTargetContent(currentTarget);
-      const isHidden = targetContent.hidden;
-      if (isHidden) {
-        this.setAccordionState(currentTarget, 'open');
-      } else {
-        this.setAccordionState(currentTarget, 'close');
-      }
-      if (this.expandAllBtn && this.collapseAllBtn) {
-        this.expandAllBtn.disabled = this.content.every(item => item.hidden === false);
-        this.collapseAllBtn.disabled = this.content.every(item => item.hidden === true);
+      if (targetContent) {
+        const isHidden = targetContent.hidden;
+        if (isHidden) {
+          this.setAccordionState(currentTarget, 'open');
+        } else {
+          this.setAccordionState(currentTarget, 'close');
+        }
+        if (this.expandAllBtn && this.collapseAllBtn) {
+          this.expandAllBtn.disabled = this.content.every(item => item.hidden === false);
+          this.collapseAllBtn.disabled = this.content.every(item => item.hidden === true);
+        }
       }
     }
     expandAll() {
