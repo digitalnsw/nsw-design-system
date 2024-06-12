@@ -54,7 +54,7 @@ class Accordion {
       const buttonElem = headingElem.getElementsByTagName('button')[0]
 
       contentElem.id = buttonElem.getAttribute('aria-controls')
-      contentElem.hidden = true
+      contentElem.hidden = 'until-found'
 
       this.content.push(contentElem)
       this.buttons.push(buttonElem)
@@ -71,6 +71,7 @@ class Accordion {
   controls() {
     this.buttons.forEach((element) => {
       element.addEventListener('click', this.toggleEvent, false)
+      element.addEventListener('beforematch', this.toggleEvent, false)
     })
     if (this.expandAllBtn && this.collapseAllBtn) {
       this.expandAllBtn.addEventListener('click', this.expandAllEvent, false)
@@ -93,7 +94,7 @@ class Accordion {
     } else if (state === 'close') {
       element.classList.remove('active')
       element.setAttribute('aria-expanded', 'false')
-      targetContent.hidden = true
+      targetContent.hidden = 'until-found'
     }
   }
 
@@ -102,7 +103,7 @@ class Accordion {
     const targetContent = this.getTargetContent(currentTarget)
     const isHidden = targetContent.hidden
 
-    if ((isHidden)) {
+    if ((isHidden === true) || (isHidden === 'until-found')) {
       this.setAccordionState(currentTarget, 'open')
     } else {
       this.setAccordionState(currentTarget, 'close')
@@ -110,7 +111,7 @@ class Accordion {
 
     if (this.expandAllBtn && this.collapseAllBtn) {
       this.expandAllBtn.disabled = this.content.every((item) => item.hidden === false)
-      this.collapseAllBtn.disabled = this.content.every((item) => item.hidden === true)
+      this.collapseAllBtn.disabled = this.content.every((item) => item.hidden === 'until-found')
     }
   }
 
