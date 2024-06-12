@@ -358,6 +358,7 @@
       this.element = element;
       this.prefix = 'nsw-';
       this.class = 'date-picker';
+      this.uID = uniqueId('calendar-label');
       this.dateClass = `${this.prefix}${this.class}__date`;
       this.todayClass = `${this.dateClass}--today`;
       this.selectedClass = `${this.dateClass}--selected`;
@@ -371,13 +372,13 @@
       this.maxDate = this.element.getAttribute('data-max-date') ? this.element.getAttribute('data-max-date') : '';
       this.input = this.element.querySelector('.js-date-input__text');
       this.trigger = this.element.querySelector('.js-date-input__trigger');
-      this.triggerLabel = this.trigger.getAttribute('aria-label');
+      this.triggerLabel = this.trigger && this.trigger.getAttribute('aria-label') ? this.trigger.getAttribute('aria-label') : 'Select a date';
       this.datePicker = this.element.querySelector('.js-date-picker');
-      this.body = this.datePicker.querySelector('.js-date-picker__dates');
-      this.navigation = this.datePicker.querySelector('.js-date-picker__title-nav');
-      this.heading = this.datePicker.querySelector('.js-date-picker__title-label');
-      this.close = this.datePicker.querySelector('.js-date-picker__close');
-      this.accept = this.datePicker.querySelector('.js-date-picker__accept');
+      this.body = this.datePicker && this.datePicker.querySelector('.js-date-picker__dates');
+      this.navigation = this.datePicker && this.datePicker.querySelector('.js-date-picker__title-nav');
+      this.heading = this.datePicker && this.datePicker.querySelector('.js-date-picker__title-label');
+      this.close = this.datePicker && this.datePicker.querySelector('.js-date-picker__close');
+      this.accept = this.datePicker && this.datePicker.querySelector('.js-date-picker__accept');
       this.multipleInput = this.element.querySelector('.js-date-input-multiple');
       this.dateInput = this.multipleInput && this.multipleInput.querySelector('.js-date-picker-date');
       this.monthInput = this.multipleInput && this.multipleInput.querySelector('.js-date-picker-month');
@@ -394,11 +395,73 @@
       this.disabledArray = false;
     }
     init() {
+      if (!this.input && !this.multipleInput) return;
+      if (!this.datePicker) {
+        this.initCreateCalendar();
+      }
       this.disabledDates();
       this.resetCalendar();
       this.initCalendarAria();
       this.initCalendarEvents();
       this.placeCalendar();
+    }
+    initCreateCalendar() {
+      const calendar = `
+    <div class="nsw-date-picker js-date-picker" role="dialog" aria-labelledby="${this.uID}">
+      <header class="nsw-date-picker__header">
+        <div class="nsw-date-picker__title">
+          <span class="nsw-date-picker__title-label js-date-picker__title-label" id="${this.uID}"></span>
+
+          <nav>
+            <ul class="nsw-date-picker__title-nav js-date-picker__title-nav">
+              <li>
+                <button class="nsw-icon-button nsw-date-picker__title-nav-btn js-date-picker__year-nav-btn js-date-picker__year-nav-btn--prev" type="button">
+                  <span class="material-icons nsw-material-icons">keyboard_double_arrow_left</span>
+                </button>
+                <button class="nsw-icon-button nsw-date-picker__title-nav-btn js-date-picker__month-nav-btn js-date-picker__month-nav-btn--prev" type="button">
+                  <span class="material-icons nsw-material-icons">chevron_left</span>
+                </button>
+              </li>
+
+              <li>
+                <button class="nsw-icon-button nsw-date-picker__title-nav-btn js-date-picker__month-nav-btn js-date-picker__month-nav-btn--next" type="button">
+                  <span class="material-icons nsw-material-icons">chevron_right</span>
+                </button>
+                <button class="nsw-icon-button nsw-date-picker__title-nav-btn js-date-picker__year-nav-btn js-date-picker__year-nav-btn--next" type="button">
+                  <span class="material-icons nsw-material-icons">keyboard_double_arrow_right</span>
+                </button>
+              </li>
+            </ul>
+          </nav>
+        </div>
+
+        <ol class="nsw-date-picker__week">
+          <li><div class="nsw-date-picker__day">M<span class="sr-only">onday</span></div></li>
+          <li><div class="nsw-date-picker__day">T<span class="sr-only">uesday</span></div></li>
+          <li><div class="nsw-date-picker__day">W<span class="sr-only">ednesday</span></div></li>
+          <li><div class="nsw-date-picker__day">T<span class="sr-only">hursday</span></div></li>
+          <li><div class="nsw-date-picker__day">F<span class="sr-only">riday</span></div></li>
+          <li><div class="nsw-date-picker__day">S<span class="sr-only">aturday</span></div></li>
+          <li><div class="nsw-date-picker__day">S<span class="sr-only">unday</span></div></li>
+        </ol>
+      </header>
+
+      <ol class="nsw-date-picker__dates js-date-picker__dates" aria-labelledby="${this.uID}">
+        
+      </ol>
+
+      <div class="nsw-date-picker__buttongroup">
+        <button type="button" class="nsw-button nsw-button--dark-outline-solid js-date-picker__close" value="cancel">Cancel</button>
+        <button type="button" class="nsw-button nsw-button--dark js-date-picker__accept" value="ok">OK</button>
+      </div>
+    </div>`;
+      this.element.insertAdjacentHTML('beforeend', calendar);
+      this.datePicker = this.element.querySelector('.js-date-picker');
+      this.body = this.datePicker.querySelector('.js-date-picker__dates');
+      this.navigation = this.datePicker.querySelector('.js-date-picker__title-nav');
+      this.heading = this.datePicker.querySelector('.js-date-picker__title-label');
+      this.close = this.datePicker.querySelector('.js-date-picker__close');
+      this.accept = this.datePicker.querySelector('.js-date-picker__accept');
     }
     initCalendarAria() {
       this.resetLabelCalendarTrigger();
@@ -798,7 +861,7 @@
     resetLabelCalendarTrigger() {
       if (!this.trigger) return;
       if (this.selectedYear && this.selectedMonth !== false && this.selectedDay) {
-        this.trigger.setAttribute('aria-label', `${this.triggerLabel}, selected date is ${new Date(this.selectedYear, this.selectedMonth, this.selectedDay).toDateString()}`);
+        this.trigger.setAttribute('aria-label', `Selected date is ${new Date(this.selectedYear, this.selectedMonth, this.selectedDay).toDateString()}`);
       } else {
         this.trigger.setAttribute('aria-label', this.triggerLabel);
       }
