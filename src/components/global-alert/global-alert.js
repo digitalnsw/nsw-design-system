@@ -10,8 +10,8 @@ class GlobalAlert {
   }
 
   controls() {
-    this.closeButton.addEventListener('click', (event) => {
-      this.closeMessage(event)
+    this.closeButton.addEventListener('click', () => {
+      this.closeMessage()
     }, false)
   }
 
