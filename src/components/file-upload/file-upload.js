@@ -6,7 +6,7 @@ class FileUpload {
     this.label = this.element.querySelector('label.nsw-file-upload__label')
     this.multipleUpload = this.input && this.input.hasAttribute('multiple')
     this.replaceFiles = this.element.hasAttribute('data-replace-files')
-    this.filesList = false
+    this.filesList = null
   }
 
   init() {
@@ -21,10 +21,12 @@ class FileUpload {
       this.label = this.element.querySelector('label.nsw-file-upload__label')
     }
 
-    this.input.addEventListener('change', () => {
-      if (this.input.value === '') return
-      this.updateFileList()
-    })
+    this.input.addEventListener('change', this.handleInputChange.bind(this))
+  }
+
+  handleInputChange() {
+    if (this.input.value === '') return
+    this.updateFileList()
   }
 
   createFileList() {
@@ -39,11 +41,11 @@ class FileUpload {
     const li = document.createElement('li')
     li.classList.add('nsw-file-upload__item')
     const html = `
-    <span class="nsw-file-upload__item-filename"></span>
-    <button type="button" class="nsw-icon-button">
+      <span class="nsw-file-upload__item-filename"></span>
+      <button type="button" class="nsw-icon-button">
         <span class="sr-only">Remove file</span>
         <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span>
-    </button>`
+      </button>`
 
     li.insertAdjacentHTML('afterbegin', html)
     li.querySelector('.nsw-file-upload__item-filename').textContent = this.constructor.truncateString(file.name, 50)
@@ -57,40 +59,40 @@ class FileUpload {
 
     this.filesList.classList.add('active')
 
-    let string = ''
+    let fileListHTML = ''
+
     for (let i = 0; i < this.input.files.length; i += 1) {
       const file = this.input.files[i]
-      string = this.createFileItem(file) + string
+      fileListHTML = this.createFileItem(file) + fileListHTML
     }
 
     if (this.replaceFiles) {
-      this.filesList.innerHTML = string
+      this.filesList.innerHTML = fileListHTML
     } else {
-      this.filesList.insertAdjacentHTML('beforeend', string)
+      this.filesList.insertAdjacentHTML('beforeend', fileListHTML)
     }
 
     this.removeFile()
   }
 
   removeFile() {
-    this.filesList.addEventListener('click', (event) => {
-      if (!event.target.closest('.nsw-icon-button')) return
-      event.preventDefault()
-      const item = event.target.closest('.nsw-file-upload__item')
+    this.filesList.addEventListener('click', this.handleFileRemove.bind(this))
+  }
 
-      item.remove()
+  handleFileRemove(event) {
+    if (!event.target.closest('.nsw-icon-button')) return
+    event.preventDefault()
+    const item = event.target.closest('.nsw-file-upload__item')
 
-      if (event.currentTarget.children.length === 0) {
-        this.filesList.classList.remove('active')
-      }
-    })
+    item.remove()
+
+    if (this.filesList.children.length === 0) {
+      this.filesList.classList.remove('active')
+    }
   }
 
   static truncateString(str, num) {
-    if (str.length <= num) {
-      return str
-    }
-    return `${str.slice(0, num)}...`
+    return str.length <= num ? str : `${str.slice(0, num)}...`
   }
 }
 
