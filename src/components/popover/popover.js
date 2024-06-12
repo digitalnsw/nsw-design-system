@@ -110,27 +110,28 @@ class Popover {
     this.popoverIsOpen = false
   }
 
-  updatePopover(popover, placement, anchor = this.popoverAnchor) {
-    computePosition(anchor, popover, {
-      placement,
-      middleware: [
-        offset(parseInt(this.popoverGap, 10)),
-        flip({
-          fallbackAxisSideDirection: 'start',
-          crossAxis: false,
-        }),
-        shift({
-          limiter: limitShift(),
-        }),
-      ],
-    }).then(({
-      x, y,
-    }) => {
+  async updatePopover(popover, placement, anchor = this.popoverAnchor) {
+    try {
+      const { x, y } = await computePosition(anchor, popover, {
+        placement,
+        middleware: [
+          offset(parseInt(this.popoverGap, 10)),
+          flip({
+            fallbackAxisSideDirection: 'start',
+            crossAxis: false,
+          }),
+          shift({
+            limiter: limitShift(),
+          }),
+        ],
+      })
       Object.assign(popover.style, {
         left: `${x}px`,
         top: `${y}px`,
       })
-    })
+    } catch (error) {
+      console.error('Error updating popover position:', error)
+    }
   }
 
   checkPopoverClick(target) {
