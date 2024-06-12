@@ -12,7 +12,6 @@ class Popover {
     this.element = element
     this.popoverId = this.element.getAttribute('aria-controls')
     this.popoverPosition = this.element.dataset.popoverPosition || 'bottom'
-    this.popoverClassList = this.element.dataset.popoverClass
     this.popoverGap = this.element.dataset.popoverGap || 5
     this.popoverAnchor = this.element.querySelector('[data-anchor]') || this.element
     this.popoverElement = this.popoverId && document.querySelector(`#${this.popoverId}`)
