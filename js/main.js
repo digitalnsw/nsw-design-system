@@ -1642,23 +1642,26 @@
 
   class ExternalLink {
     constructor(element) {
-      this.link = element;
+      this.element = element;
       this.uID = uniqueId('external');
-      this.linkIcon = this.link.querySelector('.nsw-material-icons');
-      this.linkIconTitle = this.linkIcon.getAttribute('title');
+      this.linkIcon = this.element.querySelector('.nsw-material-icons');
+      this.linkIconTitle = this.linkIcon ? this.linkIcon.getAttribute('title') : false;
       this.linkElement = false;
     }
     init() {
-      this.link.classList.add('nsw-link', 'nsw-link--icon');
-      this.constructor.setAttributes(this.link, {
+      if (this.element.tagName !== 'A') return;
+      this.element.classList.add('nsw-link', 'nsw-link--icon');
+      this.constructor.setAttributes(this.element, {
         target: '_blank',
         rel: 'noopener'
       });
-      this.constructor.setAttributes(this.linkIcon, {
-        focusable: 'false',
-        'aria-hidden': 'true'
-      });
-      this.createElement(this.linkIconTitle);
+      if (this.linkIcon) {
+        this.constructor.setAttributes(this.linkIcon, {
+          focusable: 'false',
+          'aria-hidden': 'true'
+        });
+      }
+      if (this.linkIconTitle) this.createElement(this.linkIconTitle);
     }
     createElement(title) {
       if (title) {
@@ -1666,8 +1669,8 @@
         this.linkElement.id = this.uID;
         this.linkElement.classList.add('sr-only');
         this.linkElement.innerText = title;
-        this.link.insertAdjacentElement('afterend', this.linkElement);
-        this.constructor.setAttributes(this.link, {
+        this.element.insertAdjacentElement('afterend', this.linkElement);
+        this.constructor.setAttributes(this.element, {
           'aria-describedby': this.uID
         });
       }
@@ -4842,7 +4845,7 @@
     const fileUpload = document.querySelectorAll('.js-file-upload');
     const filters = document.querySelectorAll('.js-filters');
     const globalAlert = document.querySelectorAll('.js-global-alert');
-    const link = document.querySelectorAll('.js-link');
+    const link = document.querySelectorAll('a.js-link');
     const multiSelect = document.querySelectorAll('.js-multi-select');
     const navigation = document.getElementById('main-nav');
     const openSearchButton = document.querySelectorAll('.js-open-search');
