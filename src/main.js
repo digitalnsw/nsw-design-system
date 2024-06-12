@@ -47,7 +47,7 @@ function initSite() {
   const fileUpload = document.querySelectorAll('.js-file-upload')
   const filters = document.querySelectorAll('.js-filters')
   const globalAlert = document.querySelectorAll('.js-global-alert')
-  const link = document.querySelectorAll('.js-link')
+  const link = document.querySelectorAll('a.js-link')
   const multiSelect = document.querySelectorAll('.js-multi-select')
   const navigation = document.getElementById('main-nav')
   const openSearchButton = document.querySelectorAll('.js-open-search')
