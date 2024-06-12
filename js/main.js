@@ -4934,7 +4934,7 @@
   }
   function initSite() {
     const accordions = document.querySelectorAll('.js-accordion');
-    const backTop = document.querySelectorAll('.js-back-to-top');
+    const backTop = document.querySelectorAll('button.js-back-to-top');
     const carousel = document.querySelectorAll('.js-carousel');
     const closeSearchButton = document.querySelectorAll('.js-close-search');
     const datePicker = document.querySelectorAll('.js-date-input');
