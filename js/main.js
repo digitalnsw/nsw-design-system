@@ -4785,62 +4785,71 @@
   }
 
   class UtilityList extends Toggletip {
-    constructor(element, toggletip) {
-      super(toggletip);
-      this.utility = element;
+    constructor(element) {
+      let toggletip = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : element.querySelector('.js-share');
+      super(toggletip === null ? element : toggletip);
+      this.element = element;
       this.share = toggletip;
-      this.print = this.utility.querySelectorAll('.js-print-page');
-      this.download = this.utility.querySelectorAll('.js-download-page');
-      this.copy = this.utility.querySelectorAll('.js-copy-clipboard');
-      this.shareItems = this.share.querySelectorAll('a');
+      this.print = this.element.querySelectorAll('.js-print-page');
+      this.download = this.element.querySelectorAll('.js-download-page');
+      this.copy = this.element.querySelectorAll('.js-copy-clipboard');
+      this.shareItems = this.share && this.share.querySelectorAll('a');
       this.urlLocation = window.location.href;
       this.copyElement = false;
     }
     init() {
-      super.init();
-      this.shareItems.forEach(share => {
-        const shareLocation = share.getAttribute('data-url');
-        if (!shareLocation) {
-          share.setAttribute('data-url', window.location.href);
-        }
-      });
-      this.share.addEventListener('click', event => {
-        const button = event.target.closest('a');
-        if (!button) return;
-        event.preventDefault();
-        const social = button.getAttribute('data-social');
-        const url = this.getSocialUrl(button, social);
-        if (social === 'mail') {
-          window.location.href = url;
-        } else {
-          window.open(url, `${social}-share-dialog`, 'width=626,height=436');
-        }
-      });
-      this.print.forEach(element => {
-        element.setAttribute('tabindex', '0');
-        element.addEventListener('click', () => {
-          window.print();
+      if (this.share) {
+        super.init();
+        this.shareItems.forEach(share => {
+          const shareLocation = share.getAttribute('data-url');
+          if (!shareLocation) {
+            share.setAttribute('data-url', window.location.href);
+          }
         });
-        element.addEventListener('keyup', event => {
-          if (event.code && event.code.toLowerCase() === 'enter' || event.key && event.key.toLowerCase() === 'enter') {
+        this.share.addEventListener('click', event => {
+          const button = event.target.closest('a');
+          if (!button) return;
+          event.preventDefault();
+          const social = button.getAttribute('data-social');
+          const url = this.getSocialUrl(button, social);
+          if (social === 'mail') {
+            window.location.href = url;
+          } else {
+            window.open(url, `${social}-share-dialog`, 'width=626,height=436');
+          }
+        });
+      }
+      if (this.print) {
+        this.print.forEach(element => {
+          element.setAttribute('tabindex', '0');
+          element.addEventListener('click', () => {
             window.print();
-          }
+          });
+          element.addEventListener('keyup', event => {
+            if (event.code && event.code.toLowerCase() === 'enter' || event.key && event.key.toLowerCase() === 'enter') {
+              window.print();
+            }
+          });
         });
-      });
-      this.download.forEach(element => {
-        element.setAttribute('tabindex', '0');
-      });
-      this.copy.forEach(element => {
-        element.setAttribute('tabindex', '0');
-        element.addEventListener('click', () => {
-          this.copyToClipboard(element);
+      }
+      if (this.download) {
+        this.download.forEach(element => {
+          element.setAttribute('tabindex', '0');
         });
-        element.addEventListener('keyup', event => {
-          if (event.code && event.code.toLowerCase() === 'enter' || event.key && event.key.toLowerCase() === 'enter') {
+      }
+      if (this.copy) {
+        this.copy.forEach(element => {
+          element.setAttribute('tabindex', '0');
+          element.addEventListener('click', () => {
             this.copyToClipboard(element);
-          }
+          });
+          element.addEventListener('keyup', event => {
+            if (event.code && event.code.toLowerCase() === 'enter' || event.key && event.key.toLowerCase() === 'enter') {
+              this.copyToClipboard(element);
+            }
+          });
         });
-      });
+      }
     }
     getSocialUrl(button, social) {
       const params = this.getSocialParams(social);
@@ -5043,8 +5052,7 @@
     }
     if (utilityList) {
       utilityList.forEach(element => {
-        const shareItem = element.querySelector('.js-share');
-        new UtilityList(element, shareItem).init();
+        new UtilityList(element).init();
       });
     }
   }
