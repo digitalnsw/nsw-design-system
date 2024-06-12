@@ -11,9 +11,9 @@ class Popover {
   constructor(element) {
     this.element = element
     this.popoverId = this.element.getAttribute('aria-controls')
-    this.popoverPosition = this.element.dataset.popoverPosition || 'bottom'
+    this.popoverPosition = this.element.dataset.popoverPosition ?? 'bottom'
     this.popoverClassList = this.element.dataset.popoverClass
-    this.popoverGap = this.element.dataset.popoverGap || 5
+    this.popoverGap = parseInt(this.element.dataset.popoverGap, 10) ?? 5
     this.popoverAnchor = this.element.querySelector('[data-anchor]') || this.element
     this.popoverElement = this.popoverId && document.querySelector(`#${this.popoverId}`)
     this.popoverVisibleClass = 'active'
@@ -26,7 +26,7 @@ class Popover {
   init() {
     if (!this.popoverElement) return
 
-    this.constructor.setAttributes(this.element, {
+    Popover.setAttributes(this.element, {
       tabindex: '0',
       'aria-haspopup': 'dialog',
     })
@@ -34,7 +34,7 @@ class Popover {
   }
 
   initEvents() {
-    this.element.addEventListener('click', this.togglePopover.bind(this))
+    this.element.addEventListener('click', () => this.togglePopover())
 
     this.element.addEventListener('keyup', (event) => {
       if ((event.code && event.code.toLowerCase() === 'enter') || (event.key && event.key.toLowerCase() === 'enter')) {
@@ -46,7 +46,7 @@ class Popover {
       this.popoverContent = this.popoverElement.innerHTML
     })
 
-    this.popoverElement.addEventListener('keydown', this.trapFocus.bind(this))
+    this.popoverElement.addEventListener('keydown', (event) => this.trapFocus(event))
 
     window.addEventListener('click', (event) => {
       this.checkPopoverClick(event.target)
@@ -58,14 +58,12 @@ class Popover {
       }
     })
 
-    this.debouncedTogglePopover = this.constructor.debounce(() => {
-      if (this.popoverIsOpen) this.togglePopover()
-    }, 300)
+    this.debouncedTogglePopover = this.debounce(this.togglePopover.bind(this), 300)
     window.addEventListener('resize', this.debouncedTogglePopover)
     window.addEventListener('scroll', this.debouncedTogglePopover)
   }
 
-  static debounce(func, wait) {
+  debounce(func, wait) {
     let timeout
     return function executedFunction(...args) {
       const later = () => {
@@ -78,7 +76,7 @@ class Popover {
   }
 
   togglePopover() {
-    if (this.popoverElement.classList.contains('active')) {
+    if (this.popoverElement.classList.contains(this.popoverVisibleClass)) {
       this.hidePopover()
     } else {
       this.popoverElement.focus()
@@ -87,13 +85,13 @@ class Popover {
   }
 
   showPopover() {
-    this.constructor.setAttributes(this.popoverElement, {
+    Popover.setAttributes(this.popoverElement, {
       tabindex: '0',
       role: 'dialog',
     })
 
     this.popoverElement.setAttribute('aria-expanded', 'true')
-    this.popoverElement.classList.add('active')
+    this.popoverElement.classList.add(this.popoverVisibleClass)
     this.popoverIsOpen = true
 
     this.getFocusableElements()
@@ -105,32 +103,32 @@ class Popover {
 
   hidePopover() {
     this.popoverElement.setAttribute('aria-expanded', 'false')
-    this.popoverElement.classList.remove('active')
-
+    this.popoverElement.classList.remove(this.popoverVisibleClass)
     this.popoverIsOpen = false
   }
 
-  updatePopover(popover, placement, anchor = this.popoverAnchor) {
-    computePosition(anchor, popover, {
-      placement,
-      middleware: [
-        offset(parseInt(this.popoverGap, 10)),
-        flip({
-          fallbackAxisSideDirection: 'start',
-          crossAxis: false,
-        }),
-        shift({
-          limiter: limitShift(),
-        }),
-      ],
-    }).then(({
-      x, y,
-    }) => {
+  async updatePopover(popover, placement, anchor = this.popoverAnchor) {
+    try {
+      const { x, y } = await computePosition(anchor, popover, {
+        placement,
+        middleware: [
+          offset(this.popoverGap),
+          flip({
+            fallbackAxisSideDirection: 'start',
+            crossAxis: false,
+          }),
+          shift({
+            limiter: limitShift(),
+          }),
+        ],
+      })
       Object.assign(popover.style, {
         left: `${x}px`,
         top: `${y}px`,
       })
-    })
+    } catch (error) {
+      console.error('Error updating popover position:', error)
+    }
   }
 
   checkPopoverClick(target) {
@@ -140,7 +138,7 @@ class Popover {
 
   checkPopoverFocus() {
     if (!this.popoverIsOpen) return
-    this.constructor.moveFocus(this.element)
+    Popover.moveFocus(this.element)
     this.togglePopover()
   }
 
@@ -148,7 +146,7 @@ class Popover {
     if (this.firstFocusable) {
       this.firstFocusable.focus({ preventScroll: true })
     } else {
-      this.constructor.moveFocus(this.popoverElement)
+      Popover.moveFocus(this.popoverElement)
     }
   }
 
@@ -161,7 +159,7 @@ class Popover {
 
   getFirstVisible(elements) {
     for (let i = 0; i < elements.length; i += 1) {
-      if (this.constructor.isVisible(elements[i])) {
+      if (Popover.isVisible(elements[i])) {
         this.firstFocusable = elements[i]
         break
       }
@@ -170,7 +168,7 @@ class Popover {
 
   getLastVisible(elements) {
     for (let i = elements.length - 1; i >= 0; i -= 1) {
-      if (this.constructor.isVisible(elements[i])) {
+      if (Popover.isVisible(elements[i])) {
         this.lastFocusable = elements[i]
         break
       }
