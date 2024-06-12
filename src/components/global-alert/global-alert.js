@@ -6,7 +6,6 @@ class GlobalAlert {
   }
 
   init() {
-    console.log(this.constructor.getCookie(this.cookieName))
     if (this.cookieName && this.constructor.getCookie(this.cookieName)) {
       this.element.hidden = true
       return
