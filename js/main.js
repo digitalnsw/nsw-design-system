@@ -2427,7 +2427,7 @@
         linkParent
       } = this.whichSubNavLatest();
       const focusWithin = linkParent.contains(e.target);
-      const isButton = e.target.getAttribute('role');
+      const isButton = e.target.closest('a').getAttribute('role') === 'button';
       if (!focusWithin && isButton) {
         this.toggleSubNavDesktop();
       }
