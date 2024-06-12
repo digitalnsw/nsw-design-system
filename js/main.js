@@ -1862,11 +1862,11 @@
       this.controlsButtonText = this.controlsButton && this.controlsButton.querySelector('span:not(.nsw-material-icons)');
       this.controlsButtonTextContent = this.controlsButton && this.controlsButtonText.innerText;
       this.wrapper = this.element.querySelector(`.${this.prefix}${this.wrapperClass}`);
-      this.closeButton = this.wrapper.querySelector(`.${this.prefix}${this.closeClass} button`);
-      this.submitButton = this.wrapper.querySelector(`.${this.prefix}${this.submitClass} button`);
-      this.resetButton = this.wrapper.querySelector(`.${this.prefix}${this.resetClass} button`);
-      this.items = this.wrapper.querySelectorAll(`.${this.prefix}${this.itemClass}`);
-      this.accordionButtons = this.wrapper.querySelectorAll(`.${this.prefix}${this.itemClass}-button`);
+      this.closeButton = this.wrapper && this.wrapper.querySelector(`.${this.prefix}${this.closeClass} button`);
+      this.submitButton = this.wrapper && this.wrapper.querySelector(`.${this.prefix}${this.submitClass} button`);
+      this.resetButton = this.wrapper && this.wrapper.querySelector(`.${this.prefix}${this.resetClass} button`);
+      this.items = this.wrapper && this.wrapper.querySelectorAll(`.${this.prefix}${this.itemClass}`);
+      this.accordionButtons = this.wrapper && this.wrapper.querySelectorAll(`.${this.prefix}${this.itemClass}-button`);
       this.showMoreContent = this.element.querySelectorAll(`.${this.prefix}${this.allClass}`);
       this.showMoreButtons = this.element.querySelectorAll(`.${this.prefix}${this.moreClass}`);
       this.focusableElements = 'a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])';
@@ -1878,20 +1878,22 @@
     }
     init() {
       this.element.classList.add('ready');
-      this.accordionButtons.forEach(button => {
-        const buttonElem = button;
-        const uID = uniqueId('collapsed');
-        buttonElem.setAttribute('type', 'button');
-        buttonElem.setAttribute('aria-expanded', 'false');
-        buttonElem.setAttribute('aria-controls', uID);
-        const label = buttonElem.querySelector(`.${this.prefix}${this.itemClass}-name`);
-        buttonElem.setAttribute('data-label', label.innerText);
-        const contentElem = buttonElem.nextElementSibling;
-        contentElem.id = buttonElem.getAttribute('aria-controls');
-        contentElem.hidden = true;
-        this.content.push(contentElem);
-        this.buttons.push(buttonElem);
-      });
+      if (this.accordionButtons) {
+        this.accordionButtons.forEach(button => {
+          const buttonElem = button;
+          const uID = uniqueId('collapsed');
+          buttonElem.setAttribute('type', 'button');
+          buttonElem.setAttribute('aria-expanded', 'false');
+          buttonElem.setAttribute('aria-controls', uID);
+          const label = buttonElem.querySelector(`.${this.prefix}${this.itemClass}-name`);
+          buttonElem.setAttribute('data-label', label.innerText);
+          const contentElem = buttonElem.nextElementSibling;
+          contentElem.id = buttonElem.getAttribute('aria-controls');
+          contentElem.hidden = true;
+          this.content.push(contentElem);
+          this.buttons.push(buttonElem);
+        });
+      }
       this.updateDom();
       this.initEvents();
     }
@@ -2035,14 +2037,16 @@
     }
     getOptions() {
       this.options = [];
-      this.items.forEach(element => {
-        const content = element.querySelector(`.${this.prefix}${this.itemClass}-content`);
-        const textInputs = content.querySelectorAll('input[type="text"]');
-        const singleSelects = content.querySelectorAll('select:not([multiple]):not(.nsw-display-none)');
-        const multiSelects = content.querySelectorAll('select[multiple]:not(.nsw-display-none)');
-        const checkboxes = content.querySelectorAll('input[type="checkbox"]');
-        this.options.push(...textInputs, ...singleSelects, ...checkboxes, ...multiSelects);
-      });
+      if (this.items) {
+        this.items.forEach(element => {
+          const content = element.querySelector(`.${this.prefix}${this.itemClass}-content`);
+          const textInputs = content.querySelectorAll('input[type="text"]');
+          const singleSelects = content.querySelectorAll('select:not([multiple]):not(.nsw-display-none)');
+          const multiSelects = content.querySelectorAll('select[multiple]:not(.nsw-display-none)');
+          const checkboxes = content.querySelectorAll('input[type="checkbox"]');
+          this.options.push(...textInputs, ...singleSelects, ...checkboxes, ...multiSelects);
+        });
+      }
     }
     getSelected() {
       this.selected = [];
