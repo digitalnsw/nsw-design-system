@@ -12,18 +12,26 @@
     color: var(--nsw-brand-dark);
   }
   
-  &:hover:not(.nsw-tag--checkbox) {
+  &:hover:not(.nsw-tag--checkbox, span) {
     @include nsw-hover;
     outline-width: 0;
+  }
+
+  &:is(span) {
+    cursor: default;
   }
 
   &:focus {
     outline-width: 3px;
   }
 
-  .nsw-section--invert & {    
-    @include link-light;
+  .nsw-section--invert & {
+    color: var(--nsw-text-light);
     border-color: var(--nsw-text-light);
+
+    &:not(span) {
+      @include link-light;
+    }
   }
 
   &--checkbox {
