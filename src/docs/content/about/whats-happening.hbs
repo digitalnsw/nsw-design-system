@@ -38,6 +38,43 @@ meta-index: true
     </thead>
     <tbody>
       <tr>
+        <td>v3.17.0</td>
+        <td>12.06.24</td>
+        <td>
+          <h4>Added</h4>
+          <ul>
+            <li>Accessibility enhancement to the <a href="/components/accordion/index.html">accordion </a> component with the <code>hidden=until-found</code> attribute.</li>
+          </ul>
+          <h4>Fixed</h4>
+          <ul>
+            <li><strong>Utility list:</strong> Fixed the issue of clicking outside the tooltip or on a non-button element triggering unwanted behaviour in the utility list component.</li>
+            <li><strong>All JavaScript components' performance and reliability improvements:</strong>
+              <ul>
+                <li>JavaScript errors are now caught in each component to prevent them from affecting other components.</li>
+                <li>Selectors have been made more restrictive where appropriate.</li>
+                <li>Components now test whether properties exist before accessing attributes and child elements.</li>
+              </ul>
+            </li>
+            <li><strong>Date-input:</strong> Removed default browser padding on the legend element in the date input component.</li>
+            <li><strong>Main navigation component:</strong> Fixed the issue of the main navigation not closing a previously opened menu in the Safari browser.</li>
+            <li><strong>Card carousel: </strong>
+              <ul>
+                <li><strong>Drag/Swipe functionality:</strong> Fixed an issue in the swipe-content.js code, ensuring the carousel updates its position dynamically during drag actions.</li>
+                <li><strong>JavaScript enhancements:</strong> Updated <code>carousel.js</code> to complement the changes in <code>swipe-content.js</code>.</li>
+                <li><strong>Class inheritance:</strong> The Carousel class now extends SwipeContent.</li>
+                <li><strong>Attribute handling:</strong> Attributes are accessed using<code> this.element</code> instead of directly.</li>
+                <li><strong>Drag functionality:</strong> Introduced <code>dragEnabled</code> attribute to handle drag settings.</li>
+                <li><strong>Conditional checks:</strong> Added checks for <code>null</code> values in styles and dimensions.</li>
+                <li><strong>Navigation button alignment:</strong> Added <code>padding: 0</code> on the <code>.nsw-carousel</code> button class in the <code>_carousel.scss</code> file. This change corrects the alignment issue caused by default padding values in iOS browsers.</li>
+                <li><strong>Removal of unused methods:</strong> Removed <code>alignControlsFunc</code> method and related controls alignment logic.</li>
+                <li><strong>Example updates:</strong> Adjusted our examples to demonstrate the drag functionality.</li>
+              </ul>
+            </li>
+          </ul>
+        </td>
+        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.17.0" target="_blank">Code kit</a></td>
+      </tr>
+      <tr>
         <td>v3.16.0</td>
         <td>28.02.23</td>
         <td>
@@ -51,7 +88,7 @@ meta-index: true
       </tr>
       <tr>
         <td>v3.15.0</td>
-        <td>28.02.23</td>
+        <td>28.02.24</td>
         <td>
           <h4>Added</h4>
           <ul>

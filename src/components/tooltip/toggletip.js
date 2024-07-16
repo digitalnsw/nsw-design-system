@@ -12,7 +12,7 @@ class Toggletip {
   constructor(element) {
     this.toggletip = element
     this.toggletipId = this.toggletip.getAttribute('aria-controls')
-    this.toggletipElement = document.querySelector(`#${this.toggletipId}`)
+    this.toggletipElement = this.toggletipId && document.querySelector(`#${this.toggletipId}`)
     this.toggletipContent = false
     this.toggletipAnchor = this.toggletip.querySelector('[data-anchor]') || this.toggletip
     this.toggletipText = this.toggletip.innerText
@@ -26,6 +26,8 @@ class Toggletip {
   }
 
   init() {
+    if (!this.toggletipElement) return
+
     this.constructor.setAttributes(this.toggletip, {
       tabindex: '0',
       'aria-haspopup': 'dialog',
