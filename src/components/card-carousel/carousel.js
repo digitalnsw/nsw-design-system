@@ -76,7 +76,6 @@ class Carousel extends SwipeContent {
 
     const itemsArray = Array.from(this.items)
     itemsArray.forEach((element, index) => {
-      element.setAttribute('role', 'group')
       element.setAttribute('aria-roledescription', 'slide')
       element.setAttribute('aria-label', `${index + 1} of ${itemsArray.length}`)
       element.setAttribute('data-index', index)
