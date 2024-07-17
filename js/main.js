@@ -1855,6 +1855,8 @@
       this.showMoreContent = this.element.querySelectorAll(`.${this.prefix}${this.allClass}`);
       this.showMoreButtons = this.element.querySelectorAll(`.${this.prefix}${this.moreClass}`);
       this.focusableElements = 'a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])';
+      // Get default selected option
+      this.selectedOption = this.element.querySelector('option[selected]');
       // Accordion arrays
       this.buttons = [];
       this.content = [];
@@ -2002,11 +2004,22 @@
       if (this.options.length > 0) {
         this.options.forEach(input => {
           const option = input;
-          if (option.type === 'text' || option.type === 'select-one') {
+          if (option.type === 'text') {
             option.value = '';
+          } else if (option.type === 'select-one') {
+            if (this.selectedOption) {
+              option.selectedIndex = this.selectedOption.index;
+            } else {
+              option.selectedIndex = 0;
+            }
+          } else if (option.type === 'checkbox') {
+            if (option.defaultChecked) {
+              option.checked = true;
+            } else {
+              option.checked = false;
+            }
           } else if (!option.parentElement.classList.contains('js-multi-select__option')) {
             option.value = false;
-            option.checked = false;
           }
         });
       }
