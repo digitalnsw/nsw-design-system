@@ -214,7 +214,8 @@ class Filters {
           option.value = ''
         } else if (option.type === 'select-one') {
           if (this.selectedOption) {
-            option.selectedIndex = this.selectedOption.index
+            console.log(Array.from(option.options).indexOf(this.selectedOption))
+            option.selectedIndex = Array.from(option.options).indexOf(this.selectedOption)
           } else {
             option.selectedIndex = 0
           }
