@@ -37,7 +37,8 @@ class Filters {
     this.showMoreButtons = this.element.querySelectorAll(`.${this.prefix}${this.moreClass}`)
     this.focusableElements = 'a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])'
     // Select default options
-    this.defaultOptions = this.element.querySelector('option[selected]')
+    this.defaultOption = this.element.querySelector('option[selected]')
+    console.log(this.defaultOption)
     // Accordion arrays
     this.buttons = []
     this.content = []
@@ -213,8 +214,8 @@ class Filters {
         if (option.type === 'text') {
           option.value = ''
         } else if (option.type === 'select-one') {
-          if (this.defaultOptions) {
-            option.selectedIndex = this.defaultOptions.index
+          if (this.defaultOption) {
+            option.selectedIndex = this.defaultOption.index
           } else {
             option.selectedIndex = 0
           }
