@@ -1,0 +1,61 @@
+.nsw-acknowledgements-list {
+  @include font-size('xs');
+  margin-top: rem(24px);
+
+  &__header {
+    padding-bottom: rem(8px);
+    border-bottom: solid 2px var(--nsw-brand-dark);
+  }
+
+  &__container {
+    @include font-size('xs');
+    margin-top: rem(24px);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+
+    @include breakpoint($nsw-desktop-breakpoint) {
+      margin-top: rem(40px);
+      gap: 40px;
+    }
+  }
+
+  &__item {
+    height: rem(48px);
+  }
+
+  &__waratah {
+    padding: rem(12px) rem(48px);
+    display: flex;
+
+    @include breakpoint($nsw-desktop-breakpoint) {
+      padding: 0;
+    }
+
+    svg {
+      height: rem(48px);
+      display: block;
+
+      @include breakpoint($nsw-desktop-breakpoint) {
+        height: rem(76px);
+      }
+
+      &.nsw-header__waratah-gov {
+        height: rem(55px);
+
+        @include breakpoint($nsw-desktop-breakpoint) {
+          height: rem(76px);
+        }
+      }
+    }
+  }
+
+  .nsw-section--invert & {    
+    &__header {
+      border-color: var(--nsw-white);
+    }
+  }
+}
+
