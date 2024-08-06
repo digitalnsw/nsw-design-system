@@ -1,6 +1,6 @@
 <div class="nsw-acknowledgement-list">
     <h4 class="nsw-acknowledgement-list__header">
-        Sponsorships
+        {{#if label}}{{label}}{{else}}Acknowledgements{{/if}}
     </h4>
     <div {{#if gov-departments.length}}class="nsw-acknowledgement-list__container"{{else}}class="nsw-acknowledgement-list__container nsw-acknowledgement-list__container-no-text"{{/if}}>
         <div class="nsw-acknowledgement-list__gov-departments">
@@ -16,7 +16,7 @@
           {{/if}}
           {{#if gov-departments}}
             <div>
-              <p>NSW Government</p>
+              {{#if includeWaratah.length}}{{else}}<p>NSW Government</p>{{/if}}
               <div class="nsw-acknowledgement-list__gov-departments__labels">
                 {{#each gov-departments}}
                   <a href="{{url}}">{{name}}</a>
