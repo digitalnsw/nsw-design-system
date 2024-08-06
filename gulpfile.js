@@ -309,13 +309,8 @@ function renamePathForProd() {
 
 function addAnalytics() {
   return src(`${config.dir.build}/**/*.html`)
-  .pipe(inject.after('<head>', `<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-P2NKBBJZ');</script>
-  `))
-    .pipe(inject.after('<head>', `<script async src="https://www.googletagmanager.com/gtag/js?id=G-49T9M12F86"></script>
+    .pipe(inject.after('<head>', `
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-49T9M12F86"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -323,10 +318,7 @@ function addAnalytics() {
 
   gtag('config', 'G-49T9M12F86');
 </script>
-  `))
-.pipe(inject.after('<body>', `<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P2NKBBJZ"
-  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    `))
+`))
     .pipe(dest(config.dir.build))
 }
 
