@@ -1,0 +1,36 @@
+---
+title: Acknowledgement list
+width: wide
+tabs: true
+directory: acknowledgement-list
+intro: Highlights NSW Government and external organisations that have provided support including sponsorship, partnership, or funding.
+theme: true
+figma: https://www.figma.com/file/PVrERKnckLTlJSPk12gbtS/NSW-Digital-Design-System?node-id=21298%3A25038
+meta-description: Acknowledgement list highlights NSW Government and external organisations that have provided support including sponsorship, partnership, or funding.
+meta-index: true
+model:
+  list-1: ../../components/acknowledgement-list/json/acknowledgement-list-1.json
+  list-2: ../../components/acknowledgement-list/json/acknowledgement-list-2.json
+  list-3: ../../components/acknowledgement-list/json/acknowledgement-list-3.json
+  list-4: ../../components/acknowledgement-list/json/acknowledgement-list-4.json
+---
+
+<h3>With waratah, with government labels, with logos</h3>
+{{#>_docs-example}}
+{{>_acknowledgement-list model.list-1  includeWaratah="true"}}
+{{/_docs-example}}
+
+<h3>Without waratah, with government labels, with logos</h3>
+{{#>_docs-example}}
+{{>_acknowledgement-list model.list-2 }}
+{{/_docs-example}}
+
+<h3>With waratah, with government labels, without logos</h3>
+{{#>_docs-example}}
+{{>_acknowledgement-list model.list-3 includeWaratah="true" }}
+{{/_docs-example}}
+
+<h3>With waratah, without government labels, with logos</h3>
+{{#>_docs-example}}
+{{>_acknowledgement-list model.list-4 includeWaratah="true" }}
+{{/_docs-example}}
