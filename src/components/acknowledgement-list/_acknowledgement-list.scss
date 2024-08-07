@@ -24,15 +24,6 @@
     }
   }
 
-  &__container {
-    margin-top: rem(20px);
-
-    @include breakpoint($nsw-desktop-breakpoint) {
-      margin-top: rem(40px);
-      gap: rem(40px);
-    }
-  }
-
   &__container-no-text {
     display: flex;
     flex-direction: row;
@@ -55,6 +46,10 @@
       flex-direction: row;
       flex-wrap: wrap;
       gap: rem(10px);
+    }
+
+    &__empty {
+      display: contents;
     }
 
     @include breakpoint($nsw-desktop-breakpoint) {
