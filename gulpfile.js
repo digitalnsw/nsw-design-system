@@ -328,7 +328,7 @@ function addAnalytics() {
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     `))
     .pipe(dest(config.dir.build))
-}  
+}
 
 function bumping() {
   return src('./package.json')
