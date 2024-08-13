@@ -1,12 +1,15 @@
 ---
 title: Cookie banner
 page: true
-model:  json/cookie-banner.json
+model: 
+  cookie-banner-1: json/cookie-banner-1.json
+  cookie-banner-2: json/cookie-banner-2.json
+  cookie-banner-3: json/cookie-banner-3.json
 ---
 
 {{#>_theme}}
-{{>_cookie-banner model}}
-{{>_cookie-banner model type="light"}}
+{{>_cookie-banner model.cookie-banner-1}}
+{{>_cookie-banner model.cookie-banner-1 type="light"}}
 {{>_cookie-banner model type="critical"}}
 {{>_cookie-banner model link="true"}}
 {{>_cookie-banner model link="true" type="light"}}

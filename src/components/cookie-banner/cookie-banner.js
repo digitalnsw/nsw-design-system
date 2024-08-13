@@ -1,8 +1,10 @@
 class CookieBanner {
   constructor(element) {
     this.messageElement = element
-    this.closeButton = element.querySelector('.js-close-alert')
-    this.closeMessageEvent = (e) => this.closeMessage(e)
+    this.cookieAcceptButton = element.querySelector('.js-cookie-banner-accept')
+    this.cookieAcceptEvent = (e) => this.cookieAccept(e)
+    this.cookieRejectButton = element.querySelector('.js-cookie-banner-reject')
+    this.cookieRejectEvent = (e) => this.cookieReject(e)
   }
 
   init() {
@@ -10,11 +12,18 @@ class CookieBanner {
   }
 
   controls() {
-    this.closeButton.addEventListener('click', this.closeMessageEvent, false)
+    this.cookieAcceptButton.addEventListener('click', this.cookieAcceptEvent, false)
+    this.cookieRejectButton.addEventListener('click', this.cookieRejectEvent, false)
   }
 
-  closeMessage() {
+  cookieAccept() {
     this.messageElement.hidden = true
+    document.cookie = 'cookie-banner=accepted;max-age=31536000'
+  }
+
+  cookieReject() {
+    this.messageElement.hidden = true
+    document.cookie = 'cookie-banner=rejected;max-age=31536000'
   }
 }
 
