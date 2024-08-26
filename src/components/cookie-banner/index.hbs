@@ -13,14 +13,8 @@ model:
   cookie-banner-3: json/cookie-banner-3.json
 ---
 
-<h3>Information</h3>
-{{#>_docs-example}}{{>_cookie-banner model}}{{/_docs-example}}
-{{#>_docs-example separated="true"}}{{>_cookie-banner model link="true"}}{{/_docs-example}}
+<h3>Auto opt-in</h3>
+{{#>_docs-example}}{{>_cookie-banner model.cookie-banner-1}}{{/_docs-example}}
 
-<h3>Light</h3>
-{{#>_docs-example}}{{>_cookie-banner model type="light"}}{{/_docs-example}}
-{{#>_docs-example separated="true"}}{{>_cookie-banner model link="true" type="light"}}{{/_docs-example}}
-
-<h3>Critical</h3>
-{{#>_docs-example}}{{>_cookie-banner model type="critical"}}{{/_docs-example}}
-{{#>_docs-example separated="true"}}{{>_cookie-banner model link="true" type="critical"}}{{/_docs-example}}
+<h3>Opt-in</h3>
+{{#>_docs-example}}{{>_cookie-banner model.cookie-banner-3}}{{/_docs-example}}
