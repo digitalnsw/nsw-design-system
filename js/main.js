@@ -3366,9 +3366,13 @@
     const isBody = scrollableAncestor === ((_node$ownerDocument2 = node.ownerDocument) == null ? void 0 : _node$ownerDocument2.body);
     const win = getWindow(scrollableAncestor);
     if (isBody) {
-      return list.concat(win, win.visualViewport || [], isOverflowElement(scrollableAncestor) ? scrollableAncestor : [], win.frameElement && traverseIframes ? getOverflowAncestors(win.frameElement) : []);
+      const frameElement = getFrameElement(win);
+      return list.concat(win, win.visualViewport || [], isOverflowElement(scrollableAncestor) ? scrollableAncestor : [], frameElement && traverseIframes ? getOverflowAncestors(frameElement) : []);
     }
     return list.concat(scrollableAncestor, getOverflowAncestors(scrollableAncestor, [], traverseIframes));
+  }
+  function getFrameElement(win) {
+    return win.parent && Object.getPrototypeOf(win.parent) ? win.frameElement : null;
   }
 
   function getCssDimensions(element) {
@@ -3469,7 +3473,7 @@
       const win = getWindow(domElement);
       const offsetWin = offsetParent && isElement(offsetParent) ? getWindow(offsetParent) : offsetParent;
       let currentWin = win;
-      let currentIFrame = currentWin.frameElement;
+      let currentIFrame = getFrameElement(currentWin);
       while (currentIFrame && offsetParent && offsetWin !== currentWin) {
         const iframeScale = getScale(currentIFrame);
         const iframeRect = currentIFrame.getBoundingClientRect();
@@ -3483,7 +3487,7 @@
         x += left;
         y += top;
         currentWin = getWindow(currentIFrame);
-        currentIFrame = currentWin.frameElement;
+        currentIFrame = getFrameElement(currentWin);
       }
     }
     return rectToClientRect({
