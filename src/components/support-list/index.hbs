@@ -14,22 +14,22 @@ model:
   list-3: ../../components/support-list/json/support-list-3.json
 ---
 
-<h2>Masterbrand descriptors with waratah</h2>
+<h2>Masterbrand descriptors</h2>
 <div class="nsw-grid nsw-p-sm nsw-m-bottom-xs">
   <div class="nsw-col-sm-8">
-    <p><i>for Endorsed, Independent and Standalone brand websites</i></p>
-    <p>When the NSW Government Waratah logo is not already included in the header and NSW Government agencies have provided support, the waratah logo is the first element in the support section.</p>
+    <p><i>For Endorsed, Independent and Standalone brand websites</i></p>
+    <p>When the NSW Government Waratah logo is not included in the header and NSW Government agencies have provided support, the waratah logo is the first element in the support section.</p>
   </div>
 </div>
 {{#>_docs-example}}
 {{>_support-list model.list-1 includeWaratah="true"}}
 {{/_docs-example}}
 
-<h2>Masterbrand descriptors with heading</h2>
+<h2>Masterbrand descriptors without NSW Government Waratah logo</h2>
 <div class="nsw-grid nsw-p-sm nsw-m-bottom-xs">
   <div class="nsw-col-sm-8">
-    <p><i>for Masterbrand or Co-brand brand websites</i></p>
-    <p>When the NSW Government waratah logo is already included in the header, and NSW Government agencies have provided support, use “NSW government” descriptor heading instead as the first element in support section.</p>
+    <p><i>For Masterbrand or Co-brand brand websites</i></p>
+    <p>When the NSW Government Waratah logo is included in the header, and NSW Government agencies have provided support, use 'NSW government' descriptor heading instead as the first element in support section.</p>
   </div>
 </div>
 {{#>_docs-example}}
@@ -39,9 +39,19 @@ model:
 <h2>Support logos without descriptors</h2>
 <div class="nsw-grid nsw-p-sm nsw-m-bottom-xs">
   <div class="nsw-col-sm-8">
-    <p>When the NSW Government Waratah logo is not already included in the header and the NSW Government have provided support, the waratah logo is the first element in the support section.</p>
+    <p>When the NSW Government Waratah logo is not included in the header and the NSW Government have provided support, the waratah logo is the first element in the support section.</p>
   </div>
 </div>
 {{#>_docs-example}}
 {{>_support-list model.list-3 includeWaratah="true"}}
+{{/_docs-example}}
+
+<h2>Support logos without NSW Government Waratah logo</h2>
+<div class="nsw-grid nsw-p-sm nsw-m-bottom-xs">
+  <div class="nsw-col-sm-8">
+    <p>When the NSW Government Waratah logo is included in the header and no NSW Government agencies have provided support, display only the logos of any supporting agencies beneath the section title.</p>
+  </div>
+</div>
+{{#>_docs-example}}
+{{>_support-list model.list-3}}
 {{/_docs-example}}
