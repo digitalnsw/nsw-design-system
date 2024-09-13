@@ -1,8 +1,3 @@
-$masthead-brand-dark: #002664;
-$masthead-off-white: #f2f2f2;
-$masthead-text-dark: #22272b;
-$masthead-text-light: #ffffff;
-
 .nsw-skip {
   position: fixed;
   top: 0;
@@ -12,8 +7,8 @@ $masthead-text-light: #ffffff;
   a {
     @include font-size('xxs');
     @include z-index('middle');
-    background-color: $masthead-brand-dark;
-    color: $masthead-text-light;
+    background-color: var(--nsw-brand-dark);
+    color: var(--nsw-white);
     width: 100%;
     text-decoration: none;
     padding: rem(8px) rem(16px);
@@ -27,7 +22,7 @@ $masthead-text-light: #ffffff;
       outline: none;
 
       span {
-        @include nsw-focus($color: $masthead-text-light);
+        @include nsw-focus($color: var(--nsw-white));
       }
     }
 
@@ -38,8 +33,8 @@ $masthead-text-light: #ffffff;
 
   &--light {
     a {
-      background-color: $masthead-off-white;
-      color: $masthead-text-dark;
+      background-color: var(--nsw-off-white);
+      color: var(--nsw-palette-grey-900);
 
       &:focus span {
         @include nsw-focus();
@@ -51,11 +46,11 @@ $masthead-text-light: #ffffff;
 .nsw-masthead {
   @include font-size('xxs');
   padding: rem(8px) 0;
-  background-color: $masthead-brand-dark;
-  color: $masthead-text-light;
+  background-color: var(--nsw-brand-dark);
+  color: var(--nsw-white);
 
   &--light {
-    background-color: $masthead-off-white;
-    color: $masthead-text-dark;
+    background-color: var(--nsw-off-white);
+    color: var(--nsw-palette-grey-900);
   }
 }
