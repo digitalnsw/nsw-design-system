@@ -82,8 +82,8 @@ After importing the core library, you can start importing individual components 
 Include the following lines of code in the `<head>` tag of your main HTML document, placing them before the NSW Design System styles import:
 
 ```
-<link href="<https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,700;1,400&display=swap"> rel="stylesheet">
-<link href="<https://fonts.googleapis.com/icon?family=Material+Icons"> rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 ```
 
 Alternatively, you can import fonts and icons directly in your CSS:
@@ -114,11 +114,11 @@ For a faster setup, you can utilize the JSDelivr CDN to include the NSW Design S
 <html>
   <head>
     <!-- ... -->
-    <link rel="stylesheet" href="<https://cdn.jsdelivr.net/npm/nsw-design-system@3/dist/css/main.css">>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nsw-design-system@3/dist/css/main.css">
   </head>
   <body>
     <!-- ... -->
-    <script src="<https://cdn.jsdelivr.net/npm/nsw-design-system@3/dist/js/main.min.js"></script>>
+    <script src="https://cdn.jsdelivr.net/npm/nsw-design-system@3/dist/js/main.min.js"></script>
     <script>window.NSW.initSite()</script>
   </body>
 </html>
