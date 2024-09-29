@@ -8,7 +8,7 @@ assignees: ''
 ---
 
 ## Does it meet the contribution criteria?
-> Is it useful: Is the component commonly used or required and this need cannot be met with an existing component.
+> Is it useful: Is the component is commonly used or required and this need cannot be met with an existing component.
 > Is it unique: It doesn’t duplicate something which already exists in the design system, unless it’s intended to replace it.
 
 ## What
