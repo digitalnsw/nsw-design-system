@@ -2459,6 +2459,7 @@
    * Custom positioning reference element.
    * @see https://floating-ui.com/docs/virtual-elements
    */
+
   const min = Math.min;
   const max = Math.max;
   const round = Math.round;
