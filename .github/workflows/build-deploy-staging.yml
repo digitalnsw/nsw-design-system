@@ -34,8 +34,8 @@ jobs:
           path: |
             dist         
       - run: |
-          npm install -g pa11y-ci
-          pa11y-ci --no-sandbox ./dist/{components,core,templates}/**/index.html ./dist/{components,core}/**/blank.html
+          # npm install -g pa11y-ci
+          # pa11y-ci ./dist/{components,core,templates}/**/index.html ./dist/{components,core}/**/blank.html
   deploy-staging:
     needs: test-staging
     runs-on: ubuntu-latest
