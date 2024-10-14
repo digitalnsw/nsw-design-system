@@ -1,0 +1,113 @@
+.nsw-support-list {
+  margin: rem(20px);
+
+  @include breakpoint($nsw-desktop-breakpoint) {
+    margin: rem(40px);
+  }
+  
+  &__header {
+    padding-bottom: rem(8px);
+    border-bottom: solid 2px var(--nsw-brand-dark);
+  }
+  
+  &__container {
+    margin-top: rem(20px);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: rem(20px);
+    flex-wrap: wrap;
+
+    @include breakpoint($nsw-desktop-breakpoint) {
+      margin-top: rem(40px);
+      gap: rem(40px);
+    }
+  }
+
+  &__container-no-text {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: rem(20px);
+
+    @include breakpoint($nsw-desktop-breakpoint) {
+      gap: rem(40px);
+    }
+  }
+
+  &__gov-departments {
+    display: flex;
+    flex-direction: column;
+    gap: rem(20px);
+
+    &__labels {
+      margin-top: rem(10px);
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: rem(10px);
+    }
+
+    &__empty {
+      display: contents;
+    }
+
+    @include breakpoint($nsw-desktop-breakpoint) {
+      flex-direction: row;
+      gap: rem(40px);
+
+      &__labels {
+        gap: rem(20px);
+      }
+    }
+  }
+
+  &__waratah {
+    display: flex;
+    align-items: center;
+
+    @include breakpoint($nsw-desktop-breakpoint) {
+      padding: 0;
+    }
+
+    svg {
+      height: rem(48px);
+      display: block;
+
+      @include breakpoint($nsw-desktop-breakpoint) {
+        height: rem(76px);
+      }
+    }
+  }
+
+  &__logo-grid {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: rem(20px);
+    flex-wrap: wrap;
+
+    @include breakpoint($nsw-desktop-breakpoint) {
+      gap: rem(40px);
+    }
+
+    &__item {
+      height: rem(48px);
+  
+      @include breakpoint($nsw-desktop-breakpoint) {
+        height: rem(76px);
+      }
+    }
+  }
+
+  .nsw-section--invert & {    
+    &__header {
+      border-color: var(--nsw-white);
+    }
+
+    .waratah-logo-text {
+      fill: var(--nsw-white);
+    }
+  }
+}
+
