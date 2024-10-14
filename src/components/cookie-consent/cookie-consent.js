@@ -22,7 +22,7 @@ function blockCookies() {
   })
 }
 
-class CookieBanner {
+class CookieConsent {
   constructor(element) {
     this.bannerElement = element
     this.bannerMainMessage = element.querySelector('.nsw-cookie-banner__main-message')
@@ -107,4 +107,4 @@ class CookieBanner {
   }
 }
 
-export default CookieBanner
+export default CookieConsent
