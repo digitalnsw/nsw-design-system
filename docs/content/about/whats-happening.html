@@ -453,18 +453,40 @@
       <tr>
         <th>Version</th>
         <th>Date</th>
-        <th style="padding-left: 2rem;">What's changed</th>
+        <th>What's changed</th>
         <th>Change logs</th>
       </tr>
     </thead>
     <tbody>
       <tr>
+        <td>v3.18.0</td>
+        <td>14.10.24</td>
+        <td>
+          <h4>Added</h4>
+          <ul>
+            <li>Feature: adds new <a target="_blank" href="https://digitalnsw.github.io/nsw-design-system/components/support-list/index.html">Support list</a> component.</li>
+          </ul>
+          <h4>Patches</h4>
+          <ul>
+            <li>Fix: HTML tags and documentation content.</li>
+            <li>Fix: Adds aria-label values for key CTAs on Map templates.</li>
+            <li>Update dependencies: rollup</li>
+            <li>Update dependencies: JamesIves/github-pages-deploy-action</li>
+          </ul>
+          <h4>Removed</h4>
+            <ul>
+              <li>Sponsorship and partnership acknowledgement method outlining the guidelines for acknowledging sponsorship and partnership support. Now supported via a dedicated multi-variant component called <a target="_blank" href="https://digitalnsw.github.io/nsw-design-system/components/support-list/index.html">Support list</a>.</li>
+            </ul>
+        </td>
+        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.18.0" target="_blank">Code kit</a></td>
+      </tr>
+      <tr>
         <td>v3.17.4</td>
         <td>17.07.24</td>
         <td>
-          <h4>Patch Changes</h4>
+          <h4>Patches</h4>
           <ul>
-            <li>fix: improve the handling of the select and checkbox default selected state in the <a href="/nsw-design-system/components/filters/index.html">filters</a> component by checking <code>option.defaultChecked</code> before setting <code>option.checked</code>, and using <code>option.selectedIndex</code> instead of setting it to an empty string on reset/clear.</li>
+            <li>Fix: improve the handling of the select and checkbox default selected state in the <a href="/nsw-design-system/components/filters/index.html">filters</a> component by checking <code>option.defaultChecked</code> before setting <code>option.checked</code>, and using <code>option.selectedIndex</code> instead of setting it to an empty string on reset/clear.</li>
             <li>Update dependencies: @floating-ui/dom</li>
           </ul>
         </td>
@@ -474,10 +496,10 @@
         <td>v3.17.3</td>
         <td>16.07.24</td>
         <td>
-          <h4>Patch Changes</h4>
+          <h4>Patches</h4>
           <ul>
-            <li>fix: adds a <code>&lt;span class="sr-only"&gt;</code> inside the button element to ensure that buttons with icons have discernible text for accessibility.</li>
-            <li>fix: remove the <code>role="group"</code> attribute from <code>&lt;li&gt;</code> elements in the carousel component as it is not valid on a list item. The use of aria-roledescription, aria-label, and data-index attributes for accessibility purposes maintains accessibility standards after removing role="group".</li>
+            <li>Fix: adds a <code>&lt;span class="sr-only"&gt;</code> inside the button element to ensure that buttons with icons have discernible text for accessibility.</li>
+            <li>Fix: remove the <code>role="group"</code> attribute from <code>&lt;li&gt;</code> elements in the carousel component as it is not valid on a list item. The use of aria-roledescription, aria-label, and data-index attributes for accessibility purposes maintains accessibility standards after removing role="group".</li>
             <li>Update dependencies: replace deprected NSW Government brand assets</li>
             <li>Update dependencies: ws, engine.io-client and socket.io</li>
             <li>Update dependencies: JamesIves/github-pages-deploy-action</li>
@@ -494,9 +516,9 @@
           <ul>
             <li><strong>Sponsorship and partnership acknowledgement:</strong> added a new method outlining the guidelines for <a href="/nsw-design-system/docs/content/methods/sponsorship-and-partnership-acknowledgement.html">acknowledging sponsorship and partnership support</a>. The page includes instructions on placement and spacing, using the NSW Government Waratah logo, and arranging support logos.</li>
           </ul>
-          <h4>Patch Changes</h4>
+          <h4>Patches</h4>
           <ul>
-            <li>fix: remove hover state from <a href="/nsw-design-system/components/tag/index.html">text tag</a> component and set the cursor style explicitly to default.</li>
+            <li>Fix: remove hover state from <a href="/nsw-design-system/components/tag/index.html">text tag</a> component and set the cursor style explicitly to default.</li>
           </ul>
         </td>
         <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.17.3" target="_blank">Code kit</a></td>
@@ -506,9 +528,9 @@
         <td>v3.17.1</td>
         <td>24.06.24</td>
         <td>
-          <h4>Minor Changes</h4>
+          <h4>Minor changes</h4>
           <ul>
-            <li>feat: Class of <code>nsw-footer__acknowledgement</code> added to the <code>&lt;p&gt;</code> element in the <a href="/nsw-design-system/components/footer/index.html">footer component</a> and the font size changed from 'md' to 'sm'.</li>
+            <li>Feat: Class of <code>nsw-footer__acknowledgement</code> added to the <code>&lt;p&gt;</code> element in the <a href="/nsw-design-system/components/footer/index.html">footer component</a> and the font size changed from 'md' to 'sm'.</li>
           </ul>
         </td>
         <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.17.1" target="_blank">Code kit</a></td>
@@ -521,7 +543,7 @@
           <ul>
             <li>Accessibility enhancement to the <a href="/nsw-design-system/components/accordion/index.html">accordion </a> component with the <code>hidden=until-found</code> attribute.</li>
           </ul>
-          <h4>Patch Changes</h4>
+          <h4>Patches</h4>
           <ul>
             <li><strong>Utility list:</strong> fixed the issue of clicking outside the tooltip or on a non-button element triggering unwanted behaviour in the utility list component.</li>
             <li><strong>All JavaScript components' performance and reliability improvements:</strong>
@@ -584,7 +606,7 @@
           <ul>
             <li><strong>Utility list component:</strong> new <a href="/nsw-design-system/components/utility-list/index.html">Utility list</a> component giving users quick access to commonly used actions on content, including printing, downloading and sharing across different social media platforms.</li>
           </ul>
-          <h4>Patch Changes</h4>
+          <h4>Patches</h4>
           <ul>
             <li><strong>Multiple select component:</strong> fixed the absence of the nsw-multi-select__button element creation when an option was pre-selected onload.</li>
             <li><strong>Support for the HTML select multiple in the filters component:</strong> updated the component's logic to recognise and manage multiple selections efficiently, providing users with enhanced filtering capabilities.</li>
@@ -603,7 +625,7 @@
             <li><strong>Build a New Component Page:</strong> added a new page to guide users through the <a href="/nsw-design-system/docs/content/contribute/build-a-new-component.html">process of building new components</a> to showcase our contribution process.</li>
             <li><strong>Back to top component:</strong> new <a href="/nsw-design-system/components/back-to-top/index.html">Back to top</a> component allowing users to navigate back to the top of the page for enhanced usability.</li>
           </ul>
-          <h4>Patch Changes</h4>
+          <h4>Patches</h4>
           <ul>
             <li><strong>Tabs Accessibility Bug:</strong> fixed an accessibility bug within tabs by including the <code>aria-owns</code> attribute to the <code>role="tablist"</code> element, ensuring improved accessibility for all users.</li>
             <li><strong>Collapsible Filters Icon:</strong> fixed the size issue of the open/close icon for collapsible filters, enhancing visual consistency and user experience.</li>
