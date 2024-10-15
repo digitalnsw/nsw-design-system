@@ -3235,6 +3235,9 @@
     };
   };
 
+  function hasWindow() {
+    return typeof window !== 'undefined';
+  }
   function getNodeName(node) {
     if (isNode(node)) {
       return (node.nodeName || '').toLowerCase();
@@ -3253,17 +3256,25 @@
     return (_ref = (isNode(node) ? node.ownerDocument : node.document) || window.document) == null ? void 0 : _ref.documentElement;
   }
   function isNode(value) {
+    if (!hasWindow()) {
+      return false;
+    }
     return value instanceof Node || value instanceof getWindow(value).Node;
   }
   function isElement(value) {
+    if (!hasWindow()) {
+      return false;
+    }
     return value instanceof Element || value instanceof getWindow(value).Element;
   }
   function isHTMLElement(value) {
+    if (!hasWindow()) {
+      return false;
+    }
     return value instanceof HTMLElement || value instanceof getWindow(value).HTMLElement;
   }
   function isShadowRoot(value) {
-    // Browsers without `ShadowRoot` support.
-    if (typeof ShadowRoot === 'undefined') {
+    if (!hasWindow() || typeof ShadowRoot === 'undefined') {
       return false;
     }
     return value instanceof ShadowRoot || value instanceof getWindow(value).ShadowRoot;
@@ -3539,10 +3550,15 @@
   function getClientRects(element) {
     return Array.from(element.getClientRects());
   }
-  function getWindowScrollBarX(element) {
-    // If <html> has a CSS width greater than the viewport, then this will be
-    // incorrect for RTL.
-    return getBoundingClientRect(getDocumentElement(element)).left + getNodeScroll(element).scrollLeft;
+
+  // If <html> has a CSS width greater than the viewport, then this will be
+  // incorrect for RTL.
+  function getWindowScrollBarX(element, rect) {
+    const leftScroll = getNodeScroll(element).scrollLeft;
+    if (!rect) {
+      return getBoundingClientRect(getDocumentElement(element)).left + leftScroll;
+    }
+    return rect.left + leftScroll;
   }
 
   // Gets the entire size of the scrollable document area, even extending outside
@@ -3723,11 +3739,22 @@
         offsets.x = offsetRect.x + offsetParent.clientLeft;
         offsets.y = offsetRect.y + offsetParent.clientTop;
       } else if (documentElement) {
+        // If the <body> scrollbar appears on the left (e.g. RTL systems). Use
+        // Firefox with layout.scrollbar.side = 3 in about:config to test this.
         offsets.x = getWindowScrollBarX(documentElement);
       }
     }
-    const x = rect.left + scroll.scrollLeft - offsets.x;
-    const y = rect.top + scroll.scrollTop - offsets.y;
+    let htmlX = 0;
+    let htmlY = 0;
+    if (documentElement && !isOffsetParentAnElement && !isFixed) {
+      const htmlRect = documentElement.getBoundingClientRect();
+      htmlY = htmlRect.top + scroll.scrollTop;
+      htmlX = htmlRect.left + scroll.scrollLeft -
+      // RTL <body> scrollbar.
+      getWindowScrollBarX(documentElement, htmlRect);
+    }
+    const x = rect.left + scroll.scrollLeft - offsets.x - htmlX;
+    const y = rect.top + scroll.scrollTop - offsets.y - htmlY;
     return {
       x,
       y,
@@ -3745,7 +3772,16 @@
     if (polyfill) {
       return polyfill(element);
     }
-    return element.offsetParent;
+    let rawOffsetParent = element.offsetParent;
+
+    // Firefox returns the <html> element as the offsetParent if it's non-static,
+    // while Chrome and Safari return the <body> element. The <body> element must
+    // be used to perform the correct calculations even if the <html> element is
+    // non-static.
+    if (getDocumentElement(element) === rawOffsetParent) {
+      rawOffsetParent = rawOffsetParent.ownerDocument.body;
+    }
+    return rawOffsetParent;
   }
 
   // Gets the closest ancestor positioned element. Handles some edge cases,
