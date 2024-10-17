@@ -1,0 +1,17 @@
+---
+title: Cookie consent
+page: true
+model: 
+  cookie-consent-1: json/cookie-consent-1.json
+  cookie-consent-2: json/cookie-consent-2.json
+  cookie-consent-3: json/cookie-consent-3.json
+---
+
+{{#>_theme}}
+{{>_cookie-consent model.cookie-consent-1}}
+{{>_cookie-consent model.cookie-consent-1 type="light"}}
+{{>_cookie-consent model type="critical"}}
+{{>_cookie-consent model link="true"}}
+{{>_cookie-consent model link="true" type="light"}}
+{{>_cookie-consent model link="true" type="critical"}}
+{{/_theme}}
