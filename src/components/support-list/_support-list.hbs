@@ -44,7 +44,11 @@
             {{/if}}
           {{/unless}}
           {{#each logos}}
-            <img role="img" src="{{url}}" {{#if alt}}alt="{{alt}}"{{/if}} class="nsw-support-list__logo-grid__item">
+            {{#starts-with url "<svg"}}
+              {{{url}}}
+            {{else}}
+              <img role="img" src="{{url}}" {{#if alt}}alt="{{alt}}"{{/if}} class="nsw-support-list__logo-grid__item">
+            {{/starts-with}}
           {{/each}}
         </div>
       {{/if}}
