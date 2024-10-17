@@ -1092,11 +1092,11 @@ function initDocs() {
   const navLinks = document.querySelectorAll('.nsw-docs__nav a');
   let currentURL = window.location.pathname;
 
-  if (currentURL === '/' || currentURL === '/nsw-design-system/') currentURL = '/home/index.html';
+  if (currentURL === '/' || currentURL === 'https://designsystem.digital.nsw.gov.au') currentURL = '/home/index.html';
 
   navLinks.forEach((link) => {
     let linkURL = link.getAttribute('href');
-    if (linkURL == '/' || linkURL == '/nsw-design-system/') linkURL = '/home/index.html';
+    if (linkURL == '/' || linkURL == 'https://designsystem.digital.nsw.gov.au') linkURL = '/home/index.html';
 
     if (currentURL.match(linkURL)) {
       link.classList.add('current');
