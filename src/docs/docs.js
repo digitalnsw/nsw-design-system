@@ -55,7 +55,7 @@ function initDocs() {
   navLinks.forEach((link) => {
     let linkURL = link.getAttribute('href')
     if (linkURL == '/') linkURL = '/home/index.html'
-    if (linkURL?.includes('https://designsystem.digital.nsw.gov.au')) linkURL = linkURL.replace('https://designsystem.digital.nsw.gov.au', '')
+    if (linkURL.startsWith('https://designsystem.digital.nsw.gov.au')) linkURL = linkURL.substring('https://designsystem.digital.nsw.gov.au'.length)
 
     if (currentURL.match(linkURL)) {
       link.classList.add('current')
