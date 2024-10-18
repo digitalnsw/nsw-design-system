@@ -53,7 +53,7 @@ function initDocs() {
   if (currentURL === '/') currentURL = '/home/index.html'
 
   navLinks.forEach((link) => {
-    let linkURL = link.getAttribute('href').replace('https://designsystem.digital.nsw.gov.au', '')
+    let linkURL = link.getAttribute('href')
     if (linkURL == '/') linkURL = '/home/index.html'
 
     if (currentURL.match(linkURL)) {
