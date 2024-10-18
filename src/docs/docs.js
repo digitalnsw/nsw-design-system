@@ -54,8 +54,11 @@ function initDocs() {
 
   navLinks.forEach((link) => {
     let linkURL = link.getAttribute('href')
-    if (linkURL == '/') linkURL = '/home/index.html'
+    const sanitisedURL = new URL(linkURL, window.location.origin)
+    linkURL = sanitisedURL.pathname + sanitisedURL.search + sanitisedURL.hash
 
+    if (linkURL === '/') linkURL = '/home/index.html'
+    
     if (currentURL.match(linkURL)) {
       link.classList.add('current')
 
