@@ -1,8 +1,9 @@
 /* eslint-disable max-len */
 import Accordion from './components/accordion/accordion'
 import BackTop from './components/back-to-top/back-to-top'
-import DatePicker from './components/date-picker/date-picker'
 import Carousel from './components/card-carousel/carousel'
+import CookieConsent from './components/cookie-consent/cookie-consent'
+import DatePicker from './components/date-picker/date-picker'
 import Dialog from './components/dialog/dialog'
 import ExternalLink from './components/link/link'
 import FileUpload from './components/file-upload/file-upload'
@@ -42,6 +43,7 @@ function initSite() {
   const backTop = document.querySelectorAll('button.js-back-to-top')
   const carousel = document.querySelectorAll('.js-carousel')
   const closeSearchButton = document.querySelectorAll('button.js-close-search')
+  const cookieConsent = document.querySelectorAll('.js-cookie-consent')
   const datePicker = document.querySelectorAll('.js-date-input')
   const dialogs = document.querySelectorAll('.js-dialog')
   const fileUpload = document.querySelectorAll('.js-file-upload')
@@ -78,6 +80,12 @@ function initSite() {
   if (closeSearchButton) {
     closeSearchButton.forEach((element) => {
       new SiteSearch(element).init()
+    })
+  }
+
+  if (cookieConsent) {
+    cookieConsent.forEach((element) => {
+      new CookieConsent(element).init()
     })
   }
 
@@ -165,5 +173,5 @@ function initSite() {
 }
 
 export {
-  initSite, Accordion, BackTop, DatePicker, Carousel, Dialog, ExternalLink, FileUpload, Filters, GlobalAlert, Navigation, Popover, Select, SiteSearch, Tabs, Toggletip, Tooltip, UtilityList,
+  initSite, Accordion, BackTop, Carousel, CookieConsent, DatePicker, Dialog, ExternalLink, FileUpload, Filters, GlobalAlert, Navigation, Popover, Select, SiteSearch, Tabs, Toggletip, Tooltip, UtilityList,
 }
