@@ -1,0 +1,33 @@
+export default Popover;
+declare class Popover {
+    static debounce(func: any, wait: any): (...args: any[]) => void;
+    static isVisible(element: any): any;
+    static moveFocus(element: any): void;
+    static setAttributes(el: any, attrs: any): void;
+    constructor(element: any);
+    element: any;
+    popoverId: any;
+    popoverPosition: any;
+    popoverGap: any;
+    popoverAnchor: any;
+    popoverElement: any;
+    popoverVisibleClass: string;
+    popoverContent: boolean;
+    popoverIsOpen: boolean;
+    firstFocusable: any;
+    lastFocusable: any;
+    init(): void;
+    initEvents(): void;
+    debouncedTogglePopover: any;
+    togglePopover(): void;
+    showPopover(): void;
+    hidePopover(): void;
+    updatePopover(popover: any, placement: any, anchor?: any): Promise<void>;
+    checkPopoverClick(target: any): void;
+    checkPopoverFocus(): void;
+    focusPopover(): void;
+    getFocusableElements(): void;
+    getFirstVisible(elements: any): void;
+    getLastVisible(elements: any): void;
+    trapFocus(event: any): void;
+}
