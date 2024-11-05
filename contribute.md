@@ -152,7 +152,7 @@ New components must follow the system as closely as possible, particularly the s
 
 ### Tested
 
-**Accessibility.** A component on its own must be accessible to [WCAG 2.1 level AA.](https://www.w3.org/TR/WCAG21/) Some documentation on how this has been checked, tested, or decisions made to support accessibility should be supplied.
+**Accessibility.** A component on its own must be accessible to [WCAG 2.2 level AA.](https://www.w3.org/TR/WCAG21/) Some documentation on how this has been checked, tested, or decisions made to support accessibility should be supplied.
 
 **Browser and device tested.** All components should meet our [browser support requirements.](https://github.com/govau/design-system-components#browser-support)
 
