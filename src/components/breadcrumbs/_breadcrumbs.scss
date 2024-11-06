@@ -20,6 +20,8 @@
       display: inline-block;
       position: relative;
       top: rem(6px);
+      right: rem(4px);
+      width: rem(11px);
     }
 
     @include breakpoint('md') {
@@ -63,6 +65,15 @@
       .nsw-section--invert & {    
         color: var(--nsw-text-light);
       }
+    }
+  }
+
+  a:not(.nsw-icon-button) {
+    line-height: 1.5;
+    padding: rem(8px) rem(24px);
+
+    @include breakpoint('md') {
+      padding: rem(4px);
     }
   }
 }
