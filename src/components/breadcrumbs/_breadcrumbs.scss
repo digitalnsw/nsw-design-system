@@ -9,49 +9,67 @@
   }
 
   li {
-    display: none;
-
-    &::before {
-      @include material-icons;
-      content: 'keyboard_arrow_right';
-      content: 'keyboard_arrow_right' / '';
-      font-size: rem(map-get($nsw-icon-sizes, 20));
-      line-height: rem(8px);
-      display: inline-block;
-      position: relative;
-      top: rem(6px);
-    }
-
-    @include breakpoint('md') {
-      display: inline;
-    }
-
-    &:nth-last-child(2),
-    &:last-child {
-      display: inline;
-    }
-
-    &:nth-last-child(2) {
-      &::before {
-        display: none;
-
-        @include breakpoint('md') {
-          display: inline-block;
-        }
-      }
-    }
+    display: inline;
 
     &:first-child {
       &::before {
         display: none;
+      }
+    }
+
+    &:nth-child(2) {
+      &::before {
+        display: inline-block;
 
         @include breakpoint('md') {
           display: none;
         }
       }
     }
+
+    .nsw-breadcrumbs__toggle {
+      display: none;
+    }
+
+    .nsw-breadcrumbs__ellipsis {
+      cursor: pointer;
+      display: inline-block;
+
+      @include breakpoint('md') {
+        display: none;
+      }
+    }
+
+    .nsw-breadcrumbs__toggle:checked + .nsw-breadcrumbs__ellipsis {
+      display: none;
+    }
+
+    &*:not(:first-child):not(:last-child):not(:nth-last-child(2)):not(.nsw-breadcrumbs__show-more) {
+      display: none;
+
+      @include breakpoint('md') {
+        display: inline-block;
+      }
+    }
   }
 
+  .nsw-breadcrumbs__toggle:checked ~ li {
+    display: inline-block;
+    background: var(--nsw-text-dark);
+  }
+  
+  li {
+    &::before {
+      @include material-icons;
+      content: 'keyboard_arrow_right';
+      font-size: rem(map-get($nsw-icon-sizes, 20));
+      line-height: rem(8px);
+      display: inline-block;
+      position: relative;
+      top: rem(6px);
+    }
+  }
+  
   a {
     font-weight: var(--nsw-font-normal);
 
@@ -60,7 +78,7 @@
       pointer-events: none;
       color: var(--nsw-text-dark);
 
-      .nsw-section--invert & {    
+      .nsw-section--invert & {
         color: var(--nsw-text-light);
       }
     }
@@ -68,7 +86,7 @@
 }
 
 @supports (content: 'x' / 'y') {
-  .nsw-breadcrumbs {  
+  .nsw-breadcrumbs {
     li {
       &::before {
         content: 'keyboard_arrow_right' / '';
@@ -78,7 +96,7 @@
 }
 
 @media speech {
-  .nsw-breadcrumbs {  
+  .nsw-breadcrumbs {
     li {
       &::before {
         display: none;
