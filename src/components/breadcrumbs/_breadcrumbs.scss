@@ -8,86 +8,58 @@
     list-style: none;
   }
 
-  li {
+  li:not(:first-child):not(:last-child):not(:nth-last-child(2)) {
     display: none;
+
+    @include breakpoint('md') {
+      display: inline-block;
+    }
+  }
+
+  li {
+    display: inline-block;
+
+    &:first-child {
+      &::before {
+        display: none;
+      }
+    }
 
     &::before {
       @include material-icons;
       content: 'keyboard_arrow_right';
-      content: 'keyboard_arrow_right' / '';
       font-size: rem(map-get($nsw-icon-sizes, 20));
       line-height: rem(8px);
       display: inline-block;
       position: relative;
       top: rem(6px);
-      right: rem(4px);
-      width: rem(11px);
-    }
-
-    @include breakpoint('md') {
-      display: inline;
-    }
-
-    &:nth-last-child(2),
-    &:last-child {
-      display: inline;
-    }
-
-    &:nth-last-child(2) {
-      &::before {
-        display: none;
-
-        @include breakpoint('md') {
-          display: inline-block;
-        }
-      }
-    }
-
-    &:first-child {
-      &::before {
-        display: none;
-
-        @include breakpoint('md') {
-          display: none;
-        }
-      }
-
-      a:not(.nsw-icon-button) {
-        padding: rem(8px) rem(24px) rem(8px) 0;
-    
-        @include breakpoint('md') {
-          padding: rem(4px) rem(4px) rem(4px) 0;
-        }
-      }
     }
   }
 
+  .nsw-breadcrumbs__show-all {
+    li:not(:first-child):not(:last-child):not(:nth-last-child(2)) {
+      display: inline-block;
+    }
+  }
+  
   a {
     font-weight: var(--nsw-font-normal);
+    padding: rem(3px) 0;
 
     &.current {
       text-decoration: none;
       pointer-events: none;
       color: var(--nsw-text-dark);
 
-      .nsw-section--invert & {    
+      .nsw-section--invert & {
         color: var(--nsw-text-light);
       }
-    }
-  }
-
-  a:not(.nsw-icon-button) {
-    line-height: 1.5;
-    padding: rem(8px) rem(24px);
-
-    @include breakpoint('md') {
-      padding: rem(4px);
     }
   }
 }
 
 @supports (content: 'x' / 'y') {
-  .nsw-breadcrumbs {  
+  .nsw-breadcrumbs {
     li {
       &::before {
         content: 'keyboard_arrow_right' / '';
@@ -97,7 +69,7 @@
 }
 
 @media speech {
-  .nsw-breadcrumbs {  
+  .nsw-breadcrumbs {
     li {
       &::before {
         display: none;
