@@ -1,19 +1,9 @@
-<nav aria-label="{{label}}" class="nsw-breadcrumbs">
+<nav aria-label="{{label}}" class="nsw-breadcrumbs js-breadcrumbs">
   <ol>
     {{#each items}}
-      {{#if @first}}
-        <li>
-          <a href="{{url}}">{{text}}</a>
-        </li>
-        <li class="nsw-breadcrumbs__show-more">
-          <input id="breadcrumb-toggle" class="nsw-breadcrumbs__toggle" type="checkbox" aria-label="Show more breadcrumbs"/>
-          <label for="breadcrumb-toggle" class="nsw-breadcrumbs__ellipsis">…</label>
-        </li>
-      {{else}}
-        <li>
-          <a href="{{url}}"{{#if @last}} class="current" aria-current="page"{{/if}}>{{text}}</a>
-        </li>
-      {{/if}}
+      <li>
+        <a href="{{url}}"{{#if @last}} class="current" aria-current="page"{{/if}}>{{text}}</a>
+      </li>
     {{/each}}
   </ol>
 </nav>

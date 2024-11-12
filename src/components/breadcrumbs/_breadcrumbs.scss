@@ -8,8 +8,16 @@
     list-style: none;
   }
 
+  li:not(:first-child):not(:last-child):not(:nth-last-child(2)):not(.nsw-breadcrumbs__show-more-toggle) {
+    display: none;
+
+    @include breakpoint('md') {
+      display: inline-block;
+    }
+  }
+
   li {
-    display: inline;
+    display: inline-block;
 
     &:first-child {
       &::before {
@@ -17,48 +25,6 @@
       }
     }
 
-    &:nth-child(2) {
-      &::before {
-        display: inline-block;
-
-        @include breakpoint('md') {
-          display: none;
-        }
-      }
-    }
-
-    .nsw-breadcrumbs__toggle {
-      display: none;
-    }
-
-    .nsw-breadcrumbs__ellipsis {
-      cursor: pointer;
-      display: inline-block;
-
-      @include breakpoint('md') {
-        display: none;
-      }
-    }
-
-    .nsw-breadcrumbs__toggle:checked + .nsw-breadcrumbs__ellipsis {
-      display: none;
-    }
-
-    &*:not(:first-child):not(:last-child):not(:nth-last-child(2)):not(.nsw-breadcrumbs__show-more) {
-      display: none;
-
-      @include breakpoint('md') {
-        display: inline-block;
-      }
-    }
-  }
-
-  .nsw-breadcrumbs__toggle:checked ~ li {
-    display: inline-block;
-    background: var(--nsw-text-dark);
-  }
-  
-  li {
     &::before {
       @include material-icons;
       content: 'keyboard_arrow_right';
@@ -69,9 +35,43 @@
       top: rem(6px);
     }
   }
+
+  .nsw-breadcrumbs__show-more-toggle {
+    @include breakpoint('md') {
+      display: none;
+    }
+
+    .nsw-breadcrumbs__toggle-button {
+      @include link-button;
+      font-weight: var(--nsw-font-normal);
+      color: var(--nsw-text-dark);
+      text-decoration: none;
+      padding: rem(6px) rem(4px);
+      margin-left: 4px;
+      line-height: rem(6px);
+      height: 100%;
+      cursor: pointer;
+
+      .nsw-section--invert & {
+        @include link-light;
+        color: var(--nsw-text-light);
+      }
+    }
+  }
+
+  .nsw-breadcrumbs__show-all {
+    li:not(:first-child):not(:last-child):not(:nth-last-child(2)):not(.nsw-breadcrumbs__show-more-toggle) {
+      display: inline-block;
+    }
+
+    .nsw-breadcrumbs__show-more-toggle {
+      display: none;
+    }
+  }
   
   a {
     font-weight: var(--nsw-font-normal);
+    padding: rem(3px) 0;
 
     &.current {
       text-decoration: none;
