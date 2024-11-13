@@ -3,12 +3,13 @@ class Breadcrumbs {
     this.element = element
     this.allBreadcrumbs = this.element.querySelector('.nsw-breadcrumbs ol')
     this.secondBreadcrumb = this.element.querySelector('.js-breadcrumbs li:nth-child(2)')
-    this.breadcrumbs = document.querySelectorAll('.js-breadcrumbs li')
     this.condition = false
   }
 
   init() {
-    this.createToggle()
+    if (this.allBreadcrumbs.children.length > 3) {
+      this.createToggle()
+    }
 
     this.element.addEventListener('click', (event) => {
       event.preventDefault()
