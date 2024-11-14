@@ -4,7 +4,7 @@
 [![](https://data.jsdelivr.com/v1/package/npm/nsw-design-system/badge)](https://www.jsdelivr.com/package/npm/nsw-design-system)
 [![This project is using Percy.io for visual regression testing.](https://percy.io/static/images/percy-badge.svg)](https://percy.io/b183fe4d/nsw-design-system)
 
-View online documentation for the [NSW Design System](https://digitalnsw.github.io/nsw-design-system/).
+View online documentation for the [NSW Design System](https://designsystem.nsw.gov.au/).
 
 # NSW Design System Documentation
 
@@ -26,7 +26,7 @@ We recommend the following methods:
 
 4. **Using JSDelivr CDN:** If you prefer a quicker setup, you can use the JSDelivr content delivery network to directly include the design system's CSS and JavaScript files in your project.
 
-Read the [Getting started page](https://digitalnsw.github.io/nsw-design-system/docs/content/develop/getting-started.html) for information on the framework contents, templates, examples, and more.
+Read the [Getting started page](https://designsystem.nsw.gov.au/nsw-design-system/docs/content/develop/getting-started.html) for information on the framework contents, templates, examples, and more.
 
 ## Installing with NPM
 
@@ -144,7 +144,7 @@ View and raise issues and bugs through our [Issues tracker on Github](https://gi
 
 ## Design System Figma UI Kit
 
-Access the complete set of design assets required for designing, sharing, and prototyping using our [Figma UI Kit](https://digitalnsw.github.io/nsw-design-system/docs/content/design/figma-ui-kit.html).
+Access the complete set of design assets required for designing, sharing, and prototyping using our [Figma UI Kit](https://designsystem.nsw.gov.au/nsw-design-system/docs/content/design/figma-ui-kit.html).
 
 ## Versioning
 
@@ -158,6 +158,6 @@ Our version numbers consist of MAJOR.MINOR.PATCH, where:
 
 * **PATCH** version is used for minor backward-compatible updates, new component variations, and bug fixes.
 
-See [the Releases section of our GitHub project](https://github.com/digitalnsw/nsw-design-system/releases) for changelogs for each release version. Release posts on our [what’s happening page](https://digitalnsw.github.io/nsw-design-system/docs/content/about/whats-happening.html) contain summaries of the most noteworthy changes made in each release.
+See [the Releases section of our GitHub project](https://github.com/digitalnsw/nsw-design-system/releases) for changelogs for each release version. Release posts on our [what’s happening page](https://designsystem.nsw.gov.au/nsw-design-system/docs/content/about/whats-happening.html) contain summaries of the most noteworthy changes made in each release.
 
 Feel free to reach out if you have any questions or need more help with integrating the NSW Design System into your projects!
