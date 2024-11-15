@@ -65,3 +65,70 @@
     }
   }
 }
+
+.nsw-cookie-dialog {
+  .nsw-dialog__top {
+    position: sticky;
+    top: 0;
+    background: var(--nsw-white);
+    z-index: 110;
+  }
+
+  .nsw-dialog__content {
+    padding-top: rem(16px);
+  }
+ 
+  .nsw-tabs__content {
+    -webkit-overflow-scrolling: auto;
+    max-height: 320px;
+    padding-left: 8px;
+    overflow: scroll;
+
+    &:focus-visible {
+      outline: 2px solid var(--nsw-brand-dark);
+      border: 0;
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+      border-radius: 4px;
+      background-color: var(--nsw-grey-03);
+      box-shadow: 0 0 1px var(--nsw-grey-03);
+    }
+  }
+  
+  &__list {
+    display: flex;
+    flex-direction: column;
+    padding-left: 0;
+    gap: rem(8px);
+  }
+  
+  &__list-item {
+    display: flex;
+    flex-direction: column;
+    gap: rem(8px);
+
+    label {
+      @include font-size('md');
+      font-weight: var(--nsw-font-bold);
+      cursor: pointer;
+    }
+
+    &:not(:nth-child(1)) {
+      border-top: 1px solid var(--nsw-grey-04);
+      padding-top: rem(28px);
+    }
+  }
+
+  &__cookie-details {
+    margin-left: 48px;
+  }
+}

@@ -11,10 +11,15 @@ model:
   cookie-consent-1: json/cookie-consent-1.json
   cookie-consent-2: json/cookie-consent-2.json
   cookie-consent-3: json/cookie-consent-3.json
+  cookie-consent-4: json/cookie-consent-4.json
 ---
 
-<h3>Auto opt-in</h3>
-{{#>_docs-example}}{{>_cookie-consent model.cookie-consent-1}}{{/_docs-example}}
+<h3>Dialog</h3>
+{{#>_docs-example}}{{>_cookie-consent model.cookie-consent-4 type="dialog"}}{{/_docs-example}}
 
-<h3>Opt-in</h3>
-{{#>_docs-example}}{{>_cookie-consent model.cookie-consent-3}}{{/_docs-example}}
+<h3>Banner</h3>
+<h4>Auto opt-in</h4>
+{{#>_docs-example}}{{>_cookie-consent model.cookie-consent-1 type="banner"}}{{/_docs-example}}
+
+<h4>Opt-in</h4>
+{{#>_docs-example}}{{>_cookie-consent model.cookie-consent-3 type="banner"}}{{/_docs-example}}
