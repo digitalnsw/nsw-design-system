@@ -85,7 +85,7 @@ function initSite() {
 
   if (cookieConsent) {
     cookieConsent.forEach((element) => {
-      new CookieConsent(element).init()
+      new CookieConsent(null, element).init()
     })
   }
 

@@ -29,7 +29,7 @@
 {{#if-equals type "dialog"}}
 <a href="#{{id}}" class="js-open-dialog-{{id}}" aria-haspopup="dialog">Cookie preferences</a>
 
-<div class="nsw-cookie-dialog nsw-dialog{{#unless secondary}} nsw-dialog--single-action{{/unless}} js-dialog{{#if dismiss}} js-dialog-dismiss{{/if}}{{#if active}} active{{/if}}" id="{{id}}" role="dialog" aria-labelledby="{{id}}-title">
+<div class="js-cookie-consent nsw-cookie-dialog nsw-dialog{{#unless secondary}} nsw-dialog--single-action{{/unless}} js-dialog{{#if dismiss}} js-dialog-dismiss{{/if}}{{#if active}} active{{/if}}" id="{{id}}" role="dialog" aria-labelledby="{{id}}-title">
   <div class="nsw-dialog__wrapper">
     <div class="nsw-dialog__container">
       <div class="nsw-dialog__top">
@@ -56,14 +56,14 @@
             <hr />
             <ul class="nsw-cookie-dialog__list">
               <li class="nsw-cookie-dialog__list-item">
-                <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-multi-2" id="cookie-settings-1">
-                <label class="nsw-form__checkbox-label" for="cookie-settings-1">Performance cookies (optional)</label>
+                <input class="nsw-form__checkbox-input" value="jim" type="checkbox" name="form-checkbox-multi-2" id="cookie-settings-1">
+                <label class="nsw-form__checkbox-label" for="cookie-settings-1">Jim</label>
                 <div class="nsw-cookie-dialog__cookie-details">
                   <p>These cookies help us understand how you interact with the site. We use this data to identify areas to improve.</p>
                 </div>
               </li>
               <li class="nsw-cookie-dialog__list-item">
-                <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-multi-2" id="cookie-settings-2">
+                <input class="nsw-form__checkbox-input" value="necessary" type="checkbox" name="form-checkbox-multi-2" id="cookie-settings-2">
                 <label class="nsw-form__checkbox-label" for="cookie-settings-2">Marketing cookies (optional)</label>
                 <div class="nsw-cookie-dialog__cookie-details">
                   <p>These cookies are used to optimise marketing communications and show you ads on other sites.</p>
@@ -91,12 +91,22 @@
         </div>
       </div>
     </div>
-    <div class="nsw-dialog__bottom">
-      <button class="nsw-button nsw-button--dark{{#if danger}} nsw-button--danger{{/if}} js-close-dialog">{{#if cta1}}{{cta1}}{{else}}Primary action{{/if}}</button>
-      {{#if cta2}}
-      <button class="nsw-button nsw-button--dark-outline-solid js-close-dialog">{{#if cta2}}{{cta2}}{{else}}Secondary action{{/if}}</button>
-      {{/if}}
+    <div class="nsw-cookie-dialog__bottom">
+      <div class="nsw-cookie-dialog__cta-group">
+        {{#if savePreferencesBtn}}
+          <button class="nsw-button nsw-button--dark js-close-dialog" data-role="save">{{#if savePreferencesBtn}}{{savePreferencesBtn}}{{else}}Accept current selection{{/if}}</button>
+        {{/if}}
+      </div>
+      <div class="nsw-cookie-dialog__cta-group">
+        {{#if acceptAllBtn}}
+          <button class="nsw-button nsw-button--dark-outline-solid js-close-dialog">{{#if acceptAllBtn}}{{acceptAllBtn}}{{else}}Accept all cookies{{/if}}</button>
+        {{/if}}
+        {{#if acceptNecessaryBtn}}
+          <button class="nsw-button nsw-button--dark-outline-solid js-close-dialog">{{#if acceptNecessaryBtn}}{{acceptNecessaryBtn}}{{else}}Reject all cookies{{/if}}</button>
+        {{/if}}
+      </div>
     </div>
   </div>
 </div>
 {{/if-equals}}
+<button type="button" data-cc="show-preferencesModal">Manage cookie preferences</button>
