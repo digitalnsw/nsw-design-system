@@ -455,14 +455,16 @@
 <p><strong>Parent page</strong><br>Starts with the "Home" page and links users to parent-level pages in the IA</p>
 <p><strong>Icon</strong><br>The chevrons between the names shows the visual hierarchy between pages.</p>
 <p><strong>Current page</strong><br>Indicates the current page the user is viewing.</p>
+<p><strong>Ellipsis</strong><br>Provides a clickable option to expand and reveal the full breadcrumb path for mobile users.</p>
 
 <h3>When to avoid</h3>
 <p>Do not use the breadcrumbs component on websites with a flat structure, or to show progress through a linear journey or transaction.</p>
-<p>Breadcrumb navigation should be regarded as an extra feature and shouldn’t replace effective primary navigation menus.</p>
-<p>If you’re using other navigational elements on the page, such as a sidebar, consider whether your users need the additional support of breadcrumbs.</p>
+<p>Breadcrumb navigation should be regarded as an extra feature and shouldn't replace effective primary navigation menus.</p>
+<p>If you're using other navigational elements on the page, such as a sidebar, consider whether your users need the additional support of breadcrumbs.</p>
 
-<h2>How this component works</h2>
-<p>For mobile resolutions (under 768px), the breadcrumb shows a link to the immediate parent and current page only.</p>
+<h3>Mobile usability</h3>
+<p>For mobile resolutions (under 768px), the breadcrumb displays a link to the immediate parent and current page only, with a clickable ellipsis allowing users to reveal the full breadcrumb path for breadcrumb lists that contain more than 3 items (including "Home").</p>
+<p>The ellipsis button is injected into the list of breadcrumb items by adding <code>js-breadcrumbs</code> class into the nav element that wraps the breadcrumb items.</p>
 
 <h2>Accessibility</h2>
 <p>All components are responsive and meet WCAG 2.1 AA accessibility guidelines.</p>
@@ -477,22 +479,34 @@
           </div>
         </div>
 
+<div class="nsw-tabs js-tabs">
+  <ul class="nsw-tabs__list">
+    <li><a href="#breadcrumbs-brand-light" class="js-tabs-fixed">Brand Light</a></li>
+    <li><a href="#breadcrumbs-brand-dark" class="js-tabs-fixed">Brand Dark</a></li>
+  </ul>
+  <section id="breadcrumbs-brand-light" class="nsw-tabs__content nsw-tabs__content--side-flush">
 <div class="nsw-docs__example">
   <div class="nsw-docs__component">
-    <nav aria-label="Breadcrumbs" class="nsw-breadcrumbs">
+    <nav aria-label="Breadcrumbs" class="nsw-breadcrumbs js-breadcrumbs">
       <ol>
-        <li>
-          <a href="#">Home</a>
-        </li>
-        <li>
-          <a href="#">About DPC</a>
-        </li>
-        <li>
-          <a href="#">NSW Digital Design System</a>
-        </li>
-        <li>
-          <a href="#" class="current" aria-current="page">Content design</a>
-        </li>
+          <li>
+            <a href="#">Home</a>
+          </li>
+          <li>
+            <a href="#">About DPC</a>
+          </li>
+          <li>
+            <a href="#">Assurance</a>
+          </li>
+          <li>
+            <a href="#">Strategy</a>
+          </li>
+          <li>
+            <a href="#">NSW Digital Design System</a>
+          </li>
+          <li>
+            <a href="#" class="current" aria-current="page">Content design</a>
+          </li>
       </ol>
     </nav>
   </div>
@@ -507,38 +521,50 @@
       <span>Copy</span>
       <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
     </button>
-    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`<nav aria-label="Breadcrumbs" class="nsw-breadcrumbs">
+    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`<nav aria-label="Breadcrumbs" class="nsw-breadcrumbs js-breadcrumbs">
   <ol>
-    <li>
-      <a href="#">Home</a>
-    </li>
-    <li>
-      <a href="#">About DPC</a>
-    </li>
-    <li>
-      <a href="#">NSW Digital Design System</a>
-    </li>
-    <li>
-      <a href="#" class="current" aria-current="page">Content design</a>
-    </li>
+      <li>
+        <a href="#">Home</a>
+      </li>
+      <li>
+        <a href="#">About DPC</a>
+      </li>
+      <li>
+        <a href="#">Assurance</a>
+      </li>
+      <li>
+        <a href="#">Strategy</a>
+      </li>
+      <li>
+        <a href="#">NSW Digital Design System</a>
+      </li>
+      <li>
+        <a href="#" class="current" aria-current="page">Content design</a>
+      </li>
   </ol>
 </nav>
 `).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
     <div class="nsw-docs-code__wrapper">
-<pre><code class="html"><script>document.write((`<nav aria-label="Breadcrumbs" class="nsw-breadcrumbs">
+<pre><code class="html"><script>document.write((`<nav aria-label="Breadcrumbs" class="nsw-breadcrumbs js-breadcrumbs">
   <ol>
-    <li>
-      <a href="#">Home</a>
-    </li>
-    <li>
-      <a href="#">About DPC</a>
-    </li>
-    <li>
-      <a href="#">NSW Digital Design System</a>
-    </li>
-    <li>
-      <a href="#" class="current" aria-current="page">Content design</a>
-    </li>
+      <li>
+        <a href="#">Home</a>
+      </li>
+      <li>
+        <a href="#">About DPC</a>
+      </li>
+      <li>
+        <a href="#">Assurance</a>
+      </li>
+      <li>
+        <a href="#">Strategy</a>
+      </li>
+      <li>
+        <a href="#">NSW Digital Design System</a>
+      </li>
+      <li>
+        <a href="#" class="current" aria-current="page">Content design</a>
+      </li>
   </ol>
 </nav>
 `).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
@@ -546,8 +572,97 @@
   </div>
 </div>
 
+  </section>
+  <section id="breadcrumbs-brand-dark" class="nsw-tabs__content nsw-tabs__content--side-flush">
+<div class="nsw-docs__example nsw-docs__example--brand-dark nsw-section--invert">
+  <div class="nsw-docs__component">
+    <nav aria-label="Breadcrumbs" class="nsw-breadcrumbs js-breadcrumbs">
+      <ol>
+          <li>
+            <a href="#">Home</a>
+          </li>
+          <li>
+            <a href="#">About DPC</a>
+          </li>
+          <li>
+            <a href="#">Assurance</a>
+          </li>
+          <li>
+            <a href="#">Strategy</a>
+          </li>
+          <li>
+            <a href="#">NSW Digital Design System</a>
+          </li>
+          <li>
+            <a href="#" class="current" aria-current="page">Content design</a>
+          </li>
+      </ol>
+    </nav>
+  </div>
+</div>
+<div class="nsw-docs-code">
+  <button class="nsw-link nsw-link--button nsw-link--icon nsw-small js-code-button">
+    <span>Show code</span>
+    <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
+  </button>
+  <div class="nsw-docs-code__content">
+    <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
+      <span>Copy</span>
+      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
+    </button>
+    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`<nav aria-label="Breadcrumbs" class="nsw-breadcrumbs js-breadcrumbs">
+  <ol>
+      <li>
+        <a href="#">Home</a>
+      </li>
+      <li>
+        <a href="#">About DPC</a>
+      </li>
+      <li>
+        <a href="#">Assurance</a>
+      </li>
+      <li>
+        <a href="#">Strategy</a>
+      </li>
+      <li>
+        <a href="#">NSW Digital Design System</a>
+      </li>
+      <li>
+        <a href="#" class="current" aria-current="page">Content design</a>
+      </li>
+  </ol>
+</nav>
+`).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
+    <div class="nsw-docs-code__wrapper">
+<pre><code class="html"><script>document.write((`<nav aria-label="Breadcrumbs" class="nsw-breadcrumbs js-breadcrumbs">
+  <ol>
+      <li>
+        <a href="#">Home</a>
+      </li>
+      <li>
+        <a href="#">About DPC</a>
+      </li>
+      <li>
+        <a href="#">Assurance</a>
+      </li>
+      <li>
+        <a href="#">Strategy</a>
+      </li>
+      <li>
+        <a href="#">NSW Digital Design System</a>
+      </li>
+      <li>
+        <a href="#" class="current" aria-current="page">Content design</a>
+      </li>
+  </ol>
+</nav>
+`).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
+    </div>
+  </div>
+</div>
 
-
+  </section>
+</div>
       </div>
     </section>
   </div>
