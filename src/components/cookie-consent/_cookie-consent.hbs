@@ -63,7 +63,7 @@
                 </div>
               </li>
               <li class="nsw-cookie-dialog__list-item">
-                <input class="nsw-form__checkbox-input" value="necessary" type="checkbox" name="form-checkbox-multi-2" id="cookie-settings-2">
+                <input class="nsw-form__checkbox-input" value="analytics" type="checkbox" name="form-checkbox-multi-2" id="cookie-settings-2">
                 <label class="nsw-form__checkbox-label" for="cookie-settings-2">Marketing cookies (optional)</label>
                 <div class="nsw-cookie-dialog__cookie-details">
                   <p>These cookies are used to optimise marketing communications and show you ads on other sites.</p>
@@ -94,15 +94,15 @@
     <div class="nsw-cookie-dialog__bottom">
       <div class="nsw-cookie-dialog__cta-group">
         {{#if savePreferencesBtn}}
-          <button class="nsw-button nsw-button--dark js-close-dialog" data-role="save">{{#if savePreferencesBtn}}{{savePreferencesBtn}}{{else}}Accept current selection{{/if}}</button>
+          <button class="nsw-button nsw-button--dark js-close-dialog" data-role="accept-selection">{{#if savePreferencesBtn}}{{savePreferencesBtn}}{{else}}Accept current selection{{/if}}</button>
         {{/if}}
       </div>
       <div class="nsw-cookie-dialog__cta-group">
         {{#if acceptAllBtn}}
-          <button class="nsw-button nsw-button--dark-outline-solid js-close-dialog">{{#if acceptAllBtn}}{{acceptAllBtn}}{{else}}Accept all cookies{{/if}}</button>
+          <button class="nsw-button nsw-button--dark-outline-solid js-close-dialog" data-role="accept-all">{{#if acceptAllBtn}}{{acceptAllBtn}}{{else}}Accept all cookies{{/if}}</button>
         {{/if}}
         {{#if acceptNecessaryBtn}}
-          <button class="nsw-button nsw-button--dark-outline-solid js-close-dialog">{{#if acceptNecessaryBtn}}{{acceptNecessaryBtn}}{{else}}Reject all cookies{{/if}}</button>
+          <button class="nsw-button nsw-button--dark-outline-solid js-close-dialog" data-role="reject-all">{{#if acceptNecessaryBtn}}{{acceptNecessaryBtn}}{{else}}Reject all cookies{{/if}}</button>
         {{/if}}
       </div>
     </div>

@@ -1,4 +1,5 @@
 function waitForCookieConsent(callback) {
+  console.log('made it to script!')
   if (window.NSW && window.NSW.CookieConsent) {
     callback()
   } else {
