@@ -1,11 +1,12 @@
 {
   "name": "nsw-design-system",
-  "version": "3.18.0",
+  "version": "3.18.2",
   "description": "Design system for Digital NSW",
-  "main": "dist/main.js",
-  "style": "dist/main.css",
+  "main": "dist/js/main.js",
+  "types": "dist/js/main.d.ts",
+  "style": "dist/css/main.css",
   "files": [
-    "dist/{css,js}/*.{css,js}",
+    "dist/{css,js}/**/*.{css,d.ts,js,map}",
     "src/{components,patterns,styles,core}/**/*.{scss,js}",
     "src/global/{scripts,scss}/**/*.{scss,js}",
     "src/main.{scss,js}"
@@ -30,6 +31,7 @@
     "bump:minor": "gulp bumping --type minor",
     "bump:patch": "gulp bumping --type patch",
     "commit": "git add . && git reset -- package-lock.json && git commit -m 'Built HTMLstarterkit and updated CHANGELOG.md' && git push origin",
+    "types": "tsc",
     "release:major": "npm run bump:major && npm run starterkit:build && npm run changelog:build",
     "release:minor": "npm run bump:minor && npm run starterkit:build && npm run changelog:build",
     "release:patch": "npm run bump:patch && npm run starterkit:build && npm run changelog:build",
@@ -42,6 +44,9 @@
   ],
   "author": "Digital NSW",
   "license": "ISC",
+  "dependencies": {
+    "@floating-ui/dom": "^1.6.11"
+  },
   "devDependencies": {
     "@babel/core": "^7.21.4",
     "@babel/preset-env": "^7.21.4",
@@ -96,6 +101,7 @@
     "stylelint-declaration-use-variable": "^1.7.3",
     "stylelint-order": "^4.0.0",
     "stylelint-scss": "^3.16.0",
+    "typescript": "5.6.3",
     "uuid": "^9.0.0",
     "yargs": "^15.3.1"
   },
@@ -103,8 +109,5 @@
     "gulp-better-rollup": {
       "rollup": "^1||^2||^3"
     }
-  },
-  "dependencies": {
-    "@floating-ui/dom": "^1.6.11"
   }
 }

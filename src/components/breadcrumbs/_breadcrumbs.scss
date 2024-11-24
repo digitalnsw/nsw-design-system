@@ -8,7 +8,7 @@
     list-style: none;
   }
 
-  li:not(:first-child):not(:last-child):not(:nth-last-child(2)) {
+  li:not(:first-child):not(:last-child):not(:nth-last-child(2)):not(.nsw-breadcrumbs__show-more-toggle) {
     display: none;
 
     @include breakpoint('md') {
@@ -36,9 +36,37 @@
     }
   }
 
+  .nsw-breadcrumbs__show-more-toggle {
+    @include breakpoint('md') {
+      display: none;
+    }
+
+    .nsw-breadcrumbs__toggle-button {
+      @include link-button;
+      font-size: var(--nsw-font-size-xs);
+      font-weight: var(--nsw-font-normal);
+      color: var(--nsw-text-dark);
+      text-decoration: none;
+      padding: 0 rem(4px);
+      margin-left: 4px;
+      line-height: 24px;
+      height: 100%;
+      cursor: pointer;
+
+      .nsw-section--invert & {
+        @include link-light;
+        color: var(--nsw-text-light);
+      }
+    }
+  }
+
   .nsw-breadcrumbs__show-all {
-    li:not(:first-child):not(:last-child):not(:nth-last-child(2)) {
+    li:not(:first-child):not(:last-child):not(:nth-last-child(2)):not(.nsw-breadcrumbs__show-more-toggle) {
       display: inline-block;
+    }
+
+    .nsw-breadcrumbs__show-more-toggle {
+      display: none;
     }
   }
   
