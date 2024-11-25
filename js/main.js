@@ -3545,6 +3545,30 @@
       y
     });
   }
+
+  // If <html> has a CSS width greater than the viewport, then this will be
+  // incorrect for RTL.
+  function getWindowScrollBarX(element, rect) {
+    const leftScroll = getNodeScroll(element).scrollLeft;
+    if (!rect) {
+      return getBoundingClientRect(getDocumentElement(element)).left + leftScroll;
+    }
+    return rect.left + leftScroll;
+  }
+  function getHTMLOffset(documentElement, scroll, ignoreScrollbarX) {
+    if (ignoreScrollbarX === void 0) {
+      ignoreScrollbarX = false;
+    }
+    const htmlRect = documentElement.getBoundingClientRect();
+    const x = htmlRect.left + scroll.scrollLeft - (ignoreScrollbarX ? 0 :
+    // RTL <body> scrollbar.
+    getWindowScrollBarX(documentElement, htmlRect));
+    const y = htmlRect.top + scroll.scrollTop;
+    return {
+      x,
+      y
+    };
+  }
   function convertOffsetParentRelativeRectToViewportRelativeRect(_ref) {
     let {
       elements,
@@ -3576,25 +3600,16 @@
         offsets.y = offsetRect.y + offsetParent.clientTop;
       }
     }
+    const htmlOffset = documentElement && !isOffsetParentAnElement && !isFixed ? getHTMLOffset(documentElement, scroll, true) : createCoords(0);
     return {
       width: rect.width * scale.x,
       height: rect.height * scale.y,
-      x: rect.x * scale.x - scroll.scrollLeft * scale.x + offsets.x,
-      y: rect.y * scale.y - scroll.scrollTop * scale.y + offsets.y
+      x: rect.x * scale.x - scroll.scrollLeft * scale.x + offsets.x + htmlOffset.x,
+      y: rect.y * scale.y - scroll.scrollTop * scale.y + offsets.y + htmlOffset.y
     };
   }
   function getClientRects(element) {
     return Array.from(element.getClientRects());
-  }
-
-  // If <html> has a CSS width greater than the viewport, then this will be
-  // incorrect for RTL.
-  function getWindowScrollBarX(element, rect) {
-    const leftScroll = getNodeScroll(element).scrollLeft;
-    if (!rect) {
-      return getBoundingClientRect(getDocumentElement(element)).left + leftScroll;
-    }
-    return rect.left + leftScroll;
   }
 
   // Gets the entire size of the scrollable document area, even extending outside
@@ -3670,9 +3685,10 @@
     } else {
       const visualOffsets = getVisualOffsets(element);
       rect = {
-        ...clippingAncestor,
         x: clippingAncestor.x - visualOffsets.x,
-        y: clippingAncestor.y - visualOffsets.y
+        y: clippingAncestor.y - visualOffsets.y,
+        width: clippingAncestor.width,
+        height: clippingAncestor.height
       };
     }
     return rectToClientRect(rect);
@@ -3780,17 +3796,9 @@
         offsets.x = getWindowScrollBarX(documentElement);
       }
     }
-    let htmlX = 0;
-    let htmlY = 0;
-    if (documentElement && !isOffsetParentAnElement && !isFixed) {
-      const htmlRect = documentElement.getBoundingClientRect();
-      htmlY = htmlRect.top + scroll.scrollTop;
-      htmlX = htmlRect.left + scroll.scrollLeft -
-      // RTL <body> scrollbar.
-      getWindowScrollBarX(documentElement, htmlRect);
-    }
-    const x = rect.left + scroll.scrollLeft - offsets.x - htmlX;
-    const y = rect.top + scroll.scrollTop - offsets.y - htmlY;
+    const htmlOffset = documentElement && !isOffsetParentAnElement && !isFixed ? getHTMLOffset(documentElement, scroll) : createCoords(0);
+    const x = rect.left + scroll.scrollLeft - offsets.x - htmlOffset.x;
+    const y = rect.top + scroll.scrollTop - offsets.y - htmlOffset.y;
     return {
       x,
       y,
