@@ -1,5 +1,4 @@
 function waitForCookieConsent(callback) {
-  console.log('made it to script!')
   if (window.NSW && window.NSW.CookieConsent) {
     callback()
   } else {
@@ -15,10 +14,10 @@ waitForCookieConsent(() => {
         readOnly: true,
       },
       analytics: {},
-      jim: {},
+      foo: {},
     },
     onFirstConsent: (preferences) => console.log('Accepted:', preferences),
-    onModalReady: () => console.log('Test'),
+    onModalReady: () => console.log(''),
     language: {
       default: 'en',
       translations: {
@@ -52,9 +51,9 @@ waitForCookieConsent(() => {
                 linkedCategory: 'analytics',
               },
               {
-                title: 'Jim',
+                title: 'Foo',
                 description: 'These cookies collect information about how you use our website. All of the data is anonymized and cannot be used to identify you.',
-                linkedCategory: 'jim',
+                linkedCategory: 'foo',
               },
               {
                 title: 'More information',
@@ -66,5 +65,7 @@ waitForCookieConsent(() => {
       },
     },
   }
-  window.NSW.CookieConsent(config)
+
+  const cookieConsent = document.querySelector('.js-cookie-consent')
+  new window.NSW.CookieConsent(config, cookieConsent)
 })

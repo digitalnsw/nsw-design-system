@@ -43,7 +43,6 @@ function initSite() {
   const backTop = document.querySelectorAll('button.js-back-to-top')
   const carousel = document.querySelectorAll('.js-carousel')
   const closeSearchButton = document.querySelectorAll('button.js-close-search')
-  const cookieConsent = document.querySelectorAll('.js-cookie-consent')
   const datePicker = document.querySelectorAll('.js-date-input')
   const dialogs = document.querySelectorAll('.js-dialog')
   const fileUpload = document.querySelectorAll('.js-file-upload')
@@ -80,12 +79,6 @@ function initSite() {
   if (closeSearchButton) {
     closeSearchButton.forEach((element) => {
       new SiteSearch(element).init()
-    })
-  }
-
-  if (cookieConsent) {
-    cookieConsent.forEach((element) => {
-      new CookieConsent(null, element).init()
     })
   }
 

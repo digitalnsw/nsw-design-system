@@ -1,10 +1,32 @@
 import * as CookieConsentAPI from 'vanilla-cookieconsent'
 
 class CookieConsent {
-  constructor(config, element) {
+  constructor(config = null, element = null) {
+    if (CookieConsent.instance) {
+      throw new Error('Use CookieConsent.getInstance() to get the Singleton instance')
+    }
+
     this.config = config
     this.bannerElement = element
     this.isInitialized = false
+
+    if (config || element) {
+      this.init(config, element)
+    }
+
+    CookieConsent.instance = this
+  }
+
+  static getInstance() {
+    if (!CookieConsent.instance) {
+      CookieConsent.instance = new CookieConsent()
+    }
+    return CookieConsent.instance
+  }
+
+  init(config, element) {
+    this.config = config
+    this.bannerElement = element
 
     if (element) {
       this.initElements()
@@ -13,9 +35,15 @@ class CookieConsent {
     if (this.config) {
       this.initAPI()
     }
+
+    this.attachEventListeners()
   }
 
   initElements() {
+    if (!this.bannerElement) {
+      console.error('Banner element not provided')
+      return
+    }
     this.cookieInputContainer = this.bannerElement.querySelector('.nsw-cookie-dialog__list')
     this.allCookieInputs = this.cookieInputContainer.querySelectorAll('input[type="checkbox"]')
     this.acceptSelectionButton = this.bannerElement.querySelector('[data-role="accept-selection"]')
@@ -24,32 +52,31 @@ class CookieConsent {
   }
 
   initAPI() {
+    if (!this.config) {
+      console.error('Configuration not provided')
+      return
+    }
     CookieConsentAPI.run(this.config).then(() => {
       this.isInitialized = true
       this.loadUserPreferences()
     })
   }
 
-  init() {
-    this.attachEventListeners()
-  }
-
   attachEventListeners() {
-    // ACCEPT SELECTION BUTTON
+    if (!this.bannerElement) return
+
     if (this.acceptSelectionButton) {
       this.acceptSelectionButton.addEventListener('click', () => {
         this.sortSelection('accept-selection')
       })
     }
 
-    // ACCEPT ALL BUTTON
     if (this.acceptAllButton) {
       this.acceptAllButton.addEventListener('click', () => {
         this.sortSelection('accept-all')
       })
     }
 
-    // REJECTION BUTTON
     if (this.rejectAllButton) {
       this.rejectAllButton.addEventListener('click', () => {
         this.sortSelection('reject-all')
@@ -59,24 +86,19 @@ class CookieConsent {
 
   loadUserPreferences() {
     const preferences = CookieConsentAPI.getUserPreferences()
-    console.log('preferences', preferences)
-    console.log('this', this)
+    if (!preferences) return
 
     this.allCookieInputs.forEach((input) => {
-      console.log('input', input)
       const checkbox = input
       const category = checkbox.value
-      if (preferences.acceptedCategories.includes(category)) {
-        checkbox.checked = true
-      } else {
-        checkbox.checked = false
-      }
+      checkbox.checked = preferences.acceptedCategories.includes(category)
     })
   }
 
   sortSelection(criteria) {
     if (!this.cookieInputContainer) {
-      return console.error('Container with class "nsw-cookie-dialog__list" not found')
+      console.error('Container with class "nsw-cookie-dialog__list" not found')
+      return
     }
 
     const checked = []
@@ -84,7 +106,6 @@ class CookieConsent {
 
     this.allCookieInputs.forEach((checkbox) => {
       if (criteria === 'accept-selection') {
-        console.log('accept-selection')
         if (checkbox.checked) {
           checked.push(checkbox.value)
         } else {
@@ -99,7 +120,7 @@ class CookieConsent {
       }
     })
 
-    return CookieConsentAPI.acceptCategory(checked, unchecked)
+    CookieConsentAPI.acceptCategory(checked, unchecked)
   }
 }
 
