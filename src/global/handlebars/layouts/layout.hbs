@@ -52,10 +52,6 @@
     waitForCookieConsent(() => {
       const config = {
         categories: {
-          necessary: {
-            enabled: true,
-            readOnly: true,
-          },
           analytics: {},
           foo: {},
         },
@@ -84,11 +80,6 @@
                     description: 'I want one!',
                   },
                   {
-                    title: 'Strictly Necessary cookies',
-                    description: 'These cookies are essential for the proper functioning of the website and cannot be disabled.',
-                    linkedCategory: 'necessary',
-                  },
-                  {
                     title: 'Performance and Analytics',
                     description: 'These cookies collect information about how you use our website. All of the data is anonymized and cannot be used to identify you.',
                     linkedCategory: 'analytics',
@@ -97,10 +88,6 @@
                     title: 'Foo',
                     description: 'These cookies collect information about how you use our website. All of the data is anonymized and cannot be used to identify you.',
                     linkedCategory: 'foo',
-                  },
-                  {
-                    title: 'More information',
-                    description: 'For any queries in relation to my policy on cookies and your choices, please <a href="#contact-page">contact us</a>',
                   },
                 ],
               },
