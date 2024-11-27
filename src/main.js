@@ -3,6 +3,7 @@ import Accordion from './components/accordion/accordion'
 import BackTop from './components/back-to-top/back-to-top'
 import Carousel from './components/card-carousel/carousel'
 import CookieConsent from './components/cookie-consent/cookie-consent'
+import Breadcrumbs from './components/breadcrumbs/breadcrumbs'
 import DatePicker from './components/date-picker/date-picker'
 import Dialog from './components/dialog/dialog'
 import ExternalLink from './components/link/link'
@@ -41,6 +42,7 @@ if (!Element.prototype.closest) {
 function initSite() {
   const accordions = document.querySelectorAll('.js-accordion')
   const backTop = document.querySelectorAll('button.js-back-to-top')
+  const breadcrumbs = document.querySelectorAll('.js-breadcrumbs')
   const carousel = document.querySelectorAll('.js-carousel')
   const closeSearchButton = document.querySelectorAll('button.js-close-search')
   const datePicker = document.querySelectorAll('.js-date-input')
@@ -67,6 +69,12 @@ function initSite() {
   if (backTop) {
     backTop.forEach((element) => {
       new BackTop(element).init()
+    })
+  }
+
+  if (breadcrumbs) {
+    breadcrumbs.forEach((element) => {
+      new Breadcrumbs(element).init()
     })
   }
 

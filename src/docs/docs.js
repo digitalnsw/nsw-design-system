@@ -50,12 +50,15 @@ function initDocs() {
   const navLinks = document.querySelectorAll('.nsw-docs__nav a')
   let currentURL = window.location.pathname
 
-  if (currentURL === '/' || currentURL === '/nsw-design-system/') currentURL = '/home/index.html'
+  if (currentURL === '/') currentURL = '/home/index.html'
 
   navLinks.forEach((link) => {
     let linkURL = link.getAttribute('href')
-    if (linkURL == '/' || linkURL == '/nsw-design-system/') linkURL = '/home/index.html'
+    const sanitisedURL = new URL(linkURL, window.location.origin)
+    linkURL = sanitisedURL.pathname + sanitisedURL.search + sanitisedURL.hash
 
+    if (linkURL === '/') linkURL = '/home/index.html'
+    
     if (currentURL.match(linkURL)) {
       link.classList.add('current')
 

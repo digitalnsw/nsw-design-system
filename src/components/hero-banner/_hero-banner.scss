@@ -1,7 +1,6 @@
 .nsw-hero-banner {
   background-color: var(--nsw-white);
   position: relative;
-  position: relative;
 
   &::after {
     content: '';
@@ -108,6 +107,15 @@
 
       &:first-child {
         margin-top: 0;
+      }
+    }
+
+    a:not(.nsw-icon-button) {
+      line-height: 1.5;
+      padding: rem(8px) rem(24px) rem(8px) 0;
+      
+      @include breakpoint('md') {
+        padding: rem(4px) rem(4px) rem(4px) 0;
       }
     }
   }

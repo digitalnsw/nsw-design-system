@@ -155,6 +155,7 @@ $header-height: 151px;
           max-width: none;
           margin: 0;
           flex-direction: column;
+          cursor: pointer;
 
           > li {
             &:first-child {
@@ -307,9 +308,17 @@ $header-height: 151px;
     &.nsw-docs__example--dark {
       background-color: var(--nsw-grey-01);
     }
-
+    
     &.nsw-docs__example--light {
       background-color: var(--nsw-grey-04);
+    }
+
+    &.nsw-docs__example--brand-dark {
+      background-color: var(--nsw-brand-dark);
+    }
+
+    &.nsw-docs__example--brand-light {
+      background-color: var(--nsw-brand-light);
     }
   }
 
@@ -473,6 +482,8 @@ $header-height: 151px;
 
   > button {
     margin-top: rem(24px);
+    padding: rem(2px);
+    cursor: pointer;
 
     &.active {
       .nsw-material-icons {
@@ -671,6 +682,7 @@ $header-height: 151px;
   justify-content: flex-end;
   align-items: center;
   gap: 0.5rem;
+  margin: 16px 0;
 
   &__list {
     list-style: none;

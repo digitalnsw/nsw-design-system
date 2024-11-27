@@ -1,6 +1,7 @@
 const {
   src, dest, watch, series,
 } = require('gulp')
+const child = require('child_process');
 const sass = require('gulp-sass')(require('sass'))
 const postcss = require('gulp-postcss')
 const autoprefixer = require('autoprefixer')
@@ -247,6 +248,11 @@ function compileJS() {
     .pipe(dest(config.js.build))
 }
 
+function compileTypes(done) {
+  child.exec('npm run types');
+  done();
+}
+
 function compileDocsJS() {
   return src(config.jsDocs.src)
     .pipe(
@@ -337,7 +343,7 @@ function bumping() {
 }
 
 const styles = series(lintStyles, buildStyles, buildCoreStyles, buildDocStyles)
-const javascript = series(lintJavascript, compileJS, compileDocsJS)
+const javascript = series(lintJavascript, compileJS, compileTypes, compileDocsJS)
 
 function watchFiles(done) {
   watch(config.scss.watch, series(styles, reload))

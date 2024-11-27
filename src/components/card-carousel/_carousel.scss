@@ -161,6 +161,7 @@
     z-index: 1;
     transition: 0.2s;
     border: 2px solid var(--nsw-brand-dark);
+    cursor: pointer;
     
     &:hover {
       @include nsw-hover();
@@ -229,7 +230,7 @@
     transform: translateX(-50%);
 
     @include breakpoint('md') {
-      bottom: 1.5em;
+      bottom: 0.8em;
     }
 
     li {
@@ -287,20 +288,15 @@
   &__nav-item {
     button {
       background-color: transparent;
-      width: 1.2em;
-      height: 1.2em;
-      padding: 0;
+      width: 1.6em;
+      height: 1.6em;
+      padding: 4px;
       border-radius: 50%;
       border: 2px solid var(--nsw-brand-dark);
       transition: all 300ms ease-in-out;
       cursor: pointer;
       line-height: 0;
       margin: 0 0.25em;
-
-      @include breakpoint('md') {
-        width: 0.9em;
-        height: 0.9em;
-      }
 
       &:focus {
         @include nsw-focus(false);
@@ -319,15 +315,9 @@
 
     &--selected button {
       background-color: var(--nsw-brand-dark);
-      border-radius: 7px;
-      width: 2.2em;
 
       .nsw-section--invert & {
         background-color: var(--nsw-white);
-      }
-
-      @include breakpoint('md') {
-        width: 1.6em;
       }
     }
   }
