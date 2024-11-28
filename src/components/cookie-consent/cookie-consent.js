@@ -6,12 +6,9 @@ class CookieConsent {
       throw new Error('Use CookieConsent.getInstance() to get the Singleton instance')
     }
 
-    this.config = {
-      ...this.config,
-      enabled: false,
-    }
-    this.bannerElement = element
-    this.isInitialized = false
+    // this.config = config
+    // this.bannerElement = element
+    this.isInit = false
 
     if (config || element) {
       this.init(config, element)
@@ -28,7 +25,10 @@ class CookieConsent {
   }
 
   init(config, element) {
-    this.config = config
+    this.config = {
+      ...config,
+      autoShow: false,
+    }
     this.bannerElement = element
 
     if (element) {
@@ -60,7 +60,7 @@ class CookieConsent {
       return
     }
     CookieConsentAPI.run(this.config).then(() => {
-      this.isInitialized = true
+      this.isInit = true
       this.loadUserPreferences()
     })
   }
