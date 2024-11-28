@@ -6,7 +6,10 @@ class CookieConsent {
       throw new Error('Use CookieConsent.getInstance() to get the Singleton instance')
     }
 
-    this.config = config
+    this.config = {
+      ...this.config,
+      enabled: false,
+    }
     this.bannerElement = element
     this.isInitialized = false
 
