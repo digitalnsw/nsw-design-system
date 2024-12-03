@@ -7,18 +7,19 @@ class CookieConsent {
     this.dialogElement = null
 
     if (this.config) {
-      this.createDialog()
+      this.createConsentBanner()
+      this.createPreferencesDialog()
       this.init()
     } else {
       console.error('Cookie consent configuration not provided')
     }
   }
 
-  createDialog() {
+  createPreferencesDialog() {
     const { language: { translations: { en } }, categories = {} } = this.config
-    const { consentModal, preferencesModal } = en
-    console.log('consentModal', consentModal)
+    const { preferencesModal } = en
 
+    // Preferences dialog //
     const cookiesListHtml = `
     <ul class="nsw-cookie-dialog__list">
     ${preferencesModal.sections.map(
@@ -119,6 +120,44 @@ class CookieConsent {
     } else {
       console.warn('NSW Tabs library not found')
     }
+  }
+
+  createConsentBanner() {
+    const { language: { translations: { en } } } = this.config
+    const { consentModal } = en
+
+    const consentBannerHtml = `
+      <div class="nsw-cookie-banner js-cookie-banner" role="alert">
+        <div class="nsw-cookie-banner__wrapper">
+          <span class="nsw-cookie-banner__main-message">
+            <div class="nsw-cookie-banner__content">
+              <div class="nsw-cookie-banner__title">${consentModal.title || 'Cookie use on our website'}</div>
+              ${consentModal.description ? `<p>${consentModal.description}</p>` : ''}
+            </div>
+            <div class="nsw-cookie-banner__buttons-container">
+              ${consentModal.acceptAllBtn ? `<button class="nsw-button nsw-button--dark js-close-dialog" data-role="accept-all">${consentModal.acceptAllBtn}</button>` : ''}
+              ${consentModal.acceptNecessaryBtn ? `<button class="nsw-button nsw-button--dark js-cookie-banner-reject" data-role="reject-all">${consentModal.acceptNecessaryBtn}</button>` : ''}
+              <a href="#cookie-consent" class="nsw-button nsw-button--dark-outline js-open-dialog-cookie-consent" aria-haspopup="dialog">${consentModal.showPreferencesBtn || 'Manage your cookies'}</a>
+            </div>
+          </span>
+          <span class="nsw-cookie-banner__confirmation-message" hidden="true">
+            <div class="nsw-cookie-banner__content">
+              <p>${consentModal.confirmationMessage}</p>
+            </div>
+            <div class="nsw-cookie-banner__buttons-container">
+              <button class="nsw-button nsw-button--dark js-cookie-banner-dismiss">Hide this message</button>
+            </div>
+          </span>
+        </div>
+      </div>
+    `
+
+    // Append the banner to the body
+    const tempDiv = document.createElement('div')
+    tempDiv.innerHTML = consentBannerHtml
+    this.bannerElement = tempDiv.firstElementChild
+
+    document.body.appendChild(this.bannerElement)
   }
 
   init() {

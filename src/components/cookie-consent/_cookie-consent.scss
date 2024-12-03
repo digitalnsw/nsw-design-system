@@ -1,13 +1,16 @@
 .nsw-cookie-banner {
   padding: rem(24px) 0;
-  // color: var(--nsw-text-light);
   background-color: var(--nsw-status-info-bg);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
 
   .nsw-icon-button {
     position: absolute;
     top: rem(-8px);
     right: rem(4px);
-    // color: var(--nsw-text-light);
 
     &:hover {
       @include nsw-hover;
@@ -31,10 +34,6 @@
 
   &__content {
     margin-right: rem(36px);
-
-    // a {
-    //   @include link-light;
-    // }
   }
 
   &__buttons-container {
@@ -67,11 +66,12 @@
 }
 
 .nsw-cookie-dialog {
+  z-index: 1100;
+  
   .nsw-dialog__top {
     position: sticky;
     top: 0;
     background: var(--nsw-white);
-    z-index: 110;
   }
 
   &__bottom {
@@ -121,9 +121,11 @@
 
   .nsw-dialog__content {
     padding-top: rem(16px);
+    padding-bottom: rem(16px);
   }
  
   .nsw-tabs__content {
+    border: 0;
     -webkit-overflow-scrolling: auto;
     max-height: 320px;
     padding-left: 8px;
