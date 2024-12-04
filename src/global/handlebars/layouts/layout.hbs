@@ -18,21 +18,111 @@
   <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone" rel="stylesheet">
   <link rel="stylesheet" href="/docs/css/docs.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.0.1/dist/cookieconsent.css">
 {{#unless page}}
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/atom-one-light.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/xml.min.js"></script>
 {{/unless}}
   <!-- Hotjar Tracking Code for NSW Design System -->
+  <script data-category="analytics">
+    (function (h, o, t, j, a, r) {
+      h.hj = h.hj || function () { (h.hj.q = h.hj.q || []).push(arguments) };
+      h._hjSettings = { hjid: 5063548, hjsv: 6 };
+      a = o.getElementsByTagName('head')[0];
+      r = o.createElement('script'); r.async = 1; 
+      r.setAttribute('data-category', 'analytics');
+      r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+      a.appendChild(r);
+    })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+  </script>
+  <script
+    type="text/plain"
+    data-category="foo">
+    alert('hello world');
+  </script>
   <script>
-      (function(h,o,t,j,a,r){
-          h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-          h._hjSettings={hjid:5063548,hjsv:6};
-          a=o.getElementsByTagName('head')[0];
-          r=o.createElement('script');r.async=1;
-          r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-          a.appendChild(r);
-      })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+    function waitForCookieConsent(callback) {
+      if (window.NSW && window.NSW.CookieConsent) {
+        callback()
+      } else {
+        setTimeout(() => waitForCookieConsent(callback), 100)
+      }
+    }
+
+    waitForCookieConsent(() => {
+      const config = {
+        categories: {
+          necessary: {
+            enabled: true,
+            readOnly: true,
+          },
+          analytics: {},
+          foo: {},
+        },
+        onConsent: (preferences) => console.log('Cookies preferences accepted'),
+        language: {
+          default: 'en',
+          translations: {
+            en: {
+              consentModal: {
+                title: 'Cookies on Digital NSW website',
+                description: "We've added essential and additional cookies to ensure this service works effectively, track how it's being used, and make necessary improvements. You can <a href='#'>manage your cookie settings</a> by visiting the 'Cookies' page, found at the bottom of this page.",
+                acceptAllBtn: 'Accept all',
+                acceptNecessaryBtn: 'Reject all',
+                showPreferencesBtn: 'Manage your preferences',
+                closeOnSelection: false,
+                confirmationMessage: `Thanks for making your selection`
+              },
+              preferencesModal: {
+                title: 'Manage cookie preferences',
+                acceptAllBtn: 'Accept all',
+                acceptNecessaryBtn: 'Reject all',
+                savePreferencesBtn: 'Accept current selection',
+                closeIconLabel: 'Close dialog',
+                sections: [
+                  {
+                    title: 'Necessary',
+                    description: 'These cookies collect information about how you use our website. All of the data is anonymized and cannot be used to identify you.',
+                    linkedCategory: 'necessary',
+                  },
+                  {
+                    title: 'Performance and Analytics',
+                    description: 'These cookies collect information about how you use our website. All of the data is anonymized and cannot be used to identify you.',
+                    linkedCategory: 'analytics',
+                  },
+                  {
+                    title: 'Foo',
+                    description: 'These cookies collect information about how you use our website. All of the data is anonymized and cannot be used to identify you.',
+                    linkedCategory: 'foo',
+                  },
+                ],
+                tabTitle1: 'Cookie preferences',
+                tabTitle2: 'What are cookies?',
+                cookiesInformation: `
+                  <p>Cookies are files saved on your phone, tablet or computer when you visit a website.</p>
+                  <p>They store information about how you use the website, such as the pages you visit.</p>
+                  <p>Cookies are not viruses or computer programs. They are very small so do not take up much space.</p>
+                  <h2>How we use cookies</h2>
+                  <p>We use cookies to:</p>
+                  <ul>
+                    <li>make our website work, for example by keeping it secure</li>
+                    <li>remember which pop-ups you've seen</li>
+                    <li>understand how you interact with our website, including tracking the links you click (analytics cookies).</li>
+                    <li>allow you to share pages with social networks like LinkedIn</li>
+                    <li>continuously improve our website for you</li>
+                  </ul>
+                  <p>Also mention if your NSW Government website does or does not collect personal information.</p>
+                  <p>For more information on what cookies are, how they work and how to delete them from your computer, you can visit <a href="https://www.allaboutcookies.org">www.allaboutcookies.org</a>.</p>`
+                },
+              },
+          },
+        },
+      }
+
+      const cookieConsent = document.querySelector('.js-cookie-consent')
+      new window.NSW.CookieConsent(config, cookieConsent)
+    })
   </script>
 </head>
 
