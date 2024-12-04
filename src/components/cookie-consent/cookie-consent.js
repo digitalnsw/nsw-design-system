@@ -4,7 +4,8 @@ class CookieConsent {
   constructor(config = null) {
     this.isInit = false
     this.config = config ? { ...config, autoShow: false } : null
-    this.dialogElement = null
+    this.consentBannerElement = null
+    this.preferencesDialogElement = null
 
     if (this.config) {
       this.createConsentBanner()
@@ -19,7 +20,6 @@ class CookieConsent {
     const { language: { translations: { en } }, categories = {} } = this.config
     const { preferencesModal } = en
 
-    // Preferences dialog //
     const cookiesListHtml = `
     <ul class="nsw-cookie-dialog__list">
     ${preferencesModal.sections.map(
@@ -101,13 +101,13 @@ class CookieConsent {
       // Dynamically create the dialog HTML
       const tempDiv = document.createElement('div')
       tempDiv.innerHTML = preferencesDialogHtml
-      this.dialogElement = tempDiv.firstElementChild
+      this.preferencesDialogElement = tempDiv.firstElementChild
 
       // Append the dialog directly to the body
-      document.body.appendChild(this.dialogElement)
+      document.body.appendChild(this.preferencesDialogElement)
 
       // Initialize the NSW Design System Dialog
-      this.dialogInstance = new window.NSW.Dialog(this.dialogElement)
+      this.dialogInstance = new window.NSW.Dialog(this.preferencesDialogElement)
       this.dialogInstance.init()
     } else {
       console.warn('Dialog trigger element not found')
@@ -155,60 +155,61 @@ class CookieConsent {
     // Append the banner to the body
     const tempDiv = document.createElement('div')
     tempDiv.innerHTML = consentBannerHtml
-    this.bannerElement = tempDiv.firstElementChild
+    this.consentBannerElement = tempDiv.firstElementChild
 
-    document.body.appendChild(this.bannerElement)
+    document.body.appendChild(this.consentBannerElement)
   }
 
   init() {
-    if (this.dialogElement) {
+    if (this.preferencesDialogElement) {
       this.initElements()
       this.initAPI()
       this.attachEventListeners()
+
+      // Immediately hide the banner if user has preferences set
+      // const preferences = CookieConsentAPI.getUserPreferences()
+      // if (preferences && preferences.acceptedCategories.length > 0) {
+      //   console.log('User has already made a selection')
+      //   this.consentBannerElement.setAttribute('hidden', 'true')
+      // }
     } else {
       console.error('Banner element not created')
     }
   }
 
   initElements() {
-    if (!this.dialogElement) {
-      console.error('Banner element not provided')
-      return
-    }
-    this.cookieInputContainer = this.dialogElement.querySelector('.nsw-cookie-dialog__list')
-    this.allCookieInputs = this.cookieInputContainer.querySelectorAll('input[type="checkbox"]')
-    this.acceptSelectionButton = this.dialogElement.querySelector('[data-role="accept-selection"]')
-    this.acceptAllButton = this.dialogElement.querySelector('[data-role="accept-all"]')
-    this.rejectAllButton = this.dialogElement.querySelector('[data-role="reject-all"]')
+    this.cookieInputContainer = document.querySelector('.nsw-cookie-dialog__list')
+    this.allCookieInputs = this.cookieInputContainer
+      ? this.cookieInputContainer.querySelectorAll('input[type="checkbox"]')
+      : []
+
+    this.acceptSelectionButton = document.querySelector('[data-role="accept-selection"]')
+    this.acceptAllButton = document.querySelector('[data-role="accept-all"]')
+    this.rejectAllButton = document.querySelector('[data-role="reject-all"]')
   }
 
   initAPI() {
-    CookieConsentAPI.run(this.config).then(() => {
-      this.isInit = true
-      this.loadUserPreferences()
-    })
+    if (!this.isInit) {
+      CookieConsentAPI.run(this.config).then(() => {
+        this.isInit = true
+        this.loadUserPreferences()
+      })
+    }
   }
 
   attachEventListeners() {
-    if (!this.dialogElement) return
+    // Delegate events from the document to handle all relevant elements dynamically
+    document.addEventListener('click', (event) => {
+      const { target } = event
 
-    if (this.acceptSelectionButton) {
-      this.acceptSelectionButton.addEventListener('click', () => {
-        this.sortSelection('accept-selection')
-      })
-    }
-
-    if (this.acceptAllButton) {
-      this.acceptAllButton.addEventListener('click', () => {
-        this.sortSelection('accept-all')
-      })
-    }
-
-    if (this.rejectAllButton) {
-      this.rejectAllButton.addEventListener('click', () => {
-        this.sortSelection('reject-all')
-      })
-    }
+      if (target.matches('[data-role="accept-all"]')) {
+        this.handleConsentAction('accept-all')
+      } else if (target.matches('[data-role="reject-all"]')) {
+        this.handleConsentAction('reject-all')
+      } else if (target.matches('[data-role="accept-selection"]')) {
+        this.handleConsentAction('accept-selection')
+      }
+    })
   }
 
   loadUserPreferences() {
@@ -222,27 +223,55 @@ class CookieConsent {
     })
   }
 
-  sortSelection(criteria) {
-    const checked = []
-    const unchecked = []
+  handleConsentAction(action) {
+    switch (action) {
+      case 'accept-all': {
+        console.log('User accepted all cookies')
+        CookieConsentAPI.acceptCategory('all', [])
+        break
+      }
+      case 'reject-all': {
+        CookieConsentAPI.acceptCategory([], 'all')
+        break
+      }
+      case 'accept-selection': {
+        const checked = []
+        const unchecked = []
 
-    this.allCookieInputs.forEach((checkbox) => {
-      if (criteria === 'accept-selection') {
-        if (checkbox.checked) {
-          checked.push(checkbox.value)
-        } else {
-          unchecked.push(checkbox.value)
-        }
-      }
-      if (criteria === 'accept-all') {
-        checked.push(checkbox.value)
-      }
-      if (criteria === 'reject-all') {
-        unchecked.push(checkbox.value)
-      }
-    })
+        this.allCookieInputs.forEach((checkbox) => {
+          if (checkbox.checked) {
+            checked.push(checkbox.value)
+          } else {
+            unchecked.push(checkbox.value)
+          }
+        })
 
-    CookieConsentAPI.acceptCategory(checked, unchecked)
+        CookieConsentAPI.acceptCategory(checked, unchecked)
+        break
+      }
+      default: {
+        console.warn(`Unhandled action: ${action}`)
+      }
+    }
+
+    // Hide banner if present
+    this.hideConsentBanner()
+  }
+
+  hideConsentBanner() {
+    if (this.consentBannerElement) {
+      // Add a hidden class for transition
+      this.consentBannerElement.classList.add('hidden')
+
+      // Listen for the transition to end
+      const onTransitionEnd = () => {
+        this.consentBannerElement.remove() // Remove the banner from the DOM
+        this.consentBannerElement = null
+        this.consentBannerElement.removeEventListener('transitionend', onTransitionEnd) // Clean up the event listener
+      }
+
+      this.consentBannerElement.addEventListener('transitionend', onTransitionEnd)
+    }
   }
 }
 
