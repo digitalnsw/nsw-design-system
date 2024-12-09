@@ -7,6 +7,9 @@ class CookieConsent {
     this.consentBannerElement = null
     this.preferencesDialogElement = null
 
+    this.consentBannerConfirmationMessage = ''
+    this.consentSelectionMade = false
+
     if (this.config) {
       this.createConsentBanner()
       this.createPreferencesDialog()
@@ -125,13 +128,14 @@ class CookieConsent {
   createConsentBanner() {
     const { language: { translations: { en } } } = this.config
     const { consentModal } = en
+    this.consentBannerConfirmationMessage = consentModal.confirmationMessage || ''
 
     const consentBannerHtml = `
       <div class="nsw-cookie-banner js-cookie-banner" role="alert">
         <div class="nsw-cookie-banner__wrapper">
-          <span class="nsw-cookie-banner__main-message">
+          <div class="nsw-cookie-banner__title">${consentModal.title || 'Cookie use on our website'}</div>
+          <span class="nsw-cookie-banner__main-message nsw-cookie-banner__description">
             <div class="nsw-cookie-banner__content">
-              <div class="nsw-cookie-banner__title">${consentModal.title || 'Cookie use on our website'}</div>
               ${consentModal.description ? `<p>${consentModal.description}</p>` : ''}
             </div>
             <div class="nsw-cookie-banner__buttons-container">
@@ -254,23 +258,47 @@ class CookieConsent {
       }
     }
 
-    // Hide banner if present
-    this.hideConsentBanner()
+    this.consentSelectionMade = true
+
+    this.showConfirmationMessage()
+
+    // Hide banner if present or confirmation is present
+    if (!this.consentBannerConfirmationMessage) {
+      this.hideConsentBanner()
+    }
+  }
+
+  showConfirmationMessage() {
+    // Select the confirmation message element
+    const confirmationMessage = this.consentBannerElement.querySelector('.nsw-cookie-banner__confirmation-message')
+
+    // Select the description element
+    const description = this.consentBannerElement.querySelector('.nsw-cookie-banner__description')
+
+    if (confirmationMessage) {
+      // Change the hidden attribute to false for the confirmation message
+      confirmationMessage.removeAttribute('hidden')
+    }
+
+    if (description) {
+      // Change the hidden attribute to true for the description
+      description.setAttribute('hidden', 'true')
+    }
   }
 
   hideConsentBanner() {
     if (this.consentBannerElement) {
-      // Add a hidden class for transition
-      this.consentBannerElement.classList.add('hidden')
+      // Add a hidden attribute for transition
+      this.consentBannerElement.setAttribute('hidden', 'true')
 
       // Listen for the transition to end
-      const onTransitionEnd = () => {
-        this.consentBannerElement.remove() // Remove the banner from the DOM
-        this.consentBannerElement = null
-        this.consentBannerElement.removeEventListener('transitionend', onTransitionEnd) // Clean up the event listener
-      }
+      // const onTransitionEnd = () => {
+      //   this.consentBannerElement.remove() // Remove the banner from the DOM
+      //   this.consentBannerElement = null
+      //   this.consentBannerElement.removeEventListener('transitionend', onTransitionEnd) // Clean up the event listener
+      // }
 
-      this.consentBannerElement.addEventListener('transitionend', onTransitionEnd)
+      // this.consentBannerElement.addEventListener('transitionend', onTransitionEnd)
     }
   }
 }
