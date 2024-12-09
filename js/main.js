@@ -4219,6 +4219,11 @@
         ariaExpanded = this.trigger.getAttribute('aria-expanded') === 'true' ? 'false' : 'true';
       }
       this.trigger.setAttribute('aria-expanded', ariaExpanded);
+      const options = this.dropdown.querySelectorAll(`.js-${this.optionClass}`);
+      options.forEach(option => {
+        const isVisible = ariaExpanded === 'true';
+        option.setAttribute('aria-hidden', !isVisible);
+      });
       if (ariaExpanded === 'true') {
         const selectedOption = this.getSelectedOption() || this.allButton;
         this.constructor.moveFocusFn(selectedOption);
@@ -4387,7 +4392,8 @@
         const disabled = options[i].hasAttribute('disabled') ? 'disabled' : '';
         const checked = options[i].hasAttribute('selected') ? 'checked' : '';
         const uniqueName = this.constructor.createSafeCss(`${this.selectId}-${options[i].value}-${this.optionIndex.toString()}`);
-        list = `${list}<li class="js-${this.optionClass}" role="option" data-value="${options[i].value}" ${selected} data-label="${options[i].text}" data-index="${this.optionIndex}"><input aria-hidden="true" class="${this.prefix}${this.checkboxInputClass} js-${this.checkboxClass}" type="checkbox" id="${uniqueName}" ${checked} ${disabled}><label class="${this.prefix}${this.checkboxLabelClass} ${this.prefix}${this.itemClass} ${this.prefix}${this.itemClass}--option" aria-hidden="true" for="${uniqueName}"><span>${options[i].text}</span></label></li>`;
+        const ariaHidden = options[i].hasAttribute('hidden') ? 'aria-hidden="true"' : '';
+        list = `${list}<li class="js-${this.optionClass}" role="option" data-value="${options[i].value}" ${selected} ${ariaHidden} data-label="${options[i].text}" data-index="${this.optionIndex}"><input class="${this.prefix}${this.checkboxInputClass} js-${this.checkboxClass}" type="checkbox" id="${uniqueName}" ${checked} ${disabled}><label class="${this.prefix}${this.checkboxLabelClass} ${this.prefix}${this.itemClass} ${this.prefix}${this.itemClass}--option" for="${uniqueName}"><span>${options[i].text}</span></label></li>`;
         this.optionIndex += 1;
       }
       return list;
