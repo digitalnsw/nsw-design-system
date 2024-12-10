@@ -1,5 +1,5 @@
 {{#if-equals type "banner"}}
-<div class="nsw-cookie-banner js-cookie-banner" role="alert">
+{{!-- <div class="nsw-cookie-banner js-cookie-banner" role="alert">
   <div class="nsw-cookie-banner__wrapper {{#if-equals type "auto opt in"}}js-cookie-banner-auto-opt-in{{else}}js-cookie-banner-opt-in{{/if-equals}}">
     <span class="nsw-cookie-banner__main-message">
       <div class="nsw-cookie-banner__content">
@@ -23,89 +23,9 @@
     </span>
     {{/if}}
   </div>
-</div>
+</div> --}}
 {{/if-equals}}
 
 {{#if-equals type "dialog"}}
-<a href="#cookie-consent" class="js-open-dialog-cookie-consent" aria-haspopup="dialog">Cookie preferences</a>
-
-{{!-- <div class="js-cookie-consent nsw-cookie-dialog nsw-dialog{{#unless secondary}} nsw-dialog--single-action{{/unless}} js-dialog{{#if dismiss}} js-dialog-dismiss{{/if}}{{#if active}} active{{/if}}" id="{{id}}" role="dialog" aria-labelledby="{{id}}-title">
-  <div class="nsw-dialog__wrapper">
-    <div class="nsw-dialog__container">
-      <div class="nsw-dialog__top">
-        <div class="nsw-dialog__title">
-          <h2 id="{{id}}-title">{{#if title}}{{title}}{{else}}Cookie preferences{{/if}}</h2>
-        </div>
-        {{#if dismiss}}
-        <div class="nsw-dialog__close">
-          <button class="nsw-icon-button js-close-dialog">
-            <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">close</span>
-            <span class="sr-only">Close</span>
-          </button>
-        </div>
-        {{/if}}
-      </div>
-      <div class="nsw-dialog__content">
-        <div class="nsw-tabs js-tabs">
-          <ul class="nsw-tabs__list">
-            <li><a href="#cookie-settings" class="js-tabs-fixed">Cookie settings</a></li>
-            <li><a href="#cookie-information" class="js-tabs-fixed">What are cookies?</a></li>
-          </ul>
-          <section id="cookie-settings" class="nsw-tabs__content nsw-tabs__content--side-flush">
-            {{#if content}}{{{content}}}{{else}}<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>{{/if}}
-            <hr />
-            <ul class="nsw-cookie-dialog__list">
-              <li class="nsw-cookie-dialog__list-item">
-                <input class="nsw-form__checkbox-input" value="analytics" type="checkbox" name="form-checkbox-multi-1" id="cookie-settings-1">
-                <label class="nsw-form__checkbox-label" for="cookie-settings-1">Marketing cookies (optional)</label>
-                <div class="nsw-cookie-dialog__cookie-details">
-                  <p>These cookies are used to optimise marketing communications and show you ads on other sites.</p>
-                </div>
-              </li>
-              <li class="nsw-cookie-dialog__list-item">
-                <input class="nsw-form__checkbox-input" value="foo" type="checkbox" name="form-checkbox-multi-2" id="cookie-settings-2">
-                <label class="nsw-form__checkbox-label" for="cookie-settings-2">Foo</label>
-                <div class="nsw-cookie-dialog__cookie-details">
-                  <p>These cookies help us understand how you interact with the site. We use this data to identify areas to improve.</p>
-                </div>
-              </li>
-            </ul>
-          </section>
-          <section id="cookie-information" class="nsw-tabs__content nsw-tabs__content--side-flush">
-            {{#if cookie-information}}{{{cookie-information}}}{{else}}{{/if}}
-            <p>Cookies are files saved on your phone, tablet or computer when you visit a website.</p>
-            <p>They store information about how you use the website, such as the pages you visit.</p>
-            <p>Cookies are not viruses or computer programs. They are very small so do not take up much space.</p>
-            <h2>How we use cookies</h2>
-            <p>We use cookies to:</p>
-            <ul>
-              <li>make our website work, for example by keeping it secure</li>
-              <li>remember which pop-ups you've seen</li>
-              <li>understand how you interact with our website, including tracking the links you click (analytics cookies).</li>
-              <li>allow you to share pages with social networks like LinkedIn</li>
-              <li>continuously improve our website for you</li>
-            </ul>
-            <p>Also mention if your NSW Government website does or does not collect personal information.</p>
-            <p>For more information on what cookies are, how they work and how to delete them from your computer, you can visit <a href="https://www.allaboutcookies.org">www.allaboutcookies.org</a>.</p>
-          </section>
-        </div>
-      </div>
-    </div>
-    <div class="nsw-cookie-dialog__bottom">
-      <div class="nsw-cookie-dialog__cta-group">
-        {{#if savePreferencesBtn}}
-          <button class="nsw-button nsw-button--dark js-close-dialog" data-role="accept-selection">{{#if savePreferencesBtn}}{{savePreferencesBtn}}{{else}}Accept current selection{{/if}}</button>
-        {{/if}}
-      </div>
-      <div class="nsw-cookie-dialog__cta-group">
-        {{#if acceptAllBtn}}
-          <button class="nsw-button nsw-button--dark-outline-solid js-close-dialog" data-role="accept-all">{{#if acceptAllBtn}}{{acceptAllBtn}}{{else}}Accept all cookies{{/if}}</button>
-        {{/if}}
-        {{#if acceptNecessaryBtn}}
-          <button class="nsw-button nsw-button--dark-outline-solid js-close-dialog" data-role="reject-all">{{#if acceptNecessaryBtn}}{{acceptNecessaryBtn}}{{else}}Reject all cookies{{/if}}</button>
-        {{/if}}
-      </div>
-    </div>
-  </div>
-</div> --}}
+<a href="#" class="js-open-dialog-cookie-consent" aria-haspopup="dialog">Cookie preferences</a>
 {{/if-equals}}

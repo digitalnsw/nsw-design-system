@@ -95,6 +95,23 @@ function lintStyles() {
     }))
 }
 
+function removeCookieConsentCSS() {
+  return src('dist/**/*.js')
+    .pipe(
+      inject.append(`
+        document.addEventListener('DOMContentLoaded', () => {
+          const unwantedStylesheet = Array.from(document.querySelectorAll('link')).find(
+            link => link.href.includes('cookieconsent.css')
+          );
+          if (unwantedStylesheet) {
+            unwantedStylesheet.remove();
+          }
+        });
+      `)
+    )
+    .pipe(dest('dist'));
+}
+
 function generateSitemap() {
   return src(['./dist/**/*.html', '!**/blank.html'], { read: false })
     .pipe(sitemap({ siteUrl: config.baseUrl.full }))
@@ -343,7 +360,7 @@ function bumping() {
 }
 
 const styles = series(lintStyles, buildStyles, buildCoreStyles, buildDocStyles)
-const javascript = series(lintJavascript, compileJS, compileTypes, compileDocsJS)
+const javascript = series(lintJavascript, compileJS, compileTypes, compileDocsJS, removeCookieConsentCSS)
 
 function watchFiles(done) {
   watch(config.scss.watch, series(styles, reload))

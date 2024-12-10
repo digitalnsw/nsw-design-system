@@ -134,13 +134,13 @@ class CookieConsent {
       <div class="nsw-cookie-banner js-cookie-banner" role="alert">
         <div class="nsw-cookie-banner__wrapper">
           <div class="nsw-cookie-banner__title">${consentModal.title || 'Cookie use on our website'}</div>
-          <span class="nsw-cookie-banner__main-message nsw-cookie-banner__description">
+          <span class="nsw-cookie-banner__description">
             <div class="nsw-cookie-banner__content">
               ${consentModal.description ? `<p>${consentModal.description}</p>` : ''}
             </div>
             <div class="nsw-cookie-banner__buttons-container">
-              ${consentModal.acceptAllBtn ? `<button class="nsw-button nsw-button--dark js-close-dialog" data-role="accept-all">${consentModal.acceptAllBtn}</button>` : ''}
-              ${consentModal.acceptNecessaryBtn ? `<button class="nsw-button nsw-button--dark js-cookie-banner-reject" data-role="reject-all">${consentModal.acceptNecessaryBtn}</button>` : ''}
+              ${consentModal.acceptAllBtn ? `<button class="nsw-button nsw-button--dark js-close-dialog ${!consentModal.confirmationMessage ? 'js-dismiss-cookie-banner' : ''}" data-role="accept-all">${consentModal.acceptAllBtn}</button>` : ''}
+              ${consentModal.acceptNecessaryBtn ? `<button class="nsw-button nsw-button--dark js-cookie-banner-reject  ${!consentModal.confirmationMessage ? 'js-dismiss-cookie-banner' : ''}" data-role="reject-all">${consentModal.acceptNecessaryBtn}</button>` : ''}
               <a href="#cookie-consent" class="nsw-button nsw-button--dark-outline js-open-dialog-cookie-consent" aria-haspopup="dialog">${consentModal.showPreferencesBtn || 'Manage your cookies'}</a>
             </div>
           </span>
@@ -149,7 +149,7 @@ class CookieConsent {
               <p>${consentModal.confirmationMessage}</p>
             </div>
             <div class="nsw-cookie-banner__buttons-container">
-              <button class="nsw-button nsw-button--dark js-cookie-banner-dismiss">Hide this message</button>
+              <button class="nsw-button nsw-button--dark js-dismiss-cookie-banner">Hide this message</button>
             </div>
           </span>
         </div>
@@ -212,6 +212,11 @@ class CookieConsent {
         this.handleConsentAction('reject-all')
       } else if (target.matches('[data-role="accept-selection"]')) {
         this.handleConsentAction('accept-selection')
+      }
+
+      // If target is dismissable
+      if (target.matches('.js-dismiss-cookie-banner')) {
+        this.hideConsentBanner()
       }
     })
   }

@@ -60,18 +60,18 @@
           analytics: {},
           foo: {},
         },
-        onConsent: (preferences) => console.log('Cookies preferences accepted'),
+        {{!-- onConsent: (preferences) => console.log('Cookies preferences accepted'), --}}
         language: {
           default: 'en',
           translations: {
             en: {
               consentModal: {
-                title: 'Cookies on Digital NSW website',
+                title: 'Cookies on the NSW Design System website',
                 description: "We've added essential and additional cookies to ensure this service works effectively, track how it's being used, and make necessary improvements. You can <a href='#'>manage your cookie settings</a> by visiting the 'Cookies' page, found at the bottom of this page.",
                 acceptAllBtn: 'Accept all',
                 acceptNecessaryBtn: 'Reject all',
                 showPreferencesBtn: 'Manage your preferences',
-                confirmationMessage: `Thanks for making your selection`
+                confirmationMessage: `Thanks for making your selection. View and update your cookie preferences <a href="#cookie-consent" class="js-open-dialog-cookie-consent" aria-haspopup="dialog">here</a>.`
               },
               preferencesModal: {
                 title: 'Manage cookie preferences',
@@ -82,17 +82,17 @@
                 sections: [
                   {
                     title: 'Necessary',
-                    description: 'These cookies collect information about how you use our website. All of the data is anonymized and cannot be used to identify you.',
+                    description: 'These cookies collect information about how you use our website. All of the data is anonymised and cannot be used to identify you.',
                     linkedCategory: 'necessary',
                   },
                   {
                     title: 'Performance and Analytics',
-                    description: 'These cookies collect information about how you use our website. All of the data is anonymized and cannot be used to identify you.',
+                    description: 'These cookies collect information about how you use our website. All of the data is anonymised and cannot be used to identify you.',
                     linkedCategory: 'analytics',
                   },
                   {
                     title: 'Foo',
-                    description: 'These cookies collect information about how you use our website. All of the data is anonymized and cannot be used to identify you.',
+                    description: 'These cookies collect information about how you use our website. All of the data is anonymised and cannot be used to identify you.',
                     linkedCategory: 'foo',
                   },
                 ],
