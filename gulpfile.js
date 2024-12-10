@@ -95,6 +95,23 @@ function lintStyles() {
     }))
 }
 
+function removeCookieConsentCSS() {
+  return src('dist/**/*.js')
+    .pipe(
+      inject.append(`
+        document.addEventListener('DOMContentLoaded', () => {
+          const unwantedStylesheet = Array.from(document.querySelectorAll('link')).find(
+            link => link.href.includes('cookieconsent.css')
+          );
+          if (unwantedStylesheet) {
+            unwantedStylesheet.remove();
+          }
+        });
+      `)
+    )
+    .pipe(dest('dist'));
+}
+
 function generateSitemap() {
   return src(['./dist/**/*.html', '!**/blank.html'], { read: false })
     .pipe(sitemap({ siteUrl: config.baseUrl.full }))
@@ -315,14 +332,14 @@ function renamePathForProd() {
 
 function addAnalytics() {
   return src(`${config.dir.build}/**/*.html`)
-  .pipe(inject.after('<head>', `<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  .pipe(inject.after('<head>', `<script data-category="analytics">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-P2NKBBJZ');</script>
   `))
-    .pipe(inject.after('<head>', `<script async src="https://www.googletagmanager.com/gtag/js?id=G-49T9M12F86"></script>
-<script>
+    .pipe(inject.after('<head>', `<script async data-category="analytics" src="https://www.googletagmanager.com/gtag/js?id=G-49T9M12F86"></script>
+<script data-category="analytics">
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
@@ -343,7 +360,7 @@ function bumping() {
 }
 
 const styles = series(lintStyles, buildStyles, buildCoreStyles, buildDocStyles)
-const javascript = series(lintJavascript, compileJS, compileTypes, compileDocsJS)
+const javascript = series(lintJavascript, compileJS, compileTypes, compileDocsJS, removeCookieConsentCSS)
 
 function watchFiles(done) {
   watch(config.scss.watch, series(styles, reload))

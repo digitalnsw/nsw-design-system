@@ -1,0 +1,181 @@
+.nsw-cookie-banner {
+  padding: rem(24px) 0;
+  background-color: var(--nsw-brand-light);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+
+  .nsw-icon-button {
+    position: absolute;
+    top: rem(-8px);
+    right: rem(4px);
+
+    &:hover {
+      @include nsw-hover;
+      background-color: var(--nsw-hover-light);
+    }
+
+    &:focus {
+      @include nsw-focus($color: var(--nsw-text-light));
+    }
+  }
+
+  &__wrapper {
+    @include container;
+    position: relative;
+  }
+
+  &__title {
+    @include font-size('md');
+    font-weight: var(--nsw-font-bold);
+  }
+
+  &__content {
+    margin: rem(16px) rem(36px) rem(24px) 0;
+  }
+
+  &__buttons-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: rem(16px);
+    margin-top: rem(16px);
+  }
+
+  &--light {
+    background-color: var(--nsw-status-info-bg);
+    color: var(--nsw-text-dark);
+
+    .nsw-cookie-banner__content a {
+      @include link-dark;
+    }
+
+    .nsw-icon-button {
+      color: var(--nsw-brand-dark);
+
+      &:hover {
+        background-color: var(--nsw-hover);
+      }
+
+      &:focus {
+        outline-color: var(--nsw-focus);
+      }
+    }
+  }
+}
+
+.nsw-cookie-dialog {
+  z-index: 1100;
+
+  .nsw-dialog__top {
+    position: sticky;
+    top: 0;
+    background: var(--nsw-white);
+  }
+
+  &__bottom {
+    border-top: 1px solid var(--nsw-grey-04);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    padding: rem(16px);
+
+    @include breakpoint('md') {
+      flex-direction: row-reverse;
+      justify-content: space-between;
+    }
+
+    @include breakpoint('lg') {
+      padding: rem(32px);
+    }
+
+    button {
+      margin-bottom: rem(16px);
+
+      @include breakpoint('md') {
+        margin-bottom: 0;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+
+        @include breakpoint('md') {
+          margin-left: 0;
+        }
+      }
+    }
+  }
+
+  &__cta-group {
+    display: flex;
+    gap: rem(16px);
+
+    @include breakpoint('md') {
+      flex-direction: row;
+    }
+  }
+
+  .nsw-dialog__content {
+    padding-top: rem(16px);
+    padding-bottom: rem(16px);
+  }
+ 
+  .nsw-tabs__content {
+    border: 0;
+    -webkit-overflow-scrolling: auto;
+    max-height: 320px;
+    padding-left: 8px;
+    overflow: scroll;
+
+    &:focus-visible {
+      outline: 2px solid var(--nsw-brand-dark);
+      border: 0;
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+      border-radius: 4px;
+      background-color: var(--nsw-grey-03);
+      box-shadow: 0 0 1px var(--nsw-grey-03);
+    }
+  }
+  
+  &__list {
+    display: flex;
+    flex-direction: column;
+    padding-left: 0;
+    gap: rem(8px);
+  }
+  
+  &__list-item {
+    display: flex;
+    flex-direction: column;
+    gap: rem(8px);
+
+    label {
+      @include font-size('md');
+      font-weight: var(--nsw-font-bold);
+      cursor: pointer;
+    }
+
+    &:not(:nth-child(1)) {
+      border-top: 1px solid var(--nsw-grey-04);
+      padding-top: rem(28px);
+    }
+  }
+
+  &__cookie-details {
+    margin-left: 48px;
+  }
+}
