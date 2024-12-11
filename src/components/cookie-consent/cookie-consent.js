@@ -243,29 +243,44 @@ class CookieConsent {
   }
 
   handleConsentAction(action) {
+    const updatePreferencesDialog = () => {
+      const preferences = CookieConsentAPI.getUserPreferences()
+      if (preferences && this.allCookieInputs) {
+        this.allCookieInputs.forEach((checkboxElement) => {
+          const checkbox = checkboxElement // Local reference
+          checkbox.checked = preferences.acceptedCategories.includes(checkbox.value)
+        })
+      }
+    }
+
     switch (action) {
       case 'accept-all': {
         console.log('User accepted all cookies')
-        CookieConsentAPI.acceptCategory('all', [])
+        CookieConsentAPI.acceptCategory('all')
+        updatePreferencesDialog()
         break
       }
       case 'reject-all': {
-        CookieConsentAPI.acceptCategory([], 'all')
+        console.log('User rejected all cookies')
+        CookieConsentAPI.acceptCategory([])
+        updatePreferencesDialog()
         break
       }
       case 'accept-selection': {
+        console.log('User accepted selected cookies')
         const checked = []
         const unchecked = []
 
-        this.allCookieInputs.forEach((checkbox) => {
-          if (checkbox.checked) {
-            checked.push(checkbox.value)
+        this.allCookieInputs.forEach((checkboxElement) => {
+          if (checkboxElement.checked) {
+            checked.push(checkboxElement.value)
           } else {
-            unchecked.push(checkbox.value)
+            unchecked.push(checkboxElement.value)
           }
         })
 
         CookieConsentAPI.acceptCategory(checked, unchecked)
+        updatePreferencesDialog()
         break
       }
       default: {
