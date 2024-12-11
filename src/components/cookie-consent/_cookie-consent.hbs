@@ -1,31 +1,7 @@
 {{#if-equals type "banner"}}
-{{!-- <div class="nsw-cookie-banner js-cookie-banner" role="alert">
-  <div class="nsw-cookie-banner__wrapper {{#if-equals type "auto opt in"}}js-cookie-banner-auto-opt-in{{else}}js-cookie-banner-opt-in{{/if-equals}}">
-    <span class="nsw-cookie-banner__main-message">
-      <div class="nsw-cookie-banner__content">
-        <div class="nsw-cookie-banner__title">{{title}}</div>
-        <p>{{{content}}}</p>
-      </div>
-      <div class="nsw-cookie-banner__buttons-container">
-        <button class="nsw-button nsw-button--dark js-cookie-banner-accept">{{#if ctaAccept}}{{ctaAccept}}{{else}}Accept all cookies{{/if}}</button>
-        {{#if ctaReject}}<button href="{{ctaHref}}" class="nsw-button nsw-button--dark js-cookie-banner-reject">{{#if ctaReject}}{{ctaReject}}{{else}}Reject cookies{{/if}}</button>{{/if}}
-        <a href="{{urlManageCookies}}" class="nsw-button nsw-button--dark-outline">Manage your cookies</a>
-      </div>
-    </span>
-    {{#if confirmationMessage}}
-    <span class="nsw-cookie-banner__confirmation-message" hidden="true">
-      <div class="nsw-cookie-banner__content">
-        <p>{{{confirmationMessage}}}</p>
-      </div>
-      <div class="nsw-cookie-banner__buttons-container">
-        <button class="nsw-button nsw-button--dark js-cookie-banner-dismiss">Hide this message</button>
-      </div>
-    </span>
-    {{/if}}
-  </div>
-</div> --}}
+<a href="#" class="js-open-banner-cookie-consent" aria-haspopup="dialog">Trigger consent banner</a>
 {{/if-equals}}
 
 {{#if-equals type "dialog"}}
-<a href="#" class="js-open-dialog-cookie-consent" aria-haspopup="dialog">Cookie preferences</a>
+<a href="#" class="js-open-dialog-cookie-consent-preferences" aria-haspopup="dialog">Trigger cookie preferences</a>
 {{/if-equals}}

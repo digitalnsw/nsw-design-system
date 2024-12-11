@@ -54,7 +54,7 @@ class CookieConsent {
 
     // Create the dialog dynamically
     const preferencesDialogHtml = `
-      <div class="js-cookie-consent nsw-cookie-dialog nsw-dialog nsw-dialog--single-action js-dialog js-dialog-dismiss" id="cookie-consent" role="dialog" aria-labelledby="cookie-consent-dialog">
+      <div class="js-cookie-consent nsw-cookie-dialog nsw-dialog nsw-dialog--single-action js-dialog js-dialog-dismiss" id="cookie-consent-preferences" role="dialog" aria-labelledby="cookie-consent-dialog">
         <div class="nsw-dialog__wrapper">
           <div class="nsw-dialog__container">
             <div class="nsw-dialog__top">
@@ -97,7 +97,7 @@ class CookieConsent {
     `
 
     // Append to the body
-    const dialogContainer = document.querySelector('.js-open-dialog-cookie-consent')
+    const dialogContainer = document.querySelector('.js-open-dialog-cookie-consent-preferences')
 
     // Initialise dialog
     if (dialogContainer) {
@@ -141,7 +141,7 @@ class CookieConsent {
             <div class="nsw-cookie-banner__buttons-container">
               ${consentModal.acceptAllBtn ? `<button class="nsw-button nsw-button--dark js-close-dialog ${!consentModal.confirmationMessage ? 'js-dismiss-cookie-banner' : ''}" data-role="accept-all">${consentModal.acceptAllBtn}</button>` : ''}
               ${consentModal.acceptNecessaryBtn ? `<button class="nsw-button nsw-button--dark js-cookie-banner-reject  ${!consentModal.confirmationMessage ? 'js-dismiss-cookie-banner' : ''}" data-role="reject-all">${consentModal.acceptNecessaryBtn}</button>` : ''}
-              <a href="#cookie-consent" class="nsw-button nsw-button--dark-outline js-open-dialog-cookie-consent" aria-haspopup="dialog">${consentModal.showPreferencesBtn || 'Manage your cookies'}</a>
+              <a href="#cookie-consent" class="nsw-button nsw-button--dark-outline js-open-dialog-cookie-consent-preferences" aria-haspopup="dialog">${consentModal.showPreferencesBtn || 'Manage your cookies'}</a>
             </div>
           </span>
           <span class="nsw-cookie-banner__confirmation-message" hidden="true">
@@ -171,11 +171,10 @@ class CookieConsent {
       this.attachEventListeners()
 
       // Immediately hide the banner if user has preferences set
-      // const preferences = CookieConsentAPI.getUserPreferences()
-      // if (preferences && preferences.acceptedCategories.length > 0) {
-      //   console.log('User has already made a selection')
-      //   this.consentBannerElement.setAttribute('hidden', 'true')
-      // }
+      const preferences = CookieConsentAPI.getUserPreferences()
+      if (preferences && preferences.acceptedCategories.length > 0) {
+        this.consentBannerElement.setAttribute('hidden', 'true')
+      }
     } else {
       console.error('Banner element not created')
     }
@@ -217,6 +216,17 @@ class CookieConsent {
       // If target is dismissable
       if (target.matches('.js-dismiss-cookie-banner')) {
         this.hideConsentBanner()
+      }
+
+      // Manual trigger of cookie consent banner
+      if (target.matches('.js-open-banner-cookie-consent')) {
+        event.preventDefault()
+        this.showConsentBanner()
+      }
+
+      // Manual trigger of cookie consent preferences dialog
+      if (target.matches('.js-open-dialog-cookie-consent-preferences')) {
+        event.preventDefault()
       }
     })
   }
@@ -288,6 +298,27 @@ class CookieConsent {
     if (description) {
       // Change the hidden attribute to true for the description
       description.setAttribute('hidden', 'true')
+    }
+  }
+
+  showConsentBanner() {
+    if (this.consentBannerElement) {
+      const description = this.consentBannerElement.querySelector('.nsw-cookie-banner__description')
+      const confirmationMessage = this.consentBannerElement.querySelector('.nsw-cookie-banner__confirmation-message')
+
+      if (this.consentBannerConfirmationMessage && confirmationMessage) {
+        // Hide the confirmation message if it's present
+        confirmationMessage.setAttribute('hidden', 'true')
+      }
+
+      if (description) {
+        // Show the main description
+        description.removeAttribute('hidden')
+      }
+
+      this.consentBannerElement.removeAttribute('hidden')
+    } else {
+      console.warn('Consent banner element not found.')
     }
   }
 
