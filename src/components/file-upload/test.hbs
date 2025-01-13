@@ -1,0 +1,54 @@
+---
+title: File upload
+width: narrow
+page: true
+---
+{{#>_layout-container}}
+
+<form id="form" class="nsw-form">
+
+  <div class="nsw-form__group nsw-m-bottom-lg">
+    {{>_file-upload
+    js=true
+    id="file-upload"
+    label="Upload files"
+    helper-text="Formats accepted: JPG, PNG or PDF <br /> File size must not exceed 350MB"
+    accept=true
+    multiple=true
+    }}
+  </div>
+
+  {{>_button-input type="submit" style="dark" text="Submit"}}
+
+  <p id="log"></p>
+</form>
+
+<script>
+function logSubmit(event) {
+  event.preventDefault();
+  const form = event.target; // Reference the form
+  const formData = new FormData(form);
+
+  log.innerHTML = ""; // Clear previous log output
+
+  for (const [key, value] of formData.entries()) {
+    if (value instanceof File && value.name) {
+      log.innerHTML += `<pre>${key}:
+  Name: ${value.name}
+  Size: ${value.size} bytes
+  Type: ${value.type}</pre>\n`;
+    } else {
+      log.innerHTML += `<pre>${key}: ${value}</pre>\n`;
+    }
+  }
+
+  form.reset(); // Clear the form
+}
+
+const form = document.querySelector("form");
+const log = document.getElementById("log");
+form.addEventListener("submit", logSubmit);
+</script>
+
+{{/_layout-container}}
+
