@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head><script async src="https://www.googletagmanager.com/gtag/js?id=G-49T9M12F86"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-49T9M12F86');
+</script>
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-P2NKBBJZ');</script>
+  
+  <title>NSW Digital Design System - File upload</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://designsystem.nsw.gov.au/nsw-og-image.jpg">
+  <meta name="robots" content="noindex" />
+  <link rel="icon" href="https://designsystem.nsw.gov.au/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone" rel="stylesheet">
+  <link rel="stylesheet" href="https://designsystem.nsw.gov.au/docs/css/docs.css">
+  <!-- Hotjar Tracking Code for NSW Design System -->
+  <script>
+      (function(h,o,t,j,a,r){
+          h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+          h._hjSettings={hjid:5063548,hjsv:6};
+          a=o.getElementsByTagName('head')[0];
+          r=o.createElement('script');r.async=1;
+          r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+          a.appendChild(r);
+      })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+  </script>
+</head>
+
+<body><noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P2NKBBJZ"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    
+
+<section class="nsw-section">
+  <div class="nsw-container nsw-p-y-sm">
+    <div class="nsw-layout">
+      <main class="nsw-layout__main">
+        
+        <form id="form" class="nsw-form">
+        
+          <div class="nsw-form__group nsw-m-bottom-lg">
+            <label class="nsw-form__label" for="file-upload">Upload files</label>
+            <span class="nsw-form__helper" id="file-upload-helper-text">Formats accepted: JPG, PNG or PDF <br /> File size must not exceed 350MB</span>
+            <div class="nsw-file-upload js-file-upload">
+                <input type="file" class="nsw-file-upload__input" name="file-upload" id="file-upload" aria-describedby="file-upload-helper-text" accept="image/*,.pdf" multiple>
+                <label for="file-upload" class="nsw-file-upload__label nsw-button nsw-button--dark-outline-solid">Select file</label>
+            </div>
+          </div>
+        
+          <input type="submit" class="nsw-button nsw-button--dark" value="Submit">
+        
+          <p id="log"></p>
+        </form>
+        
+        <script>
+        function logSubmit(event) {
+          event.preventDefault();
+          const form = event.target; // Reference the form
+          const formData = new FormData(form);
+        
+          log.innerHTML = ""; // Clear previous log output
+        
+          for (const [key, value] of formData.entries()) {
+            if (value instanceof File && value.name) {
+              log.innerHTML += `<pre>${key}:
+          Name: ${value.name}
+          Size: ${value.size} bytes
+          Type: ${value.type}</pre>\n`;
+            } else {
+              log.innerHTML += `<pre>${key}: ${value}</pre>\n`;
+            }
+          }
+        
+          form.reset(); // Clear the form
+        }
+        
+        const form = document.querySelector("form");
+        const log = document.getElementById("log");
+        form.addEventListener("submit", logSubmit);
+        </script>
+        
+      </main>
+      <div class="nsw-layout__sidebar nsw-layout__sidebar--desktop"></div>
+    </div>
+  </div>
+</section>
+
+  <script src="https://designsystem.nsw.gov.au/js/main.js"></script>
+  <script>
+    window.NSW.initSite()
+  </script>
+</body>
+</html>

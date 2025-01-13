@@ -1826,6 +1826,12 @@
         this.createFileList();
       }
       this.filesList.classList.add('active');
+      const dataTransfer = new DataTransfer();
+      for (let i = 0; i < this.input.files.length; i += 1) {
+        const file = this.input.files[i];
+        dataTransfer.items.add(file);
+      }
+      this.currentFiles = dataTransfer;
       let fileListHTML = '';
       for (let i = 0; i < this.input.files.length; i += 1) {
         const file = this.input.files[i];
@@ -1836,6 +1842,7 @@
       } else {
         this.filesList.insertAdjacentHTML('beforeend', fileListHTML);
       }
+      this.input.files = this.currentFiles.files;
       this.removeFile();
     }
     removeFile() {
@@ -1845,6 +1852,16 @@
       if (!event.target.closest('.nsw-icon-button')) return;
       event.preventDefault();
       const item = event.target.closest('.nsw-file-upload__item');
+      const filename = item.querySelector('.nsw-file-upload__item-filename').textContent;
+      const dataTransfer = new DataTransfer();
+      for (let i = 0; i < this.currentFiles.files.length; i += 1) {
+        const file = this.currentFiles.files[i];
+        if (file.name !== filename) {
+          dataTransfer.items.add(file);
+        }
+      }
+      this.currentFiles = dataTransfer;
+      this.input.files = this.currentFiles.files;
       item.remove();
       if (this.filesList.children.length === 0) {
         this.filesList.classList.remove('active');

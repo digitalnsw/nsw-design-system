@@ -13,6 +13,7 @@ declare class FileUpload {
     createFileList(): void;
     createFileItem(file: any): string;
     updateFileList(): void;
+    currentFiles: DataTransfer | undefined;
     removeFile(): void;
     handleFileRemove(event: any): void;
 }
