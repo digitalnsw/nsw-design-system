@@ -89,8 +89,8 @@ Include the following lines of code in the `<head>` tag of your main HTML docume
 Alternatively, you can import fonts and icons directly in your CSS:
 
 ```
-@import url('<https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,700;1,400&display=swap');>
-@import url('<https://fonts.googleapis.com/icon?family=Material+Icons');>
+@import url('https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 ```
 
 ### Importing JavaScript
