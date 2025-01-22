@@ -41,6 +41,24 @@
     flex-wrap: wrap;
     gap: rem(16px);
     margin-top: rem(16px);
+    flex-direction: column;
+
+    @include breakpoint('md') {
+      flex-direction: row;
+    }
+  }
+
+  &__cta-group {
+    display: flex;
+    gap: rem(16px);
+
+    button {
+      flex: 1 auto;
+  
+      @include breakpoint('md') {
+        flex: unset;
+      }
+    }
   }
 
   &--light {
@@ -74,6 +92,16 @@
     background: var(--nsw-white);
   }
 
+  .nsw-dialog__content {
+    padding-top: rem(16px);
+    padding-bottom: rem(72px);
+
+    @include breakpoint('md') {
+      padding-top: rem(16px);
+      padding-bottom: rem(16px);
+    }
+  }
+
   &__bottom {
     border-top: 1px solid var(--nsw-grey-04);
     position: absolute;
@@ -81,8 +109,9 @@
     left: 0;
     right: 0;
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     padding: rem(16px);
+    gap: rem(16px);
 
     @include breakpoint('md') {
       flex-direction: row-reverse;
@@ -94,8 +123,6 @@
     }
 
     button {
-      margin-bottom: rem(16px);
-
       @include breakpoint('md') {
         margin-bottom: 0;
       }
@@ -113,23 +140,30 @@
   &__cta-group {
     display: flex;
     gap: rem(16px);
-
+    
     @include breakpoint('md') {
       flex-direction: row;
     }
-  }
 
-  .nsw-dialog__content {
-    padding-top: rem(16px);
-    padding-bottom: rem(16px);
+    button {
+      flex: 1;
+
+      @include breakpoint('md') {
+        flex: unset;
+      }
+    }
   }
  
   .nsw-tabs__content {
     border: 0;
     -webkit-overflow-scrolling: auto;
-    max-height: 320px;
+    max-height: 240px;
     padding-left: 8px;
     overflow: scroll;
+
+    @include breakpoint('md') {
+      max-height: 320px;
+    }
 
     &:focus-visible {
       outline: 2px solid var(--nsw-brand-dark);

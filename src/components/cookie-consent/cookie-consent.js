@@ -109,7 +109,7 @@ class CookieConsent {
       // Append the dialog directly to the body
       document.body.appendChild(this.preferencesDialogElement)
 
-      // Initialize the NSW Design System Dialog
+      // Initialise the NSW Design System Dialog
       this.dialogInstance = new window.NSW.Dialog(this.preferencesDialogElement)
       this.dialogInstance.init()
     } else {
@@ -139,8 +139,10 @@ class CookieConsent {
               ${consentModal.description ? `<p>${consentModal.description}</p>` : ''}
             </div>
             <div class="nsw-cookie-banner__buttons-container">
-              ${consentModal.acceptAllBtn ? `<button class="nsw-button nsw-button--dark js-close-dialog ${!consentModal.confirmationMessage ? 'js-dismiss-cookie-banner' : ''}" data-role="accept-all">${consentModal.acceptAllBtn}</button>` : ''}
-              ${consentModal.acceptNecessaryBtn ? `<button class="nsw-button nsw-button--dark js-cookie-banner-reject  ${!consentModal.confirmationMessage ? 'js-dismiss-cookie-banner' : ''}" data-role="reject-all">${consentModal.acceptNecessaryBtn}</button>` : ''}
+              ${consentModal.acceptAllBtn || consentModal.acceptNecessaryBtn ? '<div class="nsw-cookie-banner__cta-group">' : ''}
+                ${consentModal.acceptAllBtn ? `<button class="nsw-button nsw-button--dark js-close-dialog ${!consentModal.confirmationMessage ? 'js-dismiss-cookie-banner' : ''}" data-role="accept-all">${consentModal.acceptAllBtn}</button>` : ''}
+                ${consentModal.acceptNecessaryBtn ? `<button class="nsw-button nsw-button--dark js-cookie-banner-reject  ${!consentModal.confirmationMessage ? 'js-dismiss-cookie-banner' : ''}" data-role="reject-all">${consentModal.acceptNecessaryBtn}</button>` : ''}
+              ${consentModal.acceptAllBtn || consentModal.acceptNecessaryBtn ? '</div>' : ''}
               <a href="#cookie-consent" class="nsw-button nsw-button--dark-outline js-open-dialog-cookie-consent-preferences" aria-haspopup="dialog">${consentModal.showPreferencesBtn || 'Manage your cookies'}</a>
             </div>
           </span>
