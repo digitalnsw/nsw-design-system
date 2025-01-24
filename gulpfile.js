@@ -293,6 +293,18 @@ function compileDocsJS() {
     .pipe(dest(config.jsDocs.build))
 }
 
+function compileCookieConsentJS() {
+  return src(config.jsCookieConsent.src)
+    .pipe(
+      rollup(
+        {
+          plugins: [babel()],
+        },
+      ),
+    )
+    .pipe(dest(config.jsCookieConsent.build))
+}
+
 function lintJavascript() {
   return src(config.js.watch)
     .pipe(eslint())
@@ -371,7 +383,7 @@ function bumping() {
 }
 
 const styles = series(lintStyles, buildStyles, buildCoreStyles, buildDocStyles)
-const javascript = series(lintJavascript, compileJS, compileTypes, compileDocsJS, removeCookieConsentAssets)
+const javascript = series(lintJavascript, compileJS, compileTypes, compileDocsJS, compileCookieConsentJS, removeCookieConsentAssets)
 
 function watchFiles(done) {
   watch(config.scss.watch, series(styles, reload))

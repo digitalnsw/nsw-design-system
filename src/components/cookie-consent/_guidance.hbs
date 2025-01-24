@@ -6,14 +6,13 @@ layout: blank-layout.hbs
 <h2>Overview</h2>
 <p>The Cookie Consent component provides a clear and accessible method for informing users about cookie usage on a website and allowing them to manage their preferences. It aligns with privacy laws and best practices, ensuring user control over data collection.</p>
 
-<p>This component integrates with the <a href="https://cookieconsent.orestbida.com/">vanilla-cookie-consent</a> library for handling cookie preferences but is designed specifically for use within the NSW Design System. The component is styled and structured to meet NSW DS standards and ensures a seamless experience for users.</p>
-
 <h2>Usage</h2>
 <p>Use the Cookie Consent component to:</p>
 <ul>
   <li>Provide users with clear information about cookie usage and its purposes</li>
   <li>Allow users to accept, reject, or customise cookie preferences</li>
   <li>Ensure compliance with privacy regulations (e.g., GDPR, CCPA)</li>
+  <li>Regularly review and update cookie practices to align with privacy regulations</li>
 </ul>
 
 <p>Do:</p>
@@ -31,113 +30,88 @@ layout: blank-layout.hbs
 <h2>Cookie Consent States</h2>
 <p>The Cookie Consent component has the following states:</p>
 <ul>
-  <li><strong>Initial Banner</strong> - Displays a summary of cookie usage with options to accept all, reject all, or manage preferences.</li>
-  <li><strong>Confirmation Message</strong> - Confirms the user’s selection and provides an option to dismiss the message.</li>
-  <li><strong>Preferences Dialog</strong> - Allows users to customise cookie categories (e.g., necessary, analytics, marketing).</li>
+  <li><strong>Initial banner</strong> - Displays a summary of cookie usage with options to accept all, reject all, or manage preferences.</li>
+  <li><strong>Confirmation message</strong> - Confirms the user’s selection and provides an option to dismiss the message.</li>
+  <li><strong>Preferences dialog</strong> - Allows users to customise cookie categories (e.g., necessary, analytics, marketing).</li>
 </ul>
 
-<h2>When to Avoid</h2>
-<p>Do not use the Cookie Consent component if:</p>
-<ul>
-  <li>The website does not use cookies or track user data</li>
-</ul>
-
-<h2>Integration</h2>
-<p>The Cookie Consent component integrates with the <a href="https://cookieconsent.orestbida.com/">vanilla-cookie-consent</a> library to handle cookie management. Key functionality includes:</p>
-<ul>
-  <li>Reading and writing user preferences</li>
-  <li>Providing an API for managing cookie categories</li>
-  <li>Dynamic updating of preferences without requiring a page reload</li>
-</ul>
-
-<h3>Example Initialisation</h3>
-<pre><code class="language-json">
-function waitForCookieConsent(callback) {
-  if (window.NSW && window.NSW.CookieConsent) {
-    callback();
-  } else {
-    setTimeout(() => waitForCookieConsent(callback), 100);
-  }
-}
-
-waitForCookieConsent(() => {
-  const config = {
-    categories: {
-      necessary: {
-        enabled: true,
-        readOnly: true,
-      },
-      analytics: {},
-      foo: {},
+<h2>Implementation</h2>
+<h3>Create a Cookie Consent Configuration File</h3>
+    <p>Create a new JavaScript file (e.g., <code>cookie-consent-config.js</code>) in your project. This file will contain the configuration object for the Cookie Consent component.</p>
+    <p>You can download a <a href="/cookie-consent-config.js" target="__blank">cookie configuration template</a> or use the following example as a base:</p>
+    <pre><code class="language-javascript">
+const config = {
+  categories: {
+    necessary: {
+      enabled: true,
+      readOnly: true,
     },
-    onConsent: (preferences) => console.log('Cookies preferences accepted'),
-    language: {
-      default: 'en',
-      translations: {
-        en: {
-          consentModal: {
-            title: 'Cookies on the NSW Design System website',
-            description: 'We have added essential and additional cookies to ensure this service works effectively, track how it is being used, and make necessary improvements. You can &lt;a href='#'&gt;manage your cookie settings&lt;/a&gt; by visiting the 'Cookies' page, found at the bottom of this page.',
-            acceptAllBtn: 'Accept all',
-            acceptNecessaryBtn: 'Reject all',
-            showPreferencesBtn: 'Manage your preferences',
-            confirmationMessage: 'Thanks for making your selection. View and update your cookie preferences &lt;a href="#cookie-consent" class="js-open-dialog-cookie-consent-preferences" aria-haspopup="dialog"&gt;here&lt;/a&gt;.'
-          },
-          preferencesModal: {
-            title: 'Manage cookie preferences',
-            acceptAllBtn: 'Accept all',
-            acceptNecessaryBtn: 'Reject all',
-            savePreferencesBtn: 'Accept current selection',
-            closeIconLabel: 'Close dialog',
-            sections: [
-              {
-                title: 'Necessary',
-                description: 'These cookies collect information about how you use our website. All of the data is anonymised and cannot be used to identify you.',
-                linkedCategory: 'necessary',
-              },
-              {
-                title: 'Performance and Analytics',
-                description: 'These cookies collect information about how you use our website. All of the data is anonymised and cannot be used to identify you.',
-                linkedCategory: 'analytics',
-              },
-              {
-                title: 'Foo',
-                description: 'These cookies collect information about how you use our website. All of the data is anonymised and cannot be used to identify you.',
-                linkedCategory: 'foo',
-              },
-            ],
-            tabTitle1: 'Cookie preferences',
-            tabTitle2: 'What are cookies?',
-            cookiesInformation: `
-              &lt;p&gt;Cookies are files saved on your phone, tablet or computer when you visit a website.&lt;/p&gt;
-              &lt;p&gt;They store information about how you use the website, such as the pages you visit.&lt;/p&gt;
-              &lt;p&gt;Cookies are not viruses or computer programs. They are very small so do not take up much space.&lt;/p&gt;
-              &lt;h2&gt;How we use cookies&lt;/h2&gt;
-              &lt;p&gt;We use cookies to:&lt;/p&gt;
-              &lt;ul&gt;
-                &lt;li&gt;make our website work, for example by keeping it secure&lt;/li&gt;
-                &lt;li&gt;remember which pop-ups you've seen&lt;/li&gt;
-                &lt;li&gt;understand how you interact with our website, including tracking the links you click (analytics cookies).&lt;/li&gt;
-                &lt;li&gt;allow you to share pages with social networks like LinkedIn&lt;/li&gt;
-                &lt;li&gt;continuously improve our website for you&lt;/li&gt;
-              &lt;/ul&gt;
-              &lt;p&gt;Also mention if your NSW Government website does or does not collect personal information.&lt;/p&gt;
-              &lt;p&gt;For more information on what cookies are, how they work and how to delete them from your computer, you can visit &lt;a href="https://www.allaboutcookies.org"&gt;www.allaboutcookies.org&lt;/a&gt;.&lt;/p&gt;
-            `,
-          },
+    analytics: {
+      enabled: false,
+    },
+    marketing: {
+      enabled: false,
+    },
+  },
+  language: {
+    default: 'en',
+    translations: {
+      en: {
+        preferencesModal: {
+          title: 'Manage cookie preferences',
+          sections: [
+            {
+              title: 'Necessary',
+              description: 'These cookies are essential for the website to function.',
+              linkedCategory: 'necessary',
+            },
+            {
+              title: 'Analytics',
+              description: 'These cookies help us improve the website by collecting anonymised data.',
+              linkedCategory: 'analytics',
+            },
+            {
+              title: 'Marketing',
+              description: 'These cookies are used for personalised ads and tracking.',
+              linkedCategory: 'marketing',
+            },
+          ],
         },
       },
     },
-  };
+  },
+};
 
-  const cookieConsent = document.querySelector('.js-cookie-consent');
-  new window.NSW.CookieConsent(config, cookieConsent);
-});
-</code></pre>
+export default config;
+    </code></pre>
+  <h3>Integrate the Configuration File</h3>
+    <p>Ensure the <code>cookie-consent-config.js</code> file is correctly referenced in your project. Add the following line to your main script:</p>
+    <pre><code class="language-javascript">
+import config from './cookie-consent-config.js';
 
-<h3>Dependencies</h3>
+new window.NSW.CookieConsent(config);
+    </code></pre>
+
+<h3>Test Your Changes</h3>
+    <p>Once the new category has been added, rebuild your project (e.g., <code>npm run build</code> or <code>gulp build</code>). Open the website and verify that the new cookie group is displayed in the preferences dialog and behaves as expected.</p>
+
+<h2>Customisation</h2>
+<p>The component is customisable via the configuration object, including:</p>
+
+<h3>Banner Customisations</h3>
 <ul>
-  <li><a href="https://cookieconsent.orestbida.com/">vanilla-cookie-consent</a></li>
+  <li>Set the title</li>
+  <li>Set the content HTML (including the ability to add links)</li>
+  <li>Ability to show a confirmation message for the cookie banner</li>
+  <li>Customise whether the "Accept all" and "Reject all" buttons will show as well as their titles</li>
+</ul>
+
+<h3>Dialog Customisations</h3>
+<ul>
+  <li>Enable or disable closing the dialog by clicking outside the dialog</li>
+  <li>Add detailed cookies information</li>
+  <li>Add specific information for each cookie</li>
+  <li>Customise whether the "Accept all" and "Reject all" buttons will show as well as their titles</li>
 </ul>
 
 <h2>Accessibility</h2>
@@ -148,17 +122,5 @@ waitForCookieConsent(() => {
   <li>Screen reader support for clear announcements of the banner and dialog content</li>
 </ul>
 
-<h2>Customisation</h2>
-<p>The component is customisable via the configuration object, including:</p>
-<ul>
-  <li>Cookie categories and descriptions</li>
-  <li>Button labels and actions</li>
-</ul>
-
-<h2>Best Practices</h2>
-<p>To ensure compliance and usability:</p>
-<ul>
-  <li>Provide a clear and honest description of cookie usage</li>
-  <li>Make it easy for users to reject or customise cookies</li>
-  <li>Regularly review and update cookie practices to align with privacy regulations</li>
-</ul>
+<h2>Dependencies</h2>
+<p>This component integrates with the <a href="https://cookieconsent.orestbida.com/">vanilla-cookie-consent</a> library for handling cookie preferences but is designed specifically for use within the NSW Design System. The component is styled and structured to meet NSW DS standards and ensures a seamless experience for users.</p>
