@@ -1,0 +1,111 @@
+<h3>Inactive</h3>
+
+<h4>Text Fields</h4>
+{{#>_docs-example separated=true}}
+<div class="nsw-form">
+  <div class="nsw-form__group">
+    {{>_text-input
+      id="form-text-3"
+      label="Name"
+      helper-text="As it appears on your identity document"
+      inactive="true"
+    }}
+  </div>
+  <div class="nsw-form__group">
+    {{>_textarea
+      id="form-textarea-3"
+      label="Comment"
+      helper-text="Maximum 500 characters"
+      inactive="true"
+    }}
+  </div>
+</div>
+{{/_docs-example}}
+
+<h4>Date</h4>
+{{#>_docs-example separated=true}}
+<div class="nsw-form">
+  <div class="nsw-form__group">
+    {{>_date
+      id="form-date-3"
+      label="Date of birth"
+      required=true
+      error-text="This field is required"
+      helper-text="For example 08 12 1990"
+    }}
+  </div>
+</div>
+{{/_docs-example}}
+
+<h4>Select</h4>
+{{#>_docs-example separated=true}}
+<div class="nsw-form">
+  <div class="nsw-form__group">
+    {{>_select model.select
+      id="form-select-3"
+      required=true
+      error-text="This field is required"
+      helper-text="Your region of residence"
+    }}
+  </div>
+</div>
+{{/_docs-example}}
+
+<h4>Checkboxes</h4>
+{{#>_docs-example separated=true}}
+<div class="nsw-form">
+  <div class="nsw-form__group">
+    {{>_checkbox
+      id="form-checkbox-3"
+      name="form-checkbox-3"
+      label="I agree to terms and conditions"
+      required=true
+      error-text="This field is required"
+    }}
+  </div>
+  <div class="nsw-form__group">
+    <fieldset class="nsw-form__fieldset">
+      <legend>
+        <span class="nsw-form__legend nsw-form__required">Category<span class="sr-only"> (required)</span></span>
+        <span class="nsw-form__helper">Select all that applies to you</span>
+        <span class="nsw-form__helper nsw-form__helper--error"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span>This field is required</span>
+      </legend>
+      {{>_checkbox
+        id="form-checkbox-multi-3-a"
+        name="form-checkbox-multi-3"
+        label="Customer Service"
+      }}
+      {{>_checkbox
+        id="form-checkbox-multi-3-b"
+        name="form-checkbox-multi-3"
+        label="Communities and Justice"
+      }}
+    </fieldset>
+  </div>
+</div>
+{{/_docs-example}}
+
+<h4>Radio buttons</h4>
+{{#>_docs-example separated=true}}
+<div class="nsw-form">
+  <div class="nsw-form__group">
+    <fieldset class="nsw-form__fieldset">
+      <legend>
+        <span class="nsw-form__legend nsw-form__required">Topic<span class="sr-only"> (required)</span></span>
+        <span class="nsw-form__helper">Select closest match</span>
+        <span class="nsw-form__helper nsw-form__helper--error"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span>This field is required</span>
+      </legend>
+      {{>_radio
+        id="form-radio-3-a"
+        name="form-radio-3"
+        label="NSW Government"
+      }}
+      {{>_radio
+        id="form-radio-3-b"
+        name="form-radio-3"
+        label="Business and Economy"
+      }}
+    </fieldset>
+  </div>
+</div>
+{{/_docs-example}}
