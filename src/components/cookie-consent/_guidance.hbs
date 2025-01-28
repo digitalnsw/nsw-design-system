@@ -1,0 +1,126 @@
+---
+title: Cookie consent
+layout: blank-layout.hbs
+---
+
+<h2>Overview</h2>
+<p>The Cookie Consent component provides a clear and accessible method for informing users about cookie usage on a website and allowing them to manage their preferences. It aligns with privacy laws and best practices, ensuring user control over data collection.</p>
+
+<h2>Usage</h2>
+<p>Use the Cookie Consent component to:</p>
+<ul>
+  <li>Provide users with clear information about cookie usage and its purposes</li>
+  <li>Allow users to accept, reject, or customise cookie preferences</li>
+  <li>Ensure compliance with privacy regulations (e.g., GDPR, CCPA)</li>
+  <li>Regularly review and update cookie practices to align with privacy regulations</li>
+</ul>
+
+<p>Do:</p>
+<ul>
+  <li>Use clear, concise, and easy-to-understand language to minimise cognitive load</li>
+  <li>Include a link or button for users to manage their cookie preferences</li>
+</ul>
+
+<p>Do not:</p>
+<ul>
+  <li>Use the cookie banner for purposes unrelated to cookie consent</li>
+  <li>Make it difficult for users to reject or customise cookies</li>
+</ul>
+
+<h2>Cookie Consent States</h2>
+<p>The Cookie Consent component has the following states:</p>
+<ul>
+  <li><strong>Initial banner</strong> - Displays a summary of cookie usage with options to accept all, reject all, or manage preferences.</li>
+  <li><strong>Confirmation message</strong> - Confirms the user’s selection and provides an option to dismiss the message.</li>
+  <li><strong>Preferences dialog</strong> - Allows users to customise cookie categories (e.g., necessary, analytics, marketing).</li>
+</ul>
+
+<h2>Implementation</h2>
+<h3>Create a Cookie Consent Configuration File</h3>
+    <p>Create a new JavaScript file (e.g., <code>cookie-consent-config.js</code>) in your project. This file will contain the configuration object for the Cookie Consent component.</p>
+    <p>You can download a <a href="/cookie-consent-config.js" target="__blank">cookie configuration template</a> or use the following example as a base:</p>
+    <pre><code class="language-javascript">
+const config = {
+  categories: {
+    necessary: {
+      enabled: true,
+      readOnly: true,
+    },
+    analytics: {
+      enabled: false,
+    },
+    marketing: {
+      enabled: false,
+    },
+  },
+  language: {
+    default: 'en',
+    translations: {
+      en: {
+        preferencesModal: {
+          title: 'Manage cookie preferences',
+          sections: [
+            {
+              title: 'Necessary',
+              description: 'These cookies are essential for the website to function.',
+              linkedCategory: 'necessary',
+            },
+            {
+              title: 'Analytics',
+              description: 'These cookies help us improve the website by collecting anonymised data.',
+              linkedCategory: 'analytics',
+            },
+            {
+              title: 'Marketing',
+              description: 'These cookies are used for personalised ads and tracking.',
+              linkedCategory: 'marketing',
+            },
+          ],
+        },
+      },
+    },
+  },
+};
+
+export default config;
+    </code></pre>
+  <h3>Integrate the Configuration File</h3>
+    <p>Ensure the <code>cookie-consent-config.js</code> file is correctly referenced in your project. Add the following line to your main script:</p>
+    <pre><code class="language-javascript">
+import config from './cookie-consent-config.js';
+
+new window.NSW.CookieConsent(config);
+    </code></pre>
+
+<h3>Test Your Changes</h3>
+    <p>Once the new category has been added, rebuild your project (e.g., <code>npm run build</code> or <code>gulp build</code>). Open the website and verify that the new cookie group is displayed in the preferences dialog and behaves as expected.</p>
+
+<h2>Customisation</h2>
+<p>The component is customisable via the configuration object, including:</p>
+
+<h3>Banner Customisations</h3>
+<ul>
+  <li>Set the title</li>
+  <li>Set the content HTML (including the ability to add links)</li>
+  <li>Ability to show a confirmation message for the cookie banner</li>
+  <li>Customise whether the "Accept all" and "Reject all" buttons will show as well as their titles</li>
+</ul>
+
+<h3>Dialog Customisations</h3>
+<ul>
+  <li>Enable or disable closing the dialog by clicking outside the dialog</li>
+  <li>Add detailed cookies information</li>
+  <li>Add specific information for each cookie</li>
+  <li>Customise whether the "Accept all" and "Reject all" buttons will show as well as their titles</li>
+</ul>
+
+<h2>Accessibility</h2>
+<p>The Cookie Consent component meets WCAG 2.2 AA accessibility guidelines:</p>
+<ul>
+  <li>All interactive elements are keyboard navigable</li>
+  <li>High contrast ensures readability for visually impaired users</li>
+  <li>Screen reader support for clear announcements of the banner and dialog content</li>
+</ul>
+
+<h2>Dependencies</h2>
+<p>This component integrates with the <a href="https://cookieconsent.orestbida.com/">vanilla-cookie-consent</a> library for handling cookie preferences but is designed specifically for use within the NSW Design System. The component is styled and structured to meet NSW DS standards and ensures a seamless experience for users.</p>
