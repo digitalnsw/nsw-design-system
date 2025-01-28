@@ -309,8 +309,9 @@ $nsw-form-tick: '<svg fill="#ffffff" version="1.1" xmlns="http://www.w3.org/2000
 
   &__checkbox-input,
   &__radio-input {
-    position: absolute;
     opacity: 0;
+    position: absolute;
+    pointer-events: none;
 
     &:first-child + .nsw-form__checkbox-label,
     &:first-child + .nsw-form__radio-label {
@@ -331,24 +332,23 @@ $nsw-form-tick: '<svg fill="#ffffff" version="1.1" xmlns="http://www.w3.org/2000
       background-color: var(--nsw-brand-dark);
     }
 
-    &:disabled,
-    &:read-only {
-      + .nsw-form__checkbox-label,
-      + .nsw-form__radio-label {
-        cursor: not-allowed;
-      }
+    // &:disabled {
+    //   + .nsw-form__checkbox-label,
+    //   + .nsw-form__radio-label {
+    //     cursor: not-allowed;
+    //   }
 
-      + .nsw-form__checkbox-label::before,
-      + .nsw-form__radio-label::before {
-        border-color: var(--nsw-grey-03);
-        background-color: var(--nsw-off-white);
-      }
+    //   + .nsw-form__checkbox-label::before,
+    //   + .nsw-form__radio-label::before {
+    //     border-color: var(--nsw-grey-03);
+    //     background-color: var(--nsw-off-white);
+    //   }
 
-      &:checked + .nsw-form__checkbox-label::after,
-      &:checked + .nsw-form__radio-label::after {
-        background-color: var(--nsw-grey-03);
-      }
-    }
+    //   &:checked + .nsw-form__checkbox-label::after,
+    //   &:checked + .nsw-form__radio-label::after {
+    //     background-color: var(--nsw-grey-03);
+    //   }
+    // }
 
     &:focus + .nsw-form__checkbox-label::before {
       @include nsw-focus;
@@ -421,6 +421,44 @@ $nsw-form-tick: '<svg fill="#ffffff" version="1.1" xmlns="http://www.w3.org/2000
 
     &::after {
       border-radius: 50%;
+    }
+  }
+
+  .nsw-form__checkbox-input:disabled,
+  .nsw-form__radio-input:disabled {
+    + .nsw-form__checkbox-label,
+    + .nsw-form__radio-label {
+      cursor: not-allowed;
+    }
+
+    + .nsw-form__checkbox-label::before,
+    + .nsw-form__radio-label::before {
+      border-color: var(--nsw-grey-03);
+      background-color: var(--nsw-off-white);
+    }
+
+    &:checked + .nsw-form__checkbox-label::after,
+    &:checked + .nsw-form__radio-label::after {
+      background-color: var(--nsw-grey-03);
+    }
+  }
+
+  .nsw-form__checkbox-input[readonly],
+  .nsw-form__radio-input[readonly] {
+    + .nsw-form__checkbox-label,
+    + .nsw-form__radio-label {
+      cursor: not-allowed;
+    }
+
+    + .nsw-form__checkbox-label::before,
+    + .nsw-form__radio-label::before {
+      border-color: var(--nsw-grey-03);
+      background-color: var(--nsw-off-white);
+    }
+
+    &:checked + .nsw-form__checkbox-label::after,
+    &:checked + .nsw-form__radio-label::after {
+      background-color: var(--nsw-grey-03);
     }
   }
 }

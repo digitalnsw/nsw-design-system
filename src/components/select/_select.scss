@@ -27,7 +27,8 @@ $nsw-form-tick: '<svg fill="#ffffff" version="1.1" xmlns="http://www.w3.org/2000
       @include nsw-focus;
     }
 
-    &:disabled {
+    &:disabled,
+    &:read-only {
       background: var(--nsw-off-white) svg-url($nsw-form-chevron-down) no-repeat right rem(16px) center;
       background-size: rem(16px) auto;
       border-color: var(--nsw-grey-03);
@@ -227,7 +228,8 @@ $nsw-form-tick: '<svg fill="#ffffff" version="1.1" xmlns="http://www.w3.org/2000
         background-color: var(--nsw-brand-dark);
       }
   
-      &:disabled {
+      &:disabled,
+      &:read-only {
         cursor: not-allowed;
   
         &::before,
