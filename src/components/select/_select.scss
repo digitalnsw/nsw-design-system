@@ -37,6 +37,23 @@ $nsw-form-tick: '<svg fill="#ffffff" version="1.1" xmlns="http://www.w3.org/2000
       opacity: 1;
     }
 
+    &[aria-disabled='true'] {
+      pointer-events: none;
+      background-color: var(--nsw-off-white);
+      color: var(--nsw-grey-03);
+      cursor: not-allowed;
+      border-color: var(--nsw-grey-03);
+    }
+    
+    &[aria-disabled='true']:focus {
+      @include nsw-focus;
+    }
+
+    &[aria-disabled='true'] option {
+      color: var(--nsw-grey-03);
+      background-color: var(--nsw-off-white);
+    }
+
     &[aria-invalid='true'],
     &.has-error {
       border-color: var(--nsw-status-error);
@@ -232,13 +249,11 @@ $nsw-form-tick: '<svg fill="#ffffff" version="1.1" xmlns="http://www.w3.org/2000
       &:read-only {
         cursor: not-allowed;
   
-        &::before,
         &::before {
           border-color: var(--nsw-grey-03);
           background-color: var(--nsw-off-white);
         }
   
-        &::after,
         &::after {
           background-color: var(--nsw-grey-03);
         }

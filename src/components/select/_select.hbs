@@ -3,7 +3,7 @@
 <div class="nsw-multi-select js-multi-select" data-select-text="Select savings programs" data-multi-select-text="{n} savings programs selected" data-n-multi-select="2">{{/if}}
   <select{{#unless multiple}} class="nsw-form__select"{{/unless}} name="{{id}}" id="{{id}}"{{#if helper-text}} aria-describedby="{{#if helper-text}}{{id}}-helper-text{{/if}}"{{/if}}{{#if error-text}} aria-invalid="true"{{/if}}{{#if multiple}} multiple{{/if}} {{#if inactive}}readonly aria-disabled="true"{{/if}}>{{#unless multiple}}<option value="">Please select</option>{{/unless}}
   {{#each list}}
-    <option value="{{this}}">{{this}}</option>
+    <option value="{{this}}" {{#if inactive}}disabled{{/if}}>{{this}}</option>
   {{/each}}
   </select>{{#if multiple}}
 </div>{{/if}}{{#if error-text}}
