@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 {
                   title: 'Necessary',
                   description:
-                    'These cookies collect information about how you use our website. All of the data is anonymised and cannot be used to identify you.',
+                    'This site uses necessary cookies to ensure core functionalities like security, network management, and accessibility. These cookies cannot be disabled.',
                   linkedCategory: 'necessary',
                 },
                 {
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 {
                   title: 'Foo',
                   description:
-                    'These cookies collect information about how you use our website. All of the data is anonymised and cannot be used to identify you.',
+                    'This is a test script that generates a browser alert to demonstrate this toggle function.',
                   linkedCategory: 'foo',
                 },
               ],
