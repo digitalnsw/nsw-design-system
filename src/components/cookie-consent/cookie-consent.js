@@ -3,19 +3,58 @@ import * as CookieConsentAPI from 'vanilla-cookieconsent'
 class CookieConsent {
   constructor(config = null) {
     this.isInit = false
-    this.config = config ? { ...config, autoShow: false } : null
+
+    if (!window.NSW || !window.NSW.CookieConsent) {
+      console.error('NSW CookieConsent is not available.')
+      return
+    }
+
+    if (!config) {
+      console.error('Cookie consent configuration not provided')
+      return
+    }
+
+    this.consentContainer = this.ensureCookieContainer()
+    this.config = CookieConsent.mapToVanillaCookieConsentConfig(config)
+
     this.consentBannerElement = null
     this.preferencesDialogElement = null
-
     this.consentBannerConfirmationMessage = ''
     this.consentSelectionMade = false
 
-    if (this.config) {
-      this.createConsentBanner()
-      this.createPreferencesDialog()
-      this.init()
-    } else {
-      console.error('Cookie consent configuration not provided')
+    this.createConsentBanner()
+    this.createPreferencesDialog()
+    this.init()
+  }
+
+  ensureCookieContainer() {
+    if (!this.consentContainer) {
+      let container = document.querySelector('.js-cookie-consent')
+
+      if (!container) {
+        container = document.createElement('div')
+        container.className = 'js-cookie-consent'
+        document.body.appendChild(container)
+      }
+
+      this.consentContainer = container
+    }
+    return this.consentContainer
+  }
+
+  static mapToVanillaCookieConsentConfig(config) {
+    return {
+      ...config,
+      autoShow: false,
+      language: {
+        default: 'en',
+        translations: {
+          en: {
+            consentModal: config.consentBanner,
+            preferencesModal: config.preferencesDialog,
+          },
+        },
+      },
     }
   }
 
