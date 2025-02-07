@@ -14,6 +14,8 @@ class CookieConsent {
       return
     }
 
+    CookieConsent.cleanupDefaultCookieUI()
+
     this.consentContainer = this.ensureCookieContainer()
     this.config = CookieConsent.mapToVanillaCookieConsentConfig(config)
 
@@ -25,6 +27,33 @@ class CookieConsent {
     this.createConsentBanner()
     this.createPreferencesDialog()
     this.init()
+  }
+
+  static cleanupDefaultCookieUI() {
+    // Remove unwanted stylesheet
+    const unwantedStylesheet = Array.from(document.querySelectorAll('link')).find(
+      (link) => link.href.includes('cookieconsent.css'),
+    )
+    if (unwantedStylesheet) {
+      unwantedStylesheet.remove()
+    }
+
+    // Monitor for and remove the default cookie consent element
+    const observer = new MutationObserver(() => {
+      const defaultCookieConsentElement = document.getElementById('cc-main')
+      if (defaultCookieConsentElement) {
+        defaultCookieConsentElement.remove()
+        observer.disconnect() // Stop observing
+      }
+    })
+
+    observer.observe(document.documentElement, { childList: true, subtree: true })
+
+    // Remove if it already exists in the DOM
+    const existingElement = document.getElementById('cc-main')
+    if (existingElement) {
+      existingElement.remove()
+    }
   }
 
   ensureCookieContainer() {

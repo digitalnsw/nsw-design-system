@@ -95,40 +95,6 @@ function lintStyles() {
     }))
 }
 
-function removeCookieConsentAssets() {
-  return src('dist/cookie-consent-config.js')
-    .pipe(
-      inject.prepend(`
-document.addEventListener('DOMContentLoaded', () => {
-  // Remove unwanted stylesheet
-  const unwantedStylesheet = Array.from(document.querySelectorAll('link')).find(
-    link => link.href.includes('cookieconsent.css')
-  );
-  if (unwantedStylesheet) {
-    unwantedStylesheet.remove();
-  }
-
-  // Monitor for and remove the default cookie consent element
-  const observer = new MutationObserver(() => {
-    const defaultCookieConsentElement = document.getElementById('cc-main');
-    if (defaultCookieConsentElement) {
-      defaultCookieConsentElement.remove();
-      observer.disconnect(); // Stop observing
-    }
-  });
-  observer.observe(document.body, { childList: true });
-
-  const existingElement = document.getElementById('cc-main');
-  if (existingElement) {
-    existingElement.remove();
-  }
-});
-
-      `)
-    )
-    .pipe(dest('dist'));
-}
-
 function generateSitemap() {
   return src(['./dist/**/*.html', '!**/blank.html'], { read: false })
     .pipe(sitemap({ siteUrl: config.baseUrl.full }))
@@ -389,7 +355,7 @@ function bumping() {
 }
 
 const styles = series(lintStyles, buildStyles, buildCoreStyles, buildDocStyles)
-const javascript = series(lintJavascript, compileJS, compileTypes, compileDocsJS, compileCookieConsentJS, removeCookieConsentAssets)
+const javascript = series(lintJavascript, compileJS, compileTypes, compileDocsJS, compileCookieConsentJS)
 
 function watchFiles(done) {
   watch(config.scss.watch, series(styles, reload))
