@@ -349,10 +349,18 @@ $nsw-form-tick: '<svg fill="#ffffff" version="1.1" xmlns="http://www.w3.org/2000
 
     &:focus + .nsw-form__checkbox-label::before {
       @include nsw-focus;
+
+      .nsw-section--invert & {   
+        @include nsw-focus($color: var(--nsw-focus-light));
+      }
     }
 
     &:focus + .nsw-form__radio-label::before {
       box-shadow: 0 0 0 3px var(--nsw-text-light), 0 0 0 6px var(--nsw-focus);
+
+      .nsw-section--invert & {
+        box-shadow: 0 0 0 3px var(--nsw-text-dark), 0 0 0 6px var(--nsw-focus-light);
+      }
     }
 
     &[aria-invalid='true'] + .nsw-form__checkbox-label,

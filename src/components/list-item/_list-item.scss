@@ -60,6 +60,10 @@
   &--block {
     &:focus-within {
       @include nsw-focus($offset: false);
+
+      .nsw-section--invert & {   
+        @include nsw-focus($color: var(--nsw-focus-light));
+      }
     }
 
     .nsw-list-item__title a {
