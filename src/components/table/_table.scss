@@ -14,6 +14,10 @@ $nsw-vertical-align: (
 
   &:focus {
     @include nsw-focus;
+
+    .nsw-section--invert & {   
+      @include nsw-focus($color: var(--nsw-focus-light));
+    }
   }
 
   table {

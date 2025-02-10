@@ -107,6 +107,10 @@
 
       &:focus {
         @include nsw-focus($offset: false);
+
+        .nsw-section--invert & {   
+          @include nsw-focus($color: var(--nsw-focus-light));
+        }
       }
     }
 
@@ -355,6 +359,10 @@
       &:focus {
         @include nsw-focus;
       }
+
+      .nsw-section--invert &:focus {
+        outline-color: var(--nsw-focus-light);
+      }    
 
       &.active {
         >.nsw-material-icons:last-child {
