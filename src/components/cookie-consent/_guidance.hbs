@@ -39,58 +39,58 @@ layout: blank-layout.hbs
 <h3>Create a Cookie Consent Configuration File</h3>
     <p>Create a new JavaScript file (e.g., <code>cookie-consent-config.js</code>) in your project. This file will contain the configuration object for the Cookie Consent component.</p>
     <p>You can download a <a href="/cookie-consent-config.js" target="__blank">cookie configuration template</a> or use the following example as a base:</p>
-    <pre><code class="language-javascript">
-const config = {
-  categories: {
-    necessary: {
-      enabled: true,
-      readOnly: true,
-    },
-    analytics: {
-      enabled: false,
-    },
-    marketing: {
-      enabled: false,
-    },
-  },
-  language: {
-    default: 'en',
-    translations: {
-      en: {
-        preferencesModal: {
-          title: 'Manage cookie preferences',
-          sections: [
-            {
-              title: 'Necessary',
-              description: 'These cookies are essential for the website to function.',
-              linkedCategory: 'necessary',
-            },
-            {
-              title: 'Analytics',
-              description: 'These cookies help us improve the website by collecting anonymised data.',
-              linkedCategory: 'analytics',
-            },
-            {
-              title: 'Marketing',
-              description: 'These cookies are used for personalised ads and tracking.',
-              linkedCategory: 'marketing',
-            },
-          ],
-        },
+    
+{{#>_docs-code open=true code=true}}
+document.addEventListener('DOMContentLoaded', () => {
+  const config = {
+    categories: {
+      necessary: {
+        enabled: true,
+        readOnly: true,
+      },
+      analytics: {
+        enabled: false,
+      },
+      marketing: {
+        enabled: false,
       },
     },
-  },
+    consentBanner: {
+      title: 'Cookies on the NSW Design System website',
+      description: "We've added essential and additional cookies to ensure this service works effectively, track how it's being used, and make necessary improvements. You can <a href='#'>manage your cookie settings</a> by visiting the Cookies page, found at the bottom of this page.",
+      acceptAllBtn: 'Accept all',
+      acceptNecessaryBtn: 'Reject all',
+      showPreferencesBtn: 'Manage your preferences',
+      confirmationMessage: 'Thanks for making your selection. View and update your cookie preferences <a href='#cookie-consent' class='js-open-dialog-cookie-consent-preferences' aria-haspopup='dialog'>here</a>.',
+    },
+    preferencesDialog: {
+      title: 'Manage cookie preferences',
+      sections: [
+        {
+          title: 'Necessary',
+          description: 'These cookies are essential for the website to function.',
+          linkedCategory: 'necessary',
+        },
+        {
+          title: 'Analytics',
+          description: 'These cookies help us improve the website by collecting anonymised data.',
+          linkedCategory: 'analytics',
+        },
+        {
+          title: 'Marketing',
+          description: 'These cookies are used for personalised ads and tracking.',
+          linkedCategory: 'marketing',
+        },
+      ],
+    },
+  };
+
+  new window.NSW.CookieConsent(config);
 };
+{{/_docs-code}}
 
-export default config;
-    </code></pre>
-  <h3>Integrate the Configuration File</h3>
-    <p>Ensure the <code>cookie-consent-config.js</code> file is correctly referenced in your project. Add the following line to your main script:</p>
-    <pre><code class="language-javascript">
-import config from './cookie-consent-config.js';
-
-new window.NSW.CookieConsent(config);
-    </code></pre>
+<h3>Integrate the Configuration File</h3>
+<p>Ensure the <code>cookie-consent-config.js</code> file is included in the <code>head</code> section of your project. Without this, the cookie consent functionality will not work correctly.</p>
 
 <h3>Test Your Changes</h3>
     <p>Once the new category has been added, rebuild your project (e.g., <code>npm run build</code> or <code>gulp build</code>). Open the website and verify that the new cookie group is displayed in the preferences dialog and behaves as expected.</p>
