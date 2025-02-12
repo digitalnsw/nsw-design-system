@@ -5,9 +5,9 @@
         <h1>{{title}}</h1>
         <p class="nsw-intro">{{{copy}}}</p>
         <form role="search" class="hero-search__form">
-          <label class="{{#unless label}}sr-only{{/unless}} nsw-form__label" for="form-input-group-1">{{searchLabel}}</label>
+          <label class="{{#unless label}}sr-only{{/unless}} nsw-form__label" for="form-input-group-{{#if id}}{{{id}}}{{/if}}">{{searchLabel}}</label>
           <div class="nsw-form__input-group{{#if-equals button "icon"}} nsw-form__input-group--icon{{/if-equals}}">
-            <input class="nsw-form__input" type="text" id="form-input-group-1" name="form-input-group-1" value="">
+            <input class="nsw-form__input" type="text" id="form-input-group-{{#if id}}{{{id}}}{{/if}}" name="form-input-group-{{#if id}}{{{id}}}{{/if}}" value="">
             <button class="nsw-button nsw-button--dark nsw-button--flex" type="submit">
               {{#if-equals button "text"}}<span class="">Search</span>{{/if-equals}}
               {{#if-equals button "icon"}}<span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">search</span>
