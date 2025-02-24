@@ -4,31 +4,31 @@ layout: blank-layout.hbs
 ---
 
 <h2>Overview</h2>
-<p>The Cookie Consent component provides a clear and accessible method for informing users about cookie usage on a website and allowing them to manage their preferences. It aligns with privacy laws and best practices, ensuring user control over data collection.</p>
+<p>The Cookie consent component provides a clear and accessible method for informing users about cookie usage on a website, allowing them to them to manage their preferences. It aligns with privacy laws and best practices, ensuring user control over data collection.</p>
 
 <h2>Usage</h2>
-<p>Use the Cookie Consent component to:</p>
+<p>Use the Cookie consent component to:</p>
 <ul>
   <li>Provide users with clear information about cookie usage and its purposes</li>
   <li>Allow users to accept, reject, or customise cookie preferences</li>
-  <li>Ensure compliance with privacy regulations (e.g., GDPR, CCPA)</li>
-  <li>Regularly review and update cookie practices to align with privacy regulations</li>
+  <li>Ensure compliance with privacy laws (e.g., GDPR, CCPA, PPIPA 1998)</li>
+  <li>Regularly review and update cookie practices to align with privacy laws</li>
 </ul>
 
 <p>Do:</p>
 <ul>
   <li>Use clear, concise, and easy-to-understand language to minimise cognitive load</li>
-  <li>Include a link or button for users to manage their cookie preferences</li>
+  <li>Embed a permanent link or button for users to manage their cookie preferences</li>
 </ul>
 
 <p>Do not:</p>
 <ul>
-  <li>Use the cookie banner for purposes unrelated to cookie consent</li>
-  <li>Make it difficult for users to reject or customise cookies</li>
+  <li>Use the cookie banner for purposes unrelated to Cookie consent</li>
+  <li>Make it difficult for users to set their cookie preferences or reject non-essential cookies</li>
 </ul>
 
-<h2>Cookie Consent States</h2>
-<p>The Cookie Consent component has the following states:</p>
+<h2>Cookie consent States</h2>
+<p>The Cookie consent component has the following states:</p>
 <ul>
   <li><strong>Initial banner</strong> - Displays a summary of cookie usage with options to accept all, reject all, or manage preferences.</li>
   <li><strong>Confirmation message</strong> - Confirms the user’s selection and provides an option to dismiss the message.</li>
@@ -36,8 +36,8 @@ layout: blank-layout.hbs
 </ul>
 
 <h2>Implementation</h2>
-<h3>Create a Cookie Consent Configuration File</h3>
-    <p>Create a new JavaScript file (e.g., <code>cookie-consent-config.js</code>) in your project. This file will contain the configuration object for the Cookie Consent component.</p>
+<h3>Create a Cookie consent Configuration File</h3>
+    <p>Create a new JavaScript file (e.g., <code>cookie-consent-config.js</code>) in your project. This file will contain the configuration object for the Cookie consent component.</p>
     <p>You can download a <a href="/cookie-consent-config.js" target="__blank">cookie configuration template</a> or use the following example as a base:</p>
     
 {{#>_docs-code open=true code=true}}
@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
 {{/_docs-code}}
 
 <h3>Integrate the Configuration File</h3>
-<p>Ensure the <code>cookie-consent-config.js</code> file is included in the <code>head</code> section of your project. Without this, the cookie consent functionality will not work correctly.</p>
+<p>Ensure the <code>cookie-consent-config.js</code> file is included in the <code>head</code> section of your project. Without this, the Cookie consent functionality will not work correctly.</p>
 
 <h3>Test Your Changes</h3>
     <p>Once the new category has been added, rebuild your project (e.g., <code>npm run build</code> or <code>gulp build</code>). Open the website and verify that the new cookie group is displayed in the preferences dialog and behaves as expected.</p>
@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
 <ul>
   <li>Set the title</li>
   <li>Set the content HTML (including the ability to add links)</li>
-  <li>Ability to show a confirmation message for the cookie banner</li>
+  <li>Option to display a confirmation message in the cookie banner</li>
   <li>Customise whether the "Accept all" and "Reject all" buttons will show as well as their titles</li>
 </ul>
 
@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </ul>
 
 <h2>Accessibility</h2>
-<p>The Cookie Consent component meets WCAG 2.2 AA accessibility guidelines:</p>
+<p>The Cookie consent component meets WCAG 2.2 AA accessibility guidelines:</p>
 <ul>
   <li>All interactive elements are keyboard navigable</li>
   <li>High contrast ensures readability for visually impaired users</li>

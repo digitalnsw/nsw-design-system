@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
       acceptAllBtn: 'Accept all',
       acceptNecessaryBtn: 'Reject all',
       showPreferencesBtn: 'Manage your preferences',
-      confirmationMessage: `Thanks for making your selection. View and update your cookie preferences <a href="#cookie-consent" class="js-open-dialog-cookie-consent-preferences" aria-haspopup="dialog">here</a>.`,
+      confirmationMessage: `Thanks for making your selection. View and update your <a href="#cookie-consent" class="js-open-dialog-cookie-consent-preferences" aria-haspopup="dialog">cookie preferences</a>.`,
     },
     preferencesDialog: {
       title: 'Manage cookie preferences',
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
         {
           title: 'Necessary',
           description:
-            'This site uses necessary cookies to ensure core functionalities like security, network management, and accessibility. These cookies cannot be disabled.',
+            'This site requires necessary cookies for privacy protection, accessibility, and secure access to government services. They cannot be turned off.',
           linkedCategory: 'necessary',
         },
         {
@@ -39,28 +39,33 @@ document.addEventListener('DOMContentLoaded', () => {
         {
           title: 'Foo',
           description:
-            'This is a test script that generates a browser alert to demonstrate this toggle function.',
+            'This is a test cookie script that triggers a browser alert to confirm the cookie function is working.',
           linkedCategory: 'foo',
         },
       ],
-      tabTitle1: 'Cookie preferences',
-      tabTitle2: 'What are cookies?',
-      cookiesInformation: `
-        <p>Cookies are files saved on your phone, tablet or computer when you visit a website.</p>
-        <p>They store information about how you use the website, such as the pages you visit.</p>
-        <p>Cookies are not viruses or computer programs. They are very small so do not take up much space.</p>
-        <h2>How we use cookies</h2>
-        <p>We use cookies to:</p>
-        <ul>
-          <li>make our website work, for example by keeping it secure</li>
-          <li>remember which pop-ups you've seen</li>
-          <li>understand how you interact with our website, including tracking the links you click (analytics cookies).</li>
-          <li>allow you to share pages with social networks like LinkedIn</li>
-          <li>continuously improve our website for you</li>
-        </ul>
-        <p>Also mention if your NSW Government website does or does not collect personal information.</p>
-        <p>For more information on what cookies are, how they work and how to delete them from your computer, you can visit <a href="https://www.allaboutcookies.org">www.allaboutcookies.org</a>.</p>
-      `,
+      tab1: {
+        tabTitle: 'Cookie preferences',
+      },
+      tab2: {
+        tabTitle: 'How we use cookies',
+        content: `
+          <p>We use cookies to enhance your experience when using our website.</p>
+          <p>Cookies help us understand how you interact with our site, allowing us to improve functionality and ensure security.</p>
+          <p>They do not contain viruses or harmful software and take up minimal space on your device.</p>
+
+          <h2>How we use cookies</h2>
+          <p>Our website uses cookies to:</p>
+          <ul>
+            <li>ensure essential site functionality, such as security and accessibility</li>
+            <li>remember your preferences, including dismissed notifications and pop-ups</li>
+            <li>analyse website traffic and user interactions to improve content and navigation</li>
+            <li>enable sharing of content on social media platforms like LinkedIn</li>
+            <li>help us make continuous improvements based on user behaviour</li>
+          </ul>
+          <p>Some cookies may collect information that is classified as personal data. Please refer to our <a href="[your privacy policy URL]">Privacy Policy</a> to learn more about how we handle personal information.</p>
+          <p>For more details on cookies, how they work, and how to manage or delete them, visit <a href="https://www.allaboutcookies.org">www.allaboutcookies.org</a>.</p>
+        `, 
+      },
     },
   };
 

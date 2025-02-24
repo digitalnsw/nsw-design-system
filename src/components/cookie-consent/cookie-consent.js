@@ -139,14 +139,33 @@ class CookieConsent {
             <div class="nsw-dialog__content">
               <div class="nsw-tabs js-cookie-consent-tabs">
                 <ul class="nsw-tabs__list">
-                  <li><a href="#cookie-settings" class="js-tabs-fixed">${preferencesModal.tabTitle1 ? preferencesModal.tabTitle1 : 'Cookie preferences'}</a></li>
-                  <li><a href="#cookie-information" class="js-tabs-fixed">${preferencesModal.tabTitle2 ? preferencesModal.tabTitle2 : 'What are cookies?'}</a></li>
+                  <li><a href="#cookie-settings" class="js-tabs-fixed">${preferencesModal.tab1 ? preferencesModal.tab1.tabTitle : 'Cookie preferences'}</a></li>
+                  ${preferencesModal.tab2 ? `<li><a href="#cookie-use" class="js-tabs-fixed">${preferencesModal.tab2.tabTitle ? preferencesModal.tab2.tabTitle : 'How we use cookies'}</a></li>` : ''}
+                  <li><a href="#cookie-information" class="js-tabs-fixed">What are cookies?</a></li>
                 </ul>
                 <section id="cookie-settings" class="nsw-tabs__content nsw-tabs__content--side-flush">
+                  ${preferencesModal.tab1.content ? preferencesModal.tab1.content : ''}
                   ${cookiesListHtml}
                 </section>
+                ${preferencesModal.tab2 ? `
+                    <section id="cookie-use" class="nsw-tabs__content nsw-tabs__content--side-flush">
+                      ${preferencesModal.tab2.content}
+                    </section>
+                  ` : ''}
                 <section id="cookie-information" class="nsw-tabs__content nsw-tabs__content--side-flush">
-                  ${preferencesModal.cookiesInformation}
+                  <p>Cookies are files saved on your phone, tablet or computer when you visit a website.</p>
+                  <p>They store information about how you use the website, such as the pages you visit.</p>
+                  <p>Cookies are not viruses or computer programs. They are very small so do not take up much space.</p>
+                  <p>We use cookies to:</p>
+                  <ul>
+                    <li>make our website work, for example by keeping it secure</li>
+                    <li>remember which pop-ups you've seen</li>
+                    <li>understand how you interact with our website, including tracking the links you click (analytics cookies).</li>
+                    <li>allow you to share pages with social networks like LinkedIn</li>
+                    <li>continuously improve our website for you</li>
+                  </ul>
+                  <p>Also mention if your NSW Government website does or does not collect personal information.</p>
+                  <p>For more information on what cookies are, how they work and how to delete them from your computer, you can visit <a href="https://www.allaboutcookies.org">www.allaboutcookies.org</a>.</p>
                 </section>
               </div>
             </div>
@@ -219,7 +238,7 @@ class CookieConsent {
               <p>${consentModal.confirmationMessage}</p>
             </div>
             <div class="nsw-cookie-banner__buttons-container">
-              <button class="nsw-button nsw-button--dark js-dismiss-cookie-banner">Hide this message</button>
+              <button class="nsw-button nsw-button--dark js-dismiss-cookie-banner">Close this message</button>
             </div>
           </span>
         </div>
