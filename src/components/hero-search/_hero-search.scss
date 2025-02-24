@@ -1,10 +1,14 @@
 .hero-search {
+  position: relative;
+  z-index: 1;
+
   @include breakpoint('md') {
     padding: rem(32px) rem(16px);
   }
 
   &__form {
     padding: rem(24px) 0;
+    text-align: left;
 
     .nsw-material-icons { 
       &:first-child {
@@ -46,11 +50,7 @@
 
     a:not(.nsw-icon-button) {
       line-height: 1.5;
-      padding: rem(8px) rem(24px);
-      
-      @include breakpoint('md') {
-        padding: rem(4px) rem(4px);
-      }
+      padding: rem(4px) rem(4px);
     }
   }
 

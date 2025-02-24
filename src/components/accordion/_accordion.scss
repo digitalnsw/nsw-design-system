@@ -109,6 +109,10 @@
       @include nsw-focus;
       @include z-index;
       position: relative;
+
+      .nsw-section--invert & {   
+        @include nsw-focus($color: var(--nsw-focus-light));
+      }
     }
 
     &.active {
