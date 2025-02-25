@@ -86,7 +86,12 @@
 .nsw-cookie-dialog {
   z-index: 1100;
 
+  .nsw-dialog__container {
+    overflow-y: hidden;
+  }
+
   .nsw-dialog__top {
+    z-index: 1101;
     position: sticky;
     top: 0;
     background: var(--nsw-white);
@@ -99,7 +104,7 @@
 
     @include breakpoint('md') {
       padding-top: rem(16px);
-      padding-bottom: rem(16px);
+      padding-bottom: rem(4px);
     }
   }
 
@@ -154,26 +159,11 @@
       }
     }
   }
- 
-  .nsw-tabs__content {
-    border: 0;
-    -webkit-overflow-scrolling: auto;
-    max-height: 240px;
-    padding-left: 8px;
+
+  &__content-wrapper {
+    padding: rem(8px);
     overflow: scroll;
-
-    @include breakpoint('md') {
-      max-height: 320px;
-    }
-
-    &:focus-visible {
-      outline: 2px solid var(--nsw-brand-dark);
-      border: 0;
-    }
-
-    &:focus {
-      outline: none;
-    }
+    max-height: 280px;
 
     &::-webkit-scrollbar {
       width: 8px;
@@ -183,6 +173,24 @@
       border-radius: 4px;
       background-color: var(--nsw-grey-03);
       box-shadow: 0 0 1px var(--nsw-grey-03);
+    }
+  }
+ 
+  .nsw-tabs__content {
+    -webkit-overflow-scrolling: auto;
+    padding: rem(12px) 0 rem(8px) rem(8px);
+    border-bottom: 0;
+
+    @include breakpoint('md') {
+      max-height: 320px;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--nsw-brand-dark);
+    }
+
+    &:focus {
+      outline: none;
     }
   }
   
@@ -206,7 +214,7 @@
 
     &:not(:nth-child(1)) {
       border-top: 1px solid var(--nsw-grey-04);
-      padding-top: rem(28px);
+      padding-top: rem(24px);
     }
   }
 

@@ -144,28 +144,34 @@ class CookieConsent {
                   <li><a href="#cookie-information" class="js-tabs-fixed">What are cookies?</a></li>
                 </ul>
                 <section id="cookie-settings" class="nsw-tabs__content nsw-tabs__content--side-flush">
-                  ${preferencesModal.tab1.content ? preferencesModal.tab1.content : ''}
-                  ${cookiesListHtml}
+                  <div class="nsw-cookie-dialog__content-wrapper">
+                    ${preferencesModal.tab1.content ? preferencesModal.tab1.content : ''}
+                    ${cookiesListHtml}
+                  </div>
                 </section>
                 ${preferencesModal.tab2 ? `
                     <section id="cookie-use" class="nsw-tabs__content nsw-tabs__content--side-flush">
-                      ${preferencesModal.tab2.content}
+                      <div class="nsw-cookie-dialog__content-wrapper">
+                        ${preferencesModal.tab2.content}
+                      </div>
                     </section>
                   ` : ''}
                 <section id="cookie-information" class="nsw-tabs__content nsw-tabs__content--side-flush">
-                  <p>Cookies are files saved on your phone, tablet or computer when you visit a website.</p>
-                  <p>They store information about how you use the website, such as the pages you visit.</p>
-                  <p>Cookies are not viruses or computer programs. They are very small so do not take up much space.</p>
-                  <p>We use cookies to:</p>
-                  <ul>
-                    <li>make our website work, for example by keeping it secure</li>
-                    <li>remember which pop-ups you've seen</li>
-                    <li>understand how you interact with our website, including tracking the links you click (analytics cookies).</li>
-                    <li>allow you to share pages with social networks like LinkedIn</li>
-                    <li>continuously improve our website for you</li>
-                  </ul>
-                  <p>Also mention if your NSW Government website does or does not collect personal information.</p>
-                  <p>For more information on what cookies are, how they work and how to delete them from your computer, you can visit <a href="https://www.allaboutcookies.org">www.allaboutcookies.org</a>.</p>
+                  <div class="nsw-cookie-dialog__content-wrapper">
+                    <p>Cookies are files saved on your phone, tablet or computer when you visit a website.</p>
+                    <p>They store information about how you use the website, such as the pages you visit.</p>
+                    <p>Cookies are not viruses or computer programs. They are very small so do not take up much space.</p>
+                    <p>We use cookies to:</p>
+                    <ul>
+                      <li>make our website work, for example by keeping it secure</li>
+                      <li>remember which pop-ups you've seen</li>
+                      <li>understand how you interact with our website, including tracking the links you click (analytics cookies).</li>
+                      <li>allow you to share pages with social networks like LinkedIn</li>
+                      <li>continuously improve our website for you</li>
+                    </ul>
+                    <p>Also mention if your NSW Government website does or does not collect personal information.</p>
+                    <p>For more information on what cookies are, how they work and how to delete them from your computer, you can visit <a href="https://www.allaboutcookies.org">www.allaboutcookies.org</a>.</p>
+                  </div>
                 </section>
               </div>
             </div>
