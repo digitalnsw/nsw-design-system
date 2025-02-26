@@ -12,7 +12,13 @@
   <div class="nsw-content-block__content">
     {{#if heading}}<div class="nsw-content-block__title">{{heading}}</div>{{/if}}
     {{#if easy-read}}<h2 class="sr-only">Easy Read</h2>{{/if}}
-    {{#if copy}}<p class="nsw-content-block__copy{{#if easy-read}} nsw-easy-read{{/if}}">{{{copy}}}</p>{{/if}}
+    {{#if copy}}
+      {{#if easy-read}}
+        <p class="nsw-easy-read">{{{copy}}}</p>
+      {{else}}
+        <p class="nsw-content-block__copy">{{{copy}}}</p>
+      {{/if}}
+    {{/if}}
     {{#if list}}
       <ul class="nsw-content-block__list">
         {{#each list}}

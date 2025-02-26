@@ -18,9 +18,11 @@ model:
   content-block-4: ../../components/content-block/json/content-block-4.json
   content-block-5: ../../components/content-block/json/content-block-5.json
   content-block-6: ../../components/content-block/json/content-block-6.json
+  content-block-easy-read-1: ../../components/content-block/json/content-block-easy-read-1.json
 ---
 
 {{#>_layout-container}}
+
 <div class="nsw-grid nsw-grid--spaced">
   <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
     {{>_content-block model.content-block-text-1}}
@@ -56,9 +58,17 @@ model:
     {{>_content-block model.content-block-image-3}}
   </div>
 </div>
+
+<div class="nsw-grid nsw-grid--flush">
+  <div class="nsw-col nsw-col-md-12 nsw-col-lg-8">
+    {{>_content-block model.content-block-easy-read-1}}
+  </div>
+</div>
+
 {{/_layout-container}}
 
 {{#>_layout-container brand-dark="true" invert="true"}}
+
 <div class="nsw-grid nsw-grid--spaced">
   <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
     {{>_content-block model.content-block-text-1}}
@@ -94,4 +104,11 @@ model:
     {{>_content-block model.content-block-image-3}}
   </div>
 </div>
+
+<div class="nsw-grid nsw-grid--flush">
+  <div class="nsw-col nsw-col-md-12 nsw-col-lg-8">
+    {{>_content-block model.content-block-easy-read-1}}
+  </div>
+</div>
+
 {{/_layout-container}}
