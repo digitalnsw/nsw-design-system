@@ -64,7 +64,41 @@ document.addEventListener('DOMContentLoaded', () => {
           </ul>
           <p>Some cookies may collect information that is classified as personal data. Please refer to our <a href="[your privacy policy URL]">Privacy Policy</a> to learn more about how we handle personal information.</p>
           <p>For more details on cookies, how they work, and how to manage or delete them, visit <a href="https://www.allaboutcookies.org">www.allaboutcookies.org</a>.</p>
-        `, 
+
+          <h2>Details about cookies on this NSW Government website</h2>
+          <table class="nsw-table">
+            <caption class="sr-only">Details about cookies on this NSW Government website</caption>
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Purpose</th>
+                <th scope="col">Expires</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>analytics_next_page_call</td>
+                <td>This lets us know the next page you visit on NSW Government website, so we can make journeys better</td>
+                <td>When you close your browser</td>
+              </tr>
+              <tr>
+                <td>_ga</td>
+                <td>These help us count how many people visit NSW Government website and other government digital services by tracking if you’ve visited before</td>
+                <td>2 years</td>
+              </tr>
+              <tr>
+                <td>_gid</td>
+                <td>These help us count how many people visit NSW Government website and other government digital services by tracking if you’ve visited before</td>
+                <td>24 hours</td>
+              </tr>
+              <tr>
+                <td>_ga_S5RQ7FTGVR</td>
+                <td>Used by Google Analytics to find and track an individual session with your device</td>
+                <td>2 years</td>
+              </tr>
+            </tbody>
+          </table>
+        `
       },
     },
   };
