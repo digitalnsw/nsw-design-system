@@ -16,7 +16,6 @@ class CookieConsent {
 
     CookieConsent.cleanupDefaultCookieUI()
 
-    this.consentContainer = this.ensureCookieContainer()
     this.config = CookieConsent.mapToVanillaCookieConsentConfig(config)
 
     this.consentBannerElement = null
@@ -54,21 +53,6 @@ class CookieConsent {
     if (existingElement) {
       existingElement.remove()
     }
-  }
-
-  ensureCookieContainer() {
-    if (!this.consentContainer) {
-      let container = document.querySelector('.js-cookie-consent')
-
-      if (!container) {
-        container = document.createElement('div')
-        container.className = 'js-cookie-consent'
-        document.body.appendChild(container)
-      }
-
-      this.consentContainer = container
-    }
-    return this.consentContainer
   }
 
   static mapToVanillaCookieConsentConfig(config) {
@@ -224,7 +208,7 @@ class CookieConsent {
     this.consentBannerConfirmationMessage = consentModal.confirmationMessage || ''
 
     const consentBannerHtml = `
-      <div class="nsw-cookie-banner js-cookie-banner" role="alert">
+      <div class="js-cookie-banner nsw-cookie-banner" role="alert">
         <div class="nsw-cookie-banner__wrapper">
           <div class="nsw-cookie-banner__title">${consentModal.title || 'Cookie use on our website'}</div>
           <span class="nsw-cookie-banner__description">
@@ -434,17 +418,7 @@ class CookieConsent {
 
   hideConsentBanner() {
     if (this.consentBannerElement) {
-      // Add a hidden attribute for transition
       this.consentBannerElement.setAttribute('hidden', 'true')
-
-      // Listen for the transition to end
-      // const onTransitionEnd = () => {
-      //   this.consentBannerElement.remove() // Remove the banner from the DOM
-      //   this.consentBannerElement = null
-      //   this.consentBannerElement.removeEventListener('transitionend', onTransitionEnd) // Clean up the event listener
-      // }
-
-      // this.consentBannerElement.addEventListener('transitionend', onTransitionEnd)
     }
   }
 }

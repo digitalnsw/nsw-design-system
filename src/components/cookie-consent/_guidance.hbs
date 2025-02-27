@@ -3,23 +3,22 @@ title: Cookie consent
 layout: blank-layout.hbs
 ---
 
+<h2>Overview</h2>
+<p>The Cookie consent component provides a clear and accessible method for informing users about cookie usage on a website, allowing them to them to manage their preferences. It aligns with privacy laws and best practices, ensuring user control over data collection.</p>
+
 <nav class="nsw-in-page-nav" aria-labelledby="in-page-nav">
   <div id="in-page-nav" class="nsw-in-page-nav__title">On this page</div>
   <ul class="nsw-in-page-nav__list">
-    <li><a href="#overview">Overview</a></li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#cookie-consent-parts">Cookie consent parts</a></li>
+    <li><a href="#cookie-consent-elements">Cookie consent elements</a></li>
     <li><a href="#privacy-collection-notice">Privacy Collection Notice</a></li>
-    <li><a href="#pixel-support">Pixel Support</a></li>
     <li><a href="#implementation">Implementation</a></li>
     <li><a href="#customisation">Customisation</a></li>
+    <li><a href="#pixel-support">Pixel support</a></li>
     <li><a href="#accessibility">Accessibility</a></li>
     <li><a href="#dependencies">Dependencies</a></li>
   </ul>
 </nav>
-
-<h2 id="overview">Overview</h2>
-<p>The Cookie consent component provides a clear and accessible method for informing users about cookie usage on a website, allowing them to them to manage their preferences. It aligns with privacy laws and best practices, ensuring user control over data collection.</p>
 
 <h2 id="usage">Usage</h2>
 <p>Use the Cookie consent component to:</p>
@@ -42,11 +41,11 @@ layout: blank-layout.hbs
   <li>Make it difficult for users to set their cookie preferences or reject non-essential cookies</li>
 </ul>
 
-<h2 id="cookie-consent-parts">Cookie consent parts</h2>
+<h2 id="cookie-consent-elements">Cookie consent elements</h2>
 <p>The Cookie consent component has the following parts:</p>
 <ul>
-  <li><strong>Initial banner</strong> - Displays a summary of cookie usage with options to accept all, reject all, or manage preferences.</li>
-  <li><strong>Confirmation message</strong> - Confirms the user’s selection and provides an option to dismiss the message.</li>
+  <li><strong>Consent banner</strong> - Displays a summary of cookie usage with options to accept all, reject all, or manage preferences.</li>
+  <li><strong>Confirmation message</strong> - Optional confirmation of the user’s selection and provides an option to dismiss the message.</li>
   <li><strong>Preferences dialog</strong> - Allows users to customise cookie categories (e.g., necessary, analytics, marketing).</li>
 </ul>
 
@@ -56,16 +55,6 @@ layout: blank-layout.hbs
     <li>The <strong>"How we use cookies"</strong> tab can serve as a mini PCN. However, if this tab does not outline full cookie usage and PCN requirements, a link to a dedicated Privacy Policy page must be included within this tab and area.</li>
     <li>To ensure compliance, website owners should reach out to <a href="mailto:gtpprivacy@customerservice.nsw.gov.au">gtpprivacy@customerservice.nsw.gov.au</a> to audit and assess cookie usage on their website.</li>
     <li>Additional guidance and resources can be found on the <a href="https://www.digital.nsw.gov.au/delivery/government-technology-platforms/services/digital-services/privacy/privacy-collection-notices" target="_blank">Digital NSW website</a>.</li>
-</ul>
-
-<h2 id="privacy-collection-notice">Pixel Support</h2>
-<p>Tracking pixels introduce additional complexities, as they can be deployed in multiple ways. Some use cookies, while others do not, and some may be present unintentionally. Given the evolving nature of tracking mechanisms, mitigating unauthorised pixels is an ongoing challenge.</p>
-
-<p>For websites intentionally deploying tracking pixels, we recommend:</p>
-<ul>
-  <li><strong>JavaScript Wrapper:</strong> Wrap pixel scripts in a JavaScript wrapper that allows users to toggle them on/off based on their consent preferences.</li>
-  <li><strong>GTM Pixel Injection:</strong> Use Google Tag Manager (GTM) to deploy pixels, leveraging GTM's inbuilt consent monitoring functionality to ensure compliance.</li>
-  <li><strong>Server-Side Pixels:</strong> Server-side pixel implementations require additional solutions to ensure compliance. Further investigation is needed to define best practices in this space.</li>
 </ul>
 
 <p>As tracking technologies continue to evolve, periodic audits and proactive measures will be necessary to maintain privacy compliance and control over pixel deployment.</p>
@@ -128,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
 <p>Ensure the <code>cookie-consent-config.js</code> file is included in the <code>head</code> section of your project. Without this, the Cookie consent functionality will not work correctly.</p>
 
 <h3>Test Your Changes</h3>
-    <p>Once the new category has been added, rebuild your project (e.g., <code>npm run build</code> or <code>gulp build</code>). Open the website and verify that the new cookie group is displayed in the preferences dialog and behaves as expected.</p>
+<p>Once the new category has been added, rebuild your project (e.g., <code>npm run build</code> or <code>gulp build</code>). Open the website and verify that the new cookie group is displayed in the preferences dialog and behaves as expected.</p>
 
 <h2 id="customisation">Customisation</h2>
 <p>The component is customisable via the configuration object, including:</p>
@@ -147,6 +136,16 @@ document.addEventListener('DOMContentLoaded', () => {
   <li>Add detailed cookies information</li>
   <li>Add specific information for each cookie</li>
   <li>Customise whether the "Accept all" and "Reject all" buttons will show as well as their titles</li>
+</ul>
+
+<h2 id="privacy-collection-notice">Pixel support</h2>
+<p>Tracking pixels introduce additional complexities, as they can be deployed in multiple ways. Some use cookies, while others do not, and some may be present unintentionally. Given the evolving nature of tracking mechanisms, mitigating unauthorised pixels is an ongoing challenge.</p>
+
+<p>For websites intentionally deploying tracking pixels, we recommend:</p>
+<ul>
+  <li><strong>JavaScript Wrapper:</strong> Wrap pixel scripts in a JavaScript wrapper that allows users to toggle them on/off based on their consent preferences.</li>
+  <li><strong>GTM Pixel Injection:</strong> Use Google Tag Manager (GTM) to deploy pixels, leveraging GTM's inbuilt consent monitoring functionality to ensure compliance.</li>
+  <li><strong>Server-Side Pixels:</strong> Server-side pixel implementations require additional solutions to ensure compliance. Further investigation is needed to define best practices in this space.</li>
 </ul>
 
 <h2 id="accessibility">Accessibility</h2>
