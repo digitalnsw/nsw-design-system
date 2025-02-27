@@ -3,10 +3,25 @@ title: Cookie consent
 layout: blank-layout.hbs
 ---
 
-<h2>Overview</h2>
+<nav class="nsw-in-page-nav" aria-labelledby="in-page-nav">
+  <div id="in-page-nav" class="nsw-in-page-nav__title">On this page</div>
+  <ul class="nsw-in-page-nav__list">
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#cookie-consent-parts">Cookie consent parts</a></li>
+    <li><a href="#privacy-collection-notice">Privacy Collection Notice</a></li>
+    <li><a href="#pixel-support">Pixel Support</a></li>
+    <li><a href="#implementation">Implementation</a></li>
+    <li><a href="#customisation">Customisation</a></li>
+    <li><a href="#accessibility">Accessibility</a></li>
+    <li><a href="#dependencies">Dependencies</a></li>
+  </ul>
+</nav>
+
+<h2 id="overview">Overview</h2>
 <p>The Cookie consent component provides a clear and accessible method for informing users about cookie usage on a website, allowing them to them to manage their preferences. It aligns with privacy laws and best practices, ensuring user control over data collection.</p>
 
-<h2>Usage</h2>
+<h2 id="usage">Usage</h2>
 <p>Use the Cookie consent component to:</p>
 <ul>
   <li>Provide users with clear information about cookie usage and its purposes</li>
@@ -27,16 +42,36 @@ layout: blank-layout.hbs
   <li>Make it difficult for users to set their cookie preferences or reject non-essential cookies</li>
 </ul>
 
-<h2>Cookie consent States</h2>
-<p>The Cookie consent component has the following states:</p>
+<h2 id="cookie-consent-parts">Cookie consent parts</h2>
+<p>The Cookie consent component has the following parts:</p>
 <ul>
   <li><strong>Initial banner</strong> - Displays a summary of cookie usage with options to accept all, reject all, or manage preferences.</li>
   <li><strong>Confirmation message</strong> - Confirms the user’s selection and provides an option to dismiss the message.</li>
   <li><strong>Preferences dialog</strong> - Allows users to customise cookie categories (e.g., necessary, analytics, marketing).</li>
 </ul>
 
-<h2>Implementation</h2>
-<h3>Create a Cookie consent Configuration File</h3>
+<h2 id="privacy-collection-notice">Privacy Collection Notice</h2>
+<p>The Cookie consent component must align with Privacy Collection Notice (PCN) requirements to ensure transparency in data collection practices.</p>
+<ul>
+    <li>The <strong>"How we use cookies"</strong> tab can serve as a mini PCN. However, if this tab does not outline full cookie usage and PCN requirements, a link to a dedicated Privacy Policy page must be included within this tab and area.</li>
+    <li>To ensure compliance, website owners should reach out to <a href="mailto:gtpprivacy@customerservice.nsw.gov.au">gtpprivacy@customerservice.nsw.gov.au</a> to audit and assess cookie usage on their website.</li>
+    <li>Additional guidance and resources can be found on the <a href="https://www.digital.nsw.gov.au/delivery/government-technology-platforms/services/digital-services/privacy/privacy-collection-notices" target="_blank">Digital NSW website</a>.</li>
+</ul>
+
+<h2 id="privacy-collection-notice">Pixel Support</h2>
+<p>Tracking pixels introduce additional complexities, as they can be deployed in multiple ways. Some use cookies, while others do not, and some may be present unintentionally. Given the evolving nature of tracking mechanisms, mitigating unauthorised pixels is an ongoing challenge.</p>
+
+<p>For websites intentionally deploying tracking pixels, we recommend:</p>
+<ul>
+  <li><strong>JavaScript Wrapper:</strong> Wrap pixel scripts in a JavaScript wrapper that allows users to toggle them on/off based on their consent preferences.</li>
+  <li><strong>GTM Pixel Injection:</strong> Use Google Tag Manager (GTM) to deploy pixels, leveraging GTM's inbuilt consent monitoring functionality to ensure compliance.</li>
+  <li><strong>Server-Side Pixels:</strong> Server-side pixel implementations require additional solutions to ensure compliance. Further investigation is needed to define best practices in this space.</li>
+</ul>
+
+<p>As tracking technologies continue to evolve, periodic audits and proactive measures will be necessary to maintain privacy compliance and control over pixel deployment.</p>
+
+<h2 id="implementation">Implementation</h2>
+<h3>Create a cookie consent configuration file</h3>
     <p>Create a new JavaScript file (e.g., <code>cookie-consent-config.js</code>) in your project. This file will contain the configuration object for the Cookie consent component.</p>
     <p>You can download a <a href="/cookie-consent-config.js" target="__blank">cookie configuration template</a> or use the following example as a base:</p>
     
@@ -89,13 +124,13 @@ document.addEventListener('DOMContentLoaded', () => {
 };
 {{/_docs-code}}
 
-<h3>Integrate the Configuration File</h3>
+<h3>Integrate the configuration file</h3>
 <p>Ensure the <code>cookie-consent-config.js</code> file is included in the <code>head</code> section of your project. Without this, the Cookie consent functionality will not work correctly.</p>
 
 <h3>Test Your Changes</h3>
     <p>Once the new category has been added, rebuild your project (e.g., <code>npm run build</code> or <code>gulp build</code>). Open the website and verify that the new cookie group is displayed in the preferences dialog and behaves as expected.</p>
 
-<h2>Customisation</h2>
+<h2 id="customisation">Customisation</h2>
 <p>The component is customisable via the configuration object, including:</p>
 
 <h3>Banner Customisations</h3>
@@ -114,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
   <li>Customise whether the "Accept all" and "Reject all" buttons will show as well as their titles</li>
 </ul>
 
-<h2>Accessibility</h2>
+<h2 id="accessibility">Accessibility</h2>
 <p>The Cookie consent component meets WCAG 2.2 AA accessibility guidelines:</p>
 <ul>
   <li>All interactive elements are keyboard navigable</li>
@@ -122,5 +157,5 @@ document.addEventListener('DOMContentLoaded', () => {
   <li>Screen reader support for clear announcements of the banner and dialog content</li>
 </ul>
 
-<h2>Dependencies</h2>
+<h2 id="dependencies">Dependencies</h2>
 <p>This component integrates with the <a href="https://cookieconsent.orestbida.com/">vanilla-cookie-consent</a> library for handling cookie preferences but is designed specifically for use within the NSW Design System. The component is styled and structured to meet NSW DS standards and ensures a seamless experience for users.</p>
