@@ -106,7 +106,7 @@ class CookieConsent {
 
     // Create the dialog dynamically
     const preferencesDialogHtml = `
-      <div class="js-cookie-consent nsw-cookie-dialog nsw-dialog nsw-dialog--single-action js-dialog js-dialog-dismiss" id="cookie-consent-preferences" role="dialog" aria-labelledby="cookie-consent-dialog">
+      <div class="nsw-cookie-dialog nsw-dialog nsw-dialog--single-action js-dialog js-dialog-dismiss" id="cookie-consent-preferences" role="dialog" aria-labelledby="cookie-consent-dialog">
         <div class="nsw-dialog__wrapper">
           <div class="nsw-dialog__container">
             <div class="nsw-dialog__top">
@@ -208,7 +208,7 @@ class CookieConsent {
     this.consentBannerConfirmationMessage = consentModal.confirmationMessage || ''
 
     const consentBannerHtml = `
-      <div class="js-cookie-banner nsw-cookie-banner" role="alert">
+      <div class="nsw-cookie-banner" role="alert">
         <div class="nsw-cookie-banner__wrapper">
           <div class="nsw-cookie-banner__title">${consentModal.title || 'Cookie use on our website'}</div>
           <span class="nsw-cookie-banner__description">
@@ -218,7 +218,7 @@ class CookieConsent {
             <div class="nsw-cookie-banner__buttons-container">
               ${consentModal.acceptAllBtn || consentModal.acceptNecessaryBtn ? '<div class="nsw-cookie-banner__cta-group">' : ''}
                 ${consentModal.acceptAllBtn ? `<button class="nsw-button nsw-button--dark js-close-dialog ${!consentModal.confirmationMessage ? 'js-dismiss-cookie-banner' : ''}" data-role="accept-all">${consentModal.acceptAllBtn}</button>` : ''}
-                ${consentModal.acceptNecessaryBtn ? `<button class="nsw-button nsw-button--dark js-cookie-banner-reject  ${!consentModal.confirmationMessage ? 'js-dismiss-cookie-banner' : ''}" data-role="reject-all">${consentModal.acceptNecessaryBtn}</button>` : ''}
+                ${consentModal.acceptNecessaryBtn ? `<button class="nsw-button nsw-button--dark ${!consentModal.confirmationMessage ? 'js-dismiss-cookie-banner' : ''}" data-role="reject-all">${consentModal.acceptNecessaryBtn}</button>` : ''}
               ${consentModal.acceptAllBtn || consentModal.acceptNecessaryBtn ? '</div>' : ''}
               <a href="#cookie-consent" class="nsw-button nsw-button--dark-outline js-open-dialog-cookie-consent-preferences" aria-haspopup="dialog">${consentModal.showPreferencesBtn || 'Manage your cookies'}</a>
             </div>
