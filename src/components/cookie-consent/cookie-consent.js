@@ -142,19 +142,42 @@ class CookieConsent {
                   ` : ''}
                 <section id="cookie-information" class="nsw-tabs__content nsw-tabs__content--side-flush">
                   <div class="nsw-cookie-dialog__content-wrapper">
-                    <p>Cookies are files saved on your phone, tablet or computer when you visit a website.</p>
-                    <p>They store information about how you use the website, such as the pages you visit.</p>
-                    <p>Cookies are not viruses or computer programs. They are very small so do not take up much space.</p>
+                    <p>Cookies are small files stored on your phone, tablet, or computer when you visit a website. They help us understand how you use our website and improve your experience.</p>
+                    
+                    <p>Some cookies collect information about how you interact with our website, such as the pages you visit and links you click. Others may store personal information, depending on their purpose and configuration.</p>
+
+                    <p>Personal information that may be collected by cookies includes:</p>
+                    <ul>
+                      <li>Email address</li>
+                      <li>Username</li>
+                      <li>IP address</li>
+                      <li>Geographic location</li>
+                      <li>Session screen recordings</li>
+                    </ul>
+
                     <p>We use cookies to:</p>
                     <ul>
-                      <li>make our website work, for example by keeping it secure</li>
-                      <li>remember which pop-ups you've seen</li>
-                      <li>understand how you interact with our website, including tracking the links you click (analytics cookies).</li>
-                      <li>allow you to share pages with social networks like LinkedIn</li>
-                      <li>continuously improve our website for you</li>
+                      <li>Make our website work efficiently and securely</li>
+                      <li>Remember your preferences, such as which pop-ups you’ve seen</li>
+                      <li>Understand how you use our website (analytics cookies)</li>
+                      <li>Enable social sharing, such as LinkedIn</li>
+                      <li>Continuously improve our website for you</li>
                     </ul>
-                    <p>Also mention if your NSW Government website does or does not collect personal information.</p>
-                    <p>For more information on what cookies are, how they work and how to delete them from your computer, you can visit <a href="https://www.allaboutcookies.org">www.allaboutcookies.org</a>.</p>
+
+                    <p>Privacy and compliance:</p>
+                    <p>If cookies collect personal information, we are required to comply with Information Privacy Principle (IPP) 3, ensuring openness in data collection. This means you should be informed when your personal information is collected.</p>
+
+                    <p>We provide this information through:</p>
+                    <ul>
+                      <li>A Privacy Collection Notice (PCN) within the "How we use cookies" tab</li>
+                      <li>A link to our Privacy Policy and/or Cookie Policy</li>
+                    </ul>
+
+                    <p>As tracking technologies evolve, we periodically review our cookie practices to maintain privacy compliance and control over tracking technologies.</p>
+
+                    <p>For more information on cookies, including how to manage or delete them, visit <a href="https://www.allaboutcookies.org">www.allaboutcookies.org</a>.</p>
+
+                    <p>For privacy advice, please contact your agency’s privacy or information governance team. Additional guidance is available at <a href="mailto:digitalnswprivacy@customerservice.nsw.gov.au">digitalnswprivacy@customerservice.nsw.gov.au</a>.</p>
                   </div>
                 </section>
               </div>
