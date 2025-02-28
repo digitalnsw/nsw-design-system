@@ -265,6 +265,18 @@ function compileDocsJS() {
     .pipe(dest(config.jsDocs.build))
 }
 
+function compileCookieConsentJS() {
+  return src(config.jsCookieConsent.src)
+    .pipe(
+      rollup(
+        {
+          plugins: [babel()],
+        },
+      ),
+    )
+    .pipe(dest(config.jsCookieConsent.build))
+}
+
 function lintJavascript() {
   return src(config.js.watch)
     .pipe(eslint())
@@ -315,14 +327,14 @@ function renamePathForProd() {
 
 function addAnalytics() {
   return src(`${config.dir.build}/**/*.html`)
-  .pipe(inject.after('<head>', `<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  .pipe(inject.after('<head>', `<script data-category="analytics">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-P2NKBBJZ');</script>
   `))
-    .pipe(inject.after('<head>', `<script async src="https://www.googletagmanager.com/gtag/js?id=G-49T9M12F86"></script>
-<script>
+    .pipe(inject.after('<head>', `<script async data-category="analytics" src="https://www.googletagmanager.com/gtag/js?id=G-49T9M12F86"></script>
+<script data-category="analytics">
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
@@ -343,7 +355,7 @@ function bumping() {
 }
 
 const styles = series(lintStyles, buildStyles, buildCoreStyles, buildDocStyles)
-const javascript = series(lintJavascript, compileJS, compileTypes, compileDocsJS)
+const javascript = series(lintJavascript, compileJS, compileTypes, compileDocsJS, compileCookieConsentJS)
 
 function watchFiles(done) {
   watch(config.scss.watch, series(styles, reload))
