@@ -152,11 +152,16 @@ class UtilityList extends Toggletip {
   copiedMessage(element) {
     this.copyElement = element
     const icon = '<span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">link</span>'
+
+    // Store the original text for reversion post copy
+    const originalText = this.copyElement.innerHTML
+
     this.copyElement.classList.add('copied')
     this.copyElement.innerHTML = `${icon} Copied`
+
     setTimeout(() => {
       this.copyElement.classList.remove('copied')
-      this.copyElement.innerHTML = `${icon} Copy link`
+      this.copyElement.innerHTML = originalText // Restore original text
     }, 3000)
   }
 }
