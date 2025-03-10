@@ -227,13 +227,13 @@ function initDocs() {
           val: '#950906', // Red A (Deep red from Row 01)
           'brand-dark': '#950906', // Row 01 (Strong, deep red for identity)
           'brand-light': '#FDD9D9', // Red D (Soft pastel red for readability)
-          'brand-supplementary': '#E1261C', 
-          'brand-accent': '#0D6791', 
+          'brand-supplementary': '#E1261C', // Red B (Bright, high-contrast red)
+          'brand-accent': '#0D6791', // Blue B (Cool, high-contrast accent)
           'link-colour': '#950906', // Red A (Deep red for consistency)
           'visited-link-colour': '#472642', // Purple A (Deep purple for contrast)
           'hover-background-colour': 'rgba(149, 9, 6, 0.1)', // Red A (Subtle hover effect)
           'active-background-colour': 'rgba(149, 9, 6, 0.2)', // Red A (Stronger interaction)
-          'focus': '#1E88E5', // Blue B (Bright, energetic contrast)
+          'focus': '#E1261C', // Red B (Bright red focus for accessibility)
         },
         orange: {
           val: '#882600',
@@ -257,19 +257,19 @@ function initDocs() {
           'visited-link-colour': '#9A5E93', // Purple B (Deep purple for contrast)
           'hover-background-colour': 'rgba(85, 33, 5, 0.1)', // Brown A (Subtle hover effect)
           'active-background-colour': 'rgba(85, 33, 5, 0.2)', // Brown A (Stronger interaction)
-          'focus': '#1E88E5', // Blue B (Bright blue focus for accessibility)
+          'focus': '#9E5332', // Brown B (Deep, warm focus indicator)
         },
         yellow: {
           val: '#895E00', // Yellow A (Deep Golden Yellow from Row 01)
           'brand-dark': '#895E00', // Row 01 (Strong Golden Brown for identity)
           'brand-light': '#FFF1C5', // Row 04 (Soft but warm light yellow for readability)
           'brand-supplementary': '#FEA927', // Brown B (Darker contrast colour for accessibility)
-          'brand-accent': '#9E5332', // Yellow B (Strong, vibrant accent colour)
-          'link-colour': '#0D6791', // Blue B (Deep blue, keeping it consistent across palettes)
+          'brand-accent': '#EE6314', // Orange B (Bright, high-contrast accent)
+          'link-colour': '#895E00', // Yellow A (Deep golden yellow for consistency)
           'visited-link-colour': '#472642', // **Purple A (Deep & rich, high contrast)**
           'hover-background-colour': 'rgba(137, 94, 0, 0.1)', // **Based on `brand-dark` (#895E00)**
           'active-background-colour': 'rgba(137, 94, 0, 0.2)', // **Stronger version of `brand-dark`**
-          'focus': '#0D6791', // **Blue B (Deep & accessible focus indicator)**
+          'focus': '#895E00', // Row 01 (Strong Golden Brown for identity)
         },
         green: {
           val: '#215834', // Green A (Deep forest green from Row 01)
@@ -293,7 +293,7 @@ function initDocs() {
           'visited-link-colour':  '#9A5E93', // Purple B (Deep purple for contrast)
           'hover-background-colour': 'rgba(22, 41, 83, 0.1)', // Blue A (Subtle hover effect)
           'active-background-colour': 'rgba(22, 41, 83, 0.2)', // Blue A (Stronger interaction)
-          'focus': '#EE6314', // Orange B (High-contrast warm focus indicator)
+          'focus': '#0D6791', // Blue B (Deep blue for focus indicator)
         },
         purple: {
           val: '#472642', // Purple A (Deep plum from Row 01)
@@ -317,7 +317,7 @@ function initDocs() {
           'visited-link-colour': '#472642', // Purple A (Muted contrast, adds depth)
           'hover-background-colour': 'rgba(45, 45, 45, 0.1)', // Grey A (Subtle hover effect)
           'active-background-colour': 'rgba(45, 45, 45, 0.2)', // Grey A (Stronger interaction)
-          'focus': '#FAAF05', // Yellow B (Warm but visible focus highlight)
+          'focus': '#895E00', // Yellow A (Deep ochre for focus indicator)
         },
       },
     }
