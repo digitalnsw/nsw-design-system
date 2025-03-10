@@ -264,7 +264,7 @@ function initDocs() {
           'brand-dark': '#895E00', // Row 01 (Strong Golden Brown for identity)
           'brand-light': '#FFF1C5', // Row 04 (Soft but warm light yellow for readability)
           'brand-supplementary': '#FEA927', // Brown B (Darker contrast colour for accessibility)
-          'brand-accent': '#EE6314', // Orange B (Bright, high-contrast accent)
+          'brand-accent': '#E1261C', // Orange B (Bright, high-contrast accent)
           'link-colour': '#895E00', // Yellow A (Deep golden yellow for consistency)
           'visited-link-colour': '#472642', // **Purple A (Deep & rich, high contrast)**
           'hover-background-colour': 'rgba(137, 94, 0, 0.1)', // **Based on `brand-dark` (#895E00)**
