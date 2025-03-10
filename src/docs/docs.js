@@ -252,7 +252,7 @@ function initDocs() {
           'brand-dark': '#552105', // Row 01 (Strong brown for identity)
           'brand-light': '#E9C8B2', // Brown D (Soft warm brown for readability)
           'brand-supplementary': '#9E5332', // Brown B (Darker contrast colour for accessibility)
-          'brand-accent': '#1E88E5', // Blue B (Cool, strong contrast)
+          'brand-accent': '#0D6791', // Blue B (Cool, high-contrast accent)
           'link-colour': '#552105', // Brown A (Deep brown for consistency)
           'visited-link-colour': '#9A5E93', // Purple B (Deep purple for contrast)
           'hover-background-colour': 'rgba(85, 33, 5, 0.1)', // Brown A (Subtle hover effect)
