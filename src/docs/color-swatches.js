@@ -72,7 +72,7 @@ class ColorSwatches {
       swatchItem.setAttribute('tabindex', index === 0 ? '0' : '-1');
 
       swatchItem.innerHTML = `
-        <span class="js-color-swatches__option" tabindex="0">
+        <span class="nsw-color-swatches__option" tabindex="0">
           <span class="sr-only js-color-swatch__label">${this.formatLabel(colorKey)}</span>
           <span aria-hidden="true" style="background-color: ${colorData.val};" class="nsw-color-swatches__swatch"></span>
         </span>
