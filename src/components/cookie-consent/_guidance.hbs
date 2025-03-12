@@ -4,15 +4,14 @@ layout: blank-layout.hbs
 ---
 
 <h2>Overview</h2>
-<p>The Cookie consent component provides a clear and accessible method for informing users about cookie usage on a website, allowing them to them to manage their preferences. It aligns with privacy laws and best practices, ensuring user control over data collection.</p>
+<p>The Cookie consent component provides a clear and accessible method for informing users about cookie usage on a website, allowing them to manage their preferences. It aligns with privacy laws and best practices, ensuring user control over data collection.</p>
 
 <nav class="nsw-in-page-nav" aria-labelledby="in-page-nav">
   <div id="in-page-nav" class="nsw-in-page-nav__title">On this page</div>
   <ul class="nsw-in-page-nav__list">
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#cookie-consent-elements">Cookie consent elements</a></li>
-    <li><a href="#privacy-collection-notice">Privacy Collection Notice</a></li>
-    <li><a href="#implementation">Implementation</a></li>
+    <li><a href="#usage">Usage</a></li> 
+    <li><a href="#setup-steps">Steps to set up</a></li>
+    <li><a href="#privacy">Privacy</a></li>
     <li><a href="#customisation">Customisation</a></li>
     <li><a href="#pixel-support">Pixel support</a></li>
     <li><a href="#accessibility">Accessibility</a></li>
@@ -41,88 +40,283 @@ layout: blank-layout.hbs
   <li>Make it difficult for users to set their cookie preferences or reject non-essential cookies</li>
 </ul>
 
-<h2 id="cookie-consent-elements">Cookie consent elements</h2>
-<p>The Cookie consent component has the following parts:</p>
-<ul>
-  <li><strong>Consent banner</strong> - Displays a summary of cookie usage with options to accept all, reject all, or manage preferences.</li>
-  <li><strong>Confirmation message</strong> - Optional confirmation of the user’s selection and provides an option to dismiss the message.</li>
-  <li><strong>Preferences dialog</strong> - Allows users to customise cookie categories (e.g., necessary, analytics, marketing).</li>
-</ul>
+<h2 id="setup-steps">Steps to set up</h2>
+<div class="nsw-steps nsw-steps--counters nsw-steps--true nsw-steps--medium">
+  <div class="nsw-steps__item nsw-steps-medium">
+    <div class="nsw-steps__content">
+      <h3 id="assess">Assess cookies used on your website</h3>
+      <p>Conduct a review of the cookies currently used on your site. Identify:</p>
+      <ul>
+        <li><strong>Essential cookies: </strong> Required for core functionality, security, and accessibility. These cannot be disabled.</li>
+        <li><strong>Analytics cookies: </strong> Used to measure and analyze website traffic, user interactions, and performance.</li>
+        <li><strong>Marketing cookies:</strong> Used for advertising, retargeting, and personalisation across digital platforms.</li>
+        <li><strong>Functional cookies:</strong> Enable additional features, such as user preferences, language settings, and saved form data.</li>
+        <li><strong>Authentication & session cookies:</strong> Used to manage user logins, maintain session states, and provide secure access to restricted areas.</li>
+        <li><strong>Third-party cookies:</strong> Set by external services embedded on your website, such as social media platforms, embedded videos, or chat widgets.</li>
+        <li><strong>Tracking & profiling cookies:</strong> Collect behavioural data to build user profiles and enhance targeted content delivery.</li>
+      </ul>
+      <p>A cookie audit tool or browser developer tools can help in identifying existing cookies. Document each cookie’s purpose, expiration, and data retention policies to ensure compliance.</p>
+    </div>
+  </div>
 
-<h2 id="privacy-collection-notice">Privacy Collection Notice</h2>
-<p>The Cookie consent component must align with Privacy Collection Notice (PCN) requirements to ensure transparency in data collection practices.</p>
-<ul>
-    <li>The <strong>"How we use cookies"</strong> tab can serve as a mini PCN. However, if this tab does not outline full cookie usage and PCN requirements, a link to a dedicated Privacy Policy page must be included within this tab and area.</li>
-    <li>To ensure compliance, website owners should reach out to <a href="mailto:gtpprivacy@customerservice.nsw.gov.au">gtpprivacy@customerservice.nsw.gov.au</a> to audit and assess cookie usage on their website.</li>
-    <li>Additional guidance and resources can be found on the <a href="https://www.digital.nsw.gov.au/delivery/government-technology-platforms/services/digital-services/privacy/privacy-collection-notices" target="_blank">Digital NSW website</a>.</li>
-</ul>
+  <div class="nsw-steps__item">
+    <div class="nsw-steps__content">
+      <h3 id="audit">Request a Privacy Audit</h3>
+      <p>To ensure compliance with privacy regulations, website owners should have their cookie usage reviewed by the <strong>GTP Privacy Team</strong>. This audit helps determine how cookies are classified, ensuring they align with legal and data protection requirements.</p>
 
-<p>As tracking technologies continue to evolve, periodic audits and proactive measures will be necessary to maintain privacy compliance and control over pixel deployment.</p>
+      <p>As part of the audit process, the GTP Privacy Team will:</p>
+      <ul>
+        <li><strong>Assess all cookies</strong> used on your website, including essential, analytics, and third-party cookies</li>
+        <li><strong>Provide classification guidance</strong> to correctly categorise cookies based on their purpose and data collection impact</li>
+        <li><strong>Advise on privacy statements</strong>, ensuring transparency in cookie usage and compliance with <strong>Information Privacy Principle (IPP) 3</strong></li>
+        <li><strong>Help determine the appropriate "How we use cookies" template</strong> based on your agency’s classification</li>
+      </ul>
 
-<h2 id="implementation">Implementation</h2>
-<h3>Create a cookie consent configuration file</h3>
-    <p>Create a new JavaScript file (e.g., <code>cookie-consent-config.js</code>) in your project. This file will contain the configuration object for the Cookie consent component.</p>
-    <p>You can download a <a href="/cookie-consent-config.js" target="__blank">cookie configuration template</a> or use the following example as a base:</p>
-    
+      <p>To begin the audit process, contact the GTP Privacy Team at <a href="mailto:digitalnswprivacy@customerservice.nsw.gov.au">digitalnswprivacy@customerservice.nsw.gov.au</a>.</p>
+
+      <p>Following the audit, agencies must update their privacy statements to reflect their findings and use one of the <a href="#how-we-use-cookies">three approved "How we use cookies" templates</a> based on their classification.</p>
+    </div>
+  </div>
+
+  <div class="nsw-steps__item">
+    <div class="nsw-steps__content">
+      <h3 id="configuration">Configure the Cookie Consent Component</h3>
+      <p>You can download a <a href="/cookie-consent-config.js" target="_blank">cookie configuration template</a> or use the example below as a starting point for your implementation.</p>
+
+      <p><strong>Key configuration steps:</strong></p>
+      <ol>
+        <li>
+          <strong>Define and configure cookie categories:</strong>  
+          Create a <code>cookie-consent-config.js</code> file to specify cookie categories such as 'necessary', 'analytics', and any others relevant to your website.  
+          Ensure each cookie is correctly categorised to reflect its purpose and legal requirements.
+        </li>
+
+        <li>
+          <strong>Add cookie groups to the configuration:</strong>  
+          Include the cookie groups identified during your audit under the <code>sections</code> key in your configuration file.  
+          Each script that sets cookies must be associated with a corresponding category by adding a <code>data-category</code> attribute to it in the <code>&lt;head&gt;</code>.  
+          <br><br>
+          Example: If a script is responsible for setting analytics cookies, it should be marked as:
+          <pre><code>&lt;script src="analytics.js" type="text/plain" data-category="analytics"&gt;&lt;/script&gt;</code></pre>
+          This ensures that cookies are only set after the user provides consent.
+        </li>
+
+        <li>
+          <strong>Customise the component to fit your needs:</strong>  
+          Adjust the consent banner, preferences dialog, and other UI elements to align with your agency's design and accessibility standards.  
+          You can modify text, button labels, styling, and behaviors to provide a user-friendly experience.  
+          <br><br>
+          See the <a href="#customisation">Customisation section</a> for a full list of available options.
+        </li>
+
+        <li>
+          <strong>Ensure privacy information is correct:</strong>  
+          The "How we use cookies" tab must contain clear and complete privacy details in line with your privacy audit findings.  
+          This tab must follow one of three approved templates to maintain compliance.  
+          <br><br>
+          See the <a href="#how-we-use-cookies">Privacy section</a> for details on available templates.
+        </li>
+
+        <li>
+          <strong>Set cookie expiry based on provider and banner needs:</strong>  
+          There are two layers of cookie expiries to consider:
+          <ul>
+            <li>
+              <strong>Third-party provider cookies</strong> (e.g., The Trade Desk, Facebook, Google Analytics) have their own expiry settings, typically ranging from <strong>30 days to 13 months</strong>. For example, TTD cookies commonly expire between <strong>6-12 months</strong>.
+            </li>
+            <li>
+              <strong>Cookie consent banner expiry</strong> controls when users are prompted again. This is configurable via <code>config.cookie.expiresAfterDays</code> in the component configuration file and accepts a <code>Number</code> (integer) representing the number of days before the consent expires.
+            </li>
+          </ul>
+          <p>If the consent cookie expires, the <strong>banner will automatically appear again</strong>, prompting users to reselect their preferences.</p>
+          <p>The <strong>best practice</strong> is to set the consent expiry to match the shortest expiry among the site's cookies to ensure consistency and compliance.</p>
+        </li>
+      </ol>
+
 {{#>_docs-code open=true code=true}}
 document.addEventListener('DOMContentLoaded', () => {
   const config = {
+    cookie: {
+      name: 'nsw-cookie-consent',
+      expiresAfterDays: 90,
+    },
     categories: {
       necessary: {
         enabled: true,
         readOnly: true,
       },
-      analytics: {
-        enabled: false,
-      },
-      marketing: {
-        enabled: false,
-      },
+      analytics: {},
+      foo: {},
     },
     consentBanner: {
       title: 'Cookies on the NSW Design System website',
-      description: "We've added essential and additional cookies to ensure this service works effectively, track how it's being used, and make necessary improvements. You can <a href='#'>manage your cookie settings</a> by visiting the Cookies page, found at the bottom of this page.",
+      description: 
+        "We've added essential and additional cookies to ensure this service works effectively, track how it's being used, and make necessary improvements. You can <a href='#'>manage your cookie settings</a> by visiting the 'Cookies' page, found at the bottom of this page.",
       acceptAllBtn: 'Accept all',
       acceptNecessaryBtn: 'Reject all',
       showPreferencesBtn: 'Manage your preferences',
-      confirmationMessage: 'Thanks for making your selection. View and update your cookie preferences <a href='#cookie-consent' class='js-open-dialog-cookie-consent-preferences' aria-haspopup='dialog'>here</a>.',
+      confirmationMessage: 
+        'Thanks for making your selection. View and update your <a href="#cookie-consent" class="js-open-dialog-cookie-consent-preferences" aria-haspopup="dialog">cookie preferences</a>.',
     },
     preferencesDialog: {
       title: 'Manage cookie preferences',
+      acceptAllBtn: 'Accept all',
+      acceptNecessaryBtn: 'Reject all',
+      savePreferencesBtn: 'Accept current selection',
+      closeIconLabel: 'Close dialog',
       sections: [
         {
           title: 'Necessary',
-          description: 'These cookies are essential for the website to function.',
+          description: 
+            'This site requires necessary cookies for privacy protection, accessibility, and secure access to government services. They cannot be turned off.',
           linkedCategory: 'necessary',
         },
         {
-          title: 'Analytics',
-          description: 'These cookies help us improve the website by collecting anonymised data.',
+          title: 'Performance and Analytics',
+          description: 
+            'These cookies collect information about how you use our website. All of the data is anonymised and cannot be used to identify you.',
           linkedCategory: 'analytics',
         },
         {
-          title: 'Marketing',
-          description: 'These cookies are used for personalised ads and tracking.',
-          linkedCategory: 'marketing',
+          title: 'Foo',
+          description: 
+            'This is a test cookie script that triggers a browser alert to confirm the cookie function is working.',
+          linkedCategory: 'foo',
         },
       ],
+      tab1: {
+        tabTitle: 'Cookie preferences',
+      },
+      tab2: {
+        tabTitle: 'How we use cookies',
+        content: '
+          <p>We use cookies to enhance your experience when using our website.</p>
+          <p>Cookies help us understand how you interact with our site, allowing us to improve functionality and ensure security.</p>
+          <p>They do not contain viruses or harmful software and take up minimal space on your device.</p>
+
+          <h2>How we use cookies</h2>
+          <p>Our website uses cookies to:</p>
+          <ul>
+            <li>Ensure essential site functionality, such as security and accessibility</li>
+            <li>Remember your preferences, including dismissed notifications and pop-ups</li>
+            <li>Analyse website traffic and user interactions to improve content and navigation</li>
+            <li>Enable sharing of content on social media platforms like LinkedIn</li>
+            <li>Help us make continuous improvements based on user behaviour</li>
+          </ul>
+          <p>Some cookies may collect information that is classified as personal data. Please refer to our <a href="[your privacy policy URL]">Privacy Policy</a> to learn more about how we handle personal information.</p>
+          <p>For more details on cookies, how they work, and how to manage or delete them, visit <a href="https://www.allaboutcookies.org">www.allaboutcookies.org</a>.</p>
+
+          <h2>Details about cookies on this NSW Government website</h2>
+          <table class="nsw-table">
+            <caption class="sr-only">Details about cookies on this NSW Government website</caption>
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Purpose</th>
+                <th scope="col">Expires</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>analytics_next_page_call</td>
+                <td>This lets us know the next page you visit on NSW Government website, so we can make journeys better</td>
+                <td>When you close your browser</td>
+              </tr>
+              <tr>
+                <td>_ga</td>
+                <td>These help us count how many people visit NSW Government website and other government digital services by tracking if you’ve visited before</td>
+                <td>2 years</td>
+              </tr>
+              <tr>
+                <td>_gid</td>
+                <td>These help us count how many people visit NSW Government website and other government digital services by tracking if you’ve visited before</td>
+                <td>24 hours</td>
+              </tr>
+              <tr>
+                <td>_ga_S5RQ7FTGVR</td>
+                <td>Used by Google Analytics to find and track an individual session with your device</td>
+                <td>2 years</td>
+              </tr>
+            </tbody>
+          </table>
+        ',
+      },
     },
   };
 
   new window.NSW.CookieConsent(config);
-};
+});
 {{/_docs-code}}
+    </div>
+  </div>
 
-<h3>Integrate the configuration file</h3>
-<p>Ensure the <code>cookie-consent-config.js</code> file is included in the <code>head</code> section of your project. Without this, the Cookie consent functionality will not work correctly.</p>
+  <div class="nsw-steps__item">
+    <div class="nsw-steps__content">
+      <h3 id="integration">Integrate the configuration file</h3>
+      <p>Ensure the configuration file is included in your HTML <code>&lt;head&gt;</code> section:</p>
+{{#>_docs-code open=true code=true}}
+&lt;script src="/cookie-consent-config.js"&gt;&lt;/script&gt;
+{{/_docs-code}}
+      <p>Without this, the cookie consent functionality will not load.</p>
+    </div>
+  </div>
 
-<h3>Test Your Changes</h3>
-<p>Once the new category has been added, rebuild your project (e.g., <code>npm run build</code> or <code>gulp build</code>). Open the website and verify that the new cookie group is displayed in the preferences dialog and behaves as expected.</p>
+  <div class="nsw-steps__item">
+    <div class="nsw-steps__content">
+      <h3 id="test-deploy">Test locally and deploy</h3>
+      <p>Before going live, test your implementation to ensure the cookie consent component functions as expected.</p>
+      <ul>
+        <li>Run the website locally and verify that the banner loads correctly.</li>
+        <li>Ensure cookie preferences update properly when users accept, reject, or customise settings.</li>
+        <li>Use browser developer tools to confirm that cookies behave according to user selections.</li>
+        <li>Check that the Privacy Collection Notice link is accessible and correct.</li>
+      </ul>
+      <p>Once tested, deploy the changes to your production environment.</p>
+    </div>
+  </div>
+</div>
+
+<h2 id="privacy">Privacy</h2>
+
+<h3 id="data-collection">Data collection</h3>
+<p>Website cookies can collect various types of personal information, depending on their purpose and how they are configured. Examples of personal information that may be collected include:</p>
+<ul>
+  <li>Email address</li>
+  <li>Username</li>
+  <li>IP address</li>
+  <li>Geographic location</li>
+  <li>Session screen recording data</li>
+</ul>
+
+<h3 id="personal-information">Personal information</h3>
+<p>If personal information is being collected via a cookie, your Agency is required to satisfy the principle of open collection under <strong>Information Privacy Principle (IPP) 3</strong>.</p>
+<p>The most common way of complying with IPP 3 is to provide a <strong>Privacy Collection Notice (PCN)</strong> to individuals at the point their information is collected.</p>
+
+<p>The Cookie consent component can be configured to include a PCN and meet IPP 3 requirements.</p>
+
+<h4 id="how-we-use-cookies">"How we use cookies" tab</h4>
+
+<p>As best practice, a dedicated cookie notice may be maintained on your Agency's website and linked within the <strong>"How we use cookies"</strong> tab.</p>
+
+<p>Agencies must ensure the <strong>"How we use cookies"</strong> tab aligns with one of the following approved templates, based on their classification from the GTP Privacy Team:</p>
+
+<ol>
+  <li><a href="https://nswgov.sharepoint.com/:w:/s/GTPCommercialTeam/EaGOj92Y07lHtZugQSUnyPwBYY-AxkLM2rtR_QQVtfpcWA?e=3f1wZq" target="_blank">Cookies do not collect personal information</a></li>
+  <li><a href="https://nswgov.sharepoint.com/:w:/r/sites/GTPCommercialTeam/sd33_riskassessment/PRA-2356_78EF69DA7DAB4EC19D00CDA48B5EB903/How%20we%20use%20cookies%20-%20templates/2.%20Agency%20has%20a%20standalone%20cookie%20notice%20on%20their%20website.docx?d=w8f290c9fdb1e40aaaab7a5c9e85dc95a&csf=1&web=1&e=sLoO6f" target="_blank">Agency has a standalone cookie notice</a></li>
+  <li><a href="https://nswgov.sharepoint.com/sites/GTPCommercialTeam/sd33_riskassessment/PRA-2356_78EF69DA7DAB4EC19D00CDA48B5EB903/How%20we%20use%20cookies%20-%20templates/3.%20Cookies%20will%20collect%20personal%20information%20and%20Agency%20do%20not%20have%20a%20standalone%20cookie%20notice%20on%20their%20website.docx?web=1" target="_blank">Cookies collect personal information and no standalone notice</a></li>
+</ol>
+
+<h3 id="ongoing-compliance">Ongoing compliance</h3>
+<p>As tracking technologies continue to evolve, periodic audits and proactive measures will be necessary to maintain privacy compliance and control over pixel deployment.</p>
+
+<h3 id="support">Privacy support</h3>
+<p>For further advice and support, Agencies should refer to their own privacy, information governance, or information security teams in the first instance.</p>
+<p>Otherwise, further advice on cookies is available by contacting the <strong>Digital NSW Privacy Lead</strong> at <a href="mailto:digitalnswprivacy@customerservice.nsw.gov.au">digitalnswprivacy@customerservice.nsw.gov.au</a>.</p>
 
 <h2 id="customisation">Customisation</h2>
 <p>The component is customisable via the configuration object, including:</p>
 
-<h3>Banner Customisations</h3>
+<h3>Consent banner customisations</h3>
 <ul>
   <li>Set the title</li>
   <li>Set the content HTML (including the ability to add links)</li>
@@ -130,15 +324,16 @@ document.addEventListener('DOMContentLoaded', () => {
   <li>Customise whether the "Accept all" and "Reject all" buttons will show as well as their titles</li>
 </ul>
 
-<h3>Dialog Customisations</h3>
+<h3>Preferences dialog customisations</h3>
 <ul>
   <li>Enable or disable closing the dialog by clicking outside the dialog</li>
-  <li>Add detailed cookies information</li>
-  <li>Add specific information for each cookie</li>
-  <li>Customise whether the "Accept all" and "Reject all" buttons will show as well as their titles</li>
+  <li>Customise the cookie categories and descriptions shown in the preferences dialog</li>
+  <li>Add specific information for each cookie, including purpose and expiry</li>
+  <li>Customise whether the <strong>"Accept all"</strong> and <strong>"Reject all"</strong> buttons will show, as well as their titles</li>
+  <li>The <strong>"How we use cookies"</strong> tab is customisable and must align with one of the three approved templates. Agencies should select the appropriate template based on their classification from the GTP Privacy Team. View the <a href="#how-we-use-cookies">approved cookie consent privacy templates here</a>.</li>
 </ul>
 
-<h2 id="privacy-collection-notice">Pixel support</h2>
+<h2 id="pixel-support">Pixel support</h2>
 <p>Tracking pixels introduce additional complexities, as they can be deployed in multiple ways. Some use cookies, while others do not, and some may be present unintentionally. Given the evolving nature of tracking mechanisms, mitigating unauthorised pixels is an ongoing challenge.</p>
 
 <p>For websites intentionally deploying tracking pixels, we recommend:</p>
@@ -151,9 +346,9 @@ document.addEventListener('DOMContentLoaded', () => {
 <h2 id="accessibility">Accessibility</h2>
 <p>The Cookie consent component meets WCAG 2.2 AA accessibility guidelines:</p>
 <ul>
-  <li>All interactive elements are keyboard navigable</li>
-  <li>High contrast ensures readability for visually impaired users</li>
-  <li>Screen reader support for clear announcements of the banner and dialog content</li>
+  <li>Keyboard navigability</li>
+  <li>High contrast for readability</li>
+  <li>Screen reader support</li>
 </ul>
 
 <h2 id="dependencies">Dependencies</h2>

@@ -1,5 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
   const config = {
+    cookie: {
+      name: 'nsw-cookie-consent',
+      expiresAfterDays: 90,
+    },
     categories: {
       necessary: {
         enabled: true,
