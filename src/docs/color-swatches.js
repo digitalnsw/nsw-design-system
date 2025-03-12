@@ -114,7 +114,7 @@ class ColorSwatches {
       if (!swatch) return;
   
       if (e.key === ' ' || e.key === 'Enter') {
-        e.preventDefault(); // Prevent scrolling when pressing Space
+        e.preventDefault(); // Prevent scrolling when pressing space key
         this.currentColor = swatch.getAttribute('data-color');
         this.updateSelectedSwatch(swatch);
         this.updateCSSVariables();
