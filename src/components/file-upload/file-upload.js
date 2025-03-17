@@ -49,6 +49,7 @@ class FileUpload {
 
     li.insertAdjacentHTML('afterbegin', html)
     li.querySelector('.nsw-file-upload__item-filename').textContent = this.constructor.truncateString(file.name, 50)
+    li.querySelector('.nsw-file-upload__item-filename').dataset.filename = file.name
     return li.outerHTML
   }
 
@@ -92,7 +93,7 @@ class FileUpload {
     if (!event.target.closest('.nsw-icon-button')) return
     event.preventDefault()
     const item = event.target.closest('.nsw-file-upload__item')
-    const filename = item.querySelector('.nsw-file-upload__item-filename').textContent
+    const filename = item.querySelector('.nsw-file-upload__item-filename').dataset.filename
 
     const dataTransfer = new DataTransfer()
     for (let i = 0; i < this.currentFiles.files.length; i += 1) {
