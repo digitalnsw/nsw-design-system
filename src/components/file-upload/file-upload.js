@@ -93,7 +93,7 @@ class FileUpload {
     if (!event.target.closest('.nsw-icon-button')) return
     event.preventDefault()
     const item = event.target.closest('.nsw-file-upload__item')
-    const filename = item.querySelector('.nsw-file-upload__item-filename').dataset.filename
+    const { filename } = item.querySelector('.nsw-file-upload__item-filename').dataset
 
     const dataTransfer = new DataTransfer()
     for (let i = 0; i < this.currentFiles.files.length; i += 1) {
