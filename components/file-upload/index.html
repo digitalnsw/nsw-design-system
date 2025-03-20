@@ -460,7 +460,7 @@
 
 <h3>Upload status</h3>
 
-<div class="nsw-m-top-xs nsw-in-page-alert nsw-in-page-alert--info nsw-in-page-alert--compact">
+<div class="nsw-in-page-alert nsw-in-page-alert--info nsw-in-page-alert--compact nsw-m-top-xs">
   <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">info</span>
   <div class="nsw-in-page-alert__content">
     <p class="nsw-small">This functionailty is not included in the base component.</p>
@@ -489,6 +489,18 @@
 </div>
 
 <h3>Multiple uploads</h3>
+
+<div class="nsw-in-page-alert nsw-in-page-alert--info nsw-in-page-alert--compact nsw-m-top-xs">
+  <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">info</span>
+  <div class="nsw-in-page-alert__content">
+    <p class="nsw-small">
+      To enable multiple file uploads, add the <code>multiple</code> attribute to the file input. 
+      To replace existing files instead of appending new ones, use the <code>data-replace-files</code> attribute on the file upload container. 
+      <strong>Do not use both attributes simultaneously</strong>, as they conflict. Enabling both will cause unintended behavior.
+    </p>
+  </div>
+</div>
+
 <p>Clearly communicate if a user can upload multiple files and consider displaying additional files vertically.</p>
 
 <div class="nsw-grid">
@@ -530,14 +542,16 @@
           </div>
         </div>
 
+<h3>Error messages</h3>
+<p>Includes ability to accept only a single file.</p>
 <div class="nsw-docs__example">
   <div class="nsw-docs__component">
     <div class="nsw-form">
       <div class="nsw-form__group">
         <label class="nsw-form__label" for="file-upload-helper">Upload drivers license</label>
         <span class="nsw-form__helper" id="file-upload-helper-helper-text">Formats accepted: JPG, PNG or PDF <br /> File size must not exceed 350MB</span>
-        <div class="nsw-file-upload js-file-upload">
-            <input id="file-upload-helper" type="file" class="nsw-file-upload__input" name="file-upload-helper" aria-describedby="file-upload-helper-helper-text" accept="image/*,.pdf" multiple>
+        <div class="nsw-file-upload js-file-upload" data-replace-files>
+            <input id="file-upload-helper" type="file" class="nsw-file-upload__input" name="file-upload-helper" aria-describedby="file-upload-helper-helper-text" accept="image/*,.pdf">
             <label for="file-upload-helper" class="nsw-file-upload__label nsw-button nsw-button--dark-outline-solid">Select file</label>
         </div>
       </div>
@@ -558,8 +572,8 @@
   <div class="nsw-form__group">
     <label class="nsw-form__label" for="file-upload-helper">Upload drivers license</label>
     <span class="nsw-form__helper" id="file-upload-helper-helper-text">Formats accepted: JPG, PNG or PDF <br /> File size must not exceed 350MB</span>
-    <div class="nsw-file-upload js-file-upload">
-        <input id="file-upload-helper" type="file" class="nsw-file-upload__input" name="file-upload-helper" aria-describedby="file-upload-helper-helper-text" accept="image/*,.pdf" multiple>
+    <div class="nsw-file-upload js-file-upload" data-replace-files>
+        <input id="file-upload-helper" type="file" class="nsw-file-upload__input" name="file-upload-helper" aria-describedby="file-upload-helper-helper-text" accept="image/*,.pdf">
         <label for="file-upload-helper" class="nsw-file-upload__label nsw-button nsw-button--dark-outline-solid">Select file</label>
     </div>
   </div>
@@ -570,8 +584,8 @@
   <div class="nsw-form__group">
     <label class="nsw-form__label" for="file-upload-helper">Upload drivers license</label>
     <span class="nsw-form__helper" id="file-upload-helper-helper-text">Formats accepted: JPG, PNG or PDF <br /> File size must not exceed 350MB</span>
-    <div class="nsw-file-upload js-file-upload">
-        <input id="file-upload-helper" type="file" class="nsw-file-upload__input" name="file-upload-helper" aria-describedby="file-upload-helper-helper-text" accept="image/*,.pdf" multiple>
+    <div class="nsw-file-upload js-file-upload" data-replace-files>
+        <input id="file-upload-helper" type="file" class="nsw-file-upload__input" name="file-upload-helper" aria-describedby="file-upload-helper-helper-text" accept="image/*,.pdf">
         <label for="file-upload-helper" class="nsw-file-upload__label nsw-button nsw-button--dark-outline-solid">Select file</label>
     </div>
   </div>
@@ -583,6 +597,7 @@
 
 
 <h3>Error messages</h3>
+<p>Includes ability to accept multiple files.</p>
 <div class="nsw-docs__example">
   <div class="nsw-docs__component">
     <div class="nsw-form">
@@ -591,7 +606,7 @@
         <span class="nsw-form__helper" id="file-upload-error-helper-text">Formats accepted: JPG, PNG or PDF <br /> File size must not exceed 350MB</span>
         <span class="nsw-form__helper nsw-form__helper--error" id="file-upload-error-error-text"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span>The selected file must be smaller than 350MB</span>
         <div class="nsw-file-upload js-file-upload">
-            <input id="file-upload-error" type="file" class="nsw-file-upload__input" name="file-upload-error" aria-describedby="file-upload-error-helper-text" aria-invalid="true" accept="image/*,.pdf">
+            <input id="file-upload-error" type="file" class="nsw-file-upload__input" name="file-upload-error" aria-describedby="file-upload-error-helper-text" aria-invalid="true" accept="image/*,.pdf" multiple>
             <label for="file-upload-error" class="nsw-file-upload__label nsw-button nsw-button--dark-outline-solid">Select file</label>
         </div>
       </div>
@@ -614,7 +629,7 @@
     <span class="nsw-form__helper" id="file-upload-error-helper-text">Formats accepted: JPG, PNG or PDF <br /> File size must not exceed 350MB</span>
     <span class="nsw-form__helper nsw-form__helper--error" id="file-upload-error-error-text"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span>The selected file must be smaller than 350MB</span>
     <div class="nsw-file-upload js-file-upload">
-        <input id="file-upload-error" type="file" class="nsw-file-upload__input" name="file-upload-error" aria-describedby="file-upload-error-helper-text" aria-invalid="true" accept="image/*,.pdf">
+        <input id="file-upload-error" type="file" class="nsw-file-upload__input" name="file-upload-error" aria-describedby="file-upload-error-helper-text" aria-invalid="true" accept="image/*,.pdf" multiple>
         <label for="file-upload-error" class="nsw-file-upload__label nsw-button nsw-button--dark-outline-solid">Select file</label>
     </div>
   </div>
@@ -627,7 +642,7 @@
     <span class="nsw-form__helper" id="file-upload-error-helper-text">Formats accepted: JPG, PNG or PDF <br /> File size must not exceed 350MB</span>
     <span class="nsw-form__helper nsw-form__helper--error" id="file-upload-error-error-text"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span>The selected file must be smaller than 350MB</span>
     <div class="nsw-file-upload js-file-upload">
-        <input id="file-upload-error" type="file" class="nsw-file-upload__input" name="file-upload-error" aria-describedby="file-upload-error-helper-text" aria-invalid="true" accept="image/*,.pdf">
+        <input id="file-upload-error" type="file" class="nsw-file-upload__input" name="file-upload-error" aria-describedby="file-upload-error-helper-text" aria-invalid="true" accept="image/*,.pdf" multiple>
         <label for="file-upload-error" class="nsw-file-upload__label nsw-button nsw-button--dark-outline-solid">Select file</label>
     </div>
   </div>
