@@ -22,6 +22,7 @@ class FileUpload {
     }
 
     this.input.addEventListener('change', this.handleInputChange.bind(this))
+    this.element.addEventListener('click', this.handleFileRemove.bind(this))
   }
 
   handleInputChange() {
@@ -61,32 +62,40 @@ class FileUpload {
     this.filesList.classList.add('active')
 
     const dataTransfer = new DataTransfer()
+    const existingFiles = new Set()
 
+    if (this.replaceFiles) {
+      this.filesList.innerHTML = ''
+      this.currentFiles = new DataTransfer()
+    }
+
+    // Collect existing files to maintain them in the list (if multiple is allowed)
+    if (this.multipleUpload && this.currentFiles && this.currentFiles.files) {
+      for (let i = 0; i < this.currentFiles.files.length; i += 1) {
+        const file = this.currentFiles.files[i]
+        dataTransfer.items.add(file)
+        existingFiles.add(file.name)
+      }
+    }
+
+    let fileListHTML = ''
+
+    // Add only new files
     for (let i = 0; i < this.input.files.length; i += 1) {
       const file = this.input.files[i]
-      dataTransfer.items.add(file)
+      if (!existingFiles.has(file.name)) {
+        dataTransfer.items.add(file)
+        fileListHTML += this.createFileItem(file)
+      }
     }
 
     this.currentFiles = dataTransfer
-    let fileListHTML = ''
 
-    for (let i = 0; i < this.input.files.length; i += 1) {
-      const file = this.input.files[i]
-      fileListHTML = this.createFileItem(file) + fileListHTML
-    }
-
-    if (this.replaceFiles) {
-      this.filesList.innerHTML = fileListHTML
-    } else {
+    if (fileListHTML) {
       this.filesList.insertAdjacentHTML('beforeend', fileListHTML)
     }
 
     this.input.files = this.currentFiles.files
-    this.removeFile()
-  }
-
-  removeFile() {
-    this.filesList.addEventListener('click', this.handleFileRemove.bind(this))
   }
 
   handleFileRemove(event) {
