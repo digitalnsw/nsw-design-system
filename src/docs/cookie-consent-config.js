@@ -17,14 +17,14 @@ document.addEventListener('DOMContentLoaded', () => {
       description:
         "We've added essential and additional cookies to ensure this service works effectively, track how it's being used, and make necessary improvements. You can <a href='#'>manage your cookie settings</a> by visiting the 'Cookies' page, found at the bottom of this page.",
       acceptAllBtn: 'Accept all',
-      acceptNecessaryBtn: 'Reject all',
+      acceptNecessaryBtn: 'Only necessary cookies',
       showPreferencesBtn: 'Manage your preferences',
       confirmationMessage: `Thanks for making your selection. View and update your <a href="#cookie-consent" class="js-open-dialog-cookie-consent-preferences" aria-haspopup="dialog">cookie preferences</a>.`,
     },
     preferencesDialog: {
       title: 'Manage cookie preferences',
       acceptAllBtn: 'Accept all',
-      acceptNecessaryBtn: 'Reject all',
+      acceptNecessaryBtn: 'Only necessary cookies',
       savePreferencesBtn: 'Accept current selection',
       closeIconLabel: 'Close dialog',
       sections: [

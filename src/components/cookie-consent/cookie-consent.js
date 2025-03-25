@@ -231,9 +231,9 @@ class CookieConsent {
     this.consentBannerConfirmationMessage = consentModal.confirmationMessage || ''
 
     const consentBannerHtml = `
-      <div class="nsw-cookie-banner" role="alert">
+      <div class="nsw-cookie-banner" role="alert" tabindex="-1" aria-labelledby="cookie-banner-title" aria-live="assertive">
         <div class="nsw-cookie-banner__wrapper">
-          <div class="nsw-cookie-banner__title">${consentModal.title || 'Cookie use on our website'}</div>
+          <div id="cookie-banner-title" class="nsw-cookie-banner__title">${consentModal.title || 'Cookie use on our website'}</div>
           <span class="nsw-cookie-banner__description">
             <div class="nsw-cookie-banner__content">
               ${consentModal.description ? `<p>${consentModal.description}</p>` : ''}
@@ -262,8 +262,9 @@ class CookieConsent {
     const tempDiv = document.createElement('div')
     tempDiv.innerHTML = consentBannerHtml
     this.consentBannerElement = tempDiv.firstElementChild
-
     document.body.appendChild(this.consentBannerElement)
+
+    this.consentBannerElement.focus()
   }
 
   init() {
@@ -334,13 +335,17 @@ class CookieConsent {
   }
 
   loadUserPreferences() {
-    const preferences = CookieConsentAPI.getUserPreferences()
-    if (!preferences) return
-
-    this.allCookieInputs.forEach((input) => {
-      const checkbox = input
+    const preferences = CookieConsentAPI.getUserPreferences() || { acceptedCategories: [] }
+    const inputs = Array.from(this.allCookieInputs)
+    inputs.forEach((checkbox) => {
       const category = checkbox.value
-      checkbox.checked = preferences.acceptedCategories.includes(category)
+      const isChecked = preferences.acceptedCategories.length > 0
+        ? preferences.acceptedCategories.includes(category)
+        : Boolean(
+            this.config.categories[category] &&
+            this.config.categories[category].readOnly
+          )
+      checkbox.checked = isChecked
     })
   }
 
