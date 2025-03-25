@@ -1799,7 +1799,6 @@
       this.element.addEventListener('click', this.handleFileRemove.bind(this));
     }
     handleInputChange() {
-      if (this.input.value === '') return;
       this.updateFileList();
     }
     createFileList() {
@@ -1823,6 +1822,19 @@
       return li.outerHTML;
     }
     updateFileList() {
+      if (this.input.files.length === 0) {
+        // If there are previously stored files, re-sync the input and exit.
+        if (this.currentFiles && this.currentFiles.files && this.currentFiles.files.length > 0) {
+          this.input.files = this.currentFiles.files;
+          return;
+        }
+        // Clear list if otherwise
+        if (this.filesList) {
+          this.filesList.innerHTML = '';
+          this.filesList.classList.remove('active');
+        }
+        return;
+      }
       if (!this.filesList) {
         this.createFileList();
       }
