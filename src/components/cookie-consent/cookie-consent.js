@@ -337,16 +337,20 @@ class CookieConsent {
   loadUserPreferences() {
     const preferences = CookieConsentAPI.getUserPreferences() || { acceptedCategories: [] }
     const inputs = Array.from(this.allCookieInputs)
-    inputs.forEach((checkbox) => {
+    for (let i = 0; i < inputs.length; i += 1) {
+      const checkbox = inputs[i]
       const category = checkbox.value
-      const isChecked = preferences.acceptedCategories.length > 0
-        ? preferences.acceptedCategories.includes(category)
-        : Boolean(
-            this.config.categories[category] &&
-            this.config.categories[category].readOnly
-          )
+      let isChecked
+      if (preferences.acceptedCategories.length > 0) {
+        isChecked = preferences.acceptedCategories.includes(category)
+      } else {
+        isChecked = Boolean(
+          this.config.categories[category]
+          && this.config.categories[category].readOnly,
+        )
+      }
       checkbox.checked = isChecked
-    })
+    }
   }
 
   handleConsentAction(action) {
