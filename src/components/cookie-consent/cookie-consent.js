@@ -346,7 +346,7 @@ class CookieConsent {
       } else {
         isChecked = Boolean(
           this.config.categories[category]
-          && this.config.categories[category].readOnly,
+          && this.config.categories[category].readOnly, // Ensure read-only categories are checked by default
         )
       }
       checkbox.checked = isChecked
