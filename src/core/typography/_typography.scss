@@ -1,10 +1,11 @@
 body {
+  color: var(--nsw-text-dark);
+  -moz-osx-font-smoothing: grayscale;
+
   @include font-size('sm');
   font-family: var(--nsw-font-family);
   font-weight: var(--nsw-font-normal);
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: var(--nsw-text-dark);  
 }
 
 button,
@@ -57,13 +58,14 @@ acronym {
 /* stylelint-enable selector-no-qualifying-type */
 
 blockquote {
-  @include font-size('lg');
-  @include component-spacing;
   margin-left: 0;
   margin-right: 0;
   margin-bottom: 0;
   border-left: solid 2px var(--nsw-brand-accent);
   padding: rem(20px) rem(24px);
+
+  @include font-size('lg');
+  @include component-spacing;
 
   @include breakpoint('md') {
     margin-left: auto;
@@ -73,11 +75,12 @@ blockquote {
 }
 
 table {
-  @include component-spacing;
   border: 0;
   border-collapse: collapse;
   width: 100%;
   caption-side: bottom;
+
+  @include component-spacing;
 
   caption {
     padding: rem(12px) rem(8px);
@@ -112,10 +115,11 @@ table {
 }
 
 cite {
-  @include font-size('sm');
   margin-top: rem(16px);
   display: block;
   font-style: normal;
+
+  @include font-size('sm');
 }
 
 cite::before {
@@ -197,8 +201,9 @@ h6,
 }
 
 .nsw-intro {
-  @include font-size('md');
   margin: rem(16px) 0 0 0;
+  
+  @include font-size('md');
 }
 
 
@@ -236,60 +241,26 @@ a {
   }
 }
 
+@mixin responsive-font-size($size) {
+  & {
+    --nsw-font-size-#{$size}: var(--nsw-font-size-#{$size}-mobile);
+    --nsw-font-height-#{$size}: var(--nsw-font-height-#{$size}-mobile);
+  }
+
+  @include breakpoint($nsw-font-size-reponsive-breakpoint) {
+    & {
+      --nsw-font-size-#{$size}: var(--nsw-font-size-#{$size}-desktop);
+      --nsw-font-height-#{$size}: var(--nsw-font-height-#{$size}-desktop);
+    }
+  }
+}
+
 :root {
-  --nsw-font-size-xxs: var(--nsw-font-size-xxs-mobile);
-  --nsw-font-height-xxs: var(--nsw-font-height-xxs-mobile);
-
-  @include breakpoint($nsw-font-size-reponsive-breakpoint) { 
-    --nsw-font-size-xxs: var(--nsw-font-size-xxs-desktop);
-    --nsw-font-height-xxs: var(--nsw-font-height-xxs-desktop);
-  }
-
-  --nsw-font-size-xs: var(--nsw-font-size-xs-mobile);
-  --nsw-font-height-xs: var(--nsw-font-height-xs-mobile);
-
-  @include breakpoint($nsw-font-size-reponsive-breakpoint) { 
-    --nsw-font-size-xs: var(--nsw-font-size-xs-desktop);
-    --nsw-font-height-xs: var(--nsw-font-height-xs-desktop);
-  }
-  
-  --nsw-font-size-sm: var(--nsw-font-size-sm-mobile);
-  --nsw-font-height-sm: var(--nsw-font-height-sm-mobile);
-
-  @include breakpoint($nsw-font-size-reponsive-breakpoint) { 
-    --nsw-font-size-sm: var(--nsw-font-size-sm-desktop);
-    --nsw-font-height-sm: var(--nsw-font-height-sm-desktop);
-  }
-
-  --nsw-font-size-md: var(--nsw-font-size-md-mobile);
-  --nsw-font-height-md: var(--nsw-font-height-md-mobile);
-
-  @include breakpoint($nsw-font-size-reponsive-breakpoint) { 
-    --nsw-font-size-md: var(--nsw-font-size-md-desktop);
-    --nsw-font-height-md: var(--nsw-font-height-md-desktop);
-  }
-
-  --nsw-font-size-lg: var(--nsw-font-size-lg-mobile);
-  --nsw-font-height-lg: var(--nsw-font-height-lg-mobile);
-
-  @include breakpoint($nsw-font-size-reponsive-breakpoint) { 
-    --nsw-font-size-lg: var(--nsw-font-size-lg-desktop);
-    --nsw-font-height-lg: var(--nsw-font-height-lg-desktop);
-  }
-
-  --nsw-font-size-xl: var(--nsw-font-size-xl-mobile);
-  --nsw-font-height-xl: var(--nsw-font-height-xl-mobile);
-
-  @include breakpoint($nsw-font-size-reponsive-breakpoint) { 
-    --nsw-font-size-xl: var(--nsw-font-size-xl-desktop);
-    --nsw-font-height-xl: var(--nsw-font-height-xl-desktop);
-  }
-
-  --nsw-font-size-xxl: var(--nsw-font-size-xxl-mobile);
-  --nsw-font-height-xxl: var(--nsw-font-height-xxl-mobile);
-
-  @include breakpoint($nsw-font-size-reponsive-breakpoint) { 
-    --nsw-font-size-xxl: var(--nsw-font-size-xxl-desktop);
-    --nsw-font-height-xxl: var(--nsw-font-height-xxl-desktop);
-  }
+  @include responsive-font-size(xxs);
+  @include responsive-font-size(xs);
+  @include responsive-font-size(sm);
+  @include responsive-font-size(md);
+  @include responsive-font-size(lg);
+  @include responsive-font-size(xl);
+  @include responsive-font-size(xxl);
 }
