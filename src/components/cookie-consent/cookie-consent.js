@@ -228,10 +228,11 @@ class CookieConsent {
   createConsentBanner() {
     const { language: { translations: { en } } } = this.config
     const { consentModal } = en
+    const bannerOffset = consentModal.bannerOffset ? consentModal.bannerOffset : '0'
     this.consentBannerConfirmationMessage = consentModal.confirmationMessage || ''
 
     const consentBannerHtml = `
-      <div class="nsw-cookie-banner" role="alert" tabindex="-1" aria-labelledby="cookie-banner-title" aria-live="assertive">
+      <div class="nsw-cookie-banner" role="alert" tabindex="-1" aria-labelledby="cookie-banner-title" aria-live="assertive" style="bottom: ${bannerOffset};">
         <div class="nsw-cookie-banner__wrapper">
           <div id="cookie-banner-title" class="nsw-cookie-banner__title">${consentModal.title || 'Cookie use on our website'}</div>
           <span class="nsw-cookie-banner__description">

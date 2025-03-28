@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
       acceptNecessaryBtn: 'Only necessary cookies',
       showPreferencesBtn: 'Manage your preferences',
       confirmationMessage: `Thanks for making your selection. View and update your <a href="#cookie-consent" class="js-open-dialog-cookie-consent-preferences" aria-haspopup="dialog">cookie preferences</a>.`,
+      bannerOffset: '0px',
     },
     preferencesDialog: {
       title: 'Manage cookie preferences',
