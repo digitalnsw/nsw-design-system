@@ -33,7 +33,7 @@
   function unsafeStringify(arr, offset = 0) {
     // Note: Be careful editing this code!  It's been tuned for performance
     // and works in ways you may not expect. See https://github.com/uuidjs/uuid/pull/434
-    return (byteToHex[arr[offset + 0]] + byteToHex[arr[offset + 1]] + byteToHex[arr[offset + 2]] + byteToHex[arr[offset + 3]] + '-' + byteToHex[arr[offset + 4]] + byteToHex[arr[offset + 5]] + '-' + byteToHex[arr[offset + 6]] + byteToHex[arr[offset + 7]] + '-' + byteToHex[arr[offset + 8]] + byteToHex[arr[offset + 9]] + '-' + byteToHex[arr[offset + 10]] + byteToHex[arr[offset + 11]] + byteToHex[arr[offset + 12]] + byteToHex[arr[offset + 13]] + byteToHex[arr[offset + 14]] + byteToHex[arr[offset + 15]]).toLowerCase();
+    return byteToHex[arr[offset + 0]] + byteToHex[arr[offset + 1]] + byteToHex[arr[offset + 2]] + byteToHex[arr[offset + 3]] + '-' + byteToHex[arr[offset + 4]] + byteToHex[arr[offset + 5]] + '-' + byteToHex[arr[offset + 6]] + byteToHex[arr[offset + 7]] + '-' + byteToHex[arr[offset + 8]] + byteToHex[arr[offset + 9]] + '-' + byteToHex[arr[offset + 10]] + byteToHex[arr[offset + 11]] + byteToHex[arr[offset + 12]] + byteToHex[arr[offset + 13]] + byteToHex[arr[offset + 14]] + byteToHex[arr[offset + 15]];
   }
 
   const randomUUID = typeof crypto !== 'undefined' && crypto.randomUUID && crypto.randomUUID.bind(crypto);
@@ -113,10 +113,9 @@
     return transitions[found[0]];
   };
 
-  function createButtons(_ref) {
-    let {
-      textContent
-    } = _ref;
+  function createButtons({
+    textContent
+  }) {
     const fragment = document.createDocumentFragment();
     const button = document.createElement('button');
     const uID = uniqueId('accordion');
@@ -320,15 +319,10 @@
         this.createButtonContent();
       }
     }
-    debounce(fn) {
-      var _this = this;
-      let wait = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 250;
+    debounce(fn, wait = 250) {
       let timeout;
-      return function () {
-        for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-          args[_key] = arguments[_key];
-        }
-        const context = _this;
+      return (...args) => {
+        const context = this;
         if (!window.requestAnimationFrame) {
           clearTimeout(timeout);
           timeout = setTimeout(() => fn.apply(context, args), wait);
@@ -342,611 +336,15 @@
         }
       };
     }
-    static createElement(tag) {
-      let classes = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
-      let attributes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+    static createElement(tag, classes = [], attributes = {}) {
       const element = document.createElement(tag);
       if (classes.length > 0) {
         element.classList.add(...classes);
       }
-      Object.entries(attributes).forEach(_ref => {
-        let [key, value] = _ref;
+      Object.entries(attributes).forEach(([key, value]) => {
         element.setAttribute(key, value);
       });
       return element;
-    }
-  }
-
-  class Breadcrumbs {
-    constructor(element) {
-      this.element = element;
-      this.allBreadcrumbs = this.element.querySelector('.nsw-breadcrumbs ol');
-      this.secondBreadcrumb = this.element.querySelector('.js-breadcrumbs li:nth-child(2)');
-      this.condition = false;
-    }
-    init() {
-      if (this.allBreadcrumbs.children.length > 3) {
-        this.createToggle();
-      }
-    }
-    createToggle() {
-      const toggle = this.constructor.createElement('li', ['nsw-breadcrumbs__show-more-toggle']);
-      toggle.innerHTML = '<button aria-label="Show more breadcrumbs" class="nsw-breadcrumbs__toggle-button" type="button">…</button>';
-      toggle.addEventListener('click', () => {
-        this.allBreadcrumbs.classList.toggle('nsw-breadcrumbs__show-all');
-      });
-      this.allBreadcrumbs.insertBefore(toggle, this.secondBreadcrumb);
-    }
-    static createElement(tag) {
-      let classes = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
-      let attributes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-      const element = document.createElement(tag);
-      if (classes.length > 0) {
-        element.classList.add(...classes);
-      }
-      Object.entries(attributes).forEach(_ref => {
-        let [key, value] = _ref;
-        element.setAttribute(key, value);
-      });
-      return element;
-    }
-  }
-
-  /* eslint-disable max-len */
-  class DatePicker {
-    constructor(element) {
-      this.element = element;
-      this.prefix = 'nsw-';
-      this.class = 'date-picker';
-      this.uID = uniqueId('calendar-label');
-      this.dateClass = `${this.prefix}${this.class}__date`;
-      this.todayClass = `${this.dateClass}--today`;
-      this.selectedClass = `${this.dateClass}--selected`;
-      this.keyboardFocusClass = `${this.dateClass}--keyboard-focus`;
-      this.visibleClass = `${this.prefix}${this.class}--is-visible`;
-      this.months = this.element.getAttribute('data-months') ? this.element.getAttribute('data-months') : ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-      this.dateFormat = this.element.getAttribute('data-date-format') ? this.element.getAttribute('data-date-format') : 'd-m-y';
-      this.dateSeparator = this.element.getAttribute('data-date-separator') ? this.element.getAttribute('data-date-separator') : '/';
-      this.datesDisabled = this.element.getAttribute('data-dates-disabled') ? this.element.getAttribute('data-dates-disabled') : '';
-      this.minDate = this.element.getAttribute('data-min-date') ? this.element.getAttribute('data-min-date') : '';
-      this.maxDate = this.element.getAttribute('data-max-date') ? this.element.getAttribute('data-max-date') : '';
-      this.input = this.element.querySelector('.js-date-input__text');
-      this.trigger = this.element.querySelector('.js-date-input__trigger');
-      this.triggerLabel = this.trigger && this.trigger.getAttribute('aria-label') ? this.trigger.getAttribute('aria-label') : 'Select a date';
-      this.datePicker = this.element.querySelector('.js-date-picker');
-      this.body = this.datePicker && this.datePicker.querySelector('.js-date-picker__dates');
-      this.navigation = this.datePicker && this.datePicker.querySelector('.js-date-picker__title-nav');
-      this.heading = this.datePicker && this.datePicker.querySelector('.js-date-picker__title-label');
-      this.close = this.datePicker && this.datePicker.querySelector('.js-date-picker__close');
-      this.accept = this.datePicker && this.datePicker.querySelector('.js-date-picker__accept');
-      this.multipleInput = this.element.querySelector('.js-date-input-multiple');
-      this.dateInput = this.multipleInput && this.multipleInput.querySelector('.js-date-picker-date');
-      this.monthInput = this.multipleInput && this.multipleInput.querySelector('.js-date-picker-month');
-      this.yearInput = this.multipleInput && this.multipleInput.querySelector('.js-date-picker-year');
-      this.multiDateArray = [this.dateInput, this.monthInput, this.yearInput];
-      this.dateIndexes = this.getDateIndexes();
-      this.pickerVisible = false;
-      this.dateSelected = false;
-      this.selectedDay = false;
-      this.selectedMonth = false;
-      this.selectedYear = false;
-      this.firstFocusable = false;
-      this.lastFocusable = false;
-      this.disabledArray = false;
-    }
-    init() {
-      if (!this.input && !this.multipleInput) return;
-      if (!this.datePicker) {
-        this.initCreateCalendar();
-      }
-      this.disabledDates();
-      this.resetCalendar();
-      this.initCalendarAria();
-      this.initCalendarEvents();
-      this.placeCalendar();
-    }
-    initCreateCalendar() {
-      const calendar = `
-    <div class="nsw-date-picker js-date-picker" role="dialog" aria-labelledby="${this.uID}">
-      <header class="nsw-date-picker__header">
-        <div class="nsw-date-picker__title">
-          <span class="nsw-date-picker__title-label js-date-picker__title-label" id="${this.uID}"></span>
-
-          <nav>
-            <ul class="nsw-date-picker__title-nav js-date-picker__title-nav">
-              <li>
-                <button class="nsw-icon-button nsw-date-picker__title-nav-btn js-date-picker__year-nav-btn js-date-picker__year-nav-btn--prev" type="button">
-                  <span class="material-icons nsw-material-icons">keyboard_double_arrow_left</span>
-                </button>
-                <button class="nsw-icon-button nsw-date-picker__title-nav-btn js-date-picker__month-nav-btn js-date-picker__month-nav-btn--prev" type="button">
-                  <span class="material-icons nsw-material-icons">chevron_left</span>
-                </button>
-              </li>
-
-              <li>
-                <button class="nsw-icon-button nsw-date-picker__title-nav-btn js-date-picker__month-nav-btn js-date-picker__month-nav-btn--next" type="button">
-                  <span class="material-icons nsw-material-icons">chevron_right</span>
-                </button>
-                <button class="nsw-icon-button nsw-date-picker__title-nav-btn js-date-picker__year-nav-btn js-date-picker__year-nav-btn--next" type="button">
-                  <span class="material-icons nsw-material-icons">keyboard_double_arrow_right</span>
-                </button>
-              </li>
-            </ul>
-          </nav>
-        </div>
-
-        <ol class="nsw-date-picker__week">
-          <li><div class="nsw-date-picker__day">M<span class="sr-only">onday</span></div></li>
-          <li><div class="nsw-date-picker__day">T<span class="sr-only">uesday</span></div></li>
-          <li><div class="nsw-date-picker__day">W<span class="sr-only">ednesday</span></div></li>
-          <li><div class="nsw-date-picker__day">T<span class="sr-only">hursday</span></div></li>
-          <li><div class="nsw-date-picker__day">F<span class="sr-only">riday</span></div></li>
-          <li><div class="nsw-date-picker__day">S<span class="sr-only">aturday</span></div></li>
-          <li><div class="nsw-date-picker__day">S<span class="sr-only">unday</span></div></li>
-        </ol>
-      </header>
-
-      <ol class="nsw-date-picker__dates js-date-picker__dates" aria-labelledby="${this.uID}">
-        
-      </ol>
-
-      <div class="nsw-date-picker__buttongroup">
-        <button type="button" class="nsw-button nsw-button--dark-outline-solid js-date-picker__close" value="cancel">Cancel</button>
-        <button type="button" class="nsw-button nsw-button--dark js-date-picker__accept" value="ok">OK</button>
-      </div>
-    </div>`;
-      this.element.insertAdjacentHTML('beforeend', calendar);
-      this.datePicker = this.element.querySelector('.js-date-picker');
-      this.body = this.datePicker.querySelector('.js-date-picker__dates');
-      this.navigation = this.datePicker.querySelector('.js-date-picker__title-nav');
-      this.heading = this.datePicker.querySelector('.js-date-picker__title-label');
-      this.close = this.datePicker.querySelector('.js-date-picker__close');
-      this.accept = this.datePicker.querySelector('.js-date-picker__accept');
-    }
-    initCalendarAria() {
-      this.resetLabelCalendarTrigger();
-      const srLiveReagion = document.createElement('div');
-      srLiveReagion.setAttribute('aria-live', 'polite');
-      srLiveReagion.classList.add('sr-only', 'js-date-input__sr-live');
-      this.element.appendChild(srLiveReagion);
-      this.srLiveReagion = this.element.querySelector('.js-date-input__sr-live');
-    }
-    initCalendarEvents() {
-      if (this.input) {
-        this.input.addEventListener('focus', () => {
-          this.toggleCalendar(true);
-        });
-      }
-      if (this.multipleInput) {
-        this.multiDateArray.forEach(element => {
-          element.addEventListener('focus', () => {
-            this.hideCalendar();
-          });
-        });
-      }
-      if (this.trigger) {
-        this.trigger.addEventListener('click', event => {
-          event.preventDefault();
-          this.pickerVisible = false;
-          this.toggleCalendar();
-          this.trigger.setAttribute('aria-expanded', 'true');
-        });
-      }
-      if (this.close) {
-        this.close.addEventListener('click', event => {
-          event.preventDefault();
-          this.hideCalendar();
-        });
-      }
-      if (this.accept) {
-        this.accept.addEventListener('click', event => {
-          event.preventDefault();
-          const day = this.body.querySelector('button[tabindex="0"]');
-          if (day) {
-            this.dateSelected = true;
-            this.selectedDay = day.innerText;
-            this.selectedMonth = this.currentMonth;
-            this.selectedYear = this.currentYear;
-            this.setInputValue();
-            if (this.input) {
-              this.input.focus();
-            } else if (this.multipleInput) {
-              this.trigger.focus();
-              this.hideCalendar();
-            }
-            this.resetLabelCalendarTrigger();
-          }
-        });
-      }
-      this.body.addEventListener('click', event => {
-        event.preventDefault();
-        const day = event.target.closest('button');
-        if (day) {
-          this.dateSelected = true;
-          this.selectedDay = day.innerText;
-          this.selectedMonth = this.currentMonth;
-          this.selectedYear = this.currentYear;
-          this.setInputValue();
-          if (this.input) {
-            this.input.focus();
-          } else if (this.multipleInput) {
-            this.trigger.focus();
-            this.hideCalendar();
-          }
-          this.resetLabelCalendarTrigger();
-        }
-      });
-      this.navigation.addEventListener('click', event => {
-        event.preventDefault();
-        const monthBtn = event.target.closest('.js-date-picker__month-nav-btn');
-        const yearBtn = event.target.closest('.js-date-picker__year-nav-btn');
-        if (monthBtn && monthBtn.classList.contains('js-date-picker__month-nav-btn--prev')) {
-          this.showPrevMonth(true);
-        } else if (monthBtn && monthBtn.classList.contains('js-date-picker__month-nav-btn--next')) {
-          this.showNextMonth(true);
-        } else if (yearBtn && yearBtn.classList.contains('js-date-picker__year-nav-btn--prev')) {
-          this.showPrevYear(true);
-        } else if (yearBtn && yearBtn.classList.contains('js-date-picker__year-nav-btn--next')) {
-          this.showNextYear(true);
-        }
-      });
-      window.addEventListener('keydown', event => {
-        if (event.code && event.code === 27 || event.key && event.key.toLowerCase() === 'escape') {
-          if (document.activeElement.closest('.js-date-picker')) {
-            const activeInput = document.activeElement.closest('.js-date-input').querySelector('input');
-            activeInput.focus();
-          } else {
-            this.hideCalendar();
-          }
-        }
-      });
-      window.addEventListener('click', event => {
-        if (!event.target.closest('.js-date-picker') && !event.target.closest('.js-date-input') && this.pickerVisible) {
-          this.hideCalendar();
-        }
-      });
-      this.body.addEventListener('keydown', event => {
-        let day = this.currentDay;
-        if (event.code && event.code === 40 || event.key && event.key.toLowerCase() === 'arrowdown') {
-          day += 7;
-          this.resetDayValue(day);
-        } else if (event.code && event.code === 39 || event.key && event.key.toLowerCase() === 'arrowright') {
-          day += 1;
-          this.resetDayValue(day);
-        } else if (event.code && event.code === 37 || event.key && event.key.toLowerCase() === 'arrowleft') {
-          day -= 1;
-          this.resetDayValue(day);
-        } else if (event.code && event.code === 38 || event.key && event.key.toLowerCase() === 'arrowup') {
-          day -= 7;
-          this.resetDayValue(day);
-        } else if (event.code && event.code === 35 || event.key && event.key.toLowerCase() === 'end') {
-          event.preventDefault();
-          day = day + 6 - this.getDayOfWeek(this.currentYear, this.currentMonth, day);
-          this.resetDayValue(day);
-        } else if (event.code && event.code === 36 || event.key && event.key.toLowerCase() === 'home') {
-          event.preventDefault();
-          day -= this.getDayOfWeek(this.currentYear, this.currentMonth, day);
-          this.resetDayValue(day);
-        } else if (event.code && event.code === 34 || event.key && event.key.toLowerCase() === 'pagedown') {
-          event.preventDefault();
-          this.showNextMonth();
-        } else if (event.code && event.code === 33 || event.key && event.key.toLowerCase() === 'pageup') {
-          event.preventDefault();
-          this.showPrevMonth();
-        }
-      });
-      this.datePicker.addEventListener('keydown', event => {
-        if (event.code && event.code === 9 || event.key && event.key === 'Tab') {
-          this.trapFocus(event);
-        }
-      });
-      if (this.input) {
-        this.input.addEventListener('keydown', event => {
-          if (event.code && event.code === 13 || event.key && event.key.toLowerCase() === 'enter') {
-            this.resetCalendar();
-            this.resetLabelCalendarTrigger();
-            this.hideCalendar();
-          } else if (event.code && event.code === 40 || event.key && event.key.toLowerCase() === 'arrowdown' && this.pickerVisible) {
-            this.body.querySelector('button[tabindex="0"]').focus();
-          }
-        });
-      }
-      if (this.multipleInput) {
-        this.multiDateArray.forEach(element => {
-          element.addEventListener('keydown', event => {
-            if (event.code && event.code === 13 || event.key && event.key.toLowerCase() === 'enter') {
-              this.resetCalendar();
-              this.resetLabelCalendarTrigger();
-              this.hideCalendar();
-            } else if (event.code && event.code === 40 || event.key && event.key.toLowerCase() === 'arrowdown' && this.pickerVisible) {
-              this.body.querySelector('button[tabindex="0"]').focus();
-            }
-          });
-        });
-      }
-    }
-    getCurrentDay(date) {
-      return date ? this.getDayFromDate(date) : new Date().getDate();
-    }
-    getCurrentMonth(date) {
-      return date ? this.getMonthFromDate(date) : new Date().getMonth();
-    }
-    getCurrentYear(date) {
-      return date ? this.getYearFromDate(date) : new Date().getFullYear();
-    }
-    getDayFromDate(date) {
-      const day = parseInt(date.split('-')[2], 10);
-      return Number.isNaN(day) ? this.getCurrentDay(false) : day;
-    }
-    getMonthFromDate(date) {
-      const month = parseInt(date.split('-')[1], 10) - 1;
-      return Number.isNaN(month) ? this.getCurrentMonth(false) : month;
-    }
-    getYearFromDate(date) {
-      const year = parseInt(date.split('-')[0], 10);
-      return Number.isNaN(year) ? this.getCurrentYear(false) : year;
-    }
-    showNextMonth(bool) {
-      this.currentYear = this.currentMonth === 11 ? this.currentYear + 1 : this.currentYear;
-      this.currentMonth = (this.currentMonth + 1) % 12;
-      this.currentDay = this.checkDayInMonth();
-      this.showCalendar(bool);
-      this.srLiveReagion.textContent = `${this.months[this.currentMonth]} ${this.currentYear}`;
-    }
-    showPrevMonth(bool) {
-      this.currentYear = this.currentMonth === 0 ? this.currentYear - 1 : this.currentYear;
-      this.currentMonth = this.currentMonth === 0 ? 11 : this.currentMonth - 1;
-      this.currentDay = this.checkDayInMonth();
-      this.showCalendar(bool);
-      this.srLiveReagion.textContent = `${this.months[this.currentMonth]} ${this.currentYear}`;
-    }
-    showNextYear(bool) {
-      this.currentYear += 1;
-      this.currentMonth %= 12;
-      this.currentDay = this.checkDayInMonth();
-      this.showCalendar(bool);
-      this.srLiveReagion.textContent = `${this.months[this.currentMonth]} ${this.currentYear}`;
-    }
-    showPrevYear(bool) {
-      this.currentYear -= 1;
-      this.currentMonth %= 12;
-      this.currentDay = this.checkDayInMonth();
-      this.showCalendar(bool);
-      this.srLiveReagion.textContent = `${this.months[this.currentMonth]} ${this.currentYear}`;
-    }
-    checkDayInMonth() {
-      return this.currentDay > this.constructor.daysInMonth(this.currentYear, this.currentMonth) ? 1 : this.currentDay;
-    }
-    static daysInMonth(year, month) {
-      return 32 - new Date(year, month, 32).getDate();
-    }
-    resetCalendar() {
-      let currentDate = false;
-      let selectedDate;
-      if (this.input) {
-        selectedDate = this.input.value;
-      } else if (this.multipleInput) {
-        if (this.dateInput.value !== '' && this.monthInput.value !== '' && this.yearInput.value !== '') {
-          selectedDate = `${this.dateInput.value}/${this.monthInput.value}/${this.yearInput.value}`;
-        } else {
-          selectedDate = '';
-        }
-      }
-      this.dateSelected = false;
-      if (selectedDate !== '') {
-        const date = this.getDateFromInput();
-        this.dateSelected = true;
-        currentDate = date;
-      }
-      this.currentDay = this.getCurrentDay(currentDate);
-      this.currentMonth = this.getCurrentMonth(currentDate);
-      this.currentYear = this.getCurrentYear(currentDate);
-      this.selectedDay = this.dateSelected ? this.currentDay : false;
-      this.selectedMonth = this.dateSelected ? this.currentMonth : false;
-      this.selectedYear = this.dateSelected ? this.currentYear : false;
-    }
-    disabledDates() {
-      this.disabledArray = [];
-      if (this.datesDisabled) {
-        const disabledDates = this.datesDisabled.split(' ');
-        disabledDates.forEach(element => {
-          this.disabledArray.push(element);
-        });
-      }
-    }
-    convertDateToParse(date) {
-      const dateArray = date.split(this.dateSeparator);
-      return `${dateArray[this.dateIndexes[2]]}, ${dateArray[this.dateIndexes[1]]}, ${dateArray[this.dateIndexes[0]]}`;
-    }
-    isDisabledDate(day, month, year) {
-      let disabled = false;
-      const dateParse = new Date(year, month, day);
-      const minDate = new Date(this.convertDateToParse(this.minDate));
-      const maxDate = new Date(this.convertDateToParse(this.maxDate));
-      if (this.minDate && minDate > dateParse) {
-        disabled = true;
-      }
-      if (this.maxDate && maxDate < dateParse) {
-        disabled = true;
-      }
-      if (this.disabledArray.length > 0) {
-        this.disabledArray.forEach(element => {
-          const disabledDate = new Date(this.convertDateToParse(element));
-          if (dateParse.getTime() === disabledDate.getTime()) {
-            disabled = true;
-          }
-        });
-      }
-      return disabled;
-    }
-    showCalendar(bool) {
-      const firstDay = this.constructor.getDayOfWeek(this.currentYear, this.currentMonth, '01');
-      this.body.innerHTML = '';
-      this.heading.innerHTML = `${this.months[this.currentMonth]} ${this.currentYear}`;
-      let date = 1;
-      let calendar = '';
-      for (let i = 0; i < 6; i += 1) {
-        for (let j = 0; j < 7; j += 1) {
-          if (i === 0 && j < firstDay) {
-            calendar += '<li></li>';
-          } else if (date > this.constructor.daysInMonth(this.currentYear, this.currentMonth)) {
-            break;
-          } else {
-            let classListDate = '';
-            let tabindexValue = '-1';
-            let disabled;
-            if (date === this.currentDay) {
-              tabindexValue = '0';
-            }
-            if (this.getCurrentMonth() === this.currentMonth && this.getCurrentYear() === this.currentYear && date === this.getCurrentDay()) {
-              classListDate += ` ${this.todayClass}`;
-            }
-            if (this.isDisabledDate(date, this.currentMonth, this.currentYear)) {
-              classListDate += ` ${this.dateClass}--disabled`;
-              disabled = 'aria-disabled="true"';
-            }
-            if (this.dateSelected && date === this.selectedDay && this.currentYear === this.selectedYear && this.currentMonth === this.selectedMonth) {
-              classListDate += ` ${this.selectedClass}`;
-            }
-            calendar = `${calendar}<li><button class="${this.dateClass}${classListDate}" tabindex="${tabindexValue}" type="button" ${disabled || ''}>${date}</button></li>`;
-            date += 1;
-          }
-        }
-      }
-      this.body.innerHTML = calendar;
-      if (!this.pickerVisible) this.datePicker.classList.add(this.visibleClass);
-      this.pickerVisible = true;
-      if (!bool) this.body.querySelector('button[tabindex="0"]').focus();
-      this.getFocusableElements();
-      this.placeCalendar();
-    }
-    hideCalendar() {
-      this.datePicker.classList.remove(this.visibleClass);
-      this.pickerVisible = false;
-      this.firstFocusable = false;
-      this.lastFocusable = false;
-      if (this.trigger) this.trigger.setAttribute('aria-expanded', 'false');
-    }
-    toggleCalendar(bool) {
-      if (!this.pickerVisible) {
-        this.resetCalendar();
-        this.showCalendar(bool);
-      } else {
-        this.hideCalendar();
-      }
-    }
-    static getDayOfWeek(year, month, day) {
-      let weekDay = new Date(year, month, day).getDay() - 1;
-      if (weekDay < 0) weekDay = 6;
-      return weekDay;
-    }
-    getDateIndexes() {
-      const dateFormat = this.dateFormat.toLowerCase().replace(/-/g, '');
-      return [dateFormat.indexOf('d'), dateFormat.indexOf('m'), dateFormat.indexOf('y')];
-    }
-    setInputValue() {
-      if (this.input) {
-        this.input.value = this.getDateForInput(this.selectedDay, this.selectedMonth, this.selectedYear);
-      } else if (this.multipleInput) {
-        this.dateInput.value = this.constructor.getReadableDate(this.selectedDay);
-        this.monthInput.value = this.constructor.getReadableDate(this.selectedMonth + 1);
-        this.yearInput.value = this.selectedYear;
-      }
-    }
-    getDateForInput(day, month, year) {
-      const dateArray = [];
-      dateArray[this.dateIndexes[0]] = this.constructor.getReadableDate(day);
-      dateArray[this.dateIndexes[1]] = this.constructor.getReadableDate(month + 1);
-      dateArray[this.dateIndexes[2]] = year;
-      return dateArray[0] + this.dateSeparator + dateArray[1] + this.dateSeparator + dateArray[2];
-    }
-    getDateFromInput() {
-      let dateArray;
-      if (this.input) {
-        dateArray = this.input.value.split(this.dateSeparator);
-      } else if (this.multipleInput) {
-        dateArray = [this.dateInput.value, this.monthInput.value, this.yearInput.value];
-      }
-      return `${dateArray[this.dateIndexes[2]]}-${dateArray[this.dateIndexes[1]]}-${dateArray[this.dateIndexes[0]]}`;
-    }
-    static getReadableDate(date) {
-      return date < 10 ? `0${date}` : date;
-    }
-    resetDayValue(day) {
-      const totDays = this.constructor.daysInMonth(this.currentYear, this.currentMonth);
-      if (day > totDays) {
-        this.currentDay = day - totDays;
-        this.showNextMonth(false);
-      } else if (day < 1) {
-        const newMonth = this.currentMonth === 0 ? 11 : this.currentMonth - 1;
-        this.currentDay = this.constructor.daysInMonth(this.currentYear, newMonth) + day;
-        this.showPrevMonth(false);
-      } else {
-        this.currentDay = day;
-        const focusItem = this.body.querySelector('button[tabindex="0"]');
-        focusItem.setAttribute('tabindex', '-1');
-        focusItem.classList.remove(this.keyboardFocusClass);
-        const buttons = this.body.getElementsByTagName('button');
-        for (let i = 0; i < buttons.length; i += 1) {
-          if (parseInt(buttons[i].textContent, 10) === this.currentDay) {
-            buttons[i].setAttribute('tabindex', '0');
-            buttons[i].classList.add(this.keyboardFocusClass);
-            buttons[i].focus();
-            break;
-          }
-        }
-        this.getFocusableElements();
-      }
-    }
-    resetLabelCalendarTrigger() {
-      if (!this.trigger) return;
-      if (this.selectedYear && this.selectedMonth !== false && this.selectedDay) {
-        this.trigger.setAttribute('aria-label', `Selected date is ${new Date(this.selectedYear, this.selectedMonth, this.selectedDay).toDateString()}`);
-      } else {
-        this.trigger.setAttribute('aria-label', this.triggerLabel);
-      }
-    }
-    getFocusableElements() {
-      const allFocusable = this.datePicker.querySelectorAll('[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex]:not([tabindex="-1"]), [contenteditable], audio[controls], video[controls], summary');
-      this.getFirstFocusable(allFocusable);
-      this.getLastFocusable(allFocusable);
-    }
-    getFirstFocusable(elements) {
-      for (let i = 0; i < elements.length; i += 1) {
-        if ((elements[i].offsetWidth || elements[i].offsetHeight || elements[i].getClientRects().length) && elements[i].getAttribute('tabindex') !== '-1') {
-          this.firstFocusable = elements[i];
-          return true;
-        }
-      }
-      return false;
-    }
-    getLastFocusable(elements) {
-      for (let i = elements.length - 1; i >= 0; i -= 1) {
-        if ((elements[i].offsetWidth || elements[i].offsetHeight || elements[i].getClientRects().length) && elements[i].getAttribute('tabindex') !== '-1') {
-          this.lastFocusable = elements[i];
-          return true;
-        }
-      }
-      return false;
-    }
-    trapFocus(event) {
-      if (this.firstFocusable === document.activeElement && event.shiftKey) {
-        event.preventDefault();
-        this.lastFocusable.focus();
-      }
-      if (this.lastFocusable === document.activeElement && !event.shiftKey) {
-        event.preventDefault();
-        this.firstFocusable.focus();
-      }
-    }
-    placeCalendar() {
-      this.datePicker.style.left = '0px';
-      this.datePicker.style.right = 'auto';
-      const pickerBoundingRect = this.datePicker.getBoundingClientRect();
-      if (pickerBoundingRect.right > window.innerWidth) {
-        this.datePicker.style.left = 'auto';
-        this.datePicker.style.right = '0px';
-      }
     }
   }
 
@@ -1677,6 +1075,2105 @@
     }
   }
 
+  /*!
+  * CookieConsent 3.0.1
+  * https://github.com/orestbida/cookieconsent
+  * Author Orest Bida
+  * Released under the MIT License
+  */
+  const e = 'opt-in',
+    t = 'opt-out',
+    o = 'show--consent',
+    n = 'show--preferences',
+    a = 'disable--interaction',
+    s = 'data-category',
+    c = 'div',
+    r = 'button',
+    i = 'aria-hidden',
+    l = 'btn-group',
+    d = 'click',
+    f = 'data-role',
+    _ = 'consentModal',
+    u = 'preferencesModal';
+  class p {
+    constructor() {
+      this.t = {
+        mode: e,
+        revision: 0,
+        autoShow: !0,
+        lazyHtmlGeneration: !0,
+        autoClearCookies: !0,
+        manageScriptTags: !0,
+        hideFromBots: !0,
+        cookie: {
+          name: 'cc_cookie',
+          expiresAfterDays: 182,
+          domain: '',
+          path: '/',
+          sameSite: 'Lax'
+        }
+      }, this.o = {
+        i: {},
+        l: '',
+        _: {},
+        u: {},
+        p: {},
+        m: [],
+        v: !1,
+        h: null,
+        C: null,
+        S: null,
+        M: '',
+        D: !0,
+        T: !1,
+        k: !1,
+        A: !1,
+        N: !1,
+        H: [],
+        V: !1,
+        I: !0,
+        L: [],
+        j: !1,
+        F: '',
+        P: !1,
+        O: [],
+        R: [],
+        B: [],
+        G: [],
+        J: !1,
+        U: !1,
+        $: !1,
+        q: [],
+        K: [],
+        W: [],
+        X: {},
+        Y: {},
+        Z: {},
+        ee: {},
+        te: {},
+        oe: []
+      }, this.ne = {
+        ae: {},
+        se: {}
+      }, this.ce = {}, this.re = {
+        ie: 'cc:onFirstConsent',
+        le: 'cc:onConsent',
+        de: 'cc:onChange',
+        fe: 'cc:onModalShow',
+        _e: 'cc:onModalHide',
+        ue: 'cc:onModalReady'
+      };
+    }
+  }
+  const m = new p(),
+    g = (e, t) => e.indexOf(t),
+    b = (e, t) => -1 !== g(e, t),
+    v = e => Array.isArray(e),
+    y = e => 'string' == typeof e,
+    h = e => !!e && 'object' == typeof e && !v(e),
+    C = e => 'function' == typeof e,
+    w = e => Object.keys(e),
+    S = e => Array.from(new Set(e)),
+    x = () => document.activeElement,
+    M = e => e.preventDefault(),
+    D = (e, t) => e.querySelectorAll(t),
+    k = e => {
+      const t = document.createElement(e);
+      return e === r && (t.type = e), t;
+    },
+    E = (e, t, o) => e.setAttribute(t, o),
+    A = (e, t, o) => {
+      e.removeAttribute(o ? 'data-' + t : t);
+    },
+    N = (e, t, o) => e.getAttribute(o ? 'data-' + t : t),
+    H = (e, t) => e.appendChild(t),
+    V = (e, t) => e.classList.add(t),
+    I = (e, t) => V(e, 'cm__' + t),
+    L = (e, t) => V(e, 'pm__' + t),
+    j = (e, t) => e.classList.remove(t),
+    F = e => {
+      if ('object' != typeof e) return e;
+      if (e instanceof Date) return new Date(e.getTime());
+      let t = Array.isArray(e) ? [] : {};
+      for (let o in e) {
+        let n = e[o];
+        t[o] = F(n);
+      }
+      return t;
+    },
+    P = () => {
+      const e = {},
+        {
+          O: t,
+          X: o,
+          Y: n
+        } = m.o;
+      for (const a of t) e[a] = G(n[a], w(o[a]));
+      return e;
+    },
+    O = (e, t) => dispatchEvent(new CustomEvent(e, {
+      detail: t
+    })),
+    R = (e, t, o, n) => {
+      e.addEventListener(t, o), n && m.o.m.push({
+        pe: e,
+        me: t,
+        ge: o
+      });
+    },
+    B = () => {
+      const e = m.t.cookie.expiresAfterDays;
+      return C(e) ? e(m.o.F) : e;
+    },
+    G = (e, t) => {
+      const o = e || [],
+        n = t || [];
+      return o.filter(e => !b(n, e)).concat(n.filter(e => !b(o, e)));
+    },
+    J = e => {
+      m.o.R = S(e), m.o.F = (() => {
+        let e = 'custom';
+        const {
+            R: t,
+            O: o,
+            B: n
+          } = m.o,
+          a = t.length;
+        return a === o.length ? e = 'all' : a === n.length && (e = 'necessary'), e;
+      })();
+    },
+    U = (e, t, o, n) => {
+      const a = 'accept-',
+        {
+          show: s,
+          showPreferences: c,
+          hide: r,
+          hidePreferences: i,
+          acceptCategory: l
+        } = t,
+        f = e || document,
+        _ = e => D(f, `[data-cc="${e}"]`),
+        u = (e, t) => {
+          M(e), l(t), i(), r();
+        },
+        p = _('show-preferencesModal'),
+        g = _('show-consentModal'),
+        b = _(a + 'all'),
+        v = _(a + 'necessary'),
+        y = _(a + 'custom'),
+        h = m.t.lazyHtmlGeneration;
+      for (const e of p) E(e, 'aria-haspopup', 'dialog'), R(e, d, e => {
+        M(e), c();
+      }), h && (R(e, 'mouseenter', e => {
+        M(e), m.o.N || o(t, n);
+      }, !0), R(e, 'focus', () => {
+        m.o.N || o(t, n);
+      }));
+      for (let e of g) E(e, 'aria-haspopup', 'dialog'), R(e, d, e => {
+        M(e), s(!0);
+      }, !0);
+      for (let e of b) R(e, d, e => {
+        u(e, 'all');
+      }, !0);
+      for (let e of y) R(e, d, e => {
+        u(e);
+      }, !0);
+      for (let e of v) R(e, d, e => {
+        u(e, []);
+      }, !0);
+    },
+    $ = (e, t) => {
+      e && (t && (e.tabIndex = -1), e.focus(), t && e.removeAttribute('tabindex'));
+    },
+    z = (e, t) => {
+      const o = n => {
+        n.target.removeEventListener('transitionend', o), 'opacity' === n.propertyName && '1' === getComputedStyle(e).opacity && $((e => 1 === e ? m.ne.be : m.ne.ve)(t));
+      };
+      R(e, 'transitionend', o);
+    };
+  let q;
+  const K = e => {
+      clearTimeout(q), e ? V(m.ne.ye, a) : q = setTimeout(() => {
+        j(m.ne.ye, a);
+      }, 500);
+    },
+    Q = ['M 19.5 4.5 L 4.5 19.5 M 4.5 4.501 L 19.5 19.5', 'M 3.572 13.406 L 8.281 18.115 L 20.428 5.885', 'M 21.999 6.94 L 11.639 17.18 L 2.001 6.82 '],
+    W = (e = 0, t = 1.5) => `<svg viewBox="0 0 24 24" stroke-width="${t}"><path d="${Q[e]}"/></svg>`,
+    X = e => {
+      const t = m.ne,
+        o = m.o;
+      (e => {
+        const n = e === t.he,
+          a = o.i.disablePageInteraction ? t.ye : n ? t.Ce : t.ye;
+        R(a, 'keydown', t => {
+          if ('Tab' !== t.key || !(n ? o.k && !o.A : o.A)) return;
+          const a = x(),
+            s = n ? o.q : o.K;
+          0 !== s.length && (t.shiftKey ? a !== s[0] && e.contains(a) || (M(t), $(s[1])) : a !== s[1] && e.contains(a) || (M(t), $(s[0])));
+        }, !0);
+      })(e);
+    },
+    Y = ['[href]', r, 'input', 'details', '[tabindex]'].map(e => e + ':not([tabindex="-1"])').join(','),
+    Z = e => {
+      const {
+          o: t,
+          ne: o
+        } = m,
+        n = (e, t) => {
+          const o = D(e, Y);
+          t[0] = o[0], t[1] = o[o.length - 1];
+        };
+      1 === e && t.T && n(o.he, t.q), 2 === e && t.N && n(o.we, t.K);
+    },
+    ee = (e, t, o) => {
+      const {
+          de: n,
+          le: a,
+          ie: s,
+          _e: c,
+          ue: r,
+          fe: i
+        } = m.ce,
+        l = m.re;
+      if (t) {
+        const n = {
+          modalName: t
+        };
+        return e === l.fe ? C(i) && i(n) : e === l._e ? C(c) && c(n) : (n.modal = o, C(r) && r(n)), O(e, n);
+      }
+      const d = {
+        cookie: m.o.p
+      };
+      e === l.ie ? C(s) && s(F(d)) : e === l.le ? C(a) && a(F(d)) : (d.changedCategories = m.o.L, d.changedServices = m.o.ee, C(n) && n(F(d))), O(e, F(d));
+    },
+    te = (e, t) => {
+      try {
+        return e();
+      } catch (e) {
+        return !t && console.warn('CookieConsent:', e), !1;
+      }
+    },
+    oe = e => {
+      const {
+        Y: t,
+        ee: o,
+        O: n,
+        X: a,
+        oe: c,
+        p: r,
+        L: i
+      } = m.o;
+      for (const e of n) {
+        const n = o[e] || t[e] || [];
+        for (const o of n) {
+          const n = a[e][o];
+          if (!n) continue;
+          const {
+            onAccept: s,
+            onReject: c
+          } = n;
+          !n.Se && b(t[e], o) ? (n.Se = !0, C(s) && s()) : n.Se && !b(t[e], o) && (n.Se = !1, C(c) && c());
+        }
+      }
+      if (!m.t.manageScriptTags) return;
+      const l = c,
+        d = e || r.categories || [],
+        f = (e, n) => {
+          if (n >= e.length) return;
+          const a = c[n];
+          if (a.xe) return f(e, n + 1);
+          const r = a.Me,
+            l = a.De,
+            _ = a.Te,
+            u = b(d, l),
+            p = !!_ && b(t[l], _);
+          if (!_ && !a.ke && u || !_ && a.ke && !u && b(i, l) || _ && !a.ke && p || _ && a.ke && !p && b(o[l] || [], _)) {
+            a.xe = !0;
+            const t = N(r, 'type', !0);
+            A(r, 'type', !!t), A(r, s);
+            let o = N(r, 'src', !0);
+            o && A(r, 'src', !0);
+            const c = k('script');
+            c.textContent = r.innerHTML;
+            for (const {
+              nodeName: e
+            } of r.attributes) E(c, e, r[e] || N(r, e));
+            t && (c.type = t), o ? c.src = o : o = r.src;
+            const i = !!o && (!t || ['text/javascript', 'module'].includes(t));
+            if (i && (c.onload = c.onerror = () => {
+              f(e, ++n);
+            }), r.replaceWith(c), i) return;
+          }
+          f(e, ++n);
+        };
+      f(l, 0);
+    },
+    ne = 'bottom',
+    ae = 'left',
+    se = 'center',
+    ce = 'right',
+    re = 'inline',
+    ie = 'wide',
+    le = 'pm--',
+    de = ['middle', 'top', ne],
+    fe = [ae, se, ce],
+    _e = {
+      box: {
+        Ee: [ie, re],
+        Ae: de,
+        Ne: fe,
+        He: ne,
+        Ve: ce
+      },
+      cloud: {
+        Ee: [re],
+        Ae: de,
+        Ne: fe,
+        He: ne,
+        Ve: se
+      },
+      bar: {
+        Ee: [re],
+        Ae: de.slice(1),
+        Ne: [],
+        He: ne,
+        Ve: ''
+      }
+    },
+    ue = {
+      box: {
+        Ee: [],
+        Ae: [],
+        Ne: [],
+        He: '',
+        Ve: ''
+      },
+      bar: {
+        Ee: [ie],
+        Ae: [],
+        Ne: [ae, ce],
+        He: '',
+        Ve: ae
+      }
+    },
+    pe = e => {
+      const t = m.o.i.guiOptions,
+        o = t && t.consentModal,
+        n = t && t.preferencesModal;
+      0 === e && me(m.ne.he, _e, o, 'cm--', 'box', 'cm'), 1 === e && me(m.ne.we, ue, n, le, 'box', 'pm');
+    },
+    me = (e, t, o, n, a, s) => {
+      e.className = s;
+      const c = o && o.layout,
+        r = o && o.position,
+        i = o && o.flipButtons,
+        l = !o || !1 !== o.equalWeightButtons,
+        d = c && c.split(' ') || [],
+        f = d[0],
+        _ = d[1],
+        u = f in t ? f : a,
+        p = t[u],
+        g = b(p.Ee, _) && _,
+        v = r && r.split(' ') || [],
+        y = v[0],
+        h = n === le ? v[0] : v[1],
+        C = b(p.Ae, y) ? y : p.He,
+        w = b(p.Ne, h) ? h : p.Ve,
+        S = t => {
+          t && V(e, n + t);
+        };
+      S(u), S(g), S(C), S(w), i && S('flip');
+      const x = s + '__btn--secondary';
+      if ('cm' === s) {
+        const {
+          Ie: e,
+          Le: t
+        } = m.ne;
+        e && (l ? j(e, x) : V(e, x)), t && (l ? j(t, x) : V(t, x));
+      } else {
+        const {
+          je: e
+        } = m.ne;
+        e && (l ? j(e, x) : V(e, x));
+      }
+    },
+    ge = (e, t) => {
+      const o = m.o,
+        n = m.ne,
+        {
+          hide: a,
+          hidePreferences: s,
+          acceptCategory: _
+        } = e,
+        p = e => {
+          _(e), s(), a();
+        },
+        g = o.u && o.u.preferencesModal;
+      if (!g) return;
+      const b = g.title,
+        v = g.closeIconLabel,
+        C = g.acceptAllBtn,
+        S = g.acceptNecessaryBtn,
+        x = g.savePreferencesBtn,
+        M = g.sections || [],
+        D = C || S || x;
+      if (n.Fe) n.Pe = k(c), L(n.Pe, 'body');else {
+        n.Fe = k(c), V(n.Fe, 'pm-wrapper');
+        const e = k('div');
+        V(e, 'pm-overlay'), H(n.Fe, e), R(e, d, s), n.we = k(c), V(n.we, 'pm'), E(n.we, 'role', 'dialog'), E(n.we, i, !0), E(n.we, 'aria-modal', !0), E(n.we, 'aria-labelledby', 'pm__title'), R(n.ye, 'keydown', e => {
+          27 === e.keyCode && s();
+        }, !0), n.Oe = k(c), L(n.Oe, 'header'), n.Re = k('h2'), L(n.Re, 'title'), n.Re.id = 'pm__title', n.Be = k(r), L(n.Be, 'close-btn'), E(n.Be, 'aria-label', g.closeIconLabel || ''), R(n.Be, d, s), n.Ge = k('span'), n.Ge.innerHTML = W(), H(n.Be, n.Ge), n.Je = k(c), L(n.Je, 'body'), n.Ue = k(c), L(n.Ue, 'footer');
+        var T = k(c);
+        V(T, 'btns');
+        var A = k(c),
+          N = k(c);
+        L(A, l), L(N, l), H(n.Ue, A), H(n.Ue, N), H(n.Oe, n.Re), H(n.Oe, n.Be), n.ve = k(c), E(n.ve, 'tabIndex', -1), H(n.we, n.ve), H(n.we, n.Oe), H(n.we, n.Je), D && H(n.we, n.Ue), H(n.Fe, n.we);
+      }
+      let I;
+      b && (n.Re.innerHTML = b, v && E(n.Be, 'aria-label', v)), M.forEach((e, t) => {
+        const a = e.title,
+          s = e.description,
+          l = e.linkedCategory,
+          f = l && o.P[l],
+          _ = e.cookieTable,
+          u = _ && _.body,
+          p = _ && _.caption,
+          m = u && u.length > 0,
+          b = !!f,
+          v = b && o.X[l],
+          C = h(v) && w(v) || [],
+          S = b && (!!s || !!m || w(v).length > 0);
+        var x = k(c);
+        if (L(x, 'section'), S || s) {
+          var M = k(c);
+          L(M, 'section-desc-wrapper');
+        }
+        let D = C.length;
+        if (S && D > 0) {
+          const e = k(c);
+          L(e, 'section-services');
+          for (const t of C) {
+            const o = v[t],
+              n = o && o.label || t,
+              a = k(c),
+              s = k(c),
+              r = k(c),
+              i = k(c);
+            L(a, 'service'), L(i, 'service-title'), L(s, 'service-header'), L(r, 'service-icon');
+            const d = be(n, t, f, !0, l);
+            i.innerHTML = n, H(s, r), H(s, i), H(a, s), H(a, d), H(e, a);
+          }
+          H(M, e);
+        }
+        if (a) {
+          var T = k(c),
+            A = k(b ? r : c);
+          if (L(T, 'section-title-wrapper'), L(A, 'section-title'), A.innerHTML = a, H(T, A), b) {
+            const e = k('span');
+            e.innerHTML = W(2, 3.5), L(e, 'section-arrow'), H(T, e), x.className += '--toggle';
+            const t = be(a, l, f);
+            let o = g.serviceCounterLabel;
+            if (D > 0 && y(o)) {
+              let e = k('span');
+              L(e, 'badge'), L(e, 'service-counter'), E(e, i, !0), E(e, 'data-servicecounter', D), o && (o = o.split('|'), o = o.length > 1 && D > 1 ? o[1] : o[0], E(e, 'data-counterlabel', o)), e.innerHTML = D + (o ? ' ' + o : ''), H(A, e);
+            }
+            if (S) {
+              L(x, 'section--expandable');
+              var N = l + '-desc';
+              E(A, 'aria-expanded', !1), E(A, 'aria-controls', N);
+            }
+            H(T, t);
+          } else E(A, 'role', 'heading'), E(A, 'aria-level', '3');
+          H(x, T);
+        }
+        if (s) {
+          var F = k('p');
+          L(F, 'section-desc'), F.innerHTML = s, H(M, F);
+        }
+        if (S && (E(M, i, 'true'), M.id = N, ((e, t, o) => {
+          R(A, d, () => {
+            t.classList.contains('is-expanded') ? (j(t, 'is-expanded'), E(o, 'aria-expanded', 'false'), E(e, i, 'true')) : (V(t, 'is-expanded'), E(o, 'aria-expanded', 'true'), E(e, i, 'false'));
+          });
+        })(M, x, A), m)) {
+          const e = k('table'),
+            o = k('thead'),
+            a = k('tbody');
+          if (p) {
+            const t = k('caption');
+            L(t, 'table-caption'), t.innerHTML = p, e.appendChild(t);
+          }
+          L(e, 'section-table'), L(o, 'table-head'), L(a, 'table-body');
+          const s = _.headers,
+            r = w(s),
+            i = n.$e.createDocumentFragment(),
+            l = k('tr');
+          for (const e of r) {
+            const o = s[e],
+              n = k('th');
+            n.id = 'cc__row-' + o + t, E(n, 'scope', 'col'), L(n, 'table-th'), n.innerHTML = o, H(i, n);
+          }
+          H(l, i), H(o, l);
+          const d = n.$e.createDocumentFragment();
+          for (const e of u) {
+            const o = k('tr');
+            L(o, 'table-tr');
+            for (const n of r) {
+              const a = s[n],
+                r = e[n],
+                i = k('td'),
+                l = k(c);
+              L(i, 'table-td'), E(i, 'data-column', a), E(i, 'headers', 'cc__row-' + a + t), l.insertAdjacentHTML('beforeend', r), H(i, l), H(o, i);
+            }
+            H(d, o);
+          }
+          H(a, d), H(e, o), H(e, a), H(M, e);
+        }
+        (S || s) && H(x, M);
+        const P = n.Pe || n.Je;
+        b ? (I || (I = k(c), L(I, 'section-toggles')), I.appendChild(x)) : I = null, H(P, I || x);
+      }), C && (n.ze || (n.ze = k(r), L(n.ze, 'btn'), E(n.ze, f, 'all'), H(A, n.ze), R(n.ze, d, () => p('all'))), n.ze.innerHTML = C), S && (n.je || (n.je = k(r), L(n.je, 'btn'), E(n.je, f, 'necessary'), H(A, n.je), R(n.je, d, () => p([]))), n.je.innerHTML = S), x && (n.qe || (n.qe = k(r), L(n.qe, 'btn'), L(n.qe, 'btn--secondary'), E(n.qe, f, 'save'), H(N, n.qe), R(n.qe, d, () => p())), n.qe.innerHTML = x), n.Pe && (n.we.replaceChild(n.Pe, n.Je), n.Je = n.Pe), pe(1), o.N || (o.N = !0, ee(m.re.ue, u, n.we), t(e), H(n.Ce, n.Fe), X(n.we), setTimeout(() => V(n.Fe, 'cc--anim'), 100)), Z(2);
+    };
+  function be(e, t, o, n, a) {
+    const c = m.o,
+      r = m.ne,
+      l = k('label'),
+      f = k('input'),
+      _ = k('span'),
+      u = k('span'),
+      p = k('span'),
+      g = k('span'),
+      v = k('span');
+    if (g.innerHTML = W(1, 3), v.innerHTML = W(0, 3), f.type = 'checkbox', V(l, 'section__toggle-wrapper'), V(f, 'section__toggle'), V(g, 'toggle__icon-on'), V(v, 'toggle__icon-off'), V(_, 'toggle__icon'), V(u, 'toggle__icon-circle'), V(p, 'toggle__label'), E(_, i, 'true'), n ? (V(l, 'toggle-service'), E(f, s, a), r.se[a][t] = f) : r.ae[t] = f, n ? (e => {
+      R(f, 'change', () => {
+        const t = r.se[e],
+          o = r.ae[e];
+        c.Z[e] = [];
+        for (let o in t) {
+          const n = t[o];
+          n.checked && c.Z[e].push(n.value);
+        }
+        o.checked = c.Z[e].length > 0;
+      });
+    })(a) : (e => {
+      R(f, d, () => {
+        const t = r.se[e],
+          o = f.checked;
+        c.Z[e] = [];
+        for (let n in t) t[n].checked = o, o && c.Z[e].push(n);
+      });
+    })(t), f.value = t, p.textContent = e.replace(/<.*>.*<\/.*>/gm, ''), H(u, v), H(u, g), H(_, u), c.D) (o.readOnly || o.enabled) && (f.checked = !0);else if (n) {
+      const e = c.Y[a];
+      f.checked = o.readOnly || b(e, t);
+    } else b(c.R, t) && (f.checked = !0);
+    return o.readOnly && (f.disabled = !0), H(l, f), H(l, _), H(l, p), l;
+  }
+  const ve = () => {
+      const e = k('span');
+      return m.ne.Ke || (m.ne.Ke = e), e;
+    },
+    ye = (e, t) => {
+      const o = m.o,
+        n = m.ne,
+        {
+          hide: a,
+          showPreferences: s,
+          acceptCategory: u
+        } = e,
+        p = o.u && o.u.consentModal;
+      if (!p) return;
+      const g = p.acceptAllBtn,
+        b = p.acceptNecessaryBtn,
+        v = p.showPreferencesBtn,
+        y = p.closeIconLabel,
+        h = p.footer,
+        C = p.label,
+        w = p.title,
+        S = e => {
+          a(), u(e);
+        };
+      if (!n.Qe) {
+        n.Qe = k(c), n.he = k(c), n.We = k(c), n.Xe = k(c), n.Ye = k(c), V(n.Qe, 'cm-wrapper'), V(n.he, 'cm'), I(n.We, 'body'), I(n.Xe, 'texts'), I(n.Ye, 'btns'), E(n.he, 'role', 'dialog'), E(n.he, 'aria-modal', 'true'), E(n.he, i, 'false'), E(n.he, 'aria-describedby', 'cm__desc'), C ? E(n.he, 'aria-label', C) : w && E(n.he, 'aria-labelledby', 'cm__title');
+        const e = 'box',
+          t = o.i.guiOptions,
+          a = t && t.consentModal,
+          s = (a && a.layout || e).split(' ')[0] === e;
+        w && y && s && (n.Le || (n.Le = k(r), n.Le.innerHTML = W(), I(n.Le, 'btn'), I(n.Le, 'btn--close'), R(n.Le, d, () => {
+          S([]);
+        }), H(n.We, n.Le)), E(n.Le, 'aria-label', y)), H(n.We, n.Xe), (g || b || v) && H(n.We, n.Ye), n.be = k(c), E(n.be, 'tabIndex', -1), H(n.he, n.be), H(n.he, n.We), H(n.Qe, n.he);
+      }
+      w && (n.Ze || (n.Ze = k('h2'), n.Ze.className = n.Ze.id = 'cm__title', H(n.Xe, n.Ze)), n.Ze.innerHTML = w);
+      let x = p.description;
+      if (x && (o.V && (x = x.replace('{{revisionMessage}}', o.I ? '' : p.revisionMessage || '')), n.et || (n.et = k('p'), n.et.className = n.et.id = 'cm__desc', H(n.Xe, n.et)), n.et.innerHTML = x), g && (n.tt || (n.tt = k(r), H(n.tt, ve()), I(n.tt, 'btn'), E(n.tt, f, 'all'), R(n.tt, d, () => {
+        S('all');
+      })), n.tt.firstElementChild.innerHTML = g), b && (n.Ie || (n.Ie = k(r), H(n.Ie, ve()), I(n.Ie, 'btn'), E(n.Ie, f, 'necessary'), R(n.Ie, d, () => {
+        S([]);
+      })), n.Ie.firstElementChild.innerHTML = b), v && (n.ot || (n.ot = k(r), H(n.ot, ve()), I(n.ot, 'btn'), I(n.ot, 'btn--secondary'), E(n.ot, f, 'show'), R(n.ot, 'mouseenter', () => {
+        o.N || ge(e, t);
+      }), R(n.ot, d, s)), n.ot.firstElementChild.innerHTML = v), n.nt || (n.nt = k(c), I(n.nt, l), g && H(n.nt, n.tt), b && H(n.nt, n.Ie), (g || b) && H(n.We, n.nt), H(n.Ye, n.nt)), n.ot && !n.st && (n.st = k(c), n.Ie && n.tt ? (I(n.st, l), H(n.st, n.ot), H(n.Ye, n.st)) : (H(n.nt, n.ot), I(n.nt, l + '--uneven'))), h) {
+        if (!n.ct) {
+          let e = k(c),
+            t = k(c);
+          n.ct = k(c), I(e, 'footer'), I(t, 'links'), I(n.ct, 'link-group'), H(t, n.ct), H(e, t), H(n.he, e);
+        }
+        n.ct.innerHTML = h;
+      }
+      pe(0), o.T || (o.T = !0, ee(m.re.ue, _, n.he), t(e), H(n.Ce, n.Qe), X(n.he), setTimeout(() => V(n.Qe, 'cc--anim'), 100)), Z(1), U(n.We, e, ge, t);
+    },
+    he = e => {
+      if (!y(e)) return null;
+      if (e in m.o._) return e;
+      let t = e.slice(0, 2);
+      return t in m.o._ ? t : null;
+    },
+    Ce = () => m.o.l || m.o.i.language.default,
+    we = e => {
+      e && (m.o.l = e);
+    },
+    Se = async e => {
+      const t = m.o;
+      let o = he(e) ? e : Ce(),
+        n = t._[o];
+      return y(n) ? n = await (async e => {
+        try {
+          const t = await fetch(e);
+          return await t.json();
+        } catch (e) {
+          return console.error(e), !1;
+        }
+      })(n) : C(n) && (n = await n()), !!n && (t.u = n, we(o), !0);
+    },
+    xe = () => {
+      let e = m.o.i.language.rtl,
+        t = m.ne.Ce;
+      e && t && (v(e) || (e = [e]), b(e, m.o.l) ? V(t, 'cc--rtl') : j(t, 'cc--rtl'));
+    },
+    Me = () => {
+      const e = m.ne;
+      if (e.Ce) return;
+      e.Ce = k(c), e.Ce.id = 'cc-main', e.Ce.setAttribute('data-nosnippet', ''), xe();
+      let t = m.o.i.root;
+      t && y(t) && (t = document.querySelector(t)), (t || e.$e.body).appendChild(e.Ce);
+    },
+    De = e => te(() => localStorage.removeItem(e)),
+    Te = (e, t) => {
+      if (t instanceof RegExp) return e.filter(e => t.test(e));
+      {
+        const o = g(e, t);
+        return o > -1 ? [e[o]] : [];
+      }
+    },
+    ke = e => {
+      const {
+          hostname: t,
+          protocol: o
+        } = location,
+        {
+          name: n,
+          path: a,
+          domain: s,
+          sameSite: c,
+          useLocalStorage: r
+        } = m.t.cookie,
+        i = e ? (() => {
+          const e = m.o.S,
+            t = e ? new Date() - e : 0;
+          return 864e5 * B() - t;
+        })() : 864e5 * B(),
+        l = new Date();
+      l.setTime(l.getTime() + i), m.o.p.expirationTime = l.getTime();
+      const d = JSON.stringify(m.o.p);
+      let f = n + '=' + encodeURIComponent(d) + (0 !== i ? '; expires=' + l.toUTCString() : '') + '; Path=' + a + '; SameSite=' + c;
+      b(t, '.') && (f += '; Domain=' + s), 'https:' === o && (f += '; Secure'), r ? ((e, t) => {
+        te(() => localStorage.setItem(e, t));
+      })(n, d) : document.cookie = f, m.o.p;
+    },
+    Ee = (e, t, o) => {
+      if (0 === e.length) return;
+      const n = o || m.t.cookie.domain,
+        a = t || m.t.cookie.path,
+        s = 'www.' === n.slice(0, 4),
+        c = s && n.substring(4),
+        r = (e, t) => {
+          document.cookie = e + '=; path=' + a + (t ? '; domain=.' + t : '') + '; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        };
+      for (const t of e) r(t), r(t, n), s && r(t, c);
+    },
+    Ae = e => {
+      const t = e || m.t.cookie.name,
+        o = m.t.cookie.useLocalStorage;
+      return ((e, t) => {
+        let o;
+        return o = te(() => JSON.parse(t ? e : decodeURIComponent(e)), !0) || {}, o;
+      })(o ? (n = t, te(() => localStorage.getItem(n)) || '') : Ne(t, !0), o);
+      var n;
+    },
+    Ne = (e, t) => {
+      const o = document.cookie.match('(^|;)\\s*' + e + '\\s*=\\s*([^;]+)');
+      return o ? t ? o.pop() : e : '';
+    },
+    He = e => {
+      const t = document.cookie.split(/;\s*/),
+        o = [];
+      for (const n of t) {
+        let t = n.split('=')[0];
+        e ? te(() => {
+          e.test(t) && o.push(t);
+        }) : o.push(t);
+      }
+      return o;
+    },
+    Ve = (o, n = []) => {
+      ((e, t) => {
+        const {
+          O: o,
+          R: n,
+          B: a,
+          N: s,
+          Z: c,
+          G: r,
+          X: i
+        } = m.o;
+        let l = [];
+        if (e) {
+          v(e) ? l.push(...e) : y(e) && (l = 'all' === e ? o : [e]);
+          for (const e of o) c[e] = b(l, e) ? w(i[e]) : [];
+        } else l = [...n, ...r], s && (l = (() => {
+          const e = m.ne.ae;
+          if (!e) return [];
+          let t = [];
+          for (let o in e) e[o].checked && t.push(o);
+          return t;
+        })());
+        l = l.filter(e => !b(o, e) || !b(t, e)), l.push(...a), J(l);
+      })(o, n), (e => {
+        const t = m.o,
+          {
+            Z: o,
+            B: n,
+            Y: a,
+            X: s,
+            O: c
+          } = t,
+          r = c;
+        t.te = F(a);
+        for (const e of r) {
+          const c = s[e],
+            r = w(c),
+            i = o[e] && o[e].length > 0,
+            l = b(n, e);
+          if (0 !== r.length) {
+            if (a[e] = [], l) a[e].push(...r);else if (i) {
+              const t = o[e];
+              a[e].push(...t);
+            } else a[e] = t.Z[e];
+            a[e] = S(a[e]);
+          }
+        }
+      })(), (() => {
+        const o = m.o;
+        o.L = m.t.mode === t && o.D ? G(o.G, o.R) : G(o.R, o.p.categories);
+        let n = o.L.length > 0,
+          a = !1;
+        for (const e of o.O) o.ee[e] = G(o.Y[e], o.te[e]), o.ee[e].length > 0 && (a = !0);
+        const s = m.ne.ae;
+        for (const e in s) s[e].checked = b(o.R, e);
+        for (const e of o.O) {
+          const t = m.ne.se[e],
+            n = o.Y[e];
+          for (const e in t) t[e].checked = b(n, e);
+        }
+        o.C || (o.C = new Date()), o.M || (o.M = ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, e => (e ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> e / 4).toString(16))), o.p = {
+          categories: F(o.R),
+          revision: m.t.revision,
+          data: o.h,
+          consentTimestamp: o.C.toISOString(),
+          consentId: o.M,
+          services: F(o.Y)
+        };
+        let c = !1;
+        const r = n || a;
+        (o.D || r) && (o.D && (o.D = !1, c = !0), o.S = o.S ? new Date() : o.C, o.p.lastConsentTimestamp = o.S.toISOString(), ke(), m.t.autoClearCookies && (c || r) && (e => {
+          const t = m.o,
+            o = He(),
+            n = (e => {
+              const t = m.o;
+              return (e ? t.O : t.L).filter(e => {
+                const o = t.P[e];
+                return !!o && !o.readOnly && !!o.autoClear;
+              });
+            })(e);
+          for (const e in t.ee) for (const n of t.ee[e]) {
+            const a = t.X[e][n].cookies;
+            if (!b(t.Y[e], n) && a) for (const e of a) {
+              const t = Te(o, e.name);
+              Ee(t, e.path, e.domain);
+            }
+          }
+          for (const a of n) {
+            const n = t.P[a].autoClear,
+              s = n && n.cookies || [],
+              c = b(t.L, a),
+              r = !b(t.R, a),
+              i = c && r;
+            if (e ? r : i) {
+              n.reloadPage && i && (t.j = !0);
+              for (const e of s) {
+                const t = Te(o, e.name);
+                Ee(t, e.path, e.domain);
+              }
+            }
+          }
+        })(c), oe()), c && (ee(m.re.ie), ee(m.re.le), m.t.mode === e) || (r && ee(m.re.de), o.j && (o.j = !1, location.reload()));
+      })();
+    },
+    Ie = e => {
+      const t = m.o.D ? [] : m.o.R;
+      return b(t, e);
+    },
+    je = (e, t) => {
+      const o = m.o.D ? [] : m.o.Y[t] || [];
+      return b(o, e);
+    },
+    Oe = e => {
+      const {
+        ne: t,
+        o: n
+      } = m;
+      if (!n.k) {
+        if (!n.T) {
+          if (!e) return;
+          ye(Je, Me);
+        }
+        n.k = !0, n.U = x(), n.v && K(!0), z(t.he, 1), V(t.ye, o), E(t.he, i, 'false'), setTimeout(() => {
+          $(m.ne.be);
+        }, 100), ee(m.re.fe, _);
+      }
+    },
+    Re = () => {
+      const {
+        ne: e,
+        o: t,
+        re: n
+      } = m;
+      t.k && (t.k = !1, t.v && K(), $(e.Ke, !0), j(e.ye, o), E(e.he, i, 'true'), $(t.U), t.U = null, ee(n._e, _));
+    },
+    Be = () => {
+      const e = m.o;
+      e.A || (e.N || ge(Je, Me), e.A = !0, e.k ? e.$ = x() : e.U = x(), z(m.ne.we, 2), V(m.ne.ye, n), E(m.ne.we, i, 'false'), setTimeout(() => {
+        $(m.ne.ve);
+      }, 100), ee(m.re.fe, u));
+    },
+    Ge = () => {
+      const e = m.o;
+      e.A && (e.A = !1, (() => {
+        const e = We(),
+          t = m.o.P,
+          o = m.ne.ae,
+          n = m.ne.se,
+          a = e => b(m.o.G, e);
+        for (const s in o) {
+          const c = !!t[s].readOnly;
+          o[s].checked = c || (e ? Ie(s) : a(s));
+          for (const t in n[s]) n[s][t].checked = c || (e ? je(t, s) : a(s));
+        }
+      })(), $(m.ne.Ge, !0), j(m.ne.ye, n), E(m.ne.we, i, 'true'), e.k ? ($(e.$), e.$ = null) : ($(e.U), e.U = null), ee(m.re._e, u));
+    };
+  var Je = {
+    show: Oe,
+    hide: Re,
+    showPreferences: Be,
+    hidePreferences: Ge,
+    acceptCategory: Ve
+  };
+  const $e = () => {
+      const {
+          F: e,
+          Y: t
+        } = m.o,
+        {
+          accepted: o,
+          rejected: n
+        } = (() => {
+          const {
+            D: e,
+            R: t,
+            O: o
+          } = m.o;
+          return {
+            accepted: t,
+            rejected: e ? [] : o.filter(e => !b(t, e))
+          };
+        })();
+      return F({
+        acceptType: e,
+        acceptedCategories: o,
+        rejectedCategories: n,
+        acceptedServices: t,
+        rejectedServices: P()
+      });
+    },
+    We = () => !m.o.D,
+    Xe = async e => {
+      const {
+          o: o,
+          t: n,
+          re: a
+        } = m,
+        c = window;
+      if (!c._ccRun) {
+        if (c._ccRun = !0, (e => {
+          const {
+              ne: o,
+              t: n,
+              o: a
+            } = m,
+            c = n,
+            r = a,
+            {
+              cookie: i
+            } = c,
+            l = m.ce,
+            d = e.cookie,
+            f = e.categories,
+            _ = w(f) || [],
+            u = navigator,
+            p = document;
+          o.$e = p, o.ye = p.documentElement, i.domain = location.hostname, r.i = e, r.P = f, r.O = _, r._ = e.language.translations, r.v = !!e.disablePageInteraction, l.ie = e.onFirstConsent, l.le = e.onConsent, l.de = e.onChange, l._e = e.onModalHide, l.fe = e.onModalShow, l.ue = e.onModalReady;
+          const {
+            mode: g,
+            autoShow: v,
+            lazyHtmlGeneration: y,
+            autoClearCookies: C,
+            revision: S,
+            manageScriptTags: x,
+            hideFromBots: M
+          } = e;
+          g === t && (c.mode = g), 'boolean' == typeof C && (c.autoClearCookies = C), 'boolean' == typeof x && (c.manageScriptTags = x), 'number' == typeof S && S >= 0 && (c.revision = S, r.V = !0), 'boolean' == typeof v && (c.autoShow = v), 'boolean' == typeof y && (c.lazyHtmlGeneration = y), !1 === M && (c.hideFromBots = !1), !0 === c.hideFromBots && u && (r.J = u.userAgent && /bot|crawl|spider|slurp|teoma/i.test(u.userAgent) || u.webdriver), h(d) && (c.cookie = {
+            ...i,
+            ...d
+          }), c.autoClearCookies, r.V, c.manageScriptTags, (e => {
+            const {
+              P: t,
+              X: o,
+              Y: n,
+              Z: a,
+              B: s
+            } = m.o;
+            for (let c of e) {
+              const e = t[c],
+                r = e.services || {},
+                i = h(r) && w(r) || [];
+              o[c] = {}, n[c] = [], a[c] = [], e.readOnly && (s.push(c), n[c] = i), m.ne.se[c] = {};
+              for (let e of i) {
+                const t = r[e];
+                t.Se = !1, o[c][e] = t;
+              }
+            }
+          })(_), (() => {
+            if (!m.t.manageScriptTags) return;
+            const e = m.o,
+              t = D(document, 'script[' + s + ']');
+            for (const o of t) {
+              let t = N(o, s),
+                n = o.dataset.service || '',
+                a = !1;
+              if (t && '!' === t.charAt(0) && (t = t.slice(1), a = !0), '!' === n.charAt(0) && (n = n.slice(1), a = !0), b(e.O, t) && (e.oe.push({
+                Me: o,
+                xe: !1,
+                ke: a,
+                De: t,
+                Te: n
+              }), n)) {
+                const o = e.X[t];
+                o[n] || (o[n] = {
+                  Se: !1
+                });
+              }
+            }
+          })(), we((() => {
+            const e = m.o.i.language.autoDetect;
+            if (e) {
+              const t = {
+                  browser: navigator.language,
+                  document: document.documentElement.lang
+                },
+                o = he(t[e]);
+              if (o) return o;
+            }
+            return Ce();
+          })());
+        })(e), o.J) return;
+        (() => {
+          const e = m.o,
+            o = m.t,
+            n = Ae(),
+            {
+              categories: a,
+              services: s,
+              consentId: c,
+              consentTimestamp: r,
+              lastConsentTimestamp: i,
+              data: l,
+              revision: d
+            } = n,
+            f = v(a);
+          e.p = n, e.M = c;
+          const _ = !!c && y(c);
+          e.C = r, e.C && (e.C = new Date(r)), e.S = i, e.S && (e.S = new Date(i)), e.h = void 0 !== l ? l : null, e.V && _ && d !== o.revision && (e.I = !1), e.D = !(_ && e.I && e.C && e.S && f), o.cookie.useLocalStorage && !e.D && (e.D = new Date().getTime() > (n.expirationTime || 0), e.D && De(o.cookie.name)), e.D, (() => {
+            const e = m.o;
+            for (const o of e.O) {
+              const n = e.P[o];
+              if (n.readOnly || n.enabled) {
+                e.G.push(o);
+                const n = e.X[o] || {};
+                for (let a in n) e.Z[o].push(a), e.i.mode === t && e.Y[o].push(a);
+              }
+            }
+          })(), e.D ? o.mode === t && (e.R = [...e.G]) : (e.Z = {
+            ...e.Y
+          }, e.Y = {
+            ...e.Y,
+            ...s
+          }, J([...e.B, ...a]));
+        })();
+        const i = We();
+        if (!(await Se())) return !1;
+        if (U(null, r = Je, ge, Me), m.o.D && ye(r, Me), m.t.lazyHtmlGeneration || ge(r, Me), n.autoShow && !i && Oe(!0), i) return oe(), ee(a.le);
+        n.mode === t && oe(o.G);
+      }
+      var r;
+    };
+
+  class CookieConsent {
+    constructor(config = null) {
+      this.isInit = false;
+      if (!window.NSW || !window.NSW.CookieConsent) {
+        console.error('NSW CookieConsent is not available.');
+        return;
+      }
+      if (!config) {
+        console.error('Cookie consent configuration not provided');
+        return;
+      }
+      CookieConsent.cleanupDefaultCookieUI();
+      this.config = CookieConsent.mapToVanillaCookieConsentConfig(config);
+      this.consentBannerElement = null;
+      this.preferencesDialogElement = null;
+      this.consentBannerConfirmationMessage = '';
+      this.consentSelectionMade = false;
+      this.createConsentBanner();
+      this.createPreferencesDialog();
+      this.init();
+    }
+    static cleanupDefaultCookieUI() {
+      // Remove unwanted stylesheet
+      const unwantedStylesheet = Array.from(document.querySelectorAll('link')).find(link => link.href.includes('cookieconsent.css'));
+      if (unwantedStylesheet) {
+        unwantedStylesheet.remove();
+      }
+
+      // Monitor for and remove the default cookie consent element
+      const observer = new MutationObserver(() => {
+        const defaultCookieConsentElement = document.getElementById('cc-main');
+        if (defaultCookieConsentElement) {
+          defaultCookieConsentElement.remove();
+          observer.disconnect(); // Stop observing
+        }
+      });
+      observer.observe(document.documentElement, {
+        childList: true,
+        subtree: true
+      });
+
+      // Remove if it already exists in the DOM
+      const existingElement = document.getElementById('cc-main');
+      if (existingElement) {
+        existingElement.remove();
+      }
+    }
+    static mapToVanillaCookieConsentConfig(config) {
+      return {
+        ...config,
+        autoShow: false,
+        language: {
+          default: 'en',
+          translations: {
+            en: {
+              consentModal: config.consentBanner,
+              preferencesModal: config.preferencesDialog
+            }
+          }
+        }
+      };
+    }
+    createPreferencesDialog() {
+      const {
+        language: {
+          translations: {
+            en
+          }
+        },
+        categories = {}
+      } = this.config;
+      const {
+        preferencesModal
+      } = en;
+      const cookiesListHtml = `
+    <ul class="nsw-cookie-dialog__list">
+    ${preferencesModal.sections.map((section, index) => `
+          <li class="nsw-cookie-dialog__list-item">
+            <input 
+              class="nsw-form__checkbox-input" 
+              value="${section.linkedCategory}" 
+              type="checkbox" 
+              name="form-checkbox-multi-${index + 1}" 
+              id="cookie-settings-${index + 1}"
+              ${categories[section.linkedCategory].readOnly ? 'disabled' : ''}
+            >
+            <label 
+              class="nsw-form__checkbox-label" 
+              for="cookie-settings-${index + 1}"
+            >
+              ${section.title}
+            </label>
+            <div class="nsw-cookie-dialog__cookie-details">
+              <p>${section.description}</p>
+            </div>
+          </li>
+          `).join('')}
+  </ul>
+  `;
+
+      // Create the dialog dynamically
+      const preferencesDialogHtml = `
+      <div class="nsw-cookie-dialog nsw-dialog nsw-dialog--single-action js-dialog js-dialog-dismiss" id="cookie-consent-preferences" role="dialog" aria-labelledby="cookie-consent-dialog">
+        <div class="nsw-dialog__wrapper">
+          <div class="nsw-dialog__container">
+            <div class="nsw-dialog__top">
+              <div class="nsw-dialog__title">
+                <h2 id="cookie-dialog-title">${preferencesModal.title ? preferencesModal.title : 'Cookie preferences'}</h2>
+              </div>
+              <div class="nsw-dialog__close">
+                <button class="nsw-icon-button js-close-dialog">
+                  <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">close</span>
+                  <span class="sr-only">${preferencesModal.closeIconLabel ? preferencesModal.closeIconLabel : 'Close dialog'}</span>
+                </button>
+              </div>
+            </div>
+            <div class="nsw-dialog__content">
+              <div class="nsw-tabs js-cookie-consent-tabs">
+                <ul class="nsw-tabs__list">
+                  <li><a href="#cookie-settings" class="js-tabs-fixed">${preferencesModal.tab1 ? preferencesModal.tab1.tabTitle : 'Cookie preferences'}</a></li>
+                  ${preferencesModal.tab2 ? `<li><a href="#cookie-use" class="js-tabs-fixed">${preferencesModal.tab2.tabTitle ? preferencesModal.tab2.tabTitle : 'How we use cookies'}</a></li>` : ''}
+                  <li><a href="#cookie-information" class="js-tabs-fixed">What are cookies?</a></li>
+                </ul>
+                <section id="cookie-settings" class="nsw-tabs__content nsw-tabs__content--side-flush">
+                  <div class="nsw-cookie-dialog__content-wrapper">
+                    ${preferencesModal.tab1.content ? preferencesModal.tab1.content : ''}
+                    ${cookiesListHtml}
+                  </div>
+                </section>
+                ${preferencesModal.tab2 ? `
+                    <section id="cookie-use" class="nsw-tabs__content nsw-tabs__content--side-flush">
+                      <div class="nsw-cookie-dialog__content-wrapper">
+                        ${preferencesModal.tab2.content}
+                      </div>
+                    </section>
+                  ` : ''}
+                <section id="cookie-information" class="nsw-tabs__content nsw-tabs__content--side-flush">
+                  <div class="nsw-cookie-dialog__content-wrapper">
+                    <p>Cookies are small files stored on your phone, tablet, or computer when you visit a website. They help us understand how you use our website and improve your experience.</p>
+                    
+                    <p>Some cookies collect information about how you interact with our website, such as the pages you visit and links you click. Others may store personal information, depending on their purpose and configuration.</p>
+
+                    <p>Personal information that may be collected by cookies includes:</p>
+                    <ul>
+                      <li>Email address</li>
+                      <li>Username</li>
+                      <li>IP address</li>
+                      <li>Geographic location</li>
+                      <li>Session screen recordings</li>
+                    </ul>
+
+                    <p>We use cookies to:</p>
+                    <ul>
+                      <li>Make our website work efficiently and securely</li>
+                      <li>Remember your preferences, such as which pop-ups you’ve seen</li>
+                      <li>Understand how you use our website (analytics cookies)</li>
+                      <li>Enable social sharing, such as LinkedIn</li>
+                      <li>Continuously improve our website for you</li>
+                    </ul>
+
+                    <p>Privacy and compliance:</p>
+                    <p>If cookies collect personal information, we are required to comply with Information Privacy Principle (IPP) 3, ensuring openness in data collection. This means you should be informed when your personal information is collected.</p>
+
+                    <p>We provide this information through:</p>
+                    <ul>
+                      <li>A Privacy Collection Notice (PCN) within the "How we use cookies" tab</li>
+                      <li>A link to our Privacy Policy and/or Cookie Policy</li>
+                    </ul>
+
+                    <p>As tracking technologies evolve, we periodically review our cookie practices to maintain privacy compliance and control over tracking technologies.</p>
+
+                    <p>For more information on cookies, including how to manage or delete them, visit <a href="https://www.allaboutcookies.org">www.allaboutcookies.org</a>.</p>
+
+                    <p>For privacy advice, please contact your agency’s privacy or information governance team. Additional guidance is available at <a href="mailto:digitalnswprivacy@customerservice.nsw.gov.au">digitalnswprivacy@customerservice.nsw.gov.au</a>.</p>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </div>
+          <div class="nsw-cookie-dialog__bottom">
+            <div class="nsw-cookie-dialog__cta-group">
+              ${preferencesModal.acceptAllBtn ? `<button class="nsw-button nsw-button--dark-outline-solid js-close-dialog" data-role="accept-all">${preferencesModal.acceptAllBtn ? preferencesModal.acceptAllBtn : 'Accept all cookies'}</button>` : ''}
+              ${preferencesModal.acceptNecessaryBtn ? `<button class="nsw-button nsw-button--dark-outline-solid js-close-dialog" data-role="reject-all">${preferencesModal.acceptNecessaryBtn ? preferencesModal.acceptNecessaryBtn : 'Reject all cookies'}</button>` : ''}
+            </div>
+            <div class="nsw-cookie-dialog__cta-group">
+              <button class="nsw-button nsw-button--dark js-close-dialog" data-role="accept-selection">${preferencesModal.savePreferencesBtn ? preferencesModal.savePreferencesBtn : 'Accept current selection'}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+
+      // Append to the body
+      const dialogContainer = document.querySelector('.js-open-dialog-cookie-consent-preferences');
+
+      // Initialise dialog
+      if (dialogContainer) {
+        // Dynamically create the dialog HTML
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = preferencesDialogHtml;
+        this.preferencesDialogElement = tempDiv.firstElementChild;
+
+        // Append the dialog directly to the body
+        document.body.appendChild(this.preferencesDialogElement);
+
+        // Initialise the NSW Design System Dialog
+        this.dialogInstance = new window.NSW.Dialog(this.preferencesDialogElement);
+        this.dialogInstance.init();
+      } else {
+        console.warn('Dialog trigger element not found');
+      }
+
+      // Initialise tabs
+      if (window.NSW && window.NSW.Tabs) {
+        const tabs = document.querySelector('.js-cookie-consent-tabs');
+        new window.NSW.Tabs(tabs).init();
+      } else {
+        console.warn('NSW Tabs library not found');
+      }
+    }
+    createConsentBanner() {
+      const {
+        language: {
+          translations: {
+            en
+          }
+        }
+      } = this.config;
+      const {
+        consentModal
+      } = en;
+      const bannerOffset = consentModal.bannerOffset ? consentModal.bannerOffset : '0';
+      this.consentBannerConfirmationMessage = consentModal.confirmationMessage || '';
+      const consentBannerHtml = `
+      <div class="nsw-cookie-banner" role="alert" tabindex="-1" aria-labelledby="cookie-banner-title" aria-live="assertive" style="bottom: ${bannerOffset};">
+        <div class="nsw-cookie-banner__wrapper">
+          <div id="cookie-banner-title" class="nsw-cookie-banner__title">${consentModal.title || 'Cookie use on our website'}</div>
+          <span class="nsw-cookie-banner__description">
+            <div class="nsw-cookie-banner__content">
+              ${consentModal.description ? `<p>${consentModal.description}</p>` : ''}
+            </div>
+            <div class="nsw-cookie-banner__buttons-container">
+              ${consentModal.acceptAllBtn || consentModal.acceptNecessaryBtn ? '<div class="nsw-cookie-banner__cta-group">' : ''}
+                ${consentModal.acceptAllBtn ? `<button class="nsw-button nsw-button--dark js-close-dialog ${!consentModal.confirmationMessage ? 'js-dismiss-cookie-banner' : ''}" data-role="accept-all">${consentModal.acceptAllBtn}</button>` : ''}
+                ${consentModal.acceptNecessaryBtn ? `<button class="nsw-button nsw-button--dark ${!consentModal.confirmationMessage ? 'js-dismiss-cookie-banner' : ''}" data-role="reject-all">${consentModal.acceptNecessaryBtn}</button>` : ''}
+              ${consentModal.acceptAllBtn || consentModal.acceptNecessaryBtn ? '</div>' : ''}
+              <a href="#cookie-consent" class="nsw-button nsw-button--dark-outline js-open-dialog-cookie-consent-preferences" aria-haspopup="dialog">${consentModal.showPreferencesBtn || 'Manage your cookies'}</a>
+            </div>
+          </span>
+          <span class="nsw-cookie-banner__confirmation-message" hidden="true">
+            <div class="nsw-cookie-banner__content">
+              <p>${consentModal.confirmationMessage}</p>
+            </div>
+            <div class="nsw-cookie-banner__buttons-container">
+              <button class="nsw-button nsw-button--dark js-dismiss-cookie-banner">Close this message</button>
+            </div>
+          </span>
+        </div>
+      </div>
+    `;
+
+      // Append the banner to the body
+      const tempDiv = document.createElement('div');
+      tempDiv.innerHTML = consentBannerHtml;
+      this.consentBannerElement = tempDiv.firstElementChild;
+      document.body.appendChild(this.consentBannerElement);
+      this.consentBannerElement.focus();
+    }
+    init() {
+      if (this.preferencesDialogElement) {
+        this.initElements();
+        this.initAPI();
+        this.attachEventListeners();
+
+        // Immediately hide the banner if user has preferences set
+        const preferences = $e();
+        if (preferences && preferences.acceptedCategories.length > 0) {
+          this.consentBannerElement.setAttribute('hidden', 'true');
+        }
+      } else {
+        console.error('Banner element not created');
+      }
+    }
+    initElements() {
+      this.cookieInputContainer = document.querySelector('.nsw-cookie-dialog__list');
+      this.allCookieInputs = this.cookieInputContainer ? this.cookieInputContainer.querySelectorAll('input[type="checkbox"]') : [];
+      this.acceptSelectionButton = document.querySelector('[data-role="accept-selection"]');
+      this.acceptAllButton = document.querySelector('[data-role="accept-all"]');
+      this.rejectAllButton = document.querySelector('[data-role="reject-all"]');
+    }
+    initAPI() {
+      if (!this.isInit) {
+        Xe(this.config).then(() => {
+          this.isInit = true;
+          this.loadUserPreferences();
+        });
+      }
+    }
+    attachEventListeners() {
+      // Delegate events from the document to handle all relevant elements dynamically
+      document.addEventListener('click', event => {
+        const {
+          target
+        } = event;
+        if (target.matches('[data-role="accept-all"]')) {
+          this.handleConsentAction('accept-all');
+        } else if (target.matches('[data-role="reject-all"]')) {
+          this.handleConsentAction('reject-all');
+        } else if (target.matches('[data-role="accept-selection"]')) {
+          this.handleConsentAction('accept-selection');
+        }
+
+        // If target is dismissable
+        if (target.matches('.js-dismiss-cookie-banner')) {
+          this.hideConsentBanner();
+        }
+
+        // Manual trigger of cookie consent banner
+        if (target.matches('.js-open-banner-cookie-consent')) {
+          event.preventDefault();
+          this.showConsentBanner();
+        }
+
+        // Manual trigger of cookie consent preferences dialog
+        if (target.matches('.js-open-dialog-cookie-consent-preferences')) {
+          event.preventDefault();
+        }
+      });
+    }
+    loadUserPreferences() {
+      const preferences = $e() || {
+        acceptedCategories: []
+      };
+      const inputs = Array.from(this.allCookieInputs);
+      for (let i = 0; i < inputs.length; i += 1) {
+        const checkbox = inputs[i];
+        const category = checkbox.value;
+        let isChecked;
+        if (preferences.acceptedCategories.length > 0) {
+          isChecked = preferences.acceptedCategories.includes(category);
+        } else {
+          isChecked = Boolean(this.config.categories[category] && this.config.categories[category].readOnly // Ensure read-only categories are checked by default
+          );
+        }
+        checkbox.checked = isChecked;
+      }
+    }
+    handleConsentAction(action) {
+      const updatePreferencesDialog = () => {
+        const preferences = $e();
+        if (preferences && this.allCookieInputs) {
+          this.allCookieInputs.forEach(checkboxElement => {
+            const checkbox = checkboxElement; // Local reference
+            checkbox.checked = preferences.acceptedCategories.includes(checkbox.value);
+          });
+        }
+      };
+      switch (action) {
+        case 'accept-all':
+          {
+            console.log('User accepted all cookies');
+            Ve('all');
+            updatePreferencesDialog();
+            break;
+          }
+        case 'reject-all':
+          {
+            console.log('User rejected all cookies');
+            Ve([]);
+            updatePreferencesDialog();
+            break;
+          }
+        case 'accept-selection':
+          {
+            console.log('User accepted selected cookies');
+            const checked = [];
+            const unchecked = [];
+            this.allCookieInputs.forEach(checkboxElement => {
+              if (checkboxElement.checked) {
+                checked.push(checkboxElement.value);
+              } else {
+                unchecked.push(checkboxElement.value);
+              }
+            });
+            Ve(checked, unchecked);
+            updatePreferencesDialog();
+            break;
+          }
+        default:
+          {
+            console.warn(`Unhandled action: ${action}`);
+          }
+      }
+      this.consentSelectionMade = true;
+      this.showConfirmationMessage();
+
+      // Hide banner if present or confirmation is present
+      if (!this.consentBannerConfirmationMessage) {
+        this.hideConsentBanner();
+      }
+    }
+    showConfirmationMessage() {
+      // Select the confirmation message element
+      const confirmationMessage = this.consentBannerElement.querySelector('.nsw-cookie-banner__confirmation-message');
+
+      // Select the description element
+      const description = this.consentBannerElement.querySelector('.nsw-cookie-banner__description');
+      if (confirmationMessage) {
+        // Change the hidden attribute to false for the confirmation message
+        confirmationMessage.removeAttribute('hidden');
+      }
+      if (description) {
+        // Change the hidden attribute to true for the description
+        description.setAttribute('hidden', 'true');
+      }
+    }
+    showConsentBanner() {
+      if (this.consentBannerElement) {
+        const description = this.consentBannerElement.querySelector('.nsw-cookie-banner__description');
+        const confirmationMessage = this.consentBannerElement.querySelector('.nsw-cookie-banner__confirmation-message');
+        if (this.consentBannerConfirmationMessage && confirmationMessage) {
+          // Hide the confirmation message if it's present
+          confirmationMessage.setAttribute('hidden', 'true');
+        }
+        if (description) {
+          // Show the main description
+          description.removeAttribute('hidden');
+        }
+        this.consentBannerElement.removeAttribute('hidden');
+      } else {
+        console.warn('Consent banner element not found.');
+      }
+    }
+    hideConsentBanner() {
+      if (this.consentBannerElement) {
+        this.consentBannerElement.setAttribute('hidden', 'true');
+      }
+    }
+  }
+
+  class Breadcrumbs {
+    constructor(element) {
+      this.element = element;
+      this.allBreadcrumbs = this.element.querySelector('.nsw-breadcrumbs ol');
+      this.secondBreadcrumb = this.element.querySelector('.js-breadcrumbs li:nth-child(2)');
+      this.condition = false;
+    }
+    init() {
+      if (this.allBreadcrumbs.children.length > 3) {
+        this.createToggle();
+      }
+    }
+    createToggle() {
+      const toggle = this.constructor.createElement('li', ['nsw-breadcrumbs__show-more-toggle']);
+      toggle.innerHTML = '<button aria-label="Show more breadcrumbs" class="nsw-breadcrumbs__toggle-button" type="button">…</button>';
+      toggle.addEventListener('click', () => {
+        this.allBreadcrumbs.classList.toggle('nsw-breadcrumbs__show-all');
+      });
+      this.allBreadcrumbs.insertBefore(toggle, this.secondBreadcrumb);
+    }
+    static createElement(tag, classes = [], attributes = {}) {
+      const element = document.createElement(tag);
+      if (classes.length > 0) {
+        element.classList.add(...classes);
+      }
+      Object.entries(attributes).forEach(([key, value]) => {
+        element.setAttribute(key, value);
+      });
+      return element;
+    }
+  }
+
+  /* eslint-disable max-len */
+  class DatePicker {
+    constructor(element) {
+      this.element = element;
+      this.prefix = 'nsw-';
+      this.class = 'date-picker';
+      this.uID = uniqueId('calendar-label');
+      this.dateClass = `${this.prefix}${this.class}__date`;
+      this.todayClass = `${this.dateClass}--today`;
+      this.selectedClass = `${this.dateClass}--selected`;
+      this.keyboardFocusClass = `${this.dateClass}--keyboard-focus`;
+      this.visibleClass = `${this.prefix}${this.class}--is-visible`;
+      this.months = this.element.getAttribute('data-months') ? this.element.getAttribute('data-months') : ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+      this.dateFormat = this.element.getAttribute('data-date-format') ? this.element.getAttribute('data-date-format') : 'd-m-y';
+      this.dateSeparator = this.element.getAttribute('data-date-separator') ? this.element.getAttribute('data-date-separator') : '/';
+      this.datesDisabled = this.element.getAttribute('data-dates-disabled') ? this.element.getAttribute('data-dates-disabled') : '';
+      this.minDate = this.element.getAttribute('data-min-date') ? this.element.getAttribute('data-min-date') : '';
+      this.maxDate = this.element.getAttribute('data-max-date') ? this.element.getAttribute('data-max-date') : '';
+      this.input = this.element.querySelector('.js-date-input__text');
+      this.trigger = this.element.querySelector('.js-date-input__trigger');
+      this.triggerLabel = this.trigger && this.trigger.getAttribute('aria-label') ? this.trigger.getAttribute('aria-label') : 'Select a date';
+      this.datePicker = this.element.querySelector('.js-date-picker');
+      this.body = this.datePicker && this.datePicker.querySelector('.js-date-picker__dates');
+      this.navigation = this.datePicker && this.datePicker.querySelector('.js-date-picker__title-nav');
+      this.heading = this.datePicker && this.datePicker.querySelector('.js-date-picker__title-label');
+      this.close = this.datePicker && this.datePicker.querySelector('.js-date-picker__close');
+      this.accept = this.datePicker && this.datePicker.querySelector('.js-date-picker__accept');
+      this.multipleInput = this.element.querySelector('.js-date-input-multiple');
+      this.dateInput = this.multipleInput && this.multipleInput.querySelector('.js-date-picker-date');
+      this.monthInput = this.multipleInput && this.multipleInput.querySelector('.js-date-picker-month');
+      this.yearInput = this.multipleInput && this.multipleInput.querySelector('.js-date-picker-year');
+      this.multiDateArray = [this.dateInput, this.monthInput, this.yearInput];
+      this.dateIndexes = this.getDateIndexes();
+      this.pickerVisible = false;
+      this.dateSelected = false;
+      this.selectedDay = false;
+      this.selectedMonth = false;
+      this.selectedYear = false;
+      this.firstFocusable = false;
+      this.lastFocusable = false;
+      this.disabledArray = false;
+    }
+    init() {
+      if (!this.input && !this.multipleInput) return;
+      if (!this.datePicker) {
+        this.initCreateCalendar();
+      }
+      this.disabledDates();
+      this.resetCalendar();
+      this.initCalendarAria();
+      this.initCalendarEvents();
+      this.placeCalendar();
+    }
+    initCreateCalendar() {
+      const calendar = `
+    <div class="nsw-date-picker js-date-picker" role="dialog" aria-labelledby="${this.uID}">
+      <header class="nsw-date-picker__header">
+        <div class="nsw-date-picker__title">
+          <span class="nsw-date-picker__title-label js-date-picker__title-label" id="${this.uID}"></span>
+
+          <nav>
+            <ul class="nsw-date-picker__title-nav js-date-picker__title-nav">
+              <li>
+                <button class="nsw-icon-button nsw-date-picker__title-nav-btn js-date-picker__year-nav-btn js-date-picker__year-nav-btn--prev" type="button">
+                  <span class="material-icons nsw-material-icons">keyboard_double_arrow_left</span>
+                </button>
+                <button class="nsw-icon-button nsw-date-picker__title-nav-btn js-date-picker__month-nav-btn js-date-picker__month-nav-btn--prev" type="button">
+                  <span class="material-icons nsw-material-icons">chevron_left</span>
+                </button>
+              </li>
+
+              <li>
+                <button class="nsw-icon-button nsw-date-picker__title-nav-btn js-date-picker__month-nav-btn js-date-picker__month-nav-btn--next" type="button">
+                  <span class="material-icons nsw-material-icons">chevron_right</span>
+                </button>
+                <button class="nsw-icon-button nsw-date-picker__title-nav-btn js-date-picker__year-nav-btn js-date-picker__year-nav-btn--next" type="button">
+                  <span class="material-icons nsw-material-icons">keyboard_double_arrow_right</span>
+                </button>
+              </li>
+            </ul>
+          </nav>
+        </div>
+
+        <ol class="nsw-date-picker__week">
+          <li><div class="nsw-date-picker__day">M<span class="sr-only">onday</span></div></li>
+          <li><div class="nsw-date-picker__day">T<span class="sr-only">uesday</span></div></li>
+          <li><div class="nsw-date-picker__day">W<span class="sr-only">ednesday</span></div></li>
+          <li><div class="nsw-date-picker__day">T<span class="sr-only">hursday</span></div></li>
+          <li><div class="nsw-date-picker__day">F<span class="sr-only">riday</span></div></li>
+          <li><div class="nsw-date-picker__day">S<span class="sr-only">aturday</span></div></li>
+          <li><div class="nsw-date-picker__day">S<span class="sr-only">unday</span></div></li>
+        </ol>
+      </header>
+
+      <ol class="nsw-date-picker__dates js-date-picker__dates" aria-labelledby="${this.uID}">
+        
+      </ol>
+
+      <div class="nsw-date-picker__buttongroup">
+        <button type="button" class="nsw-button nsw-button--dark-outline-solid js-date-picker__close" value="cancel">Cancel</button>
+        <button type="button" class="nsw-button nsw-button--dark js-date-picker__accept" value="ok">OK</button>
+      </div>
+    </div>`;
+      this.element.insertAdjacentHTML('beforeend', calendar);
+      this.datePicker = this.element.querySelector('.js-date-picker');
+      this.body = this.datePicker.querySelector('.js-date-picker__dates');
+      this.navigation = this.datePicker.querySelector('.js-date-picker__title-nav');
+      this.heading = this.datePicker.querySelector('.js-date-picker__title-label');
+      this.close = this.datePicker.querySelector('.js-date-picker__close');
+      this.accept = this.datePicker.querySelector('.js-date-picker__accept');
+    }
+    initCalendarAria() {
+      this.resetLabelCalendarTrigger();
+      const srLiveReagion = document.createElement('div');
+      srLiveReagion.setAttribute('aria-live', 'polite');
+      srLiveReagion.classList.add('sr-only', 'js-date-input__sr-live');
+      this.element.appendChild(srLiveReagion);
+      this.srLiveReagion = this.element.querySelector('.js-date-input__sr-live');
+    }
+    initCalendarEvents() {
+      if (this.input) {
+        this.input.addEventListener('focus', () => {
+          this.toggleCalendar(true);
+        });
+      }
+      if (this.multipleInput) {
+        this.multiDateArray.forEach(element => {
+          element.addEventListener('focus', () => {
+            this.hideCalendar();
+          });
+        });
+      }
+      if (this.trigger) {
+        this.trigger.addEventListener('click', event => {
+          event.preventDefault();
+          this.pickerVisible = false;
+          this.toggleCalendar();
+          this.trigger.setAttribute('aria-expanded', 'true');
+        });
+      }
+      if (this.close) {
+        this.close.addEventListener('click', event => {
+          event.preventDefault();
+          this.hideCalendar();
+        });
+      }
+      if (this.accept) {
+        this.accept.addEventListener('click', event => {
+          event.preventDefault();
+          const day = this.body.querySelector('button[tabindex="0"]');
+          if (day) {
+            this.dateSelected = true;
+            this.selectedDay = day.innerText;
+            this.selectedMonth = this.currentMonth;
+            this.selectedYear = this.currentYear;
+            this.setInputValue();
+            if (this.input) {
+              this.input.focus();
+            } else if (this.multipleInput) {
+              this.trigger.focus();
+              this.hideCalendar();
+            }
+            this.resetLabelCalendarTrigger();
+          }
+        });
+      }
+      this.body.addEventListener('click', event => {
+        event.preventDefault();
+        const day = event.target.closest('button');
+        if (day) {
+          this.dateSelected = true;
+          this.selectedDay = day.innerText;
+          this.selectedMonth = this.currentMonth;
+          this.selectedYear = this.currentYear;
+          this.setInputValue();
+          if (this.input) {
+            this.input.focus();
+          } else if (this.multipleInput) {
+            this.trigger.focus();
+            this.hideCalendar();
+          }
+          this.resetLabelCalendarTrigger();
+        }
+      });
+      this.navigation.addEventListener('click', event => {
+        event.preventDefault();
+        const monthBtn = event.target.closest('.js-date-picker__month-nav-btn');
+        const yearBtn = event.target.closest('.js-date-picker__year-nav-btn');
+        if (monthBtn && monthBtn.classList.contains('js-date-picker__month-nav-btn--prev')) {
+          this.showPrevMonth(true);
+        } else if (monthBtn && monthBtn.classList.contains('js-date-picker__month-nav-btn--next')) {
+          this.showNextMonth(true);
+        } else if (yearBtn && yearBtn.classList.contains('js-date-picker__year-nav-btn--prev')) {
+          this.showPrevYear(true);
+        } else if (yearBtn && yearBtn.classList.contains('js-date-picker__year-nav-btn--next')) {
+          this.showNextYear(true);
+        }
+      });
+      window.addEventListener('keydown', event => {
+        if (event.code && event.code === 27 || event.key && event.key.toLowerCase() === 'escape') {
+          if (document.activeElement.closest('.js-date-picker')) {
+            const activeInput = document.activeElement.closest('.js-date-input').querySelector('input');
+            activeInput.focus();
+          } else {
+            this.hideCalendar();
+          }
+        }
+      });
+      window.addEventListener('click', event => {
+        if (!event.target.closest('.js-date-picker') && !event.target.closest('.js-date-input') && this.pickerVisible) {
+          this.hideCalendar();
+        }
+      });
+      this.body.addEventListener('keydown', event => {
+        let day = this.currentDay;
+        if (event.code && event.code === 40 || event.key && event.key.toLowerCase() === 'arrowdown') {
+          day += 7;
+          this.resetDayValue(day);
+        } else if (event.code && event.code === 39 || event.key && event.key.toLowerCase() === 'arrowright') {
+          day += 1;
+          this.resetDayValue(day);
+        } else if (event.code && event.code === 37 || event.key && event.key.toLowerCase() === 'arrowleft') {
+          day -= 1;
+          this.resetDayValue(day);
+        } else if (event.code && event.code === 38 || event.key && event.key.toLowerCase() === 'arrowup') {
+          day -= 7;
+          this.resetDayValue(day);
+        } else if (event.code && event.code === 35 || event.key && event.key.toLowerCase() === 'end') {
+          event.preventDefault();
+          day = day + 6 - this.getDayOfWeek(this.currentYear, this.currentMonth, day);
+          this.resetDayValue(day);
+        } else if (event.code && event.code === 36 || event.key && event.key.toLowerCase() === 'home') {
+          event.preventDefault();
+          day -= this.getDayOfWeek(this.currentYear, this.currentMonth, day);
+          this.resetDayValue(day);
+        } else if (event.code && event.code === 34 || event.key && event.key.toLowerCase() === 'pagedown') {
+          event.preventDefault();
+          this.showNextMonth();
+        } else if (event.code && event.code === 33 || event.key && event.key.toLowerCase() === 'pageup') {
+          event.preventDefault();
+          this.showPrevMonth();
+        }
+      });
+      this.datePicker.addEventListener('keydown', event => {
+        if (event.code && event.code === 9 || event.key && event.key === 'Tab') {
+          this.trapFocus(event);
+        }
+      });
+      if (this.input) {
+        this.input.addEventListener('keydown', event => {
+          if (event.code && event.code === 13 || event.key && event.key.toLowerCase() === 'enter') {
+            this.resetCalendar();
+            this.resetLabelCalendarTrigger();
+            this.hideCalendar();
+          } else if (event.code && event.code === 40 || event.key && event.key.toLowerCase() === 'arrowdown' && this.pickerVisible) {
+            this.body.querySelector('button[tabindex="0"]').focus();
+          }
+        });
+      }
+      if (this.multipleInput) {
+        this.multiDateArray.forEach(element => {
+          element.addEventListener('keydown', event => {
+            if (event.code && event.code === 13 || event.key && event.key.toLowerCase() === 'enter') {
+              this.resetCalendar();
+              this.resetLabelCalendarTrigger();
+              this.hideCalendar();
+            } else if (event.code && event.code === 40 || event.key && event.key.toLowerCase() === 'arrowdown' && this.pickerVisible) {
+              this.body.querySelector('button[tabindex="0"]').focus();
+            }
+          });
+        });
+      }
+    }
+    getCurrentDay(date) {
+      return date ? this.getDayFromDate(date) : new Date().getDate();
+    }
+    getCurrentMonth(date) {
+      return date ? this.getMonthFromDate(date) : new Date().getMonth();
+    }
+    getCurrentYear(date) {
+      return date ? this.getYearFromDate(date) : new Date().getFullYear();
+    }
+    getDayFromDate(date) {
+      const day = parseInt(date.split('-')[2], 10);
+      return Number.isNaN(day) ? this.getCurrentDay(false) : day;
+    }
+    getMonthFromDate(date) {
+      const month = parseInt(date.split('-')[1], 10) - 1;
+      return Number.isNaN(month) ? this.getCurrentMonth(false) : month;
+    }
+    getYearFromDate(date) {
+      const year = parseInt(date.split('-')[0], 10);
+      return Number.isNaN(year) ? this.getCurrentYear(false) : year;
+    }
+    showNextMonth(bool) {
+      this.currentYear = this.currentMonth === 11 ? this.currentYear + 1 : this.currentYear;
+      this.currentMonth = (this.currentMonth + 1) % 12;
+      this.currentDay = this.checkDayInMonth();
+      this.showCalendar(bool);
+      this.srLiveReagion.textContent = `${this.months[this.currentMonth]} ${this.currentYear}`;
+    }
+    showPrevMonth(bool) {
+      this.currentYear = this.currentMonth === 0 ? this.currentYear - 1 : this.currentYear;
+      this.currentMonth = this.currentMonth === 0 ? 11 : this.currentMonth - 1;
+      this.currentDay = this.checkDayInMonth();
+      this.showCalendar(bool);
+      this.srLiveReagion.textContent = `${this.months[this.currentMonth]} ${this.currentYear}`;
+    }
+    showNextYear(bool) {
+      this.currentYear += 1;
+      this.currentMonth %= 12;
+      this.currentDay = this.checkDayInMonth();
+      this.showCalendar(bool);
+      this.srLiveReagion.textContent = `${this.months[this.currentMonth]} ${this.currentYear}`;
+    }
+    showPrevYear(bool) {
+      this.currentYear -= 1;
+      this.currentMonth %= 12;
+      this.currentDay = this.checkDayInMonth();
+      this.showCalendar(bool);
+      this.srLiveReagion.textContent = `${this.months[this.currentMonth]} ${this.currentYear}`;
+    }
+    checkDayInMonth() {
+      return this.currentDay > this.constructor.daysInMonth(this.currentYear, this.currentMonth) ? 1 : this.currentDay;
+    }
+    static daysInMonth(year, month) {
+      return 32 - new Date(year, month, 32).getDate();
+    }
+    resetCalendar() {
+      let currentDate = false;
+      let selectedDate;
+      if (this.input) {
+        selectedDate = this.input.value;
+      } else if (this.multipleInput) {
+        if (this.dateInput.value !== '' && this.monthInput.value !== '' && this.yearInput.value !== '') {
+          selectedDate = `${this.dateInput.value}/${this.monthInput.value}/${this.yearInput.value}`;
+        } else {
+          selectedDate = '';
+        }
+      }
+      this.dateSelected = false;
+      if (selectedDate !== '') {
+        const date = this.getDateFromInput();
+        this.dateSelected = true;
+        currentDate = date;
+      }
+      this.currentDay = this.getCurrentDay(currentDate);
+      this.currentMonth = this.getCurrentMonth(currentDate);
+      this.currentYear = this.getCurrentYear(currentDate);
+      this.selectedDay = this.dateSelected ? this.currentDay : false;
+      this.selectedMonth = this.dateSelected ? this.currentMonth : false;
+      this.selectedYear = this.dateSelected ? this.currentYear : false;
+    }
+    disabledDates() {
+      this.disabledArray = [];
+      if (this.datesDisabled) {
+        const disabledDates = this.datesDisabled.split(' ');
+        disabledDates.forEach(element => {
+          this.disabledArray.push(element);
+        });
+      }
+    }
+    convertDateToParse(date) {
+      const dateArray = date.split(this.dateSeparator);
+      return `${dateArray[this.dateIndexes[2]]}, ${dateArray[this.dateIndexes[1]]}, ${dateArray[this.dateIndexes[0]]}`;
+    }
+    isDisabledDate(day, month, year) {
+      let disabled = false;
+      const dateParse = new Date(year, month, day);
+      const minDate = new Date(this.convertDateToParse(this.minDate));
+      const maxDate = new Date(this.convertDateToParse(this.maxDate));
+      if (this.minDate && minDate > dateParse) {
+        disabled = true;
+      }
+      if (this.maxDate && maxDate < dateParse) {
+        disabled = true;
+      }
+      if (this.disabledArray.length > 0) {
+        this.disabledArray.forEach(element => {
+          const disabledDate = new Date(this.convertDateToParse(element));
+          if (dateParse.getTime() === disabledDate.getTime()) {
+            disabled = true;
+          }
+        });
+      }
+      return disabled;
+    }
+    showCalendar(bool) {
+      const firstDay = this.constructor.getDayOfWeek(this.currentYear, this.currentMonth, '01');
+      this.body.innerHTML = '';
+      this.heading.innerHTML = `${this.months[this.currentMonth]} ${this.currentYear}`;
+      let date = 1;
+      let calendar = '';
+      for (let i = 0; i < 6; i += 1) {
+        for (let j = 0; j < 7; j += 1) {
+          if (i === 0 && j < firstDay) {
+            calendar += '<li></li>';
+          } else if (date > this.constructor.daysInMonth(this.currentYear, this.currentMonth)) {
+            break;
+          } else {
+            let classListDate = '';
+            let tabindexValue = '-1';
+            let disabled;
+            if (date === this.currentDay) {
+              tabindexValue = '0';
+            }
+            if (this.getCurrentMonth() === this.currentMonth && this.getCurrentYear() === this.currentYear && date === this.getCurrentDay()) {
+              classListDate += ` ${this.todayClass}`;
+            }
+            if (this.isDisabledDate(date, this.currentMonth, this.currentYear)) {
+              classListDate += ` ${this.dateClass}--disabled`;
+              disabled = 'aria-disabled="true"';
+            }
+            if (this.dateSelected && date === this.selectedDay && this.currentYear === this.selectedYear && this.currentMonth === this.selectedMonth) {
+              classListDate += ` ${this.selectedClass}`;
+            }
+            calendar = `${calendar}<li><button class="${this.dateClass}${classListDate}" tabindex="${tabindexValue}" type="button" ${disabled || ''}>${date}</button></li>`;
+            date += 1;
+          }
+        }
+      }
+      this.body.innerHTML = calendar;
+      if (!this.pickerVisible) this.datePicker.classList.add(this.visibleClass);
+      this.pickerVisible = true;
+      if (!bool) this.body.querySelector('button[tabindex="0"]').focus();
+      this.getFocusableElements();
+      this.placeCalendar();
+    }
+    hideCalendar() {
+      this.datePicker.classList.remove(this.visibleClass);
+      this.pickerVisible = false;
+      this.firstFocusable = false;
+      this.lastFocusable = false;
+      if (this.trigger) this.trigger.setAttribute('aria-expanded', 'false');
+    }
+    toggleCalendar(bool) {
+      if (!this.pickerVisible) {
+        this.resetCalendar();
+        this.showCalendar(bool);
+      } else {
+        this.hideCalendar();
+      }
+    }
+    static getDayOfWeek(year, month, day) {
+      let weekDay = new Date(year, month, day).getDay() - 1;
+      if (weekDay < 0) weekDay = 6;
+      return weekDay;
+    }
+    getDateIndexes() {
+      const dateFormat = this.dateFormat.toLowerCase().replace(/-/g, '');
+      return [dateFormat.indexOf('d'), dateFormat.indexOf('m'), dateFormat.indexOf('y')];
+    }
+    setInputValue() {
+      if (this.input) {
+        this.input.value = this.getDateForInput(this.selectedDay, this.selectedMonth, this.selectedYear);
+      } else if (this.multipleInput) {
+        this.dateInput.value = this.constructor.getReadableDate(this.selectedDay);
+        this.monthInput.value = this.constructor.getReadableDate(this.selectedMonth + 1);
+        this.yearInput.value = this.selectedYear;
+      }
+    }
+    getDateForInput(day, month, year) {
+      const dateArray = [];
+      dateArray[this.dateIndexes[0]] = this.constructor.getReadableDate(day);
+      dateArray[this.dateIndexes[1]] = this.constructor.getReadableDate(month + 1);
+      dateArray[this.dateIndexes[2]] = year;
+      return dateArray[0] + this.dateSeparator + dateArray[1] + this.dateSeparator + dateArray[2];
+    }
+    getDateFromInput() {
+      let dateArray;
+      if (this.input) {
+        dateArray = this.input.value.split(this.dateSeparator);
+      } else if (this.multipleInput) {
+        dateArray = [this.dateInput.value, this.monthInput.value, this.yearInput.value];
+      }
+      return `${dateArray[this.dateIndexes[2]]}-${dateArray[this.dateIndexes[1]]}-${dateArray[this.dateIndexes[0]]}`;
+    }
+    static getReadableDate(date) {
+      return date < 10 ? `0${date}` : date;
+    }
+    resetDayValue(day) {
+      const totDays = this.constructor.daysInMonth(this.currentYear, this.currentMonth);
+      if (day > totDays) {
+        this.currentDay = day - totDays;
+        this.showNextMonth(false);
+      } else if (day < 1) {
+        const newMonth = this.currentMonth === 0 ? 11 : this.currentMonth - 1;
+        this.currentDay = this.constructor.daysInMonth(this.currentYear, newMonth) + day;
+        this.showPrevMonth(false);
+      } else {
+        this.currentDay = day;
+        const focusItem = this.body.querySelector('button[tabindex="0"]');
+        focusItem.setAttribute('tabindex', '-1');
+        focusItem.classList.remove(this.keyboardFocusClass);
+        const buttons = this.body.getElementsByTagName('button');
+        for (let i = 0; i < buttons.length; i += 1) {
+          if (parseInt(buttons[i].textContent, 10) === this.currentDay) {
+            buttons[i].setAttribute('tabindex', '0');
+            buttons[i].classList.add(this.keyboardFocusClass);
+            buttons[i].focus();
+            break;
+          }
+        }
+        this.getFocusableElements();
+      }
+    }
+    resetLabelCalendarTrigger() {
+      if (!this.trigger) return;
+      if (this.selectedYear && this.selectedMonth !== false && this.selectedDay) {
+        this.trigger.setAttribute('aria-label', `Selected date is ${new Date(this.selectedYear, this.selectedMonth, this.selectedDay).toDateString()}`);
+      } else {
+        this.trigger.setAttribute('aria-label', this.triggerLabel);
+      }
+    }
+    getFocusableElements() {
+      const allFocusable = this.datePicker.querySelectorAll('[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex]:not([tabindex="-1"]), [contenteditable], audio[controls], video[controls], summary');
+      this.getFirstFocusable(allFocusable);
+      this.getLastFocusable(allFocusable);
+    }
+    getFirstFocusable(elements) {
+      for (let i = 0; i < elements.length; i += 1) {
+        if ((elements[i].offsetWidth || elements[i].offsetHeight || elements[i].getClientRects().length) && elements[i].getAttribute('tabindex') !== '-1') {
+          this.firstFocusable = elements[i];
+          return true;
+        }
+      }
+      return false;
+    }
+    getLastFocusable(elements) {
+      for (let i = elements.length - 1; i >= 0; i -= 1) {
+        if ((elements[i].offsetWidth || elements[i].offsetHeight || elements[i].getClientRects().length) && elements[i].getAttribute('tabindex') !== '-1') {
+          this.lastFocusable = elements[i];
+          return true;
+        }
+      }
+      return false;
+    }
+    trapFocus(event) {
+      if (this.firstFocusable === document.activeElement && event.shiftKey) {
+        event.preventDefault();
+        this.lastFocusable.focus();
+      }
+      if (this.lastFocusable === document.activeElement && !event.shiftKey) {
+        event.preventDefault();
+        this.firstFocusable.focus();
+      }
+    }
+    placeCalendar() {
+      this.datePicker.style.left = '0px';
+      this.datePicker.style.right = 'auto';
+      const pickerBoundingRect = this.datePicker.getBoundingClientRect();
+      if (pickerBoundingRect.right > window.innerWidth) {
+        this.datePicker.style.left = 'auto';
+        this.datePicker.style.right = '0px';
+      }
+    }
+  }
+
   /* eslint-disable max-len */
   class Dialog {
     constructor(element) {
@@ -2360,10 +3857,9 @@
       const elemObj = getFocusableElementBySelector(this.navID, ['> div button', '> ul > li > a']);
       trapTabKey(e, elemObj);
     }
-    mobileShowMainNav(_ref) {
-      let {
-        propertyName
-      } = _ref;
+    mobileShowMainNav({
+      propertyName
+    }) {
       if (propertyName !== 'transform') return;
       getFocusableElementBySelector(this.navID, ['> div button', '> ul > li > a']).all[1].focus();
       this.nav.classList.add('active');
@@ -2371,10 +3867,9 @@
       this.nav.removeEventListener(this.transitionEvent, this.mobileShowMainTransitionEndEvent, false);
       this.nav.addEventListener('keydown', this.mobileTrapTabKeyEvent, false);
     }
-    mobileHideMainNav(_ref2) {
-      let {
-        propertyName
-      } = _ref2;
+    mobileHideMainNav({
+      propertyName
+    }) {
       if (propertyName !== 'transform') return;
       this.nav.classList.remove('active');
       this.nav.classList.remove('closing');
@@ -2447,10 +3942,9 @@
       };
       this.openSubNavElements.push(temp);
     }
-    showSubNav(_ref3) {
-      let {
-        propertyName
-      } = _ref3;
+    showSubNav({
+      propertyName
+    }) {
       const {
         submenu
       } = this.whichSubNavLatest();
@@ -3112,10 +4606,9 @@
       crossAxis: 0,
       alignmentAxis: null
     } : {
-      mainAxis: 0,
-      crossAxis: 0,
-      alignmentAxis: null,
-      ...rawValue
+      mainAxis: rawValue.mainAxis || 0,
+      crossAxis: rawValue.crossAxis || 0,
+      alignmentAxis: rawValue.alignmentAxis
     };
     if (alignment && typeof alignmentAxis === 'number') {
       crossAxis = alignment === 'end' ? alignmentAxis * -1 : alignmentAxis;
@@ -3237,7 +4730,11 @@
           ...limitedCoords,
           data: {
             x: limitedCoords.x - x,
-            y: limitedCoords.y - y
+            y: limitedCoords.y - y,
+            enabled: {
+              [mainAxis]: checkMainAxis,
+              [crossAxis]: checkCrossAxis
+            }
           }
         };
       }
@@ -4035,10 +5532,7 @@
     }
     static debounce(func, wait) {
       let timeout;
-      return function executedFunction() {
-        for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-          args[_key] = arguments[_key];
-        }
+      return function executedFunction(...args) {
         const later = () => {
           clearTimeout(timeout);
           func(...args);
@@ -4079,8 +5573,7 @@
       this.popoverElement.classList.remove('active');
       this.popoverIsOpen = false;
     }
-    async updatePopover(popover, placement) {
-      let anchor = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : this.popoverAnchor;
+    async updatePopover(popover, placement, anchor = this.popoverAnchor) {
       try {
         const {
           x,
@@ -4624,10 +6117,9 @@
         }
       }
     }
-    arrowKeys(_ref) {
-      let {
-        which
-      } = _ref;
+    arrowKeys({
+      which
+    }) {
       const linkLength = this.tabLinks.length - 1;
       let index = this.tabLinks.indexOf(this.selectedTab);
       let down = false;
@@ -4818,8 +6310,7 @@
       this.toggletipElement.classList.remove('active');
       this.toggletipIsOpen = false;
     }
-    updateToggletip(toggletip, arrowElement) {
-      let anchor = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : this.toggletipAnchor;
+    updateToggletip(toggletip, arrowElement, anchor = this.toggletipAnchor) {
       computePosition(anchor, toggletip, {
         placement: 'top',
         middleware: [offset(8), flip(), shift({
@@ -4827,13 +6318,12 @@
         }), arrow({
           element: arrowElement
         })]
-      }).then(_ref => {
-        let {
-          x,
-          y,
-          placement,
-          middlewareData
-        } = _ref;
+      }).then(({
+        x,
+        y,
+        placement,
+        middlewareData
+      }) => {
         Object.assign(toggletip.style, {
           left: `${x}px`,
           top: `${y}px`
@@ -4946,10 +6436,9 @@
       });
       this.tooltip.removeAttribute('title');
       const eventArray = ['mouseenter', 'mouseleave', 'focus', 'blur'];
-      eventArray.forEach((event, _ref) => {
-        let {
-          listener = this.handleEvent.bind(this)
-        } = _ref;
+      eventArray.forEach((event, {
+        listener = this.handleEvent.bind(this)
+      }) => {
         this.tooltip.addEventListener(event, listener);
       });
     }
@@ -5013,8 +6502,7 @@
         this.screenSize = 16;
       }
     }
-    updateTooltip(tooltip, arrowElement) {
-      let anchor = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : this.tooltip;
+    updateTooltip(tooltip, arrowElement, anchor = this.tooltip) {
       computePosition(anchor, tooltip, {
         placement: 'top',
         middleware: [offset(8), flip(), shift({
@@ -5022,13 +6510,12 @@
         }), arrow({
           element: arrowElement
         })]
-      }).then(_ref2 => {
-        let {
-          x,
-          y,
-          placement,
-          middlewareData
-        } = _ref2;
+      }).then(({
+        x,
+        y,
+        placement,
+        middlewareData
+      }) => {
         Object.assign(tooltip.style, {
           left: `${x}px`,
           top: `${y}px`
@@ -5060,8 +6547,7 @@
   }
 
   class UtilityList extends Toggletip {
-    constructor(element) {
-      let toggletip = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : element.querySelector('.js-share');
+    constructor(element, toggletip = element.querySelector('.js-share')) {
       super(toggletip === null ? element : toggletip);
       this.element = element;
       this.share = toggletip;
@@ -5342,6 +6828,7 @@
   exports.Accordion = Accordion;
   exports.BackTop = BackTop;
   exports.Carousel = Carousel;
+  exports.CookieConsent = CookieConsent;
   exports.DatePicker = DatePicker;
   exports.Dialog = Dialog;
   exports.ExternalLink = ExternalLink;

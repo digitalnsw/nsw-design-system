@@ -1,14 +1,14 @@
 <!doctype html>
 <html lang="en" class="no-js">
-<head><script async src="https://www.googletagmanager.com/gtag/js?id=G-49T9M12F86"></script>
-<script>
+<head><script async data-category="analytics" src="https://www.googletagmanager.com/gtag/js?id=G-49T9M12F86"></script>
+<script data-category="analytics">
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
   gtag('config', 'G-49T9M12F86');
 </script>
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  <script data-category="analytics">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
@@ -27,17 +27,25 @@
   <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone" rel="stylesheet">
   <link rel="stylesheet" href="https://designsystem.nsw.gov.au/docs/css/docs.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.0.1/dist/cookieconsent.css">
   <!-- Hotjar Tracking Code for NSW Design System -->
-  <script>
-      (function(h,o,t,j,a,r){
-          h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-          h._hjSettings={hjid:5063548,hjsv:6};
-          a=o.getElementsByTagName('head')[0];
-          r=o.createElement('script');r.async=1;
-          r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-          a.appendChild(r);
-      })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+  <script data-category="analytics">
+    (function (h, o, t, j, a, r) {
+      h.hj = h.hj || function () { (h.hj.q = h.hj.q || []).push(arguments) };
+      h._hjSettings = { hjid: 5063548, hjsv: 6 };
+      a = o.getElementsByTagName('head')[0];
+      r = o.createElement('script'); r.async = 1; 
+      r.setAttribute('data-category', 'analytics');
+      r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+      a.appendChild(r);
+    })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
   </script>
+  <script
+    type="text/plain"
+    data-category="foo">
+    alert('This is a test to show that the cookie consent preferences are working. Manage cookie preferences in the footer to turn off.');
+  </script>
+  <script src="https://designsystem.nsw.gov.au/cookie-consent-config.js"></script>
 </head>
 
 <body><noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P2NKBBJZ"
@@ -250,7 +258,7 @@
               <div class="nsw-card__content">
                 <div class="nsw-card__tag">Design System Team</div>
                 <div class="nsw-card__date">
-                  <time datetime="2020-10-16">March 25, 2025</time>
+                  <time datetime="2020-10-16">March 28, 2025</time>
                 </div>
                 <div class="nsw-card__title">
                   <a href="#">Scaling a design system</a>
@@ -267,7 +275,7 @@
               <div class="nsw-card__content">
                 <div class="nsw-card__tag">Design System Team</div>
                 <div class="nsw-card__date">
-                  <time datetime="2020-09-14">March 25, 2025</time>
+                  <time datetime="2020-09-14">March 28, 2025</time>
                 </div>
                 <div class="nsw-card__title">
                   <a href="#">The NSW Design Standards re-release - a story of iteration</a>
@@ -284,7 +292,7 @@
               <div class="nsw-card__content">
                 <div class="nsw-card__tag">Design System Team</div>
                 <div class="nsw-card__date">
-                  <time datetime="2020-09-02">March 25, 2025</time>
+                  <time datetime="2020-09-02">March 28, 2025</time>
                 </div>
                 <div class="nsw-card__title">
                   <a href="#">Evolving the Standard for Designing Digital Services in NSW</a>

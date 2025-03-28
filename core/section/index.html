@@ -1,14 +1,14 @@
 <!doctype html>
 <html lang="en" class="no-js">
-<head><script async src="https://www.googletagmanager.com/gtag/js?id=G-49T9M12F86"></script>
-<script>
+<head><script async data-category="analytics" src="https://www.googletagmanager.com/gtag/js?id=G-49T9M12F86"></script>
+<script data-category="analytics">
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
   gtag('config', 'G-49T9M12F86');
 </script>
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  <script data-category="analytics">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
@@ -27,20 +27,28 @@
   <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone" rel="stylesheet">
   <link rel="stylesheet" href="https://designsystem.nsw.gov.au/docs/css/docs.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.0.1/dist/cookieconsent.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/atom-one-light.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/xml.min.js"></script>
   <!-- Hotjar Tracking Code for NSW Design System -->
-  <script>
-      (function(h,o,t,j,a,r){
-          h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-          h._hjSettings={hjid:5063548,hjsv:6};
-          a=o.getElementsByTagName('head')[0];
-          r=o.createElement('script');r.async=1;
-          r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-          a.appendChild(r);
-      })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+  <script data-category="analytics">
+    (function (h, o, t, j, a, r) {
+      h.hj = h.hj || function () { (h.hj.q = h.hj.q || []).push(arguments) };
+      h._hjSettings = { hjid: 5063548, hjsv: 6 };
+      a = o.getElementsByTagName('head')[0];
+      r = o.createElement('script'); r.async = 1; 
+      r.setAttribute('data-category', 'analytics');
+      r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+      a.appendChild(r);
+    })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
   </script>
+  <script
+    type="text/plain"
+    data-category="foo">
+    alert('This is a test to show that the cookie consent preferences are working. Manage cookie preferences in the footer to turn off.');
+  </script>
+  <script src="https://designsystem.nsw.gov.au/cookie-consent-config.js"></script>
 </head>
 
 <body class="nsw-docs">
@@ -276,6 +284,7 @@
                   <li><a href="https://designsystem.nsw.gov.au/components/card/index.html"><span>Cards</span></a></li>
                   <li><a href="https://designsystem.nsw.gov.au/components/close-button/index.html"><span>Close button</span></a></li>
                   <li><a href="https://designsystem.nsw.gov.au/components/content-block/index.html"><span>Content blocks</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/components/cookie-consent/index.html"><span>Cookie consent</span></a></li>
                   <li><a href="https://designsystem.nsw.gov.au/components/date-input/index.html"><span>Date input</span></a></li>
                   <li><a href="https://designsystem.nsw.gov.au/components/date-picker/index.html"><span>Date picker</span></a></li>
                   <li><a href="https://designsystem.nsw.gov.au/components/dialog/index.html"><span>Dialog</span></a></li>
@@ -933,6 +942,17 @@
         <div class="nsw-footer__lower">
           <div class="nsw-container">
             <p>We pay respect to the Traditional Custodians and First Peoples of NSW, and acknowledge their continued connection to their country and culture.</p>
+            <hr>
+            <ul>
+              <li><a href="#cookie-consent" class="js-open-dialog-cookie-consent-preferences" aria-haspopup="dialog">Cookie preferences</a></li>
+              <li><a href="https://github.com/digitalnsw/nsw-design-system" target="_blank">Github</a></li>
+              <li><a href="https://www.figma.com/design/PVrERKnckLTlJSPk12gbtS/NSW-Digital-Design-System?node-id=18830-13437&p=f&t=wz6pwwPdSDJOHzk2-0" target="_blank">Figma</a></li>
+              <li><a href="https://confirmsubscription.com/h/i/73DE733140B743AF" target="_blank">Sign up</a></li>
+              <li><a href="mailto:digital@customerservice.nsw.gov.au">Contact us</a></li>
+            </ul>
+            <div class="nsw-footer__info">
+              <div class="nsw-footer__copyright">Copyright © <script>document.write(new Date().getFullYear())</script></div>
+            </div>
           </div>
         </div>
       </footer>
