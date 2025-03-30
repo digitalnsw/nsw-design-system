@@ -1,0 +1,61 @@
+---
+title: Quick exit
+page: true
+model:  json/quick-exit.json
+---
+
+{{#>_theme}}
+<h3>Light</h3>
+<button class="nsw-button nsw-button--dark js-quick-exit" data-theme="light" type="button" aria-expanded="true">Initialise banner</button>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var quickExitBtns = document.querySelectorAll('.js-quick-exit')
+  // Assume the first button is for light theme:
+  if (quickExitBtns[0]) {
+    quickExitBtns[0].addEventListener('click', function(e) {
+      e.preventDefault()
+      if (window.NSW && window.NSW.QuickExit) {
+        window.NSW.QuickExit.init({
+          exitUrl: "{{model.exitUrl}}",
+          exitLabel: "{{model.exitLabel}}",
+          tooltip: "{{model.tooltip}}",
+          moreInfoUrl: "{{model.moreInfoUrl}}",
+          moreInfoLabel: "{{model.moreInfoLabel}}",
+          theme: "light"
+        })
+      } else {
+        console.error('QuickExit not found on window.NSW')
+      }
+    })
+  }
+})
+</script>
+
+<h3>Dark</h3>
+<button class="nsw-button nsw-button--dark js-quick-exit" data-theme="dark" type="button" aria-expanded="true">Initialise banner</button>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var quickExitBtns = document.querySelectorAll('.js-quick-exit')
+  // Assume the second button is for dark theme:
+  if (quickExitBtns[1]) {
+    quickExitBtns[1].addEventListener('click', function(e) {
+      e.preventDefault()
+      if (window.NSW && window.NSW.QuickExit) {
+        window.NSW.QuickExit.init({
+          exitUrl: "{{model.exitUrl}}",
+          exitLabel: "{{model.exitLabel}}",
+          tooltip: "{{model.tooltip}}",
+          moreInfoUrl: "{{model.moreInfoUrl}}",
+          moreInfoLabel: "{{model.moreInfoLabel}}",
+          theme: "dark"
+        })
+      } else {
+        console.error('QuickExit not found on window.NSW')
+      }
+    })
+  }
+})
+</script>
+{{/_theme}}

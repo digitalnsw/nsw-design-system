@@ -12,12 +12,15 @@ import Filters from './components/filters/filters'
 import GlobalAlert from './components/global-alert/global-alert'
 import Navigation from './components/main-nav/main-nav'
 import Popover from './components/popover/popover'
+import QuickExit from './components/quick-exit/quick-exit'
 import Select from './components/select/select'
 import SiteSearch from './components/header/header'
 import Tabs from './components/tabs/tabs'
 import Toggletip from './components/tooltip/toggletip'
 import Tooltip from './components/tooltip/tooltip'
 import UtilityList from './components/utility-list/utility-list'
+
+import stickyContainer from './global/scripts/sticky-container'
 
 if (window.NodeList && !NodeList.prototype.forEach) {
   NodeList.prototype.forEach = Array.prototype.forEach
@@ -59,6 +62,9 @@ function initSite() {
   const toggletip = document.querySelectorAll('.js-toggletip')
   const tooltip = document.querySelectorAll('.js-tooltip')
   const utilityList = document.querySelectorAll('.js-utility-list')
+
+  // Sticky container inistialisation
+  stickyContainer()
 
   if (accordions) {
     accordions.forEach((element) => {
@@ -174,5 +180,5 @@ function initSite() {
 }
 
 export {
-  initSite, Accordion, BackTop, Carousel, CookieConsent, DatePicker, Dialog, ExternalLink, FileUpload, Filters, GlobalAlert, Navigation, Popover, Select, SiteSearch, Tabs, Toggletip, Tooltip, UtilityList,
+  initSite, Accordion, BackTop, Carousel, CookieConsent, DatePicker, Dialog, ExternalLink, FileUpload, Filters, GlobalAlert, Navigation, Popover, QuickExit, Select, SiteSearch, Tabs, Toggletip, Tooltip, UtilityList,
 }

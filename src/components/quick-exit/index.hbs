@@ -1,0 +1,62 @@
+---
+title: Quick exit
+tabs: true
+directory: quick-exit
+intro: A standardised quick exit button offers a discreet and accessible safety mechanism, allowing users to swiftly leave sensitive content with a single click.
+model: json/quick-exit.json
+theme: true
+meta-description: A standardised quick exit button offers a discreet and accessible safety mechanism, allowing users to swiftly leave sensitive content with a single click.
+meta-index: true
+---
+
+<h3>Light</h3>
+<button class="nsw-button nsw-button--dark js-quick-exit" data-theme="light" type="button" aria-expanded="true">Initialise banner</button>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var quickExitBtns = document.querySelectorAll('.js-quick-exit')
+  if (quickExitBtns[0]) {
+    quickExitBtns[0].addEventListener('click', function(e) {
+      e.preventDefault()
+      if (window.NSW && window.NSW.QuickExit) {
+        window.NSW.QuickExit.init({
+          exitUrl: "{{model.exitUrl}}",
+          exitLabel: "{{model.exitLabel}}",
+          tooltip: "{{model.tooltip}}",
+          moreInfoUrl: "{{model.moreInfoUrl}}",
+          moreInfoLabel: "{{model.moreInfoLabel}}",
+          theme: "light"
+        })
+      } else {
+        console.error('QuickExit not found on window.NSW')
+      }
+    })
+  }
+})
+</script>
+
+<h3>Dark</h3>
+<button class="nsw-button nsw-button--dark js-quick-exit" data-theme="dark" type="button" aria-expanded="true">Initialise banner</button>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var quickExitBtns = document.querySelectorAll('.js-quick-exit')
+  if (quickExitBtns[1]) {
+    quickExitBtns[1].addEventListener('click', function(e) {
+      e.preventDefault()
+      if (window.NSW && window.NSW.QuickExit) {
+        window.NSW.QuickExit.init({
+          exitUrl: "{{model.exitUrl}}",
+          exitLabel: "{{model.exitLabel}}",
+          tooltip: "{{model.tooltip}}",
+          moreInfoUrl: "{{model.moreInfoUrl}}",
+          moreInfoLabel: "{{model.moreInfoLabel}}",
+          theme: "dark"
+        })
+      } else {
+        console.error('QuickExit not found on window.NSW')
+      }
+    })
+  }
+})
+</script>
