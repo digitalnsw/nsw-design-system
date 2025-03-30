@@ -1,0 +1,67 @@
+.nsw-quick-exit {
+  padding: rem(16px) 0;
+  background-color: var(--nsw-white);
+  color: var(--nsw-text-dark);
+
+  &__wrapper {
+    @include container;
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: rem(16px);
+
+    @include breakpoint('sm') {
+      gap: rem(64px);
+    }
+  }
+
+  &__popover {
+    text-decoration: none;
+    font-weight: var(--nsw-font-normal);
+    border-bottom: 2px dotted var(--nsw-text-dark);
+
+    &:visited {
+      color: var(--nsw-text-dark);
+    }
+  }
+
+  &__light {
+    background-color: var(--nsw-white);
+    color: var(--nsw-text-dark);
+
+    .nsw-quick-exit__wrapper {
+      background-color: var(--nsw-white);
+    }
+  }
+
+  &__dark {
+    background-color: var(--nsw-brand-dark);
+    color: var(--nsw-text-light);
+
+    .nsw-popover {
+      color: var(--nsw-text-dark);
+    }
+
+    a {
+      @include link-light;
+    }
+
+    .nsw-quick-exit__wrapper {
+      background-color: var(--nsw-brand-dark);
+    }
+
+    .nsw-quick-exit__popover {
+      border-bottom: 2px dotted var(--nsw-text-light);
+  
+      &:visited {
+        color: var(--nsw-text-light);
+      }
+    }
+  }
+
+  .js-more-info {
+    margin-left: auto;
+  }
+}
