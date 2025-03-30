@@ -2,7 +2,7 @@ export default class QuickExit {
   static init({
     exitUrl = 'https://www.nsw.gov.au/',
     exitLabel = 'Quick exit',
-    tooltip = '',
+    popover = '',
     moreInfoUrl = '',
     moreInfoLabel = 'More Information',
     theme = 'light',
@@ -23,7 +23,6 @@ export default class QuickExit {
 
     // Normalise the theme value for reliable comparison
     const normalisedTheme = theme.trim().toLowerCase()
-    console.log('QuickExit theme:', normalisedTheme)
 
     // Create an outer wrapper element for the Quick Exit component
     const quickExitWrapper = document.createElement('div')
@@ -37,7 +36,7 @@ export default class QuickExit {
     const internalWrapper = document.createElement('div')
     internalWrapper.className = 'nsw-quick-exit__wrapper'
 
-    // Create the Quick Exit button
+    // Create the Quick Exit button (main CTA)
     const quickExitBtn = document.createElement('button')
     quickExitBtn.className = 'js-quick-exit nsw-button nsw-button--danger'
     quickExitBtn.textContent = exitLabel
@@ -47,13 +46,36 @@ export default class QuickExit {
     })
     internalWrapper.appendChild(quickExitBtn)
 
-    // Add a "What's this?" text element with tooltip (if tooltip text is provided)
-    if (tooltip) {
-      const whatsThis = document.createElement('span')
-      whatsThis.className = 'nsw-quick-exit__whats-this nsw-tooltip js-tooltip'
-      whatsThis.textContent = "What's this?"
-      whatsThis.setAttribute('title', tooltip)
-      internalWrapper.appendChild(whatsThis)
+    // Add a "What's this?" popover element (if popover text is provided)
+    if (popover) {
+      // Create a popover trigger element as an anchor
+      const whatsThisLink = document.createElement('a')
+      // Updated classes for the popover trigger with link styling
+      whatsThisLink.className = 'nsw-quick-exit__popover js-popover'
+      whatsThisLink.href = '#'
+      whatsThisLink.textContent = "What's this?"
+      // Generate a unique ID for the popover content
+      const popoverId = `popover-${Date.now()}`
+      whatsThisLink.setAttribute('aria-controls', popoverId)
+      whatsThisLink.setAttribute('aria-expanded', 'false')
+      // Set required data attributes per the NSW Design System
+      whatsThisLink.setAttribute('data-popover-position', 'top')
+      whatsThisLink.setAttribute('data-popover-gap', '24')
+
+      // Prevent default link behaviour on click
+      whatsThisLink.addEventListener('click', (e) => {
+        e.preventDefault()
+      })
+
+      // Create the popover content element
+      const popoverContent = document.createElement('div')
+      popoverContent.id = popoverId
+      popoverContent.className = 'nsw-popover'
+      popoverContent.innerHTML = `<div class="nsw-p-sm"><p>${popover}</p></div>`
+
+      // Append the popover trigger and content to the internal wrapper
+      internalWrapper.appendChild(whatsThisLink)
+      internalWrapper.appendChild(popoverContent)
     }
 
     // Optionally add the More Information link
@@ -75,12 +97,14 @@ export default class QuickExit {
     const stickyHeight = quickExitWrapper.getBoundingClientRect().height
     document.body.style.paddingBottom = `${stickyHeight}px`
 
-    // Initialise any tooltips on the Quick Exit component (e.g. the "What's this?" element)
-    if (window.NSW && window.NSW.Tooltip) {
-      const tooltipElements = quickExitWrapper.querySelectorAll('[title]')
-      tooltipElements.forEach((el) => {
-        new window.NSW.Tooltip(el).init()
+    // Initialise any popovers on the Quick Exit component (e.g. the "What's this?" element)
+    if (window.NSW && window.NSW.Popover) {
+      const popoverTriggers = quickExitWrapper.querySelectorAll('.js-popover')
+      popoverTriggers.forEach((el) => {
+        new window.NSW.Popover(el).init()
       })
+    } else {
+      console.warn('Popover module not available on window.NSW')
     }
   }
 }
