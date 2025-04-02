@@ -23,7 +23,6 @@ $nsw-in-page-alerts: (
 );
 
 .nsw-in-page-alert {
-  @include component-spacing();
   padding: rem(16px);
   position: relative;
   border-left: solid 4px var(--nsw-brand-accent);
@@ -31,6 +30,8 @@ $nsw-in-page-alerts: (
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
+  
+  @include component-spacing();
 
   @include breakpoint('md') {
     padding: rem(24px) rem(24px) rem(24px) rem(16px);

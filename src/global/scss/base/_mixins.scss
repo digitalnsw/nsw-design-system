@@ -110,14 +110,15 @@
 }
 
 @mixin link-button() {
-  @include link();
-  @include font-size('sm');
   display: inline-block;
   cursor: pointer;
   background-color: transparent;
   border: 0;
   padding: 2px;
   -webkit-appearance: none; /* stylelint-disable-line property-no-vendor-prefix */
+  
+  @include link();
+  @include font-size('sm');
 }
 
 // A block to click around the link

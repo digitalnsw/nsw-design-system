@@ -3,7 +3,6 @@
 
   &__title,
   &__button {
-    @include font-size('md');
     font-weight: var(--nsw-font-bold);
     padding: rem(16px) rem(48px) rem(16px) rem(16px);
     margin-top: rem(8px);
@@ -13,6 +12,8 @@
     text-align: left;
     position: relative;
     transition: background $nsw-transition-duration, color $nsw-transition-duration;
+
+    @include font-size('md');
 
     .active,
     &:hover & {
@@ -41,7 +42,6 @@
     margin-bottom: rem(16px);
 
     button {
-      @include font-size('sm');
       color: var(--nsw-link);
       text-decoration: underline;
       text-decoration-skip-ink: auto;
@@ -49,7 +49,9 @@
       border: 0;
       padding: 0;
       background: none;
-
+      
+      @include font-size('sm');
+      
       &:hover:enabled {
         @include nsw-hover;
         outline: 2px solid var(--nsw-hover);

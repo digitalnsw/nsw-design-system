@@ -59,7 +59,6 @@
   }
 
   &__content {
-    @include font-size('sm');
     padding: rem(16px) rem(16px) rem(62px) rem(16px);
     background-color: var(--nsw-white);
     border-radius: var(--nsw-border-radius);
@@ -68,6 +67,8 @@
     flex-direction: column;
     height: 100%;
     transition: background $nsw-transition-duration, border $nsw-transition-duration;
+
+    @include font-size('sm');
 
     @include breakpoint('lg') {
       padding: rem(32px) rem(32px) rem(94px) rem(32px);
@@ -79,8 +80,9 @@
   }
 
   &__title {
-    @include font-size('md');
     font-weight: var(--nsw-font-bold);
+
+    @include font-size('md');
 
     a {
       @include pseudo-clickable-block;
@@ -110,9 +112,10 @@
 
   &__tag,
   &__date {
-    @include font-size('xs');
     transition: color $nsw-transition-duration;
     margin-bottom: rem(16px);
+
+    @include font-size('xs');
   }
 
   &__tag {

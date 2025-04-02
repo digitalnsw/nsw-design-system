@@ -149,7 +149,6 @@ $nsw-buttons: (
 );
 
 .nsw-button {
-  @include font-size('sm');
   border-radius: var(--nsw-border-radius);
   font-weight: var(--nsw-font-bold);
   border: solid 2px transparent;
@@ -165,6 +164,8 @@ $nsw-buttons: (
   vertical-align: middle;
   user-select: none;
   display: inline-block;
+
+  @include font-size('sm');
 
   &:not(.nsw-button--flex) {
     min-width: rem(124px);
@@ -204,8 +205,9 @@ $nsw-buttons: (
   }
 
   &--small {
-    @include font-size('xs');
     padding: rem(5px);
+    
+    @include font-size('xs');
 
     .nsw-material-icons {
       font-size: rem(map-get($nsw-icon-sizes, 20));
