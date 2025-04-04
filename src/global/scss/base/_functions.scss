@@ -1,5 +1,6 @@
 /* stylelint-disable */
 @use "sass:math";
+@use "sass:color";
 
 @function rem($value) {
   @if (unitless($value)) {
@@ -109,7 +110,9 @@
 }
 
 @function luminance($color) {
-  $rgba: red($color), green($color), blue($color);
+  $rgba: color.channel($color, "red", $space: rgb),
+  color.channel($color, "green", $space: rgb),
+  color.channel($color, "blue", $space: rgb);
   $rgba2: ();
   @for $i from 1 through 3 {
     $rgb: nth($rgba, $i);

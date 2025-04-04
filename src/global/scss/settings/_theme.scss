@@ -60,13 +60,13 @@ $semantic-colors-rgb: map-loop($semantic-colors, to-rgb, '$value') !default;
 // State Colours
 $link: $brand-dark !default;
 $link-light: tint($brand-dark, 90%) !default;
-$visited: a11y-color(lighten(desaturate(adjust-hue($brand-dark, 54), 31.52), 12.75), #ffffff) !default;
+$visited: a11y-color(color.adjust(color.adjust(adjust-hue($brand-dark, 54), $saturation: -31.52%), $lightness: 12.75%), #ffffff) !default;
 $visited-light: tint($visited, 80%) !default;
 $hover: color.adjust($brand-dark, $alpha: -0.9) !default;
 $hover-light: color.adjust($link-light, $alpha: -0.9) !default;
 $active: color.adjust($brand-dark, $alpha: -0.8) !default;
 $active-light: color.adjust($link-light, $alpha: -0.8) !default;
-$focus: lighten(adjust-hue($brand-dark, -22), 15.49) !default;
+$focus: color.adjust(color.adjust($brand-dark, $hue: -22deg), $lightness: 15.49%) !default;
 $focus-light: tint($focus, 80%);
 $disabled: tint($brand-dark, 50%) !default;
 

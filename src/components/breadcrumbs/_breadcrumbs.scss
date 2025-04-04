@@ -1,6 +1,7 @@
 .nsw-breadcrumbs {
-  @include font-size('xs');
   margin-top: rem(24px);
+
+  @include font-size('xs');
 
   ol {
     margin: 0;
@@ -26,13 +27,14 @@
     }
 
     &::before {
-      @include material-icons;
       content: 'keyboard_arrow_right';
       font-size: rem(map-get($nsw-icon-sizes, 20));
       line-height: rem(8px);
       display: inline-block;
       position: relative;
       top: rem(6px);
+
+      @include material-icons;
     }
   }
 
@@ -42,7 +44,6 @@
     }
 
     .nsw-breadcrumbs__toggle-button {
-      @include link-button;
       font-size: var(--nsw-font-size-xs);
       font-weight: var(--nsw-font-normal);
       color: var(--nsw-text-dark);
@@ -52,10 +53,13 @@
       line-height: 24px;
       height: 100%;
       cursor: pointer;
+ 
+      @include link-button;
 
       .nsw-section--invert & {
-        @include link-light;
         color: var(--nsw-text-light);
+        
+        @include link-light;
       }
     }
   }

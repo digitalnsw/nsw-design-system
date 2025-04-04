@@ -8,9 +8,10 @@
   }
 
   &__title {
-    @include font-size('lg');
     font-weight: var(--nsw-font-bold);
     padding: rem(24px) 0;
+
+    @include font-size('lg');
 
     @include breakpoint('lg') {
       @include font-size('md');
@@ -32,7 +33,6 @@
     }
 
     button {
-      @include font-size('md');
       font-weight: var(--nsw-font-bold);
       background-color: var(--nsw-off-white);
       width: 100%;
@@ -43,6 +43,8 @@
       text-decoration: none;
       text-align: left;
       cursor: pointer;
+
+      @include font-size('md');
       
       .nsw-section--invert & {    
         color: var(--nsw-text-dark);
@@ -553,8 +555,9 @@
 
   &__more,
   &__less {
-    @include link-button;
     margin-top: rem(24px);
+    
+    @include link-button;
 
     .nsw-section--invert & {
       @include link-light;
