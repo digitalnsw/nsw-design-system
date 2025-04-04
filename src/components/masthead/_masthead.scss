@@ -5,8 +5,6 @@
   width: 100%;
 
   a {
-    @include font-size('xxs');
-    @include z-index('middle');
     background-color: var(--nsw-brand-dark);
     color: var(--nsw-white);
     width: 100%;
@@ -17,6 +15,9 @@
     left: 0;
     transform: translateY(-101%);
 
+    @include font-size('xxs');
+    @include z-index('middle');
+    
     &:focus {
       transform: translateY(0);
       outline: none;
@@ -44,10 +45,11 @@
 }
 
 .nsw-masthead {
-  @include font-size('xxs');
   padding: rem(8px) 0;
   background-color: var(--nsw-brand-dark);
   color: var(--nsw-white);
+  
+  @include font-size('xxs');
 
   &--light {
     background-color: var(--nsw-off-white);

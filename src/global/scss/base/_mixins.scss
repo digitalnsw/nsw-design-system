@@ -42,9 +42,11 @@
 
 //Links
 @mixin link() {
-  font-weight: var(--nsw-font-bold);
-  color: var(--nsw-link);
-  text-decoration: underline;
+  & {
+    font-weight: var(--nsw-font-bold);
+    color: var(--nsw-link);
+    text-decoration: underline;
+  }
 
   &:visited {
     color: var(--nsw-visited);
@@ -136,12 +138,12 @@
 
 // Z-index
 @mixin z-index($index: 'base') {
-
   @if map-has-key($nsw-z-index, $index) == false {
     @error 'NSW-DS z-index mixin allows the following values for $index: #{map-keys($nsw-z-index)}. You have used "#{$index}"';
-  }
-  @else {
-    z-index: map-get($nsw-z-index, $index);
+  } @else {
+    & {
+      z-index: map-get($nsw-z-index, $index);
+    }
   }
 }
 

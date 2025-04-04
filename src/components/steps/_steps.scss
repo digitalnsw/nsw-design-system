@@ -1,6 +1,7 @@
 .nsw-steps {
-  @include component-spacing();
   counter-reset: step;
+
+  @include component-spacing();
 
   &__item {
     position: relative;
@@ -33,7 +34,6 @@
     }
 
     &::after {
-      @include font-size('md');
       counter-increment: step;
       content: counter(step);
       position: absolute;
@@ -47,6 +47,8 @@
       color: var(--nsw-brand-accent);
       font-weight: var(--nsw-font-bold);
       visibility: hidden;
+      
+      @include font-size('md');
 
       @include breakpoint('lg') { 
         width: rem(48px);
