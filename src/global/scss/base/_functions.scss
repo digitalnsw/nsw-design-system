@@ -1,9 +1,12 @@
 /* stylelint-disable */
 @use "sass:math";
 @use "sass:color";
+@use "sass:map";
+@use "sass:list";
+@use "sass:meta";
 
 @function rem($value) {
-  @if (unitless($value)) {
+  @if math.is-unitless($value) {
     $value: $value * 1px;
   }
 
@@ -53,13 +56,13 @@
 }
 
 @function breakpoint-min($name, $breakpoints: $nsw-breakpoints) {
-  $min: map-get($breakpoints, $name);
+  $min: map.get($breakpoints, $name);
 
   @return if($min != 0, $min, null);
 }
 
 @function breakpoint-max($name, $breakpoints: $nsw-breakpoints) {
-  $max: map-get($breakpoints, $name);
+  $max: map.get($breakpoints, $name);
 
   @return if($max and $max > 0, $max - 0.02, null);
 }
@@ -69,7 +72,7 @@
 }
 
 @function to-rgb($value) {
-  @return red($value), green($value), blue($value);
+  @return color.channel($value, "red", $space: rgb), color.channel($value, "green", $space: rgb), color.channel($value, "blue", $space: rgb);
 }
 
 @function map-loop($map, $func, $args...) {
@@ -86,10 +89,10 @@
       );
     }
 
-    $_map: map-merge(
+    $_map: map.merge(
       $_map,
       (
-        $key: call(get-function($func), $_args...),
+        $key: meta.call(get-function($func), $_args...),
       )
     );
   }
@@ -111,16 +114,16 @@
 
 @function luminance($color) {
   $rgba: color.channel($color, "red", $space: rgb),
-  color.channel($color, "green", $space: rgb),
-  color.channel($color, "blue", $space: rgb);
+         color.channel($color, "green", $space: rgb),
+         color.channel($color, "blue", $space: rgb);
   $rgba2: ();
   @for $i from 1 through 3 {
-    $rgb: nth($rgba, $i);
+    $rgb: list.nth($rgba, $i);
     $rgb: calc($rgb / 255);
     $rgb: if($rgb < .03928, calc($rgb / 12.92), pow(calc(($rgb + 0.055) / 1.055), 2));
-    $rgba2: append($rgba2, $rgb);
+    $rgba2: list.append($rgba2, $rgb);
   }
-  @return (.2126 * nth($rgba2, 1) + .7152 * nth($rgba2, 2) + 0.0722 * nth($rgba2, 3))*100;
+  @return (.2126 * list.nth($rgba2, 1) + .7152 * list.nth($rgba2, 2) + 0.0722 * list.nth($rgba2, 3)) * 100;
 }
 
 @function contrast-ratio($fg, $bg) {
@@ -135,16 +138,15 @@
 }
 
 @function validate-font-size($size) {
-  @if unit($size) == 'em' or unit($size) == 'rem' or unit($size) == 'px' or unit($size) == '' {
-
-    @if unit($size) == 'em' or unit($size) == 'rem' {
-      @return strip-unit($size * 16)
+  @if math.unit($size) == 'em' or math.unit($size) == 'rem' or math.unit($size) == 'px' or math.unit($size) == '' {
+    @if math.unit($size) == 'em' or math.unit($size) == 'rem' {
+      @return strip-unit($size * 16);
     }
-    @if unit($size) == 'px' {
+    @if math.unit($size) == 'px' {
       // We expect PX, so strip the value and return it
       @return strip-unit($size);
     }
-    @if unit($size) == '' {
+    @if math.unit($size) == '' {
       @return $size;
     }
   } @else {
@@ -222,19 +224,19 @@
 
     @while contrast-ratio($fg, $bg) < $ratio {
       $sat-step: 0%;
-      @if saturation($fg) > 10 {
+      @if color.channel($fg, "saturation", $space: hsl) > 10 {
         $sat-step: $step;
       }
-      $fg: scale-color($fg, $lightness: $step, $saturation:$sat-step);
+      $fg: scale-color($fg, $lightness: $step, $saturation: $sat-step);
     }
     @return $fg;
   }
 }
 
 @function tint($color, $percentage) {
-  @return mix(white, $color, $percentage);
+  @return color.mix(white, $color, $percentage);
 }
 
 @function shade($color, $percentage) {
-  @return mix(black, $color, $percentage);
+  @return color.mix(black, $color, $percentage);
 }
