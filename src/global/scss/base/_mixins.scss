@@ -139,10 +139,10 @@
 
 // Z-index
 @mixin z-index($index: 'base') {
-  @if map-has-key($nsw-z-index, $index) == false {
-    @error 'NSW-DS z-index mixin allows the following values for $index: #{map-keys($nsw-z-index)}. You have used "#{$index}"';
+  @if map.has-key($nsw-z-index, $index) == false {
+    @error 'NSW-DS z-index mixin allows the following values for $index: #{map.keys($nsw-z-index)}. You have used "#{$index}"';
   } @else {
-    z-index: map-get($nsw-z-index, $index);
+    z-index: map.get($nsw-z-index, $index);
   }
 }
 

@@ -4,6 +4,7 @@
 @use "sass:map";
 @use "sass:list";
 @use "sass:meta";
+@use "sass:string";
 
 @function rem($value) {
   @if math.is-unitless($value) {
@@ -14,17 +15,17 @@
 }
 
 @function svg-url($svg) {
-  @if not str-index($svg, xmlns) {
-    $svg: str-replace($svg, "<svg", '<svg xmlns="http://www.w3.org/2000/svg"');
+  @if not string.index($svg, xmlns) {
+    $svg: string.replace($svg, "<svg", '<svg xmlns="http://www.w3.org/2000/svg"');
   }
 
   $encoded: "";
   $slice: 2000;
   $index: 0;
-  $loops: ceil(math.div(str-length($svg), $slice));
+  $loops: math.ceil(math.div(string.length($svg), $slice));
 
   @for $i from 1 through $loops {
-    $chunk: str-slice($svg, $index, $index + $slice - 1);
+    $chunk: string.slice($svg, $index, $index + $slice - 1);
     $chunk: str-replace($chunk, '"', "'");
     $chunk: str-replace($chunk, "%", "%25");
     $chunk: str-replace($chunk, "#", "%23");
@@ -41,12 +42,12 @@
 
 // Helper function to replace characters in a string
 @function str-replace($string, $search, $replace: "") {
-  $index: str-index($string, $search);
+  $index: string.index($string, $search);
 
   @if $index {
-    @return str-slice($string, 1, $index - 1) + $replace +
+    @return string.slice($string, 1, $index - 1) + $replace +
       str-replace(
-        str-slice($string, $index + str-length($search)),
+        string.slice($string, $index + string.length($search)),
         $search,
         $replace
       );
@@ -83,7 +84,7 @@
     $_args: ();
 
     @each $arg in $args {
-      $_args: append(
+      $_args: list.append(
         $_args,
         if($arg == "$key", $key, if($arg == "$value", $value, $arg))
       );
@@ -92,7 +93,7 @@
     $_map: map.merge(
       $_map,
       (
-        $key: meta.call(get-function($func), $_args...),
+        $key: meta.call(meta.get-function($func), $_args...),
       )
     );
   }
@@ -227,7 +228,7 @@
       @if color.channel($fg, "saturation", $space: hsl) > 10 {
         $sat-step: $step;
       }
-      $fg: scale-color($fg, $lightness: $step, $saturation: $sat-step);
+      $fg: color.scale($fg, $lightness: $step, $saturation: $sat-step);
     }
     @return $fg;
   }

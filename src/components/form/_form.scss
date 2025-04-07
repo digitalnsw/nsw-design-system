@@ -1,5 +1,7 @@
 /* stylelint-disable max-nesting-depth */
 
+@use 'sass:map';
+
 $nsw-form-tick: '<svg fill="#ffffff" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path d="M29.362 3.742l-18.867 19.204-7.857-7.997-2.638 2.685 9.175 9.34 1.319 1.284 1.318-1.284 20.187-20.547z"></path></svg>';
 
 .nsw-form {
@@ -36,7 +38,7 @@ $nsw-form-tick: '<svg fill="#ffffff" version="1.1" xmlns="http://www.w3.org/2000
       align-items: center;
 
       .nsw-material-icons {
-        font-size: rem(map-get($nsw-icon-sizes, 20));
+        font-size: rem(map.get($nsw-icon-sizes, 20));
         margin-right: rem(4px);
       }
     }
@@ -181,7 +183,7 @@ $nsw-form-tick: '<svg fill="#ffffff" version="1.1" xmlns="http://www.w3.org/2000
 
     .nsw-material-icons {
       display: block;
-      font-size: rem(map-get($nsw-icon-sizes, 36));
+      font-size: rem(map.get($nsw-icon-sizes, 36));
       position: static;
 
       .nsw-section--invert & {    

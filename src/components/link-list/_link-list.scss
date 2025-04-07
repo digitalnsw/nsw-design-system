@@ -1,3 +1,5 @@
+@use 'sass:map';
+
 .nsw-link-list {
   @include component-spacing();
 
@@ -26,7 +28,6 @@
       border-bottom: 1px solid var(--nsw-grey-04);
     }
   }
-
 
   a {
     padding: rem(16px);
@@ -69,7 +70,7 @@
   }
 
   .nsw-material-icons {
-    font-size: rem(map-get($nsw-icon-sizes, 20));
+    font-size: rem(map.get($nsw-icon-sizes, 20));
     margin-left: rem(16px);
   }
 }
