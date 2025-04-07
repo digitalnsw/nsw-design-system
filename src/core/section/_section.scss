@@ -1,3 +1,5 @@
+@use 'sass:map';
+
 //Variations
 $nsw-sections: (
   brand-dark: (
@@ -106,9 +108,9 @@ $nsw-sections: (
 
   @each $name, $variant in $nsw-sections {
     &--#{"" + $name} {
-      --nsw-section-bg: #{map-get($variant, background)};
-      background-color: map-get($variant, background);
-      color: map-get($variant, color);
+      --nsw-section-bg: #{map.get($variant, background)};
+      background-color: map.get($variant, background);
+      color: map.get($variant, color);
     }
   }
 

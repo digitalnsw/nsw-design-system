@@ -1,3 +1,5 @@
+@use 'sass:map';
+
 $nsw-icon-sizes: (
   20: 20px,
   24: 24px,
@@ -19,13 +21,14 @@ $nsw-icon-angles: (90, 180, 270);
 .nsw-material-icons {
   @each $size, $variant in $nsw-icon-sizes {
     &--#{"" + $size} {
-      font-size: rem(map-get($nsw-icon-sizes, $size));
+      font-size: rem(map.get($nsw-icon-sizes, $size));
     }
   }
 
   @each $color, $variant in $nsw-icon-colors {
     &--#{"" + $color} {
-      color: map-get($nsw-icon-colors, $color);
+      /* stylelint-disable-next-line sh-waqar/declaration-use-variable */
+      color: map.get($nsw-icon-colors, $color);
     }
   }
 
@@ -36,7 +39,7 @@ $nsw-icon-angles: (90, 180, 270);
   }
 
   &--inline {
-    font-size: rem(map-get($nsw-icon-sizes, 20));
+    font-size: rem(map.get($nsw-icon-sizes, 20));
     line-height: rem(10px);
     position: relative;
     bottom: rem(-5px);

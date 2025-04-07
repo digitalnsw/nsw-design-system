@@ -22,8 +22,8 @@
 
 // Default focus state
 @mixin nsw-focus($offset: true, $color: var(--nsw-focus)) {
-  @if type-of($offset) != bool {
-    @error 'NSW-DS nsw-focus mixin allows a boolean for $offset: You have used a type of "#{type-of($offset)}" and a value of "#{$offset}"';
+  @if meta.type-of($offset) != bool {
+    @error 'NSW-DS nsw-focus mixin allows a boolean for $offset: You have used a type of "#{meta.type-of($offset)}" and a value of "#{$offset}"';
   }
 
   outline: solid 3px $color;
@@ -252,20 +252,20 @@
 @mixin column($size, $breakpoint: null, $offset: null) {
   @if ($breakpoint) {
     @include breakpoint($breakpoint) {
-      width: percentage(math.div($size, 12));
-      max-width: percentage(math.div($size, 12));
+      width: math.percentage(math.div($size, 12));
+      max-width: math.percentage(math.div($size, 12));
 
       @if ($offset) {
-        margin-left: percentage(math.div($offset, 12));
+        margin-left: math.percentage(math.div($offset, 12));
       }
     }
 
   } @else {
-    width: percentage(math.div($size, 12));
-    max-width: percentage(math.div($size, 12));
+    width: math.percentage(math.div($size, 12));
+    max-width: math.percentage(math.div($size, 12));
 
     @if ($offset) {
-      margin-left: percentage(math.div($offset, 12));
+      margin-left: math.percentage(math.div($offset, 12));
     }
   }
 }
@@ -334,9 +334,9 @@
       }
     }
 
-    $is-css-var: map-get($utility, css-var);
-    $is-local-vars: map-get($utility, local-vars);
-    $is-rtl: map-get($utility, rtl);
+    $is-css-var: map.get($utility, css-var);
+    $is-local-vars: map.get($utility, local-vars);
+    $is-rtl: map.get($utility, rtl);
 
     @if $value != null {
       @if $is-rtl == false {
