@@ -1,3 +1,5 @@
+@use 'sass:map';
+
 $prefix: 'nsw-';
 $enable-important-utilities: true !default;
 
@@ -69,7 +71,7 @@ $nsw-base-colours-rgb: (
 
 
 // Background Colours
-$nsw-bg-colours: map-merge($nsw-base-colours-rgb, (
+$nsw-bg-colours: map.merge($nsw-base-colours-rgb, (
   transparent: transparent,
   info-dark: rgba(var(--nsw-status-info-rgb), var(--nsw-bg-opacity)),
   info-light: rgba(var(--nsw-status-info-bg-rgb), var(--nsw-bg-opacity)),
@@ -82,7 +84,7 @@ $nsw-bg-colours: map-merge($nsw-base-colours-rgb, (
 ));
 
 // Text Colours
-$nsw-text-colours: map-merge($nsw-base-colours, (
+$nsw-text-colours: map.merge($nsw-base-colours, (
   dark: var(--nsw-text-dark),
   light: var(--nsw-text-light),
 ));

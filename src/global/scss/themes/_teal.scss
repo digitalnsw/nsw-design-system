@@ -9,13 +9,13 @@ $teal-accent: $fuchsia-02 !default;
 // Purple State Colours
 $teal-link: $teal-dark !default;
 $teal-link-light: tint($teal-dark, 90%) !default;
-$teal-visited: a11y-color(lighten(saturate(adjust-hue($teal-dark, 10), 0.16), 28.04), #ffffff) !default;
+$teal-visited: a11y-color(color.adjust(color.adjust(color.adjust($teal-dark, $hue: 10deg), $saturation: 0.16%), $lightness: 28.04%), #ffffff) !default;
 $teal-visited-light: tint($teal-visited, 80%) !default;
 $teal-hover: color.adjust($teal-dark, $alpha: -0.9) !default;
 $teal-hover-light: color.adjust($teal-link-light, $alpha: -0.9) !default;
 $teal-active: color.adjust($teal-dark, $alpha: -0.8) !default;
 $teal-active-light: color.adjust($teal-link-light, $alpha: -0.8) !default;
-$teal-focus: lighten(adjust-hue($teal-dark, -22), 15.49) !default;
+$teal-focus: color.adjust(color.adjust($teal-dark, $hue: -22deg), $lightness: 15.49%) !default;
 $teal-focus-light: tint($teal-focus, 80%);
 $teal-disabled: tint($teal-dark, 50%) !default;
 

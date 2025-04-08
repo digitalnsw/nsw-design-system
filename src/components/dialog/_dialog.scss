@@ -3,7 +3,6 @@
 }
 
 .nsw-dialog {
-  @include z-index('upper');
   display: none;
   position: fixed;
   left: 0;
@@ -13,6 +12,8 @@
   background-color: rgba(var(--nsw-black-rgb), 0.7);
   justify-content: center;
   align-items: flex-end;
+  
+  @include z-index('upper');
 
   .nsw-section--invert & {
     color: var(--nsw-text-dark);

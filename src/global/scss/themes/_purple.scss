@@ -9,13 +9,13 @@ $purple-accent: $yellow-02 !default;
 // Purple State Colours
 $purple-link: $purple-dark !default;
 $purple-link-light: tint($purple-dark, 90%) !default;
-$purple-visited: a11y-color(adjust-hue($purple-dark, 50), #ffffff) !default;
+$purple-visited: a11y-color(color.adjust($purple-dark, $hue: 50deg), #ffffff) !default;
 $purple-visited-light: tint($purple-visited, 80%) !default;
 $purple-hover: color.adjust($purple-dark, $alpha: -0.9) !default;
 $purple-hover-light: color.adjust($purple-link-light, $alpha: -0.9) !default;
 $purple-active: color.adjust($purple-dark, $alpha: -0.8) !default;
 $purple-active-light: color.adjust($purple-link-light, $alpha: -0.8) !default;
-$purple-focus: lighten(adjust-hue($purple-dark, -22), 15.49) !default;
+$purple-focus: color.adjust(color.adjust($purple-dark, $hue: -22deg), $lightness: 15.49%) !default;
 $purple-focus-light: tint($purple-focus, 80%);
 $purple-disabled: tint($purple-dark, 50%) !default;
 

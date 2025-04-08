@@ -1,4 +1,5 @@
-
+@use 'sass:map';
+@use '../global/scss/base/functions' as functions;
 
 $white: #ffffff !default;
 $grey-50: #f2f2f2 !default;
@@ -110,7 +111,11 @@ $brand-colors: (
   'white': $white
 ) !default;
 
-$brand-colors-rgb: map-loop($brand-colors, to-rgb, '$value') !default;
+$brand-colors-rgb: () !default;
+
+@each $key, $value in $brand-colors {
+  $brand-colors-rgb: map.merge($brand-colors-rgb, ($key: functions.to-rgb($value)));
+}
 
 :root {
   @each $color, $value in $brand-colors {

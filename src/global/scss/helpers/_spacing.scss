@@ -1,3 +1,5 @@
+@use 'sass:map';
+
 /* stylelint-disable declaration-no-important */
 
 .nsw-block {
@@ -6,8 +8,8 @@
 
 @each $prop, $abbrev in (margin: nsw-m, padding: nsw-p) {
   @each $size, $lengths in $spacers {
-    $length-mobile: rem(map-get($lengths, mobile));
-    $length-desktop: rem(map-get($lengths, desktop));
+    $length-mobile: rem(map.get($lengths, 'mobile'));
+    $length-desktop: rem(map.get($lengths, 'desktop'));
 
     .#{$abbrev}-#{$size} {
       #{$prop}: $length-mobile !important;

@@ -1,3 +1,5 @@
+@use 'sass:map';
+
 //Variations
 $nsw-in-page-alerts: (
   info: (
@@ -23,7 +25,6 @@ $nsw-in-page-alerts: (
 );
 
 .nsw-in-page-alert {
-  @include component-spacing();
   padding: rem(16px);
   position: relative;
   border-left: solid 4px var(--nsw-brand-accent);
@@ -31,6 +32,8 @@ $nsw-in-page-alerts: (
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
+  
+  @include component-spacing();
 
   @include breakpoint('md') {
     padding: rem(24px) rem(24px) rem(24px) rem(16px);
@@ -45,18 +48,18 @@ $nsw-in-page-alerts: (
   }
 
   &__icon {
-    font-size: rem(map-get($nsw-icon-sizes, 30));
+    font-size: rem(map.get($nsw-icon-sizes, 30));
     margin-right: rem(16px);
     margin-top: rem(-2px);
   }
 
   @each $color, $variant in $nsw-in-page-alerts {
     &--#{"" + $color} {
-      background-color: map-get($variant, background);
-      border-color: map-get($variant, border);
+      background-color: map.get($variant, background);
+      border-color: map.get($variant, border);
 
       .nsw-in-page-alert__icon {
-        color: map-get($variant, fill);
+        color: map.get($variant, fill);
       }
     }
   }
@@ -66,7 +69,7 @@ $nsw-in-page-alerts: (
     border: 0;
 
     .nsw-in-page-alert__icon {
-      font-size: rem(map-get($nsw-icon-sizes, 20));
+      font-size: rem(map.get($nsw-icon-sizes, 20));
       margin-right: rem(8px);
       margin-top: 0;
     }

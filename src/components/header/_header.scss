@@ -1,3 +1,5 @@
+@use 'sass:map';
+
 .nsw-header {
   background-color: var(--nsw-white);
   position: relative;
@@ -30,7 +32,6 @@
   &__search {
     button,
     a {      
-      @include font-size('xxs');
       font-weight: var(--nsw-font-bold);
       border-radius: var(--nsw-border-radius);
       color: var(--nsw-brand-dark);
@@ -47,6 +48,8 @@
       justify-content: center;
       cursor: pointer;
 
+      @include font-size('xxs');
+
       &:hover {
         @include nsw-hover;
       }
@@ -56,7 +59,7 @@
       }
 
       .nsw-material-icons {
-        font-size: rem(map-get($nsw-icon-sizes, 24));
+        font-size: rem(map.get($nsw-icon-sizes, 24));
       }
     }
 
@@ -92,7 +95,7 @@
         }
 
         .nsw-material-icons {
-          font-size: rem(map-get($nsw-icon-sizes, 36));
+          font-size: rem(map.get($nsw-icon-sizes, 36));
         }
       }
     }
@@ -206,11 +209,12 @@
   }
 
   &__title {
-    @include font-size('lg');
     font-weight: var(--nsw-font-bold);
     color: var(--nsw-brand-dark);
     display: flex;
     align-items: center;
+
+    @include font-size('lg');
 
     @include breakpoint('lg') {
       line-height: rem(28px);
@@ -222,8 +226,9 @@
   }
 
   &__description {
-    @include font-size('xs');
     color: var(--nsw-brand-dark);
+
+    @include font-size('xs');
   }
 
   &__logo {
@@ -287,12 +292,11 @@
       }
 
       .nsw-material-icons {
-        font-size: rem(map-get($nsw-icon-sizes, 36));
+        font-size: rem(map.get($nsw-icon-sizes, 36));
       }
     }
 
     input {
-      @include font-size('md');
       background: var(--nsw-off-white);
       padding: rem(8px) rem(72px) rem(8px) rem(16px);
       color: var(--nsw-text-dark);
@@ -300,6 +304,8 @@
       appearance: none;
       border: 0;
       height: rem(72px);
+      
+      @include font-size('md');
 
       &:focus {
         @include nsw-focus($offset: false);

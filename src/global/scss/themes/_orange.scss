@@ -9,13 +9,13 @@ $orange-accent: $purple-02 !default;
 // Purple State Colours
 $orange-link: $orange-dark !default;
 $orange-link-light: tint($orange-dark, 90%) !default;
-$orange-visited: a11y-color(lighten(adjust-hue($orange-dark, 16), 31.96), #ffffff) !default;
+$orange-visited: a11y-color(color.adjust(color.adjust($orange-dark, $hue: 16deg), $lightness: 31.96%), #ffffff) !default;
 $orange-visited-light: tint($orange-visited, 80%) !default;
 $orange-hover: color.adjust($orange-dark, $alpha: -0.9) !default;
 $orange-hover-light: color.adjust($orange-link-light, $alpha: -0.9) !default;
 $orange-active: color.adjust($orange-dark, $alpha: -0.8) !default;
 $orange-active-light: color.adjust($orange-link-light, $alpha: -0.8) !default;
-$orange-focus: lighten(adjust-hue($orange-dark, -22), 15.49) !default;
+$orange-focus: color.adjust(color.adjust($orange-dark, $hue: -22deg), $lightness: 15.49%) !default;
 $orange-focus-light: tint($orange-focus, 80%);
 $orange-disabled: tint($orange-dark, 50%) !default;
 

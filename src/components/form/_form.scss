@@ -1,5 +1,7 @@
 /* stylelint-disable max-nesting-depth */
 
+@use 'sass:map';
+
 $nsw-form-tick: '<svg fill="#ffffff" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path d="M29.362 3.742l-18.867 19.204-7.857-7.997-2.638 2.685 9.175 9.34 1.319 1.284 1.318-1.284 20.187-20.547z"></path></svg>';
 
 .nsw-form {
@@ -18,9 +20,10 @@ $nsw-form-tick: '<svg fill="#ffffff" version="1.1" xmlns="http://www.w3.org/2000
   }
 
   &__helper {
-    @include font-size('xs');
     display: block;
     margin-bottom: rem(4px);
+
+    @include font-size('xs');
 
     &--error,
     &--valid {
@@ -35,7 +38,7 @@ $nsw-form-tick: '<svg fill="#ffffff" version="1.1" xmlns="http://www.w3.org/2000
       align-items: center;
 
       .nsw-material-icons {
-        font-size: rem(map-get($nsw-icon-sizes, 20));
+        font-size: rem(map.get($nsw-icon-sizes, 20));
         margin-right: rem(4px);
       }
     }
@@ -58,9 +61,10 @@ $nsw-form-tick: '<svg fill="#ffffff" version="1.1" xmlns="http://www.w3.org/2000
   }
 
   &__label {
-    @include font-size('sm');
     font-weight: var(--nsw-font-bold);
     display: block;
+
+    @include font-size('sm');
 
     &--small {
       font-weight: var(--nsw-font-normal);
@@ -86,7 +90,6 @@ $nsw-form-tick: '<svg fill="#ffffff" version="1.1" xmlns="http://www.w3.org/2000
   }
 
   &__input {
-    @include font-size('sm');
     padding: rem(11px) rem(16px);
     border-radius: var(--nsw-border-radius);
     background-color: var(--nsw-white);
@@ -96,6 +99,8 @@ $nsw-form-tick: '<svg fill="#ffffff" version="1.1" xmlns="http://www.w3.org/2000
     appearance: none;
     -webkit-appearance: none; /* stylelint-disable-line property-no-vendor-prefix */
     width: 100%;
+
+    @include font-size('sm');
 
     &:focus {
       @include nsw-focus;
@@ -178,7 +183,7 @@ $nsw-form-tick: '<svg fill="#ffffff" version="1.1" xmlns="http://www.w3.org/2000
 
     .nsw-material-icons {
       display: block;
-      font-size: rem(map-get($nsw-icon-sizes, 36));
+      font-size: rem(map.get($nsw-icon-sizes, 36));
       position: static;
 
       .nsw-section--invert & {    
@@ -299,10 +304,11 @@ $nsw-form-tick: '<svg fill="#ffffff" version="1.1" xmlns="http://www.w3.org/2000
   }
 
   &__legend {
-    @include font-size('sm');
     font-weight: var(--nsw-font-bold);
     width: 100%;
     display: block;
+
+    @include font-size('sm');
   }
 
   &__checkbox-input,
@@ -378,13 +384,14 @@ $nsw-form-tick: '<svg fill="#ffffff" version="1.1" xmlns="http://www.w3.org/2000
 
   &__checkbox-label,
   &__radio-label {
-    @include font-size('sm');
     margin: rem(16px) 0 0 0;
     padding: rem(4px) 0 rem(4px) rem(48px);
     min-height: rem(32px);
     display: block;
     position: relative;
     cursor: pointer;
+    
+    @include font-size('sm');
 
     &::before {
       content: '';
