@@ -1,3 +1,8 @@
+@use 'sass:map';
+@use '../../global/scss/base/mixins' as mixins;
+@use '../../global/scss/base/functions' as functions;
+@use '../../global/scss/settings/palette' as palette;
+
 .nsw-skip {
   position: fixed;
   top: 0;
@@ -9,25 +14,25 @@
     color: var(--nsw-white);
     width: 100%;
     text-decoration: none;
-    padding: rem(8px) rem(16px);
+    padding: functions.rem(8px) functions.rem(16px);
     position: absolute;
     top: 0;
     left: 0;
     transform: translateY(-101%);
 
-    @include z-index('middle');
-    @include font-size('xxs');
+    @include mixins.z-index('middle');
+    @include mixins.font-size('xxs');
     
     &:focus {
       transform: translateY(0);
       outline: none;
 
       span {
-        @include nsw-focus($color: var(--nsw-white));
+        @include mixins.nsw-focus($color: var(--nsw-white));
       }
     }
 
-    @include breakpoint('lg') {
+    @include mixins.breakpoint('lg') {
       text-align: left;
     }
   }
@@ -38,18 +43,18 @@
       color: var(--nsw-palette-grey-900);
 
       &:focus span {
-        @include nsw-focus();
+        @include mixins.nsw-focus();
       }
     }
   }
 }
 
 .nsw-masthead {
-  padding: rem(8px) 0;
+  padding: functions.rem(8px) 0;
   background-color: var(--nsw-brand-dark);
   color: var(--nsw-white);
 
-  @include font-size('xxs');
+  @include mixins.font-size('xxs');
 
   &--light {
     background-color: var(--nsw-off-white);

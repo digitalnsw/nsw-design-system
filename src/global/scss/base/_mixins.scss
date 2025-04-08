@@ -2,6 +2,8 @@
 @use 'sass:meta';
 @use 'sass:map';
 @use 'sass:list';
+@use './functions' as functions;
+@use '../settings/settings' as settings;
 
 @mixin breakpoint($size, $width-type: min-width) {
   @if meta.type-of($size) != 'string' {
@@ -11,8 +13,8 @@
   @if $size != 'xs' and $size != 'sm' and $size != 'md' and $size != 'lg' and $size != 'xl' {
     @error 'NSW-DS Breakpoint mixin allows the following breakpoint sizes xs, sm, md, lg';
   } @else {
-    $px-size: map.get($nsw-breakpoints, $size);
-    $rem-size: rem($px-size);
+    $px-size: map.get(settings.$nsw-breakpoints, $size);
+    $rem-size: functions.rem($px-size);
 
     @media ($width-type: $rem-size) {
       @content;
@@ -139,10 +141,10 @@
 
 // Z-index
 @mixin z-index($index: 'base') {
-  @if map.has-key($nsw-z-index, $index) == false {
-    @error 'NSW-DS z-index mixin allows the following values for $index: #{map.keys($nsw-z-index)}. You have used "#{$index}"';
+  @if map.has-key(settings.$nsw-z-index, $index) == false {
+    @error 'NSW-DS z-index mixin allows the following values for $index: #{map.keys(settings.$nsw-z-index)}. You have used "#{$index}"';
   } @else {
-    z-index: map.get($nsw-z-index, $index);
+    z-index: map.get(settings.$nsw-z-index, $index);
   }
 }
 
@@ -191,15 +193,16 @@
   }
 
   @if $size {
-    // Wrap mobile declarations in their own block.
-    #{&} {
+    // Mobile styles – these declarations appear before any nested rules.
+
+    & {
       font-size: var(--nsw-font-size-#{$size}-mobile);
       line-height: var(--nsw-line-height-#{$size}-mobile);
     }
 
-    // Wrap desktop declarations (inside the media query) in their own block.
-    @include breakpoint($nsw-font-size-reponsive-breakpoint) {
-      #{&} {
+    // Desktop styles – wrap in & {} to opt into new Sass behavior.
+    @include breakpoint(settings.$nsw-font-size-reponsive-breakpoint) {
+      & {
         font-size: var(--nsw-font-size-#{$size}-desktop);
         line-height: var(--nsw-line-height-#{$size}-desktop);
       }
