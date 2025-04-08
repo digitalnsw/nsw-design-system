@@ -9,6 +9,8 @@ meta-description: File uploaders help users to select and upload files.
 meta-index: true
 ---
 
+<h3>Error messages</h3>
+<p>Includes ability to accept only a single file.</p>
 {{#>_docs-example}}
 <div class="nsw-form">
   <div class="nsw-form__group">
@@ -18,13 +20,14 @@ meta-index: true
     label="Upload drivers license"
     helper-text="Formats accepted: JPG, PNG or PDF <br /> File size must not exceed 350MB"
     accept=true
-    multiple=true
+    replace=true
     }}
   </div>
 </div>
 {{/_docs-example}}
 
 <h3>Error messages</h3>
+<p>Includes ability to accept multiple files.</p>
 {{#>_docs-example}}
 <div class="nsw-form">
   <div class="nsw-form__group">
@@ -35,6 +38,7 @@ meta-index: true
     helper-text="Formats accepted: JPG, PNG or PDF <br /> File size must not exceed 350MB"
     error-text="The selected file must be smaller than 350MB"
     accept=true
+    multiple=true
     }}
   </div>
 </div>
