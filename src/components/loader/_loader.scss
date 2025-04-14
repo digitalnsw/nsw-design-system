@@ -1,3 +1,5 @@
+@use 'sass:map';
+
 //Variations
 $nsw-loaders: (
   sm: (
@@ -36,11 +38,11 @@ $nsw-loaders: (
     
     @each $size, $variant in $nsw-loaders {
       &--#{"" + $size} {
-        width: map-get($variant, size);
-        height: map-get($variant, size);
-        transform-origin: 50% 50% calc((#{map-get($variant, size)} / 2) + #{map-get($variant, border)});
-        @if map-get($variant, border) == 3px {
-          border-width: map-get($variant, border);
+        width: map.get($variant, size);
+        height: map.get($variant, size);
+        transform-origin: 50% 50% calc((#{map.get($variant, size)} / 2) + #{map.get($variant, border)});
+        @if map.get($variant, border) == 3px {
+          border-width: map.get($variant, border);
         }
       }
     }

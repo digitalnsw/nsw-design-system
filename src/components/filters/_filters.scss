@@ -1,3 +1,5 @@
+@use 'sass:map';
+
 .nsw-filters {
   .nsw-layout__sidebar & {
     margin: rem(-8px) 0 rem(-16px) 0;
@@ -8,13 +10,15 @@
   }
 
   &__title {
-    @include font-size('lg');
     font-weight: var(--nsw-font-bold);
     padding: rem(24px) 0;
 
+    @include font-size('lg');
+
     @include breakpoint('lg') {
-      @include font-size('md');
       margin-top: rem(24px);
+      
+      @include font-size('md');
     }
 
     .nsw-filters--down & {
@@ -32,7 +36,6 @@
     }
 
     button {
-      @include font-size('md');
       font-weight: var(--nsw-font-bold);
       background-color: var(--nsw-off-white);
       width: 100%;
@@ -43,6 +46,8 @@
       text-decoration: none;
       text-align: left;
       cursor: pointer;
+
+      @include font-size('md');
       
       .nsw-section--invert & {    
         color: var(--nsw-text-dark);
@@ -115,7 +120,7 @@
     }
 
     .nsw-material-icons {
-      font-size: rem(map-get($nsw-icon-sizes, 30));
+      font-size: rem(map.get($nsw-icon-sizes, 30));
       border-radius: var(--nsw-border-radius);
       padding: 0;
       text-decoration: none;
@@ -215,7 +220,7 @@
       }
 
       .nsw-material-icons {
-        font-size: rem(map-get($nsw-icon-sizes, 30));
+        font-size: rem(map.get($nsw-icon-sizes, 30));
       }
 
       .nsw-section--invert.nsw-section--grey-01 & {    
@@ -349,10 +354,10 @@
       }
 
       .nsw-material-icons {
-        font-size: rem(map-get($nsw-icon-sizes, 30));
+        font-size: rem(map.get($nsw-icon-sizes, 30));
 
         &.nsw-material-icons--valid {
-          font-size: rem(map-get($nsw-icon-sizes, 20));
+          font-size: rem(map.get($nsw-icon-sizes, 20));
         }
       }
 
@@ -553,8 +558,9 @@
 
   &__more,
   &__less {
-    @include link-button;
     margin-top: rem(24px);
+    
+    @include link-button;
 
     .nsw-section--invert & {
       @include link-light;
