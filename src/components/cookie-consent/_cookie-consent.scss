@@ -13,8 +13,9 @@
     right: rem(4px);
 
     &:hover {
-      @include nsw-hover;
       background-color: var(--nsw-hover-light);
+
+      @include nsw-hover;
     }
 
     &:focus {
@@ -23,13 +24,15 @@
   }
 
   &__wrapper {
-    @include container;
     position: relative;
+    
+    @include container;
   }
 
   &__title {
-    @include font-size('md');
     font-weight: var(--nsw-font-bold);
+
+    @include font-size('md');
   }
 
   &__content {
@@ -207,9 +210,10 @@
     gap: rem(8px);
 
     label {
-      @include font-size('md');
       font-weight: var(--nsw-font-bold);
       cursor: pointer;
+
+      @include font-size('md');
     }
 
     &:not(:nth-child(1)) {

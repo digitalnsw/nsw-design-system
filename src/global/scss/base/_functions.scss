@@ -57,19 +57,19 @@
   @return $string;
 }
 
-@function breakpoint-min($name, $breakpoints: $nsw-breakpoints) {
+@function breakpoint-min($name, $breakpoints: settings.$nsw-breakpoints) {
   $min: map.get($breakpoints, $name);
 
   @return if($min != 0, $min, null);
 }
 
-@function breakpoint-max($name, $breakpoints: $nsw-breakpoints) {
+@function breakpoint-max($name, $breakpoints: settings.$nsw-breakpoints) {
   $max: map.get($breakpoints, $name);
 
   @return if($max and $max > 0, $max - 0.02, null);
 }
 
-@function breakpoint-infix($name, $breakpoints: $nsw-breakpoints) {
+@function breakpoint-infix($name, $breakpoints: settings.$nsw-breakpoints) {
   @return if(breakpoint-min($name, $breakpoints) == null, "", "-#{$name}");
 }
 
