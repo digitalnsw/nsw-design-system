@@ -1,5 +1,10 @@
 <nav class="nsw-side-nav" aria-labelledby="{{parent-id}}">
   <div class="nsw-side-nav__header" id="{{parent-id}}">
+    <button>
+      <span>{{#if parent-text}}{{parent-text}}{{else}}Page navigation{{/if}}</span>{{#if down}}
+      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>{{else}}
+      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_right</span>{{/if}}
+    </button>
     <a href="{{parent-url}}">{{parent-text}}</a>
   </div>
   <ul>
