@@ -2144,6 +2144,7 @@
       var r;
     };
 
+  /* eslint-disable max-len */
   class CookieConsent {
     constructor(config = null) {
       this.isInit = false;
@@ -2584,6 +2585,7 @@
     }
   }
 
+  /* eslint-disable max-len */
   class Breadcrumbs {
     constructor(element) {
       this.element = element;
