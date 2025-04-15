@@ -1076,7 +1076,7 @@
   }
 
   /*!
-  * CookieConsent 3.0.1
+  * CookieConsent 3.1.0
   * https://github.com/orestbida/cookieconsent
   * Author Orest Bida
   * Released under the MIT License
@@ -1110,6 +1110,7 @@
           expiresAfterDays: 182,
           domain: '',
           path: '/',
+          secure: !0,
           sameSite: 'Lax'
         }
       }, this.o = {
@@ -1139,10 +1140,10 @@
         O: [],
         R: [],
         B: [],
-        G: [],
+        $: [],
+        G: !1,
         J: !1,
         U: !1,
-        $: !1,
         q: [],
         K: [],
         W: [],
@@ -1165,9 +1166,9 @@
       };
     }
   }
-  const m = new p(),
-    g = (e, t) => e.indexOf(t),
-    b = (e, t) => -1 !== g(e, t),
+  const g = new p(),
+    m = (e, t) => e.indexOf(t),
+    b = (e, t) => -1 !== m(e, t),
     v = e => Array.isArray(e),
     y = e => 'string' == typeof e,
     h = e => !!e && 'object' == typeof e && !v(e),
@@ -1207,42 +1208,42 @@
           O: t,
           X: o,
           Y: n
-        } = m.o;
-      for (const a of t) e[a] = G(n[a], w(o[a]));
+        } = g.o;
+      for (const a of t) e[a] = $(n[a], w(o[a]));
       return e;
     },
     O = (e, t) => dispatchEvent(new CustomEvent(e, {
       detail: t
     })),
     R = (e, t, o, n) => {
-      e.addEventListener(t, o), n && m.o.m.push({
+      e.addEventListener(t, o), n && g.o.m.push({
         pe: e,
-        me: t,
-        ge: o
+        ge: t,
+        me: o
       });
     },
     B = () => {
-      const e = m.t.cookie.expiresAfterDays;
-      return C(e) ? e(m.o.F) : e;
+      const e = g.t.cookie.expiresAfterDays;
+      return C(e) ? e(g.o.F) : e;
     },
-    G = (e, t) => {
+    $ = (e, t) => {
       const o = e || [],
         n = t || [];
       return o.filter(e => !b(n, e)).concat(n.filter(e => !b(o, e)));
     },
-    J = e => {
-      m.o.R = S(e), m.o.F = (() => {
+    G = e => {
+      g.o.R = S(e), g.o.F = (() => {
         let e = 'custom';
         const {
             R: t,
             O: o,
             B: n
-          } = m.o,
+          } = g.o,
           a = t.length;
         return a === o.length ? e = 'all' : a === n.length && (e = 'necessary'), e;
       })();
     },
-    U = (e, t, o, n) => {
+    J = (e, t, o, n) => {
       const a = 'accept-',
         {
           show: s,
@@ -1257,19 +1258,19 @@
           M(e), l(t), i(), r();
         },
         p = _('show-preferencesModal'),
-        g = _('show-consentModal'),
+        m = _('show-consentModal'),
         b = _(a + 'all'),
         v = _(a + 'necessary'),
         y = _(a + 'custom'),
-        h = m.t.lazyHtmlGeneration;
+        h = g.t.lazyHtmlGeneration;
       for (const e of p) E(e, 'aria-haspopup', 'dialog'), R(e, d, e => {
         M(e), c();
       }), h && (R(e, 'mouseenter', e => {
-        M(e), m.o.N || o(t, n);
+        M(e), g.o.N || o(t, n);
       }, !0), R(e, 'focus', () => {
-        m.o.N || o(t, n);
+        g.o.N || o(t, n);
       }));
-      for (let e of g) E(e, 'aria-haspopup', 'dialog'), R(e, d, e => {
+      for (let e of m) E(e, 'aria-haspopup', 'dialog'), R(e, d, e => {
         M(e), s(!0);
       }, !0);
       for (let e of b) R(e, d, e => {
@@ -1282,26 +1283,26 @@
         u(e, []);
       }, !0);
     },
-    $ = (e, t) => {
+    U = (e, t) => {
       e && (t && (e.tabIndex = -1), e.focus(), t && e.removeAttribute('tabindex'));
     },
     z = (e, t) => {
       const o = n => {
-        n.target.removeEventListener('transitionend', o), 'opacity' === n.propertyName && '1' === getComputedStyle(e).opacity && $((e => 1 === e ? m.ne.be : m.ne.ve)(t));
+        n.target.removeEventListener('transitionend', o), 'opacity' === n.propertyName && '1' === getComputedStyle(e).opacity && U((e => 1 === e ? g.ne.be : g.ne.ve)(t));
       };
       R(e, 'transitionend', o);
     };
   let q;
   const K = e => {
-      clearTimeout(q), e ? V(m.ne.ye, a) : q = setTimeout(() => {
-        j(m.ne.ye, a);
+      clearTimeout(q), e ? V(g.ne.ye, a) : q = setTimeout(() => {
+        j(g.ne.ye, a);
       }, 500);
     },
     Q = ['M 19.5 4.5 L 4.5 19.5 M 4.5 4.501 L 19.5 19.5', 'M 3.572 13.406 L 8.281 18.115 L 20.428 5.885', 'M 21.999 6.94 L 11.639 17.18 L 2.001 6.82 '],
     W = (e = 0, t = 1.5) => `<svg viewBox="0 0 24 24" stroke-width="${t}"><path d="${Q[e]}"/></svg>`,
     X = e => {
-      const t = m.ne,
-        o = m.o;
+      const t = g.ne,
+        o = g.o;
       (e => {
         const n = e === t.he,
           a = o.i.disablePageInteraction ? t.ye : n ? t.Ce : t.ye;
@@ -1309,7 +1310,7 @@
           if ('Tab' !== t.key || !(n ? o.k && !o.A : o.A)) return;
           const a = x(),
             s = n ? o.q : o.K;
-          0 !== s.length && (t.shiftKey ? a !== s[0] && e.contains(a) || (M(t), $(s[1])) : a !== s[1] && e.contains(a) || (M(t), $(s[0])));
+          0 !== s.length && (t.shiftKey ? a !== s[0] && e.contains(a) || (M(t), U(s[1])) : a !== s[1] && e.contains(a) || (M(t), U(s[0])));
         }, !0);
       })(e);
     },
@@ -1318,7 +1319,7 @@
       const {
           o: t,
           ne: o
-        } = m,
+        } = g,
         n = (e, t) => {
           const o = D(e, Y);
           t[0] = o[0], t[1] = o[o.length - 1];
@@ -1333,8 +1334,8 @@
           _e: c,
           ue: r,
           fe: i
-        } = m.ce,
-        l = m.re;
+        } = g.ce,
+        l = g.re;
       if (t) {
         const n = {
           modalName: t
@@ -1342,9 +1343,9 @@
         return e === l.fe ? C(i) && i(n) : e === l._e ? C(c) && c(n) : (n.modal = o, C(r) && r(n)), O(e, n);
       }
       const d = {
-        cookie: m.o.p
+        cookie: g.o.p
       };
-      e === l.ie ? C(s) && s(F(d)) : e === l.le ? C(a) && a(F(d)) : (d.changedCategories = m.o.L, d.changedServices = m.o.ee, C(n) && n(F(d))), O(e, F(d));
+      e === l.ie ? C(s) && s(F(d)) : e === l.le ? C(a) && a(F(d)) : (d.changedCategories = g.o.L, d.changedServices = g.o.ee, C(n) && n(F(d))), O(e, F(d));
     },
     te = (e, t) => {
       try {
@@ -1362,7 +1363,7 @@
         oe: c,
         p: r,
         L: i
-      } = m.o;
+      } = g.o;
       for (const e of n) {
         const n = o[e] || t[e] || [];
         for (const o of n) {
@@ -1375,7 +1376,7 @@
           !n.Se && b(t[e], o) ? (n.Se = !0, C(s) && s()) : n.Se && !b(t[e], o) && (n.Se = !1, C(c) && c());
         }
       }
-      if (!m.t.manageScriptTags) return;
+      if (!g.t.manageScriptTags) return;
       const l = c,
         d = e || r.categories || [],
         f = (e, n) => {
@@ -1457,12 +1458,12 @@
       }
     },
     pe = e => {
-      const t = m.o.i.guiOptions,
+      const t = g.o.i.guiOptions,
         o = t && t.consentModal,
         n = t && t.preferencesModal;
-      0 === e && me(m.ne.he, _e, o, 'cm--', 'box', 'cm'), 1 === e && me(m.ne.we, ue, n, le, 'box', 'pm');
+      0 === e && ge(g.ne.he, _e, o, 'cm--', 'box', 'cm'), 1 === e && ge(g.ne.we, ue, n, le, 'box', 'pm');
     },
-    me = (e, t, o, n, a, s) => {
+    ge = (e, t, o, n, a, s) => {
       e.className = s;
       const c = o && o.layout,
         r = o && o.position,
@@ -1473,7 +1474,7 @@
         _ = d[1],
         u = f in t ? f : a,
         p = t[u],
-        g = b(p.Ee, _) && _,
+        m = b(p.Ee, _) && _,
         v = r && r.split(' ') || [],
         y = v[0],
         h = n === le ? v[0] : v[1],
@@ -1482,24 +1483,24 @@
         S = t => {
           t && V(e, n + t);
         };
-      S(u), S(g), S(C), S(w), i && S('flip');
+      S(u), S(m), S(C), S(w), i && S('flip');
       const x = s + '__btn--secondary';
       if ('cm' === s) {
         const {
           Ie: e,
           Le: t
-        } = m.ne;
+        } = g.ne;
         e && (l ? j(e, x) : V(e, x)), t && (l ? j(t, x) : V(t, x));
       } else {
         const {
           je: e
-        } = m.ne;
+        } = g.ne;
         e && (l ? j(e, x) : V(e, x));
       }
     },
-    ge = (e, t) => {
-      const o = m.o,
-        n = m.ne,
+    me = (e, t) => {
+      const o = g.o,
+        n = g.ne,
         {
           hide: a,
           hidePreferences: s,
@@ -1508,26 +1509,26 @@
         p = e => {
           _(e), s(), a();
         },
-        g = o.u && o.u.preferencesModal;
-      if (!g) return;
-      const b = g.title,
-        v = g.closeIconLabel,
-        C = g.acceptAllBtn,
-        S = g.acceptNecessaryBtn,
-        x = g.savePreferencesBtn,
-        M = g.sections || [],
+        m = o.u && o.u.preferencesModal;
+      if (!m) return;
+      const b = m.title,
+        v = m.closeIconLabel,
+        C = m.acceptAllBtn,
+        S = m.acceptNecessaryBtn,
+        x = m.savePreferencesBtn,
+        M = m.sections || [],
         D = C || S || x;
       if (n.Fe) n.Pe = k(c), L(n.Pe, 'body');else {
         n.Fe = k(c), V(n.Fe, 'pm-wrapper');
         const e = k('div');
         V(e, 'pm-overlay'), H(n.Fe, e), R(e, d, s), n.we = k(c), V(n.we, 'pm'), E(n.we, 'role', 'dialog'), E(n.we, i, !0), E(n.we, 'aria-modal', !0), E(n.we, 'aria-labelledby', 'pm__title'), R(n.ye, 'keydown', e => {
           27 === e.keyCode && s();
-        }, !0), n.Oe = k(c), L(n.Oe, 'header'), n.Re = k('h2'), L(n.Re, 'title'), n.Re.id = 'pm__title', n.Be = k(r), L(n.Be, 'close-btn'), E(n.Be, 'aria-label', g.closeIconLabel || ''), R(n.Be, d, s), n.Ge = k('span'), n.Ge.innerHTML = W(), H(n.Be, n.Ge), n.Je = k(c), L(n.Je, 'body'), n.Ue = k(c), L(n.Ue, 'footer');
+        }, !0), n.Oe = k(c), L(n.Oe, 'header'), n.Re = k('h2'), L(n.Re, 'title'), n.Re.id = 'pm__title', n.Be = k(r), L(n.Be, 'close-btn'), E(n.Be, 'aria-label', m.closeIconLabel || ''), R(n.Be, d, s), n.$e = k('span'), n.$e.innerHTML = W(), H(n.Be, n.$e), n.Ge = k(c), L(n.Ge, 'body'), n.Je = k(c), L(n.Je, 'footer');
         var T = k(c);
         V(T, 'btns');
         var A = k(c),
           N = k(c);
-        L(A, l), L(N, l), H(n.Ue, A), H(n.Ue, N), H(n.Oe, n.Re), H(n.Oe, n.Be), n.ve = k(c), E(n.ve, 'tabIndex', -1), H(n.we, n.ve), H(n.we, n.Oe), H(n.we, n.Je), D && H(n.we, n.Ue), H(n.Fe, n.we);
+        L(A, l), L(N, l), H(n.Je, A), H(n.Je, N), H(n.Oe, n.Re), H(n.Oe, n.Be), n.ve = k(c), E(n.ve, 'tabIndex', -1), H(n.we, n.ve), H(n.we, n.Oe), H(n.we, n.Ge), D && H(n.we, n.Je), H(n.Fe, n.we);
       }
       let I;
       b && (n.Re.innerHTML = b, v && E(n.Be, 'aria-label', v)), M.forEach((e, t) => {
@@ -1538,11 +1539,11 @@
           _ = e.cookieTable,
           u = _ && _.body,
           p = _ && _.caption,
-          m = u && u.length > 0,
+          g = u && u.length > 0,
           b = !!f,
           v = b && o.X[l],
           C = h(v) && w(v) || [],
-          S = b && (!!s || !!m || w(v).length > 0);
+          S = b && (!!s || !!g || w(v).length > 0);
         var x = k(c);
         if (L(x, 'section'), S || s) {
           var M = k(c);
@@ -1572,7 +1573,7 @@
             const e = k('span');
             e.innerHTML = W(2, 3.5), L(e, 'section-arrow'), H(T, e), x.className += '--toggle';
             const t = be(a, l, f);
-            let o = g.serviceCounterLabel;
+            let o = m.serviceCounterLabel;
             if (D > 0 && y(o)) {
               let e = k('span');
               L(e, 'badge'), L(e, 'service-counter'), E(e, i, !0), E(e, 'data-servicecounter', D), o && (o = o.split('|'), o = o.length > 1 && D > 1 ? o[1] : o[0], E(e, 'data-counterlabel', o)), e.innerHTML = D + (o ? ' ' + o : ''), H(A, e);
@@ -1594,7 +1595,7 @@
           R(A, d, () => {
             t.classList.contains('is-expanded') ? (j(t, 'is-expanded'), E(o, 'aria-expanded', 'false'), E(e, i, 'true')) : (V(t, 'is-expanded'), E(o, 'aria-expanded', 'true'), E(e, i, 'false'));
           });
-        })(M, x, A), m)) {
+        })(M, x, A), g)) {
           const e = k('table'),
             o = k('thead'),
             a = k('tbody');
@@ -1605,7 +1606,7 @@
           L(e, 'section-table'), L(o, 'table-head'), L(a, 'table-body');
           const s = _.headers,
             r = w(s),
-            i = n.$e.createDocumentFragment(),
+            i = n.Ue.createDocumentFragment(),
             l = k('tr');
           for (const e of r) {
             const o = s[e],
@@ -1613,7 +1614,7 @@
             n.id = 'cc__row-' + o + t, E(n, 'scope', 'col'), L(n, 'table-th'), n.innerHTML = o, H(i, n);
           }
           H(l, i), H(o, l);
-          const d = n.$e.createDocumentFragment();
+          const d = n.Ue.createDocumentFragment();
           for (const e of u) {
             const o = k('tr');
             L(o, 'table-tr');
@@ -1629,21 +1630,21 @@
           H(a, d), H(e, o), H(e, a), H(M, e);
         }
         (S || s) && H(x, M);
-        const P = n.Pe || n.Je;
+        const P = n.Pe || n.Ge;
         b ? (I || (I = k(c), L(I, 'section-toggles')), I.appendChild(x)) : I = null, H(P, I || x);
-      }), C && (n.ze || (n.ze = k(r), L(n.ze, 'btn'), E(n.ze, f, 'all'), H(A, n.ze), R(n.ze, d, () => p('all'))), n.ze.innerHTML = C), S && (n.je || (n.je = k(r), L(n.je, 'btn'), E(n.je, f, 'necessary'), H(A, n.je), R(n.je, d, () => p([]))), n.je.innerHTML = S), x && (n.qe || (n.qe = k(r), L(n.qe, 'btn'), L(n.qe, 'btn--secondary'), E(n.qe, f, 'save'), H(N, n.qe), R(n.qe, d, () => p())), n.qe.innerHTML = x), n.Pe && (n.we.replaceChild(n.Pe, n.Je), n.Je = n.Pe), pe(1), o.N || (o.N = !0, ee(m.re.ue, u, n.we), t(e), H(n.Ce, n.Fe), X(n.we), setTimeout(() => V(n.Fe, 'cc--anim'), 100)), Z(2);
+      }), C && (n.ze || (n.ze = k(r), L(n.ze, 'btn'), E(n.ze, f, 'all'), H(A, n.ze), R(n.ze, d, () => p('all'))), n.ze.innerHTML = C), S && (n.je || (n.je = k(r), L(n.je, 'btn'), E(n.je, f, 'necessary'), H(A, n.je), R(n.je, d, () => p([]))), n.je.innerHTML = S), x && (n.qe || (n.qe = k(r), L(n.qe, 'btn'), L(n.qe, 'btn--secondary'), E(n.qe, f, 'save'), H(N, n.qe), R(n.qe, d, () => p())), n.qe.innerHTML = x), n.Pe && (n.we.replaceChild(n.Pe, n.Ge), n.Ge = n.Pe), pe(1), o.N || (o.N = !0, ee(g.re.ue, u, n.we), t(e), H(n.Ce, n.Fe), X(n.we), setTimeout(() => V(n.Fe, 'cc--anim'), 100)), Z(2);
     };
   function be(e, t, o, n, a) {
-    const c = m.o,
-      r = m.ne,
+    const c = g.o,
+      r = g.ne,
       l = k('label'),
       f = k('input'),
       _ = k('span'),
       u = k('span'),
       p = k('span'),
-      g = k('span'),
+      m = k('span'),
       v = k('span');
-    if (g.innerHTML = W(1, 3), v.innerHTML = W(0, 3), f.type = 'checkbox', V(l, 'section__toggle-wrapper'), V(f, 'section__toggle'), V(g, 'toggle__icon-on'), V(v, 'toggle__icon-off'), V(_, 'toggle__icon'), V(u, 'toggle__icon-circle'), V(p, 'toggle__label'), E(_, i, 'true'), n ? (V(l, 'toggle-service'), E(f, s, a), r.se[a][t] = f) : r.ae[t] = f, n ? (e => {
+    if (m.innerHTML = W(1, 3), v.innerHTML = W(0, 3), f.type = 'checkbox', V(l, 'section__toggle-wrapper'), V(f, 'section__toggle'), V(m, 'toggle__icon-on'), V(v, 'toggle__icon-off'), V(_, 'toggle__icon'), V(u, 'toggle__icon-circle'), V(p, 'toggle__label'), E(_, i, 'true'), n ? (V(l, 'toggle-service'), E(f, s, a), r.se[a][t] = f) : r.ae[t] = f, n ? (e => {
       R(f, 'change', () => {
         const t = r.se[e],
           o = r.ae[e];
@@ -1661,7 +1662,7 @@
         c.Z[e] = [];
         for (let n in t) t[n].checked = o, o && c.Z[e].push(n);
       });
-    })(t), f.value = t, p.textContent = e.replace(/<.*>.*<\/.*>/gm, ''), H(u, v), H(u, g), H(_, u), c.D) (o.readOnly || o.enabled) && (f.checked = !0);else if (n) {
+    })(t), f.value = t, p.textContent = e.replace(/<.*>.*<\/.*>/gm, ''), H(u, v), H(u, m), H(_, u), c.D) (o.readOnly || o.enabled) && (f.checked = !0);else if (n) {
       const e = c.Y[a];
       f.checked = o.readOnly || b(e, t);
     } else b(c.R, t) && (f.checked = !0);
@@ -1669,11 +1670,11 @@
   }
   const ve = () => {
       const e = k('span');
-      return m.ne.Ke || (m.ne.Ke = e), e;
+      return g.ne.Ke || (g.ne.Ke = e), e;
     },
     ye = (e, t) => {
-      const o = m.o,
-        n = m.ne,
+      const o = g.o,
+        n = g.ne,
         {
           hide: a,
           showPreferences: s,
@@ -1681,7 +1682,7 @@
         } = e,
         p = o.u && o.u.consentModal;
       if (!p) return;
-      const g = p.acceptAllBtn,
+      const m = p.acceptAllBtn,
         b = p.acceptNecessaryBtn,
         v = p.showPreferencesBtn,
         y = p.closeIconLabel,
@@ -1699,17 +1700,17 @@
           s = (a && a.layout || e).split(' ')[0] === e;
         w && y && s && (n.Le || (n.Le = k(r), n.Le.innerHTML = W(), I(n.Le, 'btn'), I(n.Le, 'btn--close'), R(n.Le, d, () => {
           S([]);
-        }), H(n.We, n.Le)), E(n.Le, 'aria-label', y)), H(n.We, n.Xe), (g || b || v) && H(n.We, n.Ye), n.be = k(c), E(n.be, 'tabIndex', -1), H(n.he, n.be), H(n.he, n.We), H(n.Qe, n.he);
+        }), H(n.We, n.Le)), E(n.Le, 'aria-label', y)), H(n.We, n.Xe), (m || b || v) && H(n.We, n.Ye), n.be = k(c), E(n.be, 'tabIndex', -1), H(n.he, n.be), H(n.he, n.We), H(n.Qe, n.he);
       }
       w && (n.Ze || (n.Ze = k('h2'), n.Ze.className = n.Ze.id = 'cm__title', H(n.Xe, n.Ze)), n.Ze.innerHTML = w);
       let x = p.description;
-      if (x && (o.V && (x = x.replace('{{revisionMessage}}', o.I ? '' : p.revisionMessage || '')), n.et || (n.et = k('p'), n.et.className = n.et.id = 'cm__desc', H(n.Xe, n.et)), n.et.innerHTML = x), g && (n.tt || (n.tt = k(r), H(n.tt, ve()), I(n.tt, 'btn'), E(n.tt, f, 'all'), R(n.tt, d, () => {
+      if (x && (o.V && (x = x.replace('{{revisionMessage}}', o.I ? '' : p.revisionMessage || '')), n.et || (n.et = k('p'), n.et.className = n.et.id = 'cm__desc', H(n.Xe, n.et)), n.et.innerHTML = x), m && (n.tt || (n.tt = k(r), H(n.tt, ve()), I(n.tt, 'btn'), E(n.tt, f, 'all'), R(n.tt, d, () => {
         S('all');
-      })), n.tt.firstElementChild.innerHTML = g), b && (n.Ie || (n.Ie = k(r), H(n.Ie, ve()), I(n.Ie, 'btn'), E(n.Ie, f, 'necessary'), R(n.Ie, d, () => {
+      })), n.tt.firstElementChild.innerHTML = m), b && (n.Ie || (n.Ie = k(r), H(n.Ie, ve()), I(n.Ie, 'btn'), E(n.Ie, f, 'necessary'), R(n.Ie, d, () => {
         S([]);
       })), n.Ie.firstElementChild.innerHTML = b), v && (n.ot || (n.ot = k(r), H(n.ot, ve()), I(n.ot, 'btn'), I(n.ot, 'btn--secondary'), E(n.ot, f, 'show'), R(n.ot, 'mouseenter', () => {
-        o.N || ge(e, t);
-      }), R(n.ot, d, s)), n.ot.firstElementChild.innerHTML = v), n.nt || (n.nt = k(c), I(n.nt, l), g && H(n.nt, n.tt), b && H(n.nt, n.Ie), (g || b) && H(n.We, n.nt), H(n.Ye, n.nt)), n.ot && !n.st && (n.st = k(c), n.Ie && n.tt ? (I(n.st, l), H(n.st, n.ot), H(n.Ye, n.st)) : (H(n.nt, n.ot), I(n.nt, l + '--uneven'))), h) {
+        o.N || me(e, t);
+      }), R(n.ot, d, s)), n.ot.firstElementChild.innerHTML = v), n.nt || (n.nt = k(c), I(n.nt, l), m && H(n.nt, n.tt), b && H(n.nt, n.Ie), (m || b) && H(n.We, n.nt), H(n.Ye, n.nt)), n.ot && !n.st && (n.st = k(c), n.Ie && n.tt ? (I(n.st, l), H(n.st, n.ot), H(n.Ye, n.st)) : (H(n.nt, n.ot), I(n.nt, l + '--uneven'))), h) {
         if (!n.ct) {
           let e = k(c),
             t = k(c);
@@ -1717,48 +1718,49 @@
         }
         n.ct.innerHTML = h;
       }
-      pe(0), o.T || (o.T = !0, ee(m.re.ue, _, n.he), t(e), H(n.Ce, n.Qe), X(n.he), setTimeout(() => V(n.Qe, 'cc--anim'), 100)), Z(1), U(n.We, e, ge, t);
+      pe(0), o.T || (o.T = !0, ee(g.re.ue, _, n.he), t(e), H(n.Ce, n.Qe), X(n.he), setTimeout(() => V(n.Qe, 'cc--anim'), 100)), Z(1), J(n.We, e, me, t);
     },
     he = e => {
       if (!y(e)) return null;
-      if (e in m.o._) return e;
+      if (e in g.o._) return e;
       let t = e.slice(0, 2);
-      return t in m.o._ ? t : null;
+      return t in g.o._ ? t : null;
     },
-    Ce = () => m.o.l || m.o.i.language.default,
+    Ce = () => g.o.l || g.o.i.language.default,
     we = e => {
-      e && (m.o.l = e);
+      e && (g.o.l = e);
     },
     Se = async e => {
-      const t = m.o;
+      const t = g.o;
       let o = he(e) ? e : Ce(),
         n = t._[o];
-      return y(n) ? n = await (async e => {
+      if (y(n) ? n = await (async e => {
         try {
           const t = await fetch(e);
           return await t.json();
         } catch (e) {
           return console.error(e), !1;
         }
-      })(n) : C(n) && (n = await n()), !!n && (t.u = n, we(o), !0);
+      })(n) : C(n) && (n = await n()), !n) throw `Could not load translation for the '${o}' language`;
+      return t.u = n, we(o), !0;
     },
     xe = () => {
-      let e = m.o.i.language.rtl,
-        t = m.ne.Ce;
-      e && t && (v(e) || (e = [e]), b(e, m.o.l) ? V(t, 'cc--rtl') : j(t, 'cc--rtl'));
+      let e = g.o.i.language.rtl,
+        t = g.ne.Ce;
+      e && t && (v(e) || (e = [e]), b(e, g.o.l) ? V(t, 'cc--rtl') : j(t, 'cc--rtl'));
     },
     Me = () => {
-      const e = m.ne;
+      const e = g.ne;
       if (e.Ce) return;
       e.Ce = k(c), e.Ce.id = 'cc-main', e.Ce.setAttribute('data-nosnippet', ''), xe();
-      let t = m.o.i.root;
-      t && y(t) && (t = document.querySelector(t)), (t || e.$e.body).appendChild(e.Ce);
+      let t = g.o.i.root;
+      t && y(t) && (t = document.querySelector(t)), (t || e.Ue.body).appendChild(e.Ce);
     },
     De = e => te(() => localStorage.removeItem(e)),
     Te = (e, t) => {
       if (t instanceof RegExp) return e.filter(e => t.test(e));
       {
-        const o = g(e, t);
+        const o = m(e, t);
         return o > -1 ? [e[o]] : [];
       }
     },
@@ -1772,35 +1774,36 @@
           path: a,
           domain: s,
           sameSite: c,
-          useLocalStorage: r
-        } = m.t.cookie,
-        i = e ? (() => {
-          const e = m.o.S,
+          useLocalStorage: r,
+          secure: i
+        } = g.t.cookie,
+        l = e ? (() => {
+          const e = g.o.S,
             t = e ? new Date() - e : 0;
           return 864e5 * B() - t;
         })() : 864e5 * B(),
-        l = new Date();
-      l.setTime(l.getTime() + i), m.o.p.expirationTime = l.getTime();
-      const d = JSON.stringify(m.o.p);
-      let f = n + '=' + encodeURIComponent(d) + (0 !== i ? '; expires=' + l.toUTCString() : '') + '; Path=' + a + '; SameSite=' + c;
-      b(t, '.') && (f += '; Domain=' + s), 'https:' === o && (f += '; Secure'), r ? ((e, t) => {
+        d = new Date();
+      d.setTime(d.getTime() + l), g.o.p.expirationTime = d.getTime();
+      const f = JSON.stringify(g.o.p);
+      let _ = n + '=' + encodeURIComponent(f) + (0 !== l ? '; expires=' + d.toUTCString() : '') + '; Path=' + a + '; SameSite=' + c;
+      b(t, '.') && (_ += '; Domain=' + s), i && 'https:' === o && (_ += '; Secure'), r ? ((e, t) => {
         te(() => localStorage.setItem(e, t));
-      })(n, d) : document.cookie = f, m.o.p;
+      })(n, f) : document.cookie = _, g.o.p;
     },
     Ee = (e, t, o) => {
       if (0 === e.length) return;
-      const n = o || m.t.cookie.domain,
-        a = t || m.t.cookie.path,
+      const n = o || g.t.cookie.domain,
+        a = t || g.t.cookie.path,
         s = 'www.' === n.slice(0, 4),
         c = s && n.substring(4),
         r = (e, t) => {
-          document.cookie = e + '=; path=' + a + (t ? '; domain=.' + t : '') + '; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+          t && '.' !== t.slice(0, 1) && (t = '.' + t), document.cookie = e + '=; path=' + a + (t ? '; domain=' + t : '') + '; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
         };
-      for (const t of e) r(t), r(t, n), s && r(t, c);
+      for (const t of e) r(t, o), o || r(t, n), s && r(t, c);
     },
     Ae = e => {
-      const t = e || m.t.cookie.name,
-        o = m.t.cookie.useLocalStorage;
+      const t = e || g.t.cookie.name,
+        o = g.t.cookie.useLocalStorage;
       return ((e, t) => {
         let o;
         return o = te(() => JSON.parse(t ? e : decodeURIComponent(e)), !0) || {}, o;
@@ -1830,73 +1833,74 @@
           B: a,
           N: s,
           Z: c,
-          G: r,
+          $: r,
           X: i
-        } = m.o;
+        } = g.o;
         let l = [];
         if (e) {
           v(e) ? l.push(...e) : y(e) && (l = 'all' === e ? o : [e]);
           for (const e of o) c[e] = b(l, e) ? w(i[e]) : [];
         } else l = [...n, ...r], s && (l = (() => {
-          const e = m.ne.ae;
+          const e = g.ne.ae;
           if (!e) return [];
           let t = [];
           for (let o in e) e[o].checked && t.push(o);
           return t;
         })());
-        l = l.filter(e => !b(o, e) || !b(t, e)), l.push(...a), J(l);
-      })(o, n), (e => {
-        const t = m.o,
+        l = l.filter(e => !b(o, e) || !b(t, e)), l.push(...a), G(l);
+      })(o, n), (() => {
+        const e = g.o,
           {
-            Z: o,
-            B: n,
-            Y: a,
-            X: s,
-            O: c
-          } = t,
-          r = c;
-        t.te = F(a);
-        for (const e of r) {
-          const c = s[e],
+            Z: t,
+            B: o,
+            Y: n,
+            X: a,
+            O: s
+          } = e,
+          c = s;
+        e.te = F(n);
+        for (const s of c) {
+          const c = a[s],
             r = w(c),
-            i = o[e] && o[e].length > 0,
-            l = b(n, e);
+            i = t[s] && t[s].length > 0,
+            l = b(o, s);
           if (0 !== r.length) {
-            if (a[e] = [], l) a[e].push(...r);else if (i) {
-              const t = o[e];
-              a[e].push(...t);
-            } else a[e] = t.Z[e];
-            a[e] = S(a[e]);
+            if (n[s] = [], l) n[s].push(...r);else if (i) {
+              const e = t[s];
+              n[s].push(...e);
+            } else n[s] = e.Z[s];
+            n[s] = S(n[s]);
           }
         }
       })(), (() => {
-        const o = m.o;
-        o.L = m.t.mode === t && o.D ? G(o.G, o.R) : G(o.R, o.p.categories);
+        const o = g.o;
+        o.L = g.t.mode === t && o.D ? $(o.$, o.R) : $(o.R, o.p.categories);
         let n = o.L.length > 0,
           a = !1;
-        for (const e of o.O) o.ee[e] = G(o.Y[e], o.te[e]), o.ee[e].length > 0 && (a = !0);
-        const s = m.ne.ae;
+        for (const e of o.O) o.ee[e] = $(o.Y[e], o.te[e]), o.ee[e].length > 0 && (a = !0);
+        const s = g.ne.ae;
         for (const e in s) s[e].checked = b(o.R, e);
         for (const e of o.O) {
-          const t = m.ne.se[e],
+          const t = g.ne.se[e],
             n = o.Y[e];
           for (const e in t) t[e].checked = b(n, e);
         }
         o.C || (o.C = new Date()), o.M || (o.M = ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, e => (e ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> e / 4).toString(16))), o.p = {
           categories: F(o.R),
-          revision: m.t.revision,
+          revision: g.t.revision,
           data: o.h,
           consentTimestamp: o.C.toISOString(),
           consentId: o.M,
-          services: F(o.Y)
-        };
+          services: F(o.Y),
+          languageCode: g.o.l
+        }, o.S && (o.p.lastConsentTimestamp = o.S.toISOString());
         let c = !1;
         const r = n || a;
-        (o.D || r) && (o.D && (o.D = !1, c = !0), o.S = o.S ? new Date() : o.C, o.p.lastConsentTimestamp = o.S.toISOString(), ke(), m.t.autoClearCookies && (c || r) && (e => {
-          const t = m.o,
+        (o.D || r) && (o.D && (o.D = !1, c = !0), o.S = o.S ? new Date() : o.C, o.p.lastConsentTimestamp = o.S.toISOString(), ke(), g.t.autoClearCookies && (c || r) && (e => {
+          const t = g.o,
             o = He(),
             n = (e => {
-              const t = m.o;
+              const t = g.o;
               return (e ? t.O : t.L).filter(e => {
                 const o = t.P[e];
                 return !!o && !o.readOnly && !!o.autoClear;
@@ -1923,30 +1927,30 @@
               }
             }
           }
-        })(c), oe()), c && (ee(m.re.ie), ee(m.re.le), m.t.mode === e) || (r && ee(m.re.de), o.j && (o.j = !1, location.reload()));
+        })(c), oe()), c && (ee(g.re.ie), ee(g.re.le), g.t.mode === e) || (r && ee(g.re.de), o.j && (o.j = !1, location.reload()));
       })();
     },
     Ie = e => {
-      const t = m.o.D ? [] : m.o.R;
+      const t = g.o.D ? [] : g.o.R;
       return b(t, e);
     },
     je = (e, t) => {
-      const o = m.o.D ? [] : m.o.Y[t] || [];
+      const o = g.o.D ? [] : g.o.Y[t] || [];
       return b(o, e);
     },
     Oe = e => {
       const {
         ne: t,
         o: n
-      } = m;
+      } = g;
       if (!n.k) {
         if (!n.T) {
           if (!e) return;
-          ye(Je, Me);
+          ye(Ge, Me);
         }
-        n.k = !0, n.U = x(), n.v && K(!0), z(t.he, 1), V(t.ye, o), E(t.he, i, 'false'), setTimeout(() => {
-          $(m.ne.be);
-        }, 100), ee(m.re.fe, _);
+        n.k = !0, n.J = x(), n.v && K(!0), z(t.he, 1), V(t.ye, o), E(t.he, i, 'false'), setTimeout(() => {
+          U(g.ne.be);
+        }, 100), ee(g.re.fe, _);
       }
     },
     Re = () => {
@@ -1954,42 +1958,42 @@
         ne: e,
         o: t,
         re: n
-      } = m;
-      t.k && (t.k = !1, t.v && K(), $(e.Ke, !0), j(e.ye, o), E(e.he, i, 'true'), $(t.U), t.U = null, ee(n._e, _));
+      } = g;
+      t.k && (t.k = !1, t.v && K(), U(e.Ke, !0), j(e.ye, o), E(e.he, i, 'true'), U(t.J), t.J = null, ee(n._e, _));
     },
     Be = () => {
-      const e = m.o;
-      e.A || (e.N || ge(Je, Me), e.A = !0, e.k ? e.$ = x() : e.U = x(), z(m.ne.we, 2), V(m.ne.ye, n), E(m.ne.we, i, 'false'), setTimeout(() => {
-        $(m.ne.ve);
-      }, 100), ee(m.re.fe, u));
+      const e = g.o;
+      e.A || (e.N || me(Ge, Me), e.A = !0, e.k ? e.U = x() : e.J = x(), z(g.ne.we, 2), V(g.ne.ye, n), E(g.ne.we, i, 'false'), setTimeout(() => {
+        U(g.ne.ve);
+      }, 100), ee(g.re.fe, u));
     },
-    Ge = () => {
-      const e = m.o;
+    $e = () => {
+      const e = g.o;
       e.A && (e.A = !1, (() => {
         const e = We(),
-          t = m.o.P,
-          o = m.ne.ae,
-          n = m.ne.se,
-          a = e => b(m.o.G, e);
+          t = g.o.P,
+          o = g.ne.ae,
+          n = g.ne.se,
+          a = e => b(g.o.$, e);
         for (const s in o) {
           const c = !!t[s].readOnly;
           o[s].checked = c || (e ? Ie(s) : a(s));
           for (const t in n[s]) n[s][t].checked = c || (e ? je(t, s) : a(s));
         }
-      })(), $(m.ne.Ge, !0), j(m.ne.ye, n), E(m.ne.we, i, 'true'), e.k ? ($(e.$), e.$ = null) : ($(e.U), e.U = null), ee(m.re._e, u));
+      })(), U(g.ne.$e, !0), j(g.ne.ye, n), E(g.ne.we, i, 'true'), e.k ? (U(e.U), e.U = null) : (U(e.J), e.J = null), ee(g.re._e, u));
     };
-  var Je = {
+  var Ge = {
     show: Oe,
     hide: Re,
     showPreferences: Be,
-    hidePreferences: Ge,
+    hidePreferences: $e,
     acceptCategory: Ve
   };
-  const $e = () => {
+  const Ue = () => {
       const {
           F: e,
           Y: t
-        } = m.o,
+        } = g.o,
         {
           accepted: o,
           rejected: n
@@ -1998,7 +2002,7 @@
             D: e,
             R: t,
             O: o
-          } = m.o;
+          } = g.o;
           return {
             accepted: t,
             rejected: e ? [] : o.filter(e => !b(t, e))
@@ -2012,13 +2016,13 @@
         rejectedServices: P()
       });
     },
-    We = () => !m.o.D,
+    We = () => !g.o.D,
     Xe = async e => {
       const {
           o: o,
           t: n,
           re: a
-        } = m,
+        } = g,
         c = window;
       if (!c._ccRun) {
         if (c._ccRun = !0, (e => {
@@ -2026,21 +2030,21 @@
               ne: o,
               t: n,
               o: a
-            } = m,
+            } = g,
             c = n,
             r = a,
             {
               cookie: i
             } = c,
-            l = m.ce,
+            l = g.ce,
             d = e.cookie,
             f = e.categories,
             _ = w(f) || [],
             u = navigator,
             p = document;
-          o.$e = p, o.ye = p.documentElement, i.domain = location.hostname, r.i = e, r.P = f, r.O = _, r._ = e.language.translations, r.v = !!e.disablePageInteraction, l.ie = e.onFirstConsent, l.le = e.onConsent, l.de = e.onChange, l._e = e.onModalHide, l.fe = e.onModalShow, l.ue = e.onModalReady;
+          o.Ue = p, o.ye = p.documentElement, i.domain = location.hostname, r.i = e, r.P = f, r.O = _, r._ = e.language.translations, r.v = !!e.disablePageInteraction, l.ie = e.onFirstConsent, l.le = e.onConsent, l.de = e.onChange, l._e = e.onModalHide, l.fe = e.onModalShow, l.ue = e.onModalReady;
           const {
-            mode: g,
+            mode: m,
             autoShow: v,
             lazyHtmlGeneration: y,
             autoClearCookies: C,
@@ -2048,7 +2052,7 @@
             manageScriptTags: x,
             hideFromBots: M
           } = e;
-          g === t && (c.mode = g), 'boolean' == typeof C && (c.autoClearCookies = C), 'boolean' == typeof x && (c.manageScriptTags = x), 'number' == typeof S && S >= 0 && (c.revision = S, r.V = !0), 'boolean' == typeof v && (c.autoShow = v), 'boolean' == typeof y && (c.lazyHtmlGeneration = y), !1 === M && (c.hideFromBots = !1), !0 === c.hideFromBots && u && (r.J = u.userAgent && /bot|crawl|spider|slurp|teoma/i.test(u.userAgent) || u.webdriver), h(d) && (c.cookie = {
+          m === t && (c.mode = m), 'boolean' == typeof C && (c.autoClearCookies = C), 'boolean' == typeof x && (c.manageScriptTags = x), 'number' == typeof S && S >= 0 && (c.revision = S, r.V = !0), 'boolean' == typeof v && (c.autoShow = v), 'boolean' == typeof y && (c.lazyHtmlGeneration = y), !1 === M && (c.hideFromBots = !1), !0 === c.hideFromBots && u && (r.G = u.userAgent && /bot|crawl|spider|slurp|teoma/i.test(u.userAgent) || u.webdriver), h(d) && (c.cookie = {
             ...i,
             ...d
           }), c.autoClearCookies, r.V, c.manageScriptTags, (e => {
@@ -2058,20 +2062,20 @@
               Y: n,
               Z: a,
               B: s
-            } = m.o;
+            } = g.o;
             for (let c of e) {
               const e = t[c],
                 r = e.services || {},
                 i = h(r) && w(r) || [];
-              o[c] = {}, n[c] = [], a[c] = [], e.readOnly && (s.push(c), n[c] = i), m.ne.se[c] = {};
+              o[c] = {}, n[c] = [], a[c] = [], e.readOnly && (s.push(c), n[c] = i), g.ne.se[c] = {};
               for (let e of i) {
                 const t = r[e];
                 t.Se = !1, o[c][e] = t;
               }
             }
           })(_), (() => {
-            if (!m.t.manageScriptTags) return;
-            const e = m.o,
+            if (!g.t.manageScriptTags) return;
+            const e = g.o,
               t = D(document, 'script[' + s + ']');
             for (const o of t) {
               let t = N(o, s),
@@ -2091,7 +2095,7 @@
               }
             }
           })(), we((() => {
-            const e = m.o.i.language.autoDetect;
+            const e = g.o.i.language.autoDetect;
             if (e) {
               const t = {
                   browser: navigator.language,
@@ -2102,10 +2106,10 @@
             }
             return Ce();
           })());
-        })(e), o.J) return;
+        })(e), o.G) return;
         (() => {
-          const e = m.o,
-            o = m.t,
+          const e = g.o,
+            o = g.t,
             n = Ae(),
             {
               categories: a,
@@ -2120,26 +2124,26 @@
           e.p = n, e.M = c;
           const _ = !!c && y(c);
           e.C = r, e.C && (e.C = new Date(r)), e.S = i, e.S && (e.S = new Date(i)), e.h = void 0 !== l ? l : null, e.V && _ && d !== o.revision && (e.I = !1), e.D = !(_ && e.I && e.C && e.S && f), o.cookie.useLocalStorage && !e.D && (e.D = new Date().getTime() > (n.expirationTime || 0), e.D && De(o.cookie.name)), e.D, (() => {
-            const e = m.o;
+            const e = g.o;
             for (const o of e.O) {
               const n = e.P[o];
               if (n.readOnly || n.enabled) {
-                e.G.push(o);
+                e.$.push(o);
                 const n = e.X[o] || {};
                 for (let a in n) e.Z[o].push(a), e.i.mode === t && e.Y[o].push(a);
               }
             }
-          })(), e.D ? o.mode === t && (e.R = [...e.G]) : (e.Z = {
-            ...e.Y
-          }, e.Y = {
+          })(), e.D ? o.mode === t && (e.R = [...e.$]) : (e.Y = {
             ...e.Y,
             ...s
-          }, J([...e.B, ...a]));
+          }, e.Z = {
+            ...e.Y
+          }, G([...e.B, ...a]));
         })();
         const i = We();
         if (!(await Se())) return !1;
-        if (U(null, r = Je, ge, Me), m.o.D && ye(r, Me), m.t.lazyHtmlGeneration || ge(r, Me), n.autoShow && !i && Oe(!0), i) return oe(), ee(a.le);
-        n.mode === t && oe(o.G);
+        if (J(null, r = Ge, me, Me), g.o.D && ye(r, Me), g.t.lazyHtmlGeneration || me(r, Me), n.autoShow && !i && Oe(!0), i) return oe(), ee(a.le);
+        n.mode === t && oe(o.$);
       }
       var r;
     };
@@ -2420,7 +2424,7 @@
         this.attachEventListeners();
 
         // Immediately hide the banner if user has preferences set
-        const preferences = $e();
+        const preferences = Ue();
         if (preferences && preferences.acceptedCategories.length > 0) {
           this.consentBannerElement.setAttribute('hidden', 'true');
         }
@@ -2475,7 +2479,7 @@
       });
     }
     loadUserPreferences() {
-      const preferences = $e() || {
+      const preferences = Ue() || {
         acceptedCategories: []
       };
       const inputs = Array.from(this.allCookieInputs);
@@ -2494,7 +2498,7 @@
     }
     handleConsentAction(action) {
       const updatePreferencesDialog = () => {
-        const preferences = $e();
+        const preferences = Ue();
         if (preferences && this.allCookieInputs) {
           this.allCookieInputs.forEach(checkboxElement => {
             const checkbox = checkboxElement; // Local reference
