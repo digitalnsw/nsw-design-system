@@ -1,5 +1,6 @@
 import * as CookieConsentAPI from 'vanilla-cookieconsent'
 
+/* eslint-disable max-len */
 class CookieConsent {
   constructor(config = null) {
     this.isInit = false
