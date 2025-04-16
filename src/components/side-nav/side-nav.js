@@ -15,6 +15,14 @@ class SideNav {
     }
 
     if (this.toggleButton) {
+      if (!this.toggleButton.querySelector('.material-icons')) {
+        const icon = document.createElement('span')
+        icon.classList.add('material-icons', 'nsw-material-icons')
+        icon.setAttribute('focusable', 'false')
+        icon.setAttribute('aria-hidden', 'true')
+        icon.textContent = 'keyboard_arrow_right'
+        this.toggleButton.appendChild(icon)
+      }
       this.toggleButton.setAttribute('aria-controls', this.sideNavContent.id)
       this.toggleButton.addEventListener('click', this.toggle.bind(this))
     }
