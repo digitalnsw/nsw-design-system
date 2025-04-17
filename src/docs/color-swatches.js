@@ -149,7 +149,12 @@ class ColorSwatches {
 
     // Apply changes to correct scope (content-only or full-page)
     Object.keys(this.variables).forEach((key) => {
-      this.targetElement.style.setProperty(this.variables[key], selectedColors[key]);
+      // unwrap label/value objects if present
+      let entry = selectedColors[key];
+      let colorValue = entry && typeof entry === 'object' && entry.value
+        ? entry.value
+        : entry;
+      this.targetElement.style.setProperty(this.variables[key], colorValue);
     });
   }
 
@@ -160,14 +165,19 @@ class ColorSwatches {
     const selectedColors = this.palettes[this.currentPalette][this.currentColor];
 
     this.dataTable.innerHTML = Object.keys(this.variables)
-      .map((key) => 
-        `<tr class="nsw-color-swatches__data">
-          <td><div class="nsw-docs__swatch" style="background-color: var(${this.variables[key]})"></div></td>
-          <td><p>${this.formatLabel(key)}</p></td>
-          <td><p>${selectedColors[key]}</p></td>
-          <td><p><code>${this.variables[key]}</code></p></td>
-        </tr>`
-      )
+      .map((key) => {
+        // unwrap label/value objects if present
+        let entry = selectedColors[key];
+        let colorValue = entry && typeof entry === 'object' && entry.value ? entry.value : entry;
+        let colorLabel = entry && typeof entry === 'object' && entry.label ? entry.label : '';
+        return `
+          <tr class="nsw-color-swatches__data">
+            <td><div class="nsw-docs__swatch" style="background-color: var(${this.variables[key]})"></div></td>
+            <td><p>${this.formatLabel(key)}</p></td>
+            <td><p><code>${colorValue}</code>${colorLabel && "<br><p class='nsw-small nsw-m-top-xs nsw-m-bottom-xxs'>" + colorLabel}</p></td>
+            <td><p><code>${this.variables[key]}</code></p></td>
+          </tr>`;
+      })
       .join('');
   }
 

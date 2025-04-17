@@ -115,211 +115,211 @@ function initDocs() {
       'original-palette': {
         blue: {
           val: '#002664',
-          'brand-dark': '#002664',
-          'brand-light': '#CBEDFD',
-          'brand-supplementary': '#146CFD',
-          'brand-accent': '#D7153A',
-          'link-colour': '#002664',
-          'visited-link-colour': '#551A8B',
-          'hover-background-colour': 'rgba(0, 38, 100, 0.1)',
-          'active-background-colour': 'rgba(0, 38, 100, 0.2)',
-          'focus': '#0086B3',
+          'brand-dark': { label: 'Blue 01', value: '#002664' },
+          'brand-light': { label: 'Blue 04', value: '#CBEDFD' },
+          'brand-supplementary': { label: 'Blue 02', value: '#146CFD' },
+          'brand-accent': { label: 'Red 02', value: '#D7153A' },
+          'link-colour': { label: 'Blue 01', value: '#002664' },
+          'visited-link-colour': { label: '', value: '#551A8B' },
+          'hover-background-colour': { label: '', value: 'rgba(0, 38, 100, 0.1)' },
+          'active-background-colour': { label: '', value: 'rgba(0, 38, 100, 0.2)' },
+          focus: { label: '', value: '#0086B3' }
         },
         purple: {
           val: '#441170',
-          'brand-dark': '#441170',
-          'brand-light': '#E6E1FD',
-          'brand-supplementary': '#8055F1',
-          'brand-accent': '#FAAF05',
-          'link-colour': '#441170',
-          'visited-link-colour': '#70114D',
-          'hover-background-colour': 'rgba(68, 17, 112, 0.1)',
-          'active-background-colour': 'rgba(68, 17, 112, 0.2)',
-          'focus': '#351BB5',
+          'brand-dark': { label: 'Purple 01', value: '#441170' },
+          'brand-light': { label: 'Purple 04', value: '#E6E1FD' },
+          'brand-supplementary': { label: 'Purple 02', value: '#8055F1' },
+          'brand-accent': { label: 'Yellow 02', value: '#FAAF05' },
+          'link-colour': { label: 'Purple 01', value: '#441170' },
+          'visited-link-colour': { label: '', value: '#70114D' },
+          'hover-background-colour': { label: '', value: 'rgba(68, 17, 112, 0.1)' },
+          'active-background-colour': { label: '', value: 'rgba(68, 17, 112, 0.2)' },
+          focus: { label: '', value: '#351BB5' }
         },
         fuchsia: {
           val: '#65004D',
-          'brand-dark': '#65004D',
-          'brand-light': '#F0E6ED',
-          'brand-supplementary': '#D912AE',
-          'brand-accent': '#F3631B',
-          'link-colour': '#65004D',
-          'visited-link-colour': '#983379',
-          'hover-background-colour': 'rgba(101, 0, 77, 0.1)',
-          'active-background-colour': 'rgba(101, 0, 77, 0.2)',
-          'focus': '#9D00B4',
+          'brand-dark': { label: 'Fuchsia 01', value: '#65004D' },
+          'brand-light': { label: 'Fuchsia 04', value: '#F0E6ED' },
+          'brand-supplementary': { label: 'Fuchsia 02', value: '#D912AE' },
+          'brand-accent': { label: 'Orange 02', value: '#F3631B' },
+          'link-colour': { label: 'Fuchsia 01', value: '#65004D' },
+          'visited-link-colour': { label: '', value: '#983379' },
+          'hover-background-colour': { label: '', value: 'rgba(101, 0, 77, 0.1)' },
+          'active-background-colour': { label: '', value: 'rgba(101, 0, 77, 0.2)' },
+          focus: { label: '', value: '#9D00B4' }
         },
         red: {
           val: '#630019',
-          'brand-dark': '#630019',
-          'brand-light': '#FFE6EA',
-          'brand-supplementary': '#D7153A',
-          'brand-accent': '#B68D5D',
-          'link-colour': '#630019',
-          'visited-link-colour': '#9C3D1B',
-          'hover-background-colour': 'rgba(99, 0, 25, 0.1)',
-          'active-background-colour': 'rgba(99, 0, 25, 0.2)',
-          'focus': '#B2006E',
+          'brand-dark': { label: 'Red 01', value: '#630019' },
+          'brand-light': { label: 'Red 04', value: '#FFE6EA' },
+          'brand-supplementary': { label: 'Red 02', value: '#D7153A' },
+          'brand-accent': { label: 'Brown 02', value: '#B68D5D' },
+          'link-colour': { label: 'Red 01', value: '#630019' },
+          'visited-link-colour': { label: '', value: '#9C3D1B' },
+          'hover-background-colour': { label: '', value: 'rgba(99, 0, 25, 0.1)' },
+          'active-background-colour': { label: '', value: 'rgba(99, 0, 25, 0.2)' },
+          focus: { label: '', value: '#B2006E' }
         },
         orange: {
           val: '#941B00',
-          'brand-dark': '#941B00',
-          'brand-light': '#FDEDDF',
-          'brand-supplementary': '#F3631B',
-          'brand-accent': '#8055F1',
-          'link-colour': '#941B00',
-          'visited-link-colour': '#7D4D27',
-          'hover-background-colour': 'rgba(148, 27, 0, 0.1)',
-          'active-background-colour': 'rgba(148, 27, 0, 0.2)',
-          'focus': '#E3002A',
+          'brand-dark': { label: 'Orange 01', value: '#941B00' },
+          'brand-light': { label: 'Orange 04', value: '#FDEDDF' },
+          'brand-supplementary': { label: 'Orange 02', value: '#F3631B' },
+          'brand-accent': { label: 'Purple 02', value: '#8055F1' },
+          'link-colour': { label: 'Orange 01', value: '#941B00' },
+          'visited-link-colour': { label: '', value: '#7D4D27' },
+          'hover-background-colour': { label: '', value: 'rgba(148, 27, 0, 0.1)' },
+          'active-background-colour': { label: '', value: 'rgba(148, 27, 0, 0.2)' },
+          focus: { label: '', value: '#E3002A' }
         },
         brown: {
           val: '#523719',
-          'brand-dark': '#523719',
-          'brand-light': '#EDE3D7',
-          'brand-supplementary': '#B68D5D',
-          'brand-accent': '#2E808E',
-          'link-colour': '#523719',
-          'visited-link-colour': '#914132',
-          'hover-background-colour': 'rgba(82, 55, 25, 0.1)',
-          'active-background-colour': 'rgba(82, 55, 25, 0.2)',
-          'focus': '#8F3B2B',
+          'brand-dark': { label: 'Brown 01', value: '#523719' },
+          'brand-light': { label: 'Brown 04', value: '#EDE3D7' },
+          'brand-supplementary': { label: 'Brown 02', value: '#B68D5D' },
+          'brand-accent': { label: 'Teal 02', value: '#2E808E' },
+          'link-colour': { label: 'Brown 01', value: '#523719' },
+          'visited-link-colour': { label: '', value: '#914132' },
+          'hover-background-colour': { label: '', value: 'rgba(82, 55, 25, 0.1)' },
+          'active-background-colour': { label: '', value: 'rgba(82, 55, 25, 0.2)' },
+          focus: { label: '', value: '#8F3B2B' }
         },
         yellow: {
           val: '#694800',
-          'brand-dark': '#694800',
-          'brand-light': '#FFF4CF',
-          'brand-supplementary': '#FAAF05',
-          'brand-accent': '#00AA45',
-          'link-colour': '#694800',
-          'visited-link-colour': '#5B5A16',
-          'hover-background-colour': 'rgba(105, 72, 0, 0.1)',
-          'active-background-colour': 'rgba(105, 72, 0, 0.2)',
-          'focus': '#B83B00',
+          'brand-dark': { label: 'Yellow 01', value: '#694800' },
+          'brand-light': { label: 'Yellow 04', value: '#FFF4CF' },
+          'brand-supplementary': { label: 'Yellow 02', value: '#FAAF05' },
+          'brand-accent': { label: 'Green 02', value: '#00AA45' },
+          'link-colour': { label: 'Yellow 01', value: '#694800' },
+          'visited-link-colour': { label: '', value: '#5B5A16' },
+          'hover-background-colour': { label: '', value: 'rgba(105, 72, 0, 0.1)' },
+          'active-background-colour': { label: '', value: 'rgba(105, 72, 0, 0.2)' },
+          focus: { label: '', value: '#B83B00' }
         },
         green: {
           val: '#004000',
-          'brand-dark': '#004000',
-          'brand-light': '#DBFADF',
-          'brand-supplementary': '#00AA45',
-          'brand-accent': '#146CFD',
-          'link-colour': '#004000',
-          'visited-link-colour': '#016740',
-          'hover-background-colour': 'rgba(0, 64, 0, 0.1)',
-          'active-background-colour': 'rgba(0, 64, 0, 0.2)',
-          'focus': '#348F00',
+          'brand-dark': { label: 'Green 01', value: '#004000' },
+          'brand-light': { label: 'Green 04', value: '#DBFADF' },
+          'brand-supplementary': { label: 'Green 02', value: '#00AA45' },
+          'brand-accent': { label: 'Blue 02', value: '#146CFD' },
+          'link-colour': { label: 'Green 01', value: '#004000' },
+          'visited-link-colour': { label: '', value: '#016740' },
+          'hover-background-colour': { label: '', value: 'rgba(0, 64, 0, 0.1)' },
+          'active-background-colour': { label: '', value: 'rgba(0, 64, 0, 0.2)' },
+          focus: { label: '', value: '#348F00' }
         },
         teal: {
           val: '#0B3F47',
-          'brand-dark': '#0B3F47',
-          'brand-light': '#D1EEEA',
-          'brand-supplementary': '#2E808E',
-          'brand-accent': '#D912AE',
-          'link-colour': '#0B3F47',
-          'visited-link-colour': '#265E76',
-          'hover-background-colour': 'rgba(11, 63, 71, 0.1)',
-          'active-background-colour': 'rgba(11, 63, 71, 0.2)',
-          'focus': '#168B70',
-        },
+          'brand-dark': { label: 'Teal 01', value: '#0B3F47' },
+          'brand-light': { label: 'Teal 04', value: '#D1EEEA' },
+          'brand-supplementary': { label: 'Teal 02', value: '#2E808E' },
+          'brand-accent': { label: 'Fuchsia 02', value: '#D912AE' },
+          'link-colour': { label: 'Teal 01', value: '#0B3F47' },
+          'visited-link-colour': { label: '', value: '#265E76' },
+          'hover-background-colour': { label: '', value: 'rgba(11, 63, 71, 0.1)' },
+          'active-background-colour': { label: '', value: 'rgba(11, 63, 71, 0.2)' },
+          focus: { label: '', value: '#168B70' }
+        }
       },
       'aboriginal-palette': {
         red: {
-          val: '#950906', // Red A (Deep red from Row 01)
-          'brand-dark': '#950906', // Row 01 (Strong, deep red for identity)
-          'brand-light': '#FDD9D9', // Red D (Soft pastel red for readability)
-          'brand-supplementary': '#E1261C', // Red B (Bright, high-contrast red)
-          'brand-accent': '#0D6791', // Blue B (Cool, high-contrast accent)
-          'link-colour': '#950906', // Red A (Deep red for consistency)
-          'visited-link-colour': '#472642', // Purple A (Deep purple for contrast)
-          'hover-background-colour': 'rgba(149, 9, 6, 0.1)', // Red A (Subtle hover effect)
-          'active-background-colour': 'rgba(149, 9, 6, 0.2)', // Red A (Stronger interaction)
-          'focus': '#E1261C', // Red B (Bright red focus for accessibility)
+          val: '#950906',
+          'brand-dark': { label: 'Red Earth', value: '#950906' },
+          'brand-light': { label: 'Galah Pink', value: '#FDD9D9' },
+          'brand-supplementary': { label: 'Lap-Lap Red', value: '#E1261C' },
+          'brand-accent': { label: 'Saltwater Blue', value: '#0D6791' },
+          'link-colour': { label: '', value: '#950906' },
+          'visited-link-colour': { label: '', value: '#472642' },
+          'hover-background-colour': { label: '', value: 'rgba(149, 9, 6, 0.1)' },
+          'active-background-colour': { label: '', value: 'rgba(149, 9, 6, 0.2)' },
+          focus: { label: 'Lap-Lap Red', value: '#E1261C' }
         },
         orange: {
           val: '#882600',
-          'brand-dark': '#882600', // Deep Burnt Orange (Row 01)
-          'brand-light': '#f9d4be', // Soft Orange (Row 04)
-          'brand-supplementary': '#EE6314', // Orange B (Bright, energetic contrast)
-          'brand-accent': '#84C5D1',
-          'link-colour': '#882600', // Deep Burnt Orange (Row 01)
-          'visited-link-colour': '#472642', // Purple A (Deep purple for contrast)
-          'hover-background-colour': 'rgba(136, 38, 0, 0.1)',
-          'active-background-colour': 'rgba(136, 38, 0, 0.2)',
-          'focus': '#EE6314', // Deep Orange (Row 02)
+          'brand-dark': { label: 'Deep Orange', value: '#882600' },
+          'brand-light': { label: 'Sunset Orange', value: '#F9D4BE' },
+          'brand-supplementary': { label: 'Ochre', value: '#EE6314' },
+          'brand-accent': { label: 'Saltwater Blue', value: '#0D6791' },
+          'link-colour': { label: '', value: '#882600' },
+          'visited-link-colour': { label: '', value: '#472642' },
+          'hover-background-colour': { label: '', value: 'rgba(136, 38, 0, 0.1)' },
+          'active-background-colour': { label: '', value: 'rgba(136, 38, 0, 0.2)' },
+          focus: { label: 'Ochre', value: '#EE6314' }
         },
         brown: {
-          val: '#552105', // Brown A (Deep earthy brown from Row 01)
-          'brand-dark': '#552105', // Row 01 (Strong brown for identity)
-          'brand-light': '#E9C8B2', // Brown D (Soft warm brown for readability)
-          'brand-supplementary': '#9E5332', // Brown B (Darker contrast colour for accessibility)
-          'brand-accent': '#0D6791', // Blue B (Cool, high-contrast accent)
-          'link-colour': '#552105', // Brown A (Deep brown for consistency)
-          'visited-link-colour': '#9A5E93', // Purple B (Deep purple for contrast)
-          'hover-background-colour': 'rgba(85, 33, 5, 0.1)', // Brown A (Subtle hover effect)
-          'active-background-colour': 'rgba(85, 33, 5, 0.2)', // Brown A (Stronger interaction)
-          'focus': '#9E5332', // Brown B (Deep, warm focus indicator)
+          val: '#552105',
+          'brand-dark': { label: 'Riverbed', value: '#552105' },
+          'brand-light': { label: 'Macadamia', value: '#E9C8B2' },
+          'brand-supplementary': { label: 'Firewood', value: '#9E5332' },
+          'brand-accent': { label: 'Saltwater Blue', value: '#0D6791' },
+          'link-colour': { label: '', value: '#552105' },
+          'visited-link-colour': { label: '', value: '#9A5E93' },
+          'hover-background-colour': { label: '', value: 'rgba(85, 33, 5, 0.1)' },
+          'active-background-colour': { label: '', value: 'rgba(85, 33, 5, 0.2)' },
+          focus: { label: 'Firewood', value: '#9E5332' }
         },
         yellow: {
-          val: '#895E00', // Yellow A (Deep Golden Yellow from Row 01)
-          'brand-dark': '#895E00', // Row 01 (Strong Golden Brown for identity)
-          'brand-light': '#FFF1C5', // Row 04 (Soft but warm light yellow for readability)
-          'brand-supplementary': '#FEA927', // Brown B (Darker contrast colour for accessibility)
-          'brand-accent': '#E1261C', // Orange B (Bright, high-contrast accent)
-          'link-colour': '#895E00', // Yellow A (Deep golden yellow for consistency)
-          'visited-link-colour': '#472642', // **Purple A (Deep & rich, high contrast)**
-          'hover-background-colour': 'rgba(137, 94, 0, 0.1)', // **Based on `brand-dark` (#895E00)**
-          'active-background-colour': 'rgba(137, 94, 0, 0.2)', // **Stronger version of `brand-dark`**
-          'focus': '#895E00', // Row 01 (Strong Golden Brown for identity)
+          val: '#895E00',
+          'brand-dark': { label: 'Bush Honey', value: '#895E00' },
+          'brand-light': { label: 'Sunbeam', value: '#FFF1C5' },
+          'brand-supplementary': { label: 'Golden Wattle', value: '#FEA927' },
+          'brand-accent': { label: 'Orange Clay', value: '#F4AA7D' },
+          'link-colour': { label: '', value: '#895E00' },
+          'visited-link-colour': { label: '', value: '#472642' },
+          'hover-background-colour': { label: '', value: 'rgba(137, 94, 0, 0.1)' },
+          'active-background-colour': { label: '', value: 'rgba(137, 94, 0, 0.2)' },
+          focus: { label: 'Saltwater Blue', value: '#0D6791' }
         },
         green: {
-          val: '#215834', // Green A (Deep forest green from Row 01)
-          'brand-dark': '#215834', // Row 01 (Strong dark green for identity)
-          'brand-light': '#DAE6D1', // Row 04 (Soft muted green for readability)
-          'brand-supplementary': '#78A146', // Brown A (Darker contrast colour for accessibility)
-          'brand-accent': '#9E5332', // Brown B (Deep, complementary contrast)
-          'link-colour': '#215834', // Green A (Deep green, consistent across palette)
-          'visited-link-colour': '#472642', // Purple A (Deep purple for contrast)
-          'hover-background-colour': 'rgba(33, 88, 52, 0.1)', // Green A (Subtle transparency)
-          'active-background-colour': 'rgba(33, 88, 52, 0.2)', // Green A (Stronger interaction)
-          'focus': '#78A146', // Green B (Distinct but aligned focus colour)
+          val: '#215834',
+          'brand-dark': { label: 'Bushland Green', value: '#215834' },
+          'brand-light': { label: 'Gumleaf Green', value: '#DAE6D1' },
+          'brand-supplementary': { label: 'Marshland Lime', value: '#78A146' },
+          'brand-accent': { label: 'Firewood', value: '#9E5332' },
+          'link-colour': { label: '', value: '#215834' },
+          'visited-link-colour': { label: '', value: '#472642' },
+          'hover-background-colour': { label: '', value: 'rgba(33, 88, 52, 0.1)' },
+          'active-background-colour': { label: '', value: 'rgba(33, 88, 52, 0.2)' },
+          focus: { label: 'Marshland Lime', value: '#78A146' }
         },
         blue: {
-          val: '#162953', // Blue A (Deep navy blue from Row 01)
-          'brand-dark': '#162953', // Row 01 (Primary deep blue for identity)
-          'brand-light': '#C1E2E8', // Blue D (Soft, cool, readable light blue)
-          'brand-supplementary': '#0D6791', // Blue B (Darker blue for contrast)
-          'brand-accent': '#EE6314', // Orange B (Vibrant accent for highlights)
-          'link-colour': '#0D6791', // Blue B (Deep blue for readability)
-          'visited-link-colour':  '#9A5E93', // Purple B (Deep purple for contrast)
-          'hover-background-colour': 'rgba(22, 41, 83, 0.1)', // Blue A (Subtle hover effect)
-          'active-background-colour': 'rgba(22, 41, 83, 0.2)', // Blue A (Stronger interaction)
-          'focus': '#0D6791', // Blue B (Deep blue for focus indicator)
+          val: '#162953',
+          'brand-dark': { label: 'River Blue', value: '#162953' },
+          'brand-light': { label: 'Coastal Blue', value: '#C1E2E8' },
+          'brand-supplementary': { label: 'Saltwater Blue', value: '#0D6791' },
+          'brand-accent': { label: 'Ochre', value: '#EE6314' },
+          'link-colour': { label: '', value: '#0D6791' },
+          'visited-link-colour': { label: '', value: '#9A5E93' },
+          'hover-background-colour': { label: '', value: 'rgba(22, 41, 83, 0.1)' },
+          'active-background-colour': { label: '', value: 'rgba(22, 41, 83, 0.2)' },
+          focus: { label: 'Saltwater Blue', value: '#0D6791' }
         },
         purple: {
-          val: '#472642', // Purple A (Deep plum from Row 01)
-          'brand-dark': '#472642', // Row 01 (Strong, rich purple for identity)
-          'brand-light': '#E4CCE0', // Purple D (Soft, muted lavender for readability)
-          'brand-supplementary': '#9A5E93', // Purple B (Darker contrast for depth)
-          'brand-accent': '#EE6314', // Orange B (Warm, energetic contrast)
-          'link-colour': '#472642', // Purple B (Maintains cohesion in text elements)
-          'visited-link-colour': '#9A5E93', // Brown A (Strong contrast with background)
-          'hover-background-colour': 'rgba(71, 38, 66, 0.1)', // Purple A (Subtle hover effect)
-          'active-background-colour': 'rgba(71, 38, 66, 0.2)', // Purple A (Stronger interaction)
-          'focus': '#EE6314', // Orange B (High-contrast, warm focus indicator)
+          val: '#472642',
+          'brand-dark': { label: 'Bush Plum', value: '#472642' },
+          'brand-light': { label: 'Dusk Purple', value: '#E4CCE0' },
+          'brand-supplementary': { label: 'Spirit Lilac', value: '#9A5E93' },
+          'brand-accent': { label: 'Ochre', value: '#EE6314' },
+          'link-colour': { label: '', value: '#472642' },
+          'visited-link-colour': { label: '', value: '#9A5E93' },
+          'hover-background-colour': { label: '', value: 'rgba(71, 38, 66, 0.1)' },
+          'active-background-colour': { label: '', value: 'rgba(71, 38, 66, 0.2)' },
+          focus: { label: 'Ochre', value: '#EE6314' }
         },
         grey: {
-          val: '#2D2D2D', // Grey A (Deep neutral grey from Row 01)
-          'brand-dark': '#2D2D2D', // Row 01 (Strong, dark grey for identity)
-          'brand-light': '#E5E3E0', // Grey D (Soft warm grey for readability)
-          'brand-supplementary': '#895E00', // Yellow A (Deep ochre for contrast)
-          'brand-accent': '#FEA927', // Yellow B (Warm, energetic contrast)
-          'link-colour': '#2D2D2D', // Grey A (Neutral grey for consistency)
-          'visited-link-colour': '#472642', // Purple A (Muted contrast, adds depth)
-          'hover-background-colour': 'rgba(45, 45, 45, 0.1)', // Grey A (Subtle hover effect)
-          'active-background-colour': 'rgba(45, 45, 45, 0.2)', // Grey A (Stronger interaction)
-          'focus': '#895E00', // Yellow A (Deep ochre for focus indicator)
-        },
-      },
+          val: '#2D2D2D',
+          'brand-dark': { label: 'Charcoal Rock', value: '#2D2D2D' },
+          'brand-light': { label: 'Smoky Grey', value: '#E5E3E0' },
+          'brand-supplementary': { label: 'Ochre', value: '#895E00' },
+          'brand-accent': { label: 'Golden Wattle', value: '#FEA927' },
+          'link-colour': { label: '', value: '#2D2D2D' },
+          'visited-link-colour': { label: '', value: '#472642' },
+          'hover-background-colour': { label: '', value: 'rgba(45, 45, 45, 0.1)' },
+          'active-background-colour': { label: '', value: 'rgba(45, 45, 45, 0.2)' },
+          focus: { label: 'Golden Wattle', value: '#FEA927' }
+        }
+      }
     }
   };
 
