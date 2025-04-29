@@ -1,21 +1,25 @@
 @use 'sass:map';
 @use 'sass:meta';
+@use '../base/mixins' as mixins;
+@use '../base/functions' as functions;
+@use '../settings/settings' as settings;
+@use './utilities' as utilities;
 
 /* stylelint-disable string-quotes */
 
 // Loop over each breakpoint
-@each $breakpoint in map.keys($nsw-breakpoints) {
+@each $breakpoint in map.keys(settings.$nsw-breakpoints) {
 
   // Generate media query if needed
-  @include media-breakpoint-up($breakpoint) {
-    $infix: breakpoint-infix($breakpoint, $nsw-breakpoints);
+  @include mixins.media-breakpoint-up($breakpoint) {
+    $infix: functions.breakpoint-infix($breakpoint, settings.$nsw-breakpoints);
 
     // Loop over each utility property
-    @each $key, $utility in $utilities {
+    @each $key, $utility in utilities.$utilities {
       // The utility can be disabled with `false`, thus check if the utility is a map first
       // Only proceed if responsive media queries are enabled or if it's the base media query
       @if meta.type-of($utility) == "map" and (map.get($utility, responsive) or $infix == "") {
-        @include generate-utility($utility, $infix);
+        @include mixins.generate-utility($utility, $infix);
       }
     }
   }

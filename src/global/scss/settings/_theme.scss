@@ -46,9 +46,6 @@ $text-colors: (
 
 $text-colors-rgb: functions.to-rgb-list($text-colors) !default;
 
-/* stylelint-disable */
-@debug $text-colors-rgb;
-
 $semantic-colors: (
   'success': $success,
   'success-bg': $success-bg,
@@ -64,16 +61,16 @@ $semantic-colors-rgb: functions.to-rgb-list($semantic-colors) !default;
 
 // State Colours
 $link: $brand-dark !default;
-$link-light: tint($brand-dark, 90%) !default;
-$visited: a11y-color(color.adjust(color.adjust(color.adjust($brand-dark, $hue: 54deg), $saturation: -31.52%), $lightness: 12.75%), #ffffff) !default;
-$visited-light: tint($visited, 80%) !default;
+$link-light: color.scale($brand-dark, $lightness: 10%) !default;
+$visited: functions.a11y-color(color.adjust(color.adjust(color.adjust($brand-dark, $hue: 54deg), $saturation: -31.52%), $lightness: 12.75%), #ffffff) !default;
+$visited-light: color.scale($visited, $lightness: 20%) !default;
 $hover: color.adjust($brand-dark, $alpha: -0.9) !default;
 $hover-light: color.adjust($link-light, $alpha: -0.9) !default;
 $active: color.adjust($brand-dark, $alpha: -0.8) !default;
 $active-light: color.adjust($link-light, $alpha: -0.8) !default;
 $focus: color.adjust(color.adjust($brand-dark, $hue: -22deg), $lightness: 15.49%) !default;
-$focus-light: tint($focus, 80%);
-$disabled: tint($brand-dark, 50%) !default;
+$focus-light: color.scale($focus, $lightness: 20%) !default;
+$disabled: color.scale($brand-dark, $lightness: 50%) !default;
 
 $state-colors: (
   'link': $link,
@@ -139,38 +136,38 @@ $state-colors-rgb: functions.to-rgb-list($state-colors) !default;
   --nsw-font-normal: 400;
   --nsw-font-bold: 700;
 
-  --nsw-font-size-xxs-mobile: #{rem(12px)};
-  --nsw-font-size-xxs-desktop: #{rem(12px)};
+  --nsw-font-size-xxs-mobile: #{functions.rem(12px)};
+  --nsw-font-size-xxs-desktop: #{functions.rem(12px)};
   --nsw-line-height-xxs-mobile: 1.5;
   --nsw-line-height-xxs-desktop: 1.5;
 
-  --nsw-font-size-xs-mobile: #{rem(14px)};
-  --nsw-font-size-xs-desktop: #{rem(14px)};
+  --nsw-font-size-xs-mobile: #{functions.rem(14px)};
+  --nsw-font-size-xs-desktop: #{functions.rem(14px)};
   --nsw-line-height-xs-mobile: 1.35;
   --nsw-line-height-xs-desktop: 1.35;
 
-  --nsw-font-size-sm-mobile: #{rem(16px)};
-  --nsw-font-size-sm-desktop: #{rem(16px)};
+  --nsw-font-size-sm-mobile: #{functions.rem(16px)};
+  --nsw-font-size-sm-desktop: #{functions.rem(16px)};
   --nsw-line-height-sm-mobile: 1.5;
   --nsw-line-height-sm-desktop: 1.5;
 
-  --nsw-font-size-md-mobile: #{rem(18px)};
-  --nsw-font-size-md-desktop: #{rem(20px)};
+  --nsw-font-size-md-mobile: #{functions.rem(18px)};
+  --nsw-font-size-md-desktop: #{functions.rem(20px)};
   --nsw-line-height-md-mobile: 1.33;
   --nsw-line-height-md-desktop: 1.4;
 
-  --nsw-font-size-lg-mobile: #{rem(22px)};
-  --nsw-font-size-lg-desktop: #{rem(24px)};
+  --nsw-font-size-lg-mobile: #{functions.rem(22px)};
+  --nsw-font-size-lg-desktop: #{functions.rem(24px)};
   --nsw-line-height-lg-mobile: 1.25;
   --nsw-line-height-lg-desktop: 1.33;
 
-  --nsw-font-size-xl-mobile: #{rem(28px)};
-  --nsw-font-size-xl-desktop: #{rem(32px)};
+  --nsw-font-size-xl-mobile: #{functions.rem(28px)};
+  --nsw-font-size-xl-desktop: #{functions.rem(32px)};
   --nsw-line-height-xl-mobile: 1.25;
   --nsw-line-height-xl-desktop: 1.25;
 
-  --nsw-font-size-xxl-mobile: #{rem(36px)};
-  --nsw-font-size-xxl-desktop: #{rem(48px)};
+  --nsw-font-size-xxl-mobile: #{functions.rem(36px)};
+  --nsw-font-size-xxl-desktop: #{functions.rem(48px)};
   --nsw-line-height-xxl-mobile: 1.25;
   --nsw-line-height-xxl-desktop: 1.25;
 
@@ -178,11 +175,11 @@ $state-colors-rgb: functions.to-rgb-list($state-colors) !default;
   --nsw-border-width: 1px;
   --nsw-border-style: solid;
   --nsw-border-color: var(--nsw-brand-accent);
-  --nsw-border-radius: #{rem(4px)};
+  --nsw-border-radius: #{functions.rem(4px)};
 
   /* Shadows */
-  --nsw-box-shadow: 0 #{rem(4px)} #{rem(12px)} 0 rgba(var(--nsw-black-rgb), 0.15);
+  --nsw-box-shadow: 0 #{functions.rem(4px)} #{functions.rem(12px)} 0 rgba(var(--nsw-black-rgb), 0.15);
 
   /* Maximum width of container */
-  --nsw-container-width: #{rem(1200px)};
+  --nsw-container-width: #{functions.rem(1200px)};
 }

@@ -175,14 +175,14 @@
 
 //Component spacing
 @mixin component-spacing() {
-  margin-top: rem(24px);
+  margin-top: functions.rem(24px);
 
   &:first-child {
     margin-top: 0;
   }
 
   @include breakpoint('md') {
-    margin-top: rem(32px);
+    margin-top: functions.rem(32px);
   }
 }
 
@@ -219,8 +219,8 @@
 //Grid
 @mixin container($offset: $grid-gutters*2) {
   max-width: var(--nsw-container-width);
-  padding-left: rem($offset);
-  padding-right: rem($offset);
+  padding-left: functions.rem($offset);
+  padding-right: functions.rem($offset);
   margin-left: auto;
   margin-right: auto;
 }
@@ -228,12 +228,12 @@
 @mixin grid() {
   display: flex;
   flex-wrap: wrap;
-  margin-left: rem(-$grid-gutters);
-  margin-right: rem(-$grid-gutters);
+  margin-left: functions.rem(-$grid-gutters);
+  margin-right: functions.rem(-$grid-gutters);
 
   @include breakpoint('md') {
-    margin-left: rem(-$grid-gutters*2);
-    margin-right: rem(-$grid-gutters*2);
+    margin-left: functions.rem(-$grid-gutters*2);
+    margin-right: functions.rem(-$grid-gutters*2);
   }
 }
 
@@ -245,10 +245,10 @@
 
 @mixin column-default() {
   width: 100%;
-  padding: rem($grid-gutters);
+  padding: functions.rem($grid-gutters);
 
   @include breakpoint('md') {
-    padding: rem($grid-gutters*2);
+    padding: functions.rem($grid-gutters*2);
   }
 }
 
@@ -273,8 +273,8 @@
   }
 }
 
-@mixin media-breakpoint-up($name, $breakpoints: $nsw-breakpoints) {
-  $min: breakpoint-min($name, $breakpoints);
+@mixin media-breakpoint-up($name, $breakpoints: settings.$nsw-breakpoints) {
+  $min: functions.breakpoint-min($name, $breakpoints);
   @if $min {
     @media (min-width: $min) {
       @content;
@@ -348,12 +348,12 @@
 
       @if $is-css-var {
         .#{$property-class + $infix + $property-class-modifier} {
-          --#{$prefix}#{$css-variable-name}: #{$value};
+          --#{settings.$prefix}#{$css-variable-name}: #{$value};
         }
 
         @each $pseudo in $state {
           .#{$property-class + $infix + $property-class-modifier}-#{$pseudo}:#{$pseudo} {
-            --#{$prefix}#{$css-variable-name}: #{$value};
+            --#{settings.$prefix}#{$css-variable-name}: #{$value};
           }
         }
       } @else {
@@ -361,10 +361,10 @@
           @each $property in $properties {
             @if $is-local-vars {
               @each $local-var, $variable in $is-local-vars {
-                --#{$prefix}#{$local-var}: #{$variable};
+                --#{settings.$prefix}#{$local-var}: #{$variable};
               }
             }
-            #{$property}: $value if($enable-important-utilities, !important, null);
+            #{$property}: $value if(settings.$enable-important-utilities, !important, null);
           }
         }
 
@@ -373,10 +373,10 @@
             @each $property in $properties {
               @if $is-local-vars {
                 @each $local-var, $variable in $is-local-vars {
-                  --#{$prefix}#{$local-var}: #{$variable};
+                  --#{settings.$prefix}#{$local-var}: #{$variable};
                 }
               }
-              #{$property}: $value if($enable-important-utilities, !important, null);
+              #{$property}: $value if(settings.$enable-important-utilities, !important, null);
             }
           }
         }
