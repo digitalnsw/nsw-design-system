@@ -1,4 +1,5 @@
 @use 'sass:color';
+@use '../base/functions' as functions;
 
 // Purple Theme Colours
 $brown-dark: $brown-01 !default;
@@ -19,8 +20,6 @@ $brown-focus: color.adjust(color.adjust($brown-dark, $hue: -22deg), $lightness: 
 $brown-focus-light: tint($brown-focus, 80%);
 $brown-disabled: tint($brown-dark, 50%) !default;
 
-
-
 $brown-colors: (
   'brand-dark': $brown-dark,
   'brand-light': $brown-light,
@@ -39,7 +38,7 @@ $brown-colors: (
   'disabled': $brown-disabled
 ) !default;
 
-$brown-colors-rgb: map-loop($brown-colors, to-rgb, '$value') !default;
+$brown-colors-rgb: functions.to-rgb-list($brown-colors) !default;
 
 .brown {
   @each $color, $value in $brown-colors {

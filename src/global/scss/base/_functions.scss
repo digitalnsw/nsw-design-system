@@ -77,29 +77,23 @@
   @return color.channel($value, "red", $space: rgb), color.channel($value, "green", $space: rgb), color.channel($value, "blue", $space: rgb);
 }
 
-@function map-loop($map, $func, $args...) {
-  $_map: ();
+@function to-rgb-list($map) {
+  $new-map: ();
 
-  @each $key, $value in $map {
-    // allow to pass the $key and $value of the map as an function argument
-    $_args: ();
-
-    @each $arg in $args {
-      $_args: list.append(
-        $_args,
-        if($arg == "$key", $key, if($arg == "$value", $value, $arg))
-      );
-    }
-
-    $_map: map.merge(
-      $_map,
+  @each $key, $hex in $map {
+    $new-map: map.merge(
+      $new-map,
       (
-        $key: meta.call(meta.get-function($func), $_args...),
+        $key: (
+          color.channel($hex, "red", $space: rgb),
+          color.channel($hex, "green", $space: rgb),
+          color.channel($hex, "blue", $space: rgb)
+        )
       )
     );
   }
 
-  @return $_map;
+  @return $new-map;
 }
 
 @function strip-unit($value) {

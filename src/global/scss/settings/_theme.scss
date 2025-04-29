@@ -1,5 +1,6 @@
 @use 'sass:color';
 @use 'palette' as palette;
+@use '../base/functions' as functions;
 
 // Theme Colours
 $brand-dark: palette.$blue-01 !default;
@@ -36,14 +37,17 @@ $theme-colors: (
   'white': palette.$white
 ) !default;
 
-$theme-colors-rgb: map-loop($theme-colors, to-rgb, '$value') !default;
+$theme-colors-rgb: functions.to-rgb-list($theme-colors) !default;
 
 $text-colors: (
   'text-dark': $text-dark,
   'text-light': $text-light
 ) !default;
 
-$text-colors-rgb: map-loop($text-colors, to-rgb, '$value') !default;
+$text-colors-rgb: functions.to-rgb-list($text-colors) !default;
+
+/* stylelint-disable */
+@debug $text-colors-rgb;
 
 $semantic-colors: (
   'success': $success,
@@ -56,7 +60,7 @@ $semantic-colors: (
   'error-bg': $error-bg
 ) !default;
 
-$semantic-colors-rgb: map-loop($semantic-colors, to-rgb, '$value') !default;
+$semantic-colors-rgb: functions.to-rgb-list($semantic-colors) !default;
 
 // State Colours
 $link: $brand-dark !default;
@@ -85,7 +89,7 @@ $state-colors: (
   'disabled': $disabled
 ) !default;
 
-$state-colors-rgb: map-loop($state-colors, to-rgb, '$value') !default;
+$state-colors-rgb: functions.to-rgb-list($state-colors) !default;
 
 :root {
   @each $color, $value in $theme-colors {

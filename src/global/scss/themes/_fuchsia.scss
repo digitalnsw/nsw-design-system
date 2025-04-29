@@ -1,4 +1,5 @@
 @use 'sass:color';
+@use '../base/functions' as functions;
 
 // Purple Theme Colours
 $fuchsia-dark: $fuchsia-01 !default;
@@ -37,7 +38,7 @@ $fuchsia-colors: (
   'disabled': $fuchsia-disabled
 ) !default;
 
-$fuchsia-colors-rgb: map-loop($fuchsia-colors, to-rgb, '$value') !default;
+$fuchsia-colors-rgb: functions.to-rgb-list($fuchsia-colors) !default;
 
 .fuchsia {
   @each $color, $value in $fuchsia-colors {
@@ -51,5 +52,5 @@ $fuchsia-colors-rgb: map-loop($fuchsia-colors, to-rgb, '$value') !default;
 
 .fuchsia-accent {
   --nsw-brand-accent: #{$fuchsia-02};
-  --nsw-brand-accent-rgb: #{to-rgb($fuchsia-02)};
+  --nsw-brand-accent-rgb: #{functions.to-rgb($fuchsia-02)};
 }

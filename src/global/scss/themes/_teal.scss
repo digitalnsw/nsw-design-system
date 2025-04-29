@@ -1,4 +1,5 @@
 @use 'sass:color';
+@use '../base/functions' as functions;
 
 // Purple Theme Colours
 $teal-dark: $teal-01 !default;
@@ -37,7 +38,7 @@ $teal-colors: (
   'disabled': $teal-disabled
 ) !default;
 
-$teal-colors-rgb: map-loop($teal-colors, to-rgb, '$value') !default;
+$teal-colors-rgb: functions.to-rgb-list($teal-colors) !default;
 
 .teal {
   @each $color, $value in $teal-colors {
@@ -51,5 +52,5 @@ $teal-colors-rgb: map-loop($teal-colors, to-rgb, '$value') !default;
 
 .teal-accent {
   --nsw-brand-accent: #{$teal-02};
-  --nsw-brand-accent-rgb: #{to-rgb($teal-02)};
+  --nsw-brand-accent-rgb: #{functions.to-rgb($teal-02)};
 }
