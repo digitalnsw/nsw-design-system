@@ -1,4 +1,7 @@
 @use 'sass:map';
+@use '../../global/scss/base/mixins' as mixins;
+@use '../../global/scss/base/functions' as functions;
+@use '../../global/scss/settings/settings' as settings;
 
 //Variations
 $nsw-sections: (
@@ -45,24 +48,24 @@ $nsw-sections: (
 );
 
 .nsw-section {
-  padding: rem($grid-gutters*2) 0;
+  padding: functions.rem(settings.$grid-gutters*2) 0;
 
-  @include breakpoint('md') {
-    padding: rem($grid-gutters*4) 0;
+  @include mixins.breakpoint('md') {
+    padding: functions.rem(settings.$grid-gutters*4) 0;
   }
 
   &--half-padding {
     padding: 0;
 
-    @include breakpoint('md') {
-      padding: rem($grid-gutters*2) 0;
+    @include mixins.breakpoint('md') {
+      padding: functions.rem(settings.$grid-gutters*2) 0;
     }    
   }
 
   &--no-padding {
     padding: 0;
 
-    @include breakpoint('md') {
+    @include mixins.breakpoint('md') {
       padding: 0;
     }    
   }
@@ -73,8 +76,8 @@ $nsw-sections: (
     background-repeat: no-repeat;
     padding: 0;
 
-    @include breakpoint('md') {
-      padding: rem($grid-gutters*4) 0;
+    @include mixins.breakpoint('md') {
+      padding: functions.rem(settings.$grid-gutters*4) 0;
     }
   }
 
@@ -91,18 +94,18 @@ $nsw-sections: (
       object-fit: cover;
     }
 
-    @include breakpoint('md') {
-      padding: rem($grid-gutters*4) 0;
+    @include mixins.breakpoint('md') {
+      padding: functions.rem(settings.$grid-gutters*4) 0;
     }
   }
 
   &--box {
     border-radius: var(--nsw-border-radius);
     border: 1px solid var(--nsw-grey-04);
-    padding: rem(24px);
+    padding: functions.rem(24px);
 
-    @include breakpoint('md') {
-      padding: rem(24px);
+    @include mixins.breakpoint('md') {
+      padding: functions.rem(24px);
     }
   }
 

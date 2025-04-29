@@ -217,7 +217,7 @@
 }
 
 //Grid
-@mixin container($offset: $grid-gutters*2) {
+@mixin container($offset: settings.$grid-gutters*2) {
   max-width: var(--nsw-container-width);
   padding-left: functions.rem($offset);
   padding-right: functions.rem($offset);
@@ -228,12 +228,12 @@
 @mixin grid() {
   display: flex;
   flex-wrap: wrap;
-  margin-left: functions.rem(-$grid-gutters);
-  margin-right: functions.rem(-$grid-gutters);
+  margin-left: functions.rem(-(settings.$grid-gutters));
+  margin-right: functions.rem(-(settings.$grid-gutters));
 
   @include breakpoint('md') {
-    margin-left: functions.rem(-$grid-gutters*2);
-    margin-right: functions.rem(-$grid-gutters*2);
+    margin-left: functions.rem(-(settings.$grid-gutters)*2);
+    margin-right: functions.rem(-(settings.$grid-gutters)*2);
   }
 }
 
@@ -245,10 +245,10 @@
 
 @mixin column-default() {
   width: 100%;
-  padding: functions.rem($grid-gutters);
+  padding: functions.rem(settings.$grid-gutters);
 
   @include breakpoint('md') {
-    padding: functions.rem($grid-gutters*2);
+    padding: functions.rem(settings.$grid-gutters*2);
   }
 }
 

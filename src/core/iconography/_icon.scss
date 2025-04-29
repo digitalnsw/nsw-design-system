@@ -1,4 +1,7 @@
 @use 'sass:map';
+@use '../../global/scss/base/mixins' as mixins;
+@use '../../global/scss/base/functions' as functions;
+@use '../../global/scss/settings/settings' as settings;
 
 $nsw-icon-sizes: (
   20: 20px,
@@ -21,7 +24,7 @@ $nsw-icon-angles: (90, 180, 270);
 .nsw-material-icons {
   @each $size, $variant in $nsw-icon-sizes {
     &--#{"" + $size} {
-      font-size: rem(map.get($nsw-icon-sizes, $size));
+      font-size: functions.rem(map.get($nsw-icon-sizes, $size));
     }
   }
 
@@ -39,33 +42,33 @@ $nsw-icon-angles: (90, 180, 270);
   }
 
   &--inline {
-    font-size: rem(map.get($nsw-icon-sizes, 20));
-    line-height: rem(10px);
+    font-size: functions.rem(map.get($nsw-icon-sizes, 20));
+    line-height: functions.rem(10px);
     position: relative;
-    bottom: rem(-5px);
-    margin-right: rem(4px);
+    bottom: functions.rem(-5px);
+    margin-right: functions.rem(4px);
   }
 }
 
 .nsw-icon-button {
   background: none;
   text-decoration: none;
-  padding: rem(8px);
+  padding: functions.rem(8px);
   display: inline-block;
   border: 0;
   color: var(--nsw-brand-dark);
   font-weight: var(--nsw-font-bold);
   border-radius: var(--nsw-border-radius);
   
-  @include font-size('sm');
+  @include mixins.font-size('sm');
 
   &:hover {
-    @include nsw-hover;
+    @include mixins.nsw-hover;
     outline-width: 0;
   }
 
   &:focus {
-    @include nsw-focus($offset: false);
+    @include mixins.nsw-focus($offset: false);
   }
 
   .nsw-material-icons,
@@ -86,6 +89,6 @@ $nsw-icon-angles: (90, 180, 270);
   }
 
   .nsw-section--invert & {    
-    @include link-light;
+    @include mixins.link-light;
   }
 }
