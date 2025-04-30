@@ -1,3 +1,6 @@
+@use '../../global/scss/base/functions' as functions;
+@use '../../global/scss/base/mixins' as mixins;
+
 .dialog-active {
   overflow: hidden;
 }
@@ -13,19 +16,19 @@
   justify-content: center;
   align-items: flex-end;
   
-  @include z-index('upper');
+  @include mixins.z-index('upper');
 
   .nsw-section--invert & {
     color: var(--nsw-text-dark);
 
     .nsw-icon-button {
-      @include link-dark();
+      @include mixins.link-dark();
     }
   }
 
-  @include breakpoint('sm') {
+  @include mixins.breakpoint('sm') {
     align-items: center;
-    padding: 0 rem(16px);
+    padding: 0 functions.rem(16px);
   }
 
   &.active {
@@ -35,59 +38,59 @@
   &__wrapper {
     background-color: var(--nsw-white);
     width: 100%;
-    max-width: rem(736px);
+    max-width: functions.rem(736px);
     position: relative;
-    padding-bottom: rem(145px);
+    padding-bottom: functions.rem(145px);
 
-    @include breakpoint('sm') {
+    @include mixins.breakpoint('sm') {
       border-radius: var(--nsw-border-radius);
       align-items: center;
       max-height: 90%;
     }
 
-    @include breakpoint('md') {
-      padding-bottom: rem(81px);
+    @include mixins.breakpoint('md') {
+      padding-bottom: functions.rem(81px);
     }
 
-    @include breakpoint('lg') {
-      padding-bottom: rem(113px);
+    @include mixins.breakpoint('lg') {
+      padding-bottom: functions.rem(113px);
     }
 
     .nsw-dialog--single-action & {
-      padding-bottom: rem(81px);
+      padding-bottom: functions.rem(81px);
 
-      @include breakpoint('lg') {
-        padding-bottom: rem(113px);
+      @include mixins.breakpoint('lg') {
+        padding-bottom: functions.rem(113px);
       }
     }
   }
 
   &__container {
     height: 100%;
-    max-height: calc(100vh - #{rem(145px)});
+    max-height: calc(100vh - #{functions.rem(145px)});
     overflow-y: auto;
 
-    @include breakpoint('sm') {
-      max-height: calc(90vh - #{rem(145px)});
+    @include mixins.breakpoint('sm') {
+      max-height: calc(90vh - #{functions.rem(145px)});
     }
 
-    @include breakpoint('md') {
-      max-height: calc(90vh - #{rem(81px)});
+    @include mixins.breakpoint('md') {
+      max-height: calc(90vh - #{functions.rem(81px)});
     }
 
-    @include breakpoint('lg') {
-      max-height: calc(90vh - #{rem(113px)});
+    @include mixins.breakpoint('lg') {
+      max-height: calc(90vh - #{functions.rem(113px)});
     }
 
     .nsw-dialog--single-action & {
-      max-height: calc(100vh - #{rem(81px)});
+      max-height: calc(100vh - #{functions.rem(81px)});
 
-      @include breakpoint('sm') {
-        max-height: calc(90vh - #{rem(81px)});
+      @include mixins.breakpoint('sm') {
+        max-height: calc(90vh - #{functions.rem(81px)});
       }
 
-      @include breakpoint('lg') {
-        max-height: calc(90vh - #{rem(113px)});
+      @include mixins.breakpoint('lg') {
+        max-height: calc(90vh - #{functions.rem(113px)});
       }
     }
   }
@@ -98,31 +101,31 @@
   }
 
   &__title {
-    padding: rem(16px);
+    padding: functions.rem(16px);
     width: 100%;
 
-    @include breakpoint('lg') {
-      padding: rem(32px);
+    @include mixins.breakpoint('lg') {
+      padding: functions.rem(32px);
     }
   }
 
   &__close {
-    min-width: rem(48px);
-    max-width: rem(48px);
-    padding: rem(8px) rem(8px) rem(8px) 0;
+    min-width: functions.rem(48px);
+    max-width: functions.rem(48px);
+    padding: functions.rem(8px) functions.rem(8px) functions.rem(8px) 0;
 
-    @include breakpoint('lg') {
-      min-width: rem(64px);
-      max-width: rem(64px);
-      padding: rem(24px) rem(24px) rem(24px) 0;
+    @include mixins.breakpoint('lg') {
+      min-width: functions.rem(64px);
+      max-width: functions.rem(64px);
+      padding: functions.rem(24px) functions.rem(24px) functions.rem(24px) 0;
     }
   }
 
   &__content {
-    padding: rem(16px);
+    padding: functions.rem(16px);
 
-    @include breakpoint('lg') {
-      padding: rem(32px);
+    @include mixins.breakpoint('lg') {
+      padding: functions.rem(32px);
     }
   }
 
@@ -134,29 +137,29 @@
     right: 0;
     display: flex;
     flex-direction: column;
-    padding: rem(16px);
+    padding: functions.rem(16px);
 
-    @include breakpoint('md') {
+    @include mixins.breakpoint('md') {
       flex-direction: row-reverse;
       justify-content: flex-start;
     }
 
-    @include breakpoint('lg') {
-      padding: rem(32px);
+    @include mixins.breakpoint('lg') {
+      padding: functions.rem(32px);
     }
 
     button {
-      margin-bottom: rem(16px);
+      margin-bottom: functions.rem(16px);
 
-      @include breakpoint('md') {
-        margin-left: rem(16px);
+      @include mixins.breakpoint('md') {
+        margin-left: functions.rem(16px);
         margin-bottom: 0;
       }
 
       &:last-child {
         margin-bottom: 0;
 
-        @include breakpoint('md') {
+        @include mixins.breakpoint('md') {
           margin-left: 0;
         }
       }

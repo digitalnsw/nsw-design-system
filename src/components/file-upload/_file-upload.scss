@@ -1,5 +1,8 @@
+@use '../../global/scss/base/functions' as functions;
+@use '../../global/scss/base/mixins' as mixins;
+
 .nsw-file-upload {
-  margin-top: rem(8px);
+  margin-top: functions.rem(8px);
   display: block;
 
   &__label {
@@ -21,7 +24,7 @@
     }
     
     &:focus + .nsw-file-upload__label {
-      @include nsw-focus;
+      @include mixins.nsw-focus;
     }
   }
 
@@ -38,15 +41,15 @@
 
   &__item {
     display: flex;
-    max-width: rem(500px);
+    max-width: functions.rem(500px);
     align-items: center;
     justify-content: space-between;
     background-color: var(--nsw-off-white);
     border-radius: var(--nsw-border-radius);
-    padding: rem(8px);
+    padding: functions.rem(8px);
 
     &:not(:last-child) {
-      margin-bottom: rem(8px);
+      margin-bottom: functions.rem(8px);
     }
 
     .nsw-section--invert & {    
@@ -55,19 +58,19 @@
     }
 
     .nsw-icon-button {
-      @include link-dark();
+      @include mixins.link-dark();
       cursor: pointer;
 
       &:hover {
         .nsw-section--invert & {    
-          @include nsw-hover();
+          @include mixins.nsw-hover();
         }
       }
     }
   }
 
   &__item-filename {
-    margin-left: rem(8px);
+    margin-left: functions.rem(8px);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

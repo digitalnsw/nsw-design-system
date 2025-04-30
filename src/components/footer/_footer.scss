@@ -1,6 +1,10 @@
+@use '../../global/scss/base/functions' as functions;
+@use '../../global/scss/base/mixins' as mixins;
+@use '../../global/scss/settings/settings' as settings;
+
 .nsw-footer {
   hr {
-    margin: rem(16px) 0;
+    margin: functions.rem(16px) 0;
     height: 1px;
     border: 0;
     background-color: var(--nsw-grey-03);
@@ -8,26 +12,26 @@
 
   a:not(.nsw-icon-button) {
     line-height: 1.5;
-    padding: rem(8px) rem(24px) rem(8px) 0;
+    padding: functions.rem(8px) functions.rem(24px) functions.rem(8px) 0;
     
-    @include breakpoint('md') {
-      padding: rem(4px) rem(4px) rem(4px) 0;
+    @include mixins.breakpoint('md') {
+      padding: functions.rem(4px) functions.rem(4px) functions.rem(4px) 0;
     }
   }
 
   &__upper {
     background-color: var(--nsw-white);
     border-top: solid 1px var(--nsw-grey-03);
-    padding-top: rem(24px);
+    padding-top: functions.rem(24px);
 
     .nsw-container {
-      padding-left: rem(8px);
-      padding-right: rem(8px);
+      padding-left: functions.rem(8px);
+      padding-right: functions.rem(8px);
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
 
-      @include breakpoint('lg') {
+      @include mixins.breakpoint('lg') {
         padding-left: 0;
         padding-right: 0;
       }
@@ -35,27 +39,27 @@
   }
 
   &__group {
-    padding: 0 rem(8px) rem(16px) rem(8px);
+    padding: 0 functions.rem(8px) functions.rem(16px) functions.rem(8px);
     flex: 1 0 auto;
-    min-width: rem(256px);
+    min-width: functions.rem(256px);
     max-width: 50%;
 
-    @include breakpoint('md') {
+    @include mixins.breakpoint('md') {
       flex-basis: 50%;
       min-width: auto;
     }
 
-    @include breakpoint('lg') {
-      padding: 0 rem(16px) rem(24px) rem(16px);
+    @include mixins.breakpoint('lg') {
+      padding: 0 functions.rem(16px) functions.rem(24px) functions.rem(16px);
       flex-basis: 25%;
     }
 
     ul {
       list-style: none;
-      margin: rem(4px) 0 0 0;
+      margin: functions.rem(4px) 0 0 0;
       padding: 0;
 
-      @include font-size('xs');
+      @include mixins.font-size('xs');
 
       a {
         font-weight: var(--nsw-font-normal);
@@ -68,33 +72,33 @@
   }
 
   &__heading {
-    @include font-size('sm');
+    @include mixins.font-size('sm');
   }
 
   &__lower {
     background-color: var(--nsw-grey-01);
     color: var(--nsw-text-light);
-    padding: rem(16px) 0 rem(24px) 0;
+    padding: functions.rem(16px) 0 functions.rem(24px) 0;
 
-    @include font-size('xs');
+    @include mixins.font-size('xs');
 
     a {
-      @include link-light;
+      @include mixins.link-light;
     }
 
     p {
-      margin: rem(12px) 0;
+      margin: functions.rem(12px) 0;
     }
 
     ul {
       list-style: none;
-      margin: rem(16px) rem(-8px) 0 rem(-8px);
+      margin: functions.rem(16px) functions.rem(-8px) 0 functions.rem(-8px);
       padding: 0;
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
 
-      @include breakpoint('md') {
+      @include mixins.breakpoint('md') {
         margin-left: 0;
         margin-right: 0;
       }
@@ -103,11 +107,11 @@
     li {
       flex: 1 0 50%;
       max-width: 50%;
-      padding: 0 rem(8px);
-      margin: 0 0 rem(16px) 0;
+      padding: 0 functions.rem(8px);
+      margin: 0 0 functions.rem(16px) 0;
 
-      @include breakpoint('md') {
-        margin-right: rem(24px);
+      @include mixins.breakpoint('md') {
+        margin-right: functions.rem(24px);
         padding: 0;
         flex: 0 0 auto;
         max-width: none;
@@ -116,37 +120,37 @@
   }
 
   &__links {
-    @include breakpoint('md') {
+    @include mixins.breakpoint('md') {
       display: flex;
       justify-content: space-between;
-      margin-top: rem(-16px);
+      margin-top: functions.rem(-16px);
     }
   }
 
   &__acknowledgement {
-    padding-bottom: rem(12px);
+    padding-bottom: functions.rem(12px);
     
-    @include font-size('sm');
+    @include mixins.font-size('sm');
   }
 
   &__social {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    margin: 0 rem(-12px);
-    padding: rem(8px) 0 rem(12px) 0;
+    margin: 0 functions.rem(-12px);
+    padding: functions.rem(8px) 0 functions.rem(12px) 0;
 
-    @include breakpoint('md') {
-      padding-bottom: rem(8px);
+    @include mixins.breakpoint('md') {
+      padding-bottom: functions.rem(8px);
     }
 
     a {
-      margin: 0 rem(4px);
+      margin: 0 functions.rem(4px);
     }
   }
 
   &__info {
-    @include breakpoint('md') {
+    @include mixins.breakpoint('md') {
       display: flex;
       flex-wrap: nowrap;
     }
@@ -154,14 +158,14 @@
 
   &__copyright {
     flex: 1 1 auto;
-    margin: rem(12px) 0;
+    margin: functions.rem(12px) 0;
   }
 
   &__built {
-    flex: 0 0 rem(200px);
-    margin: rem(12px) 0;
+    flex: 0 0 functions.rem(200px);
+    margin: functions.rem(12px) 0;
 
-    @include breakpoint('md') {
+    @include mixins.breakpoint('md') {
       text-align: right;
     }
   }
@@ -182,7 +186,7 @@
       color: var(--nsw-text-dark);
 
       a {
-        @include link-dark;
+        @include mixins.link-dark;
       }
     }
   }
