@@ -3,46 +3,46 @@
 @use '../../global/scss/base/functions' as functions;
 @use '../../global/scss/settings/settings' as settings;
 
-$nsw-icon-sizes: (
-  20: 20px,
-  24: 24px,
-  30: 30px,
-  36: 36px
-);
+// $nsw-icon-sizes: (
+//   20: 20px,
+//   24: 24px,
+//   30: 30px,
+//   36: 36px
+// );
 
-$nsw-icon-colors: (
-  brand: var(--nsw-brand-dark),
-  accent: var(--nsw-brand-accent),
-  error: var(--nsw-status-error),
-  success: var(--nsw-status-success),
-  info: var(--nsw-status-info),
-  warning: var(--nsw-status-warning)
-);
+// $nsw-icon-colors: (
+//   brand: var(--nsw-brand-dark),
+//   accent: var(--nsw-brand-accent),
+//   error: var(--nsw-status-error),
+//   success: var(--nsw-status-success),
+//   info: var(--nsw-status-info),
+//   warning: var(--nsw-status-warning)
+// );
 
-$nsw-icon-angles: (90, 180, 270);
+// $nsw-icon-angles: (90, 180, 270);
 
 .nsw-material-icons {
-  @each $size, $variant in $nsw-icon-sizes {
+  @each $size, $variant in settings.$nsw-icon-sizes {
     &--#{"" + $size} {
-      font-size: functions.rem(map.get($nsw-icon-sizes, $size));
+      font-size: functions.rem(map.get(settings.$nsw-icon-sizes, $size));
     }
   }
 
-  @each $color, $variant in $nsw-icon-colors {
+  @each $color, $variant in settings.$nsw-icon-colors {
     &--#{"" + $color} {
       /* stylelint-disable-next-line sh-waqar/declaration-use-variable */
-      color: map.get($nsw-icon-colors, $color);
+      color: map.get(settings.$nsw-icon-colors, $color);
     }
   }
 
-  @each $angle, $variant in $nsw-icon-angles {
+  @each $angle, $variant in settings.$nsw-icon-angles {
     &--rotate-#{"" + $angle} {
       transform: rotate(#{$angle}deg);
     }
   }
 
   &--inline {
-    font-size: functions.rem(map.get($nsw-icon-sizes, 20));
+    font-size: functions.rem(map.get(settings.$nsw-icon-sizes, 20));
     line-height: functions.rem(10px);
     position: relative;
     bottom: functions.rem(-5px);
