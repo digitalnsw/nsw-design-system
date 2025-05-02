@@ -1,7 +1,10 @@
+@use '../../global/scss/base/functions' as functions;
+@use '../../global/scss/base/mixins' as mixins;
+
 .nsw-steps {
   counter-reset: step;
 
-  @include component-spacing();
+  @include mixins.component-spacing();
 
   &__item {
     position: relative;
@@ -19,17 +22,17 @@
     &::before {
       content: '';
       position: absolute;
-      top: rem(1px);
+      top: functions.rem(1px);
       left: 0;
-      width: rem(32px);
-      height: rem(32px);
-      border: rem(4px) solid var(--nsw-brand-accent);
+      width: functions.rem(32px);
+      height: functions.rem(32px);
+      border: functions.rem(4px) solid var(--nsw-brand-accent);
       border-radius: 100%;
 
-      @include breakpoint('lg') { 
-        width: rem(48px);
-        height: rem(48px);
-        top: rem(-4px);
+      @include mixins.breakpoint('lg') { 
+        width: functions.rem(48px);
+        height: functions.rem(48px);
+        top: functions.rem(-4px);
       }
     }
 
@@ -37,10 +40,10 @@
       counter-increment: step;
       content: counter(step);
       position: absolute;
-      top: rem(1px);
+      top: functions.rem(1px);
       left: 0;
-      width: rem(32px);
-      height: rem(32px);
+      width: functions.rem(32px);
+      height: functions.rem(32px);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -48,12 +51,12 @@
       font-weight: var(--nsw-font-bold);
       visibility: hidden;
       
-      @include font-size('md');
+      @include mixins.font-size('md');
 
-      @include breakpoint('lg') { 
-        width: rem(48px);
-        height: rem(48px);
-        top: rem(-4px);
+      @include mixins.breakpoint('lg') { 
+        width: functions.rem(48px);
+        height: functions.rem(48px);
+        top: functions.rem(-4px);
       }    
     }
 
@@ -88,25 +91,25 @@
 
   &__content {
     position: relative;
-    padding: 0 0 rem(24px) rem(48px);
+    padding: 0 0 functions.rem(24px) functions.rem(48px);
 
-    @include breakpoint('lg') { 
-      padding: 0 0 rem(32px) rem(72px);
+    @include mixins.breakpoint('lg') { 
+      padding: 0 0 functions.rem(32px) functions.rem(72px);
     }
 
     &::before {
       content: '';
       position: absolute;
-      top: rem(33px);
-      bottom: rem(-1px);
-      left: rem(14px);
-      width: rem(4px);
+      top: functions.rem(33px);
+      bottom: functions.rem(-1px);
+      left: functions.rem(14px);
+      width: functions.rem(4px);
       background-color: var(--nsw-brand-accent);
 
-      @include breakpoint('lg') { 
-        top: rem(44px);
-        left: rem(22px);
-        bottom: rem(4px);
+      @include mixins.breakpoint('lg') { 
+        top: functions.rem(44px);
+        left: functions.rem(22px);
+        bottom: functions.rem(4px);
       }
     }
   }
@@ -234,40 +237,40 @@
   &--medium {
     .nsw-steps__item {
       &::before {
-        top: rem(-2px);
+        top: functions.rem(-2px);
 
-        @include breakpoint('lg') { 
-          width: rem(40px);
-          height: rem(40px);
-          top: rem(-4px);
+        @include mixins.breakpoint('lg') { 
+          width: functions.rem(40px);
+          height: functions.rem(40px);
+          top: functions.rem(-4px);
         }
       }
 
       &::after {
-        top: rem(-2px);
+        top: functions.rem(-2px);
 
-        @include breakpoint('lg') { 
+        @include mixins.breakpoint('lg') { 
           font-size: var(--nsw-font-size-md-mobile);
-          width: rem(40px);
-          height: rem(40px);
-          top: rem(-4px);
+          width: functions.rem(40px);
+          height: functions.rem(40px);
+          top: functions.rem(-4px);
         }    
       }
     }
 
     .nsw-steps__content {
-      @include breakpoint('lg') { 
-        padding-left: rem(64px);
+      @include mixins.breakpoint('lg') { 
+        padding-left: functions.rem(64px);
       }
 
       &::before {
-        top: rem(30px);
-        bottom: rem(2px);
+        top: functions.rem(30px);
+        bottom: functions.rem(2px);
 
-        @include breakpoint('lg') { 
-          top: rem(36px);
-          bottom: rem(4px);
-          left: rem(18px);
+        @include mixins.breakpoint('lg') { 
+          top: functions.rem(36px);
+          bottom: functions.rem(4px);
+          left: functions.rem(18px);
         }
       }
     }
@@ -276,40 +279,40 @@
   &--small {
     .nsw-steps__item {
       &::before {
-        top: rem(-4px);
+        top: functions.rem(-4px);
 
-        @include breakpoint('lg') { 
-          width: rem(32px);
-          height: rem(32px);
-          top: rem(-2px);
+        @include mixins.breakpoint('lg') { 
+          width: functions.rem(32px);
+          height: functions.rem(32px);
+          top: functions.rem(-2px);
         }
       }
 
       &::after {
-        top: rem(-4px);
+        top: functions.rem(-4px);
 
-        @include breakpoint('lg') { 
+        @include mixins.breakpoint('lg') { 
           font-size: var(--nsw-font-size-md-mobile);
-          width: rem(32px);
-          height: rem(32px);
-          top: rem(-2px);
+          width: functions.rem(32px);
+          height: functions.rem(32px);
+          top: functions.rem(-2px);
         }    
       }
     }
 
     .nsw-steps__content {
-      @include breakpoint('lg') { 
-        padding-left: rem(56px);
+      @include mixins.breakpoint('lg') { 
+        padding-left: functions.rem(56px);
       }
 
       &::before {
-        top: rem(28px);
-        bottom: rem(4px);
+        top: functions.rem(28px);
+        bottom: functions.rem(4px);
 
-        @include breakpoint('lg') { 
-          top: rem(30px);
-          bottom: rem(2px);
-          left: rem(14px);
+        @include mixins.breakpoint('lg') { 
+          top: functions.rem(30px);
+          bottom: functions.rem(2px);
+          left: functions.rem(14px);
         }
       }
     }

@@ -1,20 +1,23 @@
+@use '../../global/scss/base/functions' as functions;
+@use '../../global/scss/base/mixins' as mixins;
+
 .nsw-tag {
   font-weight: var(--nsw-font-normal);
-  padding: rem(2px) rem(16px);
+  padding: functions.rem(2px) functions.rem(16px);
   border: solid 1px var(--nsw-brand-dark);
-  border-radius: rem(24px);
+  border-radius: functions.rem(24px);
   color: var(--nsw-brand-dark);
   text-decoration: none;
   display: inline-block;
   
-  @include font-size('xs');
+  @include mixins.font-size('xs');
 
   &:visited {
     color: var(--nsw-brand-dark);
   }
   
   &:hover:not(.nsw-tag--checkbox, span) {
-    @include nsw-hover;
+    @include mixins.nsw-hover;
     outline-width: 0;
   }
 
@@ -31,7 +34,7 @@
     border-color: var(--nsw-text-light);
 
     &:not(span) {
-      @include link-light;
+      @include mixins.link-light;
     }
   }
 
@@ -54,7 +57,7 @@
       &:hover + label {
         cursor: pointer;
 
-        @include nsw-hover;
+        @include mixins.nsw-hover;
         
         .nsw-section--invert & {    
           background-color: var(--nsw-hover-light);
@@ -62,7 +65,7 @@
       }
 
       &:focus + label {
-        @include nsw-focus;
+        @include mixins.nsw-focus;
         outline-offset: 0;
 
         .nsw-section--invert & {    
@@ -82,9 +85,9 @@
     }
 
     label {
-      padding: rem(2px) rem(16px);
+      padding: functions.rem(2px) functions.rem(16px);
       border: solid 1px var(--nsw-brand-dark);
-      border-radius: rem(24px);
+      border-radius: functions.rem(24px);
       display: inline-block;
 
       .nsw-section--invert & {    

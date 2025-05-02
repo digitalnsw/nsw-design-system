@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+
 import * as CookieConsentAPI from 'vanilla-cookieconsent'
 
 class CookieConsent {

@@ -1,20 +1,23 @@
+@use '../../global/scss/base/functions' as functions;
+@use '../../global/scss/base/mixins' as mixins;
+
 .nsw-popover {
   display: none;
   width: max-content;
   position: absolute;
   top: 0;
   left: 0;
-  min-width: rem(280px);
-  max-width: rem(280px);
+  min-width: functions.rem(280px);
+  max-width: functions.rem(280px);
   border-radius: var(--nsw-border-radius);
   box-shadow: var(--nsw-box-shadow);
   background-color: var(--nsw-white);
 
-  @include z-index('upper');
+  @include mixins.z-index('upper');
 
   &:focus,
   &:active {
-    @include nsw-focus(false);
+    @include mixins.nsw-focus(false);
   }
 
   &.active {

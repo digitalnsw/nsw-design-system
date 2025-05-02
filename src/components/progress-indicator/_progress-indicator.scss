@@ -1,21 +1,24 @@
+@use '../../global/scss/base/functions' as functions;
+@use '../../global/scss/base/mixins' as mixins;
+
 .nsw-progress-indicator {
-  @include component-spacing();
+  @include mixins.component-spacing();
 
   &__count {
-    @include font-size('sm');
+    @include mixins.font-size('sm');
   }
 
   &__bar {
     display: flex;
-    padding-top: rem(8px);
+    padding-top: functions.rem(8px);
 
     div {
-      height: rem(4px);
+      height: functions.rem(4px);
       width: 100%;
       background-color: var(--nsw-grey-04);
 
       &:not(:first-child) {
-        margin-left: rem(4px);
+        margin-left: functions.rem(4px);
       }
 
       &.active {
