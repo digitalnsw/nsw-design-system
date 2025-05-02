@@ -1,16 +1,19 @@
 @use 'sass:map';
+@use '../../global/scss/base/functions' as functions;
+@use '../../global/scss/base/mixins' as mixins;
+@use '../../global/scss/settings/settings' as settings;
 
 .nsw-link-list {
-  @include component-spacing();
+  @include mixins.component-spacing();
 
   &__title {
     font-weight: var(--nsw-font-bold);
-    padding-bottom: rem(16px);
+    padding-bottom: functions.rem(16px);
     
-    @include font-size('lg');
+    @include mixins.font-size('lg');
     
-    @include breakpoint('md') {
-      padding-bottom: rem(24px);
+    @include mixins.breakpoint('md') {
+      padding-bottom: functions.rem(24px);
     }
   }
 
@@ -30,7 +33,7 @@
   }
 
   a {
-    padding: rem(16px);
+    padding: functions.rem(16px);
     color: var(--nsw-brand-dark);
     display: flex;
     justify-content: space-between;
@@ -38,7 +41,7 @@
     text-decoration: none;
 
     &:hover {
-      @include nsw-hover;
+      @include mixins.nsw-hover;
       outline-width: 0;
     }
 
@@ -50,7 +53,7 @@
       text-decoration: underline;
 
       span.nsw-material-icons {
-        bottom: rem(-5px);
+        bottom: functions.rem(-5px);
       }
     }
 
@@ -63,14 +66,14 @@
       color: var(--nsw-text-light);
 
       &:hover {
-        @include nsw-hover-light;
+        @include mixins.nsw-hover-light;
         outline-width: 0;
       }
     }
   }
 
   .nsw-material-icons {
-    font-size: rem(map.get($nsw-icon-sizes, 20));
-    margin-left: rem(16px);
+    font-size: functions.rem(map.get(settings.$nsw-icon-sizes, 20));
+    margin-left: functions.rem(16px);
   }
 }

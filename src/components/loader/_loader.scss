@@ -1,17 +1,19 @@
 @use 'sass:map';
+@use '../../global/scss/base/functions' as functions;
+@use '../../global/scss/settings/settings' as settings;
 
 //Variations
 $nsw-loaders: (
   sm: (
-    size: rem(24px),
+    size: functions.rem(24px),
     border: 3px,
   ),
   md: (
-    size: rem(32px),
+    size: functions.rem(32px),
     border: 3px,
   ),
   lg: (
-    size: rem(48px),
+    size: functions.rem(48px),
     border: 4px,
   )
 );
@@ -29,8 +31,8 @@ $nsw-loaders: (
     animation-duration: 1.4s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
-    width: rem(64px);
-    height: rem(64px);
+    width: functions.rem(64px);
+    height: functions.rem(64px);
     border-width: 4px;
     transform-origin: 50% 50% calc((4rem / 2) + 4px);
     border-color: var(--nsw-grey-03);

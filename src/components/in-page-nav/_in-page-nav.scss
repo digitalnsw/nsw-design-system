@@ -1,14 +1,17 @@
+@use '../../global/scss/base/functions' as functions;
+@use '../../global/scss/base/mixins' as mixins;
+
 .nsw-in-page-nav {
-  padding: rem(16px);
+  padding: functions.rem(16px);
   border-left: solid 2px var(--nsw-brand-accent);
 
-  @include component-spacing();
+  @include mixins.component-spacing();
 
   &__title {
     font-weight: var(--nsw-font-bold);
     margin: 0;
     
-    @include font-size(md);
+    @include mixins.font-size(md);
   }
 
   ul {
@@ -19,15 +22,15 @@
 
   li {
     display: block;
-    margin-top: rem(16px);
+    margin-top: functions.rem(16px);
   }
 
   a:not(.nsw-icon-button) {
     line-height: 1.5;
-    padding: rem(8px) rem(24px) rem(8px) 0;
+    padding: functions.rem(8px) functions.rem(24px) functions.rem(8px) 0;
     
-    @include breakpoint('md') {
-      padding: rem(4px) rem(4px) rem(4px) 0;
+    @include mixins.breakpoint('md') {
+      padding: functions.rem(4px) functions.rem(4px) functions.rem(4px) 0;
     }
   }
 }
