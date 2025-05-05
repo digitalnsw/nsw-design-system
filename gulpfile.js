@@ -1,7 +1,7 @@
 const {
   src, dest, watch, series,
 } = require('gulp')
-const child = require('child_process');
+const child = require('child_process')
 const sass = require('gulp-sass')(require('sass'))
 const postcss = require('gulp-postcss')
 const autoprefixer = require('autoprefixer')
@@ -38,7 +38,6 @@ const config = require('./config')
 const package = require('./package')
 
 const server = browsersync.create()
-sass.compiler = require('sass')
 
 const postcssProcessors = [
   postcssNormalize({ forceImport: true }),
@@ -60,7 +59,10 @@ function buildStyles() {
   return src(config.scss.src)
     .pipe(sourcemaps.init())
     .pipe(sassGlob())
-    .pipe(sass().on('error', sass.logError))
+    .pipe(sass().on('error', function (err) {
+      console.error(err.message)
+      this.emit('end')
+    }))
     .pipe(postcss(postcssProcessors))
     .pipe(sourcemaps.write('.'))
     .pipe(dest(config.scss.build))
@@ -70,7 +72,10 @@ function buildCoreStyles() {
   return src(config.scssCore.src)
     .pipe(sourcemaps.init())
     .pipe(sassGlob())
-    .pipe(sass().on('error', sass.logError))
+    .pipe(sass().on('error', function (err) {
+      console.error(err.message)
+      this.emit('end')
+    }))
     .pipe(postcss(postcssProcessors))
     .pipe(sourcemaps.write('.'))
     .pipe(dest(config.scssCore.build))
@@ -80,7 +85,10 @@ function buildDocStyles() {
   return src(config.scssDocs.src)
     .pipe(sourcemaps.init())
     .pipe(sassGlob())
-    .pipe(sass().on('error', sass.logError))
+    .pipe(sass().on('error', function (err) {
+      console.error(err.message)
+      this.emit('end')
+    }))
     .pipe(postcss(postcssProcessors))
     .pipe(sourcemaps.write('.'))
     .pipe(dest(config.scssDocs.build))
