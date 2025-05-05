@@ -154,13 +154,15 @@
     }
   }
 
-  &.open > &__header,
   &.open > &__content {
     display: block;
-    padding-top: rem(16px);
   }
 
-  @include breakpoint('md') {
+  &.open > &__header {
+    display: none;
+  }
+
+  @include breakpoint('lg') {
     &__header,
     &__content {
       display: block;
