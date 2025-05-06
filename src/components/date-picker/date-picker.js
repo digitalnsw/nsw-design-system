@@ -445,7 +445,7 @@ class DatePicker {
     const firstDay = this.constructor.getDayOfWeek(this.currentYear, this.currentMonth, '01')
     this.body.innerHTML = ''
     const monthLabel = this.months[this.currentMonth] || 'Invalid month'
-    this.heading.innerHTML = `${monthLabel} ${this.currentYear}`
+    this.heading.textContent = `${monthLabel} ${this.currentYear}`
 
     let date = 1
     let calendar = ''
