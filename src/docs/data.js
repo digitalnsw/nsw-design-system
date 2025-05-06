@@ -42,6 +42,18 @@ const searchValues = [
     url: '/components/cookie-consent/index.html',
   },
   {
+    label: 'Date input',
+    template: 'result',
+    keywords: 'date, day, month, year, calendar, input field, manual entry, form field, accessibility, validation, format, required, date format, user input',
+    url: '/components/date-input/index.html',
+  },
+  {
+    label: 'Date picker',
+    template: 'result',
+    keywords: 'date, calendar, UI picker, dropdown calendar, select date, form, input field, visual selector, accessibility, date selection, required field, user-friendly, mobile-friendly',
+    url: '/components/date-picker/index.html',
+  },
+  {
     label: 'Dialog',
     template: 'result',
     keywords: 'modal, window, alert, message, action, information, notification, required, response, Transactional, single, call to action, Danger, Dismissible',
