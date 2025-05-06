@@ -5,8 +5,6 @@
 @use '../../global/scss/base/mixins' as mixins;
 @use '../../global/scss/settings/settings' as settings;
 
-// $nsw-form-tick: '<svg fill="#ffffff" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path d="M29.362 3.742l-18.867 19.204-7.857-7.997-2.638 2.685 9.175 9.34 1.319 1.284 1.318-1.284 20.187-20.547z"></path></svg>';
-
 .nsw-form {
   margin-top: functions.rem(48px);
 
@@ -330,7 +328,7 @@
     }
 
     &:checked + .nsw-form__checkbox-label::after {
-      background-image: svg-url(settings.$nsw-form-tick);
+      background-image: functions.svg-url(settings.$nsw-form-tick);
       background-color: var(--nsw-brand-dark);
     }
 

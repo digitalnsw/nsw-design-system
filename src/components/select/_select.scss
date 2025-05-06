@@ -13,14 +13,14 @@
     appearance: none;
     width: 100%;
     padding-right: functions.rem(48px);
-    background: var(--nsw-white) svg-url(settings.$nsw-form-chevron-down) no-repeat right functions.rem(16px) center;
+    background: var(--nsw-white) functions.svg-url(settings.$nsw-form-chevron-down) no-repeat right functions.rem(16px) center;
     background-size: functions.rem(16px) auto;
     cursor: pointer;
 
     @include mixins.font-size('sm');
 
     &:hover:not(.nsw-multi-select__button) {
-      background: svg-url(settings.$nsw-form-chevron-down) no-repeat right functions.rem(16px) center, linear-gradient(var(--nsw-hover), var(--nsw-hover));
+      background: functions.svg-url(settings.$nsw-form-chevron-down) no-repeat right functions.rem(16px) center, linear-gradient(var(--nsw-hover), var(--nsw-hover));
       background-size: functions.rem(16px) auto, auto;
       background-color: var(--nsw-white);
     }
@@ -34,7 +34,7 @@
     }
 
     &:disabled {
-      background: var(--nsw-off-white) svg-url(settings.$nsw-form-chevron-down) no-repeat right functions.rem(16px) center;
+      background: var(--nsw-off-white) functions.svg-url(settings.$nsw-form-chevron-down) no-repeat right functions.rem(16px) center;
       background-size: functions.rem(16px) auto;
       border-color: var(--nsw-grey-03);
       color: var(--nsw-grey-03);
@@ -48,7 +48,7 @@
       border-width: 2px;
 
       &:hover {
-        background: var(--nsw-status-error-bg) svg-url(settings.$nsw-form-chevron-down) no-repeat right functions.rem(16px) center;
+        background: var(--nsw-status-error-bg) functions.svg-url(settings.$nsw-form-chevron-down) no-repeat right functions.rem(16px) center;
         background-size: functions.rem(16px) auto;
       }
     }
@@ -230,7 +230,7 @@
       }
   
       &::after {
-        background-image: svg-url(settings.$nsw-form-tick);
+        background-image: functions.svg-url(settings.$nsw-form-tick);
         background-color: var(--nsw-brand-dark);
       }
   
