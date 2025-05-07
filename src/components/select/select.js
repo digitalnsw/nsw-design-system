@@ -56,6 +56,9 @@ class Select {
     if (this.arrowIcon.length > 0) this.arrowIcon[0].style.display = 'none'
     this.initCustomSelectEvents()
     this.updateAllButton()
+    if (this.select && this.select.hasAttribute('multiple') && this.element.classList.contains('js-clear-all')) {
+      this.clearAllButton()
+    }
   }
 
   initCustomSelectEvents() {
@@ -213,6 +216,28 @@ class Select {
     } else {
       this.allButton.classList.remove(this.showClass)
     }
+  }
+
+  clearAllButton() {
+    if (this.dropdown.querySelector('.nsw-multi-select__clear-all-button')) return
+
+    const clearButton = document.createElement('button')
+    clearButton.textContent = 'Clear all selections'
+    clearButton.className = `${this.prefix}link nsw-multi-select__clear-all-button`
+    clearButton.addEventListener('click', (e) => {
+      e.preventDefault()
+      this.clearAllSelections()
+    })
+    this.dropdown.appendChild(clearButton)
+  }
+
+  clearAllSelections() {
+    const [optionsArray] = this.getOptions()
+    optionsArray.forEach((option) => {
+      if (option.getAttribute('aria-selected') === 'true') {
+        this.selectOption(option) // Toggles off
+      }
+    })
   }
 
   updateNativeSelect(index, bool) {
