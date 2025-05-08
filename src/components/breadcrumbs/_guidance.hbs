@@ -14,15 +14,15 @@ layout: blank-layout.hbs
 <p><strong>Parent page</strong><br>Starts with the "Home" page and links users to parent-level pages in the IA.</p>
 <p><strong>Icon</strong><br>The chevrons between the names shows the visual hierarchy between pages.</p>
 <p><strong>Current page</strong><br>Indicates the current page the user is viewing.</p>
-<p><strong>Ellipsis</strong><br>Provides a clickable option to expand and reveal the full breadcrumb path for mobile users.</p>
+<p><strong>Ellipsis</strong><br>Displays when there are more than three breadcrumb items (including "Home") on mobile, letting users tap to reveal the full breadcrumb path.</p>
 
 <h3>When to avoid</h3>
 <p>Do not use the breadcrumbs component on websites with a flat structure, or to show progress through a linear journey or transaction.</p>
 <p>Breadcrumb navigation should be regarded as an extra feature and shouldn't replace effective primary navigation menus.</p>
 <p>If you're using other navigational elements on the page, such as a sidebar, consider whether your users need the additional support of breadcrumbs.</p>
 
-<h3>Mobile usability</h3>
-<p>For mobile resolutions (under 768px), the breadcrumb displays a link to the immediate parent and current page only, with a clickable ellipsis allowing users to reveal the full breadcrumb path for breadcrumb lists that contain more than 3 items (including "Home").</p>
+<h3>Mobile display and ellipsis behaviour</h3>
+<p>At mobile resolutions (under 768px), if the breadcrumb list contains more than three items (including "Home"), only the "Home" option, the current page and its immediate parent are shown by default. In this case, a clickable ellipsis appears before the parent page, allowing users to expand and view the full breadcrumb path. If there are three or fewer items, the full path is shown without an ellipsis.</p>
 <p>The ellipsis button is injected into the list of breadcrumb items by adding <code>js-breadcrumbs</code> class into the nav element that wraps the breadcrumb items.</p>
 
 <h2>Accessibility</h2>
