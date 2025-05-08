@@ -56,7 +56,7 @@ class Select {
     if (this.arrowIcon.length > 0) this.arrowIcon[0].style.display = 'none'
     this.initCustomSelectEvents()
     this.updateAllButton()
-    if (this.select && this.select.hasAttribute('multiple') && this.element.classList.contains('js-clear-all')) {
+    if (this.select && this.select.hasAttribute('multiple')) {
       this.clearAllButton()
     }
   }
