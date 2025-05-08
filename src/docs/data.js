@@ -188,7 +188,7 @@ const searchValues = [
   {
     label: 'Tabs',
     template: 'result',
-    keywords: 'ui, design, Toolbar',
+    keywords: 'ui, design, Toolbar, interface, navigation, panels, tabbed content, tab switcher, content grouping, horizontal tabs, accessibility, interactive, layout, tab interface, section control',
     url: '/components/tabs/index.html',
   },
   {
