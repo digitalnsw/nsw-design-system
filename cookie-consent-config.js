@@ -1,52 +1,51 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const config = {
-    cookie: {
-      name: 'nsw-cookie-consent',
-      expiresAfterDays: 90,
-    },
-    categories: {
-      necessary: {
-        enabled: true,
-        readOnly: true,
+(function (factory) {
+  typeof define === 'function' && define.amd ? define('NSW', factory) :
+  factory();
+})((function () { 'use strict';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const config = {
+      cookie: {
+        name: 'nsw-cookie-consent',
+        expiresAfterDays: 90
       },
-      analytics: {},
-    },
-    consentBanner: {
-      title: 'Cookies on the NSW Design System website',
-      description:
-        "We've added essential and additional cookies to ensure this service works effectively, track how it's being used, and make necessary improvements. You can <a href='#'>manage your cookie settings</a> by visiting the 'Cookies' page, found at the bottom of this page.",
-      acceptAllBtn: 'Accept all',
-      acceptNecessaryBtn: 'Only necessary cookies',
-      showPreferencesBtn: 'Manage your preferences',
-      confirmationMessage: `Thanks for making your selection. View and update your <a href="#cookie-consent" class="js-open-dialog-cookie-consent-preferences" aria-haspopup="dialog">cookie preferences</a>.`,
-      bannerOffset: '0px',
-    },
-    preferencesDialog: {
-      title: 'Manage cookie preferences',
-      acceptAllBtn: 'Accept all',
-      acceptNecessaryBtn: 'Only necessary cookies',
-      savePreferencesBtn: 'Accept current selection',
-      closeIconLabel: 'Close dialog',
-      sections: [
-        {
+      categories: {
+        necessary: {
+          enabled: true,
+          readOnly: true
+        },
+        analytics: {}
+      },
+      consentBanner: {
+        title: 'Cookies on the NSW Design System website',
+        description: "We've added essential and additional cookies to ensure this service works effectively, track how it's being used, and make necessary improvements. You can <a href='#'>manage your cookie settings</a> by visiting the 'Cookies' page, found at the bottom of this page.",
+        acceptAllBtn: 'Accept all',
+        acceptNecessaryBtn: 'Only necessary cookies',
+        showPreferencesBtn: 'Manage your preferences',
+        confirmationMessage: `Thanks for making your selection. View and update your <a href="#cookie-consent" class="js-open-dialog-cookie-consent-preferences" aria-haspopup="dialog">cookie preferences</a>.`,
+        bannerOffset: '0px'
+      },
+      preferencesDialog: {
+        title: 'Manage cookie preferences',
+        acceptAllBtn: 'Accept all',
+        acceptNecessaryBtn: 'Only necessary cookies',
+        savePreferencesBtn: 'Accept current selection',
+        closeIconLabel: 'Close dialog',
+        sections: [{
           title: 'Necessary',
-          description:
-            'This site requires necessary cookies for privacy protection, accessibility, and secure access to government services. They cannot be turned off.',
-          linkedCategory: 'necessary',
-        },
-        {
+          description: 'This site requires necessary cookies for privacy protection, accessibility, and secure access to government services. They cannot be turned off.',
+          linkedCategory: 'necessary'
+        }, {
           title: 'Performance and Analytics',
-          description:
-            'These cookies collect information about how you use our website. All of the data is anonymised and cannot be used to identify you.',
-          linkedCategory: 'analytics',
+          description: 'These cookies collect information about how you use our website. All of the data is anonymised and cannot be used to identify you.',
+          linkedCategory: 'analytics'
+        }],
+        tab1: {
+          tabTitle: 'Cookie preferences'
         },
-      ],
-      tab1: {
-        tabTitle: 'Cookie preferences',
-      },
-      tab2: {
-        tabTitle: 'How we use cookies',
-        content: `
+        tab2: {
+          tabTitle: 'How we use cookies',
+          content: `
           <p>We use cookies to enhance your experience when using our website.</p>
           <p>Cookies help us understand how you interact with our site, allowing us to improve functionality and ensure security.</p>
           <p>They do not contain viruses or harmful software and take up minimal space on your device.</p>
@@ -97,9 +96,10 @@ document.addEventListener('DOMContentLoaded', () => {
             </tbody>
           </table>
         `
-      },
-    },
-  };
+        }
+      }
+    };
+    new window.NSW.CookieConsent(config);
+  });
 
-  new window.NSW.CookieConsent(config);
-});
+}));
