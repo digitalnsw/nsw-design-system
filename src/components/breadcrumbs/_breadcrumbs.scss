@@ -1,6 +1,12 @@
+@use 'sass:map';
+@use '../../global/scss/base/functions' as functions;
+@use '../../global/scss/base/mixins' as mixins;
+@use '../../global/scss/settings/settings' as settings;
+
 .nsw-breadcrumbs {
-  @include font-size('xs');
-  margin-top: rem(24px);
+  margin-top: functions.rem(24px);
+
+  @include mixins.font-size('xs');
 
   ol {
     margin: 0;
@@ -11,7 +17,7 @@
   li:not(:first-child):not(:last-child):not(:nth-last-child(2)):not(.nsw-breadcrumbs__show-more-toggle) {
     display: none;
 
-    @include breakpoint('md') {
+    @include mixins.breakpoint('md') {
       display: inline-block;
     }
   }
@@ -26,36 +32,39 @@
     }
 
     &::before {
-      @include material-icons;
       content: 'keyboard_arrow_right';
-      font-size: rem(map-get($nsw-icon-sizes, 20));
-      line-height: rem(8px);
+      font-size: functions.rem(map.get(settings.$nsw-icon-sizes, 20));
+      line-height: functions.rem(8px);
       display: inline-block;
       position: relative;
-      top: rem(6px);
+      top: functions.rem(6px);
+
+      @include mixins.material-icons;
     }
   }
 
   .nsw-breadcrumbs__show-more-toggle {
-    @include breakpoint('md') {
+    @include mixins.breakpoint('md') {
       display: none;
     }
 
     .nsw-breadcrumbs__toggle-button {
-      @include link-button;
       font-size: var(--nsw-font-size-xs);
       font-weight: var(--nsw-font-normal);
       color: var(--nsw-text-dark);
       text-decoration: none;
-      padding: 0 rem(4px);
+      padding: 0 functions.rem(4px);
       margin-left: 4px;
       line-height: 24px;
       height: 100%;
       cursor: pointer;
+ 
+      @include mixins.link-button;
 
       .nsw-section--invert & {
-        @include link-light;
         color: var(--nsw-text-light);
+        
+        @include mixins.link-light;
       }
     }
   }

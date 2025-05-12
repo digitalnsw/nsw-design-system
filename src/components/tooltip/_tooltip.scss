@@ -1,3 +1,6 @@
+@use '../../global/scss/base/functions' as functions;
+@use '../../global/scss/base/mixins' as mixins;
+
 .nsw-tooltip,
 .nsw-toggletip {
   white-space: nowrap;
@@ -5,7 +8,7 @@
 
   &:focus,
   &:active {
-    @include nsw-focus;
+    @include mixins.nsw-focus;
   }
 
   &__element {
@@ -19,12 +22,12 @@
     box-shadow: var(--nsw-box-shadow);
     line-height: var(--nsw-line-height-md-desktop);
 
-    @include z-index('upper');
-    @include font-size('xs');
+    @include mixins.z-index('upper');
+    @include mixins.font-size('xs');
 
     &:focus,
     &:active {
-      @include nsw-focus;
+      @include mixins.nsw-focus;
     }
 
     &--dark {
@@ -32,11 +35,11 @@
       color: var(--nsw-text-light);
 
       a {
-        @include link-light();
+        @include mixins.link-light();
 
         &:focus,
         &:active {
-          @include nsw-focus(true, var(--nsw-text-light));
+          @include mixins.nsw-focus(true, var(--nsw-text-light));
         }
       }
 
@@ -44,7 +47,7 @@
         color: var(--nsw-text-light);
         text-decoration: none;
 
-        @include link-light();
+        @include mixins.link-light();
       }
     }
 
@@ -53,11 +56,11 @@
       color: var(--nsw-text-dark);
 
       a {
-        @include link;
+        @include mixins.link;
 
         &:focus,
         &:active {
-          @include nsw-focus;
+          @include mixins.nsw-focus;
         }
       }
 
@@ -65,7 +68,7 @@
         color: var(--nsw-brand-dark);
         text-decoration: none;
 
-        @include link-dark;
+        @include mixins.link-dark;
       }
 
       .nsw-tooltip__arrow,
@@ -96,10 +99,10 @@
   cursor: help;
 
   &__element {
-    padding: rem(8px);
+    padding: functions.rem(8px);
 
-    @include breakpoint('lg') {
-      padding: rem(16px);
+    @include mixins.breakpoint('lg') {
+      padding: functions.rem(16px);
     }
   }
 }
@@ -113,12 +116,12 @@
     align-items: center;
 
     .nsw-icon-button {
-      margin: rem(6px) rem(6px) 0 rem(8px);
+      margin: functions.rem(6px) functions.rem(6px) 0 functions.rem(8px);
 
       .nsw-material-icons {
         font-size: var(--nsw-font-size-sm-mobile);
     
-        @include breakpoint('lg') {
+        @include mixins.breakpoint('lg') {
           font-size: var(--nsw-font-size-sm-desktop);
         }
       }
@@ -126,7 +129,7 @@
   }
 
   &__content {
-    padding: 0 rem(16px) rem(16px);
+    padding: 0 functions.rem(16px) functions.rem(16px);
     
     &:first-child {
       margin-top: 0;
