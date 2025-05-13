@@ -39,6 +39,16 @@
     keywords: 'cookie, consent, consent banner, privacy, GDPR, CCPA, cookie policy, cookie preferences, cookie consent solution, cookie banner design, tracking consent, online privacy compliance, data protection, cookie management, privacy notice, user data consent, web compliance, privacy settings, regulatory compliance, digital consent',
     url: '/components/cookie-consent/index.html'
   }, {
+    label: 'Date input',
+    template: 'result',
+    keywords: 'date, day, month, year, calendar, input field, manual entry, form field, accessibility, validation, format, required, date format, user input, form date, date input, date field',
+    url: '/components/date-input/index.html'
+  }, {
+    label: 'Date picker',
+    template: 'result',
+    keywords: 'date, calendar, UI picker, dropdown calendar, select date, form, input field, visual selector, accessibility, date selection, required field, user-friendly, mobile-friendly, form date, date input, date field',
+    url: '/components/date-picker/index.html'
+  }, {
     label: 'Dialog',
     template: 'result',
     keywords: 'modal, window, alert, message, action, information, notification, required, response, Transactional, single, call to action, Danger, Dismissible',
@@ -151,12 +161,12 @@
   }, {
     label: 'Tabs',
     template: 'result',
-    keywords: 'ui, design, Toolbar',
+    keywords: 'ui, design, Toolbar, interface, navigation, panels, tabbed content, tab switcher, content grouping, horizontal tabs, accessibility, interactive, layout, tab interface, section control',
     url: '/components/tabs/index.html'
   }, {
     label: 'Tags',
     template: 'result',
-    keywords: 'badge, button, chip, marker, mark, identification, label, categorise',
+    keywords: 'badge, button, chip, marker, mark, identification, label, categorise, checkbox, tag, toggle, status, pill, filter, selection, selectable, metadata, classification, option, category, token, indicator, visual tag, highlight',
     url: '/components/tag/index.html'
   }, {
     label: 'Logo',

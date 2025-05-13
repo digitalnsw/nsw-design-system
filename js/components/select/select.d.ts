@@ -51,6 +51,8 @@ declare class Select {
     initSelection(): void;
     selectOption(option: any): void;
     updateAllButton(): void;
+    clearAllButton(): void;
+    clearAllSelections(): void;
     updateNativeSelect(index: any, bool: any): void;
     updateTriggerAria(ariaLabel: any): void;
     getSelectedOptionText(): any[];

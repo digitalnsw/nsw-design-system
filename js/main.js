@@ -1936,21 +1936,22 @@
     }
     isDisabledDate(day, month, year) {
       let disabled = false;
-      const dateParse = new Date(year, month, day);
-      const minDate = new Date(this.convertDateToParse(this.minDate));
-      const maxDate = new Date(this.convertDateToParse(this.maxDate));
-      if (this.minDate && minDate > dateParse) {
-        disabled = true;
+      const dateParse = new Date(Date.UTC(year, month, day));
+      if (this.minDate) {
+        const [minD, minM, minY] = this.minDate.split(this.dateSeparator).map(Number);
+        const minDate = new Date(Date.UTC(minY, minM - 1, minD));
+        if (minDate > dateParse) disabled = true;
       }
-      if (this.maxDate && maxDate < dateParse) {
-        disabled = true;
+      if (this.maxDate) {
+        const [maxD, maxM, maxY] = this.maxDate.split(this.dateSeparator).map(Number);
+        const maxDate = new Date(Date.UTC(maxY, maxM - 1, maxD));
+        if (maxDate < dateParse) disabled = true;
       }
       if (this.disabledArray.length > 0) {
         this.disabledArray.forEach(element => {
-          const disabledDate = new Date(this.convertDateToParse(element));
-          if (dateParse.getTime() === disabledDate.getTime()) {
-            disabled = true;
-          }
+          const [d, m, y] = element.split(this.dateSeparator).map(Number);
+          const disabledDate = new Date(Date.UTC(y, m - 1, d));
+          if (dateParse.getTime() === disabledDate.getTime()) disabled = true;
         });
       }
       return disabled;
@@ -1958,7 +1959,8 @@
     showCalendar(bool) {
       const firstDay = this.constructor.getDayOfWeek(this.currentYear, this.currentMonth, '01');
       this.body.innerHTML = '';
-      this.heading.innerHTML = `${this.months[this.currentMonth]} ${this.currentYear}`;
+      const monthLabel = this.months[this.currentMonth] || 'Invalid month';
+      this.heading.textContent = `${monthLabel} ${this.currentYear}`;
       let date = 1;
       let calendar = '';
       for (let i = 0; i < 6; i += 1) {
@@ -4684,6 +4686,9 @@
       if (this.arrowIcon.length > 0) this.arrowIcon[0].style.display = 'none';
       this.initCustomSelectEvents();
       this.updateAllButton();
+      if (this.select && this.select.hasAttribute('multiple')) {
+        this.clearAllButton();
+      }
     }
     initCustomSelectEvents() {
       this.initSelection();
@@ -4817,6 +4822,25 @@
       } else {
         this.allButton.classList.remove(this.showClass);
       }
+    }
+    clearAllButton() {
+      if (this.dropdown.querySelector('.nsw-multi-select__clear-all-button')) return;
+      const clearButton = document.createElement('button');
+      clearButton.textContent = 'Clear all selections';
+      clearButton.className = `${this.prefix}link nsw-multi-select__clear-all-button`;
+      clearButton.addEventListener('click', e => {
+        e.preventDefault();
+        this.clearAllSelections();
+      });
+      this.dropdown.appendChild(clearButton);
+    }
+    clearAllSelections() {
+      const [optionsArray] = this.getOptions();
+      optionsArray.forEach(option => {
+        if (option.getAttribute('aria-selected') === 'true') {
+          this.selectOption(option); // Toggles off
+        }
+      });
     }
     updateNativeSelect(index, bool) {
       this.options[index].selected = bool;
