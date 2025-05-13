@@ -1,23 +1,25 @@
 @use 'sass:color';
+@use '../base/functions' as functions;
+@use '../settings/palette' as palette;
 
-// Purple Theme Colours
-$teal-dark: $teal-01 !default;
-$teal-light: $teal-04 !default;
-$teal-supplementary: $teal-02 !default;
-$teal-accent: $fuchsia-02 !default;
+// Teal Theme Colours
+$teal-dark: palette.$teal-01 !default;
+$teal-light: palette.$teal-04 !default;
+$teal-supplementary: palette.$teal-02 !default;
+$teal-accent: palette.$fuchsia-02 !default;
 
-// Purple State Colours
+// Teal State Colours
 $teal-link: $teal-dark !default;
-$teal-link-light: tint($teal-dark, 90%) !default;
-$teal-visited: a11y-color(lighten(saturate(adjust-hue($teal-dark, 10), 0.16), 28.04), #ffffff) !default;
-$teal-visited-light: tint($teal-visited, 80%) !default;
+$teal-link-light: color.mix(#ffffff, $teal-dark, 90%) !default;
+$teal-visited: functions.a11y-color(color.adjust(color.adjust(color.adjust($teal-dark, $hue: 10deg), $saturation: 0.16%), $lightness: 28.04%), #ffffff) !default;
+$teal-visited-light: color.mix(#ffffff, $teal-visited, 80%) !default;
 $teal-hover: color.adjust($teal-dark, $alpha: -0.9) !default;
 $teal-hover-light: color.adjust($teal-link-light, $alpha: -0.9) !default;
 $teal-active: color.adjust($teal-dark, $alpha: -0.8) !default;
 $teal-active-light: color.adjust($teal-link-light, $alpha: -0.8) !default;
-$teal-focus: lighten(adjust-hue($teal-dark, -22), 15.49) !default;
-$teal-focus-light: tint($teal-focus, 80%);
-$teal-disabled: tint($teal-dark, 50%) !default;
+$teal-focus: color.adjust(color.adjust($teal-dark, $hue: -22deg), $lightness: 15.49%) !default;
+$teal-focus-light: color.mix(#ffffff, $teal-focus, 80%);
+$teal-disabled: color.mix(#ffffff, $teal-dark, 50%) !default;
 
 $teal-colors: (
   'brand-dark': $teal-dark,
@@ -37,7 +39,7 @@ $teal-colors: (
   'disabled': $teal-disabled
 ) !default;
 
-$teal-colors-rgb: map-loop($teal-colors, to-rgb, '$value') !default;
+$teal-colors-rgb: functions.to-rgb-list($teal-colors) !default;
 
 .teal {
   @each $color, $value in $teal-colors {
@@ -50,6 +52,6 @@ $teal-colors-rgb: map-loop($teal-colors, to-rgb, '$value') !default;
 }
 
 .teal-accent {
-  --nsw-brand-accent: #{$teal-02};
-  --nsw-brand-accent-rgb: #{to-rgb($teal-02)};
+  --nsw-brand-accent: #{palette.$teal-02};
+  --nsw-brand-accent-rgb: #{functions.to-rgb(palette.$teal-02)};
 }

@@ -1,10 +1,10 @@
-$nsw-form-chevron-down: '<svg fill="#333333" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path d="M16 26l16-16-4-4-12 12-12-12-4 4 16 16z"></path></svg>';
-$nsw-form-tick: '<svg fill="#ffffff" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path d="M29.362 3.742l-18.867 19.204-7.857-7.997-2.638 2.685 9.175 9.34 1.319 1.284 1.318-1.284 20.187-20.547z"></path></svg>';
+@use '../../global/scss/base/functions' as functions;
+@use '../../global/scss/base/mixins' as mixins;
+@use '../../global/scss/settings/settings' as settings;
 
 .nsw-form {
   &__select {
-    @include font-size('sm');
-    padding: rem(11px) rem(16px);
+    padding: functions.rem(11px) functions.rem(16px);
     border-radius: var(--nsw-border-radius);
     background-color: var(--nsw-white);
     color: var(--nsw-text-dark);
@@ -12,28 +12,30 @@ $nsw-form-tick: '<svg fill="#ffffff" version="1.1" xmlns="http://www.w3.org/2000
     vertical-align: middle;
     appearance: none;
     width: 100%;
-    padding-right: rem(48px);
-    background: var(--nsw-white) svg-url($nsw-form-chevron-down) no-repeat right rem(16px) center;
-    background-size: rem(16px) auto;
+    padding-right: functions.rem(48px);
+    background: var(--nsw-white) functions.svg-url(settings.$nsw-form-chevron-down) no-repeat right functions.rem(16px) center;
+    background-size: functions.rem(16px) auto;
     cursor: pointer;
 
+    @include mixins.font-size('sm');
+
     &:hover:not(.nsw-multi-select__button) {
-      background: svg-url($nsw-form-chevron-down) no-repeat right rem(16px) center, linear-gradient(var(--nsw-hover), var(--nsw-hover));
-      background-size: rem(16px) auto, auto;
+      background: functions.svg-url(settings.$nsw-form-chevron-down) no-repeat right functions.rem(16px) center, linear-gradient(var(--nsw-hover), var(--nsw-hover));
+      background-size: functions.rem(16px) auto, auto;
       background-color: var(--nsw-white);
     }
 
     &:focus {
-      @include nsw-focus;
+      @include mixins.nsw-focus;
 
       .nsw-section--invert & {   
-        @include nsw-focus($color: var(--nsw-focus-light));
+        @include mixins.nsw-focus($color: var(--nsw-focus-light));
       }
     }
 
     &:disabled {
-      background: var(--nsw-off-white) svg-url($nsw-form-chevron-down) no-repeat right rem(16px) center;
-      background-size: rem(16px) auto;
+      background: var(--nsw-off-white) functions.svg-url(settings.$nsw-form-chevron-down) no-repeat right functions.rem(16px) center;
+      background-size: functions.rem(16px) auto;
       border-color: var(--nsw-grey-03);
       color: var(--nsw-grey-03);
       cursor: not-allowed;
@@ -46,8 +48,8 @@ $nsw-form-tick: '<svg fill="#ffffff" version="1.1" xmlns="http://www.w3.org/2000
       border-width: 2px;
 
       &:hover {
-        background: var(--nsw-status-error-bg) svg-url($nsw-form-chevron-down) no-repeat right rem(16px) center;
-        background-size: rem(16px) auto;
+        background: var(--nsw-status-error-bg) functions.svg-url(settings.$nsw-form-chevron-down) no-repeat right functions.rem(16px) center;
+        background-size: functions.rem(16px) auto;
       }
     }
 
@@ -75,10 +77,10 @@ $nsw-form-tick: '<svg fill="#ffffff" version="1.1" xmlns="http://www.w3.org/2000
     padding-right: 0.5rem;
 
     .nsw-material-icons {
-      font-size: rem(32px);
+      font-size: functions.rem(32px);
       line-height: 0.8;
       transform: rotate(0deg);
-      transition: transform $nsw-transition-duration, color $nsw-transition-duration;
+      transition: transform settings.$nsw-transition-duration, color settings.$nsw-transition-duration;
       width: 2rem;
     }
 
@@ -112,18 +114,18 @@ $nsw-form-tick: '<svg fill="#ffffff" version="1.1" xmlns="http://www.w3.org/2000
   }
 
   &__clear-all-button {
-    margin-top: rem(20px);
+    margin-top: functions.rem(20px);
     text-decoration: underline;
     cursor: pointer;
     background: 0;
     border: 0;
-    padding: rem(4px) rem(4px) rem(4px) 0;
+    padding: functions.rem(4px) functions.rem(4px) functions.rem(4px) 0;
 
-    @include link;
-    @include font-size('sm');
+    @include mixins.link;
+    @include mixins.font-size('sm');
   
     &:focus {
-      @include nsw-focus;
+      @include mixins.nsw-focus;
     }
   }
 
@@ -162,7 +164,7 @@ $nsw-form-tick: '<svg fill="#ffffff" version="1.1" xmlns="http://www.w3.org/2000
     left: 0;
     top: 100%;
     width: 100%;
-    min-width: rem(200px);
+    min-width: functions.rem(200px);
     max-height: 1px;
     background-color: var(--nsw-white);
     box-shadow: var(--nsw-box-shadow);
@@ -192,14 +194,15 @@ $nsw-form-tick: '<svg fill="#ffffff" version="1.1" xmlns="http://www.w3.org/2000
   }
 
   &__all {
-    @include font-size('sm');
-    padding: rem(4px) 0 rem(4px) rem(48px);
-    min-height: rem(32px);
+    padding: functions.rem(4px) 0 functions.rem(4px) functions.rem(48px);
+    min-height: functions.rem(32px);
     display: block;
     position: relative;
     border: 0;
     background: transparent;
     appearance: none;
+    
+    @include mixins.font-size('sm');
   
     &:focus {
       border: 0;
@@ -208,9 +211,9 @@ $nsw-form-tick: '<svg fill="#ffffff" version="1.1" xmlns="http://www.w3.org/2000
   
     &::before {
       content: '';
-      width: rem(32px);
-      height: rem(32px);
-      margin-right: rem(16px);
+      width: functions.rem(32px);
+      height: functions.rem(32px);
+      margin-right: functions.rem(16px);
       border: 1px var(--nsw-grey-01) solid;
       border-radius: var(--nsw-border-radius);
       background-color: var(--nsw-white);
@@ -224,17 +227,17 @@ $nsw-form-tick: '<svg fill="#ffffff" version="1.1" xmlns="http://www.w3.org/2000
     &::after {
       content: '';
       position: absolute;
-      width: rem(22px);
-      height: rem(22px);
+      width: functions.rem(22px);
+      height: functions.rem(22px);
       background-repeat: no-repeat;
       background-position: center center;
-      background-size: rem(16px) auto;
-      left: rem(5px);
-      top: rem(5px);
+      background-size: functions.rem(16px) auto;
+      left: functions.rem(5px);
+      top: functions.rem(5px);
     }
   
     &:focus::before {
-      @include nsw-focus;
+      @include mixins.nsw-focus;
     }
   
     &.active {
@@ -243,7 +246,7 @@ $nsw-form-tick: '<svg fill="#ffffff" version="1.1" xmlns="http://www.w3.org/2000
       }
   
       &::after {
-        background-image: svg-url($nsw-form-tick);
+        background-image: functions.svg-url(settings.$nsw-form-tick);
         background-color: var(--nsw-brand-dark);
       }
   
