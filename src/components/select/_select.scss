@@ -113,6 +113,22 @@
     }
   }
 
+  &__clear-all-button {
+    margin-top: functions.rem(20px);
+    text-decoration: underline;
+    cursor: pointer;
+    background: 0;
+    border: 0;
+    padding: functions.rem(4px) functions.rem(4px) functions.rem(4px) 0;
+
+    @include mixins.link;
+    @include mixins.font-size('sm');
+  
+    &:focus {
+      @include mixins.nsw-focus;
+    }
+  }
+
   &__list {
     list-style: none;
     margin: 0;
