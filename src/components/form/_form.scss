@@ -1,16 +1,19 @@
 /* stylelint-disable max-nesting-depth */
 
-$nsw-form-tick: '<svg fill="#ffffff" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path d="M29.362 3.742l-18.867 19.204-7.857-7.997-2.638 2.685 9.175 9.34 1.319 1.284 1.318-1.284 20.187-20.547z"></path></svg>';
+@use 'sass:map';
+@use '../../global/scss/base/functions' as functions;
+@use '../../global/scss/base/mixins' as mixins;
+@use '../../global/scss/settings/settings' as settings;
 
 .nsw-form {
-  margin-top: rem(48px);
+  margin-top: functions.rem(48px);
 
   &:first-child {
     margin-top: 0;
   }
 
   &__group {
-    margin-top: rem(16px);
+    margin-top: functions.rem(16px);
 
     &:first-child {
       margin-top: 0;
@@ -18,25 +21,26 @@ $nsw-form-tick: '<svg fill="#ffffff" version="1.1" xmlns="http://www.w3.org/2000
   }
 
   &__helper {
-    @include font-size('xs');
     display: block;
-    margin-bottom: rem(4px);
+    margin-bottom: functions.rem(4px);
+
+    @include mixins.font-size('xs');
 
     &--error,
     &--valid {
-      margin-top: rem(8px);
-      padding: rem(8px);
+      margin-top: functions.rem(8px);
+      padding: functions.rem(8px);
       font-weight: var(--nsw-font-bold);
       color: var(--nsw-text-dark);
       background-repeat: no-repeat;
-      background-position: left rem(8px) top rem(8px);
+      background-position: left functions.rem(8px) top functions.rem(8px);
       background-size: 1rem auto;
       display: flex;
       align-items: center;
 
       .nsw-material-icons {
-        font-size: rem(map-get($nsw-icon-sizes, 20));
-        margin-right: rem(4px);
+        font-size: functions.rem(map.get(settings.$nsw-icon-sizes, 20));
+        margin-right: functions.rem(4px);
       }
     }
 
@@ -58,9 +62,10 @@ $nsw-form-tick: '<svg fill="#ffffff" version="1.1" xmlns="http://www.w3.org/2000
   }
 
   &__label {
-    @include font-size('sm');
     font-weight: var(--nsw-font-bold);
     display: block;
+
+    @include mixins.font-size('sm');
 
     &--small {
       font-weight: var(--nsw-font-normal);
@@ -74,7 +79,7 @@ $nsw-form-tick: '<svg fill="#ffffff" version="1.1" xmlns="http://www.w3.org/2000
     + textarea,
     + select,
     + .nsw-form__input-group {
-      margin-top: rem(4px);
+      margin-top: functions.rem(4px);
     }
   }
 
@@ -86,8 +91,7 @@ $nsw-form-tick: '<svg fill="#ffffff" version="1.1" xmlns="http://www.w3.org/2000
   }
 
   &__input {
-    @include font-size('sm');
-    padding: rem(11px) rem(16px);
+    padding: functions.rem(11px) functions.rem(16px);
     border-radius: var(--nsw-border-radius);
     background-color: var(--nsw-white);
     color: var(--nsw-text-dark);
@@ -97,11 +101,13 @@ $nsw-form-tick: '<svg fill="#ffffff" version="1.1" xmlns="http://www.w3.org/2000
     -webkit-appearance: none; /* stylelint-disable-line property-no-vendor-prefix */
     width: 100%;
 
+    @include mixins.font-size('sm');
+
     &:focus {
-      @include nsw-focus;
+      @include mixins.nsw-focus;
 
       .nsw-section--invert & {    
-        @include nsw-focus($color: var(--nsw-focus-light));
+        @include mixins.nsw-focus($color: var(--nsw-focus-light));
       }
     }
 
@@ -153,7 +159,7 @@ $nsw-form-tick: '<svg fill="#ffffff" version="1.1" xmlns="http://www.w3.org/2000
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 0 rem(24px);
+      padding: 0 functions.rem(24px);
       margin: 0;
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;
@@ -168,17 +174,17 @@ $nsw-form-tick: '<svg fill="#ffffff" version="1.1" xmlns="http://www.w3.org/2000
       }
 
       &:focus {
-        @include nsw-focus();
+        @include mixins.nsw-focus();
 
         .nsw-section--invert & {    
-          @include nsw-focus($color: var(--nsw-focus-light));
+          @include mixins.nsw-focus($color: var(--nsw-focus-light));
         }
       }
     }
 
     .nsw-material-icons {
       display: block;
-      font-size: rem(map-get($nsw-icon-sizes, 36));
+      font-size: functions.rem(map.get(settings.$nsw-icon-sizes, 36));
       position: static;
 
       .nsw-section--invert & {    
@@ -193,7 +199,7 @@ $nsw-form-tick: '<svg fill="#ffffff" version="1.1" xmlns="http://www.w3.org/2000
     &--icon {
       .nsw-button {
         padding: 0;
-        min-width: rem(60px);
+        min-width: functions.rem(60px);
         border-color: var(--nsw-grey-01);
         border-left-width: 0;
 
@@ -206,7 +212,7 @@ $nsw-form-tick: '<svg fill="#ffffff" version="1.1" xmlns="http://www.w3.org/2000
           border-color: var(--nsw-white);
 
           &:hover {
-            @include nsw-hover-light;
+            @include mixins.nsw-hover-light;
           }
 
           .nsw-material-icons {
@@ -228,7 +234,7 @@ $nsw-form-tick: '<svg fill="#ffffff" version="1.1" xmlns="http://www.w3.org/2000
 
     &--large {
       .nsw-form__input {
-        padding: rem(16px);
+        padding: functions.rem(16px);
       }
     }
   }
@@ -238,7 +244,7 @@ $nsw-form-tick: '<svg fill="#ffffff" version="1.1" xmlns="http://www.w3.org/2000
   }
 
   &__predictive-list {
-    @include z-index;
+    @include mixins.z-index;
     border-radius: var(--nsw-border-radius);
     border-top-left-radius: 0;
     border-top-right-radius: 0;
@@ -248,13 +254,13 @@ $nsw-form-tick: '<svg fill="#ffffff" version="1.1" xmlns="http://www.w3.org/2000
     padding: 0;
     margin: 0;
     position: absolute;
-    top: rem(48px);
+    top: functions.rem(48px);
     right: 0;
     left: 0;
     overflow: hidden;
 
     &--large {
-      top: rem(58px);
+      top: functions.rem(58px);
     }
 
     li {
@@ -264,12 +270,12 @@ $nsw-form-tick: '<svg fill="#ffffff" version="1.1" xmlns="http://www.w3.org/2000
 
     a {
       display: block;
-      padding: rem(10px);
+      padding: functions.rem(10px);
       color: var(--nsw-text-dark);
       font-weight: var(--nsw-font-normal);
 
       &:hover {
-        @include nsw-hover;
+        @include mixins.nsw-hover;
         outline-width: 0;
       }
 
@@ -293,16 +299,17 @@ $nsw-form-tick: '<svg fill="#ffffff" version="1.1" xmlns="http://www.w3.org/2000
 
     legend {
       padding: 0;
-      margin: 0 0 rem(16px) 0;
+      margin: 0 0 functions.rem(16px) 0;
       display: block;
     }
   }
 
   &__legend {
-    @include font-size('sm');
     font-weight: var(--nsw-font-bold);
     width: 100%;
     display: block;
+
+    @include mixins.font-size('sm');
   }
 
   &__checkbox-input,
@@ -321,7 +328,7 @@ $nsw-form-tick: '<svg fill="#ffffff" version="1.1" xmlns="http://www.w3.org/2000
     }
 
     &:checked + .nsw-form__checkbox-label::after {
-      background-image: svg-url($nsw-form-tick);
+      background-image: functions.svg-url(settings.$nsw-form-tick);
       background-color: var(--nsw-brand-dark);
     }
 
@@ -348,10 +355,10 @@ $nsw-form-tick: '<svg fill="#ffffff" version="1.1" xmlns="http://www.w3.org/2000
     }
 
     &:focus + .nsw-form__checkbox-label::before {
-      @include nsw-focus;
+      @include mixins.nsw-focus;
 
       .nsw-section--invert & {   
-        @include nsw-focus($color: var(--nsw-focus-light));
+        @include mixins.nsw-focus($color: var(--nsw-focus-light));
       }
     }
 
@@ -378,19 +385,20 @@ $nsw-form-tick: '<svg fill="#ffffff" version="1.1" xmlns="http://www.w3.org/2000
 
   &__checkbox-label,
   &__radio-label {
-    @include font-size('sm');
-    margin: rem(16px) 0 0 0;
-    padding: rem(4px) 0 rem(4px) rem(48px);
-    min-height: rem(32px);
+    margin: functions.rem(16px) 0 0 0;
+    padding: functions.rem(4px) 0 functions.rem(4px) functions.rem(48px);
+    min-height: functions.rem(32px);
     display: block;
     position: relative;
     cursor: pointer;
+    
+    @include mixins.font-size('sm');
 
     &::before {
       content: '';
-      width: rem(32px);
-      height: rem(32px);
-      margin-right: rem(16px);
+      width: functions.rem(32px);
+      height: functions.rem(32px);
+      margin-right: functions.rem(16px);
       border: 1px var(--nsw-grey-01) solid;
       top: 0;
       left: 0;
@@ -403,13 +411,13 @@ $nsw-form-tick: '<svg fill="#ffffff" version="1.1" xmlns="http://www.w3.org/2000
     &::after {
       content: '';
       position: absolute;
-      width: rem(22px);
-      height: rem(22px);
+      width: functions.rem(22px);
+      height: functions.rem(22px);
       background-repeat: no-repeat;
       background-position: center center;
-      background-size: rem(16px) auto;
-      left: rem(5px);
-      top: rem(5px);
+      background-size: functions.rem(16px) auto;
+      left: functions.rem(5px);
+      top: functions.rem(5px);
     }
   }
 

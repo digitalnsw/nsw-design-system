@@ -1,23 +1,25 @@
 @use 'sass:color';
+@use '../base/functions' as functions;
+@use '../settings/palette' as palette;
 
 // Purple Theme Colours
-$yellow-dark: $yellow-01 !default;
-$yellow-light: $yellow-04 !default;
-$yellow-supplementary: $yellow-02 !default;
-$yellow-accent: $green-02 !default;
+$yellow-dark: palette.$yellow-01 !default;
+$yellow-light: palette.$yellow-04 !default;
+$yellow-supplementary: palette.$yellow-02 !default;
+$yellow-accent: palette.$green-02 !default;
 
 // Purple State Colours
 $yellow-link: $yellow-dark !default;
-$yellow-link-light: tint($yellow-dark, 90%) !default;
-$yellow-visited: a11y-color(lighten(adjust-hue($yellow-dark, 18), 16.08), #ffffff) !default;
-$yellow-visited-light: tint($yellow-visited, 80%) !default;
+$yellow-link-light: color.mix(#ffffff, $yellow-dark, 90%) !default;
+$yellow-visited: functions.a11y-color(color.adjust(color.adjust($yellow-dark, $hue: 18deg), $lightness: 16.08%), #ffffff) !default;
+$yellow-visited-light: color.mix(#ffffff, $yellow-visited, 80%) !default;
 $yellow-hover: color.adjust($yellow-dark, $alpha: -0.9) !default;
 $yellow-hover-light: color.adjust($yellow-link-light, $alpha: -0.9) !default;
 $yellow-active: color.adjust($yellow-dark, $alpha: -0.8) !default;
 $yellow-active-light: color.adjust($yellow-link-light, $alpha: -0.8) !default;
-$yellow-focus: lighten(adjust-hue($yellow-dark, -22), 15.49) !default;
-$yellow-focus-light: tint($yellow-focus, 80%);
-$yellow-disabled: tint($yellow-dark, 50%) !default;
+$yellow-focus: color.adjust(color.adjust($yellow-dark, $hue: -22deg), $lightness: 15.49%) !default;
+$yellow-focus-light: color.mix(#ffffff, $yellow-focus, 80%);
+$yellow-disabled: color.mix(#ffffff, $yellow-dark, 50%) !default;
 
 $yellow-colors: (
   'brand-dark': $yellow-dark,
@@ -37,7 +39,7 @@ $yellow-colors: (
   'disabled': $yellow-disabled
 ) !default;
 
-$yellow-colors-rgb: map-loop($yellow-colors, to-rgb, '$value') !default;
+$yellow-colors-rgb: functions.to-rgb-list($yellow-colors) !default;
 
 .yellow {
   @each $color, $value in $yellow-colors {
@@ -50,6 +52,6 @@ $yellow-colors-rgb: map-loop($yellow-colors, to-rgb, '$value') !default;
 }
 
 .yellow-accent {
-  --nsw-brand-accent: #{$yellow-02};
-  --nsw-brand-accent-rgb: #{to-rgb($yellow-02)};
+  --nsw-brand-accent: #{palette.$yellow-02};
+  --nsw-brand-accent-rgb: #{functions.to-rgb(palette.$yellow-02)};
 }

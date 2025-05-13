@@ -1,7 +1,10 @@
-.nsw-results-bar {
-  margin: rem(24px) 0;
+@use '../../global/scss/base/functions' as functions;
+@use '../../global/scss/base/mixins' as mixins;
 
-  @include breakpoint('lg') {
+.nsw-results-bar {
+  margin: functions.rem(24px) 0;
+
+  @include mixins.breakpoint('lg') {
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-between;
@@ -11,20 +14,20 @@
   &__sorting {
     display: flex;
     align-items: center;
-    padding-top: rem(24px);
+    padding-top: functions.rem(24px);
 
-    @include breakpoint('lg') {
+    @include mixins.breakpoint('lg') {
       padding-top: 0;
     }
 
     label {
       white-space: nowrap;
-      margin-right: rem(8px);
+      margin-right: functions.rem(8px);
     }
 
     select {
       margin-top: 0;
-      min-width: rem(200px);
+      min-width: functions.rem(200px);
     }
   }
 }

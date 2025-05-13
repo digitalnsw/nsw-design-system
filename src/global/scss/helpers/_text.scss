@@ -1,13 +1,16 @@
+@use '../base/mixins' as mixins;
+@use '../settings/settings' as settings;
+
 .nsw-word-break { 
   word-break: break-all;
 
   &--mobile {
-    @include breakpoint($nsw-desktop-breakpoint) {
+    @include mixins.breakpoint(settings.$nsw-desktop-breakpoint) {
       word-break: normal;
     }
   }
 }
 
 .nsw-text-truncate {
-  @include text-truncate();
+  @include mixins.text-truncate();
 }
