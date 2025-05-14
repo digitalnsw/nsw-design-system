@@ -86,13 +86,13 @@ class DatePicker {
         </div>
 
         <ol class="nsw-date-picker__week">
-          <li><div class="nsw-date-picker__day">M<span class="sr-only">onday</span></div></li>
-          <li><div class="nsw-date-picker__day">T<span class="sr-only">uesday</span></div></li>
-          <li><div class="nsw-date-picker__day">W<span class="sr-only">ednesday</span></div></li>
-          <li><div class="nsw-date-picker__day">T<span class="sr-only">hursday</span></div></li>
-          <li><div class="nsw-date-picker__day">F<span class="sr-only">riday</span></div></li>
-          <li><div class="nsw-date-picker__day">S<span class="sr-only">aturday</span></div></li>
-          <li><div class="nsw-date-picker__day">S<span class="sr-only">unday</span></div></li>
+          <li><div class="nsw-date-picker__day">Mo<span class="sr-only">nday</span></div></li>
+          <li><div class="nsw-date-picker__day">Tu<span class="sr-only">esday</span></div></li>
+          <li><div class="nsw-date-picker__day">We<span class="sr-only">dnesday</span></div></li>
+          <li><div class="nsw-date-picker__day">Th<span class="sr-only">ursday</span></div></li>
+          <li><div class="nsw-date-picker__day">Fr<span class="sr-only">iday</span></div></li>
+          <li><div class="nsw-date-picker__day">Sa<span class="sr-only">turday</span></div></li>
+          <li><div class="nsw-date-picker__day">Su<span class="sr-only">nday</span></div></li>
         </ol>
       </header>
 
