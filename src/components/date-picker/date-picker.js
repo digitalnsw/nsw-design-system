@@ -13,7 +13,8 @@ class DatePicker {
     this.visibleClass = `${this.prefix}${this.class}--is-visible`
     this.months = this.element.getAttribute('data-months') ? this.element.getAttribute('data-months') : ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
     this.dateFormat = this.element.getAttribute('data-date-format') ? this.element.getAttribute('data-date-format') : 'd-m-y'
-    this.dateSeparator = this.element.getAttribute('data-date-separator') ? this.element.getAttribute('data-date-separator') : /[-.\s/]+/
+    this.dateSeparator = this.element.getAttribute('data-date-separator') ? this.element.getAttribute('data-date-separator') : '/'
+    this.dateSeparatorRegex = /[-.\s/]+/
     this.datesDisabled = this.element.getAttribute('data-dates-disabled') ? this.element.getAttribute('data-dates-disabled') : ''
     this.minDate = this.element.getAttribute('data-min-date') ? this.element.getAttribute('data-min-date') : ''
     this.maxDate = this.element.getAttribute('data-max-date') ? this.element.getAttribute('data-max-date') : ''
@@ -410,7 +411,7 @@ class DatePicker {
   }
 
   convertDateToParse(date) {
-    const dateArray = date.split(this.dateSeparator)
+    const dateArray = date.split(this.dateSeparatorRegex)
     return `${dateArray[this.dateIndexes[2]]}, ${dateArray[this.dateIndexes[1]]}, ${dateArray[this.dateIndexes[0]]}`
   }
 
@@ -419,20 +420,20 @@ class DatePicker {
     const dateParse = new Date(Date.UTC(year, month, day))
 
     if (this.minDate) {
-      const [minD, minM, minY] = this.minDate.split(this.dateSeparator).map(Number)
+      const [minD, minM, minY] = this.minDate.split(this.dateSeparatorRegex).map(Number)
       const minDate = new Date(Date.UTC(minY, minM - 1, minD))
       if (minDate > dateParse) disabled = true
     }
 
     if (this.maxDate) {
-      const [maxD, maxM, maxY] = this.maxDate.split(this.dateSeparator).map(Number)
+      const [maxD, maxM, maxY] = this.maxDate.split(this.dateSeparatorRegex).map(Number)
       const maxDate = new Date(Date.UTC(maxY, maxM - 1, maxD))
       if (maxDate < dateParse) disabled = true
     }
 
     if (this.disabledArray.length > 0) {
       this.disabledArray.forEach((element) => {
-        const [d, m, y] = element.split(this.dateSeparator).map(Number)
+        const [d, m, y] = element.split(this.dateSeparatorRegex).map(Number)
         const disabledDate = new Date(Date.UTC(y, m - 1, d))
         if (dateParse.getTime() === disabledDate.getTime()) disabled = true
       })
@@ -542,7 +543,7 @@ class DatePicker {
     let dateArray
 
     if (this.input) {
-      dateArray = this.input.value.split(this.dateSeparator)
+      dateArray = this.input.value.split(this.dateSeparatorRegex)
     } else if (this.multipleInput) {
       dateArray = [this.dateInput.value, this.monthInput.value, this.yearInput.value]
     }
