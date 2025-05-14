@@ -1,23 +1,25 @@
 @use 'sass:color';
+@use '../base/functions' as functions;
+@use '../settings/palette' as palette;
 
-// Purple Theme Colours
-$fuchsia-dark: $fuchsia-01 !default;
-$fuchsia-light: $fuchsia-04 !default;
-$fuchsia-supplementary: $fuchsia-02 !default;
-$fuchsia-accent: $orange-02 !default;
+// Fuchsia Theme Colours
+$fuchsia-dark: palette.$fuchsia-01 !default;
+$fuchsia-light: palette.$fuchsia-04 !default;
+$fuchsia-supplementary: palette.$fuchsia-02 !default;
+$fuchsia-accent: palette.$orange-02 !default;
 
-// Purple State Colours
+// Fuchsia State Colours
 $fuchsia-link: $fuchsia-dark !default;
-$fuchsia-link-light: tint($fuchsia-dark, 90%) !default;
-$fuchsia-visited: a11y-color(lighten(desaturate(adjust-hue($fuchsia-dark, 4), 48.34), 21.57), #ffffff) !default;
-$fuchsia-visited-light: tint($fuchsia-visited, 80%) !default;
+$fuchsia-link-light: color.mix(#ffffff, $fuchsia-dark, 90%) !default;
+$fuchsia-visited: functions.a11y-color(color.adjust(color.adjust(color.adjust($fuchsia-dark, $hue: 4deg), $saturation: -48.34%), $lightness: 21.57%), #ffffff) !default;
+$fuchsia-visited-light: color.mix(#ffffff, $fuchsia-visited, 80%) !default;
 $fuchsia-hover: color.adjust($fuchsia-dark, $alpha: -0.9) !default;
 $fuchsia-hover-light: color.adjust($fuchsia-link-light, $alpha: -0.9) !default;
 $fuchsia-active: color.adjust($fuchsia-dark, $alpha: -0.8) !default;
 $fuchsia-active-light: color.adjust($fuchsia-link-light, $alpha: -0.8) !default;
-$fuchsia-focus: lighten(adjust-hue($fuchsia-dark, -22), 15.49) !default;
-$fuchsia-focus-light: tint($fuchsia-focus, 80%);
-$fuchsia-disabled: tint($fuchsia-dark, 50%) !default;
+$fuchsia-focus: color.adjust(color.adjust($fuchsia-dark, $hue: -22deg), $lightness: 15.49%) !default;
+$fuchsia-focus-light: color.mix(#ffffff, $fuchsia-focus, 80%);
+$fuchsia-disabled: color.mix(#ffffff, $fuchsia-dark, 50%) !default;
 
 $fuchsia-colors: (
   'brand-dark': $fuchsia-dark,
@@ -37,7 +39,7 @@ $fuchsia-colors: (
   'disabled': $fuchsia-disabled
 ) !default;
 
-$fuchsia-colors-rgb: map-loop($fuchsia-colors, to-rgb, '$value') !default;
+$fuchsia-colors-rgb: functions.to-rgb-list($fuchsia-colors) !default;
 
 .fuchsia {
   @each $color, $value in $fuchsia-colors {
@@ -50,6 +52,6 @@ $fuchsia-colors-rgb: map-loop($fuchsia-colors, to-rgb, '$value') !default;
 }
 
 .fuchsia-accent {
-  --nsw-brand-accent: #{$fuchsia-02};
-  --nsw-brand-accent-rgb: #{to-rgb($fuchsia-02)};
+  --nsw-brand-accent: #{palette.$fuchsia-02};
+  --nsw-brand-accent-rgb: #{functions.to-rgb(palette.$fuchsia-02)};
 }
