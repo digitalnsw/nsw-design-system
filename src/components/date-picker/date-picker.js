@@ -13,7 +13,7 @@ class DatePicker {
     this.visibleClass = `${this.prefix}${this.class}--is-visible`
     this.months = this.element.getAttribute('data-months') ? this.element.getAttribute('data-months') : ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
     this.dateFormat = this.element.getAttribute('data-date-format') ? this.element.getAttribute('data-date-format') : 'd-m-y'
-    this.dateSeparator = this.element.getAttribute('data-date-separator') ? this.element.getAttribute('data-date-separator') : '/'
+    this.dateSeparator = this.element.getAttribute('data-date-separator') ? this.element.getAttribute('data-date-separator') : /[-.\s/]+/
     this.datesDisabled = this.element.getAttribute('data-dates-disabled') ? this.element.getAttribute('data-dates-disabled') : ''
     this.minDate = this.element.getAttribute('data-min-date') ? this.element.getAttribute('data-min-date') : ''
     this.maxDate = this.element.getAttribute('data-max-date') ? this.element.getAttribute('data-max-date') : ''
