@@ -1,5 +1,6 @@
 @use '../../global/scss/base/functions' as functions;
 @use '../../global/scss/base/mixins' as mixins;
+@use '../../global/scss/settings/settings' as settings;
 
 .nsw-side-nav {
   position: relative;
@@ -100,19 +101,19 @@
   }
 
   &__toggle {
-    @include font-size('md');
+    @include mixins.font-size('md');
     font-weight: var(--nsw-font-bold);
     background-color: var(--nsw-off-white);
     width: 100%;
     border: 0;
-    padding: rem(16px);
+    padding: functions.rem(16px);
     display: flex;
     align-items: center;
     justify-content: space-between;
     text-align: left;
     cursor: pointer;
-    transition: background-color $nsw-transition-duration, color $nsw-transition-duration;
-    top: rem(16px);
+    transition: background-color settings.$nsw-transition-duration, color settings.$nsw-transition-duration;
+    top: functions.rem(16px);
     position: sticky;
 
     &:hover:enabled {
@@ -121,7 +122,7 @@
     }
 
     &:focus {
-      @include nsw-focus;
+      @include mixins.nsw-focus;
     }
 
     .material-icons {
@@ -165,7 +166,7 @@
     display: none;
   }
 
-  @include breakpoint('lg') {
+  @include mixins.breakpoint('lg') {
     &__header,
     &__content {
       display: block;
