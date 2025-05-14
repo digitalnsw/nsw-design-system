@@ -36,6 +36,12 @@
   }
 }
 
+.nsw-section--invert {
+  .nsw-form__input {
+    border-color: var(--nsw-white);
+  }
+}
+
 .nsw-date-picker {
   display: inline-block;
   position: absolute;
@@ -212,8 +218,9 @@
       border-radius: var(--nsw-border-radius);
     }
 
-    &:hover {
-      box-shadow: inset 0 0 0 2px var(--nsw-focus);
+    &:hover:not(.nsw-date-picker__date--selected) {
+      // box-shadow: inset 0 0 0 2px var(--nsw-focus);
+      background-color: var(--nsw-hover);
     }
 
     &:focus:not(:hover) {
@@ -231,16 +238,16 @@
         background-color: var(--nsw-brand-dark);
         border-radius: 4px;
         bottom: 6px;
-        height: 4px;
+        height: 6px;
+        width: 6px;
         left: 50%;
-        margin-left: -2px;
+        margin-left: -3px;
         position: absolute;
-        width: 4px;
       }
     }
 
     &--keyboard-focus {
-      background-color: rgba(var(--nsw-palette-grey-01-rgb), 0.2);
+      background-color: var(--nsw-hover);
       border-radius: var(--nsw-border-radius);
     }
     
@@ -261,9 +268,8 @@
 
     &[disabled='true'],
     &[aria-disabled='true'] {
-      background-color: rgba(var(--nsw-palette-grey-03-rgb), 0.5);
+      background-color: var(--nsw-hover);
       color: rgba(var(--nsw-palette-grey-01-rgb), 0.7);
-      border-radius: var(--nsw-border-radius);
       pointer-events: none;
     }
 
