@@ -30,7 +30,8 @@ class SideNav {
 
   toggle() {
     // Disabled mobile toggle on lg screens upwards
-    if (window.innerWidth <= 991) return
+    const isDesktop = window.innerWidth > 992
+    if (isDesktop) return
 
     this.isOpen = !this.isOpen
     this.element.classList.toggle('open', this.isOpen)
