@@ -29,6 +29,9 @@ class SideNav {
   }
 
   toggle() {
+    // Disabled mobile toggle on lg screens upwards
+    if (window.innerWidth <= 991) return
+
     this.isOpen = !this.isOpen
     this.element.classList.toggle('open', this.isOpen)
     this.toggleButton.setAttribute('aria-expanded', String(this.isOpen))
