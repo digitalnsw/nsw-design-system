@@ -5009,6 +5009,42 @@
     }
   }
 
+  class SideNav {
+    constructor(element, index) {
+      this.element = element;
+      this.index = index;
+      this.toggleButton = this.element.querySelector('.nsw-side-nav__toggle');
+      this.sideNavContent = this.element.querySelector('.nsw-side-nav__content');
+      this.isOpen = false;
+    }
+    init() {
+      this.element.classList.remove('open');
+      if (this.sideNavContent && !this.sideNavContent.id) {
+        this.sideNavContent.id = `nsw-side-nav__content-${this.index}`;
+      }
+      if (this.toggleButton) {
+        if (!this.toggleButton.querySelector('.material-icons')) {
+          const icon = document.createElement('span');
+          icon.classList.add('material-icons', 'nsw-material-icons');
+          icon.setAttribute('focusable', 'false');
+          icon.setAttribute('aria-hidden', 'true');
+          icon.textContent = 'keyboard_arrow_right';
+          this.toggleButton.appendChild(icon);
+        }
+        this.toggleButton.setAttribute('aria-controls', this.sideNavContent.id);
+        this.toggleButton.addEventListener('click', this.toggle.bind(this));
+      }
+    }
+    toggle() {
+      // Disabled mobile toggle on lg screens upwards
+      const isDesktop = window.innerWidth > 992;
+      if (isDesktop) return;
+      this.isOpen = !this.isOpen;
+      this.element.classList.toggle('open', this.isOpen);
+      this.toggleButton.setAttribute('aria-expanded', String(this.isOpen));
+    }
+  }
+
   class Tabs {
     constructor(element, showTab) {
       this.element = element;
@@ -5717,6 +5753,7 @@
     const navigation = document.getElementById('main-nav');
     const openSearchButton = document.querySelectorAll('button.js-open-search');
     const popover = document.querySelectorAll('.js-popover');
+    const sideNav = document.querySelectorAll('.js-side-nav');
     const tabs = document.querySelectorAll('.js-tabs');
     const toggletip = document.querySelectorAll('.js-toggletip');
     const tooltip = document.querySelectorAll('.js-tooltip');
@@ -5794,6 +5831,11 @@
         new Popover(element).init();
       });
     }
+    if (sideNav) {
+      sideNav.forEach((element, index) => {
+        new SideNav(element, index).init();
+      });
+    }
     if (tabs) {
       tabs.forEach(element => {
         new Tabs(element).init();
@@ -5829,6 +5871,7 @@
   exports.Navigation = Navigation;
   exports.Popover = Popover;
   exports.Select = Select;
+  exports.SideNav = SideNav;
   exports.SiteSearch = SiteSearch;
   exports.Tabs = Tabs;
   exports.Toggletip = Toggletip;

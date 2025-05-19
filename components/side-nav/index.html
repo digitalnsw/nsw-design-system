@@ -457,7 +457,36 @@
 
 <h2>How this component works</h2>
 <p>Side navigation supports four levels of nesting along with an accompanying heading. For visual hierarchy, each level of nesting is indented.</p>
-<p>On mobile and smaller viewports, the side navigation is displayed through the main site navigation, otherwise called the hamburger menu.</p>
+
+<h3>Mobile behaviour and implementation</h3>
+<p>On mobile and smaller viewports, the side navigation component now includes an in-built mobile solution that allows the navigation to remain in its contextual location. Developers no longer need to manually integrate side nav into the main navigation structure (e.g. hamburger menu).</p>
+<p>For optimal user experience, it's recommended to label the mobile navigation toggle button with the current page title or section name to help users understand what content they're expanding.</p>
+
+<h3 id="mobile-implementation">Enabling mobile functionality in existing side nav setups</h3>
+<p>To enable mobile toggle functionality on existing side navs:</p>
+<ol>
+  <li class="nsw-m-bottom-sm">Add <code>js-side-nav</code> class to the parent <code>&lt;div&gt;</code> element containing the side navigation.</li>
+  <li class="nsw-m-bottom-md">Insert the toggle button as the first child inside the existing <code>.nsw-side-nav</code> element. Ensure the button label reflects the page title where the side navigation appears:
+<div class="nsw-docs-code">
+  <div class="nsw-docs-code__content active">
+    <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
+      <span>Copy</span>
+      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
+    </button>
+    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`&lt;button class="nsw-side-nav__toggle" aria-expanded="false"&gt;
+&lt;span&gt;[Page title]&lt;/span&gt;
+&lt;/button&gt;`).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
+    <div class="nsw-docs-code__wrapper">
+<pre><code class="true"><script>document.write((`&lt;button class="nsw-side-nav__toggle" aria-expanded="false"&gt;
+&lt;span&gt;[Page title]&lt;/span&gt;
+&lt;/button&gt;`).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
+    </div>
+  </div>
+</div>
+</li>
+  <li class="nsw-m-bottom-sm">Add <code>nsw-side-nav__content</code> class to the main <code>&lt;ul&gt;</code> containing the navigation items.</li>
+  <li class="nsw-m-bottom-sm">Remove the <code>nsw-layout__sidebar--desktop</code> class from the parent <code>&lt;div&gt;</code> if you were previously using this method to hide the side navigation on desktop. If this class is not removed, the side nav may remain hidden at certain breakpoints, which can prevent the mobile toggle from appearing.</li>
+</ol>
 
 <h2>Accessibility</h2>
 <p>All components are responsive and designed to comply with WCAG 2.2 AA accessibility standards. Full compliance depends on using and configuring the components correctly.</p>
@@ -476,11 +505,14 @@
 <h3>Single level</h3>
 <div class="nsw-docs__example">
   <div class="nsw-docs__component">
-    <nav class="nsw-side-nav" aria-labelledby="sksm726ns">
+    <nav class="nsw-side-nav js-side-nav" aria-labelledby="sksm726ns">
+      <button class="nsw-side-nav__toggle" aria-expanded="false">
+        <span>Agile Methodology</span>
+      </button>
       <div class="nsw-side-nav__header" id="sksm726ns">
         <a href="#">Agile Methodology</a>
       </div>
-      <ul>
+      <ul class="nsw-side-nav__content">
         <li>
           <a href="#">Pre-discovery</a>
         </li>
@@ -510,11 +542,14 @@
       <span>Copy</span>
       <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
     </button>
-    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`<nav class="nsw-side-nav" aria-labelledby="sksm726ns">
+    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`<nav class="nsw-side-nav js-side-nav" aria-labelledby="sksm726ns">
+  <button class="nsw-side-nav__toggle" aria-expanded="false">
+    <span>Agile Methodology</span>
+  </button>
   <div class="nsw-side-nav__header" id="sksm726ns">
     <a href="#">Agile Methodology</a>
   </div>
-  <ul>
+  <ul class="nsw-side-nav__content">
     <li>
       <a href="#">Pre-discovery</a>
     </li>
@@ -534,11 +569,14 @@
 </nav>
 `).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
     <div class="nsw-docs-code__wrapper">
-<pre><code class="html"><script>document.write((`<nav class="nsw-side-nav" aria-labelledby="sksm726ns">
+<pre><code class="html"><script>document.write((`<nav class="nsw-side-nav js-side-nav" aria-labelledby="sksm726ns">
+  <button class="nsw-side-nav__toggle" aria-expanded="false">
+    <span>Agile Methodology</span>
+  </button>
   <div class="nsw-side-nav__header" id="sksm726ns">
     <a href="#">Agile Methodology</a>
   </div>
-  <ul>
+  <ul class="nsw-side-nav__content">
     <li>
       <a href="#">Pre-discovery</a>
     </li>
@@ -566,11 +604,14 @@
 <h3>Two levels</h3>
 <div class="nsw-docs__example">
   <div class="nsw-docs__component">
-    <nav class="nsw-side-nav" aria-labelledby="sksm7sss26ns">
+    <nav class="nsw-side-nav js-side-nav" aria-labelledby="sksm7sss26ns">
+      <button class="nsw-side-nav__toggle" aria-expanded="false">
+        <span>About DPC</span>
+      </button>
       <div class="nsw-side-nav__header" id="sksm7sss26ns">
         <a href="#">About DPC</a>
       </div>
-      <ul>
+      <ul class="nsw-side-nav__content">
         <li>
           <a href="#">About the Department</a>
         </li>
@@ -614,11 +655,14 @@
       <span>Copy</span>
       <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
     </button>
-    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`<nav class="nsw-side-nav" aria-labelledby="sksm7sss26ns">
+    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`<nav class="nsw-side-nav js-side-nav" aria-labelledby="sksm7sss26ns">
+  <button class="nsw-side-nav__toggle" aria-expanded="false">
+    <span>About DPC</span>
+  </button>
   <div class="nsw-side-nav__header" id="sksm7sss26ns">
     <a href="#">About DPC</a>
   </div>
-  <ul>
+  <ul class="nsw-side-nav__content">
     <li>
       <a href="#">About the Department</a>
     </li>
@@ -652,11 +696,14 @@
 </nav>
 `).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
     <div class="nsw-docs-code__wrapper">
-<pre><code class="html"><script>document.write((`<nav class="nsw-side-nav" aria-labelledby="sksm7sss26ns">
+<pre><code class="html"><script>document.write((`<nav class="nsw-side-nav js-side-nav" aria-labelledby="sksm7sss26ns">
+  <button class="nsw-side-nav__toggle" aria-expanded="false">
+    <span>About DPC</span>
+  </button>
   <div class="nsw-side-nav__header" id="sksm7sss26ns">
     <a href="#">About DPC</a>
   </div>
-  <ul>
+  <ul class="nsw-side-nav__content">
     <li>
       <a href="#">About the Department</a>
     </li>
@@ -698,11 +745,14 @@
 <h3>Four levels</h3>
 <div class="nsw-docs__example">
   <div class="nsw-docs__component">
-    <nav class="nsw-side-nav" aria-labelledby="sksm7sss27ns">
+    <nav class="nsw-side-nav js-side-nav" aria-labelledby="sksm7sss27ns">
+      <button class="nsw-side-nav__toggle" aria-expanded="false">
+        <span>Service Design</span>
+      </button>
       <div class="nsw-side-nav__header" id="sksm7sss27ns">
         <a href="#">Service Design</a>
       </div>
-      <ul>
+      <ul class="nsw-side-nav__content">
         <li>
           <a href="#">What is Service Design</a>
         </li>
@@ -771,11 +821,14 @@
       <span>Copy</span>
       <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
     </button>
-    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`<nav class="nsw-side-nav" aria-labelledby="sksm7sss27ns">
+    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`<nav class="nsw-side-nav js-side-nav" aria-labelledby="sksm7sss27ns">
+  <button class="nsw-side-nav__toggle" aria-expanded="false">
+    <span>Service Design</span>
+  </button>
   <div class="nsw-side-nav__header" id="sksm7sss27ns">
     <a href="#">Service Design</a>
   </div>
-  <ul>
+  <ul class="nsw-side-nav__content">
     <li>
       <a href="#">What is Service Design</a>
     </li>
@@ -834,11 +887,14 @@
 </nav>
 `).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
     <div class="nsw-docs-code__wrapper">
-<pre><code class="html"><script>document.write((`<nav class="nsw-side-nav" aria-labelledby="sksm7sss27ns">
+<pre><code class="html"><script>document.write((`<nav class="nsw-side-nav js-side-nav" aria-labelledby="sksm7sss27ns">
+  <button class="nsw-side-nav__toggle" aria-expanded="false">
+    <span>Service Design</span>
+  </button>
   <div class="nsw-side-nav__header" id="sksm7sss27ns">
     <a href="#">Service Design</a>
   </div>
-  <ul>
+  <ul class="nsw-side-nav__content">
     <li>
       <a href="#">What is Service Design</a>
     </li>
