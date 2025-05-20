@@ -101,7 +101,6 @@
   }
 
   &__toggle {
-    @include mixins.font-size('md');
     font-weight: var(--nsw-font-bold);
     background-color: var(--nsw-off-white);
     width: 100%;
@@ -115,6 +114,8 @@
     transition: background-color settings.$nsw-transition-duration, color settings.$nsw-transition-duration;
     top: functions.rem(16px);
     position: sticky;
+    
+    @include mixins.font-size('md');
 
     &:hover:enabled {
       background-color: var(--nsw-brand-dark);
