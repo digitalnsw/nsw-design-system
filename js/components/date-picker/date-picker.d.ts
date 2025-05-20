@@ -16,6 +16,7 @@ declare class DatePicker {
     months: any;
     dateFormat: any;
     dateSeparator: any;
+    dateSeparatorRegex: RegExp;
     datesDisabled: any;
     minDate: any;
     maxDate: any;

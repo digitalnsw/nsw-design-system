@@ -1583,6 +1583,7 @@
       this.months = this.element.getAttribute('data-months') ? this.element.getAttribute('data-months') : ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
       this.dateFormat = this.element.getAttribute('data-date-format') ? this.element.getAttribute('data-date-format') : 'd-m-y';
       this.dateSeparator = this.element.getAttribute('data-date-separator') ? this.element.getAttribute('data-date-separator') : '/';
+      this.dateSeparatorRegex = /[-.\s/]+/;
       this.datesDisabled = this.element.getAttribute('data-dates-disabled') ? this.element.getAttribute('data-dates-disabled') : '';
       this.minDate = this.element.getAttribute('data-min-date') ? this.element.getAttribute('data-min-date') : '';
       this.maxDate = this.element.getAttribute('data-max-date') ? this.element.getAttribute('data-max-date') : '';
@@ -1652,13 +1653,13 @@
         </div>
 
         <ol class="nsw-date-picker__week">
-          <li><div class="nsw-date-picker__day">M<span class="sr-only">onday</span></div></li>
-          <li><div class="nsw-date-picker__day">T<span class="sr-only">uesday</span></div></li>
-          <li><div class="nsw-date-picker__day">W<span class="sr-only">ednesday</span></div></li>
-          <li><div class="nsw-date-picker__day">T<span class="sr-only">hursday</span></div></li>
-          <li><div class="nsw-date-picker__day">F<span class="sr-only">riday</span></div></li>
-          <li><div class="nsw-date-picker__day">S<span class="sr-only">aturday</span></div></li>
-          <li><div class="nsw-date-picker__day">S<span class="sr-only">unday</span></div></li>
+          <li><div class="nsw-date-picker__day">Mo<span class="sr-only">nday</span></div></li>
+          <li><div class="nsw-date-picker__day">Tu<span class="sr-only">esday</span></div></li>
+          <li><div class="nsw-date-picker__day">We<span class="sr-only">dnesday</span></div></li>
+          <li><div class="nsw-date-picker__day">Th<span class="sr-only">ursday</span></div></li>
+          <li><div class="nsw-date-picker__day">Fr<span class="sr-only">iday</span></div></li>
+          <li><div class="nsw-date-picker__day">Sa<span class="sr-only">turday</span></div></li>
+          <li><div class="nsw-date-picker__day">Su<span class="sr-only">nday</span></div></li>
         </ol>
       </header>
 
@@ -1931,25 +1932,25 @@
       }
     }
     convertDateToParse(date) {
-      const dateArray = date.split(this.dateSeparator);
+      const dateArray = date.split(this.dateSeparatorRegex);
       return `${dateArray[this.dateIndexes[2]]}, ${dateArray[this.dateIndexes[1]]}, ${dateArray[this.dateIndexes[0]]}`;
     }
     isDisabledDate(day, month, year) {
       let disabled = false;
       const dateParse = new Date(Date.UTC(year, month, day));
       if (this.minDate) {
-        const [minD, minM, minY] = this.minDate.split(this.dateSeparator).map(Number);
+        const [minD, minM, minY] = this.minDate.split(this.dateSeparatorRegex).map(Number);
         const minDate = new Date(Date.UTC(minY, minM - 1, minD));
         if (minDate > dateParse) disabled = true;
       }
       if (this.maxDate) {
-        const [maxD, maxM, maxY] = this.maxDate.split(this.dateSeparator).map(Number);
+        const [maxD, maxM, maxY] = this.maxDate.split(this.dateSeparatorRegex).map(Number);
         const maxDate = new Date(Date.UTC(maxY, maxM - 1, maxD));
         if (maxDate < dateParse) disabled = true;
       }
       if (this.disabledArray.length > 0) {
         this.disabledArray.forEach(element => {
-          const [d, m, y] = element.split(this.dateSeparator).map(Number);
+          const [d, m, y] = element.split(this.dateSeparatorRegex).map(Number);
           const disabledDate = new Date(Date.UTC(y, m - 1, d));
           if (dateParse.getTime() === disabledDate.getTime()) disabled = true;
         });
@@ -2041,7 +2042,7 @@
     getDateFromInput() {
       let dateArray;
       if (this.input) {
-        dateArray = this.input.value.split(this.dateSeparator);
+        dateArray = this.input.value.split(this.dateSeparatorRegex);
       } else if (this.multipleInput) {
         dateArray = [this.dateInput.value, this.monthInput.value, this.yearInput.value];
       }
