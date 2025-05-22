@@ -334,6 +334,10 @@ class CookieConsent {
       // Manual trigger of cookie consent preferences dialog
       if (target.matches('.js-open-dialog-cookie-consent-preferences')) {
         event.preventDefault()
+        this.hideConsentBanner()
+        if (this.dialogInstance) {
+          this.dialogInstance.open()
+        }
       }
     })
   }
