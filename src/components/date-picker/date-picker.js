@@ -559,27 +559,34 @@ class DatePicker {
     if (day > totDays) {
       this.currentDay = day - totDays
       this.showNextMonth(false)
-    } else if (day < 1) {
+      return
+    }
+
+    if (day < 1) {
       const newMonth = this.currentMonth === 0 ? 11 : this.currentMonth - 1
       this.currentDay = this.constructor.daysInMonth(this.currentYear, newMonth) + day
       this.showPrevMonth(false)
-    } else {
-      this.currentDay = day
-      const focusItem = this.body.querySelector('button[tabindex="0"]')
+      return
+    }
+
+    this.currentDay = day
+
+    const focusItem = this.body.querySelector('button[tabindex="0"]')
+    if (focusItem) {
       focusItem.setAttribute('tabindex', '-1')
       focusItem.classList.remove(this.keyboardFocusClass)
-
-      const buttons = this.body.getElementsByTagName('button')
-      for (let i = 0; i < buttons.length; i += 1) {
-        if (parseInt(buttons[i].textContent, 10) === this.currentDay) {
-          buttons[i].setAttribute('tabindex', '0')
-          buttons[i].classList.add(this.keyboardFocusClass)
-          buttons[i].focus()
-          break
-        }
-      }
-      this.getFocusableElements()
     }
+
+    const buttons = [...this.body.querySelectorAll(`.${this.dateClass}:not(.${this.dateClass}--disabled)`)]
+    const match = buttons.find((btn) => parseInt(btn.textContent, 10) === this.currentDay)
+
+    if (match) {
+      match.setAttribute('tabindex', '0')
+      match.classList.add(this.keyboardFocusClass)
+      match.focus()
+    }
+
+    this.getFocusableElements()
   }
 
   resetLabelCalendarTrigger() {
