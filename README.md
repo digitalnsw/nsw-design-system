@@ -1,4 +1,4 @@
-![NSW Design System banner](src/assets/images/nsw-design-system-github-header.jpg)
+![NSW Design System banner](/src/nsw-design-system-github-header.jpg)
 
 # NSW Design System
 
