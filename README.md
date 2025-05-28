@@ -1,3 +1,5 @@
+![NSW Design System banner](/src/nsw-design-system-github-header.jpg)
+
 # NSW Design System
 
 [![npm version](https://badge.fury.io/js/nsw-design-system.svg)](https://badge.fury.io/js/nsw-design-system)

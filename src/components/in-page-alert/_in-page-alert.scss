@@ -1,73 +1,55 @@
-//Variations
-$nsw-in-page-alerts: (
-  info: (
-    border: var(--nsw-status-info),
-    background: var(--nsw-status-info-bg),
-    fill: var(--nsw-status-info),
-  ),
-  success: (
-    border: var(--nsw-status-success),
-    background: var(--nsw-status-success-bg),
-    fill: var(--nsw-status-success),
-  ),
-  warning: (
-    border: var(--nsw-status-warning),
-    background: var(--nsw-status-warning-bg),
-    fill: var(--nsw-status-warning),
-  ),
-  error: (
-    border: var(--nsw-status-error),
-    background: var(--nsw-status-error-bg),
-    fill: var(--nsw-status-error),
-  ),
-);
+@use 'sass:map';
+@use '../../global/scss/base/functions' as functions;
+@use '../../global/scss/base/mixins' as mixins;
+@use '../../global/scss/settings/settings' as settings;
 
 .nsw-in-page-alert {
-  @include component-spacing();
-  padding: rem(16px);
+  padding: functions.rem(16px);
   position: relative;
   border-left: solid 4px var(--nsw-brand-accent);
   background-color: var(--nsw-grey-04);
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
+  
+  @include mixins.component-spacing();
 
-  @include breakpoint('md') {
-    padding: rem(24px) rem(24px) rem(24px) rem(16px);
+  @include mixins.breakpoint('md') {
+    padding: functions.rem(24px) functions.rem(24px) functions.rem(24px) functions.rem(16px);
   }
       
   .nsw-section--invert & {    
     color: var(--nsw-text-dark);
 
     a {
-      @include link-dark;
+      @include mixins.link-dark;
     }
   }
 
   &__icon {
-    font-size: rem(map-get($nsw-icon-sizes, 30));
-    margin-right: rem(16px);
-    margin-top: rem(-2px);
+    font-size: functions.rem(map.get(settings.$nsw-icon-sizes, 30));
+    margin-right: functions.rem(16px);
+    margin-top: functions.rem(-2px);
   }
 
-  @each $color, $variant in $nsw-in-page-alerts {
+  @each $color, $variant in settings.$nsw-in-page-alerts {
     &--#{"" + $color} {
-      background-color: map-get($variant, background);
-      border-color: map-get($variant, border);
+      background-color: map.get($variant, background);
+      border-color: map.get($variant, border);
 
       .nsw-in-page-alert__icon {
-        color: map-get($variant, fill);
+        color: map.get($variant, fill);
       }
     }
   }
 
   &--compact {
-    padding: rem(8px);
+    padding: functions.rem(8px);
     border: 0;
 
     .nsw-in-page-alert__icon {
-      font-size: rem(map-get($nsw-icon-sizes, 20));
-      margin-right: rem(8px);
+      font-size: functions.rem(map.get(settings.$nsw-icon-sizes, 20));
+      margin-right: functions.rem(8px);
       margin-top: 0;
     }
   }

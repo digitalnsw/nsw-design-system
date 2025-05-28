@@ -1,3 +1,7 @@
+@use '../../global/scss/base/functions' as functions;
+@use '../../global/scss/base/mixins' as mixins;
+@use '../../global/scss/settings/settings' as settings;
+
 .nsw-utility-list {
   background-color: var(--nsw-off-white);
 
@@ -5,15 +9,16 @@
     background-color: transparent;
   }
 
-  @include component-spacing();
+  @include mixins.component-spacing();
 
   &__title {
-    @include font-size('lg');
     font-weight: var(--nsw-font-bold);
-    padding-bottom: rem(16px);
+    padding-bottom: functions.rem(16px);
     
-    @include breakpoint('md') {
-      padding-bottom: rem(24px);
+    @include mixins.font-size('lg');
+    
+    @include mixins.breakpoint('md') {
+      padding-bottom: functions.rem(24px);
     }
   }
 
@@ -25,9 +30,9 @@
 
   &__item {
     margin: 0;
-    padding: rem(16px);
+    padding: functions.rem(16px);
     display: flex;
-    gap: $grid-gutters;
+    gap: settings.$grid-gutters;
     align-items: center;
     text-decoration: none;
     cursor: pointer;
@@ -35,15 +40,15 @@
     border-bottom: 1px solid var(--nsw-grey-04);
     color: var(--nsw-brand-dark);
 
-    @include font-size('sm');
+    @include mixins.font-size('sm');
 
     &:hover {
-      @include nsw-hover;
+      @include mixins.nsw-hover;
       outline-width: 0;
     }
 
     &:focus {
-      @include nsw-focus;
+      @include mixins.nsw-focus;
     }
 
     &:last-child {
@@ -66,11 +71,11 @@
       }
       
       &:hover {
-        @include nsw-hover-light();
+        @include mixins.nsw-hover-light();
       }
     
       &:focus { 
-        @include nsw-focus($color: var(--nsw-focus-light));
+        @include mixins.nsw-focus($color: var(--nsw-focus-light));
       }
     
       &:visited {
@@ -79,8 +84,8 @@
     }
 
     svg {
-      width: rem(24px);
-      height: rem(24px);
+      width: functions.rem(24px);
+      height: functions.rem(24px);
 
       path {
         fill: var(--nsw-brand-dark);
@@ -101,12 +106,12 @@
 
     &__content {
       display: flex;
-      gap: $grid-gutters;
-      padding: rem(16px);
+      gap: settings.$grid-gutters;
+      padding: functions.rem(16px);
 
       a {
         display: flex;
-        padding: rem(8px);
+        padding: functions.rem(8px);
         border-radius: var(--nsw-border-radius);
         text-decoration: none;
       }
@@ -118,7 +123,7 @@
   }
 
   &--horizontal {
-    @include breakpoint('md') {
+    @include mixins.breakpoint('md') {
       display: flex;
     
       ul {

@@ -1,40 +1,44 @@
+@use '../../global/scss/base/mixins' as mixins;
+@use '../../global/scss/base/functions' as functions;
+@use '../../global/scss/settings/settings' as settings;
+
 $nsw-layout-gap: 32px;
 
 .nsw-layout {
-  @include grid();
+  @include mixins.grid();
 
   &__main {
-    @include column-default();
+    @include mixins.column-default();
 
     &:not(:first-child) {
-      @include column(8, $nsw-desktop-breakpoint);
+      @include mixins.column(8, settings.$nsw-desktop-breakpoint);
     }
 
     &:not(:last-child) {
-      @include column(8, $nsw-desktop-breakpoint);
+      @include mixins.column(8, settings.$nsw-desktop-breakpoint);
     }
   }
 
   &__sidebar {
-    @include column-default();
-    @include column(4, $nsw-desktop-breakpoint);
+    @include mixins.column-default();
+    @include mixins.column(4, settings.$nsw-desktop-breakpoint);
 
     &:first-child {
-      @include breakpoint('lg') {
-        padding-right: rem($grid-gutters*2 + $nsw-layout-gap);
+      @include mixins.breakpoint('lg') {
+        padding-right: functions.rem(settings.$grid-gutters*2 + $nsw-layout-gap);
       }
     }
 
     &:last-child {
-      @include breakpoint($nsw-desktop-breakpoint) {
-        padding-left: rem($grid-gutters*2 + $nsw-layout-gap);
+      @include mixins.breakpoint(settings.$nsw-desktop-breakpoint) {
+        padding-left: functions.rem(settings.$grid-gutters*2 + $nsw-layout-gap);
       }
     }
 
     &--desktop {
       display: none;
 
-      @include breakpoint($nsw-desktop-breakpoint) {
+      @include mixins.breakpoint(settings.$nsw-desktop-breakpoint) {
         display: block;
       }
     }

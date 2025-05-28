@@ -1,13 +1,16 @@
+@use '../../global/scss/base/functions' as functions;
+@use '../../global/scss/base/mixins' as mixins;
+
 .hero-search {
   position: relative;
   z-index: 1;
 
-  @include breakpoint('md') {
-    padding: rem(32px) rem(16px);
+  @include mixins.breakpoint('md') {
+    padding: functions.rem(32px) functions.rem(16px);
   }
 
   &__form {
-    padding: rem(24px) 0;
+    padding: functions.rem(24px) 0;
     text-align: left;
 
     .nsw-material-icons { 
@@ -18,19 +21,19 @@
   }
 
   &__wrapper {
-    padding: rem(32px) rem(16px);
+    padding: functions.rem(32px) functions.rem(16px);
     background-color: var(--nsw-off-white);
     border-bottom: solid 4px var(--nsw-brand-accent);
 
-    @include breakpoint('md') {
+    @include mixins.breakpoint('md') {
       border-top-left-radius: var(--nsw-border-radius);
       border-top-right-radius: var(--nsw-border-radius);
-      padding: rem(32px) rem(80px);
+      padding: functions.rem(32px) functions.rem(80px);
     }
   }
 
   &__content {    
-    max-width: rem(700px);
+    max-width: functions.rem(700px);
     margin: 0 auto;
     text-align: center;
   }
@@ -39,18 +42,18 @@
     ul {
       list-style: none;
       text-align: center;
-      margin-top: rem(-8px);
+      margin-top: functions.rem(-8px);
       padding: 0;
     }
 
     li {
-      margin: rem(8px) rem(12px) 0 rem(12px);
+      margin: functions.rem(8px) functions.rem(12px) 0 functions.rem(12px);
       display: inline-block;
     }
 
     a:not(.nsw-icon-button) {
       line-height: 1.5;
-      padding: rem(4px) rem(4px);
+      padding: functions.rem(4px) functions.rem(4px);
     }
   }
 

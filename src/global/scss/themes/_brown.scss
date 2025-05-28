@@ -1,23 +1,25 @@
 @use 'sass:color';
+@use '../base/functions' as functions;
+@use '../settings/palette' as palette;
 
-// Purple Theme Colours
-$brown-dark: $brown-01 !default;
-$brown-light: $brown-04 !default;
-$brown-supplementary: $brown-02 !default;
-$brown-accent: $teal-02 !default;
+// Brown Theme Colours
+$brown-dark: palette.$brown-01 !default;
+$brown-light: palette.$brown-04 !default;
+$brown-supplementary: palette.$brown-02 !default;
+$brown-accent: palette.$teal-02 !default;
 
-// Purple State Colours
+// Brown State Colours
 $brown-link: $brown-dark !default;
-$brown-link-light: tint($brown-dark, 90%) !default;
-$brown-visited: a11y-color(lighten(adjust-hue($brown-dark, -22), 20.98), #ffffff) !default;
-$brown-visited-light: tint($brown-visited, 80%) !default;
+$brown-link-light: color.mix(#ffffff, $brown-dark, 90%) !default;
+$brown-visited: functions.a11y-color(color.adjust(color.adjust($brown-dark, $hue: -22deg), $lightness: 20.98%), #ffffff) !default;
+$brown-visited-light: color.mix(#ffffff, $brown-visited, 80%) !default;
 $brown-hover: color.adjust($brown-dark, $alpha: -0.9) !default;
 $brown-hover-light: color.adjust($brown-link-light, $alpha: -0.9) !default;
 $brown-active: color.adjust($brown-dark, $alpha: -0.8) !default;
 $brown-active-light: color.adjust($brown-link-light, $alpha: -0.8) !default;
-$brown-focus: lighten(adjust-hue($brown-dark, -22), 15.49) !default;
-$brown-focus-light: tint($brown-focus, 80%);
-$brown-disabled: tint($brown-dark, 50%) !default;
+$brown-focus: color.adjust(color.adjust($brown-dark, $hue: -22deg), $lightness: 15.49%) !default;
+$brown-focus-light: color.mix(#ffffff, $brown-focus, 80%) !default;
+$brown-disabled: color.mix(#ffffff, $brown-dark, 50%) !default;
 
 $brown-colors: (
   'brand-dark': $brown-dark,
@@ -37,7 +39,7 @@ $brown-colors: (
   'disabled': $brown-disabled
 ) !default;
 
-$brown-colors-rgb: map-loop($brown-colors, to-rgb, '$value') !default;
+$brown-colors-rgb: functions.to-rgb-list($brown-colors) !default;
 
 .brown {
   @each $color, $value in $brown-colors {
@@ -50,6 +52,6 @@ $brown-colors-rgb: map-loop($brown-colors, to-rgb, '$value') !default;
 }
 
 .brown-accent {
-  --nsw-brand-accent: #{$brown-02};
-  --nsw-brand-accent-rgb: #{to-rgb($brown-02)};
+  --nsw-brand-accent: #{palette.$brown-02};
+  --nsw-brand-accent-rgb: #{to-rgb(palette.$brown-02)};
 }
