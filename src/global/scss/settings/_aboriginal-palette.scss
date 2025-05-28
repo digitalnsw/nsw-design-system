@@ -1,4 +1,5 @@
-
+@use 'sass:map';
+@use '../base/functions' as functions;
 
 $white: #ffffff !default;
 $grey-50: #f2f2f2 !default;
@@ -62,7 +63,7 @@ $firewood: #9e5332 !default;
 $claystone: #d39165 !default;
 $macadamia: #e9c8b2 !default;
 
-$brand-colors: (
+$aboriginal-colors: (
   // Grey
   'charcoal-rock': $charcoal-rock,
   'emu-grey': $emu-grey,
@@ -117,14 +118,19 @@ $brand-colors: (
   'white': $white
 ) !default;
 
-$brand-colors-rgb: map-loop($brand-colors, to-rgb, '$value') !default;
+
+$aboriginal-colors-rgb: () !default;
+
+@each $key, $value in $aboriginal-colors {
+  $aboriginal-colors-rgb: map.merge($aboriginal-colors-rgb, ($key: functions.to-rgb($value)));
+}
 
 :root {
-  @each $color, $value in $brand-colors {
-    --nsw-aboriginal-palette-#{$color}: #{$value};
+  @each $color, $value in $aboriginal-colors {
+    --nsw-aboriginal-colors-#{$color}: #{$value};
   }
 
-  @each $color, $value in $brand-colors-rgb {
-    --nsw-aboriginal-palette-#{$color}-rgb: #{$value};
+  @each $color, $value in $aboriginal-colors-rgb {
+    --nsw-aboriginal-colors-#{$color}-rgb: #{$value};
   }
 }

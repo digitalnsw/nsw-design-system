@@ -65,7 +65,7 @@ $brown-02: #b68d5d !default;
 $brown-03: #e8d0b5 !default;
 $brown-04: #ede3d7 !default;
 
-$aboriginal-brand-colors: (
+$brand-colors: (
   'blue-01': $blue-01,
   'blue-02': $blue-02,
   'blue-03': $blue-03,
@@ -118,11 +118,11 @@ $brand-colors-rgb: () !default;
 }
 
 :root {
-  @each $color, $value in $aboriginal-brand-colors {
+  @each $color, $value in $brand-colors {
     --nsw-palette-#{$color}: #{$value};
   }
 
-  @each $color, $value in $aboriginal-brand-colors-rgb {
+  @each $color, $value in $brand-colors-rgb {
     --nsw-palette-#{$color}-rgb: #{$value};
   }
 }
