@@ -1,19 +1,6 @@
 @use 'sass:map';
 @use '../base/functions' as functions;
-
-$white: #ffffff !default;
-$grey-50: #f2f2f2 !default;
-$grey-100: #ebebeb !default;
-$grey-200: #dcdfe1 !default;
-$grey-300: #cdd3d6 !default;
-$grey-400: #acb3b7 !default;
-$grey-500: #8b9296 !default;
-$grey-600: #6a7175 !default;
-$grey-700: #495054 !default;
-$grey-800: #363c40 !default;
-$grey-900: #22272b !default;
-$grey-950: #151a1e !default;
-$black: #000000 !default;
+@use '../settings/palette' as palette;
 
 // Grey palette
 $charcoal-rock: #2d2d2d !default;
@@ -113,9 +100,9 @@ $aboriginal-colors: (
   'macadamia': $macadamia,
 
   // Keep Black, Off-white, White
-  'black': $black,
-  'off-white': $grey-50,
-  'white': $white
+  'black': palette.$black,
+  'off-white': palette.$grey-50,
+  'white': palette.$white
 ) !default;
 
 
@@ -127,10 +114,10 @@ $aboriginal-colors-rgb: () !default;
 
 :root {
   @each $color, $value in $aboriginal-colors {
-    --nsw-aboriginal-colors-#{$color}: #{$value};
+    --nsw-aboriginal-palette-#{$color}: #{$value};
   }
 
   @each $color, $value in $aboriginal-colors-rgb {
-    --nsw-aboriginal-colors-#{$color}-rgb: #{$value};
+    --nsw-aboriginal-palette-#{$color}-rgb: #{$value};
   }
 }
