@@ -94,9 +94,9 @@ function buildDocStyles() {
     .pipe(dest(config.scssDocs.build))
 }
 
-function buildHtml() {
+function blockScripts() {
   return src('dist/**/*.html')
-    // Block all <script> tags without data-build attribute
+    // Block all <script> tags without data-build attribute at build time
     .pipe(replace(
       /<script(?!(?:[^>]*\sdata-build))([^>]*)>/gi,
       '<script$1 type="text/plain" data-blocked="true">'
@@ -420,7 +420,7 @@ const buildprod = series(
   moveSitemap,
   moveSearch,
   metalsmithBuild,
-  buildHtml,
+  blockScripts,
   styles,
   javascript,
   moveImages,
@@ -437,7 +437,7 @@ const build = series(
   moveSitemap,
   moveSearch,
   metalsmithBuild,
-  buildHtml,
+  blockScripts,
   styles,
   javascript,
   moveImages,
@@ -451,7 +451,7 @@ const dev = series(
   moveSitemap,
   moveSearch,
   metalsmithBuild,
-  buildHtml,
+  blockScripts,
   styles,
   javascript,
   moveImages,
