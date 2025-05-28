@@ -336,7 +336,7 @@ class CookieConsent {
         event.preventDefault()
         this.hideConsentBanner()
         if (this.dialogInstance) {
-          this.dialogInstance.open()
+          this.dialogInstance.openDialog()
         }
       }
     })
@@ -376,6 +376,7 @@ class CookieConsent {
       case 'accept-all': {
         console.log('User accepted all cookies')
         CookieConsentAPI.acceptCategory('all')
+        CookieConsent.enableScripts(['all'])
         updatePreferencesDialog()
         break
       }
@@ -399,6 +400,7 @@ class CookieConsent {
         })
 
         CookieConsentAPI.acceptCategory(checked, unchecked)
+        CookieConsent.enableScripts(checked)
         updatePreferencesDialog()
         break
       }
@@ -460,6 +462,32 @@ class CookieConsent {
     if (this.consentBannerElement) {
       this.consentBannerElement.setAttribute('hidden', 'true')
     }
+  }
+
+  static enableScripts(categories) {
+    // Find all previously blocked scripts that match accepted categories
+    const scripts = Array.from(document.querySelectorAll('script[data-blocked]'))
+    scripts.forEach((script) => {
+      const category = script.getAttribute('data-category')
+      // Only re-enable if 'all' or the specific category was accepted
+      if (categories.includes('all') || (category && categories.includes(category))) {
+        // Create a new script element to load/execute
+        const newScript = document.createElement('script')
+        // Copy all original attributes except type and data-blocked
+        Array.from(script.attributes).forEach((attr) => {
+          if (attr.name !== 'type' && attr.name !== 'data-blocked') {
+            newScript.setAttribute(attr.name, attr.value)
+          }
+        })
+        // If inline script, copy its content
+        if (!script.src) {
+          newScript.textContent = script.textContent
+        }
+        // Insert and execute the new script, then remove the old blocked one
+        script.parentNode.insertBefore(newScript, script.nextSibling)
+        script.remove()
+      }
+    })
   }
 }
 

@@ -94,6 +94,16 @@ function buildDocStyles() {
     .pipe(dest(config.scssDocs.build))
 }
 
+function buildHtml() {
+  return src('dist/**/*.html')
+    // Block all <script> tags without data-build attribute
+    .pipe(replace(
+      /<script(?!(?:[^>]*\sdata-build))([^>]*)>/gi,
+      '<script$1 type="text/plain" data-blocked="true">'
+    ))
+    .pipe(dest('dist'))
+}
+
 function lintStyles() {
   return src(config.scss.watch)
     .pipe(gulpStylelint({
@@ -410,6 +420,7 @@ const buildprod = series(
   moveSitemap,
   moveSearch,
   metalsmithBuild,
+  buildHtml,
   styles,
   javascript,
   moveImages,
@@ -426,6 +437,7 @@ const build = series(
   moveSitemap,
   moveSearch,
   metalsmithBuild,
+  buildHtml,
   styles,
   javascript,
   moveImages,
@@ -439,6 +451,7 @@ const dev = series(
   moveSitemap,
   moveSearch,
   metalsmithBuild,
+  buildHtml,
   styles,
   javascript,
   moveImages,
