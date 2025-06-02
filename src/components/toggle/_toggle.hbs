@@ -1,0 +1,27 @@
+{{! Partial for rendering toggle variants }}
+{{#if-equals variant "binary"}}
+  <div class="nsw-toggle" data-variant="binary">
+    <button type="button"
+            class="nsw-toggle__option {{#if-equals value "on"}}nsw-toggle__option--active{{/if-equals}}"
+            data-value="on">
+      {{binary.on}}
+    </button>
+    <button type="button"
+            class="nsw-toggle__option {{#if-equals value "off"}}nsw-toggle__option--active{{/if-equals}}"
+            data-value="off">
+      {{binary.off}}
+    </button>
+  </div>
+{{/if-equals}}
+{{#if-equals variant "checkbox"}}
+  <div class="nsw-toggle" data-variant="checkbox">
+    <input type="checkbox"
+           id="{{checkbox.id}}"
+           class="nsw-toggle__input"
+           {{#if checkbox.checked}}checked{{/if}}>
+    <label for="{{checkbox.id}}"
+           class="nsw-toggle__label">
+      {{checkbox.label}}
+    </label>
+  </div>
+{{/if-equals}}

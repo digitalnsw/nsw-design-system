@@ -1,0 +1,24 @@
+---
+title: Toggle
+width: narrow
+tabs: true
+directory: toggle
+intro: Use the toggle to switch between two states or to represent a binary choice.
+theme: true
+model:
+  variant: ../../components/toggle/json/variant.json
+  checkbox: ../../components/toggle/json/checkbox.json
+  binary: ../../components/toggle/json/binary.json
+meta-description: A lightweight, accessible toggle component for binary and checkbox variants.
+meta-index: true
+---
+
+<h3>Binary toggle</h3>
+{{#> _docs-example}}
+  {{>_toggle model.variant}}
+{{/_docs-example}}
+
+<h3>Checkbox toggle</h3>
+{{#> _docs-example}}
+  {{>_toggle model.checkbox variant="checkbox" id=checkbox.id label=checkbox.label checked=checkbox.checked }}
+{{/_docs-example}}
