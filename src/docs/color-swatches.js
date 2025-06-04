@@ -21,6 +21,7 @@ class ColorSwatches {
   // Initialise the color swatches
   init() {
     this.createColorSwatches(); // Creates the color swatch list first
+    this.setPaletteFromURL();
     this.paletteSelect = this.createPaletteSelector(); // Creates the palette select dropdown
 
     // Move the select after the swatches
@@ -91,6 +92,7 @@ class ColorSwatches {
       this.currentPalette = e.target.value;
       this.currentColor = Object.keys(this.palettes[this.currentPalette])[0]; // Reset to first color
       this.createColorSwatches();
+      this.updateURL();
       this.updateCSSVariables();
       this.updateColorData();
       this.updateLegend();
@@ -103,6 +105,7 @@ class ColorSwatches {
 
       this.currentColor = swatch.getAttribute('data-color');
       this.updateSelectedSwatch(swatch);
+      this.updateURL();
       this.updateCSSVariables();
       this.updateColorData();
       this.updateLegend();
@@ -193,6 +196,42 @@ class ColorSwatches {
   formatLabel(text) {
     return text.replace(/-/g, ' ').replace(/\b\w/g, (char) => char.toUpperCase());
   }
+
+  // Sets palette and color from URL query parameters if provided
+  setPaletteFromURL() {
+    const params = new URLSearchParams(window.location.search);
+    const paletteFromURL = params.get('palette');
+    const colorFromURL = params.get('color');
+
+    if (!paletteFromURL || !this.palettes[paletteFromURL]) return;
+
+    this.currentPalette = paletteFromURL;
+
+    const colors = Object.keys(this.palettes[this.currentPalette]);
+    this.currentColor = (colorFromURL && colors.includes(colorFromURL)) ? colorFromURL : colors[0];
+
+    this.paletteSelect && (this.paletteSelect.value = this.currentPalette);
+
+    this.createColorSwatches();
+
+    const selectedSwatch = this.swatchList.querySelector(`[data-color="${this.currentColor}"]`);
+    if (selectedSwatch) this.updateSelectedSwatch(selectedSwatch);
+
+    this.updateCSSVariables();
+    this.updateColorData();
+    this.updateLegend();
+  }
+
+  // Updates the URL query string without reloading
+  updateURL() {
+    const params = new URLSearchParams(window.location.search);
+    params.set('palette', this.currentPalette);
+    params.set('color', this.currentColor);
+
+    const newUrl = `${window.location.pathname}?${params.toString()}`;
+    window.history.replaceState({}, '', newUrl);
+  }
 }
 
 export default ColorSwatches;
+  
