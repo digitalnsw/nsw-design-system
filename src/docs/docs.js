@@ -112,7 +112,7 @@ function initDocs() {
       'focus': '--nsw-focus',
     },
     palettes: {
-      'default-palette': {
+      'default': {
         label: 'Default Palette',
         blue: {
           val: '#002664',
@@ -223,7 +223,7 @@ function initDocs() {
           focus: { label: '', value: '#168B70' }
         }
       },
-      'aboriginal-palette': {
+      'aboriginal': {
         label: 'Aboriginal Palette',
         red: {
           val: '#950906',
