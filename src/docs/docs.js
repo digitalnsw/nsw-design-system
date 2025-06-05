@@ -112,7 +112,7 @@ function initDocs() {
       'focus': '--nsw-focus',
     },
     palettes: {
-      'nsw-government-palette': {
+      'default-palette': {
         label: 'Default Palette',
         blue: {
           val: '#002664',
