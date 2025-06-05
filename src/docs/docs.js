@@ -113,7 +113,7 @@ function initDocs() {
     },
     palettes: {
       'nsw-government-palette': {
-        label: 'NSW Government Palette',
+        label: 'Default Palette',
         blue: {
           val: '#002664',
           'brand-dark': { label: 'Blue 01', value: '#002664' },
