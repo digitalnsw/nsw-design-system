@@ -112,7 +112,8 @@ function initDocs() {
       'focus': '--nsw-focus',
     },
     palettes: {
-      'original-palette': {
+      'nsw-government-palette': {
+        label: 'NSW Government Palette',
         blue: {
           val: '#002664',
           'brand-dark': { label: 'Blue 01', value: '#002664' },
@@ -223,6 +224,7 @@ function initDocs() {
         }
       },
       'aboriginal-palette': {
+        label: 'Aboriginal Palette',
         red: {
           val: '#950906',
           'brand-dark': { label: 'Red Earth', value: '#950906' },
@@ -329,7 +331,7 @@ function initDocs() {
       'brand-accent': '--nsw-brand-accent',
     },
     palettes: {
-      'original-palette': {
+      'nsw-government-palette': {
         blue: { val: '#146CFD', 'brand-accent': '#146CFD' },
         purple: { val: '#8055F1', 'brand-accent': '#8055F1' },
         fuchsia: { val: '#D912AE', 'brand-accent': '#D912AE' },

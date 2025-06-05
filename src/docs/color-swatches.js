@@ -10,7 +10,7 @@ class ColorSwatches {
     this.targetElement = document.querySelector(this.targetSelector);
 
     this.currentPalette = Object.keys(this.palettes)[0]; // Default: first palette
-    this.currentColor = Object.keys(this.palettes[this.currentPalette])[0]; // Default: first color
+    this.currentColor = Object.keys(this.palettes[this.currentPalette]).filter(key => key !== 'label')[0]; // Default: first color
 
     this.legend = this.element.querySelector('.js-color-swatches__color'); // Title element
     this.swatchList = null; // Swatch list container
@@ -21,12 +21,12 @@ class ColorSwatches {
   // Initialise the color swatches
   init() {
     this.createColorSwatches(); // Creates the color swatch list first
-    this.setPaletteFromURL();
-    this.paletteSelect = this.createPaletteSelector(); // Creates the palette select dropdown
-
+    // Create the palette select dropdown before reading URL param
+    this.paletteSelect = this.createPaletteSelector();
     // Move the select after the swatches
     this.swatchList.insertAdjacentElement('afterend', this.paletteSelect);
-
+    // Now apply any palette from URL
+    this.setPaletteFromURL();
     this.addEventListeners();
     this.updateCSSVariables();
     this.updateColorData();
@@ -44,7 +44,9 @@ class ColorSwatches {
     Object.keys(this.palettes).forEach((palette) => {
       const option = document.createElement('option');
       option.value = palette;
-      option.textContent = this.formatLabel(palette);
+      // Use label from palette data if available
+      const paletteMeta = this.palettes[palette];
+      option.textContent = paletteMeta.label || this.formatLabel(palette);
       paletteSelect.appendChild(option);
     });
 
@@ -63,7 +65,7 @@ class ColorSwatches {
       this.swatchList.innerHTML = ''; // Clear previous colors
     }
 
-    Object.entries(this.palettes[this.currentPalette]).forEach(([colorKey, colorData], index) => {
+    Object.entries(this.palettes[this.currentPalette]).filter(([colorKey]) => colorKey !== 'label').forEach(([colorKey, colorData], index) => {
       const swatchItem = document.createElement('li');
       swatchItem.classList.add('nsw-color-swatches__item', 'js-color-swatches__item');
       if (index === 0) swatchItem.classList.add('nsw-color-swatches__item--selected'); // First one selected
@@ -90,7 +92,7 @@ class ColorSwatches {
     // Palette selection event
     this.paletteSelect.addEventListener('change', (e) => {
       this.currentPalette = e.target.value;
-      this.currentColor = Object.keys(this.palettes[this.currentPalette])[0]; // Reset to first color
+      this.currentColor = Object.keys(this.palettes[this.currentPalette]).filter(key => key !== 'label')[0]; // Reset to first color
       this.createColorSwatches();
       this.updateURL();
       this.updateCSSVariables();
@@ -207,7 +209,7 @@ class ColorSwatches {
 
     this.currentPalette = paletteFromURL;
 
-    const colors = Object.keys(this.palettes[this.currentPalette]);
+    const colors = Object.keys(this.palettes[this.currentPalette]).filter(key => key !== 'label');
     this.currentColor = (colorFromURL && colors.includes(colorFromURL)) ? colorFromURL : colors[0];
 
     this.paletteSelect && (this.paletteSelect.value = this.currentPalette);
