@@ -1,0 +1,40 @@
+---
+title: Switch
+layout: blank-layout.hbs
+---
+
+<h2>Usage</h2>
+<p>The switch component allows users to toggle between two mutually exclusive states (on or off) and is typically used to activate or deactivate a setting immediately. It is best used for binary actions that take effect right away, such as turning settings on or off.</p>
+
+<h3>When to use</h3>
+<ul>
+  <li>To represent a single setting that can be turned on or off</li>
+  <li>When the effect of the switch takes place immediately, without the need for a form submission</li>
+  <li>In settings interfaces or preference panels</li>
+</ul>
+
+<h3>When to avoid</h3>
+<p>Do not:</p>
+<ul>
+  <li>Use switches for navigation or to trigger an action (consider using a button instead)</li>
+  <li>Use when the user must confirm changes (consider a checkbox within a form instead)</li>
+  <li>Use when the setting isn’t binary or when multiple options need to be chosen</li>
+</ul>
+
+<h2>Accessibility</h2>
+<p>Our switch component follows the <a href="https://www.w3.org/WAI/ARIA/apg/patterns/switch/" target="_blank" rel="noopener noreferrer">WAI-ARIA switch pattern</a> and uses semantic HTML with a visually hidden checkbox input. Screen readers can correctly identify the role of the switch and its current state.</p>
+
+<h3>Keyboard interaction</h3>
+<ul>
+  <li><strong>Tab</strong> – Moves focus to the switch</li>
+  <li><strong>Space</strong> – Toggles the switch on or off</li>
+</ul>
+
+<h3>ARIA roles and states</h3>
+<ul>
+  <li><code>role="switch"</code> is implied via the native <code>&lt;input type="checkbox"&gt;</code></li>
+  <li><code>aria-checked</code> is automatically handled by the checkbox</li>
+  <li>Label is associated using standard HTML <code>&lt;label&gt;</code> elements</li>
+</ul>
+
+<p>All components are responsive and designed to comply with WCAG 2.2 AA accessibility standards. Full compliance depends on using and configuring the components correctly.</p>
