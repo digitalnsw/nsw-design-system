@@ -1,5 +1,8 @@
-{{#if-equals type "toggle"}}
+{{#if-equals type "booleon"}}
 <label class="nsw-switch">
+  {{#if label-left}}
+   <span class="nsw-switch__label">{{label}}</span>
+  {{/if}}
   <input type="checkbox" class="nsw-switch__input" id="{{id}}" name="tag-input" value="{{value}}"{{#if checked}} checked{{/if}}>
   <span class="nsw-switch__visual" aria-hidden="true">
     <span class="nsw-switch__circle">
@@ -11,6 +14,20 @@
       </span>
     </span>
   </span>
-  <span class="nsw-switch__label">{{label}}</span>
+  {{#unless label-left}}
+   <span class="nsw-switch__label">{{label}}</span>
+  {{/unless}}
+</label>
+{{/if-equals}}
+
+{{#if-equals type "binary"}}
+<label class="nsw-switch">
+  <span class="nsw-switch__label">{{label-1}}</span>
+  <input type="checkbox" class="nsw-switch__input" id="{{id}}" name="tag-input" value="{{value}}"{{#if checked}} checked{{/if}}>
+  <span class="nsw-switch__visual" aria-hidden="true">
+    <span class="nsw-switch__circle">
+    </span>
+  </span>
+  <span class="nsw-switch__label">{{label-2}}</span>
 </label>
 {{/if-equals}}

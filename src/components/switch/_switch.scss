@@ -5,30 +5,37 @@
   display: inline-flex;
   align-items: center;
   cursor: pointer;
-  gap: functions.rem(8px);
+  gap: functions.rem(12px);
+  margin: 8px 0;
 
+  &:focus-within,
+  &:active {
+    .nsw-switch__visual {      
+      @include mixins.nsw-focus;
   
-  &__input {
-    position: absolute;
-    opacity: 0;
-
-    &:focus {
-      outline-offset: 0;
-  
-      .nsw-section--invert & {    
+      .nsw-section--invert & {
         outline-color: var(--nsw-white);
       }
     }
+  }
+
+  &__input {
+    position: absolute;
+    opacity: 0;
   }
 
   &__visual {
     display: inline-block;
     width: functions.rem(48px);
     height: functions.rem(28px);
-    background-color: var(--nsw-grey-04);
+    background-color: var(--nsw-brand-dark);
     border-radius: functions.rem(14px);
     position: relative;
     transition: background-color 0.3s ease;
+
+    .nsw-section--invert & {
+      box-shadow: inset 0 0 0 2px var(--nsw-brand-light);
+    }
   }
 
   &__circle {
@@ -36,13 +43,17 @@
     align-items: center;
     justify-content: center;
     position: absolute;
-    top: 2px;
-    left: 2px;
-    width: functions.rem(24px);
-    height: functions.rem(24px);
+    top: 4px;
+    left: 4px;
+    width: functions.rem(20px);
+    height: functions.rem(20px);
     background: var(--nsw-white);
     border-radius: 50%;
     transition: transform 0.3s ease, background-color 0.3s ease;
+
+    .nsw-section--invert & {
+      background-color: var(--nsw-brand-light);
+    }
   }
 
   &__off,
@@ -57,7 +68,6 @@
     svg {
       width: 16px;
       height: 16px;
-      stroke: currentColor;
       fill: none;
     }
   }
@@ -65,11 +75,19 @@
   &__on {
     color: var(--nsw-brand-light);
     opacity: 0;
+
+    svg {
+      stroke: var(--nsw-brand-light);
+    }
   }
 
   &__off {
     color: var(--nsw-text-dark);
     opacity: 1;
+
+    svg {
+      stroke: var(--nsw-brand-dark);
+    }
   }
 
   &__input:checked ~ .nsw-switch__visual {
@@ -90,6 +108,8 @@
   }
 
   &__label {
+    user-select: none;
+
     @include mixins.font-size('xs');
   }
 }
