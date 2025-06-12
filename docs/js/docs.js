@@ -909,6 +909,8 @@
     }
   }
 
+  // Prevent icon flash: hide icons until font loads
+  document.documentElement.classList.add('material-icons-loading');
   function initDocs() {
     const codeButtons = document.querySelectorAll('.js-code-button');
     codeButtons.forEach(button => {
@@ -1470,5 +1472,16 @@
     }
   }
   initDocs();
+
+  // Show icons when Material Icons font is ready
+  function handleIconsReady() {
+    document.documentElement.classList.remove('material-icons-loading');
+    document.documentElement.classList.add('material-icons-loaded');
+  }
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(handleIconsReady);
+  } else {
+    window.addEventListener('load', handleIconsReady);
+  }
 
 }));
