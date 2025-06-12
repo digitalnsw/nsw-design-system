@@ -1,0 +1,68 @@
+@use '../../global/scss/base/functions' as functions;
+@use '../../global/scss/base/mixins' as mixins;
+
+.nsw-content-block {
+  --nsw-icon-colour-dark: var(--nsw-text-dark);
+  --nsw-icon-colour-accent: var(--nsw-brand-supplementary);
+
+  &__title {
+    font-weight: var(--nsw-font-bold);
+    
+    @include mixins.font-size('lg');
+  }
+
+  &__list {
+    padding: 0;
+    list-style-type: none;
+
+    li {
+      margin: 0;
+      padding: functions.rem(8px) 0 functions.rem(8px) functions.rem(14px);
+      position: relative;
+
+      &::before {
+        content: '';
+        position: absolute;
+        width: functions.rem(4px);
+        height: functions.rem(4px);
+        border-radius: 100%;
+        background-color: var(--nsw-text-dark);
+        top: functions.rem(18px);
+        left: 0;
+      
+        .nsw-section--invert & {    
+          background-color: var(--nsw-text-light);
+        }
+      }
+    }
+  }
+
+  &__link {
+    margin-top: functions.rem(16px);
+  }
+
+  &__image {
+    max-height: functions.rem(200px);
+    margin-bottom: functions.rem(24px);
+
+    img {
+      width: 100%;
+      height: functions.rem(200px);
+      object-fit: cover;      
+    }
+  }
+
+  &__icon {
+    max-width: functions.rem(64px);
+    max-height: functions.rem(64px);
+
+    svg {
+      max-width: functions.rem(64px);
+      max-height: functions.rem(64px);
+
+      .nsw-section--invert & {
+        --nsw-icon-colour-dark: var(--nsw-text-light);
+      }
+    }
+  }
+}
