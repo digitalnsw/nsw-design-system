@@ -1,5 +1,6 @@
 @use '../../global/scss/base/functions' as functions;
 @use '../../global/scss/base/mixins' as mixins;
+@use '../../global/scss/settings/settings' as settings;
 
 .nsw-easy-read {
   display: flex;
@@ -80,6 +81,15 @@
       border: 2px solid var(--nsw-brand-dark);
     }
   }
+}
+
+.nsw-easy-read__icon {
+  background-image: url(#{settings.$nsw-easy-read-icon});
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  width: functions.rem(48px);
+  height: functions.rem(48px);
 }
 
 @container (min-width: 600px) {
