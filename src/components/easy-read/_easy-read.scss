@@ -7,13 +7,22 @@
   width: 100%;
   margin: functions.rem(16px) 0;
 
+  &__outline & {
+    border: 2px solid var(--nsw-brand-light);
+  }
+
   &__image {
-    max-height: functions.rem(240px);
+    aspect-ratio: 4 / 4;
+    width: 100%;
     max-width: functions.rem(240px);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     img {
       width: 100%;
-      height: functions.rem(240px);
+      height: 100%;
       object-fit: cover;
     }
   }
@@ -25,8 +34,7 @@
   }
 
   &__content {
-    // margin: functions.rem(24px) 0 0 0;
-    padding: 0 functions.rem(48px);
+    padding: 0 functions.rem(40px);
     
     @include mixins.font-size('md');
   }
@@ -46,6 +54,42 @@
       .nsw-section--invert & {
         --nsw-icon-colour-dark: var(--nsw-text-light);
       }
+    }
+  }
+
+  .nsw-section--invert & .nsw-easy-read__link a {   // Styles for instnces where the easy-read component is used within different section types
+    @include mixins.link-dark();
+  }
+
+  &.nsw-section--brand-dark, // Brand dark background on brand dark sections
+  &.nsw-section--invert {
+    .nsw-easy-read__link a {
+      @include mixins.link-light();
+    }
+
+    .nsw-section--brand-dark & {
+      border: 2px solid var(--nsw-brand-light);
+    }
+  }
+
+  &.nsw-section--brand-light { // Brand light background on brand light sections
+    .nsw-section--brand-light & {
+      border: 2px solid var(--nsw-brand-dark);
+    }
+  }
+}
+
+@container (min-width: 600px) {
+  .nsw-easy-read {
+    flex-direction: row;
+    gap: functions.rem(32px);
+
+    .nsw-easy-read__image {
+      max-width: functions.rem(320px);
+    }
+
+    .nsw-easy-read__content {
+      padding: 0;
     }
   }
 }
