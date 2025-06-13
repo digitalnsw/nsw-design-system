@@ -3,12 +3,15 @@
 
 .nsw-easy-read {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
   width: 100%;
-  margin: functions.rem(16px) 0;
+  margin: functions.rem(8px) 0;
 
-  &__outline & {
-    border: 2px solid var(--nsw-brand-light);
+  @include mixins.breakpoint('sm') {
+    flex-direction: row;
+    align-items: center;
+    margin: functions.rem(16px) 0;
   }
 
   &__image {
@@ -19,11 +22,21 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: 0 auto;
 
     img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+    }
+
+    &--landscape {
+      aspect-ratio: 4 / 3;
+      max-width: functions.rem(340px);
+    }
+
+    @include mixins.breakpoint('sm') {
+      margin: unset;
     }
   }
   
@@ -34,27 +47,17 @@
   }
 
   &__content {
-    padding: 0 functions.rem(40px);
+    padding: functions.rem(16px);
     
     @include mixins.font-size('md');
+
+    @include mixins.breakpoint('sm') {
+      padding: 0 functions.rem(40px);
+    }
   }
 
   &__link {
     margin-top: functions.rem(16px);
-  }
-
-  &__icon {
-    max-width: functions.rem(64px);
-    max-height: functions.rem(64px);
-
-    svg {
-      max-width: functions.rem(64px);
-      max-height: functions.rem(64px);
-
-      .nsw-section--invert & {
-        --nsw-icon-colour-dark: var(--nsw-text-light);
-      }
-    }
   }
 
   .nsw-section--invert & .nsw-easy-read__link a {   // Styles for instnces where the easy-read component is used within different section types

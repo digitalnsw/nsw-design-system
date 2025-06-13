@@ -1,0 +1,98 @@
+---
+title: Easy Read (Illustrations)
+order: 21
+page: true
+model:
+  nav-basic: ../../components/main-nav/json/main-nav.json
+  breadcrumbs: ../../components/breadcrumbs/json/breadcrumbs-1.json
+  side-nav: ../../components/side-nav/json/side-nav-level-2.json
+  in-page-nav: ../../components/in-page-nav/json/in-page-nav-2.json
+  accordion: ../../components/accordion/json/accordion-3.json
+  tabs: ../../components/tabs/json/tabs-2.json
+  link-list: ../../components/link-list/json/link-list-2.json
+  footer: ../../components/footer/json/footer.json
+---
+
+{{>_masthead content="#content" nav="#main-nav"}}
+{{>_header header-title="Digital NSW"}}
+{{>_main-nav model.nav-basic}}
+<div class="nsw-container nsw-p-bottom-xs">
+  {{>_breadcrumbs model.breadcrumbs}}
+</div>
+
+<div class="nsw-container easy-read-text nsw-p-top-sm nsw-p-bottom-lg">
+  <div class="nsw-layout">
+    <main id="content" class="nsw-layout__main">
+      <div class="nsw-block">
+        <h1>Easy Read: How to Cut Vegetables Safely</h1>
+        <p class="nsw-intro">This page tells you how to cut vegetables safely using simple words and pictures.</p>
+      </div>
+
+      <nav class="nsw-in-page-nav" aria-label="On this page">
+        <h2 class="nsw-in-page-nav__title">On this page</h2>
+        <ul class="nsw-in-page-nav__list">
+          <li><a href="#wash-vegetables">Wash your vegetables first</a></li>
+          <li><a href="#cutting-board">Use a cutting board</a></li>
+          <li><a href="#hold-knife">Hold the knife safely</a></li>
+          <li><a href="#julienne-cut">Try a julienne cut</a></li>
+        </ul>
+      </nav>
+
+      <div class="nsw-block">
+        <p>Cutting vegetables the right way helps you cook safely and quickly.</p>
+        <p>It also makes your food look and taste better.</p>
+      </div>
+
+      <div class="nsw-block" id="wash-vegetables">
+        {{>_easy-read
+          title="Wash your vegetables first"
+          copy="Before you cut vegetables, you need to <strong>wash</strong> them with clean water."
+          img="/assets/images/easy-read-template-drawn-1.png"
+          theme="brand-light"
+          imageRatio="landscape"
+        }}
+      </div>
+
+      <div class="nsw-block" id="cutting-board">
+        {{>_easy-read
+          title="Use a cutting board"
+          copy="Put your vegetables on a <strong>cutting board</strong>. This keeps the bench clean and safe."
+          img="/assets/images/easy-read-template-drawn-2.png"
+          theme="brand-light"
+          imageRatio="landscape"
+        }}
+      </div>
+
+      <div class="nsw-block" id="hold-knife">
+        {{>_easy-read
+          title="Hold the knife safely"
+          copy="Hold the knife by the <strong>handle</strong> and keep your fingers away from the <strong>blade</strong>."
+          img="/assets/images/easy-read-template-drawn-3.png"
+          theme="brand-light"
+          imageRatio="landscape"
+        }}
+      </div>
+
+      <div class="nsw-block" id="julienne-cut">
+        {{>_easy-read
+          title="Try a julienne cut"
+          copy="A <strong>julienne</strong> cut makes thin long pieces. It helps food cook quickly and evenly."
+          img="/assets/images/easy-read-template-drawn-4.png"
+          theme="brand-light"
+          imageRatio="landscape"
+        }}
+      </div>
+
+      <div class="nsw-block">
+        <h2>Need more help?</h2>
+        <p>You can ask a friend or carer to help you practice.</p>
+        <p>Or you can watch a video that shows you how to cut vegetables safely.</p>
+      </div>
+    </main>
+    {{!-- <div class="nsw-layout__sidebar js-side-nav">
+      {{>_side-nav model.side-nav}}
+    </div> --}}
+  </div>
+</div>
+
+{{>_footer model.footer}}

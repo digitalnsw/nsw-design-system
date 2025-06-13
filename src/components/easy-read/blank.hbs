@@ -1,6 +1,6 @@
 ---
 title: Easy Read
-width: wide
+width: narrow
 page: true
 model:
   easy-read-1: ../../components/easy-read/json/easy-read-1.json
@@ -10,35 +10,40 @@ model:
 ---
 
 {{#>_layout-container}}
-<div class="nsw-grid nsw-grid--spaced">
-  <div class="nsw-col nsw-col-md-12 nsw-col-lg-12">
-    {{>_easy-read model.easy-read-1}}
-  </div>
-  <div class="nsw-col nsw-col-md-12 nsw-col-lg-12">
-    {{>_easy-read model.easy-read-2}}
-  </div>
-  <div class="nsw-col nsw-col-md-12 nsw-col-lg-12">
-    {{>_easy-read model.easy-read-3}}
-  </div>
-  <div class="nsw-col nsw-col-md-12 nsw-col-lg-12">
-    {{>_easy-read model.easy-read-4}}
-  </div>
+<div class="nsw-m-top-md">
+{{>_easy-read model.easy-read-1}}
+{{>_easy-read model.easy-read-2}}
+{{>_easy-read model.easy-read-3}}
+{{>_easy-read model.easy-read-4}}
 </div>
 {{/_layout-container}}
 
 {{#>_layout-container brand-dark="true"}}
-<div class="nsw-grid nsw-grid--spaced">
-  <div class="nsw-col nsw-col-md-12 nsw-col-lg-12">
-    {{>_easy-read model.easy-read-1}}
-  </div>
-  <div class="nsw-col nsw-col-md-12 nsw-col-lg-12">
-    {{>_easy-read model.easy-read-2}}
-  </div>
-  <div class="nsw-col nsw-col-md-12 nsw-col-lg-12">
-    {{>_easy-read model.easy-read-3}}
-  </div>
-  <div class="nsw-col nsw-col-md-12 nsw-col-lg-12">
-    {{>_easy-read model.easy-read-4}}
-  </div>
+<h2>Brand dark</h2>
+<div class="nsw-m-top-md">
+  {{>_easy-read model.easy-read-1}}
+  {{>_easy-read model.easy-read-2}}
+  {{>_easy-read model.easy-read-3}}
+  {{>_easy-read model.easy-read-4}}
+</div>
+{{/_layout-container}}
+
+{{#>_layout-container brand-light="true"}}
+<h2>Brand light</h2>
+<div class="nsw-m-top-md">
+{{>_easy-read model.easy-read-1}}
+{{>_easy-read model.easy-read-2}}
+{{>_easy-read model.easy-read-3}}
+{{>_easy-read model.easy-read-4}}
+</div>
+{{/_layout-container}}
+
+{{#>_layout-container brand-dark="true" invert="true"}}
+<h2>Inverted section</h2>
+<div class="nsw-m-top-md">
+  {{>_easy-read model.easy-read-1}}
+  {{>_easy-read model.easy-read-2}}
+  {{>_easy-read model.easy-read-3}}
+  {{>_easy-read model.easy-read-4}}
 </div>
 {{/_layout-container}}
