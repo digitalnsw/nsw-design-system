@@ -1,3 +1,5 @@
+// Prevent icon flash: hide icons until font loads
+document.documentElement.classList.add('material-icons-loading');
 import Autocomplete from './autocomplete'
 import ExpandableSearch from './expandable-search'
 import DownloadPDF from './download-pdf'
@@ -590,4 +592,16 @@ function initDocs() {
   }
 }
 
-initDocs()
+initDocs();
+
+// Show icons when Material Icons font is ready
+function handleIconsReady() {
+  document.documentElement.classList.remove('material-icons-loading');
+  document.documentElement.classList.add('material-icons-loaded');
+}
+
+if (document.fonts && document.fonts.ready) {
+  document.fonts.ready.then(handleIconsReady);
+} else {
+  window.addEventListener('load', handleIconsReady);
+}
