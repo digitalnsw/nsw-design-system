@@ -12,7 +12,7 @@ View online documentation for the [NSW Design System](https://designsystem.nsw.g
 
 Welcome to the documentation for the NSW Design System, a frontend toolkit of styles, patterns, standards and guidance for everyone creating distinctly NSW digital products and services. It helps us create unified, trusted, inclusive and audience centered digital experiences for our users that are clearly simple, current and purposeful.  
   
-This document provides instructions on how to easily integrate and utilise the NSW Design System styles and components in your projects.
+This document provides instructions on how to easily integrate and utilise the NSW Design System styles and components in your projects....
 
 ## Choosing Your Integration Method
 
