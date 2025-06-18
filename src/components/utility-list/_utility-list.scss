@@ -44,6 +44,12 @@
 
     &:hover {
       @include mixins.nsw-hover;
+
+      &:has(.nsw-toggletip__element:hover),
+      &:has(.nsw-toggletip__content:hover) {
+        background-color: transparent;
+      }
+
       outline-width: 0;
     }
 
@@ -108,18 +114,73 @@
       display: flex;
       gap: settings.$grid-gutters;
       padding: functions.rem(16px);
+      align-items: center;
 
       a {
         display: flex;
         padding: functions.rem(8px);
         border-radius: var(--nsw-border-radius);
         text-decoration: none;
+
+        &.nsw-social-facebook,
+        &.nsw-social-linkedin,
+        &.nsw-social-x,
+        &.nsw-social-mail {
+          display: flex;
+        }
+      
+        &:not(.nsw-social-facebook):not(.nsw-social-linkedin):not(.nsw-social-x):not(.nsw-social-mail) {
+          display: none;
+        }
       }
 
       span:not(.nsw-toggletip__element .nsw-material-icons) {
         color: var(--nsw-brand-dark);
       }
     }
+  }
+
+  .nsw-social-facebook::before {
+    content: '';
+    display: inline-block;
+    width: functions.rem(24px);
+    height: functions.rem(24px);
+    background-color: var(--nsw-brand-dark);
+    mask-image: url(settings.$nsw-social-icon-facebook);
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: contain;
+  }
+
+  .nsw-social-linkedin::before {
+    content: '';
+    display: inline-block;
+    width: functions.rem(24px);
+    height: functions.rem(24px);
+    background-color: var(--nsw-brand-dark);
+    mask-image: url(settings.$nsw-social-icon-linkedin);
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: contain;
+  }
+
+  .nsw-social-x::before {
+    content: '';
+    display: inline-block;
+    width: functions.rem(24px);
+    height: functions.rem(24px);
+    background-color: var(--nsw-brand-dark);
+    mask-image: url(settings.$nsw-social-icon-x);
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: contain;
+  }
+
+  .nsw-social-mail::before {
+    content: 'email';
+    font-family: 'Material Icons';
+    font-size: 24px;
+    line-height: functions.rem(24px);
   }
 
   &--horizontal {

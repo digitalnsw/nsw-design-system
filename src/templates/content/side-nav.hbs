@@ -11,6 +11,7 @@ model:
   tabs: ../../components/tabs/json/tabs-2.json
   link-list: ../../components/link-list/json/link-list-2.json
   footer: ../../components/footer/json/footer.json
+  utility: ../../components/utility-list/json/utility-list.json
 ---
 
 {{>_masthead content="#content" nav="#main-nav"}}
@@ -26,6 +27,7 @@ model:
       {{>_side-nav model.side-nav}}
     </div>
     <main id="content" class="nsw-layout__main">
+
       <div class="nsw-block">
         <h1>Content design</h1>
         <p class="nsw-intro">Content designers create patterns of content to guide the user and help them achieve their goal.</p>
@@ -69,6 +71,8 @@ model:
       {{>_tabs model.tabs}}
 
       {{>_link-list model.link-list}}
+
+      {{>_utility-list model.utility.horizontal.all}}
     </main>
   </div>
 </div>

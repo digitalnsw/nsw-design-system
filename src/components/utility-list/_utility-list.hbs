@@ -1,5 +1,4 @@
-<div class="nsw-utility-list js-utility-list{{#if align}} nsw-utility-list--{{align}}{{/if}}">{{#if title}}
-  <div class="nsw-utility-list__title">{{title}}</div>{{/if}}
+<div class="nsw-utility-list js-utility-list{{#if align}} nsw-utility-list--{{align}}{{/if}}">
   <ul>{{#if copy}}
     <li class="nsw-utility-list__item js-copy-clipboard">
       <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">link</span>
@@ -18,9 +17,7 @@
       <span data-anchor>Share this page</span>
       <div id="social-share-{{id}}" class="nsw-toggletip__element nsw-toggletip__element--{{#if theme}}light{{/if}}{{#unless theme}}dark{{/unless}}">
       {{#each social}}
-        <a class="nsw-icon-button" data-social="{{@key}}" title="{{title}}" {{#each data}}{{@key}}="{{this}}"{{/each}}>
-          {{{this.icon}}}
-        </a>
+        <a class="nsw-icon-button nsw-social-{{@key}}" data-social="{{@key}}" title="{{title}}" {{#each data}}{{@key}}="{{this}}"{{/each}}></a>
       {{/each}}
       </div>
     </li>{{/if}}

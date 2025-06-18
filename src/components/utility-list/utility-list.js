@@ -1,3 +1,4 @@
+import DownloadPDF from '../../docs/download-pdf'
 import Toggletip from '../tooltip/toggletip'
 
 class UtilityList extends Toggletip {
@@ -34,7 +35,12 @@ class UtilityList extends Toggletip {
         if (social === 'mail') {
           window.location.href = url
         } else {
-          window.open(url, `${social}-share-dialog`, 'width=626,height=436')
+          const popupWidth = 626
+          const popupHeight = 436
+          const left = Math.round((window.screen.width - popupWidth) / 2)
+          const top = Math.round((window.screen.height - popupHeight) / 2)
+          const features = `width=${popupWidth},height=${popupHeight},left=${left},top=${top}`
+          window.open(url, `${social}-share-dialog`, features)
         }
       })
     }
@@ -58,6 +64,8 @@ class UtilityList extends Toggletip {
     if (this.download) {
       this.download.forEach((element) => {
         element.setAttribute('tabindex', '0')
+        const downloader = new DownloadPDF(element)
+        downloader.init()
       })
     }
 
@@ -81,8 +89,8 @@ class UtilityList extends Toggletip {
     const params = this.getSocialParams(social)
     let newUrl = ''
 
-    if (social === 'twitter') {
-      this.getTwitterText(button)
+    if (social === 'x') {
+      this.getXText(button)
     }
 
     params.forEach((param) => {
@@ -102,7 +110,7 @@ class UtilityList extends Toggletip {
 
   getSocialParams(social) {
     switch (social) {
-      case 'twitter':
+      case 'x':
         this.socialParams = ['text', 'hashtags']
         break
       case 'facebook':
@@ -119,16 +127,16 @@ class UtilityList extends Toggletip {
     return this.socialParams
   }
 
-  getTwitterText(button) {
-    let twitText = button.getAttribute('data-text')
-    const twitUrl = button.getAttribute('data-url') || this.urlLocation
+  getXText(button) {
+    let xText = button.getAttribute('data-text')
+    const xUrl = button.getAttribute('data-url') || this.urlLocation
     const twitUsername = button.getAttribute('data-username')
     if (twitUsername) {
-      twitText = `${twitText} ${twitUrl} via ${twitUsername}`
+      xText = `${xText} ${xUrl} via ${twitUsername}`
     } else {
-      twitText = `${twitText} ${twitUrl}`
+      xText = `${xText} ${xUrl}`
     }
-    button.setAttribute('data-text', twitText)
+    button.setAttribute('data-text', xText)
     button.removeAttribute('data-url')
     button.removeAttribute('data-username')
   }
