@@ -241,13 +241,13 @@ function initDocs() {
           val: '#882600',
           'brand-dark': { label: 'Deep Orange', value: '#882600' },
           'brand-light': { label: 'Sunset Orange', value: '#F9D4BE' },
-          'brand-supplementary': { label: 'Ochre Orange', value: '#EE6314' },
+          'brand-supplementary': { label: 'Orange Ochre', value: '#EE6314' },
           'brand-accent': { label: 'Saltwater Blue', value: '#0D6791' },
           'link-colour': { label: 'Deep Orange', value: '#882600' },
           'visited-link-colour': { label: 'Bush Plum', value: '#472642' },
           'hover-background-colour': { label: 'Deep Orange', value: 'rgba(136, 38, 0, 0.1)' },
           'active-background-colour': { label: 'Deep Orange', value: 'rgba(136, 38, 0, 0.2)' },
-          focus: { label: 'Ochre Orange', value: '#EE6314' }
+          focus: { label: 'Orange Ochre', value: '#EE6314' }
         },
         brown: {
           val: '#552105',
@@ -290,7 +290,7 @@ function initDocs() {
           'brand-dark': { label: 'Billabong Blue', value: '#00405E' },
           'brand-light': { label: 'Coastal Blue', value: '#C1E2E8' },
           'brand-supplementary': { label: 'Saltwater Blue', value: '#0D6791' },
-          'brand-accent': { label: 'Ochre Orange', value: '#EE6314' },
+          'brand-accent': { label: 'Orange Ochre', value: '#EE6314' },
           'link-colour': { label: 'Saltwater Blue', value: '#0D6791' },
           'visited-link-colour': { label: 'Spirit Lilac', value: '#9A5E93' },
           'hover-background-colour': { label: 'Billabong Blue', value: 'rgba(0, 64, 94, 0.1)' },
@@ -302,24 +302,24 @@ function initDocs() {
           'brand-dark': { label: 'Bush Plum', value: '#472642' },
           'brand-light': { label: 'Dusk Purple', value: '#E4CCE0' },
           'brand-supplementary': { label: 'Spirit Lilac', value: '#9A5E93' },
-          'brand-accent': { label: 'Ochre Orange', value: '#EE6314' },
+          'brand-accent': { label: 'Orange Ochre', value: '#EE6314' },
           'link-colour': { label: 'Bush Plum', value: '#472642' },
           'visited-link-colour': { label: 'Spirit Lilac', value: '#9A5E93' },
           'hover-background-colour': { label: 'Bush Plum', value: 'rgba(71, 38, 66, 0.1)' },
           'active-background-colour': { label: 'Bush Plum', value: 'rgba(71, 38, 66, 0.2)' },
-          focus: { label: 'Ochre Orange', value: '#EE6314' }
+          focus: { label: 'Orange Ochre', value: '#EE6314' }
         },
         grey: {
           val: '#2D2D2D',
           'brand-dark': { label: 'Charcoal Grey', value: '#2D2D2D' },
           'brand-light': { label: 'Smoke Grey', value: '#E5E3E0' },
-          'brand-supplementary': { label: 'Ochre Orange', value: '#895E00' },
-          'brand-accent': { label: 'Golden Wattle Yellow', value: '#FEA927' },
+          'brand-supplementary': { label: 'Bush Honey Yellow', value: '#694800' },
+          'brand-accent': { label: 'Sandstone Yellow', value: '#FEA927' },
           'link-colour': { label: 'Charcoal Grey', value: '#2D2D2D' },
           'visited-link-colour': { label: 'Bush Plum', value: '#472642' },
           'hover-background-colour': { label: 'Charcoal Grey', value: 'rgba(45, 45, 45, 0.1)' },
           'active-background-colour': { label: 'Charcoal Grey', value: 'rgba(45, 45, 45, 0.2)' },
-          focus: { label: 'Golden Wattle Yellow', value: '#FEA927' }
+          focus: { label: 'Sandstone Yellow', value: '#FEA927' }
         }
       }
     }
