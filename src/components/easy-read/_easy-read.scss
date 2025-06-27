@@ -37,7 +37,11 @@
 
     &--landscape {
       aspect-ratio: 4 / 3;
-      max-width: functions.rem(340px);
+      max-width: functions.rem(240px);
+
+      @include mixins.breakpoint('md') {
+        max-width: functions.rem(340px);
+      }
     }
 
     @include mixins.breakpoint('sm') {
