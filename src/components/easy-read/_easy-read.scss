@@ -7,7 +7,7 @@
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
-  margin: functions.rem(8px) 0;
+  margin: functions.rem(24px) 0;
 
   @include mixins.breakpoint('sm') {
     flex-direction: row;
@@ -23,7 +23,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto;
+    margin: functions.rem(32px) auto 0 auto;
+
+    @include mixins.breakpoint('sm') {
+      margin: 0 auto;
+    }
 
     img {
       width: 100%;
@@ -48,7 +52,7 @@
   }
 
   &__content {
-    padding: functions.rem(16px);
+    padding: functions.rem(24px) functions.rem(20px);
     
     @include mixins.font-size('md');
 
