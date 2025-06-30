@@ -101,495 +101,271 @@ function initDocs() {
     })
   }
 
-  const options = {
-    blue: {
-      val: 'Blue 01',
-      hex: '#002664',
-      content: {
-        'Brand Dark': {
-          hex: 'Blue 01 <code>#002664</code>',
-          var: '--nsw-brand-dark',
-        },
-        'Brand Light': {
-          hex: 'Blue 04 <code>#CBEDFD</code>',
-          var: '--nsw-brand-light',
-        },
-        'Brand Supplementary': {
-          hex: 'Blue 02 <code>#146CFD</code>',
-          var: '--nsw-brand-supplementary',
-        },
-        'Brand Accent': {
-          hex: 'Red 02 <code>#D7153A</code>',
-          var: '--nsw-brand-accent',
-        },
-        'Link colour': {
-          hex: '<code>#002664</code>',
-          var: '--nsw-link',
-        },
-        'Visited link colour': {
-          hex: '<code>#551A8B</code>',
-          var: '--nsw-visited',
-        },
-        'Hover background colour': {
-          hex: '<code>rgba(0, 38, 100, 0.1)</code>',
-          var: '--nsw-hover',
-        },
-        'Active background colour': {
-          hex: '<code>rgba(0, 38, 100, 0.2)</code>',
-          var: '--nsw-active',
-        },
-        'Focus outline colour': {
-          hex: '<code>#0086B3</code>',
-          var: '--nsw-focus',
-        },
-      },
+  const colorConfig = {
+    variables: {
+      'brand-dark': '--nsw-brand-dark',
+      'brand-light': '--nsw-brand-light',
+      'brand-supplementary': '--nsw-brand-supplementary',
+      'brand-accent': '--nsw-brand-accent',
+      'link-colour': '--nsw-link',
+      'visited-link-colour': '--nsw-visited',
+      'hover-background-colour': '--nsw-hover',
+      'active-background-colour': '--nsw-active',
+      'focus': '--nsw-focus',
     },
-    purple: {
-      val: 'Purple 01',
-      hex: '#441170',
-      content: {
-        'Brand Dark': {
-          hex: 'Purple 01 <code>#441170</code>',
-          var: '--nsw-brand-dark',
+    palettes: {
+      'default': {
+        label: 'Default Palette',
+        blue: {
+          val: '#002664',
+          'brand-dark': { label: 'Blue 01', value: '#002664' },
+          'brand-light': { label: 'Blue 04', value: '#CBEDFD' },
+          'brand-supplementary': { label: 'Blue 02', value: '#146CFD' },
+          'brand-accent': { label: 'Red 02', value: '#D7153A' },
+          'link-colour': { label: 'Blue 01', value: '#002664' },
+          'visited-link-colour': { label: '', value: '#551A8B' },
+          'hover-background-colour': { label: '', value: 'rgba(0, 38, 100, 0.1)' },
+          'active-background-colour': { label: '', value: 'rgba(0, 38, 100, 0.2)' },
+          focus: { label: '', value: '#0086B3' }
         },
-        'Brand Light': {
-          hex: 'Purple 04 <code>#E6E1FD</code>',
-          var: '--nsw-brand-light',
+        purple: {
+          val: '#441170',
+          'brand-dark': { label: 'Purple 01', value: '#441170' },
+          'brand-light': { label: 'Purple 04', value: '#E6E1FD' },
+          'brand-supplementary': { label: 'Purple 02', value: '#8055F1' },
+          'brand-accent': { label: 'Yellow 02', value: '#FAAF05' },
+          'link-colour': { label: 'Purple 01', value: '#441170' },
+          'visited-link-colour': { label: '', value: '#70114D' },
+          'hover-background-colour': { label: '', value: 'rgba(68, 17, 112, 0.1)' },
+          'active-background-colour': { label: '', value: 'rgba(68, 17, 112, 0.2)' },
+          focus: { label: '', value: '#351BB5' }
         },
-        'Brand Supplementary': {
-          hex: 'Purple 02 <code>#8055F1</code>',
-          var: '--nsw-brand-supplementary',
+        fuchsia: {
+          val: '#65004D',
+          'brand-dark': { label: 'Fuchsia 01', value: '#65004D' },
+          'brand-light': { label: 'Fuchsia 04', value: '#F0E6ED' },
+          'brand-supplementary': { label: 'Fuchsia 02', value: '#D912AE' },
+          'brand-accent': { label: 'Orange 02', value: '#F3631B' },
+          'link-colour': { label: 'Fuchsia 01', value: '#65004D' },
+          'visited-link-colour': { label: '', value: '#983379' },
+          'hover-background-colour': { label: '', value: 'rgba(101, 0, 77, 0.1)' },
+          'active-background-colour': { label: '', value: 'rgba(101, 0, 77, 0.2)' },
+          focus: { label: '', value: '#9D00B4' }
         },
-        'Brand Accent': {
-          hex: 'Yellow 02 <code>#FAAF05</code>',
-          var: '--nsw-brand-accent',
+        red: {
+          val: '#630019',
+          'brand-dark': { label: 'Red 01', value: '#630019' },
+          'brand-light': { label: 'Red 04', value: '#FFE6EA' },
+          'brand-supplementary': { label: 'Red 02', value: '#D7153A' },
+          'brand-accent': { label: 'Brown 02', value: '#B68D5D' },
+          'link-colour': { label: 'Red 01', value: '#630019' },
+          'visited-link-colour': { label: '', value: '#9C3D1B' },
+          'hover-background-colour': { label: '', value: 'rgba(99, 0, 25, 0.1)' },
+          'active-background-colour': { label: '', value: 'rgba(99, 0, 25, 0.2)' },
+          focus: { label: '', value: '#B2006E' }
         },
-        'Link colour': {
-          hex: '<code>#441170</code>',
-          var: '--nsw-link',
+        orange: {
+          val: '#941B00',
+          'brand-dark': { label: 'Orange 01', value: '#941B00' },
+          'brand-light': { label: 'Orange 04', value: '#FDEDDF' },
+          'brand-supplementary': { label: 'Orange 02', value: '#F3631B' },
+          'brand-accent': { label: 'Purple 02', value: '#8055F1' },
+          'link-colour': { label: 'Orange 01', value: '#941B00' },
+          'visited-link-colour': { label: '', value: '#7D4D27' },
+          'hover-background-colour': { label: '', value: 'rgba(148, 27, 0, 0.1)' },
+          'active-background-colour': { label: '', value: 'rgba(148, 27, 0, 0.2)' },
+          focus: { label: '', value: '#E3002A' }
         },
-        'Visited link colour': {
-          hex: '<code>#70114D</code>',
-          var: '--nsw-visited',
+        brown: {
+          val: '#523719',
+          'brand-dark': { label: 'Brown 01', value: '#523719' },
+          'brand-light': { label: 'Brown 04', value: '#EDE3D7' },
+          'brand-supplementary': { label: 'Brown 02', value: '#B68D5D' },
+          'brand-accent': { label: 'Teal 02', value: '#2E808E' },
+          'link-colour': { label: 'Brown 01', value: '#523719' },
+          'visited-link-colour': { label: '', value: '#914132' },
+          'hover-background-colour': { label: '', value: 'rgba(82, 55, 25, 0.1)' },
+          'active-background-colour': { label: '', value: 'rgba(82, 55, 25, 0.2)' },
+          focus: { label: '', value: '#8F3B2B' }
         },
-        'Hover background colour': {
-          hex: '<code>rgba(68, 17, 112, 0.1)</code>',
-          var: '--nsw-hover',
+        yellow: {
+          val: '#694800',
+          'brand-dark': { label: 'Yellow 01', value: '#694800' },
+          'brand-light': { label: 'Yellow 04', value: '#FFF4CF' },
+          'brand-supplementary': { label: 'Yellow 02', value: '#FAAF05' },
+          'brand-accent': { label: 'Green 02', value: '#00AA45' },
+          'link-colour': { label: 'Yellow 01', value: '#694800' },
+          'visited-link-colour': { label: '', value: '#5B5A16' },
+          'hover-background-colour': { label: '', value: 'rgba(105, 72, 0, 0.1)' },
+          'active-background-colour': { label: '', value: 'rgba(105, 72, 0, 0.2)' },
+          focus: { label: '', value: '#B83B00' }
         },
-        'Active background colour': {
-          hex: '<code>rgba(68, 17, 112, 0.2)</code>',
-          var: '--nsw-active',
+        green: {
+          val: '#004000',
+          'brand-dark': { label: 'Green 01', value: '#004000' },
+          'brand-light': { label: 'Green 04', value: '#DBFADF' },
+          'brand-supplementary': { label: 'Green 02', value: '#00AA45' },
+          'brand-accent': { label: 'Blue 02', value: '#146CFD' },
+          'link-colour': { label: 'Green 01', value: '#004000' },
+          'visited-link-colour': { label: '', value: '#016740' },
+          'hover-background-colour': { label: '', value: 'rgba(0, 64, 0, 0.1)' },
+          'active-background-colour': { label: '', value: 'rgba(0, 64, 0, 0.2)' },
+          focus: { label: '', value: '#348F00' }
         },
-        'Focus outline colour': {
-          hex: '<code>#351BB5</code>',
-          var: '--nsw-focus',
-        },
+        teal: {
+          val: '#0B3F47',
+          'brand-dark': { label: 'Teal 01', value: '#0B3F47' },
+          'brand-light': { label: 'Teal 04', value: '#D1EEEA' },
+          'brand-supplementary': { label: 'Teal 02', value: '#2E808E' },
+          'brand-accent': { label: 'Fuchsia 02', value: '#D912AE' },
+          'link-colour': { label: 'Teal 01', value: '#0B3F47' },
+          'visited-link-colour': { label: '', value: '#265E76' },
+          'hover-background-colour': { label: '', value: 'rgba(11, 63, 71, 0.1)' },
+          'active-background-colour': { label: '', value: 'rgba(11, 63, 71, 0.2)' },
+          focus: { label: '', value: '#168B70' }
+        }
       },
-    },
-    fuchsia: {
-      val: 'Fuchsia 01',
-      hex: '#65004D',
-      content: {
-        'Brand Dark': {
-          hex: 'Fuchsia 01 <code>#65004D</code>',
-          var: '--nsw-brand-dark',
+      'aboriginal': {
+        label: 'Aboriginal Palette',
+        red: {
+          val: '#950906',
+          'brand-dark': { label: 'Earth Red', value: '#950906' },
+          'brand-light': { label: 'Galah Pink', value: '#FDD9D9' },
+          'brand-supplementary': { label: 'Ember Red', value: '#E1261C' },
+          'brand-accent': { label: 'Saltwater Blue', value: '#0D6791' },
+          'link-colour': { label: 'Earth Red', value: '#950906' },
+          'visited-link-colour': { label: 'Bush Plum', value: '#472642' },
+          'hover-background-colour': { label: 'Earth Red', value: 'rgba(149, 9, 6, 0.1)' },
+          'active-background-colour': { label: 'Earth Red', value: 'rgba(149, 9, 6, 0.2)' },
+          focus: { label: 'Ember Red', value: '#E1261C' }
         },
-        'Brand Light': {
-          hex: 'Fuchsia 04 <code>#F0E6ED</code>',
-          var: '--nsw-brand-light',
+        orange: {
+          val: '#882600',
+          'brand-dark': { label: 'Deep Orange', value: '#882600' },
+          'brand-light': { label: 'Sunset Orange', value: '#F9D4BE' },
+          'brand-supplementary': { label: 'Orange Ochre', value: '#EE6314' },
+          'brand-accent': { label: 'Saltwater Blue', value: '#0D6791' },
+          'link-colour': { label: 'Deep Orange', value: '#882600' },
+          'visited-link-colour': { label: 'Bush Plum', value: '#472642' },
+          'hover-background-colour': { label: 'Deep Orange', value: 'rgba(136, 38, 0, 0.1)' },
+          'active-background-colour': { label: 'Deep Orange', value: 'rgba(136, 38, 0, 0.2)' },
+          focus: { label: 'Orange Ochre', value: '#EE6314' }
         },
-        'Brand Supplementary': {
-          hex: 'Fuchsia 02 <code>#D912AE</code>',
-          var: '--nsw-brand-supplementary',
+        brown: {
+          val: '#552105',
+          'brand-dark': { label: 'Riverbed Brown', value: '#552105' },
+          'brand-light': { label: 'Macadamia Brown', value: '#E9C8B2' },
+          'brand-supplementary': { label: 'Firewood Brown', value: '#9E5332' },
+          'brand-accent': { label: 'Saltwater Blue', value: '#0D6791' },
+          'link-colour': { label: 'Riverbed Brown', value: '#552105' },
+          'visited-link-colour': { label: 'Spirit Lilac', value: '#9A5E93' },
+          'hover-background-colour': { label: 'Riverbed Brown', value: 'rgba(85, 33, 5, 0.1)' },
+          'active-background-colour': { label: 'Riverbed Brown', value: 'rgba(85, 33, 5, 0.2)' },
+          focus: { label: 'Firewood Brown', value: '#9E5332' }
         },
-        'Brand Accent': {
-          hex: 'Orange 02 <code>#F3631B</code>',
-          var: '--nsw-brand-accent',
+        yellow: {
+          val: '#895E00',
+          'brand-dark': { label: 'Bush Honey Yellow', value: '#895E00' },
+          'brand-light': { label: 'Sunbeam Yellow', value: '#FFF1C5' },
+          'brand-supplementary': { label: 'Golden Wattle Yellow', value: '#FEA927' },
+          'brand-accent': { label: 'Orange Clay', value: '#F4AA7D' },
+          'link-colour': { label: 'Bush Honey Yellow', value: '#895E00' },
+          'visited-link-colour': { label: 'Bush Plum', value: '#472642' },
+          'hover-background-colour': { label: 'Bush Honey Yellow', value: 'rgba(105, 72, 0, 0.1)' },
+          'active-background-colour': { label: 'Bush Honey Yellow', value: 'rgba(105, 72, 0, 0.2)' },
+          focus: { label: 'Saltwater Blue', value: '#0D6791' }
         },
-        'Link colour': {
-          hex: '<code>#65004D</code>',
-          var: '--nsw-link',
+        green: {
+          val: '#215834',
+          'brand-dark': { label: 'Bushland Green', value: '#215834' },
+          'brand-light': { label: 'Saltbush Green', value: '#DAE6D1' },
+          'brand-supplementary': { label: 'Marshland Lime', value: '#78A146' },
+          'brand-accent': { label: 'Firewood Brown', value: '#9E5332' },
+          'link-colour': { label: 'Bushland Green', value: '#215834' },
+          'visited-link-colour': { label: 'Bush Plum', value: '#472642' },
+          'hover-background-colour': { label: 'Bushland Green', value: 'rgba(33, 88, 52, 0.1)' },
+          'active-background-colour': { label: 'Bushland Green', value: 'rgba(33, 88, 52, 0.2)' },
+          focus: { label: 'Marshland Lime', value: '#78A146' }
         },
-        'Visited link colour': {
-          hex: '<code>#983379</code>',
-          var: '--nsw-visited',
+        blue: {
+          val: '#162953',
+          'brand-dark': { label: 'Billabong Blue', value: '#00405E' },
+          'brand-light': { label: 'Coastal Blue', value: '#C1E2E8' },
+          'brand-supplementary': { label: 'Saltwater Blue', value: '#0D6791' },
+          'brand-accent': { label: 'Orange Ochre', value: '#EE6314' },
+          'link-colour': { label: 'Saltwater Blue', value: '#0D6791' },
+          'visited-link-colour': { label: 'Spirit Lilac', value: '#9A5E93' },
+          'hover-background-colour': { label: 'Billabong Blue', value: 'rgba(0, 64, 94, 0.1)' },
+          'active-background-colour': { label: 'Billabong Blue', value: 'rgba(0, 64, 94, 0.2)' },
+          focus: { label: 'Saltwater Blue', value: '#0D6791' }
         },
-        'Hover background colour': {
-          hex: '<code>rgba(101, 0, 77, 0.1)</code>',
-          var: '--nsw-hover',
+        purple: {
+          val: '#472642',
+          'brand-dark': { label: 'Bush Plum', value: '#472642' },
+          'brand-light': { label: 'Dusk Purple', value: '#E4CCE0' },
+          'brand-supplementary': { label: 'Spirit Lilac', value: '#9A5E93' },
+          'brand-accent': { label: 'Orange Ochre', value: '#EE6314' },
+          'link-colour': { label: 'Bush Plum', value: '#472642' },
+          'visited-link-colour': { label: 'Spirit Lilac', value: '#9A5E93' },
+          'hover-background-colour': { label: 'Bush Plum', value: 'rgba(71, 38, 66, 0.1)' },
+          'active-background-colour': { label: 'Bush Plum', value: 'rgba(71, 38, 66, 0.2)' },
+          focus: { label: 'Orange Ochre', value: '#EE6314' }
         },
-        'Active background colour': {
-          hex: '<code>rgba(101, 0, 77, 0.2)</code>',
-          var: '--nsw-active',
-        },
-        'Focus outline colour': {
-          hex: '<code>#9D00B4</code>',
-          var: '--nsw-focus',
-        },
-      },
-    },
-    red: {
-      val: 'Red 01',
-      hex: '#630019',
-      content: {
-        'Brand Dark': {
-          hex: 'Red 01 <code>#630019</code>',
-          var: '--nsw-brand-dark',
-        },
-        'Brand Light': {
-          hex: 'Red 04 <code>#FFE6EA</code>',
-          var: '--nsw-brand-light',
-        },
-        'Brand Supplementary': {
-          hex: 'Red 02 <code>#D7153A</code>',
-          var: '--nsw-brand-supplementary',
-        },
-        'Brand Accent': {
-          hex: 'Brown 02 <code>#B68D5D</code>',
-          var: '--nsw-brand-accent',
-        },
-        'Link colour': {
-          hex: '<code>#630019</code>',
-          var: '--nsw-link',
-        },
-        'Visited link colour': {
-          hex: '<code>#9C3D1B</code>',
-          var: '--nsw-visited',
-        },
-        'Hover background colour': {
-          hex: '<code>rgba(99, 0, 25, 0.1)</code>',
-          var: '--nsw-hover',
-        },
-        'Active background colour': {
-          hex: '<code>rgba(99, 0, 25, 0.2)</code>',
-          var: '--nsw-active',
-        },
-        'Focus outline colour': {
-          hex: '<code>#B2006E</code>',
-          var: '--nsw-focus',
-        },
-      },
-    },
-    orange: {
-      val: 'Orange 01',
-      hex: '#941B00',
-      content: {
-        'Brand Dark': {
-          hex: 'Orange 01 <code>#941B00</code>',
-          var: '--nsw-brand-dark',
-        },
-        'Brand Light': {
-          hex: 'Orange 04 <code>#FDEDDF</code>',
-          var: '--nsw-brand-light',
-        },
-        'Brand Supplementary': {
-          hex: 'Orange 02 <code>#F3631B</code>',
-          var: '--nsw-brand-supplementary',
-        },
-        'Brand Accent': {
-          hex: 'Purple 02 <code>#8055F1</code>',
-          var: '--nsw-brand-accent',
-        },
-        'Link colour': {
-          hex: '<code>#941B00</code>',
-          var: '--nsw-link',
-        },
-        'Visited link colour': {
-          hex: '<code>#7D4D27</code>',
-          var: '--nsw-visited',
-        },
-        'Hover background colour': {
-          hex: '<code>rgba(148, 27, 0, 0.1)</code>',
-          var: '--nsw-hover',
-        },
-        'Active background colour': {
-          hex: '<code>rgba(148, 27, 0, 0.2)</code>',
-          var: '--nsw-active',
-        },
-        'Focus outline colour': {
-          hex: '<code>#E3002A</code>',
-          var: '--nsw-focus',
-        },
-      },
-    },
-    brown: {
-      val: 'Brown 01',
-      hex: '#523719',
-      content: {
-        'Brand Dark': {
-          hex: 'Brown 01 <code>#523719</code>',
-          var: '--nsw-brand-dark',
-        },
-        'Brand Light': {
-          hex: 'Brown 04 <code>#EDE3D7</code>',
-          var: '--nsw-brand-light',
-        },
-        'Brand Supplementary': {
-          hex: 'Brown 02 <code>#B68D5D</code>',
-          var: '--nsw-brand-supplementary',
-        },
-        'Brand Accent': {
-          hex: 'Teal 02 <code>#2E808E</code>',
-          var: '--nsw-brand-accent',
-        },
-        'Link colour': {
-          hex: '<code>#523719</code>',
-          var: '--nsw-link',
-        },
-        'Visited link colour': {
-          hex: '<code>#914132</code>',
-          var: '--nsw-visited',
-        },
-        'Hover background colour': {
-          hex: '<code>rgba(82, 55, 25, 0.1)</code>',
-          var: '--nsw-hover',
-        },
-        'Active background colour': {
-          hex: '<code>rgba(82, 55, 25, 0.2)</code>',
-          var: '--nsw-active',
-        },
-        'Focus outline colour': {
-          hex: '<code>#8F3B2B</code>',
-          var: '--nsw-focus',
-        },
-      },
-    },
-    yellow: {
-      val: 'Yellow 01',
-      hex: '#694800',
-      content: {
-        'Brand Dark': {
-          hex: 'Yellow 01 <code>#694800</code>',
-          var: '--nsw-brand-dark',
-        },
-        'Brand Light': {
-          hex: 'Yellow 04 <code>#FFF4CF</code>',
-          var: '--nsw-brand-light',
-        },
-        'Brand Supplementary': {
-          hex: 'Yellow 02 <code>#FAAF05</code>',
-          var: '--nsw-brand-supplementary',
-        },
-        'Brand Accent': {
-          hex: 'Green 02 <code>#00AA45</code>',
-          var: '--nsw-brand-accent',
-        },
-        'Link colour': {
-          hex: '<code>#694800</code>',
-          var: '--nsw-link',
-        },
-        'Visited link colour': {
-          hex: '<code>#5B5A16</code>',
-          var: '--nsw-visited',
-        },
-        'Hover background colour': {
-          hex: '<code>rgba(105, 72, 0, 0.1)</code>',
-          var: '--nsw-hover',
-        },
-        'Active background colour': {
-          hex: '<code>rgba(105, 72, 0, 0.2)</code>',
-          var: '--nsw-active',
-        },
-        'Focus outline colour': {
-          hex: '<code>#B83B00</code>',
-          var: '--nsw-focus',
-        },
-      },
-    },
-    green: {
-      val: 'Green 01',
-      hex: '#004000',
-      content: {
-        'Brand Dark': {
-          hex: 'Green 01 <code>#004000</code>',
-          var: '--nsw-brand-dark',
-        },
-        'Brand Light': {
-          hex: 'Green 04 <code>#DBFADF</code>',
-          var: '--nsw-brand-light',
-        },
-        'Brand Supplementary': {
-          hex: 'Green 02 <code>#00AA45</code>',
-          var: '--nsw-brand-supplementary',
-        },
-        'Brand Accent': {
-          hex: 'Blue 02 <code>#146CFD</code>',
-          var: '--nsw-brand-accent',
-        },
-        'Link colour': {
-          hex: '<code>#004000</code>',
-          var: '--nsw-link',
-        },
-        'Visited link colour': {
-          hex: '<code>#016740</code>',
-          var: '--nsw-visited',
-        },
-        'Hover background colour': {
-          hex: '<code>rgba(0, 64, 0, 0.1)</code>',
-          var: '--nsw-hover',
-        },
-        'Active background colour': {
-          hex: '<code>rgba(0, 64, 0, 0.2)</code>',
-          var: '--nsw-active',
-        },
-        'Focus outline colour': {
-          hex: '<code>#348F00</code>',
-          var: '--nsw-focus',
-        },
-      },
-    },
-    teal: {
-      val: 'Teal 01',
-      hex: '#0B3F47',
-      content: {
-        'Brand Dark': {
-          hex: 'Teal 01 <code>#0B3F47</code>',
-          var: '--nsw-brand-dark',
-        },
-        'Brand Light': {
-          hex: 'Teal 04 <code>#D1EEEA</code>',
-          var: '--nsw-brand-light',
-        },
-        'Brand Supplementary': {
-          hex: 'Teal 02 <code>#2E808E</code>',
-          var: '--nsw-brand-supplementary',
-        },
-        'Brand Accent': {
-          hex: 'Fuchsia 02 <code>#D912AE</code>',
-          var: '--nsw-brand-accent',
-        },
-        'Link colour': {
-          hex: '<code>#0B3F47</code>',
-          var: '--nsw-link',
-        },
-        'Visited link colour': {
-          hex: '<code>#265E76</code>',
-          var: '--nsw-visited',
-        },
-        'Hover background colour': {
-          hex: '<code>rgba(11, 63, 71, 0.1)</code>',
-          var: '--nsw-hover',
-        },
-        'Active background colour': {
-          hex: '<code>rgba(11, 63, 71, 0.2)</code>',
-          var: '--nsw-active',
-        },
-        'Focus outline colour': {
-          hex: '<code>#168B70</code>',
-          var: '--nsw-focus',
-        },
-      },
-    },
-  }
+        grey: {
+          val: '#2D2D2D',
+          'brand-dark': { label: 'Charcoal Grey', value: '#272727' },
+          'brand-light': { label: 'Smoke Grey', value: '#E5E3E0' },
+          'brand-supplementary': { label: 'Bush Honey Yellow', value: '#694800' },
+          'brand-accent': { label: 'Sandstone Yellow', value: '#FEA927' },
+          'link-colour': { label: 'Charcoal Grey', value: '#272727' },
+          'visited-link-colour': { label: 'Bush Plum', value: '#472642' },
+          'hover-background-colour': { label: 'Charcoal Grey', value: 'rgba(39, 39, 39, 0.1)' },
+          'active-background-colour': { label: 'Charcoal Grey', value: 'rgba(39, 39, 39, 0.2)' },
+          focus: { label: 'Sandstone Yellow', value: '#FEA927' }
+        }
+      }
+    }
+  };
 
-  const colorSwatches = document.querySelectorAll('.js-color-swatches')
+   // Partial theming (accent-only, updates brand-accent without affecting others)
+   const accentConfig = {
+    variables: {
+      'brand-accent': '--nsw-brand-accent',
+    },
+    palettes: {
+      'nsw-government-palette': {
+        blue: { val: '#146CFD', 'brand-accent': '#146CFD' },
+        purple: { val: '#8055F1', 'brand-accent': '#8055F1' },
+        fuchsia: { val: '#D912AE', 'brand-accent': '#D912AE' },
+        red: { val: '#D7153A', 'brand-accent': '#D7153A' },
+        orange: { val: '#F3631B', 'brand-accent': '#F3631B' },
+        brown: { val: '#B68D5D', 'brand-accent': '#B68D5D' },
+        yellow: { val: '#FAAF05', 'brand-accent': '#FAAF05' },
+        green: { val: '#00AA45', 'brand-accent': '#00AA45' },
+        teal: { val: '#2E808E', 'brand-accent': '#2E808E' },
+      },
+      'aboriginal-palette': {
+        red: { val: '#E1261C', 'brand-accent': '#E1261C' },
+        orange: { val: '#EE6314', 'brand-accent': '#EE6314' },
+        yellow: { val: '#FAAF05', 'brand-accent': '#FAAF05' },
+        green: { val: '#4C8046', 'brand-accent': '#4C8046' },
+        blue: { val: '#1E88E5', 'brand-accent': '#1E88E5' },
+        purple: { val: '#6A1B9A', 'brand-accent': '#6A1B9A' },
+        brown: { val: '#9E5332', 'brand-accent': '#9E5332' },
+        grey: { val: '#555555', 'brand-accent': '#555555' },
+      },
+    },
+  };
 
-  if (colorSwatches) {
-    colorSwatches.forEach((element) => {
-      new ColorSwatches(element, options).init()
-    })
-  }
+  // Initialise Color Swatches for full-page and content-only pages
+  document.querySelectorAll('.js-color-swatches').forEach((element) => {
+    new ColorSwatches(element, colorConfig).init();
+  });
 
-  const partial = {
-    'blue-accent': {
-      val: 'Blue 02',
-      hex: '#146CFD',
-      content: {
-        'Brand Accent': {
-          hex: 'Blue 02 <code>#146CFD</code>',
-          var: '--nsw-brand-accent',
-        },
-      },
-    },
-    'purple-accent': {
-      val: 'Purple 01',
-      hex: '#8055F1',
-      content: {
-        'Brand Accent': {
-          hex: 'Purple 02 <code>#8055F1</code>',
-          var: '--nsw-brand-accent',
-        },
-      },
-    },
-    'fuchsia-accent': {
-      val: 'Fuchsia 02',
-      hex: '#D912AE',
-      content: {
-        'Brand Accent': {
-          hex: 'Fuchsia 02 <code>#D912AE</code>',
-          var: '--nsw-brand-accent',
-        },
-      },
-    },
-    'red-accent': {
-      val: 'Red 02',
-      hex: '#D7153A',
-      content: {
-        'Brand Accent': {
-          hex: 'Red 02 <code>#D7153A</code>',
-          var: '--nsw-brand-accent',
-        },
-      },
-    },
-    'orange-accent': {
-      val: 'Orange 02',
-      hex: '#F3631B',
-      content: {
-        'Brand Accent': {
-          hex: 'Orange 02 <code>#F3631B</code>',
-          var: '--nsw-brand-accent',
-        },
-      },
-    },
-    'brown-accent': {
-      val: 'Brown 02',
-      hex: '#B68D5D',
-      content: {
-        'Brand Accent': {
-          hex: 'Brown 02 <code>#B68D5D</code>',
-          var: '--nsw-brand-accent',
-        },
-      },
-    },
-    'yellow-accent': {
-      val: 'Yellow 02',
-      hex: '#FAAF05',
-      content: {
-        'Brand Accent': {
-          hex: 'Yellow 02 <code>#FAAF05</code>',
-          var: '--nsw-brand-accent',
-        },
-      },
-    },
-    'green-accent': {
-      val: 'Green 02',
-      hex: '#00AA45',
-      content: {
-        'Brand Accent': {
-          hex: 'Green 02 <code>#00AA45</code>',
-          var: '--nsw-brand-accent',
-        },
-      },
-    },
-    'teal-accent': {
-      val: 'Teal 02',
-      hex: '#2E808E',
-      content: {
-        'Brand Accent': {
-          hex: 'Teal 02 <code>#2E808E</code>',
-          var: '--nsw-brand-accent',
-        },
-      },
-    },
-  }
-
-  const colorSwatch = document.querySelectorAll('.js-color-swatch')
-
-  if (colorSwatch) {
-    colorSwatch.forEach((element) => {
-      new ColorSwatches(element, partial).init()
-    })
-  }
+  // Initialise Color Swatches for partial re-theming (only updates brand-accent)
+  document.querySelectorAll('.js-color-swatch[data-mode="accent-only"]').forEach((element) => {
+    new ColorSwatches(element, accentConfig).init();
+  });
 }
 
 initDocs();
