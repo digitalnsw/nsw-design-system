@@ -27,6 +27,8 @@ $header-height: 151px;
 
   > div {
     padding: functions.rem(8px);
+    white-space: normal;
+    overflow-wrap: normal; 
   }
 }
 
@@ -687,6 +689,12 @@ $header-height: 151px;
   gap: 0.5rem;
   margin: 16px 0;
 
+  &__palette-selector {
+    width: auto;
+    white-space: nowrap;
+    flex: 0 0 auto; 
+  }
+
   &__list {
     list-style: none;
     margin-top: 0;
@@ -694,6 +702,13 @@ $header-height: 151px;
     display: flex;
     gap: 0.375rem;
     align-items: center;
+  }
+
+  &__option {
+    &:focus-visible {
+      outline: 2px solid var(--nsw-brand-dark);
+      outline-offset: 2px;
+    }
   }
   
   &__swatch {
