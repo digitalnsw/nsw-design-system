@@ -20,6 +20,9 @@ meta-index: true
     <li>
       <a href="#gov-colour">NSW Government colour palette</a>
     </li>
+    <li>
+      <a href="#aboriginal-palette">NSW Government Aboriginal colour palette</a>
+    </li>
   </ul>
 </nav>
 
@@ -629,7 +632,9 @@ meta-index: true
 <br>
 
 <h2 id="gov-colour">NSW Government colour palette</h2>
+
 <p>Use these colours to create your own NSW Design System theme. See <a href="/docs/content/design/theming.html">theming guidance for designers</a> or <a href="/docs/content/develop/theming.html">theming guidance for developers</a>.</p>
+
 <div class="nsw-section nsw-section--white nsw-block nsw-p-x-sm nsw-p-top-sm">
   <div class="nsw-table nsw-table--valign-middle">
     <table>
@@ -669,6 +674,58 @@ meta-index: true
           </td>
           <td>
             <p><code>--nsw-palette-{{@key}}</code></p>
+          </td>
+        </tr>
+      {{/each}}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<h2 id="aboriginal-palette">NSW Government Aboriginal colour palette</h2>
+
+<p>Use this colour palette when you are creating communications that relate to Aboriginal audiences or content.</p>
+<p>See <a href="/docs/content/design/theming.html#aboriginal-palette">theming guidance for designers</a> and the <a href="https://branding.nsw.gov.au/guidelines/aboriginal-branding">Brand Toolbox – Aboriginal Branding Guidelines</a> for more information.</p>
+
+<div class="nsw-section nsw-section--white nsw-block nsw-p-x-sm nsw-p-top-sm">
+  <div class="nsw-table nsw-table--valign-middle">
+    <table>
+      <tbody>
+      <tr>
+        <th style="width: 10%">
+          <div>
+            <p>Swatch</p>
+          </div>
+        </th>
+        <th style="width: 20%">
+          <div>
+            <p>Colour</p>
+          </div>
+        </th>
+        <th style="width: 20%">
+          <div>
+            <p><strong>Hex value</strong></p>
+          </div>
+        </th>
+        <th>
+          <div>
+            <p><strong>CSS variable</strong></p>
+          </div>
+        </th>
+      </tr>
+      {{#each model.aboriginal}}
+        <tr>
+          <td>
+            <div class="nsw-docs__swatch" style="{{#if-equals @key 'white'}} border: 1px solid var(--nsw-text-dark);{{/if-equals}} background-color: var(--nsw-aboriginal-palette-{{@key}})"></div>
+          </td>
+          <td>
+            <p>{{titleize (join (split @key "-") " ")}}</p>
+          </td>
+          <td>
+            <p><code>{{capitalize this "all"}}</code></p>
+          </td>
+          <td>
+            <p><code>--nsw-aboriginal-palette-{{@key}}</code></p>
           </td>
         </tr>
       {{/each}}

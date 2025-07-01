@@ -1,239 +1,247 @@
+/* eslint-disable max-len */
 class ColorSwatches {
   constructor(element, config) {
-    this.element = element;
-    this.variables = config.variables;
-    this.palettes = config.palettes;
-    this.dataTable = document.querySelector('.js-color-swatches__content');
+    this.element = element
+    this.variables = config.variables
+    this.palettes = config.palettes
+    this.dataTable = document.querySelector('.js-color-swatches__content')
 
-    // Determine target scope (full-page vs content-only)
-    this.targetSelector = this.element.dataset.target || ':root';
-    this.targetElement = document.querySelector(this.targetSelector);
+    this.targetSelector = this.element.dataset.target || ':root'
+    this.targetElement = document.querySelector(this.targetSelector)
 
-    this.currentPalette = Object.keys(this.palettes)[0]; // Default: first palette
-    this.currentColor = Object.keys(this.palettes[this.currentPalette]).filter(key => key !== 'label')[0]; // Default: first color
+    const [firstPalette] = Object.keys(this.palettes)
+    const [firstColor] = Object.keys(this.palettes[firstPalette]).filter((key) => key !== 'label')
+    this.currentPalette = firstPalette
+    this.currentColor = firstColor
 
-    this.legend = this.element.querySelector('.js-color-swatches__color'); // Title element
-    this.swatchList = null; // Swatch list container
+    this.legend = this.element.querySelector('.js-color-swatches__color') // Title element
+    this.swatchList = null // Swatch list container
 
-    this.init();
+    this.init()
   }
 
   // Initialise the color swatches
   init() {
-    this.createColorSwatches(); // Creates the color swatch list first
+    this.createColorSwatches() // Creates the color swatch list first
     // Create the palette select dropdown before reading URL param
-    this.paletteSelect = this.createPaletteSelector();
+    this.paletteSelect = this.createPaletteSelector()
     // Move the select after the swatches
-    this.swatchList.insertAdjacentElement('afterend', this.paletteSelect);
+    this.swatchList.insertAdjacentElement('afterend', this.paletteSelect)
     // Now apply any palette from URL
-    this.setPaletteFromURL();
-    this.addEventListeners();
-    this.updateCSSVariables();
-    this.updateColorData();
-    this.updateLegend();
+    this.setPaletteFromURL()
+    this.addEventListeners()
+    this.updateCSSVariables()
+    this.updateColorData()
+    this.updateLegend()
   }
 
   // Creates palette selector (dropdown)
   createPaletteSelector() {
-    let existingPaletteSelect = this.element.querySelector('.js-palette-selector');
-    if (existingPaletteSelect) return existingPaletteSelect;
+    const existingPaletteSelect = this.element.querySelector('.js-palette-selector')
+    if (existingPaletteSelect) return existingPaletteSelect
 
-    const paletteSelect = document.createElement('select');
-    paletteSelect.classList.add('js-palette-selector', 'nsw-form__select', 'nsw-color-swatches__palette-selector');
+    const paletteSelect = document.createElement('select')
+    paletteSelect.classList.add('js-palette-selector', 'nsw-form__select', 'nsw-color-swatches__palette-selector')
 
     Object.keys(this.palettes).forEach((palette) => {
-      const option = document.createElement('option');
-      option.value = palette;
+      const option = document.createElement('option')
+      option.value = palette
       // Use label from palette data if available
-      const paletteMeta = this.palettes[palette];
-      option.textContent = paletteMeta.label || this.formatLabel(palette);
-      paletteSelect.appendChild(option);
-    });
+      const paletteMeta = this.palettes[palette]
+      option.textContent = paletteMeta.label || this.constructor.formatLabel(palette)
+      paletteSelect.appendChild(option)
+    })
 
-    return paletteSelect;
+    return paletteSelect
   }
 
   // Creates color swatches (clickable circles)
   createColorSwatches() {
     if (!this.swatchList) {
-      this.swatchList = document.createElement('ul');
-      this.swatchList.classList.add('nsw-color-swatches__list', 'js-color-swatches__list');
-      this.swatchList.setAttribute('role', 'radiogroup');
-      this.swatchList.setAttribute('aria-labelledby', this.legend?.id || 'color-swatches-title');
-      this.element.appendChild(this.swatchList);
+      this.swatchList = document.createElement('ul')
+      this.swatchList.classList.add('nsw-color-swatches__list', 'js-color-swatches__list')
+      this.swatchList.setAttribute('role', 'radiogroup')
+      this.swatchList.setAttribute(
+        'aria-labelledby',
+        (this.legend && this.legend.id) ? this.legend.id : 'color-swatches-title',
+      )
+      this.element.appendChild(this.swatchList)
     } else {
-      this.swatchList.innerHTML = ''; // Clear previous colors
+      this.swatchList.innerHTML = '' // Clear previous colors
     }
 
-    Object.entries(this.palettes[this.currentPalette]).filter(([colorKey]) => colorKey !== 'label').forEach(([colorKey, colorData], index) => {
-      const swatchItem = document.createElement('li');
-      swatchItem.classList.add('nsw-color-swatches__item', 'js-color-swatches__item');
-      if (index === 0) swatchItem.classList.add('nsw-color-swatches__item--selected'); // First one selected
-      swatchItem.setAttribute('data-color', colorKey);
-      swatchItem.setAttribute('role', 'radio');
-      swatchItem.setAttribute('aria-checked', index === 0 ? 'true' : 'false');
-      swatchItem.setAttribute('tabindex', index === 0 ? '0' : '-1');
+    Object.entries(this.palettes[this.currentPalette]).filter(([colorKey]) => colorKey !== 'label')
+      .forEach(([colorKey, colorData], index) => {
+        const swatchItem = document.createElement('li')
+        swatchItem.classList.add('nsw-color-swatches__item', 'js-color-swatches__item')
+        if (index === 0) swatchItem.classList.add('nsw-color-swatches__item--selected') // First one selected
+        swatchItem.setAttribute('data-color', colorKey)
+        swatchItem.setAttribute('role', 'radio')
+        swatchItem.setAttribute('aria-checked', index === 0 ? 'true' : 'false')
+        swatchItem.setAttribute('tabindex', index === 0 ? '0' : '-1')
 
-      swatchItem.innerHTML = `
+        swatchItem.innerHTML = `
         <span class="nsw-color-swatches__option" tabindex="0">
-          <span class="sr-only js-color-swatch__label">${this.formatLabel(colorKey)}</span>
+          <span class="sr-only js-color-swatch__label">${this.constructor.formatLabel(colorKey)}</span>
           <span aria-hidden="true" style="background-color: ${colorData.val};" class="nsw-color-swatches__swatch"></span>
         </span>
-      `;
+      `
 
-      this.swatchList.appendChild(swatchItem);
-    });
+        this.swatchList.appendChild(swatchItem)
+      })
 
-    return this.swatchList;
+    return this.swatchList
   }
 
   // Adds event listeners
   addEventListeners() {
     // Palette selection event
     this.paletteSelect.addEventListener('change', (e) => {
-      this.currentPalette = e.target.value;
-      this.currentColor = Object.keys(this.palettes[this.currentPalette]).filter(key => key !== 'label')[0]; // Reset to first color
-      this.createColorSwatches();
-      this.updateURL();
-      this.updateCSSVariables();
-      this.updateColorData();
-      this.updateLegend();
-    });
+      this.currentPalette = e.target.value
+      const [firstColor] = Object.keys(this.palettes[this.currentPalette]).filter((key) => key !== 'label')
+      this.currentColor = firstColor // Reset to first color
+      this.createColorSwatches()
+      this.updateURL()
+      this.updateCSSVariables()
+      this.updateColorData()
+      this.updateLegend()
+    })
 
     // Color swatches event
     this.element.addEventListener('click', (e) => {
-      const swatch = e.target.closest('.js-color-swatches__item');
-      if (!swatch) return;
+      const swatch = e.target.closest('.js-color-swatches__item')
+      if (!swatch) return
 
-      this.currentColor = swatch.getAttribute('data-color');
-      this.updateSelectedSwatch(swatch);
-      this.updateURL();
-      this.updateCSSVariables();
-      this.updateColorData();
-      this.updateLegend();
-    });
+      this.currentColor = swatch.getAttribute('data-color')
+      this.updateSelectedSwatch(swatch)
+      this.updateURL()
+      this.updateCSSVariables()
+      this.updateColorData()
+      this.updateLegend()
+    })
 
     // Keyboard interaction
     this.element.addEventListener('keydown', (e) => {
-      const swatch = document.activeElement.closest('.js-color-swatches__item');
-      if (!swatch) return;
-  
+      const swatch = document.activeElement.closest('.js-color-swatches__item')
+      if (!swatch) return
+
       if (e.key === ' ' || e.key === 'Enter') {
-        e.preventDefault(); // Prevent scrolling when pressing the space key
-        this.currentColor = swatch.getAttribute('data-color');
-        this.updateSelectedSwatch(swatch);
-        this.updateCSSVariables();
-        this.updateColorData();
-        this.updateLegend();
+        e.preventDefault() // Prevent scrolling when pressing the space key
+        this.currentColor = swatch.getAttribute('data-color')
+        this.updateSelectedSwatch(swatch)
+        this.updateCSSVariables()
+        this.updateColorData()
+        this.updateLegend()
       }
-    });
+    })
 
     this.element.addEventListener('focusin', (e) => {
-      const swatch = e.target.closest('.js-color-swatches__item');
-      if (!swatch) return;
-      
+      const swatch = e.target.closest('.js-color-swatches__item')
+      if (!swatch) return
+
       // Ensure the swatch receives a visual focus style when navigated to
-      this.updateSelectedSwatch(swatch);
-    });
+      this.updateSelectedSwatch(swatch)
+    })
   }
 
   // Updates swatch selection
   updateSelectedSwatch(selectedSwatch) {
     this.swatchList.querySelectorAll('.js-color-swatches__item').forEach((swatch) => {
-      swatch.classList.remove('nsw-color-swatches__item--selected');
-      swatch.setAttribute('aria-checked', 'false');
-    });
+      swatch.classList.remove('nsw-color-swatches__item--selected')
+      swatch.setAttribute('aria-checked', 'false')
+    })
 
-    selectedSwatch.classList.add('nsw-color-swatches__item--selected');
-    selectedSwatch.setAttribute('aria-checked', 'true');
+    selectedSwatch.classList.add('nsw-color-swatches__item--selected')
+    selectedSwatch.setAttribute('aria-checked', 'true')
   }
 
   // Updates CSS variables
   updateCSSVariables() {
-    const selectedColors = this.palettes[this.currentPalette][this.currentColor];
+    const selectedColors = this.palettes[this.currentPalette][this.currentColor]
 
     // Apply changes to correct scope (content-only or full-page)
     Object.keys(this.variables).forEach((key) => {
       // unwrap label/value objects if present
-      let entry = selectedColors[key];
-      let colorValue = entry && typeof entry === 'object' && entry.value
+      const entry = selectedColors[key]
+      const colorValue = entry && typeof entry === 'object' && entry.value
         ? entry.value
-        : entry;
-      this.targetElement.style.setProperty(this.variables[key], colorValue);
-    });
+        : entry
+      this.targetElement.style.setProperty(this.variables[key], colorValue)
+    })
   }
 
   // Updates color data table
   updateColorData() {
-    if (!this.dataTable) return;
+    if (!this.dataTable) return
 
-    const selectedColors = this.palettes[this.currentPalette][this.currentColor];
+    const selectedColors = this.palettes[this.currentPalette][this.currentColor]
 
     this.dataTable.innerHTML = Object.keys(this.variables)
       .map((key) => {
         // unwrap label/value objects if present
-        let entry = selectedColors[key];
-        let colorValue = entry && typeof entry === 'object' && entry.value ? entry.value : entry;
-        let colorLabel = entry && typeof entry === 'object' && entry.label ? entry.label : '';
+        const entry = selectedColors[key]
+        const colorValue = entry && typeof entry === 'object' && entry.value ? entry.value : entry
+        const colorLabel = entry && typeof entry === 'object' && entry.label ? entry.label : ''
         return `
           <tr class="nsw-color-swatches__data">
             <td><div class="nsw-docs__swatch" style="background-color: var(${this.variables[key]})"></div></td>
-            <td><p>${this.formatLabel(key)}</p></td>
-            <td><p><code>${colorValue}</code>${colorLabel && "<br><p class='nsw-small nsw-m-top-xs nsw-m-bottom-xxs'>" + colorLabel}</p></td>
+            <td><p>${this.constructor.formatLabel(key)}</p></td>
+            <td><p><code>${colorValue}</code>${colorLabel && `<br><p class='nsw-small nsw-m-top-xs nsw-m-bottom-xxs'>${colorLabel}`}</p></td>
             <td><p><code>${this.variables[key]}</code></p></td>
-          </tr>`;
+          </tr>`
       })
-      .join('');
+      .join('')
   }
 
   // Updates legend (title)
   updateLegend() {
     if (this.legend) {
-      this.legend.textContent = this.formatLabel(this.currentColor);
-      this.legend.setAttribute('aria-live', 'polite');
+      this.legend.textContent = this.constructor.formatLabel(this.currentColor)
+      this.legend.setAttribute('aria-live', 'polite')
     }
   }
 
   // Formats labels
-  formatLabel(text) {
-    return text.replace(/-/g, ' ').replace(/\b\w/g, (char) => char.toUpperCase());
+  static formatLabel(text) {
+    return text.replace(/-/g, ' ').replace(/\b\w/g, (char) => char.toUpperCase())
   }
 
   // Sets palette and color from URL query parameters if provided
   setPaletteFromURL() {
-    const params = new URLSearchParams(window.location.search);
-    const paletteFromURL = params.get('palette');
-    const colorFromURL = params.get('color');
+    const params = new URLSearchParams(window.location.search)
+    const paletteFromURL = params.get('palette')
+    const colorFromURL = params.get('color')
 
-    if (!paletteFromURL || !this.palettes[paletteFromURL]) return;
+    if (!paletteFromURL || !this.palettes[paletteFromURL]) return
 
-    this.currentPalette = paletteFromURL;
+    this.currentPalette = paletteFromURL
 
-    const colors = Object.keys(this.palettes[this.currentPalette]).filter(key => key !== 'label');
-    this.currentColor = (colorFromURL && colors.includes(colorFromURL)) ? colorFromURL : colors[0];
+    const colors = Object.keys(this.palettes[this.currentPalette]).filter((key) => key !== 'label')
+    this.currentColor = (colorFromURL && colors.includes(colorFromURL)) ? colorFromURL : colors[0]
 
-    this.paletteSelect && (this.paletteSelect.value = this.currentPalette);
+    if (this.paletteSelect) {
+      this.paletteSelect.value = this.currentPalette
+    }
 
-    this.createColorSwatches();
+    this.createColorSwatches()
 
-    const selectedSwatch = this.swatchList.querySelector(`[data-color="${this.currentColor}"]`);
-    if (selectedSwatch) this.updateSelectedSwatch(selectedSwatch);
+    const selectedSwatch = this.swatchList.querySelector(`[data-color="${this.currentColor}"]`)
+    if (selectedSwatch) this.updateSelectedSwatch(selectedSwatch)
 
-    this.updateCSSVariables();
-    this.updateColorData();
-    this.updateLegend();
+    this.updateCSSVariables()
+    this.updateColorData()
+    this.updateLegend()
   }
 
   // Updates the URL query string without reloading
   updateURL() {
-    const params = new URLSearchParams(window.location.search);
-    params.set('palette', this.currentPalette);
-    params.set('color', this.currentColor);
+    const params = new URLSearchParams(window.location.search)
+    params.set('palette', this.currentPalette)
+    params.set('color', this.currentColor)
 
-    const newUrl = `${window.location.pathname}?${params.toString()}`;
-    window.history.replaceState({}, '', newUrl);
+    const newUrl = `${window.location.pathname}?${params.toString()}`
+    window.history.replaceState({}, '', newUrl)
   }
 }
 
-export default ColorSwatches;
-  
+export default ColorSwatches

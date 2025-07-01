@@ -1,9 +1,10 @@
-// Prevent icon flash: hide icons until font loads
-document.documentElement.classList.add('material-icons-loading');
 import Autocomplete from './autocomplete'
 import ExpandableSearch from './expandable-search'
 import DownloadPDF from './download-pdf'
 import ColorSwatches from './color-swatches'
+
+// Prevent icon flash: hide icons until font loads
+document.documentElement.classList.add('material-icons-loading')
 
 function initDocs() {
   const codeButtons = document.querySelectorAll('.js-code-button')
@@ -34,7 +35,7 @@ function initDocs() {
 
     script.remove()
 
-    button.addEventListener('click', (event) => {
+    button.addEventListener('click', () => {
       const elem = document.createElement('textarea')
       elem.value = code.innerHTML.replace(/&lt;/g, '<').replace(/&gt;/g, '>')
       document.body.appendChild(elem)
@@ -60,7 +61,7 @@ function initDocs() {
     linkURL = sanitisedURL.pathname + sanitisedURL.search + sanitisedURL.hash
 
     if (linkURL === '/') linkURL = '/home/index.html'
-    
+
     if (currentURL.match(linkURL)) {
       link.classList.add('current')
 
@@ -111,12 +112,12 @@ function initDocs() {
       'visited-link-colour': '--nsw-visited',
       'hover-background-colour': '--nsw-hover',
       'active-background-colour': '--nsw-active',
-      'focus': '--nsw-focus',
+      focus: '--nsw-focus',
     },
     palettes: {
-      'default': {
+      default: {
         label: 'Default Palette',
-        blue: {
+        'Blue 01': {
           val: '#002664',
           'brand-dark': { label: 'Blue 01', value: '#002664' },
           'brand-light': { label: 'Blue 04', value: '#CBEDFD' },
@@ -126,9 +127,9 @@ function initDocs() {
           'visited-link-colour': { label: '', value: '#551A8B' },
           'hover-background-colour': { label: '', value: 'rgba(0, 38, 100, 0.1)' },
           'active-background-colour': { label: '', value: 'rgba(0, 38, 100, 0.2)' },
-          focus: { label: '', value: '#0086B3' }
+          focus: { label: '', value: '#0086B3' },
         },
-        purple: {
+        'Purple 01': {
           val: '#441170',
           'brand-dark': { label: 'Purple 01', value: '#441170' },
           'brand-light': { label: 'Purple 04', value: '#E6E1FD' },
@@ -138,9 +139,9 @@ function initDocs() {
           'visited-link-colour': { label: '', value: '#70114D' },
           'hover-background-colour': { label: '', value: 'rgba(68, 17, 112, 0.1)' },
           'active-background-colour': { label: '', value: 'rgba(68, 17, 112, 0.2)' },
-          focus: { label: '', value: '#351BB5' }
+          focus: { label: '', value: '#351BB5' },
         },
-        fuchsia: {
+        'Fuchsia 01': {
           val: '#65004D',
           'brand-dark': { label: 'Fuchsia 01', value: '#65004D' },
           'brand-light': { label: 'Fuchsia 04', value: '#F0E6ED' },
@@ -150,9 +151,9 @@ function initDocs() {
           'visited-link-colour': { label: '', value: '#983379' },
           'hover-background-colour': { label: '', value: 'rgba(101, 0, 77, 0.1)' },
           'active-background-colour': { label: '', value: 'rgba(101, 0, 77, 0.2)' },
-          focus: { label: '', value: '#9D00B4' }
+          focus: { label: '', value: '#9D00B4' },
         },
-        red: {
+        'Red 01': {
           val: '#630019',
           'brand-dark': { label: 'Red 01', value: '#630019' },
           'brand-light': { label: 'Red 04', value: '#FFE6EA' },
@@ -162,9 +163,9 @@ function initDocs() {
           'visited-link-colour': { label: '', value: '#9C3D1B' },
           'hover-background-colour': { label: '', value: 'rgba(99, 0, 25, 0.1)' },
           'active-background-colour': { label: '', value: 'rgba(99, 0, 25, 0.2)' },
-          focus: { label: '', value: '#B2006E' }
+          focus: { label: '', value: '#B2006E' },
         },
-        orange: {
+        'Orange 01': {
           val: '#941B00',
           'brand-dark': { label: 'Orange 01', value: '#941B00' },
           'brand-light': { label: 'Orange 04', value: '#FDEDDF' },
@@ -174,9 +175,9 @@ function initDocs() {
           'visited-link-colour': { label: '', value: '#7D4D27' },
           'hover-background-colour': { label: '', value: 'rgba(148, 27, 0, 0.1)' },
           'active-background-colour': { label: '', value: 'rgba(148, 27, 0, 0.2)' },
-          focus: { label: '', value: '#E3002A' }
+          focus: { label: '', value: '#E3002A' },
         },
-        brown: {
+        'Brown 01': {
           val: '#523719',
           'brand-dark': { label: 'Brown 01', value: '#523719' },
           'brand-light': { label: 'Brown 04', value: '#EDE3D7' },
@@ -186,9 +187,9 @@ function initDocs() {
           'visited-link-colour': { label: '', value: '#914132' },
           'hover-background-colour': { label: '', value: 'rgba(82, 55, 25, 0.1)' },
           'active-background-colour': { label: '', value: 'rgba(82, 55, 25, 0.2)' },
-          focus: { label: '', value: '#8F3B2B' }
+          focus: { label: '', value: '#8F3B2B' },
         },
-        yellow: {
+        'Yellow 01': {
           val: '#694800',
           'brand-dark': { label: 'Yellow 01', value: '#694800' },
           'brand-light': { label: 'Yellow 04', value: '#FFF4CF' },
@@ -198,9 +199,9 @@ function initDocs() {
           'visited-link-colour': { label: '', value: '#5B5A16' },
           'hover-background-colour': { label: '', value: 'rgba(105, 72, 0, 0.1)' },
           'active-background-colour': { label: '', value: 'rgba(105, 72, 0, 0.2)' },
-          focus: { label: '', value: '#B83B00' }
+          focus: { label: '', value: '#B83B00' },
         },
-        green: {
+        'Green 01': {
           val: '#004000',
           'brand-dark': { label: 'Green 01', value: '#004000' },
           'brand-light': { label: 'Green 04', value: '#DBFADF' },
@@ -210,9 +211,9 @@ function initDocs() {
           'visited-link-colour': { label: '', value: '#016740' },
           'hover-background-colour': { label: '', value: 'rgba(0, 64, 0, 0.1)' },
           'active-background-colour': { label: '', value: 'rgba(0, 64, 0, 0.2)' },
-          focus: { label: '', value: '#348F00' }
+          focus: { label: '', value: '#348F00' },
         },
-        teal: {
+        'Teal 01': {
           val: '#0B3F47',
           'brand-dark': { label: 'Teal 01', value: '#0B3F47' },
           'brand-light': { label: 'Teal 04', value: '#D1EEEA' },
@@ -222,12 +223,12 @@ function initDocs() {
           'visited-link-colour': { label: '', value: '#265E76' },
           'hover-background-colour': { label: '', value: 'rgba(11, 63, 71, 0.1)' },
           'active-background-colour': { label: '', value: 'rgba(11, 63, 71, 0.2)' },
-          focus: { label: '', value: '#168B70' }
-        }
+          focus: { label: '', value: '#168B70' },
+        },
       },
-      'aboriginal': {
+      aboriginal: {
         label: 'Aboriginal Palette',
-        red: {
+        'Earth-Red': {
           val: '#950906',
           'brand-dark': { label: 'Earth Red', value: '#950906' },
           'brand-light': { label: 'Galah Pink', value: '#FDD9D9' },
@@ -237,9 +238,9 @@ function initDocs() {
           'visited-link-colour': { label: 'Bush Plum', value: '#472642' },
           'hover-background-colour': { label: 'Earth Red', value: 'rgba(149, 9, 6, 0.1)' },
           'active-background-colour': { label: 'Earth Red', value: 'rgba(149, 9, 6, 0.2)' },
-          focus: { label: 'Ember Red', value: '#E1261C' }
+          focus: { label: 'Ember Red', value: '#E1261C' },
         },
-        orange: {
+        'Deep Orange': {
           val: '#882600',
           'brand-dark': { label: 'Deep Orange', value: '#882600' },
           'brand-light': { label: 'Sunset Orange', value: '#F9D4BE' },
@@ -249,9 +250,9 @@ function initDocs() {
           'visited-link-colour': { label: 'Bush Plum', value: '#472642' },
           'hover-background-colour': { label: 'Deep Orange', value: 'rgba(136, 38, 0, 0.1)' },
           'active-background-colour': { label: 'Deep Orange', value: 'rgba(136, 38, 0, 0.2)' },
-          focus: { label: 'Orange Ochre', value: '#EE6314' }
+          focus: { label: 'Orange Ochre', value: '#EE6314' },
         },
-        brown: {
+        'Riverbed Brown': {
           val: '#552105',
           'brand-dark': { label: 'Riverbed Brown', value: '#552105' },
           'brand-light': { label: 'Macadamia Brown', value: '#E9C8B2' },
@@ -261,9 +262,9 @@ function initDocs() {
           'visited-link-colour': { label: 'Spirit Lilac', value: '#9A5E93' },
           'hover-background-colour': { label: 'Riverbed Brown', value: 'rgba(85, 33, 5, 0.1)' },
           'active-background-colour': { label: 'Riverbed Brown', value: 'rgba(85, 33, 5, 0.2)' },
-          focus: { label: 'Firewood Brown', value: '#9E5332' }
+          focus: { label: 'Firewood Brown', value: '#9E5332' },
         },
-        yellow: {
+        'Bush Honey Yellow': {
           val: '#895E00',
           'brand-dark': { label: 'Bush Honey Yellow', value: '#895E00' },
           'brand-light': { label: 'Sunbeam Yellow', value: '#FFF1C5' },
@@ -273,9 +274,9 @@ function initDocs() {
           'visited-link-colour': { label: 'Bush Plum', value: '#472642' },
           'hover-background-colour': { label: 'Bush Honey Yellow', value: 'rgba(105, 72, 0, 0.1)' },
           'active-background-colour': { label: 'Bush Honey Yellow', value: 'rgba(105, 72, 0, 0.2)' },
-          focus: { label: 'Saltwater Blue', value: '#0D6791' }
+          focus: { label: 'Saltwater Blue', value: '#0D6791' },
         },
-        green: {
+        'Bushland Green': {
           val: '#215834',
           'brand-dark': { label: 'Bushland Green', value: '#215834' },
           'brand-light': { label: 'Saltbush Green', value: '#DAE6D1' },
@@ -285,9 +286,9 @@ function initDocs() {
           'visited-link-colour': { label: 'Bush Plum', value: '#472642' },
           'hover-background-colour': { label: 'Bushland Green', value: 'rgba(33, 88, 52, 0.1)' },
           'active-background-colour': { label: 'Bushland Green', value: 'rgba(33, 88, 52, 0.2)' },
-          focus: { label: 'Marshland Lime', value: '#78A146' }
+          focus: { label: 'Marshland Lime', value: '#78A146' },
         },
-        blue: {
+        'Billabong Blue': {
           val: '#162953',
           'brand-dark': { label: 'Billabong Blue', value: '#00405E' },
           'brand-light': { label: 'Coastal Blue', value: '#C1E2E8' },
@@ -297,9 +298,9 @@ function initDocs() {
           'visited-link-colour': { label: 'Spirit Lilac', value: '#9A5E93' },
           'hover-background-colour': { label: 'Billabong Blue', value: 'rgba(0, 64, 94, 0.1)' },
           'active-background-colour': { label: 'Billabong Blue', value: 'rgba(0, 64, 94, 0.2)' },
-          focus: { label: 'Saltwater Blue', value: '#0D6791' }
+          focus: { label: 'Saltwater Blue', value: '#0D6791' },
         },
-        purple: {
+        'Bush Plum': {
           val: '#472642',
           'brand-dark': { label: 'Bush Plum', value: '#472642' },
           'brand-light': { label: 'Dusk Purple', value: '#E4CCE0' },
@@ -309,9 +310,9 @@ function initDocs() {
           'visited-link-colour': { label: 'Spirit Lilac', value: '#9A5E93' },
           'hover-background-colour': { label: 'Bush Plum', value: 'rgba(71, 38, 66, 0.1)' },
           'active-background-colour': { label: 'Bush Plum', value: 'rgba(71, 38, 66, 0.2)' },
-          focus: { label: 'Orange Ochre', value: '#EE6314' }
+          focus: { label: 'Orange Ochre', value: '#EE6314' },
         },
-        grey: {
+        'Charcoal Grey': {
           val: '#2D2D2D',
           'brand-dark': { label: 'Charcoal Grey', value: '#272727' },
           'brand-light': { label: 'Smoke Grey', value: '#E5E3E0' },
@@ -321,14 +322,14 @@ function initDocs() {
           'visited-link-colour': { label: 'Bush Plum', value: '#472642' },
           'hover-background-colour': { label: 'Charcoal Grey', value: 'rgba(39, 39, 39, 0.1)' },
           'active-background-colour': { label: 'Charcoal Grey', value: 'rgba(39, 39, 39, 0.2)' },
-          focus: { label: 'Sandstone Yellow', value: '#FEA927' }
-        }
-      }
-    }
-  };
+          focus: { label: 'Sandstone Yellow', value: '#FEA927' },
+        },
+      },
+    },
+  }
 
-   // Partial theming (accent-only, updates brand-accent without affecting others)
-   const accentConfig = {
+  // Partial theming (accent-only, updates brand-accent without affecting others)
+  const accentConfig = {
     variables: {
       'brand-accent': '--nsw-brand-accent',
     },
@@ -355,29 +356,29 @@ function initDocs() {
         grey: { val: '#555555', 'brand-accent': '#555555' },
       },
     },
-  };
+  }
 
   // Initialise Color Swatches for full-page and content-only pages
   document.querySelectorAll('.js-color-swatches').forEach((element) => {
-    new ColorSwatches(element, colorConfig).init();
-  });
+    new ColorSwatches(element, colorConfig).init()
+  })
 
   // Initialise Color Swatches for partial re-theming (only updates brand-accent)
   document.querySelectorAll('.js-color-swatch[data-mode="accent-only"]').forEach((element) => {
-    new ColorSwatches(element, accentConfig).init();
-  });
+    new ColorSwatches(element, accentConfig).init()
+  })
 }
 
-initDocs();
+initDocs()
 
 // Show icons when Material Icons font is ready
 function handleIconsReady() {
-  document.documentElement.classList.remove('material-icons-loading');
-  document.documentElement.classList.add('material-icons-loaded');
+  document.documentElement.classList.remove('material-icons-loading')
+  document.documentElement.classList.add('material-icons-loaded')
 }
 
 if (document.fonts && document.fonts.ready) {
-  document.fonts.ready.then(handleIconsReady);
+  document.fonts.ready.then(handleIconsReady)
 } else {
-  window.addEventListener('load', handleIconsReady);
+  window.addEventListener('load', handleIconsReady)
 }
