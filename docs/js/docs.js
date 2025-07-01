@@ -741,19 +741,19 @@
     }
   }
 
+  /* eslint-disable max-len */
   class ColorSwatches {
     constructor(element, config) {
       this.element = element;
       this.variables = config.variables;
       this.palettes = config.palettes;
       this.dataTable = document.querySelector('.js-color-swatches__content');
-
-      // Determine target scope (full-page vs content-only)
       this.targetSelector = this.element.dataset.target || ':root';
       this.targetElement = document.querySelector(this.targetSelector);
-      this.currentPalette = Object.keys(this.palettes)[0]; // Default: first palette
-      this.currentColor = Object.keys(this.palettes[this.currentPalette]).filter(key => key !== 'label')[0]; // Default: first color
-
+      const [firstPalette] = Object.keys(this.palettes);
+      const [firstColor] = Object.keys(this.palettes[firstPalette]).filter(key => key !== 'label');
+      this.currentPalette = firstPalette;
+      this.currentColor = firstColor;
       this.legend = this.element.querySelector('.js-color-swatches__color'); // Title element
       this.swatchList = null; // Swatch list container
 
@@ -777,7 +777,7 @@
 
     // Creates palette selector (dropdown)
     createPaletteSelector() {
-      let existingPaletteSelect = this.element.querySelector('.js-palette-selector');
+      const existingPaletteSelect = this.element.querySelector('.js-palette-selector');
       if (existingPaletteSelect) return existingPaletteSelect;
       const paletteSelect = document.createElement('select');
       paletteSelect.classList.add('js-palette-selector', 'nsw-form__select', 'nsw-color-swatches__palette-selector');
@@ -786,7 +786,7 @@
         option.value = palette;
         // Use label from palette data if available
         const paletteMeta = this.palettes[palette];
-        option.textContent = paletteMeta.label || this.formatLabel(palette);
+        option.textContent = paletteMeta.label || this.constructor.formatLabel(palette);
         paletteSelect.appendChild(option);
       });
       return paletteSelect;
@@ -798,7 +798,7 @@
         this.swatchList = document.createElement('ul');
         this.swatchList.classList.add('nsw-color-swatches__list', 'js-color-swatches__list');
         this.swatchList.setAttribute('role', 'radiogroup');
-        this.swatchList.setAttribute('aria-labelledby', this.legend?.id || 'color-swatches-title');
+        this.swatchList.setAttribute('aria-labelledby', this.legend && this.legend.id ? this.legend.id : 'color-swatches-title');
         this.element.appendChild(this.swatchList);
       } else {
         this.swatchList.innerHTML = ''; // Clear previous colors
@@ -813,7 +813,7 @@
         swatchItem.setAttribute('tabindex', index === 0 ? '0' : '-1');
         swatchItem.innerHTML = `
         <span class="nsw-color-swatches__option" tabindex="0">
-          <span class="sr-only js-color-swatch__label">${this.formatLabel(colorKey)}</span>
+          <span class="sr-only js-color-swatch__label">${this.constructor.formatLabel(colorKey)}</span>
           <span aria-hidden="true" style="background-color: ${colorData.val};" class="nsw-color-swatches__swatch"></span>
         </span>
       `;
@@ -827,7 +827,8 @@
       // Palette selection event
       this.paletteSelect.addEventListener('change', e => {
         this.currentPalette = e.target.value;
-        this.currentColor = Object.keys(this.palettes[this.currentPalette]).filter(key => key !== 'label')[0]; // Reset to first color
+        const [firstColor] = Object.keys(this.palettes[this.currentPalette]).filter(key => key !== 'label');
+        this.currentColor = firstColor; // Reset to first color
         this.createColorSwatches();
         this.updateURL();
         this.updateCSSVariables();
@@ -886,8 +887,8 @@
       // Apply changes to correct scope (content-only or full-page)
       Object.keys(this.variables).forEach(key => {
         // unwrap label/value objects if present
-        let entry = selectedColors[key];
-        let colorValue = entry && typeof entry === 'object' && entry.value ? entry.value : entry;
+        const entry = selectedColors[key];
+        const colorValue = entry && typeof entry === 'object' && entry.value ? entry.value : entry;
         this.targetElement.style.setProperty(this.variables[key], colorValue);
       });
     }
@@ -898,14 +899,14 @@
       const selectedColors = this.palettes[this.currentPalette][this.currentColor];
       this.dataTable.innerHTML = Object.keys(this.variables).map(key => {
         // unwrap label/value objects if present
-        let entry = selectedColors[key];
-        let colorValue = entry && typeof entry === 'object' && entry.value ? entry.value : entry;
-        let colorLabel = entry && typeof entry === 'object' && entry.label ? entry.label : '';
+        const entry = selectedColors[key];
+        const colorValue = entry && typeof entry === 'object' && entry.value ? entry.value : entry;
+        const colorLabel = entry && typeof entry === 'object' && entry.label ? entry.label : '';
         return `
           <tr class="nsw-color-swatches__data">
             <td><div class="nsw-docs__swatch" style="background-color: var(${this.variables[key]})"></div></td>
-            <td><p>${this.formatLabel(key)}</p></td>
-            <td><p><code>${colorValue}</code>${colorLabel && "<br><p class='nsw-small nsw-m-top-xs nsw-m-bottom-xxs'>" + colorLabel}</p></td>
+            <td><p>${this.constructor.formatLabel(key)}</p></td>
+            <td><p><code>${colorValue}</code>${colorLabel && `<br><p class='nsw-small nsw-m-top-xs nsw-m-bottom-xxs'>${colorLabel}`}</p></td>
             <td><p><code>${this.variables[key]}</code></p></td>
           </tr>`;
       }).join('');
@@ -914,13 +915,13 @@
     // Updates legend (title)
     updateLegend() {
       if (this.legend) {
-        this.legend.textContent = this.formatLabel(this.currentColor);
+        this.legend.textContent = this.constructor.formatLabel(this.currentColor);
         this.legend.setAttribute('aria-live', 'polite');
       }
     }
 
     // Formats labels
-    formatLabel(text) {
+    static formatLabel(text) {
       return text.replace(/-/g, ' ').replace(/\b\w/g, char => char.toUpperCase());
     }
 
@@ -933,7 +934,9 @@
       this.currentPalette = paletteFromURL;
       const colors = Object.keys(this.palettes[this.currentPalette]).filter(key => key !== 'label');
       this.currentColor = colorFromURL && colors.includes(colorFromURL) ? colorFromURL : colors[0];
-      this.paletteSelect && (this.paletteSelect.value = this.currentPalette);
+      if (this.paletteSelect) {
+        this.paletteSelect.value = this.currentPalette;
+      }
       this.createColorSwatches();
       const selectedSwatch = this.swatchList.querySelector(`[data-color="${this.currentColor}"]`);
       if (selectedSwatch) this.updateSelectedSwatch(selectedSwatch);
@@ -977,7 +980,7 @@
       const text = button.querySelector('span');
       const script = code.querySelector('script');
       script.remove();
-      button.addEventListener('click', event => {
+      button.addEventListener('click', () => {
         const elem = document.createElement('textarea');
         elem.value = code.innerHTML.replace(/&lt;/g, '<').replace(/&gt;/g, '>');
         document.body.appendChild(elem);
@@ -1039,12 +1042,12 @@
         'visited-link-colour': '--nsw-visited',
         'hover-background-colour': '--nsw-hover',
         'active-background-colour': '--nsw-active',
-        'focus': '--nsw-focus'
+        focus: '--nsw-focus'
       },
       palettes: {
-        'default': {
+        default: {
           label: 'Default Palette',
-          blue: {
+          'Blue 01': {
             val: '#002664',
             'brand-dark': {
               label: 'Blue 01',
@@ -1083,7 +1086,7 @@
               value: '#0086B3'
             }
           },
-          purple: {
+          'Purple 01': {
             val: '#441170',
             'brand-dark': {
               label: 'Purple 01',
@@ -1122,7 +1125,7 @@
               value: '#351BB5'
             }
           },
-          fuchsia: {
+          'Fuchsia 01': {
             val: '#65004D',
             'brand-dark': {
               label: 'Fuchsia 01',
@@ -1161,7 +1164,7 @@
               value: '#9D00B4'
             }
           },
-          red: {
+          'Red 01': {
             val: '#630019',
             'brand-dark': {
               label: 'Red 01',
@@ -1200,7 +1203,7 @@
               value: '#B2006E'
             }
           },
-          orange: {
+          'Orange 01': {
             val: '#941B00',
             'brand-dark': {
               label: 'Orange 01',
@@ -1239,7 +1242,7 @@
               value: '#E3002A'
             }
           },
-          brown: {
+          'Brown 01': {
             val: '#523719',
             'brand-dark': {
               label: 'Brown 01',
@@ -1278,7 +1281,7 @@
               value: '#8F3B2B'
             }
           },
-          yellow: {
+          'Yellow 01': {
             val: '#694800',
             'brand-dark': {
               label: 'Yellow 01',
@@ -1317,7 +1320,7 @@
               value: '#B83B00'
             }
           },
-          green: {
+          'Green 01': {
             val: '#004000',
             'brand-dark': {
               label: 'Green 01',
@@ -1356,7 +1359,7 @@
               value: '#348F00'
             }
           },
-          teal: {
+          'Teal 01': {
             val: '#0B3F47',
             'brand-dark': {
               label: 'Teal 01',
@@ -1396,9 +1399,9 @@
             }
           }
         },
-        'aboriginal': {
+        aboriginal: {
           label: 'Aboriginal Palette',
-          red: {
+          'Earth-Red': {
             val: '#950906',
             'brand-dark': {
               label: 'Earth Red',
@@ -1437,7 +1440,7 @@
               value: '#E1261C'
             }
           },
-          orange: {
+          'Deep Orange': {
             val: '#882600',
             'brand-dark': {
               label: 'Deep Orange',
@@ -1476,7 +1479,7 @@
               value: '#EE6314'
             }
           },
-          brown: {
+          'Riverbed Brown': {
             val: '#552105',
             'brand-dark': {
               label: 'Riverbed Brown',
@@ -1515,7 +1518,7 @@
               value: '#9E5332'
             }
           },
-          yellow: {
+          'Bush Honey Yellow': {
             val: '#895E00',
             'brand-dark': {
               label: 'Bush Honey Yellow',
@@ -1554,7 +1557,7 @@
               value: '#0D6791'
             }
           },
-          green: {
+          'Bushland Green': {
             val: '#215834',
             'brand-dark': {
               label: 'Bushland Green',
@@ -1593,7 +1596,7 @@
               value: '#78A146'
             }
           },
-          blue: {
+          'Billabong Blue': {
             val: '#162953',
             'brand-dark': {
               label: 'Billabong Blue',
@@ -1632,7 +1635,7 @@
               value: '#0D6791'
             }
           },
-          purple: {
+          'Bush Plum': {
             val: '#472642',
             'brand-dark': {
               label: 'Bush Plum',
@@ -1671,7 +1674,7 @@
               value: '#EE6314'
             }
           },
-          grey: {
+          'Charcoal Grey': {
             val: '#2D2D2D',
             'brand-dark': {
               label: 'Charcoal Grey',

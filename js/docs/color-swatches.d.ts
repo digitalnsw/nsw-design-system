@@ -1,5 +1,6 @@
 export default ColorSwatches;
 declare class ColorSwatches {
+    static formatLabel(text: any): any;
     constructor(element: any, config: any);
     element: any;
     variables: any;
@@ -20,7 +21,6 @@ declare class ColorSwatches {
     updateCSSVariables(): void;
     updateColorData(): void;
     updateLegend(): void;
-    formatLabel(text: any): any;
     setPaletteFromURL(): void;
     updateURL(): void;
 }
