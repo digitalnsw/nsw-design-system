@@ -1723,74 +1723,74 @@
         'brand-accent': '--nsw-brand-accent'
       },
       palettes: {
-        'nsw-government-palette': {
-          blue: {
+        'Default Palette': {
+          'Blue 02': {
             val: '#146CFD',
             'brand-accent': '#146CFD'
           },
-          purple: {
+          'Purple 02': {
             val: '#8055F1',
             'brand-accent': '#8055F1'
           },
-          fuchsia: {
+          'Fuchsia 02': {
             val: '#D912AE',
             'brand-accent': '#D912AE'
           },
-          red: {
+          'Red 02': {
             val: '#D7153A',
             'brand-accent': '#D7153A'
           },
-          orange: {
+          'Orange 02': {
             val: '#F3631B',
             'brand-accent': '#F3631B'
           },
-          brown: {
+          'Brown 02': {
             val: '#B68D5D',
             'brand-accent': '#B68D5D'
           },
-          yellow: {
+          'Yellow 02': {
             val: '#FAAF05',
             'brand-accent': '#FAAF05'
           },
-          green: {
+          'Green 02': {
             val: '#00AA45',
             'brand-accent': '#00AA45'
           },
-          teal: {
+          'Teal 02': {
             val: '#2E808E',
             'brand-accent': '#2E808E'
           }
         },
-        'aboriginal-palette': {
-          red: {
+        'Aboriginal Palette': {
+          'Ember Red': {
             val: '#E1261C',
             'brand-accent': '#E1261C'
           },
-          orange: {
+          'Orange Ochre': {
             val: '#EE6314',
             'brand-accent': '#EE6314'
           },
-          yellow: {
-            val: '#FAAF05',
-            'brand-accent': '#FAAF05'
-          },
-          green: {
-            val: '#4C8046',
-            'brand-accent': '#4C8046'
-          },
-          blue: {
-            val: '#1E88E5',
-            'brand-accent': '#1E88E5'
-          },
-          purple: {
-            val: '#6A1B9A',
-            'brand-accent': '#6A1B9A'
-          },
-          brown: {
+          'Firewood Brown': {
             val: '#9E5332',
             'brand-accent': '#9E5332'
           },
-          grey: {
+          'Sandstone Yellow': {
+            val: '#FEA927',
+            'brand-accent': '#FEA927'
+          },
+          'Marshland Lime': {
+            val: '#78A146',
+            'brand-accent': '#78A146'
+          },
+          'Saltwater Blue': {
+            val: '#0D6791',
+            'brand-accent': '#0D6791'
+          },
+          'Spirit Lilac': {
+            val: '#9A5E93',
+            'brand-accent': '#9A5E93'
+          },
+          'Emu Grey': {
             val: '#555555',
             'brand-accent': '#555555'
           }
