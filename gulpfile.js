@@ -36,6 +36,8 @@ const { argv } = require('yargs')
 const bump = require('gulp-bump')
 const config = require('./config')
 const package = require('./package')
+const Handlebars = require('handlebars')
+const handlebarsHelpers = require('handlebars-helpers')
 
 const server = browsersync.create()
 
@@ -44,6 +46,9 @@ const postcssProcessors = [
   autoprefixer({ grid: true }),
   cssnano,
 ]
+
+// Register all helpers globally on the Handlebars instance
+handlebarsHelpers({ handlebars: Handlebars })
 
 function moveImages() {
   return src(config.images.src)
@@ -160,7 +165,10 @@ function metalsmithBuild(callback) {
   metalsmith.destination(config.metalSmith.build)
   metalsmith.use(ignore(config.metalSmith.ignoreFiles))
   metalsmith.clean(false)
-  metalsmith.use(discoverHelpers(config.metalSmith.helpers))
+  metalsmith.use(discoverHelpers({
+    ...config.metalSmith.helpers,
+    handlebars: Handlebars
+  }))
   metalsmith.use(discoverPartials(config.metalSmith.partials))
   metalsmith.use(dataLoader(config.metalSmith.data))
   metalsmith.use(collections({
@@ -364,7 +372,7 @@ function renamePathForProd() {
 
 function addAnalytics() {
   return src(`${config.dir.build}/**/*.html`)
-  .pipe(inject.after('<head>', `<script data-category="analytics">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    .pipe(inject.after('<head>', `<script data-category="analytics">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
@@ -379,7 +387,7 @@ function addAnalytics() {
   gtag('config', 'G-49T9M12F86');
 </script>
   `))
-.pipe(inject.after('<body>', `<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P2NKBBJZ"
+    .pipe(inject.after('<body>', `<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P2NKBBJZ"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     `))
     .pipe(dest(config.dir.build))
