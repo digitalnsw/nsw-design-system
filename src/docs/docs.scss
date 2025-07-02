@@ -32,6 +32,62 @@ $header-height: 151px;
   }
 }
 
+.nsw-theme-grid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  background: #f0f0f0;
+
+  @include mixins.breakpoint(settings.$nsw-desktop-breakpoint) {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 2rem;
+  }
+
+  &-container,
+  &-side-stack {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.25rem;
+    width: 100%;
+
+    @include mixins.breakpoint(settings.$nsw-desktop-breakpoint) {
+      grid-auto-flow: column;
+      grid-template-rows: repeat(4, auto);
+      grid-auto-columns: 80px;
+      gap: 0;
+      /* overflow-x: auto; */
+      width: auto;
+      max-width: 100%;
+    }
+  }
+
+  &-swatch {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 10px;
+    font-weight: 500;
+    padding: 0.25rem;
+    box-sizing: border-box;
+    text-align: left;
+    height: 80px;
+
+    @include mixins.breakpoint(settings.$nsw-desktop-breakpoint) {
+      height: 120px;
+      width: 80px;
+      font-size: 12px;
+      padding: 0.5rem;
+    }
+
+    span {
+      line-height: 1.2;
+    }
+  }
+}
+
 .nsw-docs {
   :not(pre) code {
     padding: functions.rem(3px);
