@@ -4,6 +4,7 @@ width: narrow
 no-blank: true
 order: 40
 meta-description: The NSW Design System theming framework for how colours are used and inherited to ensure a consistent and accessible user experience.
+model: ../../../core/colour/json/palettes.json
 meta-index: true
 ---
 
@@ -33,146 +34,24 @@ meta-index: true
 <h2 id="palette">NSW Government colour palette</h2>
 <p>The default NSW Government colour palette has been developed to accommodate the wide range of expression required by our brand. The palette contains 10 colours sets (columns), each with four different tones, plus white.</p>
 <p>Black and off-white have been added to the digital palette to allow for greater contrast to be applied.</p>
-<br>
-<div class="nsw-palette nsw-grid nsw-m-left-xs nsw-m-top-sm"
-     style="font-size:var(--nsw-font-size-xxs-desktop);">
-  <div style="background: var(--nsw-palette-grey-01);">
-    Grey 01<br/><br/><br/><br/>#22272B
-  </div>
-  <div style="background: var(--nsw-palette-green-01);">
-    Green 01<br/><br/><br/><br/>#004000
-  </div>
-  <div style="background: var(--nsw-palette-teal-01);">
-    Teal 01<br/><br/><br/><br/>#0B3F47
-  </div>
-  <div style="background: var(--nsw-palette-blue-01);">
-    Blue 01<br/><br/><br/><br/>#002664
-  </div>
-  <div style="background: var(--nsw-palette-purple-01);">
-    Purple 01<br/><br/><br/><br/>#441170
-  </div>
-  <div style="background: var(--nsw-palette-fuchsia-01);">
-    Fuchsia 01<br/><br/><br/>#65004D
-  </div>
-  <div style="background: var(--nsw-palette-red-01);">
-    Red 01<br/><br/><br/><br/>#630019
-  </div>
-  <div style="background: var(--nsw-palette-orange-01);">
-    Orange 01<br/><br/><br/><br/>#941B00
-  </div>
-  <div style="background: var(--nsw-palette-yellow-01);">
-    Yellow 01<br/><br/><br/><br/>#694800
-  </div>
-  <div style="background: var(--nsw-palette-brown-01);">
-    Brown 01<br/><br/><br/><br/>#523719
-  </div>
-  <div></div>
-  <div style="background: var(--nsw-palette-black);">
-    Black<br/><br/>#000000
-  </div>
 
-  <div style="background:var(--nsw-palette-grey-02);">
-    Grey 02<br/><br/><br/><br/>#495054
+<div class="nsw-theme-grid nsw-m-top-lg">
+  <div class="nsw-theme-grid-container">
+    {{#each model.palettes}}
+      <div class="nsw-theme-grid-swatch" style="background-color: {{this}}; color: {{getTextColor this}};">
+        <span>{{titleize (join (split @key "-") " ")}}</span>
+        <span>{{upcase this}}</span>
+      </div>
+    {{/each}}
   </div>
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-green-02);">
-    Green 02<br/><br/><br/><br/>#00AA45
+  <div class="nsw-theme-grid-side-stack">
+    {{#each model.neutral}}
+      <div class="nsw-theme-grid-swatch" style="background-color: {{this}}; color: {{getTextColor this}};">
+        <span>{{titleize (join (split @key "-") " ")}}</span>
+        <span>{{upcase this}}</span>
+      </div>
+    {{/each}}
   </div>
-  <div style="background:var(--nsw-palette-teal-02);">
-    Teal 02<br/><br/><br/><br/>#2E808E
-  </div>
-  <div style="background:var(--nsw-palette-blue-02);">
-    Blue 02<br/><br/><br/><br/>#146CFD
-  </div>
-  <div style="background:var(--nsw-palette-purple-02);">
-    Purple 02<br/><br/><br/><br/>#8055F1
-  </div>
-  <div style="background:var(--nsw-palette-fuchsia-02);">
-    Fuchsia 02<br/><br/><br/>#D912AE
-  </div>
-  <div style="background:var(--nsw-palette-red-02);">
-    Red 02<br/><br/><br/><br/>#D7153A
-  </div>
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-orange-02);">
-    Orange 02<br/><br/><br/>#F3631B
-  </div>
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-yellow-02);">
-    Yellow 02<br/><br/><br/><br/>#FAAF05
-  </div>
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-brown-02);">
-    Brown 02<br/><br/><br/><br/>#B68D5D
-  </div>
-  <div></div>
-  <div class="nsw-text--dark" style="background: var(--nsw-palette-white);">
-    White<br/><br/>#FFFFFF
-  </div>
-
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-grey-03);">
-    Grey 03<br/><br/><br/><br/>#CDD3D6
-  </div>
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-green-03);">
-    Green 03<br/><br/><br/><br/>#A8EDB3
-  </div>
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-teal-03);">
-    Teal 03<br/><br/><br/><br/>#8CDBE5
-  </div>
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-blue-03);">
-    Blue 03<br/><br/><br/><br/>#8CE0FF
-  </div>
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-purple-03);">
-    Purple 03<br/><br/><br/><br/>#CEBFFF
-  </div>
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-fuchsia-03);">
-    Fuchsia 03<br/><br/><br/>#F4B5E6
-  </div>
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-red-03);">
-    Red 03<br/><br/><br/><br/>#FFB8C1
-  </div>
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-orange-03);">
-    Orange 03<br/><br/><br/>#FFCE99
-  </div>
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-yellow-03);">
-    Yellow 03<br/><br/><br/><br/>#FDE79A
-  </div>
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-brown-03);">
-    Brown 03<br/><br/><br/><br/>#E8D0B5
-  </div>
-  <div></div>
-  <div class="nsw-text--dark" style="background: var(--nsw-palette-off-white); border: 1px #CDD3D6 solid">
-    Off-white<br/><br/>#F2F2F2
-  </div>
-
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-grey-04);">
-    Grey 04<br/><br/><br/><br/>#EBEBEB
-  </div>
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-green-04);">
-    Green 04<br/><br/><br/><br/>#DBFADF
-  </div>
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-teal-04);">
-    Teal 04<br/><br/><br/><br/>#D1EEEA
-  </div>
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-blue-04);">
-    Blue 04<br/><br/><br/><br/>#CBEDFD
-  </div>
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-purple-04);">
-    Purple 04<br/><br/><br/><br/>#E6E1FD
-  </div>
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-fuchsia-04);">
-    Fuchsia 04<br/><br/><br/>#FDDEF2
-  </div>
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-red-04);">
-    Red 04<br/><br/><br/><br/>#FFE6EA
-  </div>
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-orange-04);">
-    Orange 04<br/><br/><br/>#FDEDDF
-  </div>
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-yellow-04);">
-    Yellow 04<br/><br/><br/><br/>#FFF4CF
-  </div>
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-brown-04);">
-    Brown 04<br/><br/><br/><br/>#EDE3D7
-  </div>
-  <div></div>
-  <div></div>
 </div>
 
 <h2 id="aboriginal-palette">NSW Government Aboriginal colour palette</h2>
@@ -180,140 +59,24 @@ meta-index: true
 <p>Black, white and off-white are also included to enhance contrast and readability in digital and print formats.</p>
 <p>Use this palette on its own to ensure authenticity and cultural respect.</p>
 <p>Visit the <a href="https://branding.nsw.gov.au/guidelines/aboriginal-branding" target="_blank" rel="noopener">Brand Toolbox – Aboriginal Branding Guidelines</a> for more information.</p>
-<br>
-<div class="nsw-palette nsw-grid nsw-m-left-xs nsw-m-top-sm">
 
-  <!-- Row 1 -->
-  <div style="background: var(--nsw-aboriginal-palette-earth-red);">
-    Earth<br/>Red<br/><br/><br/>#950906
+<div class="nsw-theme-grid nsw-m-top-lg">
+  <div class="nsw-theme-grid-container">
+    {{#each model.aboriginal}}
+      <div class="nsw-theme-grid-swatch" style="background-color: {{this}}; color: {{getTextColor this}};">
+        <span>{{titleize (join (split @key "-") " ")}}</span>
+        <span>{{upcase this}}</span>
+      </div>
+    {{/each}}
   </div>
-  <div style="background: var(--nsw-aboriginal-palette-deep-orange);">
-    Deep Orange<br/><br/><br/>#882600
+  <div class="nsw-theme-grid-side-stack">
+    {{#each model.neutral}}
+      <div class="nsw-theme-grid-swatch" style="background-color: {{this}}; color: {{getTextColor this}};">
+        <span>{{titleize (join (split @key "-") " ")}}</span>
+        <span>{{upcase this}}</span>
+      </div>
+    {{/each}}
   </div>
-  <div style="background: var(--nsw-aboriginal-palette-riverbed-brown);">
-    Riverbed Brown<br/><br/><br/>#552105
-  </div>
-  <div style="background: var(--nsw-aboriginal-palette-bush-honey-yellow);">
-    Bush Honey Yellow<br/><br/>#694800
-  </div>
-  <div style="background: var(--nsw-aboriginal-palette-bushland-green);">
-    Bushland Green<br/><br/><br/>#215834
-  </div>
-  <div style="background: var(--nsw-aboriginal-palette-billabong-blue);">
-    Billabong Blue<br/><br/><br/>#00405E
-  </div>
-  <div style="background: var(--nsw-aboriginal-palette-bush-plum);">
-    Bush Plum<br/><br/><br/>#472642
-  </div>
-  <div style="background: var(--nsw-aboriginal-palette-charcoal-grey);">
-    Charcoal Grey<br/><br/><br/>#272727
-  </div>
-
-  <div></div>
-
-  <div style="background: var(--nsw-aboriginal-palette-black);">
-    Black<br/><br /><br /><br/>#000000
-  </div>
-  <div></div>
-  <div></div>
-
-  <!-- Row 2 -->
-  <div style="background: var(--nsw-aboriginal-palette-ember-red);">
-    Ember Red<br/><br/><br/>#E1261C
-  </div>
-  <div class="nsw-text--dark" style="background: var(--nsw-aboriginal-palette-orange-ochre);">
-    Orange Ochre<br/><br/><br/>#EE6314
-  </div>
-  <div style="background: var(--nsw-aboriginal-palette-firewood-brown);">
-    Firewood Brown<br/><br/><br/>#9E5332
-  </div>
-  <div class="nsw-text--dark" style="background: var(--nsw-aboriginal-palette-sandstone-yellow);">
-    Sandstone Yellow<br/><br/><br/>#FEA927 
-  </div>
-  <div class="nsw-text--dark" style="background: var(--nsw-aboriginal-palette-marshland-lime);">
-    Marshland Lime<br/><br/><br/>#78A146
-  </div>
-  <div style="background: var(--nsw-aboriginal-palette-saltwater-blue);">
-    Saltwater Blue<br/><br/><br/>#0D6791
-  </div>
-  <div style="background: var(--nsw-aboriginal-palette-spirit-lilac);">
-    Spirit Lilac<br/><br/><br/>#9A5E93
-  </div>
-  <div style="background: var(--nsw-aboriginal-palette-emu-grey);">
-    Emu<br/>Grey<br/><br/><br/>#555555
-  </div>
-
-  <div></div>
-
-  <div class="nsw-text--dark" style="background: var(--nsw-aboriginal-palette-white);">
-    White<br/><br/><br /><br />#FFFFFF
-  </div>
-  <div></div>
-  <div></div>
-
-  <!-- Row 3 -->
-  <div class="nsw-text--dark" style="background: var(--nsw-aboriginal-palette-coral-pink);">
-    Coral Pink<br/><br/><br/>#FBB4B3
-  </div>
-  <div class="nsw-text--dark" style="background: var(--nsw-aboriginal-palette-clay-orange);">
-    Clay Orange<br/><br/><br/>#F4AA7D
-  </div>
-  <div class="nsw-text--dark" style="background: var(--nsw-aboriginal-palette-claystone-brown);">
-    Claystone Brown<br/><br/><br/>#D39165
-  </div>
-  <div class="nsw-text--dark" style="background: var(--nsw-aboriginal-palette-golden-wattle-yellow);">
-    Golden Wattle Yellow<br/><br/>#FEE48C
-  </div>
-  <div class="nsw-text--dark" style="background: var(--nsw-aboriginal-palette-gumleaf-green);">
-    Gumleaf Green<br/><br/><br/>#B5CDA4
-  </div>
-  <div class="nsw-text--dark" style="background: var(--nsw-aboriginal-palette-light-water-blue);">
-    Light Water Blue<br/><br/>#84C5D1
-  </div>
-  <div class="nsw-text--dark" style="background: var(--nsw-aboriginal-palette-lilli-pilli-purple);">
-    Lilli Pilli Purple<br/><br/><br/>#C99AC2
-  </div>
-  <div class="nsw-text--dark" style="background: var(--nsw-aboriginal-palette-ash-grey);">
-    Ash<br/>Grey<br/><br/><br/>#CCC6C2
-  </div>
-
-  <div></div>
-
-  <div class="nsw-text--dark" style="background: var(--nsw-aboriginal-palette-off-white); border: 1px #CDD3D6 solid">
-    Off-white<br/><br /><br /><br/>#F2F2F2
-  </div>
-  <div></div>
-  <div></div>
-
-  <!-- Row 4 (50%) -->
-  <div class="nsw-text--dark" style="background: var(--nsw-aboriginal-palette-galah-pink);">
-    Galah Pink<br/><br/><br/>#FDD9D9
-  </div>
-  <div class="nsw-text--dark" style="background: var(--nsw-aboriginal-palette-sunset-orange);">
-    Sunset Orange<br/><br/><br/>#F9D4BE
-  </div>
-  <div class="nsw-text--dark" style="background: var(--nsw-aboriginal-palette-macadamia-brown);">
-    Macadamia Brown<br/><br/><br/>#E9C8B2
-  </div>
-  <div class="nsw-text--dark" style="background: var(--nsw-aboriginal-palette-sunbeam-yellow);">
-    Sunbeam Yellow<br/><br/><br/>#FFF1C5
-  </div>
-  <div class="nsw-text--dark" style="background: var(--nsw-aboriginal-palette-saltbush-green);">
-    Saltbush Green<br/><br/><br/>#DAE6D1
-  </div>
-  <div class="nsw-text--dark" style="background: var(--nsw-aboriginal-palette-coastal-blue);">
-    Coastal Blue<br/><br/><br/>#C1E2E8
-  </div>
-  <div class="nsw-text--dark" style="background: var(--nsw-aboriginal-palette-dusk-purple);">
-    Dusk Purple<br/><br/><br/>#E4CCE0
-  </div>
-  <div class="nsw-text--dark" style="background: var(--nsw-aboriginal-palette-smoke-grey);">
-    Smoke Grey<br/><br/><br/>#E5E3E0
-  </div>
-
-  <div></div>
-  <div></div>
-  <div></div>
 </div>
 
 <h3>View theming examples</h3>
