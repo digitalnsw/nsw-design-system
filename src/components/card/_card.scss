@@ -11,7 +11,6 @@
   height: 100%;
   color: var(--nsw-text-dark);
   border-radius: var(--nsw-border-radius);
-  border: 1px solid var(--nsw-grey-03);
 
   &:hover {
     color: var(--nsw-text-light);
@@ -67,6 +66,8 @@
   &__content {
     padding: functions.rem(16px) functions.rem(16px) functions.rem(62px) functions.rem(16px);
     background-color: var(--nsw-white);
+    border-radius: var(--nsw-border-radius);
+    border: 1px solid var(--nsw-grey-03);
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -171,8 +172,6 @@
   }
 
   &--light {
-    border: 1px solid var(--nsw-brand-light);
-
     &:hover {      
       .nsw-section--invert & {  
         .nsw-card__content {  
@@ -206,6 +205,7 @@
 
       .nsw-card__content {
         background-color: var(--nsw-white);
+        border-color: var(--nsw-grey-03);
       }
 
       .nsw-card__title a {
