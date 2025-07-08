@@ -1038,6 +1038,7 @@
         'brand-light': '--nsw-brand-light',
         'brand-supplementary': '--nsw-brand-supplementary',
         'brand-accent': '--nsw-brand-accent',
+        'brand-accent-light': '--nsw-brand-accent-light',
         'link-colour': '--nsw-link',
         'visited-link-colour': '--nsw-visited',
         'hover-background-colour': '--nsw-hover',
@@ -1064,6 +1065,10 @@
             'brand-accent': {
               label: 'Red 02',
               value: '#D7153A'
+            },
+            'brand-accent-light': {
+              label: 'Red 04',
+              value: '#FFE6EA'
             },
             'link-colour': {
               label: 'Blue 01',
@@ -1104,6 +1109,10 @@
               label: 'Yellow 02',
               value: '#FAAF05'
             },
+            'brand-accent-light': {
+              label: 'Yellow 04',
+              value: '#FFF4CF'
+            },
             'link-colour': {
               label: 'Purple 01',
               value: '#441170'
@@ -1142,6 +1151,10 @@
             'brand-accent': {
               label: 'Orange 02',
               value: '#F3631B'
+            },
+            'brand-accent-light': {
+              label: 'Orange 04',
+              value: '#FDEDDF'
             },
             'link-colour': {
               label: 'Fuchsia 01',
@@ -1182,6 +1195,10 @@
               label: 'Brown 02',
               value: '#B68D5D'
             },
+            'brand-accent-light': {
+              label: 'Brown 04',
+              value: '#EDE3D7'
+            },
             'link-colour': {
               label: 'Red 01',
               value: '#630019'
@@ -1220,6 +1237,10 @@
             'brand-accent': {
               label: 'Purple 02',
               value: '#8055F1'
+            },
+            'brand-accent-light': {
+              label: 'Purple 04',
+              value: '#E6E1FD'
             },
             'link-colour': {
               label: 'Orange 01',
@@ -1260,6 +1281,10 @@
               label: 'Teal 02',
               value: '#2E808E'
             },
+            'brand-accent-light': {
+              label: 'Teal 04',
+              value: '#D1EEEA'
+            },
             'link-colour': {
               label: 'Brown 01',
               value: '#523719'
@@ -1298,6 +1323,10 @@
             'brand-accent': {
               label: 'Green 02',
               value: '#00AA45'
+            },
+            'brand-accent-light': {
+              label: 'Green 04',
+              value: '#DBFADF'
             },
             'link-colour': {
               label: 'Yellow 01',
@@ -1338,6 +1367,10 @@
               label: 'Blue 02',
               value: '#146CFD'
             },
+            'brand-accent-light': {
+              label: 'Blue 04',
+              value: '#CBEDFD'
+            },
             'link-colour': {
               label: 'Green 01',
               value: '#004000'
@@ -1376,6 +1409,10 @@
             'brand-accent': {
               label: 'Fuchsia 02',
               value: '#D912AE'
+            },
+            'brand-accent-light': {
+              label: 'Fuchsia 04',
+              value: '#FDDEF2'
             },
             'link-colour': {
               label: 'Teal 01',
@@ -1419,6 +1456,10 @@
               label: 'Saltwater Blue',
               value: '#0D6791'
             },
+            'brand-accent-light': {
+              label: 'Coastal Blue',
+              value: '#C1E2E8'
+            },
             'link-colour': {
               label: 'Earth Red',
               value: '#950906'
@@ -1457,6 +1498,10 @@
             'brand-accent': {
               label: 'Saltwater Blue',
               value: '#0D6791'
+            },
+            'brand-accent-light': {
+              label: 'Coastal Blue',
+              value: '#C1E2E8'
             },
             'link-colour': {
               label: 'Deep Orange',
@@ -1497,6 +1542,10 @@
               label: 'Saltwater Blue',
               value: '#0D6791'
             },
+            'brand-accent-light': {
+              label: 'Coastal Blue',
+              value: '#C1E2E8'
+            },
             'link-colour': {
               label: 'Riverbed Brown',
               value: '#552105'
@@ -1529,12 +1578,16 @@
               value: '#FFF1C5'
             },
             'brand-supplementary': {
-              label: 'Golden Wattle Yellow',
+              label: 'Sandstone Yellow',
               value: '#FEA927'
             },
             'brand-accent': {
-              label: 'Orange Clay',
-              value: '#F4AA7D'
+              label: 'Spirit Lilac',
+              value: '#9A5E93'
+            },
+            'brand-accent-light': {
+              label: 'Dusk Purple',
+              value: '#E4CCE0'
             },
             'link-colour': {
               label: 'Bush Honey Yellow',
@@ -1575,6 +1628,10 @@
               label: 'Firewood Brown',
               value: '#9E5332'
             },
+            'brand-accent-light': {
+              label: 'Macadamia Brown',
+              value: '#E9C8B2'
+            },
             'link-colour': {
               label: 'Bushland Green',
               value: '#215834'
@@ -1613,6 +1670,10 @@
             'brand-accent': {
               label: 'Orange Ochre',
               value: '#EE6314'
+            },
+            'brand-accent-light': {
+              label: 'Sunset Orange',
+              value: '#F9D4BE'
             },
             'link-colour': {
               label: 'Saltwater Blue',
@@ -1653,6 +1714,10 @@
               label: 'Orange Ochre',
               value: '#EE6314'
             },
+            'brand-accent-light': {
+              label: 'Sunset Orange',
+              value: '#F9D4BE'
+            },
             'link-colour': {
               label: 'Bush Plum',
               value: '#472642'
@@ -1691,6 +1756,10 @@
             'brand-accent': {
               label: 'Sandstone Yellow',
               value: '#FEA927'
+            },
+            'brand-accent-light': {
+              label: 'Sunbeam Yellow',
+              value: '#FFF1C5'
             },
             'link-colour': {
               label: 'Charcoal Grey',
