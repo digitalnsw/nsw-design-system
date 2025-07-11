@@ -1,0 +1,142 @@
+---
+title: Cards
+width: wide
+page: true
+model:
+  card-headline-1: ../../components/card/json/card-headline-1.json
+  card-headline-2: ../../components/card/json/card-headline-2.json
+  card-headline-3: ../../components/card/json/card-headline-3.json
+  card-headline-4: ../../components/card/json/card-headline-4.json
+  card-simple-1: ../../components/card/json/card-simple-1.json
+  card-simple-2: ../../components/card/json/card-simple-2.json
+  card-simple-3: ../../components/card/json/card-simple-3.json
+  card-simple-4: ../../components/card/json/card-simple-4.json
+  card-content-1: ../../components/card/json/card-content-1.json
+  card-content-2: ../../components/card/json/card-content-2.json
+  card-content-3: ../../components/card/json/card-content-3.json
+  card-content-4: ../../components/card/json/card-content-4.json
+  card-news-white: ../../components/card/json/card-news-white.json
+  card-news-1: ../../components/card/json/card-news-1.json
+  card-news-2: ../../components/card/json/card-news-2.json
+  card-news-3: ../../components/card/json/card-news-3.json
+  card-news-4: ../../components/card/json/card-news-4.json
+  card-media-1: ../../components/card/json/card-media-1.json
+  card-media-1-white: ../../components/card/json/card-media-1-white.json
+  card-media-2: ../../components/card/json/card-media-2.json
+  card-media-2-white: ../../components/card/json/card-media-2-white.json
+  card-media-3: ../../components/card/json/card-media-3.json
+  card-media-3-white: ../../components/card/json/card-media-3-white.json
+  card-media-4: ../../components/card/json/card-media-4.json
+  card-media-4-white: ../../components/card/json/card-media-4-white.json
+---
+
+{{#>_theme}}
+{{#>_layout-container}}
+
+<h2>Before</h2>
+<div class="nsw-grid">
+  <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+    {{>_card model.card-news-1}}
+  </div>
+  <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+    {{>_card model.card-news-2 theme="light"}}
+  </div>
+  <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+    {{>_card model.card-news-3 theme="dark"}}
+  </div>
+</div>
+
+<div class="nsw-grid">
+  <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+    {{>_card model.card-news-4 highlight=true}}
+  </div>
+</div>
+
+<div class="nsw-grid">
+  <div class="nsw-col nsw-col-lg-6">
+    {{>_card model.card-media-1 horizontal=true}}
+  </div>
+  <div class="nsw-col nsw-col-lg-6">
+    {{>_card model.card-media-2 horizontal=true theme="light"}}
+  </div>
+  <div class="nsw-col nsw-col-lg-6">
+    {{>_card model.card-media-3 horizontal=true theme="dark"}}
+  </div>
+  <div class="nsw-col nsw-col-lg-6">
+    {{>_card model.card-media-4 horizontal=true highlight=true}}
+  </div>
+</div>
+
+<h2>Option 1: Border on card container</h2>
+
+<h3>After Image Variant</h3>
+<div class="nsw-grid">
+  <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+    {{>_card model.card-news-1 bordered=true}}
+  </div>
+  <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+    {{>_card model.card-news-2 theme="light" bordered=true}}
+  </div>
+  <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+    {{>_card model.card-news-3 theme="dark" bordered=true}}
+  </div>
+
+  <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+    {{>_card model.card-news-white bordered=true}}
+  </div>
+  <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+    {{>_card model.card-news-white theme="light" bordered=true}}
+  </div>
+  <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+    {{>_card model.card-news-white theme="dark" bordered=true}}
+  </div>
+</div>
+
+<h3>After Image Highlight Variant</h3>
+<div class="nsw-grid">
+  <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+    {{>_card model.card-news-4 highlight=true bordered=true}}
+  </div>
+
+  <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+    {{>_card model.card-news-white highlight=true bordered=true}}
+  </div>
+</div>
+
+<h3>After Image Horizontal Variant</h3>
+<div class="nsw-grid">
+  <div class="nsw-col nsw-col-lg-6">
+    {{>_card model.card-media-1 horizontal=true bordered=true}}
+  </div>
+  <div class="nsw-col nsw-col-lg-6">
+    {{>_card model.card-media-1-white horizontal=true bordered=true}}
+  </div>
+
+  <div class="nsw-col nsw-col-lg-6">
+    {{>_card model.card-media-2 horizontal=true theme="light" bordered=true}}
+  </div>
+  <div class="nsw-col nsw-col-lg-6">
+    {{>_card model.card-media-2-white horizontal=true theme="light" bordered=true}}
+  </div>
+
+  <div class="nsw-col nsw-col-lg-6">
+    {{>_card model.card-media-3 horizontal=true theme="dark" bordered=true}}
+  </div>
+  <div class="nsw-col nsw-col-lg-6">
+    {{>_card model.card-media-3-white horizontal=true theme="dark" bordered=true}}
+  </div>
+</div>
+
+<h3>After Image Highlight Horizontal Variant</h3>
+<div class="nsw-grid">
+  <div class="nsw-col nsw-col-lg-6">
+    {{>_card model.card-media-4 horizontal=true highlight=true bordered=true}}
+  </div>
+
+  <div class="nsw-col nsw-col-lg-6">
+    {{>_card model.card-media-4-white horizontal=true highlight=true bordered=true}}
+  </div>
+</div>
+
+{{/_layout-container}}
+{{/_theme}}

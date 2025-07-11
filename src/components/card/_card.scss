@@ -344,4 +344,210 @@
       }
     }
   }
+
+  &--bordered {
+    border: 1px solid var(--nsw-grey-03);
+    background-color: var(--nsw-white);
+
+    &:hover {
+      border-color: var(--nsw-brand-dark);
+      background-color: var(--nsw-brand-dark);
+
+      .nsw-card__content {
+        background-color: transparent;
+      }
+    }
+
+    .nsw-card__content {
+      border-radius: 0;
+      border: 0;
+    }
+  }
+
+  &.nsw-card--bordered.nsw-card--dark {
+    &:hover {
+      border-color: var(--nsw-grey-03);
+      background-color: var(--nsw-white);
+    }
+  }
+
+  &.nsw-card--bordered.nsw-card--light {
+    &:hover {
+      border-color: var(--nsw-brand-dark);
+    }
+  }
+
+  &.nsw-card--bordered.nsw-card--highlight {
+    overflow: initial;
+
+    &:hover {
+      border-color: transparent;
+    }
+
+    .nsw-card__image {
+      overflow: hidden;
+      border-radius: calc(var(--nsw-border-radius) - 1px);
+
+      &::after {
+        display: none;
+      }
+    }
+
+    .nsw-card__content {
+      position: relative;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: -4px;
+        left: 0;
+        right: 0;
+        height: 4px;
+        width: calc(100% + 2px);
+        margin-left: -1px;
+        background-color: var(--nsw-brand-accent);
+        transition: background settings.$nsw-transition-duration;
+      }
+    }
+  }
+
+  &.nsw-card--bordered.nsw-card--horizontal {
+    border-radius: var(--nsw-border-radius);
+    overflow: clip;
+  }
+
+  &.nsw-card--bordered.nsw-card--highlight.nsw-card--horizontal {
+    .nsw-card__image {
+      overflow: hidden;
+
+      + .nsw-card__content {
+        border-top-right-radius: var(--nsw-border-radius);
+        border-bottom-right-radius: var(--nsw-border-radius);
+      }
+
+      &::after {
+        display: none;
+      }
+    }
+
+    .nsw-card__content {
+      position: relative;
+
+      &::before {
+        top: 0;
+        bottom: 0;
+        left: -2px;
+        right: auto;
+        width: 4px;
+        height: calc(100% + 2px);
+        margin-top: -1px;
+      }
+
+      @include mixins.breakpoint('lg') {
+        > .nsw-material-icons {
+          left: #{functions.rem(32px)};
+        }
+      }
+    }
+  }
+
+  &.nsw-card--bordered.bottom-border {
+    .nsw-card__image {
+      border-bottom: 1px solid var(--nsw-grey-03);
+    }
+  }
+
+  &.nsw-card--bordered.nsw-card--horizontal.bottom-border {
+    .nsw-card__image {
+      border-bottom: 0;
+      border-right: 1px solid var(--nsw-grey-03);
+    }
+  }
+
+  &.nsw-card--border {
+    .nsw-card__image {
+      border: 1px solid var(--nsw-grey-03);
+      border-radius: var(--nsw-border-radius);
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      overflow: hidden;
+    }
+  }
+
+  &.nsw-card--border.nsw-card--dark {
+    &:hover {
+      border-color: var(--nsw-grey-03);
+    }
+  }
+
+  &.nsw-card--border.nsw-card--light {
+    &:hover {
+      border-color: var(--nsw-brand-dark);
+    }
+  }
+
+  &.nsw-card--border.nsw-card--highlight {
+    overflow: initial;
+
+    &:hover {
+      border-color: var(--nsw-brand-dark);
+    }
+
+    .nsw-card__image {
+      overflow: hidden;
+      border-radius: var(--nsw-border-radius);
+
+      &::after {
+        display: none;
+      }
+    }
+
+    .nsw-card__content {
+      position: relative;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: -4px;
+        left: 0;
+        right: 0;
+        height: 4px;
+        width: calc(100% + 2px);
+        margin-left: -1px;
+        background-color: var(--nsw-brand-accent);
+        transition: background settings.$nsw-transition-duration;
+      }
+    }
+  }
+
+  &.nsw-card--border.nsw-card--horizontal {
+    .nsw-card__image {
+      border-top-left-radius: var(--nsw-border-radius);
+      border-top-right-radius: 0;
+      border-bottom-left-radius: var(--nsw-border-radius);
+      border-bottom-right-radius: 0;
+    }
+  }
+
+  &.nsw-card--border.nsw-card--highlight.nsw-card--horizontal {
+    .nsw-card__image {
+      &::after {
+        display: none;
+      }
+    }
+
+    .nsw-card__content {
+      position: relative;
+
+      &::before {
+        top: 0;
+        bottom: 0;
+        left: -2px;
+        right: auto;
+        width: 4px;
+        height: calc(100% + 2px);
+        margin-top: -1px;
+      }
+    }
+  }
 }
