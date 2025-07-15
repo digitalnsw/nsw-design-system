@@ -7,7 +7,19 @@
   &__list-wrapper {
     overflow: hidden;
     height: functions.rem(48px);
-    background-color: transparent;
+    background-color: var(--nsw-off-white);
+
+    .nsw-section--invert & {    
+      background-color: rgba(var(--nsw-white-rgb), 0.3);
+    }
+
+    @include mixins.breakpoint('md') {
+      background-color: transparent;
+
+      .nsw-section--invert & {    
+        background-color: transparent;
+      }
+    }
   }
 
   &__list {
