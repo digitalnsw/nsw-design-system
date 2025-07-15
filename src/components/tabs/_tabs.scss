@@ -7,11 +7,7 @@
   &__list-wrapper {
     overflow: hidden;
     height: functions.rem(48px);
-    background-color: var(--nsw-off-white);
-
-    @include mixins.breakpoint('md') {
-      background-color: transparent;
-    }
+    background-color: transparent;
   }
 
   &__list {
@@ -44,6 +40,10 @@
       &:focus {
         outline-width: 3px;
         outline-offset: -3px;
+
+        .nsw-section--invert & {    
+          outline-color: var(--nsw-text-light);
+        }
       }
 
       &.active {
