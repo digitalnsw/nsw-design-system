@@ -9,8 +9,16 @@
     height: functions.rem(48px);
     background-color: var(--nsw-off-white);
 
+    .nsw-section--invert & {    
+      background-color: rgba(var(--nsw-white-rgb), 0.15);
+    }
+
     @include mixins.breakpoint('md') {
       background-color: transparent;
+
+      .nsw-section--invert & {    
+        background-color: transparent;
+      }
     }
   }
 
@@ -44,6 +52,10 @@
       &:focus {
         outline-width: 3px;
         outline-offset: -3px;
+
+        .nsw-section--invert & {    
+          outline-color: var(--nsw-text-light);
+        }
       }
 
       &.active {
