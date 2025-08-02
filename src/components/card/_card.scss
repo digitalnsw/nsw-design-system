@@ -556,4 +556,82 @@
       }
     }
   }
+
+  &.nsw-card--box-shadow {
+    overflow: visible;
+
+    .nsw-card__image {
+      box-shadow: 0 -1px 0 0 var(--nsw-grey-03), 1px 0 0 0 var(--nsw-grey-03), -1px 0 0 0 var(--nsw-grey-03);
+      border-radius: var(--nsw-border-radius);
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      overflow: hidden; 
+    }
+
+    .nsw-card__content {
+      border: 0;
+      box-shadow: 1px 0 0 0 var(--nsw-grey-03), -1px 0 0 0 var(--nsw-grey-03), 0 1px 0 0 var(--nsw-grey-03);
+      border-radius: var(--nsw-border-radius);
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      overflow: hidden; 
+    }
+  }
+
+  &.nsw-card--outline {
+    .nsw-card__image {
+      outline: 1px solid var(--nsw-grey-03);
+      outline-offset: -1px;
+      border-radius: var(--nsw-border-radius);
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      overflow: hidden;
+    }
+  }
+
+  &.nsw-card--solid-background {
+    overflow: visible;
+
+    .nsw-card__image {
+      background: var(--nsw-grey-03);
+      padding: 1px;
+      padding-bottom: 0;
+      border-radius: var(--nsw-border-radius);
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      overflow: hidden;
+
+      img {
+        display: block;
+        width: 100%;
+        border-radius: inherit;
+      }
+    }
+  }
+
+  &.nsw-card--svg-pseudo {
+    .nsw-card__image {
+      position: relative;
+      display: inline-block;
+
+      img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: var(--nsw-border-radius);
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+
+      .svg-border {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+      }
+    }
+  }
 }

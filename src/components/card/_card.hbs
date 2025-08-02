@@ -1,7 +1,63 @@
-<div class="nsw-card{{#if headline}} nsw-card--headline{{/if}}{{#if highlight}} nsw-card--highlight{{/if}}{{#if horizontal}} nsw-card--horizontal{{/if}}{{#if bordered}} nsw-card--bordered{{#if bottom}} bottom-border{{/if}}{{/if}}{{#if border}} nsw-card--border{{#if bottom}} bottom-border{{/if}}{{/if}}{{#if theme}} nsw-card--{{theme}}{{/if}}">
+<div class=
+  "nsw-card
+  {{#if headline}} nsw-card--headline{{/if}}
+  {{#if highlight}} nsw-card--highlight{{/if}}
+  {{#if horizontal}} nsw-card--horizontal{{/if}}
+  {{#if bordered}} nsw-card--bordered{{#if bottom}} bottom-border{{/if}}{{/if}}
+  {{#if border}} nsw-card--border{{#if bottom}} bottom-border{{/if}}{{/if}}
+  {{#if theme}} nsw-card--{{theme}}{{/if}}
+  {{#if box-shadow}} nsw-card--box-shadow{{/if}}
+  {{#if outline}} nsw-card--outline{{/if}}
+  {{#if solid-background}} nsw-card--solid-background{{/if}}
+  {{#if svg-pseudo}} nsw-card--svg-pseudo{{/if}}
+  ">
   {{#if img}}
   <div class="nsw-card__image">
     <img src="{{img}}" alt="{{heading}}">
+    {{#if svg-pseudo}}
+    {{#if horizontal}} 
+      <svg class="svg-border"
+        viewBox="0 0 200 100"
+        preserveAspectRatio="none"
+        style="position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none;">
+        <path
+          d="
+            M4.5,0.5
+            H200
+            M4.5,0.5
+            Q0.5,0.5 0.5,3
+            V97
+            Q0.5,100.5 3,99.75
+            H201
+          "
+          fill="none"
+          stroke="#cdd3d6"
+          stroke-width="0.5"
+        />
+      </svg>
+    {{else}}
+    <svg class="svg-border"
+      viewBox="0 0 200 100"
+      preserveAspectRatio="none"
+      style="position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none;"
+    >
+      <path
+        d="
+          M4.5,0.5
+          H197
+          Q199.5,0.5 199.5,3
+          V100.5
+          M4.5,0.5
+          Q0.5,0.5 0.5,3
+          V100.5
+        "
+        fill="none"
+        stroke="#cdd3d6"
+        stroke-width="0.5"
+      />
+    </svg>
+    {{/if}}
+    {{/if}}
   </div>
   {{/if}}
   <div class="nsw-card__content">{{#if tag}}
