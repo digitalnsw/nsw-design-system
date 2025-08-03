@@ -1,21 +1,6 @@
-<div class=
-  "nsw-card
-  {{#if headline}} nsw-card--headline{{/if}}
-  {{#if highlight}} nsw-card--highlight{{/if}}
-  {{#if horizontal}} nsw-card--horizontal{{/if}}
-  {{#if bordered}} nsw-card--bordered{{#if bottom}} bottom-border{{/if}}{{/if}}
-  {{#if border}} nsw-card--border{{#if bottom}} bottom-border{{/if}}{{/if}}
-  {{#if theme}} nsw-card--{{theme}}{{/if}}
-  {{#if box-shadow}} nsw-card--box-shadow{{/if}}
-  {{#if outline}} nsw-card--outline{{/if}}
-  {{#if solid-background}} nsw-card--solid-background{{/if}}
-  {{#if svg-pseudo}} nsw-card--svg-pseudo{{/if}}
-  ">
-  {{#if img}}
+<div class="nsw-card{{#if headline}} nsw-card--headline{{/if}}{{#if highlight}} nsw-card--highlight{{/if}}{{#if horizontal}} nsw-card--horizontal{{/if}}{{#if bordered}} nsw-card--bordered{{#if bottom}} bottom-border{{/if}}{{/if}}{{#if border}} nsw-card--border{{#if bottom}} bottom-border{{/if}}{{/if}}{{#if theme}} nsw-card--{{theme}}{{/if}}{{#if box-shadow}} nsw-card--box-shadow{{/if}}{{#if outline}} nsw-card--outline{{/if}}{{#if solid-background}} nsw-card--solid-background{{/if}}{{#if svg-pseudo}} nsw-card--svg-pseudo{{/if}}">{{#if img}}
   <div class="nsw-card__image">
-    <img src="{{img}}" alt="{{heading}}">
-    {{#if svg-pseudo}}
-    {{#if horizontal}} 
+    <img src="{{img}}" alt="{{heading}}">{{#if svg-pseudo}}{{#if horizontal}} 
       <svg class="svg-border"
         viewBox="0 0 200 100"
         preserveAspectRatio="none"
@@ -27,15 +12,14 @@
             M4.5,0.5
             Q0.5,0.5 0.5,3
             V97
-            Q0.5,100.5 3,99.75
-            H201
+            Q0.5,99.75 3,99.75
+            H200
           "
           fill="none"
           stroke="#cdd3d6"
           stroke-width="0.5"
         />
-      </svg>
-    {{else}}
+      </svg>{{else}}
     <svg class="svg-border"
       viewBox="0 0 200 100"
       preserveAspectRatio="none"
@@ -45,19 +29,17 @@
         d="
           M4.5,0.5
           H197
-          Q199.5,0.5 199.5,3
-          V100.5
+          Q200.25,0.5 199.75,3
+          V101
           M4.5,0.5
           Q0.5,0.5 0.5,3
-          V100.5
+          V100
         "
         fill="none"
         stroke="#cdd3d6"
         stroke-width="0.5"
       />
-    </svg>
-    {{/if}}
-    {{/if}}
+    </svg>{{/if}}{{/if}}
   </div>
   {{/if}}
   <div class="nsw-card__content">{{#if tag}}
