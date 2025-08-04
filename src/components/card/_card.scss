@@ -578,6 +578,25 @@
     }
   }
 
+  &.nsw-card--box-shadow.nsw-card--horizontal {
+    .nsw-card__image {
+      box-shadow: 0 -1px 0 0 var(--nsw-grey-03), 0 1px 0 0 var(--nsw-grey-03), -1px 0 0 0 var(--nsw-grey-03);
+      border-radius: var(--nsw-border-radius);
+      border-bottom-right-radius: 0;
+      border-top-right-radius: 0;
+      overflow: hidden; 
+    }
+
+    .nsw-card__content {
+      border: 0;
+      box-shadow: 0 -1px 0 0 var(--nsw-grey-03), 0 1px 0 0 var(--nsw-grey-03), 1px 0 0 0 var(--nsw-grey-03);
+      border-radius: var(--nsw-border-radius);
+      border-bottom-left-radius: 0;
+      border-top-left-radius: 0;
+      overflow: hidden; 
+    }
+  }
+
   &.nsw-card--outline {
     .nsw-card__image {
       outline: 1px solid var(--nsw-grey-03);
@@ -586,6 +605,14 @@
       border-bottom-left-radius: 0;
       border-bottom-right-radius: 0;
       overflow: hidden;
+    }
+  }
+
+  &.nsw-card--outline.nsw-card--horizontal {
+    .nsw-card__image {
+      border-radius: var(--nsw-border-radius);
+      border-bottom-right-radius: 0;
+      border-top-right-radius: 0;
     }
   }
 
@@ -606,6 +633,16 @@
         width: 100%;
         border-radius: inherit;
       }
+    }
+  }
+
+  &.nsw-card--solid-background.nsw-card--horizontal {
+    .nsw-card__image {
+      padding: 1px;
+      padding-right: 0;
+      border-radius: var(--nsw-border-radius);
+      border-bottom-right-radius: 0;
+      border-top-right-radius: 0;
     }
   }
 
