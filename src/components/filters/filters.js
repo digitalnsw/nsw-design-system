@@ -351,11 +351,11 @@ class Filters {
   }
 
   static getMultiSelectValues(array) {
-    let selectedOptions = []
+    const selectedOptions = []
 
     if (array.length > 0) {
       array.forEach((element) => {
-        selectedOptions = Array.from(element.options).filter((option) => option.selected)
+        selectedOptions.push(...Array.from(element.options).filter((o) => o.selected))
       })
     }
 
