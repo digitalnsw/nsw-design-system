@@ -1,6 +1,7 @@
 /* eslint-disable max-len */
 
 import * as CookieConsentAPI from 'vanilla-cookieconsent'
+import logger from '../../global/scripts/helpers/logger'
 
 /* eslint-disable max-len */
 class CookieConsent {
@@ -374,19 +375,19 @@ class CookieConsent {
 
     switch (action) {
       case 'accept-all': {
-        console.log('User accepted all cookies')
+        logger.log('User accepted all cookies')
         CookieConsentAPI.acceptCategory('all')
         updatePreferencesDialog()
         break
       }
       case 'reject-all': {
-        console.log('User rejected all cookies')
+        logger.log('User rejected all cookies')
         CookieConsentAPI.acceptCategory([])
         updatePreferencesDialog()
         break
       }
       case 'accept-selection': {
-        console.log('User accepted selected cookies')
+        logger.log('User accepted selected cookies')
         const checked = []
         const unchecked = []
 

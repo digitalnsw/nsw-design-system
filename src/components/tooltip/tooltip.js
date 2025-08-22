@@ -7,6 +7,7 @@ import {
   arrow,
 } from '@floating-ui/dom'
 import { uniqueId } from '../../global/scripts/helpers/utilities'
+import logger from '../../global/scripts/helpers/logger'
 
 class Tooltip {
   constructor(element) {
@@ -48,7 +49,7 @@ class Tooltip {
         this.hideTooltip(this, event)
         break
       default:
-        console.log(`Unexpected event type: ${event.type}`)
+        logger.log(`Unexpected event type: ${event.type}`)
         break
     }
   }
