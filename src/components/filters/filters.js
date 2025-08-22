@@ -214,7 +214,6 @@ class Filters {
           option.value = ''
         } else if (option.type === 'select-one') {
           if (this.selectedOption) {
-            console.log(Array.from(option.options).indexOf(this.selectedOption))
             option.selectedIndex = Array.from(option.options).indexOf(this.selectedOption)
           } else {
             option.selectedIndex = 0
@@ -236,7 +235,7 @@ class Filters {
 
       multiSelectOptions.forEach((element) => {
         element.setAttribute('aria-selected', 'true')
-        element.dispatchEvent(new Event(simulateEvent))
+        element.dispatchEvent(simulateEvent)
         element.click()
       })
     }
