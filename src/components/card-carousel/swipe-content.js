@@ -12,19 +12,20 @@ class SwipeContent {
     this.dragging = false
     this.intervalId = false
     this.changedTouches = false
+    this.handleEventBind = this.handleEvent.bind(this)
   }
 
   init() {
-    this.element.addEventListener('mousedown', this.handleEvent.bind(this))
-    this.element.addEventListener('touchstart', this.handleEvent.bind(this), { passive: true })
+    this.element.addEventListener('mousedown', this.handleEventBind)
+    this.element.addEventListener('touchstart', this.handleEventBind, { passive: true })
   }
 
   initDragging() {
-    this.element.addEventListener('mousemove', this.handleEvent.bind(this))
-    this.element.addEventListener('touchmove', this.handleEvent.bind(this), { passive: true })
-    this.element.addEventListener('mouseup', this.handleEvent.bind(this))
-    this.element.addEventListener('mouseleave', this.handleEvent.bind(this))
-    this.element.addEventListener('touchend', this.handleEvent.bind(this))
+    this.element.addEventListener('mousemove', this.handleEventBind)
+    this.element.addEventListener('touchmove', this.handleEventBind, { passive: true })
+    this.element.addEventListener('mouseup', this.handleEventBind)
+    this.element.addEventListener('mouseleave', this.handleEventBind)
+    this.element.addEventListener('touchend', this.handleEventBind)
   }
 
   cancelDragging() {
@@ -36,11 +37,11 @@ class SwipeContent {
       }
       this.intervalId = false
     }
-    this.element.removeEventListener('mousemove', this.handleEvent.bind(this))
-    this.element.removeEventListener('touchmove', this.handleEvent.bind(this))
-    this.element.removeEventListener('mouseup', this.handleEvent.bind(this))
-    this.element.removeEventListener('mouseleave', this.handleEvent.bind(this))
-    this.element.removeEventListener('touchend', this.handleEvent.bind(this))
+    this.element.removeEventListener('mousemove', this.handleEventBind)
+    this.element.removeEventListener('touchmove', this.handleEventBind)
+    this.element.removeEventListener('mouseup', this.handleEventBind)
+    this.element.removeEventListener('mouseleave', this.handleEventBind)
+    this.element.removeEventListener('touchend', this.handleEventBind)
   }
 
   handleEvent(event) {
