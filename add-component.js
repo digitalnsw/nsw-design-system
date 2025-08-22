@@ -3,11 +3,7 @@ const fs = require('fs')
 const path = require('path')
 const inquirer = require('inquirer')
 
-const log = (...args) => {
-  if (process.env.NODE_ENV !== 'production') {
-    console.log(...args)
-  }
-}
+const logger = require('./src/global/scripts/helpers/logger');
 
 const askQuestions = () => {
   const questions = [
