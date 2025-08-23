@@ -183,8 +183,8 @@ class Filters {
     event.preventDefault()
     this.element.classList.remove(this.showClass)
     document.body.classList.remove(this.openClass)
-    if (this.keydownHandler) {
       document.removeEventListener('keydown', this.keydownHandler)
+      this.keydownHandler = null
     }
   }
 
