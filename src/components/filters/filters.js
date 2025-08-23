@@ -338,8 +338,7 @@ class Filters {
     const firstFocusableElement = focusableContent[0]
     const lastFocusableElement = focusableContent[focusableContent.length - 1]
 
-    this.keydownHandler = (event) => {
-      const tab = (event.code && event.code === 9) || (event.key && event.key === 'Tab')
+      const tab = (event.code === 'Tab') || (event.key === 'Tab')
       if (!tab) return
 
       if (document.activeElement === firstFocusableElement && event.shiftKey) {
