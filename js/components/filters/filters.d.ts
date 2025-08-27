@@ -39,6 +39,7 @@ declare class Filters {
     content: any[];
     options: any[];
     selected: any[];
+    keydownHandler: ((event: any) => void) | null;
     init(): void;
     initEvents(): void;
     setAccordionState(element: any, state: any): void;

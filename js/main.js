@@ -2406,6 +2406,7 @@
       this.content = [];
       this.options = [];
       this.selected = [];
+      this.keydownHandler = null;
     }
     init() {
       this.element.classList.add('ready');
@@ -2524,6 +2525,10 @@
       event.preventDefault();
       this.element.classList.remove(this.showClass);
       document.body.classList.remove(this.openClass);
+      if (this.keydownHandler) {
+        document.removeEventListener('keydown', this.keydownHandler);
+        this.keydownHandler = null;
+      }
     }
     showFilters(event) {
       event.preventDefault();
@@ -2652,8 +2657,8 @@
       const focusableContent = element.querySelectorAll(this.focusableElements);
       const firstFocusableElement = focusableContent[0];
       const lastFocusableElement = focusableContent[focusableContent.length - 1];
-      document.addEventListener('keydown', event => {
-        const tab = event.code && event.code === 9 || event.key && event.key === 'Tab';
+      this.keydownHandler = event => {
+        const tab = event.keyCode === 9 || event.code === 'Tab' || event.key && event.key === 'Tab';
         if (!tab) return;
         if (document.activeElement === firstFocusableElement && event.shiftKey) {
           event.preventDefault();
@@ -2663,7 +2668,8 @@
           event.preventDefault();
           firstFocusableElement.focus();
         }
-      });
+      };
+      document.addEventListener('keydown', this.keydownHandler);
       firstFocusableElement.focus();
     }
     static getMultiSelectValues(array) {
