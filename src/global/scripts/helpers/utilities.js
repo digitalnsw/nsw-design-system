@@ -43,7 +43,7 @@ export const trapTabKey = (event, focusObject) => {
   const { activeElement } = document
   const focusableElement = focusObject
 
-  if (event.keyCode !== 9) return false
+  if (event.key !== 'Tab' && event.keyCode !== 9) return false
 
   if (focusableElement.length === 1) {
     event.preventDefault()
