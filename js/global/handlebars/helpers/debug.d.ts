@@ -1,2 +1,2 @@
-declare function _exports(optionalValue: any): void;
-export = _exports;
+export = debug;
+declare function debug(optionalValue: any): void;

@@ -356,6 +356,16 @@
     }
   }
 
+  /* eslint-disable no-console */
+  const log = (...args) => {
+    if (process.env.NODE_ENV !== 'production') {
+      console.log(...args);
+    }
+  };
+  var logger = {
+    log
+  };
+
   function getSign(x) {
     if (!Math.sign) {
       return (x > 0) - (x < 0) || +x;
@@ -416,7 +426,7 @@
           this.endDrag(event);
           break;
         default:
-          console.log(`${event.type}.`);
+          logger.log(`${event.type}.`);
       }
     }
     startDrag(event) {
@@ -1459,21 +1469,21 @@
       switch (action) {
         case 'accept-all':
           {
-            console.log('User accepted all cookies');
+            logger.log('User accepted all cookies');
             Ve('all');
             updatePreferencesDialog();
             break;
           }
         case 'reject-all':
           {
-            console.log('User rejected all cookies');
+            logger.log('User rejected all cookies');
             Ve([]);
             updatePreferencesDialog();
             break;
           }
         case 'accept-selection':
           {
-            console.log('User accepted selected cookies');
+            logger.log('User accepted selected cookies');
             const checked = [];
             const unchecked = [];
             this.allCookieInputs.forEach(checkboxElement => {
@@ -5508,7 +5518,7 @@
           this.hideTooltip(this, event);
           break;
         default:
-          console.log(`Unexpected event type: ${event.type}`);
+          logger.log(`Unexpected event type: ${event.type}`);
           break;
       }
     }
@@ -5700,7 +5710,7 @@
           this.socialParams = ['subject', 'body'];
           break;
         default:
-          console.log('No social links found');
+          logger.log('No social links found');
           break;
       }
       return this.socialParams;
