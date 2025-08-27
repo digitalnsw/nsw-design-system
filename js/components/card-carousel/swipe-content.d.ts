@@ -6,6 +6,7 @@ declare class SwipeContent {
     dragging: boolean;
     intervalId: boolean;
     changedTouches: boolean;
+    handleEventBind: (event: any) => void;
     init(): void;
     initDragging(): void;
     cancelDragging(): void;

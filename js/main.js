@@ -97,7 +97,7 @@
       activeElement
     } = document;
     const focusableElement = focusObject;
-    if (event.keyCode !== 9) return false;
+    if (event.key !== 'Tab' && event.keyCode !== 9) return false;
     if (focusableElement.length === 1) {
       event.preventDefault();
     } else if (event.shiftKey && activeElement === focusableElement.first) {
@@ -379,21 +379,22 @@
       this.dragging = false;
       this.intervalId = false;
       this.changedTouches = false;
+      this.handleEventBind = this.handleEvent.bind(this);
     }
     init() {
-      this.element.addEventListener('mousedown', this.handleEvent.bind(this));
-      this.element.addEventListener('touchstart', this.handleEvent.bind(this), {
+      this.element.addEventListener('mousedown', this.handleEventBind);
+      this.element.addEventListener('touchstart', this.handleEventBind, {
         passive: true
       });
     }
     initDragging() {
-      this.element.addEventListener('mousemove', this.handleEvent.bind(this));
-      this.element.addEventListener('touchmove', this.handleEvent.bind(this), {
+      this.element.addEventListener('mousemove', this.handleEventBind);
+      this.element.addEventListener('touchmove', this.handleEventBind, {
         passive: true
       });
-      this.element.addEventListener('mouseup', this.handleEvent.bind(this));
-      this.element.addEventListener('mouseleave', this.handleEvent.bind(this));
-      this.element.addEventListener('touchend', this.handleEvent.bind(this));
+      this.element.addEventListener('mouseup', this.handleEventBind);
+      this.element.addEventListener('mouseleave', this.handleEventBind);
+      this.element.addEventListener('touchend', this.handleEventBind);
     }
     cancelDragging() {
       if (this.intervalId) {
@@ -404,11 +405,11 @@
         }
         this.intervalId = false;
       }
-      this.element.removeEventListener('mousemove', this.handleEvent.bind(this));
-      this.element.removeEventListener('touchmove', this.handleEvent.bind(this));
-      this.element.removeEventListener('mouseup', this.handleEvent.bind(this));
-      this.element.removeEventListener('mouseleave', this.handleEvent.bind(this));
-      this.element.removeEventListener('touchend', this.handleEvent.bind(this));
+      this.element.removeEventListener('mousemove', this.handleEventBind);
+      this.element.removeEventListener('touchmove', this.handleEventBind);
+      this.element.removeEventListener('mouseup', this.handleEventBind);
+      this.element.removeEventListener('mouseleave', this.handleEventBind);
+      this.element.removeEventListener('touchend', this.handleEventBind);
     }
     handleEvent(event) {
       switch (event.type) {
@@ -506,7 +507,7 @@
       this.controlClass = 'js-carousel__control';
       this.wrapperClass = 'js-carousel__wrapper';
       this.counterClass = 'js-carousel__counter';
-      this.counterTorClass = 'js-carousel__counter-tot';
+      this.counterTotalClass = 'js-carousel__counter-tot';
       this.navClass = 'js-carousel__navigation';
       this.navItemClass = 'js-carousel__nav-item';
       this.navigationItemClass = this.element.getAttribute('data-navigation-item-class') ? this.element.getAttribute('data-navigation-item-class') : 'nsw-carousel__nav-item';
@@ -526,7 +527,7 @@
       this.items = this.list ? this.list.getElementsByTagName('li') : false;
       this.controls = this.element.querySelectorAll(`.${this.controlClass}`);
       this.counter = this.element.querySelectorAll(`.${this.counterClass}`);
-      this.counterTor = this.element.querySelectorAll(`.${this.counterTorClass}`);
+      this.counterTotal = this.element.querySelectorAll(`.${this.counterTotalClass}`);
       this.ariaLabel = this.element.getAttribute('data-description') ? this.element.getAttribute('data-description') : 'Card carousel';
       this.dragEnabled = !!(this.element.getAttribute('data-drag') && this.element.getAttribute('data-drag') === 'on');
       this.loop = !!(this.element.getAttribute('data-loop') && this.element.getAttribute('data-loop') === 'on');
@@ -1055,7 +1056,7 @@
       return Math.ceil(this.selectedItem / this.visibItemsNb);
     }
     initCarouselCounter() {
-      if (this.counterTor.length > 0) this.counterTor[0].textContent = this.itemsNb;
+      if (this.counterTotal.length > 0) this.counterTotal[0].textContent = this.itemsNb;
       this.setCounterItem();
     }
     setCounterItem() {

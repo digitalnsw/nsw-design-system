@@ -4,7 +4,7 @@ declare class Carousel extends SwipeContent {
     controlClass: string;
     wrapperClass: string;
     counterClass: string;
-    counterTorClass: string;
+    counterTotalClass: string;
     navClass: string;
     navItemClass: string;
     navigationItemClass: any;
@@ -24,7 +24,7 @@ declare class Carousel extends SwipeContent {
     items: any;
     controls: any;
     counter: any;
-    counterTor: any;
+    counterTotal: any;
     ariaLabel: any;
     dragEnabled: boolean;
     loop: boolean;
