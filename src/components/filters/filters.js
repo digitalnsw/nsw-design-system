@@ -185,6 +185,7 @@ class Filters {
     document.body.classList.remove(this.openClass)
     if (this.keydownHandler) {
       document.removeEventListener('keydown', this.keydownHandler)
+      this.keydownHandler = null
     }
   }
 
