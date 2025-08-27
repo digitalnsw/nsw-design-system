@@ -1,3 +1,5 @@
+import logger from '../../global/scripts/helpers/logger'
+
 function getSign(x) {
   if (!Math.sign) {
     return ((x > 0) - (x < 0)) || +x
@@ -59,7 +61,7 @@ class SwipeContent {
         this.endDrag(event)
         break
       default:
-        console.log(`${event.type}.`)
+        logger.log(`${event.type}.`)
     }
   }
 
