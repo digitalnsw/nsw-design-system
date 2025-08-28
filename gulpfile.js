@@ -268,6 +268,7 @@ function compileJS() {
         },
       ),
     )
+    .pipe(replace(/\bprocess\.env\.NODE_ENV\b/g, JSON.stringify(process.env.NODE_ENV || 'production')))
     .pipe(dest(config.js.build))
 }
 
@@ -296,6 +297,7 @@ function compileDocsJS() {
         }
       ),
     )
+    .pipe(replace(/\bprocess\.env\.NODE_ENV\b/g, JSON.stringify(process.env.NODE_ENV || 'production')))
     .pipe(dest(config.jsDocs.build))
 }
 
@@ -319,6 +321,7 @@ function compileCookieConsentJS() {
         }
       ),
     )
+    .pipe(replace(/\bprocess\.env\.NODE_ENV\b/g, JSON.stringify(process.env.NODE_ENV || 'production')))
     .pipe(dest(config.jsCookieConsent.build))
 }
 
