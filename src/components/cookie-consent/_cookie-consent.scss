@@ -1,0 +1,231 @@
+@use '../../global/scss/base/functions' as functions;
+@use '../../global/scss/base/mixins' as mixins;
+
+.nsw-cookie-banner {
+  padding: functions.rem(24px) 0;
+  background-color: var(--nsw-brand-light);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+
+  .nsw-icon-button {
+    position: absolute;
+    top: functions.rem(-8px);
+    right: functions.rem(4px);
+
+    &:hover {
+      background-color: var(--nsw-hover-light);
+
+      @include mixins.nsw-hover;
+    }
+
+    &:focus {
+      @include mixins.nsw-focus($color: var(--nsw-text-light));
+    }
+  }
+
+  &__wrapper {
+    position: relative;
+    
+    @include mixins.container;
+  }
+
+  &__title {
+    font-weight: var(--nsw-font-bold);
+
+    @include mixins.font-size('md');
+  }
+
+  &__content {
+    margin: functions.rem(16px) functions.rem(36px) functions.rem(24px) 0;
+  }
+
+  &__buttons-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: functions.rem(16px);
+    margin-top: functions.rem(16px);
+    flex-direction: column;
+
+    @include mixins.breakpoint('md') {
+      flex-direction: row;
+    }
+  }
+
+  &__cta-group {
+    display: flex;
+    gap: functions.rem(16px);
+
+    button {
+      flex: 1 auto;
+  
+      @include mixins.breakpoint('md') {
+        flex: unset;
+      }
+    }
+  }
+
+  &--light {
+    background-color: var(--nsw-status-info-bg);
+    color: var(--nsw-text-dark);
+
+    .nsw-cookie-banner__content a {
+      @include mixins.link-dark;
+    }
+
+    .nsw-icon-button {
+      color: var(--nsw-brand-dark);
+
+      &:hover {
+        background-color: var(--nsw-hover);
+      }
+
+      &:focus {
+        outline-color: var(--nsw-focus);
+      }
+    }
+  }
+}
+
+.nsw-cookie-dialog {
+  z-index: 1100;
+
+  .nsw-dialog__container {
+    overflow-y: hidden;
+  }
+
+  .nsw-dialog__top {
+    z-index: 1101;
+    position: sticky;
+    top: 0;
+    background: var(--nsw-white);
+    border-radius: var(--nsw-border-radius);
+  }
+
+  .nsw-dialog__content {
+    padding-top: functions.rem(16px);
+    padding-bottom: functions.rem(72px);
+
+    @include mixins.breakpoint('md') {
+      padding-top: functions.rem(16px);
+      padding-bottom: functions.rem(4px);
+    }
+  }
+
+  &__bottom {
+    border-top: 1px solid var(--nsw-grey-04);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    padding: functions.rem(16px);
+    gap: functions.rem(16px);
+
+    @include mixins.breakpoint('md') {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    @include mixins.breakpoint('lg') {
+      padding: functions.rem(32px);
+    }
+
+    button {
+      @include mixins.breakpoint('md') {
+        margin-bottom: 0;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+
+        @include mixins.breakpoint('md') {
+          margin-left: 0;
+        }
+      }
+    }
+  }
+
+  &__cta-group {
+    display: flex;
+    gap: functions.rem(16px);
+    
+    @include mixins.breakpoint('md') {
+      flex-direction: row;
+    }
+
+    button {
+      flex: 1;
+
+      @include mixins.breakpoint('md') {
+        flex: unset;
+      }
+    }
+  }
+
+  &__content-wrapper {
+    padding: functions.rem(8px);
+    overflow: scroll;
+    max-height: 280px;
+
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+      border-radius: 4px;
+      background-color: var(--nsw-grey-03);
+      box-shadow: 0 0 1px var(--nsw-grey-03);
+    }
+  }
+ 
+  .nsw-tabs__content {
+    -webkit-overflow-scrolling: auto;
+    padding: functions.rem(12px) 0 functions.rem(8px) functions.rem(8px);
+    border-bottom: 0;
+
+    @include mixins.breakpoint('md') {
+      max-height: 320px;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--nsw-brand-dark);
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+  
+  &__list {
+    display: flex;
+    flex-direction: column;
+    padding-left: 0;
+    gap: functions.rem(8px);
+  }
+  
+  &__list-item {
+    display: flex;
+    flex-direction: column;
+    gap: functions.rem(8px);
+
+    label {
+      font-weight: var(--nsw-font-bold);
+      cursor: pointer;
+
+      @include mixins.font-size('md');
+    }
+
+    &:not(:nth-child(1)) {
+      border-top: 1px solid var(--nsw-grey-04);
+      padding-top: functions.rem(24px);
+    }
+  }
+
+  &__cookie-details {
+    margin-left: 48px;
+  }
+}

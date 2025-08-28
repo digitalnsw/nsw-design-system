@@ -1,9 +1,13 @@
+@use '../../global/scss/base/functions' as functions;
+@use '../../global/scss/base/mixins' as mixins;
+@use '../../global/scss/settings/settings' as settings;
+
 .nsw-list-item {
   position: relative;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  padding: rem(24px) 0;
+  padding: functions.rem(24px) 0;
   border-bottom: 1px solid var(--nsw-grey-04);
 
   &:first-child {
@@ -11,8 +15,9 @@
   }
 
   &__title {
-    @include font-size('md');
     font-weight: var(--nsw-font-bold);
+    
+    @include mixins.font-size('md');
   }
 
   &__content {
@@ -24,7 +29,7 @@
   &__title,
   &__copy,
   &__tags {
-    margin-top: rem(8px);
+    margin-top: functions.rem(8px);
 
     &:first-child {
       margin: 0;
@@ -33,7 +38,7 @@
 
   &__label,
   &__info {
-    @include font-size('xs');
+    @include mixins.font-size('xs');
   }
 
   &__label {
@@ -41,12 +46,12 @@
   }
 
   &__image {
-    min-width: rem(250px);
-    width: rem(250px);
-    margin: 0 0 0 rem(24px);
+    min-width: functions.rem(250px);
+    width: functions.rem(250px);
+    margin: 0 0 0 functions.rem(24px);
     display: none;
 
-    @include breakpoint('lg') {
+    @include mixins.breakpoint('lg') {
       display: block;
     }
 
@@ -59,11 +64,15 @@
 
   &--block {
     &:focus-within {
-      @include nsw-focus($offset: false);
+      @include mixins.nsw-focus($offset: false);
+
+      .nsw-section--invert & {   
+        @include mixins.nsw-focus($color: var(--nsw-focus-light));
+      }
     }
 
     .nsw-list-item__title a {
-      @include pseudo-clickable-block;
+      @include mixins.pseudo-clickable-block;
 
       &:focus {
         outline: none;
@@ -75,7 +84,7 @@
     flex-direction: row-reverse;
 
     .nsw-list-item__image {
-      margin: 0 rem(24px) 0 0;
+      margin: 0 functions.rem(24px) 0 0;
     }
   }
 }

@@ -1,24 +1,26 @@
-$nsw-vertical-align: (
-  valign-baseline: baseline,
-  valign-top: top,
-  valign-middle: middle,
-  valign-bottom: bottom,
-);
+@use '../../global/scss/base/functions' as functions;
+@use '../../global/scss/base/mixins' as mixins;
+@use '../../global/scss/settings/settings' as settings;
 
 .nsw-table {
-  @include component-spacing();
   display: block;
   width: 100%;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+  
+  @include mixins.component-spacing();
 
   &:focus {
-    @include nsw-focus;
+    @include mixins.nsw-focus;
+
+    .nsw-section--invert & {   
+      @include mixins.nsw-focus($color: var(--nsw-focus-light));
+    }
   }
 
   table {
     margin: 0;
-    min-width: rem(600);
+    min-width: functions.rem(600);
   }
 
   &--caption-top {
@@ -50,7 +52,7 @@ $nsw-vertical-align: (
   }
 }
 
-@each $name, $alignment in $nsw-vertical-align {
+@each $name, $alignment in settings.$nsw-vertical-align {
   .nsw-table--#{"" + $name} {
     th,
     td {

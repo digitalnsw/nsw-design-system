@@ -1,4 +1,10 @@
+@use '../../global/scss/base/functions' as functions;
+@use '../../global/scss/base/mixins' as mixins;
+@use '../../global/scss/settings/settings' as settings;
+
 .nsw-side-nav {
+  position: relative;
+
   ul {
     padding: 0;
     margin: 0;
@@ -18,15 +24,15 @@
     border-top: solid 1px var(--nsw-grey-04);
 
     li a { /* stylelint-disable-line selector-max-compound-selectors */
-      padding-left: rem(24px);
+      padding-left: functions.rem(24px);
     }
 
     li li a { /* stylelint-disable-line selector-max-compound-selectors */
-      padding-left: rem(32px);
+      padding-left: functions.rem(32px);
     }
 
     li li li a { /* stylelint-disable-line selector-max-compound-selectors */
-      padding-left: rem(48px);
+      padding-left: functions.rem(48px);
     }
 
     &.active {
@@ -41,14 +47,14 @@
     display: block;
     text-decoration: none;
     color: var(--nsw-text-dark);
-    padding: rem(16px);
+    padding: functions.rem(16px);
 
     &:hover {
-      @include nsw-hover;
+      @include mixins.nsw-hover;
       outline-width: 0;
 
       .nsw-section--invert & {    
-        @include nsw-hover-light;
+        @include mixins.nsw-hover-light;
         outline-width: 0;
       }
     }
@@ -61,7 +67,7 @@
       background-color: var(--nsw-off-white);
       
       .nsw-section--invert & {    
-        @include nsw-hover-light;
+        @include mixins.nsw-hover-light;
       }
     }
 
@@ -79,13 +85,101 @@
 
     a {
       font-weight: var(--nsw-font-bold);
-      padding: rem(8px) 0;
+      padding: functions.rem(8px) 0;
     }
 
     + ul {
       > li:first-child {
         border-top: 0;
       }
+    }
+  }
+
+  &__header,
+  &__content {
+    display: none;
+  }
+
+  &__toggle {
+    font-weight: var(--nsw-font-bold);
+    background-color: var(--nsw-off-white);
+    width: 100%;
+    border: 0;
+    padding: functions.rem(16px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color settings.$nsw-transition-duration, color settings.$nsw-transition-duration;
+    top: functions.rem(16px);
+    position: sticky;
+    
+    @include mixins.font-size('md');
+
+    &:hover:enabled {
+      background-color: var(--nsw-brand-dark);
+      color: var(--nsw-text-light);
+    }
+
+    &:focus {
+      @include mixins.nsw-focus;
+    }
+
+    .material-icons {
+      transition: transform 0.3s ease;
+      transform: rotate(0deg);
+    }
+
+    &[aria-expanded='true'] {
+      background-color: var(--nsw-brand-dark);
+      color: var(--nsw-off-white);
+    }
+
+    &[aria-expanded='true'] .material-icons {
+      transform: rotate(90deg);
+    }
+
+    .nsw-section--invert & {
+      background-color: var(--nsw-off-white);
+      color: var(--nsw-text-dark);
+
+      &[aria-expanded='true'] {
+        background-color: var(--nsw-brand-light);
+      }
+
+      &:hover:enabled {
+        background-color: var(--nsw-brand-light);
+        color: var(--nsw-text-dark);
+      }
+
+      .material-icons {
+        color: var(--nsw-brand-dark);
+      }
+    }
+  }
+
+  &.open > &__content {
+    display: block;
+  }
+
+  &.open > &__header {
+    display: none;
+  }
+
+  @include mixins.breakpoint('lg') {
+    &__header,
+    &__content {
+      display: block;
+    }
+
+    &__toggle {
+      display: none;
+    }
+
+    &.open > &__header,
+    &.open > &__content {
+      padding-top: 0;
     }
   }
 }

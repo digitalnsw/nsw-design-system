@@ -1,5 +1,8 @@
+@use '../../global/scss/base/functions' as functions;
+@use '../../global/scss/base/mixins' as mixins;
+
 .nsw-pagination {
-  @include component-spacing();
+  @include mixins.component-spacing();
 
   ul {
     display: flex;
@@ -14,7 +17,7 @@
     margin: 0;
 
     > span {
-      padding: rem(4px);
+      padding: functions.rem(4px);
     }
   }
 
@@ -22,16 +25,16 @@
     display: block;
     text-decoration: none;
     text-align: center;
-    padding: rem(4px);
-    min-width: rem(30px);
+    padding: functions.rem(4px);
+    min-width: functions.rem(30px);
     border-radius: var(--nsw-border-radius);
 
     &:hover {
-      @include nsw-hover;
+      @include mixins.nsw-hover;
       outline-width: 0;
 
       .nsw-section--invert & {    
-        @include nsw-hover-light;
+        @include mixins.nsw-hover-light;
         outline-width: 0;
       }
     }
@@ -52,8 +55,8 @@
         content: '';
         position: absolute;
         bottom: 0;
-        left: rem(4px);
-        right: rem(4px);
+        left: functions.rem(4px);
+        right: functions.rem(4px);
         height: 2px;
         background-color: var(--nsw-brand-accent);        
       }

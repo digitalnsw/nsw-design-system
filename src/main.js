@@ -1,9 +1,10 @@
 /* eslint-disable max-len */
 import Accordion from './components/accordion/accordion'
 import BackTop from './components/back-to-top/back-to-top'
+import Carousel from './components/card-carousel/carousel'
+import CookieConsent from './components/cookie-consent/cookie-consent'
 import Breadcrumbs from './components/breadcrumbs/breadcrumbs'
 import DatePicker from './components/date-picker/date-picker'
-import Carousel from './components/card-carousel/carousel'
 import Dialog from './components/dialog/dialog'
 import ExternalLink from './components/link/link'
 import FileUpload from './components/file-upload/file-upload'
@@ -13,6 +14,7 @@ import Navigation from './components/main-nav/main-nav'
 import Popover from './components/popover/popover'
 import Select from './components/select/select'
 import SiteSearch from './components/header/header'
+import SideNav from './components/side-nav/side-nav'
 import Tabs from './components/tabs/tabs'
 import Toggletip from './components/tooltip/toggletip'
 import Tooltip from './components/tooltip/tooltip'
@@ -54,6 +56,7 @@ function initSite() {
   const navigation = document.getElementById('main-nav')
   const openSearchButton = document.querySelectorAll('button.js-open-search')
   const popover = document.querySelectorAll('.js-popover')
+  const sideNav = document.querySelectorAll('.js-side-nav')
   const tabs = document.querySelectorAll('.js-tabs')
   const toggletip = document.querySelectorAll('.js-toggletip')
   const tooltip = document.querySelectorAll('.js-tooltip')
@@ -147,6 +150,12 @@ function initSite() {
     })
   }
 
+  if (sideNav) {
+    sideNav.forEach((element, index) => {
+      new SideNav(element, index).init()
+    })
+  }
+
   if (tabs) {
     tabs.forEach((element) => {
       new Tabs(element).init()
@@ -173,5 +182,5 @@ function initSite() {
 }
 
 export {
-  initSite, Accordion, BackTop, DatePicker, Carousel, Dialog, ExternalLink, FileUpload, Filters, GlobalAlert, Navigation, Popover, Select, SiteSearch, Tabs, Toggletip, Tooltip, UtilityList,
+  initSite, Accordion, BackTop, Carousel, CookieConsent, DatePicker, Dialog, ExternalLink, FileUpload, Filters, GlobalAlert, Navigation, Popover, Select, SideNav, SiteSearch, Tabs, Toggletip, Tooltip, UtilityList,
 }

@@ -1,3 +1,8 @@
+@use 'sass:map';
+@use '../../global/scss/base/functions' as functions;
+@use '../../global/scss/base/mixins' as mixins;
+@use '../../global/scss/settings/settings' as settings;
+
 .nsw-card {
   position: relative;
   display: flex;
@@ -47,26 +52,31 @@
   }
 
   &:focus-within {
-    @include nsw-focus;
+    @include mixins.nsw-focus;
 
     a {
       text-decoration: none;
     }
+
+    .nsw-section--invert & {   
+      @include mixins.nsw-focus($color: var(--nsw-focus-light));
+    }
   }
 
   &__content {
-    @include font-size('sm');
-    padding: rem(16px) rem(16px) rem(62px) rem(16px);
+    padding: functions.rem(16px) functions.rem(16px) functions.rem(62px) functions.rem(16px);
     background-color: var(--nsw-white);
     border-radius: var(--nsw-border-radius);
     border: 1px solid var(--nsw-grey-03);
     display: flex;
     flex-direction: column;
     height: 100%;
-    transition: background $nsw-transition-duration, border $nsw-transition-duration;
+    transition: background settings.$nsw-transition-duration, border settings.$nsw-transition-duration;
 
-    @include breakpoint('lg') {
-      padding: rem(32px) rem(32px) rem(94px) rem(32px);
+    @include mixins.font-size('sm');
+
+    @include mixins.breakpoint('lg') {
+      padding: functions.rem(32px) functions.rem(32px) functions.rem(94px) functions.rem(32px);
     }
       
     .nsw-section--invert & {    
@@ -75,14 +85,15 @@
   }
 
   &__title {
-    @include font-size('md');
     font-weight: var(--nsw-font-bold);
 
+    @include mixins.font-size('md');
+
     a {
-      @include pseudo-clickable-block;
+      @include mixins.pseudo-clickable-block;
       text-decoration: none;
       color: var(--nsw-text-dark);
-      transition: color $nsw-transition-duration;
+      transition: color settings.$nsw-transition-duration;
 
       &:focus {
         outline: none;
@@ -100,36 +111,37 @@
   }
 
   &__copy {
-    margin-top: rem(16px);
-    transition: color $nsw-transition-duration;
+    margin-top: functions.rem(16px);
+    transition: color settings.$nsw-transition-duration;
   }
 
   &__tag,
   &__date {
-    @include font-size('xs');
-    transition: color $nsw-transition-duration;
-    margin-bottom: rem(16px);
+    transition: color settings.$nsw-transition-duration;
+    margin-bottom: functions.rem(16px);
+
+    @include mixins.font-size('xs');
   }
 
   &__tag {
     font-weight: var(--nsw-font-bold);
 
     + .nsw-card__date {
-      margin-top: rem(-8);
+      margin-top: functions.rem(-8);
     }
   }
 
   .nsw-material-icons {
-    font-size: rem(map-get($nsw-icon-sizes, 30));
+    font-size: functions.rem(map.get(settings.$nsw-icon-sizes, 30));
     color: var(--nsw-brand-dark);
     position: absolute;
-    bottom: rem(16px);
-    left: rem(16px);
-    transition: color $nsw-transition-duration;
+    bottom: functions.rem(16px);
+    left: functions.rem(16px);
+    transition: color settings.$nsw-transition-duration;
 
-    @include breakpoint('lg') {
-      bottom: rem(32px);
-      left: rem(32px);
+    @include mixins.breakpoint('lg') {
+      bottom: functions.rem(32px);
+      left: functions.rem(32px);
     }
 
     .nsw-section--invert & {    
@@ -138,8 +150,8 @@
   }
 
   &__image {
-    min-height: rem(200px);
-    height: rem(200px);
+    min-height: functions.rem(200px);
+    height: functions.rem(200px);
     position: relative;
 
     img {
@@ -250,7 +262,7 @@
 
   &--headline {
     .nsw-card__title {
-      @include font-size('lg');
+      @include mixins.font-size('lg');
     }
   }
 
@@ -269,7 +281,7 @@
         right: 0;
         height: 4px;
         background-color: var(--nsw-brand-accent);
-        transition: background $nsw-transition-duration;
+        transition: background settings.$nsw-transition-duration;
       }
     }
 
@@ -282,13 +294,13 @@
         right: 0;
         height: 4px;
         background-color: var(--nsw-brand-accent);
-        transition: background $nsw-transition-duration;
+        transition: background settings.$nsw-transition-duration;
       }
     }
   }
 
   &--horizontal {
-    @include breakpoint('md') {
+    @include mixins.breakpoint('md') {
       flex-direction: row;
       align-items: stretch;
 
@@ -297,7 +309,7 @@
         height: auto;
 
         > .nsw-material-icons {
-          left: calc(50% + #{rem(16px)});
+          left: calc(50% + #{functions.rem(16px)});
         }
       }
 
@@ -326,9 +338,108 @@
       }
     }
 
-    @include breakpoint('lg') {
+    @include mixins.breakpoint('lg') {
       .nsw-card__content > .nsw-material-icons {
-        left: calc(50% + #{rem(32px)});
+        left: calc(50% + #{functions.rem(32px)});
+      }
+    }
+  }
+
+  &--border {
+    position: relative;
+
+    &.nsw-card--highlight,
+    &.nsw-card--light,
+    &.nsw-card--dark {
+      .nsw-card__image {
+        &::after {
+          display: unset;
+        }
+      }
+    }
+
+    .nsw-card__image {
+      &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: var(--nsw-border-radius);
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        box-shadow:
+          inset 0 1px 0 rgba(17, 24, 39, 0.2), /* top */
+          inset 1px 0 0 rgba(17, 24, 39, 0.2), /* right */
+          inset -1px 0 0 rgba(17, 24, 39, 0.2); /* left */
+        pointer-events: none;
+      }
+    }
+
+    &.nsw-card--horizontal {
+      .nsw-card__image {
+        &::after {
+          position: absolute;
+          inset: 0;
+          border-radius: var(--nsw-border-radius);
+          border-bottom-right-radius: 0;
+          border-top-right-radius: 0;
+          box-shadow:
+            inset 0 1px 0 rgba(17, 24, 39, 0.2), /* top */
+            inset 1px 0 0 rgba(17, 24, 39, 0.2), /* right */
+            inset 0 -1px 0 rgba(17, 24, 39, 0.2); /* bottom */
+          pointer-events: none;
+        }
+      }
+    }
+
+    &.nsw-card--highlight {
+      .nsw-card__image {
+        &::after {
+          background-color: transparent;
+          height: unset;
+          width: unset;
+        }
+      }
+
+      .nsw-card__image {
+        box-shadow:
+          -1px 0 0 0 var(--nsw-grey-03), /* Left */
+          1px 0 0 0 var(--nsw-grey-03), /* Right */
+          0 -1px 0 0 var(--nsw-grey-03), /* Top */
+          0 4px 0 0 var(--nsw-brand-accent); /* Bottom (4px) */
+      }
+
+      &:hover {
+        .nsw-card__image {
+          box-shadow:
+            -1px 0 0 0 var(--nsw-grey-03), /* Left */
+            1px 0 0 0 var(--nsw-grey-03), /* Right */
+            0 -1px 0 0 var(--nsw-grey-03), /* Top */
+            0 4px 0 0 transparent; /* Bottom (4px) */
+        }
+
+        &.nsw-card--horizontal .nsw-card__image {
+          border-radius: var(--nsw-border-radius);
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
+          box-shadow:
+            -1px 0 0 0 var(--nsw-grey-03),  /* Left */
+            4px 0 0 0 transparent, /* Right */
+            0 -1px 0 0 var(--nsw-grey-03),  /* Top */
+            0 1px 0 0 var(--nsw-grey-03);   /* Bottom */
+        }
+      }
+
+      &.nsw-card--horizontal {
+        .nsw-card__image {
+          border-radius: var(--nsw-border-radius);
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
+          box-shadow:
+            -1px 0 0 0 var(--nsw-grey-03),  /* Left */
+            4px 0 0 0 var(--nsw-brand-accent), /* Right */
+            0 -1px 0 0 var(--nsw-grey-03),  /* Top */
+            0 1px 0 0 var(--nsw-grey-03);   /* Bottom */
+        }
       }
     }
   }

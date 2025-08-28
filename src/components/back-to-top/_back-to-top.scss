@@ -1,3 +1,5 @@
+@use '../../global/scss/base/mixins' as mixins;
+
 .nsw-back-to-top {
   display: flex;
   flex-direction: column-reverse;
@@ -10,7 +12,7 @@
   transition: 0.2s;
   text-decoration: none;
 
-  @include breakpoint('md') {
+  @include mixins.breakpoint('md') {
     flex-direction: row;
   }
 
@@ -23,14 +25,14 @@
     padding: 1rem;
     border: 0;
 
-    @include breakpoint('md') {
+    @include mixins.breakpoint('md') {
       padding: 0.625rem 1.375rem;
     }
 
     .nsw-material-icons:last-child {
       margin-left: 0;
 
-      @include breakpoint('md') {
+      @include mixins.breakpoint('md') {
         letter-spacing: -0.25rem;
       }
     }

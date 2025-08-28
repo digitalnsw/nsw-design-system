@@ -1,18 +1,24 @@
+@use 'sass:map';
+@use '../../global/scss/base/functions' as functions;
+@use '../../global/scss/base/mixins' as mixins;
+@use '../../global/scss/settings/settings' as settings;
+
 .nsw-accordion {
-  @include component-spacing();
+  @include mixins.component-spacing();
 
   &__title,
   &__button {
-    @include font-size('md');
     font-weight: var(--nsw-font-bold);
-    padding: rem(16px) rem(48px) rem(16px) rem(16px);
-    margin-top: rem(8px);
+    padding: functions.rem(16px) functions.rem(48px) functions.rem(16px) functions.rem(16px);
+    margin-top: functions.rem(8px);
     background-color: var(--nsw-off-white);
     display: block;
     width: 100%;
     text-align: left;
     position: relative;
-    transition: background $nsw-transition-duration, color $nsw-transition-duration;
+    transition: background settings.$nsw-transition-duration, color settings.$nsw-transition-duration;
+
+    @include mixins.font-size('md');
 
     .active,
     &:hover & {
@@ -38,10 +44,9 @@
   &__toggle {
     display: flex;
     justify-content: flex-end;
-    margin-bottom: rem(16px);
+    margin-bottom: functions.rem(16px);
 
     button {
-      @include font-size('sm');
       color: var(--nsw-link);
       text-decoration: underline;
       text-decoration-skip-ink: auto;
@@ -50,8 +55,11 @@
       padding: 0;
       background: none;
 
+      @include mixins.link;
+      @include mixins.font-size('sm');
+      
       &:hover:enabled {
-        @include nsw-hover;
+        @include mixins.nsw-hover;
         outline: 2px solid var(--nsw-hover);
         cursor: pointer;
 
@@ -62,11 +70,11 @@
       }
 
       &:focus {
-        @include nsw-focus($offset: false);
+        @include mixins.nsw-focus($offset: false);
       }
 
       &:first-child {
-        margin-right: rem(24px);
+        margin-right: functions.rem(24px);
       }
 
       &:disabled {
@@ -91,13 +99,13 @@
     }
 
     .nsw-material-icons {
-      font-size: rem(map-get($nsw-icon-sizes, 30));
+      font-size: functions.rem(map.get(settings.$nsw-icon-sizes, 30));
       color: var(--nsw-brand-dark);
       transform: translateY(-50%);
       position: absolute;
       top: 50%;
-      right: rem(8px);
-      transition: transform $nsw-transition-duration, color $nsw-transition-duration;
+      right: functions.rem(8px);
+      transition: transform settings.$nsw-transition-duration, color settings.$nsw-transition-duration;
     }
   }
 
@@ -106,9 +114,14 @@
     color: var(--nsw-text-dark);
 
     &:focus {
-      @include nsw-focus;
-      @include z-index;
       position: relative;
+
+      @include mixins.nsw-focus;
+      @include mixins.z-index;
+      
+      .nsw-section--invert & {   
+        @include mixins.nsw-focus($color: var(--nsw-focus-light));
+      }
     }
 
     &.active {
@@ -119,10 +132,14 @@
   }
 
   &__content[hidden='until-found'] {
+    display: none;
+    visibility: hidden;
+    height: 0;
     padding: 0;
+    overflow: hidden;
   }
 
   &__content {
-    padding: rem(16px);
+    padding: functions.rem(16px);
   }
 }

@@ -1,8 +1,11 @@
-<nav class="nsw-side-nav" aria-labelledby="{{parent-id}}">
+<nav class="nsw-side-nav js-side-nav" aria-labelledby="{{parent-id}}">
+  <button class="nsw-side-nav__toggle" aria-expanded="false">
+    <span>{{#if parent-text}}{{parent-text}}{{else}}Page navigation{{/if}}</span>
+  </button>
   <div class="nsw-side-nav__header" id="{{parent-id}}">
     <a href="{{parent-url}}">{{parent-text}}</a>
   </div>
-  <ul>
+  <ul class="nsw-side-nav__content">
     {{#each items}}
     <li{{#if (or current items) }} class="active"{{/if}}>
       <a href="{{#if url}}{{url}}{{else}}#{{/if}}"{{#if current}} class="current" aria-current="page"{{/if}}>{{text}}</a>

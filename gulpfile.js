@@ -1,7 +1,7 @@
 const {
   src, dest, watch, series,
 } = require('gulp')
-const child = require('child_process');
+const child = require('child_process')
 const sass = require('gulp-sass')(require('sass'))
 const postcss = require('gulp-postcss')
 const autoprefixer = require('autoprefixer')
@@ -26,7 +26,7 @@ const discoverHelpers = require('metalsmith-discover-helpers')
 const rollup = require('gulp-better-rollup')
 const nodeResolve = require('@rollup/plugin-node-resolve')
 const sitemap = require('gulp-sitemap')
-const babel = require('@rollup/plugin-babel')
+const { babel } = require('@rollup/plugin-babel')
 const eslint = require('gulp-eslint-new')
 const gulpStylelint = require('gulp-stylelint')
 const replace = require('gulp-replace')
@@ -36,15 +36,19 @@ const { argv } = require('yargs')
 const bump = require('gulp-bump')
 const config = require('./config')
 const package = require('./package')
+const Handlebars = require('handlebars')
+const handlebarsHelpers = require('handlebars-helpers')
 
 const server = browsersync.create()
-sass.compiler = require('sass')
 
 const postcssProcessors = [
   postcssNormalize({ forceImport: true }),
   autoprefixer({ grid: true }),
   cssnano,
 ]
+
+// Register all helpers globally on the Handlebars instance
+handlebarsHelpers({ handlebars: Handlebars })
 
 function moveImages() {
   return src(config.images.src)
@@ -60,7 +64,10 @@ function buildStyles() {
   return src(config.scss.src)
     .pipe(sourcemaps.init())
     .pipe(sassGlob())
-    .pipe(sass().on('error', sass.logError))
+    .pipe(sass().on('error', function (err) {
+      console.error(err.message)
+      this.emit('end')
+    }))
     .pipe(postcss(postcssProcessors))
     .pipe(sourcemaps.write('.'))
     .pipe(dest(config.scss.build))
@@ -70,7 +77,10 @@ function buildCoreStyles() {
   return src(config.scssCore.src)
     .pipe(sourcemaps.init())
     .pipe(sassGlob())
-    .pipe(sass().on('error', sass.logError))
+    .pipe(sass().on('error', function (err) {
+      console.error(err.message)
+      this.emit('end')
+    }))
     .pipe(postcss(postcssProcessors))
     .pipe(sourcemaps.write('.'))
     .pipe(dest(config.scssCore.build))
@@ -80,7 +90,10 @@ function buildDocStyles() {
   return src(config.scssDocs.src)
     .pipe(sourcemaps.init())
     .pipe(sassGlob())
-    .pipe(sass().on('error', sass.logError))
+    .pipe(sass().on('error', function (err) {
+      console.error(err.message)
+      this.emit('end')
+    }))
     .pipe(postcss(postcssProcessors))
     .pipe(sourcemaps.write('.'))
     .pipe(dest(config.scssDocs.build))
@@ -152,7 +165,10 @@ function metalsmithBuild(callback) {
   metalsmith.destination(config.metalSmith.build)
   metalsmith.use(ignore(config.metalSmith.ignoreFiles))
   metalsmith.clean(false)
-  metalsmith.use(discoverHelpers(config.metalSmith.helpers))
+  metalsmith.use(discoverHelpers({
+    ...config.metalSmith.helpers,
+    handlebars: Handlebars
+  }))
   metalsmith.use(discoverPartials(config.metalSmith.partials))
   metalsmith.use(dataLoader(config.metalSmith.data))
   metalsmith.use(collections({
@@ -237,7 +253,14 @@ function compileJS() {
     .pipe(
       rollup(
         {
-          plugins: [babel({ babelHelpers: 'bundled' }), nodeResolve()],
+          plugins: [
+            babel({
+              babelHelpers: 'bundled',
+              extensions: ['.js', '.ts'],
+              exclude: 'node_modules/**',
+            }),
+            nodeResolve()
+          ],
         },
         {
           name: 'NSW',
@@ -258,11 +281,45 @@ function compileDocsJS() {
     .pipe(
       rollup(
         {
-          plugins: [babel()],
+          plugins: [
+            nodeResolve(),
+            babel({
+              babelHelpers: 'bundled',
+              extensions: ['.js', '.ts'],
+              exclude: 'node_modules/**',
+            }),
+          ],
         },
+        {
+          name: 'NSW',
+          format: 'umd',
+        }
       ),
     )
     .pipe(dest(config.jsDocs.build))
+}
+
+function compileCookieConsentJS() {
+  return src(config.jsCookieConsent.src)
+    .pipe(
+      rollup(
+        {
+          plugins: [
+            nodeResolve(),
+            babel({
+              babelHelpers: 'bundled',
+              extensions: ['.js', '.ts'],
+              exclude: 'node_modules/**',
+            }),
+          ],
+        },
+        {
+          name: 'NSW',
+          format: 'umd',
+        }
+      ),
+    )
+    .pipe(dest(config.jsCookieConsent.build))
 }
 
 function lintJavascript() {
@@ -315,14 +372,14 @@ function renamePathForProd() {
 
 function addAnalytics() {
   return src(`${config.dir.build}/**/*.html`)
-  .pipe(inject.after('<head>', `<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    .pipe(inject.after('<head>', `<script data-category="analytics">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-P2NKBBJZ');</script>
   `))
-    .pipe(inject.after('<head>', `<script async src="https://www.googletagmanager.com/gtag/js?id=G-49T9M12F86"></script>
-<script>
+    .pipe(inject.after('<head>', `<script async data-category="analytics" src="https://www.googletagmanager.com/gtag/js?id=G-49T9M12F86"></script>
+<script data-category="analytics">
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
@@ -330,7 +387,7 @@ function addAnalytics() {
   gtag('config', 'G-49T9M12F86');
 </script>
   `))
-.pipe(inject.after('<body>', `<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P2NKBBJZ"
+    .pipe(inject.after('<body>', `<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P2NKBBJZ"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     `))
     .pipe(dest(config.dir.build))
@@ -343,7 +400,7 @@ function bumping() {
 }
 
 const styles = series(lintStyles, buildStyles, buildCoreStyles, buildDocStyles)
-const javascript = series(lintJavascript, compileJS, compileTypes, compileDocsJS)
+const javascript = series(lintJavascript, compileJS, compileTypes, compileDocsJS, compileCookieConsentJS)
 
 function watchFiles(done) {
   watch(config.scss.watch, series(styles, reload))

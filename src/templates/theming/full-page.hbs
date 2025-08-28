@@ -16,6 +16,11 @@ model:
 <style type="text/css">
   .nsw-header__main {
     width: 100%;
+    flex: 0 0 30%;
+  }
+
+  .nsw-color-swatches {
+    flex: 0 0 70%;
   }
 </style>
 
@@ -48,7 +53,7 @@ model:
       </div>
       <div class="nsw-color-swatches js-color-swatches">
         <legend class="nsw-color-swatches__legend" aria-live="polite" aria-atomic="true"><span class="nsw-color-swatches__color js-color-swatches__color">Blue 01</span></legend>
-        <select class="js-color-swatches__select" aria-label="Select a color"></select>
+        {{!-- <select class="js-color-swatches__select" aria-label="Select a color"></select> --}}
       </div>
     </div>
   </div>
@@ -61,7 +66,7 @@ model:
 
 <div class="nsw-container nsw-p-top-sm nsw-p-bottom-lg">
   <div class="nsw-layout">
-    <div class="nsw-layout__sidebar nsw-layout__sidebar--desktop">
+    <div class="nsw-layout__sidebar js-side-nav">
       {{>_side-nav model.side-nav}}
     </div>
     <main id="content" class="nsw-layout__main">
