@@ -337,7 +337,7 @@ class CookieConsent {
         event.preventDefault()
         this.hideConsentBanner()
         if (this.dialogInstance) {
-          this.dialogInstance.open()
+          this.dialogInstance.openEvent()
         }
       }
     })
