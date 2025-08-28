@@ -38,7 +38,8 @@
     "release:patch": "npm run bump:patch && npm run starterkit:build && npm run changelog:build",
     "release-local:major": "npm run bump:major && redrun starterkit:build surge changelog:build commit git-tag -s && npm publish",
     "release-local:minor": "npm run bump:minor && redrun starterkit:build surge changelog:build commit git-tag -s && npm publish",
-    "release-local:patch": "npm run bump:patch && redrun starterkit:build surge changelog:build commit git-tag -s && npm publish"
+    "release-local:patch": "npm run bump:patch && redrun starterkit:build surge changelog:build commit git-tag -s && npm publish",
+    "test:a11y": "node accessibility-test.js"
   },
   "keywords": [
     "design system"
