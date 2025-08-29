@@ -358,7 +358,7 @@
 
   /* eslint-disable no-console */
   const log = (...args) => {
-    if (process.env.NODE_ENV !== 'production') {
+    if ("production" !== 'production') {
       console.log(...args);
     }
   };
@@ -1434,7 +1434,7 @@
           event.preventDefault();
           this.hideConsentBanner();
           if (this.dialogInstance) {
-            this.dialogInstance.open();
+            this.dialogInstance.openEvent();
           }
         }
       });
