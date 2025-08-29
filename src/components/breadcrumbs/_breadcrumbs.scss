@@ -52,19 +52,22 @@
       font-size: var(--nsw-font-size-xs);
       font-weight: var(--nsw-font-normal);
       color: var(--nsw-text-dark);
-      text-decoration: none;
       padding: 0 functions.rem(4px);
       margin-left: 4px;
       line-height: 24px;
       height: 100%;
       cursor: pointer;
- 
+      
       @include mixins.link-button;
 
       .nsw-section--invert & {
         color: var(--nsw-text-light);
         
         @include mixins.link-light;
+      }
+
+      & {
+        text-decoration: none;
       }
     }
   }
