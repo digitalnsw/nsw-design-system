@@ -32,14 +32,14 @@
     "bump:patch": "gulp bumping --type patch",
     "commit": "git add . && git reset -- package-lock.json && git commit -m 'Built HTMLstarterkit and updated CHANGELOG.md' && git push origin",
     "types": "tsc",
-    "accessibility-test": "DEBUG='pw:browser' node accessibility-test.js",
     "release:major": "npm run bump:major && npm run starterkit:build && npm run changelog:build",
     "release:minor": "npm run bump:minor && npm run starterkit:build && npm run changelog:build",
     "release:patch": "npm run bump:patch && npm run starterkit:build && npm run changelog:build",
     "release-local:major": "npm run bump:major && redrun starterkit:build surge changelog:build commit git-tag -s && npm publish",
     "release-local:minor": "npm run bump:minor && redrun starterkit:build surge changelog:build commit git-tag -s && npm publish",
     "release-local:patch": "npm run bump:patch && redrun starterkit:build surge changelog:build commit git-tag -s && npm publish",
-    "test:a11y": "node accessibility-test.js"
+    "test:a11y": "node a11y-test.js",
+    "test:a11y-local": "DISABLE_PROXY=true FULL_SWEEP=true node a11y-test.js"
   },
   "keywords": [
     "design system"
