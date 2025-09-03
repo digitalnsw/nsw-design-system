@@ -21,12 +21,39 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - run: npx playwright install --with-deps
-      - name: Run a11y accessibility checks
+
+      - name: Build site (try common scripts)
+        shell: bash
+        run: |
+          set -e
+          npm run build 2>/dev/null || npm run starterkit:build 2>/dev/null || npm run docs:build 2>/dev/null || npm run site:build 2>/dev/null || echo "No build script matched; continuing"
+
+      - name: Detect output directory
+        id: outdir
+        shell: bash
+        run: |
+          set -e
+          OUTDIR=""
+          for d in dist build public docs site; do
+            if [ -d "$d" ]; then OUTDIR="$d"; break; fi
+          done
+          echo "outdir=${OUTDIR:-dist}" >> "$GITHUB_OUTPUT"
+          echo "Using outdir=${OUTDIR:-dist}"
+
+      - name: Start preview server (PR build)
+        run: npx http-server "${{ steps.outdir.outputs.outdir }}" -p 3000 --silent &
+
+      - name: Wait for server
+        run: npx wait-on http://localhost:3000
+
+      - name: Run a11y accessibility checks (PR build on localhost)
         run: npm run test:a11y
         env:
           FAIL_ON: critical
           OUTPUT_DIR: ${{ runner.temp }}
           FULL_SWEEP: true
+          BASE_URL: http://localhost:3000
+          DISABLE_PROXY: true
 
       - name: Summarise a11y criticals (step summary)
         if: always()

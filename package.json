@@ -39,7 +39,7 @@
     "release-local:minor": "npm run bump:minor && redrun starterkit:build surge changelog:build commit git-tag -s && npm publish",
     "release-local:patch": "npm run bump:patch && redrun starterkit:build surge changelog:build commit git-tag -s && npm publish",
     "test:a11y": "node a11y-test.js",
-    "test:a11y-local": "DISABLE_PROXY=true FULL_SWEEP=true node a11y-test.js"
+    "test:a11y-local": "DISABLE_PROXY=true BASE_URL=http://localhost:3000 FULL_SWEEP=true node a11y-test.js"
   },
   "keywords": [
     "design system"
