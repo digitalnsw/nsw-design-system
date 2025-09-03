@@ -30,41 +30,48 @@ jobs:
 
       - name: Summarise a11y criticals (step summary)
         if: always()
+        shell: bash
         env:
           OUTPUT_DIR: ${{ runner.temp }}
           FAIL_ON: critical
         run: |
-          node -e "
-            const fs=require('fs');
-            const path = (process.env.OUTPUT_DIR||'.') + '/axe-results-fail.json';
-            const data = fs.existsSync(path) ? JSON.parse(fs.readFileSync(path,'utf8')) : [];
-            let total=0, byRule={}, byUrl=[];
-            for (const p of data) {
-              const vio = Array.isArray(p.violations) ? p.violations : [];
-              total += vio.length;
-              byUrl.push([p.url || '(unknown)', vio.length]);
-              for (const v of vio) byRule[(v.id||'unknown')] = (byRule[v.id||'unknown']||0)+1;
-            }
-            byUrl.sort((a,b)=>b[1]-a[1]);
-            const topPages = byUrl.slice(0,10).map(([u,c])=>`| ${c} | ${u} |`).join('\\n');
-            const topRules = Object.entries(byRule).sort((a,b)=>b[1]-a[1]).slice(0,10)
-              .map(([id,c])=>`| ${id} | ${c} |`).join('\\n');
+          node - <<'NODE'
+          const fs = require('fs');
+          const path = (process.env.OUTPUT_DIR || '.') + '/axe-results-fail.json';
+          const data = fs.existsSync(path) ? JSON.parse(fs.readFileSync(path, 'utf8')) : [];
 
-            const lines = [
-              '## a11y critical summary',
-              `**Fail threshold:** ${process.env.FAIL_ON || 'critical'}`,
-              `**Total pages with failing groups:** ${data.length}`,
-              `**Total failing groups:** ${total}`,
-              '',
-              '### Top rules',
-              '| Rule | Count |','|---|---|',
-              topRules || '| (none) | 0 |',
-              '',
-              '### Top pages',
-              '| Failing groups | URL |','|---:|---|',
-              topPages || '| 0 | (none) |'
-            ];
-            const md = lines.join('\\n');
-            fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY || 'summary.md', md);
-            console.log(md);
-          "
+          let total = 0, byRule = {}, byUrl = [];
+          for (const p of data) {
+            const vio = Array.isArray(p.violations) ? p.violations : [];
+            total += vio.length;
+            byUrl.push([p.url || '(unknown)', vio.length]);
+            for (const v of vio) {
+              const id = (v.id || 'unknown');
+              byRule[id] = (byRule[id] || 0) + 1;
+            }
+          }
+
+          byUrl.sort((a,b) => b[1] - a[1]);
+          const topPages = byUrl.slice(0, 10)
+            .map(([u,c]) => '| ' + c + ' | ' + u + ' |').join('\n');
+          const topRules = Object.entries(byRule).sort((a,b) => b[1] - a[1]).slice(0, 10)
+            .map(([id,c]) => '| ' + id + ' | ' + c + ' |').join('\n');
+
+          const lines = [
+            '## a11y critical summary',
+            '**Fail threshold:** ' + (process.env.FAIL_ON || 'critical'),
+            '**Total pages with failing groups:** ' + data.length,
+            '**Total failing groups:** ' + total,
+            '',
+            '### Top rules',
+            '| Rule | Count |','|---|---|',
+            topRules || '| (none) | 0 |',
+            '',
+            '### Top pages',
+            '| Failing groups | URL |','|---:|---|',
+            topPages || '| 0 | (none) |'
+          ];
+          const md = lines.join('\n');
+          fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY || 'summary.md', md);
+          console.log(md);
+          NODE
