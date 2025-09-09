@@ -14,7 +14,7 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-P2NKBBJZ');</script>
   
-  <title>NSW Digital Design System - Forms</title>
+  <title>NSW Digital Design System - Inactive fields</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -62,34 +62,40 @@
   <div class="nsw-container nsw-p-y-sm">
     <div class="nsw-layout">
       <main class="nsw-layout__main">
+        <h1>Inactive fields styling</h1>
+        <p>Avoid using inactive form fields. Conditionally render fields only when input is required, and present read-only information as text outside of form fields.</p>
+        <p>The following are for fallback styles only and are not recommended for usage.</p>
+        
+        <h2>Disabled</h2>
+        
         <div class="nsw-form">
           <div class="nsw-form__group">
             <label class="nsw-form__label" for="form-text-1">Name</label>
-            <input class="nsw-form__input" type="text" id="form-text-1" name="form-text-1"  >
+            <input class="nsw-form__input" type="text" id="form-text-1" name="form-text-1" disabled=true >
           </div>
           <div class="nsw-form__group">
             <label class="nsw-form__label" for="form-textarea-1">Comment</label>
-            <textarea class="nsw-form__input" name="textarea" id="form-textarea-1" ></textarea>
+            <textarea class="nsw-form__input" name="textarea" id="form-textarea-1" disabled=true></textarea>
           </div>
         
           <div class="nsw-form__group">
             <div class="nsw-form__input-group">
               <label class="sr-only" for="form-input-group-1">Search</label>
-              <input class="nsw-form__input" type="text" id="form-input-group-1" name="form-input-group-1" value="" >
+              <input class="nsw-form__input" type="text" id="form-input-group-1" name="form-input-group-1" value="" disabled=true>
               <button class="nsw-button nsw-button--dark nsw-button--flex" type="submit">Search</button>
             </div>
           </div>
           <div class="nsw-form__group">
             <div class="nsw-form__input-group nsw-form__input-group--icon">
               <label class="sr-only" for="form-input-group-icon-1">Search</label>
-              <input class="nsw-form__input" type="text" id="form-input-group-icon-1" name="form-input-group-icon-1" value="" >
+              <input class="nsw-form__input" type="text" id="form-input-group-icon-1" name="form-input-group-icon-1" value="" disabled=true>
               <button class="nsw-button nsw-button--dark nsw-button--flex" type="submit"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">search</span><span class="sr-only">Search</span></button>
             </div>
           </div>
           <div class="nsw-form__group">
             <div class="nsw-form__input-group nsw-form__input-group--icon">
               <label class="sr-only" for="form-input-group-icon-2">Search</label>
-              <input class="nsw-form__input" type="text" id="form-input-group-icon-2" name="form-input-group-icon-2" value="" >
+              <input class="nsw-form__input" type="text" id="form-input-group-icon-2" name="form-input-group-icon-2" value="" disabled=true>
               <button class="nsw-button nsw-button--white nsw-button--flex" type="submit"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">search</span><span class="sr-only">Search</span></button>
             </div>
           </div>
@@ -97,7 +103,7 @@
           <div class="nsw-form__group">
             <label class="nsw-form__label" for="form-predictive-text-1">Suburb</label>
             <div class="nsw-form__predictive">
-              <input class="nsw-form__input" type="text" id="form-predictive-text-1" name="form-predictive-text-1" value="Horn" aria-autocomplete="list" autocomplete="off">
+              <input class="nsw-form__input" type="text" id="form-predictive-text-1" name="form-predictive-text-1" value="Horn" aria-autocomplete="list" autocomplete="off" disabled="true">
               <ul class="nsw-form__predictive-list">
                 <li><a href="#"><span>Horn</span>sby</a></li>
                 <li><a href="#"><span>Horn</span>sby Heights</a></li>
@@ -110,7 +116,7 @@
             <div class="nsw-form__predictive">
               <div class="nsw-form__input-group">
                 <label class="sr-only" for="form-predictive-group-1">Search</label>
-                <input class="nsw-form__input" type="text" id="form-predictive-group-1" name="form-predictive-group-1" value="Tran" aria-autocomplete="list" autocomplete="off" >
+                <input class="nsw-form__input" type="text" id="form-predictive-group-1" name="form-predictive-group-1" value="Tran" aria-autocomplete="list" autocomplete="off" disabled=true>
                 <button class="nsw-button nsw-button--dark nsw-button--flex" type="submit">Search</button>
               </div>
               <ul class="nsw-form__predictive-list">
@@ -125,7 +131,7 @@
             <div class="nsw-form__predictive">
               <div class="nsw-form__input-group nsw-form__input-group--icon">
                 <label class="sr-only" for="form-predictive-group-icon-1">Search</label>
-                <input class="nsw-form__input" type="text" id="form-predictive-group-icon-1" name="form-predictive-group-icon-1" value="Govern" aria-autocomplete="list" autocomplete="off" >
+                <input class="nsw-form__input" type="text" id="form-predictive-group-icon-1" name="form-predictive-group-icon-1" value="Govern" aria-autocomplete="list" autocomplete="off" disabled=true>
                 <button class="nsw-button nsw-button--dark nsw-button--flex" type="submit"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">search</span><span class="sr-only">Search</span></button>
               </div>
               <ul class="nsw-form__predictive-list">
@@ -145,15 +151,15 @@
               <div class="nsw-form__date-wrapper">
                 <div class="nsw-form__date-input">
                   <label for="form-date-1-day" class="nsw-form__label nsw-form__label--small">Day</label>
-                  <input type="text" maxlength="2" id="form-date-1-day" name="form-date-1-day" class="nsw-form__input" >
+                  <input type="text" maxlength="2" id="form-date-1-day" name="form-date-1-day" class="nsw-form__input" disabled=true>
                 </div>
                 <div class="nsw-form__date-input">
                   <label for="form-date-1-month" class="nsw-form__label nsw-form__label--small">Month</label>
-                  <input type="text" maxlength="2" id="form-date-1-month" name="form-date-1-month" class="nsw-form__input" >
+                  <input type="text" maxlength="2" id="form-date-1-month" name="form-date-1-month" class="nsw-form__input" disabled=true>
                 </div>
                 <div class="nsw-form__date-input nsw-form__date-input--large">
                   <label for="form-date-1-year" class="nsw-form__label nsw-form__label--small">Year</label>
-                  <input type="text" maxlength="4" id="form-date-1-year" name="form-date-1-year" class="nsw-form__input" >
+                  <input type="text" maxlength="4" id="form-date-1-year" name="form-date-1-year" class="nsw-form__input" disabled=true>
                 </div>
               </div>
             </fieldset>
@@ -161,7 +167,7 @@
         
           <div class="nsw-form__group">
             <label class="nsw-form__label" for="form-select-1">Region</label>
-              <select class="nsw-form__select" name="form-select-1" id="form-select-1" ><option value="">Please select</option>
+              <select class="nsw-form__select" name="form-select-1" id="form-select-1" disabled=true><option value="">Please select</option>
                 <option value="Central Coast">Central Coast</option>
                 <option value="Central West &amp; Orana">Central West &amp; Orana</option>
                 <option value="Far West">Far West</option>
@@ -173,7 +179,7 @@
               </select>  </div>
         
           <div class="nsw-form__group">
-            <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-1" id="form-checkbox-1" >
+            <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-1" id="form-checkbox-1" disabled=true>
             <label class="nsw-form__checkbox-label" for="form-checkbox-1">I agree to terms and conditions</label>
           </div>
           <div class="nsw-form__group">
@@ -181,9 +187,9 @@
               <legend>
                 <span class="nsw-form__legend">Category</span>
               </legend>
-              <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-multi-1" id="form-checkbox-multi-1-a" >
+              <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-multi-1" id="form-checkbox-multi-1-a" disabled=true>
               <label class="nsw-form__checkbox-label" for="form-checkbox-multi-1-a">Customer Service</label>
-              <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-multi-1" id="form-checkbox-multi-1-b" checked >
+              <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-multi-1" id="form-checkbox-multi-1-b" checked disabled=true>
               <label class="nsw-form__checkbox-label" for="form-checkbox-multi-1-b">Communities and Justice</label>
             </fieldset>
           </div>
@@ -193,9 +199,9 @@
               <legend>
                 <span class="nsw-form__legend">Topic</span>
               </legend>
-              <input class="nsw-form__radio-input" type="radio" name="form-radio-1" id="form-radio-1-a" checked >
+              <input class="nsw-form__radio-input" type="radio" name="form-radio-1" id="form-radio-1-a" checked disabled=true>
               <label class="nsw-form__radio-label" for="form-radio-1-a">NSW Government</label>
-              <input class="nsw-form__radio-input" type="radio" name="form-radio-1" id="form-radio-1-b" >
+              <input class="nsw-form__radio-input" type="radio" name="form-radio-1" id="form-radio-1-b" disabled=true>
               <label class="nsw-form__radio-label" for="form-radio-1-b">Business and Economy</label>
             </fieldset>
           </div>

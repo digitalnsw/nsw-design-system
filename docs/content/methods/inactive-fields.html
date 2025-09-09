@@ -14,13 +14,13 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-P2NKBBJZ');</script>
   
-  <title>NSW Digital Design System - Date picker</title>
+  <title>NSW Digital Design System - Inactive fields</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://designsystem.nsw.gov.au/nsw-og-image.jpg">
-  <meta name="description" content="Use a date picker to let users pick a date from a calendar" />
+  <meta name="description" content="Avoid using inactive form fields. Conditionally render fields only when input is required, and present read-only information as text outside of form fields." />
   <link rel="icon" href="https://designsystem.nsw.gov.au/favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -422,578 +422,126 @@
       </div>
     </div>
     <div class="nsw-docs__main nsw-docs__main--narrow">
-      <div class="nsw-docs__intro nsw-docs__intro--tabs">
+      <div class="nsw-docs__intro">
         <div class="nsw-docs__container">
-          <h1>Date picker</h1>
+          <h1>Inactive fields</h1>
           
-          <p class="nsw-intro">Use a date picker to let users pick a date from a calendar</p>
+          <p class="nsw-intro">Avoid using inactive form fields. Conditionally render fields only when input is required, and present read-only information as text outside of form fields.</p>
           
+          <p>
+            <a class="nsw-link nsw-link--icon" target="_blank" href="https://www.figma.com/design/PVrERKnckLTlJSPk12gbtS/NSW-Design-System?node-id&#x3D;21298-21918&amp;t&#x3D;oi6Sic5gM1CXpoRQ-4">
+              <svg width="20" height="20" viewBox="0 0 33 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.003 48c4.416 0 8-3.584 8-8v-8h-8c-4.416 0-8 3.584-8 8s3.584 8 8 8z" fill="#0ACF83"></path><path d="M.003 24c0-4.416 3.584-8 8-8h8v16h-8c-4.416 0-8-3.584-8-8z" fill="#A259FF"></path><path d="M.003 8c0-4.416 3.584-8 8-8h8v16h-8c-4.416 0-8-3.584-8-8z" fill="#F24E1E"></path><path d="M16.003 0h8c4.416 0 8 3.584 8 8s-3.584 8-8 8h-8V0z" fill="#FF7262"></path><path d="M32.003 24c0 4.416-3.584 8-8 8s-8-3.584-8-8 3.584-8 8-8 8 3.584 8 8z" fill="#1ABCFE"></path></svg>
+              <span>Figma</span>
+            </a>
+          </p>
         </div>
       </div>
-<div class="nsw-docs__tabs">
-  <div class="nsw-tabs js-tabs nsw-docs-tabs">
-    <ul class="nsw-tabs__list">
-      <li class="nsw-tabs__list-item">
-        <a href="#section-guidance" class="nsw-tabs__link js-tabs-fixed">Guidance</a>
-      </li>
-      <li class="nsw-tabs__list-item">
-        <a href="#section-interactive-demo" class="nsw-tabs__link js-tabs-fixed">Demo &amp; Code</a>
-      </li>
-    </ul>
-    <section id="section-guidance" class="nsw-tabs__content">
-      <div class="nsw-docs__container">
-        
-<h2>Usage</h2>
+      <div class="nsw-docs__content">
+        <div class="nsw-docs__container">
 
-<p>A date picker simplifies the process of entering dates by providing a visual calendar interface helping users to understand a date’s relationship to other days, such as the day of the week or how far away a date is from today.</p>
+<h2>Purpose</h2>
+<p>Guide teams away from using form fields to display information that is not intended to be edited. Prefer patterns that present information as text, keeping forms for input only.</p>
 
-<p>The date picker is a progressive enhancement to text inputs that lets users choose a date from a calendar interface or enter the date as text. To help with accessibility, it can be used with a keyboard, as well as mouse or touchscreen.</p>
-
-<p>Do:</p>
+<h2>Principles</h2>
 <ul>
-  <li>display the date format above the text input</li>
-  <li>ensure users can enter dates via the calendar or text input</li>
-  <li>disable dates that aren’t available</li>
+  <li><strong>Show, don’t suggest.</strong> If something is not editable, present it as text rather than an input.</li>
+  <li><strong>Reduce friction.</strong> Keep the tab order clean and avoid trapping keyboard users in non-interactive controls.</li>
+  <li><strong>Signal clearly.</strong> Make state obvious through layout and content, not by disabling controls.</li>
 </ul>
 
-<h3>When to use</h3>
-<p>Use a date picker:</p>
+<h2>When to avoid inactive fields</h2>
 <ul>
-  <li>when the date options are relatively close to the present day.</li>
-  <li>when users need to know the day of the week, or the week of the month, as well as the date.</li>
-  <li>when knowing the day of the week helps users choose a specific date.</li>
+  <li>Showing read-only values in a create or edit form when the user cannot change them here.</li>
+  <li>Using disabled inputs to communicate status, such as “Verified” or “Locked”.</li>
+  <li>Placing long blocks of reference information inside textareas or inputs.</li>
 </ul>
 
-<h3>When to avoid</h3>
-<p>Don't use a date picker:</p>
+<h2>Preferred patterns</h2>
+
+<h3>1. Plain text (most common)</h3>
+<p>The simplest and most inclusive way to present information that cannot be edited is to show it as plain text near the related form. This avoids users mistaking an inactive input for something interactive. It also reduces visual clutter, keeps the focus order clean, and shortens the journey for keyboard and screen reader users. Showing data as text makes the status unambiguous: the user can read it, but they are not expected to act on it here.</p>
+
+<h3>2. Key–value summary</h3>
+<p>Use a compact summary list for static attributes.</p>
+<pre><code>&lt;dl class="summary-list"&gt;
+  &lt;div class="summary-list__row"&gt;
+    &lt;dt&gt;Account name&lt;/dt&gt;
+    &lt;dd&gt;Gina Snodgrass&lt;/dd&gt;
+  &lt;/div&gt;
+  &lt;div class="summary-list__row"&gt;
+    &lt;dt&gt;Status&lt;/dt&gt;
+    &lt;dd&gt;Verified&lt;/dd&gt;
+  &lt;/div&gt;
+&lt;/dl&gt;
+</code></pre>
+
+<h3>3. Read, then edit</h3>
+<p>When users often review before editing, show values as text with a single “Edit” action that reveals editable fields.</p>
+<pre><code>&lt;p id="email-value"&gt;gina@example.nsw.gov.au&lt;/p&gt;
+&lt;button type="button" aria-controls="email-fieldset" aria-expanded="false"&gt;Edit email&lt;/button&gt;
+&lt;fieldset id="email-fieldset" hidden&gt;
+  &lt;label for="email"&gt;Email&lt;/label&gt;
+  &lt;input id="email" name="email" type="email"&gt;
+  &lt;button type="submit"&gt;Save&lt;/button&gt;
+&lt;/fieldset&gt;
+</code></pre>
+
+<h3>4. Status badges or tags</h3>
+<p>For short state, use a tag or badge component rather than a disabled input labelled “Status”.</p>
+
+<h3>5. Tables or cards</h3>
+<p>For lists of records, display values in a table or card layout with a per-row action such as “Edit”. Do not render read-only inputs in each cell.</p>
+
+<h2>When a read-only field is acceptable</h2>
+<p>Read-only inputs may be used sparingly when keeping the input in context avoids confusion, for example:</p>
 <ul>
-  <li>when the user needs to select a set date that they know, like their birthday - use <a href="https://designsystem.nsw.gov.au/components/date-input/index.html">date input</a> instead</li>
-  <li>when having a calendar is not likely to help the user - such as a date several years in the past</li>
-  <li>when screen size is limited, a full calendar view might not be practical.</li>
+  <li>Review or confirmation steps that mirror the exact layout of a prior editable step.</li>
+  <li>Pattern libraries where demonstrating the disabled/read-only states is necessary.</li>
+</ul>
+<p>Implementation:</p>
+<pre><code>&lt;input type="text" value="NSW 2000" readonly aria-readonly="true"&gt;
+</code></pre>
+
+<h2>When a disabled field is acceptable</h2>
+<p>Disabled inputs remove the control from the focus order and are not announced as interactive by assistive technologies. Use only when a control will become editable within the same flow and there is no clearer alternative. Avoid using disabled inputs to convey informational content.</p>
+<p>Implementation:</p>
+<pre><code>&lt;input type="text" value="Will enable after verification" disabled aria-disabled="true"&gt;
+</code></pre>
+
+<h2>Accessibility guidance</h2>
+<ul>
+  <li><strong>Focus order:</strong> Plain text is not focusable, which keeps tabbing efficient. Disabled controls are also not focusable, but they look interactive and may confuse users.</li>
+  <li><strong>Announcements:</strong> Screen readers announce readonly inputs differently across browsers. Text avoids this variability.</li>
+  <li><strong>Colour contrast:</strong> Disabled styles often reduce contrast. Do not rely on colour alone to indicate state.</li>
+  <li><strong>ARIA:</strong> If you must keep the control visible but inactive, prefer <code>readonly</code> over <code>disabled</code> so its value is still conveyed and included in form submission when appropriate.</li>
 </ul>
 
-<h2>How this component works</h2>
+<h2>Content design</h2>
+<ul>
+  <li>Be explicit: “This information is set by your organisation” rather than implying “You cannot edit this”.</li>
+  <li>Place immutable information near the related inputs, but outside the form controls.</li>
+  <li>Use helper text to explain how the value can be changed if not here, for example “Contact support to update your legal name”.</li>
+</ul>
 
-<p>The date picker component relies on JavaScript so should be treated as an enhancement. Users should always be able to enter the date into a text field as well as use the control.</p>
-
-<p>Users select dates from a visual representation of the month and can skip through months and years. This allows them to easily see what day of the week and week of the month a particular date is in, which is particularly useful for tasks like appointment booking.</p>
-
-<p>The Date Picker component comes with the following customizations:</p>
-
-<h3>Month labels</h3>
-
-<p>By default, the calendar widget shows the full English name of the months; if you wish to change this default (e.g., passing a short version of the label or using a different language), add a data-months attribute to the .nsw-date-input element with the comma-separated list of the labels you want to use:</p>
-
-<div class="nsw-docs-code">
-  <div class="nsw-docs-code__content active">
-    <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
-      <span>Copy</span>
-      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
-    </button>
-    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`<div class="nsw-date-input js-date-input" data-months="Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec">
-  <!-- ... -->
+<h2>Do and don't</h2>
+<div class="ds-example ds-example--do">
+  <h3>Do</h3>
+  <ul>
+    <li>Show read-only values as text or in a summary list.</li>
+    <li>Provide a single, clear Edit action for the section.</li>
+    <li>Use status tags instead of disabled inputs.</li>
+  </ul>
 </div>
-`).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
-    <div class="nsw-docs-code__wrapper">
-<pre><code class="html"><script>document.write((`<div class="nsw-date-input js-date-input" data-months="Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec">
-  <!-- ... -->
+<div class="ds-example ds-example--dont">
+  <h3>Don't</h3>
+  <ul>
+    <li>Fill an input and set it to disabled to “show” a value.</li>
+    <li>Use disabled fields to explain process states or permissions.</li>
+    <li>Trap users in long forms filled with non-editable inputs.</li>
+  </ul>
 </div>
-`).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
-    </div>
-  </div>
-</div>
-
-<h3>Date format</h3>
-
-<p>By default, the date format of the text input field is 'dd/mm/yyyy'; if you want to change this order (e.g., yyyy/mm/dd), add a data-date-format attribute to the .nsw-date-input element with the new order you want to use:</p>
-
-<div class="nsw-docs-code">
-  <div class="nsw-docs-code__content active">
-    <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
-      <span>Copy</span>
-      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
-    </button>
-    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`<div class="nsw-date-input js-date-input" data-date-format="y-m-d">
-  <!-- ... -->
-</div>​​
-`).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
-    <div class="nsw-docs-code__wrapper">
-<pre><code class="html"><script>document.write((`<div class="nsw-date-input js-date-input" data-date-format="y-m-d">
-  <!-- ... -->
-</div>​​
-`).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
-    </div>
-  </div>
-</div>
-
-<h3>Date separator</h3>
-
-<p>By default, the slash ('/') is used as date separator; if you want to use a different character (e.g., '-'), add a data-date-separator attribute to the .nsw-date-input element:</p>
-
-<div class="nsw-docs-code">
-  <div class="nsw-docs-code__content active">
-    <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
-      <span>Copy</span>
-      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
-    </button>
-    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`<div class="nsw-date-input js-date-input" data-date-separator="-">
-  <!-- ... -->
-</div>
-`).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
-    <div class="nsw-docs-code__wrapper">
-<pre><code class="html"><script>document.write((`<div class="nsw-date-input js-date-input" data-date-separator="-">
-  <!-- ... -->
-</div>
-`).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
-    </div>
-  </div>
-</div>
-
-<h3>Preselected date</h3>
-
-<p>If you want to prefill your Date Picker component with a date, use the <code>.js-date-input__text</code> input element and set its <code>value</code> equal to the date you want to use. Make sure to use the date format you specify in data-date-format or the default, d-m-y.</p>
-
-<h3>Date ranges and disabled dates</h3>
-
-<p>Allowed date ranges for a date picker can be set by specifying earliest and latest allowed dates. Individual dates can also be disabled.</p>
-
-<p>If you want to specify an earliest possible date for the calendar, add a data-min-date attribute to the .nsw-date-input element:</p>
-
-<div class="nsw-docs-code">
-  <div class="nsw-docs-code__content active">
-    <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
-      <span>Copy</span>
-      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
-    </button>
-    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`<div class="nsw-date-input js-date-input" data-min-date="02/01/2024">
-  <!-- ... -->
-</div>
-`).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
-    <div class="nsw-docs-code__wrapper">
-<pre><code class="html"><script>document.write((`<div class="nsw-date-input js-date-input" data-min-date="02/01/2024">
-  <!-- ... -->
-</div>
-`).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
-    </div>
-  </div>
-</div>
-
-<p>If you want to specify a latest possible date for the calendar, add a data-max-date attribute to the .nsw-date-input element:</p>
-</p>
-
-<div class="nsw-docs-code">
-  <div class="nsw-docs-code__content active">
-    <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
-      <span>Copy</span>
-      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
-    </button>
-    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`<div class="nsw-date-input js-date-input" data-max-date="30/01/2024">
-  <!-- ... -->
-</div>
-`).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
-    <div class="nsw-docs-code__wrapper">
-<pre><code class="html"><script>document.write((`<div class="nsw-date-input js-date-input" data-max-date="30/01/2024">
-  <!-- ... -->
-</div>
-`).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
-    </div>
-  </div>
-</div>
-
-<p>Use an attribute of data-dates-disabled to specify a list of dates that the user will not be able to select.</p>
-
-<p>The value of this attribute should be a space-separated list of dates in the format you specify in data-date-format or the default, d-m-y.</p>
-
-<div class="nsw-docs-code">
-  <div class="nsw-docs-code__content active">
-    <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
-      <span>Copy</span>
-      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
-    </button>
-    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`<div class="nsw-date-input js-date-input" data-dates-disabled="18/01/2024 19/01/2024 20/01/2025">
-  <!-- ... -->
-</div>
-`).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
-    <div class="nsw-docs-code__wrapper">
-<pre><code class="html"><script>document.write((`<div class="nsw-date-input js-date-input" data-dates-disabled="18/01/2024 19/01/2024 20/01/2025">
-  <!-- ... -->
-</div>
-`).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
-    </div>
-  </div>
-</div>
-
-<h2>Accessibility</h2>
-<p>All components are responsive and designed to comply with WCAG 2.2 AA accessibility standards. Full compliance depends on using and configuring the components correctly.</p>
-
-<p>The dialog contains a calendar that uses the grid pattern to present buttons that enable the user to choose a day from the calendar. Choosing a date from the calendar closes the dialog and populates the date input field. When the dialog is opened, if the input field is empty, or does not contain a valid date, then the current date is focused in the calendar. Otherwise, the focus is placed on the day in the calendar that matches the value of the date input field.</p>
-
-<h3>Ensuring compliance through usage</h3>
-
-<h4>Redundant entry</h4>
-
-<p>To ensure WCAG 2.2 AA compliance for a date picker, correct usage and configuration are key. While the component offers an accessible foundation, it's important to minimise redundant input by retaining previously selected dates if users return to the form. Ensure that keyboard navigation is fully functional, and provide clear labels and instructions for selecting dates. If errors occur, users should be able to correct them without needing to re-select the date.</p>
-<p>Following these usage practices supports an inclusive experience that meets accessibility standards.</p>
-
-<h3>Keyboard support</h3>
-
-<p>Users can navigate the calendar by using the cursor keys to move around the calendar, and can use the enter key or spacebar to select a date.</p>
-
-<p>The following table lists the keyboard commands that the date picker supports.</p>
-
-<div class="nsw-table" tabindex="0">
-  <table>
-    <thead>
-      <tr>
-        <th>Element</th>
-        <th>Key</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Calendar button</td>
-        <td><code>Space</code>,<br>
-          <code>Enter</code>
-        </td>
-        <td>Opens the date picker. If there is a current date set in the text input, that date is focussed in the date picker. If not, today's date is focussed.</td>
-      </tr>
-      <tr>
-        <td>Date picker</td>
-        <td><code>Tab</code></td>
-        <td>Moves focus to the next element in the tab order. If tabbing away from the last focusable element in the tab order, moves focus to the first focusable element in the date picker.</td>
-      </tr>
-      <tr>
-        <td>Date picker</td>
-        <td><code>Shift + Tab</code></td>
-        <td>Moves focus to the previous element in the tab order. If tabbing away from the first focusable element in the tab order, moves focus to the last focusable element in the date picker.</td>
-      </tr>
-      <tr>
-        <td>Month and year buttons</td>
-        <td><code>Space</code>,<br>
-          <code>Enter</code>
-        </td>
-        <td>Change the current month or year displayed in the date picker.</td>
-      </tr>
-      <tr>
-        <td>Dates</td>
-        <td><code>Space</code>,<br>
-          <code>Enter</code>
-        </td>
-        <td>Selects the focussed date, closes the date picker and moves focus back to the calendar button. Updates the accessible name of the calendar button to indicate the selected date.</td>
-      </tr>
-      <tr>
-        <td>Dates</td>
-        <td><code>Up</code></td>
-        <td>Moves focus to the same day of the previous week, changing the displayed month if necessary.</td>
-      </tr>
-      <tr>
-        <td>Dates</td>
-        <td><code>Down</code></td>
-        <td>Moves focus to the same day of the next week, changing the displayed month if necessary.</td>
-      </tr>
-      <tr>
-        <td>Dates</td>
-        <td><code>Left</code></td>
-        <td>Moves focus to the previous day, changing the displayed month if necessary.</td>
-      </tr>
-      <tr>
-        <td>Dates</td>
-        <td><code>Right</code></td>
-        <td>Moves focus to the next day, changing the displayed month if necessary.</td>
-      </tr>
-      <tr>
-        <td>Dates</td>
-        <td><code>Home</code></td>
-        <td>Moves focus to the first day of the current week.</td>
-      </tr>
-      <tr>
-        <td>Dates</td>
-        <td><code>End</code></td>
-        <td>Moves focus to the last day of the current week.</td>
-      </tr>
-      <tr>
-        <td>Dates</td>
-        <td><code>Page Up</code></td>
-        <td>Shows the previous month and focuses on the same day of the month.</td>
-      </tr>
-      <tr>
-        <td>Dates</td>
-        <td><code>Shift + Page Up</code></td>
-        <td>Shows same month in the previous year and focuses on the same day of the month.</td>
-      </tr>
-      <tr>
-        <td>Dates</td>
-        <td><code>Page Down</code></td>
-        <td>Shows the next month and focuses on the same day of the month.</td>
-      </tr>
-      <tr>
-        <td>Dates</td>
-        <td><code>Shift + Page Down</code></td>
-        <td>Shows same month in the next year and focuses on the same day of the month.</td>
-      </tr>
-      <tr>
-        <td>Cancel button</td>
-        <td><code>Space</code>,<br>
-          <code>Enter</code>
-        </td>
-        <td>Closes the date picker and makes no change to the date in the text input. Focus is returned to the calendar button.</td>
-      </tr>
-      <tr>
-        <td>OK button</td>
-        <td><code>Space</code>,<br>
-          <code>Enter</code>
-        </td>
-        <td>Closes the date picker and updates the date in the text input with the chosen date in the date picker. Focus is returned to the calendar button.</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-      </div>
-    </section>
-    <section id="section-interactive-demo" class="nsw-tabs__content">
-      <div class="nsw-docs__demo">
-        <div class="nsw-docs__external">
-          <div class="nsw-list nsw-list--8">
-            <a class="nsw-small nsw-link nsw-link--icon" target="_blank" href="https://designsystem.nsw.gov.au/components/date-picker/blank.html"><span>View in new window</span><i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">launch</i></a><a class="nsw-small nsw-link nsw-link--icon" target="_blank" href="https://designsystem.nsw.gov.au/components/date-picker/theme.html"><span>View theming example</span><i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">launch</i></a>
-          </div>
-        </div>
-
-<div class="nsw-docs__example">
-  <div class="nsw-docs__component">
-    <div class="nsw-date-input js-date-input">
-      <legend>
-        <label for="date-input-1" class="nsw-form__label">Select date</label>
-        <span id="date-input-1-helper-text" class="nsw-form__helper">Use dd/mm/yyyy format. For example 28/10/2024</span>
-      </legend>
-      
-      <div class="nsw-date-input__wrapper nsw-form__input-group nsw-form__input-group--icon">
-        <input type="text" class="nsw-form__input js-date-input__text" autocomplete="off" id="date-input-1">
-        
-        <button class="nsw-button nsw-button--dark nsw-button--flex js-date-input__trigger" type="button">
-          <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">calendar_today</span>
-        </button>
-      </div>
-    </div>  </div>
-</div>
-<div class="nsw-docs-code">
-  <button class="nsw-link nsw-link--button nsw-link--icon nsw-small js-code-button">
-    <span>Show code</span>
-    <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
-  </button>
-  <div class="nsw-docs-code__content">
-    <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
-      <span>Copy</span>
-      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
-    </button>
-    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`<div class="nsw-date-input js-date-input">
-  <legend>
-    <label for="date-input-1" class="nsw-form__label">Select date</label>
-    <span id="date-input-1-helper-text" class="nsw-form__helper">Use dd/mm/yyyy format. For example 28/10/2024</span>
-  </legend>
-  
-  <div class="nsw-date-input__wrapper nsw-form__input-group nsw-form__input-group--icon">
-    <input type="text" class="nsw-form__input js-date-input__text" autocomplete="off" id="date-input-1">
-    
-    <button class="nsw-button nsw-button--dark nsw-button--flex js-date-input__trigger" type="button">
-      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">calendar_today</span>
-    </button>
-  </div>
-</div>`).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
-    <div class="nsw-docs-code__wrapper">
-<pre><code class="html"><script>document.write((`<div class="nsw-date-input js-date-input">
-  <legend>
-    <label for="date-input-1" class="nsw-form__label">Select date</label>
-    <span id="date-input-1-helper-text" class="nsw-form__helper">Use dd/mm/yyyy format. For example 28/10/2024</span>
-  </legend>
-  
-  <div class="nsw-date-input__wrapper nsw-form__input-group nsw-form__input-group--icon">
-    <input type="text" class="nsw-form__input js-date-input__text" autocomplete="off" id="date-input-1">
-    
-    <button class="nsw-button nsw-button--dark nsw-button--flex js-date-input__trigger" type="button">
-      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">calendar_today</span>
-    </button>
-  </div>
-</div>`).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
-    </div>
-  </div>
-</div>
-
-
-<h3>Date ranges and disabled dates</h3>
-
-<p>Allowed date ranges for a date picker can be set by specifying earliest and latest allowed dates. Individual dates can also be disabled.</p>
-
-<p>In this example, a max date of 28 January 2024, a min date of 02 January 2024 has been set and three days in January 2024 have been disabled.</p>
-
-<div class="nsw-docs__example nsw-m-top-sm">
-  <div class="nsw-docs__component">
-    <div class="nsw-date-input js-date-input" data-min-date="02/01/2024" data-max-date="28/01/2024" data-dates-disabled="18/01/2024 19/01/2024 20/01/2024">
-      <legend>
-        <label for="date-input-2" class="nsw-form__label">Select date</label>
-        <span id="date-input-2-helper-text" class="nsw-form__helper">Use dd/mm/yyyy format. For example 28/10/2024</span>
-      </legend>
-      
-      <div class="nsw-date-input__wrapper nsw-form__input-group nsw-form__input-group--icon">
-        <input type="text" class="nsw-form__input js-date-input__text" autocomplete="off" id="date-input-2" value="12/01/2024">
-        
-        <button class="nsw-button nsw-button--dark nsw-button--flex js-date-input__trigger" type="button">
-          <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">calendar_today</span>
-        </button>
-      </div>
-    </div>  </div>
-</div>
-<div class="nsw-docs-code">
-  <button class="nsw-link nsw-link--button nsw-link--icon nsw-small js-code-button">
-    <span>Show code</span>
-    <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
-  </button>
-  <div class="nsw-docs-code__content">
-    <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
-      <span>Copy</span>
-      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
-    </button>
-    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`<div class="nsw-date-input js-date-input" data-min-date="02/01/2024" data-max-date="28/01/2024" data-dates-disabled="18/01/2024 19/01/2024 20/01/2024">
-  <legend>
-    <label for="date-input-2" class="nsw-form__label">Select date</label>
-    <span id="date-input-2-helper-text" class="nsw-form__helper">Use dd/mm/yyyy format. For example 28/10/2024</span>
-  </legend>
-  
-  <div class="nsw-date-input__wrapper nsw-form__input-group nsw-form__input-group--icon">
-    <input type="text" class="nsw-form__input js-date-input__text" autocomplete="off" id="date-input-2" value="12/01/2024">
-    
-    <button class="nsw-button nsw-button--dark nsw-button--flex js-date-input__trigger" type="button">
-      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">calendar_today</span>
-    </button>
-  </div>
-</div>`).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
-    <div class="nsw-docs-code__wrapper">
-<pre><code class="html"><script>document.write((`<div class="nsw-date-input js-date-input" data-min-date="02/01/2024" data-max-date="28/01/2024" data-dates-disabled="18/01/2024 19/01/2024 20/01/2024">
-  <legend>
-    <label for="date-input-2" class="nsw-form__label">Select date</label>
-    <span id="date-input-2-helper-text" class="nsw-form__helper">Use dd/mm/yyyy format. For example 28/10/2024</span>
-  </legend>
-  
-  <div class="nsw-date-input__wrapper nsw-form__input-group nsw-form__input-group--icon">
-    <input type="text" class="nsw-form__input js-date-input__text" autocomplete="off" id="date-input-2" value="12/01/2024">
-    
-    <button class="nsw-button nsw-button--dark nsw-button--flex js-date-input__trigger" type="button">
-      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">calendar_today</span>
-    </button>
-  </div>
-</div>`).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
-    </div>
-  </div>
-</div>
-
-
-<h3>Individual date inputs for day, month and year</h3>
-
-<div class="nsw-docs__example">
-  <div class="nsw-docs__component">
-    
-    <fieldset class="nsw-form__date nsw-date-input js-date-input">
-      <legend>
-        <span class="nsw-form__label">Start date</span>
-        <span id="form-date-3-helper-text" class="nsw-form__helper">For example 28 10 2024</span>
-      </legend>
-      <div class="nsw-form__date-wrapper nsw-date-input__wrapper js-date-input-multiple">
-        <div class="nsw-form__date-input">
-          <label for="form-date-3-day" class="nsw-form__label nsw-form__label--small">Day</label>
-          <input type="text" maxlength="2" id="form-date-3-day" name="form-date-3-day" autocomplete="bday-day" class="nsw-form__input js-date-picker-date">
-        </div>
-        <div class="nsw-form__date-input">
-          <label for="form-date-3-month" class="nsw-form__label nsw-form__label--small">Month</label>
-          <input type="text" maxlength="2" id="form-date-3-month" name="form-date-3-month" autocomplete="bday-month" class="nsw-form__input js-date-picker-month">
-        </div>
-        <div class="nsw-form__date-input nsw-form__date-input--large">
-          <label for="form-date-3-year" class="nsw-form__label nsw-form__label--small">Year</label>
-          <input type="text" maxlength="4" id="form-date-3-year" name="form-date-3-year" autocomplete="bday-year" class="nsw-form__input js-date-picker-year">
-        </div>
-        <div class="nsw-date-input__button">
-          <button class="nsw-button nsw-button--dark nsw-button--flex js-date-input__trigger" type="button">
-            <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">calendar_today</span>
-          </button>
         </div>
       </div>
-    </fieldset>
-  </div>
-</div>
-<div class="nsw-docs-code">
-  <button class="nsw-link nsw-link--button nsw-link--icon nsw-small js-code-button">
-    <span>Show code</span>
-    <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
-  </button>
-  <div class="nsw-docs-code__content">
-    <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
-      <span>Copy</span>
-      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
-    </button>
-    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`
-<fieldset class="nsw-form__date nsw-date-input js-date-input">
-  <legend>
-    <span class="nsw-form__label">Start date</span>
-    <span id="form-date-3-helper-text" class="nsw-form__helper">For example 28 10 2024</span>
-  </legend>
-  <div class="nsw-form__date-wrapper nsw-date-input__wrapper js-date-input-multiple">
-    <div class="nsw-form__date-input">
-      <label for="form-date-3-day" class="nsw-form__label nsw-form__label--small">Day</label>
-      <input type="text" maxlength="2" id="form-date-3-day" name="form-date-3-day" autocomplete="bday-day" class="nsw-form__input js-date-picker-date">
-    </div>
-    <div class="nsw-form__date-input">
-      <label for="form-date-3-month" class="nsw-form__label nsw-form__label--small">Month</label>
-      <input type="text" maxlength="2" id="form-date-3-month" name="form-date-3-month" autocomplete="bday-month" class="nsw-form__input js-date-picker-month">
-    </div>
-    <div class="nsw-form__date-input nsw-form__date-input--large">
-      <label for="form-date-3-year" class="nsw-form__label nsw-form__label--small">Year</label>
-      <input type="text" maxlength="4" id="form-date-3-year" name="form-date-3-year" autocomplete="bday-year" class="nsw-form__input js-date-picker-year">
-    </div>
-    <div class="nsw-date-input__button">
-      <button class="nsw-button nsw-button--dark nsw-button--flex js-date-input__trigger" type="button">
-        <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">calendar_today</span>
-      </button>
-    </div>
-  </div>
-</fieldset>
-`).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
-    <div class="nsw-docs-code__wrapper">
-<pre><code class="html"><script>document.write((`
-<fieldset class="nsw-form__date nsw-date-input js-date-input">
-  <legend>
-    <span class="nsw-form__label">Start date</span>
-    <span id="form-date-3-helper-text" class="nsw-form__helper">For example 28 10 2024</span>
-  </legend>
-  <div class="nsw-form__date-wrapper nsw-date-input__wrapper js-date-input-multiple">
-    <div class="nsw-form__date-input">
-      <label for="form-date-3-day" class="nsw-form__label nsw-form__label--small">Day</label>
-      <input type="text" maxlength="2" id="form-date-3-day" name="form-date-3-day" autocomplete="bday-day" class="nsw-form__input js-date-picker-date">
-    </div>
-    <div class="nsw-form__date-input">
-      <label for="form-date-3-month" class="nsw-form__label nsw-form__label--small">Month</label>
-      <input type="text" maxlength="2" id="form-date-3-month" name="form-date-3-month" autocomplete="bday-month" class="nsw-form__input js-date-picker-month">
-    </div>
-    <div class="nsw-form__date-input nsw-form__date-input--large">
-      <label for="form-date-3-year" class="nsw-form__label nsw-form__label--small">Year</label>
-      <input type="text" maxlength="4" id="form-date-3-year" name="form-date-3-year" autocomplete="bday-year" class="nsw-form__input js-date-picker-year">
-    </div>
-    <div class="nsw-date-input__button">
-      <button class="nsw-button nsw-button--dark nsw-button--flex js-date-input__trigger" type="button">
-        <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">calendar_today</span>
-      </button>
-    </div>
-  </div>
-</fieldset>
-`).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
-    </div>
-  </div>
-</div>
-
-
-      </div>
-    </section>
-  </div>
-</div>
       <footer class="nsw-footer nsw-docs-footer">
         <div class="nsw-footer__lower">
           <div class="nsw-container">

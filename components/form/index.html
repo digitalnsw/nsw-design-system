@@ -378,6 +378,7 @@
                 <ul class="nsw-main-nav__sub-list">
                   <li><a href="https://designsystem.nsw.gov.au/docs/content/methods/search.html"><span>Search &amp; Filters</span></a></li>
                   <li><a href="https://designsystem.nsw.gov.au/docs/content/methods/maps.html"><span>Maps</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/docs/content/methods/inactive-fields.html"><span>Inactive fields</span></a></li>
                   <li><a href="https://designsystem.nsw.gov.au/docs/content/methods/data-visualisation.html"><span>Data visualisation</span></a></li>
                   <li><a href="https://designsystem.nsw.gov.au/docs/content/methods/you-are-here.html"><span>You are here</span></a></li>
                 </ul>
@@ -493,6 +494,10 @@
   <li>Use multi-step forms in situations where there are multiple form fields, several of which could be split up into categories (such as “personal”, “shipping”, “billing”, and “payment review”).</li>
 </ul>
 
+<h2>Inactive fields and information</h2>
+<p>Do not render disabled form fields simply to display information. Avoid using <code>disabled=true</code> to present values, as this suggests interactivity when none is available. For read-only values, present the information outside of input fields, for example as plain text or within a summary list. This approach makes intent clear and avoids confusing users with inactive controls.</p>
+<p>More information: <a href="https://designsystem.nsw.gov.au/docs/content/methods/inactive-fields.html">Inactive fields method</a></p>
+
 <h2>Accessibility</h2>
 <p>All components are responsive and designed to comply with WCAG 2.2 AA accessibility standards. Full compliance depends on using and configuring the components correctly.</p>
 
@@ -536,12 +541,12 @@
       <div class="nsw-form__group">
         <label class="nsw-form__label" for="form-text-2">Name</label>
         <span class="nsw-form__helper" id="form-text-2-helper-text">As it appears on your identity document</span>
-        <input class="nsw-form__input" type="text" id="form-text-2" name="form-text-2" aria-describedby="form-text-2-helper-text">
+        <input class="nsw-form__input" type="text" id="form-text-2" name="form-text-2" aria-describedby="form-text-2-helper-text"  >
       </div>
       <div class="nsw-form__group">
         <label class="nsw-form__label" for="form-textarea-2">Comment</label>
         <span class="nsw-form__helper" id="form-textarea-2-helper-text">Maximum 500 characters</span>
-        <textarea class="nsw-form__input" name="textarea" id="form-textarea-2" aria-describedby="form-textarea-2-helper-text"></textarea>
+        <textarea class="nsw-form__input" name="textarea" id="form-textarea-2" aria-describedby="form-textarea-2-helper-text" ></textarea>
       </div>
     </div>
   </div>
@@ -560,12 +565,12 @@
   <div class="nsw-form__group">
     <label class="nsw-form__label" for="form-text-2">Name</label>
     <span class="nsw-form__helper" id="form-text-2-helper-text">As it appears on your identity document</span>
-    <input class="nsw-form__input" type="text" id="form-text-2" name="form-text-2" aria-describedby="form-text-2-helper-text">
+    <input class="nsw-form__input" type="text" id="form-text-2" name="form-text-2" aria-describedby="form-text-2-helper-text"  >
   </div>
   <div class="nsw-form__group">
     <label class="nsw-form__label" for="form-textarea-2">Comment</label>
     <span class="nsw-form__helper" id="form-textarea-2-helper-text">Maximum 500 characters</span>
-    <textarea class="nsw-form__input" name="textarea" id="form-textarea-2" aria-describedby="form-textarea-2-helper-text"></textarea>
+    <textarea class="nsw-form__input" name="textarea" id="form-textarea-2" aria-describedby="form-textarea-2-helper-text" ></textarea>
   </div>
 </div>
 `).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
@@ -574,12 +579,12 @@
   <div class="nsw-form__group">
     <label class="nsw-form__label" for="form-text-2">Name</label>
     <span class="nsw-form__helper" id="form-text-2-helper-text">As it appears on your identity document</span>
-    <input class="nsw-form__input" type="text" id="form-text-2" name="form-text-2" aria-describedby="form-text-2-helper-text">
+    <input class="nsw-form__input" type="text" id="form-text-2" name="form-text-2" aria-describedby="form-text-2-helper-text"  >
   </div>
   <div class="nsw-form__group">
     <label class="nsw-form__label" for="form-textarea-2">Comment</label>
     <span class="nsw-form__helper" id="form-textarea-2-helper-text">Maximum 500 characters</span>
-    <textarea class="nsw-form__input" name="textarea" id="form-textarea-2" aria-describedby="form-textarea-2-helper-text"></textarea>
+    <textarea class="nsw-form__input" name="textarea" id="form-textarea-2" aria-describedby="form-textarea-2-helper-text" ></textarea>
   </div>
 </div>
 `).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
@@ -595,21 +600,21 @@
       <div class="nsw-form__group">
         <div class="nsw-form__input-group">
           <label class="sr-only" for="form-input-group-1">Search</label>
-          <input class="nsw-form__input" type="text" id="form-input-group-1" name="form-input-group-1" value="">
+          <input class="nsw-form__input" type="text" id="form-input-group-1" name="form-input-group-1" value="" >
           <button class="nsw-button nsw-button--dark nsw-button--flex" type="submit">Search</button>
         </div>
       </div>
       <div class="nsw-form__group">
         <div class="nsw-form__input-group nsw-form__input-group--icon">
           <label class="sr-only" for="form-input-group-icon-1">Search</label>
-          <input class="nsw-form__input" type="text" id="form-input-group-icon-1" name="form-input-group-icon-1" value="">
+          <input class="nsw-form__input" type="text" id="form-input-group-icon-1" name="form-input-group-icon-1" value="" >
           <button class="nsw-button nsw-button--dark nsw-button--flex" type="submit"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">search</span><span class="sr-only">Search</span></button>
         </div>
       </div>
       <div class="nsw-form__group">
         <div class="nsw-form__input-group nsw-form__input-group--icon">
           <label class="sr-only" for="form-input-group-icon-2">Search</label>
-          <input class="nsw-form__input" type="text" id="form-input-group-icon-2" name="form-input-group-icon-2" value="">
+          <input class="nsw-form__input" type="text" id="form-input-group-icon-2" name="form-input-group-icon-2" value="" >
           <button class="nsw-button nsw-button--white nsw-button--flex" type="submit"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">search</span><span class="sr-only">Search</span></button>
         </div>
       </div>
@@ -630,21 +635,21 @@
   <div class="nsw-form__group">
     <div class="nsw-form__input-group">
       <label class="sr-only" for="form-input-group-1">Search</label>
-      <input class="nsw-form__input" type="text" id="form-input-group-1" name="form-input-group-1" value="">
+      <input class="nsw-form__input" type="text" id="form-input-group-1" name="form-input-group-1" value="" >
       <button class="nsw-button nsw-button--dark nsw-button--flex" type="submit">Search</button>
     </div>
   </div>
   <div class="nsw-form__group">
     <div class="nsw-form__input-group nsw-form__input-group--icon">
       <label class="sr-only" for="form-input-group-icon-1">Search</label>
-      <input class="nsw-form__input" type="text" id="form-input-group-icon-1" name="form-input-group-icon-1" value="">
+      <input class="nsw-form__input" type="text" id="form-input-group-icon-1" name="form-input-group-icon-1" value="" >
       <button class="nsw-button nsw-button--dark nsw-button--flex" type="submit"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">search</span><span class="sr-only">Search</span></button>
     </div>
   </div>
   <div class="nsw-form__group">
     <div class="nsw-form__input-group nsw-form__input-group--icon">
       <label class="sr-only" for="form-input-group-icon-2">Search</label>
-      <input class="nsw-form__input" type="text" id="form-input-group-icon-2" name="form-input-group-icon-2" value="">
+      <input class="nsw-form__input" type="text" id="form-input-group-icon-2" name="form-input-group-icon-2" value="" >
       <button class="nsw-button nsw-button--white nsw-button--flex" type="submit"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">search</span><span class="sr-only">Search</span></button>
     </div>
   </div>
@@ -655,21 +660,21 @@
   <div class="nsw-form__group">
     <div class="nsw-form__input-group">
       <label class="sr-only" for="form-input-group-1">Search</label>
-      <input class="nsw-form__input" type="text" id="form-input-group-1" name="form-input-group-1" value="">
+      <input class="nsw-form__input" type="text" id="form-input-group-1" name="form-input-group-1" value="" >
       <button class="nsw-button nsw-button--dark nsw-button--flex" type="submit">Search</button>
     </div>
   </div>
   <div class="nsw-form__group">
     <div class="nsw-form__input-group nsw-form__input-group--icon">
       <label class="sr-only" for="form-input-group-icon-1">Search</label>
-      <input class="nsw-form__input" type="text" id="form-input-group-icon-1" name="form-input-group-icon-1" value="">
+      <input class="nsw-form__input" type="text" id="form-input-group-icon-1" name="form-input-group-icon-1" value="" >
       <button class="nsw-button nsw-button--dark nsw-button--flex" type="submit"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">search</span><span class="sr-only">Search</span></button>
     </div>
   </div>
   <div class="nsw-form__group">
     <div class="nsw-form__input-group nsw-form__input-group--icon">
       <label class="sr-only" for="form-input-group-icon-2">Search</label>
-      <input class="nsw-form__input" type="text" id="form-input-group-icon-2" name="form-input-group-icon-2" value="">
+      <input class="nsw-form__input" type="text" id="form-input-group-icon-2" name="form-input-group-icon-2" value="" >
       <button class="nsw-button nsw-button--white nsw-button--flex" type="submit"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">search</span><span class="sr-only">Search</span></button>
     </div>
   </div>
@@ -700,7 +705,7 @@
         <div class="nsw-form__predictive">
           <div class="nsw-form__input-group">
             <label class="sr-only" for="form-predictive-group-1">Search</label>
-            <input class="nsw-form__input" type="text" id="form-predictive-group-1" name="form-predictive-group-1" value="Tran" aria-autocomplete="list" autocomplete="off">
+            <input class="nsw-form__input" type="text" id="form-predictive-group-1" name="form-predictive-group-1" value="Tran" aria-autocomplete="list" autocomplete="off" >
             <button class="nsw-button nsw-button--dark nsw-button--flex" type="submit">Search</button>
           </div>
           <ul class="nsw-form__predictive-list">
@@ -715,7 +720,7 @@
         <div class="nsw-form__predictive">
           <div class="nsw-form__input-group nsw-form__input-group--icon nsw-form__input-group--large">
             <label class="sr-only" for="form-predictive-group-icon-1">Search</label>
-            <input class="nsw-form__input" type="text" id="form-predictive-group-icon-1" name="form-predictive-group-icon-1" value="Govern" aria-autocomplete="list" autocomplete="off">
+            <input class="nsw-form__input" type="text" id="form-predictive-group-icon-1" name="form-predictive-group-icon-1" value="Govern" aria-autocomplete="list" autocomplete="off" >
             <button class="nsw-button nsw-button--dark nsw-button--flex" type="submit"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">search</span><span class="sr-only">Search</span></button>
           </div>
           <ul class="nsw-form__predictive-list nsw-form__predictive-list--large">
@@ -756,7 +761,7 @@
     <div class="nsw-form__predictive">
       <div class="nsw-form__input-group">
         <label class="sr-only" for="form-predictive-group-1">Search</label>
-        <input class="nsw-form__input" type="text" id="form-predictive-group-1" name="form-predictive-group-1" value="Tran" aria-autocomplete="list" autocomplete="off">
+        <input class="nsw-form__input" type="text" id="form-predictive-group-1" name="form-predictive-group-1" value="Tran" aria-autocomplete="list" autocomplete="off" >
         <button class="nsw-button nsw-button--dark nsw-button--flex" type="submit">Search</button>
       </div>
       <ul class="nsw-form__predictive-list">
@@ -771,7 +776,7 @@
     <div class="nsw-form__predictive">
       <div class="nsw-form__input-group nsw-form__input-group--icon nsw-form__input-group--large">
         <label class="sr-only" for="form-predictive-group-icon-1">Search</label>
-        <input class="nsw-form__input" type="text" id="form-predictive-group-icon-1" name="form-predictive-group-icon-1" value="Govern" aria-autocomplete="list" autocomplete="off">
+        <input class="nsw-form__input" type="text" id="form-predictive-group-icon-1" name="form-predictive-group-icon-1" value="Govern" aria-autocomplete="list" autocomplete="off" >
         <button class="nsw-button nsw-button--dark nsw-button--flex" type="submit"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">search</span><span class="sr-only">Search</span></button>
       </div>
       <ul class="nsw-form__predictive-list nsw-form__predictive-list--large">
@@ -802,7 +807,7 @@
     <div class="nsw-form__predictive">
       <div class="nsw-form__input-group">
         <label class="sr-only" for="form-predictive-group-1">Search</label>
-        <input class="nsw-form__input" type="text" id="form-predictive-group-1" name="form-predictive-group-1" value="Tran" aria-autocomplete="list" autocomplete="off">
+        <input class="nsw-form__input" type="text" id="form-predictive-group-1" name="form-predictive-group-1" value="Tran" aria-autocomplete="list" autocomplete="off" >
         <button class="nsw-button nsw-button--dark nsw-button--flex" type="submit">Search</button>
       </div>
       <ul class="nsw-form__predictive-list">
@@ -817,7 +822,7 @@
     <div class="nsw-form__predictive">
       <div class="nsw-form__input-group nsw-form__input-group--icon nsw-form__input-group--large">
         <label class="sr-only" for="form-predictive-group-icon-1">Search</label>
-        <input class="nsw-form__input" type="text" id="form-predictive-group-icon-1" name="form-predictive-group-icon-1" value="Govern" aria-autocomplete="list" autocomplete="off">
+        <input class="nsw-form__input" type="text" id="form-predictive-group-icon-1" name="form-predictive-group-icon-1" value="Govern" aria-autocomplete="list" autocomplete="off" >
         <button class="nsw-button nsw-button--dark nsw-button--flex" type="submit"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">search</span><span class="sr-only">Search</span></button>
       </div>
       <ul class="nsw-form__predictive-list nsw-form__predictive-list--large">
@@ -848,15 +853,15 @@
           <div class="nsw-form__date-wrapper">
             <div class="nsw-form__date-input">
               <label for="form-date-2-day" class="nsw-form__label nsw-form__label--small">Day</label>
-              <input type="text" maxlength="2" id="form-date-2-day" name="form-date-2-day" class="nsw-form__input">
+              <input type="text" maxlength="2" id="form-date-2-day" name="form-date-2-day" class="nsw-form__input" >
             </div>
             <div class="nsw-form__date-input">
               <label for="form-date-2-month" class="nsw-form__label nsw-form__label--small">Month</label>
-              <input type="text" maxlength="2" id="form-date-2-month" name="form-date-2-month" class="nsw-form__input">
+              <input type="text" maxlength="2" id="form-date-2-month" name="form-date-2-month" class="nsw-form__input" >
             </div>
             <div class="nsw-form__date-input nsw-form__date-input--large">
               <label for="form-date-2-year" class="nsw-form__label nsw-form__label--small">Year</label>
-              <input type="text" maxlength="4" id="form-date-2-year" name="form-date-2-year" class="nsw-form__input">
+              <input type="text" maxlength="4" id="form-date-2-year" name="form-date-2-year" class="nsw-form__input" >
             </div>
           </div>
         </fieldset>
@@ -884,15 +889,15 @@
       <div class="nsw-form__date-wrapper">
         <div class="nsw-form__date-input">
           <label for="form-date-2-day" class="nsw-form__label nsw-form__label--small">Day</label>
-          <input type="text" maxlength="2" id="form-date-2-day" name="form-date-2-day" class="nsw-form__input">
+          <input type="text" maxlength="2" id="form-date-2-day" name="form-date-2-day" class="nsw-form__input" >
         </div>
         <div class="nsw-form__date-input">
           <label for="form-date-2-month" class="nsw-form__label nsw-form__label--small">Month</label>
-          <input type="text" maxlength="2" id="form-date-2-month" name="form-date-2-month" class="nsw-form__input">
+          <input type="text" maxlength="2" id="form-date-2-month" name="form-date-2-month" class="nsw-form__input" >
         </div>
         <div class="nsw-form__date-input nsw-form__date-input--large">
           <label for="form-date-2-year" class="nsw-form__label nsw-form__label--small">Year</label>
-          <input type="text" maxlength="4" id="form-date-2-year" name="form-date-2-year" class="nsw-form__input">
+          <input type="text" maxlength="4" id="form-date-2-year" name="form-date-2-year" class="nsw-form__input" >
         </div>
       </div>
     </fieldset>
@@ -910,15 +915,15 @@
       <div class="nsw-form__date-wrapper">
         <div class="nsw-form__date-input">
           <label for="form-date-2-day" class="nsw-form__label nsw-form__label--small">Day</label>
-          <input type="text" maxlength="2" id="form-date-2-day" name="form-date-2-day" class="nsw-form__input">
+          <input type="text" maxlength="2" id="form-date-2-day" name="form-date-2-day" class="nsw-form__input" >
         </div>
         <div class="nsw-form__date-input">
           <label for="form-date-2-month" class="nsw-form__label nsw-form__label--small">Month</label>
-          <input type="text" maxlength="2" id="form-date-2-month" name="form-date-2-month" class="nsw-form__input">
+          <input type="text" maxlength="2" id="form-date-2-month" name="form-date-2-month" class="nsw-form__input" >
         </div>
         <div class="nsw-form__date-input nsw-form__date-input--large">
           <label for="form-date-2-year" class="nsw-form__label nsw-form__label--small">Year</label>
-          <input type="text" maxlength="4" id="form-date-2-year" name="form-date-2-year" class="nsw-form__input">
+          <input type="text" maxlength="4" id="form-date-2-year" name="form-date-2-year" class="nsw-form__input" >
         </div>
       </div>
     </fieldset>
@@ -937,7 +942,7 @@
       <div class="nsw-form__group">
         <label class="nsw-form__label" for="form-select-2">Region</label>
         <span class="nsw-form__helper" id="form-select-2-helper-text">Your region of residence</span>
-          <select class="nsw-form__select" name="form-select-2" id="form-select-2" aria-describedby="form-select-2-helper-text"><option value="">Please select</option>
+          <select class="nsw-form__select" name="form-select-2" id="form-select-2" aria-describedby="form-select-2-helper-text" ><option value="">Please select</option>
             <option value="Central Coast">Central Coast</option>
             <option value="Central West &amp; Orana">Central West &amp; Orana</option>
             <option value="Far West">Far West</option>
@@ -964,7 +969,7 @@
   <div class="nsw-form__group">
     <label class="nsw-form__label" for="form-select-2">Region</label>
     <span class="nsw-form__helper" id="form-select-2-helper-text">Your region of residence</span>
-      <select class="nsw-form__select" name="form-select-2" id="form-select-2" aria-describedby="form-select-2-helper-text"><option value="">Please select</option>
+      <select class="nsw-form__select" name="form-select-2" id="form-select-2" aria-describedby="form-select-2-helper-text" ><option value="">Please select</option>
         <option value="Central Coast">Central Coast</option>
         <option value="Central West &amp; Orana">Central West &amp; Orana</option>
         <option value="Far West">Far West</option>
@@ -981,7 +986,7 @@
   <div class="nsw-form__group">
     <label class="nsw-form__label" for="form-select-2">Region</label>
     <span class="nsw-form__helper" id="form-select-2-helper-text">Your region of residence</span>
-      <select class="nsw-form__select" name="form-select-2" id="form-select-2" aria-describedby="form-select-2-helper-text"><option value="">Please select</option>
+      <select class="nsw-form__select" name="form-select-2" id="form-select-2" aria-describedby="form-select-2-helper-text" ><option value="">Please select</option>
         <option value="Central Coast">Central Coast</option>
         <option value="Central West &amp; Orana">Central West &amp; Orana</option>
         <option value="Far West">Far West</option>
@@ -1008,9 +1013,9 @@
             <span class="nsw-form__legend">Category</span>
             <span class="nsw-form__helper">Select all that applies to you</span>
           </legend>
-          <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-multi-2" id="form-checkbox-multi-2-a">
+          <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-multi-2" id="form-checkbox-multi-2-a" >
           <label class="nsw-form__checkbox-label" for="form-checkbox-multi-2-a">Customer Service</label>
-          <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-multi-2" id="form-checkbox-multi-2-b">
+          <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-multi-2" id="form-checkbox-multi-2-b" >
           <label class="nsw-form__checkbox-label" for="form-checkbox-multi-2-b">Communities and Justice</label>
         </fieldset>
       </div>
@@ -1034,9 +1039,9 @@
         <span class="nsw-form__legend">Category</span>
         <span class="nsw-form__helper">Select all that applies to you</span>
       </legend>
-      <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-multi-2" id="form-checkbox-multi-2-a">
+      <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-multi-2" id="form-checkbox-multi-2-a" >
       <label class="nsw-form__checkbox-label" for="form-checkbox-multi-2-a">Customer Service</label>
-      <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-multi-2" id="form-checkbox-multi-2-b">
+      <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-multi-2" id="form-checkbox-multi-2-b" >
       <label class="nsw-form__checkbox-label" for="form-checkbox-multi-2-b">Communities and Justice</label>
     </fieldset>
   </div>
@@ -1050,9 +1055,9 @@
         <span class="nsw-form__legend">Category</span>
         <span class="nsw-form__helper">Select all that applies to you</span>
       </legend>
-      <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-multi-2" id="form-checkbox-multi-2-a">
+      <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-multi-2" id="form-checkbox-multi-2-a" >
       <label class="nsw-form__checkbox-label" for="form-checkbox-multi-2-a">Customer Service</label>
-      <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-multi-2" id="form-checkbox-multi-2-b">
+      <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-multi-2" id="form-checkbox-multi-2-b" >
       <label class="nsw-form__checkbox-label" for="form-checkbox-multi-2-b">Communities and Justice</label>
     </fieldset>
   </div>
@@ -1073,9 +1078,9 @@
             <span class="nsw-form__legend">Topic</span>
             <span class="nsw-form__helper">Select closest match</span>
           </legend>
-          <input class="nsw-form__radio-input" type="radio" name="form-radio-2" id="form-radio-2-a">
+          <input class="nsw-form__radio-input" type="radio" name="form-radio-2" id="form-radio-2-a" >
           <label class="nsw-form__radio-label" for="form-radio-2-a">NSW Government</label>
-          <input class="nsw-form__radio-input" type="radio" name="form-radio-2" id="form-radio-2-b">
+          <input class="nsw-form__radio-input" type="radio" name="form-radio-2" id="form-radio-2-b" >
           <label class="nsw-form__radio-label" for="form-radio-2-b">Business and Economy</label>
         </fieldset>
       </div>
@@ -1099,9 +1104,9 @@
         <span class="nsw-form__legend">Topic</span>
         <span class="nsw-form__helper">Select closest match</span>
       </legend>
-      <input class="nsw-form__radio-input" type="radio" name="form-radio-2" id="form-radio-2-a">
+      <input class="nsw-form__radio-input" type="radio" name="form-radio-2" id="form-radio-2-a" >
       <label class="nsw-form__radio-label" for="form-radio-2-a">NSW Government</label>
-      <input class="nsw-form__radio-input" type="radio" name="form-radio-2" id="form-radio-2-b">
+      <input class="nsw-form__radio-input" type="radio" name="form-radio-2" id="form-radio-2-b" >
       <label class="nsw-form__radio-label" for="form-radio-2-b">Business and Economy</label>
     </fieldset>
   </div>
@@ -1115,9 +1120,9 @@
         <span class="nsw-form__legend">Topic</span>
         <span class="nsw-form__helper">Select closest match</span>
       </legend>
-      <input class="nsw-form__radio-input" type="radio" name="form-radio-2" id="form-radio-2-a">
+      <input class="nsw-form__radio-input" type="radio" name="form-radio-2" id="form-radio-2-a" >
       <label class="nsw-form__radio-label" for="form-radio-2-a">NSW Government</label>
-      <input class="nsw-form__radio-input" type="radio" name="form-radio-2" id="form-radio-2-b">
+      <input class="nsw-form__radio-input" type="radio" name="form-radio-2" id="form-radio-2-b" >
       <label class="nsw-form__radio-label" for="form-radio-2-b">Business and Economy</label>
     </fieldset>
   </div>
@@ -1139,13 +1144,13 @@
       <div class="nsw-form__group">
         <label class="nsw-form__label nsw-form__required" for="form-text-3">Name<span class="sr-only"> (required)</span></label>
         <span class="nsw-form__helper" id="form-text-3-helper-text">As it appears on your identity document</span>
-        <input class="nsw-form__input" type="text" id="form-text-3" name="form-text-3" aria-describedby="form-text-3-helper-text" aria-invalid="true">
+        <input class="nsw-form__input" type="text" id="form-text-3" name="form-text-3" aria-describedby="form-text-3-helper-text" aria-invalid="true"  >
         <span class="nsw-form__helper nsw-form__helper--error" id="form-text-3-error-text"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span>This field is required</span>
       </div>
       <div class="nsw-form__group">
         <label class="nsw-form__label nsw-form__required" for="form-textarea-3">Comment<span class="sr-only"> (required)</span></label>
         <span class="nsw-form__helper" id="form-textarea-3-helper-text">Maximum 500 characters</span>
-        <textarea class="nsw-form__input" name="textarea" id="form-textarea-3" aria-describedby="form-textarea-3-helper-text" aria-invalid="true"></textarea>
+        <textarea class="nsw-form__input" name="textarea" id="form-textarea-3" aria-describedby="form-textarea-3-helper-text" aria-invalid="true" ></textarea>
         <span class="nsw-form__helper nsw-form__helper--error" id="form-textarea-3-error-text"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span>This field is required</span>
       </div>
     </div>
@@ -1165,13 +1170,13 @@
   <div class="nsw-form__group">
     <label class="nsw-form__label nsw-form__required" for="form-text-3">Name<span class="sr-only"> (required)</span></label>
     <span class="nsw-form__helper" id="form-text-3-helper-text">As it appears on your identity document</span>
-    <input class="nsw-form__input" type="text" id="form-text-3" name="form-text-3" aria-describedby="form-text-3-helper-text" aria-invalid="true">
+    <input class="nsw-form__input" type="text" id="form-text-3" name="form-text-3" aria-describedby="form-text-3-helper-text" aria-invalid="true"  >
     <span class="nsw-form__helper nsw-form__helper--error" id="form-text-3-error-text"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span>This field is required</span>
   </div>
   <div class="nsw-form__group">
     <label class="nsw-form__label nsw-form__required" for="form-textarea-3">Comment<span class="sr-only"> (required)</span></label>
     <span class="nsw-form__helper" id="form-textarea-3-helper-text">Maximum 500 characters</span>
-    <textarea class="nsw-form__input" name="textarea" id="form-textarea-3" aria-describedby="form-textarea-3-helper-text" aria-invalid="true"></textarea>
+    <textarea class="nsw-form__input" name="textarea" id="form-textarea-3" aria-describedby="form-textarea-3-helper-text" aria-invalid="true" ></textarea>
     <span class="nsw-form__helper nsw-form__helper--error" id="form-textarea-3-error-text"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span>This field is required</span>
   </div>
 </div>
@@ -1181,13 +1186,13 @@
   <div class="nsw-form__group">
     <label class="nsw-form__label nsw-form__required" for="form-text-3">Name<span class="sr-only"> (required)</span></label>
     <span class="nsw-form__helper" id="form-text-3-helper-text">As it appears on your identity document</span>
-    <input class="nsw-form__input" type="text" id="form-text-3" name="form-text-3" aria-describedby="form-text-3-helper-text" aria-invalid="true">
+    <input class="nsw-form__input" type="text" id="form-text-3" name="form-text-3" aria-describedby="form-text-3-helper-text" aria-invalid="true"  >
     <span class="nsw-form__helper nsw-form__helper--error" id="form-text-3-error-text"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span>This field is required</span>
   </div>
   <div class="nsw-form__group">
     <label class="nsw-form__label nsw-form__required" for="form-textarea-3">Comment<span class="sr-only"> (required)</span></label>
     <span class="nsw-form__helper" id="form-textarea-3-helper-text">Maximum 500 characters</span>
-    <textarea class="nsw-form__input" name="textarea" id="form-textarea-3" aria-describedby="form-textarea-3-helper-text" aria-invalid="true"></textarea>
+    <textarea class="nsw-form__input" name="textarea" id="form-textarea-3" aria-describedby="form-textarea-3-helper-text" aria-invalid="true" ></textarea>
     <span class="nsw-form__helper nsw-form__helper--error" id="form-textarea-3-error-text"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span>This field is required</span>
   </div>
 </div>
@@ -1210,15 +1215,15 @@
           <div class="nsw-form__date-wrapper">
             <div class="nsw-form__date-input">
               <label for="form-date-3-day" class="nsw-form__label nsw-form__label--small">Day</label>
-              <input type="text" maxlength="2" id="form-date-3-day" name="form-date-3-day" class="nsw-form__input" aria-invalid="true">
+              <input type="text" maxlength="2" id="form-date-3-day" name="form-date-3-day" class="nsw-form__input" aria-invalid="true" >
             </div>
             <div class="nsw-form__date-input">
               <label for="form-date-3-month" class="nsw-form__label nsw-form__label--small">Month</label>
-              <input type="text" maxlength="2" id="form-date-3-month" name="form-date-3-month" class="nsw-form__input" aria-invalid="true">
+              <input type="text" maxlength="2" id="form-date-3-month" name="form-date-3-month" class="nsw-form__input" aria-invalid="true" >
             </div>
             <div class="nsw-form__date-input nsw-form__date-input--large">
               <label for="form-date-3-year" class="nsw-form__label nsw-form__label--small">Year</label>
-              <input type="text" maxlength="4" id="form-date-3-year" name="form-date-3-year" class="nsw-form__input" aria-invalid="true">
+              <input type="text" maxlength="4" id="form-date-3-year" name="form-date-3-year" class="nsw-form__input" aria-invalid="true" >
             </div>
           </div>
         </fieldset>
@@ -1247,15 +1252,15 @@
       <div class="nsw-form__date-wrapper">
         <div class="nsw-form__date-input">
           <label for="form-date-3-day" class="nsw-form__label nsw-form__label--small">Day</label>
-          <input type="text" maxlength="2" id="form-date-3-day" name="form-date-3-day" class="nsw-form__input" aria-invalid="true">
+          <input type="text" maxlength="2" id="form-date-3-day" name="form-date-3-day" class="nsw-form__input" aria-invalid="true" >
         </div>
         <div class="nsw-form__date-input">
           <label for="form-date-3-month" class="nsw-form__label nsw-form__label--small">Month</label>
-          <input type="text" maxlength="2" id="form-date-3-month" name="form-date-3-month" class="nsw-form__input" aria-invalid="true">
+          <input type="text" maxlength="2" id="form-date-3-month" name="form-date-3-month" class="nsw-form__input" aria-invalid="true" >
         </div>
         <div class="nsw-form__date-input nsw-form__date-input--large">
           <label for="form-date-3-year" class="nsw-form__label nsw-form__label--small">Year</label>
-          <input type="text" maxlength="4" id="form-date-3-year" name="form-date-3-year" class="nsw-form__input" aria-invalid="true">
+          <input type="text" maxlength="4" id="form-date-3-year" name="form-date-3-year" class="nsw-form__input" aria-invalid="true" >
         </div>
       </div>
     </fieldset>
@@ -1274,15 +1279,15 @@
       <div class="nsw-form__date-wrapper">
         <div class="nsw-form__date-input">
           <label for="form-date-3-day" class="nsw-form__label nsw-form__label--small">Day</label>
-          <input type="text" maxlength="2" id="form-date-3-day" name="form-date-3-day" class="nsw-form__input" aria-invalid="true">
+          <input type="text" maxlength="2" id="form-date-3-day" name="form-date-3-day" class="nsw-form__input" aria-invalid="true" >
         </div>
         <div class="nsw-form__date-input">
           <label for="form-date-3-month" class="nsw-form__label nsw-form__label--small">Month</label>
-          <input type="text" maxlength="2" id="form-date-3-month" name="form-date-3-month" class="nsw-form__input" aria-invalid="true">
+          <input type="text" maxlength="2" id="form-date-3-month" name="form-date-3-month" class="nsw-form__input" aria-invalid="true" >
         </div>
         <div class="nsw-form__date-input nsw-form__date-input--large">
           <label for="form-date-3-year" class="nsw-form__label nsw-form__label--small">Year</label>
-          <input type="text" maxlength="4" id="form-date-3-year" name="form-date-3-year" class="nsw-form__input" aria-invalid="true">
+          <input type="text" maxlength="4" id="form-date-3-year" name="form-date-3-year" class="nsw-form__input" aria-invalid="true" >
         </div>
       </div>
     </fieldset>
@@ -1302,7 +1307,7 @@
       <div class="nsw-form__group">
         <label class="nsw-form__label nsw-form__required" for="form-select-3">Region<span class="sr-only"> (required)</span></label>
         <span class="nsw-form__helper" id="form-select-3-helper-text">Your region of residence</span>
-          <select class="nsw-form__select" name="form-select-3" id="form-select-3" aria-describedby="form-select-3-helper-text" aria-invalid="true"><option value="">Please select</option>
+          <select class="nsw-form__select" name="form-select-3" id="form-select-3" aria-describedby="form-select-3-helper-text" aria-invalid="true" ><option value="">Please select</option>
             <option value="Central Coast">Central Coast</option>
             <option value="Central West &amp; Orana">Central West &amp; Orana</option>
             <option value="Far West">Far West</option>
@@ -1330,7 +1335,7 @@
   <div class="nsw-form__group">
     <label class="nsw-form__label nsw-form__required" for="form-select-3">Region<span class="sr-only"> (required)</span></label>
     <span class="nsw-form__helper" id="form-select-3-helper-text">Your region of residence</span>
-      <select class="nsw-form__select" name="form-select-3" id="form-select-3" aria-describedby="form-select-3-helper-text" aria-invalid="true"><option value="">Please select</option>
+      <select class="nsw-form__select" name="form-select-3" id="form-select-3" aria-describedby="form-select-3-helper-text" aria-invalid="true" ><option value="">Please select</option>
         <option value="Central Coast">Central Coast</option>
         <option value="Central West &amp; Orana">Central West &amp; Orana</option>
         <option value="Far West">Far West</option>
@@ -1348,7 +1353,7 @@
   <div class="nsw-form__group">
     <label class="nsw-form__label nsw-form__required" for="form-select-3">Region<span class="sr-only"> (required)</span></label>
     <span class="nsw-form__helper" id="form-select-3-helper-text">Your region of residence</span>
-      <select class="nsw-form__select" name="form-select-3" id="form-select-3" aria-describedby="form-select-3-helper-text" aria-invalid="true"><option value="">Please select</option>
+      <select class="nsw-form__select" name="form-select-3" id="form-select-3" aria-describedby="form-select-3-helper-text" aria-invalid="true" ><option value="">Please select</option>
         <option value="Central Coast">Central Coast</option>
         <option value="Central West &amp; Orana">Central West &amp; Orana</option>
         <option value="Far West">Far West</option>
@@ -1371,7 +1376,7 @@
   <div class="nsw-docs__component">
     <div class="nsw-form">
       <div class="nsw-form__group">
-        <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-3" id="form-checkbox-3" aria-describedby="form-checkbox-3-error-text" aria-invalid="true">
+        <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-3" id="form-checkbox-3" aria-describedby="form-checkbox-3-error-text" aria-invalid="true" >
         <label class="nsw-form__checkbox-label" for="form-checkbox-3">I agree to terms and conditions<span class="nsw-form__required"></span><span class="sr-only"> (required)</span></label>
         <span id="form-checkbox-3-error-text" class="nsw-form__helper nsw-form__helper--error"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span>This field is required</span>
       </div>
@@ -1382,9 +1387,9 @@
             <span class="nsw-form__helper">Select all that applies to you</span>
             <span class="nsw-form__helper nsw-form__helper--error"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span>This field is required</span>
           </legend>
-          <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-multi-3" id="form-checkbox-multi-3-a">
+          <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-multi-3" id="form-checkbox-multi-3-a" >
           <label class="nsw-form__checkbox-label" for="form-checkbox-multi-3-a">Customer Service</label>
-          <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-multi-3" id="form-checkbox-multi-3-b">
+          <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-multi-3" id="form-checkbox-multi-3-b" >
           <label class="nsw-form__checkbox-label" for="form-checkbox-multi-3-b">Communities and Justice</label>
         </fieldset>
       </div>
@@ -1403,7 +1408,7 @@
     </button>
     <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`<div class="nsw-form">
   <div class="nsw-form__group">
-    <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-3" id="form-checkbox-3" aria-describedby="form-checkbox-3-error-text" aria-invalid="true">
+    <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-3" id="form-checkbox-3" aria-describedby="form-checkbox-3-error-text" aria-invalid="true" >
     <label class="nsw-form__checkbox-label" for="form-checkbox-3">I agree to terms and conditions<span class="nsw-form__required"></span><span class="sr-only"> (required)</span></label>
     <span id="form-checkbox-3-error-text" class="nsw-form__helper nsw-form__helper--error"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span>This field is required</span>
   </div>
@@ -1414,9 +1419,9 @@
         <span class="nsw-form__helper">Select all that applies to you</span>
         <span class="nsw-form__helper nsw-form__helper--error"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span>This field is required</span>
       </legend>
-      <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-multi-3" id="form-checkbox-multi-3-a">
+      <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-multi-3" id="form-checkbox-multi-3-a" >
       <label class="nsw-form__checkbox-label" for="form-checkbox-multi-3-a">Customer Service</label>
-      <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-multi-3" id="form-checkbox-multi-3-b">
+      <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-multi-3" id="form-checkbox-multi-3-b" >
       <label class="nsw-form__checkbox-label" for="form-checkbox-multi-3-b">Communities and Justice</label>
     </fieldset>
   </div>
@@ -1425,7 +1430,7 @@
     <div class="nsw-docs-code__wrapper">
 <pre><code class="html"><script>document.write((`<div class="nsw-form">
   <div class="nsw-form__group">
-    <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-3" id="form-checkbox-3" aria-describedby="form-checkbox-3-error-text" aria-invalid="true">
+    <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-3" id="form-checkbox-3" aria-describedby="form-checkbox-3-error-text" aria-invalid="true" >
     <label class="nsw-form__checkbox-label" for="form-checkbox-3">I agree to terms and conditions<span class="nsw-form__required"></span><span class="sr-only"> (required)</span></label>
     <span id="form-checkbox-3-error-text" class="nsw-form__helper nsw-form__helper--error"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span>This field is required</span>
   </div>
@@ -1436,9 +1441,9 @@
         <span class="nsw-form__helper">Select all that applies to you</span>
         <span class="nsw-form__helper nsw-form__helper--error"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span>This field is required</span>
       </legend>
-      <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-multi-3" id="form-checkbox-multi-3-a">
+      <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-multi-3" id="form-checkbox-multi-3-a" >
       <label class="nsw-form__checkbox-label" for="form-checkbox-multi-3-a">Customer Service</label>
-      <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-multi-3" id="form-checkbox-multi-3-b">
+      <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-multi-3" id="form-checkbox-multi-3-b" >
       <label class="nsw-form__checkbox-label" for="form-checkbox-multi-3-b">Communities and Justice</label>
     </fieldset>
   </div>
@@ -1460,9 +1465,9 @@
             <span class="nsw-form__helper">Select closest match</span>
             <span class="nsw-form__helper nsw-form__helper--error"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span>This field is required</span>
           </legend>
-          <input class="nsw-form__radio-input" type="radio" name="form-radio-3" id="form-radio-3-a">
+          <input class="nsw-form__radio-input" type="radio" name="form-radio-3" id="form-radio-3-a" >
           <label class="nsw-form__radio-label" for="form-radio-3-a">NSW Government</label>
-          <input class="nsw-form__radio-input" type="radio" name="form-radio-3" id="form-radio-3-b">
+          <input class="nsw-form__radio-input" type="radio" name="form-radio-3" id="form-radio-3-b" >
           <label class="nsw-form__radio-label" for="form-radio-3-b">Business and Economy</label>
         </fieldset>
       </div>
@@ -1487,9 +1492,9 @@
         <span class="nsw-form__helper">Select closest match</span>
         <span class="nsw-form__helper nsw-form__helper--error"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span>This field is required</span>
       </legend>
-      <input class="nsw-form__radio-input" type="radio" name="form-radio-3" id="form-radio-3-a">
+      <input class="nsw-form__radio-input" type="radio" name="form-radio-3" id="form-radio-3-a" >
       <label class="nsw-form__radio-label" for="form-radio-3-a">NSW Government</label>
-      <input class="nsw-form__radio-input" type="radio" name="form-radio-3" id="form-radio-3-b">
+      <input class="nsw-form__radio-input" type="radio" name="form-radio-3" id="form-radio-3-b" >
       <label class="nsw-form__radio-label" for="form-radio-3-b">Business and Economy</label>
     </fieldset>
   </div>
@@ -1504,9 +1509,9 @@
         <span class="nsw-form__helper">Select closest match</span>
         <span class="nsw-form__helper nsw-form__helper--error"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span>This field is required</span>
       </legend>
-      <input class="nsw-form__radio-input" type="radio" name="form-radio-3" id="form-radio-3-a">
+      <input class="nsw-form__radio-input" type="radio" name="form-radio-3" id="form-radio-3-a" >
       <label class="nsw-form__radio-label" for="form-radio-3-a">NSW Government</label>
-      <input class="nsw-form__radio-input" type="radio" name="form-radio-3" id="form-radio-3-b">
+      <input class="nsw-form__radio-input" type="radio" name="form-radio-3" id="form-radio-3-b" >
       <label class="nsw-form__radio-label" for="form-radio-3-b">Business and Economy</label>
     </fieldset>
   </div>
@@ -1528,13 +1533,13 @@
       <div class="nsw-form__group">
         <label class="nsw-form__label" for="form-text-4">Name</label>
         <span class="nsw-form__helper" id="form-text-4-helper-text">As it appears on your identity document</span>
-        <input class="nsw-form__input" type="text" id="form-text-4" name="form-text-4" aria-describedby="form-text-4-helper-text">
+        <input class="nsw-form__input" type="text" id="form-text-4" name="form-text-4" aria-describedby="form-text-4-helper-text"  >
         <span class="nsw-form__helper nsw-form__helper--valid" id="form-text-4-valid-text"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span>This field has been validated</span>
       </div>
       <div class="nsw-form__group">
         <label class="nsw-form__label" for="form-textarea-4">Comment</label>
         <span class="nsw-form__helper" id="form-textarea-4-helper-text">Maximum 500 characters</span>
-        <textarea class="nsw-form__input" name="textarea" id="form-textarea-4" aria-describedby="form-textarea-4-helper-text"></textarea>
+        <textarea class="nsw-form__input" name="textarea" id="form-textarea-4" aria-describedby="form-textarea-4-helper-text" ></textarea>
         <span class="nsw-form__helper nsw-form__helper--valid" id="form-textarea-4-valid-text"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span>This field has been validated</span>
       </div>
     </div>
@@ -1554,13 +1559,13 @@
   <div class="nsw-form__group">
     <label class="nsw-form__label" for="form-text-4">Name</label>
     <span class="nsw-form__helper" id="form-text-4-helper-text">As it appears on your identity document</span>
-    <input class="nsw-form__input" type="text" id="form-text-4" name="form-text-4" aria-describedby="form-text-4-helper-text">
+    <input class="nsw-form__input" type="text" id="form-text-4" name="form-text-4" aria-describedby="form-text-4-helper-text"  >
     <span class="nsw-form__helper nsw-form__helper--valid" id="form-text-4-valid-text"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span>This field has been validated</span>
   </div>
   <div class="nsw-form__group">
     <label class="nsw-form__label" for="form-textarea-4">Comment</label>
     <span class="nsw-form__helper" id="form-textarea-4-helper-text">Maximum 500 characters</span>
-    <textarea class="nsw-form__input" name="textarea" id="form-textarea-4" aria-describedby="form-textarea-4-helper-text"></textarea>
+    <textarea class="nsw-form__input" name="textarea" id="form-textarea-4" aria-describedby="form-textarea-4-helper-text" ></textarea>
     <span class="nsw-form__helper nsw-form__helper--valid" id="form-textarea-4-valid-text"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span>This field has been validated</span>
   </div>
 </div>
@@ -1570,13 +1575,13 @@
   <div class="nsw-form__group">
     <label class="nsw-form__label" for="form-text-4">Name</label>
     <span class="nsw-form__helper" id="form-text-4-helper-text">As it appears on your identity document</span>
-    <input class="nsw-form__input" type="text" id="form-text-4" name="form-text-4" aria-describedby="form-text-4-helper-text">
+    <input class="nsw-form__input" type="text" id="form-text-4" name="form-text-4" aria-describedby="form-text-4-helper-text"  >
     <span class="nsw-form__helper nsw-form__helper--valid" id="form-text-4-valid-text"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span>This field has been validated</span>
   </div>
   <div class="nsw-form__group">
     <label class="nsw-form__label" for="form-textarea-4">Comment</label>
     <span class="nsw-form__helper" id="form-textarea-4-helper-text">Maximum 500 characters</span>
-    <textarea class="nsw-form__input" name="textarea" id="form-textarea-4" aria-describedby="form-textarea-4-helper-text"></textarea>
+    <textarea class="nsw-form__input" name="textarea" id="form-textarea-4" aria-describedby="form-textarea-4-helper-text" ></textarea>
     <span class="nsw-form__helper nsw-form__helper--valid" id="form-textarea-4-valid-text"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span>This field has been validated</span>
   </div>
 </div>
@@ -1599,15 +1604,15 @@
           <div class="nsw-form__date-wrapper">
             <div class="nsw-form__date-input">
               <label for="form-date-4-day" class="nsw-form__label nsw-form__label--small">Day</label>
-              <input type="text" maxlength="2" id="form-date-4-day" name="form-date-4-day" class="nsw-form__input">
+              <input type="text" maxlength="2" id="form-date-4-day" name="form-date-4-day" class="nsw-form__input" >
             </div>
             <div class="nsw-form__date-input">
               <label for="form-date-4-month" class="nsw-form__label nsw-form__label--small">Month</label>
-              <input type="text" maxlength="2" id="form-date-4-month" name="form-date-4-month" class="nsw-form__input">
+              <input type="text" maxlength="2" id="form-date-4-month" name="form-date-4-month" class="nsw-form__input" >
             </div>
             <div class="nsw-form__date-input nsw-form__date-input--large">
               <label for="form-date-4-year" class="nsw-form__label nsw-form__label--small">Year</label>
-              <input type="text" maxlength="4" id="form-date-4-year" name="form-date-4-year" class="nsw-form__input">
+              <input type="text" maxlength="4" id="form-date-4-year" name="form-date-4-year" class="nsw-form__input" >
             </div>
           </div>
         </fieldset>
@@ -1637,15 +1642,15 @@
       <div class="nsw-form__date-wrapper">
         <div class="nsw-form__date-input">
           <label for="form-date-4-day" class="nsw-form__label nsw-form__label--small">Day</label>
-          <input type="text" maxlength="2" id="form-date-4-day" name="form-date-4-day" class="nsw-form__input">
+          <input type="text" maxlength="2" id="form-date-4-day" name="form-date-4-day" class="nsw-form__input" >
         </div>
         <div class="nsw-form__date-input">
           <label for="form-date-4-month" class="nsw-form__label nsw-form__label--small">Month</label>
-          <input type="text" maxlength="2" id="form-date-4-month" name="form-date-4-month" class="nsw-form__input">
+          <input type="text" maxlength="2" id="form-date-4-month" name="form-date-4-month" class="nsw-form__input" >
         </div>
         <div class="nsw-form__date-input nsw-form__date-input--large">
           <label for="form-date-4-year" class="nsw-form__label nsw-form__label--small">Year</label>
-          <input type="text" maxlength="4" id="form-date-4-year" name="form-date-4-year" class="nsw-form__input">
+          <input type="text" maxlength="4" id="form-date-4-year" name="form-date-4-year" class="nsw-form__input" >
         </div>
       </div>
     </fieldset>
@@ -1665,15 +1670,15 @@
       <div class="nsw-form__date-wrapper">
         <div class="nsw-form__date-input">
           <label for="form-date-4-day" class="nsw-form__label nsw-form__label--small">Day</label>
-          <input type="text" maxlength="2" id="form-date-4-day" name="form-date-4-day" class="nsw-form__input">
+          <input type="text" maxlength="2" id="form-date-4-day" name="form-date-4-day" class="nsw-form__input" >
         </div>
         <div class="nsw-form__date-input">
           <label for="form-date-4-month" class="nsw-form__label nsw-form__label--small">Month</label>
-          <input type="text" maxlength="2" id="form-date-4-month" name="form-date-4-month" class="nsw-form__input">
+          <input type="text" maxlength="2" id="form-date-4-month" name="form-date-4-month" class="nsw-form__input" >
         </div>
         <div class="nsw-form__date-input nsw-form__date-input--large">
           <label for="form-date-4-year" class="nsw-form__label nsw-form__label--small">Year</label>
-          <input type="text" maxlength="4" id="form-date-4-year" name="form-date-4-year" class="nsw-form__input">
+          <input type="text" maxlength="4" id="form-date-4-year" name="form-date-4-year" class="nsw-form__input" >
         </div>
       </div>
     </fieldset>
@@ -1694,7 +1699,7 @@
       <div class="nsw-form__group">
         <label class="nsw-form__label" for="form-select-4">Region</label>
         <span class="nsw-form__helper" id="form-select-4-helper-text">Your region of residence</span>
-          <select class="nsw-form__select" name="form-select-4" id="form-select-4" aria-describedby="form-select-4-helper-text"><option value="">Please select</option>
+          <select class="nsw-form__select" name="form-select-4" id="form-select-4" aria-describedby="form-select-4-helper-text" ><option value="">Please select</option>
             <option value="Central Coast">Central Coast</option>
             <option value="Central West &amp; Orana">Central West &amp; Orana</option>
             <option value="Far West">Far West</option>
@@ -1722,7 +1727,7 @@
   <div class="nsw-form__group">
     <label class="nsw-form__label" for="form-select-4">Region</label>
     <span class="nsw-form__helper" id="form-select-4-helper-text">Your region of residence</span>
-      <select class="nsw-form__select" name="form-select-4" id="form-select-4" aria-describedby="form-select-4-helper-text"><option value="">Please select</option>
+      <select class="nsw-form__select" name="form-select-4" id="form-select-4" aria-describedby="form-select-4-helper-text" ><option value="">Please select</option>
         <option value="Central Coast">Central Coast</option>
         <option value="Central West &amp; Orana">Central West &amp; Orana</option>
         <option value="Far West">Far West</option>
@@ -1740,7 +1745,7 @@
   <div class="nsw-form__group">
     <label class="nsw-form__label" for="form-select-4">Region</label>
     <span class="nsw-form__helper" id="form-select-4-helper-text">Your region of residence</span>
-      <select class="nsw-form__select" name="form-select-4" id="form-select-4" aria-describedby="form-select-4-helper-text"><option value="">Please select</option>
+      <select class="nsw-form__select" name="form-select-4" id="form-select-4" aria-describedby="form-select-4-helper-text" ><option value="">Please select</option>
         <option value="Central Coast">Central Coast</option>
         <option value="Central West &amp; Orana">Central West &amp; Orana</option>
         <option value="Far West">Far West</option>
@@ -1763,7 +1768,7 @@
   <div class="nsw-docs__component">
     <div class="nsw-form">
       <div class="nsw-form__group">
-        <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-4" id="form-checkbox-4">
+        <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-4" id="form-checkbox-4" >
         <label class="nsw-form__checkbox-label" for="form-checkbox-4">I agree to terms and conditions</label>
         <span id="form-checkbox-4-valid-text" class="nsw-form__helper nsw-form__helper--valid"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span>This field has been validated</span>
       </div>
@@ -1774,9 +1779,9 @@
             <span class="nsw-form__helper">Select all that applies to you</span>
             <span class="nsw-form__helper nsw-form__helper--valid"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span>This field has been validated</span>
           </legend>
-          <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-multi-4" id="form-checkbox-multi-4-a">
+          <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-multi-4" id="form-checkbox-multi-4-a" >
           <label class="nsw-form__checkbox-label" for="form-checkbox-multi-4-a">Customer Service</label>
-          <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-multi-4" id="form-checkbox-multi-4-b">
+          <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-multi-4" id="form-checkbox-multi-4-b" >
           <label class="nsw-form__checkbox-label" for="form-checkbox-multi-4-b">Communities and Justice</label>
         </fieldset>
       </div>
@@ -1795,7 +1800,7 @@
     </button>
     <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`<div class="nsw-form">
   <div class="nsw-form__group">
-    <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-4" id="form-checkbox-4">
+    <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-4" id="form-checkbox-4" >
     <label class="nsw-form__checkbox-label" for="form-checkbox-4">I agree to terms and conditions</label>
     <span id="form-checkbox-4-valid-text" class="nsw-form__helper nsw-form__helper--valid"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span>This field has been validated</span>
   </div>
@@ -1806,9 +1811,9 @@
         <span class="nsw-form__helper">Select all that applies to you</span>
         <span class="nsw-form__helper nsw-form__helper--valid"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span>This field has been validated</span>
       </legend>
-      <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-multi-4" id="form-checkbox-multi-4-a">
+      <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-multi-4" id="form-checkbox-multi-4-a" >
       <label class="nsw-form__checkbox-label" for="form-checkbox-multi-4-a">Customer Service</label>
-      <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-multi-4" id="form-checkbox-multi-4-b">
+      <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-multi-4" id="form-checkbox-multi-4-b" >
       <label class="nsw-form__checkbox-label" for="form-checkbox-multi-4-b">Communities and Justice</label>
     </fieldset>
   </div>
@@ -1817,7 +1822,7 @@
     <div class="nsw-docs-code__wrapper">
 <pre><code class="html"><script>document.write((`<div class="nsw-form">
   <div class="nsw-form__group">
-    <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-4" id="form-checkbox-4">
+    <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-4" id="form-checkbox-4" >
     <label class="nsw-form__checkbox-label" for="form-checkbox-4">I agree to terms and conditions</label>
     <span id="form-checkbox-4-valid-text" class="nsw-form__helper nsw-form__helper--valid"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span>This field has been validated</span>
   </div>
@@ -1828,9 +1833,9 @@
         <span class="nsw-form__helper">Select all that applies to you</span>
         <span class="nsw-form__helper nsw-form__helper--valid"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span>This field has been validated</span>
       </legend>
-      <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-multi-4" id="form-checkbox-multi-4-a">
+      <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-multi-4" id="form-checkbox-multi-4-a" >
       <label class="nsw-form__checkbox-label" for="form-checkbox-multi-4-a">Customer Service</label>
-      <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-multi-4" id="form-checkbox-multi-4-b">
+      <input class="nsw-form__checkbox-input" type="checkbox" name="form-checkbox-multi-4" id="form-checkbox-multi-4-b" >
       <label class="nsw-form__checkbox-label" for="form-checkbox-multi-4-b">Communities and Justice</label>
     </fieldset>
   </div>
@@ -1852,9 +1857,9 @@
             <span class="nsw-form__helper">Select closest match</span>
             <span class="nsw-form__helper nsw-form__helper--valid"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span>This field has been validated</span>
           </legend>
-          <input class="nsw-form__radio-input" type="radio" name="form-radio-4" id="form-radio-4-a">
+          <input class="nsw-form__radio-input" type="radio" name="form-radio-4" id="form-radio-4-a" >
           <label class="nsw-form__radio-label" for="form-radio-4-a">NSW Government</label>
-          <input class="nsw-form__radio-input" type="radio" name="form-radio-4" id="form-radio-4-b">
+          <input class="nsw-form__radio-input" type="radio" name="form-radio-4" id="form-radio-4-b" >
           <label class="nsw-form__radio-label" for="form-radio-4-b">Business and Economy</label>
         </fieldset>
       </div>
@@ -1879,9 +1884,9 @@
         <span class="nsw-form__helper">Select closest match</span>
         <span class="nsw-form__helper nsw-form__helper--valid"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span>This field has been validated</span>
       </legend>
-      <input class="nsw-form__radio-input" type="radio" name="form-radio-4" id="form-radio-4-a">
+      <input class="nsw-form__radio-input" type="radio" name="form-radio-4" id="form-radio-4-a" >
       <label class="nsw-form__radio-label" for="form-radio-4-a">NSW Government</label>
-      <input class="nsw-form__radio-input" type="radio" name="form-radio-4" id="form-radio-4-b">
+      <input class="nsw-form__radio-input" type="radio" name="form-radio-4" id="form-radio-4-b" >
       <label class="nsw-form__radio-label" for="form-radio-4-b">Business and Economy</label>
     </fieldset>
   </div>
@@ -1896,9 +1901,9 @@
         <span class="nsw-form__helper">Select closest match</span>
         <span class="nsw-form__helper nsw-form__helper--valid"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span>This field has been validated</span>
       </legend>
-      <input class="nsw-form__radio-input" type="radio" name="form-radio-4" id="form-radio-4-a">
+      <input class="nsw-form__radio-input" type="radio" name="form-radio-4" id="form-radio-4-a" >
       <label class="nsw-form__radio-label" for="form-radio-4-a">NSW Government</label>
-      <input class="nsw-form__radio-input" type="radio" name="form-radio-4" id="form-radio-4-b">
+      <input class="nsw-form__radio-input" type="radio" name="form-radio-4" id="form-radio-4-b" >
       <label class="nsw-form__radio-label" for="form-radio-4-b">Business and Economy</label>
     </fieldset>
   </div>
