@@ -1,5 +1,5 @@
 ---
-title: Forms
+title: Inactive fields
 width: narrow
 page: true
 model:
@@ -8,17 +8,25 @@ model:
 
 {{#>_theme}}
 {{#>_layout-container}}
+<h1>Inactive fields styling</h1>
+<p>Avoid using inactive form fields. Conditionally render fields only when input is required, and present read-only information as text outside of form fields.</p>
+<p>The following are for fallback styles only and are not recommended for usage.</p>
+
+<h2>Disabled</h2>
+
 <div class="nsw-form">
   <div class="nsw-form__group">
     {{>_text-input
       id="form-text-1"
       label="Name"
+      disabled="true"
     }}
   </div>
   <div class="nsw-form__group">
     {{>_textarea
       id="form-textarea-1"
       label="Comment"
+      disabled="true"
     }}
   </div>
 
@@ -26,6 +34,7 @@ model:
     {{>_input-group
       id="form-input-group-1"
       label="Search"
+      disabled="true"
     }}
   </div>
   <div class="nsw-form__group">
@@ -33,6 +42,7 @@ model:
       id="form-input-group-icon-1"
       label="Search"
       icon="search"
+      disabled="true"
     }}
   </div>
   <div class="nsw-form__group">
@@ -41,13 +51,14 @@ model:
       label="Search"
       icon="search"
       white=true
+      disabled="true"
     }}
   </div>
 
   <div class="nsw-form__group">
     <label class="nsw-form__label" for="form-predictive-text-1">Suburb</label>
     <div class="nsw-form__predictive">
-      <input class="nsw-form__input" type="text" id="form-predictive-text-1" name="form-predictive-text-1" value="Horn" aria-autocomplete="list" autocomplete="off">
+      <input class="nsw-form__input" type="text" id="form-predictive-text-1" name="form-predictive-text-1" value="Horn" aria-autocomplete="list" autocomplete="off" disabled="true">
       <ul class="nsw-form__predictive-list">
         <li><a href="#"><span>Horn</span>sby</a></li>
         <li><a href="#"><span>Horn</span>sby Heights</a></li>
@@ -63,6 +74,7 @@ model:
         label="Search"
         value="Tran"
         predictive=true
+        disabled="true"
       }}
       <ul class="nsw-form__predictive-list">
         <li><a href="#"><span>Tran</span>sport</a></li>
@@ -80,6 +92,7 @@ model:
         value="Govern"
         icon="search"
         predictive=true
+        disabled="true"
       }}
       <ul class="nsw-form__predictive-list">
         <li><a href="#"><span>Govern</span>ment</a></li>
@@ -94,12 +107,14 @@ model:
     {{>_date
       id="form-date-1"
       label="Date of birth"
+      disabled="true"
     }}
   </div>
 
   <div class="nsw-form__group">
     {{>_select model.select
       id="form-select-1"
+      disabled="true"
     }}
   </div>
 
@@ -108,6 +123,7 @@ model:
       id="form-checkbox-1"
       name="form-checkbox-1"
       label="I agree to terms and conditions"
+      disabled="true"
     }}
   </div>
   <div class="nsw-form__group">
@@ -119,12 +135,14 @@ model:
         id="form-checkbox-multi-1-a"
         name="form-checkbox-multi-1"
         label="Customer Service"
+        disabled="true"
       }}
       {{>_checkbox
         id="form-checkbox-multi-1-b"
         name="form-checkbox-multi-1"
         label="Communities and Justice"
         checked=true
+        disabled="true"
       }}
     </fieldset>
   </div>
@@ -139,11 +157,13 @@ model:
         name="form-radio-1"
         label="NSW Government"
         checked=true
+        disabled="true"
       }}
       {{>_radio
         id="form-radio-1-b"
         name="form-radio-1"
         label="Business and Economy"
+        disabled="true"
       }}
     </fieldset>
   </div>
