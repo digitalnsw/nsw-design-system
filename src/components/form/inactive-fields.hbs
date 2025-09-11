@@ -14,13 +14,15 @@ model:
 
 <h2>Disabled</h2>
 
+<h3>Placeholder text</h3>
+
 <div class="nsw-form">
   <div class="nsw-form__group">
     {{>_text-input
       id="form-text-1"
       label="Name"
       disabled="true"
-      placeholder="John Smith"
+      placeholder="Placeholder text"
     }}
   </div>
   <div class="nsw-form__group">
@@ -28,7 +30,7 @@ model:
       id="form-textarea-1"
       label="Comment"
       disabled="true"
-      placeholder="Your comment here"
+      placeholder="Placeholder text"
     }}
   </div>
 
@@ -37,7 +39,7 @@ model:
       id="form-input-group-1"
       label="Search"
       disabled="true"
-      placeholder="Search all topics"
+      placeholder="Placeholder text"
     }}
   </div>
   <div class="nsw-form__group">
@@ -46,7 +48,7 @@ model:
       label="Search"
       icon="search"
       disabled="true"
-      placeholder="Search all areas"
+      placeholder="Placeholder text"
     }}
   </div>
   <div class="nsw-form__group">
@@ -56,11 +58,11 @@ model:
       icon="search"
       white=true
       disabled="true"
-      placeholder="Search the internet"
+      placeholder="Placeholder text"
     }}
   </div>
 
-  <div class="nsw-form__group">
+  {{!-- <div class="nsw-form__group">
     <label class="nsw-form__label" for="form-predictive-text-1">Suburb</label>
     <div class="nsw-form__predictive">
       <input class="nsw-form__input" type="text" id="form-predictive-text-1" name="form-predictive-text-1" value="Horn" aria-autocomplete="list" autocomplete="off" disabled="true">
@@ -106,7 +108,7 @@ model:
       </ul>
     </div>
   </div>
-  <br><br><br><br><br><br>
+  <br><br><br><br><br><br> --}}
 
   <div class="nsw-form__group">
     {{>_date
@@ -146,7 +148,6 @@ model:
         id="form-checkbox-multi-1-b"
         name="form-checkbox-multi-1"
         label="Communities and Justice"
-        checked=true
         disabled="true"
       }}
     </fieldset>
@@ -161,7 +162,6 @@ model:
         id="form-radio-1-a"
         name="form-radio-1"
         label="NSW Government"
-        checked=true
         disabled="true"
       }}
       {{>_radio
@@ -174,6 +174,8 @@ model:
   </div>
 </div>
 
+<h3 class="nsw-m-top-lg">Disabled state with value</h3>
+
 <div class="nsw-form">
   <div class="nsw-form__group">
     {{>_text-input
@@ -181,7 +183,7 @@ model:
       label="Name"
       helper-text="As it appears on your identity document"
       disabled="true"
-      placeholder="John Smith"
+      value="John Smith"
     }}
   </div>
   <div class="nsw-form__group">
@@ -190,6 +192,7 @@ model:
       label="Comment"
       helper-text="Maximum 500 characters"
       disabled="true"
+      value="Test comment"
     }}
   </div>
 
@@ -199,6 +202,9 @@ model:
       label="Date of birth"
       helper-text="For example 08 12 1990"
       disabled="true"
+      value-day="24"
+      value-month="01"
+      value-year="1984"
     }}
   </div>
 
@@ -220,6 +226,7 @@ model:
         id="form-checkbox-multi-2-a"
         name="form-checkbox-multi-2"
         label="Customer Service"
+        checked=true
         disabled="true"
       }}
       {{>_checkbox
@@ -248,6 +255,7 @@ model:
         name="form-radio-2"
         label="Business and Economy"
         disabled="true"
+        checked=true
       }}
     </fieldset>
   </div>
@@ -366,13 +374,15 @@ model:
 {{#>_layout-container brand-dark="true" invert="true"}}
 <h2>Disabled</h2>
 
+<h3>Placeholder text</h3>
+
 <div class="nsw-form">
   <div class="nsw-form__group">
     {{>_text-input
       id="form-text-1"
       label="Name"
       disabled="true"
-      placeholder="John Smith"
+      placeholder="Placeholder text"
     }}
   </div>
   <div class="nsw-form__group">
@@ -380,7 +390,7 @@ model:
       id="form-textarea-1"
       label="Comment"
       disabled="true"
-      placeholder="Your comment here"
+      placeholder="Placeholder text"
     }}
   </div>
 
@@ -389,7 +399,7 @@ model:
       id="form-input-group-1"
       label="Search"
       disabled="true"
-      placeholder="Search all topics"
+      placeholder="Placeholder text"
     }}
   </div>
   <div class="nsw-form__group">
@@ -398,7 +408,7 @@ model:
       label="Search"
       icon="search"
       disabled="true"
-      placeholder="Search all areas"
+      placeholder="Placeholder text"
     }}
   </div>
   <div class="nsw-form__group">
@@ -408,11 +418,11 @@ model:
       icon="search"
       white=true
       disabled="true"
-      placeholder="Search the internet"
+      placeholder="Placeholder text"
     }}
   </div>
 
-  <div class="nsw-form__group">
+  {{!-- <div class="nsw-form__group">
     <label class="nsw-form__label" for="form-predictive-text-1">Suburb</label>
     <div class="nsw-form__predictive">
       <input class="nsw-form__input" type="text" id="form-predictive-text-1" name="form-predictive-text-1" value="Horn" aria-autocomplete="list" autocomplete="off" disabled="true">
@@ -458,7 +468,7 @@ model:
       </ul>
     </div>
   </div>
-  <br><br><br><br><br><br>
+  <br><br><br><br><br><br> --}}
 
   <div class="nsw-form__group">
     {{>_date
@@ -498,7 +508,6 @@ model:
         id="form-checkbox-multi-1-b"
         name="form-checkbox-multi-1"
         label="Communities and Justice"
-        checked=true
         disabled="true"
       }}
     </fieldset>
@@ -510,21 +519,22 @@ model:
         <span class="nsw-form__legend">Topic</span>
       </legend>
       {{>_radio
-        id="form-radio-1-a"
-        name="form-radio-1"
+        id="form-radio-3-a"
+        name="form-radio-3"
         label="NSW Government"
-        checked=true
         disabled="true"
       }}
       {{>_radio
-        id="form-radio-1-b"
-        name="form-radio-1"
+        id="form-radio-3-b"
+        name="form-radio-3"
         label="Business and Economy"
         disabled="true"
       }}
     </fieldset>
   </div>
 </div>
+
+<h3 class="nsw-m-top-lg">Disabled state with value</h3>
 
 <div class="nsw-form">
   <div class="nsw-form__group">
@@ -533,7 +543,7 @@ model:
       label="Name"
       helper-text="As it appears on your identity document"
       disabled="true"
-      placeholder="John Smith"
+      value="John Smith"
     }}
   </div>
   <div class="nsw-form__group">
@@ -542,6 +552,7 @@ model:
       label="Comment"
       helper-text="Maximum 500 characters"
       disabled="true"
+      value="Test comment"
     }}
   </div>
 
@@ -551,6 +562,9 @@ model:
       label="Date of birth"
       helper-text="For example 08 12 1990"
       disabled="true"
+      value-day="24"
+      value-month="01"
+      value-year="1984"
     }}
   </div>
 
@@ -572,6 +586,7 @@ model:
         id="form-checkbox-multi-2-a"
         name="form-checkbox-multi-2"
         label="Customer Service"
+        checked=true
         disabled="true"
       }}
       {{>_checkbox
@@ -590,16 +605,17 @@ model:
         <span class="nsw-form__helper">Select closest match</span>
       </legend>
       {{>_radio
-        id="form-radio-2-a"
-        name="form-radio-2"
+        id="form-radio-4-a"
+        name="form-radio-4"
         label="NSW Government"
         disabled="true"
       }}
       {{>_radio
-        id="form-radio-2-b"
-        name="form-radio-2"
+        id="form-radio-4-b"
+        name="form-radio-4"
         label="Business and Economy"
         disabled="true"
+        checked=true
       }}
     </fieldset>
   </div>

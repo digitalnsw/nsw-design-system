@@ -113,6 +113,7 @@
 
     &:disabled,
     &[readonly='true'] {
+      background: var(--nsw-off-white);
       border-color: var(--nsw-grey-03);
       color: var(--nsw-grey-01);
       cursor: not-allowed;
@@ -124,18 +125,11 @@
       border-color: var(--nsw-status-error);
       border-width: 2px;
     }
-  }
 
-  &__input {
     &:hover {
       background-image: linear-gradient(var(--nsw-hover), var(--nsw-hover));
     }
-
-    &:disabled,
-    &[readonly='true'] {
-      background: var(--nsw-off-white);
-    }
-
+  
     &[aria-invalid='true'],
     &.has-error {
       &:hover {
