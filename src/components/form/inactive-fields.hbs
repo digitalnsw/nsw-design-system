@@ -252,50 +252,59 @@ model:
     </fieldset>
   </div>
 </div>
-{{/_layout-container}}
 
-{{#>_layout-container brand-dark="true" invert="true"}}
+<h2>Read-only</h2>
+
 <div class="nsw-form">
   <div class="nsw-form__group">
     {{>_text-input
-      id="form-text-11"
+      id="form-text-1"
       label="Name"
-      placeholder="John Smith"
+      readonly="true"
+      value="John Smith"
     }}
   </div>
   <div class="nsw-form__group">
     {{>_textarea
-      id="form-textarea-11"
+      id="form-textarea-1"
       label="Comment"
+      readonly="true"
+      value="Test comment"
     }}
   </div>
 
   <div class="nsw-form__group">
     {{>_input-group
-      id="form-input-group-11"
+      id="form-input-group-1"
       label="Search"
+      readonly="true"
+      value="Test content"
     }}
   </div>
   <div class="nsw-form__group">
     {{>_input-group
-      id="form-input-group-icon-11"
+      id="form-input-group-icon-1"
       label="Search"
       icon="search"
+      readonly="true"
+      value="Test content"
     }}
   </div>
   <div class="nsw-form__group">
     {{>_input-group
-      id="form-input-group-icon-12"
+      id="form-input-group-icon-2"
       label="Search"
       icon="search"
       white=true
+      readonly="true"
+      value="Test content"
     }}
   </div>
 
   <div class="nsw-form__group">
-    <label class="nsw-form__label" for="form-predictive-text-11">Suburb</label>
+    <label class="nsw-form__label" for="form-predictive-text-1">Suburb</label>
     <div class="nsw-form__predictive">
-      <input class="nsw-form__input" type="text" id="form-predictive-text-11" name="form-predictive-text-11" value="Horn" aria-autocomplete="list" autocomplete="off">
+      <input class="nsw-form__input" type="text" id="form-predictive-text-1" name="form-predictive-text-1" value="Horn" aria-autocomplete="list" autocomplete="off" readonly="true">
       <ul class="nsw-form__predictive-list">
         <li><a href="#"><span>Horn</span>sby</a></li>
         <li><a href="#"><span>Horn</span>sby Heights</a></li>
@@ -307,10 +316,12 @@ model:
   <div class="nsw-form__group">
     <div class="nsw-form__predictive">
       {{>_input-group
-        id="form-predictive-group-11"
+        id="form-predictive-group-1"
         label="Search"
         value="Tran"
         predictive=true
+        readonly="true"
+        value="Test content"
       }}
       <ul class="nsw-form__predictive-list">
         <li><a href="#"><span>Tran</span>sport</a></li>
@@ -323,11 +334,12 @@ model:
   <div class="nsw-form__group">
     <div class="nsw-form__predictive">
       {{>_input-group
-        id="form-predictive-group-icon-11"
+        id="form-predictive-group-icon-1"
         label="Search"
         value="Govern"
         icon="search"
         predictive=true
+        readonly="true"
       }}
       <ul class="nsw-form__predictive-list">
         <li><a href="#"><span>Govern</span>ment</a></li>
@@ -340,22 +352,135 @@ model:
 
   <div class="nsw-form__group">
     {{>_date
-      id="form-date-11"
+      id="form-date-1"
       label="Date of birth"
+      readonly="true"
+      value-day="24"
+      value-month="01"
+      value-year="1984"
+    }}
+  </div>
+</div>
+{{/_layout-container}}
+
+{{#>_layout-container brand-dark="true" invert="true"}}
+<h2>Disabled</h2>
+
+<div class="nsw-form">
+  <div class="nsw-form__group">
+    {{>_text-input
+      id="form-text-1"
+      label="Name"
+      disabled="true"
+      placeholder="John Smith"
+    }}
+  </div>
+  <div class="nsw-form__group">
+    {{>_textarea
+      id="form-textarea-1"
+      label="Comment"
+      disabled="true"
+      placeholder="Your comment here"
+    }}
+  </div>
+
+  <div class="nsw-form__group">
+    {{>_input-group
+      id="form-input-group-1"
+      label="Search"
+      disabled="true"
+      placeholder="Search all topics"
+    }}
+  </div>
+  <div class="nsw-form__group">
+    {{>_input-group
+      id="form-input-group-icon-1"
+      label="Search"
+      icon="search"
+      disabled="true"
+      placeholder="Search all areas"
+    }}
+  </div>
+  <div class="nsw-form__group">
+    {{>_input-group
+      id="form-input-group-icon-2"
+      label="Search"
+      icon="search"
+      white=true
+      disabled="true"
+      placeholder="Search the internet"
+    }}
+  </div>
+
+  <div class="nsw-form__group">
+    <label class="nsw-form__label" for="form-predictive-text-1">Suburb</label>
+    <div class="nsw-form__predictive">
+      <input class="nsw-form__input" type="text" id="form-predictive-text-1" name="form-predictive-text-1" value="Horn" aria-autocomplete="list" autocomplete="off" disabled="true">
+      <ul class="nsw-form__predictive-list">
+        <li><a href="#"><span>Horn</span>sby</a></li>
+        <li><a href="#"><span>Horn</span>sby Heights</a></li>
+        <li><a href="#"><span>Horn</span>ingsea Park</a></li>
+      </ul>
+    </div>
+  </div>
+  <br><br><br><br><br><br>
+  <div class="nsw-form__group">
+    <div class="nsw-form__predictive">
+      {{>_input-group
+        id="form-predictive-group-1"
+        label="Search"
+        value="Tran"
+        predictive=true
+        disabled="true"
+      }}
+      <ul class="nsw-form__predictive-list">
+        <li><a href="#"><span>Tran</span>sport</a></li>
+        <li><a href="#">Road <span>Tran</span>sport</a></li>
+        <li><a href="#">Public <span>Tran</span>sport</a></li>
+      </ul>
+    </div>
+  </div>
+  <br><br><br><br><br><br>
+  <div class="nsw-form__group">
+    <div class="nsw-form__predictive">
+      {{>_input-group
+        id="form-predictive-group-icon-1"
+        label="Search"
+        value="Govern"
+        icon="search"
+        predictive=true
+        disabled="true"
+      }}
+      <ul class="nsw-form__predictive-list">
+        <li><a href="#"><span>Govern</span>ment</a></li>
+        <li><a href="#"><span>Govern</span>ment payments</a></li>
+        <li><a href="#"><span>Govern</span>ance</a></li>
+      </ul>
+    </div>
+  </div>
+  <br><br><br><br><br><br>
+
+  <div class="nsw-form__group">
+    {{>_date
+      id="form-date-1"
+      label="Date of birth"
+      disabled="true"
     }}
   </div>
 
   <div class="nsw-form__group">
     {{>_select model.select
-      id="form-select-11"
+      id="form-select-1"
+      disabled="true"
     }}
   </div>
 
   <div class="nsw-form__group">
     {{>_checkbox
-      id="form-checkbox-11"
-      name="form-checkbox-11"
+      id="form-checkbox-1"
+      name="form-checkbox-1"
       label="I agree to terms and conditions"
+      disabled="true"
     }}
   </div>
   <div class="nsw-form__group">
@@ -364,15 +489,17 @@ model:
         <span class="nsw-form__legend">Category</span>
       </legend>
       {{>_checkbox
-        id="form-checkbox-multi-11-a"
-        name="form-checkbox-multi-11"
+        id="form-checkbox-multi-1-a"
+        name="form-checkbox-multi-1"
         label="Customer Service"
+        disabled="true"
       }}
       {{>_checkbox
-        id="form-checkbox-multi-11-b"
-        name="form-checkbox-multi-11"
+        id="form-checkbox-multi-1-b"
+        name="form-checkbox-multi-1"
         label="Communities and Justice"
         checked=true
+        disabled="true"
       }}
     </fieldset>
   </div>
@@ -383,15 +510,17 @@ model:
         <span class="nsw-form__legend">Topic</span>
       </legend>
       {{>_radio
-        id="form-radio-11-a"
-        name="form-radio-11"
+        id="form-radio-1-a"
+        name="form-radio-1"
         label="NSW Government"
         checked=true
+        disabled="true"
       }}
       {{>_radio
-        id="form-radio-11-b"
-        name="form-radio-11"
+        id="form-radio-1-b"
+        name="form-radio-1"
         label="Business and Economy"
+        disabled="true"
       }}
     </fieldset>
   </div>
@@ -400,31 +529,36 @@ model:
 <div class="nsw-form">
   <div class="nsw-form__group">
     {{>_text-input
-      id="form-text-12"
+      id="form-text-2"
       label="Name"
       helper-text="As it appears on your identity document"
+      disabled="true"
+      placeholder="John Smith"
     }}
   </div>
   <div class="nsw-form__group">
     {{>_textarea
-      id="form-textarea-12"
+      id="form-textarea-2"
       label="Comment"
       helper-text="Maximum 500 characters"
+      disabled="true"
     }}
   </div>
 
   <div class="nsw-form__group">
     {{>_date
-      id="form-date-12"
+      id="form-date-2"
       label="Date of birth"
-      helper-text="For example 08 1112 11990"
+      helper-text="For example 08 12 1990"
+      disabled="true"
     }}
   </div>
 
   <div class="nsw-form__group">
     {{>_select model.select
-      id="form-select-12"
+      id="form-select-2"
       helper-text="Your region of residence"
+      disabled="true"
     }}
   </div>
 
@@ -435,14 +569,16 @@ model:
         <span class="nsw-form__helper">Select all that applies to you</span>
       </legend>
       {{>_checkbox
-        id="form-checkbox-multi-12-a"
-        name="form-checkbox-multi-12"
+        id="form-checkbox-multi-2-a"
+        name="form-checkbox-multi-2"
         label="Customer Service"
+        disabled="true"
       }}
       {{>_checkbox
-        id="form-checkbox-multi-12-b"
-        name="form-checkbox-multi-12"
+        id="form-checkbox-multi-2-b"
+        name="form-checkbox-multi-2"
         label="Communities and Justice"
+        disabled="true"
       }}
     </fieldset>
   </div>
@@ -454,177 +590,127 @@ model:
         <span class="nsw-form__helper">Select closest match</span>
       </legend>
       {{>_radio
-        id="form-radio-12-a"
-        name="form-radio-12"
+        id="form-radio-2-a"
+        name="form-radio-2"
         label="NSW Government"
+        disabled="true"
       }}
       {{>_radio
-        id="form-radio-12-b"
-        name="form-radio-12"
+        id="form-radio-2-b"
+        name="form-radio-2"
         label="Business and Economy"
+        disabled="true"
       }}
     </fieldset>
   </div>
 </div>
 
-<div class="nsw-form">
-  <div class="nsw-form__group">
-    {{>_text-input
-      id="form-text-13"
-      label="Name"
-      required=true
-      error-text="This field is required"
-    }}
-  </div>
-  <div class="nsw-form__group">
-    {{>_textarea
-      id="form-textarea-13"
-      label="Comment"
-      required=true
-      error-text="This field is required"
-    }}
-  </div>
-
-  <div class="nsw-form__group">
-    {{>_date
-      id="form-date-13"
-      label="Date of birth"
-      required=true
-      error-text="This field is required"
-    }}
-  </div>
-
-  <div class="nsw-form__group">
-    {{>_select model.select
-      id="form-select-13"
-      required=true
-      error-text="This field is required"
-    }}
-  </div>
-
-  <div class="nsw-form__group">
-    {{>_checkbox
-      id="form-checkbox-13"
-      name="form-checkbox-13"
-      label="I agree to terms and conditions"
-      required=true
-      error-text="This field is required"
-    }}
-  </div>
-  <div class="nsw-form__group">
-    <fieldset class="nsw-form__fieldset">
-      <legend>
-        <span class="nsw-form__legend nsw-form__required">Category<span class="sr-only"> (required)</span></span>
-        <span class="nsw-form__helper nsw-form__helper--error"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span>This field is required</span>
-      </legend>
-      {{>_checkbox
-        id="form-checkbox-multi-13-a"
-        name="form-checkbox-multi-13"
-        label="Customer Service"
-      }}
-      {{>_checkbox
-        id="form-checkbox-multi-13-b"
-        name="form-checkbox-multi-13"
-        label="Communities and Justice"
-      }}
-    </fieldset>
-  </div>
-
-  <div class="nsw-form__group">
-    <fieldset class="nsw-form__fieldset">
-      <legend>
-        <span class="nsw-form__legend nsw-form__required">Topic<span class="sr-only"> (required)</span></span>
-        <span class="nsw-form__helper nsw-form__helper--error"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span>This field is required</span>
-      </legend>
-      {{>_radio
-        id="form-radio-13-a"
-        name="form-radio-13"
-        label="NSW Government"
-      }}
-      {{>_radio
-        id="form-radio-13-b"
-        name="form-radio-13"
-        label="Business and Economy"
-      }}
-    </fieldset>
-  </div>
-</div>
+<h2>Read-only</h2>
 
 <div class="nsw-form">
   <div class="nsw-form__group">
     {{>_text-input
-      id="form-text-14"
+      id="form-text-1"
       label="Name"
-      valid-text="This field has been validated"
+      readonly="true"
+      value="John Smith"
     }}
   </div>
   <div class="nsw-form__group">
     {{>_textarea
-      id="form-textarea-14"
+      id="form-textarea-1"
       label="Comment"
-      valid-text="This field has been validated"
+      readonly="true"
+      value="Test comment"
     }}
   </div>
+
+  <div class="nsw-form__group">
+    {{>_input-group
+      id="form-input-group-1"
+      label="Search"
+      readonly="true"
+      value="Test content"
+    }}
+  </div>
+  <div class="nsw-form__group">
+    {{>_input-group
+      id="form-input-group-icon-1"
+      label="Search"
+      icon="search"
+      readonly="true"
+      value="Test content"
+    }}
+  </div>
+  <div class="nsw-form__group">
+    {{>_input-group
+      id="form-input-group-icon-2"
+      label="Search"
+      icon="search"
+      white=true
+      readonly="true"
+      value="Test content"
+    }}
+  </div>
+
+  <div class="nsw-form__group">
+    <label class="nsw-form__label" for="form-predictive-text-1">Suburb</label>
+    <div class="nsw-form__predictive">
+      <input class="nsw-form__input" type="text" id="form-predictive-text-1" name="form-predictive-text-1" value="Horn" aria-autocomplete="list" autocomplete="off" readonly="true">
+      <ul class="nsw-form__predictive-list">
+        <li><a href="#"><span>Horn</span>sby</a></li>
+        <li><a href="#"><span>Horn</span>sby Heights</a></li>
+        <li><a href="#"><span>Horn</span>ingsea Park</a></li>
+      </ul>
+    </div>
+  </div>
+  <br><br><br><br><br><br>
+  <div class="nsw-form__group">
+    <div class="nsw-form__predictive">
+      {{>_input-group
+        id="form-predictive-group-1"
+        label="Search"
+        value="Tran"
+        predictive=true
+        readonly="true"
+        value="Test content"
+      }}
+      <ul class="nsw-form__predictive-list">
+        <li><a href="#"><span>Tran</span>sport</a></li>
+        <li><a href="#">Road <span>Tran</span>sport</a></li>
+        <li><a href="#">Public <span>Tran</span>sport</a></li>
+      </ul>
+    </div>
+  </div>
+  <br><br><br><br><br><br>
+  <div class="nsw-form__group">
+    <div class="nsw-form__predictive">
+      {{>_input-group
+        id="form-predictive-group-icon-1"
+        label="Search"
+        value="Govern"
+        icon="search"
+        predictive=true
+        readonly="true"
+      }}
+      <ul class="nsw-form__predictive-list">
+        <li><a href="#"><span>Govern</span>ment</a></li>
+        <li><a href="#"><span>Govern</span>ment payments</a></li>
+        <li><a href="#"><span>Govern</span>ance</a></li>
+      </ul>
+    </div>
+  </div>
+  <br><br><br><br><br><br>
 
   <div class="nsw-form__group">
     {{>_date
-      id="form-date-14"
+      id="form-date-1"
       label="Date of birth"
-      valid-text="This field has been validated"
+      readonly="true"
+      value-day="24"
+      value-month="01"
+      value-year="1984"
     }}
-  </div>
-
-  <div class="nsw-form__group">
-    {{>_select model.select
-      id="form-select-14"
-      valid-text="This field has been validated"
-    }}
-  </div>
-
-  <div class="nsw-form__group">
-    {{>_checkbox
-      id="form-checkbox-14"
-      name="form-checkbox-14"
-      label="I agree to terms and conditions"
-      valid-text="This field has been validated"
-    }}
-  </div>
-  <div class="nsw-form__group">
-    <fieldset class="nsw-form__fieldset">
-      <legend>
-        <span class="nsw-form__legend">Category</span>
-        <span class="nsw-form__helper nsw-form__helper--valid"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span>This field has been validated</span>
-      </legend>
-      {{>_checkbox
-        id="form-checkbox-multi-14-a"
-        name="form-checkbox-multi-14"
-        label="Customer Service"
-      }}
-      {{>_checkbox
-        id="form-checkbox-multi-14-b"
-        name="form-checkbox-multi-14"
-        label="Communities and Justice"
-      }}
-    </fieldset>
-  </div>
-
-  <div class="nsw-form__group">
-    <fieldset class="nsw-form__fieldset">
-      <legend>
-        <span class="nsw-form__legend">Topic</span>
-        <span class="nsw-form__helper nsw-form__helper--valid"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span>This field has been validated</span>
-      </legend>
-      {{>_radio
-        id="form-radio-14-a"
-        name="form-radio-14"
-        label="NSW Government"
-      }}
-      {{>_radio
-        id="form-radio-14-b"
-        name="form-radio-14"
-        label="Business and Economy"
-      }}
-    </fieldset>
   </div>
 </div>
 {{/_layout-container}}
