@@ -6,15 +6,15 @@
   <div class="nsw-form__date-wrapper">
     <div class="nsw-form__date-input">
       <label for="{{id}}-day" class="nsw-form__label nsw-form__label--small">Day</label>
-      <input type="text" maxlength="2" id="{{id}}-day" name="{{id}}-day" class="nsw-form__input"{{#if error-text}} aria-invalid="true"{{/if}}>
+      <input {{#if value-day}}value="{{value-day}}"{{/if}} type="text" maxlength="2" id="{{id}}-day" name="{{id}}-day" class="nsw-form__input"{{#if error-text}} aria-invalid="true"{{/if}} {{#if disabled}}disabled={{disabled}}{{/if}} {{#if readonly}}readonly="{{readonly}}"{{/if}}>
     </div>
     <div class="nsw-form__date-input">
       <label for="{{id}}-month" class="nsw-form__label nsw-form__label--small">Month</label>
-      <input type="text" maxlength="2" id="{{id}}-month" name="{{id}}-month" class="nsw-form__input"{{#if error-text}} aria-invalid="true"{{/if}}>
+      <input {{#if value-month}}value="{{value-month}}"{{/if}} type="text" maxlength="2" id="{{id}}-month" name="{{id}}-month" class="nsw-form__input"{{#if error-text}} aria-invalid="true"{{/if}} {{#if disabled}}disabled={{disabled}}{{/if}} {{#if readonly}}readonly="{{readonly}}"{{/if}}>
     </div>
     <div class="nsw-form__date-input nsw-form__date-input--large">
       <label for="{{id}}-year" class="nsw-form__label nsw-form__label--small">Year</label>
-      <input type="text" maxlength="4" id="{{id}}-year" name="{{id}}-year" class="nsw-form__input"{{#if error-text}} aria-invalid="true"{{/if}}>
+      <input {{#if value-year}}value="{{value-year}}"{{/if}} type="text" maxlength="4" id="{{id}}-year" name="{{id}}-year" class="nsw-form__input"{{#if error-text}} aria-invalid="true"{{/if}} {{#if disabled}}disabled={{disabled}}{{/if}} {{#if readonly}}readonly="{{readonly}}"{{/if}}>
     </div>
   </div>
 </fieldset>
