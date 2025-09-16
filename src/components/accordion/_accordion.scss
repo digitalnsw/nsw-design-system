@@ -1,24 +1,22 @@
 @use 'sass:map';
-@use '../../global/scss/base/functions' as functions;
-@use '../../global/scss/base/mixins' as mixins;
-@use '../../global/scss/settings/settings' as settings;
+@use '../../global/scss/tools' as nsw;
 
 .nsw-accordion {
-  @include mixins.component-spacing();
+  @include nsw.component-spacing();
 
   &__title,
   &__button {
     font-weight: var(--nsw-font-bold);
-    padding: functions.rem(16px) functions.rem(48px) functions.rem(16px) functions.rem(16px);
-    margin-top: functions.rem(8px);
+    padding: nsw.rem(16px) nsw.rem(48px) nsw.rem(16px) nsw.rem(16px);
+    margin-top: nsw.rem(8px);
     background-color: var(--nsw-off-white);
     display: block;
     width: 100%;
     text-align: left;
     position: relative;
-    transition: background settings.$nsw-transition-duration, color settings.$nsw-transition-duration;
+    transition: background nsw.$nsw-transition-duration, color nsw.$nsw-transition-duration;
 
-    @include mixins.font-size('md');
+    @include nsw.font-size('md');
 
     .active,
     &:hover & {
@@ -44,7 +42,7 @@
   &__toggle {
     display: flex;
     justify-content: flex-end;
-    margin-bottom: functions.rem(16px);
+    margin-bottom: nsw.rem(16px);
 
     button {
       color: var(--nsw-link);
@@ -55,11 +53,11 @@
       padding: 0;
       background: none;
 
-      @include mixins.link;
-      @include mixins.font-size('sm');
+      @include nsw.link;
+      @include nsw.font-size('sm');
       
       &:hover:enabled {
-        @include mixins.nsw-hover;
+        @include nsw.nsw-hover;
         outline: 2px solid var(--nsw-hover);
         cursor: pointer;
 
@@ -70,11 +68,11 @@
       }
 
       &:focus {
-        @include mixins.nsw-focus($offset: false);
+        @include nsw.nsw-focus($offset: false);
       }
 
       &:first-child {
-        margin-right: functions.rem(24px);
+        margin-right: nsw.rem(24px);
       }
 
       &:disabled {
@@ -99,13 +97,13 @@
     }
 
     .nsw-material-icons {
-      font-size: functions.rem(map.get(settings.$nsw-icon-sizes, 30));
+      font-size: nsw.rem(map.get(nsw.$nsw-icon-sizes, 30));
       color: var(--nsw-brand-dark);
       transform: translateY(-50%);
       position: absolute;
       top: 50%;
-      right: functions.rem(8px);
-      transition: transform settings.$nsw-transition-duration, color settings.$nsw-transition-duration;
+      right: nsw.rem(8px);
+      transition: transform nsw.$nsw-transition-duration, color nsw.$nsw-transition-duration;
     }
   }
 
@@ -116,11 +114,11 @@
     &:focus {
       position: relative;
 
-      @include mixins.nsw-focus;
-      @include mixins.z-index;
+      @include nsw.nsw-focus;
+      @include nsw.z-index;
       
       .nsw-section--invert & {   
-        @include mixins.nsw-focus($color: var(--nsw-focus-light));
+        @include nsw.nsw-focus($color: var(--nsw-focus-light));
       }
     }
 
@@ -140,6 +138,6 @@
   }
 
   &__content {
-    padding: functions.rem(16px);
+    padding: nsw.rem(16px);
   }
 }
