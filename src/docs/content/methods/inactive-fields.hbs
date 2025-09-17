@@ -4,109 +4,64 @@ width: narrow
 no-blank: true
 order: 25
 intro: Avoid using inactive form fields. Conditionally render fields only when input is required, and present read-only information as text outside of form fields.
-figma: https://www.figma.com/design/PVrERKnckLTlJSPk12gbtS/NSW-Design-System?node-id=21298-21918&t=oi6Sic5gM1CXpoRQ-4
 meta-description: Avoid using inactive form fields. Conditionally render fields only when input is required, and present read-only information as text outside of form fields.
 meta-index: true
 ---
 
-<h2>Purpose</h2>
-<p>Guide teams away from using form fields to display information that is not intended to be edited. Prefer patterns that present information as text, keeping forms for input only.</p>
-
 <h2>Principles</h2>
 <ul>
-  <li><strong>Show, don’t suggest.</strong> If something is not editable, present it as text rather than an input.</li>
-  <li><strong>Reduce friction.</strong> Keep the tab order clean and avoid trapping keyboard users in non-interactive controls.</li>
-  <li><strong>Signal clearly.</strong> Make state obvious through layout and content, not by disabling controls.</li>
-</ul>
-
-<h2>When to avoid inactive fields</h2>
-<ul>
-  <li>Showing read-only values in a create or edit form when the user cannot change them here.</li>
-  <li>Using disabled inputs to communicate status, such as “Verified” or “Locked”.</li>
-  <li>Placing long blocks of reference information inside textareas or inputs.</li>
+  <li><strong>Show, don’t suggest.</strong> Present immutable values as text, not as inputs styled to look inactive.</li>
+  <li><strong>Reduce friction.</strong> Keep the tab order clean and efficient by removing controls the user cannot act on.</li>
+  <li><strong>Signal clearly.</strong> Make state obvious through wording, placement, and visual design—not through disabled or inactive controls.</li>
 </ul>
 
 <h2>Preferred patterns</h2>
 
-<h3>1. Plain text (most common)</h3>
+<h3>Display information as text</h3>
 <p>The simplest and most inclusive way to present information that cannot be edited is to show it as plain text near the related form. This avoids users mistaking an inactive input for something interactive. It also reduces visual clutter, keeps the focus order clean, and shortens the journey for keyboard and screen reader users. Showing data as text makes the status unambiguous: the user can read it, but they are not expected to act on it here.</p>
+<p>Show read-only values as plain text (or in a summary list), and avoid long forms filled with non-editable inputs.</p>
 
-<h3>2. Key–value summary</h3>
-<p>Use a compact summary list for static attributes.</p>
-<pre><code>&lt;dl class="summary-list"&gt;
-  &lt;div class="summary-list__row"&gt;
-    &lt;dt&gt;Account name&lt;/dt&gt;
-    &lt;dd&gt;Genfoo Barfoo&lt;/dd&gt;
-  &lt;/div&gt;
-  &lt;div class="summary-list__row"&gt;
-    &lt;dt&gt;Status&lt;/dt&gt;
-    &lt;dd&gt;Verified&lt;/dd&gt;
-  &lt;/div&gt;
-&lt;/dl&gt;
-</code></pre>
+<h4>Examples:</h4>
+<div class="nsw-grid nsw-m-top-md">
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--do">Do</div>
+    <img src="/assets/images/inactive-fields-text-display-do.png" alt="Example of how to display text values outside of form fields">
+  </div>
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--dont">Don't</div>
+    <img src="/assets/images/inactive-fields-text-display-dont.png" alt="Example of how to not display text values within form fields">
+  </div>
+</div>
 
-<h3>3. Read, then edit</h3>
-<p>When users often review before editing, show values as text with a single “Edit” action that reveals editable fields.</p>
-<pre><code>&lt;p id="email-value"&gt;gina@example.nsw.gov.au&lt;/p&gt;
-&lt;button type="button" aria-controls="email-fieldset" aria-expanded="false"&gt;Edit email&lt;/button&gt;
-&lt;fieldset id="email-fieldset" hidden&gt;
-  &lt;label for="email"&gt;Email&lt;/label&gt;
-  &lt;input id="email" name="email" type="email"&gt;
-  &lt;button type="submit"&gt;Save&lt;/button&gt;
-&lt;/fieldset&gt;
-</code></pre>
+<h3>Conditionally render relevant fields rather than toggling disabled attributes</h3>
+<p>Rather than use inactive fields for fields that aren't able to be updated by the user, conditionally render the field only when it's needed, rather than showing an inactive input with a <code>disabled</code> attribute.</p>
 
-<h3>4. Status badges or tags</h3>
-<p>For short state, use a tag or badge component rather than a disabled input labelled “Status”.</p>
+<p>Render fields only when they're relevant (rather than showing an inactive input with a <code>disabled</code> attribute) and offer a single, clear Edit action for the section; don’t use disabled fields to explain process states or permissions, or pad forms with non-editable inputs.</p>
 
-<h3>5. Tables or cards</h3>
-<p>For lists of records, display values in a table or card layout with a per-row action such as “Edit”. Do not render read-only inputs in each cell.</p>
-
-<h2>When a read-only field is acceptable</h2>
-<p>Read-only inputs may be used sparingly when keeping the input in context avoids confusion, for example:</p>
-<ul>
-  <li>Review or confirmation steps that mirror the exact layout of a prior editable step.</li>
-  <li>Pattern libraries where demonstrating the disabled/read-only states is necessary.</li>
-</ul>
-<p>Implementation:</p>
-<pre><code>&lt;input type="text" value="NSW 2000" readonly aria-readonly="true"&gt;
-</code></pre>
-
-<h2>When a disabled field is acceptable</h2>
-<p>Disabled inputs remove the control from the focus order and are not announced as interactive by assistive technologies. Use only when a control will become editable within the same flow and there is no clearer alternative. Avoid using disabled inputs to convey informational content.</p>
-<p>Implementation:</p>
-<pre><code>&lt;input type="text" value="Will enable after verification" disabled aria-disabled="true"&gt;
-</code></pre>
+<h4>Example:</h4>
+<div class="nsw-grid nsw-m-top-sm">
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <h5 class="nsw-docs__guideline--heading nsw-m-bottom-sm">Before selection</h5>
+    <img src="/assets/images/inactive-fields-conditional-render-unchecked.png" alt="Example of how to not display text values within form fields">
+  </div>
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <h5 class="nsw-docs__guideline--heading nsw-m-bottom-sm">After selection</h5>
+    <img src="/assets/images/inactive-fields-conditional-render-checked.png" alt="Example of how to display text values outside of form fields">
+  </div>
+</div>
 
 <h2>Accessibility guidance</h2>
 <ul>
-  <li><strong>Focus order:</strong> Plain text is not focusable, which keeps tabbing efficient. Disabled controls are also not focusable, but they look interactive and may confuse users.</li>
-  <li><strong>Announcements:</strong> Screen readers announce readonly inputs differently across browsers. Text avoids this variability.</li>
-  <li><strong>Colour contrast:</strong> Disabled styles often reduce contrast. Do not rely on colour alone to indicate state.</li>
-  <li><strong>ARIA:</strong> If you must keep the control visible but inactive, prefer <code>readonly</code> over <code>disabled</code> so its value is still conveyed and included in form submission when appropriate.</li>
+  <li><strong>Focus order:</strong> Presenting immutable values as text keeps the tab sequence clean and efficient.</li>
+  <li><strong>Announcements:</strong> Text is announced consistently across screen readers, avoiding the variability of input fields.</li>
 </ul>
 
 <h2>Content design</h2>
 <ul>
-  <li>Be explicit: “This information is set by your organisation” rather than implying “You cannot edit this”.</li>
-  <li>Place immutable information near the related inputs, but outside the form controls.</li>
-  <li>Use helper text to explain how the value can be changed if not here, for example “Contact support to update your legal name”.</li>
+  <li><strong>Be explicit:</strong> State clearly why a value cannot be edited, for example “This information is set by your organisation”.</li>
+  <li><strong>Context placement:</strong> Place immutable information close to the related inputs, but outside the form controls.</li>
+  <li><strong>Explain how to change:</strong> Provide helper text if the value must be updated elsewhere, e.g. “Contact support to update your legal name”.</li>
+  <li><strong>Use consistent status wording:</strong> Keep short, scannable tags like “Verified”, “Pending”, or “Not provided”.</li>
+  <li><strong>One clear action:</strong> Offer a single, obvious “Edit” action for the section instead of multiple links.</li>
+  <li><strong>Render conditionally:</strong> Only render fields when relevant; never show inactive or non-editable inputs.</li>
 </ul>
-
-<h2>Do and don't</h2>
-<div class="ds-example ds-example--do">
-  <h3>Do</h3>
-  <ul>
-    <li>Show read-only values as text or in a summary list.</li>
-    <li>Provide a single, clear Edit action for the section.</li>
-    <li>Use status tags instead of disabled inputs.</li>
-  </ul>
-</div>
-<div class="ds-example ds-example--dont">
-  <h3>Don't</h3>
-  <ul>
-    <li>Fill an input and set it to disabled to “show” a value.</li>
-    <li>Use disabled fields to explain process states or permissions.</li>
-    <li>Trap users in long forms filled with non-editable inputs.</li>
-  </ul>
-</div>
