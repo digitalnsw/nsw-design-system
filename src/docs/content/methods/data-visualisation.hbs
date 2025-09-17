@@ -90,7 +90,7 @@ meta-index: true
 
 <h3>Screen readers</h3>
 <p>Canvas elements cannot be read by screen readers, similar to images. Use the NSW Design System <code>.sr-only</code> class - this will hide elements from screens but allow screen readers to read them. To make your graphs accessible to screen readers, create screen-reader friendly in an <code>.sr-only</code> container, and make sure to include content on the graphic so screen readers can give context to users:</p>
-{{#>_docs-example hidden="true" open="true" code="language-html"}}
+{{#>_docs-example hidden="true" open="true" code="html"}}
 <canvas id="accessibleGraph" width="400" height="400" aria-label="Graph showing value of bitcoin over time" role="img"></canvas>
 {{/_docs-example}}
 
@@ -100,7 +100,7 @@ meta-index: true
 <p>Use the design guidance above to decide which colours your chart or graph should use. You can access the full palette via javascript.</p>
 <p>First, set fonts and a default theme. These will be the default colours for your charts and graphs, but you can override them if needed.</p>
 
-{{#>_docs-example hidden="true" open="true" code="language-html"}}
+{{#>_docs-example hidden="true" open="true" code="html"}}
 <script>
 //Set a default theme to avoid rework
 var nswStyles = getComputedStyle(document.body)
@@ -122,7 +122,7 @@ Chart.defaults.font.weight = 400;
 <h3>Setting colours for a specific graph</h3>
 <p>You can theme each chart or graph individually.</p>
 
-{{#>_docs-example hidden="true" open="true" code="language-html"}}
+{{#>_docs-example hidden="true" open="true" code="html"}}
 <script>
 const data = {
   labels: [
