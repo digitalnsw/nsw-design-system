@@ -59,12 +59,12 @@ meta-index: true
 <p>The NSW Design System styles can be imported as a whole package, or you can install core styles and add components selectively.</p>
 <h4>All styles</h4>
 <p>To import all styles as a single package you need to add following snippet at the start of your main SCSS file:</p>
-{{#>_docs-example hidden="true" open="true" code="language-scss"}}
+{{#>_docs-example hidden="true" open="true" code="scss"}}
 @import 'node_modules/nsw-design-system/src/main';
 {{/_docs-example}}
 <h4>Core and selected components</h4>
 <p>Our core library includes the design system's base theme, typography, mixins and helper functions. Once you imported it, you can take full advantage of our variables and helpers. To import core library you need to add following snippet at the start of your main SASS file:</p>
-{{#>_docs-example hidden="true" open="true" code="language-scss"}}
+{{#>_docs-example hidden="true" open="true" code="scss"}}
 // Core libraries
 @import 'node_modules/nsw-design-system/src/global/scss/settings/settings';
 @import 'node_modules/nsw-design-system/src/global/scss/base/all';
@@ -74,7 +74,7 @@ meta-index: true
 @import 'node_modules/nsw-design-system/src/core/all';
 {{/_docs-example}}
 <p>Once you have installed the core library you can start importing components as you need it. To import individual components you need to add following snippets to your main SASS file under core libraries import:</p>
-{{#>_docs-example hidden="true" open="true" code="language-scss"}}
+{{#>_docs-example hidden="true" open="true" code="scss"}}
 // Components
 @import 'node_modules/nsw-design-system/src/components/accordion/accordion';
 @import 'node_modules/nsw-design-system/src/components/card/card';
@@ -84,12 +84,12 @@ meta-index: true
 
 <h3 id="fonticon">Adding the fonts and the icons</h3>
 <p>In your main html document add this line of code inside the head tag. Make sure that it's placed before the NSW Design System styles import. Or install <a href="https://www.npmjs.com/package/material-icons" target="_blank">icon</a> and <a href="https://www.npmjs.com/package/@fontsource/public-sans" target="_blank">font</a> from npm.</p>
-{{#>_docs-example hidden="true" open="true" code="language-html"}}
+{{#>_docs-example hidden="true" open="true" code="html"}}
 <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 {{/_docs-example}}
 <p>Another way is to import it in css:</p>
-{{#>_docs-example hidden="true" open="true" code="language-scss"}}
+{{#>_docs-example hidden="true" open="true" code="scss"}}
 @import url('https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,700;1,400&display=swap');
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 {{/_docs-example}}
@@ -97,7 +97,7 @@ meta-index: true
 
 <h3 id="javascript">Importing javascript into your project</h3>
 <p>Some NSW Design System components require javascript to provide advanced functionality. To ensure the page is ready for javascript to run, include the follow scripts tags at the end of the html document.</p>
-{{#>_docs-example hidden="true" open="true" code="language-html"}}
+{{#>_docs-example hidden="true" open="true" code="html"}}
   ...
   <script src="path/to/main.js"> <\/script>
   <script>window.NSW.initSite()<\/script>
@@ -109,7 +109,7 @@ meta-index: true
 
 <h3 id="cdn">Using JSDelivr CDN</h3>
 <p>You can add the files to your main html document</p>
-{{#>_docs-example hidden="true" open="true" code="language-html"}}
+{{#>_docs-example hidden="true" open="true" code="html"}}
 <head>
   ...
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nsw-design-system@3/dist/css/main.css">
