@@ -14,101 +14,49 @@ model:
 
 <h2>Disabled</h2>
 
-<h3>w/ placeholder text</h3>
+<h3>w/ no value</h3>
 
-<div class="nsw-form">
-  <div class="nsw-form__group">
-    {{>_text-input
-      id="form-text-1"
-      label="Name"
-      disabled="true"
-      placeholder="Placeholder text"
-    }}
-  </div>
-  <div class="nsw-form__group">
-    {{>_textarea
-      id="form-textarea-1"
-      label="Comment"
-      disabled="true"
-      placeholder="Placeholder text"
-    }}
-  </div>
-
-  <div class="nsw-form__group">
-    {{>_input-group
-      id="form-input-group-1"
-      label="Search"
-      disabled="true"
-      placeholder="Placeholder text"
-    }}
-  </div>
-  <div class="nsw-form__group">
-    {{>_input-group
-      id="form-input-group-icon-1"
-      label="Search"
-      icon="search"
-      disabled="true"
-      placeholder="Placeholder text"
-    }}
-  </div>
-  <div class="nsw-form__group">
-    {{>_input-group
-      id="form-input-group-icon-2"
-      label="Search"
-      icon="search"
-      white=true
-      disabled="true"
-      placeholder="Placeholder text"
-    }}
-  </div>
-
-  {{!-- <div class="nsw-form__group">
-    <label class="nsw-form__label" for="form-predictive-text-1">Suburb</label>
-    <div class="nsw-form__predictive">
-      <input class="nsw-form__input" type="text" id="form-predictive-text-1" name="form-predictive-text-1" value="Horn" aria-autocomplete="list" autocomplete="off" disabled="true">
-      <ul class="nsw-form__predictive-list">
-        <li><a href="#"><span>Horn</span>sby</a></li>
-        <li><a href="#"><span>Horn</span>sby Heights</a></li>
-        <li><a href="#"><span>Horn</span>ingsea Park</a></li>
-      </ul>
-    </div>
-  </div>
-  <br><br><br><br><br><br>
-  <div class="nsw-form__group">
-    <div class="nsw-form__predictive">
-      {{>_input-group
-        id="form-predictive-group-1"
-        label="Search"
-        value="Tran"
-        predictive=true
+  <div class="nsw-form">
+    <div class="nsw-form__group">
+      {{>_text-input
+        id="form-text-1"
+        label="Name"
         disabled="true"
       }}
-      <ul class="nsw-form__predictive-list">
-        <li><a href="#"><span>Tran</span>sport</a></li>
-        <li><a href="#">Road <span>Tran</span>sport</a></li>
-        <li><a href="#">Public <span>Tran</span>sport</a></li>
-      </ul>
     </div>
-  </div>
-  <br><br><br><br><br><br>
-  <div class="nsw-form__group">
-    <div class="nsw-form__predictive">
+    <div class="nsw-form__group">
+      {{>_textarea
+        id="form-textarea-1"
+        label="Comment"
+        disabled="true"
+      }}
+    </div>
+
+    <div class="nsw-form__group">
       {{>_input-group
-        id="form-predictive-group-icon-1"
+        id="form-input-group-1"
         label="Search"
-        value="Govern"
+        disabled="true"
+      }}
+    </div>
+    <div class="nsw-form__group">
+      {{>_input-group
+        id="form-input-group-icon-1"
+        label="Search"
         icon="search"
-        predictive=true
         disabled="true"
       }}
-      <ul class="nsw-form__predictive-list">
-        <li><a href="#"><span>Govern</span>ment</a></li>
-        <li><a href="#"><span>Govern</span>ment payments</a></li>
-        <li><a href="#"><span>Govern</span>ance</a></li>
-      </ul>
+    </div>
+    <div class="nsw-form__group">
+      {{>_input-group
+        id="form-input-group-icon-2"
+        label="Search"
+        icon="search"
+        white=true
+        disabled="true"
+      }}
     </div>
   </div>
-  <br><br><br><br><br><br> --}}
 
   <div class="nsw-form__group">
     {{>_date
@@ -174,7 +122,7 @@ model:
   </div>
 </div>
 
-<h3 class="nsw-m-top-lg">w/ disabled state & value</h3>
+<h3 class="nsw-m-top-lg">w/ value</h3>
 
 <div class="nsw-form">
   <div class="nsw-form__group">
@@ -261,6 +209,55 @@ model:
   </div>
 </div>
 
+<h3>w/ placeholder text</h3>
+
+<div class="nsw-form">
+  <div class="nsw-form__group">
+    {{>_text-input
+      id="form-text-1"
+      label="Name"
+      disabled="true"
+      placeholder="Placeholder text"
+    }}
+  </div>
+  <div class="nsw-form__group">
+    {{>_textarea
+      id="form-textarea-1"
+      label="Comment"
+      disabled="true"
+      placeholder="Placeholder text"
+    }}
+  </div>
+
+  <div class="nsw-form__group">
+    {{>_input-group
+      id="form-input-group-1"
+      label="Search"
+      disabled="true"
+      placeholder="Placeholder text"
+    }}
+  </div>
+  <div class="nsw-form__group">
+    {{>_input-group
+      id="form-input-group-icon-1"
+      label="Search"
+      icon="search"
+      disabled="true"
+      placeholder="Placeholder text"
+    }}
+  </div>
+  <div class="nsw-form__group">
+    {{>_input-group
+      id="form-input-group-icon-2"
+      label="Search"
+      icon="search"
+      white=true
+      disabled="true"
+      placeholder="Placeholder text"
+    }}
+  </div>
+</div> 
+
 <h2>Read-only</h2>
 
 <div class="nsw-form">
@@ -310,55 +307,6 @@ model:
   </div>
 
   <div class="nsw-form__group">
-    <label class="nsw-form__label" for="form-predictive-text-1">Suburb</label>
-    <div class="nsw-form__predictive">
-      <input class="nsw-form__input" type="text" id="form-predictive-text-1" name="form-predictive-text-1" value="Horn" aria-autocomplete="list" autocomplete="off" readonly="true">
-      <ul class="nsw-form__predictive-list">
-        <li><a href="#"><span>Horn</span>sby</a></li>
-        <li><a href="#"><span>Horn</span>sby Heights</a></li>
-        <li><a href="#"><span>Horn</span>ingsea Park</a></li>
-      </ul>
-    </div>
-  </div>
-  <br><br><br><br><br><br>
-  <div class="nsw-form__group">
-    <div class="nsw-form__predictive">
-      {{>_input-group
-        id="form-predictive-group-1"
-        label="Search"
-        value="Tran"
-        predictive=true
-        readonly="true"
-        value="Test content"
-      }}
-      <ul class="nsw-form__predictive-list">
-        <li><a href="#"><span>Tran</span>sport</a></li>
-        <li><a href="#">Road <span>Tran</span>sport</a></li>
-        <li><a href="#">Public <span>Tran</span>sport</a></li>
-      </ul>
-    </div>
-  </div>
-  <br><br><br><br><br><br>
-  <div class="nsw-form__group">
-    <div class="nsw-form__predictive">
-      {{>_input-group
-        id="form-predictive-group-icon-1"
-        label="Search"
-        value="Govern"
-        icon="search"
-        predictive=true
-        readonly="true"
-      }}
-      <ul class="nsw-form__predictive-list">
-        <li><a href="#"><span>Govern</span>ment</a></li>
-        <li><a href="#"><span>Govern</span>ment payments</a></li>
-        <li><a href="#"><span>Govern</span>ance</a></li>
-      </ul>
-    </div>
-  </div>
-  <br><br><br><br><br><br>
-
-  <div class="nsw-form__group">
     {{>_date
       id="form-date-1"
       label="Date of birth"
@@ -374,101 +322,40 @@ model:
 {{#>_layout-container brand-dark="true" invert="true"}}
 <h2>Disabled</h2>
 
-<h3>w/ placeholder text</h3>
+<h3>w/ no value</h3>
 
-<div class="nsw-form">
-  <div class="nsw-form__group">
-    {{>_text-input
-      id="form-text-1"
-      label="Name"
-      disabled="true"
-      placeholder="Placeholder text"
-    }}
-  </div>
-  <div class="nsw-form__group">
-    {{>_textarea
-      id="form-textarea-1"
-      label="Comment"
-      disabled="true"
-      placeholder="Placeholder text"
-    }}
-  </div>
-
-  <div class="nsw-form__group">
-    {{>_input-group
-      id="form-input-group-1"
-      label="Search"
-      disabled="true"
-      placeholder="Placeholder text"
-    }}
-  </div>
-  <div class="nsw-form__group">
-    {{>_input-group
-      id="form-input-group-icon-1"
-      label="Search"
-      icon="search"
-      disabled="true"
-      placeholder="Placeholder text"
-    }}
-  </div>
-  <div class="nsw-form__group">
-    {{>_input-group
-      id="form-input-group-icon-2"
-      label="Search"
-      icon="search"
-      white=true
-      disabled="true"
-      placeholder="Placeholder text"
-    }}
-  </div>
-
-  {{!-- <div class="nsw-form__group">
-    <label class="nsw-form__label" for="form-predictive-text-1">Suburb</label>
-    <div class="nsw-form__predictive">
-      <input class="nsw-form__input" type="text" id="form-predictive-text-1" name="form-predictive-text-1" value="Horn" aria-autocomplete="list" autocomplete="off" disabled="true">
-      <ul class="nsw-form__predictive-list">
-        <li><a href="#"><span>Horn</span>sby</a></li>
-        <li><a href="#"><span>Horn</span>sby Heights</a></li>
-        <li><a href="#"><span>Horn</span>ingsea Park</a></li>
-      </ul>
-    </div>
-  </div>
-  <br><br><br><br><br><br>
-  <div class="nsw-form__group">
-    <div class="nsw-form__predictive">
-      {{>_input-group
-        id="form-predictive-group-1"
-        label="Search"
-        value="Tran"
-        predictive=true
+  <div class="nsw-form">
+    <div class="nsw-form__group">
+      {{>_text-input
+        id="form-text-1"
+        label="Name"
         disabled="true"
       }}
-      <ul class="nsw-form__predictive-list">
-        <li><a href="#"><span>Tran</span>sport</a></li>
-        <li><a href="#">Road <span>Tran</span>sport</a></li>
-        <li><a href="#">Public <span>Tran</span>sport</a></li>
-      </ul>
     </div>
-  </div>
-  <br><br><br><br><br><br>
-  <div class="nsw-form__group">
-    <div class="nsw-form__predictive">
+    <div class="nsw-form__group">
+      {{>_textarea
+        id="form-textarea-1"
+        label="Comment"
+        disabled="true"
+      }}
+    </div>
+
+    <div class="nsw-form__group">
       {{>_input-group
-        id="form-predictive-group-icon-1"
+        id="form-input-group-1"
         label="Search"
-        value="Govern"
+        disabled="true"
+      }}
+    </div>
+    <div class="nsw-form__group">
+      {{>_input-group
+        id="form-input-group-icon-1"
+        label="Search"
         icon="search"
-        predictive=true
         disabled="true"
       }}
-      <ul class="nsw-form__predictive-list">
-        <li><a href="#"><span>Govern</span>ment</a></li>
-        <li><a href="#"><span>Govern</span>ment payments</a></li>
-        <li><a href="#"><span>Govern</span>ance</a></li>
-      </ul>
     </div>
   </div>
-  <br><br><br><br><br><br> --}}
 
   <div class="nsw-form__group">
     {{>_date
@@ -534,7 +421,7 @@ model:
   </div>
 </div>
 
-<h3 class="nsw-m-top-lg">w/ disabled state & value</h3>
+<h3 class="nsw-m-top-lg">w/ value</h3>
 
 <div class="nsw-form">
   <div class="nsw-form__group">
@@ -621,6 +508,45 @@ model:
   </div>
 </div>
 
+<h3>w/ placeholder text</h3>
+
+<div class="nsw-form">
+  <div class="nsw-form__group">
+    {{>_text-input
+      id="form-text-1"
+      label="Name"
+      disabled="true"
+      placeholder="Placeholder text"
+    }}
+  </div>
+  <div class="nsw-form__group">
+    {{>_textarea
+      id="form-textarea-1"
+      label="Comment"
+      disabled="true"
+      placeholder="Placeholder text"
+    }}
+  </div>
+
+  <div class="nsw-form__group">
+    {{>_input-group
+      id="form-input-group-1"
+      label="Search"
+      disabled="true"
+      placeholder="Placeholder text"
+    }}
+  </div>
+  <div class="nsw-form__group">
+    {{>_input-group
+      id="form-input-group-icon-1"
+      label="Search"
+      icon="search"
+      disabled="true"
+      placeholder="Placeholder text"
+    }}
+  </div>
+</div>
+
 <h2>Read-only</h2>
 
 <div class="nsw-form">
@@ -658,65 +584,13 @@ model:
       value="Test content"
     }}
   </div>
-  <div class="nsw-form__group">
-    {{>_input-group
-      id="form-input-group-icon-2"
-      label="Search"
-      icon="search"
-      white=true
-      readonly="true"
-      value="Test content"
-    }}
-  </div>
 
   <div class="nsw-form__group">
     <label class="nsw-form__label" for="form-predictive-text-1">Suburb</label>
     <div class="nsw-form__predictive">
       <input class="nsw-form__input" type="text" id="form-predictive-text-1" name="form-predictive-text-1" value="Horn" aria-autocomplete="list" autocomplete="off" readonly="true">
-      <ul class="nsw-form__predictive-list">
-        <li><a href="#"><span>Horn</span>sby</a></li>
-        <li><a href="#"><span>Horn</span>sby Heights</a></li>
-        <li><a href="#"><span>Horn</span>ingsea Park</a></li>
-      </ul>
     </div>
   </div>
-  <br><br><br><br><br><br>
-  <div class="nsw-form__group">
-    <div class="nsw-form__predictive">
-      {{>_input-group
-        id="form-predictive-group-1"
-        label="Search"
-        value="Tran"
-        predictive=true
-        readonly="true"
-        value="Test content"
-      }}
-      <ul class="nsw-form__predictive-list">
-        <li><a href="#"><span>Tran</span>sport</a></li>
-        <li><a href="#">Road <span>Tran</span>sport</a></li>
-        <li><a href="#">Public <span>Tran</span>sport</a></li>
-      </ul>
-    </div>
-  </div>
-  <br><br><br><br><br><br>
-  <div class="nsw-form__group">
-    <div class="nsw-form__predictive">
-      {{>_input-group
-        id="form-predictive-group-icon-1"
-        label="Search"
-        value="Govern"
-        icon="search"
-        predictive=true
-        readonly="true"
-      }}
-      <ul class="nsw-form__predictive-list">
-        <li><a href="#"><span>Govern</span>ment</a></li>
-        <li><a href="#"><span>Govern</span>ment payments</a></li>
-        <li><a href="#"><span>Govern</span>ance</a></li>
-      </ul>
-    </div>
-  </div>
-  <br><br><br><br><br><br>
 
   <div class="nsw-form__group">
     {{>_date

@@ -287,6 +287,18 @@
       span {
         font-weight: var(--nsw-font-bold);
       }
+
+      .nsw-section--invert & {    
+        color: var(--nsw-text-dark);
+
+        &:hover {
+          @include mixins.nsw-hover;
+        }
+
+        &:focus {
+          outline-color: var(--nsw-focus-light);
+        }
+      }
     }
   }
 
