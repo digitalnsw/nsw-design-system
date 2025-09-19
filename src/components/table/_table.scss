@@ -13,7 +13,9 @@
   &:focus {
     @include mixins.nsw-focus;
 
-    .nsw-section--invert & {   
+    .nsw-section--invert &,
+    .nsw-section--brand-supplementary--light &,
+    .nsw-section--brand-supplementary--dark & {   
       @include mixins.nsw-focus($color: var(--nsw-focus-light));
     }
   }
@@ -38,8 +40,13 @@
     tbody tr:nth-of-type(even) {
       background-color: var(--nsw-off-white);
       
-      .nsw-section--invert & {    
+      .nsw-section--invert &,
+      .nsw-section--brand-supplementary--light & {    
         background-color: var(--nsw-hover-light);
+      }
+      
+      .nsw-section--brand-supplementary--dark & {    
+        background-color: var(--nsw-hover);
       }
     }
   }

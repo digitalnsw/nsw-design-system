@@ -29,13 +29,19 @@
     outline-width: 3px;
   }
 
-  .nsw-section--invert & {
+  .nsw-section--invert &,
+  .nsw-section--brand-supplementary--light & {
     color: var(--nsw-text-light);
     border-color: var(--nsw-text-light);
 
     &:not(span) {
       @include mixins.link-light;
     }
+  }
+
+  .nsw-section--brand-supplementary--dark & {
+    color: var(--nsw-text-dark);
+    border-color: var(--nsw-text-dark);
   }
 
   &--checkbox {
@@ -45,7 +51,8 @@
     position: relative;
 
     &:hover {
-      .nsw-section--invert & {    
+      .nsw-section--invert &,
+      .nsw-section--brand-supplementary--light & {    
         background-color: transparent;
       }
     }
@@ -59,7 +66,8 @@
 
         @include mixins.nsw-hover;
         
-        .nsw-section--invert & {    
+        .nsw-section--invert &,
+        .nsw-section--brand-supplementary--light & {    
           background-color: var(--nsw-hover-light);
         }
       }
@@ -68,7 +76,8 @@
         @include mixins.nsw-focus;
         outline-offset: 0;
 
-        .nsw-section--invert & {    
+        .nsw-section--invert &,
+        .nsw-section--brand-supplementary--light & {    
           outline-color: var(--nsw-white);
         }
       }
@@ -77,7 +86,8 @@
         background-color: var(--nsw-brand-dark);
         color: var(--nsw-text-light);
 
-        .nsw-section--invert & {    
+        .nsw-section--invert &,
+        .nsw-section--brand-supplementary--light & {    
           background-color: var(--nsw-white);
           color: var(--nsw-text-dark);
         }
@@ -90,7 +100,8 @@
       border-radius: functions.rem(24px);
       display: inline-block;
 
-      .nsw-section--invert & {    
+      .nsw-section--invert &,
+      .nsw-section--brand-supplementary--light & {    
         border-color: var(--nsw-text-light);
       }
     }

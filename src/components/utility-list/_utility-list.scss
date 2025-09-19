@@ -5,7 +5,9 @@
 .nsw-utility-list {
   background-color: var(--nsw-off-white);
 
-  .nsw-section--invert & {    
+  .nsw-section--invert &,
+  .nsw-section--brand-supplementary--light &,
+  .nsw-section--brand-supplementary--dark & {    
     background-color: transparent;
   }
 
@@ -55,10 +57,10 @@
       border-bottom: unset;
     }
 
-    .nsw-section--invert & {    
+    .nsw-section--invert &,
+    .nsw-section--brand-supplementary--light & {    
       color: var(--nsw-text-light);
       background-color: transparent;
-      color: var(--nsw-text-light);
       
       span:not(.nsw-toggletip__element .nsw-material-icons) {
         color: var(--nsw-text-light);
@@ -76,6 +78,38 @@
     
       &:focus { 
         @include mixins.nsw-focus($color: var(--nsw-focus-light));
+      }
+    
+      &:visited {
+        color: var(--nsw-visited);
+      }
+    }
+
+    .nsw-section--brand-supplementary--dark & {    
+      color: var(--nsw-text-dark);
+      background-color: transparent;
+      border-bottom: 1px solid var(--nsw-brand-dark);
+
+      &:last-child {
+        border-bottom: unset;
+      }
+      
+      span:not(.nsw-toggletip__element .nsw-material-icons) {
+        color: var(--nsw-text-dark);
+      }
+
+      svg {  
+        path {
+          fill: var(--nsw-brand-dark);
+        }
+      }
+      
+      &:hover {
+        @include mixins.nsw-hover();
+      }
+    
+      &:focus { 
+        @include mixins.nsw-focus($color: var(--nsw-focus-dark));
       }
     
       &:visited {

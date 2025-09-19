@@ -99,7 +99,8 @@ table {
     vertical-align: baseline;
     border-bottom: solid 1px var(--nsw-grey-01);
 
-    .nsw-section--invert & {    
+    .nsw-section--invert &,
+    .nsw-section--brand-supplementary--light & {    
       border-color: var(--nsw-white);
     }
   }
@@ -113,7 +114,8 @@ table {
   thead {
     border-bottom: solid 2px var(--nsw-grey-01);
     
-    .nsw-section--invert & {    
+    .nsw-section--invert &,
+    .nsw-section--brand-supplementary--light & {    
       border-color: var(--nsw-white);
     }
   }
@@ -136,6 +138,10 @@ hr {
   height: 1px;
   background-color: var(--nsw-grey-04);
   margin: functions.rem(16) 0;
+
+  .nsw-section--brand-supplementary--dark & {    
+    background-color: var(--nsw-brand-dark);
+  }
 }
 
 h1,
@@ -215,7 +221,8 @@ h6,
 a {
   @include mixins.link;
 
-  .nsw-section--invert & {    
+  .nsw-section--invert &,
+  .nsw-section--brand-supplementary--light & {    
     @include mixins.link-light();
   }
 }
