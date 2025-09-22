@@ -1,19 +1,25 @@
+// TODO: switch to the tools barrel once merged
+// @use "@/tools" as *;
+@use '../../global/scss/base/functions' as functions;
+@use '../../global/scss/base/mixins' as mixins;
+@use '../../global/scss/settings/settings' as settings;
+
 .nsw-quick-exit {
-  padding: rem(16px) 0;
+  padding: functions.rem(16px) 0;
   background-color: var(--nsw-white);
   color: var(--nsw-text-dark);
 
   &__wrapper {
-    @include container;
+    @include mixins.container;
     position: relative;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     justify-content: space-between;
-    gap: rem(16px);
+    gap: functions.rem(16px);
 
-    @include breakpoint('sm') {
-      gap: rem(64px);
+    @include mixins.breakpoint('sm') {
+      gap: functions.rem(64px);
     }
   }
 
@@ -45,7 +51,7 @@
     }
 
     a {
-      @include link-light;
+      @include mixins.link-light;
     }
 
     .nsw-quick-exit__wrapper {
