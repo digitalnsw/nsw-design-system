@@ -15,6 +15,7 @@ import Popover from './components/popover/popover'
 import QuickExit from './components/quick-exit/quick-exit'
 import Select from './components/select/select'
 import SiteSearch from './components/header/header'
+import SideNav from './components/side-nav/side-nav'
 import Tabs from './components/tabs/tabs'
 import Toggletip from './components/tooltip/toggletip'
 import Tooltip from './components/tooltip/tooltip'
@@ -58,6 +59,7 @@ function initSite() {
   const navigation = document.getElementById('main-nav')
   const openSearchButton = document.querySelectorAll('button.js-open-search')
   const popover = document.querySelectorAll('.js-popover')
+  const sideNav = document.querySelectorAll('.js-side-nav')
   const tabs = document.querySelectorAll('.js-tabs')
   const toggletip = document.querySelectorAll('.js-toggletip')
   const tooltip = document.querySelectorAll('.js-tooltip')
@@ -151,6 +153,12 @@ function initSite() {
   if (popover) {
     popover.forEach((element) => {
       new Popover(element).init()
+    })
+  }
+
+  if (sideNav) {
+    sideNav.forEach((element, index) => {
+      new SideNav(element, index).init()
     })
   }
 

@@ -1,7 +1,10 @@
+@use 'sass:map';
+@use '../settings/settings' as settings;
+
 /* stylelint-disable declaration-no-important, string-quotes, number-leading-zero, scss/dollar-variable-default */
 $utilities: () !default;
 
-$utilities: map-merge((
+$utilities: map.merge((
   "align": (
     property: vertical-align,
     class: nsw-align,
@@ -67,22 +70,22 @@ $utilities: map-merge((
   "top": (
     property: top,
     class: nsw-position-top,
-    values: $nsw-position-values
+    values: settings.$nsw-position-values
   ),
   "bottom": (
     property: bottom,
     class: nsw-position-bottom,
-    values: $nsw-position-values
+    values: settings.$nsw-position-values
   ),
   "left": (
     property: left,
     class: nsw-position-left,
-    values: $nsw-position-values
+    values: settings.$nsw-position-values
   ),
   "right": (
     property: right,
     class: nsw-position-right,
-    values: $nsw-position-values
+    values: settings.$nsw-position-values
   ),
   "translate-middle": (
     property: transform,
@@ -97,20 +100,20 @@ $utilities: map-merge((
     property: border,
     class: nsw-border,
     values: (
-      null: $nsw-border,
+      null: settings.$nsw-border,
       0: 0,
     )
   ),
   "border": (
     property: border,
     class: nsw-border-,
-    values: $nsw-border-widths,
+    values: settings.$nsw-border-widths,
   ),
   "border-top": (
     property: border-top,
     class: nsw-border--top,
     values: (
-      null: $nsw-border,
+      null: settings.$nsw-border,
       0: 0,
     )
   ),
@@ -118,7 +121,7 @@ $utilities: map-merge((
     property: border-right,
     class: nsw-border--right,
     values: (
-      null: $nsw-border,
+      null: settings.$nsw-border,
       0: 0,
     )
   ),
@@ -126,7 +129,7 @@ $utilities: map-merge((
     property: border-bottom,
     class: nsw-border--bottom,
     values: (
-      null: $nsw-border,
+      null: settings.$nsw-border,
       0: 0,
     )
   ),
@@ -134,7 +137,7 @@ $utilities: map-merge((
     property: border-left,
     class: nsw-border--left,
     values: (
-      null: $nsw-border,
+      null: settings.$nsw-border,
       0: 0,
     )
   ),
@@ -142,7 +145,7 @@ $utilities: map-merge((
     property: border-color,
     class: nsw-border-,
     state: hover,
-    values: $nsw-base-colours,
+    values: settings.$nsw-base-colours,
   ),
   "border-radius": (
     property: border-radius,
@@ -165,7 +168,7 @@ $utilities: map-merge((
     property: width,
     class: nsw-width,
     responsive: true,
-    values: $sizes
+    values: settings.$sizes
   ),
   "max-width": (
     property: max-width,
@@ -185,7 +188,7 @@ $utilities: map-merge((
   "height": (
     property: height,
     class: nsw-height,
-    values: $sizes
+    values: settings.$sizes
   ),
   "max-height": (
     property: max-height,
@@ -313,20 +316,20 @@ $utilities: map-merge((
     property: font-weight,
     class: nsw-text,
     values: (
-      lighter: $nsw-font-weight-lighter,
-      light: $nsw-font-weight-light,
-      normal: $nsw-font-weight-normal,
-      medium: $nsw-font-weight-medium,
-      semibold: $nsw-font-weight-semibold,
-      bold: $nsw-font-weight-bold,
-      bolder: $nsw-font-weight-bolder
+      lighter: settings.$nsw-font-weight-lighter,
+      light: settings.$nsw-font-weight-light,
+      normal: settings.$nsw-font-weight-normal,
+      medium: settings.$nsw-font-weight-medium,
+      semibold: settings.$nsw-font-weight-semibold,
+      bold: settings.$nsw-font-weight-bold,
+      bolder: settings.$nsw-font-weight-bolder
     )
   ),
   "text-color": (
     property: color,
     class: nsw-text-,
     state: hover,
-    values: $nsw-text-colours
+    values: settings.$nsw-text-colours
   ),
   "text-align": (
     responsive: true,
@@ -375,7 +378,7 @@ $utilities: map-merge((
     ),
     class: nsw-bg-,
     state: hover,
-    values: $nsw-bg-colours,
+    values: settings.$nsw-bg-colours,
   ),
   "bg-opacity": (
     css-var: true,
@@ -393,13 +396,13 @@ $utilities: map-merge((
     property: fill,
     class: nsw-fill,
     state: hover,
-    values: $nsw-base-colours,
+    values: settings.$nsw-base-colours,
   ),
   "stroke": (
     property: stroke,
     class: nsw-stroke,
     state: hover,
-    values: $nsw-base-colours,
+    values: settings.$nsw-base-colours,
   ),
   "visibility": (
     property: visibility,
@@ -409,6 +412,6 @@ $utilities: map-merge((
   "z-index": (
     property: z-index,
     class: nsw-z,
-    values: $nsw-z-index,
+    values: settings.$nsw-z-index,
   )),
   $utilities);

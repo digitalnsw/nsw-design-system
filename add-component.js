@@ -1,6 +1,9 @@
+/* eslint-disable import/no-extraneous-dependencies */
 const fs = require('fs')
 const path = require('path')
 const inquirer = require('inquirer')
+
+const logger = require('./src/global/scripts/helpers/logger');
 
 const askQuestions = () => {
   const questions = [
@@ -33,9 +36,9 @@ const createDir = (type, name) => {
   if (!fs.existsSync(filePath)) {
     fs.mkdir(filePath, (err) => {
       if (err) {
-        console.log(err.message)
+        log(err.message)
       } else {
-        console.log(`${filePath} created!`)
+        log(`${filePath} created!`)
         createFile(filePath, name)
       }
     })

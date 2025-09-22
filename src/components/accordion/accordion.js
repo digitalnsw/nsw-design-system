@@ -55,7 +55,7 @@ class Accordion {
 
       if (contentElem) {
         contentElem.id = buttonElem.getAttribute('aria-controls')
-        contentElem.hidden = 'until-found'
+        contentElem.setAttribute('hidden', 'until-found')
         this.content.push(contentElem)
       }
 
@@ -92,11 +92,11 @@ class Accordion {
     if (state === 'open') {
       element.classList.add('active')
       element.setAttribute('aria-expanded', 'true')
-      targetContent.hidden = false
+      targetContent.removeAttribute('hidden')
     } else if (state === 'close') {
       element.classList.remove('active')
       element.setAttribute('aria-expanded', 'false')
-      targetContent.hidden = 'until-found'
+      targetContent.setAttribute('hidden', 'until-found')
     }
   }
 
@@ -105,17 +105,17 @@ class Accordion {
     const targetContent = this.getTargetContent(currentTarget)
 
     if (targetContent) {
-      const isHidden = targetContent.hidden
+      const isHidden = targetContent.hasAttribute('hidden')
 
-      if ((isHidden === true) || (isHidden === 'until-found')) {
+      if (isHidden) {
         this.setAccordionState(currentTarget, 'open')
       } else {
         this.setAccordionState(currentTarget, 'close')
       }
 
       if (this.expandAllBtn && this.collapseAllBtn) {
-        this.expandAllBtn.disabled = this.content.every((item) => item.hidden === false)
-        this.collapseAllBtn.disabled = this.content.every((item) => item.hidden === 'until-found')
+        this.expandAllBtn.disabled = this.content.every((item) => !item.hasAttribute('hidden'))
+        this.collapseAllBtn.disabled = this.content.every((item) => item.hasAttribute('hidden'))
       }
     }
   }

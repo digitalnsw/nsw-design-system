@@ -9,7 +9,7 @@ class Carousel extends SwipeContent {
     this.controlClass = 'js-carousel__control'
     this.wrapperClass = 'js-carousel__wrapper'
     this.counterClass = 'js-carousel__counter'
-    this.counterTorClass = 'js-carousel__counter-tot'
+    this.counterTotalClass = 'js-carousel__counter-tot'
     this.navClass = 'js-carousel__navigation'
     this.navItemClass = 'js-carousel__nav-item'
     this.navigationItemClass = this.element.getAttribute('data-navigation-item-class') ? this.element.getAttribute('data-navigation-item-class') : 'nsw-carousel__nav-item'
@@ -29,7 +29,7 @@ class Carousel extends SwipeContent {
     this.items = this.list ? this.list.getElementsByTagName('li') : false
     this.controls = this.element.querySelectorAll(`.${this.controlClass}`)
     this.counter = this.element.querySelectorAll(`.${this.counterClass}`)
-    this.counterTor = this.element.querySelectorAll(`.${this.counterTorClass}`)
+    this.counterTotal = this.element.querySelectorAll(`.${this.counterTotalClass}`)
     this.ariaLabel = this.element.getAttribute('data-description') ? this.element.getAttribute('data-description') : 'Card carousel'
     this.dragEnabled = !!((this.element.getAttribute('data-drag') && this.element.getAttribute('data-drag') === 'on'))
     this.loop = !!((this.element.getAttribute('data-loop') && this.element.getAttribute('data-loop') === 'on'))
@@ -632,7 +632,7 @@ class Carousel extends SwipeContent {
   }
 
   initCarouselCounter() {
-    if (this.counterTor.length > 0) this.counterTor[0].textContent = this.itemsNb
+    if (this.counterTotal.length > 0) this.counterTotal[0].textContent = this.itemsNb
     this.setCounterItem()
   }
 

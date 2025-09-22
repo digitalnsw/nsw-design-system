@@ -1,4 +1,5 @@
 import Toggletip from '../tooltip/toggletip'
+import logger from '../../global/scripts/helpers/logger'
 
 class UtilityList extends Toggletip {
   constructor(element, toggletip = element.querySelector('.js-share')) {
@@ -113,7 +114,7 @@ class UtilityList extends Toggletip {
         this.socialParams = ['subject', 'body']
         break
       default:
-        console.log('No social links found')
+        logger.log('No social links found')
         break
     }
     return this.socialParams

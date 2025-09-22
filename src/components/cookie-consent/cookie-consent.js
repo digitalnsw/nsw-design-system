@@ -1,5 +1,9 @@
-import * as CookieConsentAPI from 'vanilla-cookieconsent'
+/* eslint-disable max-len */
 
+import * as CookieConsentAPI from 'vanilla-cookieconsent'
+import logger from '../../global/scripts/helpers/logger'
+
+/* eslint-disable max-len */
 class CookieConsent {
   constructor(config = null) {
     this.isInit = false
@@ -331,6 +335,10 @@ class CookieConsent {
       // Manual trigger of cookie consent preferences dialog
       if (target.matches('.js-open-dialog-cookie-consent-preferences')) {
         event.preventDefault()
+        this.hideConsentBanner()
+        if (this.dialogInstance) {
+          this.dialogInstance.openEvent()
+        }
       }
     })
   }
@@ -367,19 +375,19 @@ class CookieConsent {
 
     switch (action) {
       case 'accept-all': {
-        console.log('User accepted all cookies')
+        logger.log('User accepted all cookies')
         CookieConsentAPI.acceptCategory('all')
         updatePreferencesDialog()
         break
       }
       case 'reject-all': {
-        console.log('User rejected all cookies')
+        logger.log('User rejected all cookies')
         CookieConsentAPI.acceptCategory([])
         updatePreferencesDialog()
         break
       }
       case 'accept-selection': {
-        console.log('User accepted selected cookies')
+        logger.log('User accepted selected cookies')
         const checked = []
         const unchecked = []
 
