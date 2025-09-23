@@ -1,19 +1,17 @@
 /* stylelint-disable max-nesting-depth */
 
 @use 'sass:map';
-@use '../../global/scss/base/functions' as functions;
-@use '../../global/scss/base/mixins' as mixins;
-@use '../../global/scss/settings/settings' as settings;
+@use '../../global/scss/tools' as nsw;
 
 .nsw-form {
-  margin-top: functions.rem(48px);
+  margin-top: nsw.rem(48px);
 
   &:first-child {
     margin-top: 0;
   }
 
   &__group {
-    margin-top: functions.rem(16px);
+    margin-top: nsw.rem(16px);
 
     &:first-child {
       margin-top: 0;
@@ -22,25 +20,25 @@
 
   &__helper {
     display: block;
-    margin-bottom: functions.rem(4px);
+    margin-bottom: nsw.rem(4px);
 
-    @include mixins.font-size('xs');
+    @include nsw.font-size('xs');
 
     &--error,
     &--valid {
-      margin-top: functions.rem(8px);
-      padding: functions.rem(8px);
+      margin-top: nsw.rem(8px);
+      padding: nsw.rem(8px);
       font-weight: var(--nsw-font-bold);
       color: var(--nsw-text-dark);
       background-repeat: no-repeat;
-      background-position: left functions.rem(8px) top functions.rem(8px);
+      background-position: left nsw.rem(8px) top nsw.rem(8px);
       background-size: 1rem auto;
       display: flex;
       align-items: center;
 
       .nsw-material-icons {
-        font-size: functions.rem(map.get(settings.$nsw-icon-sizes, 20));
-        margin-right: functions.rem(4px);
+        font-size: nsw.rem(map.get(nsw.$nsw-icon-sizes, 20));
+        margin-right: nsw.rem(4px);
       }
     }
 
@@ -65,7 +63,7 @@
     font-weight: var(--nsw-font-bold);
     display: block;
 
-    @include mixins.font-size('sm');
+    @include nsw.font-size('sm');
 
     &--small {
       font-weight: var(--nsw-font-normal);
@@ -79,7 +77,7 @@
     + textarea,
     + select,
     + .nsw-form__input-group {
-      margin-top: functions.rem(4px);
+      margin-top: nsw.rem(4px);
     }
   }
 
@@ -91,7 +89,7 @@
   }
 
   &__input {
-    padding: functions.rem(11px) functions.rem(16px);
+    padding: nsw.rem(11px) nsw.rem(16px);
     border-radius: var(--nsw-border-radius);
     background-color: var(--nsw-white);
     color: var(--nsw-text-dark);
@@ -101,13 +99,13 @@
     -webkit-appearance: none; /* stylelint-disable-line property-no-vendor-prefix */
     width: 100%;
 
-    @include mixins.font-size('sm');
+    @include nsw.font-size('sm');
 
     &:focus {
-      @include mixins.nsw-focus;
+      @include nsw.nsw-focus;
 
       .nsw-section--invert & {    
-        @include mixins.nsw-focus($color: var(--nsw-focus-light));
+        @include nsw.nsw-focus($color: var(--nsw-focus-light));
       }
     }
 
@@ -159,7 +157,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 0 functions.rem(24px);
+      padding: 0 nsw.rem(24px);
       margin: 0;
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;
@@ -174,17 +172,17 @@
       }
 
       &:focus {
-        @include mixins.nsw-focus();
+        @include nsw.nsw-focus();
 
         .nsw-section--invert & {    
-          @include mixins.nsw-focus($color: var(--nsw-focus-light));
+          @include nsw.nsw-focus($color: var(--nsw-focus-light));
         }
       }
     }
 
     .nsw-material-icons {
       display: block;
-      font-size: functions.rem(map.get(settings.$nsw-icon-sizes, 36));
+      font-size: nsw.rem(map.get(nsw.$nsw-icon-sizes, 36));
       position: static;
 
       .nsw-section--invert & {    
@@ -199,7 +197,7 @@
     &--icon {
       .nsw-button {
         padding: 0;
-        min-width: functions.rem(60px);
+        min-width: nsw.rem(60px);
         border-color: var(--nsw-grey-01);
         border-left-width: 0;
 
@@ -212,7 +210,7 @@
           border-color: var(--nsw-white);
 
           &:hover {
-            @include mixins.nsw-hover-light;
+            @include nsw.nsw-hover-light;
           }
 
           .nsw-material-icons {
@@ -234,7 +232,7 @@
 
     &--large {
       .nsw-form__input {
-        padding: functions.rem(16px);
+        padding: nsw.rem(16px);
       }
     }
   }
@@ -244,7 +242,7 @@
   }
 
   &__predictive-list {
-    @include mixins.z-index;
+    @include nsw.z-index;
     border-radius: var(--nsw-border-radius);
     border-top-left-radius: 0;
     border-top-right-radius: 0;
@@ -254,13 +252,13 @@
     padding: 0;
     margin: 0;
     position: absolute;
-    top: functions.rem(48px);
+    top: nsw.rem(48px);
     right: 0;
     left: 0;
     overflow: hidden;
 
     &--large {
-      top: functions.rem(58px);
+      top: nsw.rem(58px);
     }
 
     li {
@@ -270,12 +268,12 @@
 
     a {
       display: block;
-      padding: functions.rem(10px);
+      padding: nsw.rem(10px);
       color: var(--nsw-text-dark);
       font-weight: var(--nsw-font-normal);
 
       &:hover {
-        @include mixins.nsw-hover;
+        @include nsw.nsw-hover;
         outline-width: 0;
       }
 
@@ -299,7 +297,7 @@
 
     legend {
       padding: 0;
-      margin: 0 0 functions.rem(16px) 0;
+      margin: 0 0 nsw.rem(16px) 0;
       display: block;
     }
   }
@@ -309,7 +307,7 @@
     width: 100%;
     display: block;
 
-    @include mixins.font-size('sm');
+    @include nsw.font-size('sm');
   }
 
   &__checkbox-input,
@@ -328,7 +326,7 @@
     }
 
     &:checked + .nsw-form__checkbox-label::after {
-      background-image: functions.svg-url(settings.$nsw-form-tick);
+      background-image: nsw.svg-url(nsw.$nsw-form-tick);
       background-color: var(--nsw-brand-dark);
     }
 
@@ -355,10 +353,10 @@
     }
 
     &:focus + .nsw-form__checkbox-label::before {
-      @include mixins.nsw-focus;
+      @include nsw.nsw-focus;
 
       .nsw-section--invert & {   
-        @include mixins.nsw-focus($color: var(--nsw-focus-light));
+        @include nsw.nsw-focus($color: var(--nsw-focus-light));
       }
     }
 
@@ -385,20 +383,20 @@
 
   &__checkbox-label,
   &__radio-label {
-    margin: functions.rem(16px) 0 0 0;
-    padding: functions.rem(4px) 0 functions.rem(4px) functions.rem(48px);
-    min-height: functions.rem(32px);
+    margin: nsw.rem(16px) 0 0 0;
+    padding: nsw.rem(4px) 0 nsw.rem(4px) nsw.rem(48px);
+    min-height: nsw.rem(32px);
     display: block;
     position: relative;
     cursor: pointer;
     
-    @include mixins.font-size('sm');
+    @include nsw.font-size('sm');
 
     &::before {
       content: '';
-      width: functions.rem(32px);
-      height: functions.rem(32px);
-      margin-right: functions.rem(16px);
+      width: nsw.rem(32px);
+      height: nsw.rem(32px);
+      margin-right: nsw.rem(16px);
       border: 1px var(--nsw-grey-01) solid;
       top: 0;
       left: 0;
@@ -411,13 +409,13 @@
     &::after {
       content: '';
       position: absolute;
-      width: functions.rem(22px);
-      height: functions.rem(22px);
+      width: nsw.rem(22px);
+      height: nsw.rem(22px);
       background-repeat: no-repeat;
       background-position: center center;
-      background-size: functions.rem(16px) auto;
-      left: functions.rem(5px);
-      top: functions.rem(5px);
+      background-size: nsw.rem(16px) auto;
+      left: nsw.rem(5px);
+      top: nsw.rem(5px);
     }
   }
 
