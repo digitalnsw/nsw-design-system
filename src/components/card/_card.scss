@@ -1,7 +1,5 @@
 @use 'sass:map';
-@use '../../global/scss/base/functions' as functions;
-@use '../../global/scss/base/mixins' as mixins;
-@use '../../global/scss/settings/settings' as settings;
+@use '../../global/scss/tools' as nsw;
 
 .nsw-card {
   position: relative;
@@ -52,31 +50,31 @@
   }
 
   &:focus-within {
-    @include mixins.nsw-focus;
+    @include nsw.nsw-focus;
 
     a {
       text-decoration: none;
     }
 
     .nsw-section--invert & {   
-      @include mixins.nsw-focus($color: var(--nsw-focus-light));
+      @include nsw.nsw-focus($color: var(--nsw-focus-light));
     }
   }
 
   &__content {
-    padding: functions.rem(16px) functions.rem(16px) functions.rem(62px) functions.rem(16px);
+    padding: nsw.rem(16px) nsw.rem(16px) nsw.rem(62px) nsw.rem(16px);
     background-color: var(--nsw-white);
     border-radius: var(--nsw-border-radius);
     border: 1px solid var(--nsw-grey-03);
     display: flex;
     flex-direction: column;
     height: 100%;
-    transition: background settings.$nsw-transition-duration, border settings.$nsw-transition-duration;
+    transition: background nsw.$nsw-transition-duration, border nsw.$nsw-transition-duration;
 
-    @include mixins.font-size('sm');
+    @include nsw.font-size('sm');
 
-    @include mixins.breakpoint('lg') {
-      padding: functions.rem(32px) functions.rem(32px) functions.rem(94px) functions.rem(32px);
+    @include nsw.breakpoint('lg') {
+      padding: nsw.rem(32px) nsw.rem(32px) nsw.rem(94px) nsw.rem(32px);
     }
       
     .nsw-section--invert & {    
@@ -87,13 +85,13 @@
   &__title {
     font-weight: var(--nsw-font-bold);
 
-    @include mixins.font-size('md');
+    @include nsw.font-size('md');
 
     a {
-      @include mixins.pseudo-clickable-block;
+      @include nsw.pseudo-clickable-block;
       text-decoration: none;
       color: var(--nsw-text-dark);
-      transition: color settings.$nsw-transition-duration;
+      transition: color nsw.$nsw-transition-duration;
 
       &:focus {
         outline: none;
@@ -111,37 +109,37 @@
   }
 
   &__copy {
-    margin-top: functions.rem(16px);
-    transition: color settings.$nsw-transition-duration;
+    margin-top: nsw.rem(16px);
+    transition: color nsw.$nsw-transition-duration;
   }
 
   &__tag,
   &__date {
-    transition: color settings.$nsw-transition-duration;
-    margin-bottom: functions.rem(16px);
+    transition: color nsw.$nsw-transition-duration;
+    margin-bottom: nsw.rem(16px);
 
-    @include mixins.font-size('xs');
+    @include nsw.font-size('xs');
   }
 
   &__tag {
     font-weight: var(--nsw-font-bold);
 
     + .nsw-card__date {
-      margin-top: functions.rem(-8);
+      margin-top: nsw.rem(-8);
     }
   }
 
   .nsw-material-icons {
-    font-size: functions.rem(map.get(settings.$nsw-icon-sizes, 30));
+    font-size: nsw.rem(map.get(nsw.$nsw-icon-sizes, 30));
     color: var(--nsw-brand-dark);
     position: absolute;
-    bottom: functions.rem(16px);
-    left: functions.rem(16px);
-    transition: color settings.$nsw-transition-duration;
+    bottom: nsw.rem(16px);
+    left: nsw.rem(16px);
+    transition: color nsw.$nsw-transition-duration;
 
-    @include mixins.breakpoint('lg') {
-      bottom: functions.rem(32px);
-      left: functions.rem(32px);
+    @include nsw.breakpoint('lg') {
+      bottom: nsw.rem(32px);
+      left: nsw.rem(32px);
     }
 
     .nsw-section--invert & {    
@@ -150,8 +148,8 @@
   }
 
   &__image {
-    min-height: functions.rem(200px);
-    height: functions.rem(200px);
+    min-height: nsw.rem(200px);
+    height: nsw.rem(200px);
     position: relative;
 
     img {
@@ -262,7 +260,7 @@
 
   &--headline {
     .nsw-card__title {
-      @include mixins.font-size('lg');
+      @include nsw.font-size('lg');
     }
   }
 
@@ -281,7 +279,7 @@
         right: 0;
         height: 4px;
         background-color: var(--nsw-brand-accent);
-        transition: background settings.$nsw-transition-duration;
+        transition: background nsw.$nsw-transition-duration;
       }
     }
 
@@ -294,13 +292,13 @@
         right: 0;
         height: 4px;
         background-color: var(--nsw-brand-accent);
-        transition: background settings.$nsw-transition-duration;
+        transition: background nsw.$nsw-transition-duration;
       }
     }
   }
 
   &--horizontal {
-    @include mixins.breakpoint('md') {
+    @include nsw.breakpoint('md') {
       flex-direction: row;
       align-items: stretch;
 
@@ -309,7 +307,7 @@
         height: auto;
 
         > .nsw-material-icons {
-          left: calc(50% + #{functions.rem(16px)});
+          left: calc(50% + #{nsw.rem(16px)});
         }
       }
 
@@ -338,9 +336,9 @@
       }
     }
 
-    @include mixins.breakpoint('lg') {
+    @include nsw.breakpoint('lg') {
       .nsw-card__content > .nsw-material-icons {
-        left: calc(50% + #{functions.rem(32px)});
+        left: calc(50% + #{nsw.rem(32px)});
       }
     }
   }
