@@ -74,6 +74,13 @@ meta-index: true
 @import 'node_modules/nsw-design-system/src/global/scss/settings/theme';
 @import 'node_modules/nsw-design-system/src/core/all';
 {{/_docs-example}}
+<p>Once you have installed the core library you can start importing components as you need it. To import individual components you need to add following snippets to your main SASS file under core libraries import:</p>
+{{#>_docs-example hidden="true" open="true" code="scss"}}
+// Components
+@import 'node_modules/nsw-design-system/src/components/accordion/accordion';
+@import 'node_modules/nsw-design-system/src/components/card/card';
+@import 'node_modules/nsw-design-system/src/components/in-page-alert/in-page-alert';
+{{/_docs-example}}
 
 <h4 id="tools-barrel">Using the Tools barrel</h4>
 <p>The <code>tools</code> barrel gives you access to shared <strong>mixins</strong> and <strong>functions</strong> via a single, stable import path. It does <em>not</em> output CSS and it does <em>not</em> replace importing the core styles or any components you use. Keep importing <code>settings</code>, <code>base</code>, <code>helpers</code> and your chosen components as shown above; the <code>tools</code> barrel is purely Sass utilities for use inside your component styles.</p>
