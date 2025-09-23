@@ -1,7 +1,5 @@
 @use 'sass:map';
-@use '../../global/scss/base/mixins' as mixins;
-@use '../../global/scss/base/functions' as functions;
-@use '../../global/scss/settings/settings' as settings;
+@use '../../global/scss/tools' as nsw;
 
 // $nsw-icon-sizes: (
 //   20: 20px,
@@ -22,53 +20,53 @@
 // $nsw-icon-angles: (90, 180, 270);
 
 .nsw-material-icons {
-  @each $size, $variant in settings.$nsw-icon-sizes {
+  @each $size, $variant in nsw.$nsw-icon-sizes {
     &--#{"" + $size} {
-      font-size: functions.rem(map.get(settings.$nsw-icon-sizes, $size));
+      font-size: nsw.rem(map.get(nsw.$nsw-icon-sizes, $size));
     }
   }
 
-  @each $color, $variant in settings.$nsw-icon-colors {
+  @each $color, $variant in nsw.$nsw-icon-colors {
     &--#{"" + $color} {
       /* stylelint-disable-next-line sh-waqar/declaration-use-variable */
-      color: map.get(settings.$nsw-icon-colors, $color);
+      color: map.get(nsw.$nsw-icon-colors, $color);
     }
   }
 
-  @each $angle, $variant in settings.$nsw-icon-angles {
+  @each $angle, $variant in nsw.$nsw-icon-angles {
     &--rotate-#{"" + $angle} {
       transform: rotate(#{$angle}deg);
     }
   }
 
   &--inline {
-    font-size: functions.rem(map.get(settings.$nsw-icon-sizes, 20));
-    line-height: functions.rem(10px);
+    font-size: nsw.rem(map.get(nsw.$nsw-icon-sizes, 20));
+    line-height: nsw.rem(10px);
     position: relative;
-    bottom: functions.rem(-5px);
-    margin-right: functions.rem(4px);
+    bottom: nsw.rem(-5px);
+    margin-right: nsw.rem(4px);
   }
 }
 
 .nsw-icon-button {
   background: none;
   text-decoration: none;
-  padding: functions.rem(8px);
+  padding: nsw.rem(8px);
   display: inline-block;
   border: 0;
   color: var(--nsw-brand-dark);
   font-weight: var(--nsw-font-bold);
   border-radius: var(--nsw-border-radius);
   
-  @include mixins.font-size('sm');
+  @include nsw.font-size('sm');
 
   &:hover {
-    @include mixins.nsw-hover;
+    @include nsw.nsw-hover;
     outline-width: 0;
   }
 
   &:focus {
-    @include mixins.nsw-focus($offset: false);
+    @include nsw.nsw-focus($offset: false);
   }
 
   .nsw-material-icons,
@@ -89,6 +87,6 @@
   }
 
   .nsw-section--invert & {    
-    @include mixins.link-light;
+    @include nsw.link-light;
   }
 }
