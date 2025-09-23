@@ -1,10 +1,9 @@
-@use '../../global/scss/base/functions' as functions;
-@use '../../global/scss/base/mixins' as mixins;
+@use '../../global/scss/tools' as nsw;
 
 .nsw-steps {
   counter-reset: step;
 
-  @include mixins.component-spacing();
+  @include nsw.component-spacing();
 
   &__item {
     position: relative;
@@ -22,17 +21,17 @@
     &::before {
       content: '';
       position: absolute;
-      top: functions.rem(1px);
+      top: nsw.rem(1px);
       left: 0;
-      width: functions.rem(32px);
-      height: functions.rem(32px);
-      border: functions.rem(4px) solid var(--nsw-brand-accent);
+      width: nsw.rem(32px);
+      height: nsw.rem(32px);
+      border: nsw.rem(4px) solid var(--nsw-brand-accent);
       border-radius: 100%;
 
-      @include mixins.breakpoint('lg') { 
-        width: functions.rem(48px);
-        height: functions.rem(48px);
-        top: functions.rem(-4px);
+      @include nsw.breakpoint('lg') { 
+        width: nsw.rem(48px);
+        height: nsw.rem(48px);
+        top: nsw.rem(-4px);
       }
     }
 
@@ -40,10 +39,10 @@
       counter-increment: step;
       content: counter(step);
       position: absolute;
-      top: functions.rem(1px);
+      top: nsw.rem(1px);
       left: 0;
-      width: functions.rem(32px);
-      height: functions.rem(32px);
+      width: nsw.rem(32px);
+      height: nsw.rem(32px);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -51,12 +50,12 @@
       font-weight: var(--nsw-font-bold);
       visibility: hidden;
       
-      @include mixins.font-size('md');
+      @include nsw.font-size('md');
 
-      @include mixins.breakpoint('lg') { 
-        width: functions.rem(48px);
-        height: functions.rem(48px);
-        top: functions.rem(-4px);
+      @include nsw.breakpoint('lg') { 
+        width: nsw.rem(48px);
+        height: nsw.rem(48px);
+        top: nsw.rem(-4px);
       }    
     }
 
@@ -91,25 +90,25 @@
 
   &__content {
     position: relative;
-    padding: 0 0 functions.rem(24px) functions.rem(48px);
+    padding: 0 0 nsw.rem(24px) nsw.rem(48px);
 
-    @include mixins.breakpoint('lg') { 
-      padding: 0 0 functions.rem(32px) functions.rem(72px);
+    @include nsw.breakpoint('lg') { 
+      padding: 0 0 nsw.rem(32px) nsw.rem(72px);
     }
 
     &::before {
       content: '';
       position: absolute;
-      top: functions.rem(33px);
-      bottom: functions.rem(-1px);
-      left: functions.rem(14px);
-      width: functions.rem(4px);
+      top: nsw.rem(33px);
+      bottom: nsw.rem(-1px);
+      left: nsw.rem(14px);
+      width: nsw.rem(4px);
       background-color: var(--nsw-brand-accent);
 
-      @include mixins.breakpoint('lg') { 
-        top: functions.rem(44px);
-        left: functions.rem(22px);
-        bottom: functions.rem(4px);
+      @include nsw.breakpoint('lg') { 
+        top: nsw.rem(44px);
+        left: nsw.rem(22px);
+        bottom: nsw.rem(4px);
       }
     }
   }
@@ -143,11 +142,11 @@
       &::before {
         border-color: var(--nsw-brand-light);
       }
-
+      
       &::after {
         color: var(--nsw-brand-light);
       }
-
+      
       &--fill {
         &::after {
           color: var(--nsw-text-dark);
@@ -237,40 +236,40 @@
   &--medium {
     .nsw-steps__item {
       &::before {
-        top: functions.rem(-2px);
+        top: nsw.rem(-2px);
 
-        @include mixins.breakpoint('lg') { 
-          width: functions.rem(40px);
-          height: functions.rem(40px);
-          top: functions.rem(-4px);
+        @include nsw.breakpoint('lg') { 
+          width: nsw.rem(40px);
+          height: nsw.rem(40px);
+          top: nsw.rem(-4px);
         }
       }
 
       &::after {
-        top: functions.rem(-2px);
+        top: nsw.rem(-2px);
 
-        @include mixins.breakpoint('lg') { 
+        @include nsw.breakpoint('lg') { 
           font-size: var(--nsw-font-size-md-mobile);
-          width: functions.rem(40px);
-          height: functions.rem(40px);
-          top: functions.rem(-4px);
+          width: nsw.rem(40px);
+          height: nsw.rem(40px);
+          top: nsw.rem(-4px);
         }    
       }
     }
 
     .nsw-steps__content {
-      @include mixins.breakpoint('lg') { 
-        padding-left: functions.rem(64px);
+      @include nsw.breakpoint('lg') { 
+        padding-left: nsw.rem(64px);
       }
 
       &::before {
-        top: functions.rem(30px);
-        bottom: functions.rem(2px);
+        top: nsw.rem(30px);
+        bottom: nsw.rem(2px);
 
-        @include mixins.breakpoint('lg') { 
-          top: functions.rem(36px);
-          bottom: functions.rem(4px);
-          left: functions.rem(18px);
+        @include nsw.breakpoint('lg') { 
+          top: nsw.rem(36px);
+          bottom: nsw.rem(4px);
+          left: nsw.rem(18px);
         }
       }
     }
@@ -279,40 +278,40 @@
   &--small {
     .nsw-steps__item {
       &::before {
-        top: functions.rem(-4px);
+        top: nsw.rem(-4px);
 
-        @include mixins.breakpoint('lg') { 
-          width: functions.rem(32px);
-          height: functions.rem(32px);
-          top: functions.rem(-2px);
+        @include nsw.breakpoint('lg') { 
+          width: nsw.rem(32px);
+          height: nsw.rem(32px);
+          top: nsw.rem(-2px);
         }
       }
 
       &::after {
-        top: functions.rem(-4px);
+        top: nsw.rem(-4px);
 
-        @include mixins.breakpoint('lg') { 
+        @include nsw.breakpoint('lg') { 
           font-size: var(--nsw-font-size-md-mobile);
-          width: functions.rem(32px);
-          height: functions.rem(32px);
-          top: functions.rem(-2px);
+          width: nsw.rem(32px);
+          height: nsw.rem(32px);
+          top: nsw.rem(-2px);
         }    
       }
     }
 
     .nsw-steps__content {
-      @include mixins.breakpoint('lg') { 
-        padding-left: functions.rem(56px);
+      @include nsw.breakpoint('lg') { 
+        padding-left: nsw.rem(56px);
       }
 
       &::before {
-        top: functions.rem(28px);
-        bottom: functions.rem(4px);
+        top: nsw.rem(28px);
+        bottom: nsw.rem(4px);
 
-        @include mixins.breakpoint('lg') { 
-          top: functions.rem(30px);
-          bottom: functions.rem(2px);
-          left: functions.rem(14px);
+        @include nsw.breakpoint('lg') { 
+          top: nsw.rem(30px);
+          bottom: nsw.rem(2px);
+          left: nsw.rem(14px);
         }
       }
     }
