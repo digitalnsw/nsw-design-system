@@ -1,19 +1,17 @@
 @use 'sass:map';
-@use '../../global/scss/base/functions' as functions;
-@use '../../global/scss/base/mixins' as mixins;
-@use '../../global/scss/settings/settings' as settings;
+@use '../../global/scss/tools' as nsw;
 
 .nsw-link-list {
-  @include mixins.component-spacing();
+  @include nsw.component-spacing();
 
   &__title {
     font-weight: var(--nsw-font-bold);
-    padding-bottom: functions.rem(16px);
+    padding-bottom: nsw.rem(16px);
     
-    @include mixins.font-size('lg');
+    @include nsw.font-size('lg');
     
-    @include mixins.breakpoint('md') {
-      padding-bottom: functions.rem(24px);
+    @include nsw.breakpoint('md') {
+      padding-bottom: nsw.rem(24px);
     }
   }
 
@@ -33,7 +31,7 @@
   }
 
   a {
-    padding: functions.rem(16px);
+    padding: nsw.rem(16px);
     color: var(--nsw-brand-dark);
     display: flex;
     justify-content: space-between;
@@ -41,7 +39,7 @@
     text-decoration: none;
 
     &:hover {
-      @include mixins.nsw-hover;
+      @include nsw.nsw-hover;
       outline-width: 0;
     }
 
@@ -53,7 +51,7 @@
       text-decoration: underline;
 
       span.nsw-material-icons {
-        bottom: functions.rem(-5px);
+        bottom: nsw.rem(-5px);
       }
     }
 
@@ -66,7 +64,7 @@
       color: var(--nsw-text-light);
 
       &:hover {
-        @include mixins.nsw-hover-light;
+        @include nsw.nsw-hover-light;
         outline-width: 0;
       }
     }
@@ -79,7 +77,7 @@
   }
 
   .nsw-material-icons {
-    font-size: functions.rem(map.get(settings.$nsw-icon-sizes, 20));
-    margin-left: functions.rem(16px);
+    font-size: nsw.rem(map.get(nsw.$nsw-icon-sizes, 20));
+    margin-left: nsw.rem(16px);
   }
 }
