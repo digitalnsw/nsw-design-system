@@ -1,7 +1,5 @@
 @use 'sass:map';
-@use '../../global/scss/base/functions' as functions;
-@use '../../global/scss/base/mixins' as mixins;
-@use '../../global/scss/settings/settings' as settings;
+@use '../../global/scss/tools' as nsw;
 
 /* stylelint-disable string-quotes */
 /* stylelint-disable sh-waqar/declaration-use-variable */
@@ -12,7 +10,7 @@
   border: solid 2px transparent;
   white-space: normal;
   text-decoration: none;
-  padding: functions.rem(10px) functions.rem(22px);
+  padding: nsw.rem(10px) nsw.rem(22px);
   cursor: pointer;
   -webkit-appearance: none; /* stylelint-disable-line property-no-vendor-prefix */
   appearance: none;
@@ -23,10 +21,10 @@
   user-select: none;
   display: inline-block;
 
-  @include mixins.font-size('sm');
+  @include nsw.font-size('sm');
 
   &:not(.nsw-button--flex) {
-    min-width: functions.rem(124px);
+    min-width: nsw.rem(124px);
   }
 
   &:hover {
@@ -34,7 +32,7 @@
   }
 
   &:focus {
-    @include mixins.nsw-focus;
+    @include nsw.nsw-focus;
   }
 
   &:disabled,
@@ -44,17 +42,17 @@
   }
 
   .nsw-material-icons {
-    font-size: functions.rem(map.get(settings.$nsw-icon-sizes, 24));
-    line-height: functions.rem(10px);
+    font-size: nsw.rem(map.get(nsw.$nsw-icon-sizes, 24));
+    line-height: nsw.rem(10px);
     position: relative;
-    bottom: functions.rem(-7px);
+    bottom: nsw.rem(-7px);
 
     &:first-child {
-      margin-right: functions.rem(8px);
+      margin-right: nsw.rem(8px);
     }
 
     &:last-child {
-      margin-left: functions.rem(8px);
+      margin-left: nsw.rem(8px);
     }
 
     &:only-child {
@@ -63,19 +61,19 @@
   }
 
   &--small {
-    padding: functions.rem(5px);
+    padding: nsw.rem(5px);
     
-    @include mixins.font-size('xs');
+    @include nsw.font-size('xs');
 
     .nsw-material-icons {
-      font-size: functions.rem(map.get(settings.$nsw-icon-sizes, 20));
+      font-size: nsw.rem(map.get(nsw.$nsw-icon-sizes, 20));
 
       &:first-child {
-        margin-right: functions.rem(4px);
+        margin-right: nsw.rem(4px);
       }
 
       &:last-child {
-        margin-left: functions.rem(4px);
+        margin-left: nsw.rem(4px);
       }
 
       &:only-child {
@@ -98,7 +96,7 @@
     display: block;
     width: 100%;
 
-    @include mixins.breakpoint(settings.$nsw-desktop-breakpoint) {
+    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
       display: inline-block;
       width: auto;
     }
@@ -106,7 +104,7 @@
 }
 
 .nsw-button {
-  @each $color, $property-map in settings.$nsw-buttons {
+  @each $color, $property-map in nsw.$nsw-buttons {
     &--#{"" + $color} {
       color: map.get($property-map, text-color);
       background-color: map.get($property-map, background);
@@ -167,7 +165,7 @@
 }
 
 .nsw-section--invert .nsw-button {
-  @each $color, $property-map in settings.$nsw-buttons {
+  @each $color, $property-map in nsw.$nsw-buttons {
     &--#{"" + $color} {
       color: map.get($property-map, text-color-invert);
       background-color: map.get($property-map, background-invert);
@@ -228,7 +226,7 @@
 }
 
 .nsw-dialog .nsw-button {
-  @each $color, $property-map in settings.$nsw-buttons {
+  @each $color, $property-map in nsw.$nsw-buttons {
     &--#{"" + $color} {
       color: map.get($property-map, text-color);
       background-color: map.get($property-map, background);

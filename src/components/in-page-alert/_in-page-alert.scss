@@ -1,10 +1,8 @@
 @use 'sass:map';
-@use '../../global/scss/base/functions' as functions;
-@use '../../global/scss/base/mixins' as mixins;
-@use '../../global/scss/settings/settings' as settings;
+@use '../../global/scss/tools' as nsw;
 
 .nsw-in-page-alert {
-  padding: functions.rem(16px);
+  padding: nsw.rem(16px);
   position: relative;
   border-left: solid 4px var(--nsw-brand-accent);
   background-color: var(--nsw-grey-04);
@@ -12,27 +10,27 @@
   flex-direction: row;
   flex-wrap: nowrap;
   
-  @include mixins.component-spacing();
+  @include nsw.component-spacing();
 
-  @include mixins.breakpoint('md') {
-    padding: functions.rem(24px) functions.rem(24px) functions.rem(24px) functions.rem(16px);
+  @include nsw.breakpoint('md') {
+    padding: nsw.rem(24px) nsw.rem(24px) nsw.rem(24px) nsw.rem(16px);
   }
       
   .nsw-section--invert & {    
     color: var(--nsw-text-dark);
 
     a {
-      @include mixins.link-dark;
+      @include nsw.link-dark;
     }
   }
 
   &__icon {
-    font-size: functions.rem(map.get(settings.$nsw-icon-sizes, 30));
-    margin-right: functions.rem(16px);
-    margin-top: functions.rem(-2px);
+    font-size: nsw.rem(map.get(nsw.$nsw-icon-sizes, 30));
+    margin-right: nsw.rem(16px);
+    margin-top: nsw.rem(-2px);
   }
 
-  @each $color, $variant in settings.$nsw-in-page-alerts {
+  @each $color, $variant in nsw.$nsw-in-page-alerts {
     &--#{"" + $color} {
       background-color: map.get($variant, background);
       border-color: map.get($variant, border);
@@ -44,12 +42,12 @@
   }
 
   &--compact {
-    padding: functions.rem(8px);
+    padding: nsw.rem(8px);
     border: 0;
 
     .nsw-in-page-alert__icon {
-      font-size: functions.rem(map.get(settings.$nsw-icon-sizes, 20));
-      margin-right: functions.rem(8px);
+      font-size: nsw.rem(map.get(nsw.$nsw-icon-sizes, 20));
+      margin-right: nsw.rem(8px);
       margin-top: 0;
     }
   }

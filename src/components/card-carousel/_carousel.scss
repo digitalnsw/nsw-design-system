@@ -1,7 +1,6 @@
 /* stylelint-disable max-nesting-depth */
 
-@use '../../global/scss/base/functions' as functions;
-@use '../../global/scss/base/mixins' as mixins;
+@use '../../global/scss/tools' as nsw;
 
 .nsw-carousel {
   --carousel-item-auto-size: 300px;
@@ -69,7 +68,7 @@
     margin-bottom: 0.5rem;
     margin-right: 0.25rem;
 
-    @include mixins.breakpoint('md') {
+    @include nsw.breakpoint('md') {
       margin-bottom: 0.75rem;
       margin-right: 0;
     }
@@ -79,7 +78,7 @@
       justify-content: flex-end;
       gap: 0.25rem;
 
-      @include mixins.breakpoint('md') {
+      @include nsw.breakpoint('md') {
         gap: 0.375rem;
       }
     }
@@ -90,7 +89,7 @@
     width: calc(100% - 6rem);
     margin: 0 auto;
 
-    @include mixins.breakpoint('md') {
+    @include nsw.breakpoint('md') {
       width: 100%;
     }
   }
@@ -100,7 +99,7 @@
     justify-content: space-between;
     align-items: center;
 
-    @include mixins.breakpoint('md') {
+    @include nsw.breakpoint('md') {
       width: 100%;
     }
   }
@@ -125,7 +124,7 @@
     opacity: 0;
     margin-bottom: 0;
 
-    @include mixins.breakpoint('md') {
+    @include nsw.breakpoint('md') {
       margin-right: 2rem;
       margin-bottom: 0.75rem;
     }
@@ -146,7 +145,7 @@
   &:not(.nsw-carousel--is-dragging) .nsw-carousel__list:not(.nsw-carousel__list--animating) .nsw-carousel__item[tabindex='-1'] > * {
     visibility: visible;
 
-    @include mixins.breakpoint('md') {
+    @include nsw.breakpoint('md') {
       visibility: hidden;
     }
   }
@@ -164,7 +163,7 @@
     cursor: pointer;
     
     &:hover {
-      @include mixins.nsw-hover();
+      @include nsw.nsw-hover();
     }
 
     &:active {
@@ -172,10 +171,10 @@
     }
 
     &:focus {
-      @include mixins.nsw-focus(false);
+      @include nsw.nsw-focus(false);
       outline-offset: 1px;
 
-      @include mixins.breakpoint('md') {
+      @include nsw.breakpoint('md') {
         outline: solid 3px var(--nsw-focus);
         outline-offset: 2px;
       }
@@ -198,7 +197,7 @@
       border: 2px solid var(--nsw-white);
 
       &:hover {
-        @include mixins.nsw-hover-light();
+        @include nsw.nsw-hover-light();
 
         .nsw-icon {
           color: var(--nsw-white);
@@ -206,7 +205,7 @@
       }
 
       &:focus {
-        @include mixins.nsw-focus($color: var(--nsw-focus-light));
+        @include nsw.nsw-focus($color: var(--nsw-focus-light));
       }
 
       .nsw-icon {
@@ -229,7 +228,7 @@
     z-index: 2;
     transform: translateX(-50%);
 
-    @include mixins.breakpoint('md') {
+    @include nsw.breakpoint('md') {
       bottom: 0.8em;
     }
 
@@ -241,14 +240,14 @@
     &--pagination {
       bottom: 0.3em;
 
-      @include mixins.breakpoint('md') {
+      @include nsw.breakpoint('md') {
         bottom: 0.5em;
       }
 
       .nsw-carousel__nav-item button {
         background-color: transparent;
-        width: functions.rem(24px);
-        height: functions.rem(24px);
+        width: nsw.rem(24px);
+        height: nsw.rem(24px);
         color: var(--nsw-brand-dark);
         font-size: 12px;
         border-radius: var(--nsw-border-radius);
@@ -256,7 +255,7 @@
         margin: 0 0.35em;
 
         &:focus {
-          @include mixins.nsw-focus(false);
+          @include nsw.nsw-focus(false);
           outline-offset: 2px;
         }
 
@@ -265,7 +264,7 @@
           border: 1px solid var(--nsw-white);
 
           &:focus {
-            @include mixins.nsw-focus($color: var(--nsw-focus-light));
+            @include nsw.nsw-focus($color: var(--nsw-focus-light));
             outline-offset: 2px;
           }
         }
@@ -288,8 +287,8 @@
   &__nav-item {
     button {
       background-color: transparent;
-      width: functions.rem(24px);
-      height: functions.rem(24px);
+      width: nsw.rem(24px);
+      height: nsw.rem(24px);
       padding: 4px;
       border-radius: 50%;
       border: 2px solid var(--nsw-brand-dark);
@@ -299,7 +298,7 @@
       margin: 0 0.25em;
 
       &:focus {
-        @include mixins.nsw-focus(false);
+        @include nsw.nsw-focus(false);
         outline-offset: 2px;
       }
 
@@ -307,7 +306,7 @@
         border: 2px solid var(--nsw-white);
 
         &:focus {
-          @include mixins.nsw-focus($color: var(--nsw-focus-light));
+          @include nsw.nsw-focus($color: var(--nsw-focus-light));
           outline-offset: 2px;
         }
       }

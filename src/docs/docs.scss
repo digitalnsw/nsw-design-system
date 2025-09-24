@@ -1,8 +1,6 @@
 @use '../main';
 @use '../global/scss/themes/all';
-@use '../global/scss/base/functions' as functions;
-@use '../global/scss/base/mixins' as mixins;
-@use '../global/scss/settings/settings' as settings;
+@use '../global/scss/tools' as nsw;
 
 $content-width: 768px;
 $nav-width: 300px;
@@ -26,7 +24,7 @@ $header-height: 151px;
   white-space: nowrap;
 
   > div {
-    padding: functions.rem(8px);
+    padding: nsw.rem(8px);
     white-space: normal;
     overflow-wrap: normal; 
   }
@@ -39,7 +37,7 @@ $header-height: 151px;
   padding: 0;
   background: #f0f0f0;
 
-  @include mixins.breakpoint(settings.$nsw-desktop-breakpoint) {
+  @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
     flex-direction: row;
     align-items: flex-start;
     justify-content: flex-start;
@@ -53,7 +51,7 @@ $header-height: 151px;
     gap: 0.25rem;
     width: 100%;
 
-    @include mixins.breakpoint(settings.$nsw-desktop-breakpoint) {
+    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
       grid-auto-flow: column;
       grid-template-rows: repeat(4, auto);
       grid-auto-columns: 80px;
@@ -75,7 +73,7 @@ $header-height: 151px;
     text-align: left;
     height: 80px;
 
-    @include mixins.breakpoint(settings.$nsw-desktop-breakpoint) {
+    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
       height: 120px;
       width: 80px;
       font-size: 12px;
@@ -90,7 +88,7 @@ $header-height: 151px;
 
 .nsw-docs {
   :not(pre) code {
-    padding: functions.rem(3px);
+    padding: nsw.rem(3px);
     background: var(--nsw-grey-04);
     border-radius: var(--nsw-border-radius);
   }
@@ -99,11 +97,11 @@ $header-height: 151px;
 
   :target::before {
 
-    @include mixins.breakpoint(settings.$nsw-desktop-breakpoint) {
+    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
       content: '';
       display: block;
-      height: functions.rem($header-height);
-      margin: functions.rem(-$header-height) 0 0;
+      height: nsw.rem($header-height);
+      margin: nsw.rem(-$header-height) 0 0;
     }
   }
 
@@ -114,13 +112,13 @@ $header-height: 151px;
   }
 
   &__header {
-    @include mixins.breakpoint(settings.$nsw-desktop-breakpoint) {
-      height: functions.rem($header-height);
+    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+      height: nsw.rem($header-height);
     }
 
     &-wrapper {
-      @include mixins.breakpoint(settings.$nsw-desktop-breakpoint) {
-        @include mixins.z-index('upper');
+      @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+        @include nsw.z-index('upper');
         position: fixed;
         top: 0;
         left: 0;
@@ -134,10 +132,10 @@ $header-height: 151px;
       margin: 0;
     }
 
-    @include mixins.breakpoint(settings.$nsw-desktop-breakpoint) {
+    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
       .nsw-container,
       .nsw-header__container {
-        max-width: functions.rem($content-width + $nav-width + 172px);
+        max-width: nsw.rem($content-width + $nav-width + 172px);
       }
 
       .nsw-header__container .nsw-header__inner {
@@ -148,29 +146,29 @@ $header-height: 151px;
   }
 
   &__wrapper {
-    @include mixins.breakpoint(settings.$nsw-desktop-breakpoint) {
+    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
       display: flex;
     }
   }
 
   &__nav {
-    @include mixins.breakpoint(settings.$nsw-desktop-breakpoint) {
-      min-width: functions.rem($nav-width);
-      max-width: functions.rem($nav-width);
+    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+      min-width: nsw.rem($nav-width);
+      max-width: nsw.rem($nav-width);
     }
 
     &-wrapper {
-      @include mixins.breakpoint(settings.$nsw-desktop-breakpoint) {
-        @include mixins.z-index('upper');
+      @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+        @include nsw.z-index('upper');
         position: fixed;
-        top: functions.rem($header-height);
+        top: nsw.rem($header-height);
         bottom: 0;
         left: 0;
-        width: functions.rem($nav-width);
+        width: nsw.rem($nav-width);
         overflow-y: auto;
         border-right: 1px solid var(--nsw-grey-04);
         background-color: var(--nsw-white);
-        padding: functions.rem(16px);
+        padding: nsw.rem(16px);
       }
     }
 
@@ -178,11 +176,11 @@ $header-height: 151px;
 
     .nsw-main-nav__sub-nav a {
       .nsw-brand {
-        margin-right: functions.rem(-8px);
+        margin-right: nsw.rem(-8px);
       }
     }
 
-    @include mixins.breakpoint(settings.$nsw-desktop-breakpoint) {
+    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
       .nsw-main-nav {
         background-color: transparent;
 
@@ -224,7 +222,7 @@ $header-height: 151px;
           }
 
           > li > a {      
-            @include mixins.breakpoint(settings.$nsw-desktop-breakpoint) {      
+            @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {      
               &.active {
                 box-shadow: none;
               }
@@ -264,7 +262,7 @@ $header-height: 151px;
           }
 
           a {
-            padding-left: functions.rem(24px);
+            padding-left: nsw.rem(24px);
             color: var(--nsw-text-dark);
           }
         }
@@ -283,43 +281,43 @@ $header-height: 151px;
     background-color: var(--nsw-off-white);
 
     .nsw-docs__example {
-      padding: functions.rem(16px);
+      padding: nsw.rem(16px);
       background-color: var(--nsw-white);
     }
 
     &--narrow,
     &--menu {
       .nsw-docs__demo {
-        max-width: functions.rem($content-width + 32px);
+        max-width: nsw.rem($content-width + 32px);
 
-        @include mixins.breakpoint(settings.$nsw-desktop-breakpoint) {
-          max-width: functions.rem($content-width + 104px);
+        @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+          max-width: nsw.rem($content-width + 104px);
         }
       }
     }
 
     &--wide {
       .nsw-docs__demo {
-        max-width: calc(var(--nsw-container-width) + #{functions.rem(32px)});
+        max-width: calc(var(--nsw-container-width) + #{nsw.rem(32px)});
 
-        @include mixins.breakpoint(settings.$nsw-desktop-breakpoint) {
-          max-width: calc(var(--nsw-container-width) + #{functions.rem(104px)});
+        @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+          max-width: calc(var(--nsw-container-width) + #{nsw.rem(104px)});
         }
       }
     }
 
     &--menu {
       .nsw-docs__component {
-        max-width: functions.rem(336px);
+        max-width: nsw.rem(336px);
       }
     }
   }
 
   &__container {
-    max-width: functions.rem($content-width + 32px);
+    max-width: nsw.rem($content-width + 32px);
 
-    @include mixins.breakpoint(settings.$nsw-desktop-breakpoint) {
-      max-width: functions.rem($content-width + 104px);
+    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+      max-width: nsw.rem($content-width + 104px);
     }
   }
 
@@ -327,21 +325,21 @@ $header-height: 151px;
     background-color: var(--nsw-white);
 
     .nsw-docs__container {
-      padding: functions.rem(24px) functions.rem(16px);
+      padding: nsw.rem(24px) nsw.rem(16px);
 
-      @include mixins.breakpoint(settings.$nsw-desktop-breakpoint) {
-        padding: functions.rem(48px) functions.rem(52px);
+      @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+        padding: nsw.rem(48px) nsw.rem(52px);
       }
     }
 
     &--tabs {
-      margin-bottom: functions.rem(-48px);
+      margin-bottom: nsw.rem(-48px);
 
       .nsw-docs__container {
-        padding-bottom: functions.rem(78px);
+        padding-bottom: nsw.rem(78px);
 
-        @include mixins.breakpoint(settings.$nsw-desktop-breakpoint) {
-          padding-bottom: functions.rem(88px);
+        @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+          padding-bottom: nsw.rem(88px);
         }
       }
     }
@@ -352,11 +350,11 @@ $header-height: 151px;
   }
 
   &__content {
-    padding: functions.rem(24px) functions.rem(16px);
+    padding: nsw.rem(24px) nsw.rem(16px);
     flex-grow: 1;
 
-    @include mixins.breakpoint(settings.$nsw-desktop-breakpoint) {
-      padding: functions.rem(48px) functions.rem(16px) functions.rem(48px) functions.rem(52px);
+    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+      padding: nsw.rem(48px) nsw.rem(16px) nsw.rem(48px) nsw.rem(52px);
     }
   }
 
@@ -390,15 +388,15 @@ $header-height: 151px;
 
   &__demo {
     > h3 {
-      padding: functions.rem(16px) 0;
+      padding: nsw.rem(16px) 0;
 
       &:first-child {
         padding-top: 0;
       }
 
       + p {
-        margin-top: functions.rem(-12px);
-        padding-bottom: functions.rem(16px);
+        margin-top: nsw.rem(-12px);
+        padding-bottom: nsw.rem(16px);
       }
 
       + h4 {
@@ -407,7 +405,7 @@ $header-height: 151px;
     }
 
     > h4 {
-      padding: functions.rem(16px) 0;
+      padding: nsw.rem(16px) 0;
     }
   }
 
@@ -420,7 +418,7 @@ $header-height: 151px;
   }
 
   &__external {
-    padding-top: functions.rem(8px);
+    padding-top: nsw.rem(8px);
   }
 
   &__list {
@@ -428,26 +426,26 @@ $header-height: 151px;
     list-style-type: none;
 
     &--4 {
-      column-gap: functions.rem(36px);
+      column-gap: nsw.rem(36px);
       column-count: 2;
 
-      @include mixins.breakpoint(settings.$nsw-desktop-breakpoint) {
+      @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
         column-count: 4;
       }
     }
 
     &--3 {
-      column-gap: functions.rem(36px);
+      column-gap: nsw.rem(36px);
       column-count: 2;
 
-      @include mixins.breakpoint(settings.$nsw-desktop-breakpoint) {
+      @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
         column-count: 3;
       }
     }
 
     &--2 {
-      @include mixins.breakpoint(settings.$nsw-desktop-breakpoint) {
-        column-gap: functions.rem(36px);
+      @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+        column-gap: nsw.rem(36px);
         column-count: 2;
       }
     }
@@ -459,21 +457,21 @@ $header-height: 151px;
     a {
       position: relative;
       display: inline-block;
-      margin: functions.rem(4px) 0;
+      margin: nsw.rem(4px) 0;
     }
 
     .nsw-brand {
       position: absolute;
-      right: functions.rem(-24px);
+      right: nsw.rem(-24px);
     }
   }
 
   &__box {
     background-color: var(--nsw-grey-03);
-    min-height: functions.rem(56);
+    min-height: nsw.rem(56);
 
     &--large {
-      min-height: functions.rem(150);
+      min-height: nsw.rem(150);
     }
   }
 
@@ -481,8 +479,8 @@ $header-height: 151px;
     &--white,
     &--light,
     &--dark {
-      padding: functions.rem(8px);
-      margin: functions.rem(8px) functions.rem(-8px) 0 functions.rem(-8px);
+      padding: nsw.rem(8px);
+      margin: nsw.rem(8px) nsw.rem(-8px) 0 nsw.rem(-8px);
     }
 
     &--dark {
@@ -494,20 +492,20 @@ $header-height: 151px;
     }
 
     &--spaced {
-      @include mixins.component-spacing();
+      @include nsw.component-spacing();
     }
   }
 
   &__swatch {
     margin: 0 auto;
     background-color: var(--nsw-brand-dark);
-    width: functions.rem(40px);
-    height: functions.rem(40px);
+    width: nsw.rem(40px);
+    height: nsw.rem(40px);
     border-radius: 100%;
   }
 
   &__loader {
-    @include mixins.z-index('upper');
+    @include nsw.z-index('upper');
     height: 100%;
     max-height: 100vh;
     overflow-y: auto;
@@ -532,9 +530,9 @@ $header-height: 151px;
     &--heading {
       text-align: center;
       font-weight: var(--nsw-font-bold);
-      padding: functions.rem(8px) 0;
+      padding: nsw.rem(8px) 0;
 
-      @include mixins.font-size('md');
+      @include nsw.font-size('md');
     }
     
     &--do {
@@ -554,16 +552,16 @@ $header-height: 151px;
   }
 
   .nsw-in-page-alert + h1 {
-    margin-top: functions.rem(24px);
+    margin-top: nsw.rem(24px);
 
-    @include mixins.breakpoint(settings.$nsw-desktop-breakpoint) {
-      margin-top: functions.rem(48px);
+    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+      margin-top: nsw.rem(48px);
     }
   }
 
   .nsw-card {
     .nsw-brand {
-      margin-left: functions.rem(8px);
+      margin-left: nsw.rem(8px);
     }
   }
 }
@@ -572,8 +570,8 @@ $header-height: 151px;
   position: relative;
 
   > button {
-    margin-top: functions.rem(24px);
-    padding: functions.rem(2px);
+    margin-top: nsw.rem(24px);
+    padding: nsw.rem(2px);
     cursor: pointer;
 
     &.active {
@@ -586,8 +584,8 @@ $header-height: 151px;
   &__content {
     position: relative;
     display: none;
-    margin-top: functions.rem(24px);
-    max-width: functions.rem(872px);
+    margin-top: nsw.rem(24px);
+    max-width: nsw.rem(872px);
 
     &.active {
       display: block;
@@ -598,15 +596,15 @@ $header-height: 151px;
     }
 
     .hljs {
-      padding: functions.rem(16px);
+      padding: nsw.rem(16px);
       overflow: visible;
       background-color: transparent;
     }
 
     > button {
       position: absolute;
-      top: functions.rem(16px);
-      right: functions.rem(16px);
+      top: nsw.rem(16px);
+      right: nsw.rem(16px);
     }
   }
 
@@ -621,9 +619,9 @@ $header-height: 151px;
   }
 
   &__wrapper {
-    min-height: functions.rem(68px);
-    max-width: functions.rem(872px);
-    max-height: functions.rem(400px);
+    min-height: nsw.rem(68px);
+    max-width: nsw.rem(872px);
+    max-height: nsw.rem(400px);
     overflow: auto;
     background-color: var(--nsw-white);
   }
@@ -632,10 +630,10 @@ $header-height: 151px;
 .nsw-docs-tabs {
   >.nsw-tabs__list-wrapper {
     background-color: transparent;
-    padding: 0 functions.rem(16px);
+    padding: 0 nsw.rem(16px);
 
-    @include mixins.breakpoint(settings.$nsw-desktop-breakpoint) {
-      padding: 0 functions.rem(52px);
+    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+      padding: 0 nsw.rem(52px);
     }
   }
 
@@ -650,45 +648,45 @@ $header-height: 151px;
 
     .nsw-docs__container,
     .nsw-docs__demo {
-      padding: functions.rem(24px) functions.rem(16px);
+      padding: nsw.rem(24px) nsw.rem(16px);
 
-      @include mixins.breakpoint(settings.$nsw-desktop-breakpoint) {
-        padding: functions.rem(48px) functions.rem(52px);
+      @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+        padding: nsw.rem(48px) nsw.rem(52px);
       }
     }
   }
 
   .nsw-docs__external {
-    padding: 0 0 functions.rem(24px) 0;
+    padding: 0 0 nsw.rem(24px) 0;
   }
 }
 
 .nsw-docs-footer {
   .nsw-container {
     margin: 0;
-    padding: 0 functions.rem(16px);
+    padding: 0 nsw.rem(16px);
 
-    @include mixins.breakpoint(settings.$nsw-desktop-breakpoint) {
-      padding: 0 functions.rem(52px);
+    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+      padding: 0 nsw.rem(52px);
     }
   }
 
   .nsw-footer__lower {
-    padding: functions.rem(16px) 0;
+    padding: nsw.rem(16px) 0;
   }
 }
 
 .nsw-docs__version {
   font-weight: var(--nsw-font-normal);
-  padding: functions.rem(2px) functions.rem(16px);
+  padding: nsw.rem(2px) nsw.rem(16px);
   border: solid 1px var(--nsw-brand-dark);
-  border-radius: functions.rem(24px);
+  border-radius: nsw.rem(24px);
   color: var(--nsw-brand-dark);
   text-decoration: none;
   display: inline-block;
-  margin-left: functions.rem(16px);
+  margin-left: nsw.rem(16px);
   
-  @include mixins.font-size('xs');
+  @include nsw.font-size('xs');
 }
 
 .nsw-docs__element {
@@ -709,7 +707,7 @@ $header-height: 151px;
     &.nsw-autocomplete__no-results {
       padding: 0.5rem 0.75rem;
 
-      @include mixins.media-breakpoint-up(md) {
+      @include nsw.media-breakpoint-up(md) {
         padding: 0.75rem 1.125rem;
       }
     }
@@ -727,7 +725,7 @@ $header-height: 151px;
       font-weight: 400;
       color: var(--nsw-text-dark);
 
-      @include mixins.media-breakpoint-up(md) {
+      @include nsw.media-breakpoint-up(md) {
         padding: 0.75rem 1.125rem;
       }
     }
@@ -846,10 +844,10 @@ $header-height: 151px;
   }
 }
 
-.material-icons-loading .nsw-material-icons {
+.material-icons-loading .nsw-docs__nav .nsw-material-icons {
   visibility: hidden;
 }
 
-.material-icons-loaded .nsw-material-icons {
+.material-icons-loaded .nsw-docs__nav .nsw-material-icons {
   visibility: visible;
 }

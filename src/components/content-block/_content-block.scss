@@ -1,5 +1,4 @@
-@use '../../global/scss/base/functions' as functions;
-@use '../../global/scss/base/mixins' as mixins;
+@use '../../global/scss/tools' as nsw;
 
 .nsw-content-block {
   --nsw-icon-colour-dark: var(--nsw-text-dark);
@@ -8,7 +7,7 @@
   &__title {
     font-weight: var(--nsw-font-bold);
     
-    @include mixins.font-size('lg');
+    @include nsw.font-size('lg');
   }
 
   &__list {
@@ -17,17 +16,17 @@
 
     li {
       margin: 0;
-      padding: functions.rem(8px) 0 functions.rem(8px) functions.rem(14px);
+      padding: nsw.rem(8px) 0 nsw.rem(8px) nsw.rem(14px);
       position: relative;
 
       &::before {
         content: '';
         position: absolute;
-        width: functions.rem(4px);
-        height: functions.rem(4px);
+        width: nsw.rem(4px);
+        height: nsw.rem(4px);
         border-radius: 100%;
         background-color: var(--nsw-text-dark);
-        top: functions.rem(18px);
+        top: nsw.rem(18px);
         left: 0;
       
         .nsw-section--invert & {    
@@ -38,27 +37,27 @@
   }
 
   &__link {
-    margin-top: functions.rem(16px);
+    margin-top: nsw.rem(16px);
   }
 
   &__image {
-    max-height: functions.rem(200px);
-    margin-bottom: functions.rem(24px);
+    max-height: nsw.rem(200px);
+    margin-bottom: nsw.rem(24px);
 
     img {
       width: 100%;
-      height: functions.rem(200px);
+      height: nsw.rem(200px);
       object-fit: cover;      
     }
   }
 
   &__icon {
-    max-width: functions.rem(64px);
-    max-height: functions.rem(64px);
+    max-width: nsw.rem(64px);
+    max-height: nsw.rem(64px);
 
     svg {
-      max-width: functions.rem(64px);
-      max-height: functions.rem(64px);
+      max-width: nsw.rem(64px);
+      max-height: nsw.rem(64px);
 
       .nsw-section--invert & {
         --nsw-icon-colour-dark: var(--nsw-text-light);
