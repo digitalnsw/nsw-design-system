@@ -225,6 +225,51 @@
   }
 }
 
+.nsw-section--invert.nsw-section--brand-supplementary {
+  .nsw-button--light {
+    color: var(--nsw-section-bg);
+    background-color: var(--nsw-white);
+
+    .nsw-material-icons { 
+      color: var(--nsw-section-bg);
+    }
+
+    &:hover {
+      color: var(--nsw-section-bg);
+      background-color: var(--nsw-brand-light);
+
+      a,
+      span,
+      button {
+        color: var(--nsw-section-bg);
+      }
+    }
+  }
+
+  .nsw-button--light-outline {
+    color: var(--nsw-white);
+    border-color: var(--nsw-white);
+
+    span {
+      color: var(--nsw-white);
+    }
+
+    .nsw-material-icons { 
+      color: var(--nsw-white);
+    }
+    
+    &:hover {
+      color: var(--nsw-section-bg);
+      background-color: var(--nsw-white);
+
+      span,
+      button {
+        color: var(--nsw-section-bg);
+      }
+    }
+  }
+}
+
 .nsw-dialog .nsw-button {
   @each $color, $property-map in nsw.$nsw-buttons {
     &--#{"" + $color} {
