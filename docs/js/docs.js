@@ -761,6 +761,10 @@
   /* eslint-disable max-len */
   class ColorSwatches {
     constructor(element, config) {
+      if (element.dataset.initialised) {
+        return;
+      }
+      element.dataset.initialised = 'true';
       this.element = element;
       this.variables = config.variables;
       this.palettes = config.palettes;
