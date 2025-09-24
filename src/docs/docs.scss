@@ -522,6 +522,37 @@ $header-height: 151px;
     align-items: center;
   }
 
+  &__guideline {
+    img {
+      width: 100%;
+    }
+
+    &--do,
+    &--dont,
+    &--heading {
+      text-align: center;
+      font-weight: var(--nsw-font-bold);
+      padding: functions.rem(8px) 0;
+
+      @include mixins.font-size('md');
+    }
+    
+    &--do {
+      color: var(--nsw-palette-green-02);
+      background-color: var(--nsw-palette-green-04);
+    }
+    
+    &--dont {
+      color: var(--nsw-palette-red-02);
+      background-color: var(--nsw-palette-red-04);
+    }
+
+    &--heading {
+      color: var(--nsw-text-dark);
+      background-color: var(--nsw-grey-03);
+    }
+  }
+
   .nsw-in-page-alert + h1 {
     margin-top: functions.rem(24px);
 
