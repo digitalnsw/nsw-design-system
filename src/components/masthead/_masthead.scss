@@ -1,7 +1,5 @@
 @use 'sass:map';
-@use '../../global/scss/base/mixins' as mixins;
-@use '../../global/scss/base/functions' as functions;
-@use '../../global/scss/settings/palette' as palette;
+@use '../../global/scss/tools' as nsw;
 
 .nsw-skip {
   position: fixed;
@@ -14,25 +12,25 @@
     color: var(--nsw-white);
     width: 100%;
     text-decoration: none;
-    padding: functions.rem(8px) functions.rem(16px);
+    padding: nsw.rem(8px) nsw.rem(16px);
     position: absolute;
     top: 0;
     left: 0;
     transform: translateY(-101%);
 
-    @include mixins.z-index('middle');
-    @include mixins.font-size('xxs');
+    @include nsw.z-index('middle');
+    @include nsw.font-size('xxs');
     
     &:focus {
       transform: translateY(0);
       outline: none;
 
       span {
-        @include mixins.nsw-focus($color: var(--nsw-white));
+        @include nsw.nsw-focus($color: var(--nsw-white));
       }
     }
 
-    @include mixins.breakpoint('lg') {
+    @include nsw.breakpoint('lg') {
       text-align: left;
     }
   }
@@ -43,18 +41,18 @@
       color: var(--nsw-palette-grey-900);
 
       &:focus span {
-        @include mixins.nsw-focus();
+        @include nsw.nsw-focus();
       }
     }
   }
 }
 
 .nsw-masthead {
-  padding: functions.rem(8px) 0;
+  padding: nsw.rem(8px) 0;
   background-color: var(--nsw-brand-dark);
   color: var(--nsw-white);
 
-  @include mixins.font-size('xxs');
+  @include nsw.font-size('xxs');
 
   &--light {
     background-color: var(--nsw-off-white);

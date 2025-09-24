@@ -1,18 +1,16 @@
-@use '../../global/scss/base/functions' as functions;
-@use '../../global/scss/base/mixins' as mixins;
-@use '../../global/scss/settings/settings' as settings;
+@use '../../global/scss/tools' as nsw;
 
 .nsw-media {
   width: 100%;
-  margin: functions.rem(16px) auto;
+  margin: nsw.rem(16px) auto;
 
   .nsw-section--invert & {    
     color: var(--nsw-text-dark);
   }
 
-  @include mixins.breakpoint('md') {
-    margin-top: functions.rem(32px);
-    margin-bottom: functions.rem(32px);
+  @include nsw.breakpoint('md') {
+    margin-top: nsw.rem(32px);
+    margin-bottom: nsw.rem(32px);
 
     &--90 {
       width: 90%;
@@ -34,16 +32,16 @@
     &--left-40,
     &--left-30 {
       margin-left: 0;
-      padding-right: functions.rem(16px);
-      margin-right: functions.rem(16px);
+      padding-right: nsw.rem(16px);
+      margin-right: nsw.rem(16px);
       float: left;
     }
 
     &--right-50,
     &--right-40,
     &--right-30 {
-      padding-left: functions.rem(16px);
-      margin-left: functions.rem(16px);
+      padding-left: nsw.rem(16px);
+      margin-left: nsw.rem(16px);
       margin-right: 0;
       float: right;
     }
@@ -93,9 +91,9 @@
 
   figcaption {
     background-color: var(--nsw-off-white);
-    padding: functions.rem(16px);
+    padding: nsw.rem(16px);
     
-    @include mixins.font-size('xs');
+    @include nsw.font-size('xs');
   }
 
   &--light {

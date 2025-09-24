@@ -1,5 +1,4 @@
-@use '../../global/scss/base/functions' as functions;
-@use '../../global/scss/base/mixins' as mixins;
+@use '../../global/scss/tools' as nsw;
 
 .nsw-popover {
   display: none;
@@ -7,17 +6,17 @@
   position: absolute;
   top: 0;
   left: 0;
-  min-width: functions.rem(280px);
-  max-width: functions.rem(280px);
+  min-width: nsw.rem(280px);
+  max-width: nsw.rem(280px);
   border-radius: var(--nsw-border-radius);
   box-shadow: var(--nsw-box-shadow);
   background-color: var(--nsw-white);
 
-  @include mixins.z-index('upper');
+  @include nsw.z-index('upper');
 
   &:focus,
   &:active {
-    @include mixins.nsw-focus(false);
+    @include nsw.nsw-focus(false);
   }
 
   &.active {

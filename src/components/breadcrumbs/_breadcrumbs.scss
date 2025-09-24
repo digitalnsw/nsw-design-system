@@ -1,12 +1,10 @@
 @use 'sass:map';
-@use '../../global/scss/base/functions' as functions;
-@use '../../global/scss/base/mixins' as mixins;
-@use '../../global/scss/settings/settings' as settings;
+@use '../../global/scss/tools' as nsw;
 
 .nsw-breadcrumbs {
-  margin-top: functions.rem(24px);
+  margin-top: nsw.rem(24px);
 
-  @include mixins.font-size('xs');
+  @include nsw.font-size('xs');
 
   ol {
     margin: 0;
@@ -17,7 +15,7 @@
   li:not(:first-child):not(:last-child):not(:nth-last-child(2)):not(.nsw-breadcrumbs__show-more-toggle) {
     display: none;
 
-    @include mixins.breakpoint('md') {
+    @include nsw.breakpoint('md') {
       display: inline-block;
     }
   }
@@ -33,37 +31,42 @@
 
     &::before {
       content: 'keyboard_arrow_right';
-      font-size: functions.rem(map.get(settings.$nsw-icon-sizes, 20));
-      line-height: functions.rem(8px);
+      font-size: nsw.rem(map.get(nsw.$nsw-icon-sizes, 20));
+      line-height: nsw.rem(8px);
       display: inline-block;
       position: relative;
-      top: functions.rem(6px);
+      top: nsw.rem(6px);
 
-      @include mixins.material-icons;
+      @include nsw.material-icons;
     }
   }
 
   .nsw-breadcrumbs__show-more-toggle {
-    @include mixins.breakpoint('md') {
+    @include nsw.breakpoint('md') {
       display: none;
     }
 
     .nsw-breadcrumbs__toggle-button {
+      display: inline-block;
+      cursor: pointer;
+      background-color: transparent;
+      border: 0;
+      -webkit-appearance: none; /* stylelint-disable-line property-no-vendor-prefix */
       font-size: var(--nsw-font-size-xs);
       font-weight: var(--nsw-font-normal);
       color: var(--nsw-text-dark);
-      padding: 0 functions.rem(4px);
+      padding: 0 nsw.rem(4px);
       margin-left: 4px;
       line-height: 24px;
       height: 100%;
-      cursor: pointer;
       
-      @include mixins.link-button;
+      @include nsw.link();
+      @include nsw.font-size('xs');
 
       .nsw-section--invert & {
         color: var(--nsw-text-light);
         
-        @include mixins.link-light;
+        @include nsw.link-light;
       }
 
       & {

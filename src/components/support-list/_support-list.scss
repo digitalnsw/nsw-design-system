@@ -1,30 +1,28 @@
-@use '../../global/scss/base/functions' as functions;
-@use '../../global/scss/base/mixins' as mixins;
-@use '../../global/scss/settings/settings' as settings;
+@use '../../global/scss/tools' as nsw;
 
 .nsw-support-list {
-  margin: functions.rem(20px);
+  margin: nsw.rem(20px);
 
-  @include mixins.breakpoint(settings.$nsw-desktop-breakpoint) {
-    margin: functions.rem(40px);
+  @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+    margin: nsw.rem(40px);
   }
   
   &__header {
-    padding-bottom: functions.rem(8px);
+    padding-bottom: nsw.rem(8px);
     border-bottom: solid 2px var(--nsw-brand-dark);
   }
   
   &__container {
-    margin-top: functions.rem(20px);
+    margin-top: nsw.rem(20px);
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: functions.rem(20px);
+    gap: nsw.rem(20px);
     flex-wrap: wrap;
 
-    @include mixins.breakpoint(settings.$nsw-desktop-breakpoint) {
-      margin-top: functions.rem(40px);
-      gap: functions.rem(40px);
+    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+      margin-top: nsw.rem(40px);
+      gap: nsw.rem(40px);
     }
   }
 
@@ -32,36 +30,36 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: functions.rem(20px);
+    gap: nsw.rem(20px);
 
-    @include mixins.breakpoint(settings.$nsw-desktop-breakpoint) {
-      gap: functions.rem(40px);
+    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+      gap: nsw.rem(40px);
     }
   }
 
   &__gov-departments {
     display: flex;
     flex-direction: column;
-    gap: functions.rem(20px);
+    gap: nsw.rem(20px);
 
     &__labels {
-      margin-top: functions.rem(10px);
+      margin-top: nsw.rem(10px);
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
-      gap: functions.rem(10px);
+      gap: nsw.rem(10px);
     }
 
     &__empty {
       display: contents;
     }
 
-    @include mixins.breakpoint(settings.$nsw-desktop-breakpoint) {
+    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
       flex-direction: row;
-      gap: functions.rem(40px);
+      gap: nsw.rem(40px);
 
       &__labels {
-        gap: functions.rem(20px);
+        gap: nsw.rem(20px);
       }
     }
   }
@@ -70,16 +68,16 @@
     display: flex;
     align-items: center;
 
-    @include mixins.breakpoint(settings.$nsw-desktop-breakpoint) {
+    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
       padding: 0;
     }
 
     svg {
-      height: functions.rem(48px);
+      height: nsw.rem(48px);
       display: block;
 
-      @include mixins.breakpoint(settings.$nsw-desktop-breakpoint) {
-        height: functions.rem(76px);
+      @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+        height: nsw.rem(76px);
       }
     }
   }
@@ -88,19 +86,19 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: functions.rem(20px);
+    gap: nsw.rem(20px);
     flex-wrap: wrap;
 
-    @include mixins.breakpoint(settings.$nsw-desktop-breakpoint) {
-      gap: functions.rem(40px);
+    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+      gap: nsw.rem(40px);
     }
 
     &__item,
     svg {
-      height: functions.rem(48px);
+      height: nsw.rem(48px);
   
-      @include mixins.breakpoint(settings.$nsw-desktop-breakpoint) {
-        height: functions.rem(76px);
+      @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+        height: nsw.rem(76px);
       }
     }
   }
