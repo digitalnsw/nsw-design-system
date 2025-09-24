@@ -1,0 +1,67 @@
+---
+title: Inactive fields
+width: narrow
+no-blank: true
+order: 25
+intro: Avoid using inactive form fields. Render fields only when users can edit them, and present read-only information as plain text.
+meta-description: Avoid using inactive form fields. Render fields only when users can edit them, and present read-only information as plain text.
+meta-index: true
+---
+
+<h2>Principles</h2>
+<ul>
+  <li><strong>Show, don’t suggest.</strong> Present fixed values as text, not as inputs styled to look inactive.</li>
+  <li><strong>Reduce friction.</strong> Keep the tab order clean and efficient by removing controls the user cannot act on.</li>
+  <li><strong>Signal clearly.</strong> Make state obvious through wording, placement, and visual design—not through disabled or inactive controls.</li>
+</ul>
+
+<h2>Preferred patterns</h2>
+
+<h3>Display information as text</h3>
+<p>The simplest and most inclusive way to present information that cannot be edited is to show it as plain text near the related form. This avoids users mistaking an inactive input for something interactive. It also reduces visual clutter, keeps the focus order clean, and shortens the journey for keyboard and screen reader users. Showing data as text makes the status unambiguous: the user can read it, but they are not expected to act on it here.</p>
+<p>Show read-only values as plain text (or in a summary list), and avoid long forms filled with non-editable inputs.</p>
+
+<h4>Examples:</h4>
+<div class="nsw-grid nsw-m-top-md">
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--do">Do</div>
+    <img src="/assets/images/inactive-fields-text-display-do.png" alt="Example of how to display text values outside of form fields">
+  </div>
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--dont">Don't</div>
+    <img src="/assets/images/inactive-fields-text-display-dont.png" alt="Example of how to not display text values within form fields">
+  </div>
+</div>
+
+<h3>Conditionally render relevant fields rather than toggling disabled attributes</h3>
+<p>Rather than use inactive fields for fields that aren't able to be updated by the user, conditionally render the field only when it's needed, rather than showing an inactive input with a <code>disabled</code> attribute.</p>
+
+<p>Render fields only when they're relevant (rather than showing an inactive input with a <code>disabled</code> attribute) and offer a single, clear Edit action for the section; don’t use disabled fields to explain process states or permissions, or pad forms with non-editable inputs.</p>
+
+<h4>Example:</h4>
+<div class="nsw-grid nsw-m-top-sm">
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <h5 class="nsw-docs__guideline--heading nsw-m-bottom-sm">Before selection</h5>
+    <img src="/assets/images/inactive-fields-conditional-render-unchecked.png" alt="Example of how to not display text values within form fields">
+  </div>
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <h5 class="nsw-docs__guideline--heading nsw-m-bottom-sm">After selection</h5>
+    <img src="/assets/images/inactive-fields-conditional-render-checked.png" alt="Example of how to display text values outside of form fields">
+  </div>
+</div>
+
+<h2>Accessibility guidance</h2>
+<ul>
+  <li><strong>Focus order:</strong> Presenting fixed values as text keeps the tab sequence clean and efficient.</li>
+  <li><strong>Announcements:</strong> Text is announced consistently across screen readers, avoiding the variability of input fields.</li>
+</ul>
+
+<h2>Content design</h2>
+<ul>
+  <li><strong>Be explicit:</strong> State clearly why a value cannot be edited, for example “This information is set by your organisation”.</li>
+  <li><strong>Context placement:</strong> Display fixed values close to the related inputs, but outside the form controls.</li>
+  <li><strong>Explain how to change:</strong> Provide helper text if the value must be updated elsewhere, e.g. “Contact support to update your legal name”.</li>
+  <li><strong>Use consistent status wording:</strong> Keep short, scannable tags like “Verified”, “Pending”, or “Not provided”.</li>
+  <li><strong>One clear action:</strong> Offer a single, obvious “Edit” action for the section instead of multiple links.</li>
+  <li><strong>Render conditionally:</strong> Only render fields when relevant; never show inactive or non-editable inputs.</li>
+</ul>
