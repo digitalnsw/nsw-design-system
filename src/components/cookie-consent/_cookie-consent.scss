@@ -1,8 +1,7 @@
-@use '../../global/scss/base/functions' as functions;
-@use '../../global/scss/base/mixins' as mixins;
+@use '../../global/scss/tools' as nsw;
 
 .nsw-cookie-banner {
-  padding: functions.rem(24px) 0;
+  padding: nsw.rem(24px) 0;
   background-color: var(--nsw-brand-light);
   position: fixed;
   bottom: 0;
@@ -12,56 +11,56 @@
 
   .nsw-icon-button {
     position: absolute;
-    top: functions.rem(-8px);
-    right: functions.rem(4px);
+    top: nsw.rem(-8px);
+    right: nsw.rem(4px);
 
     &:hover {
       background-color: var(--nsw-hover-light);
 
-      @include mixins.nsw-hover;
+      @include nsw.nsw-hover;
     }
 
     &:focus {
-      @include mixins.nsw-focus($color: var(--nsw-text-light));
+      @include nsw.nsw-focus($color: var(--nsw-text-light));
     }
   }
 
   &__wrapper {
     position: relative;
     
-    @include mixins.container;
+    @include nsw.container;
   }
 
   &__title {
     font-weight: var(--nsw-font-bold);
 
-    @include mixins.font-size('md');
+    @include nsw.font-size('md');
   }
 
   &__content {
-    margin: functions.rem(16px) functions.rem(36px) functions.rem(24px) 0;
+    margin: nsw.rem(16px) nsw.rem(36px) nsw.rem(24px) 0;
   }
 
   &__buttons-container {
     display: flex;
     flex-wrap: wrap;
-    gap: functions.rem(16px);
-    margin-top: functions.rem(16px);
+    gap: nsw.rem(16px);
+    margin-top: nsw.rem(16px);
     flex-direction: column;
 
-    @include mixins.breakpoint('md') {
+    @include nsw.breakpoint('md') {
       flex-direction: row;
     }
   }
 
   &__cta-group {
     display: flex;
-    gap: functions.rem(16px);
+    gap: nsw.rem(16px);
 
     button {
       flex: 1 auto;
   
-      @include mixins.breakpoint('md') {
+      @include nsw.breakpoint('md') {
         flex: unset;
       }
     }
@@ -72,7 +71,7 @@
     color: var(--nsw-text-dark);
 
     .nsw-cookie-banner__content a {
-      @include mixins.link-dark;
+      @include nsw.link-dark;
     }
 
     .nsw-icon-button {
@@ -105,12 +104,12 @@
   }
 
   .nsw-dialog__content {
-    padding-top: functions.rem(16px);
-    padding-bottom: functions.rem(72px);
+    padding-top: nsw.rem(16px);
+    padding-bottom: nsw.rem(72px);
 
-    @include mixins.breakpoint('md') {
-      padding-top: functions.rem(16px);
-      padding-bottom: functions.rem(4px);
+    @include nsw.breakpoint('md') {
+      padding-top: nsw.rem(16px);
+      padding-bottom: nsw.rem(4px);
     }
   }
 
@@ -122,27 +121,27 @@
     right: 0;
     display: flex;
     flex-direction: column;
-    padding: functions.rem(16px);
-    gap: functions.rem(16px);
+    padding: nsw.rem(16px);
+    gap: nsw.rem(16px);
 
-    @include mixins.breakpoint('md') {
+    @include nsw.breakpoint('md') {
       flex-direction: row;
       justify-content: space-between;
     }
 
-    @include mixins.breakpoint('lg') {
-      padding: functions.rem(32px);
+    @include nsw.breakpoint('lg') {
+      padding: nsw.rem(32px);
     }
 
     button {
-      @include mixins.breakpoint('md') {
+      @include nsw.breakpoint('md') {
         margin-bottom: 0;
       }
 
       &:last-child {
         margin-bottom: 0;
 
-        @include mixins.breakpoint('md') {
+        @include nsw.breakpoint('md') {
           margin-left: 0;
         }
       }
@@ -151,23 +150,23 @@
 
   &__cta-group {
     display: flex;
-    gap: functions.rem(16px);
+    gap: nsw.rem(16px);
     
-    @include mixins.breakpoint('md') {
+    @include nsw.breakpoint('md') {
       flex-direction: row;
     }
 
     button {
       flex: 1;
 
-      @include mixins.breakpoint('md') {
+      @include nsw.breakpoint('md') {
         flex: unset;
       }
     }
   }
 
   &__content-wrapper {
-    padding: functions.rem(8px);
+    padding: nsw.rem(8px);
     overflow: scroll;
     max-height: 280px;
 
@@ -184,10 +183,10 @@
  
   .nsw-tabs__content {
     -webkit-overflow-scrolling: auto;
-    padding: functions.rem(12px) 0 functions.rem(8px) functions.rem(8px);
+    padding: nsw.rem(12px) 0 nsw.rem(8px) nsw.rem(8px);
     border-bottom: 0;
 
-    @include mixins.breakpoint('md') {
+    @include nsw.breakpoint('md') {
       max-height: 320px;
     }
 
@@ -204,24 +203,24 @@
     display: flex;
     flex-direction: column;
     padding-left: 0;
-    gap: functions.rem(8px);
+    gap: nsw.rem(8px);
   }
   
   &__list-item {
     display: flex;
     flex-direction: column;
-    gap: functions.rem(8px);
+    gap: nsw.rem(8px);
 
     label {
       font-weight: var(--nsw-font-bold);
       cursor: pointer;
 
-      @include mixins.font-size('md');
+      @include nsw.font-size('md');
     }
 
     &:not(:nth-child(1)) {
       border-top: 1px solid var(--nsw-grey-04);
-      padding-top: functions.rem(24px);
+      padding-top: nsw.rem(24px);
     }
   }
 

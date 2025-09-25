@@ -1,6 +1,4 @@
-@use '../../global/scss/base/functions' as functions;
-@use '../../global/scss/base/mixins' as mixins;
-@use '../../global/scss/settings/settings' as settings;
+@use '../../global/scss/tools' as nsw;
 
 .nsw-table {
   display: block;
@@ -8,19 +6,19 @@
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   
-  @include mixins.component-spacing();
+  @include nsw.component-spacing();
 
   &:focus {
-    @include mixins.nsw-focus;
+    @include nsw.nsw-focus;
 
     .nsw-section--invert & {   
-      @include mixins.nsw-focus($color: var(--nsw-focus-light));
+      @include nsw.nsw-focus($color: var(--nsw-focus-light));
     }
   }
 
   table {
     margin: 0;
-    min-width: functions.rem(600);
+    min-width: nsw.rem(600);
   }
 
   &--caption-top {
@@ -52,7 +50,7 @@
   }
 }
 
-@each $name, $alignment in settings.$nsw-vertical-align {
+@each $name, $alignment in nsw.$nsw-vertical-align {
   .nsw-table--#{"" + $name} {
     th,
     td {

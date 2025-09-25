@@ -1,32 +1,30 @@
 @use 'sass:map';
-@use '../../global/scss/base/functions' as functions;
-@use '../../global/scss/base/mixins' as mixins;
-@use '../../global/scss/settings/settings' as settings;
+@use '../../global/scss/tools' as nsw;
 
 .nsw-header {
   background-color: var(--nsw-white);
   position: relative;
   border-bottom: solid 1px var(--nsw-grey-04);
 
-  @include mixins.breakpoint(settings.$nsw-desktop-breakpoint) {
+  @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
     border-bottom: 0;
   }
 
   &--simple {
-    @include mixins.breakpoint(settings.$nsw-desktop-breakpoint) {
+    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
       border-bottom: solid 1px var(--nsw-grey-04);
     }
   }
 
   &__container {
-    @include mixins.container;
+    @include nsw.container;
     position: relative;
   }
 
   &__inner {
     position: relative;
 
-    @include mixins.breakpoint(settings.$nsw-desktop-breakpoint) {
+    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
       display: flex;
     }
   }
@@ -38,8 +36,8 @@
       font-weight: var(--nsw-font-bold);
       border-radius: var(--nsw-border-radius);
       color: var(--nsw-brand-dark);
-      width: functions.rem(48px);
-      height: functions.rem(48px);
+      width: nsw.rem(48px);
+      height: nsw.rem(48px);
       background: none;
       border: 0;
       padding: 0;
@@ -51,18 +49,18 @@
       justify-content: center;
       cursor: pointer;
 
-      @include mixins.font-size('xxs');
+      @include nsw.font-size('xxs');
 
       &:hover {
-        @include mixins.nsw-hover;
+        @include nsw.nsw-hover;
       }
 
       &:focus {
-        @include mixins.nsw-focus;
+        @include nsw.nsw-focus;
       }
 
       .nsw-material-icons {
-        font-size: functions.rem(map.get(settings.$nsw-icon-sizes, 24));
+        font-size: nsw.rem(map.get(nsw.$nsw-icon-sizes, 24));
       }
     }
 
@@ -70,11 +68,11 @@
 
   &__menu {
     position: absolute;
-    top: functions.rem(12px);
-    left: functions.rem(-6px);
+    top: nsw.rem(12px);
+    left: nsw.rem(-6px);
 
     button {      
-      @include mixins.breakpoint(settings.$nsw-desktop-breakpoint) {
+      @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
         display: none;
       }
     }
@@ -82,72 +80,72 @@
 
   &__search {
     position: absolute;
-    top: functions.rem(12px);
-    right: functions.rem(-4px);
+    top: nsw.rem(12px);
+    right: nsw.rem(-4px);
 
-    @include mixins.breakpoint(settings.$nsw-desktop-breakpoint) {
+    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
       right: 0;
       top: 50%;
-      margin-top: functions.rem(-24px);
+      margin-top: nsw.rem(-24px);
     }
 
     button {      
-      @include mixins.breakpoint(settings.$nsw-desktop-breakpoint) {
+      @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
         > span:last-child {
-          @include mixins.sr-only;
+          @include nsw.sr-only;
         }
 
         .nsw-material-icons {
-          font-size: functions.rem(map.get(settings.$nsw-icon-sizes, 36));
+          font-size: nsw.rem(map.get(nsw.$nsw-icon-sizes, 36));
         }
       }
     }
   }
 
   &__main {
-    @include mixins.breakpoint(settings.$nsw-desktop-breakpoint) {
+    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
       position: relative;
       display: flex;
       justify-content: flex-start;
       align-items: center;
-      margin: functions.rem(20px) functions.rem(72px) functions.rem(20px) 0;
+      margin: nsw.rem(20px) nsw.rem(72px) nsw.rem(20px) 0;
 
       &:focus-within {
-        @include mixins.nsw-focus;
+        @include nsw.nsw-focus;
       }
     }
 
     .nsw-header__rectangular-logo {
-      @include mixins.breakpoint('lg') {
-        height: functions.rem(60px);
-        margin-top: functions.rem(8px);
-        margin-bottom: functions.rem(8px);
+      @include nsw.breakpoint('lg') {
+        height: nsw.rem(60px);
+        margin-top: nsw.rem(8px);
+        margin-bottom: nsw.rem(8px);
       }
     }
   }
 
   &__waratah {
-    padding: functions.rem(12px) functions.rem(48px);
+    padding: nsw.rem(12px) nsw.rem(48px);
     display: flex;
     justify-content: center;
 
-    @include mixins.breakpoint(settings.$nsw-desktop-breakpoint) {
+    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
       padding: 0;
     }
 
     svg {
-      height: functions.rem(48px);
+      height: nsw.rem(48px);
       display: block;
 
-      @include mixins.breakpoint(settings.$nsw-desktop-breakpoint) {
-        height: functions.rem(76px);
+      @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+        height: nsw.rem(76px);
       }
 
       &.nsw-header__waratah-gov {
-        height: functions.rem(55px);
+        height: nsw.rem(55px);
 
-        @include mixins.breakpoint(settings.$nsw-desktop-breakpoint) {
-          height: functions.rem(76px);
+        @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+          height: nsw.rem(76px);
         }
       }
     }
@@ -166,48 +164,48 @@
       &:focus {
         outline-width: 3px;
 
-        @include mixins.breakpoint(settings.$nsw-desktop-breakpoint) {
+        @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
           outline: none;
         }
       }
 
-      @include mixins.breakpoint(settings.$nsw-desktop-breakpoint) {
-        @include mixins.pseudo-clickable-block;
+      @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+        @include nsw.pseudo-clickable-block;
       }
 
       svg:not(:first-child) {
-        margin-left: functions.rem(24px);
+        margin-left: nsw.rem(24px);
 
-        @include mixins.breakpoint(settings.$nsw-desktop-breakpoint) {
-          margin-left: functions.rem(40px);
+        @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+          margin-left: nsw.rem(40px);
         }
       }      
     }
   }
 
   &__waratah-gov {
-    margin-bottom: functions.rem(-7px);
+    margin-bottom: nsw.rem(-7px);
 
-    @include mixins.breakpoint(settings.$nsw-desktop-breakpoint) {
+    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
       margin-bottom: 0;
     }
 
     .hide {
       display: none;
 
-      @include mixins.breakpoint(settings.$nsw-desktop-breakpoint) {
+      @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
         display: inline;
       }
     }
   }
 
   &__name {
-    padding: functions.rem(12px) 0;
+    padding: nsw.rem(12px) 0;
     color: var(--nsw-brand-dark);
 
-    @include mixins.breakpoint(settings.$nsw-desktop-breakpoint) {
+    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
       padding: 0;
-      margin-left: functions.rem(40px);
+      margin-left: nsw.rem(40px);
     }
   }
 
@@ -217,37 +215,37 @@
     display: flex;
     align-items: center;
 
-    @include mixins.font-size('lg');
+    @include nsw.font-size('lg');
 
-    @include mixins.breakpoint('lg') {
-      line-height: functions.rem(28px);
+    @include nsw.breakpoint('lg') {
+      line-height: nsw.rem(28px);
     }
 
     .nsw-tag {
-      margin-left: functions.rem(24px);
+      margin-left: nsw.rem(24px);
     }
   }
 
   &__description {
     color: var(--nsw-brand-dark);
 
-    @include mixins.font-size('xs');
+    @include nsw.font-size('xs');
   }
 
   &__logo {
     display: flex;
     justify-content: center;
 
-    @include mixins.breakpoint(settings.$nsw-desktop-breakpoint) {
+    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
       justify-content: flex-start;
     }
 
     svg {
-      height: functions.rem(48px);
+      height: nsw.rem(48px);
       display: block;
 
-      @include mixins.breakpoint(settings.$nsw-desktop-breakpoint) {
-        height: functions.rem(76px);
+      @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+        height: nsw.rem(76px);
       }
     }
   }
@@ -258,10 +256,10 @@
     left: 0;
     right: 0;
 
-    @include mixins.breakpoint(settings.$nsw-desktop-breakpoint) {
-      width: functions.rem(394px);
+    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+      width: nsw.rem(394px);
       left: auto;
-      right: functions.rem(16px);
+      right: nsw.rem(16px);
       top: 50%;
       transform: translateY(-50%);
     }
@@ -277,7 +275,7 @@
     > button {
       border-radius: 0;
       
-      @include mixins.breakpoint(settings.$nsw-desktop-breakpoint) {
+      @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
         display: none;
       }
     }
@@ -287,37 +285,37 @@
       button {
         display: none;
         padding: 0;
-        width: functions.rem(48px);
+        width: nsw.rem(48px);
 
-        @include mixins.breakpoint(settings.$nsw-desktop-breakpoint) {
+        @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
           display: flex;
         }
       }
 
       .nsw-material-icons {
-        font-size: functions.rem(map.get(settings.$nsw-icon-sizes, 36));
+        font-size: nsw.rem(map.get(nsw.$nsw-icon-sizes, 36));
       }
     }
 
     input {
       background: var(--nsw-off-white);
-      padding: functions.rem(8px) functions.rem(72px) functions.rem(8px) functions.rem(16px);
+      padding: nsw.rem(8px) nsw.rem(72px) nsw.rem(8px) nsw.rem(16px);
       color: var(--nsw-text-dark);
       width: 100%;
       appearance: none;
       border: 0;
-      height: functions.rem(72px);
+      height: nsw.rem(72px);
       
-      @include mixins.font-size('md');
+      @include nsw.font-size('md');
 
       &:focus {
-        @include mixins.nsw-focus($offset: false);
+        @include nsw.nsw-focus;
       }
 
-      @include mixins.breakpoint(settings.$nsw-desktop-breakpoint) {
+      @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
         border-radius: var(--nsw-border-radius);
-        height: functions.rem(48px);
-        padding: 0 functions.rem(16px);
+        height: nsw.rem(48px);
+        padding: 0 nsw.rem(16px);
       }
     }
   }

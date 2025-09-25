@@ -1,10 +1,8 @@
-@use '../../global/scss/base/functions' as functions;
-@use '../../global/scss/base/mixins' as mixins;
-@use '../../global/scss/settings/settings' as settings;
+@use '../../global/scss/tools' as nsw;
 
 .nsw-form {
   &__select {
-    padding: functions.rem(11px) functions.rem(16px);
+    padding: nsw.rem(11px) nsw.rem(16px);
     border-radius: var(--nsw-border-radius);
     background-color: var(--nsw-white);
     color: var(--nsw-text-dark);
@@ -12,34 +10,41 @@
     vertical-align: middle;
     appearance: none;
     width: 100%;
-    padding-right: functions.rem(48px);
-    background: var(--nsw-white) functions.svg-url(settings.$nsw-form-chevron-down) no-repeat right functions.rem(16px) center;
-    background-size: functions.rem(16px) auto;
+    padding-right: nsw.rem(48px);
+    background: var(--nsw-white) nsw.svg-url(nsw.$nsw-form-chevron-down) no-repeat right nsw.rem(16px) center;
+    background-size: nsw.rem(16px) auto;
     cursor: pointer;
 
-    @include mixins.font-size('sm');
+    @include nsw.font-size('sm');
 
     &:hover:not(.nsw-multi-select__button) {
-      background: functions.svg-url(settings.$nsw-form-chevron-down) no-repeat right functions.rem(16px) center, linear-gradient(var(--nsw-hover), var(--nsw-hover));
-      background-size: functions.rem(16px) auto, auto;
+      background: nsw.svg-url(nsw.$nsw-form-chevron-down) no-repeat right nsw.rem(16px) center, linear-gradient(var(--nsw-hover), var(--nsw-hover));
+      background-size: nsw.rem(16px) auto, auto;
       background-color: var(--nsw-white);
     }
 
     &:focus {
-      @include mixins.nsw-focus;
+      @include nsw.nsw-focus;
 
       .nsw-section--invert & {   
-        @include mixins.nsw-focus($color: var(--nsw-focus-light));
+        @include nsw.nsw-focus($color: var(--nsw-focus-light));
       }
     }
 
-    &:disabled {
-      background: var(--nsw-off-white) functions.svg-url(settings.$nsw-form-chevron-down) no-repeat right functions.rem(16px) center;
-      background-size: functions.rem(16px) auto;
+    &:disabled,
+    &[readonly='true'] {
+      background: var(--nsw-off-white) nsw.svg-url(nsw.$nsw-form-chevron-down) no-repeat right nsw.rem(16px) center;
+      background-size: nsw.rem(16px) auto;
       border-color: var(--nsw-grey-03);
-      color: var(--nsw-grey-03);
+      color: var(--nsw-grey-01);
       cursor: not-allowed;
       opacity: 1;
+      
+      &:hover {
+        background: var(--nsw-off-white) nsw.svg-url(nsw.$nsw-form-chevron-down) no-repeat right nsw.rem(16px) center;
+        background-size: nsw.rem(16px) auto, auto;
+        background-color: var(--nsw-off-white);
+      }
     }
 
     &[aria-invalid='true'],
@@ -48,8 +53,8 @@
       border-width: 2px;
 
       &:hover {
-        background: var(--nsw-status-error-bg) functions.svg-url(settings.$nsw-form-chevron-down) no-repeat right functions.rem(16px) center;
-        background-size: functions.rem(16px) auto;
+        background: var(--nsw-status-error-bg) nsw.svg-url(nsw.$nsw-form-chevron-down) no-repeat right nsw.rem(16px) center;
+        background-size: nsw.rem(16px) auto;
       }
     }
 
@@ -77,10 +82,10 @@
     padding-right: 0.5rem;
 
     .nsw-material-icons {
-      font-size: functions.rem(32px);
+      font-size: nsw.rem(32px);
       line-height: 0.8;
       transform: rotate(0deg);
-      transition: transform settings.$nsw-transition-duration, color settings.$nsw-transition-duration;
+      transition: transform nsw.$nsw-transition-duration, color nsw.$nsw-transition-duration;
       width: 2rem;
     }
 
@@ -114,18 +119,18 @@
   }
 
   &__clear-all-button {
-    margin-top: functions.rem(20px);
+    margin-top: nsw.rem(20px);
     text-decoration: underline;
     cursor: pointer;
     background: 0;
     border: 0;
-    padding: functions.rem(4px) functions.rem(4px) functions.rem(4px) 0;
+    padding: nsw.rem(4px) nsw.rem(4px) nsw.rem(4px) 0;
 
-    @include mixins.link;
-    @include mixins.font-size('sm');
+    @include nsw.link;
+    @include nsw.font-size('sm');
   
     &:focus {
-      @include mixins.nsw-focus;
+      @include nsw.nsw-focus;
     }
   }
 
@@ -164,7 +169,7 @@
     left: 0;
     top: 100%;
     width: 100%;
-    min-width: functions.rem(200px);
+    min-width: nsw.rem(200px);
     max-height: 1px;
     background-color: var(--nsw-white);
     box-shadow: var(--nsw-box-shadow);
@@ -194,15 +199,15 @@
   }
 
   &__all {
-    padding: functions.rem(4px) 0 functions.rem(4px) functions.rem(48px);
-    min-height: functions.rem(32px);
+    padding: nsw.rem(4px) 0 nsw.rem(4px) nsw.rem(48px);
+    min-height: nsw.rem(32px);
     display: block;
     position: relative;
     border: 0;
     background: transparent;
     appearance: none;
     
-    @include mixins.font-size('sm');
+    @include nsw.font-size('sm');
   
     &:focus {
       border: 0;
@@ -211,9 +216,9 @@
   
     &::before {
       content: '';
-      width: functions.rem(32px);
-      height: functions.rem(32px);
-      margin-right: functions.rem(16px);
+      width: nsw.rem(32px);
+      height: nsw.rem(32px);
+      margin-right: nsw.rem(16px);
       border: 1px var(--nsw-grey-01) solid;
       border-radius: var(--nsw-border-radius);
       background-color: var(--nsw-white);
@@ -227,17 +232,17 @@
     &::after {
       content: '';
       position: absolute;
-      width: functions.rem(22px);
-      height: functions.rem(22px);
+      width: nsw.rem(22px);
+      height: nsw.rem(22px);
       background-repeat: no-repeat;
       background-position: center center;
-      background-size: functions.rem(16px) auto;
-      left: functions.rem(5px);
-      top: functions.rem(5px);
+      background-size: nsw.rem(16px) auto;
+      left: nsw.rem(5px);
+      top: nsw.rem(5px);
     }
   
     &:focus::before {
-      @include mixins.nsw-focus;
+      @include nsw.nsw-focus;
     }
   
     &.active {
@@ -246,7 +251,7 @@
       }
   
       &::after {
-        background-image: functions.svg-url(settings.$nsw-form-tick);
+        background-image: nsw.svg-url(nsw.$nsw-form-tick);
         background-color: var(--nsw-brand-dark);
       }
   
