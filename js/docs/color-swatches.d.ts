@@ -15,6 +15,7 @@ declare class ColorSwatches {
     init(): void;
     paletteSelect: any;
     createPaletteSelector(): any;
+    paletteLabel: HTMLLabelElement | undefined;
     createColorSwatches(): HTMLUListElement;
     addEventListeners(): void;
     updateSelectedSwatch(selectedSwatch: any): void;

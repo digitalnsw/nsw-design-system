@@ -555,6 +555,13 @@
     }
     init() {
       if (!this.items) return;
+      if (!this.uid) {
+        if (this.element && this.element.id && !document.getElementById(`${this.element.id}__list`)) {
+          this.uid = `${this.element.id}__list`;
+        } else {
+          this.uid = uniqueId('nsw-carousel__list');
+        }
+      }
       this.initCarouselLayout();
       this.setItemsWidth(true);
       this.insertBefore(this.visibItemsNb);
@@ -574,6 +581,11 @@
         element.setAttribute('aria-label', `${index + 1} of ${itemsArray.length}`);
         element.setAttribute('data-index', index);
       });
+
+      // Ensure the list element has a unique id for a11y bindings
+      if (this.list && !this.list.id) {
+        this.list.id = this.uid;
+      }
       this.carouselCreateContainer();
       const itemStyle = this.items && window.getComputedStyle(this.items[0]);
       const containerStyle = this.listWrapper && window.getComputedStyle(this.listWrapper);
@@ -636,6 +648,12 @@
         this.carouselInitNavigationEvents();
       }
       if (this.controls.length > 0) {
+        // Bind controls to the actual list id to satisfy aria-controls validity
+        if (this.list) {
+          this.controls.forEach(btn => {
+            btn.setAttribute('aria-controls', this.uid);
+          });
+        }
         this.controls[0].addEventListener('click', event => {
           event.preventDefault();
           this.showPrevItems();
@@ -3042,9 +3060,8 @@
   function getAxisLength(axis) {
     return axis === 'y' ? 'height' : 'width';
   }
-  const yAxisSides = /*#__PURE__*/new Set(['top', 'bottom']);
   function getSideAxis(placement) {
-    return yAxisSides.has(getSide(placement)) ? 'y' : 'x';
+    return ['top', 'bottom'].includes(getSide(placement)) ? 'y' : 'x';
   }
   function getAlignmentAxis(placement) {
     return getOppositeAxis(getSideAxis(placement));
@@ -3069,19 +3086,19 @@
   function getOppositeAlignmentPlacement(placement) {
     return placement.replace(/start|end/g, alignment => oppositeAlignmentMap[alignment]);
   }
-  const lrPlacement = ['left', 'right'];
-  const rlPlacement = ['right', 'left'];
-  const tbPlacement = ['top', 'bottom'];
-  const btPlacement = ['bottom', 'top'];
   function getSideList(side, isStart, rtl) {
+    const lr = ['left', 'right'];
+    const rl = ['right', 'left'];
+    const tb = ['top', 'bottom'];
+    const bt = ['bottom', 'top'];
     switch (side) {
       case 'top':
       case 'bottom':
-        if (rtl) return isStart ? rlPlacement : lrPlacement;
-        return isStart ? lrPlacement : rlPlacement;
+        if (rtl) return isStart ? rl : lr;
+        return isStart ? lr : rl;
       case 'left':
       case 'right':
-        return isStart ? tbPlacement : btPlacement;
+        return isStart ? tb : bt;
       default:
         return [];
     }
@@ -3501,22 +3518,16 @@
           const nextIndex = (((_middlewareData$flip2 = middlewareData.flip) == null ? void 0 : _middlewareData$flip2.index) || 0) + 1;
           const nextPlacement = placements[nextIndex];
           if (nextPlacement) {
-            const ignoreCrossAxisOverflow = checkCrossAxis === 'alignment' ? initialSideAxis !== getSideAxis(nextPlacement) : false;
-            if (!ignoreCrossAxisOverflow ||
-            // We leave the current main axis only if every placement on that axis
-            // overflows the main axis.
-            overflowsData.every(d => d.overflows[0] > 0 && getSideAxis(d.placement) === initialSideAxis)) {
-              // Try next placement and re-run the lifecycle.
-              return {
-                data: {
-                  index: nextIndex,
-                  overflows: overflowsData
-                },
-                reset: {
-                  placement: nextPlacement
-                }
-              };
-            }
+            // Try next placement and re-run the lifecycle.
+            return {
+              data: {
+                index: nextIndex,
+                overflows: overflowsData
+              },
+              reset: {
+                placement: nextPlacement
+              }
+            };
           }
 
           // First, find the candidates that fit on the mainAxis side of overflow,
@@ -3562,8 +3573,6 @@
     };
   };
 
-  const originSides = /*#__PURE__*/new Set(['left', 'top']);
-
   // For type backwards-compatibility, the `OffsetOptions` type was also
   // Derivable.
 
@@ -3577,7 +3586,7 @@
     const side = getSide(placement);
     const alignment = getAlignment(placement);
     const isVertical = getSideAxis(placement) === 'y';
-    const mainAxisMulti = originSides.has(side) ? -1 : 1;
+    const mainAxisMulti = ['left', 'top'].includes(side) ? -1 : 1;
     const crossAxisMulti = rtl && isVertical ? -1 : 1;
     const rawValue = evaluate(options, state);
 
@@ -3777,7 +3786,7 @@
         if (checkCrossAxis) {
           var _middlewareData$offse, _middlewareData$offse2;
           const len = mainAxis === 'y' ? 'width' : 'height';
-          const isOriginSide = originSides.has(getSide(placement));
+          const isOriginSide = ['top', 'left'].includes(getSide(placement));
           const limitMin = rects.reference[crossAxis] - rects.floating[len] + (isOriginSide ? ((_middlewareData$offse = middlewareData.offset) == null ? void 0 : _middlewareData$offse[crossAxis]) || 0 : 0) + (isOriginSide ? 0 : computedOffset.crossAxis);
           const limitMax = rects.reference[crossAxis] + rects.reference[len] + (isOriginSide ? 0 : ((_middlewareData$offse2 = middlewareData.offset) == null ? void 0 : _middlewareData$offse2[crossAxis]) || 0) - (isOriginSide ? computedOffset.crossAxis : 0);
           if (crossAxisCoord < limitMin) {
@@ -3838,7 +3847,6 @@
     }
     return value instanceof ShadowRoot || value instanceof getWindow(value).ShadowRoot;
   }
-  const invalidOverflowDisplayValues = /*#__PURE__*/new Set(['inline', 'contents']);
   function isOverflowElement(element) {
     const {
       overflow,
@@ -3846,32 +3854,27 @@
       overflowY,
       display
     } = getComputedStyle$1(element);
-    return /auto|scroll|overlay|hidden|clip/.test(overflow + overflowY + overflowX) && !invalidOverflowDisplayValues.has(display);
+    return /auto|scroll|overlay|hidden|clip/.test(overflow + overflowY + overflowX) && !['inline', 'contents'].includes(display);
   }
-  const tableElements = /*#__PURE__*/new Set(['table', 'td', 'th']);
   function isTableElement(element) {
-    return tableElements.has(getNodeName(element));
+    return ['table', 'td', 'th'].includes(getNodeName(element));
   }
-  const topLayerSelectors = [':popover-open', ':modal'];
   function isTopLayer(element) {
-    return topLayerSelectors.some(selector => {
+    return [':popover-open', ':modal'].some(selector => {
       try {
         return element.matches(selector);
-      } catch (_e) {
+      } catch (e) {
         return false;
       }
     });
   }
-  const transformProperties = ['transform', 'translate', 'scale', 'rotate', 'perspective'];
-  const willChangeValues = ['transform', 'translate', 'scale', 'rotate', 'perspective', 'filter'];
-  const containValues = ['paint', 'layout', 'strict', 'content'];
   function isContainingBlock(elementOrCss) {
     const webkit = isWebKit();
     const css = isElement(elementOrCss) ? getComputedStyle$1(elementOrCss) : elementOrCss;
 
     // https://developer.mozilla.org/en-US/docs/Web/CSS/Containing_block#identifying_the_containing_block
     // https://drafts.csswg.org/css-transforms-2/#individual-transforms
-    return transformProperties.some(value => css[value] ? css[value] !== 'none' : false) || (css.containerType ? css.containerType !== 'normal' : false) || !webkit && (css.backdropFilter ? css.backdropFilter !== 'none' : false) || !webkit && (css.filter ? css.filter !== 'none' : false) || willChangeValues.some(value => (css.willChange || '').includes(value)) || containValues.some(value => (css.contain || '').includes(value));
+    return ['transform', 'translate', 'scale', 'rotate', 'perspective'].some(value => css[value] ? css[value] !== 'none' : false) || (css.containerType ? css.containerType !== 'normal' : false) || !webkit && (css.backdropFilter ? css.backdropFilter !== 'none' : false) || !webkit && (css.filter ? css.filter !== 'none' : false) || ['transform', 'translate', 'scale', 'rotate', 'perspective', 'filter'].some(value => (css.willChange || '').includes(value)) || ['paint', 'layout', 'strict', 'content'].some(value => (css.contain || '').includes(value));
   }
   function getContainingBlock(element) {
     let currentNode = getParentNode(element);
@@ -3889,9 +3892,8 @@
     if (typeof CSS === 'undefined' || !CSS.supports) return false;
     return CSS.supports('-webkit-backdrop-filter', 'none');
   }
-  const lastTraversableNodeNames = /*#__PURE__*/new Set(['html', 'body', '#document']);
   function isLastTraversableNode(node) {
-    return lastTraversableNodeNames.has(getNodeName(node));
+    return ['html', 'body', '#document'].includes(getNodeName(node));
   }
   function getComputedStyle$1(element) {
     return getWindow(element).getComputedStyle(element);
@@ -4196,7 +4198,6 @@
     };
   }
 
-  const absoluteOrFixed = /*#__PURE__*/new Set(['absolute', 'fixed']);
   // Returns the inner client rect, subtracting scrollbars if present.
   function getInnerBoundingClientRect(element, strategy) {
     const clientRect = getBoundingClientRect(element, true, strategy === 'fixed');
@@ -4261,7 +4262,7 @@
       if (!currentNodeIsContaining && computedStyle.position === 'fixed') {
         currentContainingBlockComputedStyle = null;
       }
-      const shouldDropCurrentNode = elementIsFixed ? !currentNodeIsContaining && !currentContainingBlockComputedStyle : !currentNodeIsContaining && computedStyle.position === 'static' && !!currentContainingBlockComputedStyle && absoluteOrFixed.has(currentContainingBlockComputedStyle.position) || isOverflowElement(currentNode) && !currentNodeIsContaining && hasFixedPositionAncestor(element, currentNode);
+      const shouldDropCurrentNode = elementIsFixed ? !currentNodeIsContaining && !currentContainingBlockComputedStyle : !currentNodeIsContaining && computedStyle.position === 'static' && !!currentContainingBlockComputedStyle && ['absolute', 'fixed'].includes(currentContainingBlockComputedStyle.position) || isOverflowElement(currentNode) && !currentNodeIsContaining && hasFixedPositionAncestor(element, currentNode);
       if (shouldDropCurrentNode) {
         // Drop non-containing blocks.
         result = result.filter(ancestor => ancestor !== currentNode);
@@ -4324,12 +4325,6 @@
       scrollTop: 0
     };
     const offsets = createCoords(0);
-
-    // If the <body> scrollbar appears on the left (e.g. RTL systems). Use
-    // Firefox with layout.scrollbar.side = 3 in about:config to test this.
-    function setLeftRTLScrollbarOffset() {
-      offsets.x = getWindowScrollBarX(documentElement);
-    }
     if (isOffsetParentAnElement || !isOffsetParentAnElement && !isFixed) {
       if (getNodeName(offsetParent) !== 'body' || isOverflowElement(documentElement)) {
         scroll = getNodeScroll(offsetParent);
@@ -4339,11 +4334,10 @@
         offsets.x = offsetRect.x + offsetParent.clientLeft;
         offsets.y = offsetRect.y + offsetParent.clientTop;
       } else if (documentElement) {
-        setLeftRTLScrollbarOffset();
+        // If the <body> scrollbar appears on the left (e.g. RTL systems). Use
+        // Firefox with layout.scrollbar.side = 3 in about:config to test this.
+        offsets.x = getWindowScrollBarX(documentElement);
       }
-    }
-    if (isFixed && !isOffsetParentAnElement && documentElement) {
-      setLeftRTLScrollbarOffset();
     }
     const htmlOffset = documentElement && !isOffsetParentAnElement && !isFixed ? getHTMLOffset(documentElement, scroll) : createCoords(0);
     const x = rect.left + scroll.scrollLeft - offsets.x - htmlOffset.x;

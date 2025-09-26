@@ -477,6 +477,30 @@
 
 });
 
+  // --- a11y: strip incorrect role injected by Mapbox attribution ---
+  function stripMapboxAttribRole () {
+    document.querySelectorAll('.mapboxgl-ctrl-attrib-inner[role]').forEach(function (el) {
+      el.removeAttribute('role')
+    })
+  }
+  // run once now
+  stripMapboxAttribRole()
+  // and watch for future injections/updates
+  var mapboxRoleObserver = new MutationObserver(function (mutations) {
+    mutations.forEach(function (m) {
+      m.addedNodes.forEach(function (n) {
+        if (n.nodeType !== 1) return
+        if (n.matches && n.matches('.mapboxgl-ctrl-attrib-inner[role]')) n.removeAttribute('role')
+        if (n.querySelectorAll) {
+          n.querySelectorAll('.mapboxgl-ctrl-attrib-inner[role]').forEach(function (el) {
+            el.removeAttribute('role')
+          })
+        }
+      })
+    })
+  })
+  mapboxRoleObserver.observe(document.body, { childList: true, subtree: true })
+  // --- end a11y patch ---
 </script>
 
 <footer class="nsw-footer">

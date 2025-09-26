@@ -48,6 +48,7 @@ declare class Carousel extends SwipeContent {
     flexSupported: boolean;
     transitionSupported: boolean;
     cssPropertiesSupported: boolean;
+    uid: string | undefined;
     initCarouselLayout(): void;
     carouselCreateContainer(): void;
     setItemsWidth(bool: any): void;

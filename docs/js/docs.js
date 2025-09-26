@@ -784,10 +784,17 @@
     // Initialise the color swatches
     init() {
       this.createColorSwatches(); // Creates the color swatch list first
-      // Create the palette select dropdown before reading URL param
+      // Create the palette select dropdown (and its label) before reading URL param
       this.paletteSelect = this.createPaletteSelector();
-      // Move the select after the swatches
-      this.swatchList.insertAdjacentElement('afterend', this.paletteSelect);
+      if (this.paletteLabel) {
+        // Insert the label immediately after the swatches
+        this.swatchList.insertAdjacentElement('afterend', this.paletteLabel);
+        // Insert the select immediately after the label
+        this.paletteLabel.insertAdjacentElement('afterend', this.paletteSelect);
+      } else {
+        // Fallback: insert the select after the swatches
+        this.swatchList.insertAdjacentElement('afterend', this.paletteSelect);
+      }
       // Now apply any palette from URL
       this.setPaletteFromURL();
       this.addEventListeners();
@@ -799,9 +806,35 @@
     // Creates palette selector (dropdown)
     createPaletteSelector() {
       const existingPaletteSelect = this.element.querySelector('.js-palette-selector');
-      if (existingPaletteSelect) return existingPaletteSelect;
+      const legendId = this.legend && this.legend.id ? this.legend.id : null;
+      if (existingPaletteSelect) {
+        // Ensure existing select has an accessible name and useful attributes
+        if (!existingPaletteSelect.id) {
+          existingPaletteSelect.id = `${this.element.id || 'color-swatches'}-palette`;
+        }
+        if (!existingPaletteSelect.getAttribute('name')) {
+          existingPaletteSelect.setAttribute('name', 'palette');
+        }
+        // Prefer an explicit label, but if none is present in the DOM, fall back to aria-labelledby
+        const hasAriaName = existingPaletteSelect.hasAttribute('aria-label') || existingPaletteSelect.hasAttribute('aria-labelledby');
+        if (!hasAriaName && legendId) {
+          existingPaletteSelect.setAttribute('aria-labelledby', legendId);
+        }
+        return existingPaletteSelect;
+      }
+
+      // Build a new select + visible label
       const paletteSelect = document.createElement('select');
       paletteSelect.classList.add('js-palette-selector', 'nsw-form__select', 'nsw-color-swatches__palette-selector');
+      paletteSelect.id = `${this.element.id || 'color-swatches'}-palette`;
+      paletteSelect.setAttribute('name', 'palette');
+
+      // Visible label (preferred over aria-label). Allow custom text via data attribute
+      const label = document.createElement('label');
+      label.classList.add('nsw-form__label', 'sr-only');
+      label.setAttribute('for', paletteSelect.id);
+      label.textContent = this.element.dataset.paletteLabel || 'Select colour palette';
+      this.paletteLabel = label;
       Object.keys(this.palettes).forEach(palette => {
         const option = document.createElement('option');
         option.value = palette;
