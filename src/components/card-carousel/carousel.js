@@ -1,4 +1,5 @@
 import SwipeContent from './swipe-content'
+import { uniqueId } from '../../global/scripts/helpers/utilities'
 
 /* eslint-disable max-len */
 class Carousel extends SwipeContent {
@@ -58,12 +59,13 @@ class Carousel extends SwipeContent {
 
   init() {
     if (!this.items) return
-    // Stable per-instance id used for aria-controls/linkage
+
     if (!this.uid) {
-      const unique = (typeof crypto !== 'undefined' && crypto.randomUUID)
-        ? crypto.randomUUID()
-        : `${Date.now()}-${Math.floor(Math.random() * 1e6)}`
-      this.uid = `nsw-carousel__list-${unique}`
+      if (this.element && this.element.id && !document.getElementById(`${this.element.id}__list`)) {
+        this.uid = `${this.element.id}__list`
+      } else {
+        this.uid = uniqueId('nsw-carousel__list')
+      }
     }
 
     this.initCarouselLayout()
