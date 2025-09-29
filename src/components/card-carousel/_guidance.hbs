@@ -58,10 +58,39 @@ layout: blank-layout.hbs
 
 <p>If the carousel items number is smaller than the number of visible items, and you want them to be centered in the viewport, add a <code>data-justify-content="on"</code> to the <code>.nsw-carousel</code> item. By default items will be aligned to the left.</p>
 
+<h4>Optional 'view more' link</h4>
+
+<p>Including a 'view more' link below the card carousel can be useful for guiding users to additional related content beyond what is displayed in the carousel.</p>
+
+<p>Research shows that users often look for clear pathways to explore more information, especially when the carousel content is a subset of a larger collection. A well-placed 'view more' link can improve user engagement by providing a straightforward way to access further resources.</p>
+
+<p>Use a 'view more' link when:</p>
+<ul>
+  <li>there is a larger set of related content not fully displayed in the carousel;</li>
+  <li>you want to encourage users to explore more deeply on a related topic or category;</li>
+  <li>you have a dedicated landing page or section that expands on the carousel content.</li>
+</ul>
+
+<p>Avoid using a 'view more' link if:</p>
+<ul>
+  <li>the carousel already displays all relevant items;</li>
+  <li>there is no additional content to link to;</li>
+  <li>the link would lead to unrelated or confusing destinations.</li>
+</ul>
+
+<h5>Link text guidelines</h5>
+
+<ul>
+  <li>Use clear and descriptive link text that indicates what users will find by clicking.</li>
+  <li>Avoid generic phrases like 'click here' or 'more' without context.</li>
+  <li>Examples of good link text include 'View all articles on [topic]', 'See more news updates', or 'Explore related blog posts.'</li>
+  <li>Keep link text concise but meaningful to assist screen reader users and improve accessibility.</li>
+</ul>
+
 <h2>Accessibility</h2>
 <p>All components are responsive and designed to comply with WCAG 2.2 AA accessibility standards. Full compliance depends on using and configuring the components correctly.</p>
 
-<p>The card carousel conforms to the <a href="https://www.w3.org/WAI/ARIA/apg/patterns/carousel">W3C Carousel Design Pattern</a> and includes a <a href="https://www.w3.org/TR/wai-aria-1.2/#dfn-live-region">Live Region</a> that allows screen readers to read content whenever carousel slides change.</p>
+<p>The card carousel conforms to the <a href="https://www.w3.org/WAI/ARIA/apg/patterns/carousel" title="WAI-ARIA Authoring Practices: Carousel pattern" rel="noopener noreferrer">WAI-ARIA Authoring Practices: Carousel pattern</a> and includes a <a href="https://www.w3.org/TR/wai-aria-1.2/#dfn-live-region" title="WAI-ARIA 1.2 specification: Live region definition" rel="noopener noreferrer">WAI-ARIA 1.2: Live region definition</a> that allows screen readers to read content whenever carousel slides change.</p>
 
 <h3>Keyboard Interactions and focus</h3>
 
@@ -76,7 +105,7 @@ layout: blank-layout.hbs
 
 <h3>ARIA attributes</h3>
 <ul>
-  <li>The card carousel container has the role property set to <a href="https://w3c.github.io/aria/#group">group</a> with the property <code>aria-roledescription</code> set to 'carousel'.</li>
-  <li>Each card container has role <a href="https://w3c.github.io/aria/#group">group</a> with the property <code>aria-roledescription</code> set to slide.</li>
+  <li>The card carousel container has the role property set to <a href="https://w3c.github.io/aria/#group" title="ARIA role: group" rel="noopener noreferrer">ARIA role: group</a> with the property <code>aria-roledescription</code> set to 'carousel'.</li>
+  <li>Each card container has role <a href="https://w3c.github.io/aria/#group" title="ARIA role: group" rel="noopener noreferrer">ARIA role: group</a> with the property <code>aria-roledescription</code> set to slide.</li>
   <li>The next slide control, and previous slide control are native button elements.</li>
 </ul>

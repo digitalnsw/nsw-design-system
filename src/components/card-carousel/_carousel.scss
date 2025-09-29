@@ -357,4 +357,36 @@
       display: none;
     }
   }
+
+  &--view-more {
+    // padding: nsw.rem(8px);
+    color: var(--nsw-brand-dark);
+    display: inline-flex;
+    gap: nsw.rem(8px);
+    align-items: center;
+    text-decoration: none;
+    cursor: pointer;
+
+    &:hover {
+      @include nsw.nsw-hover;
+      outline-width: 0;
+    }
+
+    &:focus {
+      outline-width: 3px;
+    }
+
+    span {
+      text-decoration: underline;
+
+      span.nsw-material-icons {
+        bottom: nsw.rem(-5px);
+      }
+    }
+
+    .nsw-material-icons {
+      text-decoration: none;
+      bottom: 0;
+    }
+  }
 }
