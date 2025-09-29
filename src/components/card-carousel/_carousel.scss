@@ -76,10 +76,21 @@
     ul {
       display: flex;
       justify-content: flex-end;
-      gap: 0.25rem;
 
-      @include nsw.breakpoint('md') {
-        gap: 0.375rem;
+      li {
+        margin: nsw.rem(4px) nsw.rem(2px) nsw.rem(2px) nsw.rem(2px);
+
+        @include nsw.breakpoint('md') {
+          margin: nsw.rem(8px) nsw.rem(4px) nsw.rem(4px) nsw.rem(4px);
+        }
+      }
+
+      li:last-child {
+        margin: nsw.rem(4px) 0 nsw.rem(2px) nsw.rem(2px);
+
+        @include nsw.breakpoint('md') {
+          margin: nsw.rem(8px) 0 nsw.rem(4px) nsw.rem(4px);
+        }
       }
     }
   }
