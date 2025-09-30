@@ -84,14 +84,6 @@
           margin: nsw.rem(8px) nsw.rem(4px) nsw.rem(4px) nsw.rem(4px);
         }
       }
-
-      li:last-child {
-        margin: nsw.rem(4px) 0 nsw.rem(2px) nsw.rem(2px);
-
-        @include nsw.breakpoint('md') {
-          margin: nsw.rem(8px) 0 nsw.rem(4px) nsw.rem(4px);
-        }
-      }
     }
   }
 
@@ -264,7 +256,7 @@
         border-radius: var(--nsw-border-radius);
         border: 1px solid var(--nsw-brand-dark);
         text-align: center;
-        margin: 0 nsw.rem(2px);
+        margin: 0 nsw.rem(4px);
 
         &:focus {
           @include nsw.nsw-focus(false);
@@ -359,13 +351,17 @@
   }
 
   &--view-more {
-    // padding: nsw.rem(8px);
+    padding: nsw.rem(8px);
     color: var(--nsw-brand-dark);
     display: inline-flex;
     gap: nsw.rem(8px);
     align-items: center;
     text-decoration: none;
     cursor: pointer;
+
+    @include nsw.breakpoint('md') {
+      padding: 0;
+    }
 
     &:hover {
       @include nsw.nsw-hover;
