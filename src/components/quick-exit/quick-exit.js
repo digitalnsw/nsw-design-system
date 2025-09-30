@@ -38,19 +38,17 @@ export default class QuickExit {
       containerEl.removeChild(existingQuickExit)
     }
 
-    // Normalize theme and apply BEM modifiers accordingly
-    const normalisedTheme = theme.trim().toLowerCase()
+    // Theme (light | dark); default to light
+    const isDarkTheme = String(theme)
+      .trim()
+      .toLowerCase() === 'dark'
 
-    // Create outer wrapper with theme and new tab classes
+    // Wrapper with a single, explicit theme class + data-theme attribute
     const quickExitWrapper = document.createElement('div')
-    quickExitWrapper.className = `nsw-quick-exit ${
-      (normalisedTheme === 'dark' || normalisedTheme === 'inverted')
-        ? 'nsw-quick-exit__dark'
-        : 'nsw-quick-exit__light'
-    }`
-    if (newTab || domWantsNewTab) {
-      quickExitWrapper.classList.add('nsw-quick-exit--newtab')
-    }
+    quickExitWrapper.className = 'nsw-quick-exit'
+    quickExitWrapper.classList.add(isDarkTheme ? 'nsw-quick-exit__dark' : 'nsw-quick-exit__light')
+    quickExitWrapper.setAttribute('data-theme', isDarkTheme ? 'dark' : 'light')
+    if (newTab || domWantsNewTab) quickExitWrapper.classList.add('nsw-quick-exit--newtab')
 
     // Internal wrapper for button and links
     const internalWrapper = document.createElement('div')
@@ -147,5 +145,33 @@ export default class QuickExit {
     } else {
       console.warn('Popover module not available on window.NSW')
     }
+  }
+
+  static fromElement(el) {
+    let opts = {}
+    try {
+      const raw = el.getAttribute('data-options') || '{}'
+      opts = JSON.parse(raw)
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.warn('QuickExit: invalid JSON in data-options')
+    }
+    QuickExit.init(opts)
+  }
+
+  static autoInit() {
+    const nodes = document.querySelectorAll('[data-module="quick-exit"]')
+    nodes.forEach((el) => {
+      if (el.tagName && el.tagName.toLowerCase() === 'button') return
+      QuickExit.fromElement(el)
+    })
+  }
+}
+
+if (typeof document !== 'undefined') {
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => QuickExit.autoInit())
+  } else {
+    QuickExit.autoInit()
   }
 }

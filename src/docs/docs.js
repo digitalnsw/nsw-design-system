@@ -386,33 +386,17 @@ function initDocs() {
     new ColorSwatches(element, accentConfig).init()
   })
 
-  // Initialise Quick Exit
+  // Initialise Quick Exit (module-based)
   const hasQuickExitAPI = () => !!(window.NSW && window.NSW.QuickExit)
 
-  const initQuickExitFrom = (el) => {
-    if (!hasQuickExitAPI()) return
-    const ds = el.dataset || {}
-    window.NSW.QuickExit.init({
-      exitUrl: ds.exitUrl,
-      exitLabel: ds.exitLabel,
-      popover: ds.popover,
-      moreInfoUrl: ds.moreInfoUrl,
-      moreInfoLabel: ds.moreInfoLabel,
-      theme: ds.theme || 'light',
-      eraseCurrentPage: ds.eraseCurrent === 'true',
-      newTab: ds.newtab === 'true',
-    })
-  }
-
-  // 1) Declarative: auto-initialise any parent hook with data-quick-exit (span/div)
-  document.querySelectorAll('.js-quick-exit[data-quick-exit]').forEach(initQuickExitFrom)
-
-  // 2) Delegated: support button demos without data-quick-exit (click-to-mount)
+  // Delegated: button demos use data-module + data-options
   document.addEventListener('click', (evt) => {
-    const btn = evt.target.closest('.js-quick-exit:not([data-quick-exit])')
+    const btn = evt.target.closest('button[data-module="quick-exit"]')
     if (!btn) return
     evt.preventDefault()
-    initQuickExitFrom(btn)
+    if (!hasQuickExitAPI()) return
+    // Use the component helper to read data-options JSON and call init(...)
+    window.NSW.QuickExit.fromElement(btn)
   })
   // --- End Quick Exit ---
 }

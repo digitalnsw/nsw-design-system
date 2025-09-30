@@ -29,25 +29,8 @@ layout: blank-layout.hbs
 <h2>Initialisation</h2>
 <p>The Quick Exit component can be initialised in two ways, depending on your needs:</p>
 
-<h3>1. Declarative initialisation</h3>
-<p>Use <code>data-*</code> attributes directly on your markup. This keeps templates clean and makes demos easy to configure without extra JavaScript.</p>
-{{#>_docs-example hidden="true" open="true" code="html"}}
-&lt;span data-quick-exit
-  data-exit-url="https://www.nsw.gov.au/"
-  data-exit-label="Leave site"
-  data-popover="Quickly leave this site and go to a neutral page"
-  data-more-info-url="https://www.nsw.gov.au/help"
-  data-more-info-label="More info"
-  data-theme="dark"
-  data-erase-current="true"
-  data-newtab="false"&gt;
-&lt;/span&gt;
-{{/_docs-example}}
-
-<p><strong>Note:</strong> On this docs site we also show a button-triggered demo for convenience. In production, prefer the declarative container above so the banner initialises immediately without a user click.</p>
-
-<h3>2. Programmatic initialisation</h3>
-<p>You can call the <code>QuickExit.init()</code> function directly and pass configuration options.</p>
+<h3>1. Programmatic initialisation</h3>
+<p>The preferred method for most implementations is to call the <code>QuickExit.init()</code> function directly and pass configuration options. This approach provides more control when integrating into applications.</p>
 {{#>_docs-example hidden="true" open="true" code="js"}}
 window.NSW.QuickExit.init({
   exitUrl: 'https://www.nsw.gov.au/',
@@ -61,4 +44,24 @@ window.NSW.QuickExit.init({
 })
 {{/_docs-example}}
 
-<p>Both methods achieve the same result. Declarative attributes are best for simple usage and documentation examples, while programmatic initialisation provides more control when integrating into applications.</p>
+<h3>2. Declarative initialisation</h3>
+<p>Alternatively, use the DS-style module hook with a compact JSON options payload. Add <code>data-module="quick-exit"</code> and pass configuration via a single <code>data-options</code> attribute. This is useful for demos or CMS-driven pages where direct JavaScript configuration is less convenient.</p>
+{{#>_docs-example hidden="true" open="true" code="html"}}
+&lt;span
+  data-module="quick-exit"
+  data-options='{
+    "exitUrl": "https://www.nsw.gov.au/",
+    "exitLabel": "Leave site",
+    "popover": "Quickly leave this site and go to a neutral page",
+    "moreInfoUrl": "https://www.nsw.gov.au/help",
+    "moreInfoLabel": "More info",
+    "theme": "dark",
+    "eraseCurrentPage": true,
+    "newTab": false
+  }'&gt;
+&lt;/span&gt;
+{{/_docs-example}}
+
+<p><strong>Note:</strong> On this docs site we show a button-triggered demo for convenience. In production, prefer the programmatic initialisation above for better control and immediate banner setup without requiring a user click.</p>
+
+<p>Both methods achieve the same result. Programmatic initialisation provides more control when integrating into applications, while declarative attributes are best for simple usage and documentation examples.</p>

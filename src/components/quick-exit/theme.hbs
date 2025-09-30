@@ -13,15 +13,18 @@ model:  json/quick-exit.json
 <li>Opens in same tab</li>
 </ul>
 
-<button class="nsw-button nsw-button--dark js-quick-exit"
-  data-theme="light"
-  data-erase-current="true"
-  data-newtab="false"
-  data-exit-url="{{model.exitUrl}}"
-  data-exit-label="{{model.exitLabel}}"
-  data-popover="{{model.popover}}"
-  data-more-info-url="{{model.moreInfoUrl}}"
-  data-more-info-label="{{model.moreInfoLabel}}"
+<button class="nsw-button nsw-button--dark"
+  data-module="quick-exit"
+  data-options='{
+    "exitUrl": "{{model.exitUrl}}",
+    "exitLabel": "{{model.exitLabel}}",
+    "moreInfoUrl": "{{model.moreInfoUrl}}",
+    "moreInfoLabel": "{{model.moreInfoLabel}}",
+    "popover": "{{model.popover}}",
+    "theme": "light",
+    "eraseCurrentPage": true,
+    "newTab": false
+  }'
   type="button"
   aria-expanded="true">Initialise banner</button>
 
@@ -32,15 +35,18 @@ model:  json/quick-exit.json
 <li>Opens in same tab</li>
 </ul>
 
-<button class="nsw-button nsw-button--dark js-quick-exit"
-  data-theme="dark"
-  data-erase-current="true"
-  data-newtab="false"
-  data-exit-url="{{model.exitUrl}}"
-  data-exit-label="{{model.exitLabel}}"
-  data-popover="{{model.popover}}"
-  data-more-info-url="{{model.moreInfoUrl}}"
-  data-more-info-label="{{model.moreInfoLabel}}"
+<button class="nsw-button nsw-button--dark"
+  data-module="quick-exit"
+  data-options='{
+    "exitUrl": "{{model.exitUrl}}",
+    "exitLabel": "{{model.exitLabel}}",
+    "moreInfoUrl": "{{model.moreInfoUrl}}",
+    "moreInfoLabel": "{{model.moreInfoLabel}}",
+    "popover": "{{model.popover}}",
+    "theme": "dark",
+    "eraseCurrentPage": true,
+    "newTab": false
+  }'
   type="button"
   aria-expanded="true">Initialise banner</button>
 
@@ -50,33 +56,38 @@ model:  json/quick-exit.json
 <li>Does not erase current page</li>
 <li>Opens in new tab</li>
 </ul>
-<button class="nsw-button nsw-button--dark js-quick-exit"
-  data-theme="light"
-  data-erase-current="false"
-  data-newtab="true"
-  data-exit-url="{{model.exitUrl}}"
-  data-exit-label="{{model.exitLabel}}"
-  data-popover="{{model.popover}}"
-  data-more-info-url="{{model.moreInfoUrl}}"
-  data-more-info-label="{{model.moreInfoLabel}}"
+<button class="nsw-button nsw-button--dark"
+  data-module="quick-exit"
+  data-options='{
+    "exitUrl": "{{model.exitUrl}}",
+    "exitLabel": "{{model.exitLabel}}",
+    "moreInfoUrl": "{{model.moreInfoUrl}}",
+    "moreInfoLabel": "{{model.moreInfoLabel}}",
+    "popover": "{{model.popover}}",
+    "theme": "light",
+    "eraseCurrentPage": false,
+    "newTab": true
+  }'
   type="button"
   aria-expanded="true">Initialise banner</button>
 
-<h3>Variation 4 - Declarative span</h3>
+<h3>Variation 4 - Declarative (module)</h3>
 <ul class="nsw-m-bottom-md">
   <li>Initialises automatically on page load</li>
-  <li>Uses declarative <code>js-quick-exit</code> class</li>
+  <li>Uses <code>data-module="quick-exit"</code> with a compact <code>data-options</code> JSON</li>
 </ul>
-<span class="js-quick-exit"
-  data-quick-exit="true"
-  data-theme="light"
-  data-erase-current="true"
-  data-newtab="false"
-  data-exit-url="{{model.exitUrl}}"
-  data-exit-label="{{model.exitLabel}}"
-  data-popover="{{model.popover}}"
-  data-more-info-url="{{model.moreInfoUrl}}"
-  data-more-info-label="{{model.moreInfoLabel}}">
-</span>
+{{!-- <span
+  data-module="quick-exit"
+  data-options='{
+    "exitUrl": "{{model.exitUrl}}",
+    "exitLabel": "{{model.exitLabel}}",
+    "moreInfoUrl": "{{model.moreInfoUrl}}",
+    "moreInfoLabel": "{{model.moreInfoLabel}}",
+    "popover": "{{model.popover}}",
+    "theme": "light",
+    "eraseCurrentPage": true,
+    "newTab": false
+  }'>
+</span> --}}
 {{/_layout-container}}
 {{/_theme}}
