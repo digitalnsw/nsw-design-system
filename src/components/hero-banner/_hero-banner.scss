@@ -1,6 +1,4 @@
-@use '../../global/scss/base/functions' as functions;
-@use '../../global/scss/base/mixins' as mixins;
-@use '../../global/scss/settings/settings' as settings;
+@use '../../global/scss/tools' as nsw;
 
 .nsw-hero-banner {
   background-color: var(--nsw-white);
@@ -17,86 +15,86 @@
   }
 
   &__container {
-    @include mixins.container;
+    @include nsw.container;
   }
 
   &__wrapper {
-    @include mixins.grid();
+    @include nsw.grid();
   }
 
   &__content {
-    @include mixins.column-default();
-    @include mixins.column(7, md);
-    @include mixins.column(6, xl);
+    @include nsw.column-default();
+    @include nsw.column(7, md);
+    @include nsw.column(6, xl);
 
-    @include mixins.breakpoint('xs') { 
-      padding-top: functions.rem(32px);
-      padding-bottom: functions.rem(32px);
+    @include nsw.breakpoint('xs') { 
+      padding-top: nsw.rem(32px);
+      padding-bottom: nsw.rem(32px);
     }
 
-    @include mixins.breakpoint('md') { 
-      min-height: functions.rem(260px);
+    @include nsw.breakpoint('md') { 
+      min-height: nsw.rem(260px);
       display: flex;
       flex-direction: column;
       justify-content: center;
     }
 
-    @include mixins.breakpoint('lg') { 
-      padding-top: functions.rem(88px);
-      padding-bottom: functions.rem(88px);
+    @include nsw.breakpoint('lg') { 
+      padding-top: nsw.rem(88px);
+      padding-bottom: nsw.rem(88px);
     }
 
     .nsw-hero-banner--wide & {
-      @include mixins.column(8, md);
-      @include mixins.column(7, xl);      
+      @include nsw.column(8, md);
+      @include nsw.column(7, xl);      
     } 
 
     .nsw-hero-banner--featured & {
-      @include mixins.breakpoint('md') { 
+      @include nsw.breakpoint('md') { 
         min-height: 0;
         display: block;
       }   
     } 
 
     .nsw-button {
-      margin: functions.rem(24px) 0 0 0;
+      margin: nsw.rem(24px) 0 0 0;
     }
 
     .nsw-intro {
-      margin: functions.rem(8px) 0 0 0;
+      margin: nsw.rem(8px) 0 0 0;
 
-      @include mixins.breakpoint('md') {
-        margin-top: functions.rem(16px);
+      @include nsw.breakpoint('md') {
+        margin-top: nsw.rem(16px);
       }    
     }
   }
 
   &__links {
-    @include mixins.column-default();
-    @include mixins.column(4, md);
-    @include mixins.column(4, xl, 1);
+    @include nsw.column-default();
+    @include nsw.column(4, md);
+    @include nsw.column(4, xl, 1);
 
-    @include mixins.breakpoint('xs') { 
-      margin-top: functions.rem(-8px);
+    @include nsw.breakpoint('xs') { 
+      margin-top: nsw.rem(-8px);
       padding-top: 0;
-      padding-bottom: functions.rem(32px);
+      padding-bottom: nsw.rem(32px);
     }
 
-    @include mixins.breakpoint('md') { 
+    @include nsw.breakpoint('md') { 
       margin-top: 0;
-      padding-top: functions.rem(32px);
+      padding-top: nsw.rem(32px);
     }
 
-    @include mixins.breakpoint('lg') { 
-      padding-top: functions.rem(88px);
-      padding-bottom: functions.rem(88px);
+    @include nsw.breakpoint('lg') { 
+      padding-top: nsw.rem(88px);
+      padding-bottom: nsw.rem(88px);
     }
   }
 
   &__list {
-    @include mixins.z-index;
+    @include nsw.z-index;
     border-left: solid 2px var(--nsw-brand-accent);
-    padding-left: functions.rem(16px);
+    padding-left: nsw.rem(16px);
     position: relative;
 
     ul {
@@ -107,7 +105,7 @@
 
     li {
       display: block;
-      margin-top: functions.rem(16px);
+      margin-top: nsw.rem(16px);
 
       &:first-child {
         margin-top: 0;
@@ -116,19 +114,19 @@
 
     a:not(.nsw-icon-button) {
       line-height: 1.5;
-      padding: functions.rem(8px) functions.rem(24px) functions.rem(8px) 0;
+      padding: nsw.rem(8px) nsw.rem(24px) nsw.rem(8px) 0;
       
-      @include mixins.breakpoint('md') {
-        padding: functions.rem(4px) functions.rem(4px) functions.rem(4px) 0;
+      @include nsw.breakpoint('md') {
+        padding: nsw.rem(4px) nsw.rem(4px) nsw.rem(4px) 0;
       }
     }
   }
 
   &__sub-title {
-    margin: 0 0 functions.rem(16px) 0;
+    margin: 0 0 nsw.rem(16px) 0;
     font-weight: var(--nsw-font-bold);
     
-    @include mixins.font-size(md);
+    @include nsw.font-size(md);
   }
 
   &__box {
@@ -138,16 +136,16 @@
     top: 0;
     bottom: 0;
     width: 41.66667%;
-    padding-left: functions.rem(settings.$grid-gutters*2);
+    padding-left: nsw.rem(nsw.$grid-gutters*2);
     overflow: hidden;
 
-    @include mixins.breakpoint('md') {
+    @include nsw.breakpoint('md') {
       display: flex;
     }
 
-    @include mixins.breakpoint('xl') {
+    @include nsw.breakpoint('xl') {
       width: 50%;
-      padding-left: calc(var(--nsw-container-width)/12 + #{functions.rem(settings.$grid-gutters)}*2);
+      padding-left: calc(var(--nsw-container-width)/12 + #{nsw.rem(nsw.$grid-gutters)}*2);
     }
   }
 
@@ -163,7 +161,7 @@
     background-color: var(--nsw-brand-light);
     position: relative;
 
-    @include mixins.breakpoint('md') {
+    @include nsw.breakpoint('md') {
       display: block;
       width: 100%;
     }
@@ -173,8 +171,8 @@
       position: absolute;
       top: 0;
       bottom: 0;
-      left: functions.rem(-16px);
-      width: functions.rem(32px);
+      left: nsw.rem(-16px);
+      width: nsw.rem(32px);
       background-color: var(--nsw-brand-supplementary);
     }
   }
@@ -202,7 +200,7 @@
       color: var(--nsw-text-light);
 
       a {
-        @include mixins.link-light;
+        @include nsw.link-light;
       }
     }
 
@@ -212,9 +210,9 @@
   }
 
   &--lines {
-    border-bottom: functions.rem(32px) solid var(--nsw-brand-light);
+    border-bottom: nsw.rem(32px) solid var(--nsw-brand-light);
 
-    @include mixins.breakpoint('md') {
+    @include nsw.breakpoint('md') {
       border: 0;
     }
 
@@ -225,15 +223,15 @@
     &::after {
       visibility: hidden;
 
-      @include mixins.breakpoint('md') {
+      @include nsw.breakpoint('md') {
         visibility: visible;
       }
     }
 
     .nsw-hero-banner__container {
-      border-bottom: functions.rem(16px) solid var(--nsw-brand-supplementary);
+      border-bottom: nsw.rem(16px) solid var(--nsw-brand-supplementary);
 
-      @include mixins.breakpoint('md') {
+      @include nsw.breakpoint('md') {
         border: 0;
       }
     }
@@ -241,9 +239,9 @@
     .nsw-hero-banner__box {
       width: 25%;
 
-      @include mixins.breakpoint('xl') {
+      @include nsw.breakpoint('xl') {
         width: 50%;
-        padding-left: calc(var(--nsw-container-width)/4 + #{functions.rem(settings.$grid-gutters)}*2);
+        padding-left: calc(var(--nsw-container-width)/4 + #{nsw.rem(nsw.$grid-gutters)}*2);
       }
     }
   }

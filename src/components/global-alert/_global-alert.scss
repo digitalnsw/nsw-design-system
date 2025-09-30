@@ -1,43 +1,42 @@
-@use '../../global/scss/base/functions' as functions;
-@use '../../global/scss/base/mixins' as mixins;
+@use '../../global/scss/tools' as nsw;
 
 .nsw-global-alert {
-  padding: functions.rem(24px) 0;
+  padding: nsw.rem(24px) 0;
   background-color: var(--nsw-status-info);
   color: var(--nsw-text-light);
 
   .nsw-icon-button {
     position: absolute;
-    top: functions.rem(-8px);
-    right: functions.rem(4px);
+    top: nsw.rem(-8px);
+    right: nsw.rem(4px);
     color: var(--nsw-text-light);
 
     &:hover {
-      @include mixins.nsw-hover;
+      @include nsw.nsw-hover;
       background-color: var(--nsw-hover-light);
     }
 
     &:focus {
-      @include mixins.nsw-focus($color: var(--nsw-text-light));
+      @include nsw.nsw-focus($color: var(--nsw-text-light));
     }
   }
 
   &__wrapper {
-    @include mixins.container;
+    @include nsw.container;
     position: relative;
   }
 
   &__title {
     font-weight: var(--nsw-font-bold);
     
-    @include mixins.font-size('md');
+    @include nsw.font-size('md');
   }
 
   &__content {
-    margin-right: functions.rem(36px);
+    margin-right: nsw.rem(36px);
 
     a {
-      @include mixins.link-light;
+      @include nsw.link-light;
     }
   }
 
@@ -54,7 +53,7 @@
     color: var(--nsw-text-dark);
 
     .nsw-global-alert__content a {
-      @include mixins.link-dark;
+      @include nsw.link-dark;
     }
 
     .nsw-icon-button {

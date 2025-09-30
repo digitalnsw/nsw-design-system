@@ -1,4 +1,5 @@
 import SwipeContent from './swipe-content'
+import { uniqueId } from '../../global/scripts/helpers/utilities'
 
 /* eslint-disable max-len */
 class Carousel extends SwipeContent {
@@ -59,6 +60,14 @@ class Carousel extends SwipeContent {
   init() {
     if (!this.items) return
 
+    if (!this.uid) {
+      if (this.element && this.element.id && !document.getElementById(`${this.element.id}__list`)) {
+        this.uid = `${this.element.id}__list`
+      } else {
+        this.uid = uniqueId('nsw-carousel__list')
+      }
+    }
+
     this.initCarouselLayout()
     this.setItemsWidth(true)
     this.insertBefore(this.visibItemsNb)
@@ -80,6 +89,11 @@ class Carousel extends SwipeContent {
       element.setAttribute('aria-label', `${index + 1} of ${itemsArray.length}`)
       element.setAttribute('data-index', index)
     })
+
+    // Ensure the list element has a unique id for a11y bindings
+    if (this.list && !this.list.id) {
+      this.list.id = this.uid
+    }
 
     this.carouselCreateContainer()
 
@@ -161,6 +175,12 @@ class Carousel extends SwipeContent {
     }
 
     if (this.controls.length > 0) {
+      // Bind controls to the actual list id to satisfy aria-controls validity
+      if (this.list) {
+        this.controls.forEach((btn) => {
+          btn.setAttribute('aria-controls', this.uid)
+        })
+      }
       this.controls[0].addEventListener('click', (event) => {
         event.preventDefault()
         this.showPrevItems()

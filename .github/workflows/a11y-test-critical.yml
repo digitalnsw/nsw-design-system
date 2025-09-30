@@ -1,0 +1,104 @@
+name: a11y-test - fail on critical
+concurrency:
+  group: a11y-${{ github.ref }}
+  cancel-in-progress: true
+on:
+  pull_request:
+  push:
+    branches: [ master ]
+
+permissions:
+  contents: read
+
+jobs:
+  a11y-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - run: npm ci
+      - run: npx playwright install --with-deps
+
+      - name: Build site (try common scripts)
+        shell: bash
+        run: |
+          set -e
+          npm run build 2>/dev/null || npm run starterkit:build 2>/dev/null || npm run docs:build 2>/dev/null || npm run site:build 2>/dev/null || echo "No build script matched; continuing"
+
+      - name: Detect output directory
+        id: outdir
+        shell: bash
+        run: |
+          set -e
+          OUTDIR=""
+          for d in dist build public docs site; do
+            if [ -d "$d" ]; then OUTDIR="$d"; break; fi
+          done
+          echo "outdir=${OUTDIR:-dist}" >> "$GITHUB_OUTPUT"
+          echo "Using outdir=${OUTDIR:-dist}"
+
+      - name: Start preview server (PR build)
+        run: npx http-server "${{ steps.outdir.outputs.outdir }}" -p 3000 --silent &
+
+      - name: Wait for server
+        run: npx wait-on http://localhost:3000
+
+      - name: Run a11y accessibility checks (PR build on localhost)
+        run: npm run test:a11y
+        env:
+          FAIL_ON: critical
+          OUTPUT_DIR: ${{ runner.temp }}
+          FULL_SWEEP: true
+          BASE_URL: http://localhost:3000
+          DISABLE_PROXY: true
+
+      - name: Summarise a11y criticals (step summary)
+        if: always()
+        shell: bash
+        env:
+          OUTPUT_DIR: ${{ runner.temp }}
+          FAIL_ON: critical
+        run: |
+          node - <<'NODE'
+          const fs = require('fs');
+          const path = (process.env.OUTPUT_DIR || '.') + '/axe-results-fail.json';
+          const data = fs.existsSync(path) ? JSON.parse(fs.readFileSync(path, 'utf8')) : [];
+
+          let total = 0, byRule = {}, byUrl = [];
+          for (const p of data) {
+            const vio = Array.isArray(p.violations) ? p.violations : [];
+            total += vio.length;
+            byUrl.push([p.url || '(unknown)', vio.length]);
+            for (const v of vio) {
+              const id = (v.id || 'unknown');
+              byRule[id] = (byRule[id] || 0) + 1;
+            }
+          }
+
+          byUrl.sort((a,b) => b[1] - a[1]);
+          const topPages = byUrl.slice(0, 10)
+            .map(([u,c]) => '| ' + c + ' | ' + u + ' |').join('\n');
+          const topRules = Object.entries(byRule).sort((a,b) => b[1] - a[1]).slice(0, 10)
+            .map(([id,c]) => '| ' + id + ' | ' + c + ' |').join('\n');
+
+          const lines = [
+            '## a11y critical summary',
+            '**Fail threshold:** ' + (process.env.FAIL_ON || 'critical'),
+            '**Total pages with failing groups:** ' + data.length,
+            '**Total failing groups:** ' + total,
+            '',
+            '### Top rules',
+            '| Rule | Count |','|---|---|',
+            topRules || '| (none) | 0 |',
+            '',
+            '### Top pages',
+            '| Failing groups | URL |','|---:|---|',
+            topPages || '| 0 | (none) |'
+          ];
+          const md = lines.join('\n');
+          fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY || 'summary.md', md);
+          console.log(md);
+          NODE

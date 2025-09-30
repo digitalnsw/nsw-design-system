@@ -1,10 +1,13 @@
 {
   "name": "nsw-design-system",
-  "version": "3.22.5",
+  "version": "3.22.7",
   "description": "Design system for Digital NSW",
   "main": "dist/js/main.js",
   "types": "dist/js/main.d.ts",
   "style": "dist/css/main.css",
+  "exports": {
+    "./tools": "./src/global/scss/tools/_index.scss"
+  },
   "files": [
     "dist/{css,js}/**/*.{css,d.ts,js,map}",
     "src/{components,patterns,styles,core}/**/*.{scss,js}",
@@ -37,7 +40,9 @@
     "release:patch": "npm run bump:patch && npm run starterkit:build && npm run changelog:build",
     "release-local:major": "npm run bump:major && redrun starterkit:build surge changelog:build commit git-tag -s && npm publish",
     "release-local:minor": "npm run bump:minor && redrun starterkit:build surge changelog:build commit git-tag -s && npm publish",
-    "release-local:patch": "npm run bump:patch && redrun starterkit:build surge changelog:build commit git-tag -s && npm publish"
+    "release-local:patch": "npm run bump:patch && redrun starterkit:build surge changelog:build commit git-tag -s && npm publish",
+    "test:a11y": "node a11y-test.js",
+    "test:a11y-local": "DISABLE_PROXY=true BASE_URL=http://localhost:3000 FULL_SWEEP=true node a11y-test.js"
   },
   "keywords": [
     "design system"
@@ -56,6 +61,7 @@
     "@rollup/plugin-node-resolve": "^15.0.2",
     "auto-changelog": "^2.4.0",
     "autoprefixer": "^9.7.5",
+    "axe-core": "^4.10.2",
     "browser-sync": "^3.0.2",
     "cssnano": "^6.0.0",
     "del": "^5.1.0",
@@ -93,6 +99,7 @@
     "metalsmith-in-place": "^4.4.1",
     "metalsmith-layouts": "^2.3.1",
     "metalsmith-register-helpers": "^0.4.1",
+    "playwright": "^1.50.0",
     "postcss-normalize": "^10.0.1",
     "redrun": "^10.0.2",
     "rollup": "^3.20.6",

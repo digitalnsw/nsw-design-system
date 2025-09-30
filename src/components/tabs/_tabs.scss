@@ -1,19 +1,18 @@
-@use '../../global/scss/base/functions' as functions;
-@use '../../global/scss/base/mixins' as mixins;
+@use '../../global/scss/tools' as nsw;
 
 .nsw-tabs {
-  @include mixins.component-spacing();
+  @include nsw.component-spacing();
 
   &__list-wrapper {
     overflow: hidden;
-    height: functions.rem(48px);
+    height: nsw.rem(48px);
     background-color: var(--nsw-off-white);
 
     .nsw-section--invert & {    
       background-color: rgba(var(--nsw-white-rgb), 0.15);
     }
 
-    @include mixins.breakpoint('md') {
+    @include nsw.breakpoint('md') {
       background-color: transparent;
 
       .nsw-section--invert & {    
@@ -24,7 +23,7 @@
 
   &__list {
     margin: 0;
-    padding: 0 0 functions.rem(20px) 0;
+    padding: 0 0 nsw.rem(20px) 0;
     list-style: none;
     display: flex;
     position: relative;
@@ -36,16 +35,16 @@
     }
 
     a {
-      @include mixins.z-index;
+      @include nsw.z-index;
       display: block;
-      padding: functions.rem(12px) functions.rem(16px);
+      padding: nsw.rem(12px) nsw.rem(16px);
       position: relative;
       text-decoration: none;
       color: var(--nsw-brand-dark);
       height: 100%;
 
       &:hover {
-        @include mixins.nsw-hover;
+        @include nsw.nsw-hover;
         outline-width: 0;
       }
 
@@ -83,13 +82,13 @@
   }
 
   &__content {
-    padding: functions.rem(24px) functions.rem(16px);
+    padding: nsw.rem(24px) nsw.rem(16px);
     border-bottom: solid 1px var(--nsw-grey-04);
     border-top: solid 2px var(--nsw-grey-04);
     margin-top: -2px;
 
     &:focus {
-      @include mixins.nsw-focus;
+      @include nsw.nsw-focus;
 
       .nsw-section--invert & {    
         outline-color: var(--nsw-white);

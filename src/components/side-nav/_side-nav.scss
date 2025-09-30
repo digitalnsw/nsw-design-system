@@ -1,6 +1,4 @@
-@use '../../global/scss/base/functions' as functions;
-@use '../../global/scss/base/mixins' as mixins;
-@use '../../global/scss/settings/settings' as settings;
+@use '../../global/scss/tools' as nsw;
 
 .nsw-side-nav {
   position: relative;
@@ -24,15 +22,15 @@
     border-top: solid 1px var(--nsw-grey-04);
 
     li a { /* stylelint-disable-line selector-max-compound-selectors */
-      padding-left: functions.rem(24px);
+      padding-left: nsw.rem(24px);
     }
 
     li li a { /* stylelint-disable-line selector-max-compound-selectors */
-      padding-left: functions.rem(32px);
+      padding-left: nsw.rem(32px);
     }
 
     li li li a { /* stylelint-disable-line selector-max-compound-selectors */
-      padding-left: functions.rem(48px);
+      padding-left: nsw.rem(48px);
     }
 
     &.active {
@@ -47,14 +45,14 @@
     display: block;
     text-decoration: none;
     color: var(--nsw-text-dark);
-    padding: functions.rem(16px);
+    padding: nsw.rem(16px);
 
     &:hover {
-      @include mixins.nsw-hover;
+      @include nsw.nsw-hover;
       outline-width: 0;
 
       .nsw-section--invert & {    
-        @include mixins.nsw-hover-light;
+        @include nsw.nsw-hover-light;
         outline-width: 0;
       }
     }
@@ -67,7 +65,7 @@
       background-color: var(--nsw-off-white);
       
       .nsw-section--invert & {    
-        @include mixins.nsw-hover-light;
+        @include nsw.nsw-hover-light;
       }
     }
 
@@ -85,7 +83,7 @@
 
     a {
       font-weight: var(--nsw-font-bold);
-      padding: functions.rem(8px) 0;
+      padding: nsw.rem(8px) 0;
     }
 
     + ul {
@@ -105,17 +103,17 @@
     background-color: var(--nsw-off-white);
     width: 100%;
     border: 0;
-    padding: functions.rem(16px);
+    padding: nsw.rem(16px);
     display: flex;
     align-items: center;
     justify-content: space-between;
     text-align: left;
     cursor: pointer;
-    transition: background-color settings.$nsw-transition-duration, color settings.$nsw-transition-duration;
-    top: functions.rem(16px);
+    transition: background-color nsw.$nsw-transition-duration, color nsw.$nsw-transition-duration;
+    top: nsw.rem(16px);
     position: sticky;
     
-    @include mixins.font-size('md');
+    @include nsw.font-size('md');
 
     &:hover:enabled {
       background-color: var(--nsw-brand-dark);
@@ -123,7 +121,7 @@
     }
 
     &:focus {
-      @include mixins.nsw-focus;
+      @include nsw.nsw-focus;
     }
 
     .material-icons {
@@ -167,7 +165,7 @@
     display: none;
   }
 
-  @include mixins.breakpoint('lg') {
+  @include nsw.breakpoint('lg') {
     &__header,
     &__content {
       display: block;

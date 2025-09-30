@@ -1,7 +1,5 @@
 @use 'sass:map';
-@use '../../global/scss/base/functions' as functions;
-@use '../../global/scss/base/mixins' as mixins;
-@use '../../global/scss/settings/settings' as settings;
+@use '../../global/scss/tools' as nsw;
 
 .nsw-link {
   &--button {
@@ -9,11 +7,11 @@
     border: 0;
     padding: 0;
 
-    @include mixins.link;
-    @include mixins.font-size('sm');
+    @include nsw.link;
+    @include nsw.font-size('sm');
 
     &.nsw-small {
-      @include mixins.font-size('xs');
+      @include nsw.font-size('xs');
     }
   }
 
@@ -28,18 +26,18 @@
 
     .nsw-material-icons,
     svg {
-      font-size: functions.rem(map.get(settings.$nsw-icon-sizes, 20));
-      line-height: functions.rem(10px);
+      font-size: nsw.rem(map.get(nsw.$nsw-icon-sizes, 20));
+      line-height: nsw.rem(10px);
       position: relative;
-      bottom: functions.rem(-5px);
+      bottom: nsw.rem(-5px);
       text-decoration: none;
 
       &:first-child {
-        margin-right: functions.rem(4px);
+        margin-right: nsw.rem(4px);
       }
 
       &:last-child {
-        margin-left: functions.rem(4px);
+        margin-left: nsw.rem(4px);
       }
     }
   }

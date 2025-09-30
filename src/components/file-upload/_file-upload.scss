@@ -1,8 +1,7 @@
-@use '../../global/scss/base/functions' as functions;
-@use '../../global/scss/base/mixins' as mixins;
+@use '../../global/scss/tools' as nsw;
 
 .nsw-file-upload {
-  margin-top: functions.rem(8px);
+  margin-top: nsw.rem(8px);
   display: block;
 
   &__label {
@@ -24,7 +23,7 @@
     }
     
     &:focus + .nsw-file-upload__label {
-      @include mixins.nsw-focus;
+      @include nsw.nsw-focus;
     }
   }
 
@@ -41,15 +40,15 @@
 
   &__item {
     display: flex;
-    max-width: functions.rem(500px);
+    max-width: nsw.rem(500px);
     align-items: center;
     justify-content: space-between;
     background-color: var(--nsw-off-white);
     border-radius: var(--nsw-border-radius);
-    padding: functions.rem(8px);
+    padding: nsw.rem(8px);
 
     &:not(:last-child) {
-      margin-bottom: functions.rem(8px);
+      margin-bottom: nsw.rem(8px);
     }
 
     .nsw-section--invert & {    
@@ -58,19 +57,19 @@
     }
 
     .nsw-icon-button {
-      @include mixins.link-dark();
+      @include nsw.link-dark();
       cursor: pointer;
 
       &:hover {
         .nsw-section--invert & {    
-          @include mixins.nsw-hover();
+          @include nsw.nsw-hover();
         }
       }
     }
   }
 
   &__item-filename {
-    margin-left: functions.rem(8px);
+    margin-left: nsw.rem(8px);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
