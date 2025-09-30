@@ -385,6 +385,36 @@ function initDocs() {
   document.querySelectorAll('.js-color-swatch[data-mode="accent-only"]').forEach((element) => {
     new ColorSwatches(element, accentConfig).init()
   })
+
+  // Initialise Quick Exit
+  const hasQuickExitAPI = () => !!(window.NSW && window.NSW.QuickExit)
+
+  const initQuickExitFrom = (el) => {
+    if (!hasQuickExitAPI()) return
+    const ds = el.dataset || {}
+    window.NSW.QuickExit.init({
+      exitUrl: ds.exitUrl,
+      exitLabel: ds.exitLabel,
+      popover: ds.popover,
+      moreInfoUrl: ds.moreInfoUrl,
+      moreInfoLabel: ds.moreInfoLabel,
+      theme: ds.theme || 'light',
+      eraseCurrentPage: ds.eraseCurrent === 'true',
+      newTab: ds.newtab === 'true',
+    })
+  }
+
+  // 1) Declarative: auto-initialise any parent hook with data-quick-exit (span/div)
+  document.querySelectorAll('.js-quick-exit[data-quick-exit]').forEach(initQuickExitFrom)
+
+  // 2) Delegated: support button demos without data-quick-exit (click-to-mount)
+  document.addEventListener('click', (evt) => {
+    const btn = evt.target.closest('.js-quick-exit:not([data-quick-exit])')
+    if (!btn) return
+    evt.preventDefault()
+    initQuickExitFrom(btn)
+  })
+  // --- End Quick Exit ---
 }
 
 initDocs()

@@ -6,104 +6,139 @@ export default class QuickExit {
     moreInfoUrl = '',
     moreInfoLabel = 'More Information',
     theme = 'light',
+    newTab = false,
+    eraseCurrentPage = false,
   } = {}) {
+    // Use the shared sticky container (owned by sticky-container.js)
     const containerEl = document.querySelector('.js-sticky-container')
-
-    // Accessibility: Ensure that a landmark or region (e.g. a banner) is used for the sticky container.
     if (!containerEl) {
-      console.warn('Sticky container not found')
+      // Ensure sticky-container.js is loaded before QuickExit
+      // eslint-disable-next-line no-console
+      console.warn('QuickExit: .js-sticky-container not found. Load sticky-container.js before initialising QuickExit.')
       return
     }
 
-    // Remove any existing Quick Exit instance to allow dynamic replacement.
+    // Support declarative opt-in via class (preferred) or data attribute
+    const domWantsNewTab = (containerEl && containerEl.getAttribute('data-quick-exit-newtab') === 'true')
+      || document.body.classList.contains('quick-exit-newtab')
+
+    // Declarative opt-in/out for erasing current page history entry:
+    // Accept either data-quick-exit-erasecurrentpage="true" or data-quick-exit-erase-current-page="true"
+    // Or a body class "quick-exit-erase-current"
+    const domWantsErase = (containerEl
+      && (
+        containerEl.getAttribute('data-quick-exit-erasecurrentpage') === 'true'
+        || containerEl.getAttribute('data-quick-exit-erase-current-page') === 'true'
+      ))
+      || document.body.classList.contains('quick-exit-erase-current')
+
+    // Remove existing Quick Exit instance to allow re-initialisation
     const existingQuickExit = containerEl.querySelector('.nsw-quick-exit')
     if (existingQuickExit) {
       containerEl.removeChild(existingQuickExit)
     }
 
-    // Normalise the theme value for reliable comparison.
+    // Normalize theme and apply BEM modifiers accordingly
     const normalisedTheme = theme.trim().toLowerCase()
 
-    // Create an outer wrapper element for the Quick Exit component.
-    // Accessibility: Consider assigning a role (e.g. "complementary") if appropriate.
+    // Create outer wrapper with theme and new tab classes
     const quickExitWrapper = document.createElement('div')
     quickExitWrapper.className = `nsw-quick-exit ${
       (normalisedTheme === 'dark' || normalisedTheme === 'inverted')
         ? 'nsw-quick-exit__dark'
         : 'nsw-quick-exit__light'
     }`
+    if (newTab || domWantsNewTab) {
+      quickExitWrapper.classList.add('nsw-quick-exit--newtab')
+    }
 
-    // Create an internal wrapper element with the specified class.
+    // Internal wrapper for button and links
     const internalWrapper = document.createElement('div')
     internalWrapper.className = 'nsw-quick-exit__wrapper'
 
-    // Create the Quick Exit button (main CTA).
+    // Main Quick Exit button with click behaviour for new tab or erase history
     const quickExitBtn = document.createElement('button')
     quickExitBtn.className = 'js-quick-exit nsw-button nsw-button--danger'
     quickExitBtn.textContent = exitLabel
-    // Accessibility: Add an aria-label for clarity.
     quickExitBtn.setAttribute('aria-label', exitLabel)
-    quickExitBtn.addEventListener('click', (e) => {
-      e.preventDefault()
-      window.location.href = exitUrl
+    quickExitBtn.addEventListener('click', (evt) => {
+      evt.preventDefault()
+      const openInNewTab = newTab || quickExitWrapper.classList.contains('nsw-quick-exit--newtab') || domWantsNewTab
+      const shouldErase = eraseCurrentPage || domWantsErase
+      if (openInNewTab) {
+        // Open exit URL in new tab and optionally erase current page history
+        window.open(exitUrl, '_blank', 'noopener')
+        if (shouldErase && window.history && window.history.replaceState) {
+          window.history.replaceState(null, '', '/')
+        }
+        try {
+          window.open('', '_self')
+          window.close()
+        } catch (err) {
+          // ignore
+        }
+        if (!document.hidden && shouldErase) {
+          window.location.replace('/')
+        }
+      } else if (shouldErase) {
+        // Replace current history entry and redirect without adding to history
+        if (window.history && window.history.replaceState) {
+          window.history.replaceState(null, '', '/')
+        }
+        window.location.replace(exitUrl)
+      } else {
+        // Navigate normally, preserving history
+        window.location.assign(exitUrl)
+      }
     })
     internalWrapper.appendChild(quickExitBtn)
 
-    // Add a "What's this?" popover element (if popover text is provided).
+    // Create popover trigger and content if popover text is provided
     if (popover) {
-      // Create a popover trigger element as an anchor for underlined link styling.
       const whatsThisLink = document.createElement('a')
       whatsThisLink.className = 'nsw-quick-exit__popover js-popover'
       whatsThisLink.href = '#'
       whatsThisLink.textContent = "What's this?"
-      // Accessibility: Provide an explicit aria-label to describe the purpose of the link.
       whatsThisLink.setAttribute('aria-label', 'More information about quick exit')
-      // Generate a unique ID for the popover content.
       const popoverId = `popover-${Date.now()}`
       whatsThisLink.setAttribute('aria-controls', popoverId)
       whatsThisLink.setAttribute('aria-expanded', 'false')
-      // Set required data attributes per the NSW Design System popover.
       whatsThisLink.setAttribute('data-popover-position', 'top')
       whatsThisLink.setAttribute('data-popover-gap', '24')
-      // Prevent default link behaviour on click.
-      whatsThisLink.addEventListener('click', (e) => {
-        e.preventDefault()
+      whatsThisLink.addEventListener('click', (evt) => {
+        evt.preventDefault()
       })
 
-      // Create the popover content element.
+      // Popover content element for additional information
       const popoverContent = document.createElement('div')
       popoverContent.id = popoverId
       popoverContent.className = 'nsw-popover'
-      // Accessibility: Ensure that the popover content is announced by screen readers.
       popoverContent.innerHTML = `<div class="nsw-p-sm"><p>${popover}</p></div>`
 
-      // Append the popover trigger and content to the internal wrapper.
       internalWrapper.appendChild(whatsThisLink)
       internalWrapper.appendChild(popoverContent)
     }
 
-    // Optionally add the More Information link.
+    // Optional More Information link
     if (moreInfoUrl) {
       const moreInfoLink = document.createElement('a')
       moreInfoLink.className = 'js-more-info nsw-link'
       moreInfoLink.textContent = moreInfoLabel
       moreInfoLink.href = moreInfoUrl
-      // Accessibility: Provide an aria-label if necessary.
       moreInfoLink.setAttribute('aria-label', moreInfoLabel)
       internalWrapper.appendChild(moreInfoLink)
     }
 
-    // Append the internal wrapper to the outer wrapper.
     quickExitWrapper.appendChild(internalWrapper)
 
-    // Append the entire Quick Exit component to the sticky container.
+    // Append Quick Exit component to sticky container
     containerEl.appendChild(quickExitWrapper)
 
-    // Ensure page content is not overlapped by the sticky container.
+    // Adjust body padding to prevent content overlap by sticky container
     const stickyHeight = quickExitWrapper.getBoundingClientRect().height
     document.body.style.paddingBottom = `${stickyHeight}px`
 
-    // Initialise any popovers on the Quick Exit component (e.g. the "What's this?" element).
+    // Initialise NSW Popover if available
     if (window.NSW && window.NSW.Popover) {
       const popoverTriggers = quickExitWrapper.querySelectorAll('.js-popover')
       popoverTriggers.forEach((el) => {

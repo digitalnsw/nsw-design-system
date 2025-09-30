@@ -25,3 +25,40 @@ layout: blank-layout.hbs
 <p>All components are responsive and designed to comply with WCAG 2.2 AA accessibility standards. Full compliance depends on using and configuring the components correctly.</p>
 <h3>Obstruction of content</h3>
 <p>The quick exit link must not obstruct critical page content. When placed in a sticky container, ensure that sufficient space is reserved at the bottom of the page so that all content remains fully accessible and readable. This is achieved by adding a bottom padding equal to the height of the sticky container.</p>
+
+<h2>Initialisation</h2>
+<p>The Quick Exit component can be initialised in two ways, depending on your needs:</p>
+
+<h3>1. Declarative initialisation</h3>
+<p>Use <code>data-*</code> attributes directly on your markup. This keeps templates clean and makes demos easy to configure without extra JavaScript.</p>
+{{#>_docs-example hidden="true" open="true" code="html"}}
+&lt;span data-quick-exit
+  data-exit-url="https://www.nsw.gov.au/"
+  data-exit-label="Leave site"
+  data-popover="Quickly leave this site and go to a neutral page"
+  data-more-info-url="https://www.nsw.gov.au/help"
+  data-more-info-label="More info"
+  data-theme="dark"
+  data-erase-current="true"
+  data-newtab="false"&gt;
+&lt;/span&gt;
+{{/_docs-example}}
+
+<p><strong>Note:</strong> On this docs site we also show a button-triggered demo for convenience. In production, prefer the declarative container above so the banner initialises immediately without a user click.</p>
+
+<h3>2. Programmatic initialisation</h3>
+<p>You can call the <code>QuickExit.init()</code> function directly and pass configuration options.</p>
+{{#>_docs-example hidden="true" open="true" code="js"}}
+window.NSW.QuickExit.init({
+  exitUrl: 'https://www.nsw.gov.au/',
+  exitLabel: 'Leave site',
+  popover: 'Quickly leave this site and go to a neutral page',
+  moreInfoUrl: 'https://www.nsw.gov.au/help',
+  moreInfoLabel: 'More info',
+  theme: 'dark',
+  eraseCurrentPage: true,
+  newTab: false,
+})
+{{/_docs-example}}
+
+<p>Both methods achieve the same result. Declarative attributes are best for simple usage and documentation examples, while programmatic initialisation provides more control when integrating into applications.</p>

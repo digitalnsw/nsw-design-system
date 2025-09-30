@@ -6,58 +6,77 @@ model:  json/quick-exit.json
 
 {{#>_theme}}
 {{#>_layout-container}}
-<h3>Light</h3>
-<button class="nsw-button nsw-button--dark js-quick-exit" data-theme="light" type="button" aria-expanded="true">Initialise banner</button>
+<h3>Variation 1 - Light theme</h3>
+<ul class="nsw-m-bottom-md">
+<li>Light theme</li>
+<li>Erases current page when clicked</li>
+<li>Opens in same tab</li>
+</ul>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  var quickExitBtns = document.querySelectorAll('.js-quick-exit')
-  // Assume the first button is for light theme:
-  if (quickExitBtns[0]) {
-    quickExitBtns[0].addEventListener('click', function(e) {
-      e.preventDefault()
-      if (window.NSW && window.NSW.QuickExit) {
-        window.NSW.QuickExit.init({
-          exitUrl: "{{model.exitUrl}}",
-          exitLabel: "{{model.exitLabel}}",
-          popover: "{{model.popover}}",
-          moreInfoUrl: "{{model.moreInfoUrl}}",
-          moreInfoLabel: "{{model.moreInfoLabel}}",
-          theme: "light"
-        })
-      } else {
-        console.error('QuickExit not found on window.NSW')
-      }
-    })
-  }
-})
-</script>
+<button class="nsw-button nsw-button--dark js-quick-exit"
+  data-theme="light"
+  data-erase-current="true"
+  data-newtab="false"
+  data-exit-url="{{model.exitUrl}}"
+  data-exit-label="{{model.exitLabel}}"
+  data-popover="{{model.popover}}"
+  data-more-info-url="{{model.moreInfoUrl}}"
+  data-more-info-label="{{model.moreInfoLabel}}"
+  type="button"
+  aria-expanded="true">Initialise banner</button>
 
-<h3>Dark</h3>
-<button class="nsw-button nsw-button--dark js-quick-exit" data-theme="dark" type="button" aria-expanded="true">Initialise banner</button>
+<h3>Variation 2 - Dark theme</h3>
+<ul class="nsw-m-bottom-md">
+<li>Dark theme</li>
+<li>Erases current page when clicked</li>
+<li>Opens in same tab</li>
+</ul>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  var quickExitBtns = document.querySelectorAll('.js-quick-exit')
-  // Assume the second button is for dark theme:
-  if (quickExitBtns[1]) {
-    quickExitBtns[1].addEventListener('click', function(e) {
-      e.preventDefault()
-      if (window.NSW && window.NSW.QuickExit) {
-        window.NSW.QuickExit.init({
-          exitUrl: "{{model.exitUrl}}",
-          exitLabel: "{{model.exitLabel}}",
-          popover: "{{model.popover}}",
-          moreInfoUrl: "{{model.moreInfoUrl}}",
-          moreInfoLabel: "{{model.moreInfoLabel}}",
-          theme: "dark"
-        })
-      } else {
-        console.error('QuickExit not found on window.NSW')
-      }
-    })
-  }
-})
-</script>
+<button class="nsw-button nsw-button--dark js-quick-exit"
+  data-theme="dark"
+  data-erase-current="true"
+  data-newtab="false"
+  data-exit-url="{{model.exitUrl}}"
+  data-exit-label="{{model.exitLabel}}"
+  data-popover="{{model.popover}}"
+  data-more-info-url="{{model.moreInfoUrl}}"
+  data-more-info-label="{{model.moreInfoLabel}}"
+  type="button"
+  aria-expanded="true">Initialise banner</button>
+
+<h3>Variation 3 - New tab</h3>
+<ul class="nsw-m-bottom-md">
+<li>Light theme</li>
+<li>Does not erase current page</li>
+<li>Opens in new tab</li>
+</ul>
+<button class="nsw-button nsw-button--dark js-quick-exit"
+  data-theme="light"
+  data-erase-current="false"
+  data-newtab="true"
+  data-exit-url="{{model.exitUrl}}"
+  data-exit-label="{{model.exitLabel}}"
+  data-popover="{{model.popover}}"
+  data-more-info-url="{{model.moreInfoUrl}}"
+  data-more-info-label="{{model.moreInfoLabel}}"
+  type="button"
+  aria-expanded="true">Initialise banner</button>
+
+<h3>Variation 4 - Declarative span</h3>
+<ul class="nsw-m-bottom-md">
+  <li>Initialises automatically on page load</li>
+  <li>Uses declarative <code>js-quick-exit</code> class</li>
+</ul>
+<span class="js-quick-exit"
+  data-quick-exit="true"
+  data-theme="light"
+  data-erase-current="true"
+  data-newtab="false"
+  data-exit-url="{{model.exitUrl}}"
+  data-exit-label="{{model.exitLabel}}"
+  data-popover="{{model.popover}}"
+  data-more-info-url="{{model.moreInfoUrl}}"
+  data-more-info-label="{{model.moreInfoLabel}}">
+</span>
 {{/_layout-container}}
 {{/_theme}}
