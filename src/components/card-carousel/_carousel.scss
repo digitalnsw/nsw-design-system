@@ -75,7 +75,14 @@
 
     ul {
       display: flex;
+      align-items: flex-end;
       justify-content: flex-end;
+
+      li.nsw-carousel__title {
+        margin-left: 0;
+        margin-bottom: 0;
+        margin-inline-end: auto;
+      }
 
       li {
         margin: nsw.rem(4px) nsw.rem(2px) nsw.rem(2px) nsw.rem(2px);
@@ -188,6 +195,10 @@
       opacity: 0.5;
       box-shadow: none;
       border: 2px solid rgba(var(--nsw-palette-blue-01-rgb), 0.2);
+
+      svg > polyline {
+        stroke: rgba(var(--nsw-palette-blue-01-rgb), 0.2);
+      }
     }
     
     .nsw-icon {
