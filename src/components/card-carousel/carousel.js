@@ -58,7 +58,7 @@ class Carousel extends SwipeContent {
   }
 
   applyTitleSpacer() {
-    // Append a class to the first <li> in nav ul if it contains an <h2> or <h3>
+    // Prefer <h2>. <h3> is tolerated as a graceful fallback (not recommended).
     const navUls = this.element.querySelectorAll('nav ul')
     navUls.forEach((ul) => {
       const firstLi = ul.querySelector('li:first-child')
