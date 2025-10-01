@@ -2,9 +2,8 @@ export default class QuickExit {
   static init({
     exitUrl = 'https://www.nsw.gov.au/',
     exitLabel = 'Quick exit',
-    popover = '',
-    moreInfoUrl = '',
-    moreInfoLabel = 'More Information',
+    title = 'Quickly leave this site',
+    description = 'Use the button or press the <kbd>Esc</kbd> key 2 times. Quick exit doesn\'t clear your browser history.',
     theme = 'light',
     newTab = false,
     eraseCurrentPage = false,
@@ -54,10 +53,29 @@ export default class QuickExit {
     const internalWrapper = document.createElement('div')
     internalWrapper.className = 'nsw-quick-exit__wrapper'
 
+    const contentWrapper = document.createElement('div')
+    contentWrapper.className = 'nsw-quick-exit__content'
+
+    const headingEl = document.createElement('h3')
+    headingEl.className = 'nsw-quick-exit__title'
+    headingEl.textContent = title
+
+    const descEl = document.createElement('p')
+    descEl.className = 'nsw-quick-exit__description'
+    descEl.innerHTML = description
+
+    contentWrapper.appendChild(headingEl)
+    contentWrapper.appendChild(descEl)
+
     // Main Quick Exit button with click behaviour for new tab or erase history
     const quickExitBtn = document.createElement('button')
-    quickExitBtn.className = 'js-quick-exit nsw-button nsw-button--danger'
+    quickExitBtn.className = 'js-quick-exit nsw-quick-exit__cta'
     quickExitBtn.textContent = exitLabel
+    // Add east arrow icon after text content
+    const iconEl = document.createElement('div')
+    iconEl.className = 'material-icons nsw-material-icons'
+    iconEl.textContent = 'east'
+    quickExitBtn.appendChild(iconEl)
     quickExitBtn.setAttribute('aria-label', exitLabel)
     quickExitBtn.addEventListener('click', (evt) => {
       evt.preventDefault()
@@ -89,43 +107,8 @@ export default class QuickExit {
         window.location.assign(exitUrl)
       }
     })
+    internalWrapper.appendChild(contentWrapper)
     internalWrapper.appendChild(quickExitBtn)
-
-    // Create popover trigger and content if popover text is provided
-    if (popover) {
-      const whatsThisLink = document.createElement('a')
-      whatsThisLink.className = 'nsw-quick-exit__popover js-popover'
-      whatsThisLink.href = '#'
-      whatsThisLink.textContent = "What's this?"
-      whatsThisLink.setAttribute('aria-label', 'More information about quick exit')
-      const popoverId = `popover-${Date.now()}`
-      whatsThisLink.setAttribute('aria-controls', popoverId)
-      whatsThisLink.setAttribute('aria-expanded', 'false')
-      whatsThisLink.setAttribute('data-popover-position', 'top')
-      whatsThisLink.setAttribute('data-popover-gap', '24')
-      whatsThisLink.addEventListener('click', (evt) => {
-        evt.preventDefault()
-      })
-
-      // Popover content element for additional information
-      const popoverContent = document.createElement('div')
-      popoverContent.id = popoverId
-      popoverContent.className = 'nsw-popover'
-      popoverContent.innerHTML = `<div class="nsw-p-sm"><p>${popover}</p></div>`
-
-      internalWrapper.appendChild(whatsThisLink)
-      internalWrapper.appendChild(popoverContent)
-    }
-
-    // Optional More Information link
-    if (moreInfoUrl) {
-      const moreInfoLink = document.createElement('a')
-      moreInfoLink.className = 'js-more-info nsw-link'
-      moreInfoLink.textContent = moreInfoLabel
-      moreInfoLink.href = moreInfoUrl
-      moreInfoLink.setAttribute('aria-label', moreInfoLabel)
-      internalWrapper.appendChild(moreInfoLink)
-    }
 
     quickExitWrapper.appendChild(internalWrapper)
 
@@ -135,16 +118,6 @@ export default class QuickExit {
     // Adjust body padding to prevent content overlap by sticky container
     const stickyHeight = quickExitWrapper.getBoundingClientRect().height
     document.body.style.paddingBottom = `${stickyHeight}px`
-
-    // Initialise NSW Popover if available
-    if (window.NSW && window.NSW.Popover) {
-      const popoverTriggers = quickExitWrapper.querySelectorAll('.js-popover')
-      popoverTriggers.forEach((el) => {
-        new window.NSW.Popover(el).init()
-      })
-    } else {
-      console.warn('Popover module not available on window.NSW')
-    }
   }
 
   static fromElement(el) {
