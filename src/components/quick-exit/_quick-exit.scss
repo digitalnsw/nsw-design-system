@@ -16,19 +16,20 @@
     position: relative;
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     justify-content: space-between;
-    gap: nsw.rem(16px);
+    gap: nsw.rem(8px);
     padding: 0;
 
     @include nsw.breakpoint('lg') {
       height: 120px;
-      gap: nsw.rem(64px);
     }
   }
 
   &__content {
     display: none;
+    flex: 1 1 auto;
+    min-width: 0;
     
     @include nsw.breakpoint('lg') {
       display: block;
@@ -63,6 +64,9 @@
     text-decoration: none;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    flex: 0 0 auto;
+    white-space: nowrap;
+    margin-left: auto;
 
     &:hover,
     &:focus {
