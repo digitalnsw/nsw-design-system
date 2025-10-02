@@ -1,5 +1,15 @@
 /* eslint-disable */
 const HAS_DOCUMENT = typeof document !== 'undefined'
+
+function escapeHTML (txt) {
+  // Escape only the critical characters to prevent HTML interpretation
+  // This is linear-time and avoids complex regexes
+  const str = String(txt || '')
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+}
 // Clean and optionally whitelist HTML into a safe set of tags with no attributes.
 // Usage:
 //  - cleanHTML(str) -> returns safe HTML string
@@ -14,8 +24,8 @@ const HAS_DOCUMENT = typeof document !== 'undefined'
 //  - All attributes are stripped from allowed elements to avoid XSS via attributes
 function baseCleanHTML (str, nodes, opts = {}) {
   if (!HAS_DOCUMENT) {
-    // In non-DOM environments, return a plain-text approximation
-    return nodes ? null : String(str || '').replace(/<[^>]*>/g, '')
+    // In non-DOM environments, return safely-escaped text (no HTML interpretation)
+    return nodes ? null : escapeHTML(str)
   }
 
   const { allowedTags = null } = opts
@@ -37,7 +47,7 @@ function baseCleanHTML (str, nodes, opts = {}) {
       if (
         val.startsWith('javascript:') ||
         val.startsWith('vbscript:') ||
-        val.startsWith('data:text/html')
+        val.startsWith('data:')
       ) return true
     }
     if (name && name.toLowerCase().startsWith('on')) return true
