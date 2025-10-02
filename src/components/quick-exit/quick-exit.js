@@ -47,6 +47,9 @@ export default class QuickExit {
     quickExitWrapper.className = 'nsw-quick-exit'
     quickExitWrapper.classList.add(isDarkTheme ? 'nsw-quick-exit__dark' : 'nsw-quick-exit__light')
     quickExitWrapper.setAttribute('data-theme', isDarkTheme ? 'dark' : 'light')
+    if (isDarkTheme) {
+      quickExitWrapper.classList.add('nsw-section--invert')
+    }
     if (newTab || domWantsNewTab) quickExitWrapper.classList.add('nsw-quick-exit--newtab')
 
     // Internal wrapper for button and links
