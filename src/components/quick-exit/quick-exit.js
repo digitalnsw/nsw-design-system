@@ -1,4 +1,5 @@
 import cleanHTML from '../../global/scripts/helpers/sanitize'
+import stickyContainer, { updateStickyBodyPadding } from '../../global/scripts/sticky-container'
 
 export default class QuickExit {
   static init({
@@ -11,11 +12,10 @@ export default class QuickExit {
     eraseCurrentPage = false,
   } = {}) {
     // Use the shared sticky container (owned by sticky-container.js)
-    const containerEl = document.querySelector('.js-sticky-container')
+    const containerEl = stickyContainer()
     if (!containerEl) {
-      // Ensure sticky-container.js is loaded before QuickExit
       // eslint-disable-next-line no-console
-      console.warn('QuickExit: .js-sticky-container not found. Load sticky-container.js before initialising QuickExit.')
+      console.warn('QuickExit: sticky container unavailable in this environment')
       return
     }
 
@@ -49,6 +49,8 @@ export default class QuickExit {
     quickExitWrapper.className = 'nsw-quick-exit'
     quickExitWrapper.classList.add(isDarkTheme ? 'nsw-quick-exit__dark' : 'nsw-quick-exit__light')
     quickExitWrapper.setAttribute('data-theme', isDarkTheme ? 'dark' : 'light')
+    // Stack as a block within the shared sticky container
+    quickExitWrapper.style.display = 'block'
     if (isDarkTheme) {
       quickExitWrapper.classList.add('nsw-section--invert')
     }
@@ -68,10 +70,8 @@ export default class QuickExit {
     const descEl = document.createElement('p')
     descEl.className = 'nsw-quick-exit__description'
     if (description) {
-      const frag = cleanHTML(description, true, {
-        allowedTags: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'span', 'kbd'],
-      })
-      // If the fragment is empty (rare), fall back to plain text
+      // Keep description inline-safe inside <p> (no nested block elements)
+      const frag = cleanHTML(description, true, { allowedTags: ['span', 'kbd'] })
       if (frag && frag.childNodes && frag.childNodes.length > 0) {
         descEl.appendChild(frag)
       } else {
@@ -130,9 +130,8 @@ export default class QuickExit {
     // Append Quick Exit component to sticky container
     containerEl.appendChild(quickExitWrapper)
 
-    // Adjust body padding to prevent content overlap by sticky container
-    const stickyHeight = quickExitWrapper.getBoundingClientRect().height
-    document.body.style.paddingBottom = `${stickyHeight}px`
+    // Adjust body padding to the full sticky container height (accounts for stacked items)
+    updateStickyBodyPadding()
   }
 
   static fromElement(el) {

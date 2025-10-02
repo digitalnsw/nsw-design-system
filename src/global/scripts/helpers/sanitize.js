@@ -1,4 +1,5 @@
 /* eslint-disable */
+const HAS_DOCUMENT = typeof document !== 'undefined'
 // Clean and optionally whitelist HTML into a safe set of tags with no attributes.
 // Usage:
 //  - cleanHTML(str) -> returns safe HTML string
@@ -10,6 +11,11 @@
 //  - If allowedTags is provided, ALL OTHER ELEMENTS are unwrapped (their children kept)
 //  - All attributes are stripped from allowed elements to avoid XSS via attributes
 function cleanHTML (str, nodes, opts = {}) {
+  if (!HAS_DOCUMENT) {
+    // In non-DOM environments, return a plain-text approximation
+    return nodes ? null : String(str || '').replace(/<[^>]*>/g, '')
+  }
+
   const { allowedTags = null } = opts
 
   function stringToHTML () {
