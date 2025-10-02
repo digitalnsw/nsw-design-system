@@ -1,3 +1,5 @@
+import cleanHTML from '../../global/scripts/helpers/sanitize'
+
 export default class QuickExit {
   static init({
     exitUrl = 'https://www.nsw.gov.au/',
@@ -65,7 +67,17 @@ export default class QuickExit {
 
     const descEl = document.createElement('p')
     descEl.className = 'nsw-quick-exit__description'
-    descEl.innerHTML = description
+    if (description) {
+      const frag = cleanHTML(description, true, {
+        allowedTags: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'span', 'kbd'],
+      })
+      // If the fragment is empty (rare), fall back to plain text
+      if (frag && frag.childNodes && frag.childNodes.length > 0) {
+        descEl.appendChild(frag)
+      } else {
+        descEl.textContent = String(description)
+      }
+    }
 
     contentWrapper.appendChild(headingEl)
     contentWrapper.appendChild(descEl)
