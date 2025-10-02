@@ -2,6 +2,7 @@
 
 import * as CookieConsentAPI from 'vanilla-cookieconsent'
 import logger from '../../global/scripts/helpers/logger'
+import stickyContainer from '../../global/scripts/sticky-container'
 
 /* eslint-disable max-len */
 class CookieConsent {
@@ -263,11 +264,21 @@ class CookieConsent {
       </div>
     `
 
-    // Append the banner to the body
+    // Append the banner to the shared sticky container so it stacks with other fixed UI
     const tempDiv = document.createElement('div')
     tempDiv.innerHTML = consentBannerHtml
     this.consentBannerElement = tempDiv.firstElementChild
-    document.body.appendChild(this.consentBannerElement)
+
+    // Ensure the cookie banner itself is a block-level child
+    this.consentBannerElement.style.display = 'block'
+
+    // Ensure sticky container exists and insert banner at the top so it appears above other items
+    const containerEl = stickyContainer()
+    if (containerEl.firstChild) {
+      containerEl.insertBefore(this.consentBannerElement, containerEl.firstChild)
+    } else {
+      containerEl.appendChild(this.consentBannerElement)
+    }
 
     this.consentBannerElement.focus()
   }
