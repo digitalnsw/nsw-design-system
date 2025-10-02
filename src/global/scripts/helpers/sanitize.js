@@ -5,12 +5,14 @@ const HAS_DOCUMENT = typeof document !== 'undefined'
 //  - cleanHTML(str) -> returns safe HTML string
 //  - cleanHTML(str, true) -> returns a DocumentFragment of safe nodes
 //  - cleanHTML(str, false, { allowedTags: ['p','span','kbd','h1','h2','h3','h4','h5','h6'] })
+//  - cleanHTMLStrict(str, true) -> uses a safe default allowlist (inline/text tags)
+//  - cleanHTMLOpen(str, true)   -> current behaviour, no default allowlist
 //
 // Notes:
 //  - Always strips <script> and dangerous attributes (src/href javascript:, on*)
 //  - If allowedTags is provided, ALL OTHER ELEMENTS are unwrapped (their children kept)
 //  - All attributes are stripped from allowed elements to avoid XSS via attributes
-function cleanHTML (str, nodes, opts = {}) {
+function baseCleanHTML (str, nodes, opts = {}) {
   if (!HAS_DOCUMENT) {
     // In non-DOM environments, return a plain-text approximation
     return nodes ? null : String(str || '').replace(/<[^>]*>/g, '')
@@ -32,7 +34,11 @@ function cleanHTML (str, nodes, opts = {}) {
   function isPossiblyDangerous (name, value) {
     const val = String(value || '').replace(/\s+/g, '').toLowerCase()
     if (['src', 'href', 'xlink:href'].includes(name)) {
-      if (val.startsWith('javascript:') || val.startsWith('data:text/html')) return true
+      if (
+        val.startsWith('javascript:') ||
+        val.startsWith('vbscript:') ||
+        val.startsWith('data:text/html')
+      ) return true
     }
     if (name && name.toLowerCase().startsWith('on')) return true
     return false
@@ -98,4 +104,23 @@ function cleanHTML (str, nodes, opts = {}) {
   return body.innerHTML
 }
 
-export default cleanHTML
+/**
+ * Strict version: defaults to safe inline/text tags.
+ * Allowed by default: p, span, strong, em, br, kbd, code
+ */
+export function cleanHTMLStrict (str, nodes, opts = {}) {
+  const strictOpts = {
+    ...opts,
+    allowedTags: opts.allowedTags || ['p','span','strong','em','br','kbd','code']
+  }
+  return baseCleanHTML(str, nodes, strictOpts)
+}
+
+/**
+ * Open version: current behaviour (no default allowlist; strips dangerous attrs only).
+ */
+export function cleanHTMLOpen (str, nodes, opts = {}) {
+  return baseCleanHTML(str, nodes, opts)
+}
+
+export default cleanHTMLOpen

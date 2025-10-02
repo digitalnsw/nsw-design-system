@@ -1,12 +1,17 @@
+const HAS_WINDOW = typeof window !== 'undefined'
+const HAS_DOCUMENT = typeof document !== 'undefined'
+const STICKY_SELECTOR = '.js-sticky-container'
+
 export function updateStickyBodyPadding() {
+  if (!HAS_DOCUMENT) return
   const measure = () => {
-    const el = document.querySelector('.js-sticky-container')
+    const el = document.querySelector(STICKY_SELECTOR)
     if (!el) return
     const h = el.getBoundingClientRect().height || 0
     document.body.style.paddingBottom = `${h}px`
   }
   try {
-    if (window.requestAnimationFrame) {
+    if (HAS_WINDOW && window.requestAnimationFrame) {
       // Measure after layout/paint to avoid cutting height when elements are added/replaced
       requestAnimationFrame(() => requestAnimationFrame(measure))
     } else {
@@ -19,7 +24,8 @@ export function updateStickyBodyPadding() {
 }
 
 export default function stickyContainer() {
-  let containerEl = document.querySelector('.js-sticky-container')
+  if (!HAS_DOCUMENT) return null
+  let containerEl = document.querySelector(STICKY_SELECTOR)
   if (!containerEl) {
     containerEl = document.createElement('div')
     containerEl.className = 'js-sticky-container'
@@ -34,7 +40,7 @@ export default function stickyContainer() {
   }
 
   // Attach observers once to keep body padding in sync with size/child changes
-  if (!containerEl.dataset.stickyObserved) {
+  if (HAS_WINDOW && !containerEl.dataset.stickyObserved) {
     try {
       if (window.ResizeObserver) {
         const ro = new ResizeObserver(() => updateStickyBodyPadding())

@@ -1,4 +1,4 @@
-import cleanHTML from '../../global/scripts/helpers/sanitize'
+import { cleanHTMLStrict } from '../../global/scripts/helpers/sanitize'
 import stickyContainer, { updateStickyBodyPadding } from '../../global/scripts/sticky-container'
 
 export default class QuickExit {
@@ -71,7 +71,7 @@ export default class QuickExit {
     descEl.className = 'nsw-quick-exit__description'
     if (description) {
       // Keep description inline-safe inside <p> (no nested block elements)
-      const frag = cleanHTML(description, true, { allowedTags: ['span', 'kbd'] })
+      const frag = cleanHTMLStrict(description, true, { allowedTags: ['span', 'kbd', 'strong', 'em', 'br', 'code'] })
       if (frag && frag.childNodes && frag.childNodes.length > 0) {
         descEl.appendChild(frag)
       } else {

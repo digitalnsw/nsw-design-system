@@ -6,7 +6,7 @@ import {
   offset,
   arrow,
 } from '@floating-ui/dom'
-import cleanHTML from '../../global/scripts/helpers/sanitize'
+import { cleanHTMLStrict } from '../../global/scripts/helpers/sanitize'
 
 class Toggletip {
   constructor(element) {
@@ -83,14 +83,14 @@ class Toggletip {
       this.toggletipElement.innerHTML = ''
       const createToggletip = `
       <div class="nsw-toggletip__header">
-        <div id="nsw-toggletip__header" class="sr-only">${cleanHTML(this.toggletipHeading)}</div>
+        <div id="nsw-toggletip__header" class="sr-only">${cleanHTMLStrict(this.toggletipHeading)}</div>
         <button type="button" class="nsw-icon-button">
           <span class="sr-only">Remove file</span>
           <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">close</span>
         </button>
       </div>
       <div id="nsw-toggletip__content" class="nsw-toggletip__content">
-        ${cleanHTML(this.toggletipContent)}
+        ${cleanHTMLStrict(this.toggletipContent)}
       </div>
       <div class="nsw-toggletip__arrow"></div>`
       this.toggletipElement.insertAdjacentHTML('afterbegin', createToggletip)
