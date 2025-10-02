@@ -85,9 +85,41 @@
       }
 
       li {
-        margin: nsw.rem(4px) nsw.rem(2px) nsw.rem(2px) nsw.rem(2px);
+        margin: nsw.rem(8px) nsw.rem(4px) nsw.rem(4px) nsw.rem(4px);
+      }
+    }
+  }
 
-        @include nsw.breakpoint('md') {
+  &__header {
+    order: 1;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    margin-right: 0.25rem;
+
+    @include nsw.breakpoint('md') {
+      margin-bottom: 0.75rem;
+      margin-right: 0;
+    }
+
+    .nsw-carousel__title {
+      margin: 0;
+      margin-inline-end: auto;
+
+      h2,
+      h3 {
+        margin: 0;
+      }
+    }
+
+    nav {
+      ul {
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+
+        li {
           margin: nsw.rem(8px) nsw.rem(4px) nsw.rem(4px) nsw.rem(4px);
         }
       }
@@ -97,7 +129,7 @@
   &__wrapper {
     order: 2;
     width: calc(100% - 6rem);
-    margin: 0 auto;
+    margin: 0 auto nsw.rem(16px) auto;
 
     @include nsw.breakpoint('md') {
       width: 100%;
@@ -117,7 +149,12 @@
   &__list {
     display: flex;
     flex-wrap: nowrap;
+    gap: 1.5rem;
     will-change: transform;
+
+    @include nsw.breakpoint('md') {
+      gap: 2rem;
+    }
 
     &--animating {
       transition-property: transform;
@@ -129,15 +166,8 @@
   &__item {
     flex-shrink: 0;
     width: var(--carousel-item-auto-size);
-    margin-right: 1.5rem;
-    margin-bottom: 0.5rem;
     opacity: 0;
     margin-bottom: 0;
-
-    @include nsw.breakpoint('md') {
-      margin-right: 2rem;
-      margin-bottom: 0.75rem;
-    }
   }
 
   &.nsw-carousel--loaded .nsw-carousel__item {
@@ -168,16 +198,11 @@
     background-color: var(--nsw-white);
     border-radius: 50%;
     z-index: 1;
-    transition: 0.2s;
     border: 2px solid var(--nsw-brand-dark);
     cursor: pointer;
     
     &:hover {
       @include nsw.nsw-hover();
-    }
-
-    &:active {
-      transform: translateY(1px);
     }
 
     &:focus {
