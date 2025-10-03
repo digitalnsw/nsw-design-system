@@ -11,6 +11,7 @@ export default class QuickExit {
     theme = 'light',
     newTab = false,
     eraseCurrentPage = false,
+    enableEsc = false,
   } = {}) {
     // Use the shared sticky container (owned by sticky-container.js)
     const containerEl = stickyContainer()
@@ -19,20 +20,6 @@ export default class QuickExit {
       console.warn('QuickExit: sticky container unavailable in this environment')
       return
     }
-
-    // Support declarative opt-in via class (preferred) or data attribute
-    const domWantsNewTab = (containerEl && containerEl.getAttribute('data-quick-exit-newtab') === 'true')
-      || document.body.classList.contains('quick-exit-newtab')
-
-    // Declarative opt-in/out for erasing current page history entry:
-    // Accept either data-quick-exit-erasecurrentpage="true" or data-quick-exit-erase-current-page="true"
-    // Or a body class "quick-exit-erase-current"
-    const domWantsErase = (containerEl
-      && (
-        containerEl.getAttribute('data-quick-exit-erasecurrentpage') === 'true'
-        || containerEl.getAttribute('data-quick-exit-erase-current-page') === 'true'
-      ))
-      || document.body.classList.contains('quick-exit-erase-current')
 
     // Remove existing Quick Exit instance to allow re-initialisation
     const existingQuickExit = containerEl.querySelector('.nsw-quick-exit')
@@ -55,7 +42,7 @@ export default class QuickExit {
     if (isDarkTheme) {
       quickExitWrapper.classList.add('nsw-section--invert')
     }
-    if (newTab || domWantsNewTab) quickExitWrapper.classList.add('nsw-quick-exit--newtab')
+    if (newTab) quickExitWrapper.classList.add('nsw-quick-exit--newtab')
 
     // Internal wrapper for button and links
     const internalWrapper = document.createElement('div')
@@ -85,6 +72,7 @@ export default class QuickExit {
 
     // Main Quick Exit button with click behaviour for new tab or erase history
     const quickExitBtn = document.createElement('button')
+    quickExitBtn.type = 'button'
     quickExitBtn.className = 'js-quick-exit nsw-quick-exit__cta'
     quickExitBtn.textContent = exitLabel
     // Add east arrow icon after text content
@@ -93,12 +81,11 @@ export default class QuickExit {
     iconEl.textContent = 'east'
     quickExitBtn.appendChild(iconEl)
     quickExitBtn.setAttribute('aria-label', exitLabel)
-    quickExitBtn.addEventListener('click', (evt) => {
-      evt.preventDefault()
-      const openInNewTab = newTab || quickExitWrapper.classList.contains('nsw-quick-exit--newtab') || domWantsNewTab
-      const shouldErase = eraseCurrentPage || domWantsErase
+
+    const navigate = () => {
+      const openInNewTab = newTab
+      const shouldErase = eraseCurrentPage
       if (openInNewTab) {
-        // Open exit URL in new tab and optionally erase current page history
         window.open(safeUrl(exitUrl), '_blank', 'noopener,noreferrer')
         if (shouldErase && window.history && window.history.replaceState) {
           window.history.replaceState(null, '', '/')
@@ -106,73 +93,45 @@ export default class QuickExit {
         try {
           window.open('', '_self')
           window.close()
-        } catch (err) {
-          // ignore
-        }
+        } catch (err) { /* ignore */ }
         if (!document.hidden && shouldErase) {
           window.location.replace(safeUrl(exitUrl))
         }
       } else if (shouldErase) {
-        // Replace current history entry and redirect without adding to history
         if (window.history && window.history.replaceState) {
           window.history.replaceState(null, '', '/')
         }
         window.location.replace(safeUrl(exitUrl))
       } else {
-        // Navigate normally, preserving history
         window.location.assign(safeUrl(exitUrl))
       }
+    }
+
+    quickExitBtn.addEventListener('click', (evt) => {
+      evt.preventDefault()
+      navigate()
     })
     internalWrapper.appendChild(contentWrapper)
     internalWrapper.appendChild(quickExitBtn)
 
     quickExitWrapper.appendChild(internalWrapper)
 
-    // Append Quick Exit component to sticky container
-    containerEl.appendChild(quickExitWrapper)
+    // Add keyboard functionality for double ESC key press (opt-in)
+    const useEsc = enableEsc
+    if (useEsc) {
+      let escPressCount = 0
+      let escPressTimer = null
+      const ESC_PRESS_WINDOW = 1000 // 1 second window for double press
 
-    // Add keyboard functionality for double ESC key press
-    let escPressCount = 0
-    let escPressTimer = null
-    const ESC_PRESS_WINDOW = 1000 // 1 second window for double press
-
-    const handleKeydown = (event) => {
-      if (event.key === 'Escape') {
+      const handleKeydown = (event) => {
+        if (event.key !== 'Escape') return
         escPressCount += 1
-
         if (escPressTimer) {
           clearTimeout(escPressTimer)
         }
-
         if (escPressCount >= 2) {
-          // Trigger the same exit logic as button click
           event.preventDefault()
-          const openInNewTab = newTab || quickExitWrapper.classList.contains('nsw-quick-exit--newtab') || domWantsNewTab
-          const shouldErase = eraseCurrentPage || domWantsErase
-
-          if (openInNewTab) {
-            window.open(safeUrl(exitUrl), '_blank', 'noopener,noreferrer')
-            if (shouldErase && window.history && window.history.replaceState) {
-              window.history.replaceState(null, '', '/')
-            }
-            try {
-              window.open('', '_self')
-              window.close()
-            } catch (err) {
-              // ignore
-            }
-            if (!document.hidden && shouldErase) {
-              window.location.replace(safeUrl(exitUrl))
-            }
-          } else if (shouldErase) {
-            if (window.history && window.history.replaceState) {
-              window.history.replaceState(null, '', '/')
-            }
-            window.location.replace(safeUrl(exitUrl))
-          } else {
-            window.location.assign(safeUrl(exitUrl))
-          }
-
+          navigate()
           escPressCount = 0
         } else {
           escPressTimer = setTimeout(() => {
@@ -180,13 +139,11 @@ export default class QuickExit {
           }, ESC_PRESS_WINDOW)
         }
       }
-    }
 
-    document.addEventListener('keydown', handleKeydown)
-
-    // Store cleanup function on the wrapper for potential future cleanup
-    quickExitWrapper.keyboardCleanup = () => {
-      document.removeEventListener('keydown', handleKeydown)
+      document.addEventListener('keydown', handleKeydown)
+      quickExitWrapper.keyboardCleanup = () => {
+        document.removeEventListener('keydown', handleKeydown)
+      }
     }
 
     // Adjust body padding to the full sticky container height (accounts for stacked items)
