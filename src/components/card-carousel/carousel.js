@@ -57,17 +57,6 @@ class Carousel extends SwipeContent {
     this.cssPropertiesSupported = ('CSS' in window && CSS.supports('color', 'var(--color-var)'))
   }
 
-  applyTitleSpacer() {
-    // Prefer <h2>. <h3> is tolerated as a graceful fallback (not recommended).
-    const navUls = this.element.querySelectorAll('nav ul')
-    navUls.forEach((ul) => {
-      const firstLi = ul.querySelector('li:first-child')
-      if (firstLi && firstLi.querySelector('h2, h3')) {
-        firstLi.classList.add('nsw-carousel__title')
-      }
-    })
-  }
-
   init() {
     if (!this.items) return
 
@@ -87,7 +76,6 @@ class Carousel extends SwipeContent {
     this.initAriaLive()
     this.initCarouselEvents()
     this.initCarouselCounter()
-    this.applyTitleSpacer()
   }
 
   initCarouselLayout() {
