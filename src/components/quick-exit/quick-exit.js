@@ -109,7 +109,7 @@ export default class QuickExit {
           // ignore
         }
         if (!document.hidden && shouldErase) {
-          window.location.replace('/')
+          window.location.replace(exitUrl)
         }
       } else if (shouldErase) {
         // Replace current history entry and redirect without adding to history
