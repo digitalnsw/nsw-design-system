@@ -24,6 +24,10 @@ export default class QuickExit {
     // Remove existing Quick Exit instance to allow re-initialisation
     const existingQuickExit = containerEl.querySelector('.nsw-quick-exit')
     if (existingQuickExit) {
+      // Clean up keyboard event listener before removing DOM element
+      if (existingQuickExit.keyboardCleanup) {
+        existingQuickExit.keyboardCleanup()
+      }
       containerEl.removeChild(existingQuickExit)
     }
 
