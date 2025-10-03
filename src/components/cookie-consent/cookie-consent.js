@@ -2,6 +2,7 @@
 
 import * as CookieConsentAPI from 'vanilla-cookieconsent'
 import logger from '../../global/scripts/helpers/logger'
+import stickyContainer from '../../global/scripts/sticky-container'
 
 /* eslint-disable max-len */
 class CookieConsent {
@@ -263,28 +264,48 @@ class CookieConsent {
       </div>
     `
 
-    // Append the banner to the body
+    // Append the banner to the shared sticky container so it stacks with other fixed UI
     const tempDiv = document.createElement('div')
     tempDiv.innerHTML = consentBannerHtml
     this.consentBannerElement = tempDiv.firstElementChild
-    document.body.appendChild(this.consentBannerElement)
+
+    // Ensure the cookie banner itself is a block-level child
+    this.consentBannerElement.style.display = 'block'
+
+    // Ensure sticky container exists and insert banner at the top so it appears above other items
+    const containerEl = stickyContainer()
+    if (containerEl.firstChild) {
+      containerEl.insertBefore(this.consentBannerElement, containerEl.firstChild)
+    } else {
+      containerEl.appendChild(this.consentBannerElement)
+    }
+
+    // Direct listener for confirmation close button (belt-and-braces)
+    const dismissBtn = this.consentBannerElement.querySelector('.js-dismiss-cookie-banner')
+    if (dismissBtn) {
+      dismissBtn.addEventListener('click', () => {
+        this.hideConsentBanner()
+      })
+    }
 
     this.consentBannerElement.focus()
   }
 
   init() {
-    if (this.preferencesDialogElement) {
-      this.initElements()
-      this.initAPI()
-      this.attachEventListeners()
+    // Always wire listeners so Close works even if preferences dialog is not created
+    this.initElements()
+    this.attachEventListeners()
 
+    if (this.preferencesDialogElement) {
+      this.initAPI()
       // Immediately hide the banner if user has preferences set
       const preferences = CookieConsentAPI.getUserPreferences()
       if (preferences && preferences.acceptedCategories.length > 0) {
         this.consentBannerElement.setAttribute('hidden', 'true')
       }
     } else {
-      console.error('Banner element not created')
+      // Dialog trigger might be disabled in config; that's OK
+      logger.warn('CookieConsent: preferences dialog not initialised (no trigger found).')
     }
   }
 
@@ -460,6 +481,7 @@ class CookieConsent {
   hideConsentBanner() {
     if (this.consentBannerElement) {
       this.consentBannerElement.setAttribute('hidden', 'true')
+      this.consentBannerElement.style.display = 'none'
     }
   }
 }

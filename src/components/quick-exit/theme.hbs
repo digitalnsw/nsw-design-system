@@ -1,0 +1,101 @@
+---
+title: Quick exit
+page: true
+model:  json/quick-exit.json
+---
+
+{{#>_theme}}
+{{#>_layout-container}}
+<h3>Variation 1 - Light theme</h3>
+<ul class="nsw-m-bottom-md">
+<li>Light theme</li>
+<li>Erases current page when clicked</li>
+<li>Opens in same tab</li>
+</ul>
+
+<button class="nsw-button nsw-button--dark"
+  data-module="quick-exit"
+  data-options='{
+    "title": "{{model.title}}",
+    "description": "{{model.description}}",
+    "exitUrl": "{{model.exitUrl}}",
+    "exitLabel": "{{model.exitLabel}}",
+    "moreInfoUrl": "{{model.moreInfoUrl}}",
+    "moreInfoLabel": "{{model.moreInfoLabel}}",
+    "popover": "{{model.popover}}",
+    "theme": "light",
+    "eraseCurrentPage": true,
+    "newTab": false
+  }'
+  type="button"
+  aria-expanded="true">Initialise banner</button>
+
+<h3>Variation 2 - Dark theme</h3>
+<ul class="nsw-m-bottom-md">
+<li>Dark theme</li>
+<li>Erases current page when clicked</li>
+<li>Opens in same tab</li>
+</ul>
+
+<button class="nsw-button nsw-button--dark"
+  data-module="quick-exit"
+  data-options='{
+    "title": "{{model.title}}",
+    "description": "{{model.description}}",
+    "exitUrl": "{{model.exitUrl}}",
+    "exitLabel": "{{model.exitLabel}}",
+    "moreInfoUrl": "{{model.moreInfoUrl}}",
+    "moreInfoLabel": "{{model.moreInfoLabel}}",
+    "popover": "{{model.popover}}",
+    "theme": "dark",
+    "eraseCurrentPage": true,
+    "newTab": false
+  }'
+  type="button"
+  aria-expanded="true">Initialise banner</button>
+
+<h3>Variation 3 - New tab</h3>
+<ul class="nsw-m-bottom-md">
+<li>Light theme</li>
+<li>Does not erase current page</li>
+<li>Opens in new tab</li>
+</ul>
+<button class="nsw-button nsw-button--dark"
+  data-module="quick-exit"
+  data-options='{
+    "title": "{{model.title}}",
+    "description": "{{model.description}}",
+    "exitUrl": "{{model.exitUrl}}",
+    "exitLabel": "{{model.exitLabel}}",
+    "moreInfoUrl": "{{model.moreInfoUrl}}",
+    "moreInfoLabel": "{{model.moreInfoLabel}}",
+    "popover": "{{model.popover}}",
+    "theme": "light",
+    "eraseCurrentPage": false,
+    "newTab": true
+  }'
+  type="button"
+  aria-expanded="true">Initialise banner</button>
+
+<h3>Variation 4 - Declarative (module)</h3>
+<ul class="nsw-m-bottom-md">
+  <li>Initialises automatically on page load</li>
+  <li>Uses <code>data-module="quick-exit"</code> with a compact <code>data-options</code> JSON</li>
+</ul>
+<span
+  data-module="quick-exit"
+  data-options='{
+    "title": "{{model.title}}",
+    "description": "{{model.description}}",
+    "exitUrl": "{{model.exitUrl}}",
+    "exitLabel": "{{model.exitLabel}}",
+    "moreInfoUrl": "{{model.moreInfoUrl}}",
+    "moreInfoLabel": "{{model.moreInfoLabel}}",
+    "popover": "{{model.popover}}",
+    "theme": "dark",
+    "eraseCurrentPage": true,
+    "newTab": false
+  }'>
+</span>
+{{/_layout-container}}
+{{/_theme}}

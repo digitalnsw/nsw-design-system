@@ -1,0 +1,131 @@
+@use 'sass:color';
+@use '../../global/scss/tools' as nsw;
+
+.nsw-quick-exit {
+  padding: 0;
+  background-color: var(--nsw-white);
+  color: var(--nsw-text-dark);
+
+  @include nsw.breakpoint('lg') {
+    // padding: 0 0 0 nsw.rem(16px);
+  }
+  
+  &__wrapper {
+    @include nsw.container;
+    height: 48px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    gap: nsw.rem(8px);
+    // padding: 0;
+
+    @include nsw.breakpoint('lg') {
+      height: 120px;
+    }
+  }
+
+  &__content {
+    display: none;
+    flex: 1 1 auto;
+    min-width: 0;
+    
+    @include nsw.breakpoint('lg') {
+      display: block;
+    }
+  }
+
+  &__title {
+    @include nsw.font-size('md');
+  }
+
+  &__description {
+    margin: nsw.rem(16px) nsw.rem(36px) 0 0;
+    line-height: nsw.rem(20px);
+
+    @include nsw.breakpoint('lg') {
+      line-height: nsw.rem(24px);
+    }
+  }
+  
+  &__cta {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: nsw.rem(8px);
+    padding: 0;
+    background-color: var(--nsw-status-error);
+    color: var(--nsw-white);
+    font-family: var(--nsw-font-family);
+    font-size: nsw.rem(18px);
+    font-weight: var(--nsw-font-bold);
+    border: 0;
+    border-radius: 0;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    flex: 0 0 auto;
+    white-space: nowrap;
+    margin-left: auto;
+
+    &:hover,
+    &:focus {
+      background-color: rgba(var(--nsw-status-error-rgb), 0.9);
+      text-decoration: none;
+      outline: none;
+    }
+
+    &:active {
+      background-color: var(--nsw-brand-dark);
+      outline: none;
+    }
+
+    @include nsw.breakpoint('lg') {
+      font-size: nsw.rem(24px);
+      padding: nsw.rem(54px);
+      width: auto;
+    }
+  }
+
+  &__light {
+    background-color: var(--nsw-brand-light);
+    color: var(--nsw-text-dark);
+
+    .nsw-quick-exit__wrapper {
+      background-color: var(--nsw-brand-light);
+    }
+  }
+
+  &__dark {
+    background-color: var(--nsw-brand-dark);
+    color: var(--nsw-text-light);
+
+    .nsw-popover {
+      color: var(--nsw-text-dark);
+    }
+
+    a {
+      @include nsw.link-light;
+    }
+
+    .nsw-quick-exit__wrapper {
+      background-color: var(--nsw-brand-dark);
+    }
+
+    .nsw-quick-exit__popover {
+      border-bottom: 2px dotted var(--nsw-text-light);
+  
+      &:visited {
+        color: var(--nsw-text-light);
+      }
+    }
+  }
+
+  .js-more-info {
+    margin-left: auto;
+  }
+}
