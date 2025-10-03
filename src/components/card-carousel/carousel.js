@@ -98,12 +98,34 @@ class Carousel extends SwipeContent {
     this.carouselCreateContainer()
 
     const itemStyle = this.items && window.getComputedStyle(this.items[0])
+    const trackEl = this.list // the flex/grid container that actually applies gap
+    const trackStyle = trackEl && window.getComputedStyle(trackEl)
 
-    const containerStyle = this.listWrapper && window.getComputedStyle(this.listWrapper)
-    let itemWidth = itemStyle ? parseFloat(itemStyle.getPropertyValue('width')) : 0
-    const itemMargin = itemStyle ? parseFloat(itemStyle.getPropertyValue('margin-right')) : 0
-    const containerPadding = containerStyle ? parseFloat(containerStyle.getPropertyValue('padding-left')) : 0
-    let containerWidth = containerStyle ? parseFloat(containerStyle.getPropertyValue('width')) : 0
+    // Use the rendered (border-box) width of the item for consistent maths regardless of box-sizing
+    let itemWidth = this.items && this.items[0] ? this.items[0].getBoundingClientRect().width : 0
+
+    // Prefer gap from the track (ol). Fall back to item margin if gap is not set.
+    const trackGap = trackStyle
+      ? parseFloat(trackStyle.getPropertyValue('column-gap') || trackStyle.getPropertyValue('gap'))
+      : 0
+    const marginRight = itemStyle ? parseFloat(itemStyle.getPropertyValue('margin-right')) : 0
+    const itemMargin = Number.isFinite(trackGap) && trackGap > 0 ? trackGap : marginRight
+
+    // Measure the available **content** width for items (clientWidth includes padding -> subtract it)
+    let containerWidth = 0
+    if (trackEl) {
+      const padL = trackStyle ? parseFloat(trackStyle.getPropertyValue('padding-left')) : 0
+      const padR = trackStyle ? parseFloat(trackStyle.getPropertyValue('padding-right')) : 0
+      containerWidth = Math.max(0, trackEl.clientWidth - (Number.isFinite(padL) ? padL : 0) - (Number.isFinite(padR) ? padR : 0))
+    }
+    if (!containerWidth) {
+      // Fallback to previous logic if clientWidth is 0 due to visibility
+      const containerStyle = this.listWrapper && window.getComputedStyle(this.listWrapper)
+      const padL = containerStyle ? parseFloat(containerStyle.getPropertyValue('padding-left')) : 0
+      const padR = containerStyle ? parseFloat(containerStyle.getPropertyValue('padding-right')) : 0
+      const cw = this.listWrapper ? this.listWrapper.clientWidth : 0
+      containerWidth = Math.max(0, cw - (Number.isFinite(padL) ? padL : 0) - (Number.isFinite(padR) ? padR : 0))
+    }
 
     if (!this.itemAutoSize) {
       this.itemAutoSize = itemWidth
@@ -127,8 +149,8 @@ class Carousel extends SwipeContent {
       itemWidth = this.itemOriginalWidth
     }
 
-    this.visibItemsNb = parseInt((containerWidth - 2 * containerPadding + itemMargin) / (itemWidth + itemMargin), 10)
-    this.itemsWidth = parseFloat((((containerWidth - 2 * containerPadding + itemMargin) / this.visibItemsNb) - itemMargin).toFixed(1))
+    this.visibItemsNb = Math.max(1, Math.floor((containerWidth + itemMargin) / (itemWidth + itemMargin)))
+    this.itemsWidth = parseFloat((((containerWidth + itemMargin) / this.visibItemsNb) - itemMargin).toFixed(1))
     this.containerWidth = (this.itemsWidth + itemMargin) * this.items.length
     this.translateContainer = 0 - ((this.itemsWidth + itemMargin) * this.visibItemsNb)
 
