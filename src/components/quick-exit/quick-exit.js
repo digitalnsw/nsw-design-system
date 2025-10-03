@@ -131,6 +131,64 @@ export default class QuickExit {
     // Append Quick Exit component to sticky container
     containerEl.appendChild(quickExitWrapper)
 
+    // Add keyboard functionality for double ESC key press
+    let escPressCount = 0
+    let escPressTimer = null
+    const ESC_PRESS_WINDOW = 1000 // 1 second window for double press
+
+    const handleKeydown = (event) => {
+      if (event.key === 'Escape') {
+        escPressCount += 1
+
+        if (escPressTimer) {
+          clearTimeout(escPressTimer)
+        }
+
+        if (escPressCount >= 2) {
+          // Trigger the same exit logic as button click
+          event.preventDefault()
+          const openInNewTab = newTab || quickExitWrapper.classList.contains('nsw-quick-exit--newtab') || domWantsNewTab
+          const shouldErase = eraseCurrentPage || domWantsErase
+
+          if (openInNewTab) {
+            window.open(safeUrl(exitUrl), '_blank', 'noopener,noreferrer')
+            if (shouldErase && window.history && window.history.replaceState) {
+              window.history.replaceState(null, '', '/')
+            }
+            try {
+              window.open('', '_self')
+              window.close()
+            } catch (err) {
+              // ignore
+            }
+            if (!document.hidden && shouldErase) {
+              window.location.replace(safeUrl(exitUrl))
+            }
+          } else if (shouldErase) {
+            if (window.history && window.history.replaceState) {
+              window.history.replaceState(null, '', '/')
+            }
+            window.location.replace(safeUrl(exitUrl))
+          } else {
+            window.location.assign(safeUrl(exitUrl))
+          }
+
+          escPressCount = 0
+        } else {
+          escPressTimer = setTimeout(() => {
+            escPressCount = 0
+          }, ESC_PRESS_WINDOW)
+        }
+      }
+    }
+
+    document.addEventListener('keydown', handleKeydown)
+
+    // Store cleanup function on the wrapper for potential future cleanup
+    quickExitWrapper.keyboardCleanup = () => {
+      document.removeEventListener('keydown', handleKeydown)
+    }
+
     // Adjust body padding to the full sticky container height (accounts for stacked items)
     updateStickyBodyPadding()
   }
