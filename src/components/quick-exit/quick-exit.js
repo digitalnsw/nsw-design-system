@@ -1,5 +1,6 @@
 import { cleanHTMLStrict } from '../../global/scripts/helpers/sanitize'
 import stickyContainer, { updateStickyBodyPadding } from '../../global/scripts/sticky-container'
+import { safeUrl } from '../../global/scripts/helpers/utilities'
 
 export default class QuickExit {
   static init({
@@ -98,7 +99,7 @@ export default class QuickExit {
       const shouldErase = eraseCurrentPage || domWantsErase
       if (openInNewTab) {
         // Open exit URL in new tab and optionally erase current page history
-        window.open(exitUrl, '_blank', 'noopener')
+        window.open(safeUrl(exitUrl), '_blank', 'noopener,noreferrer')
         if (shouldErase && window.history && window.history.replaceState) {
           window.history.replaceState(null, '', '/')
         }
@@ -109,17 +110,17 @@ export default class QuickExit {
           // ignore
         }
         if (!document.hidden && shouldErase) {
-          window.location.replace(exitUrl)
+          window.location.replace(safeUrl(exitUrl))
         }
       } else if (shouldErase) {
         // Replace current history entry and redirect without adding to history
         if (window.history && window.history.replaceState) {
           window.history.replaceState(null, '', '/')
         }
-        window.location.replace(exitUrl)
+        window.location.replace(safeUrl(exitUrl))
       } else {
         // Navigate normally, preserving history
-        window.location.assign(exitUrl)
+        window.location.assign(safeUrl(exitUrl))
       }
     })
     internalWrapper.appendChild(contentWrapper)

@@ -71,6 +71,15 @@ export const whichTransitionEvent = () => {
   return transitions[found[0]]
 }
 
+export const safeUrl = (raw, fallback = 'https://www.google.com/') => {
+  try {
+    const url = new URL(String(raw || ''), window.location.href)
+    return (url.protocol === 'http:' || url.protocol === 'https:') ? url.href : fallback
+  } catch (e) {
+    return fallback
+  }
+}
+
 export const popupWindow = (url, width, height) => {
   const y = window.top.outerHeight / 2 + window.top.screenY - (height / 2)
   const x = window.top.outerWidth / 2 + window.top.screenX - (width / 2)

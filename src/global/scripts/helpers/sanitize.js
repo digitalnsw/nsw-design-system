@@ -31,8 +31,18 @@ function baseCleanHTML (str, nodes, opts = {}) {
   const { allowedTags = null } = opts
 
   function stringToHTML () {
+    const raw = String(str || '')
+    // If no allowlist is supplied, treat the input strictly as TEXT.
+    // This prevents "DOM text reinterpreted as HTML" findings and is safer by default.
+    if (!Array.isArray(allowedTags)) {
+      const bodyEl = document.createElement('body')
+      // Using textContent ensures meta-characters are escaped and nothing is parsed as HTML.
+      bodyEl.textContent = raw
+      return bodyEl
+    }
+    // When an allowlist is supplied, we need to parse as HTML so we can unwrap/keep only allowed tags.
     const parser = new DOMParser()
-    const doc = parser.parseFromString(String(str || ''), 'text/html')
+    const doc = parser.parseFromString(raw, 'text/html')
     return doc.body || document.createElement('body')
   }
 
