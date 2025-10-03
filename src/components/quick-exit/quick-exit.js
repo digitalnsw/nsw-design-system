@@ -21,13 +21,25 @@ export default class QuickExit {
       return
     }
 
+    // Support declarative opt-in via class (preferred) or data attribute
+    const domWantsNewTab = (containerEl && containerEl.getAttribute('data-quick-exit-newtab') === 'true')
+      || document.body.classList.contains('quick-exit-newtab')
+
+    // Declarative opt-in/out for erasing current page history entry:
+    // Accept either data-quick-exit-erasecurrentpage="true" or data-quick-exit-erase-current-page="true"
+    // Or a body class "quick-exit-erase-current"
+    const domWantsErase = (containerEl
+      && (
+        containerEl.getAttribute('data-quick-exit-erasecurrentpage') === 'true'
+        || containerEl.getAttribute('data-quick-exit-erase-current-page') === 'true'
+      ))
+      || document.body.classList.contains('quick-exit-erase-current')
+
+    const domWantsEsc = (containerEl && containerEl.getAttribute('data-quick-exit-esc') === 'true')
+
     // Remove existing Quick Exit instance to allow re-initialisation
     const existingQuickExit = containerEl.querySelector('.nsw-quick-exit')
     if (existingQuickExit) {
-      // Clean up keyboard event listener before removing DOM element
-      if (existingQuickExit.keyboardCleanup) {
-        existingQuickExit.keyboardCleanup()
-      }
       containerEl.removeChild(existingQuickExit)
     }
 
@@ -46,7 +58,7 @@ export default class QuickExit {
     if (isDarkTheme) {
       quickExitWrapper.classList.add('nsw-section--invert')
     }
-    if (newTab) quickExitWrapper.classList.add('nsw-quick-exit--newtab')
+    if (newTab || domWantsNewTab) quickExitWrapper.classList.add('nsw-quick-exit--newtab')
 
     // Internal wrapper for button and links
     const internalWrapper = document.createElement('div')
@@ -87,8 +99,8 @@ export default class QuickExit {
     quickExitBtn.setAttribute('aria-label', exitLabel)
 
     const navigate = () => {
-      const openInNewTab = newTab
-      const shouldErase = eraseCurrentPage
+      const openInNewTab = newTab || quickExitWrapper.classList.contains('nsw-quick-exit--newtab') || domWantsNewTab
+      const shouldErase = eraseCurrentPage || domWantsErase
       if (openInNewTab) {
         window.open(safeUrl(exitUrl), '_blank', 'noopener,noreferrer')
         if (shouldErase && window.history && window.history.replaceState) {
@@ -120,8 +132,11 @@ export default class QuickExit {
 
     quickExitWrapper.appendChild(internalWrapper)
 
+    // Append Quick Exit component to sticky container
+    containerEl.appendChild(quickExitWrapper)
+
     // Add keyboard functionality for double ESC key press (opt-in)
-    const useEsc = enableEsc
+    const useEsc = enableEsc || domWantsEsc
     if (useEsc) {
       let escPressCount = 0
       let escPressTimer = null
