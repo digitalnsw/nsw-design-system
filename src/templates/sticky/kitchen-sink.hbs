@@ -2,7 +2,7 @@
 title: Domestic, family and sexual violence
 order: 22
 page: true
-directory: Article
+directory: Sticky
 model:
   nav-basic: ../../components/main-nav/json/main-nav.json
   nav-mega: ../../components/main-nav/json/main-nav-mega.json
@@ -13,6 +13,7 @@ model:
   card-blog-2: ../../components/card/json/card-blog-2.json
   card-blog-3: ../../components/card/json/card-blog-3.json
   footer: ../../components/footer/json/footer.json
+  quick-exit: ../../components/quick-exit/json/quick-exit.json
 ---
 
 {{>_masthead content="#content" nav="#main-nav"}}
@@ -21,21 +22,45 @@ model:
 <div class="nsw-container nsw-p-bottom-xs">
   {{>_breadcrumbs model.breadcrumbs}}
 </div>
+
 <div class="nsw-container nsw-p-top-sm nsw-p-bottom-lg">
   <div class="nsw-layout">
     <main id="content" class="nsw-layout__main">
+      {{>_back-to-top}}
       <div class="nsw-block">
         <h1>Domestic, family and sexual violence</h1>
         <p class="nsw-intro">How to get help and support, emergency housing, understanding domestic and sexual violence, sexual consent and the law, legal help, and how to stay safe.</p>
 
         <h2>Hotlines</h2>
-        <ul class="nsw-list">
-          <li><strong>NSW Domestic Violence Line</strong> 1800 656 463</li>
-          <li><strong>1800 RESPECT</strong> 1800 737 732</li>
-          <li><strong>Link2home Homelessness</strong> 1800 152 152</li>
-          <li><strong>Link2Home Veterans</strong> 1800 326 989</li>
-          <li><strong>Child Protection Helpline</strong> 13 21 11</li>
+        <ul>
+          <li><strong>NSW Domestic Violence Line</strong> <a href="tel:1800656463">1800 656 463</a></li>
+          <li><strong>1800 RESPECT</strong> <a href="tel:1800737732">1800 737 732</a></li>
+          <li><strong>Link2home Homelessness</strong> <a href="tel:1800152152">1800 152 152</a></li>
+          <li><strong>Link2Home Veterans</strong> <a href="tel:1800326989">1800 326 989</a></li>
+          <li><strong>Child Protection Helpline</strong> <a href="tel:132111">13 21 11</a></li>
         </ul>
+
+        <h2 id="support-contacts">Initialise all banners</h2>
+        <h3>Quick Exit</h3>
+        <button class="nsw-button nsw-button--dark nsw-m-top-md" id="init-quick-exit" type="button">Initialise Quick exit banner</button>
+        <script>
+          document.getElementById('init-quick-exit').addEventListener('click', function () {
+            if (window.NSW && window.NSW.QuickExit) {
+              window.NSW.QuickExit.init({
+                title: "{{model.quick-exit.title}}",
+                description: "{{model.quick-exit.description}}",
+                exitUrl: "{{model.quick-exit.exitUrl}}",
+                exitLabel: "{{model.quick-exit.exitLabel}}",
+                theme: "dark",
+                eraseCurrentPage: true,
+                newTab: false,
+                enableEsc: true
+              })
+            }
+          })
+        </script>
+        <h3>Cookie consent</h3>
+        <button class="nsw-button nsw-button--dark nsw-m-top-md" id="init-cookie-consent" type="button">Initialise Cookie consent banner</button>
 
         <h2>Quick access</h2>
         <div class="nsw-grid nsw-m-bottom-md">
@@ -111,7 +136,6 @@ model:
         </form>
       </div>
 
-      {{>_link-list model.link-list}}
     </div>
   </div>
 </div>
