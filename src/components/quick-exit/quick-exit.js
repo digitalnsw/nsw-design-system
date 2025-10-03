@@ -74,12 +74,18 @@ export default class QuickExit {
     const descEl = document.createElement('p')
     descEl.className = 'nsw-quick-exit__description'
     if (description) {
-      // Keep description inline-safe inside <p> (no nested block elements)
-      const frag = cleanHTMLStrict(description, true, { allowedTags: ['span', 'kbd', 'strong', 'em', 'br', 'code'] })
+      let html = String(description)
+      // If the string contains common encoded tags, decode entities so sanitiser can allow whitelisted tags (e.g. <kbd>)
+      if (/[&]lt;|&#60;|&amp;lt;|[&]gt;|&#62;|&amp;gt;/.test(html)) {
+        const decoder = document.createElement('textarea')
+        decoder.innerHTML = html
+        html = decoder.value
+      }
+      const frag = cleanHTMLStrict(html, true, { allowedTags: ['span', 'kbd', 'strong', 'em', 'br', 'code'] })
       if (frag && frag.childNodes && frag.childNodes.length > 0) {
         descEl.appendChild(frag)
       } else {
-        descEl.textContent = String(description)
+        descEl.textContent = html
       }
     }
 
