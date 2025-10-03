@@ -18,8 +18,7 @@ function baseCleanHTML(str, nodes, opts = {}) {
   const { allowedTags = null } = opts
 
   function stringToHTML() {
-    // Pre-strip <script> blocks; use textContent to avoid HTML interpretation if no allowlist
-    const raw = String(str || '').replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '')
+    const raw = String(str || '')
     if (!Array.isArray(allowedTags)) {
       const bodyEl = document.createElement('body')
       bodyEl.textContent = raw
