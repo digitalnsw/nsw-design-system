@@ -14,6 +14,7 @@ model:
   card-blog-3: ../../components/card/json/card-blog-3.json
   footer: ../../components/footer/json/footer.json
   quick-exit: ../../components/quick-exit/json/quick-exit.json
+  cookie-consent: ../../components/cookie-consent/json/cookie-consent-1.json
 ---
 
 {{>_masthead content="#content" nav="#main-nav"}}
@@ -41,26 +42,52 @@ model:
         </ul>
 
         <h2 id="support-contacts">Initialise all banners</h2>
-        <h3>Quick Exit</h3>
-        <button class="nsw-button nsw-button--dark nsw-m-top-md" id="init-quick-exit" type="button">Initialise Quick exit banner</button>
-        <script>
-          document.getElementById('init-quick-exit').addEventListener('click', function () {
-            if (window.NSW && window.NSW.QuickExit) {
-              window.NSW.QuickExit.init({
-                title: "{{model.quick-exit.title}}",
-                description: "{{model.quick-exit.description}}",
-                exitUrl: "{{model.quick-exit.exitUrl}}",
-                exitLabel: "{{model.quick-exit.exitLabel}}",
-                theme: "dark",
-                eraseCurrentPage: true,
-                newTab: false,
-                enableEsc: true
+        <div class="nsw-grid nsw-grid--spaced nsw-m-top-md">
+          <div class="nsw-col nsw-col-md-6">
+            <h3>Quick Exit</h3>
+            <button class="nsw-button nsw-button--dark nsw-m-top-md" id="init-quick-exit" type="button">Initialise Quick exit banner</button>
+            <script>
+              document.getElementById('init-quick-exit').addEventListener('click', function () {
+                if (window.NSW && window.NSW.QuickExit) {
+                  window.NSW.QuickExit.init({
+                    title: "{{model.quick-exit.title}}",
+                    description: "{{model.quick-exit.description}}",
+                    exitUrl: "{{model.quick-exit.exitUrl}}",
+                    exitLabel: "{{model.quick-exit.exitLabel}}",
+                    theme: "dark",
+                    eraseCurrentPage: true,
+                    newTab: false,
+                    enableEsc: true
+                  })
+                }
               })
-            }
-          })
-        </script>
-        <h3>Cookie consent</h3>
-        <button class="nsw-button nsw-button--dark nsw-m-top-md" id="init-cookie-consent" type="button">Initialise Cookie consent banner</button>
+            </script>
+          </div>
+
+          <div class="nsw-col nsw-col-md-6">
+            <h3>Cookie consent</h3>
+            <button class="nsw-button nsw-button--dark nsw-m-top-md" id="init-cookie-consent" type="button">Initialise Cookie consent banner</button>
+            <script>
+              document.getElementById('init-cookie-consent').addEventListener('click', function () {
+                if (window.NSW && window.NSW.CookieConsent) {
+                  new window.NSW.CookieConsent(window.NSW.cookieConsentConfig || {
+                    consentBanner: {
+                      title: 'Cookie use on our website',
+                      description: 'We use cookies to improve your experience on our site.',
+                      acceptAllBtn: 'Accept all cookies',
+                      acceptNecessaryBtn: 'Reject non-essential cookies',
+                      showPreferencesBtn: 'Manage your cookies',
+                      confirmationMessage: 'Your cookie preferences have been saved.',
+                    },
+                    preferencesDialog: {}
+                  })
+                } else {
+                  console.error('CookieConsent module not found.')
+                }
+              })
+            </script>
+          </div>
+        </div>
 
         <h2>Quick access</h2>
         <div class="nsw-grid nsw-m-bottom-md">

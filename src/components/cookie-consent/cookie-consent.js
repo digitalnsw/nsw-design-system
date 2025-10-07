@@ -296,17 +296,19 @@ class CookieConsent {
     this.initElements()
     this.attachEventListeners()
 
-    if (this.preferencesDialogElement) {
-      this.initAPI()
-      // Immediately hide the banner if user has preferences set
-      const preferences = CookieConsentAPI.getUserPreferences()
-      if (preferences && preferences.acceptedCategories.length > 0) {
-        this.consentBannerElement.setAttribute('hidden', 'true')
-      }
-    } else {
-      // Dialog trigger might be disabled in config; that's OK
-      logger.warn('CookieConsent: preferences dialog not initialised (no trigger found).')
-    }
+    this.initAPI()
+      .then(() => {
+        // Immediately hide the banner if user has preferences set
+        const preferences = CookieConsentAPI.getUserPreferences()
+        if (preferences && preferences.acceptedCategories && preferences.acceptedCategories.length > 0) {
+          this.hideConsentBanner()
+        }
+      })
+      .catch((err) => {
+        if (logger && logger.warn) {
+          logger.warn('CookieConsent: initAPI failed', err)
+        }
+      })
   }
 
   initElements() {
@@ -322,11 +324,13 @@ class CookieConsent {
 
   initAPI() {
     if (!this.isInit) {
-      CookieConsentAPI.run(this.config).then(() => {
+      return CookieConsentAPI.run(this.config).then(() => {
         this.isInit = true
         this.loadUserPreferences()
+        return true
       })
     }
+    return Promise.resolve(true)
   }
 
   attachEventListeners() {
