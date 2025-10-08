@@ -41,27 +41,157 @@ model:
           <li><strong>Child Protection Helpline</strong> <a href="tel:132111">13 21 11</a></li>
         </ul>
 
-        <h2 id="support-contacts">Initialise all banners</h2>
-        <div class="nsw-grid nsw-grid--spaced nsw-m-top-md">
-          <div class="nsw-col nsw-col-md-6">
+        <h2 id="support-contacts">Initialise floating elements</h2>
+        <div class="nsw-grid nsw-grid--spaced nsw-m-top-sm">
+          
+          <div class="nsw-col nsw-col-md-12">
             <h3>Quick Exit</h3>
-            <button class="nsw-button nsw-button--dark nsw-m-top-md" id="init-quick-exit" type="button">Initialise Quick exit banner</button>
-            <script>
-              document.getElementById('init-quick-exit').addEventListener('click', function () {
-                if (window.NSW && window.NSW.QuickExit) {
-                  window.NSW.QuickExit.init({
-                    title: "{{model.quick-exit.title}}",
-                    description: "{{model.quick-exit.description}}",
-                    exitUrl: "{{model.quick-exit.exitUrl}}",
-                    exitLabel: "{{model.quick-exit.exitLabel}}",
-                    theme: "dark",
-                    eraseCurrentPage: true,
-                    newTab: false,
-                    enableEsc: true
-                  })
+            <div id="quick-exit-controls" class="nsw-section nsw-section--box nsw-m-top-xs">
+            <div class="nsw-form">
+              <div class="nsw-grid nsw-grid--spaced">
+                <div class="nsw-col nsw-col-md-6">
+                  <div class="nsw-form__group">
+                    <label class="nsw-form__label" for="qe-exit-url">Exit URL</label>
+                    <input class="nsw-form__input" id="qe-exit-url" type="url" placeholder="https://www.google.com/" value="{{model.quick-exit.exitUrl}}">
+                  </div>
+                </div>
+                <div class="nsw-col nsw-col-md-6">
+                  <div class="nsw-form__group">
+                    <label class="nsw-form__label" for="qe-exit-label">Exit label</label>
+                    <input class="nsw-form__input" id="qe-exit-label" type="text" placeholder="Leave site" value="{{model.quick-exit.exitLabel}}">
+                  </div>
+                </div>
+                <div class="nsw-col nsw-col-md-12 nsw-p-top-sm">
+                  <div class="nsw-form__group">
+                    <label class="nsw-form__label" for="qe-description">Description (HTML allowed: &lt;kbd&gt;, &lt;strong&gt;)</label>
+                    <textarea class="nsw-form__textarea" id="qe-description" rows="2">{{model.quick-exit.description}}</textarea>
+                  </div>
+                </div>
+                <div class="nsw-col nsw-col-md-4 nsw-p-top-sm">
+                  <div class="nsw-form__group">
+                    <label class="nsw-form__label" for="qe-theme">Theme</label>
+                    <select class="nsw-form__select" id="qe-theme">
+                      <option value="light">Light</option>
+                      <option value="dark" selected>Dark</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="nsw-col nsw-col-md-4 nsw-p-top-sm">
+                  <h6>Other options</h6>
+                  <div class="nsw-form__group nsw-form__group--inline">
+                    <div class="nsw-form__checkbox nsw-m-top-xs">
+                      <input class="nsw-form__checkbox-input" id="qe-newtab" type="checkbox">
+                      <label class="nsw-form__checkbox-label" for="qe-newtab">Open in new tab</label>
+                    </div>
+                    <div class="nsw-form__checkbox nsw-m-top-xs">
+                      <input class="nsw-form__checkbox-input" id="qe-erase" type="checkbox" checked>
+                      <label class="nsw-form__checkbox-label" for="qe-erase">Erase current page</label>
+                    </div>
+                    <div class="nsw-form__checkbox nsw-m-top-xs">
+                      <input class="nsw-form__checkbox-input" id="qe-esc" type="checkbox" checked>
+                      <label class="nsw-form__checkbox-label" for="qe-esc">Enable double Esc</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="nsw-button nsw-button--dark nsw-m-top-md" id="init-quick-exit" type="button">Initialise Quick exit banner</button>
+          </div>
+
+          <script>
+            (function () {
+              var btn = document.getElementById('init-quick-exit')
+              if (!btn) return
+              btn.addEventListener('click', function () {
+                if (!(window.NSW && window.NSW.QuickExit)) return
+                var getVal = function (id, fallback) {
+                  var el = document.getElementById(id)
+                  return el && el.value !== '' ? el.value : fallback
                 }
+                var exitUrl = getVal('qe-exit-url', '{{model.quick-exit.exitUrl}}')
+                var exitLabel = getVal('qe-exit-label', '{{model.quick-exit.exitLabel}}')
+                var description = getVal('qe-description', '{{model.quick-exit.description}}')
+                var themeSel = document.getElementById('qe-theme')
+                var theme = themeSel ? themeSel.value : 'dark'
+                var newTab = document.getElementById('qe-newtab') ? document.getElementById('qe-newtab').checked : false
+                var erase = document.getElementById('qe-erase') ? document.getElementById('qe-erase').checked : true
+                var esc = document.getElementById('qe-esc') ? document.getElementById('qe-esc').checked : true
+
+                window.NSW.QuickExit.init({
+                  title: "{{model.quick-exit.title}}",
+                  description: description,
+                  exitUrl: exitUrl,
+                  exitLabel: exitLabel,
+                  theme: theme,
+                  eraseCurrentPage: erase,
+                  newTab: newTab,
+                  enableEsc: esc
+                })
               })
+            })()
+          </script>
+
+          <div class="nsw-col nsw-col-md-6">
+            <h3>Global alert</h3>
+            <button class="nsw-button nsw-button--dark nsw-m-top-md" id="init-global-alert" type="button">Initialise Global alert</button>
+            <script>
+              (function () {
+                var btn = document.getElementById('init-global-alert')
+                if (!btn) return
+
+                btn.addEventListener('click', function () {
+                  // Avoid duplicate injection
+                  if (document.querySelector('[data-module="global-alert"]')) return
+
+                  // Insert at the very top of the page (before the first child of <body>)
+                  var first = document.body.firstElementChild
+
+                  // Build Global Alert element
+                  var alertEl = document.createElement('div')
+                  alertEl.className = 'nsw-global-alert nsw-global-alert--critical'
+                  alertEl.setAttribute('data-module', 'global-alert')
+                  // alertEl.setAttribute('data-cookie-name', 'nsw-global-alert') - enable if cookie persistence is needed
+                  alertEl.setAttribute('role', 'alert')
+                  alertEl.style.position = 'relative'
+                  alertEl.style.zIndex = '2000'
+                  alertEl.innerHTML = '\
+                    <div class="nsw-global-alert__wrapper">\
+                      <div class="nsw-global-alert__content">\
+                        <div class="nsw-global-alert__title">Important update</div>\
+                        <p>Service outages may occur between 1am and 3am.</p>\
+                      </div>\
+                      <button class="nsw-icon-button js-close-alert" type="button">\
+                        <span class="material-icons nsw-material-icons" aria-hidden="true">close</span>\
+                        <span class="sr-only">Close message</span>\
+                      </button>\
+                    </div>'
+
+                  // Insert as the first element in <body> so it sits above everything
+                  if (first) {
+                    document.body.insertBefore(alertEl, first)
+                  } else {
+                    document.body.appendChild(alertEl)
+                  }
+
+                  if (window.NSW && window.NSW.GlobalAlert) {
+                    var instance = new window.NSW.GlobalAlert(alertEl)
+                    instance.init()
+                    var closeBtn = alertEl.querySelector('button.js-close-alert')
+                    if (closeBtn) {
+                      closeBtn.addEventListener('click', function () {
+                        // no-op: component hides itself; no layout padding to revert
+                      })
+                    }
+                  } else {
+                    console.warn('GlobalAlert module not found; injected markup only.')
+                  }
+                })
+              })()
             </script>
+
+            <h3 class="nsw-m-top-lg">Back to top</h3>
+            <p>Currently active on this page, applied to the content body. Scroll down to the bottom then scroll upwards to see it in action.</p>
           </div>
 
           <div class="nsw-col nsw-col-md-6">
@@ -88,6 +218,8 @@ model:
             </script>
           </div>
         </div>
+
+        <hr class="nsw-section-break nsw-m-top-lg nsw-m-bottom-lg">
 
         <h2>Quick access</h2>
         <div class="nsw-grid nsw-m-bottom-md">
