@@ -199,6 +199,12 @@ model:
             <button class="nsw-button nsw-button--dark nsw-m-top-md" id="init-cookie-consent" type="button">Initialise Cookie consent banner</button>
             <script>
               document.getElementById('init-cookie-consent').addEventListener('click', function () {
+                var existing = document.querySelector('.js-sticky-container .nsw-cookie-banner, .nsw-cookie-banner')
+                if (existing) {
+                  existing.removeAttribute('hidden')
+                  existing.style.display = 'block'
+                  return
+                }
                 if (window.NSW && window.NSW.CookieConsent) {
                   new window.NSW.CookieConsent(window.NSW.cookieConsentConfig || {
                     consentBanner: {
