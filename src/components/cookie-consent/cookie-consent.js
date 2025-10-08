@@ -232,6 +232,13 @@ class CookieConsent {
 
   createConsentBanner() {
     const { language: { translations: { en } } } = this.config
+    // Prevent multiple instances by reusing an existing banner if present
+    const containerEl = stickyContainer()
+    const existingBanner = containerEl.querySelector('.nsw-cookie-banner')
+    if (existingBanner) {
+      this.consentBannerElement = existingBanner
+      return
+    }
     const { consentModal } = en
     const bannerOffset = consentModal.bannerOffset ? consentModal.bannerOffset : '0'
     this.consentBannerConfirmationMessage = consentModal.confirmationMessage || ''
@@ -272,8 +279,7 @@ class CookieConsent {
     // Ensure the cookie banner itself is a block-level child
     this.consentBannerElement.style.display = 'block'
 
-    // Ensure sticky container exists and insert banner at the top so it appears above other items
-    const containerEl = stickyContainer()
+    // Insert banner at the top so it appears above other items
     if (containerEl.firstChild) {
       containerEl.insertBefore(this.consentBannerElement, containerEl.firstChild)
     } else {
