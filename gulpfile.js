@@ -32,6 +32,7 @@ const gulpStylelint = require('gulp-stylelint')
 const replace = require('gulp-replace')
 const inject = require('gulp-inject-string')
 const fs = require('fs')
+const path = require('path')
 const { argv } = require('yargs')
 const bump = require('gulp-bump')
 const config = require('./config')
@@ -97,6 +98,42 @@ function buildDocStyles() {
     .pipe(postcss(postcssProcessors))
     .pipe(sourcemaps.write('.'))
     .pipe(dest(config.scssDocs.build))
+}
+
+function writePackageTypes(done) {
+  try {
+    const targets = [
+      {
+        // CSS barrel: nsw-design-system/css
+        outDir: config.scss.build,
+        file: 'main.css.d.ts',
+        module: 'nsw-design-system/css'
+      },
+      {
+        // Tools barrel: nsw-design-system/tools
+        outDir: path.join('dist', 'scss', 'tools'),
+        file: '_index.scss.d.ts',
+        module: 'nsw-design-system/tools'
+      }
+    ];
+
+    const template = (moduleName) => `declare module '${moduleName}' {
+const content: string;
+export default content;
+}
+`;
+
+    targets.forEach(({ outDir, file, module }) => {
+      fs.mkdirSync(outDir, { recursive: true });
+      fs.writeFileSync(path.join(outDir, file), template(module), 'utf8');
+      console.log('Generated types for:', module, '→', path.join(outDir, file));
+    });
+
+    done();
+  } catch (e) {
+    console.error('Error in writePackageTypes:', e);
+    done();
+  }
 }
 
 function lintStyles() {
@@ -402,7 +439,7 @@ function bumping() {
     .pipe(dest('./'))
 }
 
-const styles = series(lintStyles, buildStyles, buildCoreStyles, buildDocStyles)
+const styles = series(lintStyles, buildStyles, buildCoreStyles, buildDocStyles, writePackageTypes)
 const javascript = series(lintJavascript, compileJS, compileTypes, compileDocsJS, compileCookieConsentJS)
 
 function watchFiles(done) {

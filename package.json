@@ -7,14 +7,20 @@
   "style": "dist/css/main.css",
   "exports": {
     ".": "./dist/js/main.js",
-    "./package.json": "./package.json",
-    "./tools": "./src/global/scss/tools/_index.scss",
-    "./css": "./dist/css/main.css",
+    "./css": {
+      "types": "./dist/css/main.css.d.ts",
+      "default": "./dist/css/main.css"
+    },
+    "./tools": {
+      "types": "./dist/scss/tools/_index.scss.d.ts",
+      "default": "./src/global/scss/tools/_index.scss"
+    },
     "./dist/*": "./dist/*",
-    "./src/*": "./src/*"
+    "./src/*": "./src/*",
+    "./package.json": "./package.json"
   },
   "files": [
-    "dist/{css,js}/**/*.{css,d.ts,js,map}",
+    "dist/{css,js,scss}/**/*.{css,scss,d.ts,js,map}",
     "src/{components,patterns,styles,core}/**/*.{scss,js}",
     "src/global/{scripts,scss}/**/*.{scss,js}",
     "src/main.{scss,js}"
