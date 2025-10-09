@@ -5,6 +5,8 @@
   padding: 0;
   background-color: var(--nsw-white);
   color: var(--nsw-text-dark);
+  border-top: 3px solid var(--Status-error, var(--nsw-status-error));
+  box-shadow: 0 0 12px 4px rgba(0, 0, 0, 0.25);
 
   @include nsw.breakpoint('lg') {
     // padding: 0 0 0 nsw.rem(16px);
@@ -19,9 +21,10 @@
     flex-wrap: nowrap;
     justify-content: space-between;
     gap: nsw.rem(8px);
-    // padding: 0;
+    padding: 0;
 
     @include nsw.breakpoint('lg') {
+      padding: 0 0 0 nsw.rem(16px);
       height: 120px;
     }
   }
