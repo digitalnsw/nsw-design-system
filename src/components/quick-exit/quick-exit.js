@@ -139,10 +139,12 @@ export default class QuickExit {
         if (shouldErase && window.history && window.history.replaceState) {
           window.history.replaceState(null, '', '/')
         }
-        try {
-          window.open('', '_self')
-          window.close()
-        } catch (err) { /* ignore */ }
+        // If erase is requested, blank the current tab so previous content isn't visible or trivially recoverable.
+        if (shouldErase) {
+          try {
+            window.location.replace('about:blank')
+          } catch (err) { /* ignore */ }
+        }
       } else if (shouldErase) {
         if (window.history && window.history.replaceState) {
           window.history.replaceState(null, '', '/')
