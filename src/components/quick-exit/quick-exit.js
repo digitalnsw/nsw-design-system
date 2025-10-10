@@ -12,6 +12,7 @@ export default class QuickExit {
     newTab = false,
     eraseCurrentPage = false,
     enableEsc = false,
+    cloakMode = 'none',
   } = {}) {
     // Use the shared sticky container (owned by sticky-container.js)
     const containerEl = stickyContainer()
@@ -104,7 +105,33 @@ export default class QuickExit {
     quickExitBtn.appendChild(iconEl)
     quickExitBtn.setAttribute('aria-label', exitLabel)
 
+    // Apply an immediate, global "cloak" to hide document content.
+    const applyCloak = () => {
+      if (!cloakMode || cloakMode === 'none') return
+      const root = document.documentElement // <html>
+      try {
+        switch (cloakMode) {
+          case 'display':
+            root.style.setProperty('display', 'none', 'important')
+            break
+          case 'opacity':
+            root.style.setProperty('opacity', '0', 'important')
+            root.style.setProperty('pointer-events', 'none', 'important')
+            break
+          case 'visibility':
+          default:
+            root.style.setProperty('visibility', 'hidden', 'important')
+            break
+        }
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.warn('QuickExit: failed to apply cloak', e)
+      }
+    }
+
     const navigate = () => {
+      // Hide content immediately for users on slow devices/connections
+      applyCloak()
       const openInNewTab = newTab || quickExitWrapper.classList.contains('nsw-quick-exit--newtab') || domWantsNewTab
       const shouldErase = eraseCurrentPage || domWantsErase
       if (openInNewTab) {

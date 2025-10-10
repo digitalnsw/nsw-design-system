@@ -79,6 +79,18 @@ model:
                   </div>
                 </div>
                 <div class="nsw-col nsw-col-md-4 nsw-p-top-sm">
+                  <div class="nsw-form__group">
+                    <label class="nsw-form__label" for="qe-cloak">Cloak mode</label>
+                    <select class="nsw-form__select" id="qe-cloak">
+                      <option value="none" selected>None</option>
+                      <option value="visibility">Visibility (hide, keep layout)</option>
+                      <option value="opacity">Opacity (zero &amp; disable clicks)</option>
+                      <option value="display">Display none (most aggressive)</option>
+                    </select>
+                    <div class="nsw-form__helper nsw-m-top-sm">Controls how quickly content is hidden when Quick Exit triggers.</div>
+                  </div>
+                </div>
+                <div class="nsw-col nsw-col-md-4 nsw-p-top-sm">
                   <h6>Other options</h6>
                   <div class="nsw-form__group nsw-form__group--inline">
                     <div class="nsw-form__checkbox nsw-m-top-xs">
@@ -119,6 +131,8 @@ model:
                 var newTab = document.getElementById('qe-newtab') ? document.getElementById('qe-newtab').checked : false
                 var erase = document.getElementById('qe-erase') ? document.getElementById('qe-erase').checked : true
                 var esc = document.getElementById('qe-esc') ? document.getElementById('qe-esc').checked : true
+                var cloakSel = document.getElementById('qe-cloak')
+                var cloak = cloakSel ? cloakSel.value : 'none'
 
                 window.NSW.QuickExit.init({
                   title: "{{model.quick-exit.title}}",
@@ -128,7 +142,8 @@ model:
                   theme: theme,
                   eraseCurrentPage: erase,
                   newTab: newTab,
-                  enableEsc: esc
+                  enableEsc: esc,
+                  cloakMode: cloak
                 })
               })
             })()

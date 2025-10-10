@@ -11,6 +11,7 @@ model:  json/quick-exit.json
 <li>Light theme</li>
 <li>Erases current page when clicked</li>
 <li>Opens in same tab</li>
+<li>Uses "visibility" cloak mode to hide page content immediately on activation</li>
 </ul>
 
 <button class="nsw-button nsw-button--dark"
@@ -25,7 +26,8 @@ model:  json/quick-exit.json
     "popover": "{{model.popover}}",
     "theme": "light",
     "eraseCurrentPage": true,
-    "newTab": false
+    "newTab": false,
+    "cloakMode": "visibility"
   }'
   type="button"
   aria-expanded="true">Initialise banner</button>
@@ -35,6 +37,7 @@ model:  json/quick-exit.json
 <li>Dark theme</li>
 <li>Erases current page when clicked</li>
 <li>Opens in same tab</li>
+<li>Uses "display" cloak mode to hide page content immediately on activation</li>
 </ul>
 
 <button class="nsw-button nsw-button--dark"
@@ -49,7 +52,9 @@ model:  json/quick-exit.json
     "popover": "{{model.popover}}",
     "theme": "dark",
     "eraseCurrentPage": true,
-    "newTab": false
+    "newTab": false,
+    "enableEsc": true,
+    "cloakMode": "display"
   }'
   type="button"
   aria-expanded="true">Initialise banner</button>
@@ -72,6 +77,7 @@ model:  json/quick-exit.json
     "popover": "{{model.popover}}",
     "theme": "light",
     "eraseCurrentPage": false,
+    "enableEsc": true,
     "newTab": true
   }'
   type="button"
