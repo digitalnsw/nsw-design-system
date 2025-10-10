@@ -15,6 +15,8 @@ model:
   footer: ../../components/footer/json/footer.json
   quick-exit: ../../components/quick-exit/json/quick-exit.json
   cookie-consent: ../../components/cookie-consent/json/cookie-consent-1.json
+  dialog: ../../components/dialog/json/dialog-dismissible-dark.json
+  select: ../../components/select/json/select-region.json
 ---
 
 {{>_masthead content="#content" nav="#main-nav"}}
@@ -222,6 +224,21 @@ model:
                 }
               })
             </script>
+          </div>
+
+          <h2>Potential conflicts with <kbd>Esc</kbd> key function</h2>
+          <div class="nsw-col nsw-col-md-6 nsw-m-top-sm">
+            <h3>Dialog</h3>
+            {{>_dialog model.dialog button-title="Launch Dialog"}}
+            <h3 class="nsw-m-bottom-sm">Select</h3>
+            {{>_select model.select}}
+          </div>
+          <div class="nsw-col nsw-col-md-6 nsw-m-top-sm">
+            <h3>Toggletip</h3>
+            <p>In the quiet desperation of the third day, Santiago battles <span aria-controls="toggletip-example-dark" class="nsw-toggletip js-toggletip" data-title="A majestic fish symbolising pride, endurance, and loss">the marlin</span>, tied to his skiff and spirit. As exhaustion deepens, the struggle becomes not just physical, but spiritual — a reflection on pride, endurance, and the quiet dignity of effort. Some stories hold truths not in their facts, but in their silences — in what remains unspoken between man, sea, and sky.</p>
+            <div id="toggletip-example-dark" class="nsw-toggletip__element nsw-toggletip__element--dark">
+              <p>The marlin embodies Santiago's greatest struggle, blending themes of isolation, respect, and the dignity of effort.</p>
+            </div>
           </div>
         </div>
 
