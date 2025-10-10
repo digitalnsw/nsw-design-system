@@ -76,12 +76,13 @@ export default class QuickExit {
     descEl.className = 'nsw-quick-exit__description'
     if (description) {
       let html = String(description)
-      // If the string contains common encoded tags, decode entities so sanitiser can allow whitelisted tags (e.g. <kbd>)
-      if (/[&]lt;|&#60;|&amp;lt;|[&]gt;|&#62;|&amp;gt;/.test(html)) {
-        const decoder = document.createElement('textarea')
-        decoder.innerHTML = html
-        html = decoder.value
-      }
+      // Avoid generic entity decoding to prevent reinterpreting HTML.
+      // If we need to support encoded <kbd> tokens, decode ONLY those, then sanitise.
+      // Supports both &lt; and &#60; forms (case-insensitive).
+      html = html
+        .replace(/(&lt;|&#60;)(kbd)(>)/gi, '<kbd>')
+        .replace(/(&lt;|&#60;)(\/kbd)(>)/gi, '</kbd>')
+
       const frag = cleanHTMLStrict(html, true, { allowedTags: ['span', 'kbd', 'strong', 'em', 'br', 'code'] })
       if (frag && frag.childNodes && frag.childNodes.length > 0) {
         descEl.appendChild(frag)
