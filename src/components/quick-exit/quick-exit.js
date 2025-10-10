@@ -143,9 +143,6 @@ export default class QuickExit {
           window.open('', '_self')
           window.close()
         } catch (err) { /* ignore */ }
-        if (!document.hidden && shouldErase) {
-          window.location.replace(safeUrl(exitUrl))
-        }
       } else if (shouldErase) {
         if (window.history && window.history.replaceState) {
           window.history.replaceState(null, '', '/')
