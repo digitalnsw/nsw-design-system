@@ -91,19 +91,58 @@
   }
 
   &__title {
+    position: relative;
+
     .ready & {
       padding: 0;
       margin-top: 0;
     }
 
-    .nsw-material-icons {
+    &::after {
+      content: 'keyboard_arrow_down';
       font-size: nsw.rem(map.get(nsw.$nsw-icon-sizes, 30));
       color: var(--nsw-brand-dark);
+      font-weight: normal;
       transform: translateY(-50%);
       position: absolute;
       top: 50%;
       right: nsw.rem(8px);
       transition: transform nsw.$nsw-transition-duration, color nsw.$nsw-transition-duration;
+
+      @include nsw.material-icons;
+    }
+
+    // To delete for new solution, may need to keep for legacy support
+    // .nsw-material-icons {
+    //   font-size: nsw.rem(map.get(nsw.$nsw-icon-sizes, 30));
+    //   color: var(--nsw-brand-dark);
+    //   transform: translateY(-50%);
+    //   position: absolute;
+    //   top: 50%;
+    //   right: nsw.rem(8px);
+    //   transition: transform nsw.$nsw-transition-duration, color nsw.$nsw-transition-duration;
+    // }
+  }
+
+  &__title:has(+ .nsw-accordion__control:checked)::after {
+    transform: translateY(-50%) rotate(180deg);
+  }
+
+  &__control {
+    position: absolute;
+    opacity: 0;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+
+    &:checked + .nsw-accordion__content {
+      display: block;
+      visibility: visible;
+      height: auto;
+      overflow: visible;
+      padding: nsw.rem(16px);
     }
   }
 

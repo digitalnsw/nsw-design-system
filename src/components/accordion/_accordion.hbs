@@ -7,7 +7,8 @@
   {{/if}}
   {{#each items}}
   <div class="nsw-accordion__title{{#if open}} {{open}}{{/if}}">{{title}}</div>
-  <div class="nsw-accordion__content">
+  <input id="nsw-accordion-{{@index}}" type="checkbox" class="nsw-accordion__control" aria-label="Control content visibility" aria-controls="acc-panel-{{@index}}"{{#if open}} checked{{/if}}>
+  <div class="nsw-accordion__content" id="acc-panel-{{@index}}">
     {{{content}}}
   </div>
   {{/each}}
