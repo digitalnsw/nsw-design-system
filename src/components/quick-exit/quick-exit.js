@@ -1,3 +1,4 @@
+/* eslint-disable no-extra-semi */
 import { cleanHTMLStrict } from '../../global/scripts/helpers/sanitize'
 import stickyContainer, { updateStickyBodyPadding } from '../../global/scripts/sticky-container'
 import { safeUrl } from '../../global/scripts/helpers/utilities'
@@ -7,16 +8,19 @@ export default class QuickExit {
     exitUrl = 'https://www.google.com/',
     exitLabel = 'Exit this site',
     title = 'Quickly leave this site',
-    description = 'Use the button or press the <kbd>Esc</kbd> key 2 times. Quick exit doesn\'t clear your browser history.',
+    description = 'Use the button or press the <kbd>Esc</kbd> key 2 times.',
     theme = 'light',
     newTab = false,
     eraseCurrentPage = false,
     enableEsc = false,
+    placement = 'top',
     cloakMode = 'none',
   } = {}) {
     // Use the shared sticky container (owned by sticky-container.js)
     const containerEl = stickyContainer()
-    if (!containerEl) {
+    const isTopPlacement = String(placement).trim()
+      .toLowerCase() === 'top'
+    if (!containerEl && !isTopPlacement) {
       // eslint-disable-next-line no-console
       console.warn('QuickExit: sticky container unavailable in this environment')
       return
@@ -39,9 +43,9 @@ export default class QuickExit {
     const domWantsEsc = (containerEl && containerEl.getAttribute('data-quick-exit-esc') === 'true')
 
     // Remove existing Quick Exit instance to allow re-initialisation
-    const existingQuickExit = containerEl.querySelector('.nsw-quick-exit')
+    const existingQuickExit = (isTopPlacement ? document.body : containerEl).querySelector(isTopPlacement ? '.nsw-quick-exit--top' : '.nsw-quick-exit')
     if (existingQuickExit) {
-      containerEl.removeChild(existingQuickExit)
+      existingQuickExit.parentElement.removeChild(existingQuickExit)
     }
 
     // Theme (light | dark); default to light
@@ -52,59 +56,54 @@ export default class QuickExit {
     // Wrapper with a single, explicit theme class + data-theme attribute
     const quickExitWrapper = document.createElement('div')
     quickExitWrapper.className = 'nsw-quick-exit'
+    if (isTopPlacement) {
+      quickExitWrapper.classList.add('nsw-quick-exit--top')
+    }
     quickExitWrapper.classList.add(isDarkTheme ? 'nsw-quick-exit__dark' : 'nsw-quick-exit__light')
     quickExitWrapper.setAttribute('data-theme', isDarkTheme ? 'dark' : 'light')
-    // Stack as a block within the shared sticky container
     quickExitWrapper.style.display = 'block'
     if (isDarkTheme) {
       quickExitWrapper.classList.add('nsw-section--invert')
     }
     if (newTab || domWantsNewTab) quickExitWrapper.classList.add('nsw-quick-exit--newtab')
 
-    // Internal wrapper for button and links
-    const internalWrapper = document.createElement('div')
-    internalWrapper.className = 'nsw-quick-exit__wrapper'
-
-    const contentWrapper = document.createElement('div')
-    contentWrapper.className = 'nsw-quick-exit__content'
-
-    const headingEl = document.createElement('h3')
-    headingEl.className = 'nsw-quick-exit__title'
-    headingEl.textContent = title
-
-    const descEl = document.createElement('p')
-    descEl.className = 'nsw-quick-exit__description'
-    if (description) {
-      let html = String(description)
-      // Avoid generic entity decoding to prevent reinterpreting HTML.
-      // If we need to support encoded <kbd> tokens, decode ONLY those, then sanitise.
-      // Supports both &lt; and &#60; forms (case-insensitive).
-      html = html
-        .replace(/(&lt;|&#60;)(kbd)(>)/gi, '<kbd>')
-        .replace(/(&lt;|&#60;)(\/kbd)(>)/gi, '</kbd>')
-
-      const frag = cleanHTMLStrict(html, true, { allowedTags: ['span', 'kbd', 'strong', 'em', 'br', 'code'] })
-      if (frag && frag.childNodes && frag.childNodes.length > 0) {
-        descEl.appendChild(frag)
-      } else {
-        descEl.textContent = html
-      }
-    }
-
-    contentWrapper.appendChild(headingEl)
-    contentWrapper.appendChild(descEl)
-
     // Main Quick Exit button with click behaviour for new tab or erase history
     const quickExitBtn = document.createElement('button')
     quickExitBtn.type = 'button'
     quickExitBtn.className = 'js-quick-exit nsw-quick-exit__cta'
-    quickExitBtn.textContent = exitLabel
-    // Add east arrow icon after text content
-    const iconEl = document.createElement('div')
-    iconEl.className = 'material-icons nsw-material-icons'
-    iconEl.textContent = 'east'
-    quickExitBtn.appendChild(iconEl)
     quickExitBtn.setAttribute('aria-label', exitLabel)
+
+    // Inner container
+    const innerContainer = document.createElement('div')
+    innerContainer.className = 'nsw-quick-exit__inner'
+
+    // Icon
+    const iconEl = document.createElement('span')
+    iconEl.className = 'nsw-quick-exit__icon'
+    iconEl.setAttribute('aria-hidden', 'true')
+    iconEl.innerHTML = '<svg width="48" height="48" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" focusable="false" role="img"><g clip-path="url(#clip0_2059_19572)"><path d="M4 11.6V5C4 4.2 4.3 3.5 4.9 2.9C5.5 2.3 6.2 2 7 2H13.6V5H7V11.6H4ZM13.6 42H7C6.2 42 5.5 41.7 4.9 41.1C4.3 40.5 4 39.8 4 39V32.4H7V39H13.6V42ZM41 11.6V5H34.4V2H41C41.8 2 42.5 2.3 43.1 2.9C43.7 3.5 44 4.2 44 5V11.6H41ZM27.004 16.3C26.0013 16.3 25.1417 15.943 24.425 15.229C23.7083 14.515 23.35 13.6567 23.35 12.654C23.35 11.6513 23.707 10.7917 24.421 10.075C25.135 9.35833 25.9933 9 26.996 9C27.9987 9 28.8583 9.357 29.575 10.071C30.2917 10.785 30.65 11.6433 30.65 12.646C30.65 13.6487 30.293 14.5083 29.579 15.225C28.865 15.9417 28.0067 16.3 27.004 16.3ZM17.85 34.25L20.15 22.5L15.15 24.85V31.55H12.15V22.8L20.35 19.35C21.4167 18.8833 22.175 18.5917 22.625 18.475C23.075 18.3583 23.5267 18.3 23.98 18.3C24.66 18.3 25.2583 18.4417 25.775 18.725C26.2917 19.0083 26.7333 19.4333 27.1 20L29.2 23.35C29.7667 24.2167 30.4417 25.025 31.225 25.775C32.0083 26.525 32.8833 27.1333 33.85 27.6L32.35 30.15C31.3833 29.6167 30.475 28.9583 29.625 28.175C28.775 27.3917 27.95 26.45 27.15 25.35L25 34.25H17.85ZM30.5 44C29.9333 44 29.5083 43.7333 29.225 43.2C28.9417 42.6667 28.9333 42.1667 29.2 41.7L37.2 27.75C37.4667 27.1833 37.8917 26.9167 38.475 26.95C39.0583 26.9833 39.5167 27.2333 39.85 27.7L47.85 41.7C48.15 42.2 48.1375 42.7083 47.8125 43.225C47.4875 43.7417 47.05 44 46.5 44H30.5ZM38.5 42C38.7 42 38.875 41.925 39.025 41.775C39.175 41.625 39.25 41.45 39.25 41.25C39.25 41.05 39.175 40.875 39.025 40.725C38.875 40.575 38.7 40.5 38.5 40.5C38.3 40.5 38.125 40.575 37.975 40.725C37.825 40.875 37.75 41.05 37.75 41.25C37.75 41.45 37.825 41.625 37.975 41.775C38.125 41.925 38.3 42 38.5 42ZM37.75 38.75H39.25V30.5H37.75V38.75Z" fill="currentColor"/></g><defs><clipPath id="clip0_2059_19572"><rect width="48" height="48" fill="white"/></clipPath></defs></svg>'
+
+    // Heading
+    const headingEl = document.createElement('h3')
+    headingEl.className = 'nsw-quick-exit__title'
+    headingEl.textContent = title
+
+    // Description
+    const descEl = document.createElement('p')
+    descEl.className = 'nsw-quick-exit__description'
+    if (description) {
+      let html = String(description)
+      html = html.replace(/(&lt;|&#60;)(kbd)(>)/gi, '<kbd>').replace(/(&lt;|&#60;)(\/kbd)(>)/gi, '</kbd>')
+      const frag = cleanHTMLStrict(html, true, { allowedTags: ['span', 'kbd', 'strong', 'em', 'br', 'code'] })
+      if (frag && frag.childNodes.length > 0) descEl.appendChild(frag)
+      else descEl.textContent = html
+    }
+
+    innerContainer.prepend(iconEl)
+    innerContainer.appendChild(headingEl)
+    innerContainer.appendChild(descEl)
+    quickExitBtn.appendChild(innerContainer)
+    quickExitWrapper.appendChild(quickExitBtn)
 
     // Apply an immediate, global "cloak" to hide document content.
     const applyCloak = () => {
@@ -160,13 +159,18 @@ export default class QuickExit {
       evt.preventDefault()
       navigate()
     })
-    internalWrapper.appendChild(contentWrapper)
-    internalWrapper.appendChild(quickExitBtn)
 
-    quickExitWrapper.appendChild(internalWrapper)
-
-    // Append Quick Exit component to sticky container
-    containerEl.appendChild(quickExitWrapper)
+    // Append Quick Exit component based on placement
+    if (isTopPlacement) {
+      // Place as the first element in <body> so it sits above the masthead
+      if (document.body.firstChild) {
+        document.body.insertBefore(quickExitWrapper, document.body.firstChild)
+      } else {
+        document.body.appendChild(quickExitWrapper)
+      }
+    } else {
+      containerEl.appendChild(quickExitWrapper)
+    }
 
     // Add keyboard functionality for double ESC key press (opt-in)
     const useEsc = enableEsc || domWantsEsc
@@ -198,8 +202,10 @@ export default class QuickExit {
       }
     }
 
-    // Adjust body padding to the full sticky container height (accounts for stacked items)
-    updateStickyBodyPadding()
+    // Adjust body padding only when using the shared sticky container
+    if (!isTopPlacement) {
+      updateStickyBodyPadding()
+    }
   }
 
   static fromElement(el) {

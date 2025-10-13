@@ -2,64 +2,56 @@
 @use '../../global/scss/tools' as nsw;
 
 .nsw-quick-exit {
+  width: 100%;
   padding: 0;
-  background-color: var(--nsw-white);
-  color: var(--nsw-text-dark);
-  border-top: 3px solid var(--Status-error, var(--nsw-status-error));
-  box-shadow: 0 0 12px 4px rgba(0, 0, 0, 0.25);
+  margin: 0;
+  color: var(--nsw-white);
+  border: 0;
+  box-shadow: none;
+  position: sticky;
+  top: 0;
 
-  @include nsw.breakpoint('lg') {
-    // padding: 0 0 0 nsw.rem(16px);
-  }
-  
-  &__wrapper {
-    @include nsw.container;
-    height: 48px;
-    position: relative;
+  &__inner {
+    max-width: var(--nsw-container-max-width, 1280px);
+    margin: 0 auto;
+    width: 100%;
+    padding: 0 nsw.rem(16px);
     display: flex;
     align-items: center;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    gap: nsw.rem(8px);
-    padding: 0;
+    gap: nsw.rem(16px);
 
-    @include nsw.breakpoint('lg') {
-      padding: 0 0 0 nsw.rem(16px);
-      height: 120px;
-    }
-  }
-
-  &__content {
-    display: none;
-    flex: 1 1 auto;
-    min-width: 0;
-    
-    @include nsw.breakpoint('lg') {
-      display: block;
+    &:hover,
+    &:focus {
+      background-color: rgba(var(--nsw-status-error-rgb), 0.9);
+      text-decoration: none;
+      outline: none;
     }
   }
 
   &__title {
+    margin: 0;
+
     @include nsw.font-size('md');
   }
 
   &__description {
-    margin: nsw.rem(16px) nsw.rem(36px) 0 0;
-    line-height: nsw.rem(20px);
+    display: flex;
+    margin: 0;
+    font-weight: 400;
 
-    @include nsw.breakpoint('lg') {
-      line-height: nsw.rem(24px);
-    }
+    @include nsw.font-size('sm');
   }
   
   &__cta {
-    height: 100%;
-    width: 100%;
     display: flex;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    height: 100%;
     align-items: center;
-    justify-content: center;
-    gap: nsw.rem(8px);
-    padding: 0;
+    justify-content: flex-start;
+    gap: nsw.rem(12px);
+    padding: nsw.rem(16px);
     background-color: var(--nsw-status-error);
     color: var(--nsw-white);
     font-family: var(--nsw-font-family);
@@ -67,13 +59,12 @@
     font-weight: var(--nsw-font-bold);
     border: 0;
     border-radius: 0;
-    text-align: center;
+    text-align: left;
     text-decoration: none;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-    flex: 0 0 auto;
-    white-space: nowrap;
-    margin-left: auto;
+    transition: background-color 0.2s ease;
+    white-space: normal;
+    line-height: 1.3;
 
     &:hover,
     &:focus {
@@ -88,9 +79,8 @@
     }
 
     @include nsw.breakpoint('lg') {
-      font-size: nsw.rem(24px);
-      padding: nsw.rem(54px);
-      width: auto;
+      font-size: nsw.rem(20px);
+      padding: nsw.rem(20px) nsw.rem(24px);
     }
   }
 
@@ -104,7 +94,7 @@
   }
 
   &__dark {
-    background-color: var(--nsw-brand-dark);
+    background-color: var(--nsw-status-error);
     color: var(--nsw-text-light);
 
     .nsw-popover {
@@ -113,10 +103,6 @@
 
     a {
       @include nsw.link-light;
-    }
-
-    .nsw-quick-exit__wrapper {
-      background-color: var(--nsw-brand-dark);
     }
 
     .nsw-quick-exit__popover {
@@ -131,4 +117,31 @@
   .js-more-info {
     margin-left: auto;
   }
+
+  &--top {
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: var(--nsw-z-quick-exit, 1100);
+    width: 100%;
+    border: 0;
+  }
+
+  .nsw-quick-exit__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 0;
+    margin-right: nsw.rem(8px);
+    
+    svg {
+      height: nsw.rem(48px);
+      width: nsw.rem(48px);
+      
+    }
+  }
+}
+
+body.nsw-has-global-alert .nsw-quick-exit--top {
+  margin-top: var(--nsw-global-alert-height, 56px);
 }
