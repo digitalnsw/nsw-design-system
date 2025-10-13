@@ -2,6 +2,7 @@
 
 import * as CookieConsentAPI from 'vanilla-cookieconsent'
 import logger from '../../global/scripts/helpers/logger'
+import stickyContainer from '../../global/scripts/sticky-container'
 
 /* eslint-disable max-len */
 class CookieConsent {
@@ -231,6 +232,13 @@ class CookieConsent {
 
   createConsentBanner() {
     const { language: { translations: { en } } } = this.config
+    // Prevent multiple instances by reusing an existing banner if present
+    const containerEl = stickyContainer()
+    const existingBanner = containerEl.querySelector('.nsw-cookie-banner')
+    if (existingBanner) {
+      this.consentBannerElement = existingBanner
+      return
+    }
     const { consentModal } = en
     const bannerOffset = consentModal.bannerOffset ? consentModal.bannerOffset : '0'
     this.consentBannerConfirmationMessage = consentModal.confirmationMessage || ''
@@ -263,29 +271,50 @@ class CookieConsent {
       </div>
     `
 
-    // Append the banner to the body
+    // Append the banner to the shared sticky container so it stacks with other fixed UI
     const tempDiv = document.createElement('div')
     tempDiv.innerHTML = consentBannerHtml
     this.consentBannerElement = tempDiv.firstElementChild
-    document.body.appendChild(this.consentBannerElement)
+
+    // Ensure the cookie banner itself is a block-level child
+    this.consentBannerElement.style.display = 'block'
+
+    // Insert banner at the top so it appears above other items
+    if (containerEl.firstChild) {
+      containerEl.insertBefore(this.consentBannerElement, containerEl.firstChild)
+    } else {
+      containerEl.appendChild(this.consentBannerElement)
+    }
+
+    // Direct listener for confirmation close button (belt-and-braces)
+    const dismissBtn = this.consentBannerElement.querySelector('.js-dismiss-cookie-banner')
+    if (dismissBtn) {
+      dismissBtn.addEventListener('click', () => {
+        this.hideConsentBanner()
+      })
+    }
 
     this.consentBannerElement.focus()
   }
 
   init() {
-    if (this.preferencesDialogElement) {
-      this.initElements()
-      this.initAPI()
-      this.attachEventListeners()
+    // Always wire listeners so Close works even if preferences dialog is not created
+    this.initElements()
+    this.attachEventListeners()
 
-      // Immediately hide the banner if user has preferences set
-      const preferences = CookieConsentAPI.getUserPreferences()
-      if (preferences && preferences.acceptedCategories.length > 0) {
-        this.consentBannerElement.setAttribute('hidden', 'true')
-      }
-    } else {
-      console.error('Banner element not created')
-    }
+    this.initAPI()
+      .then(() => {
+        // Immediately hide the banner if user has preferences set
+        const preferences = CookieConsentAPI.getUserPreferences()
+        if (preferences && preferences.acceptedCategories && preferences.acceptedCategories.length > 0) {
+          this.hideConsentBanner()
+        }
+      })
+      .catch((err) => {
+        if (logger && logger.warn) {
+          logger.warn('CookieConsent: initAPI failed', err)
+        }
+      })
   }
 
   initElements() {
@@ -301,11 +330,13 @@ class CookieConsent {
 
   initAPI() {
     if (!this.isInit) {
-      CookieConsentAPI.run(this.config).then(() => {
+      return CookieConsentAPI.run(this.config).then(() => {
         this.isInit = true
         this.loadUserPreferences()
+        return true
       })
     }
+    return Promise.resolve(true)
   }
 
   attachEventListeners() {
@@ -460,6 +491,7 @@ class CookieConsent {
   hideConsentBanner() {
     if (this.consentBannerElement) {
       this.consentBannerElement.setAttribute('hidden', 'true')
+      this.consentBannerElement.style.display = 'none'
     }
   }
 }

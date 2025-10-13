@@ -1,3 +1,12 @@
+const STICKY_SELECTOR = '.js-sticky-container'
+function getStickyHeight() {
+  if (typeof document === 'undefined') return 0
+  const el = document.querySelector(STICKY_SELECTOR)
+  if (!el) return 0
+  const rect = el.getBoundingClientRect()
+  return Math.max(0, rect.height || 0)
+}
+
 class BackTop {
   constructor(element) {
     this.element = element
@@ -10,10 +19,15 @@ class BackTop {
     this.width = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
     this.height = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
     this.condition = false
+    this.stickyObserver = null
+    this.bottomGap = 16 // px gap between sticky stack and back-to-top
   }
 
   init() {
     this.createButton()
+
+    // Ensure button clears the sticky container stack
+    this.updateBottomOffset()
 
     this.element.addEventListener('click', (event) => {
       event.preventDefault()
@@ -34,6 +48,16 @@ class BackTop {
 
     const debounceResize = this.debounce(this.resizeHandler)
     window.addEventListener('resize', () => { debounceResize() })
+
+    // Keep offset synced with sticky container and viewport changes
+    const debounceOffset = this.debounce(this.updateBottomOffset)
+    window.addEventListener('resize', () => { debounceOffset() })
+
+    const stickyEl = typeof document !== 'undefined' ? document.querySelector(STICKY_SELECTOR) : null
+    if (stickyEl && 'ResizeObserver' in window) {
+      this.stickyObserver = new ResizeObserver(() => this.updateBottomOffset())
+      this.stickyObserver.observe(stickyEl)
+    }
   }
 
   createButton() {
@@ -59,6 +83,16 @@ class BackTop {
     } else {
       this.text.innerText = 'Back to top'
       this.icon.innerText = 'north'
+    }
+  }
+
+  updateBottomOffset() {
+    const stickyH = getStickyHeight()
+    // Apply inline bottom so it clears the sticky stack plus a small gap
+    try {
+      this.element.style.bottom = `${stickyH + this.bottomGap}px`
+    } catch (_) {
+      // no-op
     }
   }
 
