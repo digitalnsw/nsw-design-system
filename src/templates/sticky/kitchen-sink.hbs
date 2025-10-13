@@ -63,7 +63,13 @@ model:
                     <input class="nsw-form__input" id="qe-exit-label" type="text" placeholder="Leave site" value="{{model.quick-exit.exitLabel}}">
                   </div>
                 </div>
-                <div class="nsw-col nsw-col-md-12 nsw-p-top-sm">
+                <div class="nsw-col nsw-col-md-6">
+                  <div class="nsw-form__group">
+                    <label class="nsw-form__label" for="qe-title">Title</label>
+                    <input class="nsw-form__input" id="qe-title" type="text" placeholder="Quickly leave this site" value="{{model.quick-exit.title}}">
+                  </div>
+                </div>
+                <div class="nsw-col nsw-col-md-6">
                   <div class="nsw-form__group">
                     <label class="nsw-form__label" for="qe-description">Description (HTML allowed: &lt;kbd&gt;, &lt;strong&gt;)</label>
                     <textarea style="width: 100%;" class="nsw-form__textarea" id="qe-description" rows="3">{{model.quick-exit.description}}</textarea>
@@ -94,11 +100,11 @@ model:
                   <h6>Other options</h6>
                   <div class="nsw-form__group nsw-form__group--inline">
                     <div class="nsw-form__checkbox nsw-m-top-xs">
-                      <input class="nsw-form__checkbox-input" id="qe-newtab" type="checkbox">
+                      <input class="nsw-form__checkbox-input" id="qe-newtab" type="checkbox" checked>
                       <label class="nsw-form__checkbox-label" for="qe-newtab">Open in new tab</label>
                     </div>
                     <div class="nsw-form__checkbox nsw-m-top-xs">
-                      <input class="nsw-form__checkbox-input" id="qe-erase" type="checkbox" checked>
+                      <input class="nsw-form__checkbox-input" id="qe-erase" type="checkbox">
                       <label class="nsw-form__checkbox-label" for="qe-erase">Erase current page</label>
                     </div>
                     <div class="nsw-form__checkbox nsw-m-top-xs">
@@ -125,6 +131,7 @@ model:
                 }
                 var exitUrl = getVal('qe-exit-url', '{{model.quick-exit.exitUrl}}')
                 var exitLabel = getVal('qe-exit-label', '{{model.quick-exit.exitLabel}}')
+                var title = getVal('qe-title', '{{model.quick-exit.title}}')
                 var description = getVal('qe-description', '{{model.quick-exit.description}}')
                 var themeSel = document.getElementById('qe-theme')
                 var theme = themeSel ? themeSel.value : 'dark'
@@ -135,7 +142,7 @@ model:
                 var cloak = cloakSel ? cloakSel.value : 'none'
 
                 window.NSW.QuickExit.init({
-                  title: "{{model.quick-exit.title}}",
+                  title: title,
                   description: description,
                   exitUrl: exitUrl,
                   exitLabel: exitLabel,
