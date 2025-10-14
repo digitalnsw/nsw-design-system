@@ -88,10 +88,10 @@ model:
                   <div class="nsw-form__group">
                     <label class="nsw-form__label" for="qe-cloak">Cloak mode</label>
                     <select class="nsw-form__select" id="qe-cloak">
-                      <option value="none" selected>None</option>
+                      <option value="none">None</option>
                       <option value="visibility">Visibility (hide, keep layout)</option>
                       <option value="opacity">Opacity (zero &amp; disable clicks)</option>
-                      <option value="display">Display none (most aggressive)</option>
+                      <option value="display" selected>Display none (most aggressive)</option>
                     </select>
                     <div class="nsw-form__helper nsw-m-top-sm">Controls how quickly content is hidden when Quick Exit triggers.</div>
                   </div>
@@ -100,16 +100,12 @@ model:
                   <h6>Other options</h6>
                   <div class="nsw-form__group nsw-form__group--inline">
                     <div class="nsw-form__checkbox nsw-m-top-xs">
-                      <input class="nsw-form__checkbox-input" id="qe-newtab" type="checkbox" checked>
-                      <label class="nsw-form__checkbox-label" for="qe-newtab">Open in new tab</label>
-                    </div>
-                    <div class="nsw-form__checkbox nsw-m-top-xs">
-                      <input class="nsw-form__checkbox-input" id="qe-erase" type="checkbox">
-                      <label class="nsw-form__checkbox-label" for="qe-erase">Erase current page</label>
-                    </div>
-                    <div class="nsw-form__checkbox nsw-m-top-xs">
                       <input class="nsw-form__checkbox-input" id="qe-esc" type="checkbox" checked>
                       <label class="nsw-form__checkbox-label" for="qe-esc">Enable double Esc</label>
+                    </div>
+                    <div class="nsw-form__checkbox nsw-m-top-xs">
+                      <input class="nsw-form__checkbox-input" id="qe-backguard" type="checkbox" checked>
+                      <label class="nsw-form__checkbox-label" for="qe-backguard">Back guard</label>
                     </div>
                   </div>
                 </div>
@@ -135,8 +131,7 @@ model:
                 var description = getVal('qe-description', '{{model.quick-exit.description}}')
                 var themeSel = document.getElementById('qe-theme')
                 var theme = themeSel ? themeSel.value : 'dark'
-                var newTab = document.getElementById('qe-newtab') ? document.getElementById('qe-newtab').checked : false
-                var erase = document.getElementById('qe-erase') ? document.getElementById('qe-erase').checked : true
+                var backGuard = document.getElementById('qe-backguard') ? document.getElementById('qe-backguard').checked : false
                 var esc = document.getElementById('qe-esc') ? document.getElementById('qe-esc').checked : true
                 var cloakSel = document.getElementById('qe-cloak')
                 var cloak = cloakSel ? cloakSel.value : 'none'
@@ -147,8 +142,7 @@ model:
                   exitUrl: exitUrl,
                   exitLabel: exitLabel,
                   theme: theme,
-                  eraseCurrentPage: erase,
-                  newTab: newTab,
+                  backGuard: backGuard,
                   enableEsc: esc,
                   cloakMode: cloak
                 })

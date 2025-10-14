@@ -9,9 +9,8 @@ export default class QuickExit {
     title = 'Leave this site quickly',
     description = "Select <strong>Exit now</strong> or press the <kbd>Esc</kbd> key 2 times. This won't clear your internet history.",
     theme = 'light',
-    newTab = false,
-    eraseCurrentPage = false,
     enableEsc = false,
+    backGuard = false,
     cloakMode = 'none',
   } = {}) {
     // Use the shared sticky container (owned by sticky-container.js)
@@ -23,20 +22,10 @@ export default class QuickExit {
     }
 
     // Support declarative opt-in via class (preferred) or data attribute
-    const domWantsNewTab = (containerEl && containerEl.getAttribute('data-quick-exit-newtab') === 'true')
-      || document.body.classList.contains('quick-exit-newtab')
-
-    // Declarative opt-in/out for erasing current page history entry:
-    // Accept either data-quick-exit-erasecurrentpage="true" or data-quick-exit-erase-current-page="true"
-    // Or a body class "quick-exit-erase-current"
-    const domWantsErase = (containerEl
-      && (
-        containerEl.getAttribute('data-quick-exit-erasecurrentpage') === 'true'
-        || containerEl.getAttribute('data-quick-exit-erase-current-page') === 'true'
-      ))
-      || document.body.classList.contains('quick-exit-erase-current')
 
     const domWantsEsc = (containerEl && containerEl.getAttribute('data-quick-exit-esc') === 'true')
+    const domWantsBackGuard = (containerEl && containerEl.getAttribute('data-quick-exit-back-guard') === 'true')
+    const useBackGuard = backGuard || domWantsBackGuard
 
     // Remove existing Quick Exit instance to allow re-initialisation
     const existingQuickExit = containerEl.querySelector('.nsw-quick-exit')
@@ -59,7 +48,6 @@ export default class QuickExit {
     if (isDarkTheme) {
       quickExitWrapper.classList.add('nsw-section--invert')
     }
-    if (newTab || domWantsNewTab) quickExitWrapper.classList.add('nsw-quick-exit--newtab')
 
     // Internal wrapper for button and links
     const internalWrapper = document.createElement('div')
@@ -94,7 +82,7 @@ export default class QuickExit {
     contentWrapper.appendChild(headingEl)
     contentWrapper.appendChild(descEl)
 
-    // Main Quick Exit button with click behaviour for new tab or erase history
+    // Main Quick Exit button with click behaviour
     const quickExitBtn = document.createElement('button')
     quickExitBtn.type = 'button'
     quickExitBtn.className = 'js-quick-exit nsw-quick-exit__cta'
@@ -131,29 +119,9 @@ export default class QuickExit {
     }
 
     const navigate = () => {
-      // Hide content immediately for users on slow devices/connections
+      // Hide content immediately for users on slow devices/connections (if cloakMode is set)
       applyCloak()
-      const openInNewTab = newTab || quickExitWrapper.classList.contains('nsw-quick-exit--newtab') || domWantsNewTab
-      const shouldErase = eraseCurrentPage || domWantsErase
-      if (openInNewTab) {
-        window.open(safeUrl(exitUrl), '_blank', 'noopener,noreferrer')
-        if (shouldErase && window.history && window.history.replaceState) {
-          window.history.replaceState(null, '', '/')
-        }
-        // If erase is requested, blank the current tab so previous content isn't visible or trivially recoverable.
-        if (shouldErase) {
-          try {
-            window.location.replace('about:blank')
-          } catch (err) { /* ignore */ }
-        }
-      } else if (shouldErase) {
-        if (window.history && window.history.replaceState) {
-          window.history.replaceState(null, '', '/')
-        }
-        window.location.replace(safeUrl(exitUrl))
-      } else {
-        window.location.assign(safeUrl(exitUrl))
-      }
+      window.location.replace(safeUrl(exitUrl))
     }
 
     quickExitBtn.addEventListener('click', (evt) => {
@@ -167,6 +135,27 @@ export default class QuickExit {
 
     // Append Quick Exit component to sticky container
     containerEl.appendChild(quickExitWrapper)
+
+    // Optional: intercept first Back press and route to safe URL
+    if (useBackGuard) {
+      try {
+        const SAFE_URL = safeUrl(exitUrl)
+        // Push a throwaway entry so the next Back triggers a popstate we can intercept
+        window.history.pushState({ qe: 'guard' }, '')
+        const backHandler = () => {
+          applyCloak()
+          window.location.replace(SAFE_URL)
+        }
+        window.addEventListener('popstate', backHandler, { once: true })
+        // Provide cleanup hook in case sticky container re-inits
+        quickExitWrapper.backGuardCleanup = () => {
+          window.removeEventListener('popstate', backHandler)
+        }
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.warn('QuickExit: back-guard not available in this environment', e)
+      }
+    }
 
     // Add keyboard functionality for double ESC key press (opt-in)
     const useEsc = enableEsc || domWantsEsc
