@@ -7,11 +7,11 @@ export default class QuickExit {
     exitUrl = 'https://www.google.com/webhp',
     exitLabel = 'Exit now',
     title = 'Leave this site quickly',
-    description = "Select <strong>Exit now</strong> or press the <kbd>Esc</kbd> key 2 times. This won't clear your internet history.",
+    description = "Select <strong>Exit now</strong> or press the <kbd>Esc</kbd> key 2 times. This won't clear your internet history.", // eslint-disable-line max-len
     theme = 'light',
     enableEsc = false,
-    backGuard = false,
-    cloakMode = 'none',
+    backGuard = true,
+    cloakMode = 'display',
   } = {}) {
     // Use the shared sticky container (owned by sticky-container.js)
     const containerEl = stickyContainer()
@@ -22,7 +22,6 @@ export default class QuickExit {
     }
 
     // Support declarative opt-in via class (preferred) or data attribute
-
     const domWantsEsc = (containerEl && containerEl.getAttribute('data-quick-exit-esc') === 'true')
     const domWantsBackGuard = (containerEl && containerEl.getAttribute('data-quick-exit-back-guard') === 'true')
     const useBackGuard = backGuard || domWantsBackGuard
@@ -151,6 +150,24 @@ export default class QuickExit {
         quickExitWrapper.backGuardCleanup = () => {
           window.removeEventListener('popstate', backHandler)
         }
+        // If this document was reached via a history traversal (Back/Forward), immediately cloak and route away.
+        const arrivedFromHistory = () => {
+          try {
+            const nav = performance.getEntriesByType && performance.getEntriesByType('navigation')[0]
+            return !!(nav && nav.type === 'back_forward')
+          } catch (e) { return false }
+        }
+        if (arrivedFromHistory()) {
+          applyCloak()
+          window.location.replace(SAFE_URL)
+        }
+        // Also handle BFCache restores (some browsers restore from memory and won't reflect nav.type)
+        window.addEventListener('pageshow', (e) => {
+          if (e && e.persisted) {
+            applyCloak()
+            window.location.replace(SAFE_URL)
+          }
+        })
       } catch (e) {
         // eslint-disable-next-line no-console
         console.warn('QuickExit: back-guard not available in this environment', e)
