@@ -4,10 +4,10 @@ import { safeUrl } from '../../global/scripts/helpers/utilities'
 
 export default class QuickExit {
   static init({
-    exitUrl = 'https://www.google.com/',
-    exitLabel = 'Exit this site',
-    title = 'Quickly leave this site',
-    description = 'Use the button or press the <kbd>Esc</kbd> key 2 times. Quick exit doesn\'t clear your browser history.',
+    exitUrl = 'https://www.google.com/webhp',
+    exitLabel = 'Exit now',
+    title = 'Leave this site quickly',
+    description = "Select <strong>Exit now</strong> or press the <kbd>Esc</kbd> key 2 times. This won't clear your internet history.",
     theme = 'light',
     newTab = false,
     eraseCurrentPage = false,
