@@ -343,28 +343,34 @@ class CookieConsent {
     // Delegate events from the document to handle all relevant elements dynamically
     document.addEventListener('click', (event) => {
       const { target } = event
+      if (!(target instanceof Element)) return
 
-      if (target.matches('[data-role="accept-all"]')) {
+      // Resolve possible clicks on child elements inside anchors/buttons
+      const acceptAllEl = target.closest('[data-role="accept-all"]')
+      const rejectAllEl = target.closest('[data-role="reject-all"]')
+      const acceptSelectionEl = target.closest('[data-role="accept-selection"]')
+      const dismissBannerEl = target.closest('.js-dismiss-cookie-banner')
+      const openBannerEl = target.closest('.js-open-banner-cookie-consent')
+      const openPrefsEl = target.closest('.js-open-dialog-cookie-consent-preferences')
+
+      if (acceptAllEl) {
         this.handleConsentAction('accept-all')
-      } else if (target.matches('[data-role="reject-all"]')) {
+      } else if (rejectAllEl) {
         this.handleConsentAction('reject-all')
-      } else if (target.matches('[data-role="accept-selection"]')) {
+      } else if (acceptSelectionEl) {
         this.handleConsentAction('accept-selection')
       }
 
-      // If target is dismissable
-      if (target.matches('.js-dismiss-cookie-banner')) {
+      if (dismissBannerEl) {
         this.hideConsentBanner()
       }
 
-      // Manual trigger of cookie consent banner
-      if (target.matches('.js-open-banner-cookie-consent')) {
+      if (openBannerEl) {
         event.preventDefault()
         this.showConsentBanner()
       }
 
-      // Manual trigger of cookie consent preferences dialog
-      if (target.matches('.js-open-dialog-cookie-consent-preferences')) {
+      if (openPrefsEl) {
         event.preventDefault()
         this.hideConsentBanner()
         if (this.dialogInstance) {
@@ -469,6 +475,8 @@ class CookieConsent {
 
   showConsentBanner() {
     if (this.consentBannerElement) {
+      // Ensure the banner is visually restored if previously hidden via inline style
+      this.consentBannerElement.style.display = 'block'
       const description = this.consentBannerElement.querySelector('.nsw-cookie-banner__description')
       const confirmationMessage = this.consentBannerElement.querySelector('.nsw-cookie-banner__confirmation-message')
 
