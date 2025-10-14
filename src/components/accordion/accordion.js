@@ -35,8 +35,8 @@ class Accordion {
   }
 
   init() {
-    // this.setUpDom()
-    // this.controls()
+    this.setUpDom()
+    this.controls()
   }
 
   setUpDom() {
