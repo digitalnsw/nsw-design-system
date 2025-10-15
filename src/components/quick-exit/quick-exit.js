@@ -12,6 +12,7 @@ export default class QuickExit {
     enableEsc = false,
     backGuard = true,
     cloakMode = 'display',
+    focusFirst = true,
   } = {}) {
     // Use the shared sticky container (owned by sticky-container.js)
     const containerEl = stickyContainer()
@@ -61,6 +62,7 @@ export default class QuickExit {
 
     const descEl = document.createElement('p')
     descEl.className = 'nsw-quick-exit__description'
+    descEl.id = 'nsw-quick-exit__desc'
     if (description) {
       let html = String(description)
       // Avoid generic entity decoding to prevent reinterpreting HTML.
@@ -86,6 +88,8 @@ export default class QuickExit {
     quickExitBtn.type = 'button'
     quickExitBtn.className = 'js-quick-exit nsw-quick-exit__cta'
     quickExitBtn.textContent = exitLabel
+    quickExitBtn.id = 'nsw-quick-exit__cta'
+    quickExitBtn.setAttribute('aria-describedby', 'nsw-quick-exit__desc')
     // Add east arrow icon after text content
     const iconEl = document.createElement('div')
     iconEl.className = 'material-icons nsw-material-icons'
@@ -134,6 +138,60 @@ export default class QuickExit {
 
     // Append Quick Exit component to sticky container
     containerEl.appendChild(quickExitWrapper)
+
+    // Make Quick Exit the first focus target for keyboard/SR users without moving DOM order.
+    if (focusFirst) {
+      const focusCTA = () => {
+        try {
+          document.getElementById('nsw-quick-exit__cta').focus({ preventScroll: true })
+        } catch (e) {
+          const btn = document.getElementById('nsw-quick-exit__cta')
+          if (btn) btn.focus()
+        }
+      }
+
+      const arrivedViaBackForward = (() => {
+        try {
+          const nav = performance.getEntriesByType && performance.getEntriesByType('navigation')[0]
+          return !!(nav && nav.type === 'back_forward')
+        } catch (e) { return false }
+      })()
+
+      // Only auto-focus on fresh loads where no element has focus, no hash target is intended,
+      // and we aren't returning from BFCache (which may have its own prior focus).
+      const shouldAutoFocusOnLoad = !arrivedViaBackForward
+        && !window.location.hash
+        && (!document.activeElement || document.activeElement === document.body)
+
+      if (shouldAutoFocusOnLoad) {
+        // Defer to allow layout/AT trees to stabilise.
+        setTimeout(focusCTA, 0)
+      }
+
+      // Ensure Quick Exit is the first tab stop: on the *first* Tab press, move focus to the CTA, once.
+      let firstTabHandled = false
+      const handleFirstTab = (ev) => {
+        if (firstTabHandled) return
+        if (ev.key !== 'Tab') return
+        // If focus isn't already on the CTA, hijack the first Tab to land there.
+        const cta = document.getElementById('nsw-quick-exit__cta')
+        if (cta && document.activeElement !== cta) {
+          ev.preventDefault()
+          firstTabHandled = true
+          focusCTA()
+          // Remove listener after we have redirected focus once.
+          document.removeEventListener('keydown', handleFirstTab, true)
+        }
+      }
+      document.addEventListener('keydown', handleFirstTab, true)
+
+      // Do not steal focus on BFCache restores; if users come back, respect their previous focus.
+      window.addEventListener('pageshow', (e) => {
+        if (e && e.persisted) {
+          document.removeEventListener('keydown', handleFirstTab, true)
+        }
+      }, { once: true })
+    }
 
     // Optional: intercept first Back press and route to safe URL
     if (useBackGuard) {
