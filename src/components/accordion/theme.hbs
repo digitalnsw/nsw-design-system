@@ -5,16 +5,24 @@ page: true
 model:
     accordion-1: json/accordion.json
     accordion-2: json/accordion-2.json
+    accordion-4: json/accordion-4.json
+    accordion-5: json/accordion-5.json
 ---
 
 {{#>_theme}}
   {{#>_layout-container}}
+    <h2>JS</h2>
     {{>_accordion model.accordion-1}}
     {{>_accordion model.accordion-2}}
+    <h2>CSS</h2>
+    {{>_accordion model.accordion-4 type="css"}}
   {{/_layout-container}}
 
   {{#>_layout-container brand-dark="true" invert="true"}}
+    <h2>JS</h2>
     {{>_accordion model.accordion-1}}
     {{>_accordion model.accordion-2}}
+    <h2>CSS</h2>
+    {{>_accordion model.accordion-5 type="css"}}
   {{/_layout-container}}
 {{/_theme}}
