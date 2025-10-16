@@ -171,6 +171,25 @@
     display: block;
     cursor: pointer;
     user-select: none;
+    transition: nsw.$nsw-transition-duration;
+
+    &:hover {
+      background-color: var(--nsw-brand-dark);
+      color: var(--nsw-text-light);
+      
+      .nsw-section--invert & {    
+        background-color: var(--nsw-brand-light);
+        color: var(--nsw-text-dark);
+      }
+
+      &::after {
+        color: var(--nsw-text-light);
+
+        .nsw-section--invert & {    
+          color: var(--nsw-text-dark);
+        }
+      }
+    }
 
     &::after {
       content: 'keyboard_arrow_down';
