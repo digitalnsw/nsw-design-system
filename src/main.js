@@ -1,5 +1,6 @@
 /* eslint-disable max-len */
 import Accordion from './components/accordion/accordion'
+import CssAccordion from './components/accordion/accordion-css'
 import BackTop from './components/back-to-top/back-to-top'
 import Carousel from './components/card-carousel/carousel'
 import CookieConsent from './components/cookie-consent/cookie-consent'
@@ -41,7 +42,8 @@ if (!Element.prototype.closest) {
 }
 
 function initSite() {
-  const accordions = document.querySelectorAll('.js-accordion')
+  const jsAccordions = document.querySelectorAll('.js-accordion:not(.nsw-accordion--css)')
+  const cssAccordions = document.querySelectorAll('.nsw-accordion.nsw-accordion--css')
   const backTop = document.querySelectorAll('button.js-back-to-top')
   const breadcrumbs = document.querySelectorAll('.js-breadcrumbs')
   const carousel = document.querySelectorAll('.js-carousel')
@@ -62,9 +64,15 @@ function initSite() {
   const tooltip = document.querySelectorAll('.js-tooltip')
   const utilityList = document.querySelectorAll('.js-utility-list')
 
-  if (accordions) {
-    accordions.forEach((element) => {
+  if (jsAccordions.length) {
+    jsAccordions.forEach((element) => {
       new Accordion(element).init()
+    })
+  }
+
+  if (cssAccordions.length) {
+    cssAccordions.forEach((element) => {
+      new CssAccordion(element).init()
     })
   }
 

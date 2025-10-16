@@ -1,5 +1,11 @@
 {{#if-equals type "css"}}
   <div class="nsw-accordion nsw-accordion--css">
+    {{#if toggle}}
+    <div class="nsw-accordion__toggle">
+      <button type="button">Expand all</button>
+      <button type="button">Collapse all</button>
+    </div>
+    {{/if}}
     {{#each items}}
     <div class="nsw-accordion__item">
       <input type="checkbox" class="nsw-accordion__control" id="accordion-{{#if id}}{{id}}{{else}}{{@index}}{{/if}}" {{#if open}}checked{{/if}}>

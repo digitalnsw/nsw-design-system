@@ -7,22 +7,36 @@ model:
     accordion-2: json/accordion-2.json
     accordion-4: json/accordion-4.json
     accordion-5: json/accordion-5.json
+    accordion-6: json/accordion-6.json
+    accordion-7: json/accordion-7.json
 ---
 
 {{#>_theme}}
   {{#>_layout-container}}
     <h2>JS</h2>
-    {{>_accordion model.accordion-1}}
+    <h3>Regular</h3>
     {{>_accordion model.accordion-2}}
-    <h2>CSS</h2>
+    <h3>Toggle controls</h3>
+    {{>_accordion model.accordion-1}}
+    <hr class="nsw-m-top-lg"/>
+    <h2>CSS-only version</h2>
+    <h3>Regular</h3>
     {{>_accordion model.accordion-4 type="css"}}
+    <h3>Toggle controls</h3>
+    {{>_accordion model.accordion-5 type="css"}}
   {{/_layout-container}}
 
   {{#>_layout-container brand-dark="true" invert="true"}}
     <h2>JS</h2>
-    {{>_accordion model.accordion-1}}
+    <h3>Regular</h3>
     {{>_accordion model.accordion-2}}
-    <h2>CSS</h2>
-    {{>_accordion model.accordion-5 type="css"}}
+    <h3>Toggle controls</h3>
+    {{>_accordion model.accordion-1}}
+    <hr class="nsw-m-top-lg"/>
+    <h2>CSS-only version</h2>
+    <h3>Regular</h3>
+    {{>_accordion model.accordion-6 type="css"}}
+    <h3>Toggle controls</h3>
+    {{>_accordion model.accordion-7 type="css"}}
   {{/_layout-container}}
 {{/_theme}}
