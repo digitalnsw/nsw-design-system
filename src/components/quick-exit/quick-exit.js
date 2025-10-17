@@ -10,7 +10,6 @@ export default class QuickExit {
     description = "Select <strong>Exit now</strong> or press the <kbd>Esc</kbd> key 2 times. This won't clear your internet history.", // eslint-disable-line max-len
     theme = 'light',
     enableEsc = false,
-    backGuard = true,
     cloakMode = 'display',
     focusFirst = true,
   } = {}) {
@@ -24,8 +23,6 @@ export default class QuickExit {
 
     // Support declarative opt-in via class (preferred) or data attribute
     const domWantsEsc = (containerEl && containerEl.getAttribute('data-quick-exit-esc') === 'true')
-    const domWantsBackGuard = (containerEl && containerEl.getAttribute('data-quick-exit-back-guard') === 'true')
-    const useBackGuard = backGuard || domWantsBackGuard
 
     // Remove existing Quick Exit instance to allow re-initialisation
     const existingQuickExit = containerEl.querySelector('.nsw-quick-exit')
@@ -191,45 +188,6 @@ export default class QuickExit {
           document.removeEventListener('keydown', handleFirstTab, true)
         }
       }, { once: true })
-    }
-
-    // Optional: intercept first Back press and route to safe URL
-    if (useBackGuard) {
-      try {
-        const SAFE_URL = safeUrl(exitUrl)
-        // Push a throwaway entry so the next Back triggers a popstate we can intercept
-        window.history.pushState({ qe: 'guard' }, '')
-        const backHandler = () => {
-          applyCloak()
-          window.location.replace(SAFE_URL)
-        }
-        window.addEventListener('popstate', backHandler, { once: true })
-        // Provide cleanup hook in case sticky container re-inits
-        quickExitWrapper.backGuardCleanup = () => {
-          window.removeEventListener('popstate', backHandler)
-        }
-        // If this document was reached via a history traversal (Back/Forward), immediately cloak and route away.
-        const arrivedFromHistory = () => {
-          try {
-            const nav = performance.getEntriesByType && performance.getEntriesByType('navigation')[0]
-            return !!(nav && nav.type === 'back_forward')
-          } catch (e) { return false }
-        }
-        if (arrivedFromHistory()) {
-          applyCloak()
-          window.location.replace(SAFE_URL)
-        }
-        // Also handle BFCache restores (some browsers restore from memory and won't reflect nav.type)
-        window.addEventListener('pageshow', (e) => {
-          if (e && e.persisted) {
-            applyCloak()
-            window.location.replace(SAFE_URL)
-          }
-        })
-      } catch (e) {
-        // eslint-disable-next-line no-console
-        console.warn('QuickExit: back-guard not available in this environment', e)
-      }
     }
 
     // Add keyboard functionality for double ESC key press (opt-in)

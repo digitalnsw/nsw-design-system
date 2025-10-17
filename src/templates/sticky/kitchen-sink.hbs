@@ -103,10 +103,6 @@ model:
                       <input class="nsw-form__checkbox-input" id="qe-esc" type="checkbox" checked>
                       <label class="nsw-form__checkbox-label" for="qe-esc">Enable double Esc</label>
                     </div>
-                    <div class="nsw-form__checkbox nsw-m-top-xs">
-                      <input class="nsw-form__checkbox-input" id="qe-backguard" type="checkbox" checked>
-                      <label class="nsw-form__checkbox-label" for="qe-backguard">Back guard</label>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -131,7 +127,6 @@ model:
                 var description = getVal('qe-description', '{{model.quick-exit.description}}')
                 var themeSel = document.getElementById('qe-theme')
                 var theme = themeSel ? themeSel.value : 'dark'
-                var backGuard = document.getElementById('qe-backguard') ? document.getElementById('qe-backguard').checked : false
                 var esc = document.getElementById('qe-esc') ? document.getElementById('qe-esc').checked : true
                 var cloakSel = document.getElementById('qe-cloak')
                 var cloak = cloakSel ? cloakSel.value : 'none'
@@ -142,7 +137,6 @@ model:
                   exitUrl: exitUrl,
                   exitLabel: exitLabel,
                   theme: theme,
-                  backGuard: backGuard,
                   enableEsc: esc,
                   cloakMode: cloak
                 })
@@ -165,7 +159,6 @@ model:
               var description = getVal('qe-description', '{{model.quick-exit.description}}')
               var themeSel = document.getElementById('qe-theme')
               var theme = themeSel ? themeSel.value : 'dark'
-              var backGuard = document.getElementById('qe-backguard') ? document.getElementById('qe-backguard').checked : true
               var esc = document.getElementById('qe-esc') ? document.getElementById('qe-esc').checked : true
               var cloakSel = document.getElementById('qe-cloak')
               var cloak = cloakSel ? cloakSel.value : 'visibility'
@@ -176,7 +169,6 @@ model:
                 exitUrl: exitUrl,
                 exitLabel: exitLabel,
                 theme: theme,
-                backGuard: backGuard,
                 enableEsc: esc,
                 cloakMode: cloak
               })
