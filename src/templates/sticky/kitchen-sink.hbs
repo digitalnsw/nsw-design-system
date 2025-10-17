@@ -53,8 +53,14 @@ model:
               <div class="nsw-grid nsw-grid--spaced">
                 <div class="nsw-col nsw-col-md-6">
                   <div class="nsw-form__group">
-                    <label class="nsw-form__label" for="qe-exit-url">Exit URL</label>
-                    <input class="nsw-form__input" id="qe-exit-url" type="url" placeholder="https://www.google.com/" value="{{model.quick-exit.exitUrl}}">
+                    <label class="nsw-form__label" for="qe-safe-url">Safe URL</label>
+                    <input class="nsw-form__input" id="qe-safe-url" type="url" placeholder="https://www.google.com/" value="{{model.quick-exit.safeUrl}}">
+                  </div>
+                </div>
+                <div class="nsw-col nsw-col-md-6">
+                  <div class="nsw-form__group">
+                    <label class="nsw-form__label" for="qe-secondary-safe-url">Secondary safe URL (current tab)</label>
+                    <input class="nsw-form__input" id="qe-secondary-safe-url" type="url" placeholder="(optional) e.g. https://www.bom.gov.au/">
                   </div>
                 </div>
                 <div class="nsw-col nsw-col-md-6">
@@ -121,7 +127,8 @@ model:
                   var el = document.getElementById(id)
                   return el && el.value !== '' ? el.value : fallback
                 }
-                var exitUrl = getVal('qe-exit-url', '{{model.quick-exit.exitUrl}}')
+                var safeUrl = getVal('qe-safe-url', '{{model.quick-exit.safeUrl}}')
+                var secondarySafeUrl = getVal('qe-secondary-safe-url', '')
                 var exitLabel = getVal('qe-exit-label', '{{model.quick-exit.exitLabel}}')
                 var title = getVal('qe-title', '{{model.quick-exit.title}}')
                 var description = getVal('qe-description', '{{model.quick-exit.description}}')
@@ -134,7 +141,8 @@ model:
                 window.NSW.QuickExit.init({
                   title: title,
                   description: description,
-                  exitUrl: exitUrl,
+                  safeUrl: safeUrl,
+                  secondarySafeUrl: secondarySafeUrl,
                   exitLabel: exitLabel,
                   theme: theme,
                   enableEsc: esc,
@@ -153,7 +161,8 @@ model:
                 var el = document.getElementById(id)
                 return el && el.value !== '' ? el.value : fallback
               }
-              var exitUrl = getVal('qe-exit-url', '{{model.quick-exit.exitUrl}}')
+              var safeUrl = getVal('qe-safe-url', '{{model.quick-exit.safeUrl}}')
+              var secondarySafeUrl = getVal('qe-secondary-safe-url', '')
               var exitLabel = getVal('qe-exit-label', '{{model.quick-exit.exitLabel}}')
               var title = getVal('qe-title', '{{model.quick-exit.title}}')
               var description = getVal('qe-description', '{{model.quick-exit.description}}')
@@ -166,7 +175,8 @@ model:
               window.NSW.QuickExit.init({
                 title: title,
                 description: description,
-                exitUrl: exitUrl,
+                safeUrl: safeUrl,
+                secondarySafeUrl: secondarySafeUrl,
                 exitLabel: exitLabel,
                 theme: theme,
                 enableEsc: esc,

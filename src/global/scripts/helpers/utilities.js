@@ -71,10 +71,22 @@ export const whichTransitionEvent = () => {
   return transitions[found[0]]
 }
 
-export const safeUrl = (raw, fallback = 'https://www.google.com/') => {
+export const validateUrl = (raw, fallback = 'https://www.google.com/webhp') => {
   try {
-    const url = new URL(String(raw || ''), window.location.href)
-    return (url.protocol === 'http:' || url.protocol === 'https:') ? url.href : fallback
+    if (!raw || typeof raw !== 'string') return fallback
+    const trimmed = raw.trim()
+
+    // Require absolute URL with explicit protocol; reject relative or protocol‑relative
+    if (!/^https?:\/\//i.test(trimmed)) return fallback
+
+    const url = new URL(trimmed)
+
+    // Only allow http/https protocols and disallow embedded credentials
+    if ((url.protocol !== 'http:' && url.protocol !== 'https:') || url.username || url.password) {
+      return fallback
+    }
+
+    return url.href
   } catch (e) {
     return fallback
   }

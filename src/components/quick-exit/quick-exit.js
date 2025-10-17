@@ -1,10 +1,11 @@
 import { cleanHTMLStrict } from '../../global/scripts/helpers/sanitize'
 import stickyContainer, { updateStickyBodyPadding } from '../../global/scripts/sticky-container'
-import { safeUrl } from '../../global/scripts/helpers/utilities'
+import { validateUrl } from '../../global/scripts/helpers/utilities'
 
 export default class QuickExit {
   static init({
-    exitUrl = 'https://www.google.com/webhp',
+    safeUrl = 'https://www.google.com/webhp',
+    secondarySafeUrl = 'https://www.bom.gov.au/',
     exitLabel = 'Exit now',
     title = 'Leave this site quickly',
     description = "Select <strong>Exit now</strong> or press the <kbd>Esc</kbd> key 2 times. This won't clear your internet history.", // eslint-disable-line max-len
@@ -121,7 +122,16 @@ export default class QuickExit {
     const navigate = () => {
       // Hide content immediately for users on slow devices/connections (if cloakMode is set)
       applyCloak()
-      window.location.replace(safeUrl(exitUrl))
+      const SAFE_URL = validateUrl(safeUrl)
+      const CURRENT_URL = validateUrl(secondarySafeUrl || safeUrl)
+      try {
+        // Attempt to open safe URL in a new tab; should be allowed as this runs in a user click handler
+        window.open(SAFE_URL, '_blank', 'noopener,noreferrer')
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.warn('QuickExit: opening new tab was blocked, falling back to single-tab redirect')
+      }
+      window.location.replace(CURRENT_URL)
     }
 
     quickExitBtn.addEventListener('click', (evt) => {
