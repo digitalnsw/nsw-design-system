@@ -20,8 +20,11 @@ document.addEventListener('DOMContentLoaded', function() {
       e.preventDefault()
       if (window.NSW && window.NSW.QuickExit) {
         window.NSW.QuickExit.init({
-          exitUrl: "{{model.exitUrl}}",
-          exitLabel: "{{model.exitLabel}}",
+          safeUrl: "{{model.safeUrl}}",
+          secondarySafeUrl: "{{model.secondarySafeUrl}}",
+          title: "{{model.title}}",
+          description: "{{{model.description}}}",
+          enableEsc: true,
           theme: "light"
         })
       } else {
@@ -43,8 +46,11 @@ document.addEventListener('DOMContentLoaded', function() {
       e.preventDefault()
       if (window.NSW && window.NSW.QuickExit) {
         window.NSW.QuickExit.init({
-          exitUrl: "{{model.exitUrl}}",
-          exitLabel: "{{model.exitLabel}}",
+          safeUrl: "{{model.safeUrl}}",
+          secondarySafeUrl: "{{model.secondarySafeUrl}}",
+          title: "{{model.title}}",
+          description: "{{{model.description}}}",
+          enableEsc: true,
           theme: "dark"
         })
       } else {

@@ -4,56 +4,85 @@ page: true
 model:  json/quick-exit.json
 ---
 
-<h3>Light</h3>
-<button class="nsw-button nsw-button--dark js-quick-exit" data-theme="light" type="button" aria-expanded="true">Initialise banner</button>
+{{#>_layout-container}}
+<h3>Variation 1 - Light theme</h3>
+<ul class="nsw-m-bottom-md">
+<li>Light theme</li>
+<li>Erases current page when clicked</li>
+<li>Opens in same tab</li>
+<li>Uses "visibility" cloak mode to hide page content immediately on activation</li>
+</ul>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  var quickExitBtns = document.querySelectorAll('.js-quick-exit')
-  // Assume the first button is for light theme:
-  if (quickExitBtns[0]) {
-    quickExitBtns[0].addEventListener('click', function(e) {
-      e.preventDefault()
-      if (window.NSW && window.NSW.QuickExit) {
-        window.NSW.QuickExit.init({
-          exitUrl: "{{model.exitUrl}}",
-          exitLabel: "{{model.exitLabel}}",
-          popover: "{{model.popover}}",
-          moreInfoUrl: "{{model.moreInfoUrl}}",
-          moreInfoLabel: "{{model.moreInfoLabel}}",
-          theme: "light"
-        })
-      } else {
-        console.error('QuickExit not found on window.NSW')
-      }
-    })
-  }
-})
-</script>
+<button class="nsw-button nsw-button--dark"
+  data-module="quick-exit"
+  data-options='{
+    "safeUrl": "{{model.safeUrl}}",
+    "secondarySafeUrl": "{{model.secondarySafeUrl}}",
+    "title": "{{model.title}}",
+    "description": "{{model.description}}",
+    "theme": "light",
+    "cloakMode": "visibility"
+  }'
+  type="button"
+  aria-expanded="true">Initialise banner</button>
 
-<h3>Dark</h3>
-<button class="nsw-button nsw-button--dark js-quick-exit" data-theme="dark" type="button" aria-expanded="true">Initialise banner</button>
+<h3>Variation 2 - Dark theme</h3>
+<ul class="nsw-m-bottom-md">
+<li>Dark theme</li>
+<li>Erases current page when clicked</li>
+<li>Opens in same tab</li>
+<li>Uses "display" cloak mode to hide page content immediately on activation</li>
+</ul>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  var quickExitBtns = document.querySelectorAll('.js-quick-exit')
-  // Assume the second button is for dark theme:
-  if (quickExitBtns[1]) {
-    quickExitBtns[1].addEventListener('click', function(e) {
-      e.preventDefault()
-      if (window.NSW && window.NSW.QuickExit) {
-        window.NSW.QuickExit.init({
-          exitUrl: "{{model.exitUrl}}",
-          exitLabel: "{{model.exitLabel}}",
-          popover: "{{model.popover}}",
-          moreInfoUrl: "{{model.moreInfoUrl}}",
-          moreInfoLabel: "{{model.moreInfoLabel}}",
-          theme: "dark"
-        })
-      } else {
-        console.error('QuickExit not found on window.NSW')
-      }
-    })
-  }
-})
-</script>
+<button class="nsw-button nsw-button--dark"
+  data-module="quick-exit"
+  data-options='{
+    "safeUrl": "{{model.safeUrl}}",
+    "secondarySafeUrl": "{{model.secondarySafeUrl}}",
+    "title": "{{model.title}}",
+    "description": "{{model.description}}",
+    "theme": "dark",
+    "enableEsc": true,
+    "cloakMode": "display"
+  }'
+  type="button"
+  aria-expanded="true">Initialise banner</button>
+
+<h3>Variation 3 - New tab</h3>
+<ul class="nsw-m-bottom-md">
+<li>Light theme</li>
+<li>Does not erase current page</li>
+<li>Opens in new tab</li>
+</ul>
+<button class="nsw-button nsw-button--dark"
+  data-module="quick-exit"
+  data-options='{
+    "safeUrl": "{{model.safeUrl}}",
+    "secondarySafeUrl": "{{model.secondarySafeUrl}}",
+    "title": "{{model.title}}",
+    "description": "{{model.description}}",
+    "theme": "light",
+    "enableEsc": true
+  }'
+  type="button"
+  aria-expanded="true">Initialise banner</button>
+
+<h3>Variation 4 - Declarative (module)</h3>
+<ul class="nsw-m-bottom-md">
+  <li>Initialises automatically on page load</li>
+  <li>Uses <code>data-module="quick-exit"</code> with a compact <code>data-options</code> JSON</li>
+</ul>
+{{!-- <span
+  data-module="quick-exit"
+  data-options='{
+    "safeUrl": "{{model.safeUrl}}",
+    "secondarySafeUrl": "{{model.secondarySafeUrl}}",
+    "title": "{{model.title}}",
+    "description": "{{model.description}}",
+    "theme": "dark",
+    "enableEsc": true
+  }'>
+</span> --}}
+{{/_layout-container}}
+
+<script src="/docs/js/docs.js"></script>

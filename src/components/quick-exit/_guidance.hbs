@@ -27,45 +27,59 @@ layout: blank-layout.hbs
 <p>The quick exit link must not obstruct critical page content. When placed in a sticky container, ensure that sufficient space is reserved at the bottom of the page so that all content remains fully accessible and readable. This is achieved by adding a bottom padding equal to the height of the sticky container.</p>
 
 <h2>Initialisation</h2>
-<p>The Quick Exit component can be initialised in two ways, depending on your needs:</p>
+<p>The Quick Exit component can now be initialised in two primary ways depending on your integration needs:</p>
 
-<h3>1. Programmatic initialisation</h3>
-<p>The preferred method for most implementations is to call the <code>QuickExit.init()</code> function directly and pass configuration options. This approach provides more control when integrating into applications.</p>
-{{#>_docs-example hidden="true" open="true" code="js"}}
-window.NSW.QuickExit.init({
-  exitUrl: 'https://www.nsw.gov.au/',
-  exitLabel: 'Leave site',
-  popover: 'Quickly leave this site and go to a neutral page',
-  moreInfoUrl: 'https://www.nsw.gov.au/help',
-  moreInfoLabel: 'More info',
-  theme: 'dark',
-  eraseCurrentPage: true,
-  newTab: false,
-  enableEsc: false,
-  cloakMode: 'none' // 'none' | 'visibility' | 'opacity' | 'display'
-})
-{{/_docs-example}}
-
-<h3>2. Declarative initialisation</h3>
-<p>Alternatively, use the DS-style module hook with a compact JSON options payload. Add <code>data-module="quick-exit"</code> and pass configuration via a single <code>data-options</code> attribute. This is useful for demos or CMS-driven pages where direct JavaScript configuration is less convenient.</p>
+<h3>1. Declarative initialisation (recommended)</h3>
+<p>For CMS or static implementations, use the DS-style <code>data-module="quick-exit"</code> attribute with configuration provided via a <code>data-options</code> JSON payload. This approach ensures automatic initialisation on page load and is suitable for most use cases.</p>
 {{#>_docs-example hidden="true" open="true" code="html"}}
 &lt;span
   data-module="quick-exit"
   data-options='{
-    "exitUrl": "https://www.nsw.gov.au/",
-    "exitLabel": "Leave site",
-    "popover": "Quickly leave this site and go to a neutral page",
-    "moreInfoUrl": "https://www.nsw.gov.au/help",
-    "moreInfoLabel": "More info",
-    "theme": "dark",
-    "eraseCurrentPage": true,
-    "newTab": false,
-    "enableEsc": false,
-    "cloakMode": "none" // 'none' | 'visibility' | 'opacity' | 'display'
+    "safeUrl": "https://www.nsw.gov.au/",
+    "secondarySafeUrl": "https://www.bom.gov.au/",
+    "exitLabel": "Exit now",
+    "title": "Leave this site quickly",
+    "description": "Select &lt;strong&gt;Exit now&lt;/strong&gt; or press the &lt;kbd&gt;Esc&lt;/kbd&gt; key 2 times. This won't clear your internet history.",
+    "theme": "light",
+    "enableEsc": true,
+    "cloakMode": "display"
   }'&gt;
 &lt;/span&gt;
 {{/_docs-example}}
 
-<p><strong>Note:</strong> On this docs site we show a button-triggered demo for convenience. In production, prefer the programmatic initialisation above for better control and immediate banner setup without requiring a user click.</p>
+<p>Declarative initialisation triggers automatically when the Design System script bundle loads, and is ideal for pages that do not require custom interaction logic.</p>
 
-<p>Both methods achieve the same result. Programmatic initialisation provides more control when integrating into applications, while declarative attributes are best for simple usage and documentation examples.</p>
+<h3>2. Programmatic initialisation (manual setup)</h3>
+<p>For applications requiring explicit control (e.g. custom triggers, analytics hooks, or dynamic setup), initialise the component using <code>QuickExit.init()</code> directly. This provides full configuration flexibility and can be executed after other page logic.</p>
+{{#>_docs-example hidden="true" open="true" code="js"}}
+window.NSW.QuickExit.init({
+  safeUrl: 'https://www.nsw.gov.au/',
+  secondarySafeUrl: 'https://www.bom.gov.au/',
+  exitLabel: 'Exit now',
+  title: 'Leave this site quickly',
+  description: 'Select <strong>Exit now</strong> or press the <kbd>Esc</kbd> key 2 times. This won\'t clear your internet history.',
+  theme: 'dark',
+  enableEsc: true,
+  cloakMode: 'display'
+})
+{{/_docs-example}}
+
+<p><strong>Note:</strong> Both methods use the same sanitisation and validation logic internally. The programmatic approach is preferred for complex integrations where you may wish to delay initialisation or attach custom event handlers. The declarative approach ensures automatic setup via <code>data-module</code> and is recommended for most cases.</p>
+
+<h2>Exit button label</h2>
+<p>The label on the exit button (<code>Exit now</code>) is not customisable. This intentional design choice ensures consistent wording and recognisability across all NSW Government websites. Consistency helps users quickly identify the quick exit feature, particularly in stressful or time-sensitive situations where they may need to leave a page rapidly.</p>
+
+<h2>Cloak mode</h2>
+<p><strong>Cloak mode</strong> is a visual concealment feature that instantly hides page content when the Quick Exit is triggered. It is designed to prevent sensitive information from remaining visible during the redirect transition. The cloak is applied globally to the <code>&lt;html&gt;</code> element and can be configured to use different levels of visibility reduction.</p>
+<p>Available cloak modes:</p>
+<ul>
+  <li><code>display</code> — immediately hides the entire page by setting <code>display: none</code> on the document root.</li>
+  <li><code>opacity</code> — fades all visible content to transparent and disables pointer interactions.</li>
+  <li><code>visibility</code> — sets the document’s visibility to <code>hidden</code>, hiding content but preserving layout flow.</li>
+  <li><code>none</code> — disables cloaking entirely (not recommended for safety-critical implementations).</li>
+</ul>
+<p>For most cases, the default <code>display</code> mode is recommended, as it completely hides sensitive content instantly after activation.</p>
+
+<h2>Double escape key feature</h2>
+<p>The Quick Exit component includes an optional keyboard shortcut that allows users to trigger the exit using the <kbd>Esc</kbd> key twice in quick succession. This feature provides an alternative method for users who cannot or prefer not to use the mouse. When enabled (via <code>enableEsc: true</code>), the system listens for two consecutive <kbd>Esc</kbd> presses within a one-second window to activate the same exit behaviour as the main button.</p>
+<p>This accessibility feature is particularly valuable for users who require keyboard navigation or need a discreet, rapid method to leave a page without drawing attention to their actions.</p>

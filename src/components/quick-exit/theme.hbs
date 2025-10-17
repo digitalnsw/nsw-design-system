@@ -17,13 +17,11 @@ model:  json/quick-exit.json
 <button class="nsw-button nsw-button--dark"
   data-module="quick-exit"
   data-options='{
+    "safeUrl": "{{model.safeUrl}}",
+    "secondarySafeUrl": "{{model.secondarySafeUrl}}",
     "title": "{{model.title}}",
     "description": "{{model.description}}",
-    "safeUrl": "{{model.safeUrl}}",
-    "exitLabel": "{{model.exitLabel}}",
     "theme": "light",
-    "eraseCurrentPage": true,
-    "openInNewTab": false,
     "cloakMode": "visibility"
   }'
   type="button"
@@ -40,13 +38,11 @@ model:  json/quick-exit.json
 <button class="nsw-button nsw-button--dark"
   data-module="quick-exit"
   data-options='{
+    "safeUrl": "{{model.safeUrl}}",
+    "secondarySafeUrl": "{{model.secondarySafeUrl}}",
     "title": "{{model.title}}",
     "description": "{{model.description}}",
-    "safeUrl": "{{model.safeUrl}}",
-    "exitLabel": "{{model.exitLabel}}",
     "theme": "dark",
-    "eraseCurrentPage": true,
-    "openInNewTab": false,
     "enableEsc": true,
     "cloakMode": "display"
   }'
@@ -62,14 +58,12 @@ model:  json/quick-exit.json
 <button class="nsw-button nsw-button--dark"
   data-module="quick-exit"
   data-options='{
+    "safeUrl": "{{model.safeUrl}}",
+    "secondarySafeUrl": "{{model.secondarySafeUrl}}",
     "title": "{{model.title}}",
     "description": "{{model.description}}",
-    "safeUrl": "{{model.safeUrl}}",
-    "exitLabel": "{{model.exitLabel}}",
     "theme": "light",
-    "eraseCurrentPage": false,
-    "enableEsc": true,
-    "openInNewTab": true
+    "enableEsc": true
   }'
   type="button"
   aria-expanded="true">Initialise banner</button>
@@ -79,17 +73,16 @@ model:  json/quick-exit.json
   <li>Initialises automatically on page load</li>
   <li>Uses <code>data-module="quick-exit"</code> with a compact <code>data-options</code> JSON</li>
 </ul>
-<span
+{{!-- <span
   data-module="quick-exit"
   data-options='{
+    "safeUrl": "{{model.safeUrl}}",
+    "secondarySafeUrl": "{{model.secondarySafeUrl}}",
     "title": "{{model.title}}",
     "description": "{{model.description}}",
-    "safeUrl": "{{model.safeUrl}}",
-    "exitLabel": "{{model.exitLabel}}",
     "theme": "dark",
-    "eraseCurrentPage": true,
-    "openInNewTab": false
+    "enableEsc": true
   }'>
-</span>
+</span> --}}
 {{/_layout-container}}
 {{/_theme}}
