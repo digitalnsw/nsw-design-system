@@ -190,5 +190,5 @@ function initSite() {
 }
 
 export {
-  initSite, Accordion, BackTop, Carousel, CookieConsent, DatePicker, Dialog, ExternalLink, FileUpload, Filters, GlobalAlert, Navigation, Popover, Select, SideNav, SiteSearch, Tabs, Toggletip, Tooltip, UtilityList,
+  initSite, Accordion, CssAccordion, BackTop, Carousel, CookieConsent, DatePicker, Dialog, ExternalLink, FileUpload, Filters, GlobalAlert, Navigation, Popover, Select, SideNav, SiteSearch, Tabs, Toggletip, Tooltip, UtilityList,
 }
