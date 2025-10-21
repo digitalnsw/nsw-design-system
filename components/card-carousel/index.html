@@ -498,10 +498,44 @@
 
 <p>If the carousel items number is smaller than the number of visible items, and you want them to be centered in the viewport, add a <code>data-justify-content="on"</code> to the <code>.nsw-carousel</code> item. By default items will be aligned to the left.</p>
 
+<h4>Optional title</h4>
+
+<p>You can include a heading using an <code>&lt;h2&gt;</code> within a separate title container alongside the carousel navigation. Only <code>&lt;h2&gt;</code> is supported. When present, this heading will align to the left and the carousel navigation controls will be pushed to the right. This provides a clear label for the carousel content and improves accessibility.</p>
+
+<p>The title is optional. If no heading is provided, the navigation controls remain grouped on the right.</p>
+
+<h4>Optional 'view more' link</h4>
+
+<p>Including a 'view more' link below the card carousel can be useful for guiding users to additional related content beyond what is displayed in the carousel.</p>
+
+<p>Research shows that users often look for clear pathways to explore more information, especially when the carousel content is a subset of a larger collection. A well-placed 'view more' link can improve user engagement by providing a straightforward way to access further resources.</p>
+
+<p>Use a 'view more' link when:</p>
+<ul>
+  <li>there is a larger set of related content not fully displayed in the carousel;</li>
+  <li>you want to encourage users to explore more deeply on a related topic or category;</li>
+  <li>you have a dedicated landing page or section that expands on the carousel content.</li>
+</ul>
+
+<p>Avoid using a 'view more' link if:</p>
+<ul>
+  <li>the carousel already shows the full set of items and there is no additional content beyond what's displayed;</li>
+  <li>the link would lead to unrelated or confusing destinations.</li>
+</ul>
+
+<h5>Link text guidelines</h5>
+
+<ul>
+  <li>Use clear and descriptive link text that indicates what users will find by clicking.</li>
+  <li>Avoid generic phrases like 'click here' or 'more' without context.</li>
+  <li>Examples of good link text include 'View all articles on [topic]', 'See more news updates', or 'Explore related blog posts.'</li>
+  <li>Keep link text concise but meaningful to assist screen reader users and improve accessibility.</li>
+</ul>
+
 <h2>Accessibility</h2>
 <p>All components are responsive and designed to comply with WCAG 2.2 AA accessibility standards. Full compliance depends on using and configuring the components correctly.</p>
 
-<p>The card carousel conforms to the <a href="https://www.w3.org/WAI/ARIA/apg/patterns/carousel">W3C Carousel Design Pattern</a> and includes a <a href="https://www.w3.org/TR/wai-aria-1.2/#dfn-live-region">Live Region</a> that allows screen readers to read content whenever carousel slides change.</p>
+<p>The card carousel conforms to the <a href="https://www.w3.org/WAI/ARIA/apg/patterns/carousel" title="WAI-ARIA Authoring Practices: Carousel pattern" rel="noopener noreferrer">WAI-ARIA Authoring Practices: Carousel pattern</a> and includes a <a href="https://www.w3.org/TR/wai-aria-1.2/#dfn-live-region" title="WAI-ARIA 1.2 specification: Live region definition" rel="noopener noreferrer">WAI-ARIA 1.2: Live region definition</a> that allows screen readers to read content whenever carousel slides change.</p>
 
 <h3>Keyboard Interactions and focus</h3>
 
@@ -516,8 +550,8 @@
 
 <h3>ARIA attributes</h3>
 <ul>
-  <li>The card carousel container has the role property set to <a href="https://w3c.github.io/aria/#group">group</a> with the property <code>aria-roledescription</code> set to 'carousel'.</li>
-  <li>Each card container has role <a href="https://w3c.github.io/aria/#group">group</a> with the property <code>aria-roledescription</code> set to slide.</li>
+  <li>The card carousel container has the role property set to <a href="https://w3c.github.io/aria/#group" title="ARIA role: group" rel="noopener noreferrer">ARIA role: group</a> with the property <code>aria-roledescription</code> set to 'carousel'.</li>
+  <li>Each card container has role <a href="https://w3c.github.io/aria/#group" title="ARIA role: group" rel="noopener noreferrer">ARIA role: group</a> with the property <code>aria-roledescription</code> set to slide.</li>
   <li>The next slide control, and previous slide control are native button elements.</li>
 </ul>
 
@@ -544,7 +578,7 @@
       <div class="nsw-carousel__wrapper js-carousel__wrapper">
         <ol class="nsw-carousel__list">
           <li class="nsw-carousel__item">
-          <div class="nsw-card nsw-card--headline">
+          <div class="nsw-card">
             <div class="nsw-card__image">
               <img src="https://picsum.photos/id/292/400/200" alt="1. Nominations open for Green Globe Awards 2019">
             </div>
@@ -559,7 +593,7 @@
             </div>
           </div>
           </li><li class="nsw-carousel__item">
-          <div class="nsw-card nsw-card--headline">
+          <div class="nsw-card">
             <div class="nsw-card__image">
               <img src="https://picsum.photos/id/28/400/200" alt="2. Quality green spaces and a million more trees for NSW">
             </div>
@@ -574,7 +608,7 @@
             </div>
           </div>
           </li><li class="nsw-carousel__item">
-          <div class="nsw-card nsw-card--headline">
+          <div class="nsw-card">
             <div class="nsw-card__image">
               <img src="https://picsum.photos/id/268/400/200" alt="3. New Premier&#x27;s Priority to lift literacy and numeracy standards">
             </div>
@@ -589,7 +623,7 @@
             </div>
           </div>
           </li><li class="nsw-carousel__item">
-          <div class="nsw-card nsw-card--headline">
+          <div class="nsw-card">
             <div class="nsw-card__image">
               <img src="https://picsum.photos/id/222/400/200" alt="4. Nominations open for Green Globe Awards 2019">
             </div>
@@ -604,7 +638,7 @@
             </div>
           </div>
           </li><li class="nsw-carousel__item">
-          <div class="nsw-card nsw-card--headline">
+          <div class="nsw-card">
             <div class="nsw-card__image">
               <img src="https://picsum.photos/id/238/400/200" alt="5. Quality green spaces and a million more trees for NSW">
             </div>
@@ -621,27 +655,34 @@
           </li>
         </ol>
       </div>
-      <nav>
-        <ul>
-          <li>
-            <button aria-label="Show previous items" class="nsw-carousel__control nsw-carousel__control--prev js-carousel__control">
-              <svg class="nsw-icon" viewBox="0 0 20 20">
-                <title>Show previous items</title>
-                <polyline points="13 2 5 10 13 18" fill="none" stroke="currentColor" stroke-linecap="square" stroke-linejoin="square" stroke-width="2" />
-              </svg>
-            </button>
-          </li>
-          <li>
-            <button aria-label="Show next items" class="nsw-carousel__control nsw-carousel__control--next js-carousel__control">
-              <svg class="nsw-icon" viewBox="0 0 20 20">
-                <title>Show next items</title>
-                <polyline points="7 2 15 10 7 18" fill="none" stroke="currentColor" stroke-linecap="square" stroke-linejoin="square" stroke-width="2" />
-              </svg>
-            </button>
-          </li>
-        </ul>
-      </nav>
-    </div>  </div>
+          <div class="nsw-carousel__header">
+            <div class="nsw-carousel__title">
+              <h2>Latest news</h2>
+            </div>
+            <nav aria-label="Carousel controls">
+              <ul>
+                <li>
+                  <button aria-label="Show previous items" class="nsw-carousel__control nsw-carousel__control--prev js-carousel__control">
+                    <svg class="nsw-icon" viewBox="0 0 20 20">
+                      <title>Show previous items</title>
+                      <polyline points="13 2 5 10 13 18" fill="none" stroke="currentColor" stroke-linecap="square" stroke-linejoin="square" stroke-width="2" />
+                    </svg>
+                  </button>
+                </li>
+                <li>
+                  <button aria-label="Show next items" class="nsw-carousel__control nsw-carousel__control--next js-carousel__control">
+                    <svg class="nsw-icon" viewBox="0 0 20 20">
+                      <title>Show next items</title>
+                      <polyline points="7 2 15 10 7 18" fill="none" stroke="currentColor" stroke-linecap="square" stroke-linejoin="square" stroke-width="2" />
+                    </svg>
+                  </button>
+                </li>
+              </ul>
+            </nav>
+          </div>
+      
+    </div>
+  </div>
 </div>
 
 <div class="nsw-docs-code">
@@ -659,7 +700,7 @@
   <div class="nsw-carousel__wrapper js-carousel__wrapper">
     <ol class="nsw-carousel__list">
       <li class="nsw-carousel__item">
-      <div class="nsw-card nsw-card--headline">
+      <div class="nsw-card">
         <div class="nsw-card__image">
           <img src="https://picsum.photos/id/292/400/200" alt="1. Nominations open for Green Globe Awards 2019">
         </div>
@@ -674,7 +715,7 @@
         </div>
       </div>
       </li><li class="nsw-carousel__item">
-      <div class="nsw-card nsw-card--headline">
+      <div class="nsw-card">
         <div class="nsw-card__image">
           <img src="https://picsum.photos/id/28/400/200" alt="2. Quality green spaces and a million more trees for NSW">
         </div>
@@ -689,7 +730,7 @@
         </div>
       </div>
       </li><li class="nsw-carousel__item">
-      <div class="nsw-card nsw-card--headline">
+      <div class="nsw-card">
         <div class="nsw-card__image">
           <img src="https://picsum.photos/id/268/400/200" alt="3. New Premier&#x27;s Priority to lift literacy and numeracy standards">
         </div>
@@ -704,7 +745,7 @@
         </div>
       </div>
       </li><li class="nsw-carousel__item">
-      <div class="nsw-card nsw-card--headline">
+      <div class="nsw-card">
         <div class="nsw-card__image">
           <img src="https://picsum.photos/id/222/400/200" alt="4. Nominations open for Green Globe Awards 2019">
         </div>
@@ -719,7 +760,7 @@
         </div>
       </div>
       </li><li class="nsw-carousel__item">
-      <div class="nsw-card nsw-card--headline">
+      <div class="nsw-card">
         <div class="nsw-card__image">
           <img src="https://picsum.photos/id/238/400/200" alt="5. Quality green spaces and a million more trees for NSW">
         </div>
@@ -736,34 +777,41 @@
       </li>
     </ol>
   </div>
-  <nav>
-    <ul>
-      <li>
-        <button aria-label="Show previous items" class="nsw-carousel__control nsw-carousel__control--prev js-carousel__control">
-          <svg class="nsw-icon" viewBox="0 0 20 20">
-            <title>Show previous items</title>
-            <polyline points="13 2 5 10 13 18" fill="none" stroke="currentColor" stroke-linecap="square" stroke-linejoin="square" stroke-width="2" />
-          </svg>
-        </button>
-      </li>
-      <li>
-        <button aria-label="Show next items" class="nsw-carousel__control nsw-carousel__control--next js-carousel__control">
-          <svg class="nsw-icon" viewBox="0 0 20 20">
-            <title>Show next items</title>
-            <polyline points="7 2 15 10 7 18" fill="none" stroke="currentColor" stroke-linecap="square" stroke-linejoin="square" stroke-width="2" />
-          </svg>
-        </button>
-      </li>
-    </ul>
-  </nav>
-</div>`).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
+      <div class="nsw-carousel__header">
+        <div class="nsw-carousel__title">
+          <h2>Latest news</h2>
+        </div>
+        <nav aria-label="Carousel controls">
+          <ul>
+            <li>
+              <button aria-label="Show previous items" class="nsw-carousel__control nsw-carousel__control--prev js-carousel__control">
+                <svg class="nsw-icon" viewBox="0 0 20 20">
+                  <title>Show previous items</title>
+                  <polyline points="13 2 5 10 13 18" fill="none" stroke="currentColor" stroke-linecap="square" stroke-linejoin="square" stroke-width="2" />
+                </svg>
+              </button>
+            </li>
+            <li>
+              <button aria-label="Show next items" class="nsw-carousel__control nsw-carousel__control--next js-carousel__control">
+                <svg class="nsw-icon" viewBox="0 0 20 20">
+                  <title>Show next items</title>
+                  <polyline points="7 2 15 10 7 18" fill="none" stroke="currentColor" stroke-linecap="square" stroke-linejoin="square" stroke-width="2" />
+                </svg>
+              </button>
+            </li>
+          </ul>
+        </nav>
+      </div>
+  
+</div>
+`).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
     <div class="nsw-docs-code__wrapper">
 <pre><code class="html"><script>document.write((`<div class="nsw-carousel js-carousel" data-description="Highlighted latest news" data-drag="on">
   <p class="sr-only">Carousel items</p>
   <div class="nsw-carousel__wrapper js-carousel__wrapper">
     <ol class="nsw-carousel__list">
       <li class="nsw-carousel__item">
-      <div class="nsw-card nsw-card--headline">
+      <div class="nsw-card">
         <div class="nsw-card__image">
           <img src="https://picsum.photos/id/292/400/200" alt="1. Nominations open for Green Globe Awards 2019">
         </div>
@@ -778,7 +826,7 @@
         </div>
       </div>
       </li><li class="nsw-carousel__item">
-      <div class="nsw-card nsw-card--headline">
+      <div class="nsw-card">
         <div class="nsw-card__image">
           <img src="https://picsum.photos/id/28/400/200" alt="2. Quality green spaces and a million more trees for NSW">
         </div>
@@ -793,7 +841,7 @@
         </div>
       </div>
       </li><li class="nsw-carousel__item">
-      <div class="nsw-card nsw-card--headline">
+      <div class="nsw-card">
         <div class="nsw-card__image">
           <img src="https://picsum.photos/id/268/400/200" alt="3. New Premier&#x27;s Priority to lift literacy and numeracy standards">
         </div>
@@ -808,7 +856,7 @@
         </div>
       </div>
       </li><li class="nsw-carousel__item">
-      <div class="nsw-card nsw-card--headline">
+      <div class="nsw-card">
         <div class="nsw-card__image">
           <img src="https://picsum.photos/id/222/400/200" alt="4. Nominations open for Green Globe Awards 2019">
         </div>
@@ -823,7 +871,7 @@
         </div>
       </div>
       </li><li class="nsw-carousel__item">
-      <div class="nsw-card nsw-card--headline">
+      <div class="nsw-card">
         <div class="nsw-card__image">
           <img src="https://picsum.photos/id/238/400/200" alt="5. Quality green spaces and a million more trees for NSW">
         </div>
@@ -840,27 +888,34 @@
       </li>
     </ol>
   </div>
-  <nav>
-    <ul>
-      <li>
-        <button aria-label="Show previous items" class="nsw-carousel__control nsw-carousel__control--prev js-carousel__control">
-          <svg class="nsw-icon" viewBox="0 0 20 20">
-            <title>Show previous items</title>
-            <polyline points="13 2 5 10 13 18" fill="none" stroke="currentColor" stroke-linecap="square" stroke-linejoin="square" stroke-width="2" />
-          </svg>
-        </button>
-      </li>
-      <li>
-        <button aria-label="Show next items" class="nsw-carousel__control nsw-carousel__control--next js-carousel__control">
-          <svg class="nsw-icon" viewBox="0 0 20 20">
-            <title>Show next items</title>
-            <polyline points="7 2 15 10 7 18" fill="none" stroke="currentColor" stroke-linecap="square" stroke-linejoin="square" stroke-width="2" />
-          </svg>
-        </button>
-      </li>
-    </ul>
-  </nav>
-</div>`).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
+      <div class="nsw-carousel__header">
+        <div class="nsw-carousel__title">
+          <h2>Latest news</h2>
+        </div>
+        <nav aria-label="Carousel controls">
+          <ul>
+            <li>
+              <button aria-label="Show previous items" class="nsw-carousel__control nsw-carousel__control--prev js-carousel__control">
+                <svg class="nsw-icon" viewBox="0 0 20 20">
+                  <title>Show previous items</title>
+                  <polyline points="13 2 5 10 13 18" fill="none" stroke="currentColor" stroke-linecap="square" stroke-linejoin="square" stroke-width="2" />
+                </svg>
+              </button>
+            </li>
+            <li>
+              <button aria-label="Show next items" class="nsw-carousel__control nsw-carousel__control--next js-carousel__control">
+                <svg class="nsw-icon" viewBox="0 0 20 20">
+                  <title>Show next items</title>
+                  <polyline points="7 2 15 10 7 18" fill="none" stroke="currentColor" stroke-linecap="square" stroke-linejoin="square" stroke-width="2" />
+                </svg>
+              </button>
+            </li>
+          </ul>
+        </nav>
+      </div>
+  
+</div>
+`).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
     </div>
   </div>
 </div>
@@ -874,7 +929,7 @@
       <div class="nsw-carousel__wrapper js-carousel__wrapper">
         <ol class="nsw-carousel__list">
           <li class="nsw-carousel__item">
-          <div class="nsw-card nsw-card--headline">
+          <div class="nsw-card">
             <div class="nsw-card__image">
               <img src="https://picsum.photos/id/292/400/200" alt="1. Nominations open for Green Globe Awards 2019">
             </div>
@@ -889,7 +944,7 @@
             </div>
           </div>
           </li><li class="nsw-carousel__item">
-          <div class="nsw-card nsw-card--headline">
+          <div class="nsw-card">
             <div class="nsw-card__image">
               <img src="https://picsum.photos/id/28/400/200" alt="2. Quality green spaces and a million more trees for NSW">
             </div>
@@ -904,7 +959,7 @@
             </div>
           </div>
           </li><li class="nsw-carousel__item">
-          <div class="nsw-card nsw-card--headline">
+          <div class="nsw-card">
             <div class="nsw-card__image">
               <img src="https://picsum.photos/id/268/400/200" alt="3. New Premier&#x27;s Priority to lift literacy and numeracy standards">
             </div>
@@ -919,7 +974,7 @@
             </div>
           </div>
           </li><li class="nsw-carousel__item">
-          <div class="nsw-card nsw-card--headline">
+          <div class="nsw-card">
             <div class="nsw-card__image">
               <img src="https://picsum.photos/id/222/400/200" alt="4. Nominations open for Green Globe Awards 2019">
             </div>
@@ -934,7 +989,7 @@
             </div>
           </div>
           </li><li class="nsw-carousel__item">
-          <div class="nsw-card nsw-card--headline">
+          <div class="nsw-card">
             <div class="nsw-card__image">
               <img src="https://picsum.photos/id/238/400/200" alt="5. Quality green spaces and a million more trees for NSW">
             </div>
@@ -949,7 +1004,7 @@
             </div>
           </div>
           </li><li class="nsw-carousel__item">
-          <div class="nsw-card nsw-card--headline">
+          <div class="nsw-card">
             <div class="nsw-card__image">
               <img src="https://picsum.photos/id/208/400/200" alt="6. New Premier&#x27;s Priority to lift literacy and numeracy standards">
             </div>
@@ -964,7 +1019,7 @@
             </div>
           </div>
           </li><li class="nsw-carousel__item">
-          <div class="nsw-card nsw-card--headline">
+          <div class="nsw-card">
             <div class="nsw-card__image">
               <img src="https://picsum.photos/id/282/400/200" alt="7. Nominations open for Green Globe Awards 2019">
             </div>
@@ -979,7 +1034,7 @@
             </div>
           </div>
           </li><li class="nsw-carousel__item">
-          <div class="nsw-card nsw-card--headline">
+          <div class="nsw-card">
             <div class="nsw-card__image">
               <img src="https://picsum.photos/id/287/400/200" alt="8. Quality green spaces and a million more trees for NSW">
             </div>
@@ -994,7 +1049,7 @@
             </div>
           </div>
           </li><li class="nsw-carousel__item">
-          <div class="nsw-card nsw-card--headline">
+          <div class="nsw-card">
             <div class="nsw-card__image">
               <img src="https://picsum.photos/id/238/400/200" alt="9. New Premier&#x27;s Priority to lift literacy and numeracy standards">
             </div>
@@ -1011,27 +1066,34 @@
           </li>
         </ol>
       </div>
-      <nav>
-        <ul>
-          <li>
-            <button aria-label="Show previous items" class="nsw-carousel__control nsw-carousel__control--prev js-carousel__control">
-              <svg class="nsw-icon" viewBox="0 0 20 20">
-                <title>Show previous items</title>
-                <polyline points="13 2 5 10 13 18" fill="none" stroke="currentColor" stroke-linecap="square" stroke-linejoin="square" stroke-width="2" />
-              </svg>
-            </button>
-          </li>
-          <li>
-            <button aria-label="Show next items" class="nsw-carousel__control nsw-carousel__control--next js-carousel__control">
-              <svg class="nsw-icon" viewBox="0 0 20 20">
-                <title>Show next items</title>
-                <polyline points="7 2 15 10 7 18" fill="none" stroke="currentColor" stroke-linecap="square" stroke-linejoin="square" stroke-width="2" />
-              </svg>
-            </button>
-          </li>
-        </ul>
-      </nav>
-    </div>  </div>
+          <div class="nsw-carousel__header">
+            <div class="nsw-carousel__title">
+              <h2>Latest news</h2>
+            </div>
+            <nav aria-label="Carousel controls">
+              <ul>
+                <li>
+                  <button aria-label="Show previous items" class="nsw-carousel__control nsw-carousel__control--prev js-carousel__control">
+                    <svg class="nsw-icon" viewBox="0 0 20 20">
+                      <title>Show previous items</title>
+                      <polyline points="13 2 5 10 13 18" fill="none" stroke="currentColor" stroke-linecap="square" stroke-linejoin="square" stroke-width="2" />
+                    </svg>
+                  </button>
+                </li>
+                <li>
+                  <button aria-label="Show next items" class="nsw-carousel__control nsw-carousel__control--next js-carousel__control">
+                    <svg class="nsw-icon" viewBox="0 0 20 20">
+                      <title>Show next items</title>
+                      <polyline points="7 2 15 10 7 18" fill="none" stroke="currentColor" stroke-linecap="square" stroke-linejoin="square" stroke-width="2" />
+                    </svg>
+                  </button>
+                </li>
+              </ul>
+            </nav>
+          </div>
+      
+    </div>
+  </div>
 </div>
 
 <div class="nsw-docs-code">
@@ -1049,7 +1111,7 @@
   <div class="nsw-carousel__wrapper js-carousel__wrapper">
     <ol class="nsw-carousel__list">
       <li class="nsw-carousel__item">
-      <div class="nsw-card nsw-card--headline">
+      <div class="nsw-card">
         <div class="nsw-card__image">
           <img src="https://picsum.photos/id/292/400/200" alt="1. Nominations open for Green Globe Awards 2019">
         </div>
@@ -1064,7 +1126,7 @@
         </div>
       </div>
       </li><li class="nsw-carousel__item">
-      <div class="nsw-card nsw-card--headline">
+      <div class="nsw-card">
         <div class="nsw-card__image">
           <img src="https://picsum.photos/id/28/400/200" alt="2. Quality green spaces and a million more trees for NSW">
         </div>
@@ -1079,7 +1141,7 @@
         </div>
       </div>
       </li><li class="nsw-carousel__item">
-      <div class="nsw-card nsw-card--headline">
+      <div class="nsw-card">
         <div class="nsw-card__image">
           <img src="https://picsum.photos/id/268/400/200" alt="3. New Premier&#x27;s Priority to lift literacy and numeracy standards">
         </div>
@@ -1094,7 +1156,7 @@
         </div>
       </div>
       </li><li class="nsw-carousel__item">
-      <div class="nsw-card nsw-card--headline">
+      <div class="nsw-card">
         <div class="nsw-card__image">
           <img src="https://picsum.photos/id/222/400/200" alt="4. Nominations open for Green Globe Awards 2019">
         </div>
@@ -1109,7 +1171,7 @@
         </div>
       </div>
       </li><li class="nsw-carousel__item">
-      <div class="nsw-card nsw-card--headline">
+      <div class="nsw-card">
         <div class="nsw-card__image">
           <img src="https://picsum.photos/id/238/400/200" alt="5. Quality green spaces and a million more trees for NSW">
         </div>
@@ -1124,7 +1186,7 @@
         </div>
       </div>
       </li><li class="nsw-carousel__item">
-      <div class="nsw-card nsw-card--headline">
+      <div class="nsw-card">
         <div class="nsw-card__image">
           <img src="https://picsum.photos/id/208/400/200" alt="6. New Premier&#x27;s Priority to lift literacy and numeracy standards">
         </div>
@@ -1139,7 +1201,7 @@
         </div>
       </div>
       </li><li class="nsw-carousel__item">
-      <div class="nsw-card nsw-card--headline">
+      <div class="nsw-card">
         <div class="nsw-card__image">
           <img src="https://picsum.photos/id/282/400/200" alt="7. Nominations open for Green Globe Awards 2019">
         </div>
@@ -1154,7 +1216,7 @@
         </div>
       </div>
       </li><li class="nsw-carousel__item">
-      <div class="nsw-card nsw-card--headline">
+      <div class="nsw-card">
         <div class="nsw-card__image">
           <img src="https://picsum.photos/id/287/400/200" alt="8. Quality green spaces and a million more trees for NSW">
         </div>
@@ -1169,7 +1231,7 @@
         </div>
       </div>
       </li><li class="nsw-carousel__item">
-      <div class="nsw-card nsw-card--headline">
+      <div class="nsw-card">
         <div class="nsw-card__image">
           <img src="https://picsum.photos/id/238/400/200" alt="9. New Premier&#x27;s Priority to lift literacy and numeracy standards">
         </div>
@@ -1186,34 +1248,41 @@
       </li>
     </ol>
   </div>
-  <nav>
-    <ul>
-      <li>
-        <button aria-label="Show previous items" class="nsw-carousel__control nsw-carousel__control--prev js-carousel__control">
-          <svg class="nsw-icon" viewBox="0 0 20 20">
-            <title>Show previous items</title>
-            <polyline points="13 2 5 10 13 18" fill="none" stroke="currentColor" stroke-linecap="square" stroke-linejoin="square" stroke-width="2" />
-          </svg>
-        </button>
-      </li>
-      <li>
-        <button aria-label="Show next items" class="nsw-carousel__control nsw-carousel__control--next js-carousel__control">
-          <svg class="nsw-icon" viewBox="0 0 20 20">
-            <title>Show next items</title>
-            <polyline points="7 2 15 10 7 18" fill="none" stroke="currentColor" stroke-linecap="square" stroke-linejoin="square" stroke-width="2" />
-          </svg>
-        </button>
-      </li>
-    </ul>
-  </nav>
-</div>`).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
+      <div class="nsw-carousel__header">
+        <div class="nsw-carousel__title">
+          <h2>Latest news</h2>
+        </div>
+        <nav aria-label="Carousel controls">
+          <ul>
+            <li>
+              <button aria-label="Show previous items" class="nsw-carousel__control nsw-carousel__control--prev js-carousel__control">
+                <svg class="nsw-icon" viewBox="0 0 20 20">
+                  <title>Show previous items</title>
+                  <polyline points="13 2 5 10 13 18" fill="none" stroke="currentColor" stroke-linecap="square" stroke-linejoin="square" stroke-width="2" />
+                </svg>
+              </button>
+            </li>
+            <li>
+              <button aria-label="Show next items" class="nsw-carousel__control nsw-carousel__control--next js-carousel__control">
+                <svg class="nsw-icon" viewBox="0 0 20 20">
+                  <title>Show next items</title>
+                  <polyline points="7 2 15 10 7 18" fill="none" stroke="currentColor" stroke-linecap="square" stroke-linejoin="square" stroke-width="2" />
+                </svg>
+              </button>
+            </li>
+          </ul>
+        </nav>
+      </div>
+  
+</div>
+`).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
     <div class="nsw-docs-code__wrapper">
 <pre><code class="html"><script>document.write((`<div class="nsw-carousel js-carousel" data-description="Highlighted latest news" data-navigation-pagination="on">
   <p class="sr-only">Carousel items</p>
   <div class="nsw-carousel__wrapper js-carousel__wrapper">
     <ol class="nsw-carousel__list">
       <li class="nsw-carousel__item">
-      <div class="nsw-card nsw-card--headline">
+      <div class="nsw-card">
         <div class="nsw-card__image">
           <img src="https://picsum.photos/id/292/400/200" alt="1. Nominations open for Green Globe Awards 2019">
         </div>
@@ -1228,7 +1297,7 @@
         </div>
       </div>
       </li><li class="nsw-carousel__item">
-      <div class="nsw-card nsw-card--headline">
+      <div class="nsw-card">
         <div class="nsw-card__image">
           <img src="https://picsum.photos/id/28/400/200" alt="2. Quality green spaces and a million more trees for NSW">
         </div>
@@ -1243,7 +1312,7 @@
         </div>
       </div>
       </li><li class="nsw-carousel__item">
-      <div class="nsw-card nsw-card--headline">
+      <div class="nsw-card">
         <div class="nsw-card__image">
           <img src="https://picsum.photos/id/268/400/200" alt="3. New Premier&#x27;s Priority to lift literacy and numeracy standards">
         </div>
@@ -1258,7 +1327,7 @@
         </div>
       </div>
       </li><li class="nsw-carousel__item">
-      <div class="nsw-card nsw-card--headline">
+      <div class="nsw-card">
         <div class="nsw-card__image">
           <img src="https://picsum.photos/id/222/400/200" alt="4. Nominations open for Green Globe Awards 2019">
         </div>
@@ -1273,7 +1342,7 @@
         </div>
       </div>
       </li><li class="nsw-carousel__item">
-      <div class="nsw-card nsw-card--headline">
+      <div class="nsw-card">
         <div class="nsw-card__image">
           <img src="https://picsum.photos/id/238/400/200" alt="5. Quality green spaces and a million more trees for NSW">
         </div>
@@ -1288,7 +1357,7 @@
         </div>
       </div>
       </li><li class="nsw-carousel__item">
-      <div class="nsw-card nsw-card--headline">
+      <div class="nsw-card">
         <div class="nsw-card__image">
           <img src="https://picsum.photos/id/208/400/200" alt="6. New Premier&#x27;s Priority to lift literacy and numeracy standards">
         </div>
@@ -1303,7 +1372,7 @@
         </div>
       </div>
       </li><li class="nsw-carousel__item">
-      <div class="nsw-card nsw-card--headline">
+      <div class="nsw-card">
         <div class="nsw-card__image">
           <img src="https://picsum.photos/id/282/400/200" alt="7. Nominations open for Green Globe Awards 2019">
         </div>
@@ -1318,7 +1387,7 @@
         </div>
       </div>
       </li><li class="nsw-carousel__item">
-      <div class="nsw-card nsw-card--headline">
+      <div class="nsw-card">
         <div class="nsw-card__image">
           <img src="https://picsum.photos/id/287/400/200" alt="8. Quality green spaces and a million more trees for NSW">
         </div>
@@ -1333,7 +1402,7 @@
         </div>
       </div>
       </li><li class="nsw-carousel__item">
-      <div class="nsw-card nsw-card--headline">
+      <div class="nsw-card">
         <div class="nsw-card__image">
           <img src="https://picsum.photos/id/238/400/200" alt="9. New Premier&#x27;s Priority to lift literacy and numeracy standards">
         </div>
@@ -1350,27 +1419,577 @@
       </li>
     </ol>
   </div>
-  <nav>
-    <ul>
-      <li>
-        <button aria-label="Show previous items" class="nsw-carousel__control nsw-carousel__control--prev js-carousel__control">
-          <svg class="nsw-icon" viewBox="0 0 20 20">
-            <title>Show previous items</title>
-            <polyline points="13 2 5 10 13 18" fill="none" stroke="currentColor" stroke-linecap="square" stroke-linejoin="square" stroke-width="2" />
-          </svg>
-        </button>
+      <div class="nsw-carousel__header">
+        <div class="nsw-carousel__title">
+          <h2>Latest news</h2>
+        </div>
+        <nav aria-label="Carousel controls">
+          <ul>
+            <li>
+              <button aria-label="Show previous items" class="nsw-carousel__control nsw-carousel__control--prev js-carousel__control">
+                <svg class="nsw-icon" viewBox="0 0 20 20">
+                  <title>Show previous items</title>
+                  <polyline points="13 2 5 10 13 18" fill="none" stroke="currentColor" stroke-linecap="square" stroke-linejoin="square" stroke-width="2" />
+                </svg>
+              </button>
+            </li>
+            <li>
+              <button aria-label="Show next items" class="nsw-carousel__control nsw-carousel__control--next js-carousel__control">
+                <svg class="nsw-icon" viewBox="0 0 20 20">
+                  <title>Show next items</title>
+                  <polyline points="7 2 15 10 7 18" fill="none" stroke="currentColor" stroke-linecap="square" stroke-linejoin="square" stroke-width="2" />
+                </svg>
+              </button>
+            </li>
+          </ul>
+        </nav>
+      </div>
+  
+</div>
+`).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
+    </div>
+  </div>
+</div>
+
+<h3>View more </h3>
+
+<div class="nsw-docs__example nsw-m-top-sm">
+  <div class="nsw-docs__component">
+    <div class="nsw-carousel js-carousel" data-description="Highlighted latest news" data-navigation-pagination="on">
+      <p class="sr-only">Carousel items</p>
+      <div class="nsw-carousel__wrapper js-carousel__wrapper">
+        <ol class="nsw-carousel__list">
+          <li class="nsw-carousel__item">
+          <div class="nsw-card">
+            <div class="nsw-card__image">
+              <img src="https://picsum.photos/id/292/400/200" alt="1. Nominations open for Green Globe Awards 2019">
+            </div>
+            <div class="nsw-card__content">
+              <div class="nsw-card__title">
+                <a href="https://www.digital.nsw.gov.au">1. Nominations open for Green Globe Awards 2019</a>
+              </div>
+              <div class="nsw-card__copy">
+                <p>The annual awards will recognise individuals and organisations for their leadership , commitment and innovation in sustainability across NSW.</p>
+              </div>
+              <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span>
+            </div>
+          </div>
+          </li><li class="nsw-carousel__item">
+          <div class="nsw-card">
+            <div class="nsw-card__image">
+              <img src="https://picsum.photos/id/28/400/200" alt="2. Quality green spaces and a million more trees for NSW">
+            </div>
+            <div class="nsw-card__content">
+              <div class="nsw-card__title">
+                <a href="https://www.digital.nsw.gov.au">2. Quality green spaces and a million more trees for NSW</a>
+              </div>
+              <div class="nsw-card__copy">
+                <p>The NSW Government will create more quality green spaces and increase ther tree canopy in Sydney bt 2022.</p>
+              </div>
+              <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span>
+            </div>
+          </div>
+          </li><li class="nsw-carousel__item">
+          <div class="nsw-card">
+            <div class="nsw-card__image">
+              <img src="https://picsum.photos/id/268/400/200" alt="3. New Premier&#x27;s Priority to lift literacy and numeracy standards">
+            </div>
+            <div class="nsw-card__content">
+              <div class="nsw-card__title">
+                <a href="https://www.digital.nsw.gov.au">3. New Premier&#x27;s Priority to lift literacy and numeracy standards</a>
+              </div>
+              <div class="nsw-card__copy">
+                <p>The NSW Government will redouble its efforts to lift literacy and numeracy standards across NSW public schools to ensure students are given every opportunity to be their best.</p>
+              </div>
+              <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span>
+            </div>
+          </div>
+          </li><li class="nsw-carousel__item">
+          <div class="nsw-card">
+            <div class="nsw-card__image">
+              <img src="https://picsum.photos/id/222/400/200" alt="4. Nominations open for Green Globe Awards 2019">
+            </div>
+            <div class="nsw-card__content">
+              <div class="nsw-card__title">
+                <a href="https://www.digital.nsw.gov.au">4. Nominations open for Green Globe Awards 2019</a>
+              </div>
+              <div class="nsw-card__copy">
+                <p>The annual awards will recognise individuals and organisations for their leadership , commitment and innovation in sustainability across NSW.</p>
+              </div>
+              <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span>
+            </div>
+          </div>
+          </li><li class="nsw-carousel__item">
+          <div class="nsw-card">
+            <div class="nsw-card__image">
+              <img src="https://picsum.photos/id/238/400/200" alt="5. Quality green spaces and a million more trees for NSW">
+            </div>
+            <div class="nsw-card__content">
+              <div class="nsw-card__title">
+                <a href="https://www.digital.nsw.gov.au">5. Quality green spaces and a million more trees for NSW</a>
+              </div>
+              <div class="nsw-card__copy">
+                <p>The NSW Government will create more quality green spaces and increase ther tree canopy in Sydney bt 2022.</p>
+              </div>
+              <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span>
+            </div>
+          </div>
+          </li><li class="nsw-carousel__item">
+          <div class="nsw-card">
+            <div class="nsw-card__image">
+              <img src="https://picsum.photos/id/208/400/200" alt="6. New Premier&#x27;s Priority to lift literacy and numeracy standards">
+            </div>
+            <div class="nsw-card__content">
+              <div class="nsw-card__title">
+                <a href="https://www.digital.nsw.gov.au">6. New Premier&#x27;s Priority to lift literacy and numeracy standards</a>
+              </div>
+              <div class="nsw-card__copy">
+                <p>The NSW Government will redouble its efforts to lift literacy and numeracy standards across NSW public schools to ensure students are given every opportunity to be their best.</p>
+              </div>
+              <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span>
+            </div>
+          </div>
+          </li><li class="nsw-carousel__item">
+          <div class="nsw-card">
+            <div class="nsw-card__image">
+              <img src="https://picsum.photos/id/282/400/200" alt="7. Nominations open for Green Globe Awards 2019">
+            </div>
+            <div class="nsw-card__content">
+              <div class="nsw-card__title">
+                <a href="https://www.digital.nsw.gov.au">7. Nominations open for Green Globe Awards 2019</a>
+              </div>
+              <div class="nsw-card__copy">
+                <p>The annual awards will recognise individuals and organisations for their leadership , commitment and innovation in sustainability across NSW.</p>
+              </div>
+              <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span>
+            </div>
+          </div>
+          </li><li class="nsw-carousel__item">
+          <div class="nsw-card">
+            <div class="nsw-card__image">
+              <img src="https://picsum.photos/id/287/400/200" alt="8. Quality green spaces and a million more trees for NSW">
+            </div>
+            <div class="nsw-card__content">
+              <div class="nsw-card__title">
+                <a href="https://www.digital.nsw.gov.au">8. Quality green spaces and a million more trees for NSW</a>
+              </div>
+              <div class="nsw-card__copy">
+                <p>The NSW Government will create more quality green spaces and increase ther tree canopy in Sydney bt 2022.</p>
+              </div>
+              <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span>
+            </div>
+          </div>
+          </li><li class="nsw-carousel__item">
+          <div class="nsw-card">
+            <div class="nsw-card__image">
+              <img src="https://picsum.photos/id/238/400/200" alt="9. New Premier&#x27;s Priority to lift literacy and numeracy standards">
+            </div>
+            <div class="nsw-card__content">
+              <div class="nsw-card__title">
+                <a href="https://www.digital.nsw.gov.au">9. New Premier&#x27;s Priority to lift literacy and numeracy standards</a>
+              </div>
+              <div class="nsw-card__copy">
+                <p>The NSW Government will redouble its efforts to lift literacy and numeracy standards across NSW public schools to ensure students are given every opportunity to be their best.</p>
+              </div>
+              <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span>
+            </div>
+          </div>
+          </li>
+        </ol>
+      </div>
+          <div class="nsw-carousel__header">
+            <div class="nsw-carousel__title">
+              <h2>Latest news</h2>
+            </div>
+            <nav aria-label="Carousel controls">
+              <ul>
+                <li>
+                  <button aria-label="Show previous items" class="nsw-carousel__control nsw-carousel__control--prev js-carousel__control">
+                    <svg class="nsw-icon" viewBox="0 0 20 20">
+                      <title>Show previous items</title>
+                      <polyline points="13 2 5 10 13 18" fill="none" stroke="currentColor" stroke-linecap="square" stroke-linejoin="square" stroke-width="2" />
+                    </svg>
+                  </button>
+                </li>
+                <li>
+                  <button aria-label="Show next items" class="nsw-carousel__control nsw-carousel__control--next js-carousel__control">
+                    <svg class="nsw-icon" viewBox="0 0 20 20">
+                      <title>Show next items</title>
+                      <polyline points="7 2 15 10 7 18" fill="none" stroke="currentColor" stroke-linecap="square" stroke-linejoin="square" stroke-width="2" />
+                    </svg>
+                  </button>
+                </li>
+              </ul>
+            </nav>
+          </div>
+      
+    </div>
+    <a class="nsw-carousel--view-more" href="https://github.com/digitalnsw/nsw-design-system" target="_blank" rel="noopener">
+      <span>View more</span>
+      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span>
+    </a>
+  </div>
+</div>
+
+<div class="nsw-docs-code">
+  <button class="nsw-link nsw-link--button nsw-link--icon nsw-small js-code-button">
+    <span>Show code</span>
+    <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
+  </button>
+  <div class="nsw-docs-code__content">
+    <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
+      <span>Copy</span>
+      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
+    </button>
+    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`<div class="nsw-carousel js-carousel" data-description="Highlighted latest news" data-navigation-pagination="on">
+  <p class="sr-only">Carousel items</p>
+  <div class="nsw-carousel__wrapper js-carousel__wrapper">
+    <ol class="nsw-carousel__list">
+      <li class="nsw-carousel__item">
+      <div class="nsw-card">
+        <div class="nsw-card__image">
+          <img src="https://picsum.photos/id/292/400/200" alt="1. Nominations open for Green Globe Awards 2019">
+        </div>
+        <div class="nsw-card__content">
+          <div class="nsw-card__title">
+            <a href="https://www.digital.nsw.gov.au">1. Nominations open for Green Globe Awards 2019</a>
+          </div>
+          <div class="nsw-card__copy">
+            <p>The annual awards will recognise individuals and organisations for their leadership , commitment and innovation in sustainability across NSW.</p>
+          </div>
+          <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span>
+        </div>
+      </div>
+      </li><li class="nsw-carousel__item">
+      <div class="nsw-card">
+        <div class="nsw-card__image">
+          <img src="https://picsum.photos/id/28/400/200" alt="2. Quality green spaces and a million more trees for NSW">
+        </div>
+        <div class="nsw-card__content">
+          <div class="nsw-card__title">
+            <a href="https://www.digital.nsw.gov.au">2. Quality green spaces and a million more trees for NSW</a>
+          </div>
+          <div class="nsw-card__copy">
+            <p>The NSW Government will create more quality green spaces and increase ther tree canopy in Sydney bt 2022.</p>
+          </div>
+          <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span>
+        </div>
+      </div>
+      </li><li class="nsw-carousel__item">
+      <div class="nsw-card">
+        <div class="nsw-card__image">
+          <img src="https://picsum.photos/id/268/400/200" alt="3. New Premier&#x27;s Priority to lift literacy and numeracy standards">
+        </div>
+        <div class="nsw-card__content">
+          <div class="nsw-card__title">
+            <a href="https://www.digital.nsw.gov.au">3. New Premier&#x27;s Priority to lift literacy and numeracy standards</a>
+          </div>
+          <div class="nsw-card__copy">
+            <p>The NSW Government will redouble its efforts to lift literacy and numeracy standards across NSW public schools to ensure students are given every opportunity to be their best.</p>
+          </div>
+          <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span>
+        </div>
+      </div>
+      </li><li class="nsw-carousel__item">
+      <div class="nsw-card">
+        <div class="nsw-card__image">
+          <img src="https://picsum.photos/id/222/400/200" alt="4. Nominations open for Green Globe Awards 2019">
+        </div>
+        <div class="nsw-card__content">
+          <div class="nsw-card__title">
+            <a href="https://www.digital.nsw.gov.au">4. Nominations open for Green Globe Awards 2019</a>
+          </div>
+          <div class="nsw-card__copy">
+            <p>The annual awards will recognise individuals and organisations for their leadership , commitment and innovation in sustainability across NSW.</p>
+          </div>
+          <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span>
+        </div>
+      </div>
+      </li><li class="nsw-carousel__item">
+      <div class="nsw-card">
+        <div class="nsw-card__image">
+          <img src="https://picsum.photos/id/238/400/200" alt="5. Quality green spaces and a million more trees for NSW">
+        </div>
+        <div class="nsw-card__content">
+          <div class="nsw-card__title">
+            <a href="https://www.digital.nsw.gov.au">5. Quality green spaces and a million more trees for NSW</a>
+          </div>
+          <div class="nsw-card__copy">
+            <p>The NSW Government will create more quality green spaces and increase ther tree canopy in Sydney bt 2022.</p>
+          </div>
+          <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span>
+        </div>
+      </div>
+      </li><li class="nsw-carousel__item">
+      <div class="nsw-card">
+        <div class="nsw-card__image">
+          <img src="https://picsum.photos/id/208/400/200" alt="6. New Premier&#x27;s Priority to lift literacy and numeracy standards">
+        </div>
+        <div class="nsw-card__content">
+          <div class="nsw-card__title">
+            <a href="https://www.digital.nsw.gov.au">6. New Premier&#x27;s Priority to lift literacy and numeracy standards</a>
+          </div>
+          <div class="nsw-card__copy">
+            <p>The NSW Government will redouble its efforts to lift literacy and numeracy standards across NSW public schools to ensure students are given every opportunity to be their best.</p>
+          </div>
+          <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span>
+        </div>
+      </div>
+      </li><li class="nsw-carousel__item">
+      <div class="nsw-card">
+        <div class="nsw-card__image">
+          <img src="https://picsum.photos/id/282/400/200" alt="7. Nominations open for Green Globe Awards 2019">
+        </div>
+        <div class="nsw-card__content">
+          <div class="nsw-card__title">
+            <a href="https://www.digital.nsw.gov.au">7. Nominations open for Green Globe Awards 2019</a>
+          </div>
+          <div class="nsw-card__copy">
+            <p>The annual awards will recognise individuals and organisations for their leadership , commitment and innovation in sustainability across NSW.</p>
+          </div>
+          <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span>
+        </div>
+      </div>
+      </li><li class="nsw-carousel__item">
+      <div class="nsw-card">
+        <div class="nsw-card__image">
+          <img src="https://picsum.photos/id/287/400/200" alt="8. Quality green spaces and a million more trees for NSW">
+        </div>
+        <div class="nsw-card__content">
+          <div class="nsw-card__title">
+            <a href="https://www.digital.nsw.gov.au">8. Quality green spaces and a million more trees for NSW</a>
+          </div>
+          <div class="nsw-card__copy">
+            <p>The NSW Government will create more quality green spaces and increase ther tree canopy in Sydney bt 2022.</p>
+          </div>
+          <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span>
+        </div>
+      </div>
+      </li><li class="nsw-carousel__item">
+      <div class="nsw-card">
+        <div class="nsw-card__image">
+          <img src="https://picsum.photos/id/238/400/200" alt="9. New Premier&#x27;s Priority to lift literacy and numeracy standards">
+        </div>
+        <div class="nsw-card__content">
+          <div class="nsw-card__title">
+            <a href="https://www.digital.nsw.gov.au">9. New Premier&#x27;s Priority to lift literacy and numeracy standards</a>
+          </div>
+          <div class="nsw-card__copy">
+            <p>The NSW Government will redouble its efforts to lift literacy and numeracy standards across NSW public schools to ensure students are given every opportunity to be their best.</p>
+          </div>
+          <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span>
+        </div>
+      </div>
       </li>
-      <li>
-        <button aria-label="Show next items" class="nsw-carousel__control nsw-carousel__control--next js-carousel__control">
-          <svg class="nsw-icon" viewBox="0 0 20 20">
-            <title>Show next items</title>
-            <polyline points="7 2 15 10 7 18" fill="none" stroke="currentColor" stroke-linecap="square" stroke-linejoin="square" stroke-width="2" />
-          </svg>
-        </button>
+    </ol>
+  </div>
+      <div class="nsw-carousel__header">
+        <div class="nsw-carousel__title">
+          <h2>Latest news</h2>
+        </div>
+        <nav aria-label="Carousel controls">
+          <ul>
+            <li>
+              <button aria-label="Show previous items" class="nsw-carousel__control nsw-carousel__control--prev js-carousel__control">
+                <svg class="nsw-icon" viewBox="0 0 20 20">
+                  <title>Show previous items</title>
+                  <polyline points="13 2 5 10 13 18" fill="none" stroke="currentColor" stroke-linecap="square" stroke-linejoin="square" stroke-width="2" />
+                </svg>
+              </button>
+            </li>
+            <li>
+              <button aria-label="Show next items" class="nsw-carousel__control nsw-carousel__control--next js-carousel__control">
+                <svg class="nsw-icon" viewBox="0 0 20 20">
+                  <title>Show next items</title>
+                  <polyline points="7 2 15 10 7 18" fill="none" stroke="currentColor" stroke-linecap="square" stroke-linejoin="square" stroke-width="2" />
+                </svg>
+              </button>
+            </li>
+          </ul>
+        </nav>
+      </div>
+  
+</div>
+<a class="nsw-carousel--view-more" href="https://github.com/digitalnsw/nsw-design-system" target="_blank" rel="noopener">
+  <span>View more</span>
+  <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span>
+</a>
+`).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
+    <div class="nsw-docs-code__wrapper">
+<pre><code class="html"><script>document.write((`<div class="nsw-carousel js-carousel" data-description="Highlighted latest news" data-navigation-pagination="on">
+  <p class="sr-only">Carousel items</p>
+  <div class="nsw-carousel__wrapper js-carousel__wrapper">
+    <ol class="nsw-carousel__list">
+      <li class="nsw-carousel__item">
+      <div class="nsw-card">
+        <div class="nsw-card__image">
+          <img src="https://picsum.photos/id/292/400/200" alt="1. Nominations open for Green Globe Awards 2019">
+        </div>
+        <div class="nsw-card__content">
+          <div class="nsw-card__title">
+            <a href="https://www.digital.nsw.gov.au">1. Nominations open for Green Globe Awards 2019</a>
+          </div>
+          <div class="nsw-card__copy">
+            <p>The annual awards will recognise individuals and organisations for their leadership , commitment and innovation in sustainability across NSW.</p>
+          </div>
+          <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span>
+        </div>
+      </div>
+      </li><li class="nsw-carousel__item">
+      <div class="nsw-card">
+        <div class="nsw-card__image">
+          <img src="https://picsum.photos/id/28/400/200" alt="2. Quality green spaces and a million more trees for NSW">
+        </div>
+        <div class="nsw-card__content">
+          <div class="nsw-card__title">
+            <a href="https://www.digital.nsw.gov.au">2. Quality green spaces and a million more trees for NSW</a>
+          </div>
+          <div class="nsw-card__copy">
+            <p>The NSW Government will create more quality green spaces and increase ther tree canopy in Sydney bt 2022.</p>
+          </div>
+          <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span>
+        </div>
+      </div>
+      </li><li class="nsw-carousel__item">
+      <div class="nsw-card">
+        <div class="nsw-card__image">
+          <img src="https://picsum.photos/id/268/400/200" alt="3. New Premier&#x27;s Priority to lift literacy and numeracy standards">
+        </div>
+        <div class="nsw-card__content">
+          <div class="nsw-card__title">
+            <a href="https://www.digital.nsw.gov.au">3. New Premier&#x27;s Priority to lift literacy and numeracy standards</a>
+          </div>
+          <div class="nsw-card__copy">
+            <p>The NSW Government will redouble its efforts to lift literacy and numeracy standards across NSW public schools to ensure students are given every opportunity to be their best.</p>
+          </div>
+          <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span>
+        </div>
+      </div>
+      </li><li class="nsw-carousel__item">
+      <div class="nsw-card">
+        <div class="nsw-card__image">
+          <img src="https://picsum.photos/id/222/400/200" alt="4. Nominations open for Green Globe Awards 2019">
+        </div>
+        <div class="nsw-card__content">
+          <div class="nsw-card__title">
+            <a href="https://www.digital.nsw.gov.au">4. Nominations open for Green Globe Awards 2019</a>
+          </div>
+          <div class="nsw-card__copy">
+            <p>The annual awards will recognise individuals and organisations for their leadership , commitment and innovation in sustainability across NSW.</p>
+          </div>
+          <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span>
+        </div>
+      </div>
+      </li><li class="nsw-carousel__item">
+      <div class="nsw-card">
+        <div class="nsw-card__image">
+          <img src="https://picsum.photos/id/238/400/200" alt="5. Quality green spaces and a million more trees for NSW">
+        </div>
+        <div class="nsw-card__content">
+          <div class="nsw-card__title">
+            <a href="https://www.digital.nsw.gov.au">5. Quality green spaces and a million more trees for NSW</a>
+          </div>
+          <div class="nsw-card__copy">
+            <p>The NSW Government will create more quality green spaces and increase ther tree canopy in Sydney bt 2022.</p>
+          </div>
+          <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span>
+        </div>
+      </div>
+      </li><li class="nsw-carousel__item">
+      <div class="nsw-card">
+        <div class="nsw-card__image">
+          <img src="https://picsum.photos/id/208/400/200" alt="6. New Premier&#x27;s Priority to lift literacy and numeracy standards">
+        </div>
+        <div class="nsw-card__content">
+          <div class="nsw-card__title">
+            <a href="https://www.digital.nsw.gov.au">6. New Premier&#x27;s Priority to lift literacy and numeracy standards</a>
+          </div>
+          <div class="nsw-card__copy">
+            <p>The NSW Government will redouble its efforts to lift literacy and numeracy standards across NSW public schools to ensure students are given every opportunity to be their best.</p>
+          </div>
+          <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span>
+        </div>
+      </div>
+      </li><li class="nsw-carousel__item">
+      <div class="nsw-card">
+        <div class="nsw-card__image">
+          <img src="https://picsum.photos/id/282/400/200" alt="7. Nominations open for Green Globe Awards 2019">
+        </div>
+        <div class="nsw-card__content">
+          <div class="nsw-card__title">
+            <a href="https://www.digital.nsw.gov.au">7. Nominations open for Green Globe Awards 2019</a>
+          </div>
+          <div class="nsw-card__copy">
+            <p>The annual awards will recognise individuals and organisations for their leadership , commitment and innovation in sustainability across NSW.</p>
+          </div>
+          <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span>
+        </div>
+      </div>
+      </li><li class="nsw-carousel__item">
+      <div class="nsw-card">
+        <div class="nsw-card__image">
+          <img src="https://picsum.photos/id/287/400/200" alt="8. Quality green spaces and a million more trees for NSW">
+        </div>
+        <div class="nsw-card__content">
+          <div class="nsw-card__title">
+            <a href="https://www.digital.nsw.gov.au">8. Quality green spaces and a million more trees for NSW</a>
+          </div>
+          <div class="nsw-card__copy">
+            <p>The NSW Government will create more quality green spaces and increase ther tree canopy in Sydney bt 2022.</p>
+          </div>
+          <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span>
+        </div>
+      </div>
+      </li><li class="nsw-carousel__item">
+      <div class="nsw-card">
+        <div class="nsw-card__image">
+          <img src="https://picsum.photos/id/238/400/200" alt="9. New Premier&#x27;s Priority to lift literacy and numeracy standards">
+        </div>
+        <div class="nsw-card__content">
+          <div class="nsw-card__title">
+            <a href="https://www.digital.nsw.gov.au">9. New Premier&#x27;s Priority to lift literacy and numeracy standards</a>
+          </div>
+          <div class="nsw-card__copy">
+            <p>The NSW Government will redouble its efforts to lift literacy and numeracy standards across NSW public schools to ensure students are given every opportunity to be their best.</p>
+          </div>
+          <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span>
+        </div>
+      </div>
       </li>
-    </ul>
-  </nav>
-</div>`).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
+    </ol>
+  </div>
+      <div class="nsw-carousel__header">
+        <div class="nsw-carousel__title">
+          <h2>Latest news</h2>
+        </div>
+        <nav aria-label="Carousel controls">
+          <ul>
+            <li>
+              <button aria-label="Show previous items" class="nsw-carousel__control nsw-carousel__control--prev js-carousel__control">
+                <svg class="nsw-icon" viewBox="0 0 20 20">
+                  <title>Show previous items</title>
+                  <polyline points="13 2 5 10 13 18" fill="none" stroke="currentColor" stroke-linecap="square" stroke-linejoin="square" stroke-width="2" />
+                </svg>
+              </button>
+            </li>
+            <li>
+              <button aria-label="Show next items" class="nsw-carousel__control nsw-carousel__control--next js-carousel__control">
+                <svg class="nsw-icon" viewBox="0 0 20 20">
+                  <title>Show next items</title>
+                  <polyline points="7 2 15 10 7 18" fill="none" stroke="currentColor" stroke-linecap="square" stroke-linejoin="square" stroke-width="2" />
+                </svg>
+              </button>
+            </li>
+          </ul>
+        </nav>
+      </div>
+  
+</div>
+<a class="nsw-carousel--view-more" href="https://github.com/digitalnsw/nsw-design-system" target="_blank" rel="noopener">
+  <span>View more</span>
+  <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span>
+</a>
+`).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
     </div>
   </div>
 </div>
