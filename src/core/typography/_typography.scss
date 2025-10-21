@@ -247,13 +247,13 @@ a {
 @mixin responsive-font-size($size) {
   & {
     --nsw-font-size-#{$size}: var(--nsw-font-size-#{$size}-mobile);
-    --nsw-font-height-#{$size}: var(--nsw-font-height-#{$size}-mobile);
+    --nsw-line-height-#{$size}: var(--nsw-line-height-#{$size}-mobile);
   }
 
   @include nsw.breakpoint(nsw.$nsw-font-size-reponsive-breakpoint) {
     & {
       --nsw-font-size-#{$size}: var(--nsw-font-size-#{$size}-desktop);
-      --nsw-font-height-#{$size}: var(--nsw-font-height-#{$size}-desktop);
+      --nsw-line-height-#{$size}: var(--nsw-line-height-#{$size}-desktop);
     }
   }
 }
