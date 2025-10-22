@@ -20,40 +20,27 @@ function baseCleanHTML(str, nodes, opts = {}) {
   function stringToHTML() {
     const raw = String(str || '')
 
-    // If NO allowlist was provided, use DOMParser (open behaviour)
-    if (!Array.isArray(allowedTags)) {
-      const parser = new DOMParser()
-      const doc = parser.parseFromString(raw, 'text/html')
-      return doc.body || document.createElement('body')
-    }
-
-    // SAFE allowlist path: do NOT parse untrusted HTML. Escape everything first,
-    // then selectively restore a tiny subset of allowed, non-nesting inline tags.
+    // Treat ALL input as plain text unless an allowlist is provided
     const bodyEl = document.createElement('body')
 
-    // Escape all content so nothing is interpreted as HTML
-    let safe = escapeHTML(raw)
-
-    // Intersect provided allowlist with the simple, safe set we support
-    const SIMPLE_TAGS = (allowedTags || [])
-      .map((t) => String(t || '').toLowerCase())
-      .filter((t) => ['p', 'span', 'kbd', 'strong', 'em', 'br', 'code'].includes(t))
-
-    // Restore only the simplest forms of these tags (no attributes)
-    if (SIMPLE_TAGS.length > 0) {
+    // If an allowlist exists, use the safe-restore method (non-parsing)
+    if (Array.isArray(allowedTags) && allowedTags.length > 0) {
+      let safe = escapeHTML(raw)
+      const SIMPLE_TAGS = allowedTags
+        .map((t) => String(t || '').toLowerCase())
+        .filter((t) => ['p', 'span', 'kbd', 'strong', 'em', 'br', 'code'].includes(t))
       SIMPLE_TAGS.forEach((tag) => {
-        // Open tag
         const openRe = new RegExp(`&lt;${tag}&gt;`, 'g')
-        // Close tag (skip for <br>)
         const closeRe = tag === 'br' ? null : new RegExp(`&lt;\\/${tag}&gt;`, 'g')
-
         safe = safe.replace(openRe, `<${tag}>`)
         if (closeRe) safe = safe.replace(closeRe, `</${tag}>`)
       })
+      bodyEl.innerHTML = safe
+    } else {
+      // No allowlist: just assign raw as text, no HTML interpretation
+      bodyEl.textContent = raw
     }
 
-    // Now set the (still-safe) HTML that only includes restored simple tags
-    bodyEl.innerHTML = safe
     return bodyEl
   }
 
