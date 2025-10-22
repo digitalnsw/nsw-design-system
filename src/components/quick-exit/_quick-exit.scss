@@ -75,6 +75,26 @@
     white-space: nowrap;
     margin-left: auto;
 
+    &:link,
+    &:visited,
+    &:hover,
+    &:focus,
+    &:active {
+      color: var(--nsw-white);
+      text-decoration: none;
+    }
+
+    &::after {
+      content: 'east';
+      font-size: inherit;
+      line-height: 1;
+      margin-left: nsw.rem(4px);
+      display: inline-block;
+      vertical-align: middle;
+      
+      @include nsw.material-icons;
+    }
+
     &:hover,
     &:focus {
       background-color: rgba(var(--nsw-status-error-rgb), 0.9);

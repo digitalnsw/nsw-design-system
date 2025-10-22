@@ -373,4 +373,48 @@ model:
   </div>
 </div>
 
+
 {{>_footer model.footer}}
+
+<div class="nsw-sticky-container" data-sticky-container>
+  <section
+    class="nsw-quick-exit nsw-quick-exit__light"
+    data-module="quick-exit"
+    data-options='{
+      "safeUrl":"{{#if model.quick-exit.safeUrl}}{{model.quick-exit.safeUrl}}{{else}}https://www.google.com/webhp{{/if}}",
+      "secondarySafeUrl":"{{#if model.quick-exit.secondarySafeUrl}}{{model.quick-exit.secondarySafeUrl}}{{/if}}",
+      "enableEsc":true,
+      "theme":"light"
+    }'
+  >
+    <div class="nsw-quick-exit__wrapper">
+      <div class="nsw-quick-exit__content">
+        <h3 class="nsw-quick-exit__title">
+          {{#if model.quick-exit.title}}
+            {{model.quick-exit.title}}
+          {{else}}
+            Leave this site quickly
+          {{/if}}
+        </h3>
+
+        <p id="nsw-quick-exit__desc" class="nsw-quick-exit__description">
+          {{#if model.quick-exit.description}}
+            {{{model.quick-exit.description}}}
+          {{else}}
+            Select &lt;strong&gt;Exit now&lt;/strong&gt; or press the &lt;kbd&gt;Esc&lt;/kbd&gt; key 2 times. This won’t clear your internet history.
+          {{/if}}
+        </p>
+      </div>
+
+      <a
+        class="nsw-quick-exit__cta nsw-quick-exit__cta--fallback"
+        href="{{#if model.quick-exit.safeUrl}}{{model.quick-exit.safeUrl}}{{else}}https://www.google.com/webhp{{/if}}"
+        rel="nofollow noopener"
+        aria-describedby="nsw-quick-exit__desc"
+      >
+        Exit now
+      </a>
+    </div>
+  </section>
+</div>
+<p class="nsw-docs-note">This page renders a no‑JS friendly Quick Exit by default. With JavaScript enabled, the component upgrades in place (hides fallback link, enables double‑Esc and cloaking).</p>

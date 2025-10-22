@@ -6,7 +6,6 @@ export default class QuickExit {
   static init({
     safeUrl = 'https://www.google.com/webhp',
     secondarySafeUrl = 'https://www.bom.gov.au/',
-    exitLabel = 'Exit now',
     title = 'Leave this site quickly',
     description = "Select <strong>Exit now</strong> or press the <kbd>Esc</kbd> key 2 times. This won't clear your internet history.", // eslint-disable-line max-len
     theme = 'light',
@@ -14,6 +13,7 @@ export default class QuickExit {
     cloakMode = 'display',
     focusFirst = true,
   } = {}) {
+    const EXIT_LABEL = 'Exit now'
     // Use the shared sticky container (owned by sticky-container.js)
     const containerEl = stickyContainer()
     if (!containerEl) {
@@ -25,52 +25,73 @@ export default class QuickExit {
     // Support declarative opt-in via class (preferred) or data attribute
     const domWantsEsc = (containerEl && containerEl.getAttribute('data-quick-exit-esc') === 'true')
 
-    // Remove existing Quick Exit instance to allow re-initialisation
+    // Prefer progressive enhancement: reuse existing markup if present
     const existingQuickExit = containerEl.querySelector('.nsw-quick-exit')
-    if (existingQuickExit) {
-      containerEl.removeChild(existingQuickExit)
-    }
 
-    // Theme (light | dark); default to light
+    // Build or enhance the wrapper
     const isDarkTheme = String(theme)
       .trim()
       .toLowerCase() === 'dark'
+    const quickExitWrapper = existingQuickExit || document.createElement('section')
+    if (!existingQuickExit) {
+      quickExitWrapper.className = 'nsw-quick-exit'
+    } else {
+      // Ensure base class exists in case of custom markup
+      quickExitWrapper.classList.add('nsw-quick-exit')
+    }
 
-    // Wrapper with a single, explicit theme class + data-theme attribute
-    const quickExitWrapper = document.createElement('div')
-    quickExitWrapper.className = 'nsw-quick-exit'
+    // Theme handling (light | dark)
+    quickExitWrapper.classList.remove('nsw-quick-exit__dark', 'nsw-quick-exit__light')
     quickExitWrapper.classList.add(isDarkTheme ? 'nsw-quick-exit__dark' : 'nsw-quick-exit__light')
     quickExitWrapper.setAttribute('data-theme', isDarkTheme ? 'dark' : 'light')
-    // Stack as a block within the shared sticky container
     quickExitWrapper.style.display = 'block'
     if (isDarkTheme) {
       quickExitWrapper.classList.add('nsw-section--invert')
+    } else {
+      quickExitWrapper.classList.remove('nsw-section--invert')
     }
 
-    // Internal wrapper for button and links
-    const internalWrapper = document.createElement('div')
-    internalWrapper.className = 'nsw-quick-exit__wrapper'
+    // Grab or create internal wrapper
+    let internalWrapper = quickExitWrapper.querySelector('.nsw-quick-exit__wrapper')
+    if (!internalWrapper) {
+      internalWrapper = document.createElement('div')
+      internalWrapper.className = 'nsw-quick-exit__wrapper'
+      quickExitWrapper.appendChild(internalWrapper)
+    }
 
-    const contentWrapper = document.createElement('div')
-    contentWrapper.className = 'nsw-quick-exit__content'
+    // Grab or create content wrapper
+    let contentWrapper = quickExitWrapper.querySelector('.nsw-quick-exit__content')
+    if (!contentWrapper) {
+      contentWrapper = document.createElement('div')
+      contentWrapper.className = 'nsw-quick-exit__content'
+      internalWrapper.appendChild(contentWrapper)
+    }
 
-    const headingEl = document.createElement('h3')
-    headingEl.className = 'nsw-quick-exit__title'
+    // Heading
+    let headingEl = quickExitWrapper.querySelector('.nsw-quick-exit__title')
+    if (!headingEl) {
+      headingEl = document.createElement('h3')
+      headingEl.className = 'nsw-quick-exit__title'
+      contentWrapper.appendChild(headingEl)
+    }
     headingEl.textContent = title
 
-    const descEl = document.createElement('p')
-    descEl.className = 'nsw-quick-exit__description'
-    descEl.id = 'nsw-quick-exit__desc'
+    // Description
+    let descEl = quickExitWrapper.querySelector('.nsw-quick-exit__description')
+    if (!descEl) {
+      descEl = document.createElement('p')
+      descEl.className = 'nsw-quick-exit__description'
+      descEl.id = 'nsw-quick-exit__desc'
+      contentWrapper.appendChild(descEl)
+    }
     if (description) {
       let html = String(description)
-      // Avoid generic entity decoding to prevent reinterpreting HTML.
-      // If we need to support encoded <kbd> tokens, decode ONLY those, then sanitise.
-      // Supports both &lt; and &#60; forms (case-insensitive).
       html = html
         .replace(/(&lt;|&#60;)(kbd)(>)/gi, '<kbd>')
         .replace(/(&lt;|&#60;)(\/kbd)(>)/gi, '</kbd>')
-
       const frag = cleanHTMLStrict(html, true, { allowedTags: ['span', 'kbd', 'strong', 'em', 'br', 'code'] })
+      // Reset description contents before appending
+      descEl.textContent = ''
       if (frag && frag.childNodes && frag.childNodes.length > 0) {
         descEl.appendChild(frag)
       } else {
@@ -78,22 +99,34 @@ export default class QuickExit {
       }
     }
 
-    contentWrapper.appendChild(headingEl)
-    contentWrapper.appendChild(descEl)
+    // Hide any no-JS fallback links (keep in DOM for true no-JS environments)
+    const fallbackLinks = quickExitWrapper.querySelectorAll('.nsw-quick-exit__cta--fallback')
+    fallbackLinks.forEach((el) => {
+      const target = el
+      target.textContent = EXIT_LABEL
+      target.setAttribute('aria-label', EXIT_LABEL)
+      target.setAttribute('aria-hidden', 'true')
+      target.setAttribute('hidden', '')
+      target.classList.add('nsw-quick-exit__cta--fallback-hidden')
+    })
 
-    // Main Quick Exit button with click behaviour
-    const quickExitBtn = document.createElement('button')
-    quickExitBtn.type = 'button'
-    quickExitBtn.className = 'js-quick-exit nsw-quick-exit__cta'
-    quickExitBtn.textContent = exitLabel
+    // Main Quick Exit button (inject only if not already present)
+    let quickExitBtn = quickExitWrapper.querySelector('button.js-quick-exit.nsw-quick-exit__cta')
+    if (!quickExitBtn) {
+      quickExitBtn = document.createElement('button')
+      quickExitBtn.type = 'button'
+      quickExitBtn.className = 'js-quick-exit nsw-quick-exit__cta'
+      internalWrapper.appendChild(quickExitBtn)
+    }
+    quickExitBtn.textContent = EXIT_LABEL
     quickExitBtn.id = 'nsw-quick-exit__cta'
     quickExitBtn.setAttribute('aria-describedby', 'nsw-quick-exit__desc')
-    // Add east arrow icon after text content
-    const iconEl = document.createElement('div')
-    iconEl.className = 'material-icons nsw-material-icons'
-    iconEl.textContent = 'east'
-    quickExitBtn.appendChild(iconEl)
-    quickExitBtn.setAttribute('aria-label', exitLabel)
+    quickExitBtn.setAttribute('aria-label', EXIT_LABEL)
+
+    // Append Quick Exit component to sticky container only if newly created
+    if (!existingQuickExit) {
+      containerEl.appendChild(quickExitWrapper)
+    }
 
     // Apply an immediate, global "cloak" to hide document content.
     const applyCloak = () => {
@@ -138,13 +171,6 @@ export default class QuickExit {
       evt.preventDefault()
       navigate()
     })
-    internalWrapper.appendChild(contentWrapper)
-    internalWrapper.appendChild(quickExitBtn)
-
-    quickExitWrapper.appendChild(internalWrapper)
-
-    // Append Quick Exit component to sticky container
-    containerEl.appendChild(quickExitWrapper)
 
     // Make Quick Exit the first focus target for keyboard/SR users without moving DOM order.
     if (focusFirst) {
