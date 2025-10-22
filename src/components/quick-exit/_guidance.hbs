@@ -4,27 +4,47 @@ layout: blank-layout.hbs
 ---
 
 <h2>Usage</h2>
-<p>A standardised quick exit link offers a discreet and accessible safety mechanism, allowing users to swiftly leave sensitive content with a single click. This component is designed to be integrated within global alerts or similar interface patterns where rapid exit is required.</p>
+<p>A standardised quick exit button offers a discreet and accessible safety mechanism, allowing users to swiftly leave sensitive content with a single click. This component is designed to be integrated within global alerts or similar interface patterns where rapid exit is required.</p>
+
+<h2>Design rationale</h2>
+<p>The quick exit button is designed with visibility, predictability, and consistent appearance in mind to reinforce user trust and recognition, especially under stress. Clear visibility ensures users can quickly locate the button when needed, predictable behaviour guarantees that the button performs as expected, and a consistent appearance across NSW Government websites helps users immediately identify the feature in critical moments.</p>
 
 <p>Use quick exits:</p>
 <ul>
-  <li>Integrate the quick exit link within our standardised sticky banner alongside the cookie banner.</li>
+  <li>Integrate the quick exit button within our standardised sticky banner alongside the cookie banner.</li>
   <li>Ensure it is clearly labelled and contrasts sufficiently with the background for easy visibility.</li>
 </ul>
 
 <p>Do:</p>
 <ul>
-  <li>Use the quick exit link when a user's safety or privacy could be at risk if they remain on the page.</li>
-  <li>Ensure that clicking the link immediately redirects the user to a safe and neutral destination.</li>
+  <li>Use the quick exit button when a user's safety or privacy could be at risk if they remain on the page.</li>
+  <li>Ensure that clicking the button immediately redirects the user to a safe and neutral destination.</li>
 </ul>
 
 <h3>When to Avoid</h3>
-<p>Do not display the quick exit link as a response to regular user interactions or system events that are not associated with an immediate safety risk. The component should not be used to simply navigate between pages or for typical exit actions.</p>
+<p>Do not display the quick exit button as a response to regular user interactions or system events that are not associated with an immediate safety risk. The component should not be used to simply navigate between pages or for typical exit actions.</p>
+
+<h2>Safe page destination</h2>
+<p>The quick exit button redirects users to neutral, non-sensitive sites such as <a href="https://www.nsw.gov.au/">nsw.gov.au</a> or <a href="https://www.bom.gov.au/">bom.gov.au</a>. These destinations are chosen because they provide safe, trusted, and non-controversial landing pages that do not expose users to additional risks or sensitive content. Redirecting to these sites helps users quickly leave potentially harmful situations while maintaining their privacy and security.</p>
+
+<h2>Placement</h2>
+<h3>Obstruction of content</h3>
+<p>The quick exit button must not obstruct critical page content. When placed in a sticky container, ensure that sufficient space is reserved at the bottom of the page so that all content remains fully accessible and readable. This is achieved by adding a bottom padding equal to the height of the sticky container.</p>
 
 <h2>Accessibility</h2>
 <p>All components are responsive and designed to comply with WCAG 2.2 AA accessibility standards. Full compliance depends on using and configuring the components correctly.</p>
-<h3>Obstruction of content</h3>
-<p>The quick exit link must not obstruct critical page content. When placed in a sticky container, ensure that sufficient space is reserved at the bottom of the page so that all content remains fully accessible and readable. This is achieved by adding a bottom padding equal to the height of the sticky container.</p>
+
+<h3>Keyboard and focus</h3>
+<p>The quick exit button is fully accessible via keyboard navigation. Focus styles are clearly visible, and keyboard users can activate the button using standard keys to ensure ease of use for all users.</p>
+
+<h3>Screen reader support</h3>
+<p>ARIA attributes and semantic HTML ensure the quick exit button is announced appropriately by screen readers, providing meaningful context and instructions for users who rely on assistive technologies.</p>
+
+<h3>Colour and contrast</h3>
+<p>The button’s colour scheme meets WCAG 2.2 AA contrast requirements to ensure it is easily distinguishable against its background, improving visibility for users with visual impairments.</p>
+
+<h3>Language and clarity</h3>
+<p>Text labels and instructions use clear, simple language to facilitate quick understanding and reduce cognitive load, particularly important in stressful situations.</p>
 
 <h2>Initialisation</h2>
 <p>The Quick Exit component can now be initialised in two primary ways depending on your integration needs:</p>
@@ -83,3 +103,10 @@ window.NSW.QuickExit.init({
 <h2>Double escape key feature</h2>
 <p>The Quick Exit component includes an optional keyboard shortcut that allows users to trigger the exit using the <kbd>Esc</kbd> key twice in quick succession. This feature provides an alternative method for users who cannot or prefer not to use the mouse. When enabled (via <code>enableEsc: true</code>), the system listens for two consecutive <kbd>Esc</kbd> presses within a one-second window to activate the same exit behaviour as the main button.</p>
 <p>This accessibility feature is particularly valuable for users who require keyboard navigation or need a discreet, rapid method to leave a page without drawing attention to their actions.</p>
+
+<h2>Known limitations</h2>
+<ul>
+  <li>The browser history is not cleared when using the quick exit button, so users may still be able to navigate back to the sensitive content.</li>
+  <li>There may be a slight delay in cloaking the page content on slow network connections, potentially exposing sensitive information briefly.</li>
+  <li>The timing for detecting double <kbd>Esc</kbd> key presses may vary slightly across different browsers and devices, affecting the reliability of the shortcut.</li>
+</ul>
