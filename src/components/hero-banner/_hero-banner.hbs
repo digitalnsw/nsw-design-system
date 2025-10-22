@@ -18,10 +18,19 @@
         </div>
       </div>
       {{/if}}
-      <div class="nsw-hero-banner__box">{{#if img}}
-        <img class="nsw-hero-banner__image" src="{{img}}" alt="" />{{else if lines}}
-        <div class="nsw-hero-banner__lines"></div>{{/if}}
-      </div>
+   <div class="nsw-hero-banner__box">
+     {{#if img}}
+       {{#if-equals img-variant "cover-left"}}
+         <img class="nsw-hero-banner__image--cover-left" src="{{img}}" alt="">
+       {{else if-equals img-variant "no-cover"}}
+         <img class="nsw-hero-banner__image--no-cover" src="{{img}}" alt="">
+       {{else}}
+         <img class="nsw-hero-banner__image" src="{{img}}" alt="">
+       {{/if-equals}}
+     {{else if lines}}
+       <div class="nsw-hero-banner__lines"></div>
+     {{/if}}
+   </div>
     </div>
   </div>
 </div>
