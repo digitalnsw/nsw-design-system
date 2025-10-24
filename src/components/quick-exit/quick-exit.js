@@ -1,283 +1,277 @@
-import { cleanHTMLStrict } from '../../global/scripts/helpers/sanitize'
 import stickyContainer, { updateStickyBodyPadding } from '../../global/scripts/sticky-container'
+import { cleanHTMLStrict } from '../../global/scripts/helpers/sanitize'
 import { validateUrl } from '../../global/scripts/helpers/utilities'
 
+/* eslint-disable max-len */
+/**
+ * Quick Exit (lean)
+ * - Looks for a manually-authored element inside the sticky container and enhances it.
+ * - If initialised programmatically and no element exists, creates one and appends it to the sticky container.
+ * - Primary action is an <a> so it works without JS; JS enhances to open safe URL in a new tab and replace current tab.
+ * - Optional progressive features: double-Esc, auto-focus first, URL sanitisation.
+ */
 export default class QuickExit {
-  static init({
-    safeUrl = 'https://www.google.com/webhp',
-    secondarySafeUrl = 'https://www.bom.gov.au/',
-    title = 'Leave this site quickly',
-    description = "Select <strong>Exit now</strong> or press the <kbd>Esc</kbd> key 2 times. This won't clear your internet history.", // eslint-disable-line max-len
-    theme = 'light',
-    enableEsc = false,
-    cloakMode = 'display',
-    focusFirst = true,
-  } = {}) {
-    const EXIT_LABEL = 'Exit now'
-    // Use the shared sticky container (owned by sticky-container.js)
-    const containerEl = stickyContainer()
-    if (!containerEl) {
-      // eslint-disable-next-line no-console
-      console.warn('QuickExit: sticky container unavailable in this environment')
-      return
+  /**
+   * Enhance or create a Quick Exit inside the sticky container
+   */
+  static init(
+    {
+      safeUrl = 'https://www.google.com/webhp',
+      secondarySafeUrl = 'https://www.bom.gov.au/',
+      title = 'Leave this site quickly',
+      description = 'Select <strong>Exit now</strong> or press the <kbd>Esc</kbd> key 2 times. This won\'t clear your internet history.', /* ignore */
+      exitLabel = 'Exit now',
+      theme = 'light', // 'light' | 'dark'
+      enableEsc = true,
+      enableCloak = true,
+      focusFirst = true,
+    } = {},
+  ) {
+    const container = stickyContainer()
+    if (!container) return
+
+    // Singleton guard
+    if (container.querySelector('.nsw-quick-exit[data-ready="true"]')) return
+
+    // Find existing QE (manual, no-JS) or create
+    let root = container.querySelector('.nsw-quick-exit')
+    if (!root) {
+      root = QuickExit.buildMarkup({
+        title, description, exitLabel, safeUrl, theme,
+      })
+      container.appendChild(root)
     }
 
-    // Support declarative opt-in via class (preferred) or data attribute
-    const domWantsEsc = (containerEl && containerEl.getAttribute('data-quick-exit-esc') === 'true')
-
-    // Prefer progressive enhancement: reuse existing markup if present
-    const existingQuickExit = containerEl.querySelector('.nsw-quick-exit')
-
-    // Build or enhance the wrapper
-    const isDarkTheme = String(theme)
-      .trim()
-      .toLowerCase() === 'dark'
-    const quickExitWrapper = existingQuickExit || document.createElement('section')
-    if (!existingQuickExit) {
-      quickExitWrapper.className = 'nsw-quick-exit'
-    } else {
-      // Ensure base class exists in case of custom markup
-      quickExitWrapper.classList.add('nsw-quick-exit')
-    }
-
-    // Theme handling (light | dark)
-    quickExitWrapper.classList.remove('nsw-quick-exit__dark', 'nsw-quick-exit__light')
-    quickExitWrapper.classList.add(isDarkTheme ? 'nsw-quick-exit__dark' : 'nsw-quick-exit__light')
-    quickExitWrapper.setAttribute('data-theme', isDarkTheme ? 'dark' : 'light')
-    quickExitWrapper.style.display = 'block'
-    if (isDarkTheme) {
-      quickExitWrapper.classList.add('nsw-section--invert')
-    } else {
-      quickExitWrapper.classList.remove('nsw-section--invert')
-    }
-
-    // Grab or create internal wrapper
-    let internalWrapper = quickExitWrapper.querySelector('.nsw-quick-exit__wrapper')
-    if (!internalWrapper) {
-      internalWrapper = document.createElement('div')
-      internalWrapper.className = 'nsw-quick-exit__wrapper'
-      quickExitWrapper.appendChild(internalWrapper)
-    }
-
-    // Grab or create content wrapper
-    let contentWrapper = quickExitWrapper.querySelector('.nsw-quick-exit__content')
-    if (!contentWrapper) {
-      contentWrapper = document.createElement('div')
-      contentWrapper.className = 'nsw-quick-exit__content'
-      internalWrapper.appendChild(contentWrapper)
-    }
-
-    // Heading
-    let headingEl = quickExitWrapper.querySelector('.nsw-quick-exit__title')
-    if (!headingEl) {
-      headingEl = document.createElement('h3')
-      headingEl.className = 'nsw-quick-exit__title'
-      contentWrapper.appendChild(headingEl)
-    }
-    headingEl.textContent = title
-
-    // Description
-    let descEl = quickExitWrapper.querySelector('.nsw-quick-exit__description')
-    if (!descEl) {
-      descEl = document.createElement('p')
-      descEl.className = 'nsw-quick-exit__description'
-      descEl.id = 'nsw-quick-exit__desc'
-      contentWrapper.appendChild(descEl)
-    }
-    if (description) {
-      let html = String(description)
-      html = html
-        .replace(/(&lt;|&#60;)(kbd)(>)/gi, '<kbd>')
-        .replace(/(&lt;|&#60;)(\/kbd)(>)/gi, '</kbd>')
-      const frag = cleanHTMLStrict(html, true, { allowedTags: ['span', 'kbd', 'strong', 'em', 'br', 'code'] })
-      // Reset description contents before appending
-      descEl.textContent = ''
-      if (frag && frag.childNodes && frag.childNodes.length > 0) {
-        descEl.appendChild(frag)
-      } else {
-        descEl.textContent = html
-      }
-    }
-
-    // Hide any no-JS fallback links (keep in DOM for true no-JS environments)
-    const fallbackLinks = quickExitWrapper.querySelectorAll('.nsw-quick-exit__cta--fallback')
-    fallbackLinks.forEach((el) => {
-      const target = el
-      target.textContent = EXIT_LABEL
-      target.setAttribute('aria-label', EXIT_LABEL)
-      target.setAttribute('aria-hidden', 'true')
-      target.setAttribute('hidden', '')
-      target.classList.add('nsw-quick-exit__cta--fallback-hidden')
+    QuickExit.enhance(root, {
+      safeUrl,
+      secondarySafeUrl,
+      theme,
+      enableEsc,
+      enableCloak,
+      focusFirst,
+      exitLabel,
     })
 
-    // Main Quick Exit button (inject only if not already present)
-    let quickExitBtn = quickExitWrapper.querySelector('button.js-quick-exit.nsw-quick-exit__cta')
-    if (!quickExitBtn) {
-      quickExitBtn = document.createElement('button')
-      quickExitBtn.type = 'button'
-      quickExitBtn.className = 'js-quick-exit nsw-quick-exit__cta'
-      internalWrapper.appendChild(quickExitBtn)
-    }
-    quickExitBtn.textContent = EXIT_LABEL
-    quickExitBtn.id = 'nsw-quick-exit__cta'
-    quickExitBtn.setAttribute('aria-describedby', 'nsw-quick-exit__desc')
-    quickExitBtn.setAttribute('aria-label', EXIT_LABEL)
-
-    // Append Quick Exit component to sticky container only if newly created
-    if (!existingQuickExit) {
-      containerEl.appendChild(quickExitWrapper)
-    }
-
-    // Apply an immediate, global "cloak" to hide document content.
-    const applyCloak = () => {
-      if (!cloakMode || cloakMode === 'none') return
-      const root = document.documentElement // <html>
-      try {
-        switch (cloakMode) {
-          case 'display':
-            root.style.setProperty('display', 'none', 'important')
-            break
-          case 'opacity':
-            root.style.setProperty('opacity', '0', 'important')
-            root.style.setProperty('pointer-events', 'none', 'important')
-            break
-          case 'visibility':
-          default:
-            root.style.setProperty('visibility', 'hidden', 'important')
-            break
-        }
-      } catch (e) {
-        // eslint-disable-next-line no-console
-        console.warn('QuickExit: failed to apply cloak', e)
-      }
-    }
-
-    const navigate = () => {
-      // Hide content immediately for users on slow devices/connections (if cloakMode is set)
-      applyCloak()
-      const SAFE_URL = validateUrl(safeUrl)
-      const CURRENT_URL = validateUrl(secondarySafeUrl || safeUrl)
-      try {
-        // Attempt to open safe URL in a new tab; should be allowed as this runs in a user click handler
-        window.open(SAFE_URL, '_blank', 'noopener,noreferrer')
-      } catch (e) {
-        // eslint-disable-next-line no-console
-        console.warn('QuickExit: opening new tab was blocked, falling back to single-tab redirect')
-      }
-      window.location.replace(CURRENT_URL)
-    }
-
-    quickExitBtn.addEventListener('click', (evt) => {
-      evt.preventDefault()
-      navigate()
-    })
-
-    // Make Quick Exit the first focus target for keyboard/SR users without moving DOM order.
-    if (focusFirst) {
-      const focusCTA = () => {
-        try {
-          document.getElementById('nsw-quick-exit__cta').focus({ preventScroll: true })
-        } catch (e) {
-          const btn = document.getElementById('nsw-quick-exit__cta')
-          if (btn) btn.focus()
-        }
-      }
-
-      const arrivedViaBackForward = (() => {
-        try {
-          const nav = performance.getEntriesByType && performance.getEntriesByType('navigation')[0]
-          return !!(nav && nav.type === 'back_forward')
-        } catch (e) { return false }
-      })()
-
-      // Only auto-focus on fresh loads where no element has focus, no hash target is intended,
-      // and we aren't returning from BFCache (which may have its own prior focus).
-      const shouldAutoFocusOnLoad = !arrivedViaBackForward
-        && !window.location.hash
-        && (!document.activeElement || document.activeElement === document.body)
-
-      if (shouldAutoFocusOnLoad) {
-        // Defer to allow layout/AT trees to stabilise.
-        setTimeout(focusCTA, 0)
-      }
-
-      // Ensure Quick Exit is the first tab stop: on the *first* Tab press, move focus to the CTA, once.
-      let firstTabHandled = false
-      const handleFirstTab = (ev) => {
-        if (firstTabHandled) return
-        if (ev.key !== 'Tab') return
-        // If focus isn't already on the CTA, hijack the first Tab to land there.
-        const cta = document.getElementById('nsw-quick-exit__cta')
-        if (cta && document.activeElement !== cta) {
-          ev.preventDefault()
-          firstTabHandled = true
-          focusCTA()
-          // Remove listener after we have redirected focus once.
-          document.removeEventListener('keydown', handleFirstTab, true)
-        }
-      }
-      document.addEventListener('keydown', handleFirstTab, true)
-
-      // Do not steal focus on BFCache restores; if users come back, respect their previous focus.
-      window.addEventListener('pageshow', (e) => {
-        if (e && e.persisted) {
-          document.removeEventListener('keydown', handleFirstTab, true)
-        }
-      }, { once: true })
-    }
-
-    // Add keyboard functionality for double ESC key press (opt-in)
-    const useEsc = enableEsc || domWantsEsc
-    if (useEsc) {
-      let escPressCount = 0
-      let escPressTimer = null
-      const ESC_PRESS_WINDOW = 1000 // 1 second window for double press
-
-      const handleKeydown = (event) => {
-        if (event.key !== 'Escape') return
-        escPressCount += 1
-        if (escPressTimer) {
-          clearTimeout(escPressTimer)
-        }
-        if (escPressCount >= 2) {
-          event.preventDefault()
-          navigate()
-          escPressCount = 0
-        } else {
-          escPressTimer = setTimeout(() => {
-            escPressCount = 0
-          }, ESC_PRESS_WINDOW)
-        }
-      }
-
-      document.addEventListener('keydown', handleKeydown)
-      quickExitWrapper.keyboardCleanup = () => {
-        document.removeEventListener('keydown', handleKeydown)
-      }
-    }
-
-    // Adjust body padding to the full sticky container height (accounts for stacked items)
+    // Adjust body padding for sticky shell
     updateStickyBodyPadding()
   }
 
-  static fromElement(el) {
-    let opts = {}
-    try {
-      const raw = el.getAttribute('data-options') || '{}'
-      opts = JSON.parse(raw)
-    } catch (err) {
-      // eslint-disable-next-line no-console
-      console.warn('QuickExit: invalid JSON in data-options')
-    }
-    QuickExit.init(opts)
+  /**
+   * Build minimal, no‑JS friendly markup
+   */
+  static buildMarkup({
+    title, description, exitLabel, safeUrl, theme,
+  }) {
+    const root = document.createElement('section')
+    root.className = `nsw-quick-exit nsw-quick-exit__${theme === 'dark' ? 'dark' : 'light'}`
+
+    const wrapper = document.createElement('div')
+    wrapper.className = 'nsw-quick-exit__wrapper'
+
+    const content = document.createElement('div')
+    content.className = 'nsw-quick-exit__content'
+
+    const h = document.createElement('h3')
+    h.className = 'nsw-quick-exit__title'
+    h.textContent = title
+
+    const p = document.createElement('p')
+    p.className = 'nsw-quick-exit__description'
+    p.id = 'nsw-quick-exit__desc'
+    const frag = cleanHTMLStrict(description, true, { allowedTags: ['span', 'kbd', 'strong', 'em', 'br'] })
+    p.appendChild(frag)
+
+    const a = document.createElement('a')
+    a.className = 'nsw-quick-exit__cta'
+    a.href = safeUrl
+    a.rel = 'nofollow noopener'
+    a.textContent = exitLabel
+    a.setAttribute('aria-describedby', 'nsw-quick-exit__desc')
+
+    content.appendChild(h)
+    content.appendChild(p)
+    wrapper.appendChild(content)
+    wrapper.appendChild(a)
+    root.appendChild(wrapper)
+    return root
   }
 
-  static autoInit() {
-    const nodes = document.querySelectorAll('[data-module="quick-exit"]')
-    nodes.forEach((el) => {
-      if (el.tagName && el.tagName.toLowerCase() === 'button') return
-      QuickExit.fromElement(el)
+  /**
+   * Progressive enhancement (click logic, keyboard, cloak, focus)
+   */
+  static enhance(
+    root,
+    {
+      safeUrl,
+      secondarySafeUrl,
+      theme,
+      enableEsc,
+      enableCloak,
+      focusFirst,
+      exitLabel,
+    },
+  ) {
+    const node = root
+    // theme toggle (normalise classes)
+    node.classList.remove('nsw-quick-exit__dark', 'nsw-quick-exit__light')
+    node.classList.add(theme === 'dark' ? 'nsw-quick-exit__dark' : 'nsw-quick-exit__light')
+    node.setAttribute('data-theme', theme === 'dark' ? 'dark' : 'light')
+
+    // Ensure markup pieces exist
+    const wrapper = node.querySelector('.nsw-quick-exit__wrapper') || document.createElement('div')
+    if (!wrapper.classList.contains('nsw-quick-exit__wrapper')) wrapper.classList.add('nsw-quick-exit__wrapper')
+    if (!node.contains(wrapper)) node.appendChild(wrapper)
+
+    const desc = node.querySelector('.nsw-quick-exit__description') || document.createElement('p')
+    if (!desc.id) desc.id = 'nsw-quick-exit__desc'
+    if (!desc.classList.contains('nsw-quick-exit__description')) desc.classList.add('nsw-quick-exit__description')
+    if (!wrapper.contains(desc)) wrapper.appendChild(desc)
+
+    let cta = node.querySelector('.nsw-quick-exit__cta')
+    if (!cta) {
+      const link = document.createElement('a')
+      link.className = 'nsw-quick-exit__cta'
+      link.href = safeUrl
+      link.rel = 'nofollow noopener'
+      link.textContent = exitLabel
+      link.setAttribute('aria-describedby', 'nsw-quick-exit__desc')
+      cta = link
+      wrapper.appendChild(cta)
+    }
+
+    // Progressive behaviour: open safe URL in a new tab *and* change current tab
+    const SAFE = validateUrl(safeUrl)
+    const SECONDARY = validateUrl(secondarySafeUrl || safeUrl)
+    cta.addEventListener('click', (ev) => {
+      try { ev.preventDefault() } catch (errA) { /* ignore */ }
+      // Cloak immediately for perceived privacy (if enabled)
+      if (enableCloak) QuickExit.applyCloak()
+      try { window.open(SAFE, '_blank', 'noopener,noreferrer') } catch (errB) { /* popup blocked is fine */ }
+      try { window.location.replace(SECONDARY) } catch (errB) { window.location.href = SECONDARY }
     })
+
+    // Optional keyboard: double ESC (bind once per component)
+    if (enableEsc && node.getAttribute('data-esc-bound') !== 'true') {
+      QuickExit.bindDoubleEsc(() => cta.click())
+      node.setAttribute('data-esc-bound', 'true')
+    }
+
+    // Optional focus-first
+    if (focusFirst) QuickExit.focusFirst(cta)
+
+    // Mark ready (singleton) and ensure visibility
+    node.setAttribute('data-ready', 'true')
+    node.style.display = 'block'
+  }
+
+  static bindDoubleEsc(callback) {
+    let pressCount = 0
+    let timerId = null
+    const TIME_WINDOW = 1000
+
+    const isEscapeKey = (event) => (
+      event.key === 'Escape' || event.key === 'Esc' || event.keyCode === 27
+    )
+
+    const handleKeydown = (event) => {
+      if (!isEscapeKey(event)) return
+
+      pressCount += 1
+      if (timerId) clearTimeout(timerId)
+
+      if (pressCount >= 2) {
+        try { event.preventDefault() } catch (err) { /* ignore */ }
+        try { event.stopImmediatePropagation() } catch (err) { /* ignore */ }
+        callback()
+        pressCount = 0
+        timerId = null
+      } else {
+        timerId = setTimeout(() => {
+          pressCount = 0
+          timerId = null
+        }, TIME_WINDOW)
+      }
+    }
+
+    // Capture phase so we still receive ESC even if other components stop propagation
+    document.addEventListener('keydown', handleKeydown, true)
+  }
+
+  static applyCloak() {
+    try {
+      document.documentElement.style.setProperty('display', 'none', 'important')
+    } catch (errC) { /* ignore */ }
+  }
+
+  static focusFirst(node) {
+    const focus = () => {
+      try { node.focus({ preventScroll: true }) } catch (errD) { try { node.focus() } catch (errE) { /* ignore */ } }
+    }
+    const arrivedBF = (() => {
+      try { const nav = performance.getEntriesByType('navigation')[0]; return nav && nav.type === 'back_forward' } catch (_) { return false }
+    })()
+    const should = !arrivedBF && !window.location.hash && (!document.activeElement || document.activeElement === document.body)
+    if (should) setTimeout(focus, 0)
+  }
+
+  /**
+   * Enhance any existing QE in the container (no declarative parsing).
+   */
+  static autoInit() {
+    const container = stickyContainer()
+    if (!container) return
+    if (container.querySelector('.nsw-quick-exit[data-ready="true"]')) return
+
+    const existingRoot = container.querySelector('.nsw-quick-exit')
+    if (existingRoot) {
+      // Use current content and attributes; just wire behaviour with sensible defaults
+      const link = existingRoot.querySelector('.nsw-quick-exit__cta')
+      const href = (link && link.getAttribute('href')) || 'https://www.google.com/webhp'
+      QuickExit.enhance(existingRoot, {
+        safeUrl: href,
+        secondarySafeUrl: 'https://www.bom.gov.au/',
+        theme: (existingRoot.getAttribute('data-theme') || 'light'),
+        enableEsc: true,
+        enableCloak: true,
+        focusFirst: true,
+        exitLabel: (link && link.textContent) || 'Exit now',
+      })
+      updateStickyBodyPadding()
+    }
+  }
+
+  /**
+   * Initialise from an element with a `data-options` JSON attribute.
+   * Used by docs/kitchen-sink demo buttons.
+   */
+  static fromElement(el) {
+    try {
+      if (!el) return
+      const attr = el.getAttribute('data-options')
+      let opts = {}
+      if (attr && attr.trim()) {
+        try { opts = JSON.parse(attr) } catch (parseErr) { /* ignore bad JSON */ }
+      }
+
+      // Map legacy cloakMode to enableCloak (anything except 'none' = true)
+      let enableCloak = true
+      if (typeof opts.enableCloak === 'boolean') enableCloak = opts.enableCloak
+      else if (typeof opts.cloakMode === 'string') enableCloak = opts.cloakMode !== 'none'
+
+      QuickExit.init({
+        safeUrl: opts.safeUrl || 'https://www.google.com/webhp',
+        secondarySafeUrl: opts.secondarySafeUrl || 'https://www.bom.gov.au/',
+        title: opts.title || 'Leave this site quickly',
+        description: opts.description || 'Select <strong>Exit now</strong> or press the <kbd>Esc</kbd> key 2 times. This won\'t clear your internet history.',
+        exitLabel: opts.exitLabel || 'Exit now',
+        theme: opts.theme || 'light',
+        enableEsc: (typeof opts.enableEsc === 'boolean') ? opts.enableEsc : true,
+        enableCloak,
+        focusFirst: (typeof opts.focusFirst === 'boolean') ? opts.focusFirst : true,
+      })
+    } catch (err) {
+      // Swallow errors to avoid breaking demo pages
+    }
   }
 }
 

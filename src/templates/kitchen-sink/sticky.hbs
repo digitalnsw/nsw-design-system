@@ -81,7 +81,7 @@ model:
                     <textarea style="width: 100%;" class="nsw-form__textarea" id="qe-description" rows="3">{{model.quick-exit.description}}</textarea>
                   </div>
                 </div>
-                <div class="nsw-col nsw-col-md-4 nsw-p-top-sm">
+                <div class="nsw-col nsw-col-md-4">
                   <div class="nsw-form__group">
                     <label class="nsw-form__label" for="qe-theme">Theme</label>
                     <select class="nsw-form__select" id="qe-theme">
@@ -91,23 +91,15 @@ model:
                   </div>
                 </div>
                 <div class="nsw-col nsw-col-md-4 nsw-p-top-sm">
-                  <div class="nsw-form__group">
-                    <label class="nsw-form__label" for="qe-cloak">Cloak mode</label>
-                    <select class="nsw-form__select" id="qe-cloak">
-                      <option value="none">None</option>
-                      <option value="visibility">Visibility (hide, keep layout)</option>
-                      <option value="opacity">Opacity (zero &amp; disable clicks)</option>
-                      <option value="display" selected>Display none (most aggressive)</option>
-                    </select>
-                    <div class="nsw-form__helper nsw-m-top-sm">Controls how quickly content is hidden when Quick Exit triggers.</div>
-                  </div>
-                </div>
-                <div class="nsw-col nsw-col-md-4 nsw-p-top-sm">
                   <h6>Other options</h6>
                   <div class="nsw-form__group nsw-form__group--inline">
                     <div class="nsw-form__checkbox nsw-m-top-xs">
                       <input class="nsw-form__checkbox-input" id="qe-esc" type="checkbox" checked>
                       <label class="nsw-form__checkbox-label" for="qe-esc">Enable double Esc</label>
+                    </div>
+                    <div class="nsw-form__checkbox nsw-m-top-xs">
+                      <input class="nsw-form__checkbox-input" id="qe-cloak" type="checkbox" checked>
+                      <label class="nsw-form__checkbox-label" for="qe-cloak">Enable cloaking (display: none)</label>
                     </div>
                   </div>
                 </div>
@@ -135,8 +127,7 @@ model:
                 var themeSel = document.getElementById('qe-theme')
                 var theme = themeSel ? themeSel.value : 'dark'
                 var esc = document.getElementById('qe-esc') ? document.getElementById('qe-esc').checked : true
-                var cloakSel = document.getElementById('qe-cloak')
-                var cloak = cloakSel ? cloakSel.value : 'none'
+                var cloak = document.getElementById('qe-cloak') ? document.getElementById('qe-cloak').checked : true
 
                 window.NSW.QuickExit.init({
                   title: title,
@@ -146,7 +137,7 @@ model:
                   exitLabel: exitLabel,
                   theme: theme,
                   enableEsc: esc,
-                  cloakMode: cloak
+                  enableCloak: cloak
                 })
               })
             })()
@@ -169,8 +160,7 @@ model:
               var themeSel = document.getElementById('qe-theme')
               var theme = themeSel ? themeSel.value : 'dark'
               var esc = document.getElementById('qe-esc') ? document.getElementById('qe-esc').checked : true
-              var cloakSel = document.getElementById('qe-cloak')
-              var cloak = cloakSel ? cloakSel.value : 'visibility'
+              var cloak = document.getElementById('qe-cloak') ? document.getElementById('qe-cloak').checked : true
 
               window.NSW.QuickExit.init({
                 title: title,
@@ -180,7 +170,7 @@ model:
                 exitLabel: exitLabel,
                 theme: theme,
                 enableEsc: esc,
-                cloakMode: cloak
+                enableCloak: cloak
               })
             })
           </script> --}}
@@ -417,4 +407,3 @@ model:
     </div>
   </section>
 </div>
-<p class="nsw-docs-note">This page renders a no‑JS friendly Quick Exit by default. With JavaScript enabled, the component upgrades in place (hides fallback link, enables double‑Esc and cloaking).</p>

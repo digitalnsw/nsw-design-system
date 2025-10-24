@@ -1,63 +1,97 @@
 const HAS_WINDOW = typeof window !== 'undefined'
 const HAS_DOCUMENT = typeof document !== 'undefined'
-const STICKY_SELECTOR = '.js-sticky-container'
+
+/**
+ * Sticky container (singleton)
+ * - Prefer a manually-authored container in <body>.
+ * - If none exists, create one as the last child of <body>.
+ * - Always expose `.js-sticky-container` and `#sticky-container` for other modules.
+ * - Keep body padding in sync with the container height.
+ */
+
+export const STICKY_CLASS = 'js-sticky-container'
+export const STICKY_ID = 'sticky-container'
+
+const CANDIDATES = [
+  '[data-sticky-container]',
+  '.nsw-sticky-container',
+  `.${STICKY_CLASS}`,
+  `#${STICKY_ID}`,
+]
+
+function findManualContainer() {
+  if (!HAS_DOCUMENT) return null
+  for (let i = 0; i < CANDIDATES.length; i += 1) {
+    const el = document.querySelector(CANDIDATES[i])
+    if (el) return el
+  }
+  return null
+}
 
 export function updateStickyBodyPadding() {
   if (!HAS_DOCUMENT) return
-  const measure = () => {
-    const el = document.querySelector(STICKY_SELECTOR)
-    if (!el) return
-    const h = el.getBoundingClientRect().height || 0
-    document.body.style.paddingBottom = `${h}px`
-  }
+  const el = document.querySelector(`.${STICKY_CLASS}`)
+  if (!el) return
+  const rect = el.getBoundingClientRect ? el.getBoundingClientRect() : { height: el.offsetHeight || 0 }
+  const h = Math.max(0, Math.round(rect.height || 0))
+  document.body.style.setProperty('--nsw-sticky-height', `${h}px`)
+  document.body.style.paddingBottom = `${h}px`
+}
+
+function attachObservers(el) {
+  const node = el
+  if (!HAS_WINDOW || !node || node.getAttribute('data-sticky-observed') === '1') return
   try {
-    if (HAS_WINDOW && window.requestAnimationFrame) {
-      // Measure after layout/paint to avoid cutting height when elements are added/replaced
-      requestAnimationFrame(() => requestAnimationFrame(measure))
+    if (window.ResizeObserver) {
+      const ro = new ResizeObserver(() => updateStickyBodyPadding())
+      ro.observe(node)
     } else {
-      setTimeout(measure, 0)
+      window.addEventListener('resize', updateStickyBodyPadding)
     }
-  } catch (_) {
-    // Fallback if rAF not available in environment
-    measure()
+    if (window.MutationObserver) {
+      const mo = new MutationObserver(() => updateStickyBodyPadding())
+      mo.observe(node, { childList: true })
+    }
+  } catch (err) {
+    // observers are optional
   }
+  node.setAttribute('data-sticky-observed', '1')
 }
 
 export default function stickyContainer() {
   if (!HAS_DOCUMENT) return null
-  let containerEl = document.querySelector(STICKY_SELECTOR)
-  if (!containerEl) {
-    containerEl = document.createElement('div')
-    containerEl.className = 'js-sticky-container'
-    containerEl.id = 'sticky-container'
-    containerEl.style.position = 'fixed'
-    containerEl.style.bottom = '0'
-    containerEl.style.left = '0'
-    containerEl.style.width = '100%'
-    containerEl.style.display = 'block'
-    containerEl.style.zIndex = '9900'
-    document.body.appendChild(containerEl)
+
+  // 1) Prefer a manually-authored container
+  let el = findManualContainer()
+
+  // 2) Create one if none exists (append as last child of <body>)
+  if (!el) {
+    const created = document.createElement('div')
+    created.className = `${STICKY_CLASS} nsw-sticky-container`
+    created.id = STICKY_ID
+    // Minimal inline safety if CSS hasn’t loaded yet
+    created.style.position = 'fixed'
+    created.style.bottom = '0'
+    created.style.left = '0'
+    created.style.right = '0'
+    created.style.width = '100%'
+    created.style.display = 'block'
+    document.body.appendChild(created)
+    el = created
+  } else {
+    // Normalise hooks so other modules can safely target the element
+    if (!el.classList.contains(STICKY_CLASS)) el.classList.add(STICKY_CLASS)
+    if (!el.id) el.id = STICKY_ID
   }
 
-  // Attach observers once to keep body padding in sync with size/child changes
-  if (HAS_WINDOW && !containerEl.dataset.stickyObserved) {
-    try {
-      if (window.ResizeObserver) {
-        const ro = new ResizeObserver(() => updateStickyBodyPadding())
-        ro.observe(containerEl)
-      } else {
-        window.addEventListener('resize', updateStickyBodyPadding)
-      }
-      // Also watch for child list mutations (add/remove) which can precede size paint
-      if (window.MutationObserver) {
-        const mo = new MutationObserver(() => updateStickyBodyPadding())
-        mo.observe(containerEl, { childList: true, subtree: false })
-      }
-    } catch (e) {
-      // no-op
-    }
-    containerEl.dataset.stickyObserved = '1'
+  attachObservers(el)
+
+  // Measure after layout so padding accounts for children
+  if (HAS_WINDOW && window.requestAnimationFrame) {
+    requestAnimationFrame(() => requestAnimationFrame(updateStickyBodyPadding))
+  } else {
+    setTimeout(updateStickyBodyPadding, 0)
   }
 
-  return containerEl
+  return el
 }
