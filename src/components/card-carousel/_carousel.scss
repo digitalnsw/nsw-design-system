@@ -3,7 +3,7 @@
 @use '../../global/scss/tools' as nsw;
 
 .nsw-carousel {
-  --carousel-item-auto-size: 300px;
+  --nsw-carousel-item-auto-size: 300px;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -40,7 +40,6 @@
   }
 
   button {
-    // addresses issue from button padding-inline-end and padding-inline-start which are set to 16px
     padding: 0;
   }
   
@@ -75,11 +74,53 @@
 
     ul {
       display: flex;
+      align-items: flex-end;
       justify-content: flex-end;
-      gap: 0.25rem;
 
-      @include nsw.breakpoint('md') {
-        gap: 0.375rem;
+      li.nsw-carousel__title {
+        margin-left: 0;
+        margin-bottom: 0;
+        margin-inline-end: auto;
+      }
+
+      li {
+        margin: nsw.rem(8px) nsw.rem(4px) nsw.rem(4px) nsw.rem(4px);
+      }
+    }
+  }
+
+  &__header {
+    order: 1;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    margin-right: 0.25rem;
+
+    @include nsw.breakpoint('md') {
+      margin-bottom: 0.75rem;
+      margin-right: 0;
+    }
+
+    .nsw-carousel__title {
+      margin: 0;
+      margin-inline-end: auto;
+
+      h2,
+      h3 {
+        margin: 0;
+      }
+    }
+
+    nav {
+      ul {
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+
+        li {
+          margin: nsw.rem(8px) nsw.rem(4px) nsw.rem(4px) nsw.rem(4px);
+        }
       }
     }
   }
@@ -107,7 +148,12 @@
   &__list {
     display: flex;
     flex-wrap: nowrap;
+    gap: 1.5rem;
     will-change: transform;
+
+    @include nsw.breakpoint('md') {
+      gap: 2rem;
+    }
 
     &--animating {
       transition-property: transform;
@@ -118,16 +164,11 @@
   
   &__item {
     flex-shrink: 0;
-    width: var(--carousel-item-auto-size);
+    width: var(--nsw-carousel-item-auto-size, 300px);
     margin-right: 1.5rem;
     margin-bottom: 0.5rem;
     opacity: 0;
     margin-bottom: 0;
-
-    @include nsw.breakpoint('md') {
-      margin-right: 2rem;
-      margin-bottom: 0.75rem;
-    }
   }
 
   &.nsw-carousel--loaded .nsw-carousel__item {
@@ -158,16 +199,11 @@
     background-color: var(--nsw-white);
     border-radius: 50%;
     z-index: 1;
-    transition: 0.2s;
     border: 2px solid var(--nsw-brand-dark);
     cursor: pointer;
     
     &:hover {
       @include nsw.nsw-hover();
-    }
-
-    &:active {
-      transform: translateY(1px);
     }
 
     &:focus {
@@ -185,6 +221,10 @@
       opacity: 0.5;
       box-shadow: none;
       border: 2px solid rgba(var(--nsw-palette-blue-01-rgb), 0.2);
+
+      svg > polyline {
+        stroke: rgba(var(--nsw-palette-blue-01-rgb), 0.2);
+      }
     }
     
     .nsw-icon {
@@ -251,8 +291,9 @@
         color: var(--nsw-brand-dark);
         font-size: 12px;
         border-radius: var(--nsw-border-radius);
+        border: 1px solid var(--nsw-brand-dark);
         text-align: center;
-        margin: 0 0.35em;
+        margin: 0 nsw.rem(4px);
 
         &:focus {
           @include nsw.nsw-focus(false);
@@ -261,7 +302,7 @@
 
         .nsw-section--invert & {
           background-color: var(--nsw-white);
-          border: 1px solid var(--nsw-white);
+          border: nsw.rem(1px) solid var(--nsw-white);
 
           &:focus {
             @include nsw.nsw-focus($color: var(--nsw-focus-light));
@@ -277,7 +318,7 @@
 
           .nsw-section--invert & {
             background-color: transparent;
-            border: 2px solid var(--nsw-white);
+            border: nsw.rem(1px) solid var(--nsw-white);
           }
         }
       }
@@ -285,25 +326,35 @@
   }
   
   &__nav-item {
+    cursor: pointer;
+
     button {
       background-color: transparent;
-      width: nsw.rem(24px);
-      height: nsw.rem(24px);
+      width: nsw.rem(16px);
+      height: nsw.rem(16px);
       padding: 4px;
       border-radius: 50%;
       border: 2px solid var(--nsw-brand-dark);
       transition: all 300ms ease-in-out;
       cursor: pointer;
       line-height: 0;
-      margin: 0 0.25em;
+      margin: nsw.rem(4px);
 
       &:focus {
         @include nsw.nsw-focus(false);
         outline-offset: 2px;
       }
 
+      &:hover {
+        @include nsw.nsw-hover();
+      }
+      
       .nsw-section--invert & {
         border: 2px solid var(--nsw-white);
+
+        &:hover {
+          @include nsw.nsw-hover-light();
+        }
 
         &:focus {
           @include nsw.nsw-focus($color: var(--nsw-focus-light));
@@ -314,9 +365,17 @@
 
     &--selected button {
       background-color: var(--nsw-brand-dark);
+      
+      &:hover {
+        background-color: var(--nsw-brand-dark);
+      }
 
       .nsw-section--invert & {
         background-color: var(--nsw-white);
+
+        &:hover {
+          background-color: var(--nsw-white);
+        }
       }
     }
   }
@@ -325,6 +384,42 @@
     .nsw-carousel__navigation,
     .nsw-carousel__control {
       display: none;
+    }
+  }
+
+  &--view-more {
+    padding: nsw.rem(8px);
+    color: var(--nsw-brand-dark);
+    display: inline-flex;
+    gap: nsw.rem(8px);
+    align-items: center;
+    text-decoration: none;
+    cursor: pointer;
+
+    @include nsw.breakpoint('md') {
+      padding: 0;
+    }
+
+    &:hover {
+      @include nsw.nsw-hover;
+      outline-width: 0;
+    }
+
+    &:focus {
+      outline-width: 3px;
+    }
+
+    span {
+      text-decoration: underline;
+    }
+
+    span.nsw-material-icons {
+      bottom: nsw.rem(-5px);
+    }
+
+    .nsw-material-icons {
+      text-decoration: none;
+      bottom: 0;
     }
   }
 }
