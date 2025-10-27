@@ -264,5 +264,9 @@
 
   .nsw-accordion__control:focus-visible + .nsw-accordion__title {
     @include nsw.nsw-focus;
+
+    .nsw-section--invert & {   
+      @include nsw.nsw-focus($color: var(--nsw-focus-light));
+    }
   }
 }

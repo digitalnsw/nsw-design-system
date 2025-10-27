@@ -2,7 +2,16 @@
 title: Accordion
 layout: blank-layout.hbs
 ---
-<h2>Usage</h2>
+<nav class="nsw-in-page-nav" aria-labelledby="in-page-nav">
+  <div class="nsw-in-page-nav__title">On this page</div>
+  <ul class="nsw-in-page-nav__list">
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#principles">Principles</a></li>
+    <li><a href="#css-only-variant">CSS-only variant</a></li>
+    <li><a href="#accessibility">Accessibility</a></li>
+  </ul>
+</nav>
+<h2 id="usage">Usage</h2>
 <p>Accordions can work well for people who use a service regularly, or who need to perform familiar tasks quickly.</p>
 <p>Only use an accordion if there’s evidence it’s helpful for users to:</p>
 <ul>
@@ -34,9 +43,13 @@ layout: blank-layout.hbs
 <p>This function should not be used to help users locate information within accordions. If a user is expanding multiple accordions because they are unsure of the content they contain, consider more descriptive titles or removing accordions all together and displaying the content separated by headings.</p>
 
 <h3>Open accordion pane on page load</h3>
-<p>By default, all panes in an accordion are closed. To render an accordion pane expanded on page load, add the <code>.nsw-accordion__open</code> class on the <code>.nsw-accordion__title</code> element.</p>
+<p>By default, all panes in an accordion are closed.</p>
+<ul>
+  <li><strong>JS accordion</strong>: add the <code>.nsw-accordion__open</code> class on the <code>.nsw-accordion__title</code> element. For accessibility reasons, a JavaScript initialisation function first opens all accordions by default, then closes those marked as closed. This ensures that when JavaScript is disabled, users can still access all content by default.</li>
+  <li><strong>CSS-only accordion</strong>: render the item with its control <code>checked</code> (or set <code>open: true</code> in the template model). When JavaScript is available, the progressive enhancement will sync <code>aria-expanded</code> and <code>aria-hidden</code>.</li>
+</ul>
 
-<h2>Principles</h2>
+<h2 id="principles">Principles</h2>
 <p><strong>Use clear labels</strong></p>
 <p>Accordions hide content, so the labels need to be clear. Ensure the headings used are brief and explicit about what is contained in the hidden panel. Intuitive headings help the user build a clear mental model of the content.</p>
 <p><strong>Do not disable sections</strong></p>
@@ -44,5 +57,41 @@ layout: blank-layout.hbs
 <p>Disabling controls is normally confusing for users. If there is no content for a section, either remove the section or, if this would be confusing for your users, explain why there is no content when the section is opened.</p>
 <p>Consider tabs if the user would likely need to flick between content sections.</p>
 
-<h2>Accessibility</h2>
-<p>All components are responsive and designed to comply with WCAG 2.2 AA accessibility standards. Full compliance depends on using and configuring the components correctly.</p>
+<h2 id="css-only-variant">CSS-only variant</h2>
+<p>The CSS-only accordion (<code>.nsw-accordion--css</code>) is a lightweight alternative to reduce JavaScript dependence and improve page load efficiency. It provides the core expand/collapse interaction without requiring JavaScript, and then progressively enhances when JavaScript is available.</p>
+
+<h3>Why we included it</h3>
+<ul>
+  <li><strong>Lightweight &amp; efficient</strong>: reduces JS execution on page load and avoids layout thrash, helping with metrics like CLS.</li>
+  <li><strong>No-JS friendly</strong>: primary functionality (open/close) works when JavaScript is disabled or blocked.</li>
+  <li><strong>Progressive enhancement</strong>: when JS is present, we synchronise ARIA attributes, support optional "Expand all/Collapse all", keyboard helpers, and single-open behaviour—all without layout reads/writes.</li>
+</ul>
+
+<h3>How to use</h3>
+<ul>
+  <li>Add the modifier class <code>.nsw-accordion--css</code> to render the CSS variant.</li>
+  <li>Optional: add a toolbar container <code>.nsw-accordion__toggle</code> with “Expand all / Collapse all” buttons. When JS is available, these are wired up without affecting layout.</li>
+  <li>Optional: add <code>data-single-open</code> on the accordion container to allow only one panel open at a time (radio‑style). Without JS, multiple panels can be open.</li>
+</ul>
+
+<h3>Compatibility and support</h3>
+<ul>
+  <li>The existing JS accordion (<code>.js-accordion</code>) remains fully supported. To avoid a breaking change, the CSS variant ships as a separate modifier and template option.</li>
+  <li>Use <strong>JS accordion</strong> when you need richer programmatic control or legacy behaviour. Use <strong>CSS-only</strong> when performance and minimal JS are priorities.</li>
+  <li>Both variants can live on the same page. The legacy JS only initialises on <code>.js-accordion</code>, while the CSS enhancements only run on <code>.nsw-accordion--css</code>.</li>
+</ul>
+
+<h2 id="accessibility">Accessibility</h2>
+<p>All components are responsive and designed to comply with WCAG 2.2 AA accessibility standards. Full compliance depends on using and configuring the components correctly. Both the JavaScript and CSS‑only accordions meet these standards when implemented as intended.</p>
+
+<h3>How accessibility is supported</h3>
+<p>Both accordion variants are designed to meet WCAG 2.2 AA standards. Their approach to accessibility differs slightly depending on how interaction and attributes are handled. Here’s how each supports users across contexts:</p>
+
+<ul>
+  <li><strong>CSS‑only accordion:</strong> prioritises performance and accessibility by keeping interactions simple and native. It uses a hidden checkbox input to manage and control the open/close state, allowing users to toggle panels with standard keyboard navigation. This approach remains fully functional when JavaScript is disabled and minimises cumulative layout shift (CLS).</li>
+  <li><strong>JavaScript accordion:</strong> manages state entirely through JavaScript, using scripting to handle <code>aria‑expanded</code> and <code>aria‑hidden</code> attributes and add roles for assistive technology. For accessibility reasons, the initialisation process opens all accordions on page load before closing those that should remain closed, ensuring content is accessible when JavaScript is disabled. While this approach supports consistent behaviour across browsers, it introduces additional load operations that can affect performance making the CSS‑only solution a more efficient choice where possible.</li>
+  <li>Do not hard‑code <code>aria‑hidden</code> in templates for the CSS variant—let the progressive enhancement manage it dynamically.</li>
+  <li>Without JS, the CSS‑only accordion remains keyboard accessible through its label and input relationship.</li>
+</ul>
+
+<p>The CSS‑only accordion is the recommended solution for most cases. It delivers strong accessibility and performance out of the box by using native browser behaviour and CSS for interactivity, reducing JavaScript dependency while remaining compatible with progressive enhancement. The JavaScript version remains available when more complex programmatic control or dynamic state management is required.</p>
