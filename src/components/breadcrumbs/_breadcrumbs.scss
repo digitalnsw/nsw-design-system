@@ -1,6 +1,10 @@
+@use 'sass:map';
+@use '../../global/scss/tools' as nsw;
+
 .nsw-breadcrumbs {
-  @include font-size('xs');
-  margin-top: rem(24px);
+  margin-top: nsw.rem(24px);
+
+  @include nsw.font-size('xs');
 
   ol {
     margin: 0;
@@ -8,51 +12,82 @@
     list-style: none;
   }
 
-  li {
+  li:not(:first-child):not(:last-child):not(:nth-last-child(2)):not(.nsw-breadcrumbs__show-more-toggle) {
     display: none;
 
-    &::before {
-      @include material-icons;
-      content: 'keyboard_arrow_right';
-      content: 'keyboard_arrow_right' / '';
-      font-size: rem(map-get($nsw-icon-sizes, 20));
-      line-height: rem(8px);
+    @include nsw.breakpoint('md') {
       display: inline-block;
-      position: relative;
-      top: rem(6px);
     }
+  }
 
-    @include breakpoint('md') {
-      display: inline;
-    }
-
-    &:nth-last-child(2),
-    &:last-child {
-      display: inline;
-    }
-
-    &:nth-last-child(2) {
-      &::before {
-        display: none;
-
-        @include breakpoint('md') {
-          display: inline-block;
-        }
-      }
-    }
+  li {
+    display: inline-block;
 
     &:first-child {
       &::before {
         display: none;
+      }
+    }
 
-        @include breakpoint('md') {
-          display: none;
-        }
+    &::before {
+      content: 'keyboard_arrow_right';
+      font-size: nsw.rem(map.get(nsw.$nsw-icon-sizes, 20));
+      line-height: nsw.rem(8px);
+      display: inline-block;
+      position: relative;
+      top: nsw.rem(6px);
+
+      @include nsw.material-icons;
+    }
+  }
+
+  .nsw-breadcrumbs__show-more-toggle {
+    @include nsw.breakpoint('md') {
+      display: none;
+    }
+
+    .nsw-breadcrumbs__toggle-button {
+      display: inline-block;
+      cursor: pointer;
+      background-color: transparent;
+      border: 0;
+      -webkit-appearance: none; /* stylelint-disable-line property-no-vendor-prefix */
+      font-size: var(--nsw-font-size-xs);
+      font-weight: var(--nsw-font-normal);
+      color: var(--nsw-text-dark);
+      padding: 0 nsw.rem(4px);
+      margin-left: 4px;
+      line-height: 24px;
+      height: 100%;
+      
+      @include nsw.link();
+      @include nsw.font-size('xs');
+
+      .nsw-section--invert & {
+        color: var(--nsw-text-light);
+        
+        @include nsw.link-light;
+      }
+
+      & {
+        text-decoration: none;
       }
     }
   }
 
+  .nsw-breadcrumbs__show-all {
+    li:not(:first-child):not(:last-child):not(:nth-last-child(2)):not(.nsw-breadcrumbs__show-more-toggle) {
+      display: inline-block;
+    }
+
+    .nsw-breadcrumbs__show-more-toggle {
+      display: none;
+    }
+  }
+  
   a {
+    display: inline-block;
+    line-height: 24px;
     font-weight: var(--nsw-font-normal);
 
     &.current {
@@ -60,7 +95,7 @@
       pointer-events: none;
       color: var(--nsw-text-dark);
 
-      .nsw-section--invert & {    
+      .nsw-section--invert & {
         color: var(--nsw-text-light);
       }
     }
@@ -68,7 +103,7 @@
 }
 
 @supports (content: 'x' / 'y') {
-  .nsw-breadcrumbs {  
+  .nsw-breadcrumbs {
     li {
       &::before {
         content: 'keyboard_arrow_right' / '';
@@ -78,7 +113,7 @@
 }
 
 @media speech {
-  .nsw-breadcrumbs {  
+  .nsw-breadcrumbs {
     li {
       &::before {
         display: none;

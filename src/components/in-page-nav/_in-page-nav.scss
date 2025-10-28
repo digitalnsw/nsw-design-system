@@ -1,12 +1,16 @@
+@use '../../global/scss/tools' as nsw;
+
 .nsw-in-page-nav {
-  @include component-spacing();
-  padding: rem(16px);
+  padding: nsw.rem(16px);
   border-left: solid 2px var(--nsw-brand-accent);
 
+  @include nsw.component-spacing();
+
   &__title {
-    @include font-size(md);
     font-weight: var(--nsw-font-bold);
     margin: 0;
+    
+    @include nsw.font-size(md);
   }
 
   ul {
@@ -17,6 +21,15 @@
 
   li {
     display: block;
-    margin-top: rem(16px);
+    margin-top: nsw.rem(16px);
+  }
+
+  a:not(.nsw-icon-button) {
+    line-height: 1.5;
+    padding: nsw.rem(8px) nsw.rem(24px) nsw.rem(8px) 0;
+    
+    @include nsw.breakpoint('md') {
+      padding: nsw.rem(4px) nsw.rem(4px) nsw.rem(4px) 0;
+    }
   }
 }

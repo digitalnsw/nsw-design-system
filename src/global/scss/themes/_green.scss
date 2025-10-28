@@ -1,0 +1,57 @@
+@use 'sass:color';
+@use '../base/functions' as functions;
+@use '../settings/palette' as palette;
+
+// Green Theme Colours
+$green-dark: palette.$green-01 !default;
+$green-light: palette.$green-04 !default;
+$green-supplementary: palette.$green-02 !default;
+$green-accent: palette.$blue-02 !default;
+
+// Green State Colours
+$green-link: $green-dark !default;
+$green-link-light: color.mix(#ffffff, $green-dark, 90%) !default;
+$green-visited: functions.a11y-color(color.adjust(color.adjust($green-dark, $hue: 37deg), $lightness: 8.04%), #ffffff) !default;
+$green-visited-light: color.mix(#ffffff, $green-visited, 80%) !default;
+$green-hover: color.adjust($green-dark, $alpha: -0.9) !default;
+$green-hover-light: color.adjust($green-link-light, $alpha: -0.9) !default;
+$green-active: color.adjust($green-dark, $alpha: -0.8) !default;
+$green-active-light: color.adjust($green-link-light, $alpha: -0.8) !default;
+$green-focus: color.adjust(color.adjust($green-dark, $hue: -22deg), $lightness: 15.49%) !default;
+$green-focus-light: color.mix(#ffffff, $green-focus, 80%);
+$green-disabled: color.mix(#ffffff, $green-dark, 50%) !default;
+
+$green-colors: (
+  'brand-dark': $green-dark,
+  'brand-light': $green-light,
+  'brand-supplementary': $green-supplementary,
+  'brand-accent': $green-accent,
+  'link': $green-link,
+  'link-light': $green-link-light,
+  'visited': $green-visited,
+  'visited-light': $green-visited-light,
+  'hover': $green-hover,
+  'hover-light': $green-hover-light,
+  'active': $green-active,
+  'active-light': $green-active-light,
+  'focus': $green-focus,
+  'focus-light': $green-focus-light,
+  'disabled': $green-disabled
+) !default;
+
+$green-colors-rgb: functions.to-rgb-list($green-colors) !default;
+
+.green {
+  @each $color, $value in $green-colors {
+    --nsw-#{$color}: #{$value};
+  }
+
+  @each $color, $value in $green-colors-rgb {
+    --nsw-#{$color}-rgb: #{$value};
+  }
+}
+
+.green-accent {
+  --nsw-brand-accent: #{palette.$green-02};
+  --nsw-brand-accent-rgb: #{functions.to-rgb(palette.$green-02)};
+}

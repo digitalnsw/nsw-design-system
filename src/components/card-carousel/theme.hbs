@@ -1,0 +1,38 @@
+---
+title: Card carousel
+width: wide
+model:
+  carousel-five: ../../components/card-carousel/json/carousel-five.json
+  carousel-nine: ../../components/card-carousel/json/carousel-nine.json
+page: true
+---
+
+{{#>_theme}}
+{{#>_layout-container}}
+<h3>5 cards</h3>
+{{>_carousel model.carousel-five default=true drag=true title="Latest news"}}
+
+<h3>9 cards</h3>
+{{>_carousel model.carousel-nine default=true drag=true title="Latest news and additional context to push the boundaries of the carousel layout"}}
+
+<h3>Pagination w/o title</h3>
+{{>_carousel model.carousel-nine pagination=true default=true}}
+
+<h3>View more</h3>
+{{>_carousel model.carousel-nine default=true drag=true view-more="https://github.com/digitalnsw/nsw-design-system" title="Latest news"}}
+{{/_layout-container}}
+
+{{#>_layout-container brand-dark="true" invert="true"}}
+<h3>5 cards</h3>
+{{>_carousel model.carousel-five default=true drag=true title="Latest news"}}
+
+<h3>9 cards</h3>
+{{>_carousel model.carousel-nine default=true drag=true title="Latest news and additional context to push the boundaries of the carousel layout"}}
+
+<h3>Pagination w/o title</h3>
+{{>_carousel model.carousel-nine pagination=true default=true}}
+
+<h3>View more</h3>
+{{>_carousel model.carousel-nine default=true drag=true view-more="https://github.com/digitalnsw/nsw-design-system" title="Latest news"}}
+{{/_layout-container}}
+{{/_theme}}

@@ -1,0 +1,40 @@
+---
+title: Background
+width: narrow
+intro: Utilities for controlling an element's background color.
+no-blank: true
+model: json/utilities.json
+meta-description: Utilities for controlling an element's background color.
+meta-index: true
+---
+
+<h3>Setting the background color</h3>
+<p>Control the background color of an element using the <code>nsw-bg--{color}</code> utilities.</p>
+{{#>_docs-example separated=true}}  
+  {{#each model.background as |value property|}}
+<div class="nsw-col {{@key}}">
+  <div class="{{this.text}}">.{{@key}}</div>
+</div>
+  {{/each}}
+{{/_docs-example}}
+
+<h3>Hover state</h3>
+<p>Style the background color on hover using the <code>nsw-bg--{color}-hover</code> modifier.</p>
+{{#>_docs-example separated="true"}}  
+<div class="nsw-callout nsw-bg--off-white nsw-bg--off-white nsw-bg--grey-04-hover">
+  <div class="nsw-callout__content">
+    <p class="nsw-h4">The Digital Driver's License trial</p>
+    <p>Once we launch statewide, the <a href='#'>Digital Drivers License</a> will become legal for use across NSW</p>
+  </div>
+</div>
+{{/_docs-example}}
+
+<h3>Opacity</h3>
+
+{{#>_docs-example separated="true"}}  
+  {{#each model.background-opacity as |value property|}}
+<div class="nsw-col nsw-bg--brand-dark {{this.class}}">
+  <div class="{{this.text}}">.{{this.class}}</div>
+</div>
+  {{/each}}
+{{/_docs-example}}

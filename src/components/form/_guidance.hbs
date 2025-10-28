@@ -48,5 +48,21 @@ layout: blank-layout.hbs
   <li>Use multi-step forms in situations where there are multiple form fields, several of which could be split up into categories (such as “personal”, “shipping”, “billing”, and “payment review”).</li>
 </ul>
 
+<h2>Inactive fields and information</h2>
+<p>Do not render disabled form fields simply to display information. Avoid using <code>disabled=true</code> to present values, as this suggests interactivity when none is available. For read-only values, present the information outside of input fields, for example as plain text or within a summary list. This approach makes intent clear and avoids confusing users with inactive controls.</p>
+<p>More information: <a href="/docs/content/methods/inactive-fields.html">Inactive fields method</a></p>
+
 <h2>Accessibility</h2>
-<p>All components are responsive and meet WCAG 2.1 AA accessibility guidelines.</p>
+<p>All components are responsive and designed to comply with WCAG 2.2 AA accessibility standards. Full compliance depends on using and configuring the components correctly.</p>
+
+<h3>Ensuring compliance through usage</h3>
+
+<h4>Redundant entry</h4>
+
+<p>To ensure WCAG 2.2 AA compliance for a full array of filter components, correct usage and configuration are vital. While each component provides a foundation for accessibility, it's essential to minimise redundant entry by retaining previously selected or entered filter values if a user revisits the page or refines their search. Ensure all filter options are clearly labelled and provide instructions where needed, so users understand the available choices and input formats. Additionally, allow users to modify their filter selections easily without resetting other filters.</p>
+
+<h4>Consistent help</h4>
+
+<p>Ensure each input, whether it's a text field, checkbox, radio button, dropdown, or date input, is clearly labelled with descriptive text to communicate its purpose. Consistent error messaging and validation feedback are crucial; provide users with clear, actionable instructions if errors occur, without requiring them to re-enter data unnecessarily. Keyboard navigation should be maintained across all inputs, with each respective field focus indicator allowing users to move easily between fields clearly.</p>
+
+<p>Following these practices will help create accessible, user-friendly forms that offer a seamless experience across various input types.</p>

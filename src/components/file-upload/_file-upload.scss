@@ -1,5 +1,7 @@
+@use '../../global/scss/tools' as nsw;
+
 .nsw-file-upload {
-  margin-top: rem(8px);
+  margin-top: nsw.rem(8px);
   display: block;
 
   &__label {
@@ -8,7 +10,10 @@
 
   &__input {
     position: absolute;
+    width: 0;
+    height: 0;
     opacity: 0;
+    z-index: -1;
 
     &:disabled {
       + .nsw-file-upload__label {
@@ -18,7 +23,7 @@
     }
     
     &:focus + .nsw-file-upload__label {
-      @include nsw-focus;
+      @include nsw.nsw-focus;
     }
   }
 
@@ -35,20 +40,36 @@
 
   &__item {
     display: flex;
-    max-width: rem(500px);
+    max-width: nsw.rem(500px);
     align-items: center;
     justify-content: space-between;
     background-color: var(--nsw-off-white);
     border-radius: var(--nsw-border-radius);
-    padding: rem(8px);
+    padding: nsw.rem(8px);
 
     &:not(:last-child) {
-      margin-bottom: rem(8px);
+      margin-bottom: nsw.rem(8px);
+    }
+
+    .nsw-section--invert & {    
+      background-color: var(--nsw-white);
+      color: var(--nsw-section-bg);
+    }
+
+    .nsw-icon-button {
+      @include nsw.link-dark();
+      cursor: pointer;
+
+      &:hover {
+        .nsw-section--invert & {    
+          @include nsw.nsw-hover();
+        }
+      }
     }
   }
 
   &__item-filename {
-    margin-left: rem(8px);
+    margin-left: nsw.rem(8px);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

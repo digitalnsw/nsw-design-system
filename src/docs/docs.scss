@@ -1,4 +1,6 @@
-@import './src/main';
+@use '../main';
+@use '../global/scss/themes/all';
+@use '../global/scss/tools' as nsw;
 
 $content-width: 768px;
 $nav-width: 300px;
@@ -22,27 +24,84 @@ $header-height: 151px;
   white-space: nowrap;
 
   > div {
-    padding: rem(8px);
+    padding: nsw.rem(8px);
+    white-space: normal;
+    overflow-wrap: normal; 
+  }
+}
+
+.nsw-theme-grid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  background: #f0f0f0;
+
+  @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 2rem;
+  }
+
+  &-container,
+  &-side-stack {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.25rem;
+    width: 100%;
+
+    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+      grid-auto-flow: column;
+      grid-template-rows: repeat(4, auto);
+      grid-auto-columns: 80px;
+      gap: 0;
+      /* overflow-x: auto; */
+      width: auto;
+      max-width: 100%;
+    }
+  }
+
+  &-swatch {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 10px;
+    font-weight: 500;
+    padding: 0.25rem;
+    box-sizing: border-box;
+    text-align: left;
+    height: 80px;
+
+    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+      height: 120px;
+      width: 80px;
+      font-size: 12px;
+      padding: 0.5rem;
+    }
+
+    span {
+      line-height: 1.2;
+    }
   }
 }
 
 .nsw-docs {
   :not(pre) code {
-    padding: rem(3px);
+    padding: nsw.rem(3px);
     background: var(--nsw-grey-04);
     border-radius: var(--nsw-border-radius);
   }
-
 
   // fix to offset height of fixed nav to trick anchor links' positioning
 
   :target::before {
 
-    @include breakpoint($nsw-desktop-breakpoint) {
+    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
       content: '';
       display: block;
-      height: rem($header-height);
-      margin: rem(-$header-height) 0 0;
+      height: nsw.rem($header-height);
+      margin: nsw.rem(-$header-height) 0 0;
     }
   }
 
@@ -53,13 +112,13 @@ $header-height: 151px;
   }
 
   &__header {
-    @include breakpoint($nsw-desktop-breakpoint) {
-      height: rem($header-height);
+    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+      height: nsw.rem($header-height);
     }
 
     &-wrapper {
-      @include breakpoint($nsw-desktop-breakpoint) {
-        @include z-index('upper');
+      @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+        @include nsw.z-index('upper');
         position: fixed;
         top: 0;
         left: 0;
@@ -73,61 +132,10 @@ $header-height: 151px;
       margin: 0;
     }
 
-    .nsw-form__predictive-list {
-      max-height: rem(176px);
-    
-      @include breakpoint($nsw-desktop-breakpoint) {
-        @include z-index('upper');
-        max-height: rem(264px);
-      }
-
-      .autocomplete-result:hover {
-        background-color: var(--nsw-text-hover);
-      }
-
-      .autocomplete-result[aria-selected='true'] {
-        @include nsw-focus;
-        outline-offset: -3px;
-      }
-    }
-    
-    .nsw-autocomplete__no-result {
-      @include z-index('upper');
-      display: none;
-      position: absolute;
-      padding: rem(10px);
-      color: var(--nsw-text-dark);
-      font-weight: var(--nsw-font-normal);
-      background-color: var(--nsw-white);
-      box-shadow: 0 4px 12px 0 rgba(var(--nsw-black-rgb), 0.15);
-      width: 100%;
-      top: 100%;
-
-      &.show.active {
-        display: block;
-      }
-    }
-
-    .nsw-autocomplete {
-      .nsw-material-icons {
-        display: none;
-        font-size: rem(map-get($nsw-icon-sizes, 36));
-        color: var(--nsw-brand-dark);
-        position: absolute;
-        right: rem(6px);
-        top: rem(6px);
-        bottom: 0;
-
-        @include breakpoint($nsw-desktop-breakpoint) {
-          display: block;
-        }
-      }
-    }
-
-    @include breakpoint($nsw-desktop-breakpoint) {
+    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
       .nsw-container,
       .nsw-header__container {
-        max-width: rem($content-width + $nav-width + 172px);
+        max-width: nsw.rem($content-width + $nav-width + 172px);
       }
 
       .nsw-header__container .nsw-header__inner {
@@ -138,29 +146,29 @@ $header-height: 151px;
   }
 
   &__wrapper {
-    @include breakpoint($nsw-desktop-breakpoint) {
+    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
       display: flex;
     }
   }
 
   &__nav {
-    @include breakpoint($nsw-desktop-breakpoint) {
-      min-width: rem($nav-width);
-      max-width: rem($nav-width);
+    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+      min-width: nsw.rem($nav-width);
+      max-width: nsw.rem($nav-width);
     }
 
     &-wrapper {
-      @include breakpoint($nsw-desktop-breakpoint) {
-        @include z-index('upper');
+      @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+        @include nsw.z-index('upper');
         position: fixed;
-        top: rem($header-height);
+        top: nsw.rem($header-height);
         bottom: 0;
         left: 0;
-        width: rem($nav-width);
+        width: nsw.rem($nav-width);
         overflow-y: auto;
         border-right: 1px solid var(--nsw-grey-04);
         background-color: var(--nsw-white);
-        padding: rem(16px);
+        padding: nsw.rem(16px);
       }
     }
 
@@ -168,11 +176,11 @@ $header-height: 151px;
 
     .nsw-main-nav__sub-nav a {
       .nsw-brand {
-        margin-right: rem(-8px);
+        margin-right: nsw.rem(-8px);
       }
     }
 
-    @include breakpoint($nsw-desktop-breakpoint) {
+    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
       .nsw-main-nav {
         background-color: transparent;
 
@@ -192,7 +200,7 @@ $header-height: 151px;
             border-left: 2px solid var(--nsw-brand-accent);
 
             &:hover {
-              background-color: var(--nsw-text-hover);
+              background-color: var(--nsw-hover);
             }
           }
 
@@ -205,10 +213,19 @@ $header-height: 151px;
           max-width: none;
           margin: 0;
           flex-direction: column;
+          cursor: pointer;
 
           > li {
             &:first-child {
               border-top: 0;
+            }
+          }
+
+          > li > a {      
+            @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {      
+              &.active {
+                box-shadow: none;
+              }
             }
           }
         }
@@ -245,7 +262,7 @@ $header-height: 151px;
           }
 
           a {
-            padding-left: rem(24px);
+            padding-left: nsw.rem(24px);
             color: var(--nsw-text-dark);
           }
         }
@@ -264,43 +281,43 @@ $header-height: 151px;
     background-color: var(--nsw-off-white);
 
     .nsw-docs__example {
-      padding: rem(16px);
+      padding: nsw.rem(16px);
       background-color: var(--nsw-white);
     }
 
     &--narrow,
     &--menu {
       .nsw-docs__demo {
-        max-width: rem($content-width + 32px);
+        max-width: nsw.rem($content-width + 32px);
 
-        @include breakpoint($nsw-desktop-breakpoint) {
-          max-width: rem($content-width + 104px);
+        @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+          max-width: nsw.rem($content-width + 104px);
         }
       }
     }
 
     &--wide {
       .nsw-docs__demo {
-        max-width: calc(var(--nsw-container-width) + #{rem(32px)});
+        max-width: calc(var(--nsw-container-width) + #{nsw.rem(32px)});
 
-        @include breakpoint($nsw-desktop-breakpoint) {
-          max-width: calc(var(--nsw-container-width) + #{rem(104px)});
+        @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+          max-width: calc(var(--nsw-container-width) + #{nsw.rem(104px)});
         }
       }
     }
 
     &--menu {
       .nsw-docs__component {
-        max-width: rem(336px);
+        max-width: nsw.rem(336px);
       }
     }
   }
 
   &__container {
-    max-width: rem($content-width + 32px);
+    max-width: nsw.rem($content-width + 32px);
 
-    @include breakpoint($nsw-desktop-breakpoint) {
-      max-width: rem($content-width + 104px);
+    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+      max-width: nsw.rem($content-width + 104px);
     }
   }
 
@@ -308,21 +325,21 @@ $header-height: 151px;
     background-color: var(--nsw-white);
 
     .nsw-docs__container {
-      padding: rem(24px) rem(16px);
+      padding: nsw.rem(24px) nsw.rem(16px);
 
-      @include breakpoint($nsw-desktop-breakpoint) {
-        padding: rem(48px) rem(52px);
+      @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+        padding: nsw.rem(48px) nsw.rem(52px);
       }
     }
 
     &--tabs {
-      margin-bottom: rem(-48px);
+      margin-bottom: nsw.rem(-48px);
 
       .nsw-docs__container {
-        padding-bottom: rem(78px);
+        padding-bottom: nsw.rem(78px);
 
-        @include breakpoint($nsw-desktop-breakpoint) {
-          padding-bottom: rem(88px);
+        @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+          padding-bottom: nsw.rem(88px);
         }
       }
     }
@@ -333,11 +350,11 @@ $header-height: 151px;
   }
 
   &__content {
-    padding: rem(24px) rem(16px);
+    padding: nsw.rem(24px) nsw.rem(16px);
     flex-grow: 1;
 
-    @include breakpoint($nsw-desktop-breakpoint) {
-      padding: rem(48px) rem(16px) rem(48px) rem(52px);
+    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+      padding: nsw.rem(48px) nsw.rem(16px) nsw.rem(48px) nsw.rem(52px);
     }
   }
 
@@ -349,9 +366,17 @@ $header-height: 151px;
     &.nsw-docs__example--dark {
       background-color: var(--nsw-grey-01);
     }
-
+    
     &.nsw-docs__example--light {
       background-color: var(--nsw-grey-04);
+    }
+
+    &.nsw-docs__example--brand-dark {
+      background-color: var(--nsw-brand-dark);
+    }
+
+    &.nsw-docs__example--brand-light {
+      background-color: var(--nsw-brand-light);
     }
   }
 
@@ -363,15 +388,15 @@ $header-height: 151px;
 
   &__demo {
     > h3 {
-      padding: rem(16px) 0;
+      padding: nsw.rem(16px) 0;
 
       &:first-child {
         padding-top: 0;
       }
 
       + p {
-        margin-top: rem(-12px);
-        padding-bottom: rem(16px);
+        margin-top: nsw.rem(-12px);
+        padding-bottom: nsw.rem(16px);
       }
 
       + h4 {
@@ -380,7 +405,7 @@ $header-height: 151px;
     }
 
     > h4 {
-      padding: rem(16px) 0;
+      padding: nsw.rem(16px) 0;
     }
   }
 
@@ -393,7 +418,7 @@ $header-height: 151px;
   }
 
   &__external {
-    padding-top: rem(8px);
+    padding-top: nsw.rem(8px);
   }
 
   &__list {
@@ -401,26 +426,26 @@ $header-height: 151px;
     list-style-type: none;
 
     &--4 {
-      column-gap: rem(36px);
+      column-gap: nsw.rem(36px);
       column-count: 2;
 
-      @include breakpoint($nsw-desktop-breakpoint) {
+      @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
         column-count: 4;
       }
     }
 
     &--3 {
-      column-gap: rem(36px);
+      column-gap: nsw.rem(36px);
       column-count: 2;
 
-      @include breakpoint($nsw-desktop-breakpoint) {
+      @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
         column-count: 3;
       }
     }
 
     &--2 {
-      @include breakpoint($nsw-desktop-breakpoint) {
-        column-gap: rem(36px);
+      @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+        column-gap: nsw.rem(36px);
         column-count: 2;
       }
     }
@@ -432,21 +457,21 @@ $header-height: 151px;
     a {
       position: relative;
       display: inline-block;
-      margin: rem(4px) 0;
+      margin: nsw.rem(4px) 0;
     }
 
     .nsw-brand {
       position: absolute;
-      right: rem(-24px);
+      right: nsw.rem(-24px);
     }
   }
 
   &__box {
     background-color: var(--nsw-grey-03);
-    min-height: rem(56);
+    min-height: nsw.rem(56);
 
     &--large {
-      min-height: rem(150);
+      min-height: nsw.rem(150);
     }
   }
 
@@ -454,8 +479,8 @@ $header-height: 151px;
     &--white,
     &--light,
     &--dark {
-      padding: rem(8px);
-      margin: rem(8px) rem(-8px) 0 rem(-8px);
+      padding: nsw.rem(8px);
+      margin: nsw.rem(8px) nsw.rem(-8px) 0 nsw.rem(-8px);
     }
 
     &--dark {
@@ -467,20 +492,20 @@ $header-height: 151px;
     }
 
     &--spaced {
-      @include component-spacing();
+      @include nsw.component-spacing();
     }
   }
 
   &__swatch {
     margin: 0 auto;
     background-color: var(--nsw-brand-dark);
-    width: rem(40px);
-    height: rem(40px);
+    width: nsw.rem(40px);
+    height: nsw.rem(40px);
     border-radius: 100%;
   }
 
   &__loader {
-    @include z-index('upper');
+    @include nsw.z-index('upper');
     height: 100%;
     max-height: 100vh;
     overflow-y: auto;
@@ -495,17 +520,48 @@ $header-height: 151px;
     align-items: center;
   }
 
-  .nsw-in-page-alert + h1 {
-    margin-top: rem(24px);
+  &__guideline {
+    img {
+      width: 100%;
+    }
 
-    @include breakpoint($nsw-desktop-breakpoint) {
-      margin-top: rem(48px);
+    &--do,
+    &--dont,
+    &--heading {
+      text-align: center;
+      font-weight: var(--nsw-font-bold);
+      padding: nsw.rem(8px) 0;
+
+      @include nsw.font-size('md');
+    }
+    
+    &--do {
+      color: var(--nsw-palette-green-02);
+      background-color: var(--nsw-palette-green-04);
+    }
+    
+    &--dont {
+      color: var(--nsw-palette-red-02);
+      background-color: var(--nsw-palette-red-04);
+    }
+
+    &--heading {
+      color: var(--nsw-text-dark);
+      background-color: var(--nsw-grey-03);
+    }
+  }
+
+  .nsw-in-page-alert + h1 {
+    margin-top: nsw.rem(24px);
+
+    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+      margin-top: nsw.rem(48px);
     }
   }
 
   .nsw-card {
     .nsw-brand {
-      margin-left: rem(8px);
+      margin-left: nsw.rem(8px);
     }
   }
 }
@@ -514,7 +570,9 @@ $header-height: 151px;
   position: relative;
 
   > button {
-    margin-top: rem(24px);
+    margin-top: nsw.rem(24px);
+    padding: nsw.rem(2px);
+    cursor: pointer;
 
     &.active {
       .nsw-material-icons {
@@ -526,8 +584,8 @@ $header-height: 151px;
   &__content {
     position: relative;
     display: none;
-    margin-top: rem(24px);
-    max-width: rem(800px);
+    margin-top: nsw.rem(24px);
+    max-width: nsw.rem(872px);
 
     &.active {
       display: block;
@@ -538,15 +596,15 @@ $header-height: 151px;
     }
 
     .hljs {
-      padding: rem(16px);
+      padding: nsw.rem(16px);
       overflow: visible;
       background-color: transparent;
     }
 
     > button {
       position: absolute;
-      top: rem(16px);
-      right: rem(16px);
+      top: nsw.rem(16px);
+      right: nsw.rem(16px);
     }
   }
 
@@ -561,9 +619,9 @@ $header-height: 151px;
   }
 
   &__wrapper {
-    min-height: rem(68px);
-    max-width: rem(800px);
-    max-height: rem(400px);
+    min-height: nsw.rem(68px);
+    max-width: nsw.rem(872px);
+    max-height: nsw.rem(400px);
     overflow: auto;
     background-color: var(--nsw-white);
   }
@@ -572,10 +630,10 @@ $header-height: 151px;
 .nsw-docs-tabs {
   >.nsw-tabs__list-wrapper {
     background-color: transparent;
-    padding: 0 rem(16px);
+    padding: 0 nsw.rem(16px);
 
-    @include breakpoint($nsw-desktop-breakpoint) {
-      padding: 0 rem(52px);
+    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+      padding: 0 nsw.rem(52px);
     }
   }
 
@@ -590,46 +648,215 @@ $header-height: 151px;
 
     .nsw-docs__container,
     .nsw-docs__demo {
-      padding: rem(24px) rem(16px);
+      padding: nsw.rem(24px) nsw.rem(16px);
 
-      @include breakpoint($nsw-desktop-breakpoint) {
-        padding: rem(48px) rem(52px);
+      @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+        padding: nsw.rem(48px) nsw.rem(52px);
       }
     }
   }
 
   .nsw-docs__external {
-    padding: 0 0 rem(24px) 0;
+    padding: 0 0 nsw.rem(24px) 0;
   }
 }
 
 .nsw-docs-footer {
   .nsw-container {
     margin: 0;
-    padding: 0 rem(16px);
+    padding: 0 nsw.rem(16px);
 
-    @include breakpoint($nsw-desktop-breakpoint) {
-      padding: 0 rem(52px);
+    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+      padding: 0 nsw.rem(52px);
     }
   }
 
   .nsw-footer__lower {
-    padding: rem(16px) 0;
+    padding: nsw.rem(16px) 0;
   }
 }
 
 .nsw-docs__version {
-  @include font-size('xs');
   font-weight: var(--nsw-font-normal);
-  padding: rem(2px) rem(16px);
+  padding: nsw.rem(2px) nsw.rem(16px);
   border: solid 1px var(--nsw-brand-dark);
-  border-radius: rem(24px);
+  border-radius: nsw.rem(24px);
   color: var(--nsw-brand-dark);
   text-decoration: none;
   display: inline-block;
-  margin-left: rem(16px);
+  margin-left: nsw.rem(16px);
+  
+  @include nsw.font-size('xs');
 }
 
 .nsw-docs__element {
   height: 100%;
+}
+
+.nsw-autocomplete {
+  .nsw-material-icons {
+    font-size: 2.25rem;
+  }
+
+  &__item {
+    cursor: pointer;
+    transition: 0.2s;
+    padding-left: 0;
+    margin-top: 0;
+
+    &.nsw-autocomplete__no-results {
+      padding: 0.5rem 0.75rem;
+
+      @include nsw.media-breakpoint-up(md) {
+        padding: 0.75rem 1.125rem;
+      }
+    }
+
+    > *:first-child,
+    > *:last-child {
+      margin-top: 0;
+    }
+
+    a {
+      display: block;
+      width: 100%;
+      margin: 0;
+      padding: 0.5rem 0.75rem;
+      font-weight: 400;
+      color: var(--nsw-text-dark);
+
+      @include nsw.media-breakpoint-up(md) {
+        padding: 0.75rem 1.125rem;
+      }
+    }
+  }
+
+  &__results {
+    position: absolute;
+    z-index: 5;
+    width: 100%;
+    left: 0;
+    top: calc(100% + 3px);
+    transform: translateY(4px);
+    background-color: var(--nsw-white);
+    box-shadow: var(--nsw-box-shadow);
+    border-radius: 0.25em;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0s 0.3s, transform 0.3s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    overflow: hidden;
+  }
+
+  &.active {
+    .nsw-autocomplete__results {
+      opacity: 1;
+      visibility: visible;
+      transition: opacity 0.3s, transform 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+      transform: translateY(0);
+    }
+  }
+
+  &__list {
+    list-style: none;
+    padding-left: 0;
+    max-height: 250px;
+    overflow: auto;
+  }
+}
+
+.nsw-color-swatches-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px); /* stylelint-disable-line property-no-vendor-prefix */
+}
+
+.nsw-color-swatches {
+  border: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 16px 0;
+
+  &__palette-selector {
+    width: auto;
+    white-space: nowrap;
+    flex: 0 0 auto; 
+  }
+
+  &__list {
+    list-style: none;
+    margin-top: 0;
+    padding: 0;
+    display: flex;
+    gap: 0.375rem;
+    align-items: center;
+  }
+
+  &__option {
+    &:focus-visible {
+      outline: 2px solid var(--nsw-brand-dark);
+      outline-offset: 2px;
+    }
+  }
+  
+  &__swatch {
+    position: relative;
+    display: block;
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      height: 100%;
+      border: 1px solid rgba(var(--nsw-brand-dark-rgb), 0.1);
+      border-radius: inherit;
+      pointer-events: none;
+      transition: 0.2s;
+    }
+
+    &:hover::before {
+      border-color: rgba(var(--nsw-brand-dark-rgb), 0.3);
+    }
+  }
+
+  &__item {
+    margin-top: 0;
+
+    &--selected {
+      .nsw-color-swatches__swatch::before {
+        border-color: rgba(var(--nsw-brand-dark-rgb), 0.8);
+        width: calc(100% + 6px);
+        height: calc(100% + 6px);
+      }
+    }
+  }
+
+  &__data {
+    code {
+      background: var(--nsw-grey-04);
+      border-radius: var(--nsw-border-radius);
+      padding: 0.1875rem;
+    }
+  }
+}
+
+.material-icons-loading .nsw-docs__nav .nsw-material-icons {
+  visibility: hidden;
+}
+
+.material-icons-loaded .nsw-docs__nav .nsw-material-icons {
+  visibility: visible;
 }

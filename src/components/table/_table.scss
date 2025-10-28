@@ -1,24 +1,24 @@
-$nsw-vertical-align: (
-  valign-baseline: baseline,
-  valign-top: top,
-  valign-middle: middle,
-  valign-bottom: bottom,
-);
+@use '../../global/scss/tools' as nsw;
 
 .nsw-table {
-  @include component-spacing();
   display: block;
   width: 100%;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+  
+  @include nsw.component-spacing();
 
   &:focus {
-    @include nsw-focus;
+    @include nsw.nsw-focus;
+
+    .nsw-section--invert & {   
+      @include nsw.nsw-focus($color: var(--nsw-focus-light));
+    }
   }
 
   table {
     margin: 0;
-    min-width: rem(600);
+    min-width: nsw.rem(600);
   }
 
   &--caption-top {
@@ -37,7 +37,7 @@ $nsw-vertical-align: (
       background-color: var(--nsw-off-white);
       
       .nsw-section--invert & {    
-        background-color: var(--nsw-text-hover-light);
+        background-color: var(--nsw-hover-light);
       }
     }
   }
@@ -50,7 +50,7 @@ $nsw-vertical-align: (
   }
 }
 
-@each $name, $alignment in $nsw-vertical-align {
+@each $name, $alignment in nsw.$nsw-vertical-align {
   .nsw-table--#{"" + $name} {
     th,
     td {

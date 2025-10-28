@@ -22,7 +22,7 @@ export const getFocusableElement = (el) => {
   const elementArr = [].slice.call(el.querySelectorAll(`a[href],button:not([disabled]),
   area[href],input:not([disabled]):not([type=hidden]),
   select:not([disabled]),textarea:not([disabled]),
-  iframe,object,embed,*:not(.is-draggabe)[tabindex],
+  iframe,object,embed,*:not(.is-draggable)[tabindex],
   *[contenteditable]`))
 
   return focusObjectGenerator(elementArr)
@@ -43,7 +43,7 @@ export const trapTabKey = (event, focusObject) => {
   const { activeElement } = document
   const focusableElement = focusObject
 
-  if (event.keyCode !== 9) return false
+  if (event.key !== 'Tab' && event.keyCode !== 9) return false
 
   if (focusableElement.length === 1) {
     event.preventDefault()

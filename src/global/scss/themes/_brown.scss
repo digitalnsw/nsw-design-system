@@ -1,0 +1,57 @@
+@use 'sass:color';
+@use '../base/functions' as functions;
+@use '../settings/palette' as palette;
+
+// Brown Theme Colours
+$brown-dark: palette.$brown-01 !default;
+$brown-light: palette.$brown-04 !default;
+$brown-supplementary: palette.$brown-02 !default;
+$brown-accent: palette.$teal-02 !default;
+
+// Brown State Colours
+$brown-link: $brown-dark !default;
+$brown-link-light: color.mix(#ffffff, $brown-dark, 90%) !default;
+$brown-visited: functions.a11y-color(color.adjust(color.adjust($brown-dark, $hue: -22deg), $lightness: 20.98%), #ffffff) !default;
+$brown-visited-light: color.mix(#ffffff, $brown-visited, 80%) !default;
+$brown-hover: color.adjust($brown-dark, $alpha: -0.9) !default;
+$brown-hover-light: color.adjust($brown-link-light, $alpha: -0.9) !default;
+$brown-active: color.adjust($brown-dark, $alpha: -0.8) !default;
+$brown-active-light: color.adjust($brown-link-light, $alpha: -0.8) !default;
+$brown-focus: color.adjust(color.adjust($brown-dark, $hue: -22deg), $lightness: 15.49%) !default;
+$brown-focus-light: color.mix(#ffffff, $brown-focus, 80%) !default;
+$brown-disabled: color.mix(#ffffff, $brown-dark, 50%) !default;
+
+$brown-colors: (
+  'brand-dark': $brown-dark,
+  'brand-light': $brown-light,
+  'brand-supplementary': $brown-supplementary,
+  'brand-accent': $brown-accent,
+  'link': $brown-link,
+  'link-light': $brown-link-light,
+  'visited': $brown-visited,
+  'visited-light': $brown-visited-light,
+  'hover': $brown-hover,
+  'hover-light': $brown-hover-light,
+  'active': $brown-active,
+  'active-light': $brown-active-light,
+  'focus': $brown-focus,
+  'focus-light': $brown-focus-light,
+  'disabled': $brown-disabled
+) !default;
+
+$brown-colors-rgb: functions.to-rgb-list($brown-colors) !default;
+
+.brown {
+  @each $color, $value in $brown-colors {
+    --nsw-#{$color}: #{$value};
+  }
+
+  @each $color, $value in $brown-colors-rgb {
+    --nsw-#{$color}-rgb: #{$value};
+  }
+}
+
+.brown-accent {
+  --nsw-brand-accent: #{palette.$brown-02};
+  --nsw-brand-accent-rgb: #{to-rgb(palette.$brown-02)};
+}

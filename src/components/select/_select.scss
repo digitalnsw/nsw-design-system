@@ -1,38 +1,50 @@
-$nsw-form-chevron-down: '<svg fill="#333333" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path d="M16 26l16-16-4-4-12 12-12-12-4 4 16 16z"></path></svg>';
+@use '../../global/scss/tools' as nsw;
 
 .nsw-form {
   &__select {
-    @include font-size('sm');
-    padding: rem(11px) rem(16px);
+    padding: nsw.rem(11px) nsw.rem(16px);
     border-radius: var(--nsw-border-radius);
     background-color: var(--nsw-white);
     color: var(--nsw-text-dark);
     border: 1px solid var(--nsw-grey-01);
     vertical-align: middle;
     appearance: none;
-    -webkit-appearance: none; /* stylelint-disable-line property-no-vendor-prefix */
     width: 100%;
-    padding-right: rem(48px);
-    background: var(--nsw-white) svg-url($nsw-form-chevron-down) no-repeat right rem(16px) center;
-    background-size: rem(16px) auto;
+    padding-right: nsw.rem(48px);
+    background: var(--nsw-white) nsw.svg-url(nsw.$nsw-form-chevron-down) no-repeat right nsw.rem(16px) center;
+    background-size: nsw.rem(16px) auto;
+    cursor: pointer;
 
-    &:hover {
-      background: svg-url($nsw-form-chevron-down) no-repeat right rem(16px) center, linear-gradient(var(--nsw-text-hover), var(--nsw-text-hover));
-      background-size: rem(16px) auto, auto;
+    @include nsw.font-size('sm');
+
+    &:hover:not(.nsw-multi-select__button) {
+      background: nsw.svg-url(nsw.$nsw-form-chevron-down) no-repeat right nsw.rem(16px) center, linear-gradient(var(--nsw-hover), var(--nsw-hover));
+      background-size: nsw.rem(16px) auto, auto;
       background-color: var(--nsw-white);
     }
 
     &:focus {
-      @include nsw-focus;
+      @include nsw.nsw-focus;
+
+      .nsw-section--invert & {   
+        @include nsw.nsw-focus($color: var(--nsw-focus-light));
+      }
     }
 
-    &:disabled {
-      background: var(--nsw-off-white) svg-url($nsw-form-chevron-down) no-repeat right rem(16px) center;
-      background-size: rem(16px) auto;
+    &:disabled,
+    &[readonly='true'] {
+      background: var(--nsw-off-white) nsw.svg-url(nsw.$nsw-form-chevron-down) no-repeat right nsw.rem(16px) center;
+      background-size: nsw.rem(16px) auto;
       border-color: var(--nsw-grey-03);
-      color: var(--nsw-grey-03);
+      color: var(--nsw-grey-01);
       cursor: not-allowed;
       opacity: 1;
+      
+      &:hover {
+        background: var(--nsw-off-white) nsw.svg-url(nsw.$nsw-form-chevron-down) no-repeat right nsw.rem(16px) center;
+        background-size: nsw.rem(16px) auto, auto;
+        background-color: var(--nsw-off-white);
+      }
     }
 
     &[aria-invalid='true'],
@@ -41,8 +53,8 @@ $nsw-form-chevron-down: '<svg fill="#333333" version="1.1" xmlns="http://www.w3.
       border-width: 2px;
 
       &:hover {
-        background: var(--nsw-status-error-bg) svg-url($nsw-form-chevron-down) no-repeat right rem(16px) center;
-        background-size: rem(16px) auto;
+        background: var(--nsw-status-error-bg) nsw.svg-url(nsw.$nsw-form-chevron-down) no-repeat right nsw.rem(16px) center;
+        background-size: nsw.rem(16px) auto;
       }
     }
 
@@ -50,28 +62,99 @@ $nsw-form-chevron-down: '<svg fill="#333333" version="1.1" xmlns="http://www.w3.
       background-color: var(--nsw-white);
     }
   }
+
+  &__label {
+    + .nsw-multi-select {
+      margin-top: 0.35rem;
+    }
+  }
 }
 
 .nsw-multi-select {
   position: relative;
 
-  select {
-    display: none;
-  }
-
   &__button {
-    background-color: var(--nsw-white);
-    color: var(--nsw-text-dark);
-    border: 1px solid var(--nsw-grey-01);
-    font-weight: normal;
-    margin-top: rem(4px);
-    padding: rem(10px) rem(10px) rem(10px) rem(16px);
-    width: 100%;
+    text-align: left;
+    background: var(--nsw-white);
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    padding-right: 0.5rem;
 
     .nsw-material-icons {
-      font-size: rem(32px);
+      font-size: nsw.rem(32px);
+      line-height: 0.8;
+      transform: rotate(0deg);
+      transition: transform nsw.$nsw-transition-duration, color nsw.$nsw-transition-duration;
+      width: 2rem;
+    }
+
+    &:hover {
+      background: linear-gradient(var(--nsw-hover), var(--nsw-hover));
+      background-color: var(--nsw-white);
+    }
+
+    &[aria-invalid='true'],
+    &.has-error {
+      border-color: var(--nsw-status-error);
+      border-width: 2px;
+
+      &:hover {
+        background: var(--nsw-status-error-bg);
+        background-size: revert;
+      }
+    }
+
+    &[aria-expanded='true'] {
+      + .nsw-multi-select__dropdown {
+        visibility: visible;
+        opacity: 1;
+        transition: visibility 0s, opacity 0.2s;
+      }
+
+      .nsw-material-icons {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  &__clear-all-button {
+    margin-top: nsw.rem(20px);
+    text-decoration: underline;
+    cursor: pointer;
+    background: 0;
+    border: 0;
+    padding: nsw.rem(4px) nsw.rem(4px) nsw.rem(4px) 0;
+
+    @include nsw.link;
+    @include nsw.font-size('sm');
+  
+    &:focus {
+      @include nsw.nsw-focus;
+    }
+  }
+
+  &__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    .nsw-section--invert & {    
+      color: var(--nsw-text-dark);
+    }
+
+    > li {
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+
+    &:not(:first-of-type) {
+      padding-top: 0.25rem;
+    }
+    
+    &:not(:last-of-type) {
+      padding-bottom: 0.25rem;
     }
   }
 
@@ -80,42 +163,124 @@ $nsw-form-chevron-down: '<svg fill="#333333" version="1.1" xmlns="http://www.w3.
     overflow: hidden;
     text-overflow: ellipsis;
   }
-
+  
   &__dropdown {
-    @include z-index('upper');
     position: absolute;
     left: 0;
     top: 100%;
-    min-width: rem(200px);
     width: 100%;
+    min-width: nsw.rem(200px);
+    max-height: 1px;
     background-color: var(--nsw-white);
-    border-radius: var(--nsw-border-radius);
     box-shadow: var(--nsw-box-shadow);
+    padding: 1rem;
+    border-radius: 0.25em;
+    z-index: 5;
     overflow: auto;
     visibility: hidden;
     opacity: 0;
-  }
+    transition: visibility 0s 0.2s, opacity 0.2s;
 
-  &__button[aria-expanded=true] + &__dropdown {
-    visibility: visible;
-    opacity: 1;
-  }
-
-  &__list {
-    list-style-type: none;
-    padding: rem(11px) rem(16px);
+    &--right {
+      right: 0;
+      left: auto;
+    }
     
-    &:not(:first-of-type) {
-      padding-top: rem(16px);
-    }
-
-    &:not(:last-of-type) {
-      border-bottom: 1px solid var(--nsw-grey-04);
-      padding-bottom: rem(16px);
+    &--up {
+      bottom: 100%;
+      top: auto;
     }
   }
 
-  &__option {
-    padding: rem(8px) 0;
+  &__term {
+    + .nsw-multi-select__details::before {
+      content: ': ';
+    }
+  }
+
+  &__all {
+    padding: nsw.rem(4px) 0 nsw.rem(4px) nsw.rem(48px);
+    min-height: nsw.rem(32px);
+    display: block;
+    position: relative;
+    border: 0;
+    background: transparent;
+    appearance: none;
+    
+    @include nsw.font-size('sm');
+  
+    &:focus {
+      border: 0;
+      outline: 0;
+    }
+  
+    &::before {
+      content: '';
+      width: nsw.rem(32px);
+      height: nsw.rem(32px);
+      margin-right: nsw.rem(16px);
+      border: 1px var(--nsw-grey-01) solid;
+      border-radius: var(--nsw-border-radius);
+      background-color: var(--nsw-white);
+      top: 0;
+      left: 0;
+      display: inline-block;
+      vertical-align: middle;
+      position: absolute;
+    }
+  
+    &::after {
+      content: '';
+      position: absolute;
+      width: nsw.rem(22px);
+      height: nsw.rem(22px);
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: nsw.rem(16px) auto;
+      left: nsw.rem(5px);
+      top: nsw.rem(5px);
+    }
+  
+    &:focus::before {
+      @include nsw.nsw-focus;
+    }
+  
+    &.active {
+      &:hover::before {
+        background-image: linear-gradient(var(--nsw-hover), var(--nsw-hover));
+      }
+  
+      &::after {
+        background-image: nsw.svg-url(nsw.$nsw-form-tick);
+        background-color: var(--nsw-brand-dark);
+      }
+  
+      &:disabled {
+        cursor: not-allowed;
+  
+        &::before,
+        &::before {
+          border-color: var(--nsw-grey-03);
+          background-color: var(--nsw-off-white);
+        }
+  
+        &::after,
+        &::after {
+          background-color: var(--nsw-grey-03);
+        }
+      }
+  
+      &[aria-invalid='true'],
+      &.has-error {
+        &:hover::before {
+          background-image: linear-gradient(var(--nsw-status-error-bg), var(--nsw-status-error-bg));
+        }
+  
+        &::before {
+          border-width: 2px;
+          border-color: var(--nsw-status-error);
+        }
+      }
+    }
   }
 }

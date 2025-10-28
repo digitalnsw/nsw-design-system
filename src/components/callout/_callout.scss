@@ -1,7 +1,10 @@
+@use '../../global/scss/tools' as nsw;
+
 .nsw-callout {
-  @include component-spacing();
-  padding: rem(16px);
+  padding: nsw.rem(16px);
   border-left: solid 4px var(--nsw-brand-dark);
+  
+  @include nsw.component-spacing();
       
   .nsw-section--invert & {    
     border-color: var(--nsw-brand-light);

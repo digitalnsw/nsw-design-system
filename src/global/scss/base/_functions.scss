@@ -1,63 +1,241 @@
-@use 'sass:math';
+/* stylelint-disable */
+@use "sass:math";
+@use "sass:color";
+@use "sass:map";
+@use "sass:list";
+@use "sass:meta";
+@use "sass:string";
+@use '../settings/settings' as settings;
 
-/* stylelint-disable declaration-no-important, string-quotes, number-leading-zero */
 @function rem($value) {
-  @if (unitless($value)) {
+  @if math.is-unitless($value) {
     $value: $value * 1px;
   }
 
-  @return math.div($value, $nsw-base-font-size) * 1rem;
+  @return math.div($value, settings.$nsw-base-font-size) * 1rem;
 }
 
 @function svg-url($svg) {
-  @if not str-index($svg,xmlns) {
-    $svg: str-replace($svg, '<svg', '<svg xmlns="http://www.w3.org/2000/svg"');
+  @if not string.index($svg, xmlns) {
+    $svg: string.replace($svg, "<svg", '<svg xmlns="http://www.w3.org/2000/svg"');
   }
 
-  $encoded: '';
+  $encoded: "";
   $slice: 2000;
   $index: 0;
-  $loops: ceil(math.div(str-length($svg), $slice));
+  $loops: math.ceil(math.div(string.length($svg), $slice));
 
   @for $i from 1 through $loops {
-    $chunk: str-slice($svg, $index, $index + $slice - 1);
-    $chunk: str-replace($chunk, '"', '\'');
-    $chunk: str-replace($chunk, '%', '%25');
-    $chunk: str-replace($chunk, '#', '%23');
-    $chunk: str-replace($chunk, '{', '%7B');
-    $chunk: str-replace($chunk, '}', '%7D');
-    $chunk: str-replace($chunk, '<', '%3C');
-    $chunk: str-replace($chunk, '>', '%3E');
+    $chunk: string.slice($svg, $index, $index + $slice - 1);
+    $chunk: str-replace($chunk, '"', "'");
+    $chunk: str-replace($chunk, "%", "%25");
+    $chunk: str-replace($chunk, "#", "%23");
+    $chunk: str-replace($chunk, "{", "%7B");
+    $chunk: str-replace($chunk, "}", "%7D");
+    $chunk: str-replace($chunk, "<", "%3C");
+    $chunk: str-replace($chunk, ">", "%3E");
     $encoded: #{$encoded}#{$chunk};
     $index: $index + $slice;
   }
 
-  @return url('data:image/svg+xml,#{$encoded}');
+  @return url("data:image/svg+xml,#{$encoded}");
 }
 
 // Helper function to replace characters in a string
-@function str-replace($string, $search, $replace: '') {
-  $index: str-index($string, $search);
+@function str-replace($string, $search, $replace: "") {
+  $index: string.index($string, $search);
 
   @if $index {
-    @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+    @return string.slice($string, 1, $index - 1) + $replace +
+      str-replace(
+        string.slice($string, $index + string.length($search)),
+        $search,
+        $replace
+      );
   }
 
   @return $string;
 }
 
-@function breakpoint-min($name, $breakpoints: $nsw-breakpoints) {
-  $min: map-get($breakpoints, $name);
+@function breakpoint-min($name, $breakpoints: settings.$nsw-breakpoints) {
+  $min: map.get($breakpoints, $name);
 
   @return if($min != 0, $min, null);
 }
 
-@function breakpoint-max($name, $breakpoints: $nsw-breakpoints) {
-  $max: map-get($breakpoints, $name);
+@function breakpoint-max($name, $breakpoints: settings.$nsw-breakpoints) {
+  $max: map.get($breakpoints, $name);
 
-  @return if($max and $max > 0, $max - .02, null);
+  @return if($max and $max > 0, $max - 0.02, null);
 }
 
-@function breakpoint-infix($name, $breakpoints: $nsw-breakpoints) {
+@function breakpoint-infix($name, $breakpoints: settings.$nsw-breakpoints) {
   @return if(breakpoint-min($name, $breakpoints) == null, "", "-#{$name}");
+}
+
+@function to-rgb($value) {
+  @return color.channel($value, "red", $space: rgb), color.channel($value, "green", $space: rgb), color.channel($value, "blue", $space: rgb);
+}
+
+@function to-rgb-list($map) {
+  $new-map: ();
+
+  @each $key, $hex in $map {
+    $new-map: map.merge(
+      $new-map,
+      (
+        $key: (
+          color.channel($hex, "red", $space: rgb),
+          color.channel($hex, "green", $space: rgb),
+          color.channel($hex, "blue", $space: rgb)
+        )
+      )
+    );
+  }
+
+  @return $new-map;
+}
+
+@function strip-unit($value) {
+  @return ($value / ($value * 0 + 1));
+}
+
+@function pow($base, $exponents) {
+  $raised: 1;
+  @for $i from 1 through $exponents {
+    $raised: $raised * $base;
+  }
+  @return $raised;
+}
+
+@function luminance($color) {
+  $rgba: color.channel($color, "red", $space: rgb),
+         color.channel($color, "green", $space: rgb),
+         color.channel($color, "blue", $space: rgb);
+  $rgba2: ();
+  @for $i from 1 through 3 {
+    $rgb: list.nth($rgba, $i);
+    $rgb: calc($rgb / 255);
+    $rgb: if($rgb < .03928, calc($rgb / 12.92), pow(calc(($rgb + 0.055) / 1.055), 2));
+    $rgba2: list.append($rgba2, $rgb);
+  }
+  @return (.2126 * list.nth($rgba2, 1) + .7152 * list.nth($rgba2, 2) + 0.0722 * list.nth($rgba2, 3)) * 100;
+}
+
+@function contrast-ratio($fg, $bg) {
+  $luminance1: luminance($fg) + 0.05;
+  $luminance2: luminance($bg) + 0.05;
+  $ratio: calc($luminance1 / $luminance2);
+  @if $luminance2 > $luminance1 {
+    $ratio: calc(1 / $ratio);
+  }
+  $ratio: calc(round($ratio * 100) / 100);
+  @return $ratio;
+}
+
+@function validate-font-size($size) {
+  @if math.unit($size) == 'em' or math.unit($size) == 'rem' or math.unit($size) == 'px' or math.unit($size) == '' {
+    @if math.unit($size) == 'em' or math.unit($size) == 'rem' {
+      @return strip-unit($size * 16);
+    }
+    @if math.unit($size) == 'px' {
+      // We expect PX, so strip the value and return it
+      @return strip-unit($size);
+    }
+    @if math.unit($size) == '' {
+      @return $size;
+    }
+  } @else {
+    @error 'validate-font-size(): An unexpected font size unit was supplied.';
+  }
+}
+
+@function get-ratio($level: 'AAA', $size: 16, $bold: false) {
+  $ratio: 4.5;
+  @if $level == 'AAA' {
+    $ratio: 7;
+  }
+  
+  $size: validate-font-size($size);
+  
+  @if $size < 24 {
+
+    @if $size >= 19 and $bold == true {
+
+      @if $level == 'AAA' {
+        $ratio: 4.5;
+      } @else {
+        $ratio: 3;
+      }
+    }
+  } @else {
+    $ratio: 3;
+    @if $level == 'AAA' {
+      $ratio: 4.5;
+    }
+  }
+  @return $ratio;
+}
+
+@function light-or-dark($color) {
+  $white: #ffffff !default;
+  $black: #000000 !default;
+
+  $light-contrast: contrast-ratio($color, $white);
+  $dark-contrast: contrast-ratio($color, $black);
+
+  @if $light-contrast > $dark-contrast {
+    @return "dark";
+  } @else {
+    @return "light";
+  }
+}
+//
+@function color-contrast($color) {
+  $color-lod: light-or-dark($color);
+
+  @if ($color-lod == "dark") {
+    @return $white;
+  } @else {
+    @return $black;
+  }
+}
+
+@function a11y-color($fg, $bg, $level: 'AAA', $size: 16, $bold: false) {
+  $font-size: validate-font-size($size);
+  $ratio: get-ratio($level, $font-size, $bold);
+  $original-contrast: contrast-ratio($fg, $bg);
+
+  @if $original-contrast >= $ratio {
+
+    @return $fg;
+  } @else {
+    $fg-lod: light-or-dark($fg);
+    $bg-lod: light-or-dark($bg);
+
+    $step: 1%;
+
+    @if $fg-lod == 'light' and $bg-lod == 'light' {
+      $step: - $step;
+    } @else if $fg-lod == 'dark' and $bg-lod == 'light' {
+      $step: - $step;
+    }
+
+    @while contrast-ratio($fg, $bg) < $ratio {
+      $sat-step: 0%;
+      @if color.channel($fg, "saturation", $space: hsl) > 10 {
+        $sat-step: $step;
+      }
+      $fg: color.scale($fg, $lightness: $step, $saturation: $sat-step);
+    }
+    @return $fg;
+  }
+}
+
+@function tint($color, $percentage) {
+  @return color.mix(white, $color, $percentage);
+}
+
+@function shade($color, $percentage) {
+  @return color.mix(black, $color, $percentage);
 }

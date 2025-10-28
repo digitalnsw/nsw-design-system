@@ -20,6 +20,9 @@ meta-index: true
     <li>
       <a href="#gov-colour">NSW Government colour palette</a>
     </li>
+    <li>
+      <a href="#aboriginal-palette">NSW Government Aboriginal colour palette</a>
+    </li>
   </ul>
 </nav>
 
@@ -35,7 +38,7 @@ meta-index: true
   <div class="nsw-in-page-alert__content">
     <h4 class="nsw-in-page-alert__title">You don't need to use hex colours in code</h4>
     <p>Use either CSS variables (below) or, if you're creating a one-off layout, you can use our helper classes for dark, light, and supplementary colours.</p>
-    <p>By using CSS variables, any branding or theming changes will automatically reflect in your product. See CSS variables below, or see the <a href="/docs/content/develop/helpers.html">Utility classes</a> docs.</p>
+    <p>By using CSS variables, any branding or theming changes will automatically reflect in your product. See CSS variables below, or see the <a href="/docs/content/utilities/background.html">Utility classes</a> docs.</p>
   </div>
 </div>
 
@@ -107,6 +110,20 @@ meta-index: true
             <p><code>--nsw-brand-accent</code></p>
           </td>
         </tr>
+        <tr>
+          <td>
+            <div class="nsw-docs__swatch" style="background-color: var(--nsw-brand-accent-light)"></div>
+          </td>
+          <td>
+            <p>Brand Accent Light</p>
+          </td>
+          <td>
+            <p>Red 04 (<code>#FFE6EA</code>)</p>
+          </td>
+          <td>
+            <p><code>--nsw-brand-accent-light</code></p>
+          </td>
+        </tr>
       </tbody>
     </table>
   </div>
@@ -143,8 +160,7 @@ meta-index: true
       </tr>
       <tr>
         <td>
-          <div class="nsw-docs__swatch"
-               style="background-color: var(--nsw-palette-black)"></div>
+          <div class="nsw-docs__swatch" style="background-color: var(--nsw-black)"></div>
         </td>
         <td>
           <p>Black</p>
@@ -153,13 +169,12 @@ meta-index: true
           <p><code>#000000</code></p>
         </td>
         <td>
-          <p><code>--nsw-palette-black</code></p>
+          <p><code>--nsw-black</code></p>
         </td>
       </tr>
       <tr>
         <td>
-          <div class="nsw-docs__swatch"
-               style="background-color: var(--nsw-palette-grey-01)"></div>
+          <div class="nsw-docs__swatch" style="background-color: var(--nsw-grey-01)"></div>
         </td>
         <td>
           <p>Grey 01</p>
@@ -168,42 +183,38 @@ meta-index: true
           <p><code>#22272B</code></p>
         </td>
         <td>
-          <p><code>--nsw-palette-grey-01</code></p>
+          <p><code>--nsw-grey-01</code></p>
         </td>
       </tr>
       <tr>
         <td>
-          <div class="nsw-docs__swatch"
-               style="background-color: var(--nsw-palette-grey-02)"></div>
+          <div class="nsw-docs__swatch" style="background-color: var(--nsw-grey-02)"></div>
         </td>
         <td>
           <p>Grey 02</p>
         </td>
         <td><code>#495054</code></td>
-        <td><code>--nsw-palette-grey-02</code></td>
+        <td><code>--nsw-grey-02</code></td>
       </tr>
       <tr>
         <td>
-          <div class="nsw-docs__swatch"
-               style="background-color: var(--nsw-palette-grey-03)"></div>
+          <div class="nsw-docs__swatch" style="background-color: var(--nsw-grey-03)"></div>
         </td>
         <td>Grey 03</td>
         <td><code>#CDD3D6</code></td>
-        <td><code>--nsw-palette-grey-03</code></td>
+        <td><code>--nsw-grey-03</code></td>
       </tr>
       <tr>
         <td>
-          <div class="nsw-docs__swatch"
-               style="background-color: var(--nsw-palette-grey-04)"></div>
+          <div class="nsw-docs__swatch" style="background-color: var(--nsw-grey-04)"></div>
         </td>
         <td>Grey 04</td>
         <td><code>#EBEBEB</code></td>
-        <td><code>--nsw-palette-grey-04</code></td>
+        <td><code>--nsw-grey-04</code></td>
       </tr>
       <tr>
         <td>
-          <div class="nsw-docs__swatch"
-               style="background-color: var(--nsw-palette-off-white)"></div>
+          <div class="nsw-docs__swatch" style="background-color: var(--nsw-off-white)"></div>
         </td>
         <td>
           <p>Off white</p>
@@ -212,13 +223,12 @@ meta-index: true
           <p><code>#F2F2F2</code></p>
         </td>
         <td>
-          <p><code>--nsw-palette-off-white</code></p>
+          <p><code>--nsw-off-white</code></p>
         </td>
       </tr>
       <tr>
         <td>
-          <div class="nsw-docs__swatch"
-               style="border: 1px solid var(--nsw-text-dark); background-color: var(--nsw-palette-white)"></div>
+          <div class="nsw-docs__swatch" style="border: 1px solid var(--nsw-text-dark); background-color: var(--nsw-white)"></div>
         </td>
         <td>
           <p>White</p>
@@ -227,7 +237,7 @@ meta-index: true
           <p><code>#FFFFFF</code></p>
         </td>
         <td>
-          <p><code>--nsw-palette-white</code></p>
+          <p><code>--nsw-white</code></p>
         </td>
       </tr>
       </tbody>
@@ -236,7 +246,7 @@ meta-index: true
 </div>
 
 <h3>Text colours</h3>
-<p>This set of text colours have a ratio of at least 4.5:1 (or 3:1 for text larger than 18 point) to met Web Content Accessibility Guidelines (WCAG 2.1). </p><p>Interaction colours are in addition to the NSW Government colour palette to maintain consistent and accessible text and not conflict with brand colours.</p>
+<p>This set of text colours have a ratio of at least 4.5:1 (or 3:1 for text larger than 18 point) to met Web Content Accessibility Guidelines (WCAG 2.2). </p>
 
 <div class="nsw-section nsw-section--white nsw-block nsw-p-x-sm nsw-p-top-sm">
   <div class="nsw-table nsw-table--valign-middle">
@@ -292,12 +302,101 @@ meta-index: true
           <p><code>--nsw-text-light</code></p>
         </td>
       </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<h3>Link state colours</h3>
+
+<p>Link state colours are in addition to the NSW Government colour palette to maintain consistent and accessible text and not conflict with brand colours.</p>
+
+<div class="nsw-section nsw-section--white nsw-block nsw-p-x-sm nsw-p-top-sm">
+  <div class="nsw-table nsw-table--valign-middle">
+    <table>
+      <tbody>
+      <tr>
+        <th style="width: 10%">
+          <div>
+            <p>Swatch</p>
+          </div>
+        </th>
+        <th style="width: 30%">
+          <div>
+            <p>Colour</p>
+          </div>
+        </th>
+        <th style="width: 30%">
+          <div>
+            <p>Hex value</p>
+          </div>
+        </th>
+        <th>
+          <div>
+            <p>CSS variable</p>
+          </div>
+        </th>
+      </tr>
+      <tr>
+        <td>
+          <div class="nsw-docs__swatch" style="color: var(--nsw-link)"></div>
+        </td>
+        <td>
+          <p>Link</p>
+        </td>
+        <td>
+          <p><code>#002664</code></p>
+        </td>
+        <td>
+          <p><code>--nsw-link</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="nsw-docs__swatch" style="background-color: var(--nsw-visited)"></div>
+        </td>
+        <td>
+          <p>Link visited</p>
+        </td>
+        <td>
+          <p><code>#551A8B</code></p>
+        </td>
+        <td><code>--nsw-visited</code></td>
+      </tr>
+      <tr>
+        <td>
+          <div class="nsw-docs__swatch" style="background-color: var(--nsw-hover)"></div>
+        </td>
+        <td>
+          <p>Link hover background</p>
+        </td>
+        <td>
+          <p><code>rgba(0, 38, 100, 0.1)</code></p>
+        </td>
+        <td>
+          <p><code>--nsw-hover</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="nsw-docs__swatch" style="background-color: var(--nsw-active)"></div>
+        </td>
+        <td>
+          <p>Link active background</p>
+        </td>
+        <td>
+          <p><code>rgba(0, 38, 100, 0.2)</code></p>
+        </td>
+        <td>
+          <p><code>--nsw-active</code></p>
+        </td>
+      </tr>
       <tr>
         <td>
           <div class="nsw-docs__swatch" style="background-color: var(--nsw-focus)"></div>
         </td>
         <td>
-          <p>Text focus</p>
+          <p>Link focus</p>
         </td>
         <td>
           <p><code>#0085B3</code></p>
@@ -306,32 +405,103 @@ meta-index: true
           <p><code>--nsw-focus</code></p>
         </td>
       </tr>
-      <tr></tr>
       <tr>
         <td>
-          <div class="nsw-docs__swatch" style="background-color: var(--nsw-text-hover)"></div>
+          <div class="nsw-docs__swatch" style="background-color: var(--nsw-disabled)"></div>
         </td>
         <td>
-          <p>Text hover background</p>
+          <p>Link disabled</p>
         </td>
         <td>
-          <p><code>rgb(0, 133, 179, 0.2)</code></p>
+          <p><code>#8093B2</code></p>
         </td>
         <td>
-          <p><code>--nsw-text-hover-bg</code></p>
+          <p><code>--nsw-disabled</code></p>
         </td>
       </tr>
-      <tr>
+      <tr class="nsw-section--invert" style="background-color: var(--nsw-palette-grey-01)">
         <td>
-          <div class="nsw-docs__swatch" style="background-color: var(--nsw-text-visited)"></div>
+          <div class="nsw-docs__swatch" style="background-color: var(--nsw-link-light)"></div>
         </td>
         <td>
-          <p>Text visited</p>
+          <p>Link dark background</p>
         </td>
         <td>
-          <p><code>#551A8B</code></p>
+          <p><code style="color: var(--nsw-text-dark);">#E6E9F0</code></p>
         </td>
-        <td><code>--nsw-text-visited</code></td>
+        <td>
+          <p><code style="color: var(--nsw-text-dark);">--nsw-link-light</code></p>
+        </td>
+      </tr>
+      <tr class="nsw-section--invert" style="background-color: var(--nsw-palette-grey-01)">
+        <td>
+          <div class="nsw-docs__swatch" style="background-color: var(--nsw-visited-light)"></div>
+        </td>
+        <td>
+          <p>Link visited dark background</p>
+        </td>
+        <td>
+          <p><code style="color: var(--nsw-text-dark);">#DDD1E8</code></p>
+        </td>
+        <td>
+          <p><code style="color: var(--nsw-text-dark);">--nsw-visited-light</code></p>
+        </td>
+      </tr>
+      <tr class="nsw-section--invert" style="background-color: var(--nsw-palette-grey-01)">
+        <td>
+          <div class="nsw-docs__swatch" style="background-color: var(--nsw-hover-light)"></div>
+        </td>
+        <td>
+          <p>Link hover dark background</p>
+        </td>
+        <td>
+          <p><code style="color: var(--nsw-text-dark);">rgba(230, 233, 240, 0.1)</code></p>
+        </td>
+        <td>
+          <p><code style="color: var(--nsw-text-dark);">--nsw-hover-light</code></p>
+        </td>
+      </tr>
+      <tr class="nsw-section--invert" style="background-color: var(--nsw-palette-grey-01)">
+        <td>
+          <div class="nsw-docs__swatch" style="background-color: var(--nsw-active-light)"></div>
+        </td>
+        <td>
+          <p>Link active dark background</p>
+        </td>
+        <td>
+          <p><code style="color: var(--nsw-text-dark);">rgba(230, 233, 240, 0.2)</code></p>
+        </td>
+        <td>
+          <p><code style="color: var(--nsw-text-dark);">--nsw-active-light</code></p>
+        </td>
+      </tr>
+      <tr class="nsw-section--invert" style="background-color: var(--nsw-palette-grey-01)">
+        <td>
+          <div class="nsw-docs__swatch" style="background-color: var(--nsw-focus-light)"></div>
+        </td>
+        <td>
+          <p>Link focus dark background</p>
+        </td>
+        <td>
+          <p><code style="color: var(--nsw-text-dark);">#CCE7F0</code></p>
+        </td>
+        <td>
+          <p><code style="color: var(--nsw-text-dark);">--nsw-focus-light</code></p>
+        </td>
+      </tr>
+      <tr class="nsw-section--invert" style="background-color: var(--nsw-palette-grey-01)">
+        <td>
+          <div class="nsw-docs__swatch" style="background-color: var(--nsw-disabled)"></div>
+        </td>
+        <td>
+          <p>Link disabled dark background</p>
+        </td>
+        <td>
+          <p><code style="color: var(--nsw-text-dark);">#8093B2</code></p>
+        </td>
+        <td>
+          <p><code style="color: var(--nsw-text-dark);">--nsw-disabled</code></p>
+        </td>
       </tr>
       </tbody>
     </table>
@@ -379,7 +549,7 @@ meta-index: true
           <p><code>#2E5299</code></p>
         </td>
         <td>
-          <p><code>--nsw-status-info-blue</code></p>
+          <p><code>--nsw-status-info</code></p>
         </td>
       </tr>
       <tr>
@@ -394,13 +564,12 @@ meta-index: true
           <p><code>#EAEDF4</code></p>
         </td>
         <td>
-          <p><code>--nsw-status-info-blue-bg</code></p>
+          <p><code>--nsw-status-info-bg</code></p>
         </td>
       </tr>
       <tr>
         <td>
-          <div class="nsw-docs__swatch"
-               style="background-color: var(--nsw-status-success)"></div>
+          <div class="nsw-docs__swatch" style="background-color: var(--nsw-status-success)"></div>
         </td>
         <td>
           <p>Success Green<br><span style="font-size:var(--nsw-font-size-xxs-desktop)">Communicate a successful action</span></p>
@@ -409,20 +578,19 @@ meta-index: true
           <p><code>#008A07</code></p>
         </td>
         <td>
-          <p><code>--nsw-status-success-green</code></p>
+          <p><code>--nsw-status-success</code></p>
         </td>
       </tr>
       <tr>
         <td>
-          <div class="nsw-docs__swatch"
-               style="background-color: var(--nsw-status-success-bg)"></div>
+          <div class="nsw-docs__swatch" style="background-color: var(--nsw-status-success-bg)"></div>
         </td>
         <td>Success Green Bg</td>
         <td>
           <p><code>#E5F6E6</code></p>
         </td>
         <td>
-          <p><code>--nsw-status-success-green-bg</code></p>
+          <p><code>--nsw-status-success-bg</code></p>
         </td>
       </tr>
       <tr>
@@ -436,7 +604,7 @@ meta-index: true
         <td>
           <p><code>#C95000</code></p>
         </td>
-        <td><code>--nsw-status-warning-orange</code></td>
+        <td><code>--nsw-status-warning</code></td>
       </tr>
       <tr>
         <td>
@@ -449,29 +617,27 @@ meta-index: true
         <td>
           <p><code>#FBEEE5</code></p>
         </td>
-        <td><code>--nsw-status-warning-orange-bg</code>&nbsp;</td>
+        <td><code>--nsw-status-warning-bg</code>&nbsp;</td>
       </tr>
       <tr>
         <td>
-          <div class="nsw-docs__swatch"
-               style="background-color: var(--nsw-status-error)"></div>
+          <div class="nsw-docs__swatch" style="background-color: var(--nsw-status-error)"></div>
         </td>
         <td>
           <p>Error Red<br><span style="font-size:var(--nsw-font-size-xxs-desktop)">Alert of an immediate error or blocker</span></p>
         </td>
         <td><code>#B81237</code></td>
-        <td><code>--nsw-status-error-red</code></td>
+        <td><code>--nsw-status-error</code></td>
       </tr>
       <tr>
         <td>
-          <div class="nsw-docs__swatch"
-               style="background-color: var(--nsw-status-error-bg)"></div>
+          <div class="nsw-docs__swatch" style="background-color: var(--nsw-status-error-bg)"></div>
         </td>
         <td>
           <p>Error Red Bg</p>
         </td>
         <td><code>#F7E7EB</code></td>
-        <td><code>--nsw-status-error-red-bg</code></td>
+        <td><code>--nsw-status-error-bg</code></td>
       </tr>
       </tbody>
     </table>
@@ -480,7 +646,9 @@ meta-index: true
 <br>
 
 <h2 id="gov-colour">NSW Government colour palette</h2>
+
 <p>Use these colours to create your own NSW Design System theme. See <a href="/docs/content/design/theming.html">theming guidance for designers</a> or <a href="/docs/content/develop/theming.html">theming guidance for developers</a>.</p>
+
 <div class="nsw-section nsw-section--white nsw-block nsw-p-x-sm nsw-p-top-sm">
   <div class="nsw-table nsw-table--valign-middle">
     <table>
@@ -520,6 +688,58 @@ meta-index: true
           </td>
           <td>
             <p><code>--nsw-palette-{{@key}}</code></p>
+          </td>
+        </tr>
+      {{/each}}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<h2 id="aboriginal-palette">NSW Government Aboriginal colour palette</h2>
+
+<p>Use this colour palette when you are creating communications that relate to Aboriginal audiences or content.</p>
+<p>See <a href="/docs/content/design/theming.html#aboriginal-palette">theming guidance for designers</a> and the <a href="https://branding.nsw.gov.au/guidelines/aboriginal-branding">Brand Toolbox – Aboriginal Branding Guidelines</a> for more information.</p>
+
+<div class="nsw-section nsw-section--white nsw-block nsw-p-x-sm nsw-p-top-sm">
+  <div class="nsw-table nsw-table--valign-middle">
+    <table>
+      <tbody>
+      <tr>
+        <th style="width: 10%">
+          <div>
+            <p>Swatch</p>
+          </div>
+        </th>
+        <th style="width: 20%">
+          <div>
+            <p>Colour</p>
+          </div>
+        </th>
+        <th style="width: 20%">
+          <div>
+            <p><strong>Hex value</strong></p>
+          </div>
+        </th>
+        <th>
+          <div>
+            <p><strong>CSS variable</strong></p>
+          </div>
+        </th>
+      </tr>
+      {{#each model.aboriginal}}
+        <tr>
+          <td>
+            <div class="nsw-docs__swatch" style="{{#if-equals @key 'white'}} border: 1px solid var(--nsw-text-dark);{{/if-equals}} background-color: var(--nsw-aboriginal-palette-{{@key}})"></div>
+          </td>
+          <td>
+            <p>{{titleize (join (split @key "-") " ")}}</p>
+          </td>
+          <td>
+            <p><code>{{capitalize this "all"}}</code></p>
+          </td>
+          <td>
+            <p><code>--nsw-aboriginal-palette-{{@key}}</code></p>
           </td>
         </tr>
       {{/each}}

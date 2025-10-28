@@ -25,7 +25,7 @@ layout: blank-layout.hbs
 
 <h3>Upload status</h3>
 
-<div class="nsw-m-top-xs nsw-in-page-alert nsw-in-page-alert--info nsw-in-page-alert--compact">
+<div class="nsw-in-page-alert nsw-in-page-alert--info nsw-in-page-alert--compact nsw-m-top-xs">
   <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">info</span>
   <div class="nsw-in-page-alert__content">
     <p class="nsw-small">This functionailty is not included in the base component.</p>
@@ -54,6 +54,18 @@ layout: blank-layout.hbs
 </div>
 
 <h3>Multiple uploads</h3>
+
+<div class="nsw-in-page-alert nsw-in-page-alert--info nsw-in-page-alert--compact nsw-m-top-xs">
+  <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">info</span>
+  <div class="nsw-in-page-alert__content">
+    <p class="nsw-small">
+      To enable multiple file uploads, add the <code>multiple</code> attribute to the file input. 
+      To replace existing files instead of appending new ones, use the <code>data-replace-files</code> attribute on the file upload container. 
+      <strong>Do not use both attributes simultaneously</strong>, as they conflict. Enabling both will cause unintended behavior.
+    </p>
+  </div>
+</div>
+
 <p>Clearly communicate if a user can upload multiple files and consider displaying additional files vertically.</p>
 
 <div class="nsw-grid">
@@ -71,4 +83,16 @@ layout: blank-layout.hbs
 <p>Error messages inform the user when there is an issue with the data they have input. Provide helpful error messages to clearly explain to the user what the issue is and how they can effectively address the errors. Check out <a href="https://design-system.service.gov.uk/components/file-upload/#error-messages">GOV.UK Design System's error messages for file uploads</a> for some best practice examples.</p>
 
 <h2>Accessibility</h2>
-<p>All components are responsive and meet WCAG 2.1 AA accessibility guidelines.</p>
+<p>All components are responsive and designed to comply with WCAG 2.2 AA accessibility standards. Full compliance depends on using and configuring the components correctly.</p>
+
+<h3>Ensuring compliance through usage</h3>
+
+<h4>Redundant entry</h4>
+
+<p>To ensure WCAG 2.2 AA compliance for a file upload input, proper usage and configuration are essential. While the component provides a base level of accessibility, it's crucial to minimise redundant entry by configuring it so that users don't need to re-upload files or re-enter information they've previously provided. This includes allowing error correction without requiring re-entry and ensuring files remain accessible for review in multi-upload scenarios.</p>
+
+<h4>Consistent help</h4>
+
+<p>To create a consistent and accessible experience with the file upload component, provide clear, actionable guidance to support user interactions. Label the file upload field accurately, and include brief instructions on requirements like accepted file types or size limits, so users know exactly how to proceed. Use consistent language and formatting across all file upload interactions, ensuring users can easily recognise and understand the process.</p>
+
+<p>Adhering to these practices in usage supports a smooth, accessible experience and meets the necessary compliance standards.</p>

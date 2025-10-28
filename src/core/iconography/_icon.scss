@@ -1,67 +1,72 @@
-$nsw-icon-sizes: (
-  20: 20px,
-  24: 24px,
-  30: 30px,
-  36: 36px
-);
+@use 'sass:map';
+@use '../../global/scss/tools' as nsw;
 
-$nsw-icon-colors: (
-  brand: var(--nsw-brand-dark),
-  accent: var(--nsw-brand-accent),
-  error: var(--nsw-status-error),
-  success: var(--nsw-status-success),
-  info: var(--nsw-status-info),
-  warning: var(--nsw-status-warning)
-);
+// $nsw-icon-sizes: (
+//   20: 20px,
+//   24: 24px,
+//   30: 30px,
+//   36: 36px
+// );
 
-$nsw-icon-angles: (90, 180, 270);
+// $nsw-icon-colors: (
+//   brand: var(--nsw-brand-dark),
+//   accent: var(--nsw-brand-accent),
+//   error: var(--nsw-status-error),
+//   success: var(--nsw-status-success),
+//   info: var(--nsw-status-info),
+//   warning: var(--nsw-status-warning)
+// );
+
+// $nsw-icon-angles: (90, 180, 270);
 
 .nsw-material-icons {
-  @each $size, $variant in $nsw-icon-sizes {
+  @each $size, $variant in nsw.$nsw-icon-sizes {
     &--#{"" + $size} {
-      font-size: rem(map-get($nsw-icon-sizes, $size));
+      font-size: nsw.rem(map.get(nsw.$nsw-icon-sizes, $size));
     }
   }
 
-  @each $color, $variant in $nsw-icon-colors {
+  @each $color, $variant in nsw.$nsw-icon-colors {
     &--#{"" + $color} {
-      color: map-get($nsw-icon-colors, $color);
+      /* stylelint-disable-next-line sh-waqar/declaration-use-variable */
+      color: map.get(nsw.$nsw-icon-colors, $color);
     }
   }
 
-  @each $angle, $variant in $nsw-icon-angles {
+  @each $angle, $variant in nsw.$nsw-icon-angles {
     &--rotate-#{"" + $angle} {
       transform: rotate(#{$angle}deg);
     }
   }
 
   &--inline {
-    font-size: rem(map-get($nsw-icon-sizes, 20));
-    line-height: rem(10px);
+    font-size: nsw.rem(map.get(nsw.$nsw-icon-sizes, 20));
+    line-height: nsw.rem(10px);
     position: relative;
-    bottom: rem(-5px);
-    margin-right: rem(4px);
+    bottom: nsw.rem(-5px);
+    margin-right: nsw.rem(4px);
   }
 }
 
 .nsw-icon-button {
-  @include font-size('sm');
-  border-radius: var(--nsw-border-radius);
-  font-weight: var(--nsw-font-bold);
-  color: var(--nsw-brand-dark);
   background: none;
-  border: 0;
   text-decoration: none;
-  padding: rem(8px);
+  padding: nsw.rem(8px);
   display: inline-block;
+  border: 0;
+  color: var(--nsw-brand-dark);
+  font-weight: var(--nsw-font-bold);
+  border-radius: var(--nsw-border-radius);
+  
+  @include nsw.font-size('sm');
 
   &:hover {
-    @include nsw-hover;
+    @include nsw.nsw-hover;
     outline-width: 0;
   }
 
   &:focus {
-    @include nsw-focus($offset: false);
+    @include nsw.nsw-focus($offset: false);
   }
 
   .nsw-material-icons,
@@ -82,6 +87,6 @@ $nsw-icon-angles: (90, 180, 270);
   }
 
   .nsw-section--invert & {    
-    @include link-light;
+    @include nsw.link-light;
   }
 }

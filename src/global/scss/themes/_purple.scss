@@ -1,0 +1,57 @@
+@use 'sass:color';
+@use '../base/functions' as functions;
+@use '../settings/palette' as palette;
+
+// Purple Theme Colours
+$purple-dark: palette.$purple-01 !default;
+$purple-light: palette.$purple-04 !default;
+$purple-supplementary: palette.$purple-02 !default;
+$purple-accent: palette.$yellow-02 !default;
+
+// Purple State Colours
+$purple-link: $purple-dark !default;
+$purple-link-light: color.mix(#ffffff, $purple-dark, 90%) !default;
+$purple-visited: functions.a11y-color(color.adjust($purple-dark, $hue: 50deg), #ffffff) !default;
+$purple-visited-light: color.mix(#ffffff, $purple-visited, 80%) !default;
+$purple-hover: color.adjust($purple-dark, $alpha: -0.9) !default;
+$purple-hover-light: color.adjust($purple-link-light, $alpha: -0.9) !default;
+$purple-active: color.adjust($purple-dark, $alpha: -0.8) !default;
+$purple-active-light: color.adjust($purple-link-light, $alpha: -0.8) !default;
+$purple-focus: color.adjust(color.adjust($purple-dark, $hue: -22deg), $lightness: 15.49%) !default;
+$purple-focus-light: color.mix(#ffffff, $purple-focus, 80%);
+$purple-disabled: color.mix(#ffffff, $purple-dark, 50%) !default;
+
+$purple-colors: (
+  'brand-dark': $purple-dark,
+  'brand-light': $purple-light,
+  'brand-supplementary': $purple-supplementary,
+  'brand-accent': $purple-accent,
+  'link': $purple-link,
+  'link-light': $purple-link-light,
+  'visited': $purple-visited,
+  'visited-light': $purple-visited-light,
+  'hover': $purple-hover,
+  'hover-light': $purple-hover-light,
+  'active': $purple-active,
+  'active-light': $purple-active-light,
+  'focus': $purple-focus,
+  'focus-light': $purple-focus-light,
+  'disabled': $purple-disabled
+) !default;
+
+$purple-colors-rgb: functions.to-rgb-list($purple-colors) !default;
+
+.purple {
+  @each $color, $value in $purple-colors {
+    --nsw-#{$color}: #{$value};
+  }
+
+  @each $color, $value in $purple-colors-rgb {
+    --nsw-#{$color}-rgb: #{$value};
+  }
+}
+
+.purple-accent {
+  --nsw-brand-accent: #{palette.$purple-02};
+  --nsw-brand-accent-rgb: #{functions.to-rgb(palette.$purple-02)};
+}

@@ -1,7 +1,8 @@
 @use 'sass:math';
+@use '../../global/scss/tools' as nsw;
 
 .nsw-container {
-  @include container;
+  @include nsw.container;
 
   &--flush {
     padding-left: 0;
@@ -10,35 +11,35 @@
 }
 
 .nsw-grid {
-  @include grid();
+  @include nsw.grid();
 
   &--spaced {
-    margin-top: rem(-$grid-gutters);
-    margin-bottom: rem(-$grid-gutters);
+    margin-top: nsw.rem(-(nsw.$grid-gutters));
+    margin-bottom: nsw.rem(-(nsw.$grid-gutters));
 
-    @include breakpoint('md') {
-      margin-top: rem(-$grid-gutters*2);
-      margin-bottom: rem(-$grid-gutters*2);
+    @include nsw.breakpoint('md') {
+      margin-top: nsw.rem(-(nsw.$grid-gutters)*2);
+      margin-bottom: nsw.rem(-(nsw.$grid-gutters)*2);
     }
 
     .nsw-col {
-      padding-top: rem($grid-gutters*2);
-      padding-bottom: rem($grid-gutters*2);
+      padding-top: nsw.rem(nsw.$grid-gutters*2);
+      padding-bottom: nsw.rem(nsw.$grid-gutters*2);
 
-      @include breakpoint('md') {
-        padding-top: rem($grid-gutters*4);
-        padding-bottom: rem($grid-gutters*4);
+      @include nsw.breakpoint('md') {
+        padding-top: nsw.rem(nsw.$grid-gutters*4);
+        padding-bottom: nsw.rem(nsw.$grid-gutters*4);
       }
     }
   }
 
   &--flush {
-    margin-top: rem(-$grid-gutters);
-    margin-bottom: rem(-$grid-gutters);
+    margin-top: nsw.rem(-(nsw.$grid-gutters));
+    margin-bottom: nsw.rem(-(nsw.$grid-gutters));
 
-    @include breakpoint('md') {
-      margin-top: rem(-$grid-gutters*2);
-      margin-bottom: rem(-$grid-gutters*2);
+    @include nsw.breakpoint('md') {
+      margin-top: nsw.rem(-(nsw.$grid-gutters)*2);
+      margin-bottom: nsw.rem(-(nsw.$grid-gutters)*2);
     }
   }
 
@@ -68,10 +69,10 @@
 }
 
 .nsw-row {
-  @include row();
+  @include nsw.row();
 
   &--reverse {
-    @include breakpoint('lg') {
+    @include nsw.breakpoint('lg') {
       flex-direction: row-reverse;
       justify-content: flex-end;
     }
@@ -79,21 +80,21 @@
 }
 
 .nsw-col {
-  @include column-default();
+  @include nsw.column-default();
 
   @for $i from 1 through 12 {
     &-#{$i} {
-      width: percentage(math.div($i, 12));
-      max-width: percentage(math.div($i, 12));
+      width: math.percentage(math.div($i, 12));
+      max-width: math.percentage(math.div($i, 12));
     }
   }
 
-  @each $breakpoint, $breakpoint-size in $nsw-breakpoints {
-    @include breakpoint($breakpoint) {
+  @each $breakpoint, $breakpoint-size in nsw.$nsw-breakpoints {
+    @include nsw.breakpoint($breakpoint) {
       @for $i from 1 through 12 {
         &-#{$breakpoint}-#{$i} {
-          width: percentage(math.div($i, 12));
-          max-width: percentage(math.div($i, 12));
+          width: math.percentage(math.div($i, 12));
+          max-width: math.percentage(math.div($i, 12));
         }
       }
     }
@@ -103,15 +104,15 @@
 .nsw-offset {
   @for $i from 1 through 12 {
     &-#{$i} {
-      margin-left: percentage(math.div($i, 12));
+      margin-left: math.percentage(math.div($i, 12));
     }
   }
 
-  @each $breakpoint, $breakpoint-size in $nsw-breakpoints {
-    @include breakpoint($breakpoint) {
+  @each $breakpoint, $breakpoint-size in nsw.$nsw-breakpoints {
+    @include nsw.breakpoint($breakpoint) {
       @for $i from 1 through 12 {
         &-#{$breakpoint}-#{$i} {
-          margin-left: percentage(math.div($i, 12));
+          margin-left: math.percentage(math.div($i, 12));
         }
       }
     }

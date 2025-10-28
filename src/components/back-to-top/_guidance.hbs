@@ -1,0 +1,50 @@
+---
+title: Back to top
+layout: blank-layout.hbs
+---
+
+<h2>Usage</h2>
+<p>A back to top button provides an easy way to return to the top of the page, without having to manually scroll.</p>
+
+<p>Use the back to top component when there is a lot of content on the page, such as articles, blogs, or listings.</p>
+
+<h3>When to avoid</h3>
+
+<p>Do not use:</p>
+
+<ul>
+  <li>on pages that are short that have a minimum amount of scrolling</li>
+  <li>if there is already a way to return to the top of the page, such as a fixed in-page navigation menu</li>
+  <li>if the 'back to top' button creates confusion or adds unnecessary clutter</li>
+</ul>
+
+<h3>How this component works</h3>
+
+<p>The back to top button appears when users want to scroll up, making it visible only when necessary.</p>
+
+<p>On mobile and smaller screens, the icon turns into an upward chevron and the text becomes 'Top' below the icon to save space.</p>
+
+<h3>Scrollable distance</h3>
+
+<p>By default the back to top button appears when users start scrolling up, signaling an intention to return to the top. However, if you want the button to appear when users have scrolled down a certain distance you can use the <code>data-offset</code> attribute.</p>
+
+{{#>_docs-code open=true}}  
+<button type="button" data-offset="400">
+  <!-- ... -->
+</button>
+{{/_docs-code}}
+
+<h3>Scrollable element</h3>
+
+<p>By default, the visibility of the back to top button is toggled by the scrolling on the window element. If you have a different scrollable element in your page, you can use the data-element attribute to pass the CSS selector of the scrollable element.</p>
+
+<p>For example, if you have a <code>&lt;main class=&quot;main-element&quot;&gt;</code> with a <code>height: 100vh</code> and <code>overflow: auto</code>, you can set <code>data-element='.main-element'</code></p>
+
+{{#>_docs-code open=true}}  
+<button type="button" data-element=".main-element">
+  <!-- ... -->
+</button>
+{{/_docs-code}}
+
+<h2>Accessibility</h2>
+<p>All components are responsive and designed to comply with WCAG 2.2 AA accessibility standards. Full compliance depends on using and configuring the components correctly.</p>

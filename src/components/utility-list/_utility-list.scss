@@ -1,0 +1,137 @@
+@use '../../global/scss/tools' as nsw;
+
+.nsw-utility-list {
+  background-color: var(--nsw-off-white);
+
+  .nsw-section--invert & {    
+    background-color: transparent;
+  }
+
+  @include nsw.component-spacing();
+
+  &__title {
+    font-weight: var(--nsw-font-bold);
+    padding-bottom: nsw.rem(16px);
+    
+    @include nsw.font-size('lg');
+    
+    @include nsw.breakpoint('md') {
+      padding-bottom: nsw.rem(24px);
+    }
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  }
+
+  &__item {
+    margin: 0;
+    padding: nsw.rem(16px);
+    display: flex;
+    gap: nsw.$grid-gutters;
+    align-items: center;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: var(--nsw-font-bold);
+    border-bottom: 1px solid var(--nsw-grey-04);
+    color: var(--nsw-brand-dark);
+
+    @include nsw.font-size('sm');
+
+    &:hover {
+      @include nsw.nsw-hover;
+      outline-width: 0;
+    }
+
+    &:focus {
+      @include nsw.nsw-focus;
+    }
+
+    &:last-child {
+      border-bottom: unset;
+    }
+
+    .nsw-section--invert & {    
+      color: var(--nsw-text-light);
+      background-color: transparent;
+      color: var(--nsw-text-light);
+      
+      span:not(.nsw-toggletip__element .nsw-material-icons) {
+        color: var(--nsw-text-light);
+      }
+
+      svg {  
+        path {
+          fill: var(--nsw-brand-dark);
+        }
+      }
+      
+      &:hover {
+        @include nsw.nsw-hover-light();
+      }
+    
+      &:focus { 
+        @include nsw.nsw-focus($color: var(--nsw-focus-light));
+      }
+    
+      &:visited {
+        color: var(--nsw-visited);
+      }
+    }
+
+    svg {
+      width: nsw.rem(24px);
+      height: nsw.rem(24px);
+
+      path {
+        fill: var(--nsw-brand-dark);
+      }
+    }
+
+    span {
+      color: var(--nsw-brand-dark);
+    }
+  }
+
+  .nsw-toggletip {
+    border-bottom: unset;
+
+    &__header {
+      display: none;
+    }
+
+    &__content {
+      display: flex;
+      gap: nsw.$grid-gutters;
+      padding: nsw.rem(16px);
+
+      a {
+        display: flex;
+        padding: nsw.rem(8px);
+        border-radius: var(--nsw-border-radius);
+        text-decoration: none;
+      }
+
+      span:not(.nsw-toggletip__element .nsw-material-icons) {
+        color: var(--nsw-brand-dark);
+      }
+    }
+  }
+
+  &--horizontal {
+    @include nsw.breakpoint('md') {
+      display: flex;
+    
+      ul {
+        display: flex;
+        width: 100%;
+      }
+  
+      li {
+        border-bottom: unset;
+      }
+    }
+  }
+}

@@ -1,0 +1,116 @@
+@use '../../global/scss/tools' as nsw;
+
+.nsw-support-list {
+  margin: nsw.rem(20px);
+
+  @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+    margin: nsw.rem(40px);
+  }
+  
+  &__header {
+    padding-bottom: nsw.rem(8px);
+    border-bottom: solid 2px var(--nsw-brand-dark);
+  }
+  
+  &__container {
+    margin-top: nsw.rem(20px);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: nsw.rem(20px);
+    flex-wrap: wrap;
+
+    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+      margin-top: nsw.rem(40px);
+      gap: nsw.rem(40px);
+    }
+  }
+
+  &__container-no-text {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: nsw.rem(20px);
+
+    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+      gap: nsw.rem(40px);
+    }
+  }
+
+  &__gov-departments {
+    display: flex;
+    flex-direction: column;
+    gap: nsw.rem(20px);
+
+    &__labels {
+      margin-top: nsw.rem(10px);
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: nsw.rem(10px);
+    }
+
+    &__empty {
+      display: contents;
+    }
+
+    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+      flex-direction: row;
+      gap: nsw.rem(40px);
+
+      &__labels {
+        gap: nsw.rem(20px);
+      }
+    }
+  }
+
+  &__waratah {
+    display: flex;
+    align-items: center;
+
+    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+      padding: 0;
+    }
+
+    svg {
+      height: nsw.rem(48px);
+      display: block;
+
+      @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+        height: nsw.rem(76px);
+      }
+    }
+  }
+
+  &__logo-grid {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: nsw.rem(20px);
+    flex-wrap: wrap;
+
+    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+      gap: nsw.rem(40px);
+    }
+
+    &__item,
+    svg {
+      height: nsw.rem(48px);
+  
+      @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+        height: nsw.rem(76px);
+      }
+    }
+  }
+
+  .nsw-section--invert & {    
+    &__header {
+      border-color: var(--nsw-white);
+    }
+
+    .waratah-logo-text {
+      fill: var(--nsw-white);
+    }
+  }
+}
+

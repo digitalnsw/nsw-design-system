@@ -1,15 +1,18 @@
+@use 'sass:map';
+@use '../../global/scss/tools' as nsw;
+
 //Variations
 $nsw-loaders: (
   sm: (
-    size: rem(24px),
+    size: nsw.rem(24px),
     border: 3px,
   ),
   md: (
-    size: rem(32px),
+    size: nsw.rem(32px),
     border: 3px,
   ),
   lg: (
-    size: rem(48px),
+    size: nsw.rem(48px),
     border: 4px,
   )
 );
@@ -27,8 +30,8 @@ $nsw-loaders: (
     animation-duration: 1.4s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
-    width: rem(64px);
-    height: rem(64px);
+    width: nsw.rem(64px);
+    height: nsw.rem(64px);
     border-width: 4px;
     transform-origin: 50% 50% calc((4rem / 2) + 4px);
     border-color: var(--nsw-grey-03);
@@ -36,11 +39,11 @@ $nsw-loaders: (
     
     @each $size, $variant in $nsw-loaders {
       &--#{"" + $size} {
-        width: map-get($variant, size);
-        height: map-get($variant, size);
-        transform-origin: 50% 50% calc((#{map-get($variant, size)} / 2) + #{map-get($variant, border)});
-        @if map-get($variant, border) == 3px {
-          border-width: map-get($variant, border);
+        width: map.get($variant, size);
+        height: map.get($variant, size);
+        transform-origin: 50% 50% calc((#{map.get($variant, size)} / 2) + #{map.get($variant, border)});
+        @if map.get($variant, border) == 3px {
+          border-width: map.get($variant, border);
         }
       }
     }

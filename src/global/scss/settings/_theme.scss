@@ -1,41 +1,135 @@
+@use 'sass:color';
+@use 'palette' as palette;
+@use '../base/functions' as functions;
+
+// Theme Colours
+$brand-dark: palette.$blue-01 !default;
+$brand-light: palette.$blue-04 !default;
+$brand-supplementary: palette.$blue-02 !default;
+$brand-accent: palette.$red-02 !default;
+$brand-accent-light: palette.$red-04 !default;
+$off-white: palette.$grey-50 !default;
+
+// Text Colours
+$text-dark: palette.$grey-01 !default;
+$text-light: palette.$white !default;
+
+// Semantic Colours
+$success: #008a07 !default;
+$success-bg: #e5f6e6 !default;
+$info: #2e5299 !default;
+$info-bg: #eaedf4 !default;
+$warning: #c95000 !default;
+$warning-bg: #fbeee5 !default;
+$error: #b81237 !default;
+$error-bg: #f7e7eb !default;
+
+$theme-colors: (
+  'brand-dark': $brand-dark,
+  'brand-light': $brand-light,
+  'brand-supplementary': $brand-supplementary,
+  'brand-accent': $brand-accent,
+  'brand-accent-light': $brand-accent-light,
+  'black': palette.$black,
+  'grey-01': palette.$grey-01,
+  'grey-02': palette.$grey-02,
+  'grey-03': palette.$grey-03,
+  'grey-04': palette.$grey-04,
+  'off-white': $off-white,
+  'white': palette.$white
+) !default;
+
+$theme-colors-rgb: functions.to-rgb-list($theme-colors) !default;
+
+$text-colors: (
+  'text-dark': $text-dark,
+  'text-light': $text-light
+) !default;
+
+$text-colors-rgb: functions.to-rgb-list($text-colors) !default;
+
+$semantic-colors: (
+  'success': $success,
+  'success-bg': $success-bg,
+  'info': $info,
+  'info-bg': $info-bg,
+  'warning': $warning,
+  'warning-bg': $warning-bg,
+  'error': $error,
+  'error-bg': $error-bg
+) !default;
+
+$semantic-colors-rgb: functions.to-rgb-list($semantic-colors) !default;
+
+// State Colours
+$link: $brand-dark !default;
+$link-light: color.mix(#ffffff, $brand-dark, 100%) !default;
+$visited: functions.a11y-color(color.adjust(color.adjust(color.adjust($brand-dark, $hue: 54deg), $saturation: -31.52%), $lightness: 12.75%), #ffffff) !default;
+$visited-light: color.mix(#ffffff, $brand-dark, 100%) !default;
+$hover: color.adjust($brand-dark, $alpha: -0.9) !default;
+$hover-light: color.adjust($link-light, $alpha: -0.9) !default;
+$active: color.adjust($brand-dark, $alpha: -0.8) !default;
+$active-light: color.adjust($link-light, $alpha: -0.8) !default;
+$focus: color.adjust(color.adjust($brand-dark, $hue: -22deg), $lightness: 15.49%) !default;
+$focus-light: color.mix(#ffffff, $focus, 80%) !default;
+$disabled: color.mix(#ffffff, $brand-dark, 50%) !default;
+
+$state-colors: (
+  'link': $link,
+  'link-light': $link-light,
+  'visited': $visited,
+  'visited-light': $visited-light,
+  'hover': $hover,
+  'hover-light': $hover-light,
+  'active': $active,
+  'active-light': $active-light,
+  'focus': $focus,
+  'focus-light': $focus-light,
+  'disabled': $disabled
+) !default;
+
+$state-colors-rgb: functions.to-rgb-list($state-colors) !default;
+
 :root {
-  /* Colours */
-  --nsw-brand-dark: var(--nsw-palette-blue-01);
-  --nsw-brand-light: var(--nsw-palette-blue-04);
-  --nsw-brand-accent: var(--nsw-palette-red-02);
-  --nsw-brand-supplementary: var(--nsw-palette-blue-02);
+  @each $color, $value in $theme-colors {
+    --nsw-#{$color}: #{$value};
+  }
 
-  --nsw-text-dark: var(--nsw-palette-grey-01);
-  --nsw-text-light: var(--nsw-palette-white);
+  @each $color, $value in $theme-colors-rgb {
+    --nsw-#{$color}-rgb: #{$value};
+  }
 
-  --nsw-text-hover: rgba(var(--nsw-palette-blue-01-rgb), 0.1);
-  --nsw-text-hover-light: rgba(var(--nsw-palette-white-rgb), 0.1);
+  @each $color, $value in $text-colors {
+    --nsw-#{$color}: #{$value};
+  }
 
-  --nsw-text-link: var(--nsw-palette-blue-01);
-  --nsw-text-link-hover: rgba(var(--nsw-palette-blue-01-rgb), 0.1);
+  @each $color, $value in $text-colors-rgb {
+    --nsw-#{$color}-rgb: #{$value};
+  }
 
-  --nsw-text-visited: var(--nsw-palette-visited);
-  --nsw-focus: var(--nsw-palette-focus);
+  @each $color, $value in $state-colors {
+    --nsw-#{$color}: #{$value};
+  }
 
-  --nsw-black: var(--nsw-palette-black);
-  --nsw-white: var(--nsw-palette-white);
-  --nsw-off-white: var(--nsw-palette-off-white);
-  --nsw-grey-01: var(--nsw-palette-grey-01);
-  --nsw-grey-02: var(--nsw-palette-grey-02);
-  --nsw-grey-03: var(--nsw-palette-grey-03);
-  --nsw-grey-04: var(--nsw-palette-grey-04);
+  @each $color, $value in $state-colors-rgb {
+    --nsw-#{$color}-rgb: #{$value};
+  }
 
-  --nsw-status-info: var(--nsw-palette-info-blue);
-  --nsw-status-info-bg: var(--nsw-palette-info-blue-bg);
-  --nsw-status-success: var(--nsw-palette-success-green);
-  --nsw-status-success-bg: var(--nsw-palette-success-green-bg);
-  --nsw-status-warning: var(--nsw-palette-warning-orange);
-  --nsw-status-warning-bg: var(--nsw-palette-warning-orange-bg);
-  --nsw-status-error: var(--nsw-palette-error-red);
-  --nsw-status-error-bg: var(--nsw-palette-error-red-bg);
+  @each $color, $value in $semantic-colors {
+    --nsw-status-#{$color}: #{$value};
+  }
 
-  --nsw-black-rgb: var(--nsw-palette-black-rgb);
-  --nsw-white-rgb: var(--nsw-palette-white-rgb);
+  @each $color, $value in $semantic-colors-rgb {
+    --nsw-status-#{$color}-rgb: #{$value};
+  }
+
+  /* Deprecated */
+  --nsw-text-hover: var(--nsw-hover);
+  --nsw-text-hover-light: var(--nsw-hover-light);
+  --nsw-text-link: var(--nsw-link);
+  --nsw-text-link-hover: var(--nsw-hover);
+  --nsw-text-link-hover-light: var(--nsw-hover-light);
+  --nsw-text-visited: var(--nsw-visited);
 
   /* Font */
   --nsw-font-family: 'Public Sans', sans-serif;
@@ -44,38 +138,38 @@
   --nsw-font-normal: 400;
   --nsw-font-bold: 700;
 
-  --nsw-font-size-xxs-mobile: #{rem(12px)};
-  --nsw-font-size-xxs-desktop: #{rem(12px)};
+  --nsw-font-size-xxs-mobile: #{functions.rem(12px)};
+  --nsw-font-size-xxs-desktop: #{functions.rem(12px)};
   --nsw-line-height-xxs-mobile: 1.5;
   --nsw-line-height-xxs-desktop: 1.5;
 
-  --nsw-font-size-xs-mobile: #{rem(14px)};
-  --nsw-font-size-xs-desktop: #{rem(14px)};
+  --nsw-font-size-xs-mobile: #{functions.rem(14px)};
+  --nsw-font-size-xs-desktop: #{functions.rem(14px)};
   --nsw-line-height-xs-mobile: 1.35;
   --nsw-line-height-xs-desktop: 1.35;
 
-  --nsw-font-size-sm-mobile: #{rem(16px)};
-  --nsw-font-size-sm-desktop: #{rem(16px)};
+  --nsw-font-size-sm-mobile: #{functions.rem(16px)};
+  --nsw-font-size-sm-desktop: #{functions.rem(16px)};
   --nsw-line-height-sm-mobile: 1.5;
   --nsw-line-height-sm-desktop: 1.5;
 
-  --nsw-font-size-md-mobile: #{rem(18px)};
-  --nsw-font-size-md-desktop: #{rem(20px)};
+  --nsw-font-size-md-mobile: #{functions.rem(18px)};
+  --nsw-font-size-md-desktop: #{functions.rem(20px)};
   --nsw-line-height-md-mobile: 1.33;
   --nsw-line-height-md-desktop: 1.4;
 
-  --nsw-font-size-lg-mobile: #{rem(22px)};
-  --nsw-font-size-lg-desktop: #{rem(24px)};
+  --nsw-font-size-lg-mobile: #{functions.rem(22px)};
+  --nsw-font-size-lg-desktop: #{functions.rem(24px)};
   --nsw-line-height-lg-mobile: 1.25;
   --nsw-line-height-lg-desktop: 1.33;
 
-  --nsw-font-size-xl-mobile: #{rem(28px)};
-  --nsw-font-size-xl-desktop: #{rem(32px)};
+  --nsw-font-size-xl-mobile: #{functions.rem(28px)};
+  --nsw-font-size-xl-desktop: #{functions.rem(32px)};
   --nsw-line-height-xl-mobile: 1.25;
   --nsw-line-height-xl-desktop: 1.25;
 
-  --nsw-font-size-xxl-mobile: #{rem(36px)};
-  --nsw-font-size-xxl-desktop: #{rem(48px)};
+  --nsw-font-size-xxl-mobile: #{functions.rem(36px)};
+  --nsw-font-size-xxl-desktop: #{functions.rem(48px)};
   --nsw-line-height-xxl-mobile: 1.25;
   --nsw-line-height-xxl-desktop: 1.25;
 
@@ -83,11 +177,17 @@
   --nsw-border-width: 1px;
   --nsw-border-style: solid;
   --nsw-border-color: var(--nsw-brand-accent);
-  --nsw-border-radius: #{rem(4px)};
+  --nsw-border-radius: #{functions.rem(4px)};
 
   /* Shadows */
-  --nsw-box-shadow: 0 #{rem(4px)} #{rem(12px)} 0 rgba(var(--nsw-black-rgb), 0.15);
+  --nsw-box-shadow: 0 #{functions.rem(4px)} #{functions.rem(12px)} 0 rgba(var(--nsw-black-rgb), 0.15);
 
   /* Maximum width of container */
-  --nsw-container-width: #{rem(1200px)};
+  --nsw-container-width: #{functions.rem(1200px)};
+
+  /* Background opacity */
+  --nsw-bg-opacity: 1;
+
+  /* Section background (global default used by components outside .nsw-section) */
+  --nsw-section-bg: transparent;
 }

@@ -1,18 +1,18 @@
-.sr-only {
-  @include sr-only;
-}
+@use '../base/mixins' as mixins;
+@use '../settings/settings' as settings;
 
-.sr-only-focusable:focus {
-  @include sr-only-focus;
+.sr-only,
+.sr-only-focusable:not(:focus):not(:focus-within) {
+  @include mixins.sr-only();
 }
 
 .nsw-show {
-  @each $breakpoint, $breakpoint-size in $nsw-breakpoints {
+  @each $breakpoint, $breakpoint-size in settings.$nsw-breakpoints {
     &-#{$breakpoint} {
       display: none;
     }
 
-    @include breakpoint($breakpoint) {
+    @include mixins.breakpoint($breakpoint) {
       &-#{$breakpoint} {
         display: block;
       }
@@ -21,8 +21,8 @@
 }
 
 .nsw-hide {
-  @each $breakpoint, $breakpoint-size in $nsw-breakpoints {
-    @include breakpoint($breakpoint) {
+  @each $breakpoint, $breakpoint-size in settings.$nsw-breakpoints {
+    @include mixins.breakpoint($breakpoint) {
       &-#{$breakpoint} {
         display: none;
       }

@@ -1,122 +1,159 @@
+/* eslint-disable max-len */
 import { uniqueId } from '../../global/scripts/helpers/utilities'
 
 class Filters {
   constructor(element) {
-    this.filters = element
-    this.filtersWrapper = element.querySelector('.nsw-filters__wrapper')
-    this.openButton = element.querySelector('.nsw-filters__controls button')
-    this.openButtonIcons = this.openButton ? this.openButton.querySelectorAll('span') : null
-    this.selectedCount = element.querySelector('.js-filters--count')
-    this.openButtonText = this.selectedCount ? this.selectedCount.querySelector('span:not(.nsw-material-icons)') : null
-    this.buttonLabel = this.openButtonText ? this.openButtonText.innerText : null
-    this.closeButton = element.querySelector('.nsw-filters__back button')
-    this.acceptButton = element.querySelector('.nsw-filters__accept button')
-    this.clearButton = element.querySelector('.nsw-filters__cancel button')
-    this.showMoreButtons = Array.prototype.slice.call(element.querySelectorAll('.nsw-filters__more'))
-    this.accordionButtons = element.querySelectorAll('.nsw-filters__item-button')
-    this.showAll = element.querySelectorAll('.nsw-filters__all')
-    this.showAllBlocks = Array.prototype.slice.call(this.showAll)
-    this.filtersItems = element.querySelectorAll('.nsw-filters__item')
-    /* eslint-disable max-len */
-    this.focusableEls = this.filtersWrapper.querySelectorAll('a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])')
-    this.checkIcon = '<span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span>'
-    this.arrowIcon = '<span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_right</span>'
-    /* eslint-ensable max-len */
-    this.showEvent = (e) => this.showFilters(e)
-    this.hideEvent = (e) => this.hideFilters(e)
-    this.showMoreEvent = (e) => this.showMore(e)
-    this.toggleEvent = (e) => this.toggleAccordion(e)
-    this.resetEvent = (e) => this.clearAllFilters(e)
-    this.body = document.body
+    this.element = element
+    // Classes
+    this.hideClass = 'nsw-display-none'
+    this.showClass = 'active'
+    this.openClass = 'filters-open'
+    this.prefix = 'nsw-'
+    this.class = 'filters'
+    this.controlsClass = `${this.class}__controls`
+    this.wrapperClass = `${this.class}__wrapper`
+    this.listClass = `${this.class}__list`
+    this.itemClass = `${this.class}__item`
+    this.resetClass = `${this.class}__cancel`
+    this.submitClass = `${this.class}__accept`
+    this.closeClass = `${this.class}__back`
+    this.countClass = `${this.class}__count`
+    this.allClass = `${this.class}__all`
+    this.moreClass = `${this.class}__more`
+    // Elements
+    this.count = this.element.querySelector(`.js-${this.countClass}`)
+    this.controls = this.element.querySelector(`.${this.prefix}${this.controlsClass}`)
+    this.controlsButton = this.controls && this.controls.querySelector('button')
+    this.controlsButtonIcons = this.controlsButton && this.controlsButton.querySelectorAll('span')
+    this.controlsButtonText = this.controlsButton && this.controlsButton.querySelector('span:not(.nsw-material-icons)')
+    this.controlsButtonTextContent = this.controlsButton && this.controlsButtonText.innerText
+    this.wrapper = this.element.querySelector(`.${this.prefix}${this.wrapperClass}`)
+    this.closeButton = this.wrapper && this.wrapper.querySelector(`.${this.prefix}${this.closeClass} button`)
+    this.submitButton = this.wrapper && this.wrapper.querySelector(`.${this.prefix}${this.submitClass} button`)
+    this.resetButton = this.wrapper && this.wrapper.querySelector(`.${this.prefix}${this.resetClass} button`)
+    this.items = this.wrapper && this.wrapper.querySelectorAll(`.${this.prefix}${this.itemClass}`)
+    this.accordionButtons = this.wrapper && this.wrapper.querySelectorAll(`.${this.prefix}${this.itemClass}-button`)
+    this.showMoreContent = this.element.querySelectorAll(`.${this.prefix}${this.allClass}`)
+    this.showMoreButtons = this.element.querySelectorAll(`.${this.prefix}${this.moreClass}`)
+    this.focusableElements = 'a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])'
+    // Get default selected option
+    this.selectedOption = this.element.querySelector('option[selected]')
+    // Accordion arrays
     this.buttons = []
     this.content = []
+    this.options = []
     this.selected = []
+
+    this.keydownHandler = null
   }
 
   init() {
-    this.setUpDom()
-    this.controls()
-    this.selectedItems()
-  }
+    this.element.classList.add('ready')
 
-  setUpDom() {
-    this.filters.classList.add('ready')
+    if (this.accordionButtons) {
+      this.accordionButtons.forEach((button) => {
+        const buttonElem = button
+        const uID = uniqueId('collapsed')
+        buttonElem.setAttribute('type', 'button')
+        buttonElem.setAttribute('aria-expanded', 'false')
+        buttonElem.setAttribute('aria-controls', uID)
+        const label = buttonElem.querySelector(`.${this.prefix}${this.itemClass}-name`)
+        buttonElem.setAttribute('data-label', label.innerText)
 
-    if (this.openButton) {
-      if (this.openButtonIcons.length < 3) {
-        this.openButton.insertAdjacentHTML('beforeend', this.arrowIcon)
-      }
-    }
+        const contentElem = buttonElem.nextElementSibling
+        contentElem.id = buttonElem.getAttribute('aria-controls')
+        contentElem.hidden = true
 
-    this.accordionButtons.forEach((button) => {
-      const buttonElem = button
-      const uID = uniqueId('collapsed')
-      buttonElem.setAttribute('type', 'button')
-      buttonElem.setAttribute('aria-expanded', 'false')
-      buttonElem.setAttribute('aria-controls', uID)
-
-      const contentElem = buttonElem.nextElementSibling
-      contentElem.id = buttonElem.getAttribute('aria-controls')
-      contentElem.hidden = true
-
-      this.content.push(contentElem)
-      this.buttons.push(buttonElem)
-    })
-  }
-
-  controls() {
-    if (this.openButton) {
-      this.openButton.addEventListener('click', this.showEvent, false)
-    }
-
-    if (this.acceptButton) {
-      this.acceptButton.disabled = true
-    }
-
-    if (this.closeButton) {
-      this.closeButton.addEventListener('click', this.hideEvent, false)
-    }
-
-    this.showAll.forEach((element) => {
-      const showMoreButton = element.nextElementSibling
-      showMoreButton.addEventListener('click', this.showMoreEvent, false)
-    })
-
-    if (this.buttons) {
-      this.buttons.forEach((element) => {
-        element.addEventListener('click', this.toggleEvent, false)
+        this.content.push(contentElem)
+        this.buttons.push(buttonElem)
       })
     }
 
-    if (this.clearButton) {
-      this.clearButton.addEventListener('click', this.resetEvent, false)
+    this.updateDom()
+    this.initEvents()
+  }
+
+  initEvents() {
+    document.addEventListener('DOMContentLoaded', () => {
+      this.updateDom()
+    })
+
+    if (this.options) {
+      this.options.forEach((element) => {
+        element.addEventListener('change', () => {
+          this.updateDom()
+        })
+      })
+    }
+
+    if (this.controlsButton) {
+      this.controlsButton.addEventListener('click', (event) => {
+        this.showFilters(event)
+      })
+    }
+
+    if (this.submitButton) {
+      this.submitButton.disabled = true
+    }
+
+    if (this.closeButton) {
+      this.closeButton.addEventListener('click', (event) => {
+        this.closeFilters(event)
+      })
+    }
+
+    if (this.buttons) {
+      this.buttons.forEach((element) => {
+        element.addEventListener('click', (event) => {
+          this.toggleAccordion(event)
+        })
+      })
+    }
+
+    if (this.resetButton) {
+      this.resetButton.addEventListener('click', (event) => {
+        this.clearAll(event)
+      })
+
+      this.resetButton.addEventListener('change', (event) => {
+        this.clearAll(event)
+      })
+    }
+
+    if (this.showMoreButtons) {
+      this.showMoreButtons.forEach((element, index) => {
+        element.addEventListener('click', (event) => {
+          this.showMore(event, index)
+        })
+      })
     }
   }
 
-  showFilters(e) {
-    e.preventDefault()
-    if (this.filters.classList.contains('nsw-filters--down')) {
-      this.filters.classList.toggle('active')
+  setAccordionState(element, state) {
+    const targetContent = this.getTargetContent(element)
+    const firstfocusable = targetContent.querySelector(this.focusableElements)
+
+    if (state === 'open') {
+      element.classList.add(this.showClass)
+      element.setAttribute('aria-expanded', 'true')
+      targetContent.hidden = false
+      this.constructor.moveFocusFn(firstfocusable)
+    } else if (state === 'close') {
+      element.classList.remove(this.showClass)
+      element.setAttribute('aria-expanded', 'false')
+      targetContent.hidden = true
+    }
+  }
+
+  toggleAccordion(event) {
+    const { currentTarget } = event
+    const targetContent = this.getTargetContent(currentTarget)
+
+    if (targetContent.hidden) {
+      this.setAccordionState(currentTarget, 'open')
     } else {
-      this.trapFocus(this.filtersWrapper)
-      this.filters.classList.add('active')
-      this.body.classList.add('filters-open')
+      this.setAccordionState(currentTarget, 'close')
     }
-  }
-
-  hideFilters(e) {
-    e.preventDefault()
-    this.filters.classList.remove('active')
-    this.body.classList.remove('filters-open')
-  }
-
-  showMore(e) {
-    e.preventDefault()
-    const currentShowMore = e.target
-    const currentIndex = this.showMoreButtons.indexOf(currentShowMore)
-    const currentAll = this.showAllBlocks[currentIndex]
-    currentAll.classList.remove('hidden')
-    currentShowMore.classList.add('hidden')
   }
 
   getTargetContent(element) {
@@ -124,245 +161,220 @@ class Filters {
     return this.content[currentIndex]
   }
 
-  setAccordionState(element, state) {
-    const targetContent = this.getTargetContent(element)
-
-    if (state === 'open') {
-      element.classList.add('active')
-      element.setAttribute('aria-expanded', 'true')
-      targetContent.hidden = false
-    } else if (state === 'close') {
-      element.classList.remove('active')
-      element.setAttribute('aria-expanded', 'false')
-      targetContent.hidden = true
+  toggleSubmit(array) {
+    if (this.submitButton) {
+      if (array.length > 0) {
+        this.submitButton.disabled = false
+      } else {
+        this.submitButton.disabled = true
+      }
     }
   }
 
-  toggleAccordion(e) {
-    const { currentTarget } = e
-    const targetContent = this.getTargetContent(currentTarget)
-    const isHidden = targetContent.hidden
+  showMore(event, index) {
+    event.preventDefault()
+    const firstfocusable = this.showMoreContent[index].querySelector(this.focusableElements)
+    this.showMoreContent[index].classList.remove(this.hideClass)
+    event.target.classList.add(this.hideClass)
+    this.constructor.moveFocusFn(firstfocusable)
+  }
 
-    if ((isHidden)) {
-      this.setAccordionState(currentTarget, 'open')
+  closeFilters(event) {
+    event.preventDefault()
+    this.element.classList.remove(this.showClass)
+    document.body.classList.remove(this.openClass)
+    if (this.keydownHandler) {
+      document.removeEventListener('keydown', this.keydownHandler)
+      this.keydownHandler = null
+    }
+  }
+
+  showFilters(event) {
+    event.preventDefault()
+    if (this.element.classList.contains('nsw-filters--down')) {
+      this.element.classList.toggle(this.showClass)
     } else {
-      this.setAccordionState(currentTarget, 'close')
+      this.trapFocus(this.wrapper)
+      this.element.classList.add(this.showClass)
+      document.body.classList.add(this.openClass)
     }
   }
 
-  trapFocus(element) {
-    const firstFocusableEl = this.focusableEls[0]
-    const lastFocusableEl = this.focusableEls[this.focusableEls.length - 1]
-    const KEYCODE_TAB = 9
+  clearAll(event) {
+    event.preventDefault()
 
-    element.addEventListener('keydown', (e) => {
-      const isTabPressed = (e.key === 'Tab' || e.keyCode === KEYCODE_TAB)
+    const simulateEvent = new MouseEvent('change', {
+      view: window,
+      bubbles: true,
+      cancelable: true,
+    })
 
-      if (!isTabPressed) { return }
+    const multiSelect = this.element.querySelector('.js-multi-select')
+    const multiSelectAll = multiSelect && multiSelect.querySelector('.js-multi-select__all')
+    const multiSelectOptions = multiSelect && multiSelect.querySelectorAll('.js-multi-select__option')
 
-      if (e.shiftKey) {
-        if (document.activeElement === firstFocusableEl) {
-          e.preventDefault()
-          lastFocusableEl.focus()
+    if (this.options.length > 0) {
+      this.options.forEach((input) => {
+        const option = input
+        if (option.type === 'text') {
+          option.value = ''
+        } else if (option.type === 'select-one') {
+          if (this.selectedOption) {
+            option.selectedIndex = Array.from(option.options).indexOf(this.selectedOption)
+          } else {
+            option.selectedIndex = 0
+          }
+        } else if (option.type === 'checkbox') {
+          if (option.defaultChecked) {
+            option.checked = true
+          } else {
+            option.checked = false
+          }
+        } else if (!option.parentElement.classList.contains('js-multi-select__option')) {
+          option.value = false
         }
-      } else if (document.activeElement === lastFocusableEl) {
-        e.preventDefault()
-        firstFocusableEl.focus()
+      })
+    }
+
+    if (multiSelect) {
+      multiSelectAll.classList.remove(this.showClass)
+
+      multiSelectOptions.forEach((element) => {
+        element.setAttribute('aria-selected', 'true')
+        element.dispatchEvent(simulateEvent)
+        element.click()
+      })
+    }
+
+    this.updateDom()
+  }
+
+  getOptions() {
+    this.options = []
+    if (this.items) {
+      this.items.forEach((element) => {
+        const content = element.querySelector(`.${this.prefix}${this.itemClass}-content`)
+        const textInputs = content.querySelectorAll('input[type="text"]')
+        const singleSelects = content.querySelectorAll('select:not([multiple]):not(.nsw-display-none)')
+        const multiSelects = content.querySelectorAll('select[multiple]:not(.nsw-display-none)')
+        const checkboxes = content.querySelectorAll('input[type="checkbox"]')
+        this.options.push(...textInputs, ...singleSelects, ...checkboxes, ...multiSelects)
+      })
+    }
+  }
+
+  getSelected() {
+    this.selected = []
+    if (this.options.length > 0) {
+      const select = this.options.filter((option) => option.type === 'select-one' && option.value !== '')
+      const checkboxes = this.options.filter((option) => option.checked)
+      const text = this.options.filter((option) => option.type === 'text' && option.value !== '')
+      const multiple = this.options.filter((option) => option.type === 'select-multiple' && option.value !== '')
+      const selectMultiple = this.constructor.getMultiSelectValues(multiple)
+      this.selected = [...select, ...checkboxes, ...text, ...selectMultiple]
+    }
+  }
+
+  selectedCount(array) {
+    if (!this.count) return
+
+    const dateInputs = array.filter((option) => option.closest('.nsw-form__date'))
+    const removedDateInputs = array.filter((option) => !option.closest('.nsw-form__date'))
+
+    let buttonText = `${this.controlsButtonTextContent}`
+
+    let countText = ''
+
+    if (dateInputs.length > 0) {
+      countText = ` (${removedDateInputs.length + 1})`
+    } else {
+      countText = ` (${array.length})`
+    }
+
+    if (dateInputs.length === 0 && array.length === 0) {
+      this.controlsButtonText.innerText = buttonText
+    } else {
+      buttonText += countText
+      this.controlsButtonText.innerText = buttonText
+    }
+  }
+
+  setSelectedState() {
+    const formElements = 'textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled]):not(.nsw-display-none)'
+    const checkIcon = '<span class="material-icons nsw-material-icons nsw-material-icons--valid" focusable="false" aria-hidden="true">check_circle</span>'
+
+    this.buttons.forEach((element) => {
+      const buttonName = element.querySelector(`.${this.prefix}${this.itemClass}-name`)
+      const label = element.getAttribute('data-label')
+      const content = element.nextElementSibling
+      const values = content.querySelectorAll(formElements)
+
+      const selected = Array.from(values).filter((field) => {
+        if (field.type === 'checkbox' || field.type === 'radio') {
+          return field.checked
+        }
+        return field.value !== ''
+      })
+
+      if (selected.length > 0) {
+        buttonName.innerText = label
+        buttonName.innerHTML = `${label} ${checkIcon}`
+      } else if (selected.length === 0) {
+        buttonName.innerText = label
       }
     })
-  }
-
-  toggleAccept(array) {
-    if (this.acceptButton) {
-      if (array.length > 0) {
-        this.acceptButton.disabled = false
-      } else {
-        this.acceptButton.disabled = true
-      }
-    }
-  }
-
-  toggleSelectedState(array) {
-    if (array.length > 0) {
-      this.openButton.parentElement.classList.add('active')
-    } else {
-      this.openButton.parentElement.classList.remove('active')
-    }
-  }
-
-  resultsCount(array, buttonText) {
-    if (this.openButtonText) {
-      if (array.length > 0) {
-        this.openButtonText.innerText = `${buttonText} (${array.length})`
-      } else {
-        this.openButtonText.innerText = `${buttonText}`
-      }
-    }
   }
 
   updateDom() {
-    this.resultsCount(this.selected, this.buttonLabel)
-    this.toggleAccept(this.selected)
-    this.toggleSelectedState(this.selected)
+    this.getOptions()
+    this.getSelected()
+    this.toggleSubmit(this.selected)
+    this.selectedCount(this.selected)
+    this.setSelectedState()
   }
 
-  static getEventType(type) {
-    if (type === 'text') {
-      return 'input'
+  trapFocus(element) {
+    const focusableContent = element.querySelectorAll(this.focusableElements)
+    const firstFocusableElement = focusableContent[0]
+    const lastFocusableElement = focusableContent[focusableContent.length - 1]
+
+    this.keydownHandler = (event) => {
+      const tab = (event.keyCode === 9 || event.code === 'Tab') || (event.key && event.key === 'Tab')
+      if (!tab) return
+
+      if (document.activeElement === firstFocusableElement && event.shiftKey) {
+        event.preventDefault()
+        lastFocusableElement.focus()
+      }
+      if (document.activeElement === lastFocusableElement && !event.shiftKey) {
+        event.preventDefault()
+        firstFocusableElement.focus()
+      }
     }
-    return 'change'
+
+    document.addEventListener('keydown', this.keydownHandler)
+
+    firstFocusableElement.focus()
   }
 
-  static getCondition(element) {
-    if (element.type === 'text' || element.type === 'select-one') {
-      return element.value !== ''
-    }
-    return element.checked
-  }
+  static getMultiSelectValues(array) {
+    const selectedOptions = []
 
-  static singleCount(element, index, id) {
-    const isSingleCount = element.closest('.js-filters--single-count')
-    if (!isSingleCount) {
-      return { uniqueID: `${id}-${index}`, singleID: `${id}-${index}`, isSingleCount }
-    }
-    return { uniqueID: `${id}`, singleID: `${id}-${index}`, isSingleCount }
-  }
-
-  updateCount(options) {
-    const id = uniqueId()
-    const GroupArray = []
-
-    if (options.array.length > 0) {
-      options.array.forEach((element, index) => {
-        const getEventType = this.constructor.getEventType(element.type)
-        const { uniqueID, singleID, isSingleCount } = this.constructor.singleCount(element, index, id)
-
-        if (this.constructor.getCondition(element)) {
-          this.selected.push(uniqueID)
-          if (isSingleCount) {
-            GroupArray.push(singleID)
-          }
-          this.updateDom()
-        }
-        element.addEventListener(getEventType, () => {
-          const selectedIndex = this.selected.indexOf(uniqueID)
-          const singleSelectedIndex = GroupArray.indexOf(singleID)
-          if (this.constructor.getCondition(element)) {
-            if (!this.selected.includes(uniqueID)) {
-              this.selected.push(uniqueID)
-            }
-            if (isSingleCount && !GroupArray.includes(singleID)) {
-              GroupArray.push(singleID)
-            }
-            this.updateDom()
-          } else {
-            if (isSingleCount && singleSelectedIndex !== -1) {
-              GroupArray.splice(singleSelectedIndex, 1)
-            }
-            if (!isSingleCount && selectedIndex !== -1) {
-              this.selected.splice(selectedIndex, 1)
-            } else if (GroupArray.length <= 0) {
-              this.selected.splice(selectedIndex, 1)
-            }
-            this.updateDom()
-          }
-        })
+    if (array.length > 0) {
+      array.forEach((element) => {
+        selectedOptions.push(...Array.from(element.options).filter((o) => o.selected))
       })
     }
+
+    return selectedOptions
   }
 
-  updateStatus(options) {
-    const id = uniqueId()
-    const text = options.title
-    const GroupArray = []
-    if (options.array.length > 0) {
-      const labelText = (text) ? text.textContent : null
-      options.array.forEach((element, index) => {
-        const getEventType = this.constructor.getEventType(element.type)
-        const { singleID } = this.constructor.singleCount(element, index, id)
-        if (this.constructor.getCondition(element)) {
-          if (text) {
-            text.textContent = labelText
-            text.innerHTML = `${text.textContent} ${this.checkIcon}`
-          }
-        }
-        element.addEventListener(getEventType, () => {
-          if (this.constructor.getCondition(element)) {
-            if (!GroupArray.includes(singleID)) {
-              GroupArray.push(singleID)
-            }
-          } else if (GroupArray.indexOf(singleID) !== -1) {
-            GroupArray.splice(GroupArray.indexOf(singleID), 1)
-          }
-          if (text) {
-            if (GroupArray.length > 0) {
-              text.textContent = labelText
-              text.innerHTML = `${text.textContent} ${this.checkIcon}`
-            } else {
-              text.textContent = labelText
-            }
-          }
-        })
-      })
+  static moveFocusFn(element) {
+    element.focus()
+    if (document.activeElement !== element) {
+      element.setAttribute('tabindex', '-1')
+      element.focus()
     }
-  }
-
-  selectedItems() {
-    const stateCheck = setInterval(() => {
-      if (document.readyState === 'complete') {
-        clearInterval(stateCheck)
-        this.filtersItems.forEach((filter) => {
-          const button = filter.querySelector('.nsw-filters__item-name')
-          const content = filter.querySelector('.nsw-filters__item-content')
-          const text = content ? content.querySelectorAll('input[type="text"]') : null
-          const selects = content ? content.querySelectorAll('select') : null
-          const checkboxes = content ? content.querySelectorAll('input[type="checkbox"]:not([id$="-all"])') : null
-
-          if (!content) return
-
-          this.updateCount({ array: text, title: button })
-          this.updateCount({ array: selects, title: button })
-          this.updateCount({ array: checkboxes, title: button })
-          this.updateStatus({ array: text, title: button })
-          this.updateStatus({ array: selects, title: button })
-          this.updateStatus({ array: checkboxes, title: button })
-        })
-      }
-    }, 100)
-  }
-
-  clearAllFilters(e) {
-    e.preventDefault()
-    this.filtersItems.forEach((filter) => {
-      const button = filter.querySelector('.nsw-filters__item-name')
-      const buttonCheck = button ? button.querySelector('span.nsw-material-icons') : null
-      const content = filter.querySelector('.nsw-filters__item-content')
-      const text = content.querySelectorAll('input[type="text"]')
-      const selects = content.querySelectorAll('select')
-      const checkboxes = content.querySelectorAll('input[type="checkbox"]:not([id$="-all"])')
-      const allFields = [...text, ...selects, ...checkboxes]
-
-      if (!content) return
-
-      if (allFields.length > 0) {
-        allFields.forEach((input) => {
-          const field = input
-          if (this.constructor.getCondition(field) && (field.type === 'text' || field.type === 'select-one')) {
-            field.value = ''
-          } else {
-            field.click()
-            field.checked = false
-          }
-        })
-      }
-
-      if (buttonCheck) {
-        buttonCheck.remove()
-      }
-
-      this.selected = []
-      this.updateDom()
-    })
   }
 }
 

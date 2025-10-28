@@ -5,6 +5,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://designsystem.nsw.gov.au/nsw-og-image.jpg">
 {{#if meta-index}}  
   <meta name="description" content="{{meta-description}}" />
 {{else}}  
@@ -13,14 +15,28 @@
   <link rel="icon" href="/favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone" rel="stylesheet">
   <link rel="stylesheet" href="/docs/css/docs.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.0.1/dist/cookieconsent.css">
 {{#unless page}}
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/atom-one-light.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/xml.min.js"></script>
 {{/unless}}
+  <!-- Hotjar Tracking Code for NSW Design System -->
+  <script data-category="analytics">
+    (function (h, o, t, j, a, r) {
+      h.hj = h.hj || function () { (h.hj.q = h.hj.q || []).push(arguments) };
+      h._hjSettings = { hjid: 5063548, hjsv: 6 };
+      a = o.getElementsByTagName('head')[0];
+      r = o.createElement('script'); r.async = 1; 
+      r.setAttribute('data-category', 'analytics');
+      r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+      a.appendChild(r);
+    })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+  </script>
+  <script src="/cookie-consent-config.js"></script>
 </head>
 
 <body{{#unless page}} class="nsw-docs{{#if light}} nsw-docs--light{{/if}}"{{/unless}}>
@@ -55,6 +71,17 @@
         <div class="nsw-footer__lower">
           <div class="nsw-container">
             <p>We pay respect to the Traditional Custodians and First Peoples of NSW, and acknowledge their continued connection to their country and culture.</p>
+            <hr>
+            <ul>
+              <li><a href="#cookie-consent" class="js-open-dialog-cookie-consent-preferences" aria-haspopup="dialog">Cookie preferences</a></li>
+              <li><a href="https://github.com/digitalnsw/nsw-design-system" target="_blank">Github</a></li>
+              <li><a href="https://www.figma.com/design/PVrERKnckLTlJSPk12gbtS/NSW-Digital-Design-System?node-id=18830-13437&p=f&t=wz6pwwPdSDJOHzk2-0" target="_blank">Figma</a></li>
+              <li><a href="https://confirmsubscription.com/h/i/73DE733140B743AF" target="_blank">Sign up</a></li>
+              <li><a href="mailto:digital@customerservice.nsw.gov.au">Contact us</a></li>
+            </ul>
+            <div class="nsw-footer__info">
+              <div class="nsw-footer__copyright">Copyright © <script>document.write(new Date().getFullYear())</script></div>
+            </div>
           </div>
         </div>
       </footer>
@@ -66,7 +93,8 @@
     window.NSW.initSite()
   </script>
 {{#unless page}}
-  <script src="https://unpkg.com/@trevoreyre/autocomplete-js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="/docs/js/docs.js"></script>
   <script>
     hljs.initHighlightingOnLoad();

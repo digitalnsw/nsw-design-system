@@ -1,9 +1,11 @@
+@use '../../global/scss/tools' as nsw;
+
 .nsw-list-item {
   position: relative;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  padding: rem(24px) 0;
+  padding: nsw.rem(24px) 0;
   border-bottom: 1px solid var(--nsw-grey-04);
 
   &:first-child {
@@ -11,8 +13,9 @@
   }
 
   &__title {
-    @include font-size('md');
     font-weight: var(--nsw-font-bold);
+    
+    @include nsw.font-size('md');
   }
 
   &__content {
@@ -24,7 +27,7 @@
   &__title,
   &__copy,
   &__tags {
-    margin-top: rem(8px);
+    margin-top: nsw.rem(8px);
 
     &:first-child {
       margin: 0;
@@ -33,7 +36,7 @@
 
   &__label,
   &__info {
-    @include font-size('xs');
+    @include nsw.font-size('xs');
   }
 
   &__label {
@@ -41,12 +44,12 @@
   }
 
   &__image {
-    min-width: rem(250px);
-    width: rem(250px);
-    margin: 0 0 0 rem(24px);
+    min-width: nsw.rem(250px);
+    width: nsw.rem(250px);
+    margin: 0 0 0 nsw.rem(24px);
     display: none;
 
-    @include breakpoint('lg') {
+    @include nsw.breakpoint('lg') {
       display: block;
     }
 
@@ -59,17 +62,15 @@
 
   &--block {
     &:focus-within {
-      @include nsw-focus($offset: false);
-    }
+      @include nsw.nsw-focus($offset: false);
 
-    &:hover {
-      .nsw-list-item__title a {
-        @include nsw-link-hover;
+      .nsw-section--invert & {   
+        @include nsw.nsw-focus($color: var(--nsw-focus-light));
       }
     }
 
     .nsw-list-item__title a {
-      @include pseudo-clickable-block;
+      @include nsw.pseudo-clickable-block;
 
       &:focus {
         outline: none;
@@ -81,7 +82,7 @@
     flex-direction: row-reverse;
 
     .nsw-list-item__image {
-      margin: 0 rem(24px) 0 0;
+      margin: 0 nsw.rem(24px) 0 0;
     }
   }
 }

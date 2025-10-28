@@ -1,0 +1,57 @@
+@use 'sass:color';
+@use '../base/functions' as functions;
+@use '../settings/palette' as palette;
+
+// Fuchsia Theme Colours
+$fuchsia-dark: palette.$fuchsia-01 !default;
+$fuchsia-light: palette.$fuchsia-04 !default;
+$fuchsia-supplementary: palette.$fuchsia-02 !default;
+$fuchsia-accent: palette.$orange-02 !default;
+
+// Fuchsia State Colours
+$fuchsia-link: $fuchsia-dark !default;
+$fuchsia-link-light: color.mix(#ffffff, $fuchsia-dark, 90%) !default;
+$fuchsia-visited: functions.a11y-color(color.adjust(color.adjust(color.adjust($fuchsia-dark, $hue: 4deg), $saturation: -48.34%), $lightness: 21.57%), #ffffff) !default;
+$fuchsia-visited-light: color.mix(#ffffff, $fuchsia-visited, 80%) !default;
+$fuchsia-hover: color.adjust($fuchsia-dark, $alpha: -0.9) !default;
+$fuchsia-hover-light: color.adjust($fuchsia-link-light, $alpha: -0.9) !default;
+$fuchsia-active: color.adjust($fuchsia-dark, $alpha: -0.8) !default;
+$fuchsia-active-light: color.adjust($fuchsia-link-light, $alpha: -0.8) !default;
+$fuchsia-focus: color.adjust(color.adjust($fuchsia-dark, $hue: -22deg), $lightness: 15.49%) !default;
+$fuchsia-focus-light: color.mix(#ffffff, $fuchsia-focus, 80%);
+$fuchsia-disabled: color.mix(#ffffff, $fuchsia-dark, 50%) !default;
+
+$fuchsia-colors: (
+  'brand-dark': $fuchsia-dark,
+  'brand-light': $fuchsia-light,
+  'brand-supplementary': $fuchsia-supplementary,
+  'brand-accent': $fuchsia-accent,
+  'link': $fuchsia-link,
+  'link-light': $fuchsia-link-light,
+  'visited': $fuchsia-visited,
+  'visited-light': $fuchsia-visited-light,
+  'hover': $fuchsia-hover,
+  'hover-light': $fuchsia-hover-light,
+  'active': $fuchsia-active,
+  'active-light': $fuchsia-active-light,
+  'focus': $fuchsia-focus,
+  'focus-light': $fuchsia-focus-light,
+  'disabled': $fuchsia-disabled
+) !default;
+
+$fuchsia-colors-rgb: functions.to-rgb-list($fuchsia-colors) !default;
+
+.fuchsia {
+  @each $color, $value in $fuchsia-colors {
+    --nsw-#{$color}: #{$value};
+  }
+
+  @each $color, $value in $fuchsia-colors-rgb {
+    --nsw-#{$color}-rgb: #{$value};
+  }
+}
+
+.fuchsia-accent {
+  --nsw-brand-accent: #{palette.$fuchsia-02};
+  --nsw-brand-accent-rgb: #{functions.to-rgb(palette.$fuchsia-02)};
+}

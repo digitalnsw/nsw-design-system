@@ -1,14 +1,16 @@
+@use '../../global/scss/tools' as nsw;
+
 .nsw-media {
   width: 100%;
-  margin: rem(16px) auto;
+  margin: nsw.rem(16px) auto;
 
   .nsw-section--invert & {    
     color: var(--nsw-text-dark);
   }
 
-  @include breakpoint('md') {
-    margin-top: rem(32px);
-    margin-bottom: rem(32px);
+  @include nsw.breakpoint('md') {
+    margin-top: nsw.rem(32px);
+    margin-bottom: nsw.rem(32px);
 
     &--90 {
       width: 90%;
@@ -30,16 +32,16 @@
     &--left-40,
     &--left-30 {
       margin-left: 0;
-      padding-right: rem(16px);
-      margin-right: rem(16px);
+      padding-right: nsw.rem(16px);
+      margin-right: nsw.rem(16px);
       float: left;
     }
 
     &--right-50,
     &--right-40,
     &--right-30 {
-      padding-left: rem(16px);
-      margin-left: rem(16px);
+      padding-left: nsw.rem(16px);
+      margin-left: nsw.rem(16px);
       margin-right: 0;
       float: right;
     }
@@ -88,9 +90,10 @@
   }
 
   figcaption {
-    @include font-size('xs');
     background-color: var(--nsw-off-white);
-    padding: rem(16px);
+    padding: nsw.rem(16px);
+    
+    @include nsw.font-size('xs');
   }
 
   &--light {

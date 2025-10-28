@@ -1,5 +1,7 @@
+@use '../../global/scss/tools' as nsw;
+
 .nsw-pagination {
-  @include component-spacing();
+  @include nsw.component-spacing();
 
   ul {
     display: flex;
@@ -14,7 +16,7 @@
     margin: 0;
 
     > span {
-      padding: rem(4px);
+      padding: nsw.rem(4px);
     }
   }
 
@@ -22,14 +24,18 @@
     display: block;
     text-decoration: none;
     text-align: center;
-    padding: rem(4px);
-    min-width: rem(30px);
+    padding: nsw.rem(4px);
+    min-width: nsw.rem(30px);
     border-radius: var(--nsw-border-radius);
-    color: var(--nsw-brand-dark);
 
     &:hover {
-      @include nsw-hover;
+      @include nsw.nsw-hover;
       outline-width: 0;
+
+      .nsw-section--invert & {    
+        @include nsw.nsw-hover-light;
+        outline-width: 0;
+      }
     }
 
     &:focus {
@@ -48,8 +54,8 @@
         content: '';
         position: absolute;
         bottom: 0;
-        left: rem(4px);
-        right: rem(4px);
+        left: nsw.rem(4px);
+        right: nsw.rem(4px);
         height: 2px;
         background-color: var(--nsw-brand-accent);        
       }

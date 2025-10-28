@@ -1,24 +1,35 @@
+@use '../../global/scss/tools' as nsw;
+
 .nsw-footer {
   hr {
-    margin: rem(16px) 0;
+    margin: nsw.rem(16px) 0;
     height: 1px;
     border: 0;
     background-color: var(--nsw-grey-03);
   }
 
+  a:not(.nsw-icon-button) {
+    line-height: 1.5;
+    padding: nsw.rem(8px) nsw.rem(24px) nsw.rem(8px) 0;
+
+    @include nsw.breakpoint('md') {
+      padding: nsw.rem(4px) nsw.rem(4px) nsw.rem(4px) 0;
+    }
+  }
+
   &__upper {
     background-color: var(--nsw-white);
     border-top: solid 1px var(--nsw-grey-03);
-    padding-top: rem(24px);
+    padding-top: nsw.rem(24px);
 
     .nsw-container {
-      padding-left: rem(8px);
-      padding-right: rem(8px);
+      padding-left: nsw.rem(8px);
+      padding-right: nsw.rem(8px);
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
 
-      @include breakpoint('lg') {
+      @include nsw.breakpoint('lg') {
         padding-left: 0;
         padding-right: 0;
       }
@@ -26,26 +37,27 @@
   }
 
   &__group {
-    padding: 0 rem(8px) rem(16px) rem(8px);
+    padding: 0 nsw.rem(8px) nsw.rem(16px) nsw.rem(8px);
     flex: 1 0 auto;
-    min-width: rem(256px);
+    min-width: nsw.rem(256px);
     max-width: 50%;
 
-    @include breakpoint('md') {
+    @include nsw.breakpoint('md') {
       flex-basis: 50%;
       min-width: auto;
     }
 
-    @include breakpoint('lg') {
-      padding: 0 rem(16px) rem(24px) rem(16px);
+    @include nsw.breakpoint('lg') {
+      padding: 0 nsw.rem(16px) nsw.rem(24px) nsw.rem(16px);
       flex-basis: 25%;
     }
 
     ul {
-      @include font-size('xs');
       list-style: none;
-      margin: rem(4px) 0 0 0;
+      margin: nsw.rem(4px) 0 0 0;
       padding: 0;
+
+      @include nsw.font-size('xs');
 
       a {
         font-weight: var(--nsw-font-normal);
@@ -58,32 +70,33 @@
   }
 
   &__heading {
-    @include font-size('sm');
+    @include nsw.font-size('sm');
   }
 
   &__lower {
-    @include font-size('xxs');
     background-color: var(--nsw-grey-01);
     color: var(--nsw-text-light);
-    padding: rem(16px) 0 rem(24px) 0;
+    padding: nsw.rem(16px) 0 nsw.rem(24px) 0;
+
+    @include nsw.font-size('xs');
 
     a {
-      @include link-light;
+      @include nsw.link-light;
     }
 
     p {
-      margin: rem(12px) 0;
+      margin: nsw.rem(12px) 0;
     }
 
     ul {
       list-style: none;
-      margin: rem(16px) rem(-8px) 0 rem(-8px);
+      margin: nsw.rem(16px) nsw.rem(-8px) 0 nsw.rem(-8px);
       padding: 0;
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
 
-      @include breakpoint('md') {
+      @include nsw.breakpoint('md') {
         margin-left: 0;
         margin-right: 0;
       }
@@ -92,11 +105,11 @@
     li {
       flex: 1 0 50%;
       max-width: 50%;
-      padding: 0 rem(8px);
-      margin: 0 0 rem(16px) 0;
+      padding: 0 nsw.rem(8px);
+      margin: 0 0 nsw.rem(16px) 0;
 
-      @include breakpoint('md') {
-        margin-right: rem(24px);
+      @include nsw.breakpoint('md') {
+        margin-right: nsw.rem(24px);
         padding: 0;
         flex: 0 0 auto;
         max-width: none;
@@ -105,31 +118,37 @@
   }
 
   &__links {
-    @include breakpoint('md') {
+    @include nsw.breakpoint('md') {
       display: flex;
       justify-content: space-between;
-      margin-top: rem(-16px);
+      margin-top: nsw.rem(-16px);
     }
+  }
+
+  &__acknowledgement {
+    padding-bottom: nsw.rem(12px);
+
+    @include nsw.font-size('sm');
   }
 
   &__social {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    margin: 0 rem(-12px);
-    padding: rem(8px) 0 rem(12px) 0;
+    margin: 0 nsw.rem(-12px);
+    padding: nsw.rem(8px) 0 nsw.rem(12px) 0;
 
-    @include breakpoint('md') {
-      padding-bottom: rem(8px);
+    @include nsw.breakpoint('md') {
+      padding-bottom: nsw.rem(8px);
     }
 
     a {
-      margin: 0 rem(4px);
+      margin: 0 nsw.rem(4px);
     }
   }
 
   &__info {
-    @include breakpoint('md') {
+    @include nsw.breakpoint('md') {
       display: flex;
       flex-wrap: nowrap;
     }
@@ -137,14 +156,14 @@
 
   &__copyright {
     flex: 1 1 auto;
-    margin: rem(12px) 0;
+    margin: nsw.rem(12px) 0;
   }
 
   &__built {
-    flex: 0 0 rem(200px);
-    margin: rem(12px) 0;
+    flex: 0 0 nsw.rem(200px);
+    margin: nsw.rem(12px) 0;
 
-    @include breakpoint('md') {
+    @include nsw.breakpoint('md') {
       text-align: right;
     }
   }
@@ -165,7 +184,7 @@
       color: var(--nsw-text-dark);
 
       a {
-        @include link-dark;
+        @include nsw.link-dark;
       }
     }
   }

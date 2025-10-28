@@ -1,0 +1,425 @@
+/* stylelint-disable max-nesting-depth */
+
+@use '../../global/scss/tools' as nsw;
+
+.nsw-carousel {
+  --nsw-carousel-item-auto-size: 300px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 0 0.5rem 3rem;
+
+  &-container {
+    margin: 0 -0.5rem;
+    overflow: hidden;
+  }
+
+  * {
+    box-sizing: border-box;
+
+    &::after,
+    &::before {
+      box-sizing: border-box;
+    }
+  }
+
+  ol,
+  ul,
+  menu {
+    list-style: none;
+    padding: 0;
+  }
+  
+  button,
+  input,
+  textarea,
+  select {
+    color: inherit;
+    line-height: inherit;
+    appearance: none;
+  }
+
+  button {
+    padding: 0;
+  }
+  
+  img,
+  video,
+  svg {
+    display: block;
+    max-width: 100%;
+  }
+
+  .nsw-icon {
+    height: var(--size, 1em);
+    width: var(--size, 1em);
+    display: inline-block;
+    color: var(--nsw-brand-dark);
+    fill: currentColor;
+    line-height: 1;
+    flex-shrink: 0;
+    max-width: initial;
+  }
+
+  > nav,
+  &__counter > nav {
+    order: 1;
+    margin-bottom: 0.5rem;
+    margin-right: 0.25rem;
+
+    @include nsw.breakpoint('md') {
+      margin-bottom: 0.75rem;
+      margin-right: 0;
+    }
+
+    ul {
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+
+      li.nsw-carousel__title {
+        margin-left: 0;
+        margin-bottom: 0;
+        margin-inline-end: auto;
+      }
+
+      li {
+        margin: nsw.rem(8px) nsw.rem(4px) nsw.rem(4px) nsw.rem(4px);
+      }
+    }
+  }
+
+  &__header {
+    order: 1;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    margin-right: 0.25rem;
+
+    @include nsw.breakpoint('md') {
+      margin-bottom: 0.75rem;
+      margin-right: 0;
+    }
+
+    .nsw-carousel__title {
+      margin: 0;
+      margin-inline-end: auto;
+
+      h2,
+      h3 {
+        margin: 0;
+      }
+    }
+
+    nav {
+      ul {
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+
+        li {
+          margin: nsw.rem(8px) nsw.rem(4px) nsw.rem(4px) nsw.rem(4px);
+        }
+      }
+    }
+  }
+
+  &__wrapper {
+    order: 2;
+    width: calc(100% - 6rem);
+    margin: 0 auto;
+
+    @include nsw.breakpoint('md') {
+      width: 100%;
+    }
+  }
+
+  &__counter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @include nsw.breakpoint('md') {
+      width: 100%;
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 1.5rem;
+    will-change: transform;
+
+    @include nsw.breakpoint('md') {
+      gap: 2rem;
+    }
+
+    &--animating {
+      transition-property: transform;
+      transition-duration: 0.5s;
+      transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+  }
+  
+  &__item {
+    flex-shrink: 0;
+    width: var(--nsw-carousel-item-auto-size, 300px);
+    margin-right: 1.5rem;
+    margin-bottom: 0.5rem;
+    opacity: 0;
+    margin-bottom: 0;
+  }
+
+  &.nsw-carousel--loaded .nsw-carousel__item {
+    opacity: 1;
+  }
+
+  &[data-drag=on] .nsw-carousel__item {
+    user-select: none;
+  
+    img {
+      pointer-events: none;
+    }
+  }
+
+  &:not(.nsw-carousel--is-dragging) .nsw-carousel__list:not(.nsw-carousel__list--animating) .nsw-carousel__item[tabindex='-1'] > * {
+    visibility: visible;
+
+    @include nsw.breakpoint('md') {
+      visibility: hidden;
+    }
+  }
+
+  &__control {
+    --size: 40px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    background-color: var(--nsw-white);
+    border-radius: 50%;
+    z-index: 1;
+    border: 2px solid var(--nsw-brand-dark);
+    cursor: pointer;
+    
+    &:hover {
+      @include nsw.nsw-hover();
+    }
+
+    &:focus {
+      @include nsw.nsw-focus(false);
+      outline-offset: 1px;
+
+      @include nsw.breakpoint('md') {
+        outline: solid 3px var(--nsw-focus);
+        outline-offset: 2px;
+      }
+    }
+    
+    &[disabled] {
+      pointer-events: none;
+      opacity: 0.5;
+      box-shadow: none;
+      border: 2px solid rgba(var(--nsw-palette-blue-01-rgb), 0.2);
+
+      svg > polyline {
+        stroke: rgba(var(--nsw-palette-blue-01-rgb), 0.2);
+      }
+    }
+    
+    .nsw-icon {
+      --size: 20px;
+      display: block;
+      margin: auto;
+    }
+
+    .nsw-section--invert & {
+      border: 2px solid var(--nsw-white);
+
+      &:hover {
+        @include nsw.nsw-hover-light();
+
+        .nsw-icon {
+          color: var(--nsw-white);
+        }
+      }
+
+      &:focus {
+        @include nsw.nsw-focus($color: var(--nsw-focus-light));
+      }
+
+      .nsw-icon {
+        &:hover {
+          color: var(--nsw-white);
+        }
+      }
+    }
+  }
+
+  &__navigation {
+    order: 3;
+    position: absolute;
+    bottom: 0.5em;
+    left: 50%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    z-index: 2;
+    transform: translateX(-50%);
+
+    @include nsw.breakpoint('md') {
+      bottom: 0.8em;
+    }
+
+    li {
+      margin-top: 0;
+      line-height: 0;
+    }
+
+    &--pagination {
+      bottom: 0.3em;
+
+      @include nsw.breakpoint('md') {
+        bottom: 0.5em;
+      }
+
+      .nsw-carousel__nav-item button {
+        background-color: transparent;
+        width: nsw.rem(24px);
+        height: nsw.rem(24px);
+        color: var(--nsw-brand-dark);
+        font-size: 12px;
+        border-radius: var(--nsw-border-radius);
+        border: 1px solid var(--nsw-brand-dark);
+        text-align: center;
+        margin: 0 nsw.rem(4px);
+
+        &:focus {
+          @include nsw.nsw-focus(false);
+          outline-offset: 2px;
+        }
+
+        .nsw-section--invert & {
+          background-color: var(--nsw-white);
+          border: nsw.rem(1px) solid var(--nsw-white);
+
+          &:focus {
+            @include nsw.nsw-focus($color: var(--nsw-focus-light));
+            outline-offset: 2px;
+          }
+        }
+      }
+
+      .nsw-carousel__nav-item--selected {
+        button {
+          background-color: var(--nsw-brand-dark);
+          color: var(--nsw-white);
+
+          .nsw-section--invert & {
+            background-color: transparent;
+            border: nsw.rem(1px) solid var(--nsw-white);
+          }
+        }
+      }
+    }
+  }
+  
+  &__nav-item {
+    cursor: pointer;
+
+    button {
+      background-color: transparent;
+      width: nsw.rem(16px);
+      height: nsw.rem(16px);
+      padding: 4px;
+      border-radius: 50%;
+      border: 2px solid var(--nsw-brand-dark);
+      transition: all 300ms ease-in-out;
+      cursor: pointer;
+      line-height: 0;
+      margin: nsw.rem(4px);
+
+      &:focus {
+        @include nsw.nsw-focus(false);
+        outline-offset: 2px;
+      }
+
+      &:hover {
+        @include nsw.nsw-hover();
+      }
+      
+      .nsw-section--invert & {
+        border: 2px solid var(--nsw-white);
+
+        &:hover {
+          @include nsw.nsw-hover-light();
+        }
+
+        &:focus {
+          @include nsw.nsw-focus($color: var(--nsw-focus-light));
+          outline-offset: 2px;
+        }
+      }
+    }
+
+    &--selected button {
+      background-color: var(--nsw-brand-dark);
+      
+      &:hover {
+        background-color: var(--nsw-brand-dark);
+      }
+
+      .nsw-section--invert & {
+        background-color: var(--nsw-white);
+
+        &:hover {
+          background-color: var(--nsw-white);
+        }
+      }
+    }
+  }
+
+  &.nsw-carousel--hide-controls {
+    .nsw-carousel__navigation,
+    .nsw-carousel__control {
+      display: none;
+    }
+  }
+
+  &--view-more {
+    padding: nsw.rem(8px);
+    color: var(--nsw-brand-dark);
+    display: inline-flex;
+    gap: nsw.rem(8px);
+    align-items: center;
+    text-decoration: none;
+    cursor: pointer;
+
+    @include nsw.breakpoint('md') {
+      padding: 0;
+    }
+
+    &:hover {
+      @include nsw.nsw-hover;
+      outline-width: 0;
+    }
+
+    &:focus {
+      outline-width: 3px;
+    }
+
+    span {
+      text-decoration: underline;
+    }
+
+    span.nsw-material-icons {
+      bottom: nsw.rem(-5px);
+    }
+
+    .nsw-material-icons {
+      text-decoration: none;
+      bottom: 0;
+    }
+  }
+}

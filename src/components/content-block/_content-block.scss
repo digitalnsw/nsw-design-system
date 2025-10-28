@@ -1,7 +1,13 @@
+@use '../../global/scss/tools' as nsw;
+
 .nsw-content-block {
+  --nsw-icon-colour-dark: var(--nsw-text-dark);
+  --nsw-icon-colour-accent: var(--nsw-brand-supplementary);
+
   &__title {
-    @include font-size('lg');
     font-weight: var(--nsw-font-bold);
+    
+    @include nsw.font-size('lg');
   }
 
   &__list {
@@ -10,17 +16,17 @@
 
     li {
       margin: 0;
-      padding: rem(8px) 0 rem(8px) rem(14px);
+      padding: nsw.rem(8px) 0 nsw.rem(8px) nsw.rem(14px);
       position: relative;
 
       &::before {
         content: '';
         position: absolute;
-        width: rem(4px);
-        height: rem(4px);
+        width: nsw.rem(4px);
+        height: nsw.rem(4px);
         border-radius: 100%;
         background-color: var(--nsw-text-dark);
-        top: rem(18px);
+        top: nsw.rem(18px);
         left: 0;
       
         .nsw-section--invert & {    
@@ -31,27 +37,31 @@
   }
 
   &__link {
-    margin-top: rem(16px);
+    margin-top: nsw.rem(16px);
   }
 
   &__image {
-    max-height: rem(200px);
-    margin-bottom: rem(24px);
+    max-height: nsw.rem(200px);
+    margin-bottom: nsw.rem(24px);
 
     img {
       width: 100%;
-      height: rem(200px);
+      height: nsw.rem(200px);
       object-fit: cover;      
     }
   }
 
   &__icon {
-    max-width: rem(64px);
-    max-height: rem(64px);
+    max-width: nsw.rem(64px);
+    max-height: nsw.rem(64px);
 
     svg {
-      max-width: rem(64px);
-      max-height: rem(64px);
+      max-width: nsw.rem(64px);
+      max-height: nsw.rem(64px);
+
+      .nsw-section--invert & {
+        --nsw-icon-colour-dark: var(--nsw-text-light);
+      }
     }
   }
 }

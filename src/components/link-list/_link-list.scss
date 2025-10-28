@@ -1,13 +1,17 @@
+@use 'sass:map';
+@use '../../global/scss/tools' as nsw;
+
 .nsw-link-list {
-  @include component-spacing();
+  @include nsw.component-spacing();
 
   &__title {
-    @include font-size('lg');
     font-weight: var(--nsw-font-bold);
-    padding-bottom: rem(16px);
+    padding-bottom: nsw.rem(16px);
     
-    @include breakpoint('md') {
-      padding-bottom: rem(24px);
+    @include nsw.font-size('lg');
+    
+    @include nsw.breakpoint('md') {
+      padding-bottom: nsw.rem(24px);
     }
   }
 
@@ -26,9 +30,8 @@
     }
   }
 
-
   a {
-    padding: rem(16px);
+    padding: nsw.rem(16px);
     color: var(--nsw-brand-dark);
     display: flex;
     justify-content: space-between;
@@ -36,7 +39,7 @@
     text-decoration: none;
 
     &:hover {
-      @include nsw-hover;
+      @include nsw.nsw-hover;
       outline-width: 0;
     }
 
@@ -46,19 +49,35 @@
 
     span {
       text-decoration: underline;
+
+      span.nsw-material-icons {
+        bottom: nsw.rem(-5px);
+      }
     }
 
     .nsw-material-icons {
       text-decoration: none;
+      bottom: 0;
     }
 
     .nsw-section--invert & {    
       color: var(--nsw-text-light);
+
+      &:hover {
+        @include nsw.nsw-hover-light;
+        outline-width: 0;
+      }
     }
   }
 
+  .nsw-section--brand-light & {
+    li {
+      border-color: var(--nsw-brand-dark);
+    } 
+  }
+
   .nsw-material-icons {
-    font-size: rem(map-get($nsw-icon-sizes, 20));
-    margin-left: rem(16px);
+    font-size: nsw.rem(map.get(nsw.$nsw-icon-sizes, 20));
+    margin-left: nsw.rem(16px);
   }
 }

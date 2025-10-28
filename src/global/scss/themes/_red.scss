@@ -1,0 +1,57 @@
+@use 'sass:color';
+@use '../base/functions' as functions;
+@use '../settings/palette' as palette;
+
+// Red Theme Colours
+$red-dark: palette.$red-01 !default;
+$red-light: palette.$red-04 !default;
+$red-supplementary: palette.$red-02 !default;
+$red-accent: palette.$brown-02 !default;
+
+// Red State Colours
+$red-link: $red-dark !default;
+$red-link-light: color.mix(#ffffff, $red-dark, 90%) !default;
+$red-visited: functions.a11y-color(color.adjust(color.adjust($red-dark, $hue: 31deg), $lightness: 31.57%), #ffffff) !default;
+$red-visited-light: color.mix(#ffffff, $red-visited, 80%) !default;
+$red-hover: color.adjust($red-dark, $alpha: -0.9) !default;
+$red-hover-light: color.adjust($red-link-light, $alpha: -0.9) !default;
+$red-active: color.adjust($red-dark, $alpha: -0.8) !default;
+$red-active-light: color.adjust($red-link-light, $alpha: -0.8) !default;
+$red-focus: color.adjust(color.adjust($red-dark, $hue: -22deg), $lightness: 15.49%) !default;
+$red-focus-light: color.mix(#ffffff, $red-focus, 80%);
+$red-disabled: color.mix(#ffffff, $red-dark, 50%) !default;
+
+$red-colors: (
+  'brand-dark': $red-dark,
+  'brand-light': $red-light,
+  'brand-supplementary': $red-supplementary,
+  'brand-accent': $red-accent,
+  'link': $red-link,
+  'link-light': $red-link-light,
+  'visited': $red-visited,
+  'visited-light': $red-visited-light,
+  'hover': $red-hover,
+  'hover-light': $red-hover-light,
+  'active': $red-active,
+  'active-light': $red-active-light,
+  'focus': $red-focus,
+  'focus-light': $red-focus-light,
+  'disabled': $red-disabled
+) !default;
+
+$red-colors-rgb: functions.to-rgb-list($red-colors) !default;
+
+.red {
+  @each $color, $value in $red-colors {
+    --nsw-#{$color}: #{$value};
+  }
+
+  @each $color, $value in $red-colors-rgb {
+    --nsw-#{$color}-rgb: #{$value};
+  }
+}
+
+.red-accent {
+  --nsw-brand-accent: #{palette.$red-02};
+  --nsw-brand-accent-rgb: #{functions.to-rgb(palette.$red-02)};
+}

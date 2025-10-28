@@ -1,0 +1,60 @@
+---
+title: Support list
+width: wide
+tabs: true
+directory: support-list
+intro: Recognising sponsorship and partnership support from the NSW Government and external organisations.
+theme: true
+figma: https://www.figma.com/design/PVrERKnckLTlJSPk12gbtS/NSW-Digital-Design-System?node-id=105472-25725&t=OQfWPzugqGIBhWcD-1
+meta-description: Highlights NSW Government and external organisations that have provided support including sponsorship, partnership, or funding.
+meta-index: true
+model:
+  list-1: ../../components/support-list/json/support-list-1.json
+  list-2: ../../components/support-list/json/support-list-2.json
+  list-3: ../../components/support-list/json/support-list-3.json
+  list-4: ../../components/support-list/json/support-list-4.json
+---
+
+<h2>Masterbrand descriptors with label</h2>
+<div class="nsw-grid nsw-p-sm nsw-m-bottom-xs">
+  <div class="nsw-col-sm-8">
+    <p><i>For Masterbrand or Co-brand brand websites</i></p>
+    <p>When the NSW Government Waratah logo is already included in the header, and NSW Government agencies have provided support, use 'NSW Government' descriptor label instead as the first element in support section.</p>
+  </div>
+</div>
+{{#>_docs-example}}
+{{>_support-list model.list-1}}
+{{/_docs-example}}
+
+<h2>Masterbrand descriptors with NSW Government Waratah logo</h2>
+<div class="nsw-grid nsw-p-sm nsw-m-bottom-xs">
+  <div class="nsw-col-sm-8">
+    <p><i>For Endorsed, Independent and Stand-alone brand websites</i></p>
+    <p>When the NSW Government Waratah logo is not included in the header and NSW Government agencies have provided support, the waratah logo is the first element in the support section.</p>
+  </div>
+</div>
+{{#>_docs-example}}
+{{>_support-list model.list-2 includeWaratah="true"}}
+{{/_docs-example}}
+
+<h2>Support logos only</h2>
+<div class="nsw-grid nsw-p-sm nsw-m-bottom-xs">
+  <div class="nsw-col-sm-8">
+    <p><i>For Masterbrand or Co-brand brand websites</i></p>
+    <p>When the NSW Government Waratah logo is included in the header and no NSW Government Masterbrand agencies have provided support, display only the logos of any supporting organisations beneath the section heading.</p>
+  </div>
+</div>
+{{#>_docs-example}}
+{{>_support-list model.list-3}}
+{{/_docs-example}}
+
+<h2>Support logos with NSW Government Waratah Logo</h2>
+<div class="nsw-grid nsw-p-sm nsw-m-bottom-xs">
+  <div class="nsw-col-sm-8">
+    <p><i>For Endorsed, Independent and Stand-alone brand websites</i></p>
+    <p>When the NSW Government Waratah logo is not included in the header and the NSW Government have provided support, the Waratah logo is the first element in the support section.</p>
+  </div>
+</div>
+{{#>_docs-example}}
+{{>_support-list model.list-4 includeWaratah="true"}}
+{{/_docs-example}}

@@ -1,101 +1,16 @@
-$nsw-buttons: (
-  dark: (
-    text-color: var(--nsw-text-light),
-    text-color-hover: var(--nsw-text-light),
-    background: var(--nsw-brand-dark),
-    background-hover: var(--nsw-brand-dark),
-    border: transparent,
-    border-hover: transparent,
-    focus: var(--nsw-focus),
-    hover: white
-  ),
-  dark-outline: (
-    text-color: var(--nsw-brand-dark),
-    text-color-hover: var(--nsw-text-light),
-    background: transparent,
-    background-hover: var(--nsw-brand-dark),
-    border: var(--nsw-brand-dark),
-    focus: var(--nsw-focus),
-    border-hover: transparent
-  ),
-  dark-outline-solid: (
-    text-color: var(--nsw-brand-dark),
-    text-color-hover: var(--nsw-text-light),
-    background: var(--nsw-white),
-    background-hover: var(--nsw-brand-dark),
-    border: var(--nsw-brand-dark),
-    focus: var(--nsw-focus),
-    border-hover: transparent
-  ),
-  light: (
-    text-color: var(--nsw-text-dark),
-    text-color-hover: var(--nsw-text-dark),
-    background: var(--nsw-brand-light),
-    background-hover: var(--nsw-brand-light),
-    border: transparent,
-    border-hover: transparent,
-    focus: var(--nsw-focus),
-    hover: black
-  ),
-  light-outline: (
-    text-color: var(--nsw-brand-light),
-    text-color-hover: var(--nsw-text-dark),
-    background: transparent,
-    background-hover: var(--nsw-brand-light),
-    border: var(--nsw-brand-light),
-    focus: var(--nsw-focus),
-    border-hover: transparent
-  ),
-  white: (
-    text-color: var(--nsw-text-dark),
-    text-color-hover: var(--nsw-text-dark),
-    background: var(--nsw-white),
-    background-hover: var(--nsw-white),
-    border: transparent,
-    border-hover: transparent,
-    focus: var(--nsw-white),
-    hover: black
-  ),
-  white-outline: (
-    text-color: var(--nsw-white),
-    text-color-hover: var(--nsw-text-dark),
-    background: transparent,
-    background-hover: var(--nsw-white),
-    border: var(--nsw-white),
-    border-hover: transparent,
-    focus: var(--nsw-white),
-    hover: black
-  ),
-  danger: (
-    text-color: var(--nsw-text-light),
-    text-color-hover: var(--nsw-text-light),
-    background: var(--nsw-status-error),
-    background-hover: var(--nsw-status-error),
-    border: transparent,
-    border-hover: transparent,
-    focus: var(--nsw-focus),
-    hover: white
-  ),
-  info: (
-    text-color: var(--nsw-text-light),
-    text-color-hover: var(--nsw-text-light),
-    background: var(--nsw-status-info),
-    background-hover: var(--nsw-status-info),
-    border: transparent,
-    border-hover: transparent,
-    focus: var(--nsw-focus),
-    hover: white
-  ),  
-);
+@use 'sass:map';
+@use '../../global/scss/tools' as nsw;
+
+/* stylelint-disable string-quotes */
+/* stylelint-disable sh-waqar/declaration-use-variable */
 
 .nsw-button {
-  @include font-size('sm');
   border-radius: var(--nsw-border-radius);
   font-weight: var(--nsw-font-bold);
   border: solid 2px transparent;
   white-space: normal;
   text-decoration: none;
-  padding: rem(10px) rem(22px);
+  padding: nsw.rem(10px) nsw.rem(22px);
   cursor: pointer;
   -webkit-appearance: none; /* stylelint-disable-line property-no-vendor-prefix */
   appearance: none;
@@ -106,8 +21,10 @@ $nsw-buttons: (
   user-select: none;
   display: inline-block;
 
+  @include nsw.font-size('sm');
+
   &:not(.nsw-button--flex) {
-    min-width: rem(124px);
+    min-width: nsw.rem(124px);
   }
 
   &:hover {
@@ -115,7 +32,7 @@ $nsw-buttons: (
   }
 
   &:focus {
-    @include nsw-focus;
+    @include nsw.nsw-focus;
   }
 
   &:disabled,
@@ -125,17 +42,17 @@ $nsw-buttons: (
   }
 
   .nsw-material-icons {
-    font-size: rem(map-get($nsw-icon-sizes, 24));
-    line-height: rem(10px);
+    font-size: nsw.rem(map.get(nsw.$nsw-icon-sizes, 24));
+    line-height: nsw.rem(10px);
     position: relative;
-    bottom: rem(-7px);
+    bottom: nsw.rem(-7px);
 
     &:first-child {
-      margin-right: rem(8px);
+      margin-right: nsw.rem(8px);
     }
 
     &:last-child {
-      margin-left: rem(8px);
+      margin-left: nsw.rem(8px);
     }
 
     &:only-child {
@@ -144,18 +61,19 @@ $nsw-buttons: (
   }
 
   &--small {
-    @include font-size('xs');
-    padding: rem(5px);
+    padding: nsw.rem(5px);
+    
+    @include nsw.font-size('xs');
 
     .nsw-material-icons {
-      font-size: rem(map-get($nsw-icon-sizes, 20));
+      font-size: nsw.rem(map.get(nsw.$nsw-icon-sizes, 20));
 
       &:first-child {
-        margin-right: rem(4px);
+        margin-right: nsw.rem(4px);
       }
 
       &:last-child {
-        margin-left: rem(4px);
+        margin-left: nsw.rem(4px);
       }
 
       &:only-child {
@@ -178,70 +96,236 @@ $nsw-buttons: (
     display: block;
     width: 100%;
 
-    @include breakpoint($nsw-desktop-breakpoint) {
+    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
       display: inline-block;
       width: auto;
     }
   }
 }
 
-.nsw-section--invert .nsw-button,
 .nsw-button {
-  @each $color, $property-map in $nsw-buttons {
+  @each $color, $property-map in nsw.$nsw-buttons {
     &--#{"" + $color} {
-      color: map-get($property-map, text-color);
-      background-color: map-get($property-map, background);
-      border-color: map-get($property-map, border);
+      color: map.get($property-map, text-color);
+      background-color: map.get($property-map, background);
+      border-color: map.get($property-map, border);
 
       &:visited {
-        color: map-get($property-map, text-color);
+        color: map.get($property-map, text-color);
       }
 
       &:focus {
-        outline-color: map-get($property-map, focus);
+        outline-color: map.get($property-map, focus);
       }
 
       &:hover {
-        color: map-get($property-map, text-color-hover);
-        background-color: map-get($property-map, background-hover);
-        border-color: map-get($property-map, border-hover);
-        @if map-get($property-map, hover) == white {
+        color: map.get($property-map, text-color-hover);
+        background-color: map.get($property-map, background-hover);
+        border-color: map.get($property-map, border-hover);
+        @if map.get($property-map, hover) == white {
           background-image: linear-gradient(rgba(var(--nsw-white-rgb), 0.15), rgba(var(--nsw-white-rgb), 0.15));
         }
-        @if map-get($property-map, hover) == black {
+        @if map.get($property-map, hover) == black {
           background-image: linear-gradient(rgba(var(--nsw-black-rgb), 0.07), rgba(var(--nsw-black-rgb), 0.07));
         }
 
         .nsw-material-icons {
-          color: map-get($property-map, text-color-hover);
+          color: map.get($property-map, text-color-hover);
         }
       }
 
       &:active {
-        color: map-get($property-map, text-color-hover);
-        background-color: map-get($property-map, background-hover);
-        border-color: map-get($property-map, border-hover);
-        @if map-get($property-map, hover) == white {
+        color: map.get($property-map, text-color-hover);
+        background-color: map.get($property-map, background-hover);
+        border-color: map.get($property-map, border-hover);
+        @if map.get($property-map, hover) == white {
           background-image: linear-gradient(rgba(var(--nsw-white-rgb), 0.075), rgba(var(--nsw-white-rgb), 0.075));
         }
-        @if map-get($property-map, hover) == black {
+        @if map.get($property-map, hover) == black {
           background-image: linear-gradient(rgba(var(--nsw-black-rgb), 0.035), rgba(var(--nsw-black-rgb), 0.035));
         }
 
         .nsw-material-icons {
-          color: map-get($property-map, text-color-hover);
+          color: map.get($property-map, text-color-hover);
         }
       }
 
       &:disabled,
       &.disabled {
-        color: map-get($property-map, text-color);
-        background-color: map-get($property-map, background);
-        border-color: map-get($property-map, border);
+        color: map.get($property-map, text-color);
+        background-color: map.get($property-map, background);
+        border-color: map.get($property-map, border);
       }
 
       .nsw-material-icons {
-        color: map-get($property-map, text-color);
+        color: map.get($property-map, text-color);
+      }
+    }
+  }
+}
+
+.nsw-section--invert .nsw-button {
+  @each $color, $property-map in nsw.$nsw-buttons {
+    &--#{"" + $color} {
+      color: map.get($property-map, text-color-invert);
+      background-color: map.get($property-map, background-invert);
+      border-color: map.get($property-map, border-invert);
+
+      &:visited {
+        color: map.get($property-map, text-color-invert);
+      }
+
+      &:focus {
+        outline-color: map.get($property-map, focus-invert);
+      }
+
+      &:hover {
+        color: map.get($property-map, text-color-hover-invert);
+        background-color: map.get($property-map, background-hover-invert);
+        border-color: map.get($property-map, border-hover-invert);
+        @if map.get($property-map, hover-invert) == white {
+          background-image: linear-gradient(rgba(var(--nsw-white-rgb), 0.15), rgba(var(--nsw-white-rgb), 0.15));
+        }
+        @if map.get($property-map, hover-invert) == black {
+          background-image: linear-gradient(rgba(var(--nsw-black-rgb), 0.07), rgba(var(--nsw-black-rgb), 0.07));
+        }
+
+        .nsw-material-icons {
+          color: map.get($property-map, text-color-hover-invert);
+        }
+      }
+
+      &:active {
+        color: map.get($property-map, text-color-hover-invert);
+        background-color: map.get($property-map, background-hover-invert);
+        border-color: map.get($property-map, border-hover-invert);
+        @if map.get($property-map, hover) == white {
+          background-image: linear-gradient(rgba(var(--nsw-white-rgb), 0.075), rgba(var(--nsw-white-rgb), 0.075));
+        }
+        @if map.get($property-map, hover) == black {
+          background-image: linear-gradient(rgba(var(--nsw-black-rgb), 0.035), rgba(var(--nsw-black-rgb), 0.035));
+        }
+
+        .nsw-material-icons {
+          color: map.get($property-map, text-color-hover-invert);
+        }
+      }
+
+      &:disabled,
+      &.disabled {
+        color: map.get($property-map, text-color-invert);
+        background-color: map.get($property-map, background-invert);
+        border-color: map.get($property-map, border-invert);
+      }
+
+      .nsw-material-icons {
+        color: map.get($property-map, text-color-invert);
+      }
+    }
+  }
+}
+
+.nsw-section--invert.nsw-section--brand-supplementary {
+  .nsw-button--light {
+    color: var(--nsw-section-bg);
+    background-color: var(--nsw-white);
+
+    .nsw-material-icons { 
+      color: var(--nsw-section-bg);
+    }
+
+    &:hover {
+      color: var(--nsw-section-bg);
+      background-color: var(--nsw-brand-light);
+
+      a,
+      span,
+      button {
+        color: var(--nsw-section-bg);
+      }
+    }
+  }
+
+  .nsw-button--light-outline {
+    color: var(--nsw-white);
+    border-color: var(--nsw-white);
+
+    span {
+      color: var(--nsw-white);
+    }
+
+    .nsw-material-icons { 
+      color: var(--nsw-white);
+    }
+    
+    &:hover {
+      color: var(--nsw-section-bg);
+      background-color: var(--nsw-white);
+
+      span,
+      button {
+        color: var(--nsw-section-bg);
+      }
+    }
+  }
+}
+
+.nsw-dialog .nsw-button {
+  @each $color, $property-map in nsw.$nsw-buttons {
+    &--#{"" + $color} {
+      color: map.get($property-map, text-color);
+      background-color: map.get($property-map, background);
+      border-color: map.get($property-map, border);
+
+      &:visited {
+        color: map.get($property-map, text-color);
+      }
+
+      &:focus {
+        outline-color: map.get($property-map, focus);
+      }
+
+      &:hover {
+        color: map.get($property-map, text-color-hover);
+        background-color: map.get($property-map, background-hover);
+        border-color: map.get($property-map, border-hover);
+        @if map.get($property-map, hover) == white {
+          background-image: linear-gradient(rgba(var(--nsw-white-rgb), 0.15), rgba(var(--nsw-white-rgb), 0.15));
+        }
+        @if map.get($property-map, hover) == black {
+          background-image: linear-gradient(rgba(var(--nsw-black-rgb), 0.07), rgba(var(--nsw-black-rgb), 0.07));
+        }
+
+        .nsw-material-icons {
+          color: map.get($property-map, text-color-hover);
+        }
+      }
+
+      &:active {
+        color: map.get($property-map, text-color-hover);
+        background-color: map.get($property-map, background-hover);
+        border-color: map.get($property-map, border-hover);
+        @if map.get($property-map, hover) == white {
+          background-image: linear-gradient(rgba(var(--nsw-white-rgb), 0.075), rgba(var(--nsw-white-rgb), 0.075));
+        }
+        @if map.get($property-map, hover) == black {
+          background-image: linear-gradient(rgba(var(--nsw-black-rgb), 0.035), rgba(var(--nsw-black-rgb), 0.035));
+        }
+
+        .nsw-material-icons {
+          color: map.get($property-map, text-color-hover);
+        }
+      }
+
+      &:disabled,
+      &.disabled {
+        color: map.get($property-map, text-color);
+        background-color: map.get($property-map, background);
+        border-color: map.get($property-map, border);
+      }
+
+      .nsw-material-icons {
+        color: map.get($property-map, text-color);
       }
     }
   }

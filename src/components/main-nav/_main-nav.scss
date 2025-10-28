@@ -1,9 +1,11 @@
+@use '../../global/scss/tools' as nsw;
+
 .main-nav-active {
   overflow: hidden;
 }
 
 .nsw-main-nav {
-  @include z-index('middle');
+  @include nsw.z-index('middle');
   position: absolute;
   left: 0;
   top: 0;
@@ -24,7 +26,7 @@
   &.no-scroll {
     overflow-y: hidden;
   
-    @include breakpoint($nsw-desktop-breakpoint) {
+    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
       overflow-y: visible;
     }
   }
@@ -33,7 +35,7 @@
     transform: translateX(-100%);
   }
 
-  @include breakpoint($nsw-desktop-breakpoint) {
+  @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
     position: relative;
     transform: none;
     background-color: var(--nsw-off-white);
@@ -46,23 +48,23 @@
   }
 
   &__header {
-    padding: rem(8px) rem(16px);
+    padding: nsw.rem(8px) nsw.rem(16px);
     border-bottom: solid 2px var(--nsw-brand-dark);
     display: flex;
     align-items: center;
     justify-content: space-between;
 
-    @include breakpoint($nsw-desktop-breakpoint) {
+    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
       display: none;
     }
 
     .nsw-icon-button {
       &:first-child {
-        margin-left: rem(-16px);
+        margin-left: nsw.rem(-16px);
       }
 
       &:last-child {
-        margin-right: rem(-16px);
+        margin-right: nsw.rem(-16px);
       }
     }
   }
@@ -72,8 +74,8 @@
     padding: 0;
     margin: 0;
 
-    @include breakpoint($nsw-desktop-breakpoint) {
-      @include container(0);
+    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+      @include nsw.container(0);
       display: flex;
       flex-direction: row;
       align-items: stretch;
@@ -81,15 +83,25 @@
       position: relative;
     }
 
+    > li {      
+      @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+        &.active {
+          box-shadow: inset 0 -4px 0 var(--nsw-brand-dark);
+        }
+      }
+    }
+
     > li > a {      
-      @include breakpoint($nsw-desktop-breakpoint) {
+      @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
         .nsw-material-icons {
           transform: rotate(90deg);
-          margin-left: rem(6px);
+          margin-left: nsw.rem(6px);
+          transition: transform nsw.$nsw-transition-duration, color nsw.$nsw-transition-duration;
         }
 
         &.active {
           background-color: var(--nsw-white);
+          box-shadow: inset 0 -4px 0 var(--nsw-brand-dark);
         }
 
         &.active .nsw-material-icons {
@@ -109,12 +121,12 @@
     margin: 0;
     border-bottom: solid 1px var(--nsw-grey-04);
 
-    @include breakpoint($nsw-desktop-breakpoint) {
+    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
       border: 0;
     }
 
     a {
-      padding: rem(16px);
+      padding: nsw.rem(16px);
       color: var(--nsw-text-dark);
       text-decoration: none;
       display: flex;
@@ -124,15 +136,15 @@
       flex-wrap: nowrap;
 
       &:hover {
-        @include nsw-hover;
+        @include nsw.nsw-hover;
       }
 
       .nsw-material-icons {
         color: var(--nsw-brand-dark);
-        margin-right: rem(-8px);
+        margin-right: nsw.rem(-8px);
       }
 
-      @include breakpoint($nsw-desktop-breakpoint) {
+      @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
         font-weight: var(--nsw-font-bold);
       }
     }
@@ -141,8 +153,8 @@
   a {
     font-weight: var(--nsw-font-normal);
 
-    @include breakpoint($nsw-desktop-breakpoint) {
-      @include z-index('middle');
+    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+      @include nsw.z-index('middle');
       position: relative;
     }
 
@@ -158,15 +170,16 @@
   &__title {
     font-weight: var(--nsw-font-bold);
 
-    @include breakpoint($nsw-desktop-breakpoint) {
-      @include font-size('md');
+    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
       display: inline-flex;
+      
+      @include nsw.font-size('md');
     }      
 
     .nsw-main-nav__sub-nav & {
       border-bottom: solid 1px var(--nsw-grey-04);
 
-      @include breakpoint($nsw-desktop-breakpoint) {
+      @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
         border-bottom: 0;
       }      
     }
@@ -177,7 +190,7 @@
       .nsw-material-icons {
         display: none;
 
-        @include breakpoint($nsw-desktop-breakpoint) {
+        @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
           display: block;
         }  
       }
@@ -185,17 +198,18 @@
   }
 
   &__description {
-    @include font-size('xs');
-    margin-top: rem(16px);
+    margin-top: nsw.rem(16px);
     display: none;
+    
+    @include nsw.font-size('xs');
 
-    @include breakpoint($nsw-desktop-breakpoint) {
+    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
       display: block;
     }
   }
 
   &__sub-nav {    
-    @include z-index;
+    @include nsw.z-index;
     background-color: var(--nsw-white);
     position: absolute;
     top: 0;
@@ -215,14 +229,14 @@
     &.no-scroll {
       overflow-y: hidden;
     
-      @include breakpoint($nsw-desktop-breakpoint) {
+      @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
         overflow-y: visible;
       }
     }
 
-    @include breakpoint($nsw-desktop-breakpoint) {
-      @include container;
-      padding: rem(48) rem(40);
+    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+      @include nsw.container;
+      padding: nsw.rem(48) nsw.rem(40);
       top: 100%;
       background-color: var(--nsw-white);
       box-shadow: 0 4px 9px -5px rgba(var(--nsw-black-rgb), 0.4);
@@ -238,8 +252,8 @@
     }
 
     ul {      
-      @include breakpoint($nsw-desktop-breakpoint) {
-        margin-top: rem(32px);
+      @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+        margin-top: nsw.rem(32px);
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
@@ -251,7 +265,7 @@
     }
 
     li {      
-      @include breakpoint($nsw-desktop-breakpoint) {
+      @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
         width: 32%;
         border-top: solid 1px var(--nsw-grey-04);
 
@@ -261,7 +275,7 @@
         }
 
         &:nth-last-child(-n+3) {
-          border-bottom: solid 1px var(--nsw-grey-04);
+          box-shadow: inset 0 -1px 0 var(--nsw-grey-04);
         }
 
         a {
@@ -271,20 +285,20 @@
     }
 
     .nsw-main-nav__title {
-      @include breakpoint($nsw-desktop-breakpoint) {
+      @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
         a {      
           padding: 0;
           color: var(--nsw-brand-dark);
         }
 
         .nsw-material-icons {
-          margin: 0 0 0 rem(12px);
+          margin: 0 0 0 nsw.rem(12px);
         }
       }
     }
 
     .nsw-main-nav__sub-nav {
-      @include breakpoint($nsw-desktop-breakpoint) {
+      @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
         display: none;
       }
     }

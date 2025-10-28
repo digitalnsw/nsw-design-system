@@ -1,6 +1,6 @@
 <h3>Default</h3>
 
-<h4>Text Fields</h4>
+<h4>Text field</h4>
 {{#>_docs-example separated=true}}
 <div class="nsw-form">
   <div class="nsw-form__group">
@@ -17,6 +17,85 @@
       helper-text="Maximum 500 characters"
     }}
   </div>
+</div>
+{{/_docs-example}}
+
+<h4>Input group</h4>
+{{#>_docs-example separated=true}}
+<div class="nsw-form">
+  <div class="nsw-form__group">
+    {{>_input-group
+      id="form-input-group-1"
+      label="Search"
+    }}
+  </div>
+  <div class="nsw-form__group">
+    {{>_input-group
+      id="form-input-group-icon-1"
+      label="Search"
+      icon="search"
+    }}
+  </div>
+  <div class="nsw-form__group">
+    {{>_input-group
+      id="form-input-group-icon-2"
+      label="Search"
+      icon="search"
+      white="true"
+    }}
+  </div>
+</div>
+{{/_docs-example}}
+
+<h4>Predictive list</h4>
+{{#>_docs-example separated=true}}
+<div class="nsw-form">
+  <div class="nsw-form__group">
+    <label class="nsw-form__label" for="form-predictive-text-1">Suburb</label>
+    <div class="nsw-form__predictive">
+      <input class="nsw-form__input" type="text" id="form-predictive-text-1" name="form-predictive-text-1" value="Horn" aria-autocomplete="list" autocomplete="off">
+      <ul class="nsw-form__predictive-list">
+        <li><a href="#"><span>Horn</span>sby</a></li>
+        <li><a href="#"><span>Horn</span>sby Heights</a></li>
+        <li><a href="#"><span>Horn</span>ingsea Park</a></li>
+      </ul>
+    </div>
+  </div>
+  <br><br><br><br><br><br>
+  <div class="nsw-form__group">
+    <div class="nsw-form__predictive">
+      {{>_input-group
+        id="form-predictive-group-1"
+        label="Search"
+        value="Tran"
+        predictive=true
+      }}
+      <ul class="nsw-form__predictive-list">
+        <li><a href="#"><span>Tran</span>sport</a></li>
+        <li><a href="#">Road <span>Tran</span>sport</a></li>
+        <li><a href="#">Public <span>Tran</span>sport</a></li>
+      </ul>
+    </div>
+  </div>
+  <br><br><br><br><br><br>
+  <div class="nsw-form__group">
+    <div class="nsw-form__predictive">
+      {{>_input-group
+        id="form-predictive-group-icon-1"
+        label="Search"
+        value="Govern"
+        icon="search"
+        large=true
+        predictive=true
+      }}
+      <ul class="nsw-form__predictive-list nsw-form__predictive-list--large">
+        <li><a href="#"><span>Govern</span>ment</a></li>
+        <li><a href="#"><span>Govern</span>ment payments</a></li>
+        <li><a href="#"><span>Govern</span>ance</a></li>
+      </ul>
+    </div>
+  </div>
+  <br><br><br><br><br><br>
 </div>
 {{/_docs-example}}
 
@@ -46,7 +125,7 @@
 </div>
 {{/_docs-example}}
 
-<h4>Checkboxes</h4>
+<h4>Checkbox</h4>
 {{#>_docs-example separated=true}}
 <div class="nsw-form">
   <div class="nsw-form__group">

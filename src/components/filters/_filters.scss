@@ -1,48 +1,54 @@
+@use 'sass:map';
+@use '../../global/scss/tools' as nsw;
+
 .nsw-filters {
   .nsw-layout__sidebar & {
-    margin: rem(-8px) 0 rem(-16px) 0;
+    margin: nsw.rem(-8px) 0 nsw.rem(-16px) 0;
 
-    @include breakpoint('lg') {
+    @include nsw.breakpoint('lg') {
       margin: 0;
     }
   }
 
   &__title {
-    @include font-size('lg');
     font-weight: var(--nsw-font-bold);
-    padding: rem(24px) 0;
+    padding: nsw.rem(24px) 0;
 
-    @include breakpoint('lg') {
-      @include font-size('md');
-      margin-top: rem(24px);
+    @include nsw.font-size('lg');
+
+    @include nsw.breakpoint('lg') {
+      margin-top: nsw.rem(24px);
+      
+      @include nsw.font-size('md');
     }
 
     .nsw-filters--down & {
       display: none;
       
-      @include breakpoint('lg') {
+      @include nsw.breakpoint('lg') {
         display: block;
       }
     }
   }
 
   &__controls {
-    @include breakpoint('lg') {
+    @include nsw.breakpoint('lg') {
       display: none;
     }
 
     button {
-      @include font-size('md');
       font-weight: var(--nsw-font-bold);
       background-color: var(--nsw-off-white);
       width: 100%;
       border: 0;
-      padding: rem(16px);
+      padding: nsw.rem(16px);
       display: flex;
       align-items: center;
       text-decoration: none;
       text-align: left;
       cursor: pointer;
+
+      @include nsw.font-size('md');
       
       .nsw-section--invert & {    
         color: var(--nsw-text-dark);
@@ -51,7 +57,7 @@
 
       span {
         text-decoration: none;
-        padding-left: rem(8px);
+        padding-left: nsw.rem(8px);
       }
 
       &:hover:enabled {
@@ -106,16 +112,21 @@
       }
 
       &:focus {
-        @include nsw-focus($offset: false);
+        @include nsw.nsw-focus($offset: false);
+
+        .nsw-section--invert & {   
+          @include nsw.nsw-focus($color: var(--nsw-focus-light));
+        }
       }
     }
 
     .nsw-material-icons {
-      font-size: rem(map-get($nsw-icon-sizes, 30));
+      font-size: nsw.rem(map.get(nsw.$nsw-icon-sizes, 30));
       border-radius: var(--nsw-border-radius);
       padding: 0;
       text-decoration: none;
       outline: 2px solid var(--nsw-brand-dark);
+      transition: transform nsw.$nsw-transition-duration, color nsw.$nsw-transition-duration;
 
       &:last-child {
         border: 0;
@@ -151,6 +162,7 @@
       .nsw-material-icons {
         color: var(--nsw-text-light);
         outline: 2px solid var(--nsw-white);
+        transition: transform nsw.$nsw-transition-duration, color nsw.$nsw-transition-duration;
 
         .nsw-section--invert & {
           background-color: var(--nsw-brand-light);
@@ -173,16 +185,16 @@
 
   &__back {
     .nsw-filters--fixed & {
-      @include z-index('upper');
+      @include nsw.z-index('upper');
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
       background-color: var(--nsw-white);
-      padding: rem(16px) rem(8px);
+      padding: nsw.rem(16px) nsw.rem(8px);
       border-bottom: 1px solid var(--nsw-grey-04);
 
-      @include breakpoint('lg') {
+      @include nsw.breakpoint('lg') {
         display: none;
       }
 
@@ -196,20 +208,20 @@
     }
 
     .nsw-filters--right & {
-      @include z-index('upper');
+      @include nsw.z-index('upper');
       position: absolute;
-      top: rem(16px);
-      padding-right: rem(16px);
+      top: nsw.rem(16px);
+      padding-right: nsw.rem(16px);
       background-color: var(--nsw-white);
-      transition: $nsw-transition-duration;
+      transition: nsw.$nsw-transition-duration;
       right: -100vw;
 
-      @include breakpoint('lg') {
+      @include nsw.breakpoint('lg') {
         display: none;
       }
 
       .nsw-material-icons {
-        font-size: rem(map-get($nsw-icon-sizes, 30));
+        font-size: nsw.rem(map.get(nsw.$nsw-icon-sizes, 30));
       }
 
       .nsw-section--invert.nsw-section--grey-01 & {    
@@ -229,11 +241,11 @@
   &__wrapper {
     .nsw-filters--fixed &,
     .nsw-filters--right & {
-      @include z-index('middle');
+      @include nsw.z-index('middle');
       position: fixed;
       overflow-y: auto;
       background-color: var(--nsw-white);
-      scroll-padding-bottom: rem(122px);
+      scroll-padding-bottom: nsw.rem(122px);
 
       .nsw-section--invert.nsw-section--grey-01 & {    
         background-color: var(--nsw-grey-01);
@@ -243,7 +255,7 @@
         background-color: var(--nsw-brand-dark);
       }
 
-      @include breakpoint('lg') {
+      @include nsw.breakpoint('lg') {
         position: static;
         background-color: transparent;
         overflow-y: visible;
@@ -260,9 +272,9 @@
       bottom: 0;
       left: 0;
       right: 0;
-      padding: rem(73px) rem(16px) rem(97px) rem(16px);
+      padding: nsw.rem(73px) nsw.rem(16px) nsw.rem(97px) nsw.rem(16px);
 
-      @include breakpoint('lg') {
+      @include nsw.breakpoint('lg') {
         display: block;
         padding: 0;
       }
@@ -272,12 +284,12 @@
       top: 0;
       bottom: 0;
       width: 100%;
-      transition: $nsw-transition-duration;
-      padding: 0 rem(16px) rem(97px) rem(16px);
+      transition: nsw.$nsw-transition-duration;
+      padding: 0 nsw.rem(16px) nsw.rem(97px) nsw.rem(16px);
       right: -100vw;
       visibility: hidden;
 
-      @include breakpoint('lg') {
+      @include nsw.breakpoint('lg') {
         display: block;
         visibility: visible;
         padding: 0;
@@ -294,16 +306,16 @@
     }
 
     .nsw-filters--down & {
-      @include z-index('middle');
+      @include nsw.z-index('middle');
       display: none;
       background-color: var(--nsw-off-white);
-      padding: 0 rem(16px);
+      padding: 0 nsw.rem(16px);
       
       .nsw-section--invert & {    
         background-color: transparent;
       }
 
-      @include breakpoint('lg') {
+      @include nsw.breakpoint('lg') {
         display: block;
         position: static;
         background-color: transparent;
@@ -322,7 +334,7 @@
 
   &__item {
     border-top: 1px solid var(--nsw-grey-04);
-    padding: rem(24px) 0;
+    padding: nsw.rem(24px) 0;
 
     &-button {
       font-size: var(--nsw-font-size-sm-mobile);
@@ -335,19 +347,28 @@
       border: 0;
       background: none;
       padding: 0;
+      cursor: pointer;
 
-      @include breakpoint('lg') {
+      @include nsw.breakpoint('lg') {
         font-size: var(--nsw-font-size-sm-desktop);
         line-height: var(--nsw-line-height-sm-desktop);
       }
 
       .nsw-material-icons {
-        font-size: rem(map-get($nsw-icon-sizes, 30));
+        font-size: nsw.rem(map.get(nsw.$nsw-icon-sizes, 30));
+
+        &.nsw-material-icons--valid {
+          font-size: nsw.rem(map.get(nsw.$nsw-icon-sizes, 20));
+        }
       }
 
       &:focus {
-        @include nsw-focus;
+        @include nsw.nsw-focus;
       }
+
+      .nsw-section--invert &:focus {   
+        @include nsw.nsw-focus($color: var(--nsw-focus-light));
+      }  
 
       &.active {
         >.nsw-material-icons:last-child {
@@ -362,32 +383,39 @@
     }
 
     &-button ~ &-content {
-      padding: rem(6px) 0 0 0;
+      padding: nsw.rem(6px) 0 0 0;
     }
 
     span:not(.nsw-material-icons) {
       display: flex;
       align-items: center;
-      padding: 0;
+    }
 
-      .nsw-material-icons:last-child {
-        font-size: rem(map-get($nsw-icon-sizes, 20));
-        background-color: var(--nsw-white);
+    .nsw-material-icons {
+      margin-left: nsw.rem(8px);
+      border-radius: 50%;
+      width: nsw.rem(16px);
+      height: nsw.rem(16px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: transform nsw.$nsw-transition-duration, color nsw.$nsw-transition-duration;
+
+      &--error {
+        background-color: var(--nsw-status-error-bg);
+        color: var(--nsw-status-error);
+      }
+  
+      &--valid {
+        background-color: var(--nsw-status-success-bg);
         color: var(--nsw-status-success);
-        margin-left: rem(8px);
-        border-radius: 50%;
-        width: rem(16px);
-        height: rem(16px);
-        display: flex;
-        justify-content: center;
-        align-items: center;
       }
     }
 
     .nsw-filters--down & {
       border-top: 1px solid var(--nsw-grey-03);
 
-      @include breakpoint('lg') {
+      @include nsw.breakpoint('lg') {
         border-top: 1px solid var(--nsw-grey-04);
         display: block;
       }
@@ -395,7 +423,7 @@
       &:first-child {
         border: 0;
 
-        @include breakpoint('lg') {
+        @include nsw.breakpoint('lg') {
           border-top: 1px solid var(--nsw-grey-04);
         }
       }
@@ -403,36 +431,36 @@
   }
 
   &__all {
-    padding-top: rem(16px);
+    padding-top: nsw.rem(16px);
   }
 
   &__cancel {
-    padding-bottom: rem(32px);
+    padding-bottom: nsw.rem(32px);
     border-top: 1px solid var(--nsw-grey-04);
-    padding: rem(32px) 0;
+    padding: nsw.rem(32px) 0;
 
     .nsw-filters--down & {
       border-top: 1px solid var(--nsw-grey-03);
 
-      @include breakpoint('lg') {
+      @include nsw.breakpoint('lg') {
         border-top: 1px solid var(--nsw-grey-04);
       }
     }
 
     button {
-      @include link-button;
+      @include nsw.link-button;
 
       .nsw-section--invert & {
-        @include link-light;
+        @include nsw.link-light;
       }
     }
   }
 
   &__accept {
-    padding: rem(32px) 0;
+    padding: nsw.rem(32px) 0;
     border-top: 1px solid var(--nsw-grey-04);
 
-    @include breakpoint('lg') {
+    @include nsw.breakpoint('lg') {
       ~.nsw-filters__cancel {
         border: 0;
         padding-top: 0;
@@ -465,7 +493,6 @@
         }
 
         &:hover {
-          color: var(--nsw-text-light);
           background-image: linear-gradient(rgba(var(--nsw-white-rgb), 0.15), rgba(var(--nsw-white-rgb), 0.15));
         }
       }
@@ -473,10 +500,10 @@
 
     .nsw-filters--fixed &,
     .nsw-filters--right & {
-      @include z-index('upper');
+      @include nsw.z-index('upper');
       position: fixed;
       background-color: var(--nsw-white);
-      padding: rem(24px) rem(16px);
+      padding: nsw.rem(24px) nsw.rem(16px);
 
       .nsw-section--invert.nsw-section--grey-01 & {    
         background-color: var(--nsw-grey-01);
@@ -486,9 +513,9 @@
         background-color: var(--nsw-brand-dark);
       }
 
-      @include breakpoint('lg') {
+      @include nsw.breakpoint('lg') {
         position: static;
-        padding: rem(32px) 0;
+        padding: nsw.rem(32px) 0;
         background-color: transparent;
 
         .nsw-section--invert & {
@@ -507,7 +534,7 @@
       border-top: 1px solid var(--nsw-grey-04);
       bottom: 0;
       width: 100%;
-      transition: $nsw-transition-duration;
+      transition: nsw.$nsw-transition-duration;
       right: -100vw;
     }
 
@@ -518,7 +545,7 @@
     .nsw-filters--down & {
       border-top: 1px solid var(--nsw-grey-03);
 
-      @include breakpoint('lg') {
+      @include nsw.breakpoint('lg') {
         border-top: 1px solid var(--nsw-grey-04);
       }
 
@@ -531,11 +558,12 @@
 
   &__more,
   &__less {
-    @include link-button;
-    margin-top: rem(24px);
+    margin-top: nsw.rem(24px);
+    
+    @include nsw.link-button;
 
     .nsw-section--invert & {
-      @include link-light;
+      @include nsw.link-light;
     }
   }
 
@@ -544,7 +572,7 @@
       background-color: var(--nsw-white);
       color: var(--nsw-text-dark);
 
-      @include breakpoint('lg') {
+      @include nsw.breakpoint('lg') {
         color: var(--nsw-text-light);
         background-color: transparent;
       }
@@ -554,18 +582,18 @@
       .nsw-section--invert & {
         color: var(--nsw-text-dark);
       
-        @include breakpoint('lg') {
+        @include nsw.breakpoint('lg') {
           color: var(--nsw-text-light);
         }
       }
     }
 
     .nsw-filters__cancel button {
-      @include link-button;
+      @include nsw.link-button;
 
       .nsw-section--invert & {
-        @include breakpoint('lg') {
-          @include link-light;
+        @include nsw.breakpoint('lg') {
+          @include nsw.link-light;
         }
       }
     }
@@ -575,7 +603,7 @@
         background-color: var(--nsw-grey-01);
         color: var(--nsw-text-light);
 
-        @include breakpoint('lg') {
+        @include nsw.breakpoint('lg') {
           background-color: var(--nsw-white);
           color: var(--nsw-grey-01);
         }
@@ -585,23 +613,19 @@
         background-color: var(--nsw-brand-dark);
         color: var(--nsw-text-light);
 
-        @include breakpoint('lg') {
+        @include nsw.breakpoint('lg') {
           background-color: var(--nsw-white);
           color: var(--nsw-brand-dark);
         }
       }
     }
   }
-
-  .hidden {
-    display: none;
-  }
 }
 
 .filters-open {
   overflow: hidden;
 
-  @include breakpoint('lg') {
+  @include nsw.breakpoint('lg') {
     overflow: unset;
   }
 }

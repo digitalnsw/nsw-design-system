@@ -4,11 +4,27 @@ width: narrow
 tabs: true
 directory: breadcrumbs
 intro: Breadcrumbs help users to understand where they are within a website’s structure.
+theme: true
 figma: https://www.figma.com/file/PVrERKnckLTlJSPk12gbtS/NSW-Digital-Design-System?node-id=21298%3A25012
-react: https://digitalnsw.github.io/nsw-design-system-react/?path=/docs/content-breadcrumb--breadcrumbs
-model: json/breadcrumbs.json
+model:
+  breadcrumbs-2: json/breadcrumbs-2.json
 meta-description: Breadcrumbs help users to understand where they are within a website’s structure.
 meta-index: true
 ---
 
-{{#>_docs-example}}{{>_breadcrumbs model}}{{/_docs-example}}
+<div class="nsw-tabs js-tabs">
+  <ul class="nsw-tabs__list">
+    <li><a href="#breadcrumbs-brand-light" class="js-tabs-fixed">Brand Light</a></li>
+    <li><a href="#breadcrumbs-brand-dark" class="js-tabs-fixed">Brand Dark</a></li>
+  </ul>
+  <section id="breadcrumbs-brand-light" class="nsw-tabs__content nsw-tabs__content--side-flush">
+{{#>_docs-example}}
+{{>_breadcrumbs model.breadcrumbs-2}}
+{{/_docs-example}}
+  </section>
+  <section id="breadcrumbs-brand-dark" class="nsw-tabs__content nsw-tabs__content--side-flush">
+{{#>_docs-example brand-dark="true" invert="true"}}
+{{>_breadcrumbs model.breadcrumbs-2}}
+{{/_docs-example}}   
+  </section>
+</div>

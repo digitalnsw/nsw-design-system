@@ -1,0 +1,26 @@
+---
+title: Support list
+width: wide
+model:
+  list-1: ../../components/support-list/json/support-list-1.json
+  list-2: ../../components/support-list/json/support-list-2.json
+  list-3: ../../components/support-list/json/support-list-3.json
+  list-4: ../../components/support-list/json/support-list-4.json
+page: true
+---
+
+{{#>_theme}}
+{{#>_layout-container}}
+{{>_support-list model.list-1}}
+{{>_support-list model.list-2 includeWaratah="true"}}
+{{>_support-list model.list-3}}
+{{>_support-list model.list-4 includeWaratah="true"}}
+{{/_layout-container}}
+
+{{#>_layout-container brand-dark="true" invert="true"}}
+{{>_support-list model.list-1}}
+{{>_support-list model.list-2 includeWaratah="true"}}
+{{>_support-list model.list-3}}
+{{>_support-list model.list-4 includeWaratah="true"}}
+{{/_layout-container}}
+{{/_theme}}

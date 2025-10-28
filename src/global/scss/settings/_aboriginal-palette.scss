@@ -1,0 +1,123 @@
+@use 'sass:map';
+@use '../base/functions' as functions;
+@use '../settings/palette' as palette;
+
+// Red palette
+$earth-red: #950906 !default;
+$ember-red: #e1261c !default;
+$coral-pink: #fbb4b3 !default;
+$galah-pink: #fdd9d9 !default;
+
+// Orange palette
+$deep-orange: #882600 !default;
+$orange-ochre: #ee6314 !default;
+$clay-orange: #f4aa7d !default;
+$sunset-orange: #f9d4be !default;
+
+// Brown palette
+$riverbed-brown: #552105 !default;
+$firewood-brown: #9e5332 !default;
+$claystone-brown: #d39165 !default;
+$macadamia-brown: #e9c8b2 !default;
+
+// Yellow palette
+$bush-honey-yellow: #895e00 !default;
+$sandstone-yellow: #fea927 !default;
+$golden-wattle-yellow: #fee48c !default;
+$sunbeam-yellow: #fff1c5 !default;
+
+// Green palette
+$bushland-green: #215834 !default;
+$marshland-lime: #78a146 !default;
+$gumleaf-green: #b5cda4 !default;
+$saltbush-green: #dae6d1 !default;
+
+// Blue palette
+$billabong-blue: #00405e !default;
+$saltwater-blue: #0d6791 !default;
+$light-water-blue: #84c5d1 !default;
+$coastal-blue: #c1e2e8 !default;
+
+// Purple palette
+$bush-plum: #472642 !default;
+$spirit-lilac: #9a5e93 !default;
+$lilli-pilli-purple: #c99ac2 !default;
+$dusk-purple: #e4cce0 !default;
+
+// Grey palette
+$charcoal-grey: #272727 !default;
+$emu-grey: #555555 !default;
+$ash-grey: #ccc6c2 !default;
+$smoke-grey: #e5e3e0 !default;
+
+$aboriginal-colors: (
+  // Red
+  'earth-red': $earth-red,
+  'ember-red': $ember-red,
+  'coral-pink': $coral-pink,
+  'galah-pink': $galah-pink,
+
+  // Orange
+  'deep-orange': $deep-orange,
+  'orange-ochre': $orange-ochre,
+  'clay-orange': $clay-orange,
+  'sunset-orange': $sunset-orange,
+
+  // Yellow
+  'bush-honey-yellow': $bush-honey-yellow,
+  'sandstone-yellow': $sandstone-yellow,
+  'golden-wattle-yellow': $golden-wattle-yellow,
+  'sunbeam-yellow': $sunbeam-yellow,
+
+  // Brown
+  'riverbed-brown': $riverbed-brown,
+  'firewood-brown': $firewood-brown,
+  'claystone-brown': $claystone-brown,
+  'macadamia-brown': $macadamia-brown,
+
+  // Grey
+  'charcoal-grey': $charcoal-grey,
+  'emu-grey': $emu-grey,
+  'ash-grey': $ash-grey,
+  'smoke-grey': $smoke-grey,
+
+  // Green
+  'bushland-green': $bushland-green,
+  'marshland-lime': $marshland-lime,
+  'gumleaf-green': $gumleaf-green,
+  'saltbush-green': $saltbush-green,
+
+  // Blue
+  'billabong-blue': $billabong-blue,
+  'saltwater-blue': $saltwater-blue,
+  'light-water-blue': $light-water-blue,
+  'coastal-blue': $coastal-blue,
+
+  // Purple
+  'bush-plum': $bush-plum,
+  'spirit-lilac': $spirit-lilac,
+  'lilli-pilli-purple': $lilli-pilli-purple,
+  'dusk-purple': $dusk-purple,
+
+  // Keep Black, Off-white, White
+  'black': palette.$black,
+  'off-white': palette.$grey-50,
+  'white': palette.$white
+) !default;
+
+
+$aboriginal-colors-rgb: () !default;
+
+@each $key, $value in $aboriginal-colors {
+  $aboriginal-colors-rgb: map.merge($aboriginal-colors-rgb, ($key: functions.to-rgb($value)));
+}
+
+:root {
+  @each $color, $value in $aboriginal-colors {
+    --nsw-aboriginal-palette-#{$color}: #{$value};
+  }
+
+  @each $color, $value in $aboriginal-colors-rgb {
+    --nsw-aboriginal-palette-#{$color}-rgb: #{$value};
+  }
+}

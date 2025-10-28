@@ -1,9 +1,10 @@
+@use '../../global/scss/tools' as nsw;
+
 .dialog-active {
   overflow: hidden;
 }
 
 .nsw-dialog {
-  @include z-index('upper');
   display: none;
   position: fixed;
   left: 0;
@@ -13,10 +14,20 @@
   background-color: rgba(var(--nsw-black-rgb), 0.7);
   justify-content: center;
   align-items: flex-end;
+  
+  @include nsw.z-index('upper');
 
-  @include breakpoint('sm') {
+  .nsw-section--invert & {
+    color: var(--nsw-text-dark);
+
+    .nsw-icon-button {
+      @include nsw.link-dark();
+    }
+  }
+
+  @include nsw.breakpoint('sm') {
     align-items: center;
-    padding: 0 rem(16px);
+    padding: 0 nsw.rem(16px);
   }
 
   &.active {
@@ -26,59 +37,59 @@
   &__wrapper {
     background-color: var(--nsw-white);
     width: 100%;
-    max-width: rem(736px);
+    max-width: nsw.rem(736px);
     position: relative;
-    padding-bottom: rem(145px);
+    padding-bottom: nsw.rem(145px);
 
-    @include breakpoint('sm') {
+    @include nsw.breakpoint('sm') {
       border-radius: var(--nsw-border-radius);
       align-items: center;
       max-height: 90%;
     }
 
-    @include breakpoint('md') {
-      padding-bottom: rem(81px);
+    @include nsw.breakpoint('md') {
+      padding-bottom: nsw.rem(81px);
     }
 
-    @include breakpoint('lg') {
-      padding-bottom: rem(113px);
+    @include nsw.breakpoint('lg') {
+      padding-bottom: nsw.rem(113px);
     }
 
     .nsw-dialog--single-action & {
-      padding-bottom: rem(81px);
+      padding-bottom: nsw.rem(81px);
 
-      @include breakpoint('lg') {
-        padding-bottom: rem(113px);
+      @include nsw.breakpoint('lg') {
+        padding-bottom: nsw.rem(113px);
       }
     }
   }
 
   &__container {
     height: 100%;
-    max-height: calc(100vh - #{rem(145px)});
+    max-height: calc(100vh - #{nsw.rem(145px)});
     overflow-y: auto;
 
-    @include breakpoint('sm') {
-      max-height: calc(90vh - #{rem(145px)});
+    @include nsw.breakpoint('sm') {
+      max-height: calc(90vh - #{nsw.rem(145px)});
     }
 
-    @include breakpoint('md') {
-      max-height: calc(90vh - #{rem(81px)});
+    @include nsw.breakpoint('md') {
+      max-height: calc(90vh - #{nsw.rem(81px)});
     }
 
-    @include breakpoint('lg') {
-      max-height: calc(90vh - #{rem(113px)});
+    @include nsw.breakpoint('lg') {
+      max-height: calc(90vh - #{nsw.rem(113px)});
     }
 
     .nsw-dialog--single-action & {
-      max-height: calc(100vh - #{rem(81px)});
+      max-height: calc(100vh - #{nsw.rem(81px)});
 
-      @include breakpoint('sm') {
-        max-height: calc(90vh - #{rem(81px)});
+      @include nsw.breakpoint('sm') {
+        max-height: calc(90vh - #{nsw.rem(81px)});
       }
 
-      @include breakpoint('lg') {
-        max-height: calc(90vh - #{rem(113px)});
+      @include nsw.breakpoint('lg') {
+        max-height: calc(90vh - #{nsw.rem(113px)});
       }
     }
   }
@@ -89,31 +100,31 @@
   }
 
   &__title {
-    padding: rem(16px);
+    padding: nsw.rem(16px);
     width: 100%;
 
-    @include breakpoint('lg') {
-      padding: rem(32px);
+    @include nsw.breakpoint('lg') {
+      padding: nsw.rem(32px);
     }
   }
 
   &__close {
-    min-width: rem(48px);
-    max-width: rem(48px);
-    padding: rem(8px) rem(8px) rem(8px) 0;
+    min-width: nsw.rem(48px);
+    max-width: nsw.rem(48px);
+    padding: nsw.rem(8px) nsw.rem(8px) nsw.rem(8px) 0;
 
-    @include breakpoint('lg') {
-      min-width: rem(64px);
-      max-width: rem(64px);
-      padding: rem(24px) rem(24px) rem(24px) 0;
+    @include nsw.breakpoint('lg') {
+      min-width: nsw.rem(64px);
+      max-width: nsw.rem(64px);
+      padding: nsw.rem(24px) nsw.rem(24px) nsw.rem(24px) 0;
     }
   }
 
   &__content {
-    padding: rem(16px);
+    padding: nsw.rem(16px);
 
-    @include breakpoint('lg') {
-      padding: rem(32px);
+    @include nsw.breakpoint('lg') {
+      padding: nsw.rem(32px);
     }
   }
 
@@ -125,29 +136,29 @@
     right: 0;
     display: flex;
     flex-direction: column;
-    padding: rem(16px);
+    padding: nsw.rem(16px);
 
-    @include breakpoint('md') {
+    @include nsw.breakpoint('md') {
       flex-direction: row-reverse;
       justify-content: flex-start;
     }
 
-    @include breakpoint('lg') {
-      padding: rem(32px);
+    @include nsw.breakpoint('lg') {
+      padding: nsw.rem(32px);
     }
 
     button {
-      margin-bottom: rem(16px);
+      margin-bottom: nsw.rem(16px);
 
-      @include breakpoint('md') {
-        margin-left: rem(16px);
+      @include nsw.breakpoint('md') {
+        margin-left: nsw.rem(16px);
         margin-bottom: 0;
       }
 
       &:last-child {
         margin-bottom: 0;
 
-        @include breakpoint('md') {
+        @include nsw.breakpoint('md') {
           margin-left: 0;
         }
       }

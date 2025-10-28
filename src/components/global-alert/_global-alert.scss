@@ -1,39 +1,42 @@
+@use '../../global/scss/tools' as nsw;
+
 .nsw-global-alert {
-  padding: rem(24px) 0;
+  padding: nsw.rem(24px) 0;
   background-color: var(--nsw-status-info);
   color: var(--nsw-text-light);
 
   .nsw-icon-button {
     position: absolute;
-    top: rem(-8px);
-    right: rem(4px);
+    top: nsw.rem(-8px);
+    right: nsw.rem(4px);
     color: var(--nsw-text-light);
 
     &:hover {
-      @include nsw-hover;
-      background-color: var(--nsw-text-hover-light);
+      @include nsw.nsw-hover;
+      background-color: var(--nsw-hover-light);
     }
 
     &:focus {
-      @include nsw-focus($color: var(--nsw-text-light));
+      @include nsw.nsw-focus($color: var(--nsw-text-light));
     }
   }
 
   &__wrapper {
-    @include container;
+    @include nsw.container;
     position: relative;
   }
 
   &__title {
-    @include font-size('md');
     font-weight: var(--nsw-font-bold);
+    
+    @include nsw.font-size('md');
   }
 
   &__content {
-    margin-right: rem(36px);
+    margin-right: nsw.rem(36px);
 
     a {
-      @include link-light;
+      @include nsw.link-light;
     }
   }
 
@@ -50,14 +53,14 @@
     color: var(--nsw-text-dark);
 
     .nsw-global-alert__content a {
-      @include link-dark;
+      @include nsw.link-dark;
     }
 
     .nsw-icon-button {
       color: var(--nsw-brand-dark);
 
       &:hover {
-        background-color: var(--nsw-text-hover);
+        background-color: var(--nsw-hover);
       }
 
       &:focus {

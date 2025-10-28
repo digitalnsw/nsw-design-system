@@ -3,7 +3,7 @@ title: What's happening
 width: narrow
 no-blank: true
 order: 40
-meta-description: Stay up to date what the latest NSW Design System releases and contribute to in progress components and patterns. 
+meta-description: Stay up to date what the latest NSW Design System releases and contribute to in progress components and patterns.
 meta-index: true
 ---
 
@@ -27,38 +27,653 @@ meta-index: true
 
 <h2 id="releases">Releases</h2>
 <div class="nsw-table">
-    <table>
-      <thead>
+  <table>
+    <thead>
       <tr>
         <th>Version</th>
         <th>Date</th>
-        <th style="padding-left: 2rem;">What's changed</th>
+        <th>What's changed</th>
         <th>Change logs</th>
       </tr>
-      </thead>
-      <tbody>
+    </thead>
+    <tbody>
       <tr>
-        <td>v3.7.0</td> 
+        <td>v3.22.9</td>
+        <td>21.10.25</td>
+        <td>
+          <h4>Patches</h4>
+          <ul>
+            <li>Card carousel: refined navigation/pagination controls (reduced control size and alignment/spacings for consistency).</li>
+            <li>Refined and aligned CSS variable usage and definitions for improved consistency across components:
+              <ul>
+                <li>Standardised naming for custom properties to match design token conventions.</li>
+                <li>Introduced a global default for <code>--nsw-section-bg</code> to ensure consistent resolution across component scopes.</li>
+                <li>Resolved a broken colour variable reference affecting the masthead light variant for consistent contrast and theming alignment.</li>
+                <li>Added defaults and fallbacks for contextual values such as <code>--nsw-carousel-item-auto-size</code> and <code>rgba()</code> alpha variables.</li>
+              </ul>
+            </li>
+          </ul>
+        </td>
+        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.22.9">Code kit</a></td>
+      </tr>
+      <tr>
+        <td>v3.22.8</td>
+        <td>09.10.25</td>
+        <td>
+          <h4>Patches</h4>
+          <ul>
+            <li>Fixes package exports, adding missing core paths</li>
+          </ul>
+        </td>
+        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.22.8">Code kit</a></td>
+      </tr>
+      <tr>
+        <td>v3.22.7</td>
+        <td>26.09.25</td>
+        <td>
+          <h4>Dev tools</h4>
+          <ul>
+            <li>Adds Axe-core accessibility testing workflow to run against Design System docs site examples, ensuring readiness against WCAG AA criteria.</li>
+          </ul>
+          <h4>Patches</h4>
+          <ul>
+            <li>Adjustments to components including Carousel, Hero search, and Mapbox attribution to resolve accessibility issues surfaced by automated tests.</li>
+          </ul>
+        </td>
+        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.22.7">Code kit</a></td>
+      </tr>
+      <tr>
+        <td>v3.22.6</td>
+        <td>24.09.25</td>
+        <td>
+          <h4>Docs & Guidance</h4>
+          <ul>
+            <li>
+              Inactive fields guidance: New documentation providing clarity around avoiding usage of disabled and read-only fields for content. Improves clarity and keyboard accessibility. See <a href="/docs/content/methods/inactive-fields.html" title="Forms - inactive fields guidance" target="_blank">Inactive fields guidance</a>.
+            </li>
+          </ul>
+          <h4>Refactor</h4>
+          <ul>
+            <li>
+              Sass update: Adds a Sass barrel for tools to re-export public mixins and functions, simplifying imports. See <a href="/docs/content/develop/getting-started.html#tools-barrel" title="Tools helpers documentation" target="_blank">Tools helpers documentation</a>.
+            </li>
+          </ul>
+          <h4>Patches</h4>
+          <ul>
+            <li>
+              Link light styling (inverted supplementary): Updated inverted light colour for contrast compliance and design consistency for supplementary section backgrounds. See <a href="/core/section/index.html" title="Inverted colours guidance" target="_blank">Inverted colours guidance</a> for further information.
+            </li>
+          </ul>
+        </td>
+        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.22.6">Code kit</a></td>
+      </tr>
+      <tr>
+        <td>v3.22.5</td>
+        <td>29.08.25</td>
+        <td>
+          <h4>Patches</h4>
+          <ul>
+            <li>Resolve issue with breadcrumbs ellipsis underline. (<a href="https://github.com/digitalnsw/nsw-design-system/pull/586">#586</a> by @oisa)</li>
+            <li>Add functionality to select with expandable search options with keyboard. (<a href="https://github.com/digitalnsw/nsw-design-system/pull/586">#586</a> by @oisa)</li>
+          </ul>
+        </td>
+        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.22.5">Code kit</a></td>
+      </tr>
+      <tr>
+        <td>v3.22.4</td>
+        <td>29.08.25</td>
+        <td>
+          <h4>Patches</h4>
+          <ul>
+            <li>Cookie consent: improve environment handling and dialog behaviour. (<a href="https://github.com/digitalnsw/nsw-design-system/pull/585">#585</a> by @oisa)</li>
+          </ul>
+        </td>
+        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.22.4">Code kit</a></td>
+      </tr>
+      <tr>
+        <td>v3.22.3</td>
+        <td>28.08.25</td>
+        <td>
+          <h4>Patches</h4>
+          <ul>
+            <li>Tabs: correct <code>aria-labelledby</code> attribute. (<a href="https://github.com/digitalnsw/nsw-design-system/pull/576">#576</a> by @laurenhitchon)</li>
+            <li>Main navigation: guard against null anchors in focus checks. (<a href="https://github.com/digitalnsw/nsw-design-system/pull/577">#577</a> by @laurenhitchon)</li>
+            <li>Filters: reset multi-select options when clearing filters. (<a href="https://github.com/digitalnsw/nsw-design-system/pull/578">#578</a> by @laurenhitchon)</li>
+            <li>Accordion: correctly handle the <code>hidden</code> attribute. (<a href="https://github.com/digitalnsw/nsw-design-system/pull/580">#580</a> by @laurenhitchon)</li>
+            <li>Filters: fix multi-select value aggregation. (<a href="https://github.com/digitalnsw/nsw-design-system/pull/581">#581</a> by @laurenhitchon)</li>
+            <li>Accessibility and focus: exclude draggable elements from focusable selection. (<a href="https://github.com/digitalnsw/nsw-design-system/pull/583">#583</a> by @laurenhitchon)</li>
+            <li>Carousel and swipe: fix focusable selectors and clean up swipe handler. (<a href="https://github.com/digitalnsw/nsw-design-system/pull/584">#584</a> by @laurenhitchon)</li>
+            <li>Filters: remove trap focus listener on close. (<a href="https://github.com/digitalnsw/nsw-design-system/pull/582">#582</a> by @laurenhitchon)</li>
+          </ul>
+          <h4>Refactor</h4>
+          <ul>
+            <li>Centralise runtime logging. (<a href="https://github.com/digitalnsw/nsw-design-system/pull/579">#579</a> by @laurenhitchon)</li>
+          </ul>
+        </td>
+        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.22.3">Code kit</a></td>
+      </tr>
+      <tr>
+        <td>v3.22.2</td>
+        <td>14.08.25</td>
+        <td>
+          <h4>Patches</h4>
+          <ul>
+            <li><strong>Border variant for cards:</strong> New border variant styles (<code>.nsw-card--border</code>) have been added to the card component, allowing developers to create visually distinct cards that can enhance the content presentation.</li>
+
+            <li><strong>New templates:</strong> Additional templates have been created to showcase the new border options on the card component, providing clear examples for developers to reference and use in their projects.</li>
+          </ul>
+        </td>
+        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.22.2">Code kit</a></td>
+      </tr>
+      <tr>
+        <td>v3.21.0</td>
+        <td>01.07.25</td>
+        <td>
+          <h4>Added</h4>
+          <ul>
+            <li>The <a href="/core/colour/index.html" target="_blank">colour palettes</a> and <a href="/docs/content/design/theming.html" target="_blank">theming examples</a> have been expanded to include an Aboriginal colour palette.</li>
+          </ul>
+        </td>
+        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.21.0">Code kit</a></td>
+      </tr>
+      <tr>
+        <td>v3.20.3</td>
+        <td>16.06.25</td>
+        <td>
+          <h4>Patches</h4>
+          <ul>
+            <li>Updated cookie consent content and added Figma link - improves clarity and aligns design guidance with the Figma kit. <a href="https://github.com/digitalnsw/nsw-design-system/pull/554">#554</a> by @oisa</li>
+            <li>Updated footer component examples - ensures consistency across layouts and better reflects current usage. <a href="https://github.com/digitalnsw/nsw-design-system/pull/555">#555</a> by @oisa</li>
+            <li>Updated standard text underline offset for links. <a href="https://github.com/digitalnsw/nsw-design-system/pull/552">#552</a> by @oisa</li>
+          </ul>
+        </td>
+        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.20.3">Code kit</a></td>
+      </tr>
+      <tr>
+        <td>v3.20.2</td>
+        <td>23.05.25</td>
+        <td>
+          <h4>Patches</h4>
+          <ul>
+            <li><a href="/components/card/index.html" target="_blank">Card</a> component - Update component multiple label guidance and examples by @oisa in <a href="https://github.com/digitalnsw/nsw-design-system/pull/546">#546</a></li>
+            <li><a href="/components/date-picker/index.html" target="_blank">Date picker</a> styling updates and optimisations by @oisa in <a href="https://github.com/digitalnsw/nsw-design-system/pull/543">#543</a></li>
+            <li>Guidance updates covering Media, Cookie consent and general documentation page updates - by @oisa in <a href="https://github.com/digitalnsw/nsw-design-system/pull/547">#547</a></li>
+          </ul>
+        </td>
+        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.20.2">Code kit</a></td>
+      </tr>
+      <tr>
+        <td>v3.20.1</td>
+        <td>19.05.25</td>
+        <td>
+          <h4>Patches</h4>
+          <ul>
+            <li>Side navigation component mobile solution — see <a href="/components/side-nav/index.html#mobile-implementation">component guidance</a> for implementation steps. Update via <a href="https://github.com/digitalnsw/nsw-design-system/pull/537">#537</a> by oisa</li>
+          </ul>
+        </td>
+        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.20.1">Code kit</a></td>
+      </tr>
+      <tr>
+        <td>v3.20.0</td>
+        <td>13.05.25</td>
+        <td>
+          <h4>Patches</h4>
+          <ul>
+            <li>SASS depedency update - upgrade to Sass 1.87.0 (Dart Sass 2.0) to resolve deprecation warnings — implemented via <a href="https://github.com/digitalnsw/nsw-design-system/pull/515">PR #515</a>, addressing <a href="https://github.com/digitalnsw/nsw-design-system/issues/513">Issue #513</a> by oisa</li>
+            <li>Figma reconciliation - minor updates made to ensure consistency between the Figma library and the published NPM package by oisa #541</li> 
+            <div class="nsw-in-page-alert nsw-in-page-alert--info nsw-m-bottom-sm">
+              <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">info</span>
+              <div class="nsw-in-page-alert__content">
+                <p class="nsw-h5">Sass upgrade required</p>
+                <p>This release uses Sass <strong>1.87+</strong>, which requires projects to upgrade to Sass <strong>1.62 or above</strong> to avoid build failures. It also addresses a significant number of deprecation warnings that were appearing in previous builds.</p>
+                <p>This follows the official deprecation of <code>@import</code> and global function access (including colour functions like <code>darken()</code>) in Dart Sass 1.80.0, released October 2023.</p>
+                <p>More information: <a href="https://sass-lang.com/documentation/breaking-changes/import/" target="_blank" rel="noopener">sass-lang.com: Import and global module changes</a></p>
+              </div>
+            </div>
+          </ul>
+        </td>
+        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.20">Code kit</a></td>
+      </tr>
+      <tr>
+        <td>v3.19.2</td>
+        <td>15.04.25</td>
+        <td>
+          <h4>Patches</h4>
+          <ul>
+            <li><a href="/components/link-list/theme.html" target="_blank">Link list</a> addition of brand light section support by oisa #533</li>
+          </ul>
+        </td>
+        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.19.2">Code kit</a></td>
+      </tr>
+      <tr>
+        <td>v3.19.1</td>
+        <td>15.04.25</td>
+        <td>
+          <h4>Patches</h4>
+          <ul>
+            <li>Accordion component: Adds visibility hidden and other browser support for hidden until-found feature by @oisa in #534</li>
+            <li>Updates search terms to relative links and updated terms by @oisa in #526</li>
+            <li>Cookie consent test cookie group removal by @oisa in #529</li>
+            <li>Upgrade vanilla-cookieconsent from 3.0.1 to 3.1.0 by @DFSIdigital in #527</li>
+            <li>Bump eazy-logger from 4.0.1 to 4.1.0 by @dependabot in #535</li>
+          </ul>
+        </td>
+        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.19.1">Code kit</a></td>
+      </tr>
+      <tr>
+        <td>v3.19.0</td>
+        <td>28.03.25</td>
+        <td>
+          <h4>Added</h4>
+          <ul>
+            <li>New component: <a href="/components/cookie-consent/index.html">Cookie consent</a> is managed through a banner and a preferences dialog, allowing users to control their cookie settings and privacy choices - contributed by @oisa in #523</li>
+          </ul>
+        </td>
+        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.19.0">Code kit</a></td>
+      </tr>
+      <tr>
+        <td>v3.18.11</td>
+        <td>25.03.25</td>
+        <td>
+          <h4>Patches</h4>
+          <ul>
+            <li>File upload: Fixed an issue where previously selected files were cleared if the file picker was reopened and then cancelled - contributed by @oisa in #523</li>
+          </ul>
+        </td>
+        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.18.11">Code kit</a></td>
+      </tr>
+      <tr>
+        <td>v3.18.10</td>
+        <td>20.03.25</td>
+        <td>
+          <h4>Patches</h4>
+          <ul>
+            <li>File upload: fixed an issue where files with names exceeding 50 characters were not being removed from the input field object by @harry-schn in #519</li>
+            <li>File upload: fixed an issue between single and multiple file handling functions by @oisa #519</li>
+          </ul>
+        </td>
+        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.18.10">Code kit</a></td>
+      </tr>
+      <tr>
+        <td>v3.18.9</td>
+        <td>19.03.25</td>
+        <td>
+          <h4>Patches</h4>
+          <ul>
+            <li>Updates favicon compatible for both dark and light mode by @oisa in #514</li>
+            <li>Bump JamesIves/github-pages-deploy-action from 4.7.2 to 4.7.3 by @dependabot in #507</li>
+            <li>Set breadcrumb ellipsis to open once on click instead of blocking user navigation by @darvanen in #517</li>
+          </ul>
+        </td>
+        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.18.9">Code kit</a></td>
+      </tr>
+      <tr>
+        <td>v3.18.8</td>
+        <td>10.03.25</td>
+        <td>
+          <h4>Patches</h4>
+          <ul>
+            <li>Figma access logic updates in documentation by @oisa in #509</li>
+            <li>Bugfix for Utility list component to retain text entered in element post copy function by @oisa in #511</li>
+          </ul>
+        </td>
+        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.18.8">Code kit</a></td>
+      </tr>
+      <tr>
+        <td>v3.18.7</td>
+        <td>13.02.25</td>
+        <td>
+          <h4>Added</h4>
+          <ul>
+            <li>Added Hero search variants component, including a text-based CTA, form label, and support for an HTML-based image background to accommodate image optimisation methods.</li>
+          </ul>
+          <h4>Patches</h4>
+          <ul>
+            <li>Fixes inverted section focus styles for accordion, card, list items, form and filter inputs, table, and utility list components.</li>
+            <li>Upgrade @floating-ui/dom from 1.6.12 to 1.6.13</li>
+          </ul>
+        </td>
+        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.18.7">Code kit</a></td>
+      </tr>
+      <tr>
+        <td>v3.18.6</td>
+        <td>22.01.25</td>
+        <td>
+          <h4>Patches</h4>
+          <ul>
+            <li>Fixes separate issue with file upload component where the input element overlapped the upload button (label element)</li>
+            <li>Code snippet correction within documentation</li>
+          </ul>
+        </td>
+        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.18.6">Code kit</a></td>
+      </tr>
+      <tr>
+        <td>v3.18.5</td>
+        <td>13.01.25</td>
+        <td>
+          <h4>Patches</h4>
+          <ul>
+            <li>Issue #468 resolution: Fixes an issue where removing files from the file upload list does not remove them from the upload action</li>
+            <li>Updates and fixes to documentation content links</li>
+          </ul>
+        </td>
+        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.18.5">Code kit</a></td>
+      </tr>
+      <tr>
+        <td>v3.18.4</td>
+        <td>10.12.24</td>
+        <td>
+          <h4>Patches</h4>
+          <ul>
+            <li>Fixes aria-hidden issue with multiple select component when visible. Adds dynamic toggling support for aria-hidden on parent list item when visible/hidden</li>
+            <li>Upgrades JamesIves/github-pages-deploy-action from 4.6.9 to 4.7.2</li>
+          </ul>
+        </td>
+        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.18.4">Code kit</a></td>
+      </tr>
+      <tr>
+        <td>v3.18.3</td>
+        <td>25.11.24</td>
+        <td>
+          <h4>Patches</h4>
+          <ul>
+            <li>Adds support to NSW Design System according to WCAG 2.2 AA criteria including non-breaking component updates alongside improved accessibility guidance in our documentation</li>
+            <li>Upgrades JamesIves/github-pages-deploy-action from 4.6.8 to 4.6.9</li>
+            <li>Upgrades @floating-ui/dom from 1.6.11 to 1.6.12</li>
+          </ul>
+        </td>
+        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.18.3">Code kit</a></td>
+      </tr>
+      <tr>
+        <td>v3.18.2</td>
+        <td>20.11.24</td>
+        <td>
+          <h4>Added</h4>
+          <ul>
+            <li>Yet another new domain for the NSW Design System! We have streamlined with a new domain from designsystem.digital.nsw.gov.au to designsystem.nsw.gov.au. Visit <a target="_blank" href="https://designsystem.nsw.gov.au/">designsystem.nsw.gov.au</a> today!</li>
+            <li>Breadcrumbs update for mobile, ellipsis button to show all breadcrumbs for when there are >3 options and are viewed on a tablet/mobile device.</li>
+          </ul>
+          <h4>Patches</h4>
+          <ul>
+            <li>Updated documentation site content</li>
+          </ul>
+        </td>
+        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.18.2">Code kit</a></td>
+      </tr>
+      <tr>
+        <td>v3.18.1</td>
+        <td>24.10.24</td>
+        <td>
+          <h4>Added</h4>
+          <ul>
+            <li>New domain for the NSW Design System! We now call <a target="_blank" href="https://designsystem.digital.nsw.gov.au/">designsystem.digital.nsw.gov.au</a> home :)</li>
+            <li>TypeScript types added to the NSW Design System</li>
+            <li>Adds svg support to the <a target="_blank" href="https://digitalnsw.github.io/nsw-design-system/components/support-list/index.html">Support list</a> component</li>
+            <li>Updates Twitter logo to X and adds in Accessibility attributes to social icons</li>
+          </ul>
+          <h4>Patches</h4>
+          <ul>
+            <li>Update dependencies: @floating-ui/dom from 1.6.10 to 1.6.11</li>
+            <li>Update dependencies: send, browser-sync, cookie and socket.io</li>
+            <li>Updates custom domain for docs site alongside URL sanitisation refactorisation for side nav active link feature.</li>
+          </ul>
+        </td>
+        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.18.1">Code kit</a></td>
+      </tr>
+      <tr>
+        <td>v3.18.0</td>
+        <td>14.10.24</td>
+        <td>
+          <h4>Added</h4>
+          <ul>
+            <li>Feature: adds new <a target="_blank" href="https://digitalnsw.github.io/nsw-design-system/components/support-list/index.html">Support list</a> component.</li>
+          </ul>
+          <h4>Patches</h4>
+          <ul>
+            <li>Fix: HTML tags and documentation content.</li>
+            <li>Fix: Adds aria-label values for key CTAs on Map templates.</li>
+            <li>Update dependencies: rollup</li>
+            <li>Update dependencies: JamesIves/github-pages-deploy-action</li>
+          </ul>
+          <h4>Removed</h4>
+            <ul>
+              <li>Sponsorship and partnership acknowledgement method outlining the guidelines for acknowledging sponsorship and partnership support. Now supported via a dedicated multi-variant component called <a target="_blank" href="https://digitalnsw.github.io/nsw-design-system/components/support-list/index.html">Support list</a>.</li>
+            </ul>
+        </td>
+        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.18.0">Code kit</a></td>
+      </tr>
+      <tr>
+        <td>v3.17.4</td>
+        <td>17.07.24</td>
+        <td>
+          <h4>Patches</h4>
+          <ul>
+            <li>Fix: improve the handling of the select and checkbox default selected state in the <a href="/components/filters/index.html">filters</a> component by checking <code>option.defaultChecked</code> before setting <code>option.checked</code>, and using <code>option.selectedIndex</code> instead of setting it to an empty string on reset/clear.</li>
+            <li>Update dependencies: @floating-ui/dom</li>
+          </ul>
+        </td>
+        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.17.4">Code kit</a></td>
+      </tr>
+      <tr>
+        <td>v3.17.3</td>
+        <td>16.07.24</td>
+        <td>
+          <h4>Patches</h4>
+          <ul>
+            <li>Fix: adds a <code>&lt;span class="sr-only"&gt;</code> inside the button element to ensure that buttons with icons have discernible text for accessibility.</li>
+            <li>Fix: remove the <code>role="group"</code> attribute from <code>&lt;li&gt;</code> elements in the carousel component as it is not valid on a list item. The use of aria-roledescription, aria-label, and data-index attributes for accessibility purposes maintains accessibility standards after removing role="group".</li>
+            <li>Update dependencies: replace deprected NSW Government brand assets</li>
+            <li>Update dependencies: ws, engine.io-client and socket.io</li>
+            <li>Update dependencies: JamesIves/github-pages-deploy-action</li>
+            <li>Update dependencies: follow-redirects</li>
+          </ul>
+        </td>
+        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.17.4">Code kit</a></td>
+      </tr>
+      <tr>
+        <td>v3.17.2</td>
+        <td>11.07.24</td>
+        <td>
+          <h4>Added</h4>
+          <ul>
+            <li><strong>Sponsorship and partnership acknowledgement:</strong> added a new method outlining the guidelines for <a href="/docs/content/methods/sponsorship-and-partnership-acknowledgement.html">acknowledging sponsorship and partnership support</a>. The page includes instructions on placement and spacing, using the NSW Government Waratah logo, and arranging support logos.</li>
+          </ul>
+          <h4>Patches</h4>
+          <ul>
+            <li>Fix: remove hover state from <a href="/components/tag/index.html">text tag</a> component and set the cursor style explicitly to default.</li>
+          </ul>
+        </td>
+        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.17.3">Code kit</a></td>
+      </tr>
+
+      <tr>
+        <td>v3.17.1</td>
+        <td>24.06.24</td>
+        <td>
+          <h4>Minor changes</h4>
+          <ul>
+            <li>Feat: Class of <code>nsw-footer__acknowledgement</code> added to the <code>&lt;p&gt;</code> element in the <a href="/components/footer/index.html">footer component</a> and the font size changed from 'md' to 'sm'.</li>
+          </ul>
+        </td>
+        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.17.1">Code kit</a></td>
+      </tr>
+      <tr>
+        <td>v3.17.0</td>
+        <td>12.06.24</td>
+        <td>
+          <h4>Added</h4>
+          <ul>
+            <li>Accessibility enhancement to the <a href="/components/accordion/index.html">accordion </a> component with the <code>hidden=until-found</code> attribute.</li>
+          </ul>
+          <h4>Patches</h4>
+          <ul>
+            <li><strong>Utility list:</strong> fixed the issue of clicking outside the tooltip or on a non-button element triggering unwanted behaviour in the utility list component.</li>
+            <li><strong>All JavaScript components' performance and reliability improvements:</strong>
+              <ul>
+                <li>JavaScript errors are now caught in each component to prevent them from affecting other components.</li>
+                <li>Selectors have been made more restrictive where appropriate.</li>
+                <li>Components now test whether properties exist before accessing attributes and child elements.</li>
+              </ul>
+            </li>
+            <li><strong>Date-input:</strong> removed default browser padding on the legend element in the date input component.</li>
+            <li><strong>Main navigation component:</strong> fixed the issue of the main navigation not closing a previously opened menu in the Safari browser.</li>
+            <li><strong>Card carousel: </strong>
+              <ul>
+                <li><strong>Drag/Swipe functionality:</strong> fixed an issue in the swipe-content.js code, ensuring the carousel updates its position dynamically during drag actions.</li>
+                <li><strong>JavaScript enhancements:</strong> updated <code>carousel.js</code> to complement the changes in <code>swipe-content.js</code>.</li>
+                <li><strong>Class inheritance:</strong> the Carousel class now extends SwipeContent.</li>
+                <li><strong>Attribute handling:</strong> attributes are accessed using<code> this.element</code> instead of directly.</li>
+                <li><strong>Drag functionality:</strong> introduced <code>dragEnabled</code> attribute to handle drag settings.</li>
+                <li><strong>Conditional checks:</strong> added checks for <code>null</code> values in styles and dimensions.</li>
+                <li><strong>Navigation button alignment:</strong> added <code>padding: 0</code> on the <code>.nsw-carousel</code> button class in the <code>_carousel.scss</code> file. This change corrects the alignment issue caused by default padding values in iOS browsers.</li>
+                <li><strong>Removal of unused methods:</strong> removed <code>alignControlsFunc</code> method and related controls alignment logic.</li>
+                <li><strong>Example updates:</strong> adjusted our examples to demonstrate the drag functionality.</li>
+              </ul>
+            </li>
+          </ul>
+        </td>
+        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.17.0">Code kit</a></td>
+      </tr>
+      <tr>
+        <td>v3.16.0</td>
+        <td>28.02.23</td>
+        <td>
+          <h4>Added</h4>
+          <ul>
+            <li><strong>Date input:</strong> new <a href="/components/date-input/index.html">Date input</a> documentation outlining the usage of date input component.</li>
+            <li><strong>Date picker:</strong> new <a href="/components/date-picker/index.html">Date picker</a> component allowing users to easily select dates in a user-friendly manner.</li>
+          </ul>
+        </td>
+        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.16.0">Code kit</a></td>
+      </tr>
+      <tr>
+        <td>v3.15.0</td>
+        <td>28.02.24</td>
+        <td>
+          <h4>Added</h4>
+          <ul>
+            <li>Implemented support for inverted demo examples for each component.</li>
+            <li>Implemented support for themed demo examples for each component. This feature showcases how components and elements appear when presented with alternative color schemes or themes.</li>
+            <li>SASS theming variables and updated developer <a href="/docs/content/develop/theming.html">documentation for theming</a> to support multiple levels of customisation based on branding requirements, so that developers can easily implement and modify colour themes.</li>
+            <li><strong>Card carousel:</strong> new <a href="/components/card-carousel/index.html">Card carousel</a> component allowing users to view and interact with multiple cards in a visually appealing and navigable format.</li>
+          </ul>
+        </td>
+        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.15.0">Code kit</a></td>
+      </tr>
+      <tr>
+        <td>v3.14.0</td>
+        <td>5.12.23</td>
+        <td>
+          <h4>Added</h4>
+          <ul>
+            <li><strong>Utility list component:</strong> new <a href="/components/utility-list/index.html">Utility list</a> component giving users quick access to commonly used actions on content, including printing, downloading and sharing across different social media platforms.</li>
+          </ul>
+          <h4>Patches</h4>
+          <ul>
+            <li><strong>Multiple select component:</strong> fixed the absence of the nsw-multi-select__button element creation when an option was pre-selected onload.</li>
+            <li><strong>Support for the HTML select multiple in the filters component:</strong> updated the component's logic to recognise and manage multiple selections efficiently, providing users with enhanced filtering capabilities.</li>
+          </ul>
+        </td>
+        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.14.0">Code kit</a></td>
+      </tr>
+      <tr>
+        <td>v3.13.0</td>
+        <td>20.11.23</td>
+        <td>
+          <h4>Added</h4>
+          <ul>
+            <li><strong>Contribution Criteria Page:</strong> added a new page outlining the <a href="/docs/content/contribute/contribution-criteria.html">criteria for contributions</a>.</li>
+            <li><strong>Propose a New Component Page:</strong> added a new page to facilitate the submission of <a href="/docs/content/contribute/propose-a-new-component.html">new component proposals</a>.</li>
+            <li><strong>Build a New Component Page:</strong> added a new page to guide users through the <a href="/docs/content/contribute/build-a-new-component.html">process of building new components</a> to showcase our contribution process.</li>
+            <li><strong>Back to top component:</strong> new <a href="/components/back-to-top/index.html">Back to top</a> component allowing users to navigate back to the top of the page for enhanced usability.</li>
+          </ul>
+          <h4>Patches</h4>
+          <ul>
+            <li><strong>Tabs Accessibility Bug:</strong> fixed an accessibility bug within tabs by including the <code>aria-owns</code> attribute to the <code>role="tablist"</code> element, ensuring improved accessibility for all users.</li>
+            <li><strong>Collapsible Filters Icon:</strong> fixed the size issue of the open/close icon for collapsible filters, enhancing visual consistency and user experience.</li>
+          </ul>
+        </td>
+        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.13.0">Code kit</a></td>
+      </tr>
+      <tr>
+        <td>v3.12.0</td>
+        <td>18.10.23</td>
+        <td>
+          <ul>
+            <li>Implemented consistent open/close animations and transforms across the <a href="/components/main-nav/index.html">main-nav</a>, <a href="/components/filters/index.html">filters</a>, and <a href="/components/select/index.html">select</a> components for a unified user experience.</li>
+            <li>Documented the skip link functionality on the <a href="/components/masthead/index.html">masthead page</a>, improving accessibility and navigation.</li>
+            <li>Enabled <a href="/components/accordion/index.html">accordion open onload functionality</a>, enhancing user interaction by automatically displaying content upon page load.</li>
+            <li>Increased the tap target size of the <a href="/components/footer/index.html">footer links</a> for improved usability and ease of navigation on various devices.</li>
+          </ul>
+        </td>
+        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.12.0">Code kit</a></td>
+      </tr>
+
+      <tr>
+        <td>v3.11.0</td>
+        <td>01.09.23</td>
+        <td>
+          <ul>
+            <li>New <a href="/components/popover/index.html">Popover</a> component</li>
+          </ul>
+        </td>
+        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.11.0">Code kit</a></td>
+      </tr>
+      <tr>
+        <td>v3.10.0</td>
+        <td>22.08.23</td>
+        <td>
+          <ul>
+            <li>Adds utility classes for <a href="/docs/content/utilities/background.html">Background</a>, <a href="/docs/content/utilities/borders.html">Borders</a>, <a href="/docs/content/utilities/box-shadow.html">Box Shadow</a>, <a href="/docs/content/utilities/display.html">Display</a>, <a href="/docs/content/utilities/flex.html">Flex</a>, <a href="/docs/content/utilities/float.html">Float</a>, <a href="/docs/content/utilities/overflow.html">Overflow</a>, <a href="/docs/content/utilities/position.html">Position</a>, <a href="/docs/content/utilities/svg.html">SVG</a>, <a href="/docs/content/utilities/text.html">Text</a>, <a href="/docs/content/utilities/vertical-align.html">Vertical align</a>, <a href="/docs/content/utilities/visibility.html">Visibility</a> and <a href="/docs/content/utilities/z-index.html">Z-index</a>.</li>
+            <li>New <a href="/components/close-button/index.html">Close button</a> component documentation</li>
+          </ul>
+        </td>
+        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.10.0">Code kit</a></td>
+      </tr>
+      <tr>
+        <td>v3.9.0</td>
+        <td>20.07.23</td>
+        <td>
+          <ul>
+            <li>New <a href="/components/link/index.html">Link</a> component documentation</li>
+            <li>Added 'close on click outside' functionality to the <a href="/components/main-nav/index.html">Main navigation</a> component</li>
+          </ul>
+        </td>
+        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.9.0">Code kit</a></td>
+      </tr>
+      <tr>
+        <td>v3.8.0</td>
+        <td>10.07.23</td>
+        <td>
+          <ul>
+            <li>Added new white outline <a href="/components/button/index.html">Button</a> variant</li>
+            <li>Added pseudo content alternative text to <a href="/components/breadcrumbs/index.html">Breadcrumbs</a> right arrow icon to improve accessibility.</li>
+          </ul>
+        </td>
+        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.8.0">Code kit</a></td>
+      </tr>
+      <tr>
+        <td>v3.7.0</td>
         <td>29.05.23</td>
         <td>
           <ul>
             <li>New <a href="/components/tooltip/index.html">Tooltip and Toggletip</a> component</li>
           </ul>
         </td>
-        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.7.0" target="_blank">Code kit</a></td>
+        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.7.0">Code kit</a></td>
       </tr>
       <tr>
-        <td>v3.6.0</td> 
+        <td>v3.6.0</td>
         <td>08.05.23</td>
         <td>
           <ul>
             <li>New <a href="/templates/index.html">landing pages</a> templates</li>
           </ul>
         </td>
-        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.6.0" target="_blank">Code kit</a></td>
+        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.6.0">Code kit</a></td>
       </tr>
       <tr>
-        <td>v3.5.3</td> 
+        <td>v3.5.3</td>
         <td>21.04.23</td>
         <td>
           <ul>
@@ -67,10 +682,10 @@ meta-index: true
             <li>Fixed minor bugs related to the <a href="/components/select/index.html">multiple select</a> functionality</li>
           </ul>
         </td>
-        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.5.3" target="_blank">Code kit</a></td>
+        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.5.3">Code kit</a></td>
       </tr>
       <tr>
-        <td>v3.5.2</td> 
+        <td>v3.5.2</td>
         <td>20.04.23</td>
         <td>
           <ul>
@@ -78,10 +693,10 @@ meta-index: true
             <li>Updated the pink <a href="/core/colour/index.html">NSW Government colour palette</a> names to fuchsia for consistent brand naming. Fuchsia is a more specific and precise color name than pink, helping to avoid confusion and ensure that the NSW Government brand is consistently represented</li>
           </ul>
         </td>
-        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.5.2" target="_blank">Code kit</a></td>
+        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.5.2">Code kit</a></td>
       </tr>
       <tr>
-        <td>v3.5.1</td> 
+        <td>v3.5.1</td>
         <td>19.04.23</td>
         <td>
           <ul>
@@ -90,10 +705,10 @@ meta-index: true
             <li>Added a paragraph tag around text in <a href="/components/card/index.html">Cards</a> component to improve accessibility for users who rely on assistive technology to navigate.</li>
           </ul>
         </td>
-        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.5.1" target="_blank">Code kit</a></td>
+        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.5.1">Code kit</a></td>
       </tr>
       <tr>
-        <td>v3.5.0</td> 
+        <td>v3.5.0</td>
         <td>06.04.23</td>
         <td>
           <ul>
@@ -101,10 +716,10 @@ meta-index: true
             <li>New <a href="/components/select/index.html">Multiple select</a> component</li>
           </ul>
         </td>
-        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.5.0" target="_blank">Code kit</a></td>
+        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.5.0">Code kit</a></td>
       </tr>
       <tr>
-        <td>v3.4.0</td> 
+        <td>v3.4.0</td>
         <td>29.03.23</td>
         <td>
           <ul>
@@ -114,20 +729,20 @@ meta-index: true
             <li>Updated HEX codes for the success green and warning orange <a href="/core/colour/index.html">status colours</a></li>
           </ul>
         </td>
-        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.4.0" target="_blank">Code kit</a></td>
+        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.4.0">Code kit</a></td>
       </tr>
       <tr>
-        <td>v3.3.0</td> 
+        <td>v3.3.0</td>
         <td>22.02.23</td>
         <td>
           <ul>
             <li>New <a href="/components/filters/index.html">Filters</a> variants for instant and batch filtering</li>
           </ul>
         </td>
-        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.3.0" target="_blank">Code kit</a></td>
+        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.3.0">Code kit</a></td>
       </tr>
       <tr>
-        <td>v3.2.5</td> 
+        <td>v3.2.5</td>
         <td>21.02.23</td>
         <td>
           <ul>
@@ -135,30 +750,30 @@ meta-index: true
             <li>Bug fix for <a href="/components/tabs/index.html">Tabs</a> component</li>
           </ul>
         </td>
-        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.2.5" target="_blank">Code kit</a></td>
+        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.2.5">Code kit</a></td>
       </tr>
       <tr>
-        <td>v3.2.4</td> 
+        <td>v3.2.4</td>
         <td>05.08.22</td>
         <td>
           <ul>
             <li>Fixed a bug on mobile version of <a href="/components/main-nav/index.html">main navigation</a></li>
           </ul>
         </td>
-        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.2.4" target="_blank">Code kit</a></td>
+        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.2.4">Code kit</a></td>
       </tr>
       <tr>
-        <td>v3.2.3</td> 
+        <td>v3.2.3</td>
         <td>05.08.22</td>
         <td>
           <ul>
             <li>Updated variants for <a href="/components/form/index.html">input group</a></li>
           </ul>
         </td>
-        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.2.3" target="_blank">Code kit</a></td>
+        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.2.3">Code kit</a></td>
       </tr>
       <tr>
-        <td>v3.2.2</td> 
+        <td>v3.2.2</td>
         <td>07.07.22</td>
         <td>
           <ul>
@@ -166,10 +781,10 @@ meta-index: true
             <li>Bug fix for <a href="/components/main-nav/index.html">Main navigation</a> component</li>
           </ul>
         </td>
-        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.2.2" target="_blank">Code kit</a></td>
+        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.2.2">Code kit</a></td>
       </tr>
       <tr>
-        <td>v3.2.1</td> 
+        <td>v3.2.1</td>
         <td>01.07.22</td>
         <td>
           <ul>
@@ -177,21 +792,21 @@ meta-index: true
             <li>New <a href="/components/footer/index.html">Footer</a> brand palette and social variants</li>
           </ul>
         </td>
-        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.2.1" target="_blank">Code kit</a><br/><a target="_blank" href="https://github.com/digitalnsw/nsw-figma-archive/blob/main/release_notes.md#1-july-2022" target="_blank">UI Kit</a></td>
+        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.2.1">Code kit</a><br /><a target="_blank" href="https://github.com/digitalnsw/nsw-figma-archive/blob/main/release_notes.md#1-july-2022">UI Kit</a></td>
       </tr>
       <tr>
-        <td>v3.2.0</td> 
+        <td>v3.2.0</td>
         <td>14.06.22</td>
         <td>
           <ul>
             <li>New <a href="/components/dialog/index.html">Dialog</a> Component</li>
           </ul>
         </td>
-        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.2.0" target="_blank">Code kit</a><br/><a target="_blank" href="https://github.com/digitalnsw/nsw-figma-archive/blob/main/release_notes.md#14-june-2022" target="_blank">UI Kit</a></td>
+        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.2.0">Code kit</a><br /><a target="_blank" href="https://github.com/digitalnsw/nsw-figma-archive/blob/main/release_notes.md#14-june-2022">UI Kit</a></td>
       </tr>
 
       <tr>
-        <td>v3.1.0</td> 
+        <td>v3.1.0</td>
         <td>18.02.22</td>
         <td>
           <ul>
@@ -204,7 +819,7 @@ meta-index: true
             <li>Added design and dev application information to <a href="/core/graphic-elements/index.html">Graphic elements</a> page</li>
           </ul>
         </td>
-        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.1.0" target="_blank">Code kit</a><br/><a target="_blank" href="https://github.com/digitalnsw/nsw-figma-archive/blob/main/release_notes.md#18-february-2022" target="_blank">UI Kit</a></td>
+        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.1.0">Code kit</a><br /><a target="_blank" href="https://github.com/digitalnsw/nsw-figma-archive/blob/main/release_notes.md#18-february-2022">UI Kit</a></td>
       </tr>
       <tr>
         <td>v3.0.5</td>
@@ -216,10 +831,10 @@ meta-index: true
             <li>Added option to invert colours for <a href="/core/section/index.html">dark sections</a></li>
           </ul>
         </td>
-        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.0.5" target="_blank">Code kit</a><br/><a target="_blank" href="https://github.com/digitalnsw/nsw-figma-archive/blob/main/release_notes.md#17-december-2021" target="_blank">UI Kit</a></td>
+        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.0.5">Code kit</a><br /><a target="_blank" href="https://github.com/digitalnsw/nsw-figma-archive/blob/main/release_notes.md#17-december-2021">UI Kit</a></td>
       </tr>
-       </tr>
-            <tr>
+      </tr>
+      <tr>
         <td>v3.0.4</td>
         <td>10.12.21</td>
         <td>
@@ -228,10 +843,10 @@ meta-index: true
             <li>Fixed <a href="/components/filters/index.html">Filters</a> component scrolling issues</li>
           </ul>
         </td>
-        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.0.4" target="_blank">Code kit</a></td>
+        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.0.4">Code kit</a></td>
       </tr>
-       </tr>
-            <tr>
+      </tr>
+      <tr>
         <td>v3.0.3</td>
         <td>02.12.21</td>
         <td>
@@ -245,121 +860,102 @@ meta-index: true
             <li>Updated guidance for <a href="/components/card/index.html">Card</a> component</li>
           </ul>
         </td>
-        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.0.3" target="_blank">Code kit</a><br/><a target="_blank" href="https://github.com/digitalnsw/nsw-figma-archive/blob/main/release_notes.md#29th-november-2021" target="_blank">UI Kit</a></td>
+        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.0.3">Code kit</a><br /><a target="_blank" href="https://github.com/digitalnsw/nsw-figma-archive/blob/main/release_notes.md#29th-november-2021">UI Kit</a></td>
       </tr>
-       </tr>
-            <tr>
+      </tr>
+      <tr>
         <td>v3.0.2</td>
         <td>18.11.21</td>
         <td>
-            <ul>
-                <li>Changed new card modifier</li>
-                <li>Form example names fix</li>
-                <li>Header title changed to Brand dark</li>
-                <li>In-page notifications renamed</li>
-                <li>New row 3 palette colours</li>
-                <li>New map demo pages</li>
-            </ul>
+          <ul>
+            <li>Changed new card modifier</li>
+            <li>Form example names fix</li>
+            <li>Header title changed to Brand dark</li>
+            <li>In-page notifications renamed</li>
+            <li>New row 3 palette colours</li>
+            <li>New map demo pages</li>
+          </ul>
         </td>
-        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.0.2" target="_blank">Code kit</a></td>
+        <td><a target="_blank" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.0.2">Code kit</a></td>
       </tr>
-      </tbody>
-    </table>
-</div><br/>
+    </tbody>
+  </table>
+</div><br />
 
+<!--
 <h2 id="progress">Work in progress</h2>
 <p>Follow early concepts and contribute to components and patterns that are in progress. </p>
 
 <div class="nsw-table">
-    <table>
-      <thead>
+  <table>
+    <thead>
       <tr>
         <th width="30%">Component</th>
         <th width="30%">Status</th>
         <th width="40%">Contribute</th>
       </tr>
-      </thead>
-      <tbody>
+    </thead>
+    <tbody>
       <tr>
-        <td>File upload</td>
+        <td>Main navigation selected state</td>
         <td><span class="nsw-tag">In progress</span></td>
-        <td><a target="_blank" href="https://community.digital.nsw.gov.au/t/collab-space-file-upload/1266">Join the community thread</a></td>
+        <td><a target="_blank" href="https://community.digital.nsw.gov.au/t/collab-space-main-navigation-selected-state/1525">Join the community thread</a></td>
       </tr>
-      </tbody>
-    </table>
-</div><br/>
+    </tbody>
+  </table>
+</div><br />
+
 
 <h2 id="community">Consulting with community</h2>
 <p>Shape the requirements of components and patterns by contributing feedback, learnings and insights.</p>
 
 <div class="nsw-table">
-    <table>
-      <thead>
+  <table>
+    <thead>
       <tr>
         <th width="30%">Component</th>
         <th width="30%">Status</th>
         <th width="40%">Contribute</th>
       </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td>Passwords pattern</td>
-        <td><span class="nsw-tag">In progress</span></td>
-        <td><a target="_blank" href="https://community.digital.nsw.gov.au/t/passcode-condition/1143">Join the community thread</a></td>
-      </tr>
-      <tr>
-        <td>Page loader/spinner</td>
-        <td><span class="nsw-tag">In progress</span></td>
-        <td><a target="_blank" href="https://community.digital.nsw.gov.au/t/suggest-a-pattern-page-loading/1151">Join the community thread</a></td>
-      </tr>
-      <tr>
-        <td>Slider filter</td>
-        <td><span class="nsw-tag">In progress</span></td>
-        <td><a target="_blank" href="https://community.digital.nsw.gov.au/t/slider-design-to-exist-in-search-and-filtering/1160">Join the community thread</a></td>
-      </tr>
+    </thead>
+    <tbody>
       <tr>
         <td>Side navigation</td>
         <td><span class="nsw-tag">In progress</span></td>
-        <td><a target="_blank" href="https://community.digital.nsw.gov.au/t/collab-space-side-navigation/1063">Join the community thread</a></td>
+        <td><a target="_blank" href="https://community.digital.nsw.gov.au/t/collab-space-side-navigation-v2/1484">Join the community thread</a></td>
       </tr>
-      </tbody>
-    </table>
-  </div><br/>
-
+      <tr>
+        <td>Main navigation</td>
+        <td><span class="nsw-tag">In progress</span></td>
+        <td><a target="_blank" href="#">Join the community thread</a></td>
+      </tr>
+    </tbody>
+  </table>
+</div><br />
 
 <h2 id="backlog">Backlog</h2>
 <p>Components and patterns that have been requested by digital teams or identified by the Design System team for potential use by digital creators.</p>
 
 <div class="nsw-table">
-    <table>
-      <thead>
+  <table>
+    <thead>
       <tr>
         <th width="30%">Component</th>
         <th width="30%">Status</th>
         <th width="40%">Contribute</th>
       </tr>
-      </thead>
-      <tbody>
-       <tr>
-        <td>Multi select dropdown</td>
-        <td><span class="nsw-tag">Not started</span></td>
-        <td><a target="_blank" href="https://community.digital.nsw.gov.au/">Start a community thread</a></td>
-      </tr>
+    </thead>
+    <tbody>
       <tr>
-        <td>Tooltip/details</td>
+        <td>Social share/utility list</td>
         <td><span class="nsw-tag">Not started</span></td>
         <td><a target="_blank" href="https://community.digital.nsw.gov.au/">Start a community thread</a></td>
       </tr>
-      <tr>
-        <td>Back to top</td>
-        <td><span class="nsw-tag">Not started</span></td>
-        <td><a target="_blank" href="https://community.digital.nsw.gov.au/">Start a community thread</a></td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
+    </tbody>
+  </table>
+</div>
 
-<!--<h2 id="meetups">Meetups</h2>
+<h2 id="meetups">Meetups</h2>
 <p>Get involved in meetups happening around NSW Government. </p>
 
 <div class="nsw-table">
@@ -377,8 +973,10 @@ meta-index: true
         <td>Human Centred Design Comprac</td>
         <td>10 Mar 2022</td>
         <td>11am - 12pm</td>
-        <td><a href="mailto:digital@customerservice.nsw.gov.au" target="_blank">Email us</a></td>
+        <td><a href="mailto:digital@customerservice.nsw.gov.au">Email us</a></td>
       </tr>
       </tbody>
     </table>
-  </div>-->
+  </div>
+  
+-->

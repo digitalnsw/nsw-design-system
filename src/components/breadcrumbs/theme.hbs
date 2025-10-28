@@ -1,0 +1,26 @@
+---
+title: Breadcrumbs
+width: narrow
+model: 
+  breadcrumbs-1: json/breadcrumbs-1.json
+  breadcrumbs-2: json/breadcrumbs-2.json
+page: true
+---
+
+{{#>_theme}}
+{{#>_layout-container}}
+{{>_breadcrumbs model.breadcrumbs-1}}
+{{/_layout-container}}
+
+{{#>_layout-container brand-dark="true" invert="true"}}
+{{>_breadcrumbs model.breadcrumbs-1}}
+{{/_layout-container}}
+
+{{#>_layout-container}}
+{{>_breadcrumbs model.breadcrumbs-2}}
+{{/_layout-container}}
+
+{{#>_layout-container brand-dark="true" invert="true"}}
+{{>_breadcrumbs model.breadcrumbs-2}}
+{{/_layout-container}}
+{{/_theme}}

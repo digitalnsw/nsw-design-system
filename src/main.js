@@ -1,15 +1,25 @@
-import SiteSearch from './components/header/header'
-import Navigation from './components/main-nav/main-nav'
+/* eslint-disable max-len */
 import Accordion from './components/accordion/accordion'
+import BackTop from './components/back-to-top/back-to-top'
+import Carousel from './components/card-carousel/carousel'
+import CookieConsent from './components/cookie-consent/cookie-consent'
+import Breadcrumbs from './components/breadcrumbs/breadcrumbs'
+import DatePicker from './components/date-picker/date-picker'
 import Dialog from './components/dialog/dialog'
-import Filters from './components/filters/filters'
+import ExternalLink from './components/link/link'
 import FileUpload from './components/file-upload/file-upload'
-import Tabs from './components/tabs/tabs'
+import Filters from './components/filters/filters'
 import GlobalAlert from './components/global-alert/global-alert'
+import Navigation from './components/main-nav/main-nav'
+import Popover from './components/popover/popover'
 import ProgressIndicatorPage from './components/progress-indicator/progress-indicator-page'
 import Select from './components/select/select'
-import Tooltip from './components/tooltip/tooltip'
+import SiteSearch from './components/header/header'
+import SideNav from './components/side-nav/side-nav'
+import Tabs from './components/tabs/tabs'
 import Toggletip from './components/tooltip/toggletip'
+import Tooltip from './components/tooltip/tooltip'
+import UtilityList from './components/utility-list/utility-list'
 
 if (window.NodeList && !NodeList.prototype.forEach) {
   NodeList.prototype.forEach = Array.prototype.forEach
@@ -32,38 +42,69 @@ if (!Element.prototype.closest) {
 }
 
 function initSite() {
-  // Header Search
-  const openSearchButton = document.querySelectorAll('.js-open-search')
-  const closeSearchButton = document.querySelectorAll('.js-close-search')
   const accordions = document.querySelectorAll('.js-accordion')
+  const backTop = document.querySelectorAll('button.js-back-to-top')
+  const breadcrumbs = document.querySelectorAll('.js-breadcrumbs')
+  const carousel = document.querySelectorAll('.js-carousel')
+  const closeSearchButton = document.querySelectorAll('button.js-close-search')
+  const datePicker = document.querySelectorAll('.js-date-input')
   const dialogs = document.querySelectorAll('.js-dialog')
   const fileUpload = document.querySelectorAll('.js-file-upload')
   const filters = document.querySelectorAll('.js-filters')
-  const tabs = document.querySelectorAll('.js-tabs')
   const globalAlert = document.querySelectorAll('.js-global-alert')
-  const progressIndicatorPage = document.querySelectorAll('.js-progress-indicator-page')
+    const link = document.querySelectorAll('a.js-link')
+    const progressIndicatorPage = document.querySelectorAll('.js-progress-indicator-page')
   const multiSelect = document.querySelectorAll('.js-multi-select')
-  const tooltip = document.querySelectorAll('.js-tooltip')
+  const navigation = document.getElementById('main-nav')
+  const openSearchButton = document.querySelectorAll('button.js-open-search')
+  const popover = document.querySelectorAll('.js-popover')
+  const sideNav = document.querySelectorAll('.js-side-nav')
+  const tabs = document.querySelectorAll('.js-tabs')
   const toggletip = document.querySelectorAll('.js-toggletip')
+  const tooltip = document.querySelectorAll('.js-tooltip')
+  const utilityList = document.querySelectorAll('.js-utility-list')
 
-  openSearchButton.forEach((element) => {
-    new SiteSearch(element).init()
-  })
+  if (accordions) {
+    accordions.forEach((element) => {
+      new Accordion(element).init()
+    })
+  }
 
-  closeSearchButton.forEach((element) => {
-    new SiteSearch(element).init()
-  })
+  if (backTop) {
+    backTop.forEach((element) => {
+      new BackTop(element).init()
+    })
+  }
 
-  // Navigation
-  new Navigation().init()
+  if (breadcrumbs) {
+    breadcrumbs.forEach((element) => {
+      new Breadcrumbs(element).init()
+    })
+  }
 
-  accordions.forEach((element) => {
-    new Accordion(element).init()
-  })
+  if (carousel) {
+    carousel.forEach((element) => {
+      new Carousel(element).init()
+    })
+  }
 
-  dialogs.forEach((element) => {
-    new Dialog(element).init()
-  })
+  if (closeSearchButton) {
+    closeSearchButton.forEach((element) => {
+      new SiteSearch(element).init()
+    })
+  }
+
+  if (datePicker) {
+    datePicker.forEach((element) => {
+      new DatePicker(element).init()
+    })
+  }
+
+  if (dialogs) {
+    dialogs.forEach((element) => {
+      new Dialog(element).init()
+    })
+  }
 
   if (fileUpload) {
     fileUpload.forEach((element) => {
@@ -77,18 +118,11 @@ function initSite() {
     })
   }
 
-  if (tabs) {
-    tabs.forEach((element) => {
-      new Tabs(element).init()
-    })
-  }
-
   if (globalAlert) {
     globalAlert.forEach((element) => {
       new GlobalAlert(element).init()
     })
   }
-
   if (progressIndicatorPage) {
     progressIndicatorPage.forEach((element) => {
       new ProgressIndicatorPage(element).init()
@@ -101,9 +135,31 @@ function initSite() {
     })
   }
 
-  if (tooltip) {
-    tooltip.forEach((element) => {
-      new Tooltip(element).init()
+  if (navigation) {
+    new Navigation(navigation).init()
+  }
+
+  if (openSearchButton) {
+    openSearchButton.forEach((element) => {
+      new SiteSearch(element).init()
+    })
+  }
+
+  if (popover) {
+    popover.forEach((element) => {
+      new Popover(element).init()
+    })
+  }
+
+  if (sideNav) {
+    sideNav.forEach((element, index) => {
+      new SideNav(element, index).init()
+    })
+  }
+
+  if (tabs) {
+    tabs.forEach((element) => {
+      new Tabs(element).init()
     })
   }
 
@@ -112,8 +168,20 @@ function initSite() {
       new Toggletip(element).init()
     })
   }
+
+  if (tooltip) {
+    tooltip.forEach((element) => {
+      new Tooltip(element).init()
+    })
+  }
+
+  if (utilityList) {
+    utilityList.forEach((element) => {
+      new UtilityList(element).init()
+    })
+  }
 }
 
 export {
-  initSite, SiteSearch, Navigation, Accordion, Tabs, GlobalAlert, Dialog, Filters, FileUpload, Select, Tooltip, Toggletip,
+  initSite, Accordion, BackTop, Carousel, CookieConsent, DatePicker, Dialog, ExternalLink, FileUpload, Filters, GlobalAlert, Navigation, Popover, ProgressIndicatorPage, Select, SideNav, SiteSearch, Tabs, Toggletip, Tooltip, UtilityList,
 }

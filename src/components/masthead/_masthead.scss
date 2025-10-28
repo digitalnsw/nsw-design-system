@@ -1,7 +1,5 @@
-$masthead-brand-dark: #002664;
-$masthead-off-white: #f2f2f2;
-$masthead-text-dark: #22272b;
-$masthead-text-light: #ffffff;
+@use 'sass:map';
+@use '../../global/scss/tools' as nsw;
 
 .nsw-skip {
   position: fixed;
@@ -10,52 +8,54 @@ $masthead-text-light: #ffffff;
   width: 100%;
 
   a {
-    @include font-size('xxs');
-    @include z-index('middle');
-    background-color: $masthead-brand-dark;
-    color: $masthead-text-light;
+    background-color: var(--nsw-brand-dark);
+    color: var(--nsw-white);
     width: 100%;
     text-decoration: none;
-    padding: rem(8px) rem(16px);
+    padding: nsw.rem(8px) nsw.rem(16px);
     position: absolute;
     top: 0;
     left: 0;
     transform: translateY(-101%);
 
+    @include nsw.z-index('middle');
+    @include nsw.font-size('xxs');
+    
     &:focus {
       transform: translateY(0);
       outline: none;
 
       span {
-        @include nsw-focus($color: $masthead-text-light);
+        @include nsw.nsw-focus($color: var(--nsw-white));
       }
     }
 
-    @include breakpoint('lg') {
+    @include nsw.breakpoint('lg') {
       text-align: left;
     }
   }
 
   &--light {
     a {
-      background-color: $masthead-off-white;
-      color: $masthead-text-dark;
+      background-color: var(--nsw-off-white);
+      color: var(--nsw-text-dark);
 
       &:focus span {
-        @include nsw-focus();
+        @include nsw.nsw-focus();
       }
     }
   }
 }
 
 .nsw-masthead {
-  @include font-size('xxs');
-  padding: rem(8px) 0;
-  background-color: $masthead-brand-dark;
-  color: $masthead-text-light;
+  padding: nsw.rem(8px) 0;
+  background-color: var(--nsw-brand-dark);
+  color: var(--nsw-white);
+
+  @include nsw.font-size('xxs');
 
   &--light {
-    background-color: $masthead-off-white;
-    color: $masthead-text-dark;
+    background-color: var(--nsw-off-white);
+    color: var(--nsw-text-dark);
   }
 }

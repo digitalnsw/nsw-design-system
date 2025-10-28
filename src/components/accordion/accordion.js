@@ -20,17 +20,18 @@ function createButtons({ textContent }) {
 
 class Accordion {
   constructor(element) {
-    const [expandAll, collapseAll] = Array.from(element.querySelectorAll('.nsw-accordion__toggle button'))
+    this.element = element
+    const [expandAll, collapseAll] = Array.from(this.element.querySelectorAll('.nsw-accordion__toggle button'))
     this.accordionHeadingClass = '.nsw-accordion__title'
-    this.accordion = element
-    this.headings = element.querySelectorAll(this.accordionHeadingClass)
+    this.headings = this.element.querySelectorAll(this.accordionHeadingClass)
     this.expandAllBtn = expandAll
     this.collapseAllBtn = collapseAll
+    this.isExpandedOnLoad = this.element.querySelectorAll('.nsw-accordion__open')
     this.buttons = []
     this.content = []
-    this.toggleEvent = (e) => this.toggle(e)
-    this.expandAllEvent = (e) => this.expandAll(e)
-    this.collapseAllEvent = (e) => this.collapseAll(e)
+    this.toggleEvent = (event) => this.toggle(event)
+    this.expandAllEvent = (event) => this.expandAll(event)
+    this.collapseAllEvent = (event) => this.collapseAll(event)
   }
 
   init() {
@@ -39,7 +40,7 @@ class Accordion {
   }
 
   setUpDom() {
-    this.accordion.classList.add('ready')
+    this.element.classList.add('ready')
     if (this.collapseAllBtn) {
       this.collapseAllBtn.disabled = true
     }
@@ -52,17 +53,27 @@ class Accordion {
 
       const buttonElem = headingElem.getElementsByTagName('button')[0]
 
-      contentElem.id = buttonElem.getAttribute('aria-controls')
-      contentElem.hidden = true
+      if (contentElem) {
+        contentElem.id = buttonElem.getAttribute('aria-controls')
+        contentElem.setAttribute('hidden', 'until-found')
+        this.content.push(contentElem)
+      }
 
-      this.content.push(contentElem)
       this.buttons.push(buttonElem)
     })
+
+    if (this.isExpandedOnLoad) {
+      this.isExpandedOnLoad.forEach((element) => {
+        const openButton = element.querySelector('button')
+        this.setAccordionState(openButton, 'open')
+      })
+    }
   }
 
   controls() {
     this.buttons.forEach((element) => {
       element.addEventListener('click', this.toggleEvent, false)
+      element.addEventListener('beforematch', this.toggleEvent, false)
     })
     if (this.expandAllBtn && this.collapseAllBtn) {
       this.expandAllBtn.addEventListener('click', this.expandAllEvent, false)
@@ -81,28 +92,31 @@ class Accordion {
     if (state === 'open') {
       element.classList.add('active')
       element.setAttribute('aria-expanded', 'true')
-      targetContent.hidden = false
+      targetContent.removeAttribute('hidden')
     } else if (state === 'close') {
       element.classList.remove('active')
       element.setAttribute('aria-expanded', 'false')
-      targetContent.hidden = true
+      targetContent.setAttribute('hidden', 'until-found')
     }
   }
 
-  toggle(e) {
-    const { currentTarget } = e
+  toggle(event) {
+    const { currentTarget } = event
     const targetContent = this.getTargetContent(currentTarget)
-    const isHidden = targetContent.hidden
 
-    if ((isHidden)) {
-      this.setAccordionState(currentTarget, 'open')
-    } else {
-      this.setAccordionState(currentTarget, 'close')
-    }
+    if (targetContent) {
+      const isHidden = targetContent.hasAttribute('hidden')
 
-    if (this.expandAllBtn && this.collapseAllBtn) {
-      this.expandAllBtn.disabled = this.content.every((item) => item.hidden === false)
-      this.collapseAllBtn.disabled = this.content.every((item) => item.hidden === true)
+      if (isHidden) {
+        this.setAccordionState(currentTarget, 'open')
+      } else {
+        this.setAccordionState(currentTarget, 'close')
+      }
+
+      if (this.expandAllBtn && this.collapseAllBtn) {
+        this.expandAllBtn.disabled = this.content.every((item) => !item.hasAttribute('hidden'))
+        this.collapseAllBtn.disabled = this.content.every((item) => item.hasAttribute('hidden'))
+      }
     }
   }
 

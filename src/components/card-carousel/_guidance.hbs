@@ -1,0 +1,116 @@
+---
+title: Card carousel
+layout: blank-layout.hbs
+---
+
+<h2>Usage</h2>
+
+<p>The card carousel component displays four or more related cards within a limited space, allowing users to scroll through them via arrows, navigation buttons, or swiping gestures on a touchscreen.</p>
+
+<p>Use a card carousel component:</p>
+
+<ul>
+  <li>when you have limited screen space but need to display multiple cards with related content.</li>
+  <li>with a clear and relevant title, to help users understand the content or purpose better.</li>
+  <li>to display feature articles, blog posts, news updates or any sequential content, allowing users to browse through the latest updates easily.</li>
+</ul>
+
+<h3>When to avoid</h3>
+
+<p>It's essential to implement card carousels thoughtfully to ensure they genuinely enhance user experience.</p>
+
+<p>Do not:</p>
+
+<ul>
+  <li>use multiple card carousels on one page. Use carousels sparingly and strategically. Overuse can lead to user frustration.</li>
+  <li>use for unrelated items. The content in the carousel should be related in some way. This helps users to find related and relevant content.</li>
+  <li>mix different types of cards. Consistency helps users anticipate the content and interactions.</li>
+  <li>overwhelm users with too many cards in the carousel. Ideally, limit the number of cards to no more than 9 to prevent information overload.</li>
+  <li>use if your cards contain important information, as users may overlook it if they do not engage with the carousel.</li>
+</ul>
+
+<p>Ensure that the content displayed in the carousel is relevant, engaging, and adds value to the user experience.</p>
+
+<h3>How this component works</h3>
+
+<h4>Options</h4>
+<p>You can edit the following data attributes to customize the carousel behavior:</p>
+<ul>
+<li><strong>drag</strong>: to disable drag on touch devices, add a <code>data-drag="off"</code> to the <code>js-carousel</code> element (default is on);</li>
+<li><strong>infinite loop</strong>: to enable infinite loop, add a <code>data-loop="on"</code> to the <code>js-carousel</code> element (default is off);</li>
+<li><strong>carousel navigation</strong>: to disable the carousel dots navigation, add a <code>data-navigation="off"</code> (default is on); this option is only available when not using <code>data-loop="on"</code>.</li>
+</ul>
+
+<h4>Carousel Item Number</h4>
+
+<p>The number of items visible in a carousel cycle is determined based on the width of the <code>.nsw-carousel__item</code> as defined in the card-carousel.scss file. To modify this value, you can change the <code>--carousel-item-auto-size</code> CSS variable (default is 300px).</p>
+
+<h4>Carousel Dots Navigation</h4>
+
+<p>You can customize the carousel navigation using the following data attributes:</p>
+<ul>
+  <li><code>data-navigation-class</code>: pass a list of custom classes to be added to the navigation element (default is <code>nsw-carousel__navigation</code>);</li>
+  <li><code>data-navigation-item-class</code>: pass a custom class for the navigation list items (default is <code>nsw-carousel__nav-item</code>). When an item is selected, the class <code>{navigation-item-class}--selected</code> is added to that element (e.g., if <code>data-navigation-item-class='nsw-carousel__navigation-item'</code>, the selected class will be <code>nsw-carousel__navigation-item--selected</code>);</li>
+  <li><code>data-navigation-pagination</code>: set it to 'on' to use the carousel navigation as a pagination element.</li>
+</ul>
+
+<h4>Center Items</h4>
+
+<p>If the carousel items number is smaller than the number of visible items, and you want them to be centered in the viewport, add a <code>data-justify-content="on"</code> to the <code>.nsw-carousel</code> item. By default items will be aligned to the left.</p>
+
+<h4>Optional title</h4>
+
+<p>You can include a heading using an <code>&lt;h2&gt;</code> within a separate title container alongside the carousel navigation. Only <code>&lt;h2&gt;</code> is supported. When present, this heading will align to the left and the carousel navigation controls will be pushed to the right. This provides a clear label for the carousel content and improves accessibility.</p>
+
+<p>The title is optional. If no heading is provided, the navigation controls remain grouped on the right.</p>
+
+<h4>Optional 'view more' link</h4>
+
+<p>Including a 'view more' link below the card carousel can be useful for guiding users to additional related content beyond what is displayed in the carousel.</p>
+
+<p>Research shows that users often look for clear pathways to explore more information, especially when the carousel content is a subset of a larger collection. A well-placed 'view more' link can improve user engagement by providing a straightforward way to access further resources.</p>
+
+<p>Use a 'view more' link when:</p>
+<ul>
+  <li>there is a larger set of related content not fully displayed in the carousel;</li>
+  <li>you want to encourage users to explore more deeply on a related topic or category;</li>
+  <li>you have a dedicated landing page or section that expands on the carousel content.</li>
+</ul>
+
+<p>Avoid using a 'view more' link if:</p>
+<ul>
+  <li>the carousel already shows the full set of items and there is no additional content beyond what's displayed;</li>
+  <li>the link would lead to unrelated or confusing destinations.</li>
+</ul>
+
+<h5>Link text guidelines</h5>
+
+<ul>
+  <li>Use clear and descriptive link text that indicates what users will find by clicking.</li>
+  <li>Avoid generic phrases like 'click here' or 'more' without context.</li>
+  <li>Examples of good link text include 'View all articles on [topic]', 'See more news updates', or 'Explore related blog posts.'</li>
+  <li>Keep link text concise but meaningful to assist screen reader users and improve accessibility.</li>
+</ul>
+
+<h2>Accessibility</h2>
+<p>All components are responsive and designed to comply with WCAG 2.2 AA accessibility standards. Full compliance depends on using and configuring the components correctly.</p>
+
+<p>The card carousel conforms to the <a href="https://www.w3.org/WAI/ARIA/apg/patterns/carousel" title="WAI-ARIA Authoring Practices: Carousel pattern" rel="noopener noreferrer">WAI-ARIA Authoring Practices: Carousel pattern</a> and includes a <a href="https://www.w3.org/TR/wai-aria-1.2/#dfn-live-region" title="WAI-ARIA 1.2 specification: Live region definition" rel="noopener noreferrer">WAI-ARIA 1.2: Live region definition</a> that allows screen readers to read content whenever carousel slides change.</p>
+
+<h3>Keyboard Interactions and focus</h3>
+
+<ul>
+  <li><code>Tab</code> key moves focus through interactive elements in the carousel. Rotation control, previous slide, and next slide buttons precede the slide content in the <code>Tab</code> sequence.</li>
+  <li><code>Shift + Tab</code> keys moves focus to the previous focusable element</li>
+  <li><code>Enter</code> , <code>Left Arrow</code> and <code>Right Arrow</code> keys display next or previous slide in the carousel.</li>
+</ul>
+
+<h3>Screen Reader Announcement of Slide Changes</h3>
+<p>The card carousel slide content is included in a live region. This makes it easier for screen reader users to scan through the carousel slides. When screen reader users activate the next or previous slide button, the new slide content is announced, giving users immediate feedback that helps them determine whether or not to interact with the content.</p>
+
+<h3>ARIA attributes</h3>
+<ul>
+  <li>The card carousel container has the role property set to <a href="https://w3c.github.io/aria/#group" title="ARIA role: group" rel="noopener noreferrer">ARIA role: group</a> with the property <code>aria-roledescription</code> set to 'carousel'.</li>
+  <li>Each card container has role <a href="https://w3c.github.io/aria/#group" title="ARIA role: group" rel="noopener noreferrer">ARIA role: group</a> with the property <code>aria-roledescription</code> set to slide.</li>
+  <li>The next slide control, and previous slide control are native button elements.</li>
+</ul>

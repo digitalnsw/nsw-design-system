@@ -1,11 +1,20 @@
 {
   "name": "nsw-design-system",
-  "version": "3.8.0",
+  "version": "3.22.9",
   "description": "Design system for Digital NSW",
-  "main": "dist/main.js",
-  "style": "dist/main.css",
+  "main": "dist/js/main.js",
+  "types": "dist/js/main.d.ts",
+  "style": "dist/css/main.css",
+  "exports": {
+    ".": "./dist/js/main.js",
+    "./package.json": "./package.json",
+    "./tools": "./src/global/scss/tools/_index.scss",
+    "./css": "./dist/css/main.css",
+    "./dist/*": "./dist/*",
+    "./src/*": "./src/*"
+  },
   "files": [
-    "dist/{css,js}/*.{css,js}",
+    "dist/{css,js}/**/*.{css,d.ts,js,map}",
     "src/{components,patterns,styles,core}/**/*.{scss,js}",
     "src/global/{scripts,scss}/**/*.{scss,js}",
     "src/main.{scss,js}"
@@ -19,7 +28,7 @@
   },
   "homepage": "https://www.digital.nsw.gov.au/digital-design-system",
   "scripts": {
-    "dev": "gulp",
+    "dev": "NODE_OPTIONS='--no-deprecation' gulp",
     "starterkit:build": "gulp build",
     "prod:build": "gulp buildprod",
     "surge": "gulp surge",
@@ -30,27 +39,35 @@
     "bump:minor": "gulp bumping --type minor",
     "bump:patch": "gulp bumping --type patch",
     "commit": "git add . && git reset -- package-lock.json && git commit -m 'Built HTMLstarterkit and updated CHANGELOG.md' && git push origin",
+    "types": "tsc",
     "release:major": "npm run bump:major && npm run starterkit:build && npm run changelog:build",
     "release:minor": "npm run bump:minor && npm run starterkit:build && npm run changelog:build",
     "release:patch": "npm run bump:patch && npm run starterkit:build && npm run changelog:build",
     "release-local:major": "npm run bump:major && redrun starterkit:build surge changelog:build commit git-tag -s && npm publish",
     "release-local:minor": "npm run bump:minor && redrun starterkit:build surge changelog:build commit git-tag -s && npm publish",
-    "release-local:patch": "npm run bump:patch && redrun starterkit:build surge changelog:build commit git-tag -s && npm publish"
+    "release-local:patch": "npm run bump:patch && redrun starterkit:build surge changelog:build commit git-tag -s && npm publish",
+    "test:a11y": "node a11y-test.js",
+    "test:a11y-local": "DISABLE_PROXY=true BASE_URL=http://localhost:3000 FULL_SWEEP=true node a11y-test.js"
   },
   "keywords": [
     "design system"
   ],
   "author": "Digital NSW",
   "license": "ISC",
+  "dependencies": {
+    "@floating-ui/dom": "^1.6.13",
+    "vanilla-cookieconsent": "^3.1.0"
+  },
   "devDependencies": {
     "@babel/core": "^7.21.4",
     "@babel/preset-env": "^7.21.4",
-    "@floating-ui/dom": "^1.2.8",
+    "@floating-ui/dom": "^1.6.13",
     "@rollup/plugin-babel": "^6.0.3",
     "@rollup/plugin-node-resolve": "^15.0.2",
     "auto-changelog": "^2.4.0",
     "autoprefixer": "^9.7.5",
-    "browser-sync": "^2.29.1",
+    "axe-core": "^4.10.2",
+    "browser-sync": "^3.0.2",
     "cssnano": "^6.0.0",
     "del": "^5.1.0",
     "eslint": "^8.38.0",
@@ -65,14 +82,14 @@
     "gulp-plumber": "^1.2.1",
     "gulp-postcss": "^9.0.1",
     "gulp-replace": "^1.1.4",
-    "gulp-sass": "^5.1.0",
+    "gulp-sass": "^6.0.1",
     "gulp-sass-glob": "^1.1.0",
     "gulp-sitemap": "^8.0.0",
-    "gulp-sourcemaps": "^2.6.5",
+    "gulp-sourcemaps": "^3.0.0",
     "gulp-stylelint": "^13.0.0",
     "gulp-surge": "^0.1.4",
     "gulp-zip": "^5.1.0",
-    "handlebars": "^4.7.7",
+    "handlebars": "^4.7.8",
     "handlebars-helpers": "^0.10.0",
     "inquirer": "^7.1.0",
     "jstransformer-handlebars": "^1.2.0",
@@ -87,15 +104,17 @@
     "metalsmith-in-place": "^4.4.1",
     "metalsmith-layouts": "^2.3.1",
     "metalsmith-register-helpers": "^0.4.1",
+    "playwright": "^1.50.0",
     "postcss-normalize": "^10.0.1",
     "redrun": "^10.0.2",
     "rollup": "^3.20.6",
-    "sass": "^1.62.0",
+    "sass": "^1.87.0",
     "stylelint": "^13.2.1",
     "stylelint-config-sass-guidelines": "^7.0.0",
     "stylelint-declaration-use-variable": "^1.7.3",
     "stylelint-order": "^4.0.0",
     "stylelint-scss": "^3.16.0",
+    "typescript": "5.6.3",
     "uuid": "^9.0.0",
     "yargs": "^15.3.1"
   },
@@ -103,8 +122,5 @@
     "gulp-better-rollup": {
       "rollup": "^1||^2||^3"
     }
-  },
-  "dependencies": {
-    "@floating-ui/dom": "^1.2.8"
   }
 }

@@ -1,0 +1,47 @@
+---
+title: Card carousel
+width: wide
+tabs: true
+directory: card-carousel
+intro: A card carousel displays multiple related cards horizontally, allowing users to swipe or navigate through the content.
+theme: true
+model:
+  carousel-five: ../../components/card-carousel/json/carousel-five.json
+  carousel-nine: ../../components/card-carousel/json/carousel-nine.json
+meta-description: 
+meta-index: true
+---
+
+<div class="nsw-in-page-alert nsw-in-page-alert--info">
+   <div class="nsw-in-page-alert__content">
+    <p>The card carousel component is best viewed in new window.</p>
+  </div>
+</div>
+
+{{#>_docs-example showcode=true separated=true}}
+{{>_carousel model.carousel-five default=true drag=true title="Latest news"}}
+{{/_docs-example}}
+
+{{#>_docs-code}}  
+{{>_carousel model.carousel-five default=true drag=true title="Latest news"}}
+{{/_docs-code}}
+
+<h3>Pagination</h3>
+
+{{#>_docs-example showcode=true separated=true}}
+{{>_carousel model.carousel-nine default=true pagination=true title="Latest news"}}
+{{/_docs-example}}
+
+{{#>_docs-code}}  
+{{>_carousel model.carousel-nine default=true pagination=true title="Latest news"}}
+{{/_docs-code}}
+
+<h3>View more </h3>
+
+{{#>_docs-example showcode=true separated=true}}
+{{>_carousel model.carousel-nine default=true pagination=true view-more="https://github.com/digitalnsw/nsw-design-system" title="Latest news"}}
+{{/_docs-example}}
+
+{{#>_docs-code}}  
+{{>_carousel model.carousel-nine default=true pagination=true view-more="https://github.com/digitalnsw/nsw-design-system" title="Latest news"}}
+{{/_docs-code}}

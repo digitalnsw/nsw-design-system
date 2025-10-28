@@ -1,0 +1,57 @@
+@use 'sass:color';
+@use '../base/functions' as functions;
+@use '../settings/palette' as palette;
+
+// Teal Theme Colours
+$teal-dark: palette.$teal-01 !default;
+$teal-light: palette.$teal-04 !default;
+$teal-supplementary: palette.$teal-02 !default;
+$teal-accent: palette.$fuchsia-02 !default;
+
+// Teal State Colours
+$teal-link: $teal-dark !default;
+$teal-link-light: color.mix(#ffffff, $teal-dark, 90%) !default;
+$teal-visited: functions.a11y-color(color.adjust(color.adjust(color.adjust($teal-dark, $hue: 10deg), $saturation: 0.16%), $lightness: 28.04%), #ffffff) !default;
+$teal-visited-light: color.mix(#ffffff, $teal-visited, 80%) !default;
+$teal-hover: color.adjust($teal-dark, $alpha: -0.9) !default;
+$teal-hover-light: color.adjust($teal-link-light, $alpha: -0.9) !default;
+$teal-active: color.adjust($teal-dark, $alpha: -0.8) !default;
+$teal-active-light: color.adjust($teal-link-light, $alpha: -0.8) !default;
+$teal-focus: color.adjust(color.adjust($teal-dark, $hue: -22deg), $lightness: 15.49%) !default;
+$teal-focus-light: color.mix(#ffffff, $teal-focus, 80%);
+$teal-disabled: color.mix(#ffffff, $teal-dark, 50%) !default;
+
+$teal-colors: (
+  'brand-dark': $teal-dark,
+  'brand-light': $teal-light,
+  'brand-supplementary': $teal-supplementary,
+  'brand-accent': $teal-accent,
+  'link': $teal-link,
+  'link-light': $teal-link-light,
+  'visited': $teal-visited,
+  'visited-light': $teal-visited-light,
+  'hover': $teal-hover,
+  'hover-light': $teal-hover-light,
+  'active': $teal-active,
+  'active-light': $teal-active-light,
+  'focus': $teal-focus,
+  'focus-light': $teal-focus-light,
+  'disabled': $teal-disabled
+) !default;
+
+$teal-colors-rgb: functions.to-rgb-list($teal-colors) !default;
+
+.teal {
+  @each $color, $value in $teal-colors {
+    --nsw-#{$color}: #{$value};
+  }
+
+  @each $color, $value in $teal-colors-rgb {
+    --nsw-#{$color}-rgb: #{$value};
+  }
+}
+
+.teal-accent {
+  --nsw-brand-accent: #{palette.$teal-02};
+  --nsw-brand-accent-rgb: #{functions.to-rgb(palette.$teal-02)};
+}

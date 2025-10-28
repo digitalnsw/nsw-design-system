@@ -1,6 +1,9 @@
+@use '../../global/scss/tools' as nsw;
+
 .nsw-steps {
-  @include component-spacing();
   counter-reset: step;
+
+  @include nsw.component-spacing();
 
   &__item {
     position: relative;
@@ -18,40 +21,41 @@
     &::before {
       content: '';
       position: absolute;
-      top: rem(1px);
+      top: nsw.rem(1px);
       left: 0;
-      width: rem(32px);
-      height: rem(32px);
-      border: rem(4px) solid var(--nsw-brand-accent);
+      width: nsw.rem(32px);
+      height: nsw.rem(32px);
+      border: nsw.rem(4px) solid var(--nsw-brand-accent);
       border-radius: 100%;
 
-      @include breakpoint('lg') { 
-        width: rem(48px);
-        height: rem(48px);
-        top: rem(-4px);
+      @include nsw.breakpoint('lg') { 
+        width: nsw.rem(48px);
+        height: nsw.rem(48px);
+        top: nsw.rem(-4px);
       }
     }
 
     &::after {
-      @include font-size('md');
       counter-increment: step;
       content: counter(step);
       position: absolute;
-      top: rem(1px);
+      top: nsw.rem(1px);
       left: 0;
-      width: rem(32px);
-      height: rem(32px);
+      width: nsw.rem(32px);
+      height: nsw.rem(32px);
       display: flex;
       justify-content: center;
       align-items: center;
       color: var(--nsw-brand-accent);
       font-weight: var(--nsw-font-bold);
       visibility: hidden;
+      
+      @include nsw.font-size('md');
 
-      @include breakpoint('lg') { 
-        width: rem(48px);
-        height: rem(48px);
-        top: rem(-4px);
+      @include nsw.breakpoint('lg') { 
+        width: nsw.rem(48px);
+        height: nsw.rem(48px);
+        top: nsw.rem(-4px);
       }    
     }
 
@@ -86,25 +90,25 @@
 
   &__content {
     position: relative;
-    padding: 0 0 rem(24px) rem(48px);
+    padding: 0 0 nsw.rem(24px) nsw.rem(48px);
 
-    @include breakpoint('lg') { 
-      padding: 0 0 rem(32px) rem(72px);
+    @include nsw.breakpoint('lg') { 
+      padding: 0 0 nsw.rem(32px) nsw.rem(72px);
     }
 
     &::before {
       content: '';
       position: absolute;
-      top: rem(33px);
-      bottom: rem(-1px);
-      left: rem(14px);
-      width: rem(4px);
+      top: nsw.rem(33px);
+      bottom: nsw.rem(-1px);
+      left: nsw.rem(14px);
+      width: nsw.rem(4px);
       background-color: var(--nsw-brand-accent);
 
-      @include breakpoint('lg') { 
-        top: rem(44px);
-        left: rem(22px);
-        bottom: rem(4px);
+      @include nsw.breakpoint('lg') { 
+        top: nsw.rem(44px);
+        left: nsw.rem(22px);
+        bottom: nsw.rem(4px);
       }
     }
   }
@@ -138,11 +142,11 @@
       &::before {
         border-color: var(--nsw-brand-light);
       }
-
+      
       &::after {
         color: var(--nsw-brand-light);
       }
-
+      
       &--fill {
         &::after {
           color: var(--nsw-text-dark);
@@ -232,40 +236,40 @@
   &--medium {
     .nsw-steps__item {
       &::before {
-        top: rem(-2px);
+        top: nsw.rem(-2px);
 
-        @include breakpoint('lg') { 
-          width: rem(40px);
-          height: rem(40px);
-          top: rem(-4px);
+        @include nsw.breakpoint('lg') { 
+          width: nsw.rem(40px);
+          height: nsw.rem(40px);
+          top: nsw.rem(-4px);
         }
       }
 
       &::after {
-        top: rem(-2px);
+        top: nsw.rem(-2px);
 
-        @include breakpoint('lg') { 
+        @include nsw.breakpoint('lg') { 
           font-size: var(--nsw-font-size-md-mobile);
-          width: rem(40px);
-          height: rem(40px);
-          top: rem(-4px);
+          width: nsw.rem(40px);
+          height: nsw.rem(40px);
+          top: nsw.rem(-4px);
         }    
       }
     }
 
     .nsw-steps__content {
-      @include breakpoint('lg') { 
-        padding-left: rem(64px);
+      @include nsw.breakpoint('lg') { 
+        padding-left: nsw.rem(64px);
       }
 
       &::before {
-        top: rem(30px);
-        bottom: rem(2px);
+        top: nsw.rem(30px);
+        bottom: nsw.rem(2px);
 
-        @include breakpoint('lg') { 
-          top: rem(36px);
-          bottom: rem(4px);
-          left: rem(18px);
+        @include nsw.breakpoint('lg') { 
+          top: nsw.rem(36px);
+          bottom: nsw.rem(4px);
+          left: nsw.rem(18px);
         }
       }
     }
@@ -274,40 +278,40 @@
   &--small {
     .nsw-steps__item {
       &::before {
-        top: rem(-4px);
+        top: nsw.rem(-4px);
 
-        @include breakpoint('lg') { 
-          width: rem(32px);
-          height: rem(32px);
-          top: rem(-2px);
+        @include nsw.breakpoint('lg') { 
+          width: nsw.rem(32px);
+          height: nsw.rem(32px);
+          top: nsw.rem(-2px);
         }
       }
 
       &::after {
-        top: rem(-4px);
+        top: nsw.rem(-4px);
 
-        @include breakpoint('lg') { 
+        @include nsw.breakpoint('lg') { 
           font-size: var(--nsw-font-size-md-mobile);
-          width: rem(32px);
-          height: rem(32px);
-          top: rem(-2px);
+          width: nsw.rem(32px);
+          height: nsw.rem(32px);
+          top: nsw.rem(-2px);
         }    
       }
     }
 
     .nsw-steps__content {
-      @include breakpoint('lg') { 
-        padding-left: rem(56px);
+      @include nsw.breakpoint('lg') { 
+        padding-left: nsw.rem(56px);
       }
 
       &::before {
-        top: rem(28px);
-        bottom: rem(4px);
+        top: nsw.rem(28px);
+        bottom: nsw.rem(4px);
 
-        @include breakpoint('lg') { 
-          top: rem(30px);
-          bottom: rem(2px);
-          left: rem(14px);
+        @include nsw.breakpoint('lg') { 
+          top: nsw.rem(30px);
+          bottom: nsw.rem(2px);
+          left: nsw.rem(14px);
         }
       }
     }

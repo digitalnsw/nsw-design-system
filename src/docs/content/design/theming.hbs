@@ -4,8 +4,10 @@ width: narrow
 no-blank: true
 order: 40
 meta-description: The NSW Design System theming framework for how colours are used and inherited to ensure a consistent and accessible user experience.
+model: ../../../core/colour/json/palettes.json
 meta-index: true
 ---
+
 <p>The NSW Design System has a built-in framework for how colours are used and inherited to ensure a consistent and accessible user experience. The following guidance walks through how each branding classification can apply colour to its digital products and services using the NSW Design System.</p>
 
 <nav class="nsw-in-page-nav" aria-labelledby="in-page-nav">
@@ -13,6 +15,9 @@ meta-index: true
   <ul class="nsw-in-page-nav__list">
     <li>
       <a href="#palette">NSW Government colour palette</a>
+    </li>
+    <li>
+      <a href="#aboriginal-palette">NSW Government Aboriginal colour palette</a>
     </li>
     <li>
       <a href="#colour-framework">Colour framework</a>
@@ -25,149 +30,76 @@ meta-index: true
     </li>
   </ul>
 </nav>
+
 <h2 id="palette">NSW Government colour palette</h2>
-<p>The NSW Government colour palette has been developed to accommodate the wide range of expression required by our brand. The palette contains 10 colours sets (columns), each with four different tones, plus white. </p>
+<p>The default NSW Government colour palette has been developed to accommodate the wide range of expression required by our brand. The palette contains 10 colours sets (columns), each with four different tones, plus white.</p>
 <p>Black and off-white have been added to the digital palette to allow for greater contrast to be applied.</p>
-<br>
-<div class="nsw-palette nsw-grid nsw-m-left-xs nsw-m-top-sm"
-     style="font-size:var(--nsw-font-size-xxs-desktop);">
-  <div style="background: var(--nsw-palette-grey-01);">
-    Grey 01<br/><br/>#22272B
-  </div>
-  <div style="background: var(--nsw-palette-green-01);">
-    Green 01<br/><br/>#004000
-  </div>
-  <div style="background: var(--nsw-palette-teal-01);">
-    Teal 01<br/><br/>#0B3F47
-  </div>
-  <div style="background: var(--nsw-palette-blue-01);">
-    Blue 01<br/><br/>#002664
-  </div>
-  <div style="background: var(--nsw-palette-purple-01);">
-    Purple 01<br/><br/>#441170
-  </div>
-  <div style="background: var(--nsw-palette-fuchsia-01);">
-    Fuchsia 01<br/><br/>#65004D
-  </div>
-  <div style="background: var(--nsw-palette-red-01);">
-    Red 01<br/><br/>#630019
-  </div>
-  <div style="background: var(--nsw-palette-orange-01);">
-    Orange 01<br/><br/>#941B00
-  </div>
-  <div style="background: var(--nsw-palette-yellow-01);">
-    Yellow 01<br/><br/>#694800
-  </div>
-  <div style="background: var(--nsw-palette-brown-01);">
-    Brown 01<br/><br/>#523719
-  </div>
-  <div></div>
-  <div style=" background: var(--nsw-palette-black);">
-    Black<br/><br/>#000000
-  </div>
 
-  <div style="background:var(--nsw-palette-grey-02);">
-    Grey 02<br/><br/>#495054
+<div class="nsw-theme-grid nsw-m-top-lg">
+  <div class="nsw-theme-grid-container">
+    {{#each model.palettes}}
+      <div class="nsw-theme-grid-swatch" style="background-color: {{this}}; color: {{getTextColor this}};">
+        <span>{{titleize (join (split @key "-") " ")}}</span>
+        <span>{{upcase this}}</span>
+      </div>
+    {{/each}}
   </div>
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-green-02);">
-    Green 02<br/><br/>#00AA45
+  <div class="nsw-theme-grid-side-stack">
+    {{#each model.neutral}}
+      <div class="nsw-theme-grid-swatch" style="background-color: {{this}}; color: {{getTextColor this}};">
+        <span>{{titleize (join (split @key "-") " ")}}</span>
+        <span>{{upcase this}}</span>
+      </div>
+    {{/each}}
   </div>
-  <div style="background:var(--nsw-palette-teal-02);">
-    Teal 02<br/><br/>#2E808E
-  </div>
-  <div style="background:var(--nsw-palette-blue-02);">
-    Blue 02<br/><br/>#146CFD
-  </div>
-  <div style="background:var(--nsw-palette-purple-02);">
-    Purple 02<br/><br/>#8055F1
-  </div>
-  <div style="background:var(--nsw-palette-fuchsia-02);">
-    Fuchsia 02<br/><br/>#D912AE
-  </div>
-  <div style="background:var(--nsw-palette-red-02);">
-    Red 02<br/><br/>#D7153A
-  </div>
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-orange-02);">
-    Orange 02<br/><br/>#F3631B
-  </div>
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-yellow-02);">
-    Yellow 02<br/><br/>#FAAF05
-  </div>
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-brown-02);">
-    Brown 02<br/><br/>#B68D5D
-  </div>
-  <div></div>
-  <div class="nsw-text--dark" style="background: var(--nsw-palette-white);">
-    White<br/><br/>#FFFFFF
-  </div>
+</div>
 
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-grey-03);">
-    Grey 03<br/><br/>#CDD3D6
-  </div>
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-green-03);">
-    Green 03<br/><br/>#A8EDB3
-  </div>
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-teal-03);">
-    Teal 03<br/><br/>#8CDBE5
-  </div>
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-blue-03);">
-    Blue 03<br/><br/>#8CE0FF
-  </div>
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-purple-03);">
-    Purple 03<br/><br/>#CEBFFF
-  </div>
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-fuchsia-03);">
-    Fuchsia 03<br/><br/>#F4B5E6
-  </div>
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-red-03);">
-    Red 03<br/><br/>#FFB8C1
-  </div>
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-orange-03);">
-    Orange 03<br/><br/>#FFCE99
-  </div>
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-yellow-03);">
-    Yellow 03<br/><br/>#FDE79A
-  </div>
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-brown-03);">
-    Brown 03<br/><br/>#E8D0B5
-  </div>
-  <div></div>
-  <div class="nsw-text--dark" style="background: var(--nsw-palette-off-white); border: 1px #CDD3D6 solid">
-    Off-white<br/><br/>#F2F2F2
-  </div>
+<h2 id="aboriginal-palette">NSW Government Aboriginal colour palette</h2>
+<p>The NSW Government Aboriginal colour palette reflects the rich cultural heritage and storytelling traditions of First Nations peoples. It includes a carefully curated selection of earth-inspired tones that draw from the Australian landscape, such as deep ochres, warm reds, and natural greens. This palette ensures authenticity and respect in design applications while maintaining accessibility and versatility.</p>
+<p>Black, white and off-white are also included to enhance contrast and readability in digital and print formats.</p>
+<p>Use this palette on its own to ensure authenticity and cultural respect.</p>
+<p>Visit the <a href="https://branding.nsw.gov.au/guidelines/aboriginal-branding" target="_blank" rel="noopener">Brand Toolbox – Aboriginal Branding Guidelines</a> for more information.</p>
 
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-grey-04);">
-    Grey 04<br/><br/>#EBEBEB
+<div class="nsw-theme-grid nsw-m-top-lg">
+  <div class="nsw-theme-grid-container">
+    {{#each model.aboriginal}}
+      <div class="nsw-theme-grid-swatch" style="background-color: {{this}}; color: {{getTextColor this}};">
+        <span>{{titleize (join (split @key "-") " ")}}</span>
+        <span>{{upcase this}}</span>
+      </div>
+    {{/each}}
   </div>
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-green-04);">
-    Green 04<br/><br/>#DBFADF
+  <div class="nsw-theme-grid-side-stack">
+    {{#each model.neutral}}
+      <div class="nsw-theme-grid-swatch" style="background-color: {{this}}; color: {{getTextColor this}};">
+        <span>{{titleize (join (split @key "-") " ")}}</span>
+        <span>{{upcase this}}</span>
+      </div>
+    {{/each}}
   </div>
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-teal-04);">
-    Teal 04<br/><br/>#D1EEEA
+</div>
+
+<h3>View theming examples</h3>
+<ul>
+  <li>
+    <strong>NSW Government default palette: </strong>
+    <a href="/templates/theming/full-page.html?palette=default&color=purple" target="_blank" rel="noopener">Full page</a>, 
+    <a href="/templates/theming/content-only.html?palette=default&color=purple" target="_blank" rel="noopener">Content-only</a>
+  </li>
+  <li>
+    <strong>NSW Government Aboriginal colour palette: </strong>
+    <a href="/templates/theming/full-page.html?palette=aboriginal&color=orange" target="_blank" rel="noopener">Full page</a>, 
+    <a href="/templates/theming/content-only.html?palette=aboriginal&color=orange" target="_blank" rel="noopener">Content-only</a>
+  </li>
+</ul>
+
+<div class="nsw-in-page-alert nsw-in-page-alert--warning">
+  <span class="material-icons nsw-material-icons nsw-in-page-alert__icon"
+     focusable="false" aria-hidden="true">info</span>
+  <div class="nsw-in-page-alert__content">
+    <h4>Do not mix colour palettes</h4>
+    <p>Use either palette separately to maintain visual consistency and accessibility.</p>
   </div>
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-blue-04);">
-    Blue 04<br/><br/>#CBEDFD
-  </div>
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-purple-04);">
-    Purple 04<br/><br/>#E6E1FD
-  </div>
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-fuchsia-04);">
-    Fuchsia 04<br/><br/>#FDDEF2
-  </div>
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-red-04);">
-    Red 04<br/><br/>#FFE6EA
-  </div>
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-orange-04);">
-    Orange 04<br/><br/>#FDEDDF
-  </div>
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-yellow-04);">
-    Yellow 04<br/><br/>#FFF4CF
-  </div>
-  <div class="nsw-text--dark" style="background:var(--nsw-palette-brown-04);">
-    Brown 04<br/><br/>#EDE3D7
-  </div>
-  <div></div>
-  <div></div>
 </div>
 
 <h2 id="colour-framework">Colour framework</h2>
@@ -189,8 +121,8 @@ meta-index: true
 
 <ul>
   <li><strong>Brand Dark</strong> - the primary interaction colour and is used for buttons, text links, icons, dark variants of components and backgrounds. To ensure the required 4.5:1 contrast ratio for accessibility, this colour must always be selected from row 01 of the NSW Government colour palette.</li>
-  <li><strong>Brand Light</strong> - your contrasting colour to Brand Dark and is used for secondary buttons, light variants of components, backgrounds and content sections. To ensure the required 4.5:1 contrast ratio for accessibility, this colour must be a <strong>light colour</strong>.</li>
-  <li><strong>Brand Supplementary</strong> - an optional third colour which should be used sparingly in instances such as pictograms, dark variants of components and background. To ensure the required 4.5:1 contrast ratio for accessibility, this colour must be a <strong>dark colour</strong>.</li>
+  <li><strong>Brand Light</strong> - your contrasting colour to Brand Dark and is used for secondary buttons, light variants of components, backgrounds and content sections. To ensure the required 4.5:1 contrast ratio for accessibility, this colour must be a light colour. Acceptable colour options for Brand Light are rows 03 or 04 of the NSW Government colour palette. Colours from row 02 cannot be used.</li>
+  <li><strong>Brand Supplementary</strong> - an optional third colour which should be used sparingly in instances such as pictograms, dark variants of components and background. To ensure the required 4.5:1 contrast ratio for accessibility, this colour must be a dark colour that is accessible with Text Light (#FFFFFF).</li>
   <li><strong>Brand Accent</strong> - the highlight colour to capture attention and draw the users eye. You’ll find its use in highlight bars and pictograms. This colour has different selection rules depending on your brand classification.</li>
 </ul>
 
@@ -254,7 +186,7 @@ meta-index: true
       </td>
       <td>
         <p>Blue 02 (<code
-        >#C3EBFD</code>)
+        >#146CFD</code>)
         </p>
       </td>
     </tr>
@@ -276,12 +208,11 @@ meta-index: true
   </table>
 </div>
 
-
 <h2 id="corporate">Masterbrand corporate</h2>
 <p>The only defined colour for masterbrand corporate is Brand Dark (Blue 01). Brand Light, Supplementary and Accent are variable colours and can be altered if required. If you wish to change a variable brand colour, it must be selected from the blue, red or grey colour sets and:</p>
 <ul>
-  <li><strong>Brand Light</strong> must be a light colour (accessible with Text Dark).</li>
-  <li><strong>Brand Supplementary</strong> must be a dark colour (accessible with Text Light).</li>
+  <li><strong>Brand Light</strong> must be selected from rows 03 or 04 only (accessible with Text Dark). Colours from row 02 cannot be used.</li>
+  <li><strong>Brand Supplementary</strong> must be a dark colour that is accessible with Text Light (#FFFFFF).</li>
   <li><strong>Brand Accent</strong> can be selected from any row in wider colour palette (row 02 and 03 recommended).</li>
 </ul>
 <p>Guidance on applying these in Figma can be found on the <strong>Colour</strong> page of the <a href="/docs/content/design/figma-ui-kit.html">Figma UI Kit</a>.</p>
@@ -303,10 +234,9 @@ meta-index: true
 <p>Colour selection rules:</p>
 <ul>
   <li><strong>Brand Dark</strong> must be selected from row 01.</li>
-  <li><strong>Brand Light</strong> must be a light colour (accessible with Text Dark).
-  </li>
-  <li><strong> Brand Supplementary</strong> must be a dark colour (accessible with Text Light). This is an additional colour option only available if your Brand Light is not from row 02.</li>
+  <li><strong>Brand Light</strong> must be selected from rows 03 or 04 only (accessible with Text Dark). Colours from row 02 cannot be used.</li>
+  <li><strong> Brand Supplementary</strong> must be a dark colour that is accessible with Text Light (#FFFFFF). This is an optional additional colour that should be used sparingly.</li>
   <li><strong> Brand Accent</strong> can be selected from any row from your chosen colour sets (row 02 and 03 recommended).</li>
 </ul>
 <p>Guidance on applying your new brand colours in Figma can be found on the <strong>Colour</strong> page of the <a href="/docs/content/design/figma-ui-kit.html">Figma UI Kit</a>.</p>
-<p>As core styles and components inherit colours from the base colour theme, changing a brand colour will automatically filter down to all instances where that colour is used. Alternatively, colour instances can be updated on an individual basis as required. Where possible, it is indicated in the guidance on the <strong>Components</strong> page.</p>
+<p>As core styles and components inherit colours from the base colour theme, changing a brand colour will automatically filter down to all instances where that colour is used. Alternatively, colour instances can be updated on an individual basis within the chosen colour sets as required. Where possible, it is indicated in the guidance on the <strong>Components</strong> page.</p>

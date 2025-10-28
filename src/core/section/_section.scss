@@ -1,3 +1,6 @@
+@use 'sass:map';
+@use '../../global/scss/tools' as nsw;
+
 //Variations
 $nsw-sections: (
   brand-dark: (
@@ -43,24 +46,25 @@ $nsw-sections: (
 );
 
 .nsw-section {
-  padding: rem($grid-gutters*2) 0;
+  --nsw-section-bg: transparent;
+  padding: nsw.rem(nsw.$grid-gutters*2) 0;
 
-  @include breakpoint('md') {
-    padding: rem($grid-gutters*4) 0;
+  @include nsw.breakpoint('md') {
+    padding: nsw.rem(nsw.$grid-gutters*4) 0;
   }
 
   &--half-padding {
     padding: 0;
 
-    @include breakpoint('md') {
-      padding: rem($grid-gutters*2) 0;
+    @include nsw.breakpoint('md') {
+      padding: nsw.rem(nsw.$grid-gutters*2) 0;
     }    
   }
 
   &--no-padding {
     padding: 0;
 
-    @include breakpoint('md') {
+    @include nsw.breakpoint('md') {
       padding: 0;
     }    
   }
@@ -71,25 +75,44 @@ $nsw-sections: (
     background-repeat: no-repeat;
     padding: 0;
 
-    @include breakpoint('md') {
-      padding: rem($grid-gutters*4) 0;
+    @include nsw.breakpoint('md') {
+      padding: nsw.rem(nsw.$grid-gutters*4) 0;
+    }
+  }
+
+  &--image-html {
+    position: relative;
+    padding: 0;
+
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    @include nsw.breakpoint('md') {
+      padding: nsw.rem(nsw.$grid-gutters*4) 0;
     }
   }
 
   &--box {
     border-radius: var(--nsw-border-radius);
     border: 1px solid var(--nsw-grey-04);
-    padding: rem(24px);
+    padding: nsw.rem(24px);
 
-    @include breakpoint('md') {
-      padding: rem(24px);
+    @include nsw.breakpoint('md') {
+      padding: nsw.rem(24px);
     }
   }
 
   @each $name, $variant in $nsw-sections {
     &--#{"" + $name} {
-      background-color: map-get($variant, background);
-      color: map-get($variant, color);
+      --nsw-section-bg: #{map.get($variant, background)};
+      background-color: map.get($variant, background);
+      color: map.get($variant, color);
     }
   }
 

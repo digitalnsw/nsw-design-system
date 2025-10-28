@@ -1,0 +1,42 @@
+---
+title: Popover
+layout: blank-layout.hbs
+---
+
+<p>The popover component is used to reveal additional content and functionalities. Its visibility is triggered by a control element (e.g., button).</p>
+
+<p>Popovers remain actively open until a user dismisses it in one of the following ways:</p>
+
+<ul>
+  <li>Presses the Esc key</li>
+  <li>Clicks outside of the Popover</li>
+  <li>Performs another action that closes the Popover</li>
+</ul>
+
+<h3>When to avoid</h3>
+<ul>
+  <li>Do not hide important information inside of a popover that the user may need in order to complete a task or workflow.</li>
+  <li>Do not use on non-interactive elements (for example, div, span, p).</li>
+  <li>Do not use if the popover needs take up a large amount of the size of the screen.</li>
+  <li>Do not have multiple popovers open at the same time.</li>
+  <li>Do not nest one popover within another popover.</li>
+</ul>
+
+<h2>Accessibility</h2>
+<p>All components are responsive and designed to comply with WCAG 2.2 AA accessibility standards. Full compliance depends on using and configuring the components correctly.</p>
+
+<h3>Popover keyboard interaction and focus</h3>
+
+<ul>
+  <li>Opens via the <code>Enter</code> or <code>Space</code> keys, or by clicking the trigger element.</li>
+  <li>On open, focus moves into the Popover container to navigate elements inside with the <code>Tab</code> key.</li>
+  <li>Dismissed by tabbing out of the Popover, pressing the <code>Escape</code> key, or clicking outside.</li>
+  <li>When dismissed, focus returns to the trigger element.</li>
+</ul>
+
+<h3>ARIA attributes</h3>
+<ul>
+  <li>The trigger element has <a target="_blank" rel="noopener noreferrer" href="https://www.w3.org/TR/wai-aria/#aria-expanded"><code>aria-expanded</code></a> set to <code>true</code> or <code>false</code> based on the open state.</li>
+  <li>The trigger element has <a target="_blank" rel="noopener noreferrer" href="https://www.w3.org/TR/wai-aria/#aria-controls"><code>aria-controls</code></a> set to the <code>id</code> of the Popover element.</li>
+  <li>The trigger element has <a target="_blank" rel="noopener noreferrer" href="https://www.w3.org/TR/wai-aria/#aria-haspopup"><code>aria-haspopup</code></a> set to the suitable <code>role</code> attribute of the Popover, depending on the type of content.</li>
+</ul>

@@ -1,4 +1,4 @@
-/* stylelint-disable scss/at-extend-no-missing-placeholder */
+@use '../../global/scss/tools' as nsw;
 
 .nsw-tooltip,
 .nsw-toggletip {
@@ -7,7 +7,7 @@
 
   &:focus,
   &:active {
-    @include nsw-focus;
+    @include nsw.nsw-focus;
   }
 
   &__element {
@@ -21,12 +21,12 @@
     box-shadow: var(--nsw-box-shadow);
     line-height: var(--nsw-line-height-md-desktop);
 
-    @include z-index('upper');
-    @include font-size('xs');
+    @include nsw.z-index('upper');
+    @include nsw.font-size('xs');
 
     &:focus,
     &:active {
-      @include nsw-focus;
+      @include nsw.nsw-focus;
     }
 
     &--dark {
@@ -34,11 +34,11 @@
       color: var(--nsw-text-light);
 
       a {
-        @include link-light();
+        @include nsw.link-light();
 
         &:focus,
         &:active {
-          @include nsw-focus(true, var(--nsw-text-light));
+          @include nsw.nsw-focus(true, var(--nsw-text-light));
         }
       }
 
@@ -46,7 +46,7 @@
         color: var(--nsw-text-light);
         text-decoration: none;
 
-        @include link-light();
+        @include nsw.link-light();
       }
     }
 
@@ -55,11 +55,11 @@
       color: var(--nsw-text-dark);
 
       a {
-        @include link;
+        @include nsw.link;
 
         &:focus,
         &:active {
-          @include nsw-focus;
+          @include nsw.nsw-focus;
         }
       }
 
@@ -67,7 +67,7 @@
         color: var(--nsw-brand-dark);
         text-decoration: none;
 
-        @include link-dark;
+        @include nsw.link-dark;
       }
 
       .nsw-tooltip__arrow,
@@ -98,10 +98,10 @@
   cursor: help;
 
   &__element {
-    padding: rem(8px);
+    padding: nsw.rem(8px);
 
-    @include breakpoint('lg') {
-      padding: rem(16px);
+    @include nsw.breakpoint('lg') {
+      padding: nsw.rem(16px);
     }
   }
 }
@@ -115,12 +115,12 @@
     align-items: center;
 
     .nsw-icon-button {
-      margin: rem(6px) rem(6px) 0 rem(8px);
+      margin: nsw.rem(6px) nsw.rem(6px) 0 nsw.rem(8px);
 
       .nsw-material-icons {
         font-size: var(--nsw-font-size-sm-mobile);
     
-        @include breakpoint('lg') {
+        @include nsw.breakpoint('lg') {
           font-size: var(--nsw-font-size-sm-desktop);
         }
       }
@@ -128,7 +128,7 @@
   }
 
   &__content {
-    padding: 0 rem(16px) rem(16px);
+    padding: 0 nsw.rem(16px) nsw.rem(16px);
     
     &:first-child {
       margin-top: 0;

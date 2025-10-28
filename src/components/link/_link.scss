@@ -1,0 +1,44 @@
+@use 'sass:map';
+@use '../../global/scss/tools' as nsw;
+
+.nsw-link {
+  &--button {
+    background-color: transparent;
+    border: 0;
+    padding: 0;
+
+    @include nsw.link;
+    @include nsw.font-size('sm');
+
+    &.nsw-small {
+      @include nsw.font-size('xs');
+    }
+  }
+
+  &--icon {
+    display: inline-block;
+    font-weight: var(--nsw-font-bold);
+    text-decoration: none;
+
+    span {
+      text-decoration: underline;
+    }
+
+    .nsw-material-icons,
+    svg {
+      font-size: nsw.rem(map.get(nsw.$nsw-icon-sizes, 20));
+      line-height: nsw.rem(10px);
+      position: relative;
+      bottom: nsw.rem(-5px);
+      text-decoration: none;
+
+      &:first-child {
+        margin-right: nsw.rem(4px);
+      }
+
+      &:last-child {
+        margin-left: nsw.rem(4px);
+      }
+    }
+  }
+}

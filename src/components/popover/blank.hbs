@@ -1,0 +1,90 @@
+---
+title: Popover
+width: narrow
+page: true
+model: ../../components/popover/json/popover.json
+---
+
+{{#>_layout-container}}
+<h3>Top</h3>
+
+<div class="nsw-list nsw-list--8 nsw-m-top-xs">
+  {{#each model.top}}
+{{>_popover style="dark-outline" icon="info" text=this id=@key position=@key gap="10"}}
+  {{/each}}
+</div>
+
+<h3>Right</h3>
+
+<div class="nsw-list nsw-list--8 nsw-m-top-xs">
+  {{#each model.right}}
+{{>_popover style="dark-outline" icon="info" text=this id=@key position=@key gap="10"}}
+  {{/each}}
+</div>
+
+<h3>Bottom</h3>
+
+<div class="nsw-list nsw-list--8 nsw-m-top-xs">
+  {{#each model.bottom}}
+{{>_popover style="dark-outline" icon="info" text=this id=@key position=@key gap="10"}}
+  {{/each}}
+</div>
+
+<h3>Left</h3>
+
+<div class="nsw-list nsw-list--8 nsw-m-top-xs">
+  {{#each model.left}}
+{{>_popover style="dark-outline" icon="info" text=this id=@key position=@key gap="10"}}
+  {{/each}}
+</div>
+
+<h3>Offset</h3>
+
+<div class="nsw-list nsw-list--8 nsw-m-top-xs">
+  {{#each model.gap}}
+{{>_popover style="dark-outline" icon="info" text="Open Top" id=this position="top" gap=this}}
+  {{/each}}
+</div>
+{{/_layout-container}}
+
+{{#>_layout-container brand-dark="true" invert="true"}}
+<h3>Top</h3>
+
+<div class="nsw-list nsw-list--8 nsw-m-top-xs">
+  {{#each model.top}}
+{{>_popover style="dark-outline" icon="info" text=this id=@key position=@key gap="10"}}
+  {{/each}}
+</div>
+
+<h3>Right</h3>
+
+<div class="nsw-list nsw-list--8 nsw-m-top-xs">
+  {{#each model.right}}
+{{>_popover style="dark-outline" icon="info" text=this id=@key position=@key gap="10"}}
+  {{/each}}
+</div>
+
+<h3>Bottom</h3>
+
+<div class="nsw-list nsw-list--8 nsw-m-top-xs">
+  {{#each model.bottom}}
+{{>_popover style="dark-outline" icon="info" text=this id=@key position=@key gap="10"}}
+  {{/each}}
+</div>
+
+<h3>Left</h3>
+
+<div class="nsw-list nsw-list--8 nsw-m-top-xs">
+  {{#each model.left}}
+{{>_popover style="dark-outline" icon="info" text=this id=@key position=@key gap="10"}}
+  {{/each}}
+</div>
+
+<h3>Offset</h3>
+
+<div class="nsw-list nsw-list--8 nsw-m-top-xs">
+  {{#each model.gap}}
+{{>_popover style="dark-outline" icon="info" text="Open Top" id=this position="top" gap=this}}
+  {{/each}}
+</div>
+{{/_layout-container}}

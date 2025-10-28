@@ -1,15 +1,20 @@
 @use 'sass:math';
+@use 'sass:meta';
+@use 'sass:map';
+@use 'sass:list';
+@use './functions' as functions;
+@use '../settings/settings' as settings;
 
-@mixin breakpoint( $size, $width-type: min-width) {
-  @if type-of( $size ) != 'string' {
+@mixin breakpoint($size, $width-type: min-width) {
+  @if meta.type-of($size) != 'string' {
     @error 'NSW-DS Breakpoint mixin accepts only strings';
   }
 
   @if $size != 'xs' and $size != 'sm' and $size != 'md' and $size != 'lg' and $size != 'xl' {
     @error 'NSW-DS Breakpoint mixin allows the following breakpoint sizes xs, sm, md, lg';
   } @else {
-    $px-size: map-get($nsw-breakpoints, $size);
-    $rem-size: rem($px-size);
+    $px-size: map.get(settings.$nsw-breakpoints, $size);
+    $rem-size: functions.rem($px-size);
 
     @media ($width-type: $rem-size) {
       @content;
@@ -19,8 +24,8 @@
 
 // Default focus state
 @mixin nsw-focus($offset: true, $color: var(--nsw-focus)) {
-  @if type-of($offset) != bool {
-    @error 'NSW-DS nsw-focus mixin allows a boolean for $offset: You have used a type of "#{type-of($offset)}" and a value of "#{$offset}"';
+  @if meta.type-of($offset) != bool {
+    @error 'NSW-DS nsw-focus mixin allows a boolean for $offset: You have used a type of "#{meta.type-of($offset)}" and a value of "#{$offset}"';
   }
 
   outline: solid 3px $color;
@@ -33,12 +38,93 @@
 
 // Default hover state
 @mixin nsw-hover {
-  background-color: var(--nsw-text-hover);
+  background-color: var(--nsw-hover);
 }
 
-// Default text link hover state
-@mixin nsw-link-hover {
-  background-color: var(--nsw-text-link-hover);
+@mixin nsw-hover-light {
+  background-color: var(--nsw-hover-light);
+}
+
+//Links
+@mixin link() {
+  font-weight: var(--nsw-font-bold);
+  color: var(--nsw-link);
+  text-decoration: underline;
+  text-underline-offset: functions.rem(4px);
+
+  &:visited {
+    color: var(--nsw-visited);
+  }
+
+  &:focus {
+    @include nsw-focus($offset: false);
+  }
+
+  &:hover {
+    @include nsw-hover;
+    outline: 2px solid var(--nsw-hover);
+  }
+
+  &:active {
+    background-color: var(--nsw-active);
+    outline-color: var(--nsw-active);
+  }
+}
+
+@mixin link-dark() {
+  color: var(--nsw-link);
+
+  &:visited {
+    color: var(--nsw-visited);
+  }
+
+  &:focus {
+    outline-color: var(--nsw-focus);
+  }
+
+  &:hover {
+    background-color: var(--nsw-hover);
+    outline-color: var(--nsw-hover);
+  }
+
+  &:active {
+    background-color: var(--nsw-active);
+    outline-color: var(--nsw-active);
+  }
+}
+
+@mixin link-light() {
+  color: var(--nsw-link-light);
+
+  &:visited {
+    color: var(--nsw-visited-light);
+  }
+
+  &:focus {
+    outline-color: var(--nsw-focus-light);
+  }
+
+  &:hover {
+    background-color: var(--nsw-hover-light);
+    outline-color: var(--nsw-hover-light);
+  }
+
+  &:active {
+    background-color: var(--nsw-active-light);
+    outline-color: var(--nsw-active-light);
+  }
+}
+
+@mixin link-button() {
+  display: inline-block;
+  cursor: pointer;
+  background-color: transparent;
+  border: 0;
+  padding: 2px;
+  -webkit-appearance: none; /* stylelint-disable-line property-no-vendor-prefix */
+  
+  @include link();
+  @include font-size('sm');
 }
 
 // A block to click around the link
@@ -56,115 +142,49 @@
 
 // Z-index
 @mixin z-index($index: 'base') {
-
-  @if map-has-key($nsw-z-index, $index) == false {
-    @error 'NSW-DS z-index mixin allows the following values for $index: #{map-keys($nsw-z-index)}. You have used "#{$index}"';
-  }
-  @else {
-    z-index: map-get($nsw-z-index, $index);
+  @if map.has-key(settings.$nsw-z-index, $index) == false {
+    @error 'NSW-DS z-index mixin allows the following values for $index: #{map.keys(settings.$nsw-z-index)}. You have used "#{$index}"';
+  } @else {
+    z-index: map.get(settings.$nsw-z-index, $index);
   }
 }
 
 //Screen reader text
 /* stylelint-disable declaration-no-important  */
-@mixin sr-only {
-  border: 0 !important;
-  clip: rect(1px, 1px, 1px, 1px) !important;
-  clip-path: inset(50%) !important;
-  height: 1px !important;
-  overflow: hidden !important;
-  padding: 0 !important;
-  position: absolute !important;
+@mixin sr-only() {
   width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
   white-space: nowrap !important;
+  border: 0 !important;
+
+  &:not(caption) {
+    position: absolute !important;
+  }
 }
 
-@mixin sr-only-focus {
-  clip: auto !important;
-  clip-path: none !important;
-  height: auto !important;
-  overflow: visible !important;
-  width: auto !important;
-  white-space: normal !important;
+@mixin sr-only-focus() {
+  &:not(:focus):not(:focus-within) {
+    @include sr-only();
+  }
 }
+
 /* stylelint-enable declaration-no-important  */
 
 //Component spacing
 @mixin component-spacing() {
-  margin-top: rem(24px);
+  margin-top: functions.rem(24px);
 
   &:first-child {
     margin-top: 0;
   }
 
   @include breakpoint('md') {
-    margin-top: rem(32px);
+    margin-top: functions.rem(32px);
   }
-}
-
-//Links
-@mixin link() {
-  font-weight: var(--nsw-font-bold);
-  color: var(--nsw-text-link);
-  text-decoration: underline;
-
-  &:hover {
-    @include nsw-link-hover;
-    outline: 2px solid var(--nsw-text-link-hover);
-  }
-
-  &:focus {
-    @include nsw-focus($offset: false);
-  }
-
-  &:visited {
-    color: var(--nsw-text-visited);
-  }
-}
-
-@mixin link-dark() {
-  color: var(--nsw-text-link);
-
-  &:hover {
-    background-color: var(--nsw-text-link-hover);
-    outline-color: var(--nsw-text-link-hover);
-  }
-
-  &:focus {
-    outline-color: var(--nsw-focus);
-  }
-
-  &:visited {
-    color: var(--nsw-text-visited);
-  }
-}
-
-@mixin link-light() {
-  color: var(--nsw-text-light);
-
-  &:hover {
-    background-color: var(--nsw-text-hover-light);
-    outline-color: var(--nsw-text-hover-light);
-  }
-
-  &:focus {
-    outline-color: var(--nsw-white);
-  }
-
-  &:visited {
-    color: var(--nsw-text-light);
-  }
-}
-
-@mixin link-button() {
-  @include link();
-  @include font-size('sm');
-  display: inline-block;
-  cursor: pointer;
-  background-color: transparent;
-  border: 0;
-  padding: 0;
-  -webkit-appearance: none; /* stylelint-disable-line property-no-vendor-prefix */
 }
 
 // Font-size mixin - returns the font size for mobile and desktop based of the values in $font-sizes map
@@ -174,12 +194,19 @@
   }
 
   @if $size {
-    font-size: var(--nsw-font-size-#{$size}-mobile);
-    line-height: var(--nsw-line-height-#{$size}-mobile);
+    // Mobile styles – these declarations appear before any nested rules.
 
-    @include breakpoint($nsw-font-size-reponsive-breakpoint) {
-      font-size: var(--nsw-font-size-#{$size}-desktop);
-      line-height: var(--nsw-line-height-#{$size}-desktop);
+    & {
+      font-size: var(--nsw-font-size-#{$size}-mobile);
+      line-height: var(--nsw-line-height-#{$size}-mobile);
+    }
+
+    // Desktop styles – wrap in & {} to opt into new Sass behavior.
+    @include breakpoint(settings.$nsw-font-size-reponsive-breakpoint) {
+      & {
+        font-size: var(--nsw-font-size-#{$size}-desktop);
+        line-height: var(--nsw-line-height-#{$size}-desktop);
+      }
     }
   }
 }
@@ -191,10 +218,10 @@
 }
 
 //Grid
-@mixin container($offset: $grid-gutters*2) {
+@mixin container($offset: settings.$grid-gutters*2) {
   max-width: var(--nsw-container-width);
-  padding-left: rem($offset);
-  padding-right: rem($offset);
+  padding-left: functions.rem($offset);
+  padding-right: functions.rem($offset);
   margin-left: auto;
   margin-right: auto;
 }
@@ -202,12 +229,12 @@
 @mixin grid() {
   display: flex;
   flex-wrap: wrap;
-  margin-left: rem(-$grid-gutters);
-  margin-right: rem(-$grid-gutters);
+  margin-left: functions.rem(-(settings.$grid-gutters));
+  margin-right: functions.rem(-(settings.$grid-gutters));
 
   @include breakpoint('md') {
-    margin-left: rem(-$grid-gutters*2);
-    margin-right: rem(-$grid-gutters*2);
+    margin-left: functions.rem(-(settings.$grid-gutters)*2);
+    margin-right: functions.rem(-(settings.$grid-gutters)*2);
   }
 }
 
@@ -219,36 +246,36 @@
 
 @mixin column-default() {
   width: 100%;
-  padding: rem($grid-gutters);
+  padding: functions.rem(settings.$grid-gutters);
 
   @include breakpoint('md') {
-    padding: rem($grid-gutters*2);
+    padding: functions.rem(settings.$grid-gutters*2);
   }
 }
 
 @mixin column($size, $breakpoint: null, $offset: null) {
   @if ($breakpoint) {
     @include breakpoint($breakpoint) {
-      width: percentage(math.div($size, 12));
-      max-width: percentage(math.div($size, 12));
+      width: math.percentage(math.div($size, 12));
+      max-width: math.percentage(math.div($size, 12));
 
       @if ($offset) {
-        margin-left: percentage(math.div($offset, 12));
+        margin-left: math.percentage(math.div($offset, 12));
       }
     }
 
   } @else {
-    width: percentage(math.div($size, 12));
-    max-width: percentage(math.div($size, 12));
+    width: math.percentage(math.div($size, 12));
+    max-width: math.percentage(math.div($size, 12));
 
     @if ($offset) {
-      margin-left: percentage(math.div($offset, 12));
+      margin-left: math.percentage(math.div($offset, 12));
     }
   }
 }
 
-@mixin media-breakpoint-up($name, $breakpoints: $nsw-breakpoints) {
-  $min: breakpoint-min($name, $breakpoints);
+@mixin media-breakpoint-up($name, $breakpoints: settings.$nsw-breakpoints) {
+  $min: functions.breakpoint-min($name, $breakpoints);
   @if $min {
     @media (min-width: $min) {
       @content;
@@ -268,37 +295,37 @@
 // Used to generate utilities & print utilities
 /* stylelint-disable string-quotes, number-leading-zero */
 @mixin generate-utility($utility, $infix: "", $is-rfs-media-query: false) {
-  $values: map-get($utility, values);
+  $values: map.get($utility, values);
 
   // If the values are a list or string, convert it into a map
-  @if type-of($values) == "string" or type-of(nth($values, 1)) != "list" {
-    $values: zip($values, $values);
+  @if meta.type-of($values) == "string" or meta.type-of(list.nth($values, 1)) != "list" {
+    $values: list.zip($values, $values);
   }
 
   @each $key, $value in $values {
-    $properties: map-get($utility, property);
+    $properties: map.get($utility, property);
 
     // Multiple properties are possible, for example with vertical or horizontal margins or paddings
-    @if type-of($properties) == "string" {
-      $properties: append((), $properties);
+    @if meta.type-of($properties) == "string" {
+      $properties: list.append((), $properties);
     }
 
     // Use custom class if present
-    $property-class: if(map-has-key($utility, class), map-get($utility, class), nth($properties, 1));
+    $property-class: if(map.has-key($utility, class), map.get($utility, class), list.nth($properties, 1));
     $property-class: if($property-class == null, "", $property-class);
 
     // Use custom CSS variable name if present, otherwise default to `class`
-    $css-variable-name: if(map-has-key($utility, css-variable-name), map-get($utility, css-variable-name), map-get($utility, class));
+    $css-variable-name: if(map.has-key($utility, css-variable-name), map.get($utility, css-variable-name), map.get($utility, class));
 
     // State params to generate pseudo-classes
-    $state: if(map-has-key($utility, state), map-get($utility, state), ());
+    $state: if(map.has-key($utility, state), map.get($utility, state), ());
 
     $infix: if($property-class == "" and str-slice($infix, 1, 1) == "-", str-slice($infix, 2), $infix);
 
     // Don't prefix if value key is null (e.g. with shadow class)
     $property-class-modifier: if($key, if($property-class == "" and $infix == "", "", "-") + $key, "");
 
-    @if map-get($utility, rfs) {
+    @if map.get($utility, rfs) {
       // Inside the media query
       @if $is-rfs-media-query {
         $val: rfs-value($value);
@@ -311,9 +338,9 @@
       }
     }
 
-    $is-css-var: map-get($utility, css-var);
-    $is-local-vars: map-get($utility, local-vars);
-    $is-rtl: map-get($utility, rtl);
+    $is-css-var: map.get($utility, css-var);
+    $is-local-vars: map.get($utility, local-vars);
+    $is-rtl: map.get($utility, rtl);
 
     @if $value != null {
       @if $is-rtl == false {
@@ -322,12 +349,12 @@
 
       @if $is-css-var {
         .#{$property-class + $infix + $property-class-modifier} {
-          --#{$prefix}#{$css-variable-name}: #{$value};
+          --#{settings.$prefix}#{$css-variable-name}: #{$value};
         }
 
         @each $pseudo in $state {
           .#{$property-class + $infix + $property-class-modifier}-#{$pseudo}:#{$pseudo} {
-            --#{$prefix}#{$css-variable-name}: #{$value};
+            --#{settings.$prefix}#{$css-variable-name}: #{$value};
           }
         }
       } @else {
@@ -335,10 +362,10 @@
           @each $property in $properties {
             @if $is-local-vars {
               @each $local-var, $variable in $is-local-vars {
-                --#{$prefix}#{$local-var}: #{$variable};
+                --#{settings.$prefix}#{$local-var}: #{$variable};
               }
             }
-            #{$property}: $value if($enable-important-utilities, !important, null);
+            #{$property}: $value if(settings.$enable-important-utilities, !important, null);
           }
         }
 
@@ -347,10 +374,10 @@
             @each $property in $properties {
               @if $is-local-vars {
                 @each $local-var, $variable in $is-local-vars {
-                  --#{$prefix}#{$local-var}: #{$variable};
+                  --#{settings.$prefix}#{$local-var}: #{$variable};
                 }
               }
-              #{$property}: $value if($enable-important-utilities, !important, null);
+              #{$property}: $value if(settings.$enable-important-utilities, !important, null);
             }
           }
         }

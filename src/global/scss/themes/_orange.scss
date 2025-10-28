@@ -1,0 +1,57 @@
+@use 'sass:color';
+@use '../base/functions' as functions;
+@use '../settings/palette' as palette;
+
+// Purple Theme Colours
+$orange-dark: palette.$orange-01 !default;
+$orange-light: palette.$orange-04 !default;
+$orange-supplementary: palette.$orange-02 !default;
+$orange-accent: palette.$purple-02 !default;
+
+// Purple State Colours
+$orange-link: $orange-dark !default;
+$orange-link-light: color.mix(#ffffff, $orange-dark, 90%) !default;
+$orange-visited: functions.a11y-color(color.adjust(color.adjust($orange-dark, $hue: 16deg), $lightness: 31.96%), #ffffff) !default;
+$orange-visited-light: color.mix(#ffffff, $orange-visited, 80%) !default;
+$orange-hover: color.adjust($orange-dark, $alpha: -0.9) !default;
+$orange-hover-light: color.adjust($orange-link-light, $alpha: -0.9) !default;
+$orange-active: color.adjust($orange-dark, $alpha: -0.8) !default;
+$orange-active-light: color.adjust($orange-link-light, $alpha: -0.8) !default;
+$orange-focus: color.adjust(color.adjust($orange-dark, $hue: -22deg), $lightness: 15.49%) !default;
+$orange-focus-light: color.mix(#ffffff, $orange-focus, 80%);
+$orange-disabled: color.mix(#ffffff, $orange-dark, 50%) !default;
+
+$orange-colors: (
+  'brand-dark': $orange-dark,
+  'brand-light': $orange-light,
+  'brand-supplementary': $orange-supplementary,
+  'brand-accent': $orange-accent,
+  'link': $orange-link,
+  'link-light': $orange-link-light,
+  'visited': $orange-visited,
+  'visited-light': $orange-visited-light,
+  'hover': $orange-hover,
+  'hover-light': $orange-hover-light,
+  'active': $orange-active,
+  'active-light': $orange-active-light,
+  'focus': $orange-focus,
+  'focus-light': $orange-focus-light,
+  'disabled': $orange-disabled
+) !default;
+
+$orange-colors-rgb: functions.to-rgb-list($orange-colors) !default;
+
+.orange {
+  @each $color, $value in $orange-colors {
+    --nsw-#{$color}: #{$value};
+  }
+
+  @each $color, $value in $orange-colors-rgb {
+    --nsw-#{$color}-rgb: #{$value};
+  }
+}
+
+.orange-accent {
+  --nsw-brand-accent: #{palette.$orange-02};
+  --nsw-brand-accent-rgb: #{functions.to-rgb(palette.$orange-02)};
+}

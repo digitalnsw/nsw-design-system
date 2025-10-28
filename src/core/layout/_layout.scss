@@ -1,40 +1,42 @@
+@use '../../global/scss/tools' as nsw;
+
 $nsw-layout-gap: 32px;
 
 .nsw-layout {
-  @include grid();
+  @include nsw.grid();
 
   &__main {
-    @include column-default();
+    @include nsw.column-default();
 
     &:not(:first-child) {
-      @include column(8, $nsw-desktop-breakpoint);
+      @include nsw.column(8, nsw.$nsw-desktop-breakpoint);
     }
 
     &:not(:last-child) {
-      @include column(8, $nsw-desktop-breakpoint);
+      @include nsw.column(8, nsw.$nsw-desktop-breakpoint);
     }
   }
 
   &__sidebar {
-    @include column-default();
-    @include column(4, $nsw-desktop-breakpoint);
+    @include nsw.column-default();
+    @include nsw.column(4, nsw.$nsw-desktop-breakpoint);
 
     &:first-child {
-      @include breakpoint('lg') {
-        padding-right: rem($grid-gutters*2 + $nsw-layout-gap);
+      @include nsw.breakpoint('lg') {
+        padding-right: nsw.rem(nsw.$grid-gutters*2 + $nsw-layout-gap);
       }
     }
 
     &:last-child {
-      @include breakpoint($nsw-desktop-breakpoint) {
-        padding-left: rem($grid-gutters*2 + $nsw-layout-gap);
+      @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+        padding-left: nsw.rem(nsw.$grid-gutters*2 + $nsw-layout-gap);
       }
     }
 
     &--desktop {
       display: none;
 
-      @include breakpoint($nsw-desktop-breakpoint) {
+      @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
         display: block;
       }
     }
