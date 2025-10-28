@@ -12,6 +12,7 @@ import Filters from './components/filters/filters'
 import GlobalAlert from './components/global-alert/global-alert'
 import Navigation from './components/main-nav/main-nav'
 import Popover from './components/popover/popover'
+import ProgressIndicatorPage from './components/progress-indicator/progress-indicator-page'
 import Select from './components/select/select'
 import SiteSearch from './components/header/header'
 import SideNav from './components/side-nav/side-nav'
@@ -51,7 +52,8 @@ function initSite() {
   const fileUpload = document.querySelectorAll('.js-file-upload')
   const filters = document.querySelectorAll('.js-filters')
   const globalAlert = document.querySelectorAll('.js-global-alert')
-  const link = document.querySelectorAll('a.js-link')
+  // const link = document.querySelectorAll('a.js-link')
+  const progressIndicatorPage = document.querySelectorAll('.js-progress-indicator-page')
   const multiSelect = document.querySelectorAll('.js-multi-select')
   const navigation = document.getElementById('main-nav')
   const openSearchButton = document.querySelectorAll('button.js-open-search')
@@ -121,10 +123,9 @@ function initSite() {
       new GlobalAlert(element).init()
     })
   }
-
-  if (link) {
-    link.forEach((element) => {
-      new ExternalLink(element).init()
+  if (progressIndicatorPage) {
+    progressIndicatorPage.forEach((element) => {
+      new ProgressIndicatorPage(element).init()
     })
   }
 
@@ -182,5 +183,5 @@ function initSite() {
 }
 
 export {
-  initSite, Accordion, BackTop, Carousel, CookieConsent, DatePicker, Dialog, ExternalLink, FileUpload, Filters, GlobalAlert, Navigation, Popover, Select, SideNav, SiteSearch, Tabs, Toggletip, Tooltip, UtilityList,
+  initSite, Accordion, BackTop, Carousel, CookieConsent, DatePicker, Dialog, ExternalLink, FileUpload, Filters, GlobalAlert, Navigation, Popover, ProgressIndicatorPage, Select, SideNav, SiteSearch, Tabs, Toggletip, Tooltip, UtilityList,
 }
