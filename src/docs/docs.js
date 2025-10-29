@@ -385,6 +385,20 @@ function initDocs() {
   document.querySelectorAll('.js-color-swatch[data-mode="accent-only"]').forEach((element) => {
     new ColorSwatches(element, accentConfig).init()
   })
+
+  // Initialise Quick Exit (module-based)
+  const hasQuickExitAPI = () => !!(window.NSW && window.NSW.QuickExit)
+
+  // Delegated: button demos use data-module + data-options
+  document.addEventListener('click', (evt) => {
+    const btn = evt.target.closest('button[data-module="quick-exit"]')
+    if (!btn) return
+    evt.preventDefault()
+    if (!hasQuickExitAPI()) return
+    // Use the component helper to read data-options JSON and call init(...)
+    window.NSW.QuickExit.fromElement(btn)
+  })
+  // --- End Quick Exit ---
 }
 
 initDocs()
