@@ -402,6 +402,29 @@ function bumping() {
     .pipe(dest('./'))
 }
 
+function scanNSWDS() {
+  const pkg = require('./package.json')
+  const depVersion =
+    (pkg.dependencies && (pkg.dependencies['nsw-design-system'] || pkg.dependencies['@digitalnsw/nsw-design-system'])) ||
+    (pkg.devDependencies && (pkg.devDependencies['nsw-design-system'] || pkg.devDependencies['@digitalnsw/nsw-design-system'])) ||
+    pkg.version || 'unknown'
+  const cleanedVersion = typeof depVersion === 'string' ? depVersion.replace(/^[~^><=\s]+/, '') : 'unknown'
+
+  const env = {
+    ...process.env,
+    NSWDS_DIST: (config.dir && config.dir.build) ? config.dir.build : 'dist',
+    NSWDS_VERSION: cleanedVersion,
+    NSWDS_MODE: 'vanilla',
+  }
+
+  // Return ChildProcess so Gulp waits correctly
+  return child.spawn(
+    process.execPath,
+    ['src/global/scripts/nswds-scan.mjs'],
+    { stdio: 'inherit', env }
+  )
+}
+
 function injectNSWDSMeta() {
   // Use your configured build dir; default to 'dist'
   const distDir = (config.dir && config.dir.build) ? config.dir.build : 'dist'
@@ -468,6 +491,7 @@ const buildprod = series(
   moveBrand,
   renamePathForProd,
   addAnalytics,
+  scanNSWDS,
   injectNSWDSMeta,
   zipDistFolder,
   generateSitemap,
@@ -483,6 +507,7 @@ const build = series(
   javascript,
   moveImages,
   moveBrand,
+  scanNSWDS,
   injectNSWDSMeta,
   zipDistFolder,
 )
@@ -520,3 +545,4 @@ exports.metal = metalsmithBuild // gulp metal - generates static site of compone
 exports.js = javascript // gulp js - compiles the js
 exports.bumping = bumping // gulp bump - bumps the version number in specific files - used for releases
 exports.default = dev // gulp - default gulp task
+exports['scan-nswds'] = scanNSWDS
