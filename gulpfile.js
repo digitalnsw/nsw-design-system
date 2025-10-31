@@ -402,6 +402,47 @@ function bumping() {
     .pipe(dest('./'))
 }
 
+function injectNSWDSMeta() {
+  // Use your configured build dir; default to 'dist'
+  const distDir = (config.dir && config.dir.build) ? config.dir.build : 'dist'
+  const distDirClean = distDir.replace(/\/+$/, '')
+  const jsonPath = `${distDirClean}/.well-known/nsw-design-system.json`
+
+  // Build a safe default payload (works even if the JSON file doesn't exist)
+  const pkg = require('./package.json')
+  const depVersion =
+    (pkg.dependencies && (pkg.dependencies['nsw-design-system'] || pkg.dependencies['@digitalnsw/nsw-design-system'])) ||
+    (pkg.devDependencies && (pkg.devDependencies['nsw-design-system'] || pkg.devDependencies['@digitalnsw/nsw-design-system'])) ||
+    pkg.version || 'unknown'
+  const cleanedVersion = typeof depVersion === 'string' ? depVersion.replace(/^[~^><=\s]+/, '') : 'unknown'
+
+  // Start with version+mode only; enrich with components if JSON exists
+  const payload = { version: cleanedVersion, mode: 'vanilla', components: [] }
+
+  if (fs.existsSync(jsonPath)) {
+    try {
+      const json = JSON.parse(fs.readFileSync(jsonPath, 'utf8'))
+      if (json && json.nswDesignSystem) {
+        const nds = json.nswDesignSystem
+        if (Array.isArray(nds.components)) payload.components = nds.components
+        if (typeof nds.version === 'string' && nds.version) payload.version = nds.version
+        if (typeof nds.mode === 'string' && nds.mode) payload.mode = nds.mode
+      }
+    } catch (e) {
+      console.warn(`[inject-nswds-meta] Warning: could not parse ${jsonPath}: ${e.message}`)
+    }
+  } else {
+    console.warn(`[inject-nswds-meta] Note: ${jsonPath} not found — injecting version/mode only`)
+  }
+
+  const tag = `<meta name="nsw-design-system" content='${JSON.stringify(payload)}'>`
+
+  // Inject immediately after <head> (matches <head> or <head ...>, case-insensitive)
+  return src(`${distDir}/**/*.html`)
+    .pipe(replace(/<head[^>]*>/i, (match) => `${match}\n  ${tag}\n`))
+    .pipe(dest(distDir))
+}
+
 const styles = series(lintStyles, buildStyles, buildCoreStyles, buildDocStyles)
 const javascript = series(lintJavascript, compileJS, compileTypes, compileDocsJS, compileCookieConsentJS)
 
@@ -427,6 +468,7 @@ const buildprod = series(
   moveBrand,
   renamePathForProd,
   addAnalytics,
+  injectNSWDSMeta,
   zipDistFolder,
   generateSitemap,
 )
@@ -441,6 +483,7 @@ const build = series(
   javascript,
   moveImages,
   moveBrand,
+  injectNSWDSMeta,
   zipDistFolder,
 )
 
