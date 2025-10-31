@@ -241,8 +241,32 @@ class Select {
   }
 
   updateNativeSelect(index, bool) {
-    this.options[index].selected = bool
-    this.select.dispatchEvent(new CustomEvent('change', { bubbles: true }))
+    const opt = this.options[index]
+    if (!opt) return
+
+    const wasSelected = !!opt.selected
+    if (wasSelected === !!bool) {
+      return
+    }
+
+    opt.selected = bool
+
+    const evtInit = { bubbles: true, composed: true }
+    this.select.dispatchEvent(new Event('input', evtInit))
+    this.select.dispatchEvent(new Event('change', evtInit))
+
+    const selectedOptions = Array.from(this.select.selectedOptions || []).map((o) => ({
+      label: o.text,
+      value: o.value,
+    }))
+    const detail = {
+      selectedOptions,
+      values: selectedOptions.map((o) => o.value),
+    }
+
+    this.select.dispatchEvent(new CustomEvent('nsw:change', { ...evtInit, detail }))
+
+    this.element.dispatchEvent(new CustomEvent('nsw:change', { ...evtInit, detail }))
   }
 
   updateTriggerAria(ariaLabel) {
