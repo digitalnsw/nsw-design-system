@@ -69,6 +69,7 @@ function buildStyles() {
       this.emit('end')
     }))
     .pipe(postcss(postcssProcessors))
+    .pipe(inject.prepend(`/*! NSW Design System v${package.version} | MIT License */\n`))
     .pipe(sourcemaps.write('.'))
     .pipe(dest(config.scss.build))
 }
@@ -97,22 +98,6 @@ function buildDocStyles() {
     .pipe(postcss(postcssProcessors))
     .pipe(sourcemaps.write('.'))
     .pipe(dest(config.scssDocs.build))
-}
-
-function addVersionBannerCSS() {
-  const ver = (package.version && package.version.version) ? package.version.version : package.version
-  const banner = `/*! NSW Design System v${ver} | MIT License */\n`
-  return src(`${config.scss.build}/main.css`)
-    .pipe(inject.prepend(banner))
-    .pipe(dest(config.scss.build))
-}
-
-function addVersionBannerJS() {
-  const ver = (package.version && package.version.version) ? package.version.version : package.version
-  const banner = `/*! NSW Design System v${ver} | MIT License */\n`
-  return src(`${config.js.build}/main.js`)
-    .pipe(inject.prepend(banner))
-    .pipe(dest(config.js.build))
 }
 
 function lintStyles() {
@@ -285,7 +270,8 @@ function compileJS() {
       ),
     )
     .pipe(replace(/\bprocess\.env\.NODE_ENV\b/g, JSON.stringify(process.env.NODE_ENV || 'production')))
-    .pipe(inject.append(`\n/* NSW Design System v${package.version.version || package.version} */\n;(function(g){try{g.NSW=g.NSW||{};g.NSW.VERSION='${package.version.version || package.version}';}catch(e){} }(typeof globalThis!=='undefined'?globalThis:(typeof window!=='undefined'?window:self)));`))
+    .pipe(inject.prepend(`/*! NSW Design System v${package.version} | MIT License */\n`))
+    .pipe(inject.append(`\n;(function(g){try{g.NSW=g.NSW||{};g.NSW.VERSION='${package.version}';}catch(e){} }(typeof globalThis!=='undefined'?globalThis:(typeof window!=='undefined'?window:self)));`))
     .pipe(dest(config.js.build))
 }
 
@@ -440,8 +426,6 @@ const buildprod = series(
   metalsmithBuild,
   styles,
   javascript,
-  addVersionBannerCSS,
-  addVersionBannerJS,
   moveImages,
   moveBrand,
   renamePathForProd,
@@ -458,8 +442,6 @@ const build = series(
   metalsmithBuild,
   styles,
   javascript,
-  addVersionBannerCSS,
-  addVersionBannerJS,
   moveImages,
   moveBrand,
   zipDistFolder,
@@ -473,8 +455,6 @@ const dev = series(
   metalsmithBuild,
   styles,
   javascript,
-  addVersionBannerCSS,
-  addVersionBannerJS,
   moveImages,
   moveBrand,
   watchFiles,
@@ -500,5 +480,3 @@ exports.metal = metalsmithBuild // gulp metal - generates static site of compone
 exports.js = javascript // gulp js - compiles the js
 exports.bumping = bumping // gulp bump - bumps the version number in specific files - used for releases
 exports.default = dev // gulp - default gulp task
-exports['version-banner-css'] = addVersionBannerCSS
-exports['version-banner-js'] = addVersionBannerJS
