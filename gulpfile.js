@@ -99,6 +99,22 @@ function buildDocStyles() {
     .pipe(dest(config.scssDocs.build))
 }
 
+function addVersionBannerCSS() {
+  const ver = (package.version && package.version.version) ? package.version.version : package.version
+  const banner = `/*! NSW Design System v${ver} | MIT License */\n`
+  return src(`${config.scss.build}/main.css`)
+    .pipe(inject.prepend(banner))
+    .pipe(dest(config.scss.build))
+}
+
+function addVersionBannerJS() {
+  const ver = (package.version && package.version.version) ? package.version.version : package.version
+  const banner = `/*! NSW Design System v${ver} | MIT License */\n`
+  return src(`${config.js.build}/main.js`)
+    .pipe(inject.prepend(banner))
+    .pipe(dest(config.js.build))
+}
+
 function lintStyles() {
   return src(config.scss.watch)
     .pipe(gulpStylelint({
@@ -269,6 +285,7 @@ function compileJS() {
       ),
     )
     .pipe(replace(/\bprocess\.env\.NODE_ENV\b/g, JSON.stringify(process.env.NODE_ENV || 'production')))
+    .pipe(inject.append(`\n/* NSW Design System v${package.version.version || package.version} */\n;(function(g){try{g.NSW=g.NSW||{};g.NSW.VERSION='${package.version.version || package.version}';}catch(e){} }(typeof globalThis!=='undefined'?globalThis:(typeof window!=='undefined'?window:self)));`))
     .pipe(dest(config.js.build))
 }
 
@@ -425,46 +442,6 @@ function scanNSWDS() {
   )
 }
 
-function injectNSWDSMeta() {
-  // Use your configured build dir; default to 'dist'
-  const distDir = (config.dir && config.dir.build) ? config.dir.build : 'dist'
-  const distDirClean = distDir.replace(/\/+$/, '')
-  const jsonPath = `${distDirClean}/.well-known/nsw-design-system.json`
-
-  // Build a safe default payload (works even if the JSON file doesn't exist)
-  const pkg = require('./package.json')
-  const depVersion =
-    (pkg.dependencies && (pkg.dependencies['nsw-design-system'] || pkg.dependencies['@digitalnsw/nsw-design-system'])) ||
-    (pkg.devDependencies && (pkg.devDependencies['nsw-design-system'] || pkg.devDependencies['@digitalnsw/nsw-design-system'])) ||
-    pkg.version || 'unknown'
-  const cleanedVersion = typeof depVersion === 'string' ? depVersion.replace(/^[~^><=\s]+/, '') : 'unknown'
-
-  // Start with version+mode only; enrich with components if JSON exists
-  const payload = { version: cleanedVersion, mode: 'vanilla', components: [] }
-
-  if (fs.existsSync(jsonPath)) {
-    try {
-      const json = JSON.parse(fs.readFileSync(jsonPath, 'utf8'))
-      if (json && json.nswDesignSystem) {
-        const nds = json.nswDesignSystem
-        if (Array.isArray(nds.components)) payload.components = nds.components
-        if (typeof nds.version === 'string' && nds.version) payload.version = nds.version
-        if (typeof nds.mode === 'string' && nds.mode) payload.mode = nds.mode
-      }
-    } catch (e) {
-      console.warn(`[inject-nswds-meta] Warning: could not parse ${jsonPath}: ${e.message}`)
-    }
-  } else {
-    console.warn(`[inject-nswds-meta] Note: ${jsonPath} not found — injecting version/mode only`)
-  }
-
-  const tag = `<meta name="nsw-design-system" content='${JSON.stringify(payload)}'>`
-
-  // Inject immediately after <head> (matches <head> or <head ...>, case-insensitive)
-  return src(`${distDir}/**/*.html`)
-    .pipe(replace(/<head[^>]*>/i, (match) => `${match}\n  ${tag}\n`))
-    .pipe(dest(distDir))
-}
 
 const styles = series(lintStyles, buildStyles, buildCoreStyles, buildDocStyles)
 const javascript = series(lintJavascript, compileJS, compileTypes, compileDocsJS, compileCookieConsentJS)
@@ -487,12 +464,13 @@ const buildprod = series(
   metalsmithBuild,
   styles,
   javascript,
+  addVersionBannerCSS,
+  addVersionBannerJS,
   moveImages,
   moveBrand,
   renamePathForProd,
   addAnalytics,
   scanNSWDS,
-  injectNSWDSMeta,
   zipDistFolder,
   generateSitemap,
 )
@@ -505,10 +483,11 @@ const build = series(
   metalsmithBuild,
   styles,
   javascript,
+  addVersionBannerCSS,
+  addVersionBannerJS,
   moveImages,
   moveBrand,
   scanNSWDS,
-  injectNSWDSMeta,
   zipDistFolder,
 )
 
@@ -520,6 +499,8 @@ const dev = series(
   metalsmithBuild,
   styles,
   javascript,
+  addVersionBannerCSS,
+  addVersionBannerJS,
   moveImages,
   moveBrand,
   watchFiles,
@@ -546,3 +527,5 @@ exports.js = javascript // gulp js - compiles the js
 exports.bumping = bumping // gulp bump - bumps the version number in specific files - used for releases
 exports.default = dev // gulp - default gulp task
 exports['scan-nswds'] = scanNSWDS
+exports['version-banner-css'] = addVersionBannerCSS
+exports['version-banner-js'] = addVersionBannerJS
