@@ -69,7 +69,7 @@ function buildStyles() {
       this.emit('end')
     }))
     .pipe(postcss(postcssProcessors))
-    .pipe(inject.prepend(`/*! NSW Design System v${package.version} | MIT License */\n`))
+    .pipe(inject.prepend(`/*! NSW Design System v${String(package.version).replace(/\*\//g, '*\\/')} | MIT License */\n`))
     .pipe(sourcemaps.write('.'))
     .pipe(dest(config.scss.build))
 }
@@ -270,8 +270,8 @@ function compileJS() {
       ),
     )
     .pipe(replace(/\bprocess\.env\.NODE_ENV\b/g, JSON.stringify(process.env.NODE_ENV || 'production')))
-    .pipe(inject.prepend(`/*! NSW Design System v${package.version} | MIT License */\n`))
-    .pipe(inject.append(`\n;(function(g){try{g.NSW=g.NSW||{};g.NSW.VERSION='${package.version}';}catch(e){} }(typeof globalThis!=='undefined'?globalThis:(typeof window!=='undefined'?window:self)));`))
+    .pipe(inject.prepend(`/*! NSW Design System v${String(package.version).replace(/\*\//g, '*\\/')} | MIT License */\n`))
+    .pipe(inject.append(`\n;(function(g){try{g.NSW=g.NSW||{};g.NSW.VERSION=${JSON.stringify(String(package.version))};}catch(e){} }(typeof globalThis!=='undefined'?globalThis:(typeof window!=='undefined'?window:self)));`))
     .pipe(dest(config.js.build))
 }
 
@@ -301,6 +301,7 @@ function compileDocsJS() {
       ),
     )
     .pipe(replace(/\bprocess\.env\.NODE_ENV\b/g, JSON.stringify(process.env.NODE_ENV || 'production')))
+    .pipe(inject.prepend(`/*! NSW Design System v${String(package.version).replace(/\*\//g, '*\\/')} | MIT License */\n`))
     .pipe(dest(config.jsDocs.build))
 }
 
@@ -325,6 +326,7 @@ function compileCookieConsentJS() {
       ),
     )
     .pipe(replace(/\bprocess\.env\.NODE_ENV\b/g, JSON.stringify(process.env.NODE_ENV || 'production')))
+    .pipe(inject.prepend(`/*! NSW Design System v${String(package.version).replace(/\*\//g, '*\\/')} | MIT License */\n`))
     .pipe(dest(config.jsCookieConsent.build))
 }
 
