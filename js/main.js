@@ -1,3 +1,4 @@
+/*! NSW Design System v3.22.10 | MIT License */
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
   typeof define === 'function' && define.amd ? define('NSW', ['exports'], factory) :
@@ -5940,3 +5941,5 @@
   exports.initSite = initSite;
 
 }));
+
+;(function(g){try{g.NSW=g.NSW||{};g.NSW.VERSION="3.22.10";}catch(e){} }(typeof globalThis!=='undefined'?globalThis:(typeof window!=='undefined'?window:self)));
