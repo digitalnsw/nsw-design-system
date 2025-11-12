@@ -86,7 +86,8 @@ export const validateUrl = (raw, fallback = 'https://www.google.com/webhp') => {
       return fallback
     }
 
-    return url.href
+    // Return a credential-free URL (origin + path + search + hash), even if some environments would include creds in href
+    return `${url.origin}${url.pathname}${url.search}${url.hash}`
   } catch (e) {
     return fallback
   }

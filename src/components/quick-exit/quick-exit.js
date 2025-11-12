@@ -204,12 +204,42 @@ export default class QuickExit {
     let timerId = null
     const TIME_WINDOW = 1000
 
-    const isEscapeKey = (event) => (
-      event.key === 'Escape' || event.key === 'Esc' || event.keyCode === 27
+    const isEscapeKey = ({ key, keyCode }) => (
+      key === 'Escape' || key === 'Esc' || keyCode === 27
     )
 
+    // Helpers to decide if QE should defer to other UI
+    const isEditable = (el) => {
+      if (!el) return false
+      const tag = el.tagName && el.tagName.toLowerCase()
+      if (tag === 'input' || tag === 'textarea' || tag === 'select') return true
+      if (el.isContentEditable) return true
+      // Common ARIA widgets that own Esc (e.g., autocomplete/combobox/popups)
+      const role = el.getAttribute && el.getAttribute('role')
+      if (role === 'combobox' || role === 'dialog' || role === 'menu' || role === 'listbox') return true
+      return false
+    }
+
+    const modalOpen = () => {
+      try {
+        if (document.querySelector('dialog[open]')) return true
+        if (document.querySelector('[role="dialog"][aria-modal="true"]')) return true
+        return false
+      } catch (err) {
+        ignoreError(err)
+        return false
+      }
+    }
+
     const handleKeydown = (event) => {
-      if (!isEscapeKey(event)) return
+      const {
+        key, keyCode, defaultPrevented, target,
+      } = event
+      if (!isEscapeKey({ key, keyCode })) return
+
+      // If another component has already claimed Esc, or focus is in an editable/modal context, defer.
+      if (defaultPrevented) return
+      if (isEditable(target) || modalOpen()) return
 
       pressCount += 1
       if (timerId) clearTimeout(timerId)
@@ -220,11 +250,7 @@ export default class QuickExit {
         } catch (err) {
           ignoreError(err)
         }
-        try {
-          event.stopImmediatePropagation()
-        } catch (err) {
-          ignoreError(err)
-        }
+        // Do NOT call stopImmediatePropagation here; allow other listeners to continue.
         callback()
         pressCount = 0
         timerId = null
@@ -236,7 +262,8 @@ export default class QuickExit {
       }
     }
 
-    // Capture phase so we still receive ESC even if other components stop propagation
+    // Capture phase so we still receive ESC even if other components stop propagation,
+    // but we won't suppress them unless we actually trigger QE (and even then we don't stop propagation).
     document.addEventListener('keydown', handleKeydown, true)
   }
 
