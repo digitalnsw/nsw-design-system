@@ -10,6 +10,9 @@ import { validateUrl } from '../../global/scripts/helpers/utilities'
  * - Primary action is an <a> so it works without JS; JS enhances to open safe URL in a new tab and replace current tab.
  * - Optional progressive features: double-Esc, auto-focus first, URL sanitisation.
  */
+/** internal no-op to satisfy lint when intentionally swallowing errors */
+function ignoreError() {}
+
 export default class QuickExit {
   /**
    * Enhance or create a Quick Exit inside the sticky container
@@ -17,8 +20,7 @@ export default class QuickExit {
   static init(
     {
       safeUrl = 'https://www.google.com/webhp',
-      secondarySafeUrl = 'https://www.bom.gov.au/',
-      title = 'Leave this site quickly',
+      safeTitle = 'NSW Government',
       description = 'Select <strong>Exit now</strong> or press the <kbd>Esc</kbd> key 2 times. This won\'t clear your internet history.', /* ignore */
       exitLabel = 'Exit now',
       theme = 'light', // 'light' | 'dark'
@@ -37,14 +39,14 @@ export default class QuickExit {
     let root = container.querySelector('.nsw-quick-exit')
     if (!root) {
       root = QuickExit.buildMarkup({
-        title, description, exitLabel, safeUrl, theme,
+        description, exitLabel, safeUrl, theme,
       })
       container.appendChild(root)
     }
 
     QuickExit.enhance(root, {
       safeUrl,
-      secondarySafeUrl,
+      safeTitle,
       theme,
       enableEsc,
       enableCloak,
@@ -60,7 +62,7 @@ export default class QuickExit {
    * Build minimal, no‑JS friendly markup
    */
   static buildMarkup({
-    title, description, exitLabel, safeUrl, theme,
+    description, exitLabel, safeUrl, theme,
   }) {
     const root = document.createElement('section')
     root.className = `nsw-quick-exit nsw-quick-exit__${theme === 'dark' ? 'dark' : 'light'}`
@@ -70,10 +72,6 @@ export default class QuickExit {
 
     const content = document.createElement('div')
     content.className = 'nsw-quick-exit__content'
-
-    const h = document.createElement('h3')
-    h.className = 'nsw-quick-exit__title'
-    h.textContent = title
 
     const p = document.createElement('p')
     p.className = 'nsw-quick-exit__description'
@@ -88,7 +86,6 @@ export default class QuickExit {
     a.textContent = exitLabel
     a.setAttribute('aria-describedby', 'nsw-quick-exit__desc')
 
-    content.appendChild(h)
     content.appendChild(p)
     wrapper.appendChild(content)
     wrapper.appendChild(a)
@@ -103,12 +100,12 @@ export default class QuickExit {
     root,
     {
       safeUrl,
-      secondarySafeUrl,
       theme,
       enableEsc,
       enableCloak,
       focusFirst,
       exitLabel,
+      safeTitle,
     },
   ) {
     const node = root
@@ -141,13 +138,24 @@ export default class QuickExit {
 
     // Progressive behaviour: open safe URL in a new tab *and* change current tab
     const SAFE = validateUrl(safeUrl)
-    const SECONDARY = validateUrl(secondarySafeUrl || safeUrl)
     cta.addEventListener('click', (ev) => {
-      try { ev.preventDefault() } catch (errA) { /* ignore */ }
+      try {
+        ev.preventDefault()
+      } catch (errA) {
+        ignoreError(errA)
+      }
       // Cloak immediately for perceived privacy (if enabled)
       if (enableCloak) QuickExit.applyCloak()
-      try { window.open(SAFE, '_blank', 'noopener,noreferrer') } catch (errB) { /* popup blocked is fine */ }
-      try { window.location.replace(SECONDARY) } catch (errB) { window.location.href = SECONDARY }
+      try {
+        document.title = safeTitle || document.title
+      } catch (errT) {
+        ignoreError(errT)
+      }
+      try {
+        window.open(SAFE, '_blank', 'noopener,noreferrer')
+      } catch (errB) {
+        ignoreError(errB)
+      }
     })
 
     // Optional keyboard: double ESC (bind once per component)
@@ -180,8 +188,16 @@ export default class QuickExit {
       if (timerId) clearTimeout(timerId)
 
       if (pressCount >= 2) {
-        try { event.preventDefault() } catch (err) { /* ignore */ }
-        try { event.stopImmediatePropagation() } catch (err) { /* ignore */ }
+        try {
+          event.preventDefault()
+        } catch (err) {
+          ignoreError(err)
+        }
+        try {
+          event.stopImmediatePropagation()
+        } catch (err) {
+          ignoreError(err)
+        }
         callback()
         pressCount = 0
         timerId = null
@@ -200,15 +216,30 @@ export default class QuickExit {
   static applyCloak() {
     try {
       document.documentElement.style.setProperty('display', 'none', 'important')
-    } catch (errC) { /* ignore */ }
+    } catch (errC) {
+      ignoreError(errC)
+    }
   }
 
   static focusFirst(node) {
     const focus = () => {
-      try { node.focus({ preventScroll: true }) } catch (errD) { try { node.focus() } catch (errE) { /* ignore */ } }
+      try {
+        node.focus({ preventScroll: true })
+      } catch (errD) {
+        try {
+          node.focus()
+        } catch (errE) {
+          ignoreError(errE)
+        }
+      }
     }
     const arrivedBF = (() => {
-      try { const nav = performance.getEntriesByType('navigation')[0]; return nav && nav.type === 'back_forward' } catch (_) { return false }
+      try {
+        const nav = performance.getEntriesByType('navigation')[0]; return nav && nav.type === 'back_forward'
+      } catch (errT) {
+        ignoreError(errT)
+        return false
+      }
     })()
     const should = !arrivedBF && !window.location.hash && (!document.activeElement || document.activeElement === document.body)
     if (should) setTimeout(focus, 0)
@@ -229,7 +260,7 @@ export default class QuickExit {
       const href = (link && link.getAttribute('href')) || 'https://www.google.com/webhp'
       QuickExit.enhance(existingRoot, {
         safeUrl: href,
-        secondarySafeUrl: 'https://www.bom.gov.au/',
+        safeTitle: 'NSW Government',
         theme: (existingRoot.getAttribute('data-theme') || 'light'),
         enableEsc: true,
         enableCloak: true,
@@ -250,7 +281,11 @@ export default class QuickExit {
       const attr = el.getAttribute('data-options')
       let opts = {}
       if (attr && attr.trim()) {
-        try { opts = JSON.parse(attr) } catch (parseErr) { /* ignore bad JSON */ }
+        try {
+          opts = JSON.parse(attr)
+        } catch (parseErr) {
+          ignoreError(parseErr)
+        }
       }
 
       // Map legacy cloakMode to enableCloak (anything except 'none' = true)
@@ -260,8 +295,7 @@ export default class QuickExit {
 
       QuickExit.init({
         safeUrl: opts.safeUrl || 'https://www.google.com/webhp',
-        secondarySafeUrl: opts.secondarySafeUrl || 'https://www.bom.gov.au/',
-        title: opts.title || 'Leave this site quickly',
+        safeTitle: opts.safeTitle || 'NSW Government',
         description: opts.description || 'Select <strong>Exit now</strong> or press the <kbd>Esc</kbd> key 2 times. This won\'t clear your internet history.',
         exitLabel: opts.exitLabel || 'Exit now',
         theme: opts.theme || 'light',
@@ -270,6 +304,7 @@ export default class QuickExit {
         focusFirst: (typeof opts.focusFirst === 'boolean') ? opts.focusFirst : true,
       })
     } catch (err) {
+      ignoreError(err)
       // Swallow errors to avoid breaking demo pages
     }
   }
