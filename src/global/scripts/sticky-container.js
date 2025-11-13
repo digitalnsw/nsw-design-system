@@ -13,7 +13,6 @@ export const STICKY_CLASS = 'js-sticky-container'
 export const STICKY_ID = 'sticky-container'
 
 const CANDIDATES = [
-  '[data-sticky-container]',
   '.nsw-sticky-container',
   `.${STICKY_CLASS}`,
   `#${STICKY_ID}`,

@@ -10,7 +10,7 @@ model:  json/quick-exit.json
 <ul class="nsw-m-bottom-md">
 <li>Light theme</li>
 <li>Cloaks page immediately on activation</li>
-<li>Opens Safe URL in a new tab and replaces current tab with Secondary</li>
+<li>Opens Safe URL in a new tab and places a `display: none` on the current page, also replacing the page title</li>
 </ul>
 
 <button class="nsw-button nsw-button--dark"
@@ -28,7 +28,7 @@ model:  json/quick-exit.json
 <ul class="nsw-m-bottom-md">
 <li>Dark theme</li>
 <li>Cloaks page immediately on activation</li>
-<li>Opens Safe URL in a new tab and replaces current tab with Secondary</li>
+<li>Opens Safe URL in a new tab and places a `display: none` on the current page, also replacing the page title</li>
 </ul>
 
 <button class="nsw-button nsw-button--dark"
@@ -42,46 +42,5 @@ model:  json/quick-exit.json
   }'
   type="button"
   aria-expanded="true">Initialise banner</button>
-
-<h3>Variation 3 - New tab</h3>
-<ul class="nsw-m-bottom-md">
-<li>Light theme</li>
-<li>Does not cloak page (cloaking off)</li>
-<li>Opens Safe URL in a new tab and also navigates current tab</li>
-</ul>
-<button class="nsw-button nsw-button--dark"
-  data-module="quick-exit"
-  data-options='{
-    "safeUrl": "{{model.safeUrl}}",
-    "description": "{{model.description}}",
-    "theme": "light",
-    "enableEsc": true
-  }'
-  type="button"
-  aria-expanded="true">Initialise banner</button>
-<script>
-(function () {
-  function initFromButton(btn) {
-    try {
-      var json = btn.getAttribute('data-options');
-      var o = json ? JSON.parse(json) : {};
-      var enableCloak = true;
-      if (o.cloakMode === 'none') enableCloak = false; // legacy mapping
-
-      window.NSW.QuickExit.init({
-        safeUrl: o.safeUrl || '{{model.safeUrl}}',
-        description: o.description || '{{model.description}}',
-        theme: o.theme || 'light',
-        enableEsc: (typeof o.enableEsc === 'boolean') ? o.enableEsc : true,
-        enableCloak: enableCloak
-      });
-    } catch (e) { console.error('[QE demo] init error', e); }
-  }
-
-  document.querySelectorAll('button[data-module="quick-exit"]').forEach(function (btn) {
-    btn.addEventListener('click', function () { initFromButton(btn); });
-  });
-})();
-</script>
 {{/_layout-container}}
 {{/_theme}}

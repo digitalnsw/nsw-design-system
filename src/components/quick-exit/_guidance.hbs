@@ -31,8 +31,34 @@ layout: blank-layout.hbs
 <p>Use server-rendered HTML so the control exists without JavaScript. A simple, accessible pattern is an inline button or link that sends users to a neutral destination immediately:</p>
 
 {{#>_docs-example hidden="true" open="true" code="html"}}
-&lt;div class="nsw-quick-exit"&gt;
-  &lt;a class="nsw-button nsw-button--danger" href="https://www.nsw.gov.au/" aria-label="Exit now to a safe page"&gt;Exit now&lt;/a&gt;
+&lt;div class="nsw-sticky-container"&gt;
+
+  <!-- Other sticky components (for example, Cookie consent banner) can also appear here -->
+
+  &lt;section
+    class="nsw-quick-exit nsw-quick-exit__dark"
+    data-options='{
+      "safePageTitle":"NSW Government",
+      "enableEsc": true,
+      "enableCloak": true
+    }'
+  &gt;
+    &lt;div class="nsw-quick-exit__wrapper"&gt;
+      &lt;div class="nsw-quick-exit__content"&gt;
+        &lt;p id="nsw-quick-exit__desc" class="nsw-quick-exit__description"&gt;
+          Select &lt;strong&gt;Exit now&lt;/strong&gt; or press the &lt;kbd&gt;Esc&lt;/kbd&gt; key 2 times. This won't clear your internet history.
+        &lt;/p&gt;
+      &lt;/div&gt;
+      &lt;a
+        class="nsw-quick-exit__cta nsw-quick-exit__cta--fallback"
+        href="https://www.google.com/webhp"
+        rel="nofollow noopener"
+        aria-describedby="nsw-quick-exit__desc"
+      &gt;
+        Exit now
+      &lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
 &lt;/div&gt;
 {{/_docs-example}}
 
@@ -42,10 +68,11 @@ layout: blank-layout.hbs
 {{#>_docs-example hidden="true" open="true" code="js"}}
 window.NSW.QuickExit.init({
   safeUrl: 'https://www.nsw.gov.au/',
-  secondarySafeUrl: 'https://www.bom.gov.au/',
-  exitLabel: 'Exit now',
-  title: 'Leave this site quickly',
+  safePageTitle: 'NSW Government',
   description: 'Select &lt;strong&gt;Exit now&lt;/strong&gt; or press the &lt;kbd&gt;Esc&lt;/kbd&gt; key 2 times.',
+  theme: 'dark',
+  enableEsc: true,
+  enableCloak: true,
 });
 {{/_docs-example}}
 
