@@ -20,9 +20,8 @@ export default class QuickExit {
   static init(
     {
       safeUrl = 'https://www.google.com/webhp',
-      safeTitle = 'NSW Government',
+      safePageTitle = 'NSW Government',
       description = 'Select <strong>Exit now</strong> or press the <kbd>Esc</kbd> key 2 times. This won\'t clear your internet history.', /* ignore */
-      exitLabel = 'Exit now',
       theme = 'light', // 'light' | 'dark'
       enableEsc = true,
       enableCloak = true,
@@ -36,7 +35,7 @@ export default class QuickExit {
     if (!root) {
       // Create fresh markup
       root = QuickExit.buildMarkup({
-        description, exitLabel, safeUrl, theme,
+        description, safeUrl, theme,
       })
       container.appendChild(root)
     } else {
@@ -67,18 +66,17 @@ export default class QuickExit {
       }
       link.href = safeUrl
       link.rel = 'nofollow noopener'
-      link.textContent = exitLabel
+      link.textContent = 'Exit now'
       link.setAttribute('aria-describedby', 'nsw-quick-exit__desc')
     }
 
     QuickExit.enhance(root, {
       safeUrl,
-      safeTitle,
+      safePageTitle,
       theme,
       enableEsc,
       enableCloak,
       focusFirst,
-      exitLabel,
     })
 
     // Adjust body padding for sticky shell
@@ -89,7 +87,7 @@ export default class QuickExit {
    * Build minimal, no‑JS friendly markup
    */
   static buildMarkup({
-    description, exitLabel, safeUrl, theme,
+    description, safeUrl, theme,
   }) {
     const root = document.createElement('section')
     root.className = `nsw-quick-exit nsw-quick-exit__${theme === 'dark' ? 'dark' : 'light'}`
@@ -110,7 +108,7 @@ export default class QuickExit {
     a.className = 'nsw-quick-exit__cta'
     a.href = safeUrl
     a.rel = 'nofollow noopener'
-    a.textContent = exitLabel
+    a.textContent = 'Exit now'
     a.setAttribute('aria-describedby', 'nsw-quick-exit__desc')
 
     content.appendChild(p)
@@ -131,8 +129,7 @@ export default class QuickExit {
       enableEsc,
       enableCloak,
       focusFirst,
-      exitLabel,
-      safeTitle,
+      safePageTitle,
     },
   ) {
     const node = root
@@ -157,7 +154,7 @@ export default class QuickExit {
       link.className = 'nsw-quick-exit__cta'
       link.href = safeUrl
       link.rel = 'nofollow noopener'
-      link.textContent = exitLabel
+      link.textContent = 'Exit now'
       link.setAttribute('aria-describedby', 'nsw-quick-exit__desc')
       cta = link
       wrapper.appendChild(cta)
@@ -174,7 +171,7 @@ export default class QuickExit {
       // Cloak immediately for perceived privacy (if enabled)
       if (enableCloak) QuickExit.applyCloak()
       try {
-        document.title = safeTitle || document.title
+        document.title = safePageTitle || document.title
       } catch (errT) {
         ignoreError(errT)
       }
@@ -314,12 +311,11 @@ export default class QuickExit {
       const href = (link && link.getAttribute('href')) || 'https://www.google.com/webhp'
       QuickExit.enhance(existingRoot, {
         safeUrl: href,
-        safeTitle: 'NSW Government',
+        safePageTitle: 'NSW Government',
         theme: (existingRoot.getAttribute('data-theme') || 'light'),
         enableEsc: true,
         enableCloak: true,
         focusFirst: true,
-        exitLabel: (link && link.textContent) || 'Exit now',
       })
       updateStickyBodyPadding()
     }
@@ -349,9 +345,8 @@ export default class QuickExit {
 
       QuickExit.init({
         safeUrl: opts.safeUrl || 'https://www.google.com/webhp',
-        safeTitle: opts.safeTitle || 'NSW Government',
+        safePageTitle: opts.safePageTitle || 'NSW Government',
         description: opts.description || 'Select <strong>Exit now</strong> or press the <kbd>Esc</kbd> key 2 times. This won\'t clear your internet history.',
-        exitLabel: opts.exitLabel || 'Exit now',
         theme: opts.theme || 'light',
         enableEsc: (typeof opts.enableEsc === 'boolean') ? opts.enableEsc : true,
         enableCloak,

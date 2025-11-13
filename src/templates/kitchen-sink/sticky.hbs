@@ -59,20 +59,14 @@ model:
                 </div>
                 <div class="nsw-col nsw-col-md-6">
                   <div class="nsw-form__group">
-                    <label class="nsw-form__label" for="qe-exit-label">Exit label</label>
-                    <input class="nsw-form__input" id="qe-exit-label" type="text" placeholder="Leave site" value="{{model.quick-exit.exitLabel}}">
-                  </div>
-                </div>
-                <div class="nsw-col nsw-col-md-6">
-                  <div class="nsw-form__group">
                     <label class="nsw-form__label" for="qe-description">Description (HTML allowed: &lt;kbd&gt;, &lt;strong&gt;)</label>
                     <textarea style="width: 100%;" class="nsw-form__textarea" id="qe-description" rows="3">{{model.quick-exit.description}}</textarea>
                   </div>
                 </div>
                 <div class="nsw-col nsw-col-md-6">
                   <div class="nsw-form__group">
-                    <label class="nsw-form__label" for="qe-safe-title">Safe title</label>
-                    <input class="nsw-form__input" id="qe-safe-title" type="text" placeholder="NSW Government" value="{{#if model.quick-exit.safeTitle}}{{model.quick-exit.safeTitle}}{{else}}NSW Government{{/if}}">
+                    <label class="nsw-form__label" for="qe-safe-page-title">Safe page title</label>
+                    <input class="nsw-form__input" id="qe-safe-page-title" type="text" placeholder="NSW Government" value="{{#if model.quick-exit.safePageTitle}}{{model.quick-exit.safePageTitle}}{{else}}NSW Government{{/if}}">
                   </div>
                 </div>
                 <div class="nsw-col nsw-col-md-6">
@@ -120,8 +114,7 @@ model:
                   return el && el.value !== '' ? el.value : fallback
                 }
                 var safeUrl = getVal('qe-safe-url', '{{model.quick-exit.safeUrl}}')
-                var safeTitle = getVal('qe-safe-title', '{{#if model.quick-exit.safeTitle}}{{model.quick-exit.safeTitle}}{{else}}NSW Government{{/if}}')
-                var exitLabel = getVal('qe-exit-label', '{{model.quick-exit.exitLabel}}')
+                var safePageTitle = getVal('qe-safe-page-title', '{{#if model.quick-exit.safePageTitle}}{{model.quick-exit.safePageTitle}}{{else}}NSW Government{{/if}}')
                 var description = getVal('qe-description', '{{model.quick-exit.description}}')
                 var themeSel = document.getElementById('qe-theme')
                 var theme = themeSel ? themeSel.value : 'dark'
@@ -131,8 +124,7 @@ model:
                 window.NSW.QuickExit.init({
                   description: description,
                   safeUrl: safeUrl,
-                  safeTitle: safeTitle,
-                  exitLabel: exitLabel,
+                  safePageTitle: safePageTitle,
                   theme: theme,
                   enableEsc: esc,
                   enableCloak: cloak
@@ -151,8 +143,7 @@ model:
                 return el && el.value !== '' ? el.value : fallback
               }
               var safeUrl = getVal('qe-safe-url', '{{model.quick-exit.safeUrl}}')
-              var safeTitle = getVal('qe-safe-title', '{{#if model.quick-exit.safeTitle}}{{model.quick-exit.safeTitle}}{{else}}NSW Government{{/if}}')
-              var exitLabel = getVal('qe-exit-label', '{{model.quick-exit.exitLabel}}')
+              var safePageTitle = getVal('qe-safe-page-title', '{{#if model.quick-exit.safePageTitle}}{{model.quick-exit.safePageTitle}}{{else}}NSW Government{{/if}}')
               var description = getVal('qe-description', '{{model.quick-exit.description}}')
               var themeSel = document.getElementById('qe-theme')
               var theme = themeSel ? themeSel.value : 'dark'
@@ -162,8 +153,7 @@ model:
               window.NSW.QuickExit.init({
                 description: description,
                 safeUrl: safeUrl,
-                safeTitle: safeTitle,
-                exitLabel: exitLabel,
+                safePageTitle: safePageTitle,
                 theme: theme,
                 enableEsc: esc,
                 enableCloak: cloak
@@ -368,7 +358,7 @@ model:
     data-module="quick-exit"
     data-options='{
       "safeUrl":"{{#if model.quick-exit.safeUrl}}{{model.quick-exit.safeUrl}}{{else}}https://www.google.com/webhp{{/if}}",
-      "safeTitle":"{{#if model.quick-exit.safeTitle}}{{model.quick-exit.safeTitle}}{{else}}NSW Government{{/if}}",
+      "safePageTitle":"{{#if model.quick-exit.safePageTitle}}{{model.quick-exit.safePageTitle}}{{else}}NSW Government{{/if}}",
       "enableEsc":true,
       "theme":"light"
     }'

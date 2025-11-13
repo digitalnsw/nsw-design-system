@@ -17,8 +17,6 @@ model:  json/quick-exit.json
   data-module="quick-exit"
   data-options='{
     "safeUrl": "{{model.safeUrl}}",
-    "secondarySafeUrl": "{{model.secondarySafeUrl}}",
-    "title": "{{model.title}}",
     "description": "{{model.description}}",
     "theme": "light",
     "cloakMode": "visibility"
@@ -37,8 +35,6 @@ model:  json/quick-exit.json
   data-module="quick-exit"
   data-options='{
     "safeUrl": "{{model.safeUrl}}",
-    "secondarySafeUrl": "{{model.secondarySafeUrl}}",
-    "title": "{{model.title}}",
     "description": "{{model.description}}",
     "theme": "dark",
     "enableEsc": true,
@@ -57,8 +53,6 @@ model:  json/quick-exit.json
   data-module="quick-exit"
   data-options='{
     "safeUrl": "{{model.safeUrl}}",
-    "secondarySafeUrl": "{{model.secondarySafeUrl}}",
-    "title": "{{model.title}}",
     "description": "{{model.description}}",
     "theme": "light",
     "enableEsc": true
@@ -76,13 +70,10 @@ model:  json/quick-exit.json
 
       window.NSW.QuickExit.init({
         safeUrl: o.safeUrl || '{{model.safeUrl}}',
-        secondarySafeUrl: o.secondarySafeUrl || '{{model.secondarySafeUrl}}',
-        title: o.title || '{{model.title}}',
         description: o.description || '{{model.description}}',
         theme: o.theme || 'light',
         enableEsc: (typeof o.enableEsc === 'boolean') ? o.enableEsc : true,
-        enableCloak: enableCloak,
-        exitLabel: o.exitLabel || 'Exit now'
+        enableCloak: enableCloak
       });
     } catch (e) { console.error('[QE demo] init error', e); }
   }
