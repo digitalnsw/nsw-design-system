@@ -59,12 +59,6 @@ model:
                 </div>
                 <div class="nsw-col nsw-col-md-6">
                   <div class="nsw-form__group">
-                    <label class="nsw-form__label" for="qe-description">Description (HTML allowed: &lt;kbd&gt;, &lt;strong&gt;)</label>
-                    <textarea style="width: 100%;" class="nsw-form__textarea" id="qe-description" rows="3">{{model.quick-exit.description}}</textarea>
-                  </div>
-                </div>
-                <div class="nsw-col nsw-col-md-6">
-                  <div class="nsw-form__group">
                     <label class="nsw-form__label" for="qe-safe-page-title">Safe page title</label>
                     <input class="nsw-form__input" id="qe-safe-page-title" type="text" placeholder="NSW Government" value="{{#if model.quick-exit.safePageTitle}}{{model.quick-exit.safePageTitle}}{{else}}NSW Government{{/if}}">
                   </div>
@@ -132,34 +126,6 @@ model:
               })
             })()
           </script>
-
-          {{!-- <script>
-            // Auto-initialise Quick Exit on page load so Back/Forward arrival can be detected
-            document.addEventListener('DOMContentLoaded', function () {
-              if (!(window.NSW && window.NSW.QuickExit)) return
-              // Read current form values if present, otherwise fall back to model defaults
-              var getVal = function (id, fallback) {
-                var el = document.getElementById(id)
-                return el && el.value !== '' ? el.value : fallback
-              }
-              var safeUrl = getVal('qe-safe-url', '{{model.quick-exit.safeUrl}}')
-              var safePageTitle = getVal('qe-safe-page-title', '{{#if model.quick-exit.safePageTitle}}{{model.quick-exit.safePageTitle}}{{else}}NSW Government{{/if}}')
-              var description = getVal('qe-description', '{{model.quick-exit.description}}')
-              var themeSel = document.getElementById('qe-theme')
-              var theme = themeSel ? themeSel.value : 'dark'
-              var esc = document.getElementById('qe-esc') ? document.getElementById('qe-esc').checked : true
-              var cloak = document.getElementById('qe-cloak') ? document.getElementById('qe-cloak').checked : true
-
-              window.NSW.QuickExit.init({
-                description: description,
-                safeUrl: safeUrl,
-                safePageTitle: safePageTitle,
-                theme: theme,
-                enableEsc: esc,
-                enableCloak: cloak
-              })
-            })
-          </script> --}}
 
           <div class="nsw-col nsw-col-md-6">
             <h3>Global alert</h3>
@@ -352,15 +318,13 @@ model:
 
 {{>_footer model.footer}}
 
-<div class="nsw-sticky-container" data-sticky-container>
+<div class="nsw-sticky-container">
   <section
-    class="nsw-quick-exit nsw-quick-exit__light"
-    data-module="quick-exit"
+    class="nsw-quick-exit nsw-quick-exit__dark"
     data-options='{
-      "safeUrl":"{{#if model.quick-exit.safeUrl}}{{model.quick-exit.safeUrl}}{{else}}https://www.google.com/webhp{{/if}}",
       "safePageTitle":"{{#if model.quick-exit.safePageTitle}}{{model.quick-exit.safePageTitle}}{{else}}NSW Government{{/if}}",
-      "enableEsc":true,
-      "theme":"light"
+      "enableEsc": true,
+      "enableCloak": true
     }'
   >
     <div class="nsw-quick-exit__wrapper">
@@ -369,11 +333,10 @@ model:
           {{#if model.quick-exit.description}}
             {{{model.quick-exit.description}}}
           {{else}}
-            Select &lt;strong&gt;Exit now&lt;/strong&gt; or press the &lt;kbd&gt;Esc&lt;/kbd&gt; key 2 times. This won’t clear your internet history.
+            Select <strong>Exit now</strong> or press the <kbd>Esc</kbd> key 2 times. This won't clear your internet history.
           {{/if}}
         </p>
       </div>
-
       <a
         class="nsw-quick-exit__cta nsw-quick-exit__cta--fallback"
         href="{{#if model.quick-exit.safeUrl}}{{model.quick-exit.safeUrl}}{{else}}https://www.google.com/webhp{{/if}}"

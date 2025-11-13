@@ -21,7 +21,7 @@ export default class QuickExit {
     {
       safeUrl = 'https://www.google.com/webhp',
       safePageTitle = 'NSW Government',
-      description = 'Select <strong>Exit now</strong> or press the <kbd>Esc</kbd> key 2 times. This won\'t clear your internet history.', /* ignore */
+      description = 'Select <strong>Exit now</strong> or press the <kbd>Esc</kbd> key 2 times. This won\'t clear your internet history.',
       theme = 'light', // 'light' | 'dark'
       enableEsc = true,
       enableCloak = true,
@@ -306,15 +306,40 @@ export default class QuickExit {
 
     const existingRoot = container.querySelector('.nsw-quick-exit')
     if (existingRoot) {
+      // Parse data-options if present
+      const optAttr = existingRoot.getAttribute('data-options')
+      let opts = {}
+      if (optAttr && optAttr.trim()) {
+        try {
+          opts = JSON.parse(optAttr)
+        } catch (parseErr) {
+          ignoreError(parseErr)
+        }
+      }
+      // Derive theme from existing attributes/classes; default to light only if nothing is set
+      let theme = existingRoot.getAttribute('data-theme')
+      if (!theme) {
+        if (existingRoot.classList.contains('nsw-quick-exit__dark')) theme = 'dark'
+        else if (existingRoot.classList.contains('nsw-quick-exit__light')) theme = 'light'
+        else theme = 'light'
+      }
       // Use current content and attributes; just wire behaviour with sensible defaults
       const link = existingRoot.querySelector('.nsw-quick-exit__cta')
       const href = (link && link.getAttribute('href')) || 'https://www.google.com/webhp'
       QuickExit.enhance(existingRoot, {
         safeUrl: href,
-        safePageTitle: 'NSW Government',
-        theme: (existingRoot.getAttribute('data-theme') || 'light'),
-        enableEsc: true,
-        enableCloak: true,
+        safePageTitle: (
+          (opts && opts.safePageTitle)
+          || existingRoot.getAttribute('data-safe-page-title')
+          || 'NSW Government'
+        ),
+        theme,
+        enableEsc: (typeof opts.enableEsc === 'boolean') ? opts.enableEsc : true,
+        enableCloak: (() => {
+          if (typeof opts.enableCloak === 'boolean') return opts.enableCloak
+          if (typeof opts.cloakMode === 'string') return opts.cloakMode !== 'none'
+          return true
+        })(),
         focusFirst: true,
       })
       updateStickyBodyPadding()
@@ -343,9 +368,11 @@ export default class QuickExit {
       if (typeof opts.enableCloak === 'boolean') enableCloak = opts.enableCloak
       else if (typeof opts.cloakMode === 'string') enableCloak = opts.cloakMode !== 'none'
 
+      const attrSafeTitle = el.getAttribute('data-safe-page-title')
+
       QuickExit.init({
         safeUrl: opts.safeUrl || 'https://www.google.com/webhp',
-        safePageTitle: opts.safePageTitle || 'NSW Government',
+        safePageTitle: attrSafeTitle || opts.safePageTitle || 'NSW Government',
         description: opts.description || 'Select <strong>Exit now</strong> or press the <kbd>Esc</kbd> key 2 times. This won\'t clear your internet history.',
         theme: opts.theme || 'light',
         enableEsc: (typeof opts.enableEsc === 'boolean') ? opts.enableEsc : true,
