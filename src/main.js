@@ -65,7 +65,7 @@ function initSite() {
   const tooltip = document.querySelectorAll('.js-tooltip')
   const utilityList = document.querySelectorAll('.js-utility-list')
 
-  // Sticky container inistialisation
+  // Sticky container initialisation
   stickyContainer()
 
   if (accordions) {
