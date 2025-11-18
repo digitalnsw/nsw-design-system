@@ -7,12 +7,35 @@ import { validateUrl } from '../../global/scripts/helpers/utilities'
  * Quick Exit (lean)
  * - Looks for a manually-authored element inside the sticky container and enhances it.
  * - If initialised programmatically and no element exists, creates one and appends it to the sticky container.
- * - Primary action is an <a> so it works without JS; JS enhances to open safe URL in a new tab and replace current tab.
+ * - Primary action is an <a> so it works without JS; JS enhances to open the safe URL in a new tab (falling back to the current tab if pop‑ups are blocked).
  * - Optional progressive features: double-Esc, auto-focus first, URL sanitisation.
  */
 /** internal no-op to satisfy lint when intentionally swallowing errors */
 
 function ignoreError() {}
+
+// Helpers shared by QuickExit keyboard behaviour
+function quickExitIsEditable(el) {
+  if (!el) return false
+  const tag = el.tagName && el.tagName.toLowerCase()
+  if (tag === 'input' || tag === 'textarea' || tag === 'select') return true
+  if (el.isContentEditable) return true
+  // Common ARIA widgets that own Esc / focus behaviour (e.g., autocomplete/combobox/popups)
+  const role = el.getAttribute && el.getAttribute('role')
+  if (role === 'combobox' || role === 'dialog' || role === 'menu' || role === 'listbox') return true
+  return false
+}
+
+function quickExitModalOpen() {
+  try {
+    if (document.querySelector('dialog[open]')) return true
+    if (document.querySelector('[role="dialog"][aria-modal="true"]')) return true
+    return false
+  } catch (err) {
+    ignoreError(err)
+    return false
+  }
+}
 
 // Track first-Tab behaviour so we can move focus to Quick Exit
 let firstTabTarget = null
@@ -142,7 +165,7 @@ export default class QuickExit {
     if (!desc.id) desc.id = 'nsw-quick-exit__desc'
     node.setAttribute('aria-describedby', desc.id)
 
-    // Progressive behaviour: open safe URL in a new tab *and* change current tab
+    // Progressive behaviour: open safe URL in a new tab, fallback to current tab if blocked
     const SAFE = validateUrl(safeUrl)
     cta.addEventListener('click', (ev) => {
       try {
@@ -150,17 +173,38 @@ export default class QuickExit {
       } catch (errA) {
         ignoreError(errA)
       }
+
       if (enableCloak) QuickExit.applyCloak()
+
       try {
         document.title = safePageTitle || document.title
       } catch (errT) {
         ignoreError(errT)
       }
 
+      let opened = false
+
       try {
-        window.open(SAFE, '_blank', 'noopener,noreferrer')
+        const newWin = window.open(SAFE, '_blank')
+        if (newWin && typeof newWin === 'object') {
+          try {
+            // Ensure the safe page cannot reach back into the origin tab
+            newWin.opener = null
+          } catch (errO) {
+            ignoreError(errO)
+          }
+          opened = true
+        }
       } catch (errB) {
         ignoreError(errB)
+      }
+
+      if (!opened) {
+        try {
+          window.location.assign(SAFE)
+        } catch (errC) {
+          ignoreError(errC)
+        }
       }
     })
 
@@ -188,27 +232,7 @@ export default class QuickExit {
     )
 
     // Helpers to decide if QE should defer to other UI
-    const isEditable = (el) => {
-      if (!el) return false
-      const tag = el.tagName && el.tagName.toLowerCase()
-      if (tag === 'input' || tag === 'textarea' || tag === 'select') return true
-      if (el.isContentEditable) return true
-      // Common ARIA widgets that own Esc (e.g., autocomplete/combobox/popups)
-      const role = el.getAttribute && el.getAttribute('role')
-      if (role === 'combobox' || role === 'dialog' || role === 'menu' || role === 'listbox') return true
-      return false
-    }
-
-    const modalOpen = () => {
-      try {
-        if (document.querySelector('dialog[open]')) return true
-        if (document.querySelector('[role="dialog"][aria-modal="true"]')) return true
-        return false
-      } catch (err) {
-        ignoreError(err)
-        return false
-      }
-    }
+    // Removed duplicated isEditable and modalOpen, use shared helpers instead
 
     const handleKeydown = (event) => {
       const {
@@ -218,7 +242,7 @@ export default class QuickExit {
 
       // If another component has already claimed Esc, or focus is in an editable/modal context, defer.
       if (defaultPrevented) return
-      if (isEditable(target) || modalOpen()) return
+      if (quickExitIsEditable(target) || quickExitModalOpen()) return
 
       pressCount += 1
       if (timerId) clearTimeout(timerId)
@@ -263,26 +287,7 @@ export default class QuickExit {
 
     if (firstTabHandlerBound) return
 
-    const isEditable = (el) => {
-      if (!el) return false
-      const tag = el.tagName && el.tagName.toLowerCase()
-      if (tag === 'input' || tag === 'textarea' || tag === 'select') return true
-      if (el.isContentEditable) return true
-      const role = el.getAttribute && el.getAttribute('role')
-      if (role === 'combobox' || role === 'dialog' || role === 'menu' || role === 'listbox') return true
-      return false
-    }
-
-    const modalOpen = () => {
-      try {
-        if (document.querySelector('dialog[open]')) return true
-        if (document.querySelector('[role="dialog"][aria-modal="true"]')) return true
-        return false
-      } catch (err) {
-        ignoreError(err)
-        return false
-      }
-    }
+    // Removed duplicated isEditable and modalOpen, use shared helpers instead
 
     const handleKeydown = (event) => {
       const {
@@ -294,7 +299,7 @@ export default class QuickExit {
       if (firstTabHandled) return
       if (defaultPrevented) return
       if (!firstTabTarget) return
-      if (isEditable(target) || modalOpen()) return
+      if (quickExitIsEditable(target) || quickExitModalOpen()) return
 
       firstTabHandled = true
 
