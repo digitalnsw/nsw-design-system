@@ -1,79 +1,69 @@
-@use 'sass:color';
 @use '../../global/scss/tools' as nsw;
 
 .nsw-quick-exit {
-  padding: 0;
+  display: block;
+  width: 100%;
+  padding: nsw.rem(8px) nsw.rem(16px);
   background-color: var(--nsw-white);
   color: var(--nsw-text-dark);
   border-top: nsw.rem(4px) solid var(--Status-error, var(--nsw-status-error));
-  
-  &__wrapper {
-    @include nsw.container;
-    height: 48px;
+  text-align: center;
+  font-weight: normal;
+  min-height: nsw.rem(54px);
+  align-content: center;
+  cursor: pointer;
+
+  @include nsw.breakpoint('md') {
+    min-height: nsw.rem(80px);
+  }
+
+  &:link,
+  &:visited,
+  &:hover,
+  &:focus,
+  &:active {
+    color: var(--nsw-white);
+    text-decoration: none;
+  }
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
+    outline: none;
+
+    .nsw-quick-exit__exit-text {
+      text-decoration: underline;
+    }
+  }
+
+  &:focus {
     position: relative;
-    display: flex;
-    align-items: center;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    gap: nsw.rem(8px);
-    padding: 0;
 
-    @include nsw.breakpoint('lg') {
-      padding: 0 0 0 nsw.rem(16px);
-      height: 80px;
-    }
-  }
-
-  &__content {
-    display: none;
-    flex: 1 1 auto;
-    min-width: 0;
+    @include nsw.nsw-focus;
+    @include nsw.z-index;
     
-    @include nsw.breakpoint('lg') {
-      display: block;
+    .nsw-section--invert & {   
+      @include nsw.nsw-focus($color: var(--nsw-focus-light));
     }
   }
 
-  &__description {
-    margin: 0 nsw.rem(36px) 0 0;
-    line-height: nsw.rem(20px);
+  &__description-text {
+    display: none;
+    margin: 0;
+
+    @include nsw.breakpoint('md') {
+      display: inline;
+    }
 
     @include nsw.breakpoint('lg') {
       line-height: nsw.rem(24px);
     }
   }
-  
-  &__cta {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: nsw.rem(8px);
-    padding: 0;
-    background-color: var(--nsw-status-error);
-    color: var(--nsw-white);
-    font-family: var(--nsw-font-family);
-    font-size: nsw.rem(18px);
-    font-weight: var(--nsw-font-bold);
-    border: 0;
-    border-radius: 0;
-    text-align: center;
-    text-decoration: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    flex: 0 0 auto;
-    white-space: nowrap;
-    margin-left: auto;
 
-    &:link,
-    &:visited,
-    &:hover,
-    &:focus,
-    &:active {
-      color: var(--nsw-white);
-      text-decoration: none;
-    }
+  &__exit-text {
+    display: inline-block;
+    margin-left: nsw.rem(4px);
+    font-weight: 700;
 
     &::after {
       content: 'east';
@@ -82,35 +72,21 @@
       margin-left: nsw.rem(4px);
       display: inline-block;
       vertical-align: middle;
-      
+
       @include nsw.material-icons;
-    }
-
-    &:hover,
-    &:focus {
-      background-color: rgba(var(--nsw-status-error-rgb), 0.9);
-      text-decoration: none;
-      outline: none;
-    }
-
-    &:active {
-      background-color: rgba(var(--nsw-status-error-rgb), 0.8);
-      outline: none;
-    }
-
-    @include nsw.breakpoint('lg') {
-      font-size: nsw.rem(24px);
-      padding: 0 nsw.rem(54px);
-      width: auto;
     }
   }
 
   &__light {
     background-color: var(--nsw-brand-light);
-    color: var(--nsw-text-dark);
-
-    .nsw-quick-exit__wrapper {
+    
+    &:hover {
       background-color: var(--nsw-brand-light);
+    }
+
+    .nsw-quick-exit__description-text,
+    .nsw-quick-exit__exit-text {
+      color: var(--nsw-text-dark);
     }
   }
 
@@ -118,12 +94,14 @@
     background-color: var(--nsw-brand-dark);
     color: var(--nsw-text-light);
 
-    .nsw-quick-exit__wrapper {
+    &:hover {
       background-color: var(--nsw-brand-dark);
     }
-  }
 
-  .js-more-info {
-    margin-left: auto;
+    kbd {
+      background-color: transparent;
+      border: 1px solid var(--nsw-white);
+      color: var(--nsw-text-light);
+    }
   }
 }

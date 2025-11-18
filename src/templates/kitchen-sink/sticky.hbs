@@ -319,32 +319,28 @@ model:
 {{>_footer model.footer}}
 
 <div class="nsw-sticky-container">
-  <section
+  <a
     class="nsw-quick-exit nsw-quick-exit__dark"
+    href="{{#if model.quick-exit.safeUrl}}{{model.quick-exit.safeUrl}}{{else}}https://www.google.com/webhp{{/if}}"
     data-options='{
-      "safePageTitle":"{{#if model.quick-exit.safePageTitle}}{{model.quick-exit.safePageTitle}}{{else}}NSW Government{{/if}}",
+      "safePageTitle": "{{#if model.quick-exit.safePageTitle}}{{model.quick-exit.safePageTitle}}{{else}}NSW Government{{/if}}",
       "enableEsc": true,
       "enableCloak": true
     }'
+    rel="nofollow noopener"
+    id="nsw-quick-exit"
+    aria-describedby="nsw-quick-exit__desc"
   >
-    <div class="nsw-quick-exit__wrapper">
-      <div class="nsw-quick-exit__content">
-        <p id="nsw-quick-exit__desc" class="nsw-quick-exit__description">
-          {{#if model.quick-exit.description}}
-            {{{model.quick-exit.description}}}
-          {{else}}
-            Select <strong>Exit now</strong> or press the <kbd>Esc</kbd> key 2 times. This won't clear your internet history.
-          {{/if}}
-        </p>
-      </div>
-      <a
-        class="nsw-quick-exit__cta nsw-quick-exit__cta--fallback"
-        href="{{#if model.quick-exit.safeUrl}}{{model.quick-exit.safeUrl}}{{else}}https://www.google.com/webhp{{/if}}"
-        rel="nofollow noopener"
-        aria-describedby="nsw-quick-exit__desc"
-      >
-        Exit now
-      </a>
-    </div>
-  </section>
+    <span
+      id="nsw-quick-exit__desc"
+      class="nsw-quick-exit__description-text"
+    >
+      {{#if model.quick-exit.description}}
+        {{{model.quick-exit.description}}}
+      {{else}}
+        Leave quickly using this banner or press <kbd>Esc</kbd> 2 times.
+      {{/if}}
+    </span>
+    <span class="nsw-quick-exit__exit-text">Exit now</span>
+  </a>
 </div>

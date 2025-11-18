@@ -39,41 +39,34 @@ export default class QuickExit {
 
     let root = container.querySelector('.nsw-quick-exit')
     if (!root) {
-      // Create fresh markup
+      // Create fresh markup using the simple contract: <a> + description + exit label
       root = QuickExit.buildMarkup({
-        description, safeUrl, theme,
+        description,
+        safeUrl,
+        theme,
       })
       container.appendChild(root)
     } else {
       // Update existing markup so the latest init wins
-      const descEl = root.querySelector('.nsw-quick-exit__description') || document.createElement('p')
+      root.href = safeUrl
+      root.rel = 'nofollow noopener'
+
+      let descEl = root.querySelector('.nsw-quick-exit__description-text')
+      if (!descEl) {
+        descEl = document.createElement('span')
+        descEl.className = 'nsw-quick-exit__description-text'
+        root.insertBefore(descEl, root.firstChild)
+      }
       if (!descEl.id) descEl.id = 'nsw-quick-exit__desc'
-      if (!descEl.classList.contains('nsw-quick-exit__description')) descEl.classList.add('nsw-quick-exit__description')
-      // Replace description content
+      root.setAttribute('aria-describedby', descEl.id)
+
       try {
         while (descEl.firstChild) descEl.removeChild(descEl.firstChild)
         const frag = cleanHTMLStrict(description, true, { allowedTags: ['span', 'kbd', 'strong', 'em', 'br'] })
         descEl.appendChild(frag)
-      } catch (err) { /* ignore error */ }
-      // Ensure description is mounted
-      const contentEl = root.querySelector('.nsw-quick-exit__content') || document.createElement('div')
-      if (!contentEl.classList.contains('nsw-quick-exit__content')) contentEl.classList.add('nsw-quick-exit__content')
-      if (!contentEl.contains(descEl)) contentEl.appendChild(descEl)
-      const wrapperEl = root.querySelector('.nsw-quick-exit__wrapper') || document.createElement('div')
-      if (!wrapperEl.classList.contains('nsw-quick-exit__wrapper')) wrapperEl.classList.add('nsw-quick-exit__wrapper')
-      if (!root.contains(wrapperEl)) root.appendChild(wrapperEl)
-      if (!wrapperEl.contains(contentEl)) wrapperEl.appendChild(contentEl)
-      // Update CTA
-      let link = root.querySelector('.nsw-quick-exit__cta')
-      if (!link) {
-        link = document.createElement('a')
-        link.className = 'nsw-quick-exit__cta'
-        wrapperEl.appendChild(link)
+      } catch (err) {
+        ignoreError(err)
       }
-      link.href = safeUrl
-      link.rel = 'nofollow noopener'
-      link.textContent = 'Exit now'
-      link.setAttribute('aria-describedby', 'nsw-quick-exit__desc')
     }
 
     QuickExit.enhance(root, {
@@ -93,34 +86,28 @@ export default class QuickExit {
    * Build minimal, no‑JS friendly markup
    */
   static buildMarkup({
-    description, safeUrl, theme,
+    description,
+    safeUrl,
+    theme,
   }) {
-    const root = document.createElement('section')
+    const root = document.createElement('a')
     root.className = `nsw-quick-exit nsw-quick-exit__${theme === 'dark' ? 'dark' : 'light'}`
+    root.href = safeUrl
+    root.rel = 'nofollow noopener'
 
-    const wrapper = document.createElement('div')
-    wrapper.className = 'nsw-quick-exit__wrapper'
-
-    const content = document.createElement('div')
-    content.className = 'nsw-quick-exit__content'
-
-    const p = document.createElement('p')
-    p.className = 'nsw-quick-exit__description'
-    p.id = 'nsw-quick-exit__desc'
+    const desc = document.createElement('span')
+    desc.className = 'nsw-quick-exit__description-text'
+    desc.id = 'nsw-quick-exit__desc'
     const frag = cleanHTMLStrict(description, true, { allowedTags: ['span', 'kbd', 'strong', 'em', 'br'] })
-    p.appendChild(frag)
+    desc.appendChild(frag)
 
-    const a = document.createElement('a')
-    a.className = 'nsw-quick-exit__cta'
-    a.href = safeUrl
-    a.rel = 'nofollow noopener'
-    a.textContent = 'Exit now'
-    a.setAttribute('aria-describedby', 'nsw-quick-exit__desc')
+    const exit = document.createElement('span')
+    exit.className = 'nsw-quick-exit__exit-text'
+    exit.textContent = 'Exit now'
 
-    content.appendChild(p)
-    wrapper.appendChild(content)
-    wrapper.appendChild(a)
-    root.appendChild(wrapper)
+    root.appendChild(desc)
+    root.appendChild(exit)
+    root.setAttribute('aria-describedby', desc.id)
     return root
   }
 
@@ -144,27 +131,16 @@ export default class QuickExit {
     node.classList.add(theme === 'dark' ? 'nsw-quick-exit__dark' : 'nsw-quick-exit__light')
     node.setAttribute('data-theme', theme === 'dark' ? 'dark' : 'light')
 
-    // Ensure markup pieces exist
-    const wrapper = node.querySelector('.nsw-quick-exit__wrapper') || document.createElement('div')
-    if (!wrapper.classList.contains('nsw-quick-exit__wrapper')) wrapper.classList.add('nsw-quick-exit__wrapper')
-    if (!node.contains(wrapper)) node.appendChild(wrapper)
+    const cta = node
 
-    const desc = node.querySelector('.nsw-quick-exit__description') || document.createElement('p')
-    if (!desc.id) desc.id = 'nsw-quick-exit__desc'
-    if (!desc.classList.contains('nsw-quick-exit__description')) desc.classList.add('nsw-quick-exit__description')
-    if (!wrapper.contains(desc)) wrapper.appendChild(desc)
-
-    let cta = node.querySelector('.nsw-quick-exit__cta')
-    if (!cta) {
-      const link = document.createElement('a')
-      link.className = 'nsw-quick-exit__cta'
-      link.href = safeUrl
-      link.rel = 'nofollow noopener'
-      link.textContent = 'Exit now'
-      link.setAttribute('aria-describedby', 'nsw-quick-exit__desc')
-      cta = link
-      wrapper.appendChild(cta)
+    let desc = node.querySelector('.nsw-quick-exit__description-text')
+    if (!desc) {
+      desc = document.createElement('span')
+      desc.className = 'nsw-quick-exit__description-text'
+      node.insertBefore(desc, node.firstChild)
     }
+    if (!desc.id) desc.id = 'nsw-quick-exit__desc'
+    node.setAttribute('aria-describedby', desc.id)
 
     // Progressive behaviour: open safe URL in a new tab *and* change current tab
     const SAFE = validateUrl(safeUrl)
@@ -174,13 +150,13 @@ export default class QuickExit {
       } catch (errA) {
         ignoreError(errA)
       }
-      // Cloak immediately for perceived privacy (if enabled)
       if (enableCloak) QuickExit.applyCloak()
       try {
         document.title = safePageTitle || document.title
       } catch (errT) {
         ignoreError(errT)
       }
+
       try {
         window.open(SAFE, '_blank', 'noopener,noreferrer')
       } catch (errB) {
@@ -370,8 +346,7 @@ export default class QuickExit {
         else theme = 'light'
       }
       // Use current content and attributes; just wire behaviour with sensible defaults
-      const link = existingRoot.querySelector('.nsw-quick-exit__cta')
-      const href = (link && link.getAttribute('href')) || 'https://www.google.com/webhp'
+      const href = existingRoot.getAttribute('href') || 'https://www.google.com/webhp'
       QuickExit.enhance(existingRoot, {
         safeUrl: href,
         safePageTitle: (
