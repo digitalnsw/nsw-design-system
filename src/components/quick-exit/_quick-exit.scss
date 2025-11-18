@@ -5,7 +5,6 @@
   width: 100%;
   padding: nsw.rem(8px) nsw.rem(16px);
   background-color: var(--nsw-white);
-  color: var(--nsw-text-dark);
   border-top: nsw.rem(4px) solid var(--Status-error, var(--nsw-status-error));
   text-align: center;
   font-weight: normal;
@@ -22,7 +21,6 @@
   &:hover,
   &:focus,
   &:active {
-    color: var(--nsw-white);
     text-decoration: none;
   }
 
@@ -80,7 +78,12 @@
   &__light {
     background-color: var(--nsw-brand-light);
     
-    &:hover {
+    &:link,
+    &:visited,
+    &:hover,
+    &:focus,
+    &:active {
+      color: var(--nsw-text-dark);
       background-color: var(--nsw-brand-light);
     }
 
@@ -94,7 +97,12 @@
     background-color: var(--nsw-brand-dark);
     color: var(--nsw-text-light);
 
-    &:hover {
+    &:link,
+    &:visited,
+    &:hover,
+    &:focus,
+    &:active {
+      color: var(--nsw-white);
       background-color: var(--nsw-brand-dark);
     }
 
