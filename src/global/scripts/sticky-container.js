@@ -49,7 +49,7 @@ function attachObservers(el) {
     }
     if (window.MutationObserver) {
       const mo = new MutationObserver(() => updateStickyBodyPadding())
-      mo.observe(node, { childList: true })
+      mo.observe(node, { childList: true, subtree: true })
     }
   } catch (err) {
     // observers are optional
