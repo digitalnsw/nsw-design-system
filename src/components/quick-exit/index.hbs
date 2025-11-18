@@ -9,14 +9,66 @@ meta-description: A standardised quick exit button offers a discreet and accessi
 meta-index: true
 ---
 
-<h3>Light</h3>
-<button class="nsw-button nsw-button--dark js-quick-exit" data-theme="light" type="button" aria-expanded="true">Initialise banner</button>
+<h3>Dark</h3>
+<button class="nsw-button nsw-button--dark js-quick-exit" data-theme="dark" type="button" aria-expanded="true">Initialise banner</button>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var quickExitBtns = document.querySelectorAll('.js-quick-exit')
   if (quickExitBtns[0]) {
     quickExitBtns[0].addEventListener('click', function(e) {
+      e.preventDefault()
+      if (window.NSW && window.NSW.QuickExit) {
+        window.NSW.QuickExit.init({
+          safeUrl: "{{model.safeUrl}}",
+          description: "{{{model.description}}}",
+          enableEsc: true,
+          theme: "dark"
+        })
+      } else {
+        console.error('QuickExit not found on window.NSW')
+      }
+    })
+  }
+})
+</script>
+
+{{#>_docs-example hidden="true" code="html"}}
+&lt;div class="nsw-sticky-container"&gt;
+
+  &lt;!-- Other sticky components (for example, Cookie consent banner) can also appear here --&gt;
+
+  &lt;a
+    class="nsw-quick-exit nsw-quick-exit__dark"
+    href="https://www.nsw.gov.au/"
+    data-options='{
+      "safePageTitle": "NSW Government",
+      "enableEsc": true,
+      "enableCloak": true
+    }'
+    rel="nofollow noopener"
+    id="nsw-quick-exit"
+    aria-describedby="nsw-quick-exit__desc"
+  &gt;
+    &lt;span
+      id="nsw-quick-exit__desc"
+      class="nsw-quick-exit__description-text"
+    &gt;
+      Leave quickly using this banner or press &lt;kbd&gt;Esc&lt;/kbd&gt; 2 times.
+    &lt;/span&gt;
+    &lt;span class="nsw-quick-exit__exit-text"&gt;Exit now&lt;/span&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+{{/_docs-example}}
+
+<h3>Light</h3>
+<button class="nsw-button nsw-button--dark js-quick-exit" data-theme="light" type="button" aria-expanded="true">Initialise banner</button>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var quickExitBtns = document.querySelectorAll('.js-quick-exit')
+  if (quickExitBtns[1]) {
+    quickExitBtns[1].addEventListener('click', function(e) {
       e.preventDefault()
       if (window.NSW && window.NSW.QuickExit) {
         window.NSW.QuickExit.init({
@@ -33,26 +85,30 @@ document.addEventListener('DOMContentLoaded', function() {
 })
 </script>
 
-<h3>Dark</h3>
-<button class="nsw-button nsw-button--dark js-quick-exit" data-theme="dark" type="button" aria-expanded="true">Initialise banner</button>
+{{#>_docs-example hidden="true" code="html"}}
+&lt;div class="nsw-sticky-container"&gt;
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  var quickExitBtns = document.querySelectorAll('.js-quick-exit')
-  if (quickExitBtns[1]) {
-    quickExitBtns[1].addEventListener('click', function(e) {
-      e.preventDefault()
-      if (window.NSW && window.NSW.QuickExit) {
-        window.NSW.QuickExit.init({
-          safeUrl: "{{model.safeUrl}}",
-          description: "{{{model.description}}}",
-          enableEsc: true,
-          theme: "dark"
-        })
-      } else {
-        console.error('QuickExit not found on window.NSW')
-      }
-    })
-  }
-})
-</script>
+  &lt;!-- Other sticky components (for example, Cookie consent banner) can also appear here --&gt;
+
+  &lt;a
+    class="nsw-quick-exit nsw-quick-exit__light"
+    href="https://www.nsw.gov.au/"
+    data-options='{
+      "safePageTitle": "NSW Government",
+      "enableEsc": true,
+      "enableCloak": true
+    }'
+    rel="nofollow noopener"
+    id="nsw-quick-exit"
+    aria-describedby="nsw-quick-exit__desc"
+  &gt;
+    &lt;span
+      id="nsw-quick-exit__desc"
+      class="nsw-quick-exit__description-text"
+    &gt;
+      Leave quickly using this banner or press &lt;kbd&gt;Esc&lt;/kbd&gt; 2 times.
+    &lt;/span&gt;
+    &lt;span class="nsw-quick-exit__exit-text"&gt;Exit now&lt;/span&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+{{/_docs-example}}

@@ -33,32 +33,28 @@ layout: blank-layout.hbs
 {{#>_docs-example hidden="true" open="true" code="html"}}
 &lt;div class="nsw-sticky-container"&gt;
 
-  <!-- Other sticky components (for example, Cookie consent banner) can also appear here -->
+  &lt;!-- Other sticky components (for example, Cookie consent banner) can also appear here --&gt;
 
-  &lt;section
+  &lt;a
     class="nsw-quick-exit nsw-quick-exit__dark"
+    href="https://www.nsw.gov.au/"
     data-options='{
-      "safePageTitle":"NSW Government",
+      "safePageTitle": "NSW Government",
       "enableEsc": true,
       "enableCloak": true
     }'
+    rel="nofollow noopener"
+    id="nsw-quick-exit"
+    aria-describedby="nsw-quick-exit__desc"
   &gt;
-    &lt;div class="nsw-quick-exit__wrapper"&gt;
-      &lt;div class="nsw-quick-exit__content"&gt;
-        &lt;p id="nsw-quick-exit__desc" class="nsw-quick-exit__description"&gt;
-          Select &lt;strong&gt;Exit now&lt;/strong&gt; or press the &lt;kbd&gt;Esc&lt;/kbd&gt; key 2 times. This won't clear your internet history.
-        &lt;/p&gt;
-      &lt;/div&gt;
-      &lt;a
-        class="nsw-quick-exit__cta nsw-quick-exit__cta--fallback"
-        href="https://www.google.com/webhp"
-        rel="nofollow noopener"
-        aria-describedby="nsw-quick-exit__desc"
-      &gt;
-        Exit now
-      &lt;/a&gt;
-    &lt;/div&gt;
-  &lt;/section&gt;
+    &lt;span
+      id="nsw-quick-exit__desc"
+      class="nsw-quick-exit__description-text"
+    &gt;
+      Leave quickly using this banner or press &lt;kbd&gt;Esc&lt;/kbd&gt; 2 times.
+    &lt;/span&gt;
+    &lt;span class="nsw-quick-exit__exit-text"&gt;Exit now&lt;/span&gt;
+  &lt;/a&gt;
 &lt;/div&gt;
 {{/_docs-example}}
 
@@ -106,7 +102,7 @@ window.NSW.QuickExit.init({
 
 <span class="nsw-tag nsw-tag--info nsw-m-top-md" aria-hidden="true">JS-required</span>
 <h3 class="nsw-m-top-sm">Focus</h3>
-<p>When JavaScript is enabled, the component ensures the Quick Exit link is the first focusable element in the sticky container and programmatically moves focus to it on initialisation. This makes the control immediately available to keyboard users. When JavaScript is disabled, normal source‑order focus behaviour applies.</p>
+<p>When JavaScript is enabled, the Quick Exit link becomes the first element reached when the user presses <kbd>Tab</kbd> for the first time on the page. This ensures the control is immediately accessible to keyboard users without forcing focus on page load. When JavaScript is disabled, normal source‑order focus behaviour applies.</p>
 
 <h2>Responsiveness & zoomed states</h2>
 <p>The Quick Exit control is responsive and designed to work with the sticky container at up to 400% zoom. At smaller breakpoints or high zoom, the component presents a compact layout so it does not obscure page content. Ensure the page template reserves space for the sticky container and that the control’s label wraps when necessary to maintain readability.</p>
