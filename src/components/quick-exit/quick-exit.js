@@ -229,7 +229,8 @@ export default class QuickExit {
         } catch (err) {
           ignoreError(err)
         }
-        // Do NOT call stopImmediatePropagation here; allow other listeners to continue.
+        // Intentionally prevent default Esc behaviour (e.g., closing dialogs),
+        // but do NOT call stopImmediatePropagation; allow other listeners to continue handling Esc.
         callback()
         pressCount = 0
         timerId = null
