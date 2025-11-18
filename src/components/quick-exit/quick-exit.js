@@ -11,7 +11,13 @@ import { validateUrl } from '../../global/scripts/helpers/utilities'
  * - Optional progressive features: double-Esc, auto-focus first, URL sanitisation.
  */
 /** internal no-op to satisfy lint when intentionally swallowing errors */
+
 function ignoreError() {}
+
+// Track first-Tab behaviour so we can move focus to Quick Exit
+let firstTabTarget = null
+let firstTabHandlerBound = false
+let firstTabHandled = false
 
 export default class QuickExit {
   /**
@@ -273,27 +279,67 @@ export default class QuickExit {
   }
 
   static focusFirst(node) {
-    const focus = () => {
+    if (typeof document === 'undefined') return
+
+    // Always let the latest initialised Quick Exit win as the first-Tab target
+    firstTabTarget = node
+
+    if (firstTabHandlerBound) return
+
+    const isEditable = (el) => {
+      if (!el) return false
+      const tag = el.tagName && el.tagName.toLowerCase()
+      if (tag === 'input' || tag === 'textarea' || tag === 'select') return true
+      if (el.isContentEditable) return true
+      const role = el.getAttribute && el.getAttribute('role')
+      if (role === 'combobox' || role === 'dialog' || role === 'menu' || role === 'listbox') return true
+      return false
+    }
+
+    const modalOpen = () => {
       try {
-        node.focus({ preventScroll: true })
+        if (document.querySelector('dialog[open]')) return true
+        if (document.querySelector('[role="dialog"][aria-modal="true"]')) return true
+        return false
+      } catch (err) {
+        ignoreError(err)
+        return false
+      }
+    }
+
+    const handleKeydown = (event) => {
+      const {
+        key, keyCode, defaultPrevented, target,
+      } = event
+
+      const isTab = key === 'Tab' || keyCode === 9
+      if (!isTab) return
+      if (firstTabHandled) return
+      if (defaultPrevented) return
+      if (!firstTabTarget) return
+      if (isEditable(target) || modalOpen()) return
+
+      firstTabHandled = true
+
+      try {
+        event.preventDefault()
+      } catch (errP) {
+        ignoreError(errP)
+      }
+
+      try {
+        firstTabTarget.focus({ preventScroll: true })
       } catch (errD) {
         try {
-          node.focus()
+          firstTabTarget.focus()
         } catch (errE) {
           ignoreError(errE)
         }
       }
     }
-    const arrivedBF = (() => {
-      try {
-        const nav = performance.getEntriesByType('navigation')[0]; return nav && nav.type === 'back_forward'
-      } catch (errT) {
-        ignoreError(errT)
-        return false
-      }
-    })()
-    const should = !arrivedBF && !window.location.hash && (!document.activeElement || document.activeElement === document.body)
-    if (should) setTimeout(focus, 0)
+
+    document.addEventListener('keydown', handleKeydown, true)
+    firstTabHandlerBound = true
   }
 
   /**
