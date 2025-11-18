@@ -386,8 +386,7 @@ export default class QuickExit {
         }
       }
 
-      let enableCloak = (typeof opts.enableCloak === 'boolean') ? opts.enableCloak : true
-
+      const enableCloak = (typeof opts.enableCloak === 'boolean') ? opts.enableCloak : true
       const attrSafeTitle = el.getAttribute('data-safe-page-title')
 
       QuickExit.init({
