@@ -8,7 +8,7 @@ model:  json/quick-exit.json
 {{#>_layout-container}}
 <h3>Variation 1 - Dark theme</h3>
 <ul class="nsw-m-bottom-md">
-<li>Light theme</li>
+<li>Dark theme</li>
 <li>Cloaks page immediately on activation</li>
 <li>Opens Safe URL in a new tab and places a `display: none` on the current page, also replacing the page title</li>
 </ul>
@@ -19,13 +19,13 @@ model:  json/quick-exit.json
     "safeUrl": "{{model.safeUrl}}",
     "description": "{{model.description}}",
     "theme": "dark",
-    "cloakMode": "visibility"
+    "enableCloak": true
   }'
   type="button">Initialise banner</button>
 
 <h3>Variation 2 - Light theme</h3>
 <ul class="nsw-m-bottom-md">
-<li>Dark theme</li>
+<li>Light theme</li>
 <li>Cloaks page immediately on activation</li>
 <li>Opens Safe URL in a new tab and places a `display: none` on the current page, also replacing the page title</li>
 </ul>
@@ -37,7 +37,7 @@ model:  json/quick-exit.json
     "description": "{{model.description}}",
     "theme": "light",
     "enableEsc": true,
-    "cloakMode": "display"
+    "enableCloak": true
   }'
   type="button">Initialise banner</button>
 {{/_layout-container}}

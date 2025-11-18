@@ -298,7 +298,7 @@ class CookieConsent {
   }
 
   init() {
-    // Always wire listeners so Close works even if preferences dialog is not created
+    // Always wire listeners so close works even if preferences dialog is not created
     this.initElements()
     this.attachEventListeners()
 
