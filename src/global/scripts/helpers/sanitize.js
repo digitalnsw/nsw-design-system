@@ -6,6 +6,8 @@ function escapeHTML(txt) {
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#x27;')
 }
 
 // Clean and optionally whitelist HTML into a safe set of tags with no attributes.
