@@ -362,11 +362,7 @@ export default class QuickExit {
         ),
         theme,
         enableEsc: (typeof opts.enableEsc === 'boolean') ? opts.enableEsc : true,
-        enableCloak: (() => {
-          if (typeof opts.enableCloak === 'boolean') return opts.enableCloak
-          if (typeof opts.cloakMode === 'string') return opts.cloakMode !== 'none'
-          return true
-        })(),
+        enableCloak: (typeof opts.enableCloak === 'boolean') ? opts.enableCloak : true,
         focusFirst: true,
       })
       updateStickyBodyPadding()
@@ -390,10 +386,7 @@ export default class QuickExit {
         }
       }
 
-      // Map legacy cloakMode to enableCloak (anything except 'none' = true)
-      let enableCloak = true
-      if (typeof opts.enableCloak === 'boolean') enableCloak = opts.enableCloak
-      else if (typeof opts.cloakMode === 'string') enableCloak = opts.cloakMode !== 'none'
+      let enableCloak = (typeof opts.enableCloak === 'boolean') ? opts.enableCloak : true
 
       const attrSafeTitle = el.getAttribute('data-safe-page-title')
 
