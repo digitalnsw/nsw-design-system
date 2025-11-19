@@ -51,7 +51,6 @@ export default class QuickExit {
       safeUrl = 'https://www.google.com/webhp',
       safePageTitle = 'NSW Government',
       description = 'Select <strong>Exit now</strong> or press the <kbd>Esc</kbd> key 2 times. This won\'t clear your internet history.',
-      theme = 'light', // 'light' | 'dark'
       enableEsc = true,
       enableCloak = true,
       focusFirst = true,
@@ -66,7 +65,6 @@ export default class QuickExit {
       root = QuickExit.buildMarkup({
         description,
         safeUrl,
-        theme,
       })
       container.appendChild(root)
     } else {
@@ -95,7 +93,6 @@ export default class QuickExit {
     QuickExit.enhance(root, {
       safeUrl,
       safePageTitle,
-      theme,
       enableEsc,
       enableCloak,
       focusFirst,
@@ -111,10 +108,9 @@ export default class QuickExit {
   static buildMarkup({
     description,
     safeUrl,
-    theme,
   }) {
     const root = document.createElement('a')
-    root.className = `nsw-quick-exit nsw-quick-exit__${theme === 'dark' ? 'dark' : 'light'}`
+    root.className = 'nsw-quick-exit nsw-quick-exit__dark'
     root.href = safeUrl
     root.rel = 'nofollow noopener'
 
@@ -145,7 +141,6 @@ export default class QuickExit {
     root,
     {
       safeUrl,
-      theme,
       enableEsc,
       enableCloak,
       focusFirst,
@@ -153,10 +148,10 @@ export default class QuickExit {
     },
   ) {
     const node = root
-    // theme toggle (normalise classes)
+    // always use dark theme
     node.classList.remove('nsw-quick-exit__dark', 'nsw-quick-exit__light')
-    node.classList.add(theme === 'dark' ? 'nsw-quick-exit__dark' : 'nsw-quick-exit__light')
-    node.setAttribute('data-theme', theme === 'dark' ? 'dark' : 'light')
+    node.classList.add('nsw-quick-exit__dark')
+    node.setAttribute('data-theme', 'dark')
 
     const cta = node
 
@@ -391,13 +386,6 @@ export default class QuickExit {
           ignoreError(parseErr)
         }
       }
-      // Derive theme from existing attributes/classes; default to light only if nothing is set
-      let theme = existingRoot.getAttribute('data-theme')
-      if (!theme) {
-        if (existingRoot.classList.contains('nsw-quick-exit__dark')) theme = 'dark'
-        else if (existingRoot.classList.contains('nsw-quick-exit__light')) theme = 'light'
-        else theme = 'light'
-      }
       // Use current content and attributes; just wire behaviour with sensible defaults
       const href = existingRoot.getAttribute('href') || 'https://www.google.com/webhp'
       QuickExit.enhance(existingRoot, {
@@ -407,7 +395,6 @@ export default class QuickExit {
           || existingRoot.getAttribute('data-safe-page-title')
           || 'NSW Government'
         ),
-        theme,
         enableEsc: (typeof opts.enableEsc === 'boolean') ? opts.enableEsc : true,
         enableCloak: (typeof opts.enableCloak === 'boolean') ? opts.enableCloak : true,
         focusFirst: true,
@@ -440,7 +427,6 @@ export default class QuickExit {
         safeUrl: opts.safeUrl || 'https://www.google.com/webhp',
         safePageTitle: attrSafeTitle || opts.safePageTitle || 'NSW Government',
         description: opts.description || 'Leave quickly using this banner or press <kbd>Esc</kbd> 2 times.',
-        theme: opts.theme || 'light',
         enableEsc: (typeof opts.enableEsc === 'boolean') ? opts.enableEsc : true,
         enableCloak,
         focusFirst: (typeof opts.focusFirst === 'boolean') ? opts.focusFirst : true,

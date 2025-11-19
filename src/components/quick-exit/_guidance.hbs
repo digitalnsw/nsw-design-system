@@ -36,7 +36,7 @@ layout: blank-layout.hbs
   &lt;!-- Other sticky components (for example, Cookie consent banner) can also appear here --&gt;
 
   &lt;a
-    class="nsw-quick-exit nsw-quick-exit__dark"
+    class="nsw-quick-exit"
     href="https://www.nsw.gov.au/"
     data-options='{
       "safePageTitle": "NSW Government",
@@ -70,7 +70,6 @@ window.NSW.QuickExit.init({
   safeUrl: 'https://www.nsw.gov.au/',
   safePageTitle: 'NSW Government',
   description: 'Select &lt;strong&gt;Exit now&lt;/strong&gt; or press the &lt;kbd&gt;Esc&lt;/kbd&gt; key 2 times.',
-  theme: 'dark',
   enableEsc: true,
   enableCloak: true,
 });
@@ -94,17 +93,17 @@ window.NSW.QuickExit.init({
 <h3>Safe page destination</h3>
 <p>The quick exit button redirects users to neutral, non-sensitive sites such as <a href="https://www.nsw.gov.au/">nsw.gov.au</a> or <a href="https://www.bom.gov.au/">bom.gov.au</a>. These destinations are chosen because they provide safe, trusted, and non-controversial landing pages that do not expose users to additional risks or sensitive content. Redirecting to these sites helps users quickly leave potentially harmful situations while maintaining their privacy and security.</p>
 
-<span class="nsw-tag nsw-tag--info nsw-m-top-md" aria-hidden="true">JS-required</span>
-<h3 class="nsw-m-top-sm">Cloak mode (progressive enhancement)</h3>
+<span class="nsw-tag nsw-tag--info nsw-m-top-md" aria-hidden="true">JS progressive enhancement</span>
+<h3 class="nsw-m-top-sm">Cloak mode</h3>
 <p>When the Quick Exit is triggered with JavaScript enabled, the page is immediately concealed by applying <code>display: none</code> to the <code>&lt;html&gt;</code> element.</p>
 <p>Without JavaScript, the manual link will still navigate to the safe destination, but no visual cloaking is applied.</p>
 
-<span class="nsw-tag nsw-tag--info nsw-m-top-md" aria-hidden="true">JS-required</span>
-<h3 class="nsw-m-top-sm">Double escape key feature (progressive enhancement)</h3>
+<span class="nsw-tag nsw-tag--info nsw-m-top-md" aria-hidden="true">JS progressive enhancement</span>
+<h3 class="nsw-m-top-sm">Double escape key feature</h3>
 <p>The Quick Exit component includes an optional keyboard shortcut that allows users to trigger the exit using the <kbd>Esc</kbd> key twice in quick succession. This feature provides an alternative method for users who cannot or prefer not to use the mouse. When enabled (via <code>enableEsc: true</code>), the system listens for two consecutive <kbd>Esc</kbd> presses within a one-second window to activate the same exit behaviour as the main button.</p>
 <p>This accessibility feature is particularly valuable for users who require keyboard navigation or need a discreet, rapid method to leave a page without drawing attention to their actions.</p>
 
-<span class="nsw-tag nsw-tag--info nsw-m-top-md" aria-hidden="true">JS-required</span>
+<span class="nsw-tag nsw-tag--info nsw-m-top-md" aria-hidden="true">JS progressive enhancement</span>
 <h3 class="nsw-m-top-sm">Focus</h3>
 <p>When JavaScript is enabled, the Quick Exit link becomes the first element reached when the user presses <kbd>Tab</kbd> for the first time on the page. This ensures the control is immediately accessible to keyboard users without forcing focus on page load. When JavaScript is disabled, normal source‑order focus behaviour applies.</p>
 
