@@ -76,7 +76,7 @@ export const validateUrl = (raw, fallback = 'https://www.google.com/webhp') => {
     if (!raw || typeof raw !== 'string') return fallback
     const trimmed = raw.trim()
 
-    // Require absolute URL with explicit protocol; reject relative or protocol‑relative
+    // Require absolute URL with explicit protocol; reject relative or protocol-relative
     if (!/^https?:\/\//i.test(trimmed)) return fallback
 
     const url = new URL(trimmed)

@@ -7,7 +7,7 @@ import { validateUrl } from '../../global/scripts/helpers/utilities'
  * Quick Exit (lean)
  * - Looks for a manually-authored element inside the sticky container and enhances it.
  * - If initialised programmatically and no element exists, creates one and appends it to the sticky container.
- * - Primary action is an <a> so it works without JS; JS enhances to open the safe URL in a new tab (falling back to the current tab if pop‑ups are blocked).
+ * - Primary action is an <a> so it works without JS; JS enhances to open the safe URL in a new tab (falling back to the current tab if pop-ups are blocked).
  * - Optional progressive features: double-Esc, auto-focus first, URL sanitisation.
  */
 /** internal no-op to satisfy lint when intentionally swallowing errors */
@@ -183,20 +183,24 @@ export default class QuickExit {
       }
 
       let opened = false
+      let newWin = null
 
       try {
-        const newWin = window.open(SAFE, '_blank')
-        if (newWin && typeof newWin === 'object') {
-          try {
-            // Ensure the safe page cannot reach back into the origin tab
-            newWin.opener = null
-          } catch (errO) {
-            ignoreError(errO)
-          }
-          opened = true
-        }
+        // Request a new tab/window with noopener semantics so the safe page
+        // cannot reach back into the origin tab via window.opener.
+        newWin = window.open(SAFE, '_blank', 'noopener')
       } catch (errB) {
         ignoreError(errB)
+      }
+
+      if (newWin && typeof newWin === 'object') {
+        try {
+          // Extra hardening for older or non‑standard browsers.
+          newWin.opener = null
+        } catch (errO) {
+          ignoreError(errO)
+        }
+        opened = true
       }
 
       if (!opened) {
@@ -282,7 +286,8 @@ export default class QuickExit {
   static focusFirst(node) {
     if (typeof document === 'undefined') return
 
-    // Always let the latest initialised Quick Exit win as the first-Tab target
+    // Latest initialised Quick Exit becomes the first-Tab target.
+    // firstTabHandled is global so we only hijack the very first Tab press per page load.
     firstTabTarget = node
 
     if (firstTabHandlerBound) return
