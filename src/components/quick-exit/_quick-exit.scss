@@ -1,10 +1,10 @@
+@use 'sass:color';
 @use '../../global/scss/tools' as nsw;
 
 .nsw-quick-exit {
   display: block;
   width: 100%;
-  background-color: var(--nsw-white);
-  border-top: nsw.rem(4px) solid var(--Status-error, var(--nsw-status-error));
+  border-top: nsw.rem(6px) solid var(--Status-error, var(--nsw-status-error));
   font-weight: normal;
   cursor: pointer;
 
@@ -14,19 +14,11 @@
   &:focus,
   &:active {
     text-decoration: none;
-  }
-
-  &:hover,
-  &:focus {
-    text-decoration: none;
-
-    .nsw-quick-exit__exit-text {
-      text-decoration: underline;
-    }
-  }
+  } 
 
   &:focus {
     position: relative;
+    outline-offset: -1;
 
     @include nsw.nsw-focus;
     @include nsw.z-index;
@@ -40,13 +32,39 @@
     display: flex;
     align-items: center;
     width: 100%;
-    min-height: nsw.rem(76px);
+    min-height: nsw.rem(64px);
     justify-content: center;
+
+    &::before {
+      content: '';
+      width: nsw.rem(48px);
+      height: nsw.rem(48px);
+      line-height: 1;
+      margin-right: nsw.rem(8px);
+      display: none;
+      vertical-align: middle;
+      // This is here as a temporary measure until we can update the icon set
+      background-image: nsw.svg-url(nsw.$nsw-quick-exit-shield);
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: nsw.rem(48px) auto;
+      
+      // Ultimate solution is to replace with an appropriate SVG icon from the NSW icon set
+      // content: 'shield_with_heart';
+      // font-family: 'Material Icons Outlined';
+      // font-size: nsw.rem(48px);
+      // line-height: 1;
+    }
 
     @include nsw.container;
 
     @include nsw.breakpoint('md') {
       justify-content: left;
+      min-height: nsw.rem(80px);
+
+      &::before {
+        display: inline-block;
+      }
     }
   }
 
@@ -78,7 +96,7 @@
 
   &__exit-text {
     display: inline-block;
-    margin-left: nsw.rem(4px);
+    margin-left: nsw.rem(16px);
     font-weight: 700;
 
     &::after {
@@ -114,6 +132,7 @@
   &__dark {
     background-color: var(--nsw-brand-dark);
     color: var(--nsw-text-light);
+    transition: background-color 0.2s ease;
 
     &:link,
     &:visited,
@@ -122,6 +141,12 @@
     &:active {
       color: var(--nsw-white);
       background-color: var(--nsw-brand-dark);
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: color-mix(in srgb, var(--nsw-white) 10%, var(--nsw-brand-dark) 100%);
     }
 
     kbd {
