@@ -266,7 +266,6 @@ export default class QuickExit {
 
     // Mark ready (singleton) and ensure visibility
     node.setAttribute('data-ready', 'true')
-    // node.style.display = 'block'
   }
 
   static bindDoubleEsc(callback) {
