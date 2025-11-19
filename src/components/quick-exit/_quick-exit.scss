@@ -3,18 +3,10 @@
 .nsw-quick-exit {
   display: block;
   width: 100%;
-  padding: nsw.rem(8px) nsw.rem(16px);
   background-color: var(--nsw-white);
   border-top: nsw.rem(4px) solid var(--Status-error, var(--nsw-status-error));
-  text-align: center;
   font-weight: normal;
-  min-height: nsw.rem(54px);
-  align-content: center;
   cursor: pointer;
-
-  @include nsw.breakpoint('md') {
-    min-height: nsw.rem(80px);
-  }
 
   &:link,
   &:visited,
@@ -27,7 +19,6 @@
   &:hover,
   &:focus {
     text-decoration: none;
-    outline: none;
 
     .nsw-quick-exit__exit-text {
       text-decoration: underline;
@@ -42,6 +33,20 @@
     
     .nsw-section--invert & {   
       @include nsw.nsw-focus($color: var(--nsw-focus-light));
+    }
+  }
+
+  &__content {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-height: nsw.rem(76px);
+    justify-content: center;
+
+    @include nsw.container;
+
+    @include nsw.breakpoint('md') {
+      justify-content: left;
     }
   }
 

@@ -128,8 +128,12 @@ export default class QuickExit {
     exit.className = 'nsw-quick-exit__exit-text'
     exit.textContent = 'Exit now'
 
-    root.appendChild(desc)
-    root.appendChild(exit)
+    const content = document.createElement('div')
+    content.className = 'nsw-quick-exit__content'
+    content.appendChild(desc)
+    content.appendChild(exit)
+
+    root.appendChild(content)
     root.setAttribute('aria-describedby', desc.id)
     return root
   }
@@ -156,14 +160,53 @@ export default class QuickExit {
 
     const cta = node
 
-    let desc = node.querySelector('.nsw-quick-exit__description-text')
+    const content = node.querySelector('.nsw-quick-exit__content')
+    let desc = null
+    if (content) {
+      desc = content.querySelector('.nsw-quick-exit__description-text')
+    }
     if (!desc) {
       desc = document.createElement('span')
       desc.className = 'nsw-quick-exit__description-text'
-      node.insertBefore(desc, node.firstChild)
+      if (content) {
+        content.insertBefore(desc, content.firstChild)
+      } else {
+        node.insertBefore(desc, node.firstChild)
+      }
     }
     if (!desc.id) desc.id = 'nsw-quick-exit__desc'
     node.setAttribute('aria-describedby', desc.id)
+
+    // Ensure exit-text is inside content div
+    let exit = null
+    if (content) {
+      exit = content.querySelector('.nsw-quick-exit__exit-text')
+      if (!exit) {
+        exit = document.createElement('span')
+        exit.className = 'nsw-quick-exit__exit-text'
+        exit.textContent = 'Exit now'
+        content.appendChild(exit)
+      }
+    } else {
+      // No content div, fallback: create content div and move desc and exit inside
+      const newContent = document.createElement('div')
+      newContent.className = 'nsw-quick-exit__content'
+
+      // Move desc inside newContent
+      if (desc.parentNode === node) {
+        newContent.appendChild(desc)
+      }
+      // Create exit if missing
+      exit = node.querySelector('.nsw-quick-exit__exit-text')
+      if (!exit) {
+        exit = document.createElement('span')
+        exit.className = 'nsw-quick-exit__exit-text'
+        exit.textContent = 'Exit now'
+      }
+      newContent.appendChild(exit)
+
+      node.appendChild(newContent)
+    }
 
     // Progressive behaviour: open safe URL in a new tab, fallback to current tab if blocked
     const SAFE = validateUrl(safeUrl)
@@ -223,7 +266,7 @@ export default class QuickExit {
 
     // Mark ready (singleton) and ensure visibility
     node.setAttribute('data-ready', 'true')
-    node.style.display = 'block'
+    // node.style.display = 'block'
   }
 
   static bindDoubleEsc(callback) {
@@ -397,7 +440,7 @@ export default class QuickExit {
       QuickExit.init({
         safeUrl: opts.safeUrl || 'https://www.google.com/webhp',
         safePageTitle: attrSafeTitle || opts.safePageTitle || 'NSW Government',
-        description: opts.description || 'Select <strong>Exit now</strong> or press the <kbd>Esc</kbd> key 2 times. This won\'t clear your internet history.',
+        description: opts.description || 'Leave quickly using this banner or press <kbd>Esc</kbd> 2 times.',
         theme: opts.theme || 'light',
         enableEsc: (typeof opts.enableEsc === 'boolean') ? opts.enableEsc : true,
         enableCloak,
