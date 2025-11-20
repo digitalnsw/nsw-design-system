@@ -24,8 +24,8 @@ document.addEventListener('DOMContentLoaded', function() {
       if (window.NSW && window.NSW.QuickExit) {
         window.NSW.QuickExit.init({
           safeUrl: "{{model.safeUrl}}",
-          description: "{{{model.description}}}",
-          enableEsc: true
+          description: "{{{model.qe-description}}}",
+          enableCloak: true
         })
       } else {
         console.error('QuickExit not found on window.NSW')
