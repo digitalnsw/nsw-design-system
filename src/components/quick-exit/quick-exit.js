@@ -50,7 +50,7 @@ export default class QuickExit {
     {
       safeUrl = 'https://www.google.com/webhp',
       safePageTitle = 'NSW Government',
-      description = 'Select <strong>Exit now</strong> or press the <kbd>Esc</kbd> key 2 times. This won\'t clear your internet history.',
+      description = 'Leave quickly using this banner or press <kbd>Esc</kbd> 2 times.',
       enableEsc = true,
       enableCloak = true,
       focusFirst = true,
@@ -131,6 +131,7 @@ export default class QuickExit {
 
     root.appendChild(content)
     root.setAttribute('aria-describedby', desc.id)
+    if (!root.id) root.id = 'nsw-quick-exit'
     return root
   }
 
@@ -238,6 +239,7 @@ export default class QuickExit {
 
     // Mark ready (singleton) and ensure visibility
     node.setAttribute('data-ready', 'true')
+    QuickExit.ensureSkipLink(node)
   }
 
   static bindDoubleEsc(callback) {
@@ -286,6 +288,35 @@ export default class QuickExit {
     // Capture phase so we still receive ESC even if other components stop propagation,
     // but we won't suppress them unless we actually trigger QE (and even then we don't stop propagation).
     document.addEventListener('keydown', handleKeydown, true)
+  }
+
+  static ensureSkipLink(rootEl) {
+    try {
+      if (!rootEl) return
+      const root = rootEl
+      const qeId = root.id || 'nsw-quick-exit'
+      if (!root.id) root.id = qeId
+
+      const skip = document.querySelector('.nsw-skip')
+      if (!skip) return
+
+      // If a skip link to this Quick Exit already exists, do nothing
+      const existing = skip.querySelector(`a[href="#${qeId}"]`)
+      if (existing) return
+
+      const link = document.createElement('a')
+      link.href = `#${qeId}`
+      link.innerHTML = '<span>Skip to quick exit</span>'
+
+      // Insert as the first link in the skip nav
+      if (skip.firstChild) {
+        skip.insertBefore(link, skip.firstChild)
+      } else {
+        skip.appendChild(link)
+      }
+    } catch (err) {
+      ignoreError(err)
+    }
   }
 
   static applyCloak() {

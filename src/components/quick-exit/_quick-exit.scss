@@ -9,7 +9,6 @@
   cursor: pointer;
   background-color: var(--nsw-brand-dark);
   color: var(--nsw-text-light);
-  transition: background-color 0.2s ease;
 
   &:link,
   &:visited,
@@ -19,7 +18,7 @@
     text-decoration: none;
     color: var(--nsw-white);
     background-color: var(--nsw-brand-dark);
-  } 
+  }
 
   &:focus {
     position: relative;
@@ -36,6 +35,10 @@
   &:focus,
   &:active {
     background-color: color-mix(in srgb, var(--nsw-white) 10%, var(--nsw-brand-dark) 100%);
+
+    &__exit-text {
+      text-decoration: underline;
+    }
   }
 
   kbd {
@@ -57,6 +60,7 @@
       content: '';
       width: nsw.rem(48px);
       height: nsw.rem(48px);
+      margin-bottom: nsw.rem(4px);
       line-height: 0;
       display: none;
       vertical-align: middle;

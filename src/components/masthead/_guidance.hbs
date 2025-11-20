@@ -18,9 +18,12 @@ layout: blank-layout.hbs
 
 <p>The Skip Link component helps keyboard-only and screen-reader users skip to the main content on a page, this includes skipping over the header and navigation. The Skip Link is visually hidden until a keyboard press focuses and activates it.</p>
 
-<p><strong>Important:</strong> The Skip Link component should be at the top of the page as the first interactive child. There is no special logic to make the skip link the first focussable element. This comes from its position in the DOM.</p>
+<p><strong>Important:</strong> The Skip Link component should be at the top of the page as the first interactive child. In a standard setup there is no special logic to make the skip link the first focussable element &mdash; this comes from its position in the DOM. When you integrate the Quick Exit component, you should still render a Quick Exit skip link in this server-rendered markup so that it appears in that first position even when JavaScript is disabled.</p>
 
-<p>The component becomes visible when in focus. To display it, press the Tab key (or swipe right if you've enabled the accessibility features of your phone).</p>
+<h4>Quick Exit integration</h4>
+<p>To support Quick Exit, add an additional skip link entry that points to the Quick Exit banner in the global sticky container, for example <code>&lt;a class="nsw-skip-link__link" href="#nsw-quick-exit"&gt;Quick exit&lt;/a&gt;</code>.</p>
+<p>This link must be part of your Masthead template so it works without JavaScript. When the Quick Exit JavaScript is loaded, it will progressively enhance this link so that the Quick Exit control is reached first, but that script is a fallback. Do not rely on it as the only way for users to access the control.</p>
+<p>For full details on how the Quick Exit banner behaves, including placement and keyboard shortcuts, see the <a href="/components/quick-exit/" aria-label="Quick Exit component documentation">Quick Exit component</a>. Use that documentation alongside this Masthead guidance when implementing safety controls on your site.</p>
 
 <h2>Accessibility</h2>
 <p>All components are responsive and designed to comply with WCAG 2.2 AA accessibility standards. Full compliance depends on using and configuring the components correctly.</p>

@@ -39,7 +39,6 @@ layout: blank-layout.hbs
     class="nsw-quick-exit"
     href="https://www.nsw.gov.au/"
     data-options='{
-      "safePageTitle": "NSW Government",
       "enableEsc": true,
       "enableCloak": true
     }'
@@ -60,7 +59,7 @@ layout: blank-layout.hbs
 &lt;/div&gt;
 {{/_docs-example}}
 
-<p>If the browser blocks pop-ups when attempting to open the safe URL in a new tab, the Quick Exit control will automatically fall back to opening the safe destination in the current tab instead.</p>
+<p>When JavaScript is enabled, activating the Quick Exit link immediately navigates the current tab to the configured safe URL and applies cloak mode to hide the previous page while navigation occurs. When JavaScript is disabled, the link behaves as a normal navigation to the same safe URL.</p>
 
 <h3>Fallback JavaScript setup (only if manual placement is not possible)</h3>
 <p>If you cannot render the element via your CMS/layout, there is a programmatic option that injects and wires up the control at runtime. This approach <strong>requires JavaScript</strong>; users without JS will not see the feature.</p>
@@ -68,8 +67,7 @@ layout: blank-layout.hbs
 {{#>_docs-example hidden="true" open="true" code="js"}}
 window.NSW.QuickExit.init({
   safeUrl: 'https://www.nsw.gov.au/',
-  safePageTitle: 'NSW Government',
-  description: 'Select &lt;strong&gt;Exit now&lt;/strong&gt; or press the &lt;kbd&gt;Esc&lt;/kbd&gt; key 2 times.',
+  description: 'Leave quickly using this banner or press &lt;kbd&gt;Esc&lt;/kbd&gt; key 2 times.',
   enableEsc: true,
   enableCloak: true,
 });
@@ -78,7 +76,7 @@ window.NSW.QuickExit.init({
 <p>Use the programmatic method only when server rendering is unavailable; prefer the manual layout approach for progressive enhancement and guaranteed visibility.</p>
 
 <h3>Placement</h3>
-<p>You must place the Quick Exit control inside the global sticky container. described in the <a href="/core/layout/index.html#global-page-structure">Global page structure</a> guide so it remains consistently available without obstructing content.</p>
+<p>You must place the Quick Exit control inside the global sticky container. described in the <a href="/core/layout/index.html#global-page-structure" aria-label="Global page structure layout guidance">Global page structure</a> guide so it remains consistently available without obstructing content.</p>
 <p>This is because:</p>
 <ol>
   <li>Prevents conflict with genuinely critical information in the header, including global alerts.</li>
@@ -91,7 +89,7 @@ window.NSW.QuickExit.init({
 <p>The label on the exit button (<code>Exit now</code>) is <strong>not</strong> customisable. This intentional design choice ensures consistent wording and recognisability across all NSW Government websites. Consistency helps users quickly identify the quick exit feature, particularly in stressful or time-sensitive situations where they may need to leave a page rapidly.</p>
 
 <h3>Safe page destination</h3>
-<p>The quick exit button redirects users to neutral, non-sensitive sites such as <a href="https://www.nsw.gov.au/">nsw.gov.au</a> or <a href="https://www.bom.gov.au/">bom.gov.au</a>. These destinations are chosen because they provide safe, trusted, and non-controversial landing pages that do not expose users to additional risks or sensitive content. Redirecting to these sites helps users quickly leave potentially harmful situations while maintaining their privacy and security.</p>
+<p>The quick exit button redirects users to neutral, non-sensitive sites such as <a href="https://www.nsw.gov.au/" aria-label="NSW Government home page">nsw.gov.au</a> or <a href="https://www.bom.gov.au/" aria-label="Bureau of Meteorology home page">bom.gov.au</a>. These destinations are chosen because they provide safe, trusted, and non-controversial landing pages that do not expose users to additional risks or sensitive content. Redirecting to these sites helps users quickly leave potentially harmful situations while maintaining their privacy and security.</p>
 
 <span class="nsw-tag nsw-tag--info nsw-m-top-md" aria-hidden="true">JS progressive enhancement</span>
 <h3 class="nsw-m-top-sm">Cloak mode</h3>
@@ -105,10 +103,15 @@ window.NSW.QuickExit.init({
 
 <span class="nsw-tag nsw-tag--info nsw-m-top-md" aria-hidden="true">JS progressive enhancement</span>
 <h3 class="nsw-m-top-sm">Focus</h3>
-<p>When JavaScript is enabled, the Quick Exit link becomes the first element reached when the user presses <kbd>Tab</kbd> for the first time on the page. This ensures the control is immediately accessible to keyboard users without forcing focus on page load. When JavaScript is disabled, normal source-order focus behaviour applies.</p>
+<p>The Quick Exit control participates in the normal tab order and includes a clear focus style that meets WCAG 2.2 AA requirements. When combined with the Masthead Skip Link pattern, it is typically the first interactive element reached by keyboard users without forcing focus on page load. For details on wiring the skip link to Quick Exit, see the Skip Link integration guidance below.</p>
+
+<h3>Skip Link integration</h3>
+<p>For users without JavaScript, you must expose the Quick Exit through the Masthead's Skip Link pattern. Add a server-rendered skip link entry that points to the Quick Exit element in the global sticky container (for example, <code>href="#nsw-quick-exit"</code>). This ensures that keyboard and assistive-technology users can still reach the Quick Exit control even when no JavaScript is available.</p>
+<p>When JavaScript is available and <code>window.NSW.QuickExit</code> is initialised, the script enhances this skip link so that pressing <kbd>Tab</kbd> for the first time moves focus to the Quick Exit control. The skip link markup must still be present in your Masthead template; the JavaScript only layers behaviour on top and must not be relied on as the sole way to reach the control.</p>
+<p>For guidance on configuring the Masthead Skip Link pattern itself, see the <a href="/components/masthead/" aria-label="Masthead header component documentation">Masthead component</a>. This describes how the skip links are structured so that the Quick Exit entry appears in a consistent, predictable position for keyboard and screen-reader users.</p>
 
 <h2>Responsiveness & zoomed states</h2>
-<p>The Quick Exit control is responsive and designed to work with the sticky container at up to 400% zoom. At smaller breakpoints or high zoom, the component presents a compact layout so it does not obscure page content. Ensure the page template reserves space for the sticky container and that the control’s label wraps when necessary to maintain readability.</p>
+<p>The Quick Exit control is responsive and designed to work with the sticky container at up to 400% zoom. At smaller breakpoints or high zoom, the component presents a compact layout so it does not obscure page content. Ensure the page template reserves space for the sticky container and that the control's label wraps when necessary to maintain readability.</p>
 
 <h2>Known limitations</h2>
 <ul>
@@ -122,7 +125,7 @@ window.NSW.QuickExit.init({
 
 <h3>Obstruction of content</h3>
 <p>Obstruction of content in the footer is automatically handled by the global sticky container. Padding equal to the height of the sticky container is applied to the <code>&lt;body&gt;</code> element to ensure that no page content is obscured by the Quick Exit control or other bottom-sticky elements.</p>
-<p>This component does not include WCAG 2.2 AAA support for <a href="https://www.w3.org/TR/WCAG22/#focus-not-obscured-enhanced">Focus Not Obscured (Enhanced)</a>. At AAA level, focused elements must remain completely visible and unobscured by author-created content; this standard is not fully met by the sticky container implementation.</p>
+<p>This component does not include WCAG 2.2 AAA support for <a href="https://www.w3.org/TR/WCAG22/#focus-not-obscured-enhanced" aria-label="WCAG 2.2 Focus Not Obscured enhanced success criterion">Focus Not Obscured (Enhanced)</a>. At AAA level, focused elements must remain completely visible and unobscured by author-created content; this standard is not fully met by the sticky container implementation.</p>
 
 <h3>Keyboard and focus</h3>
 <p>The quick exit button is fully accessible via keyboard navigation. Focus styles are clearly visible, and keyboard users can activate the button using standard keys to ensure ease of use for all users.</p>
@@ -131,7 +134,7 @@ window.NSW.QuickExit.init({
 <p>ARIA attributes and semantic HTML ensure the quick exit button is announced appropriately by screen readers, providing meaningful context and instructions for users who rely on assistive technologies.</p>
 
 <h3>Colour and contrast</h3>
-<p>The button’s colour scheme meets WCAG 2.2 AA contrast requirements to ensure it is easily distinguishable against its background, improving visibility for users with visual impairments.</p>
+<p>The button's colour scheme meets WCAG 2.2 AA contrast requirements to ensure it is easily distinguishable against its background, improving visibility for users with visual impairments.</p>
 
 <h3>Language and clarity</h3>
 <p>Text labels and instructions use clear, simple language to facilitate quick understanding and reduce cognitive load, particularly important in stressful situations.</p>
