@@ -103,7 +103,7 @@ export default class QuickExit {
   }
 
   /**
-   * Build minimal, no‑JS friendly markup
+   * Build minimal, no-JS friendly markup
    */
   static buildMarkup({
     description,
@@ -250,7 +250,6 @@ export default class QuickExit {
     )
 
     // Helpers to decide if QE should defer to other UI
-    // Removed duplicated isEditable and modalOpen, use shared helpers instead
 
     const handleKeydown = (event) => {
       const {
