@@ -203,7 +203,7 @@ export default class QuickExit {
       node.appendChild(newContent)
     }
 
-    // Progressive behaviour: open safe URL in a new tab, fallback to current tab if blocked
+    // Progressive behaviour: always open safe URL in the current tab
     const SAFE = validateUrl(safeUrl)
     cta.addEventListener('click', (ev) => {
       try {
@@ -220,33 +220,10 @@ export default class QuickExit {
         ignoreError(errT)
       }
 
-      let opened = false
-      let newWin = null
-
       try {
-        // Request a new tab/window with noopener semantics so the safe page
-        // cannot reach back into the origin tab via window.opener.
-        newWin = window.open(SAFE, '_blank', 'noopener')
-      } catch (errB) {
-        ignoreError(errB)
-      }
-
-      if (newWin && typeof newWin === 'object') {
-        try {
-          // Extra hardening for older or non‑standard browsers.
-          newWin.opener = null
-        } catch (errO) {
-          ignoreError(errO)
-        }
-        opened = true
-      }
-
-      if (!opened) {
-        try {
-          window.location.assign(SAFE)
-        } catch (errC) {
-          ignoreError(errC)
-        }
+        window.location.assign(SAFE)
+      } catch (errC) {
+        ignoreError(errC)
       }
     })
 
