@@ -71,6 +71,7 @@ export default class QuickExit {
       // Update existing markup so the latest init wins
       root.href = safeUrl
       root.rel = 'nofollow noopener'
+      root.setAttribute('aria-label', 'Quick exit')
 
       let descEl = root.querySelector('.nsw-quick-exit__description-text')
       if (!descEl) {
@@ -122,6 +123,7 @@ export default class QuickExit {
     root.className = 'nsw-quick-exit nsw-quick-exit__dark'
     root.href = safeUrl
     root.rel = 'nofollow noopener'
+    root.setAttribute('aria-label', 'Quick exit')
 
     const desc = document.createElement('span')
     desc.className = 'nsw-quick-exit__description-text'
