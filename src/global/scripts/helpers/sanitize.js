@@ -17,7 +17,7 @@ function baseCleanHTML(str, nodes, opts = {}) {
     return nodes ? null : escapeHTML(str)
   }
 
-  const { allowedTags = null } = opts
+  const { allowedTags = null, allowedAttributes = {} } = opts
 
   function stringToHTML() {
     const raw = String(str || '')
@@ -92,8 +92,27 @@ function baseCleanHTML(str, nodes, opts = {}) {
             return
           }
         } else {
-          // Strip all attributes for safety
-          stripAllAttributes(node)
+          // Strip all attributes except those explicitly allowed for this tag,
+          // and always remove dangerous URL/event-handler attributes.
+          const tagAllowedAttrs = Array.isArray(allowedAttributes[tag]) ? allowedAttributes[tag] : []
+          Array.from(node.attributes).forEach(({ name, value }) => {
+            const attrName = String(name || '')
+            // Always remove dangerous attributes first
+            if (isPossiblyDangerous(attrName, value)) {
+              node.removeAttribute(attrName)
+              return
+            }
+            // If there is an allowlist for this tag, drop anything not in it
+            if (tagAllowedAttrs.length && !tagAllowedAttrs.includes(attrName)) {
+              node.removeAttribute(attrName)
+            }
+            // If there is no allowlist entry for this tag, we fall through and
+            // remove everything below for strictness.
+          })
+          // If no attributes are explicitly allowed for this tag, remove whatever is left
+          if (!Array.isArray(allowedAttributes[tag]) || !allowedAttributes[tag].length) {
+            stripAllAttributes(node)
+          }
         }
       } else {
         removeDangerousAttributes(node)

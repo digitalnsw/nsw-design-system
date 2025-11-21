@@ -83,8 +83,17 @@ export default class QuickExit {
 
       try {
         while (descEl.firstChild) descEl.removeChild(descEl.firstChild)
-        const frag = cleanHTMLStrict(description, true, { allowedTags: ['span', 'kbd', 'strong', 'em', 'br'] })
+        const frag = cleanHTMLStrict(description, true, {
+          allowedTags: ['span', 'kbd', 'strong', 'em', 'br'],
+          allowedAttributes: { kbd: ['aria-label'] },
+        })
         descEl.appendChild(frag)
+        // Ensure keyboard instructions remain accessible even if aria-label was omitted
+        descEl.querySelectorAll('kbd').forEach((k) => {
+          if (!k.hasAttribute('aria-label')) {
+            k.setAttribute('aria-label', 'Escape key')
+          }
+        })
       } catch (err) {
         ignoreError(err)
       }
@@ -117,8 +126,17 @@ export default class QuickExit {
     const desc = document.createElement('span')
     desc.className = 'nsw-quick-exit__description-text'
     desc.id = 'nsw-quick-exit__desc'
-    const frag = cleanHTMLStrict(description, true, { allowedTags: ['span', 'kbd', 'strong', 'em', 'br'] })
+    const frag = cleanHTMLStrict(description, true, {
+      allowedTags: ['span', 'kbd', 'strong', 'em', 'br'],
+      allowedAttributes: { kbd: ['aria-label'] },
+    })
     desc.appendChild(frag)
+    // Ensure keyboard instructions are accessible by default
+    desc.querySelectorAll('kbd').forEach((k) => {
+      if (!k.hasAttribute('aria-label')) {
+        k.setAttribute('aria-label', 'Escape key')
+      }
+    })
 
     const exit = document.createElement('span')
     exit.className = 'nsw-quick-exit__exit-text'
@@ -306,7 +324,10 @@ export default class QuickExit {
 
       const link = document.createElement('a')
       link.href = `#${qeId}`
-      link.innerHTML = '<span>Skip to quick exit</span>'
+      link.setAttribute('aria-label', 'Quick exit is available on this page. You can leave at any time by pressing the Escape key two times.')
+      const span = document.createElement('span')
+      span.textContent = 'Skip to quick exit'
+      link.appendChild(span)
 
       // Insert as the first link in the skip nav
       if (skip.firstChild) {
