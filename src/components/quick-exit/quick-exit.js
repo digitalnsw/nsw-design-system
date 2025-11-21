@@ -257,9 +257,10 @@ export default class QuickExit {
     // Optional focus-first
     if (focusFirst) QuickExit.focusFirst(cta)
 
-    // Mark ready (singleton) and ensure visibility
+    QuickExit.ensureSrOnlyMessage()
+
+    // Mark ready (singleton)
     node.setAttribute('data-ready', 'true')
-    QuickExit.ensureSkipLink(node)
   }
 
   static bindDoubleEsc(callback) {
@@ -310,32 +311,24 @@ export default class QuickExit {
     document.addEventListener('keydown', handleKeydown, true)
   }
 
-  static ensureSkipLink(rootEl) {
+  static ensureSrOnlyMessage() {
     try {
-      if (!rootEl) return
-      const root = rootEl
-      const qeId = root.id || 'nsw-quick-exit'
-      if (!root.id) root.id = qeId
-
+      if (typeof document === 'undefined') return
       const skip = document.querySelector('.nsw-skip')
-      if (!skip) return
+      if (!skip || !skip.parentNode) return
 
-      // If a skip link to this Quick Exit already exists, do nothing
-      const existing = skip.querySelector(`a[href="#${qeId}"]`)
-      if (existing) return
+      // Reuse existing message if present, otherwise create it
+      let sr = document.getElementById('quick-exit-message')
+      if (!sr) {
+        sr = document.createElement('span')
+        sr.id = 'quick-exit-message'
+        sr.className = 'sr-only'
+        sr.textContent = 'Quick exit is available on this page. You can leave at any time by pressing the Escape key two times.'
+      }
 
-      const link = document.createElement('a')
-      link.href = `#${qeId}`
-      link.setAttribute('aria-label', 'Quick exit is available on this page. You can leave at any time by pressing the Escape key two times.')
-      const span = document.createElement('span')
-      span.textContent = 'Skip to quick exit'
-      link.appendChild(span)
-
-      // Insert as the first link in the skip nav
-      if (skip.firstChild) {
-        skip.insertBefore(link, skip.firstChild)
-      } else {
-        skip.appendChild(link)
+      // Ensure it sits immediately before the skip nav
+      if (sr.parentNode !== skip.parentNode || sr.nextElementSibling !== skip) {
+        skip.parentNode.insertBefore(sr, skip)
       }
     } catch (err) {
       ignoreError(err)
