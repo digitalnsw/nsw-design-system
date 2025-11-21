@@ -49,7 +49,6 @@ export default class QuickExit {
   static init(
     {
       safeUrl = 'https://www.google.com/webhp',
-      safePageTitle = 'NSW Government',
       description = 'Leave quickly using this banner or press <kbd>Esc</kbd> 2 times.',
       enableEsc = true,
       enableCloak = true,
@@ -102,7 +101,6 @@ export default class QuickExit {
 
     QuickExit.enhance(root, {
       safeUrl,
-      safePageTitle,
       enableEsc,
       enableCloak,
       focusFirst,
@@ -120,7 +118,7 @@ export default class QuickExit {
     safeUrl,
   }) {
     const root = document.createElement('a')
-    root.className = 'nsw-quick-exit nsw-quick-exit__dark'
+    root.className = 'nsw-quick-exit'
     root.href = safeUrl
     root.rel = 'nofollow noopener'
     root.setAttribute('aria-label', 'Quick exit')
@@ -165,15 +163,9 @@ export default class QuickExit {
       enableEsc,
       enableCloak,
       focusFirst,
-      safePageTitle,
     },
   ) {
     const node = root
-    // always use dark theme
-    node.classList.remove('nsw-quick-exit__dark', 'nsw-quick-exit__light')
-    node.classList.add('nsw-quick-exit__dark')
-    node.setAttribute('data-theme', 'dark')
-
     const cta = node
 
     const content = node.querySelector('.nsw-quick-exit__content')
@@ -193,35 +185,32 @@ export default class QuickExit {
     if (!desc.id) desc.id = 'nsw-quick-exit__desc'
     node.setAttribute('aria-describedby', desc.id)
 
-    // Ensure exit-text is inside content div
-    let exit = null
-    if (content) {
-      exit = content.querySelector('.nsw-quick-exit__exit-text')
-      if (!exit) {
-        exit = document.createElement('span')
-        exit.className = 'nsw-quick-exit__exit-text'
-        exit.textContent = 'Exit now'
-        content.appendChild(exit)
-      }
-    } else {
-      // No content div, fallback: create content div and move desc and exit inside
-      const newContent = document.createElement('div')
-      newContent.className = 'nsw-quick-exit__content'
+    // Ensure consistent DOM structure: always have a content div containing desc and exit
+    let contentDiv = content
+    if (!contentDiv) {
+      contentDiv = document.createElement('div')
+      contentDiv.className = 'nsw-quick-exit__content'
+      node.appendChild(contentDiv)
+    }
 
-      // Move desc inside newContent
-      if (desc.parentNode === node) {
-        newContent.appendChild(desc)
-      }
-      // Create exit if missing
-      exit = node.querySelector('.nsw-quick-exit__exit-text')
-      if (!exit) {
-        exit = document.createElement('span')
-        exit.className = 'nsw-quick-exit__exit-text'
-        exit.textContent = 'Exit now'
-      }
-      newContent.appendChild(exit)
+    // Move desc inside contentDiv if not already
+    if (desc.parentNode !== contentDiv) {
+      contentDiv.appendChild(desc)
+    }
 
-      node.appendChild(newContent)
+    // Find or create exit element, preferring any existing one under node
+    let exit = contentDiv.querySelector('.nsw-quick-exit__exit-text')
+      || node.querySelector('.nsw-quick-exit__exit-text')
+
+    if (!exit) {
+      exit = document.createElement('span')
+      exit.className = 'nsw-quick-exit__exit-text'
+      exit.textContent = 'Exit now'
+    }
+
+    // Ensure exit is inside contentDiv
+    if (exit.parentNode !== contentDiv) {
+      contentDiv.appendChild(exit)
     }
 
     // Progressive behaviour: always open safe URL in the current tab
@@ -234,12 +223,6 @@ export default class QuickExit {
       }
 
       if (enableCloak) QuickExit.applyCloak()
-
-      try {
-        document.title = safePageTitle || document.title
-      } catch (errT) {
-        ignoreError(errT)
-      }
 
       try {
         window.location.assign(SAFE)
@@ -413,11 +396,6 @@ export default class QuickExit {
       const href = existingRoot.getAttribute('href') || 'https://www.google.com/webhp'
       QuickExit.enhance(existingRoot, {
         safeUrl: href,
-        safePageTitle: (
-          (opts && opts.safePageTitle)
-          || existingRoot.getAttribute('data-safe-page-title')
-          || 'NSW Government'
-        ),
         enableEsc: (typeof opts.enableEsc === 'boolean') ? opts.enableEsc : true,
         enableCloak: (typeof opts.enableCloak === 'boolean') ? opts.enableCloak : true,
         focusFirst: true,
@@ -444,12 +422,10 @@ export default class QuickExit {
       }
 
       const enableCloak = (typeof opts.enableCloak === 'boolean') ? opts.enableCloak : true
-      const attrSafeTitle = el.getAttribute('data-safe-page-title')
 
       QuickExit.init({
         safeUrl: opts.safeUrl || 'https://www.google.com/webhp',
-        safePageTitle: attrSafeTitle || opts.safePageTitle || 'NSW Government',
-        description: opts.description || 'Leave quickly using this banner or press <kbd>Esc</kbd> 2 times.',
+        description: opts.description || 'Leave quickly using this banner or press <kbd aria-label="Escape key">Esc</kbd> 2 times.',
         enableEsc: (typeof opts.enableEsc === 'boolean') ? opts.enableEsc : true,
         enableCloak,
         focusFirst: (typeof opts.focusFirst === 'boolean') ? opts.focusFirst : true,
