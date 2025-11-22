@@ -49,7 +49,7 @@ export default class QuickExit {
   static init(
     {
       safeUrl = 'https://www.google.com/webhp',
-      description = 'Leave quickly using this banner or press <kbd>Esc</kbd> 2 times.',
+      description = 'Leave quickly using this banner or press <kbd aria-label="Escape key">Esc</kbd> 2 times.',
       enableEsc = true,
       enableCloak = true,
       focusFirst = true,
