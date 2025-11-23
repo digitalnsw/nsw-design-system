@@ -1,3 +1,26 @@
+{{#if-equals type "details"}}
+<div class="nsw-accordion nsw-accordion--details">
+  {{#if toggle}}
+  <div class="nsw-accordion__toggle">
+    <button type="button">Expand all</button>
+    <button type="button">Collapse all</button>
+  </div>
+  {{/if}}
+  {{#each items}}
+  <details class="nsw-accordion__item">
+    <summary class="nsw-accordion__title">
+      {{title}}
+    </summary>
+    <div class="nsw-accordion__content-wrap">
+      <div class="nsw-accordion__content">
+        {{{content}}}
+      </div>
+    </div>
+  </details>
+  {{/each}}
+</div>
+{{/if-equals}}
+
 {{#if-equals type "css"}}
   <div class="nsw-accordion nsw-accordion--css">
     {{#if toggle}}
@@ -18,7 +41,9 @@
     </div>
     {{/each}}
   </div>
-{{else}}
+{{/if-equals}}
+
+{{#if-equals type "js"}}
   <div class="nsw-accordion js-accordion">
     {{#if toggle}}
     <div class="nsw-accordion__toggle">
