@@ -1,14 +1,59 @@
-<div class="nsw-accordion js-accordion">
-  {{#if toggle}}
-  <div class="nsw-accordion__toggle">
-    <button type="button">Expand all</button>
-    <button type="button">Collapse all</button>
+{{#if-equals type "checkbox"}}
+  <div class="nsw-accordion--checkbox js-accordion-checkbox">
+    {{#if toggle}}
+    <div class="nsw-accordion__toggle">
+      <button type="button">Expand all</button>
+      <button type="button">Collapse all</button>
+    </div>
+    {{/if}}
+    {{#each items}}
+    <div class="nsw-accordion__item">
+      <input type="checkbox" class="nsw-accordion__control" id="accordion-{{#if id}}{{id}}{{else}}{{@index}}{{/if}}" {{#if open}}checked{{/if}}>
+      <label for="accordion-{{#if id}}{{id}}{{else}}{{@index}}{{/if}}" class="nsw-accordion__title">{{title}}</label>
+      <div class="nsw-accordion__content-wrap">
+        <div class="nsw-accordion__content">
+          {{{content}}}
+        </div>
+      </div>
+    </div>
+    {{/each}}
   </div>
-  {{/if}}
-  {{#each items}}
-  <div class="nsw-accordion__title{{#if open}} {{open}}{{/if}}">{{title}}</div>
-  <div class="nsw-accordion__content">
-    {{{content}}}
+{{else}}
+  {{#if-equals type "js"}}
+  <div class="nsw-accordion js-accordion">
+    {{#if toggle}}
+    <div class="nsw-accordion__toggle">
+      <button type="button">Expand all</button>
+      <button type="button">Collapse all</button>
+    </div>
+    {{/if}}
+    {{#each items}}
+    <div class="nsw-accordion__title{{#if open}} {{open}}{{/if}}">{{title}}</div>
+    <div class="nsw-accordion__content">
+      {{{content}}}
+    </div>
+    {{/each}}
   </div>
-  {{/each}}
-</div>
+  {{else}}
+  <div class="nsw-accordion--details js-accordion-details">
+    {{#if toggle}}
+    <div class="nsw-accordion__toggle">
+      <button type="button">Expand all</button>
+      <button type="button">Collapse all</button>
+    </div>
+    {{/if}}
+    {{#each items}}
+    <details class="nsw-accordion__item"{{#if open}} open{{/if}}>
+      <summary class="nsw-accordion__title">
+        {{title}}
+      </summary>
+      <div class="nsw-accordion__content-wrap">
+        <div class="nsw-accordion__content">
+          {{{content}}}
+        </div>
+      </div>
+    </details>
+    {{/each}}
+  </div>
+  {{/if-equals}}
+{{/if-equals}}
