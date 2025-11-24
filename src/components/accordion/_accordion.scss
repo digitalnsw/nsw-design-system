@@ -151,7 +151,7 @@
   }
 }
 
-.nsw-accordion--css {
+.nsw-accordion--checkbox {
   .nsw-accordion__control {
     position: absolute;
     inline-size: 1px;
@@ -274,13 +274,13 @@
 .nsw-accordion--details {
   .nsw-accordion__item {
     margin-top: nsw.rem(8px);
-    // background-color: var(--nsw-off-white);
-    overflow: hidden;
+    overflow: visible;
     interpolate-size: allow-keywords; /* stylelint-disable-line property-no-vendor-prefix */
   }
 
   .nsw-accordion__item::details-content {
     block-size: 0;
+    overflow: hidden;
     transition: block-size nsw.$nsw-transition-duration-smooth, content-visibility nsw.$nsw-transition-duration-smooth; /* stylelint-disable-line property-no-vendor-prefix */
     transition-behavior: allow-discrete; /* stylelint-disable-line property-no-vendor-prefix */
   }
@@ -344,6 +344,15 @@
         .nsw-section--invert & {    
           color: var(--nsw-text-dark);
         }
+      }
+    }
+
+    &:focus-visible {
+      @include nsw.nsw-focus;
+      @include nsw.z-index;
+
+      .nsw-section--invert & {   
+        @include nsw.nsw-focus($color: var(--nsw-focus-light));
       }
     }
 

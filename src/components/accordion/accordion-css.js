@@ -30,8 +30,8 @@ class CssAccordion {
     const { container } = this
     if (!container || !container.classList) return
 
-    const isDetails = container.classList.contains('nsw-accordion--details')
-    const isCss = container.classList.contains('nsw-accordion--css')
+    const isDetails = container.classList.contains('js-accordion-details')
+    const isCss = container.classList.contains('js-accordion-checkbox')
 
     // Only run on our two variants
     if (!isDetails && !isCss) return

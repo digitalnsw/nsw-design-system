@@ -42,8 +42,8 @@ if (!Element.prototype.closest) {
 }
 
 function initSite() {
-  const jsAccordions = document.querySelectorAll('.js-accordion:not(.nsw-accordion--css)')
-  const cssAccordions = document.querySelectorAll('.nsw-accordion.nsw-accordion--css, .nsw-accordion.nsw-accordion--details')
+  const jsAccordions = document.querySelectorAll('.js-accordion')
+  const cssAccordions = document.querySelectorAll('.js-accordion-checkbox, .js-accordion-details')
   const backTop = document.querySelectorAll('button.js-back-to-top')
   const breadcrumbs = document.querySelectorAll('.js-breadcrumbs')
   const carousel = document.querySelectorAll('.js-carousel')
