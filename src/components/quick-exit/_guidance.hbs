@@ -25,6 +25,50 @@ layout: blank-layout.hbs
 <p>Do not display the quick exit button as a response to regular user interactions or system events that are not associated with an immediate safety risk. The component should not be used to simply navigate between pages or for typical exit actions.</p>
 
 <h2>Implementation and placement</h2>
+
+<div class="nsw-steps nsw-steps--counters nsw-steps--true nsw-steps--medium">
+  <div class="nsw-steps__item nsw-steps-medium">
+    <div class="nsw-steps__content">
+      <h3 id="quick-exit-sticky-container">Add the global sticky container</h3>
+      <p>Implement the sticky container described in the <a href="/core/layout/index.html#global-page-structure" aria-label="Global page structure layout guidance">Global page structure</a> guide. This container hosts all bottom‑sticky elements, including Quick Exit and Cookie consent.</p>
+    </div>
+  </div>
+
+  <div class="nsw-steps__item">
+    <div class="nsw-steps__content">
+      <h3 id="quick-exit-html">Render the Quick Exit HTML inside the sticky container</h3>
+      <p>Add the Quick Exit link directly in your CMS or layout template so it is always present for users without JavaScript. Control visibility using your CMS logic (for example, only show it on specific templates or when safety flags are enabled).</p>
+    </div>
+  </div>
+
+  <div class="nsw-steps__item">
+    <div class="nsw-steps__content">
+      <h3 id="quick-exit-sr-message">Include the screen-reader announcement message</h3>
+      <p>The SR‑only announcement message is automatically inserted by the Quick Exit script. You do not need to add a separate “skip to quick exit” link; only ensure your Masthead Skip Link pattern exists so the message can be placed correctly.</p>
+    </div>
+  </div>
+
+  <div class="nsw-steps__item">
+    <div class="nsw-steps__content">
+      <h3 id="quick-exit-js">Load the NSW Design System JavaScript bundle</h3>
+      <p>When JavaScript is available, the Quick Exit script enhances the server‑rendered element using its <code>data-options</code> configuration. Enhancements include cloak mode, the double‑escape feature, and first‑Tab focus behaviour.</p>
+    </div>
+  </div>
+
+  <div class="nsw-steps__item">
+    <div class="nsw-steps__content">
+      <h3 id="quick-exit-fallback">Use programmatic initialisation only as a fallback</h3>
+      <p>Only use <code>window.NSW.QuickExit.init()</code> when CMS‑level HTML rendering is not possible. Users without JavaScript will not see the Quick Exit control in this mode.</p>
+    </div>
+  </div>
+</div>
+
+<div class="nsw-callout nsw-callout--info nsw-m-top-md nsw-m-bottom-md">
+  <div class="nsw-callout__content">
+    <p><strong>Why server-rendered HTML is required:</strong> placing the Quick Exit markup directly in the sticky container ensures the component works for users without JavaScript. The JavaScript layer is purely for enhancement and should not be relied on for basic visibility.</p>
+  </div>
+</div>
+
 <h3>Recommended approach</h3>
 <p>Add the Quick Exit element manually in your page layout inside the global sticky container. This ensures the control is always present and its visibility can be governed by your CMS (for example, show it only on specific templates or when certain flags are set).</p>
 
@@ -67,7 +111,7 @@ layout: blank-layout.hbs
 {{#>_docs-example hidden="true" open="true" code="js"}}
 window.NSW.QuickExit.init({
   safeUrl: 'https://www.nsw.gov.au/',
-  description: 'Leave quickly using this banner or press &lt;kbd&gt;Esc&lt;/kbd&gt; key 2 times.',
+  description: 'Leave quickly using this banner or press &lt;kbd aria-label="Escape key"&gt;Esc&lt;/kbd&gt; key 2 times.',
   enableEsc: true,
   enableCloak: true,
 });
