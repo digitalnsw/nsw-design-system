@@ -53,13 +53,13 @@ layout: blank-layout.hbs
     <div class="nsw-steps__content">
       <h3 id="quick-exit-html">Render the Quick Exit HTML inside the sticky container</h3>
       <p>Render the Quick Exit link directly in your CMS or layout template so it is always present for users without JavaScript. Use CMS-level logic to control visibility on specific templates or when safety conditions apply.</p>
-      <p>When JavaScript is available, the Quick Exit script enhances the server-rendered element with cloak mode, double‑Esc activation, and first‑Tab focus behaviour. Without JavaScript, the link still functions as a standard navigation to the safe URL.</p>
+      <p>When JavaScript is available, the Quick Exit script enhances the server-rendered element with cloak mode, double-Esc activation, and first-Tab focus behaviour. Without JavaScript, the link still functions as a standard navigation to the safe URL.</p>
 
       {{#>_docs-example hidden="true" open="true" code="html"}}
 &lt;div class="nsw-sticky-container"&gt;
   &lt;a
     class="nsw-quick-exit"
-    href="https://www.nsw.gov.au/"
+    href="https://www.google.com/webhp"
     data-options='{
       "enableEsc": true,
       "enableCloak": true
@@ -93,7 +93,7 @@ layout: blank-layout.hbs
   <div class="nsw-steps__item">
     <div class="nsw-steps__content">
       <h3 id="quick-exit-js">Load the NSW Design System JavaScript bundle</h3>
-      <p>Load the NSW Design System JavaScript bundle to enable progressive enhancements such as cloak mode, double‑Esc activation, and first‑Tab focus behaviour. The server-rendered element must still exist for users without JavaScript.</p>
+      <p>Load the NSW Design System JavaScript bundle to enable progressive enhancements such as cloak mode, double-Esc activation, and first-Tab focus behaviour. The server-rendered element must still exist for users without JavaScript.</p>
     </div>
   </div>
 
@@ -104,7 +104,7 @@ layout: blank-layout.hbs
 
       {{#>_docs-example hidden="true" open="true" code="js"}}
 window.NSW.QuickExit.init({
-  safeUrl: 'https://www.nsw.gov.au/',
+  safeUrl: 'https://www.google.com/webhp',
   description: 'Leave quickly using this banner or press &lt;kbd aria-label="Escape key"&gt;Esc&lt;/kbd&gt; key 2 times.',
   enableEsc: true,
   enableCloak: true
@@ -127,7 +127,7 @@ window.NSW.QuickExit.init({
 <p>The label on the exit button (<code>Exit now</code>) is <strong>not</strong> customisable. This intentional design choice ensures consistent wording and recognisability across all NSW Government websites. Consistency helps users quickly identify the quick exit feature, particularly in stressful or time-sensitive situations where they may need to leave a page rapidly.</p>
 
 <h3>Safe page destination</h3>
-<p>The quick exit button redirects users to neutral, non-sensitive sites such as <a href="https://www.nsw.gov.au/" aria-label="NSW Government home page">nsw.gov.au</a> or <a href="https://www.bom.gov.au/" aria-label="Bureau of Meteorology home page">bom.gov.au</a>. These destinations are chosen because they provide safe, trusted, and non-controversial landing pages that do not expose users to additional risks or sensitive content. Redirecting to these sites helps users quickly leave potentially harmful situations while maintaining their privacy and security.</p>
+<p>The quick exit button redirects users to neutral, non-sensitive sites such as <a href="https://www.google.com/webhp" aria-label="Google home page">google.com</a>, <a href="https://www.nsw.gov.au/" aria-label="NSW Government home page">nsw.gov.au</a> or <a href="https://www.bom.gov.au/" aria-label="Bureau of Meteorology home page">bom.gov.au</a>. These destinations are chosen because they provide safe, trusted, and non-controversial landing pages that do not expose users to additional risks or sensitive content. Redirecting to these sites helps users quickly leave potentially harmful situations while maintaining their privacy and security.</p>
 
 <span class="nsw-tag nsw-tag--info nsw-m-top-md" aria-hidden="true">JS progressive enhancement</span>
 <h3 class="nsw-m-top-sm">Cloak mode</h3>
@@ -149,7 +149,7 @@ window.NSW.QuickExit.init({
 <h2>Known limitations</h2>
 <ul>
   <li>The browser history is not cleared when using the quick exit; users may still be able to navigate back.</li>
-  <li>When JavaScript is unavailable, the manual link remains visible and functional, but none of the progressive enhancements are applied. This means features like cloak mode, double‑Esc activation and first‑Tab focus behaviour are not available.</li>
+  <li>When JavaScript is unavailable, the manual link remains visible and functional, but none of the progressive enhancements are applied. This means features like cloak mode, double-Esc activation and first-Tab focus behaviour are not available.</li>
   <li>When using the optional programmatic approach, the feature is invisible to users without JavaScript.</li>
 </ul>
 

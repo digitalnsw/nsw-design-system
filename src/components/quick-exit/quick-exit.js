@@ -55,6 +55,7 @@ export default class QuickExit {
       focusFirst = true,
     } = {},
   ) {
+    const safeURLValidated = validateUrl(safeUrl) || 'https://www.google.com/webhp'
     const container = stickyContainer()
     if (!container) return
 
@@ -63,12 +64,12 @@ export default class QuickExit {
       // Create fresh markup using the simple contract: <a> + description + exit label
       root = QuickExit.buildMarkup({
         description,
-        safeUrl,
+        safeUrl: safeURLValidated,
       })
       container.appendChild(root)
     } else {
       // Update existing markup so the latest init wins
-      root.href = safeUrl
+      root.href = safeURLValidated
       root.rel = 'nofollow noopener'
       root.setAttribute('aria-label', 'Quick exit')
 
@@ -100,7 +101,7 @@ export default class QuickExit {
     }
 
     QuickExit.enhance(root, {
-      safeUrl,
+      safeUrl: safeURLValidated,
       enableEsc,
       enableCloak,
       focusFirst,
@@ -214,7 +215,7 @@ export default class QuickExit {
     }
 
     // Progressive behaviour: always open safe URL in the current tab
-    const SAFE = validateUrl(safeUrl)
+    const safeURLValidated = validateUrl(safeUrl)
     cta.addEventListener('click', (ev) => {
       try {
         ev.preventDefault()
@@ -225,7 +226,7 @@ export default class QuickExit {
       if (enableCloak) QuickExit.applyCloak()
 
       try {
-        window.location.assign(SAFE)
+        window.location.assign(safeURLValidated)
       } catch (errC) {
         ignoreError(errC)
       }
