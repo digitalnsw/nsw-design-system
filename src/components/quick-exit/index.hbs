@@ -14,24 +14,24 @@ meta-index: true
 {{#>_docs-example}}{{>_quick-exit model}}{{/_docs-example}}
 
 <h4>Implementation within the sticky container</h4>
-<button class="nsw-button nsw-button--dark js-quick-exit" data-theme="dark" type="button">View banner</button>
+<button class="nsw-button nsw-button--dark js-quick-exit" data-module="quick-exit" data-theme="dark" type="button">View banner</button>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  var quickExitBtns = document.querySelectorAll('.js-quick-exit')
-  if (quickExitBtns[0]) {
-    quickExitBtns[0].addEventListener('click', function(e) {
-      e.preventDefault()
-      if (window.NSW && window.NSW.QuickExit) {
+  (function () {
+    if (typeof document === 'undefined') return;
+    document.addEventListener('DOMContentLoaded', function () {
+      var btn = document.querySelector('[data-module="quick-exit"]');
+      if (!btn || !window.NSW || !window.NSW.QuickExit) return;
+
+      btn.addEventListener('click', function () {
         window.NSW.QuickExit.init({
-          safeUrl: '{{model.safeUrl}}',
-          description: '{{{model.qe-description}}}',
+          safeUrl: "{{model.safeUrl}}",
+          description: "{{{model.qe-description}}}",
+          enableEsc: true,
           enableCloak: true
-        })
-      } else {
-        console.error('QuickExit not found on window.NSW')
-      }
-    })
-  }
-})
+        });
+
+      });
+    });
+  }());
 </script>
