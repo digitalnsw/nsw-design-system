@@ -106,9 +106,6 @@ export default class QuickExit {
       enableCloak,
       focusFirst,
     })
-
-    // Adjust body padding for sticky shell
-    // Removed per instructions
   }
 
   /**
