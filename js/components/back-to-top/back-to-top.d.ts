@@ -12,9 +12,12 @@ declare class BackTop {
     width: number;
     height: number;
     condition: boolean;
+    stickyObserver: ResizeObserver | null;
+    bottomGap: number;
     init(): void;
     createButton(): void;
     createButtonContent(): void;
+    updateBottomOffset(): void;
     checkBackToTop(): void;
     resizeHandler(): void;
     debounce(fn: any, wait?: number): (...args: any[]) => void;

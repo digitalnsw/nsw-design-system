@@ -1,2 +1,3 @@
-export default cleanHTML;
-declare function cleanHTML(str: any, nodes: any): string | NodeListOf<ChildNode>;
+export function cleanHTMLStrict(str: any, nodes: any, opts?: {}): string | DocumentFragment | null;
+export function cleanHTMLOpen(str: any, nodes: any, opts?: {}): string | DocumentFragment | null;
+export default cleanHTMLOpen;

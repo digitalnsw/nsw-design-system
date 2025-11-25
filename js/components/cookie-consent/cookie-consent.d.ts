@@ -19,7 +19,7 @@ declare class CookieConsent {
     acceptSelectionButton: Element | null | undefined;
     acceptAllButton: Element | null | undefined;
     rejectAllButton: Element | null | undefined;
-    initAPI(): void;
+    initAPI(): any;
     attachEventListeners(): void;
     loadUserPreferences(): void;
     handleConsentAction(action: any): void;

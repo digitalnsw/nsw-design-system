@@ -19,4 +19,5 @@ export function getFocusableElementBySelector(id: any, selectorArr: any): {
 };
 export function trapTabKey(event: any, focusObject: any): boolean;
 export function whichTransitionEvent(): any;
+export function validateUrl(raw: any, fallback?: string): string;
 export function popupWindow(url: any, width: any, height: any): void;
