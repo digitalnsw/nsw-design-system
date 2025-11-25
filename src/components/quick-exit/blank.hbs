@@ -11,14 +11,27 @@ model:  json/quick-exit.json
 <li>Navigates the current tab to the Safe URL and places a `display: none` on the current page, also replacing the page title</li>
 </ul>
 
-<button class="nsw-button nsw-button--dark"
-  data-module="quick-exit"
-  data-options='{
-    "safeUrl": "{{model.safeUrl}}",
-    "description": "{{model.qe-description}}",
-    "enableCloak": true
-  }'
-  type="button">View banner</button>
+<button class="nsw-button nsw-button--dark" data-module="quick-exit" type="button">View banner</button>
+
+<script>
+  (function () {
+    if (typeof document === 'undefined') return;
+    document.addEventListener('DOMContentLoaded', function () {
+      var btn = document.querySelector('[data-module="quick-exit"]');
+      if (!btn || !window.NSW || !window.NSW.QuickExit) return;
+
+      btn.addEventListener('click', function () {
+        window.NSW.QuickExit.init({
+          safeUrl: "{{model.safeUrl}}",
+          description: "{{{model.qe-description}}}",
+          enableEsc: true,
+          enableCloak: true,
+        });
+
+      });
+    });
+  }());
+</script>
 {{/_layout-container}}
 
 <script src="/docs/js/docs.js"></script>

@@ -389,14 +389,26 @@ function initDocs() {
   // Initialise Quick Exit (module-based)
   const hasQuickExitAPI = () => !!(window.NSW && window.NSW.QuickExit)
 
-  // Delegated: button demos use data-module + data-options
+  // Delegated: button demos use data-module + optional data-options JSON
   document.addEventListener('click', (evt) => {
     const btn = evt.target.closest('button[data-module="quick-exit"]')
     if (!btn) return
     evt.preventDefault()
     if (!hasQuickExitAPI()) return
-    // Use the component helper to read data-options JSON and call init(...)
-    window.NSW.QuickExit.fromElement(btn)
+
+    let opts = {}
+    const optAttr = btn.getAttribute('data-options')
+    if (optAttr && optAttr.trim()) {
+      try {
+        opts = JSON.parse(optAttr)
+      } catch (err) {
+        // Swallow JSON errors so docs don't break if the attribute is malformed
+        // eslint-disable-next-line no-console
+        console.warn('Invalid data-options for Quick Exit demo:', err)
+      }
+    }
+
+    window.NSW.QuickExit.init(opts)
   })
   // --- End Quick Exit ---
 }

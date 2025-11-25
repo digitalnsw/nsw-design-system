@@ -31,12 +31,20 @@ function baseCleanHTML(str, nodes, opts = {}) {
       const SIMPLE_TAGS = allowedTags
         .map((t) => String(t || '').toLowerCase())
         .filter((t) => ['p', 'span', 'kbd', 'strong', 'em', 'br', 'code'].includes(t))
+
       SIMPLE_TAGS.forEach((tag) => {
-        const openRe = new RegExp(`&lt;${tag}&gt;`, 'g')
-        const closeRe = tag === 'br' ? null : new RegExp(`&lt;\\/${tag}&gt;`, 'g')
-        safe = safe.replace(openRe, `<${tag}>`)
-        if (closeRe) safe = safe.replace(closeRe, `</${tag}>`)
+        // Restore opening tags with optional attributes, for example
+        // `&lt;kbd aria-label=\"Escape key\"&gt;` -> `<kbd aria-label=\"Escape key\">`.
+        const openRe = new RegExp(`&lt;${tag}([^]*?)&gt;`, 'gi')
+        safe = safe.replace(openRe, `<${tag}$1>`)
+
+        if (tag !== 'br') {
+          // Restore closing tags, tolerating any stray whitespace before `>`
+          const closeRe = new RegExp(`&lt;\\/${tag}\\s*&gt;`, 'gi')
+          safe = safe.replace(closeRe, `</${tag}>`)
+        }
       })
+
       bodyEl.innerHTML = safe
     } else {
       // No allowlist: just assign raw as text, no HTML interpretation

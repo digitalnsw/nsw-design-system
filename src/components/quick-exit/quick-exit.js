@@ -1,4 +1,4 @@
-import stickyContainer, { updateStickyBodyPadding } from '../../global/scripts/sticky-container'
+import stickyContainer from '../../global/scripts/sticky-container'
 import { cleanHTMLStrict } from '../../global/scripts/helpers/sanitize'
 import { validateUrl } from '../../global/scripts/helpers/utilities'
 
@@ -107,7 +107,7 @@ export default class QuickExit {
     })
 
     // Adjust body padding for sticky shell
-    updateStickyBodyPadding()
+    // Removed per instructions
   }
 
   /**
@@ -126,11 +126,11 @@ export default class QuickExit {
     const desc = document.createElement('span')
     desc.className = 'nsw-quick-exit__description-text'
     desc.id = 'nsw-quick-exit__desc'
-    const frag = cleanHTMLStrict(description, true, {
+    const descriptionHTML = cleanHTMLStrict(description, true, {
       allowedTags: ['span', 'kbd', 'strong', 'em', 'br'],
       allowedAttributes: { kbd: ['aria-label'] },
     })
-    desc.appendChild(frag)
+    desc.appendChild(descriptionHTML)
     // Ensure keyboard instructions are accessible by default
     desc.querySelectorAll('kbd').forEach((k) => {
       if (!k.hasAttribute('aria-label')) {
@@ -256,7 +256,6 @@ export default class QuickExit {
     )
 
     // Helpers to decide if QE should defer to other UI
-
     const handleKeydown = (event) => {
       const {
         key, keyCode, defaultPrevented, target,
@@ -400,39 +399,7 @@ export default class QuickExit {
         enableCloak: (typeof opts.enableCloak === 'boolean') ? opts.enableCloak : true,
         focusFirst: true,
       })
-      updateStickyBodyPadding()
-    }
-  }
-
-  /**
-   * Initialise from an element with a `data-options` JSON attribute.
-   * Used by docs/kitchen-sink demo buttons.
-   */
-  static fromElement(el) {
-    try {
-      if (!el) return
-      const attr = el.getAttribute('data-options')
-      let opts = {}
-      if (attr && attr.trim()) {
-        try {
-          opts = JSON.parse(attr)
-        } catch (parseErr) {
-          ignoreError(parseErr)
-        }
-      }
-
-      const enableCloak = (typeof opts.enableCloak === 'boolean') ? opts.enableCloak : true
-
-      QuickExit.init({
-        safeUrl: opts.safeUrl || 'https://www.google.com/webhp',
-        description: opts.description || 'Leave quickly using this banner or press <kbd aria-label="Escape key">Esc</kbd> 2 times.',
-        enableEsc: (typeof opts.enableEsc === 'boolean') ? opts.enableEsc : true,
-        enableCloak,
-        focusFirst: (typeof opts.focusFirst === 'boolean') ? opts.focusFirst : true,
-      })
-    } catch (err) {
-      ignoreError(err)
-      // Swallow errors to avoid breaking demo pages
+      // Removed per instructions
     }
   }
 }
