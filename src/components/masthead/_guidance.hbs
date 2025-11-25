@@ -18,9 +18,12 @@ layout: blank-layout.hbs
 
 <p>The Skip Link component helps keyboard-only and screen-reader users skip to the main content on a page, this includes skipping over the header and navigation. The Skip Link is visually hidden until a keyboard press focuses and activates it.</p>
 
-<p><strong>Important:</strong> The Skip Link component should be at the top of the page as the first interactive child. There is no special logic to make the skip link the first focussable element. This comes from its position in the DOM.</p>
+<p><strong>Important:</strong> The Skip Link component should be at the top of the page as the first interactive child. In a standard setup there is no special logic to make the skip link the first focussable element &mdash; this comes from its position in the DOM. When you integrate the Quick Exit component, keep your existing skip links as they are; the Quick Exit script will insert a separate screen-reader-only announcement message immediately before the Skip Link container.</p>
 
-<p>The component becomes visible when in focus. To display it, press the Tab key (or swipe right if you've enabled the accessibility features of your phone).</p>
+<h4>Quick Exit integration</h4>
+<p>When the Quick Exit component is used on a page, you should conditionally render a screen‑reader‑only announcement message directly in your Masthead template, immediately before the Skip Link container. This ensures the message is available for users without JavaScript. When JavaScript is enabled, the Quick Exit script will also inject this message automatically, but this should be treated as progressive enhancement, not the primary method.</p>
+<p>You do not need to add a separate "skip to Quick Exit" link. Instead, ensure your Masthead template includes the standard Skip Link navigation in the correct position so the Quick Exit script can prepend its announcement message reliably.</p>
+<p>For full details on how the Quick Exit banner behaves, including placement and keyboard shortcuts, see the <a href="/components/quick-exit/" aria-label="Quick Exit component documentation">Quick Exit component</a>. Use that documentation alongside this Masthead guidance when implementing safety controls on your site.</p>
 
 <h2>Accessibility</h2>
 <p>All components are responsive and designed to comply with WCAG 2.2 AA accessibility standards. Full compliance depends on using and configuring the components correctly.</p>

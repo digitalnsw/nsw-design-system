@@ -71,6 +71,28 @@ export const whichTransitionEvent = () => {
   return transitions[found[0]]
 }
 
+export const validateUrl = (raw, fallback = 'https://www.google.com/webhp') => {
+  try {
+    if (!raw || typeof raw !== 'string') return fallback
+    const trimmed = raw.trim()
+
+    // Require absolute URL with explicit protocol; reject relative or protocol-relative
+    if (!/^https?:\/\//i.test(trimmed)) return fallback
+
+    const url = new URL(trimmed)
+
+    // Only allow http/https protocols and disallow embedded credentials
+    if ((url.protocol !== 'http:' && url.protocol !== 'https:') || url.username || url.password) {
+      return fallback
+    }
+
+    // Return a credential-free URL (origin + path + search + hash), even if some environments would include creds in href
+    return `${url.origin}${url.pathname}${url.search}${url.hash}`
+  } catch (e) {
+    return fallback
+  }
+}
+
 export const popupWindow = (url, width, height) => {
   const y = window.top.outerHeight / 2 + window.top.screenY - (height / 2)
   const x = window.top.outerWidth / 2 + window.top.screenX - (width / 2)

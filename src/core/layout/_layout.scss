@@ -42,3 +42,21 @@ $nsw-layout-gap: 32px;
     }
   }
 }
+
+.nsw-sticky-container,
+.js-sticky-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: var(--nsw-layer-sticky, 1000);
+  display: block;
+}
+
+@media print {
+  .nsw-sticky-container,
+  .js-sticky-container {
+    position: static;
+  }
+}

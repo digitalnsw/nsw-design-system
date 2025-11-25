@@ -1,0 +1,37 @@
+---
+title: Quick exit
+tabs: true
+directory: quick-exit
+intro: Helps users leave a site immediately without drawing attention.
+figma: https://figma.com/design/PVrERKnckLTlJSPk12gbtS/NSW-Design-System?node-id=145692-14383&t=pvXydUndklIUkCuU-11
+model: json/quick-exit.json
+theme: true
+meta-description: A standardised quick exit button offers a discreet and accessible safety mechanism, allowing users to swiftly leave sensitive content with a single click.
+meta-index: true
+---
+
+<h3>Quick exit</h3>
+{{#>_docs-example}}{{>_quick-exit model}}{{/_docs-example}}
+
+<h4>Implementation within the sticky container</h4>
+<button class="nsw-button nsw-button--dark js-quick-exit" data-theme="dark" type="button">View banner</button>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var quickExitBtns = document.querySelectorAll('.js-quick-exit')
+  if (quickExitBtns[0]) {
+    quickExitBtns[0].addEventListener('click', function(e) {
+      e.preventDefault()
+      if (window.NSW && window.NSW.QuickExit) {
+        window.NSW.QuickExit.init({
+          safeUrl: '{{model.safeUrl}}',
+          description: '{{{model.qe-description}}}',
+          enableCloak: true
+        })
+      } else {
+        console.error('QuickExit not found on window.NSW')
+      }
+    })
+  }
+})
+</script>
