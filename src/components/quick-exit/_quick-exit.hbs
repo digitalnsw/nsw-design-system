@@ -2,8 +2,8 @@
   class="nsw-quick-exit"
   href="{{#if safeUrl}}{{safeUrl}}{{else}}https://www.google.com/webhp{{/if}}"
   data-options='{
-    "enableEsc": {{#if enableEsc}}true{{else}}false{{/if}},
-    "enableCloak": {{#if enableCloak}}true{{else}}false{{/if}}
+    "enableEsc": {{#if-equals enableEsc false}}false{{else}}true{{/if-equals}},
+    "enableCloak": {{#if-equals enableCloak false}}false{{else}}true{{/if-equals}}
   }'
   rel="nofollow noopener"
   id="nsw-quick-exit"
