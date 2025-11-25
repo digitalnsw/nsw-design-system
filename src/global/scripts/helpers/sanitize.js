@@ -1,4 +1,5 @@
-const HAS_DOCUMENT = typeof document !== 'undefined'
+const hasDocument = typeof document !== 'undefined'
+const defaultSafeInlineTags = ['p', 'span', 'kbd', 'strong', 'em', 'br', 'code']
 
 function escapeHTML(txt) {
   const str = String(txt || '')
@@ -12,7 +13,7 @@ function escapeHTML(txt) {
 
 // Clean and optionally whitelist HTML into a safe set of tags with no attributes.
 function baseCleanHTML(str, nodes, opts = {}) {
-  if (!HAS_DOCUMENT) {
+  if (!hasDocument) {
     // In non-DOM environments, return safely-escaped text (no HTML interpretation)
     return nodes ? null : escapeHTML(str)
   }
@@ -28,11 +29,11 @@ function baseCleanHTML(str, nodes, opts = {}) {
     // If an allowlist exists, use the safe-restore method (non-parsing)
     if (Array.isArray(allowedTags) && allowedTags.length > 0) {
       let safe = escapeHTML(raw)
-      const SIMPLE_TAGS = allowedTags
+      const simpleTags = allowedTags
         .map((t) => String(t || '').toLowerCase())
         .filter((t) => ['p', 'span', 'kbd', 'strong', 'em', 'br', 'code'].includes(t))
 
-      SIMPLE_TAGS.forEach((tag) => {
+      simpleTags.forEach((tag) => {
         // Restore opening tags with optional attributes, for example
         // `&lt;kbd aria-label=\"Escape key\"&gt;` -> `<kbd aria-label=\"Escape key\">`.
         const openRe = new RegExp(`&lt;${tag}([^]*?)&gt;`, 'gi')
@@ -147,7 +148,7 @@ function baseCleanHTML(str, nodes, opts = {}) {
 export function cleanHTMLStrict(str, nodes, opts = {}) {
   const strictOpts = {
     ...opts,
-    allowedTags: opts.allowedTags || ['p', 'span', 'strong', 'em', 'br', 'kbd', 'code'],
+    allowedTags: opts.allowedTags || defaultSafeInlineTags,
   }
   return baseCleanHTML(str, nodes, strictOpts)
 }
