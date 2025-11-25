@@ -18,11 +18,11 @@ layout: blank-layout.hbs
 
 <p>The Skip Link component helps keyboard-only and screen-reader users skip to the main content on a page, this includes skipping over the header and navigation. The Skip Link is visually hidden until a keyboard press focuses and activates it.</p>
 
-<p><strong>Important:</strong> The Skip Link component should be at the top of the page as the first interactive child. In a standard setup there is no special logic to make the skip link the first focussable element &mdash; this comes from its position in the DOM. When you integrate the Quick Exit component, you should still render a Quick Exit skip link in this server-rendered markup so that it appears in that first position even when JavaScript is disabled.</p>
+<p><strong>Important:</strong> The Skip Link component should be at the top of the page as the first interactive child. In a standard setup there is no special logic to make the skip link the first focussable element &mdash; this comes from its position in the DOM. When you integrate the Quick Exit component, keep your existing skip links as they are; the Quick Exit script will insert a separate screen-reader-only announcement message immediately before the Skip Link container.</p>
 
 <h4>Quick Exit integration</h4>
-<p>To support Quick Exit, add an additional skip link entry that points to the Quick Exit banner in the global sticky container, for example <code>&lt;a class="nsw-skip-link__link" href="#nsw-quick-exit"&gt;Quick exit&lt;/a&gt;</code>.</p>
-<p>This link must be part of your Masthead template so it works without JavaScript. When the Quick Exit JavaScript is loaded, it will progressively enhance this link so that the Quick Exit control is reached first, but that script is a fallback. Do not rely on it as the only way for users to access the control.</p>
+<p>When the Quick Exit component is used on a page, you should conditionally render a screen‑reader‑only announcement message directly in your Masthead template, immediately before the Skip Link container. This ensures the message is available for users without JavaScript. When JavaScript is enabled, the Quick Exit script will also inject this message automatically, but this should be treated as progressive enhancement, not the primary method.</p>
+<p>You do not need to add a separate "skip to Quick Exit" link. Instead, ensure your Masthead template includes the standard Skip Link navigation in the correct position so the Quick Exit script can prepend its announcement message reliably.</p>
 <p>For full details on how the Quick Exit banner behaves, including placement and keyboard shortcuts, see the <a href="/components/quick-exit/" aria-label="Quick Exit component documentation">Quick Exit component</a>. Use that documentation alongside this Masthead guidance when implementing safety controls on your site.</p>
 
 <h2>Accessibility</h2>

@@ -86,7 +86,8 @@ layout: blank-layout.hbs
   <div class="nsw-steps__item">
     <div class="nsw-steps__content">
       <h3 id="quick-exit-sr-message">Include the screen-reader announcement message</h3>
-      <p>The Quick Exit script automatically inserts the SR-only announcement message. You do not need to add a separate "skip to quick exit" link; simply ensure your Masthead Skip Link pattern exists so the message can be positioned correctly. For guidance on configuring Skip Links, see the <a href="/components/masthead/" aria-label="Masthead component documentation">Masthead component</a>.</p>
+      <p>The preferred approach is to render this SR-only announcement message directly in your Masthead template, immediately before the Skip Link container. This ensures the message is available to screen‑reader users even when JavaScript is disabled. The message should be added conditionally so that it only appears on templates where the Quick Exit component is present. When JavaScript is enabled, the Quick Exit script will also inject the same announcement message automatically, but this should be treated strictly as progressive enhancement rather than the primary method.</p>
+      <p>You still do not need to add a separate “skip to quick exit” link. For guidance on configuring Skip Links, see the <a href="/components/masthead/" aria-label="Masthead component documentation">Masthead component</a>.</p>
     </div>
   </div>
 
