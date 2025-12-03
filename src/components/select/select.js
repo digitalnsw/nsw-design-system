@@ -120,7 +120,7 @@ class Select {
       }
 
       this.dropdown.addEventListener('transitionend', cb)
-      this.constructor.trapFocus(this.dropdown, selectedOption)
+      this.constructor.trapFocus(this.dropdown)
       this.placeDropdown()
     }
   }
@@ -357,15 +357,11 @@ class Select {
     this.trigger.focus()
   }
 
-  static trapFocus(element, initialFocus) {
+  static trapFocus(element) {
     const focusableElements = 'a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])'
 
+    const firstFocusableElement = element.querySelectorAll(focusableElements)[0]
     const focusableContent = element.querySelectorAll(focusableElements)
-    if (focusableContent.length === 0) return
-
-    const firstFocusableElement = element.contains(initialFocus)
-      ? initialFocus
-      : focusableContent[0]
     const lastFocusableElement = focusableContent[focusableContent.length - 1]
 
     document.addEventListener('keydown', (event) => {
