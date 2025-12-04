@@ -360,8 +360,8 @@ class Select {
   static trapFocus(element) {
     const focusableElements = 'a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])'
 
-    const firstFocusableElement = element.querySelectorAll(focusableElements)[0]
     const focusableContent = element.querySelectorAll(focusableElements)
+    const firstFocusableElement = focusableContent[0]
     const lastFocusableElement = focusableContent[focusableContent.length - 1]
 
     document.addEventListener('keydown', (event) => {
@@ -382,7 +382,9 @@ class Select {
       }
     })
 
-    firstFocusableElement.focus()
+    if (!element.contains(document.activeElement) && firstFocusableElement) {
+      firstFocusableElement.focus()
+    }
   }
 
   checkCustomSelectClick(target) {
