@@ -111,7 +111,7 @@ class Select {
     })
 
     if (ariaExpanded === 'true') {
-      const selectedOption = this.getSelectedOption() || this.allButton
+      const selectedOption = this.getSelectedOption() || this.getFirstOptionCheckbox() || this.allButton
       this.constructor.moveFocusFn(selectedOption)
 
       const cb = () => {
@@ -211,11 +211,9 @@ class Select {
   updateAllButton() {
     const [, totalOptions, selectedOptions] = this.getOptions()
 
-    if (selectedOptions === totalOptions) {
-      this.allButton.classList.add(this.showClass)
-    } else {
-      this.allButton.classList.remove(this.showClass)
-    }
+    const isAllSelected = selectedOptions === totalOptions
+    this.allButton.classList.toggle(this.showClass, isAllSelected)
+    this.allButton.setAttribute('aria-pressed', isAllSelected ? 'true' : 'false')
   }
 
   clearAllButton() {
@@ -311,7 +309,7 @@ class Select {
   }
 
   initAllButton() {
-    return `<button class="${this.prefix}${this.allButtonClass} js-${this.allButtonClass}"><span>All</span></button>`
+    return `<button type="button" class="${this.prefix}${this.allButtonClass} js-${this.allButtonClass}" aria-pressed="false"><span>All</span></button>`
   }
 
   getSelectLabelSR() {
@@ -338,7 +336,13 @@ class Select {
   getSelectedOption() {
     const option = this.dropdown.querySelector('[aria-selected="true"]')
     if (option) return option.querySelector(`.js-${this.checkboxClass}`)
-    return this.allButton
+    return null
+  }
+
+  getFirstOptionCheckbox() {
+    const option = this.dropdown.querySelector(`.js-${this.optionClass}`)
+    if (option) return option.querySelector(`.js-${this.checkboxClass}`)
+    return null
   }
 
   getOptions() {
@@ -356,8 +360,8 @@ class Select {
   static trapFocus(element) {
     const focusableElements = 'a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])'
 
-    const firstFocusableElement = element.querySelectorAll(focusableElements)[0]
     const focusableContent = element.querySelectorAll(focusableElements)
+    const firstFocusableElement = focusableContent[0]
     const lastFocusableElement = focusableContent[focusableContent.length - 1]
 
     document.addEventListener('keydown', (event) => {
@@ -378,7 +382,9 @@ class Select {
       }
     })
 
-    firstFocusableElement.focus()
+    if (!element.contains(document.activeElement) && firstFocusableElement) {
+      firstFocusableElement.focus()
+    }
   }
 
   checkCustomSelectClick(target) {
