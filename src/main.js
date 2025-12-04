@@ -43,7 +43,7 @@ if (!Element.prototype.closest) {
 
 function initSite() {
   const jsAccordions = document.querySelectorAll('.js-accordion')
-  const cssAccordions = document.querySelectorAll('.js-accordion-checkbox, .js-accordion-details')
+  const detailsAccordions = document.querySelectorAll('.js-accordion-details')
   const backTop = document.querySelectorAll('button.js-back-to-top')
   const breadcrumbs = document.querySelectorAll('.js-breadcrumbs')
   const carousel = document.querySelectorAll('.js-carousel')
@@ -70,8 +70,8 @@ function initSite() {
     })
   }
 
-  if (cssAccordions.length) {
-    cssAccordions.forEach((element) => {
+  if (detailsAccordions.length) {
+    detailsAccordions.forEach((element) => {
       new CssAccordion(element).init()
     })
   }

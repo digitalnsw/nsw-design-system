@@ -1,25 +1,4 @@
-{{#if-equals type "checkbox"}}
-  <div class="nsw-accordion--checkbox js-accordion-checkbox">
-    {{#if toggle}}
-    <div class="nsw-accordion__toggle">
-      <button type="button">Expand all</button>
-      <button type="button">Collapse all</button>
-    </div>
-    {{/if}}
-    {{#each items}}
-    <div class="nsw-accordion__item">
-      <input type="checkbox" class="nsw-accordion__control" id="accordion-{{#if id}}{{id}}{{else}}{{@index}}{{/if}}" {{#if open}}checked{{/if}}>
-      <label for="accordion-{{#if id}}{{id}}{{else}}{{@index}}{{/if}}" class="nsw-accordion__title">{{title}}</label>
-      <div class="nsw-accordion__content-wrap">
-        <div class="nsw-accordion__content">
-          {{{content}}}
-        </div>
-      </div>
-    </div>
-    {{/each}}
-  </div>
-{{else}}
-  {{#if-equals type "js"}}
+{{#if-equals type "js"}}
   <div class="nsw-accordion js-accordion">
     {{#if toggle}}
     <div class="nsw-accordion__toggle">
@@ -34,7 +13,7 @@
     </div>
     {{/each}}
   </div>
-  {{else}}
+{{else}}
   <div class="nsw-accordion--details js-accordion-details">
     {{#if toggle}}
     <div class="nsw-accordion__toggle">
@@ -55,5 +34,4 @@
     </details>
     {{/each}}
   </div>
-  {{/if-equals}}
 {{/if-equals}}

@@ -8,7 +8,6 @@ layout: blank-layout.hbs
     <li><a href="#usage">Usage</a></li>
     <li><a href="#principles">Principles</a></li>
     <li><a href="#details-variation">Details variation (Recommended)</a></li>
-    <li><a href="#checkbox-variation">Checkbox variation</a></li>
     <li><a href="#legacy-js-variation">Legacy JS-core variation (Supported)</a></li>
     <li><a href="#accessibility">Accessibility</a></li>
   </ul>
@@ -49,7 +48,6 @@ layout: blank-layout.hbs
 <p>By default, all panes in an accordion are closed.</p>
 <ul>
   <li><strong>Details based accordion</strong>: render the item with the <code>open</code> attribute on the <code>&lt;details&gt;</code> element. When JavaScript is available, the progressive enhancement layer will sync <code>aria-expanded</code> and <code>aria-hidden</code> as needed.</li>
-  <li><strong>CSS-core accordion</strong>: render the item with its control <code>checked</code>. When JavaScript is available, the progressive enhancement layer will sync <code>aria-expanded</code> and <code>aria-hidden</code>.</li>
   <li><strong>Legacy JavaScript accordion</strong>: add the <code>.nsw-accordion__open</code> class on the <code>.nsw-accordion__title</code> element. For accessibility reasons, a JavaScript initialisation function first opens all accordions by default, then closes those marked as closed. This ensures that when JavaScript is disabled, users can still access all content by default.</li>
 </ul>
 
@@ -91,25 +89,8 @@ layout: blank-layout.hbs
 <h3>Compatibility and support</h3>
 <ul>
   <li>The details based accordion is recommended for most use cases because it combines strong accessibility with reduced JavaScript dependence.</li>
-  <li>Some advanced animation or styling requirements may not be achievable with <code>&lt;details&gt;</code> and <code>&lt;summary&gt;</code>. In those cases, consider the CSS-core checkbox variant or the legacy JavaScript accordion.</li>
-  <li>The details variant can safely coexist on the same page with the CSS-core and legacy JavaScript accordions without conflict.</li>
-</ul>
-
-<h2 id="checkbox-variation">Checkbox variation</h2>
-<p>The CSS-core accordion (<code>.nsw-accordion--checkbox</code>) is a supported alternative that uses a hidden checkbox input and label to control the open and close state. It is designed for situations where you need predictable styling and animation across browsers but do not want to rely on the <code>&lt;details&gt;</code> element.</p>
-
-<h3>When to use this variant</h3>
-<ul>
-  <li>You need more consistent control over header styling or layout than <code>&lt;summary&gt;</code> allows.</li>
-  <li>You want a purely CSS driven disclosure pattern that does not depend on <code>&lt;details&gt;</code> support.</li>
-  <li>You are migrating from existing implementations that already use the checkbox based markup.</li>
-</ul>
-
-<h3>How it works</h3>
-<ul>
-  <li>The hidden checkbox tracks state, with the label styled as the visible header. The Design System styles ensure this remains keyboard accessible when JavaScript is disabled.</li>
-  <li>When JavaScript is present, the same progressive enhancement layer used by the details variant synchronises ARIA attributes, supports optional "Expand all / Collapse all" controls, and can enforce single open behaviour.</li>
-  <li>From an accessibility perspective, this variant remains compliant when implemented as documented, but it requires a little more care to avoid breaking the relationship between the input, label and content.</li>
+  <li>Some advanced animation or styling requirements may not be achievable with <code>&lt;details&gt;</code> and <code>&lt;summary&gt;</code>. In those cases, consider the legacy JavaScript accordion.</li>
+  <li>The details variant can safely coexist on the same page with the legacy JavaScript accordion without conflict.</li>
 </ul>
 
 <h2 id="legacy-js-variation">Legacy JS-core variation (Supported)</h2>
@@ -117,19 +98,18 @@ layout: blank-layout.hbs
 <ul>
   <li>This version manages state entirely through JavaScript, handling <code>aria-expanded</code> and <code>aria-hidden</code> attributes and adding roles for assistive technology.</li>
   <li>Initialisation opens all accordions on page load before closing those that should remain closed, ensuring content is accessible when JavaScript is disabled.</li>
-  <li>While this approach supports consistent behaviour across browsers, it introduces additional load operations that can affect performance compared to the CSS-core solution.</li>
+  <li>While this approach supports consistent behaviour across browsers, it introduces additional load operations that can affect performance compared to the details based solution.</li>
 </ul>
 
 <h2 id="accessibility">Accessibility</h2>
-<p>All components are responsive and designed to comply with WCAG 2.2 AA accessibility standards. Full compliance depends on using and configuring the components correctly. The details based accordion is the default implementation and meets these standards when implemented as intended, and both the CSS-core and legacy JavaScript variants can also meet these standards when used correctly.</p>
+<p>All components are responsive and designed to comply with WCAG 2.2 AA accessibility standards. Full compliance depends on using and configuring the components correctly. The details based accordion is the default implementation and meets these standards when implemented as intended, and the legacy JavaScript variant can also meet these standards when used correctly.</p>
 
 <h3>Support for progressive and regressive accessibility features</h3>
 <p>The details based accordion prioritises performance and accessibility by using the native <code>&lt;details&gt;</code> and <code>&lt;summary&gt;</code> elements. Users get built in keyboard navigation and state announcement, and the component continues to work when JavaScript is disabled. The progressive enhancement layer adds optional ARIA attributes, single open behaviour and "Expand all / Collapse all" controls without changing the underlying semantics.</p>
-<p>The CSS-core accordion uses a hidden checkbox input to manage the open and close state and styles the label as the visible header. This approach is also fully keyboard accessible when implemented correctly and remains functional without JavaScript, but it relies on a slightly more complex relationship between the input, label and content.</p>
 <p>The legacy JavaScript accordion is retained as a supported implementation for cases requiring advanced scripting. It manages state entirely through JavaScript, handling <code>aria-expanded</code> and <code>aria-hidden</code> attributes and adding roles for assistive technology. Its initialisation process opens all accordions on page load before closing those that should remain closed, ensuring content accessibility when JavaScript is disabled. While effective, this approach can introduce additional load operations affecting performance.</p>
 <ul>
-  <li>Do not hard code <code>aria-hidden</code> or <code>aria-expanded</code> in templates for the details based or CSS-core variants. Let the progressive enhancement manage these attributes dynamically.</li>
-  <li>Without JavaScript, the details based accordion remains keyboard accessible through the native <code>&lt;summary&gt;</code> element, and the CSS-core accordion remains keyboard accessible through its label and input relationship.</li>
+  <li>Do not hard code <code>aria-hidden</code> or <code>aria-expanded</code> in templates for the details based variant. Let the progressive enhancement manage these attributes dynamically.</li>
+  <li>Without JavaScript, the details based accordion remains keyboard accessible through the native <code>&lt;summary&gt;</code> element.</li>
 </ul>
 
-<p>The details based accordion is the recommended solution for most cases. It delivers strong accessibility and performance by using native browser behaviour for interactivity and reducing JavaScript dependency, while still working with the same progressive enhancement layer as the other variants. The CSS-core and legacy JavaScript versions remain available when more specific styling or programmatic control is required.</p>
+<p>The details based accordion is the recommended solution for most cases. It delivers strong accessibility and performance by using native browser behaviour for interactivity and reducing JavaScript dependency, while still working with the same progressive enhancement layer. The legacy JavaScript version remains available when more specific styling or programmatic control is required.</p>
