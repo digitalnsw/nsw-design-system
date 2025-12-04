@@ -379,6 +379,14 @@
     padding-bottom: nsw.rem(16px);
   }
 
+  @include nsw.prefers-reduced-motion() {
+    .nsw-accordion__item::details-content,
+    .nsw-accordion__title,
+    .nsw-accordion__title::after {
+      transition: none;
+    }
+  }
+
   .nsw-accordion__item[open] {
     .nsw-accordion__title {
       background-color: var(--nsw-brand-dark);

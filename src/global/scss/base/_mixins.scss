@@ -22,6 +22,12 @@
   }
 }
 
+@mixin prefers-reduced-motion() {
+  @media (prefers-reduced-motion: reduce) {
+    @content;
+  }
+}
+
 // Default focus state
 @mixin nsw-focus($offset: true, $color: var(--nsw-focus)) {
   @if meta.type-of($offset) != bool {
