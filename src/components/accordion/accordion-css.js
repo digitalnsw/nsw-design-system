@@ -30,7 +30,6 @@ class CssAccordion {
         if (!summary || !panel) return
 
         if (!panel.id) panel.id = `${details.id || 'accordion-details'}-panel`
-        summary.setAttribute('role', 'button')
         summary.setAttribute('aria-controls', panel.id)
         summary.setAttribute('aria-expanded', details.open ? 'true' : 'false')
         panel.setAttribute('role', 'region')
@@ -106,8 +105,6 @@ class CssAccordion {
           if (updateButtons) updateButtons()
         }
       }
-
-      return
     }
   }
 }
