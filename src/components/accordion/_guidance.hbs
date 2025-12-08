@@ -83,7 +83,6 @@ layout: blank-layout.hbs
   <li>Add the modifier class <code>.nsw-accordion--details</code> on the accordion container to render the details based variant.</li>
   <li>Use <code>&lt;details&gt;</code> for each item and <code>&lt;summary&gt;</code> for the clickable header, following the markup in the examples.</li>
   <li>Optional: add a toolbar container <code>.nsw-accordion__toggle</code> with "Expand all" and "Collapse all" buttons. When JavaScript is available, these controls are wired up automatically.</li>
-  <li>Optional: add <code>data-single-open</code> on the accordion container to allow only one panel open at a time. Without JavaScript, multiple panels can still be open at once, which is an acceptable progressive enhancement trade off.</li>
 </ul>
 
 <h3>Compatibility and support</h3>
@@ -104,7 +103,7 @@ layout: blank-layout.hbs
 <h2 id="accessibility">Accessibility</h2>
 <p>All components are responsive and designed to comply with WCAG 2.2 AA accessibility standards. Full compliance depends on using and configuring the components correctly. The details based accordion is the default implementation and meets these standards when implemented as intended, and the legacy JavaScript variant can also meet these standards when used correctly.</p>
 
-<h3>Support for progressive and regressive accessibility features</h3>
+<h3>Support for accessibility features</h3>
 <p>The details based accordion prioritises performance and accessibility by using the native <code>&lt;details&gt;</code> and <code>&lt;summary&gt;</code> elements. Users get built in keyboard navigation and state announcement, and the component continues to work when JavaScript is disabled. The progressive enhancement layer adds optional ARIA attributes, single open behaviour and "Expand all / Collapse all" controls without changing the underlying semantics.</p>
 <p>The legacy JavaScript accordion is retained as a supported implementation for cases requiring advanced scripting. It manages state entirely through JavaScript, handling <code>aria-expanded</code> and <code>aria-hidden</code> attributes and adding roles for assistive technology. Its initialisation process opens all accordions on page load before closing those that should remain closed, ensuring content accessibility when JavaScript is disabled. While effective, this approach can introduce additional load operations affecting performance.</p>
 <ul>
