@@ -111,7 +111,7 @@ class Select {
     })
 
     if (ariaExpanded === 'true') {
-      const selectedOption = this.getSelectedOption() || this.getFirstOptionCheckbox() || this.allButton
+      const selectedOption = this.getInitialFocusTarget()
       this.constructor.moveFocusFn(selectedOption)
 
       const cb = () => {
@@ -120,7 +120,7 @@ class Select {
       }
 
       this.dropdown.addEventListener('transitionend', cb)
-      this.constructor.trapFocus(this.dropdown)
+      this.constructor.trapFocus(this.dropdown, selectedOption)
       this.placeDropdown()
     }
   }
@@ -339,10 +339,16 @@ class Select {
     return null
   }
 
-  getFirstOptionCheckbox() {
-    const option = this.dropdown.querySelector(`.js-${this.optionClass}`)
-    if (option) return option.querySelector(`.js-${this.checkboxClass}`)
-    return null
+  getInitialFocusTarget() {
+    const selectedOption = this.getSelectedOption()
+    if (selectedOption) {
+      const selectedOptionWrapper = selectedOption.closest(`.js-${this.optionClass}`)
+      if (selectedOptionWrapper && selectedOptionWrapper.getAttribute('aria-hidden') !== 'true') {
+        return selectedOption
+      }
+    }
+
+    return this.allButton
   }
 
   getOptions() {
@@ -353,11 +359,14 @@ class Select {
   }
 
   moveFocusToSelectTrigger() {
-    if (!document.activeElement.closest(`.js-${this.class}`)) return
+    const isOpen = this.trigger.getAttribute('aria-expanded') === 'true'
+    if (!isOpen) return
+
+    if (!this.dropdown.contains(document.activeElement)) return
     this.trigger.focus()
   }
 
-  static trapFocus(element) {
+  static trapFocus(element, initialFocus) {
     const focusableElements = 'a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])'
 
     const focusableContent = element.querySelectorAll(focusableElements)
@@ -382,9 +391,15 @@ class Select {
       }
     })
 
-    if (!element.contains(document.activeElement) && firstFocusableElement) {
+    if (!initialFocus) return
+
+    const hasInitialFocus = Array.from(focusableContent).includes(initialFocus)
+    if (!hasInitialFocus) {
       firstFocusableElement.focus()
+      return
     }
+
+    this.moveFocusFn(initialFocus)
   }
 
   checkCustomSelectClick(target) {
