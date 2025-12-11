@@ -1,5 +1,5 @@
 // Progressive enhancement for <details> accordions
-// - Syncs ARIA (aria-expanded / aria-hidden)
+// - Syncs ARIA labelling for panels
 // - Wires optional Expand all / Collapse all toolbar if present
 // - Keeps toolbar buttons in sync with open state and honours deep links
 
@@ -28,12 +28,12 @@ class CssAccordion {
         const summary = details.querySelector('.nsw-accordion__title')
         const panel = details.querySelector('.nsw-accordion__content-wrap')
         if (!summary || !panel) return
+        const baseId = details.id || 'accordion-details'
 
-        if (!panel.id) panel.id = `${details.id || 'accordion-details'}-panel`
-        summary.setAttribute('aria-controls', panel.id)
-        summary.setAttribute('aria-expanded', details.open ? 'true' : 'false')
+        if (!panel.id) panel.id = `${baseId}-panel`
+        if (!summary.id) summary.id = `${baseId}-summary`
         panel.setAttribute('role', 'region')
-        panel.setAttribute('aria-hidden', details.open ? 'false' : 'true')
+        panel.setAttribute('aria-labelledby', summary.id)
       })
 
       const toolbar = container.querySelector('.nsw-accordion__toggle')
@@ -54,10 +54,6 @@ class CssAccordion {
             for (let i = 0; i < this.items.length; i += 1) {
               const details = this.items[i]
               if (!details.open) details.open = true
-              const summary = details.querySelector('.nsw-accordion__title')
-              if (summary) summary.setAttribute('aria-expanded', 'true')
-              const panel = details.querySelector('.nsw-accordion__content-wrap')
-              if (panel) panel.setAttribute('aria-hidden', 'false')
             }
             update()
           })
@@ -68,10 +64,6 @@ class CssAccordion {
             for (let i = 0; i < this.items.length; i += 1) {
               const details = this.items[i]
               if (details.open) details.open = false
-              const summary = details.querySelector('.nsw-accordion__title')
-              if (summary) summary.setAttribute('aria-expanded', 'false')
-              const panel = details.querySelector('.nsw-accordion__content-wrap')
-              if (panel) panel.setAttribute('aria-hidden', 'true')
             }
             update()
           })
@@ -84,10 +76,6 @@ class CssAccordion {
       // Keep ARIA + toolbar in sync when a single <details> is toggled
       this.items.forEach((details) => {
         details.addEventListener('toggle', () => {
-          const summary = details.querySelector('.nsw-accordion__title')
-          const panel = details.querySelector('.nsw-accordion__content-wrap')
-          if (summary) summary.setAttribute('aria-expanded', details.open ? 'true' : 'false')
-          if (panel) panel.setAttribute('aria-hidden', details.open ? 'false' : 'true')
           if (updateButtons) updateButtons()
         })
       })
@@ -98,10 +86,6 @@ class CssAccordion {
         const details = byId && byId.closest('details.nsw-accordion__item')
         if (details && !details.open) {
           details.open = true
-          const summary = details.querySelector('.nsw-accordion__title')
-          const panel = details.querySelector('.nsw-accordion__content-wrap')
-          if (summary) summary.setAttribute('aria-expanded', 'true')
-          if (panel) panel.setAttribute('aria-hidden', 'false')
           if (updateButtons) updateButtons()
         }
       }

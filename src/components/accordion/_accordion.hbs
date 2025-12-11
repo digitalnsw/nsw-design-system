@@ -1,9 +1,9 @@
 {{#if-equals type "js"}}
-  <div class="nsw-accordion js-accordion">
+  <div class="nsw-accordion js-accordion"{{#if id}} id="{{id}}"{{/if}}>
     {{#if toggle}}
     <div class="nsw-accordion__toggle">
-      <button type="button">Expand all</button>
-      <button type="button">Collapse all</button>
+      <button type="button" aria-label="Expand all sections{{#if id}} in {{id}} accordion{{/if}}">Expand all</button>
+      <button type="button" aria-label="Collapse all sections{{#if id}} in {{id}} accordion{{/if}}">Collapse all</button>
     </div>
     {{/if}}
     {{#each items}}
@@ -14,11 +14,11 @@
     {{/each}}
   </div>
 {{else}}
-  <div class="nsw-accordion--details js-accordion-details">
+  <div class="nsw-accordion--details js-accordion-details"{{#if id}} id="{{id}}"{{/if}}>
     {{#if toggle}}
     <div class="nsw-accordion__toggle">
-      <button type="button">Expand all</button>
-      <button type="button">Collapse all</button>
+      <button type="button" aria-label="Expand all sections{{#if id}} in {{id}} accordion{{/if}}">Expand all</button>
+      <button type="button" aria-label="Collapse all sections{{#if id}} in {{id}} accordion{{/if}}">Collapse all</button>
     </div>
     {{/if}}
     {{#each items}}
