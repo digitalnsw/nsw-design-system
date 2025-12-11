@@ -22,11 +22,11 @@
     </div>
     {{/if}}
     {{#each items}}
-    <details class="nsw-accordion__item"{{#if open}} open{{/if}}>
+    <details class="nsw-accordion__item"{{#if open}} open{{/if}} id="{{#if id}}{{id}}{{else}}{{../id}}-item-{{@index}}{{/if}}">
       <summary class="nsw-accordion__title">
         {{title}}
       </summary>
-      <div class="nsw-accordion__content-wrap">
+      <div class="nsw-accordion__content-wrap" id="{{#if id}}{{id}}{{else}}{{../id}}-item-{{@index}}{{/if}}-panel">
         <div class="nsw-accordion__content">
           {{{content}}}
         </div>
