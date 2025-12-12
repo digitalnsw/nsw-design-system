@@ -64,13 +64,13 @@ function initSite() {
   const tooltip = document.querySelectorAll('.js-tooltip')
   const utilityList = document.querySelectorAll('.js-utility-list')
 
-  if (jsAccordions.length) {
+  if (jsAccordions) {
     jsAccordions.forEach((element) => {
       new Accordion(element).init()
     })
   }
 
-  if (detailsAccordions.length) {
+  if (detailsAccordions) {
     detailsAccordions.forEach((element) => {
       new CssAccordion(element).init()
     })
