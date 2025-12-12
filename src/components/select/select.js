@@ -111,7 +111,7 @@ class Select {
     })
 
     if (ariaExpanded === 'true') {
-      const selectedOption = this.getSelectedOption() || this.allButton
+      const selectedOption = this.getInitialFocusTarget()
       this.constructor.moveFocusFn(selectedOption)
 
       const cb = () => {
@@ -120,7 +120,7 @@ class Select {
       }
 
       this.dropdown.addEventListener('transitionend', cb)
-      this.constructor.trapFocus(this.dropdown)
+      this.constructor.trapFocus(this.dropdown, selectedOption)
       this.placeDropdown()
     }
   }
@@ -211,11 +211,9 @@ class Select {
   updateAllButton() {
     const [, totalOptions, selectedOptions] = this.getOptions()
 
-    if (selectedOptions === totalOptions) {
-      this.allButton.classList.add(this.showClass)
-    } else {
-      this.allButton.classList.remove(this.showClass)
-    }
+    const isAllSelected = selectedOptions === totalOptions
+    this.allButton.classList.toggle(this.showClass, isAllSelected)
+    this.allButton.setAttribute('aria-pressed', isAllSelected ? 'true' : 'false')
   }
 
   clearAllButton() {
@@ -311,7 +309,7 @@ class Select {
   }
 
   initAllButton() {
-    return `<button class="${this.prefix}${this.allButtonClass} js-${this.allButtonClass}"><span>All</span></button>`
+    return `<button type="button" class="${this.prefix}${this.allButtonClass} js-${this.allButtonClass}" aria-pressed="false"><span>All</span></button>`
   }
 
   getSelectLabelSR() {
@@ -338,6 +336,18 @@ class Select {
   getSelectedOption() {
     const option = this.dropdown.querySelector('[aria-selected="true"]')
     if (option) return option.querySelector(`.js-${this.checkboxClass}`)
+    return null
+  }
+
+  getInitialFocusTarget() {
+    const selectedOption = this.getSelectedOption()
+    if (selectedOption) {
+      const selectedOptionWrapper = selectedOption.closest(`.js-${this.optionClass}`)
+      if (selectedOptionWrapper && selectedOptionWrapper.getAttribute('aria-hidden') !== 'true') {
+        return selectedOption
+      }
+    }
+
     return this.allButton
   }
 
@@ -349,15 +359,18 @@ class Select {
   }
 
   moveFocusToSelectTrigger() {
-    if (!document.activeElement.closest(`.js-${this.class}`)) return
+    const isOpen = this.trigger.getAttribute('aria-expanded') === 'true'
+    if (!isOpen) return
+
+    if (!this.dropdown.contains(document.activeElement)) return
     this.trigger.focus()
   }
 
-  static trapFocus(element) {
+  static trapFocus(element, initialFocus) {
     const focusableElements = 'a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])'
 
-    const firstFocusableElement = element.querySelectorAll(focusableElements)[0]
     const focusableContent = element.querySelectorAll(focusableElements)
+    const firstFocusableElement = focusableContent[0]
     const lastFocusableElement = focusableContent[focusableContent.length - 1]
 
     document.addEventListener('keydown', (event) => {
@@ -378,7 +391,15 @@ class Select {
       }
     })
 
-    firstFocusableElement.focus()
+    if (!initialFocus) return
+
+    const hasInitialFocus = Array.from(focusableContent).includes(initialFocus)
+    if (!hasInitialFocus) {
+      firstFocusableElement.focus()
+      return
+    }
+
+    this.moveFocusFn(initialFocus)
   }
 
   checkCustomSelectClick(target) {
