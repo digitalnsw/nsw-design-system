@@ -518,6 +518,16 @@ class Carousel extends SwipeContent {
 
   getIndex(index) {
     let i = index
+
+    // In non-looping carousels, clamp the index so we don't wrap
+    // back to the beginning when the user reaches the last slide.
+    if (!this.loop) {
+      const maxIndex = Math.max(0, this.itemsNb - this.visibItemsNb)
+      if (i < 0) i = 0
+      if (i > maxIndex) i = maxIndex
+      return i
+    }
+
     if (i < 0) i = this.getPositiveValue(i, this.itemsNb)
     if (i >= this.itemsNb) i %= this.itemsNb
     return i
