@@ -77,20 +77,17 @@ class CssAccordion {
     if (window.location && window.location.hash) {
       const byId = container.querySelector(window.location.hash)
       const details = byId && byId.closest('details.nsw-accordion__item')
-      if (details && !details.open) {
-        details.open = true
-        if (updateButtons) updateButtons()
+      if (details) {
+        if (!details.open) {
+          details.open = true
+          if (updateButtons) updateButtons()
+        }
 
         // Move focus to the target or the summary to aid keyboard/screen reader users
-        if (byId) {
-          if (byId.tabIndex < 0) byId.tabIndex = -1
-          byId.focus({ preventScroll: true })
-        } else {
-          const summary = details.querySelector('.nsw-accordion__title')
-          if (summary) {
-            if (summary.tabIndex < 0) summary.tabIndex = -1
-            summary.focus({ preventScroll: true })
-          }
+        const focusTarget = byId || details.querySelector('.nsw-accordion__title')
+        if (focusTarget) {
+          if (focusTarget.tabIndex < 0) focusTarget.tabIndex = -1
+          focusTarget.focus({ preventScroll: true })
         }
       }
     }
