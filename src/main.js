@@ -69,7 +69,7 @@ function initSite() {
 
   // Sticky container initialisation
   stickyContainer()
-  
+
   if (jsAccordions) {
     jsAccordions.forEach((element) => {
       new Accordion(element).init()
