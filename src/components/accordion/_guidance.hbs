@@ -107,7 +107,7 @@ layout: blank-layout.hbs
 <p>The details based accordion prioritises performance and accessibility by using the native <code>&lt;details&gt;</code> and <code>&lt;summary&gt;</code> elements. Users get built in keyboard navigation and state announcement, and the component continues to work when JavaScript is disabled. The progressive enhancement layer adds optional ARIA attributes, single open behaviour and "Expand all / Collapse all" controls without changing the underlying semantics.</p>
 <p>The legacy JavaScript accordion is retained as a supported implementation for cases requiring advanced scripting. It manages state entirely through JavaScript, handling <code>aria-expanded</code> and <code>aria-hidden</code> attributes and adding roles for assistive technology. Its initialisation process opens all accordions on page load before closing those that should remain closed, ensuring content accessibility when JavaScript is disabled. While effective, this approach can introduce additional load operations affecting performance.</p>
 <ul>
-  <li>Do not hard code <code>aria-hidden</code> or <code>aria-expanded</code> in templates for the details based variant. Let the progressive enhancement manage these attributes dynamically.</li>
+  <li>Do not add <code>aria-hidden</code> or <code>aria-expanded</code> attributes to the details based variant. These attributes are not needed for native <code>&lt;details&gt;</code> elements, as their state is managed by the <code>open</code> attribute and is natively accessible to assistive technology.</li>
   <li>Without JavaScript, the details based accordion remains keyboard accessible through the native <code>&lt;summary&gt;</code> element.</li>
 </ul>
 
