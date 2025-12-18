@@ -33,7 +33,8 @@ class CssAccordion {
     let updateButtons
 
     if (toolbar) {
-      const [expandBtn, collapseBtn] = Array.from(toolbar.querySelectorAll('button'))
+      const expandBtn = toolbar.querySelector('button[aria-label^="Expand all"]')
+      const collapseBtn = toolbar.querySelector('button[aria-label^="Collapse all"]')
 
       const update = () => {
         const allOpen = this.items.length && this.items.every((d) => d.open === true)
