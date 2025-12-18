@@ -83,12 +83,12 @@ class CssAccordion {
 
         // Move focus to the target or the summary to aid keyboard/screen reader users
         if (byId) {
-          if (typeof byId.tabIndex !== 'number' || byId.tabIndex < 0) byId.tabIndex = -1
+          if (byId.tabIndex < 0) byId.tabIndex = -1
           byId.focus({ preventScroll: true })
         } else {
           const summary = details.querySelector('.nsw-accordion__title')
           if (summary) {
-            if (typeof summary.tabIndex !== 'number' || summary.tabIndex < 0) summary.tabIndex = -1
+            if (summary.tabIndex < 0) summary.tabIndex = -1
             summary.focus({ preventScroll: true })
           }
         }
