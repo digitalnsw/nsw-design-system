@@ -1,49 +1,161 @@
-/* eslint-disable */
-function cleanHTML(str, nodes) {
-  function stringToHTML() {
-    const parser = new DOMParser()
-    const doc = parser.parseFromString(str, 'text/html')
-    return doc.body || document.createElement('body')
+const hasDocument = typeof document !== 'undefined'
+const defaultSafeInlineTags = ['p', 'span', 'kbd', 'strong', 'em', 'br', 'code']
+
+function escapeHTML(txt) {
+  const str = String(txt || '')
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#x27;')
+}
+
+// Clean and optionally whitelist HTML into a safe set of tags with no attributes.
+function baseCleanHTML(str, nodes, opts = {}) {
+  if (!hasDocument) {
+    // In non-DOM environments, return safely-escaped text (no HTML interpretation)
+    return nodes ? null : escapeHTML(str)
   }
 
-  function removeScripts(html) {
-    const scripts = html.querySelectorAll('script')
-    for (const script of scripts) {
-      script.remove()
+  const { allowedTags = null, allowedAttributes = {} } = opts
+
+  function stringToHTML() {
+    const raw = String(str || '')
+
+    // Treat ALL input as plain text unless an allowlist is provided
+    const bodyEl = document.createElement('body')
+
+    // If an allowlist exists, use the safe-restore method (non-parsing)
+    if (Array.isArray(allowedTags) && allowedTags.length > 0) {
+      let safe = escapeHTML(raw)
+      const simpleTags = allowedTags
+        .map((t) => String(t || '').toLowerCase())
+        .filter((t) => ['p', 'span', 'kbd', 'strong', 'em', 'br', 'code'].includes(t))
+
+      simpleTags.forEach((tag) => {
+        // Restore opening tags with optional attributes, for example
+        // `&lt;kbd aria-label=\"Escape key\"&gt;` -> `<kbd aria-label=\"Escape key\">`.
+        const openRe = new RegExp(`&lt;${tag}([^]*?)&gt;`, 'gi')
+        safe = safe.replace(openRe, `<${tag}$1>`)
+
+        if (tag !== 'br') {
+          // Restore closing tags, tolerating any stray whitespace before `>`
+          const closeRe = new RegExp(`&lt;\\/${tag}\\s*&gt;`, 'gi')
+          safe = safe.replace(closeRe, `</${tag}>`)
+        }
+      })
+
+      bodyEl.innerHTML = safe
+    } else {
+      // No allowlist: just assign raw as text, no HTML interpretation
+      bodyEl.textContent = raw
     }
+
+    return bodyEl
+  }
+
+  function removeScripts(root) {
+    root.querySelectorAll('script').forEach((s) => s.remove())
   }
 
   function isPossiblyDangerous(name, value) {
-    const val = value.replace(/\s+/g, '').toLowerCase()
+    const val = String(value || '')
+      .replace(/\s+/g, '')
+      .toLowerCase()
     if (['src', 'href', 'xlink:href'].includes(name)) {
-      if (val.includes('javascript:') || val.includes('data:text/html')) return true
+      if (/^(?:javascript|vbscript|data):/i.test(val)) return true
     }
-    if (name.startsWith('on')) return true
+    if (name && name.toLowerCase().startsWith('on')) return true
     return false
   }
 
-  function removeAttributes(elem) {
-    const atts = elem.attributes
-    for (const { name, value } of atts) {
-      if (!isPossiblyDangerous(name, value)) continue
-      elem.removeAttribute(name)
-    }
+  function stripAllAttributes(elem) {
+    Array.from(elem.attributes).forEach(({ name }) => elem.removeAttribute(name))
   }
 
-  function clean(html) {
-    const htmlNodes = html.children
-    for (const node of htmlNodes) {
-      removeAttributes(node)
-      clean(node)
-    }
+  function removeDangerousAttributes(elem) {
+    Array.from(elem.attributes).forEach(({ name, value }) => {
+      if (isPossiblyDangerous(name, value)) elem.removeAttribute(name)
+    })
   }
 
-  const html = stringToHTML()
+  function sanitiseNode(node) {
+    if (node.nodeType === Node.TEXT_NODE) return
 
-  removeScripts(html)
-  clean(html)
+    if (node.nodeType === Node.ELEMENT_NODE) {
+      const tag = node.tagName.toLowerCase()
 
-  return nodes ? html.childNodes : html.innerHTML
+      if (tag === 'script') {
+        node.remove()
+        return
+      }
+
+      if (Array.isArray(allowedTags)) {
+        const allowed = allowedTags.includes(tag)
+        if (!allowed) {
+          const parent = node.parentNode
+          if (parent) {
+            while (node.firstChild) parent.insertBefore(node.firstChild, node)
+            parent.removeChild(node)
+            return
+          }
+        } else {
+          // Strip all attributes except those explicitly allowed for this tag,
+          // and always remove dangerous URL/event-handler attributes.
+          const tagAllowedAttrs = Array.isArray(allowedAttributes[tag]) ? allowedAttributes[tag] : []
+          Array.from(node.attributes).forEach(({ name, value }) => {
+            const attrName = String(name || '')
+            // Always remove dangerous attributes first
+            if (isPossiblyDangerous(attrName, value)) {
+              node.removeAttribute(attrName)
+              return
+            }
+            // If there is an allowlist for this tag, drop anything not in it
+            if (tagAllowedAttrs.length && !tagAllowedAttrs.includes(attrName)) {
+              node.removeAttribute(attrName)
+            }
+            // If there is no allowlist entry for this tag, we fall through and
+            // remove everything below for strictness.
+          })
+          // If no attributes are explicitly allowed for this tag, remove whatever is left
+          if (!Array.isArray(allowedAttributes[tag]) || !allowedAttributes[tag].length) {
+            stripAllAttributes(node)
+          }
+        }
+      } else {
+        removeDangerousAttributes(node)
+      }
+    }
+
+    Array.from((node.childNodes || [])).forEach((child) => sanitiseNode(child))
+  }
+
+  const body = stringToHTML()
+  removeScripts(body)
+  Array.from(body.childNodes).forEach((n) => sanitiseNode(n))
+
+  if (nodes) {
+    const frag = document.createDocumentFragment()
+    while (body.firstChild) frag.appendChild(body.firstChild)
+    return frag
+  }
+
+  return body.innerHTML
 }
 
-export default cleanHTML
+// Strict version: defaults to safe inline/text tags
+export function cleanHTMLStrict(str, nodes, opts = {}) {
+  const strictOpts = {
+    ...opts,
+    allowedTags: opts.allowedTags || defaultSafeInlineTags,
+  }
+  return baseCleanHTML(str, nodes, strictOpts)
+}
+
+// Open version: current behaviour (no default allowlist)
+export function cleanHTMLOpen(str, nodes, opts = {}) {
+  return baseCleanHTML(str, nodes, opts)
+}
+
+export default cleanHTMLOpen

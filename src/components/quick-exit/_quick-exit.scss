@@ -1,0 +1,129 @@
+@use 'sass:color';
+@use '../../global/scss/tools' as nsw;
+
+.nsw-quick-exit {
+  display: block;
+  width: 100%;
+  border-top: nsw.rem(6px) solid var(--Status-error, var(--nsw-status-error));
+  font-weight: normal;
+  cursor: pointer;
+  background-color: var(--nsw-brand-dark);
+  color: var(--nsw-text-light);
+
+  &:link,
+  &:visited,
+  &:hover,
+  &:focus,
+  &:active {
+    text-decoration: none;
+    color: var(--nsw-white);
+    background-color: var(--nsw-brand-dark);
+  }
+
+  &:focus {
+    position: relative;
+    outline: none;
+    
+    @include nsw.z-index;
+
+    box-shadow:
+      inset 0 0 0 6px color-mix(in srgb, var(--nsw-white) 10%, var(--nsw-brand-dark) 100%),
+      inset 0 0 0 nsw.rem(9px) var(--nsw-focus);
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: color-mix(in srgb, var(--nsw-white) 10%, var(--nsw-brand-dark) 100%);
+
+    .nsw-quick-exit__exit-text {
+      text-decoration: underline;
+    }
+  }
+
+  kbd {
+    background-color: transparent;
+    color: var(--nsw-text-light);
+    border: 1px solid var(--nsw-white);
+  }
+
+  &__content {
+    display: flex;
+    gap: nsw.rem(8px);
+    align-items: center;
+    width: 100%;
+    min-height: nsw.rem(64px);
+    justify-content: center;
+    user-select: none;
+
+    &::before {
+      content: '';
+      width: nsw.rem(48px);
+      height: nsw.rem(48px);
+      margin-bottom: nsw.rem(4px);
+      line-height: 0;
+      display: none;
+      vertical-align: middle;
+      // This is here as a temporary measure until we can update the icon set
+      background-image: nsw.svg-url(nsw.$nsw-quick-exit-shield);
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: nsw.rem(48px) auto;
+      
+      // Ultimate solution is to replace with an appropriate SVG icon from the NSW icon set
+      // content: 'shield_with_heart';
+      // font-family: 'Material Icons Outlined';
+      // font-size: nsw.rem(48px);
+      // line-height: 1;
+    }
+
+    @include nsw.container;
+
+    @include nsw.breakpoint('md') {
+      justify-content: flex-start;
+      min-height: nsw.rem(80px);
+
+      &::before {
+        display: inline-block;
+      }
+    }
+  }
+
+  &__description-text {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+
+    @include nsw.breakpoint('md') {
+      position: static;
+      width: auto;
+      height: auto;
+      overflow: visible;
+      clip: auto;
+      white-space: normal;
+      display: inline;
+    }
+  }
+
+  &__exit-text {
+    display: inline;
+    font-weight: 700;
+
+    &::after {
+      content: 'east';
+      font-size: inherit;
+      line-height: 1;
+      margin-left: nsw.rem(4px);
+      display: inline-block;
+      vertical-align: middle;
+
+      @include nsw.material-icons;
+    }
+  }
+}

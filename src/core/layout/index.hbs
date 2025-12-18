@@ -8,7 +8,19 @@ meta-description: NSW Design System layouts for structuring components for NSW G
 meta-index: true
 ---
 
-<h2>Page layouts</h2>
+<nav class="nsw-in-page-nav" aria-labelledby="in-page-nav">
+  <div id="in-page-nav" class="nsw-in-page-nav__title">On this page</div>
+  <ul class="nsw-in-page-nav__list">
+    <li>
+      <a href="#page-layouts">Page layouts</a>
+    </li>
+    <li>
+      <a href="#global-page-structure">Global page structure</a>
+    </li>
+  </ul>
+</nav>
+
+<h2 id="page-layouts">Page layouts</h2>
 <p>There are then 3 standard page layouts that can be used to enclose your grid:</p>
 <ul>
   <li>Full width <a target="_blank" href="/templates/homepage/hero-banner.html">(Demo)</a></li>
@@ -16,10 +28,10 @@ meta-index: true
   <li>Two column - Right side <a target="_blank" href="/templates/content/article.html">(Demo)</a></li>
 </ul>
 
-<h2>Usage</h2>
+<h3 id="usage">Usage</h3>
 <p>A <code>nsw-container</code> keeps a container width of 1200px and the <code>nsw-page-layout</code> acts as a wrapper to align the content's spacing.</p>
 
-<h3>Full width - Main content area</h3>
+<h4>Full width - Main content area</h4>
 <p>Displays main content area the full width of the container.</p>
 {{#>_docs-example separated="true"}}
   <div class="nsw-container">
@@ -27,7 +39,7 @@ meta-index: true
   </div>
 {{/_docs-example}}
 
-<h3>Two column - Left side desktop only</h3>
+<h4>Two column - Left side desktop only</h4>
 <p>Displays a left hand sidebar that is visible on 992px+ viewports, with a main content area that is always visible. (Recommended for side navigation).</p>
 {{#>_docs-example separated="true"}}
   <div class="nsw-container">
@@ -36,10 +48,88 @@ meta-index: true
 {{/_docs-example}}
 
 
-<h3>Two column - Right side</h3>
+<h4>Two column - Right side</h4>
 <p>Displays a right hand sidebar that stacks on 0 - 991px viewports, with main content area that is always visible. </p>
 {{#>_docs-example separated="true"}}
   <div class="nsw-container">
     {{>_layout side="right"}}
   </div>
 {{/_docs-example}}
+
+<h2 id="global-page-structure">Global page structure</h2>
+<p>The global page structure provides page-level regions that sit outside in-content layout patterns. Use it for persistent, site-wide controls like the Sticky container, mastheads and footers. These regions form the shell of a page and are not composition patterns.</p>
+
+<h3 id="sticky-container-structure">Sticky container</h3>
+<p>A site-wide container fixed to the bottom of the viewport for critical controls such as <a href="../../components/quick-exit/index.html" aria-label="View Quick Exit component documentation" title="View Quick Exit component documentation">Quick Exit</a> and <a href="../../components/cookie-consent/index.html" aria-label="View Cookie Consent component documentation" title="View Cookie Consent component documentation">Cookie Consent</a>. It is part of the page shell, not an in-content component.</p>
+
+<h4>When to use</h4>
+<ul>
+  <li>You need a persistent control that should sit above content at all times.</li>
+  <li>You want a no-JS baseline for safety or compliance, then progressive enhancement.</li>
+</ul>
+
+<h4>When not to use</h4>
+<ul>
+  <li>For local, in-content notices. Use <a href="../../core/section/index.html" aria-label="View Section core pattern documentation" title="View Section core pattern documentation">Section</a> and <a href="../../components/alert/index.html" aria-label="View Alert component documentation" title="View Alert component documentation">Alert</a> patterns instead.</li>
+  <li>For content that belongs in the main flow of the page.</li>
+</ul>
+
+<h4>HTML baseline</h4>
+<p>Place the Sticky container as the last child of <code>&lt;body&gt;</code>. Render baseline markup inside it so pages work without JavaScript.</p>
+
+{{#>_docs-example hidden="true" open="true" code="html"}}
+<body>
+  <!-- Page content -->
+
+  <div class="nsw-sticky-container">
+    <!-- Place components here that need to live in the sticky footer (including their fallback HTML). -->
+  </div>
+</body>
+{{/_docs-example}}
+
+<h4>CSS (included in Core)</h4>
+<p>The Sticky container styling is included with Core so it is available on every page.</p>
+
+{{#>_docs-example hidden="true" open="true" code="css"}}
+.nsw-sticky-container {
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: var(--nsw-layer-sticky, 1000);
+  display: block;
+}
+
+@media print {
+  .nsw-sticky-container { position: static !important; }
+}
+{{/_docs-example}}
+
+<h4>Placement</h4>
+<ul>
+  <li>Append as the last child of <code>&lt;body&gt;</code>.</li>
+  <li>Do not wrap it in elements that set <code>overflow</code> or <code>transform</code>. These can break sticky positioning.</li>
+</ul>
+
+<h4>Accessibility</h4>
+<ul>
+  <li>Page shell order stays logical. Main content appears before the Sticky container in the DOM.</li>
+  <li>Controls in the container must have clear text labels and visible focus.</li>
+  <li>Provide a working no-JS baseline. <a href="../../components/quick-exit/index.html" aria-label="View Quick Exit component documentation" title="View Quick Exit component documentation">Quick Exit</a> should include a real link that works without JavaScript.</li>
+</ul>
+
+<h4>Known limitations</h4>
+<ul>
+  <li>Sticky positioning is affected by ancestor <code>overflow</code> or <code>transform</code>. Keep the container as a direct child of <code>&lt;body&gt;</code>.</li>
+  <li>Ensure a z-index above the footer and other fixed elements.</li>
+</ul>
+
+<h4>Integration notes</h4>
+<ul>
+  <li><a href="../../components/quick-exit/index.html" aria-label="View Quick Exit component documentation" title="View Quick Exit component documentation">Quick Exit</a> and <a href="../../components/cookie-consent/index.html" aria-label="View Cookie Consent component documentation" title="View Cookie Consent component documentation">Cookie Consent</a> progressively enhance inside this container.</li>
+  <li>JavaScript can set body padding based on the container height to avoid overlap. The NSW components do this automatically.</li>
+</ul>
+
+<h4>Classification</h4>
+<p><strong>Is this a Layout pattern?</strong> No. Layout covers composition patterns inside the page. Global page structure covers the page shell. The Sticky container is part of the shell.</p>

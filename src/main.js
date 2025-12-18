@@ -13,6 +13,7 @@ import Filters from './components/filters/filters'
 import GlobalAlert from './components/global-alert/global-alert'
 import Navigation from './components/main-nav/main-nav'
 import Popover from './components/popover/popover'
+import QuickExit from './components/quick-exit/quick-exit'
 import Select from './components/select/select'
 import SiteSearch from './components/header/header'
 import SideNav from './components/side-nav/side-nav'
@@ -20,6 +21,8 @@ import Tabs from './components/tabs/tabs'
 import Toggletip from './components/tooltip/toggletip'
 import Tooltip from './components/tooltip/tooltip'
 import UtilityList from './components/utility-list/utility-list'
+
+import stickyContainer from './global/scripts/sticky-container'
 
 if (window.NodeList && !NodeList.prototype.forEach) {
   NodeList.prototype.forEach = Array.prototype.forEach
@@ -64,6 +67,9 @@ function initSite() {
   const tooltip = document.querySelectorAll('.js-tooltip')
   const utilityList = document.querySelectorAll('.js-utility-list')
 
+  // Sticky container initialisation
+  stickyContainer()
+  
   if (jsAccordions) {
     jsAccordions.forEach((element) => {
       new Accordion(element).init()
