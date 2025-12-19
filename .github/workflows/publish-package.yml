@@ -1,4 +1,5 @@
 name: publish-package
+
 on:
   workflow_dispatch:
     inputs:
@@ -11,25 +12,55 @@ permissions:
   id-token: write
   contents: write
 
+concurrency:
+  group: publish-package
+  cancel-in-progress: false
+
 jobs:
   publish-npm:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: actions/setup-node@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
           node-version: '20'
           registry-url: 'https://registry.npmjs.org'
           always-auth: true
-      - run: . ./build-script/verify-branch.sh ${GITHUB_REF##*/}
-      - run: |
-          npm ci
-          npm run release:${{ github.event.inputs.semver }}
-          git fetch origin
-          git pull --rebase origin ${GITHUB_REF##*/}
-          git config --global user.name "$GITHUB_ACTOR"
-          git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-          npm run commit && npm run git-tag
-      - run: npm publish --provenance --access public
+
+      - name: Verify branch
+        run: . ./build-script/verify-branch.sh "${GITHUB_REF_NAME}"
+
+      - name: Sync branch (rebase on clean tree)
+        run: |
+          git fetch --prune origin
+          git pull --rebase origin "${GITHUB_REF_NAME}"
+
+      - name: Assert clean working tree (fail fast)
+        run: |
+          git status --porcelain
+          test -z "$(git status --porcelain)"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build release (may write files like CHANGELOG.md)
+        run: npm run release:${{ github.event.inputs.semver }}
+
+      - name: Configure git identity (repo-local)
+        run: |
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+
+      - name: Commit changes + create tag
+        run: |
+          npm run commit
+          npm run git-tag
+
+      - name: Publish to npm
+        run: npm publish --provenance --access public
