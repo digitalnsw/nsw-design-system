@@ -9,8 +9,8 @@ on:
         default: 'patch'
 
 permissions:
-  id-token: write
   contents: write
+  id-token: write
 
 concurrency:
   group: publish-package
@@ -31,20 +31,26 @@ jobs:
         with:
           node-version: '20'
           registry-url: 'https://registry.npmjs.org'
-          always-auth: true
+          always-auth: false
+
+      - name: Upgrade npm for OIDC trusted publishing
+        run: |
+          npm --version
+          npm i -g npm@^11.5.1
+          npm --version
 
       - name: Verify branch
         run: . ./build-script/verify-branch.sh "${GITHUB_REF_NAME}"
+
+      - name: Assert clean working tree (fail fast, before rebase)
+        run: |
+          git status --porcelain
+          test -z "$(git status --porcelain)"
 
       - name: Sync branch (rebase on clean tree)
         run: |
           git fetch --prune origin
           git pull --rebase origin "${GITHUB_REF_NAME}"
-
-      - name: Assert clean working tree (fail fast)
-        run: |
-          git status --porcelain
-          test -z "$(git status --porcelain)"
 
       - name: Install dependencies
         run: npm ci
@@ -52,7 +58,7 @@ jobs:
       - name: Build release (may write files like CHANGELOG.md)
         run: npm run release:${{ github.event.inputs.semver }}
 
-      - name: Configure git identity (repo-local)
+      - name: Configure git identity (local)
         run: |
           git config user.name "$GITHUB_ACTOR"
           git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
@@ -62,5 +68,5 @@ jobs:
           npm run commit
           npm run git-tag
 
-      - name: Publish to npm
-        run: npm publish --provenance --access public
+      - name: Publish to npm (OIDC trusted publishing)
+        run: npm publish --access public
