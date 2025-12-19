@@ -2,13 +2,24 @@
 title: Accordion
 layout: blank-layout.hbs
 ---
-<h2>Usage</h2>
+<nav class="nsw-in-page-nav" aria-labelledby="in-page-nav">
+  <div class="nsw-in-page-nav__title">On this page</div>
+  <ul class="nsw-in-page-nav__list">
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#principles">Principles</a></li>
+    <li><a href="#details-variation">Details variation (Recommended)</a></li>
+    <li><a href="#legacy-js-variation">Legacy JS-core variation (Supported)</a></li>
+    <li><a href="#accessibility">Accessibility</a></li>
+  </ul>
+</nav>
+<h2 id="usage">Usage</h2>
 <p>Accordions can work well for people who use a service regularly, or who need to perform familiar tasks quickly.</p>
 <p>Only use an accordion if there’s evidence it’s helpful for users to:</p>
 <ul>
 	<li>see an overview of multiple, related sections of content</li>
 	<li>show and hide those sections as needed</li>
 </ul>
+<p>The details based accordion is the default and recommended implementation.</p>
 <h3>When to avoid</h3>
 <p>Test your content without an accordion first. Consider if it’s better to:</p>
 <ul>
@@ -34,9 +45,13 @@ layout: blank-layout.hbs
 <p>This function should not be used to help users locate information within accordions. If a user is expanding multiple accordions because they are unsure of the content they contain, consider more descriptive titles or removing accordions all together and displaying the content separated by headings.</p>
 
 <h3>Open accordion pane on page load</h3>
-<p>By default, all panes in an accordion are closed. To render an accordion pane expanded on page load, add the <code>.nsw-accordion__open</code> class on the <code>.nsw-accordion__title</code> element.</p>
+<p>By default, all panes in an accordion are closed.</p>
+<ul>
+  <li><strong>Details based accordion</strong>: add the <code>open</code> attribute to any <code>&lt;details&gt;</code> element that should start open. The progressive enhancement layer leaves the native <code>open</code> state intact, adds <code>role="region"</code>/<code>aria-labelledby</code> to the panel, and wires the optional toolbar when present.</li>
+  <li><strong>Legacy JavaScript accordion</strong>: add the <code>.nsw-accordion__open</code> class on the <code>.nsw-accordion__title</code> element. Without JavaScript, all panel content remains visible. When JavaScript runs, it hides panels and reopens only those marked with <code>.nsw-accordion__open</code>, then keeps <code>aria-expanded</code>/<code>aria-hidden</code> in sync.</li>
+</ul>
 
-<h2>Principles</h2>
+<h2 id="principles">Principles</h2>
 <p><strong>Use clear labels</strong></p>
 <p>Accordions hide content, so the labels need to be clear. Ensure the headings used are brief and explicit about what is contained in the hidden panel. Intuitive headings help the user build a clear mental model of the content.</p>
 <p><strong>Do not disable sections</strong></p>
@@ -44,5 +59,54 @@ layout: blank-layout.hbs
 <p>Disabling controls is normally confusing for users. If there is no content for a section, either remove the section or, if this would be confusing for your users, explain why there is no content when the section is opened.</p>
 <p>Consider tabs if the user would likely need to flick between content sections.</p>
 
-<h2>Accessibility</h2>
-<p>All components are responsive and designed to comply with WCAG 2.2 AA accessibility standards. Full compliance depends on using and configuring the components correctly.</p>
+<h2 id="details-variation">Details variation (Recommended)</h2>
+<p>The details based accordion (<code>.nsw-accordion--details</code>) is the default and recommended implementation. It uses native <code>&lt;details&gt;</code> and <code>&lt;summary&gt;</code> elements for the disclosure pattern, which provides built in semantics, keyboard support and state announcement for assistive technologies. This version delivers the core expand and collapse interaction without requiring JavaScript and is progressively enhanced when JavaScript is available.</p>
+
+<h3>Why we included it</h3>
+<ul>
+  <li><strong>Semantic and accessible</strong>: uses the browser's native disclosure control so screen readers understand the role and state without extra ARIA attributes.</li>
+  <li><strong>No-JS friendly</strong>: the main interaction (opening and closing panels) works even when JavaScript is disabled or blocked.</li>
+  <li><strong>Progressive enhancement</strong>: when JavaScript is present, we add ARIA region/label associations to panels and wire optional "Expand all / Collapse all" controls without changing the native open/close behaviour.</li>
+  <li><strong>Future proof</strong>: relies on well supported HTML elements instead of hidden form controls, which reduces the risk of implementation errors by consumers.</li>
+</ul>
+
+<h3>Limitations and trade offs</h3>
+<ul>
+  <li><strong>Styling hooks are constrained</strong>: browsers retain some control over <code>&lt;summary&gt;</code> behaviour and markers. While the Design System normalises the visual presentation, very heavy or unusual customisation of the header or marker is not supported.</li>
+  <li><strong>Animation support varies between browsers</strong>: smooth height transitions for opening and closing rely on newer CSS capabilities. Where these are not available, some browsers will fall back to instant open and close rather than an animated transition.</li>
+  <li><strong>Focus treatment is container based</strong>: due to how <code>&lt;summary&gt;</code> receives focus, we apply focus styles at the header or container level. Implementers should avoid additional overflow or clipping on parent containers that would cut off the focus ring.</li>
+  <li><strong>Programmatic control is limited without JS</strong>: to open or close panels in response to validation, routing or other application events, you must use the JavaScript progressive enhancement layer or the legacy JavaScript accordion.</li>
+</ul>
+
+<h3>How to use</h3>
+<ul>
+  <li>Add the modifier class <code>.nsw-accordion--details</code> on the accordion container to render the details based variant.</li>
+  <li>Use <code>&lt;details&gt;</code> for each item and <code>&lt;summary&gt;</code> for the clickable header, following the markup in the examples.</li>
+  <li>Optional: add a toolbar container <code>.nsw-accordion__toggle</code> with "Expand all" and "Collapse all" buttons. When JavaScript is available, these controls are wired up automatically.</li>
+</ul>
+
+<h3>Compatibility and support</h3>
+<ul>
+  <li>The details based accordion is recommended for most use cases because it combines strong accessibility with reduced JavaScript dependence.</li>
+  <li>Some advanced animation or styling requirements may not be achievable with <code>&lt;details&gt;</code> and <code>&lt;summary&gt;</code>. In those cases, consider the legacy JavaScript accordion.</li>
+  <li>The details variant can safely coexist on the same page with the legacy JavaScript accordion without conflict.</li>
+</ul>
+
+<h2 id="legacy-js-variation">Legacy JS-core variation (Supported)</h2>
+<p>The legacy JavaScript accordion (<code>.js-accordion</code>) is the original implementation and remains fully supported for backward compatibility and when advanced programmatic control or legacy behaviour is required.</p>
+<ul>
+  <li>This version manages state entirely through JavaScript, handling <code>aria-expanded</code> and <code>aria-hidden</code> attributes and adding roles for assistive technology.</li>
+  <li>Without JavaScript, all panel content remains visible. On init, JavaScript hides panels and reopens those marked with <code>.nsw-accordion__open</code>, then keeps <code>aria-expanded</code>/<code>aria-hidden</code> in sync as users interact.</li>
+  <li>While this approach supports consistent behaviour across browsers, it introduces additional load operations that can affect performance compared to the details based solution.</li>
+  <li>This variant is supported for now but is planned to be sunset next year; prefer the details based accordion for new work.</li>
+</ul>
+
+<h2 id="accessibility">Accessibility</h2>
+<p>All components are responsive and designed to comply with WCAG 2.2 AA accessibility standards. Full compliance depends on using and configuring the components correctly. The details based accordion is the default implementation and meets these standards when implemented as intended, and the legacy JavaScript variant can also meet these standards when used correctly, but relies on additional scripting.</p>
+
+<h3>Support for accessibility features</h3>
+<h4>Details based accordion</h4>
+<p>Uses native <code>&lt;details&gt;</code>/<code>&lt;summary&gt;</code> for built-in semantics, keyboard support and state announcement. Works without JavaScript; the progressive enhancement layer adds panel region/label ARIA and wires the optional "Expand all / Collapse all" controls without altering the native <code>open</code> state.</p>
+<p>Without JavaScript, the details based accordion remains keyboard accessible through the native <code>&lt;summary&gt;</code> element.</p>
+<h4>Legacy JavaScript accordion</h4>
+<p>Retained for advanced scripting needs. It manages state via JavaScript, handling <code>aria-expanded</code>/<code>aria-hidden</code> and roles. Without JavaScript, panel content remains visible; when JavaScript initialises it hides panels and reopens those flagged with <code>.nsw-accordion__open</code>, then keeps attributes in sync as users interact. This extra scripting can add load overhead compared to the details based approach.</p>

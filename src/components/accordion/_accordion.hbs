@@ -1,14 +1,37 @@
-<div class="nsw-accordion js-accordion">
-  {{#if toggle}}
-  <div class="nsw-accordion__toggle">
-    <button type="button">Expand all</button>
-    <button type="button">Collapse all</button>
+{{#if-equals type "js"}}
+  <div class="nsw-accordion js-accordion"{{#if id}} id="{{id}}"{{/if}}>
+    {{#if toggle}}
+    <div class="nsw-accordion__toggle">
+      <button type="button" aria-label="Expand all sections">Expand all</button>
+      <button type="button" aria-label="Collapse all sections">Collapse all</button>
+    </div>
+    {{/if}}
+    {{#each items}}
+    <div class="nsw-accordion__title{{#if open}} {{open}}{{/if}}">{{title}}</div>
+    <div class="nsw-accordion__content">
+      {{{content}}}
+    </div>
+    {{/each}}
   </div>
-  {{/if}}
-  {{#each items}}
-  <div class="nsw-accordion__title{{#if open}} {{open}}{{/if}}">{{title}}</div>
-  <div class="nsw-accordion__content">
-    {{{content}}}
+{{else}}
+  <div class="nsw-accordion--details js-accordion-details"{{#if id}} id="{{id}}"{{/if}}>
+    {{#if toggle}}
+    <div class="nsw-accordion__toggle">
+      <button type="button" aria-label="Expand all sections{{#if id}} in {{id}} accordion{{/if}}">Expand all</button>
+      <button type="button" aria-label="Collapse all sections{{#if id}} in {{id}} accordion{{/if}}">Collapse all</button>
+    </div>
+    {{/if}}
+    {{#each items}}
+    <details class="nsw-accordion__item"{{#if open}} open{{/if}} id="{{#if id}}{{id}}{{else}}{{../id}}-item-{{@index}}{{/if}}">
+      <summary class="nsw-accordion__title">
+        {{title}}
+      </summary>
+      <div class="nsw-accordion__content-wrap" id="{{#if id}}{{id}}{{else}}{{../id}}-item-{{@index}}{{/if}}-panel">
+        <div class="nsw-accordion__content">
+          {{{content}}}
+        </div>
+      </div>
+    </details>
+    {{/each}}
   </div>
-  {{/each}}
-</div>
+{{/if-equals}}

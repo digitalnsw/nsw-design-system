@@ -1,5 +1,6 @@
 /* eslint-disable max-len */
 import Accordion from './components/accordion/accordion'
+import CssAccordion from './components/accordion/accordion-css'
 import BackTop from './components/back-to-top/back-to-top'
 import Carousel from './components/card-carousel/carousel'
 import CookieConsent from './components/cookie-consent/cookie-consent'
@@ -44,7 +45,8 @@ if (!Element.prototype.closest) {
 }
 
 function initSite() {
-  const accordions = document.querySelectorAll('.js-accordion')
+  const jsAccordions = document.querySelectorAll('.js-accordion')
+  const detailsAccordions = document.querySelectorAll('.js-accordion-details')
   const backTop = document.querySelectorAll('button.js-back-to-top')
   const breadcrumbs = document.querySelectorAll('.js-breadcrumbs')
   const carousel = document.querySelectorAll('.js-carousel')
@@ -68,9 +70,15 @@ function initSite() {
   // Sticky container initialisation
   stickyContainer()
 
-  if (accordions) {
-    accordions.forEach((element) => {
+  if (jsAccordions) {
+    jsAccordions.forEach((element) => {
       new Accordion(element).init()
+    })
+  }
+
+  if (detailsAccordions) {
+    detailsAccordions.forEach((element) => {
+      new CssAccordion(element).init()
     })
   }
 
@@ -188,5 +196,5 @@ function initSite() {
 }
 
 export {
-  initSite, Accordion, BackTop, Carousel, CookieConsent, DatePicker, Dialog, ExternalLink, FileUpload, Filters, GlobalAlert, Navigation, Popover, QuickExit, Select, SideNav, SiteSearch, Tabs, Toggletip, Tooltip, UtilityList,
+  initSite, Accordion, CssAccordion, BackTop, Carousel, CookieConsent, DatePicker, Dialog, ExternalLink, FileUpload, Filters, GlobalAlert, Navigation, Popover, QuickExit, Select, SideNav, SiteSearch, Tabs, Toggletip, Tooltip, UtilityList,
 }
