@@ -15,18 +15,21 @@ jobs:
   publish-npm:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@v4
         with:
           node-version: '20'
           registry-url: 'https://registry.npmjs.org'
+          always-auth: true
       - run: . ./build-script/verify-branch.sh ${GITHUB_REF##*/}
       - run: |
           npm ci
           npm run release:${{ github.event.inputs.semver }}
+          git fetch origin
+          git pull --rebase origin ${GITHUB_REF##*/}
+          git config --global user.name "$GITHUB_ACTOR"
           git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-          git config --global user.name ${{ github.actor }}
           npm run commit && npm run git-tag
       - run: npm publish --provenance --access public
