@@ -1,5 +1,6 @@
 export function initSite(): void;
 import Accordion from './components/accordion/accordion';
+import CssAccordion from './components/accordion/accordion-css';
 import BackTop from './components/back-to-top/back-to-top';
 import Carousel from './components/card-carousel/carousel';
 import CookieConsent from './components/cookie-consent/cookie-consent';
@@ -19,4 +20,4 @@ import Tabs from './components/tabs/tabs';
 import Toggletip from './components/tooltip/toggletip';
 import Tooltip from './components/tooltip/tooltip';
 import UtilityList from './components/utility-list/utility-list';
-export { Accordion, BackTop, Carousel, CookieConsent, DatePicker, Dialog, ExternalLink, FileUpload, Filters, GlobalAlert, Navigation, Popover, QuickExit, Select, SideNav, SiteSearch, Tabs, Toggletip, Tooltip, UtilityList };
+export { Accordion, CssAccordion, BackTop, Carousel, CookieConsent, DatePicker, Dialog, ExternalLink, FileUpload, Filters, GlobalAlert, Navigation, Popover, QuickExit, Select, SideNav, SiteSearch, Tabs, Toggletip, Tooltip, UtilityList };
