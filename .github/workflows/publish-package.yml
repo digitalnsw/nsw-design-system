@@ -1,32 +1,32 @@
 name: publish-package
 on:
   workflow_dispatch:
-    branches:
-      - main
-      - master
     inputs:
       semver:
         description: 'major, minor or patch'
         required: true
         default: 'patch'
+
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   publish-npm:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@v4
         with:
-          node-version: '16.x'
+          node-version: '20'          # or 22/24
           registry-url: 'https://registry.npmjs.org'
       - run: . ./build-script/verify-branch.sh ${GITHUB_REF##*/}
-      - run:  |
-          npm install
+      - run: |
+          npm ci
           npm run release:${{ github.event.inputs.semver }}
           git config --global user.email ${{ github.actor }}
           git config --global user.name "${GITHUB_ACTOR}@users.noreply.github.com"
           npm run commit && npm run git-tag
-      - run: npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - run: npm publish --provenance --access public
