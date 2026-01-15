@@ -60,17 +60,29 @@
 @function breakpoint-min($name, $breakpoints: settings.$nsw-breakpoints) {
   $min: map.get($breakpoints, $name);
 
-  @return if($min != 0, $min, null);
+  @if $min != 0 {
+    @return $min;
+  }
+
+  @return null;
 }
 
 @function breakpoint-max($name, $breakpoints: settings.$nsw-breakpoints) {
   $max: map.get($breakpoints, $name);
 
-  @return if($max and $max > 0, $max - 0.02, null);
+  @if $max and $max > 0 {
+    @return $max - 0.02;
+  }
+
+  @return null;
 }
 
 @function breakpoint-infix($name, $breakpoints: settings.$nsw-breakpoints) {
-  @return if(breakpoint-min($name, $breakpoints) == null, "", "-#{$name}");
+  @if breakpoint-min($name, $breakpoints) == null {
+    @return "";
+  }
+
+  @return "-#{$name}";
 }
 
 @function to-rgb($value) {
@@ -116,7 +128,11 @@
   @for $i from 1 through 3 {
     $rgb: list.nth($rgba, $i);
     $rgb: calc($rgb / 255);
-    $rgb: if($rgb < .03928, calc($rgb / 12.92), pow(calc(($rgb + 0.055) / 1.055), 2));
+    @if $rgb < .03928 {
+      $rgb: calc($rgb / 12.92);
+    } @else {
+      $rgb: pow(calc(($rgb + 0.055) / 1.055), 2);
+    }
     $rgba2: list.append($rgba2, $rgb);
   }
   @return (.2126 * list.nth($rgba2, 1) + .7152 * list.nth($rgba2, 2) + 0.0722 * list.nth($rgba2, 3)) * 100;
