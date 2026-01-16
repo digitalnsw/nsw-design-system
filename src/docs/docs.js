@@ -114,6 +114,7 @@ function initDocs() {
       'hover-background-colour': '--nsw-hover',
       'active-background-colour': '--nsw-active',
       focus: '--nsw-focus',
+      'section-text': '--nsw-section-text',
     },
     palettes: {
       default: {
@@ -130,6 +131,7 @@ function initDocs() {
           'hover-background-colour': { label: '', value: 'rgba(0, 38, 100, 0.1)' },
           'active-background-colour': { label: '', value: 'rgba(0, 38, 100, 0.2)' },
           focus: { label: '', value: '#0086B3' },
+          'section-text': { label: 'Text Light', value: '#FFFFFF' },
         },
         'Purple 01': {
           val: '#441170',
@@ -143,6 +145,7 @@ function initDocs() {
           'hover-background-colour': { label: '', value: 'rgba(68, 17, 112, 0.1)' },
           'active-background-colour': { label: '', value: 'rgba(68, 17, 112, 0.2)' },
           focus: { label: '', value: '#351BB5' },
+          'section-text': { label: 'Text Light', value: '#FFFFFF' },
         },
         'Fuchsia 01': {
           val: '#65004D',
@@ -156,6 +159,7 @@ function initDocs() {
           'hover-background-colour': { label: '', value: 'rgba(101, 0, 77, 0.1)' },
           'active-background-colour': { label: '', value: 'rgba(101, 0, 77, 0.2)' },
           focus: { label: '', value: '#9D00B4' },
+          'section-text': { label: 'Text Light', value: '#FFFFFF' },
         },
         'Red 01': {
           val: '#630019',
@@ -169,6 +173,7 @@ function initDocs() {
           'hover-background-colour': { label: '', value: 'rgba(99, 0, 25, 0.1)' },
           'active-background-colour': { label: '', value: 'rgba(99, 0, 25, 0.2)' },
           focus: { label: '', value: '#B2006E' },
+          'section-text': { label: 'Text Light', value: '#FFFFFF' },
         },
         'Orange 01': {
           val: '#941B00',
@@ -182,6 +187,7 @@ function initDocs() {
           'hover-background-colour': { label: '', value: 'rgba(148, 27, 0, 0.1)' },
           'active-background-colour': { label: '', value: 'rgba(148, 27, 0, 0.2)' },
           focus: { label: '', value: '#E3002A' },
+          'section-text': { label: 'Text Dark', value: '#22272B' },
         },
         'Brown 01': {
           val: '#523719',
@@ -195,6 +201,7 @@ function initDocs() {
           'hover-background-colour': { label: '', value: 'rgba(82, 55, 25, 0.1)' },
           'active-background-colour': { label: '', value: 'rgba(82, 55, 25, 0.2)' },
           focus: { label: '', value: '#8F3B2B' },
+          'section-text': { label: 'Text Light', value: '#FFFFFF' },
         },
         'Yellow 01': {
           val: '#694800',
@@ -208,6 +215,7 @@ function initDocs() {
           'hover-background-colour': { label: '', value: 'rgba(105, 72, 0, 0.1)' },
           'active-background-colour': { label: '', value: 'rgba(105, 72, 0, 0.2)' },
           focus: { label: '', value: '#B83B00' },
+          'section-text': { label: 'Text Dark', value: '#22272B' },
         },
         'Green 01': {
           val: '#004000',
@@ -221,6 +229,7 @@ function initDocs() {
           'hover-background-colour': { label: '', value: 'rgba(0, 64, 0, 0.1)' },
           'active-background-colour': { label: '', value: 'rgba(0, 64, 0, 0.2)' },
           focus: { label: '', value: '#348F00' },
+          'section-text': { label: 'Text Dark', value: '#22272B' },
         },
         'Teal 01': {
           val: '#0B3F47',
@@ -234,6 +243,7 @@ function initDocs() {
           'hover-background-colour': { label: '', value: 'rgba(11, 63, 71, 0.1)' },
           'active-background-colour': { label: '', value: 'rgba(11, 63, 71, 0.2)' },
           focus: { label: '', value: '#168B70' },
+          'section-text': { label: 'Text Light', value: '#FFFFFF' },
         },
       },
       aboriginal: {
@@ -250,6 +260,7 @@ function initDocs() {
           'hover-background-colour': { label: 'Earth Red', value: 'rgba(149, 9, 6, 0.1)' },
           'active-background-colour': { label: 'Earth Red', value: 'rgba(149, 9, 6, 0.2)' },
           focus: { label: 'Ember Red', value: '#E1261C' },
+          'section-text': { label: 'Text Light', value: '#FFFFFF' },
         },
         'Deep Orange': {
           val: '#882600',
@@ -263,6 +274,7 @@ function initDocs() {
           'hover-background-colour': { label: 'Deep Orange', value: 'rgba(136, 38, 0, 0.1)' },
           'active-background-colour': { label: 'Deep Orange', value: 'rgba(136, 38, 0, 0.2)' },
           focus: { label: 'Orange Ochre', value: '#EE6314' },
+          'section-text': { label: 'Text Light', value: '#FFFFFF' },
         },
         'Riverbed Brown': {
           val: '#552105',
@@ -276,6 +288,7 @@ function initDocs() {
           'hover-background-colour': { label: 'Riverbed Brown', value: 'rgba(85, 33, 5, 0.1)' },
           'active-background-colour': { label: 'Riverbed Brown', value: 'rgba(85, 33, 5, 0.2)' },
           focus: { label: 'Firewood Brown', value: '#9E5332' },
+          'section-text': { label: 'Text Light', value: '#FFFFFF' },
         },
         'Bush Honey Yellow': {
           val: '#895E00',
@@ -289,6 +302,7 @@ function initDocs() {
           'hover-background-colour': { label: 'Bush Honey Yellow', value: 'rgba(105, 72, 0, 0.1)' },
           'active-background-colour': { label: 'Bush Honey Yellow', value: 'rgba(105, 72, 0, 0.2)' },
           focus: { label: 'Saltwater Blue', value: '#0D6791' },
+          'section-text': { label: 'Text Light', value: '#FFFFFF' },
         },
         'Bushland Green': {
           val: '#215834',
@@ -302,6 +316,7 @@ function initDocs() {
           'hover-background-colour': { label: 'Bushland Green', value: 'rgba(33, 88, 52, 0.1)' },
           'active-background-colour': { label: 'Bushland Green', value: 'rgba(33, 88, 52, 0.2)' },
           focus: { label: 'Marshland Lime', value: '#78A146' },
+          'section-text': { label: 'Text Light', value: '#FFFFFF' },
         },
         'Billabong Blue': {
           val: '#162953',
@@ -315,6 +330,7 @@ function initDocs() {
           'hover-background-colour': { label: 'Billabong Blue', value: 'rgba(0, 64, 94, 0.1)' },
           'active-background-colour': { label: 'Billabong Blue', value: 'rgba(0, 64, 94, 0.2)' },
           focus: { label: 'Saltwater Blue', value: '#0D6791' },
+          'section-text': { label: 'Text Light', value: '#FFFFFF' },
         },
         'Bush Plum': {
           val: '#472642',
@@ -328,6 +344,7 @@ function initDocs() {
           'hover-background-colour': { label: 'Bush Plum', value: 'rgba(71, 38, 66, 0.1)' },
           'active-background-colour': { label: 'Bush Plum', value: 'rgba(71, 38, 66, 0.2)' },
           focus: { label: 'Orange Ochre', value: '#EE6314' },
+          'section-text': { label: 'Text Light', value: '#FFFFFF' },
         },
         'Charcoal Grey': {
           val: '#2D2D2D',
@@ -341,6 +358,7 @@ function initDocs() {
           'hover-background-colour': { label: 'Charcoal Grey', value: 'rgba(39, 39, 39, 0.1)' },
           'active-background-colour': { label: 'Charcoal Grey', value: 'rgba(39, 39, 39, 0.2)' },
           focus: { label: 'Sandstone Yellow', value: '#FEA927' },
+          'section-text': { label: 'Text Light', value: '#FFFFFF' },
         },
       },
     },
