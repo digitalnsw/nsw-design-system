@@ -187,7 +187,7 @@ function initDocs() {
           val: '#523719',
           'brand-dark': { label: 'Brown 01', value: '#523719' },
           'brand-light': { label: 'Brown 04', value: '#EDE3D7' },
-          'brand-supplementary': { label: 'Brown 02', value: '#8055F1' },
+          'brand-supplementary': { label: 'Purple 02', value: '#8055F1' },
           'brand-accent': { label: 'Teal 02', value: '#2E808E' },
           'brand-accent-light': { label: 'Teal 04', value: '#D1EEEA' },
           'link-colour': { label: 'Brown 01', value: '#523719' },
