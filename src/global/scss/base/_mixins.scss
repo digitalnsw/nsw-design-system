@@ -299,7 +299,7 @@
 
 // Utility generator
 // Used to generate utilities & print utilities
-/* stylelint-disable string-quotes, number-leading-zero */
+/* stylelint-disable string-quotes, number-leading-zero, declaration-no-important */
 @mixin generate-utility($utility, $infix: "", $is-rfs-media-query: false) {
   $values: map.get($utility, values);
 
@@ -395,7 +395,7 @@
                 --#{settings.$prefix}#{$local-var}: #{$variable};
               }
             }
-            #{$property}: $value;
+            #{$property}: $value !important;
           }
         }
 
@@ -407,7 +407,7 @@
                   --#{settings.$prefix}#{$local-var}: #{$variable};
                 }
               }
-              #{$property}: $value;
+              #{$property}: $value !important;
             }
           }
         }
