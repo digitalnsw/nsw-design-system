@@ -100,9 +100,10 @@ Alternatively, you can import fonts and icons directly in your CSS:
 Certain NSW Design System components require JavaScript to enable advanced functionality. To ensure your page is ready for JavaScript execution, include the following script tags at the end of your HTML document:
 
 ```
-<script src="path/to/main.js"></script>
-<script>window.NSW.initSite()</script>
-</body>
+    <!-- Page content -->
+    <script src="path/to/main.js"></script>
+    <script>window.NSW.initSite()</script>
+  </body>
 </html>
 ```
 
