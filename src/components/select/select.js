@@ -150,19 +150,14 @@ class Select {
   }
 
   toggleAllButton() {
-    const status = !this.allButton.classList.contains(this.showClass)
-    this.allButton.classList.toggle(this.showClass, status)
-
     const [optionsArray, totalOptions, selectedOptions] = this.getOptions()
+    const shouldSelectAll = selectedOptions !== totalOptions
 
     optionsArray.forEach((option) => {
-      option.setAttribute('aria-selected', 'false')
-      this.selectOption(option)
+      this.selectOption(option, shouldSelectAll)
     })
 
-    if (selectedOptions === totalOptions) {
-      optionsArray.forEach((option) => this.selectOption(option))
-    }
+    this.updateSelectionSummary()
   }
 
   initSelection() {
@@ -171,33 +166,30 @@ class Select {
       this.toggleAllButton()
     })
     this.dropdown.addEventListener('change', (event) => {
+      if (!event.target.classList.contains(`js-${this.checkboxClass}`)) return
       const option = event.target.closest(`.js-${this.optionClass}`)
       if (!option) return
-      this.selectOption(option)
-    })
-    this.dropdown.addEventListener('click', (event) => {
-      const option = event.target.closest(`.js-${this.optionClass}`)
-      if (!option || !event.target.classList.contains(`js-${this.optionClass}`)) return
-      this.selectOption(option)
+      this.selectOption(option, event.target.checked)
+      this.updateSelectionSummary()
     })
   }
 
-  selectOption(option) {
+  selectOption(option, isSelected) {
     const input = option.querySelector(`.js-${this.checkboxClass}`)
 
-    if (option.hasAttribute('aria-selected') && option.getAttribute('aria-selected') === 'true') {
+    if (!isSelected) {
       input.checked = false
       input.removeAttribute('checked')
-      option.setAttribute('aria-selected', 'false')
       this.updateNativeSelect(option.getAttribute('data-index'), false)
     } else {
       input.checked = true
       input.value = true
       input.setAttribute('checked', '')
-      option.setAttribute('aria-selected', 'true')
       this.updateNativeSelect(option.getAttribute('data-index'), true)
     }
+  }
 
+  updateSelectionSummary() {
     const triggerLabel = this.getSelectedOptionText()
 
     const [selectedLabel] = triggerLabel
@@ -234,10 +226,12 @@ class Select {
   clearAllSelections() {
     const [optionsArray] = this.getOptions()
     optionsArray.forEach((option) => {
-      if (option.getAttribute('aria-selected') === 'true') {
-        this.selectOption(option) // Toggles off
+      const input = option.querySelector(`.js-${this.checkboxClass}`)
+      if (input && input.checked) {
+        this.selectOption(option, false)
       }
     })
+    this.updateSelectionSummary()
   }
 
   updateNativeSelect(index, bool) {
@@ -302,10 +296,10 @@ class Select {
       for (let i = 0; i < this.optGroups.length; i += 1) {
         const optGroupList = this.optGroups[i].getElementsByTagName('option')
         const optGroupLabel = `<li><span class="${this.prefix}${this.itemClass} ${this.prefix}${this.itemClass}--optgroup">${this.optGroups[i].getAttribute('label')}</span></li>`
-        list = `${list}<ul class="${this.prefix}${this.listClass}" role="listbox" aria-multiselectable="true">${optGroupLabel}${this.getOptionsList(optGroupList)}</ul>`
+        list = `${list}<ul class="${this.prefix}${this.listClass}">${optGroupLabel}${this.getOptionsList(optGroupList)}</ul>`
       }
     } else {
-      list = `${list}<ul class="${this.prefix}${this.listClass} js-${this.listClass}" role="listbox" aria-multiselectable="true">${this.getOptionsList(this.options)}</ul>`
+      list = `${list}<ul class="${this.prefix}${this.listClass} js-${this.listClass}">${this.getOptionsList(this.options)}</ul>`
     }
     return list
   }
@@ -324,32 +318,34 @@ class Select {
   getOptionsList(options) {
     let list = ''
     for (let i = 0; i < options.length; i += 1) {
-      const selected = options[i].hasAttribute('selected') ? ' aria-selected="true"' : ' aria-selected="false"'
       const disabled = options[i].hasAttribute('disabled') ? 'disabled' : ''
       const checked = options[i].hasAttribute('selected') ? 'checked' : ''
       const uniqueName = this.constructor.createSafeCss(`${this.selectId}-${options[i].value}-${this.optionIndex.toString()}`)
-      const ariaHidden = options[i].hasAttribute('hidden') ? 'aria-hidden="true"' : ''
-      list = `${list}<li class="js-${this.optionClass}" role="option" data-value="${options[i].value}" ${selected} ${ariaHidden} data-label="${options[i].text}" data-index="${this.optionIndex}"><input class="${this.prefix}${this.checkboxInputClass} js-${this.checkboxClass}" type="checkbox" id="${uniqueName}" ${checked} ${disabled}><label class="${this.prefix}${this.checkboxLabelClass} ${this.prefix}${this.itemClass} ${this.prefix}${this.itemClass}--option" for="${uniqueName}"><span>${options[i].text}</span></label></li>`
+      const hidden = options[i].hasAttribute('hidden') ? 'hidden' : ''
+      list = `${list}<li class="js-${this.optionClass}" data-value="${options[i].value}" ${hidden} data-label="${options[i].text}" data-index="${this.optionIndex}"><input class="${this.prefix}${this.checkboxInputClass} js-${this.checkboxClass}" type="checkbox" id="${uniqueName}" ${checked} ${disabled}><label class="${this.prefix}${this.checkboxLabelClass} ${this.prefix}${this.itemClass} ${this.prefix}${this.itemClass}--option" for="${uniqueName}"><span>${options[i].text}</span></label></li>`
       this.optionIndex += 1
     }
     return list
   }
 
   getSelectedOption() {
-    const option = this.dropdown.querySelector('[aria-selected="true"]')
-    if (option) return option.querySelector(`.js-${this.checkboxClass}`)
+    const option = this.dropdown.querySelector(`.js-${this.checkboxClass}:checked`)
+    if (option) return option
     return this.allButton
   }
 
   getOptions() {
     const options = Array.from(this.dropdown.querySelectorAll(`.js-${this.optionClass}`))
     const total = options.length
-    const selected = options.filter((option) => option.getAttribute('aria-selected') === 'true').length
+    const selected = options.filter((option) => {
+      const input = option.querySelector(`.js-${this.checkboxClass}`)
+      return input && input.checked
+    }).length
     return [options, total, selected]
   }
 
   moveFocusToSelectTrigger() {
-    if (!document.activeElement.closest(`.js-${this.class}`)) return
+    if (!this.element.contains(document.activeElement)) return
     this.trigger.focus()
   }
 
