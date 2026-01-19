@@ -7,7 +7,7 @@
   const searchValues = [{
     label: 'Accordion',
     template: 'result',
-    keywords: 'show, hide, Collapse, Expand, expandable, vertical, panels',
+    keywords: 'show, hide, Collapse, Expand, expandable, vertical, panels, details, summary',
     url: '/components/accordion/index.html'
   }, {
     label: 'Breadcrumbs',
@@ -134,6 +134,11 @@
     template: 'result',
     keywords: 'step',
     url: '/components/progress-indicator/index.html'
+  }, {
+    label: 'Quick exit',
+    template: 'result',
+    keywords: 'safety, privacy, discreet, exit now, quick exit, safe destination, safe url, emergency exit, panic button, escape key, esc, double esc, keyboard, sticky, global sticky container',
+    url: '/components/quick-exit/index.html'
   }, {
     label: 'Results bar',
     template: 'result',
