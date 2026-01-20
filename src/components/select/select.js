@@ -123,7 +123,6 @@ class Select {
       }
 
       this.dropdown.addEventListener('transitionend', cb)
-      this.constructor.trapFocus(this.dropdown)
       this.placeDropdown()
     }
   }
@@ -153,10 +152,12 @@ class Select {
   }
 
   toggleAllButton() {
-    const [optionsArray, totalOptions, selectedOptions] = this.getOptions()
-    const shouldSelectAll = selectedOptions !== totalOptions
+    const [optionsArray, totalEnabled, selectedEnabled] = this.getOptions()
+    const shouldSelectAll = selectedEnabled !== totalEnabled
 
     optionsArray.forEach((option) => {
+      const input = option.querySelector(`.js-${this.checkboxClass}`)
+      if (!input || input.disabled) return
       this.selectOption(option, shouldSelectAll)
     })
 
@@ -206,14 +207,14 @@ class Select {
   }
 
   updateAllButton() {
-    const [, totalOptions, selectedOptions] = this.getOptions()
+    const [, totalEnabled, selectedEnabled] = this.getOptions()
 
-    if (selectedOptions === totalOptions) {
+    if (totalEnabled > 0 && selectedEnabled === totalEnabled) {
       this.allButton.classList.add(this.showClass)
     } else {
       this.allButton.classList.remove(this.showClass)
     }
-    this.updateAllButtonAria(selectedOptions === totalOptions)
+    this.updateAllButtonAria(totalEnabled > 0 && selectedEnabled === totalEnabled)
   }
 
   clearAllButton() {
@@ -345,11 +346,12 @@ class Select {
   getOptionsList(options) {
     let list = ''
     for (let i = 0; i < options.length; i += 1) {
-      const disabled = options[i].hasAttribute('disabled') ? 'disabled' : ''
+      const isHidden = options[i].hasAttribute('hidden')
+      const disabled = (options[i].hasAttribute('disabled') || isHidden) ? 'disabled' : ''
       const checked = options[i].hasAttribute('selected') ? 'checked' : ''
       const uniqueName = this.constructor.createSafeCss(`${this.selectId}-${options[i].value}-${this.optionIndex.toString()}`)
-      const hidden = options[i].hasAttribute('hidden') ? 'hidden' : ''
-      list = `${list}<li class="js-${this.optionClass}" data-value="${options[i].value}" ${hidden} data-label="${options[i].text}" data-index="${this.optionIndex}"><input class="${this.prefix}${this.checkboxInputClass} js-${this.checkboxClass}" type="checkbox" id="${uniqueName}" ${checked} ${disabled}><label class="${this.prefix}${this.checkboxLabelClass} ${this.prefix}${this.itemClass} ${this.prefix}${this.itemClass}--option" for="${uniqueName}"><span>${options[i].text}</span></label></li>`
+      const ariaHidden = isHidden ? 'aria-hidden="true"' : ''
+      list = `${list}<li class="js-${this.optionClass}" data-value="${options[i].value}" ${ariaHidden} data-label="${options[i].text}" data-index="${this.optionIndex}"><input class="${this.prefix}${this.checkboxInputClass} js-${this.checkboxClass}" type="checkbox" id="${uniqueName}" ${checked} ${disabled}><label class="${this.prefix}${this.checkboxLabelClass} ${this.prefix}${this.itemClass} ${this.prefix}${this.itemClass}--option" for="${uniqueName}"><span>${options[i].text}</span></label></li>`
       this.optionIndex += 1
     }
     return list
@@ -363,45 +365,20 @@ class Select {
 
   getOptions() {
     const options = Array.from(this.dropdown.querySelectorAll(`.js-${this.optionClass}`))
-    const total = options.length
-    const selected = options.filter((option) => {
+    const enabled = options.filter((option) => {
+      const input = option.querySelector(`.js-${this.checkboxClass}`)
+      return input && !input.disabled
+    })
+    const selectedEnabled = enabled.filter((option) => {
       const input = option.querySelector(`.js-${this.checkboxClass}`)
       return input && input.checked
     }).length
-    return [options, total, selected]
+    return [options, enabled.length, selectedEnabled]
   }
 
   moveFocusToSelectTrigger() {
     if (!this.element.contains(document.activeElement)) return
     this.trigger.focus()
-  }
-
-  static trapFocus(element) {
-    const focusableElements = 'a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])'
-
-    const firstFocusableElement = element.querySelectorAll(focusableElements)[0]
-    const focusableContent = element.querySelectorAll(focusableElements)
-    const lastFocusableElement = focusableContent[focusableContent.length - 1]
-
-    document.addEventListener('keydown', (event) => {
-      const isTabPressed = event.key === 'Tab' || event.code === 9
-
-      if (!isTabPressed) {
-        return
-      }
-
-      if (event.shiftKey) {
-        if (document.activeElement === firstFocusableElement) {
-          lastFocusableElement.focus()
-          event.preventDefault()
-        }
-      } else if (document.activeElement === lastFocusableElement) {
-        firstFocusableElement.focus()
-        event.preventDefault()
-      }
-    })
-
-    firstFocusableElement.focus()
   }
 
   checkCustomSelectClick(target) {
