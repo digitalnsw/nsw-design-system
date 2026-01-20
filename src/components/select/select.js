@@ -11,6 +11,7 @@ class Select {
     this.customOptions = false
     this.list = false
     this.allButton = false
+    this.liveRegion = false
     this.arrowIcon = this.element.getElementsByTagName('svg')
     this.label = document.querySelector(`[for="${this.selectId}"]`)
     this.selectedOptCounter = 0
@@ -39,6 +40,7 @@ class Select {
     this.selectClass = 'form__select'
     this.checkboxLabelClass = 'form__checkbox-label'
     this.checkboxInputClass = 'form__checkbox-input'
+    this.liveRegionClass = `${this.class}__status`
   }
 
   init() {
@@ -51,6 +53,7 @@ class Select {
     this.list = this.dropdown.querySelector(`.js-${this.listClass}`)
     this.list.insertAdjacentHTML('afterbegin', this.initAllButton())
     this.allButton = this.list.querySelector(`.js-${this.allButtonClass}`)
+    this.initLiveRegion()
 
     this.select.classList.add(this.hideClass)
     if (this.arrowIcon.length > 0) this.arrowIcon[0].style.display = 'none'
@@ -157,6 +160,8 @@ class Select {
       this.selectOption(option, shouldSelectAll)
     })
 
+    this.updateAllButtonAria(shouldSelectAll)
+    this.updateLiveRegion(shouldSelectAll ? 'All options selected.' : 'All options deselected.')
     this.updateSelectionSummary()
   }
 
@@ -208,6 +213,7 @@ class Select {
     } else {
       this.allButton.classList.remove(this.showClass)
     }
+    this.updateAllButtonAria(selectedOptions === totalOptions)
   }
 
   clearAllButton() {
@@ -231,6 +237,8 @@ class Select {
         this.selectOption(option, false)
       }
     })
+    this.updateAllButtonAria(false)
+    this.updateLiveRegion('All selections cleared.')
     this.updateSelectionSummary()
   }
 
@@ -305,7 +313,26 @@ class Select {
   }
 
   initAllButton() {
-    return `<button class="${this.prefix}${this.allButtonClass} js-${this.allButtonClass}"><span>All</span></button>`
+    return `<button class="${this.prefix}${this.allButtonClass} js-${this.allButtonClass}" aria-pressed="false"><span>All</span></button>`
+  }
+
+  initLiveRegion() {
+    const liveRegion = document.createElement('span')
+    liveRegion.className = `${this.srClass} ${this.prefix}${this.liveRegionClass}`
+    liveRegion.setAttribute('aria-live', 'polite')
+    liveRegion.setAttribute('aria-atomic', 'true')
+    this.dropdown.appendChild(liveRegion)
+    this.liveRegion = liveRegion
+  }
+
+  updateLiveRegion(message) {
+    if (!this.liveRegion) return
+    this.liveRegion.textContent = message
+  }
+
+  updateAllButtonAria(isPressed) {
+    if (!this.allButton) return
+    this.allButton.setAttribute('aria-pressed', isPressed ? 'true' : 'false')
   }
 
   getSelectLabelSR() {
