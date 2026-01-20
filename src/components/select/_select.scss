@@ -181,6 +181,12 @@
     opacity: 0;
     transition: visibility 0s 0.2s, opacity 0.2s;
 
+    .nsw-section--invert & {
+      .nsw-form__checkbox-input:focus + .nsw-form__checkbox-label::before {
+        @include nsw.nsw-focus;
+      }
+    }
+
     &--right {
       right: 0;
       left: auto;
