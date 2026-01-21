@@ -166,9 +166,10 @@ class Select {
       this.selectOption(option, shouldSelectAll)
     })
 
+    const optionLabel = totalEnabled === 1 ? 'option' : 'options'
     const message = shouldSelectAll
-      ? `All ${totalEnabled} options selected.`
-      : `All ${totalEnabled} options deselected.`
+      ? `All ${totalEnabled} ${optionLabel} selected.`
+      : `All ${totalEnabled} ${optionLabel} deselected.`
     this.updateLiveRegion(message)
     this.updateSelectionSummary()
   }
@@ -244,7 +245,6 @@ class Select {
         this.selectOption(option, false)
       }
     })
-    this.updateAllButtonAria(false)
     this.updateLiveRegion('All selections cleared.')
     this.updateSelectionSummary()
   }
@@ -371,15 +371,17 @@ class Select {
 
   getOptions() {
     const options = Array.from(this.dropdown.querySelectorAll(`.js-${this.optionClass}`))
-    const enabled = options.filter((option) => {
-      const input = option.querySelector(`.js-${this.checkboxClass}`)
-      return input && !input.disabled
-    })
-    const selectedEnabled = enabled.filter((option) => {
-      const input = option.querySelector(`.js-${this.checkboxClass}`)
-      return input && input.checked
-    }).length
-    return [options, enabled.length, selectedEnabled]
+    const totals = options.reduce(
+      (acc, option) => {
+        const input = option.querySelector(`.js-${this.checkboxClass}`)
+        if (!input || input.disabled) return acc
+        acc.enabled += 1
+        if (input.checked) acc.selectedEnabled += 1
+        return acc
+      },
+      { enabled: 0, selectedEnabled: 0 }
+    )
+    return [options, totals.enabled, totals.selectedEnabled]
   }
 
   moveFocusToSelectTrigger() {

@@ -212,7 +212,10 @@
     border: 0;
     background: transparent;
     appearance: none;
-    
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+
     @include nsw.font-size('sm');
   
     &:focus {
@@ -249,6 +252,10 @@
   
     &:focus::before {
       @include nsw.nsw-focus;
+    }
+
+    &:hover::before {
+      background-image: linear-gradient(var(--nsw-hover), var(--nsw-hover));
     }
   
     &.active {
