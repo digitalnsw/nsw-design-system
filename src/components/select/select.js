@@ -402,6 +402,10 @@ class Select {
         return
       }
 
+      if (!this.dropdown.contains(document.activeElement)) {
+        return
+      }
+
       const focusableContent = this.dropdown.querySelectorAll(focusableElements)
       if (!focusableContent.length) return
 
@@ -419,12 +423,12 @@ class Select {
       }
     }
 
-    this.dropdown.addEventListener('keydown', this.trapFocusHandler)
+    document.addEventListener('keydown', this.trapFocusHandler)
   }
 
   removeTrapFocus() {
     if (!this.trapFocusHandler) return
-    this.dropdown.removeEventListener('keydown', this.trapFocusHandler)
+    document.removeEventListener('keydown', this.trapFocusHandler)
     this.trapFocusHandler = null
   }
 
