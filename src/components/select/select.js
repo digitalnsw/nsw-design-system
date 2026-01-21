@@ -165,8 +165,11 @@ class Select {
       this.selectOption(option, shouldSelectAll)
     })
 
+    const message = shouldSelectAll
+      ? `All ${totalEnabled} options selected.`
+      : `All ${totalEnabled} options deselected.`
     this.updateAllButtonAria(shouldSelectAll)
-    this.updateLiveRegion(shouldSelectAll ? 'All options selected.' : 'All options deselected.')
+    this.updateLiveRegion(message)
     this.updateSelectionSummary()
   }
 
@@ -193,7 +196,6 @@ class Select {
       this.updateNativeSelect(option.getAttribute('data-index'), false)
     } else {
       input.checked = true
-      input.value = true
       input.setAttribute('checked', '')
       this.updateNativeSelect(option.getAttribute('data-index'), true)
     }
