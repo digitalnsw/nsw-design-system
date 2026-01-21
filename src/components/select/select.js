@@ -12,6 +12,7 @@ class Select {
     this.list = false
     this.allButton = false
     this.liveRegion = false
+    this.trapFocusHandler = null
     this.arrowIcon = this.element.getElementsByTagName('svg')
     this.label = document.querySelector(`[for="${this.selectId}"]`)
     this.selectedOptCounter = 0
@@ -123,7 +124,10 @@ class Select {
       }
 
       this.dropdown.addEventListener('transitionend', cb)
+      this.addTrapFocus()
       this.placeDropdown()
+    } else {
+      this.removeTrapFocus()
     }
   }
 
@@ -379,6 +383,43 @@ class Select {
   moveFocusToSelectTrigger() {
     if (!this.element.contains(document.activeElement)) return
     this.trigger.focus()
+  }
+
+  addTrapFocus() {
+    if (this.trapFocusHandler) return
+    const focusableElements = 'a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])'
+
+    this.trapFocusHandler = (event) => {
+      const isTabPressed = event.key === 'Tab' || event.code === 9
+
+      if (!isTabPressed) {
+        return
+      }
+
+      const focusableContent = this.dropdown.querySelectorAll(focusableElements)
+      if (!focusableContent.length) return
+
+      const firstFocusableElement = focusableContent[0]
+      const lastFocusableElement = focusableContent[focusableContent.length - 1]
+
+      if (event.shiftKey) {
+        if (document.activeElement === firstFocusableElement) {
+          lastFocusableElement.focus()
+          event.preventDefault()
+        }
+      } else if (document.activeElement === lastFocusableElement) {
+        firstFocusableElement.focus()
+        event.preventDefault()
+      }
+    }
+
+    this.dropdown.addEventListener('keydown', this.trapFocusHandler)
+  }
+
+  removeTrapFocus() {
+    if (!this.trapFocusHandler) return
+    this.dropdown.removeEventListener('keydown', this.trapFocusHandler)
+    this.trapFocusHandler = null
   }
 
   checkCustomSelectClick(target) {
