@@ -162,13 +162,13 @@ class Select {
     optionsArray.forEach((option) => {
       const input = option.querySelector(`.js-${this.checkboxClass}`)
       if (!input || input.disabled) return
+      if (input.checked === shouldSelectAll) return
       this.selectOption(option, shouldSelectAll)
     })
 
     const message = shouldSelectAll
       ? `All ${totalEnabled} options selected.`
       : `All ${totalEnabled} options deselected.`
-    this.updateAllButtonAria(shouldSelectAll)
     this.updateLiveRegion(message)
     this.updateSelectionSummary()
   }
@@ -392,7 +392,7 @@ class Select {
     const focusableElements = 'a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])'
 
     this.trapFocusHandler = (event) => {
-      const isTabPressed = event.key === 'Tab' || event.code === 9
+      const isTabPressed = event.key === 'Tab'
 
       if (!isTabPressed) {
         return
