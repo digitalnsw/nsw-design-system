@@ -379,7 +379,7 @@ class Select {
         if (input.checked) acc.selectedEnabled += 1
         return acc
       },
-      { enabled: 0, selectedEnabled: 0 }
+      { enabled: 0, selectedEnabled: 0 },
     )
     return [options, totals.enabled, totals.selectedEnabled]
   }
