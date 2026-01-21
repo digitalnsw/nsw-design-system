@@ -215,13 +215,14 @@ class Select {
 
   updateAllButton() {
     const [, totalEnabled, selectedEnabled] = this.getOptions()
+    const allEnabledSelected = totalEnabled > 0 && selectedEnabled === totalEnabled
 
-    if (totalEnabled > 0 && selectedEnabled === totalEnabled) {
+    if (allEnabledSelected) {
       this.allButton.classList.add(this.showClass)
     } else {
       this.allButton.classList.remove(this.showClass)
     }
-    this.updateAllButtonAria(totalEnabled > 0 && selectedEnabled === totalEnabled)
+    this.updateAllButtonAria(allEnabledSelected)
   }
 
   clearAllButton() {
@@ -326,6 +327,7 @@ class Select {
   initLiveRegion() {
     const liveRegion = document.createElement('span')
     liveRegion.className = `${this.srClass} ${this.prefix}${this.liveRegionClass}`
+    liveRegion.setAttribute('role', 'status')
     liveRegion.setAttribute('aria-live', 'polite')
     liveRegion.setAttribute('aria-atomic', 'true')
     this.dropdown.appendChild(liveRegion)
