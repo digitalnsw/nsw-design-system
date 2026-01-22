@@ -8,7 +8,7 @@ meta-description: Utilities to manage the layout, alignment and sizing of flex i
 meta-index: true
 ---
 
-<h3>Enable flex behaviours</h3>
+<h3 id="enable-flex-behaviours">Enable flex behaviours</h3>
 
 <p>Apply display utilities to create a flexbox container and transform direct children elements into flex items. Flex containers and items are able to be modified further with additional flex properties.</p>
 
@@ -20,7 +20,7 @@ meta-index: true
 <div class="nsw-display-inline-flex nsw-p-xs nsw-bg--grey-04">I'm an inline flexbox container!</div>
 {{/_docs-example}}
 
-<h3>Direction</h3>
+<h3 id="direction">Direction</h3>
 
 <p>Set the direction of flex items in a flex container with direction utilities.</p>
 
@@ -70,7 +70,7 @@ meta-index: true
 </div>
 {{/_docs-code}}
 
-<h3>Justify content</h3>
+<h3 id="justify-content">Justify content</h3>
 
 <p>Use justify-content utilities on flexbox containers to change the alignment of flex items on the main axis. Choose from start (browser default), end, center, between, around, or evenly.
 
@@ -118,7 +118,7 @@ meta-index: true
 <div class="nsw-display-flex nsw-justify-content-evenly">...</div>
 {{/_docs-code}}
 
-<h3>Align items</h3>
+<h3 id="align-items">Align items</h3>
 
 <p>Use align-items utilities on flexbox containers to change the alignment of flex items on the cross axis. Choose from start, end, center, baseline, or stretch (browser default).</p>
 
@@ -158,7 +158,7 @@ meta-index: true
 <div class="nsw-display-flex nsw-align-items-stretch">...</div>
 {{/_docs-code}}
 
-<h3>Align self</h3>
+<h3 id="align-self">Align self</h3>
 
 <p>Use align-self utilities on flexbox items to individually change their alignment on the cross axis. Choose from the same options as align-items: start, end, center, baseline, or stretch (browser default).</p>
 
@@ -198,7 +198,7 @@ meta-index: true
 <div class="nsw-align-self-stretch">Aligned flex item</div>
 {{/_docs-code}}
 
-<h3>Fill</h3>
+<h3 id="fill">Fill</h3>
 
 {{#>_docs-example showcode=true separated=true}} 
 <div class="nsw-display-flex">
@@ -216,7 +216,7 @@ meta-index: true
 </div>
 {{/_docs-code}}
 
-<h3>Grow and shrink</h3>
+<h3 id="grow-and-shrink">Grow and shrink</h3>
 
 {{#>_docs-example showcode=true separated=true}} 
 <div class="nsw-display-flex">
@@ -243,7 +243,7 @@ meta-index: true
 </div>
 {{/_docs-code}}
 
-<h3>Wrap</h3>
+<h3 id="wrap">Wrap</h3>
 
 {{#>_docs-example showcode=true separated=true}} 
 
@@ -299,25 +299,19 @@ meta-index: true
 <div class="nsw-display-flex nsw-flex-wrap-reverse">...</div>
 {{/_docs-code}}
 
-<h3>Order</h3>
+<h3 id="order">Order</h3>
 
-{{#>_docs-example showcode=true separated=true}} 
-<div class="nsw-display-flex nsw-flex-nowrap">
-  <div class="nsw-order-3 nsw-p-xs nsw-bg--brand-light nsw-border nsw-border--grey-01">First flex item</div>
-  <div class="nsw-order-2 nsw-p-xs nsw-bg--brand-light nsw-border nsw-border--grey-01">Second flex item</div>
-  <div class="nsw-order-1 nsw-p-xs nsw-bg--brand-light nsw-border nsw-border--grey-01">Third flex item</div>
+<div class="nsw-in-page-alert nsw-in-page-alert--warning">
+  <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">error</span>
+  <div class="nsw-in-page-alert__content">
+    <p class="nsw-h5">Not supported</p>
+    <p>Changing visual order using CSS <code>order</code> is not supported in the NSW Design System. Reordering content visually without changing the HTML can create incorrect reading and focus order for keyboard and screen reader users.</p>
+    <p>If content needs to appear earlier or later, update the markup so the DOM order matches the intended visual order.</p>
+    <p>This supports WCAG 2.2 SC 1.3.2 (Meaningful Sequence) and 2.4.3 (Focus Order).</p>
+  </div>
 </div>
-{{/_docs-example}}
 
-{{#>_docs-code open=true separated=true}}
-<div class="nsw-display-flex nsw-flex-nowrap">
-  <div class="nsw-order-3">First flex item</div>
-  <div class="nsw-order-2">Second flex item</div>
-  <div class="nsw-order-1">Third flex item</div>
-</div>
-{{/_docs-code}}
-
-<h3>Align content</h3>
+<h3 id="align-content">Align content</h3>
 
 {{#>_docs-example showcode=true separated=true}}
 
