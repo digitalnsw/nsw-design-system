@@ -11,6 +11,8 @@ class Select {
     this.customOptions = false
     this.list = false
     this.allButton = false
+    this.liveRegion = false
+    this.trapFocusHandler = null
     this.arrowIcon = this.element.getElementsByTagName('svg')
     this.label = document.querySelector(`[for="${this.selectId}"]`)
     this.selectedOptCounter = 0
@@ -39,6 +41,7 @@ class Select {
     this.selectClass = 'form__select'
     this.checkboxLabelClass = 'form__checkbox-label'
     this.checkboxInputClass = 'form__checkbox-input'
+    this.liveRegionClass = `${this.class}__status`
   }
 
   init() {
@@ -51,6 +54,7 @@ class Select {
     this.list = this.dropdown.querySelector(`.js-${this.listClass}`)
     this.list.insertAdjacentHTML('afterbegin', this.initAllButton())
     this.allButton = this.list.querySelector(`.js-${this.allButtonClass}`)
+    this.initLiveRegion()
 
     this.select.classList.add(this.hideClass)
     if (this.arrowIcon.length > 0) this.arrowIcon[0].style.display = 'none'
@@ -120,8 +124,10 @@ class Select {
       }
 
       this.dropdown.addEventListener('transitionend', cb)
-      this.constructor.trapFocus(this.dropdown)
+      this.addTrapFocus()
       this.placeDropdown()
+    } else {
+      this.removeTrapFocus()
     }
   }
 
@@ -150,19 +156,22 @@ class Select {
   }
 
   toggleAllButton() {
-    const status = !this.allButton.classList.contains(this.showClass)
-    this.allButton.classList.toggle(this.showClass, status)
-
-    const [optionsArray, totalOptions, selectedOptions] = this.getOptions()
+    const [optionsArray, totalEnabled, selectedEnabled] = this.getOptions()
+    const shouldSelectAll = selectedEnabled !== totalEnabled
 
     optionsArray.forEach((option) => {
-      option.setAttribute('aria-selected', 'false')
-      this.selectOption(option)
+      const input = option.querySelector(`.js-${this.checkboxClass}`)
+      if (!input || input.disabled) return
+      if (input.checked === shouldSelectAll) return
+      this.selectOption(option, shouldSelectAll)
     })
 
-    if (selectedOptions === totalOptions) {
-      optionsArray.forEach((option) => this.selectOption(option))
-    }
+    const optionLabel = totalEnabled === 1 ? 'option' : 'options'
+    const message = shouldSelectAll
+      ? `All ${totalEnabled} ${optionLabel} selected.`
+      : `All ${totalEnabled} ${optionLabel} deselected.`
+    this.updateLiveRegion(message)
+    this.updateSelectionSummary()
   }
 
   initSelection() {
@@ -171,33 +180,29 @@ class Select {
       this.toggleAllButton()
     })
     this.dropdown.addEventListener('change', (event) => {
+      if (!event.target.classList.contains(`js-${this.checkboxClass}`)) return
       const option = event.target.closest(`.js-${this.optionClass}`)
       if (!option) return
-      this.selectOption(option)
-    })
-    this.dropdown.addEventListener('click', (event) => {
-      const option = event.target.closest(`.js-${this.optionClass}`)
-      if (!option || !event.target.classList.contains(`js-${this.optionClass}`)) return
-      this.selectOption(option)
+      this.selectOption(option, event.target.checked)
+      this.updateSelectionSummary()
     })
   }
 
-  selectOption(option) {
+  selectOption(option, isSelected) {
     const input = option.querySelector(`.js-${this.checkboxClass}`)
 
-    if (option.hasAttribute('aria-selected') && option.getAttribute('aria-selected') === 'true') {
+    if (!isSelected) {
       input.checked = false
       input.removeAttribute('checked')
-      option.setAttribute('aria-selected', 'false')
       this.updateNativeSelect(option.getAttribute('data-index'), false)
     } else {
       input.checked = true
-      input.value = true
       input.setAttribute('checked', '')
-      option.setAttribute('aria-selected', 'true')
       this.updateNativeSelect(option.getAttribute('data-index'), true)
     }
+  }
 
+  updateSelectionSummary() {
     const triggerLabel = this.getSelectedOptionText()
 
     const [selectedLabel] = triggerLabel
@@ -209,13 +214,15 @@ class Select {
   }
 
   updateAllButton() {
-    const [, totalOptions, selectedOptions] = this.getOptions()
+    const [, totalEnabled, selectedEnabled] = this.getOptions()
+    const allEnabledSelected = totalEnabled > 0 && selectedEnabled === totalEnabled
 
-    if (selectedOptions === totalOptions) {
+    if (allEnabledSelected) {
       this.allButton.classList.add(this.showClass)
     } else {
       this.allButton.classList.remove(this.showClass)
     }
+    this.updateAllButtonAria(allEnabledSelected)
   }
 
   clearAllButton() {
@@ -223,10 +230,14 @@ class Select {
 
     const clearButton = document.createElement('button')
     clearButton.textContent = 'Clear all selections'
+    clearButton.type = 'button'
+    clearButton.setAttribute('aria-describedby', `${this.selectId}-description`)
     clearButton.className = `${this.prefix}link nsw-multi-select__clear-all-button`
+    clearButton.setAttribute('aria-describedby', `${this.selectId}-description`)
     clearButton.addEventListener('click', (e) => {
       e.preventDefault()
       this.clearAllSelections()
+      this.moveFocusToSelectTrigger()
     })
     this.dropdown.appendChild(clearButton)
   }
@@ -234,10 +245,13 @@ class Select {
   clearAllSelections() {
     const [optionsArray] = this.getOptions()
     optionsArray.forEach((option) => {
-      if (option.getAttribute('aria-selected') === 'true') {
-        this.selectOption(option) // Toggles off
+      const input = option.querySelector(`.js-${this.checkboxClass}`)
+      if (input && input.checked) {
+        this.selectOption(option, false)
       }
     })
+    this.updateLiveRegion('All selections cleared.')
+    this.updateSelectionSummary()
   }
 
   updateNativeSelect(index, bool) {
@@ -302,16 +316,36 @@ class Select {
       for (let i = 0; i < this.optGroups.length; i += 1) {
         const optGroupList = this.optGroups[i].getElementsByTagName('option')
         const optGroupLabel = `<li><span class="${this.prefix}${this.itemClass} ${this.prefix}${this.itemClass}--optgroup">${this.optGroups[i].getAttribute('label')}</span></li>`
-        list = `${list}<ul class="${this.prefix}${this.listClass}" role="listbox" aria-multiselectable="true">${optGroupLabel}${this.getOptionsList(optGroupList)}</ul>`
+        list = `${list}<ul class="${this.prefix}${this.listClass}">${optGroupLabel}${this.getOptionsList(optGroupList)}</ul>`
       }
     } else {
-      list = `${list}<ul class="${this.prefix}${this.listClass} js-${this.listClass}" role="listbox" aria-multiselectable="true">${this.getOptionsList(this.options)}</ul>`
+      list = `${list}<ul class="${this.prefix}${this.listClass} js-${this.listClass}">${this.getOptionsList(this.options)}</ul>`
     }
     return list
   }
 
   initAllButton() {
-    return `<button class="${this.prefix}${this.allButtonClass} js-${this.allButtonClass}"><span>All</span></button>`
+    return `<button class="${this.prefix}${this.allButtonClass} js-${this.allButtonClass}" aria-pressed="false"><span>All</span></button>`
+  }
+
+  initLiveRegion() {
+    const liveRegion = document.createElement('span')
+    liveRegion.className = `${this.srClass} ${this.prefix}${this.liveRegionClass}`
+    liveRegion.setAttribute('role', 'status')
+    liveRegion.setAttribute('aria-live', 'polite')
+    liveRegion.setAttribute('aria-atomic', 'true')
+    this.dropdown.appendChild(liveRegion)
+    this.liveRegion = liveRegion
+  }
+
+  updateLiveRegion(message) {
+    if (!this.liveRegion) return
+    this.liveRegion.textContent = message
+  }
+
+  updateAllButtonAria(isPressed) {
+    if (!this.allButton) return
+    this.allButton.setAttribute('aria-pressed', isPressed ? 'true' : 'false')
   }
 
   getSelectLabelSR() {
@@ -324,48 +358,63 @@ class Select {
   getOptionsList(options) {
     let list = ''
     for (let i = 0; i < options.length; i += 1) {
-      const selected = options[i].hasAttribute('selected') ? ' aria-selected="true"' : ' aria-selected="false"'
-      const disabled = options[i].hasAttribute('disabled') ? 'disabled' : ''
+      const isHidden = options[i].hasAttribute('hidden')
+      const disabled = (options[i].hasAttribute('disabled') || isHidden) ? 'disabled' : ''
       const checked = options[i].hasAttribute('selected') ? 'checked' : ''
       const uniqueName = this.constructor.createSafeCss(`${this.selectId}-${options[i].value}-${this.optionIndex.toString()}`)
-      const ariaHidden = options[i].hasAttribute('hidden') ? 'aria-hidden="true"' : ''
-      list = `${list}<li class="js-${this.optionClass}" role="option" data-value="${options[i].value}" ${selected} ${ariaHidden} data-label="${options[i].text}" data-index="${this.optionIndex}"><input class="${this.prefix}${this.checkboxInputClass} js-${this.checkboxClass}" type="checkbox" id="${uniqueName}" ${checked} ${disabled}><label class="${this.prefix}${this.checkboxLabelClass} ${this.prefix}${this.itemClass} ${this.prefix}${this.itemClass}--option" for="${uniqueName}"><span>${options[i].text}</span></label></li>`
+      const ariaHidden = isHidden ? 'aria-hidden="true"' : ''
+      list = `${list}<li class="js-${this.optionClass}" data-value="${options[i].value}" ${ariaHidden} data-label="${options[i].text}" data-index="${this.optionIndex}"><input class="${this.prefix}${this.checkboxInputClass} js-${this.checkboxClass}" type="checkbox" id="${uniqueName}" ${checked} ${disabled}><label class="${this.prefix}${this.checkboxLabelClass} ${this.prefix}${this.itemClass} ${this.prefix}${this.itemClass}--option" for="${uniqueName}"><span>${options[i].text}</span></label></li>`
       this.optionIndex += 1
     }
     return list
   }
 
   getSelectedOption() {
-    const option = this.dropdown.querySelector('[aria-selected="true"]')
-    if (option) return option.querySelector(`.js-${this.checkboxClass}`)
+    const option = this.dropdown.querySelector(`.js-${this.checkboxClass}:checked`)
+    if (option) return option
     return this.allButton
   }
 
   getOptions() {
     const options = Array.from(this.dropdown.querySelectorAll(`.js-${this.optionClass}`))
-    const total = options.length
-    const selected = options.filter((option) => option.getAttribute('aria-selected') === 'true').length
-    return [options, total, selected]
+    const totals = options.reduce(
+      (acc, option) => {
+        const input = option.querySelector(`.js-${this.checkboxClass}`)
+        if (!input || input.disabled) return acc
+        acc.enabled += 1
+        if (input.checked) acc.selectedEnabled += 1
+        return acc
+      },
+      { enabled: 0, selectedEnabled: 0 },
+    )
+    return [options, totals.enabled, totals.selectedEnabled]
   }
 
   moveFocusToSelectTrigger() {
-    if (!document.activeElement.closest(`.js-${this.class}`)) return
+    if (!this.element.contains(document.activeElement)) return
     this.trigger.focus()
   }
 
-  static trapFocus(element) {
+  addTrapFocus() {
+    if (this.trapFocusHandler) return
     const focusableElements = 'a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])'
 
-    const firstFocusableElement = element.querySelectorAll(focusableElements)[0]
-    const focusableContent = element.querySelectorAll(focusableElements)
-    const lastFocusableElement = focusableContent[focusableContent.length - 1]
-
-    document.addEventListener('keydown', (event) => {
-      const isTabPressed = event.key === 'Tab' || event.code === 9
+    this.trapFocusHandler = (event) => {
+      const isTabPressed = event.key === 'Tab'
 
       if (!isTabPressed) {
         return
       }
+
+      if (!this.dropdown.contains(document.activeElement)) {
+        return
+      }
+
+      const focusableContent = this.dropdown.querySelectorAll(focusableElements)
+      if (!focusableContent.length) return
+
+      const firstFocusableElement = focusableContent[0]
+      const lastFocusableElement = focusableContent[focusableContent.length - 1]
 
       if (event.shiftKey) {
         if (document.activeElement === firstFocusableElement) {
@@ -376,9 +425,15 @@ class Select {
         firstFocusableElement.focus()
         event.preventDefault()
       }
-    })
+    }
 
-    firstFocusableElement.focus()
+    document.addEventListener('keydown', this.trapFocusHandler)
+  }
+
+  removeTrapFocus() {
+    if (!this.trapFocusHandler) return
+    document.removeEventListener('keydown', this.trapFocusHandler)
+    this.trapFocusHandler = null
   }
 
   checkCustomSelectClick(target) {
