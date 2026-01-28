@@ -1,6 +1,5 @@
 export default Select;
 declare class Select {
-    static trapFocus(element: any): void;
     static createSafeCss(str: any): string;
     static moveFocusFn(element: any): void;
     constructor(element: any);
@@ -14,6 +13,8 @@ declare class Select {
     customOptions: boolean;
     list: boolean;
     allButton: boolean;
+    liveRegion: boolean;
+    trapFocusHandler: ((event: any) => void) | null;
     arrowIcon: any;
     label: Element | null;
     selectedOptCounter: number;
@@ -42,6 +43,7 @@ declare class Select {
     selectClass: string;
     checkboxLabelClass: string;
     checkboxInputClass: string;
+    liveRegionClass: string;
     init(): void;
     initCustomSelectEvents(): void;
     toggleCustomSelect(bool: any): void;
@@ -49,7 +51,8 @@ declare class Select {
     keyboardCustomSelect(direction: any, event: any): void;
     toggleAllButton(): void;
     initSelection(): void;
-    selectOption(option: any): void;
+    selectOption(option: any, isSelected: any): void;
+    updateSelectionSummary(): void;
     updateAllButton(): void;
     clearAllButton(): void;
     clearAllSelections(): void;
@@ -59,10 +62,15 @@ declare class Select {
     initButtonSelect(): string;
     initListSelect(): string;
     initAllButton(): string;
+    initLiveRegion(): void;
+    updateLiveRegion(message: any): void;
+    updateAllButtonAria(isPressed: any): void;
     getSelectLabelSR(): string;
     getOptionsList(options: any): string;
     getSelectedOption(): any;
-    getOptions(): (number | any[])[];
+    getOptions(): any[];
     moveFocusToSelectTrigger(): void;
+    addTrapFocus(): void;
+    removeTrapFocus(): void;
     checkCustomSelectClick(target: any): void;
 }
