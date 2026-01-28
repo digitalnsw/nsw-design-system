@@ -230,10 +230,14 @@ class Select {
 
     const clearButton = document.createElement('button')
     clearButton.textContent = 'Clear all selections'
+    clearButton.type = 'button'
+    clearButton.setAttribute('aria-describedby', `${this.selectId}-description`)
     clearButton.className = `${this.prefix}link nsw-multi-select__clear-all-button`
+    clearButton.setAttribute('aria-describedby', `${this.selectId}-description`)
     clearButton.addEventListener('click', (e) => {
       e.preventDefault()
       this.clearAllSelections()
+      this.moveFocusToSelectTrigger()
     })
     this.dropdown.appendChild(clearButton)
   }
