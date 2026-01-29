@@ -31,6 +31,7 @@ declare class Carousel extends SwipeContent {
     nav: boolean;
     navigationPagination: boolean;
     justifyContent: boolean;
+    shiftTabActive: boolean;
     initItems: any[];
     itemsNb: any;
     visibItemsNb: number;

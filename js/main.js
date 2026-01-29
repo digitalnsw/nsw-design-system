@@ -680,6 +680,7 @@
       this.nav = !(this.element.getAttribute('data-navigation') && this.element.getAttribute('data-navigation') === 'off');
       this.navigationPagination = !!(this.element.getAttribute('data-navigation-pagination') && this.element.getAttribute('data-navigation-pagination') === 'on');
       this.justifyContent = !!(this.element.getAttribute('data-justify-content') && this.element.getAttribute('data-justify-content') === 'on');
+      this.shiftTabActive = false;
       this.initItems = [];
       this.itemsNb = this.items.length;
       this.visibItemsNb = 1;
@@ -866,7 +867,9 @@
         }, 250);
       });
       this.element.addEventListener('keydown', event => {
-        if (event.key && event.key.toLowerCase() === 'arrowright') {
+        if (event.key === 'Tab') {
+          this.shiftTabActive = event.shiftKey;
+        } else if (event.key && event.key.toLowerCase() === 'arrowright') {
           this.showNextItems();
         } else if (event.key && event.key.toLowerCase() === 'arrowleft') {
           this.showPrevItems();
@@ -879,10 +882,28 @@
           event.target.click();
         }
       });
+      this.element.addEventListener('keyup', event => {
+        if (event.key === 'Tab') {
+          this.shiftTabActive = false;
+        }
+      });
       const itemLinks = this.element.querySelectorAll('.nsw-carousel__item a');
       if (itemLinks.length > 0) {
         itemLinks.forEach((link, index) => {
           link.addEventListener('focus', () => {
+            const item = link.closest('.nsw-carousel__item');
+            const dataIndex = Number(item.getAttribute('data-index')) + 1;
+            if (this.shiftTabActive && dataIndex > 1 && (dataIndex - 1) % this.visibItemsNb === 0) {
+              const previousLink = itemLinks[index - 1];
+              this.showPrevItems();
+              if (previousLink) {
+                previousLink.focus({
+                  preventScroll: true
+                });
+              }
+              this.shiftTabActive = false;
+              return;
+            }
             const slider = link.closest('.js-carousel__wrapper');
             const carousel = slider.querySelector('.nsw-carousel__list');
             if (carousel) {
@@ -892,6 +913,9 @@
             }
           });
           link.addEventListener('focusout', () => {
+            if (this.shiftTabActive) {
+              return;
+            }
             const item = link.closest('.nsw-carousel__item');
             const dataIndex = Number(item.getAttribute('data-index')) + 1;
             if (dataIndex % this.visibItemsNb === 0 && dataIndex !== this.items.length) {
@@ -900,6 +924,7 @@
               });
               this.showNextItems();
             }
+            this.shiftTabActive = false;
           });
         });
       }
@@ -1109,10 +1134,16 @@
       this.ariaLive.innerHTML = `Item ${this.selectedItem + 1} selected. ${this.visibItemsNb} items of ${this.initItems.length} visible`;
     }
     getIndex(index) {
-      let i = index;
-      if (i < 0) i = this.getPositiveValue(i, this.itemsNb);
-      if (i >= this.itemsNb) i %= this.itemsNb;
-      return i;
+      if (this.loop) {
+        let i = index;
+        if (i < 0) i = this.getPositiveValue(i, this.itemsNb);
+        if (i >= this.itemsNb) i %= this.itemsNb;
+        return i;
+      }
+      const maxIndex = Math.max(0, this.itemsNb - this.visibItemsNb);
+      if (index < 0) return 0;
+      if (index > maxIndex) return maxIndex;
+      return index;
     }
     getPositiveValue(value, add) {
       let val = value;
