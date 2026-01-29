@@ -306,10 +306,10 @@ const searchValues = [
     url: '/docs/content/about/our-ecosystem.html',
   },
   {
-    label: "What's happening",
+    label: 'Changelog',
     template: 'result',
-    keywords: 'Releases, Work in progress, Consulting with community, Backlog, Changelog, changed, Version, Change logs',
-    url: '/docs/content/about/whats-happening.html',
+    keywords: "Changelog, Releases, Release notes, Work in progress, Consulting with community, Backlog, Roadmap, Version, Change log, Changes, What's happening, Updates",
+    url: '/docs/content/about/changelog.html',
   },
   {
     label: 'Getting Started',

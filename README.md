@@ -161,6 +161,6 @@ Our version numbers consist of MAJOR.MINOR.PATCH, where:
 
 * **PATCH** version is used for minor backward-compatible updates, new component variations, and bug fixes.
 
-See [the Releases section of our GitHub project](https://github.com/digitalnsw/nsw-design-system/releases) for changelogs for each release version. Release posts on our [what’s happening page](https://designsystem.nsw.gov.au/docs/content/about/whats-happening.html) contain summaries of the most noteworthy changes made in each release.
+See [the Releases section of our GitHub project](https://github.com/digitalnsw/nsw-design-system/releases) for changelogs for each release version. Release posts on our [changelog page](https://designsystem.nsw.gov.au/docs/content/about/changelog.html) contain summaries of the most noteworthy changes made in each release.
 
 Feel free to reach out if you have any questions or need more help with integrating the NSW Design System into your projects!
