@@ -260,10 +260,10 @@
     keywords: 'Digital Visual Identity, Core styles and components, Digital NSW Community, Built in accessibility, UX, content guidance, UI, code starter kits',
     url: '/docs/content/about/our-ecosystem.html'
   }, {
-    label: "What's happening",
+    label: 'Release notes',
     template: 'result',
-    keywords: 'Releases, Work in progress, Consulting with community, Backlog, Changelog, changed, Version, Change logs',
-    url: '/docs/content/about/whats-happening.html'
+    keywords: "Release notes, Releases, Work in progress, Consulting with community, Backlog, Roadmap, Version, Change log, Changes, What's happening, Changelog, Updates",
+    url: '/docs/content/about/release-notes.html'
   }, {
     label: 'Getting Started',
     template: 'result',
