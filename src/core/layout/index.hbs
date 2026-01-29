@@ -15,6 +15,9 @@ meta-index: true
       <a href="#page-layouts">Page layouts</a>
     </li>
     <li>
+      <a href="#alternating-layouts">Alternating layouts</a>
+    </li>
+    <li>
       <a href="#global-page-structure">Global page structure</a>
     </li>
   </ul>
@@ -55,6 +58,50 @@ meta-index: true
     {{>_layout side="right"}}
   </div>
 {{/_docs-example}}
+
+<h3 id="alternating-layouts">Alternating layouts</h3>
+<p>Alternating image-and-text layouts can make longer pages easier to scan, but the DOM order must remain the primary source of truth for reading and focus order. Screen readers and keyboard focus follow the DOM, so changing the visual order can create a mismatch. This supports WCAG 2.2 SC 1.3.2 (Meaningful Sequence) and 2.4.3 (Focus Order).</p>
+
+<h4>When to use</h4>
+<ul>
+  <li>Only alternate layouts when each pair of items communicates the same idea (for example, a supporting image and its related text).</li>
+  <li>Write the HTML in the intended reading order first so mobile, screen reader, and keyboard users get the correct sequence.</li>
+</ul>
+<h4>When not to use</h4>
+<ul>
+  <li>Do not change the visual order for functional content such as forms, navigation, or other interactive controls.</li>
+  <li>Do not use <code>tabindex</code> to override focus order to match a visual swap.</li>
+</ul>
+
+<p class="nsw-m-bottom-md">Once the DOM order is correct, you may swap the visual order on larger screens with order utilities (for example, <code>nsw-order-lg-first</code> and <code>nsw-order-lg-last</code>).</p>
+
+{{#>_docs-example open="true" code="html"}}
+  <section class="nsw-row">
+    <div class="nsw-col nsw-col-lg-6 nsw-order-1">
+      <div class="nsw-p-md nsw-bg--grey-03 nsw-border nsw-border--grey-03">Image</div>
+    </div>
+    <div class="nsw-col nsw-col-lg-6 nsw-order-2">
+      <div class="nsw-p-md nsw-border nsw-border--grey-01">Text</div>
+    </div>
+  </section>
+  <section class="nsw-row">
+    <div class="nsw-col nsw-col-lg-6 nsw-order-1 nsw-order-lg-last">
+      <div class="nsw-p-md nsw-bg--grey-03 nsw-border nsw-border--grey-03">Image</div>
+    </div>
+    <div class="nsw-col nsw-col-lg-6 nsw-order-2 nsw-order-lg-first">
+      <div class="nsw-p-md nsw-border nsw-border--grey-01">Text</div>
+    </div>
+  </section>
+{{/_docs-example}}
+
+<div class="nsw-in-page-alert nsw-in-page-alert--warning">
+  <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">info</span>
+  <div class="nsw-in-page-alert__content">
+    <h4>Use <code>order</code> with care</h4>
+    <p><a href="/docs/content/utilities/flex.html#order">Order utilities</a> only change the visual order. Screen readers and keyboard focus follow the DOM order, so changing the visual order can misalign what people see, hear, and tab through. Do not use <code>order</code> (or other layout-only CSS) to rearrange functional content like forms, navigation, or controls. Trying to fix this with the <code>tabindex</code> attribute creates a separate focus sequence that can diverge from the DOM and is hard to maintain.</p>
+    <p>It is only suitable when items communicate the same, non-functional message such as an image and its accompanying text. Always keep the HTML order logical first, then apply <code>nsw-order-*</code> classes as a visual enhancement. This supports WCAG 2.2 SC <a href="https://www.w3.org/WAI/WCAG22/Understanding/meaningful-sequence.html">1.3.2 Meaningful Sequence</a> and <a href="https://www.w3.org/WAI/WCAG22/Understanding/focus-order.html">2.4.3 Focus Order</a>.</p>
+  </div>
+</div>
 
 <h2 id="global-page-structure">Global page structure</h2>
 <p>The global page structure provides page-level regions that sit outside in-content layout patterns. Use it for persistent, site-wide controls like the Sticky container, mastheads and footers. These regions form the shell of a page and are not composition patterns.</p>
