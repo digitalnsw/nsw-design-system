@@ -105,3 +105,16 @@ export const popupWindow = (url, width, height) => {
     width=${width}, height=${height}, top=${y}, left=${x}`,
   )
 }
+
+export const applyMaterialIconData = (root = document) => {
+  if (!root || !root.querySelectorAll) return
+
+  const icons = root.querySelectorAll('.nsw-material-icons:not([data-nsw-icon])')
+
+  icons.forEach((icon) => {
+    const iconName = icon.textContent ? icon.textContent.trim() : ''
+    if (iconName) {
+      icon.setAttribute('data-nsw-icon', iconName)
+    }
+  })
+}
