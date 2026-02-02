@@ -6,7 +6,7 @@ class DownloadPDF {
     this.contentClass = this.element.getAttribute('data-pdf-content')
     this.content = this.contentClass ? document.querySelector(`.${this.contentClass}`) : document.body
     this.name = this.element.getAttribute('data-pdf-title') || document.title
-    this.buttonText = this.element.querySelector('span:not(.nsw-material-icons)')
+    this.buttonText = this.element.querySelector('span:not(.nsw-material-symbols-outlined):not(.nsw-material-icons)')
   }
 
   init() {

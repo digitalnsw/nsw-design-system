@@ -4,7 +4,7 @@ class ExternalLink {
   constructor(element) {
     this.element = element
     this.uID = uniqueId('external')
-    this.linkIcon = this.element.querySelector('.nsw-material-icons')
+    this.linkIcon = this.element.querySelector('.nsw-material-symbols-outlined, .nsw-material-icons')
     this.linkIconTitle = this.linkIcon ? this.linkIcon.getAttribute('title') : false
     this.linkElement = false
   }

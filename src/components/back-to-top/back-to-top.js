@@ -62,7 +62,7 @@ class BackTop {
 
   createButton() {
     const textSpan = this.constructor.createElement('span')
-    const iconSpan = this.constructor.createElement('span', ['material-icons', 'nsw-material-icons'], {
+    const iconSpan = this.constructor.createElement('span', ['material-symbols-outlined', 'nsw-material-symbols-outlined'], {
       title: 'Back to top',
       focusable: 'false',
       'aria-hidden': 'true',
@@ -70,8 +70,8 @@ class BackTop {
 
     this.element.append(textSpan, iconSpan)
 
-    this.text = this.element.querySelector('span:not(.material-icons)')
-    this.icon = this.element.querySelector('span.material-icons')
+    this.text = this.element.querySelector('span:not(.material-symbols-outlined):not(.material-icons)')
+    this.icon = this.element.querySelector('span.material-symbols-outlined, span.material-icons')
 
     this.createButtonContent()
   }

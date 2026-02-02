@@ -217,10 +217,20 @@
   }
 }
 
-// Material icons mixin - to add icons to pseudo elements
-@mixin material-icons() {
-  font-family: 'Material Icons';
+// Material Symbols mixin - to add icons to pseudo elements
+@mixin material-symbols-outlined() {
+  font-family: 'Material Symbols Outlined';
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 48;
   -webkit-font-feature-settings: 'liga'; /* stylelint-disable-line property-no-vendor-prefix */
+}
+
+// Legacy alias for Material Symbols
+@mixin material-icons() {
+  @include material-symbols-outlined;
 }
 
 //Grid

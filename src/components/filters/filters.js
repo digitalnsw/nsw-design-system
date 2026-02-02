@@ -25,7 +25,8 @@ class Filters {
     this.controls = this.element.querySelector(`.${this.prefix}${this.controlsClass}`)
     this.controlsButton = this.controls && this.controls.querySelector('button')
     this.controlsButtonIcons = this.controlsButton && this.controlsButton.querySelectorAll('span')
-    this.controlsButtonText = this.controlsButton && this.controlsButton.querySelector('span:not(.nsw-material-icons)')
+    this.controlsButtonText = this.controlsButton
+      && this.controlsButton.querySelector('span:not(.nsw-material-symbols-outlined):not(.nsw-material-icons)')
     this.controlsButtonTextContent = this.controlsButton && this.controlsButtonText.innerText
     this.wrapper = this.element.querySelector(`.${this.prefix}${this.wrapperClass}`)
     this.closeButton = this.wrapper && this.wrapper.querySelector(`.${this.prefix}${this.closeClass} button`)
@@ -301,7 +302,7 @@ class Filters {
 
   setSelectedState() {
     const formElements = 'textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled]):not(.nsw-display-none)'
-    const checkIcon = '<span class="material-icons nsw-material-icons nsw-material-icons--valid" focusable="false" aria-hidden="true">check_circle</span>'
+    const checkIcon = '<span class="material-symbols-outlined nsw-material-symbols-outlined nsw-material-symbols-outlined--valid" focusable="false" aria-hidden="true">check_circle</span>'
 
     this.buttons.forEach((element) => {
       const buttonName = element.querySelector(`.${this.prefix}${this.itemClass}-name`)

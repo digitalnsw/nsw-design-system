@@ -67,19 +67,19 @@ class DatePicker {
             <ul class="nsw-date-picker__title-nav js-date-picker__title-nav">
               <li>
                 <button class="nsw-icon-button nsw-date-picker__title-nav-btn js-date-picker__year-nav-btn js-date-picker__year-nav-btn--prev" type="button">
-                  <span class="material-icons nsw-material-icons">keyboard_double_arrow_left</span>
+                  <span class="material-symbols-outlined nsw-material-symbols-outlined">keyboard_double_arrow_left</span>
                 </button>
                 <button class="nsw-icon-button nsw-date-picker__title-nav-btn js-date-picker__month-nav-btn js-date-picker__month-nav-btn--prev" type="button">
-                  <span class="material-icons nsw-material-icons">chevron_left</span>
+                  <span class="material-symbols-outlined nsw-material-symbols-outlined">chevron_left</span>
                 </button>
               </li>
 
               <li>
                 <button class="nsw-icon-button nsw-date-picker__title-nav-btn js-date-picker__month-nav-btn js-date-picker__month-nav-btn--next" type="button">
-                  <span class="material-icons nsw-material-icons">chevron_right</span>
+                  <span class="material-symbols-outlined nsw-material-symbols-outlined">chevron_right</span>
                 </button>
                 <button class="nsw-icon-button nsw-date-picker__title-nav-btn js-date-picker__year-nav-btn js-date-picker__year-nav-btn--next" type="button">
-                  <span class="material-icons nsw-material-icons">keyboard_double_arrow_right</span>
+                  <span class="material-symbols-outlined nsw-material-symbols-outlined">keyboard_double_arrow_right</span>
                 </button>
               </li>
             </ul>
