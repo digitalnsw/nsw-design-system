@@ -23,7 +23,6 @@ import Tooltip from './components/tooltip/tooltip'
 import UtilityList from './components/utility-list/utility-list'
 
 import stickyContainer from './global/scripts/sticky-container'
-import { applyMaterialIconData } from './global/scripts/helpers/utilities'
 
 if (window.NodeList && !NodeList.prototype.forEach) {
   NodeList.prototype.forEach = Array.prototype.forEach
@@ -46,7 +45,6 @@ if (!Element.prototype.closest) {
 }
 
 function initSite() {
-  applyMaterialIconData()
   const jsAccordions = document.querySelectorAll('.js-accordion')
   const detailsAccordions = document.querySelectorAll('.js-accordion-details')
   const backTop = document.querySelectorAll('button.js-back-to-top')

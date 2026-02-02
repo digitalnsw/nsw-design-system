@@ -1,13 +1,5 @@
-@use 'sass:map';
-@use '../base/functions' as functions;
-@use '../settings/settings' as settings;
-
 .nsw-material-icons {
   --nsw-material-icon-optical-offset: 0;
-}
-
-@each $icon, $offset in settings.$nsw-material-icon-optical-offsets {
-  .nsw-material-icons[data-nsw-icon="#{$icon}"] {
-    --nsw-material-icon-optical-offset: #{functions.rem($offset)};
-  }
+  --nsw-material-icon-trim: 0.1em;
+  margin-inline: calc(var(--nsw-material-icon-trim, 0) * -1);
 }
