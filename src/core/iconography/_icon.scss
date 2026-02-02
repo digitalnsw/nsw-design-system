@@ -20,7 +20,9 @@
 // $nsw-icon-angles: (90, 180, 270);
 
 .material-symbols-outlined,
-.material-icons {
+.material-icons,
+.nsw-material-symbols-outlined,
+.nsw-material-icons {
   font-family: 'Material Symbols Outlined';
   font-weight: normal;
   font-style: normal;
@@ -41,8 +43,6 @@
 
 .nsw-material-symbols-outlined,
 .nsw-material-icons {
-  // @extend .nsw-material-symbols-outlined; ## Need to replace with %placeholder solution due to stylelint issue ##
-
   @each $size, $variant in nsw.$nsw-icon-sizes {
     &--#{"" + $size} {
       font-size: nsw.rem(map.get(nsw.$nsw-icon-sizes, $size));
