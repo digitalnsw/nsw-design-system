@@ -86,7 +86,7 @@ class Toggletip {
         <div id="nsw-toggletip__header" class="sr-only">${cleanHTMLStrict(this.toggletipHeading)}</div>
         <button type="button" class="nsw-icon-button">
           <span class="sr-only">Remove file</span>
-          <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">close</span>
+          <span class="material-symbols-outlined nsw-material-symbols-outlined" focusable="false" aria-hidden="true">close</span>
         </button>
       </div>
       <div id="nsw-toggletip__content" class="nsw-toggletip__content">

@@ -300,7 +300,7 @@ class Select {
     const triggerLabel = this.getSelectedOptionText()
     const activeSelectionClass = this.selectedOptCounter > 0 ? ` ${this.buttonClass}--active` : ''
 
-    let button = `<button class="js-${this.buttonClass} ${error === 'true' ? this.errorClass : ''} ${this.prefix}${this.selectClass} ${this.prefix}${this.buttonClass}${customClasses}${activeSelectionClass}" aria-label="${triggerLabel[1]}" aria-expanded="false" aria-controls="${this.selectId}-dropdown"><span aria-hidden="true" class="js-${this.labelClass} ${this.prefix}${this.labelClass}">${triggerLabel[0]}</span><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>`
+    let button = `<button class="js-${this.buttonClass} ${error === 'true' ? this.errorClass : ''} ${this.prefix}${this.selectClass} ${this.prefix}${this.buttonClass}${customClasses}${activeSelectionClass}" aria-label="${triggerLabel[1]}" aria-expanded="false" aria-controls="${this.selectId}-dropdown"><span aria-hidden="true" class="js-${this.labelClass} ${this.prefix}${this.labelClass}">${triggerLabel[0]}</span><span class="material-symbols-outlined nsw-material-symbols-outlined" focusable="false" aria-hidden="true">keyboard_arrow_down</span>`
 
     if (this.arrowIcon.length > 0 && this.arrowIcon[0].outerHTML) {
       button += this.arrowIcon[0].outerHTML

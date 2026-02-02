@@ -15,9 +15,9 @@ class SideNav {
     }
 
     if (this.toggleButton) {
-      if (!this.toggleButton.querySelector('.material-icons')) {
+      if (!this.toggleButton.querySelector('.material-symbols-outlined, .material-icons')) {
         const icon = document.createElement('span')
-        icon.classList.add('material-icons', 'nsw-material-icons')
+        icon.classList.add('material-symbols-outlined', 'nsw-material-symbols-outlined')
         icon.setAttribute('focusable', 'false')
         icon.setAttribute('aria-hidden', 'true')
         icon.textContent = 'keyboard_arrow_right'

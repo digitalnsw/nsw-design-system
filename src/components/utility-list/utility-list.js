@@ -152,7 +152,13 @@ class UtilityList extends Toggletip {
 
   copiedMessage(element) {
     this.copyElement = element
-    const icon = '<span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">link</span>'
+    const icon = `
+      <span
+        class="material-symbols-outlined nsw-material-symbols-outlined"
+        focusable="false"
+        aria-hidden="true"
+      >link</span>
+    `
     const originalText = this.copyElement.innerHTML
 
     this.copyElement.classList.add('copied')

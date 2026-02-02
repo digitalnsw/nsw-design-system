@@ -120,7 +120,7 @@ class CookieConsent {
               </div>
               <div class="nsw-dialog__close">
                 <button class="nsw-icon-button js-close-dialog">
-                  <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">close</span>
+                  <span class="material-symbols-outlined nsw-material-symbols-outlined" focusable="false" aria-hidden="true">close</span>
                   <span class="sr-only">${preferencesModal.closeIconLabel ? preferencesModal.closeIconLabel : 'Close dialog'}</span>
                 </button>
               </div>
