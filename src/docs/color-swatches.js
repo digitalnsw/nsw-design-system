@@ -192,17 +192,19 @@ class ColorSwatches {
     selectedSwatch.setAttribute('aria-checked', 'true')
   }
 
+  getColorValue(selectedColors, key) {
+    const entry = selectedColors[key]
+    const colorValue = entry && typeof entry === 'object' && entry.value ? entry.value : entry
+    return colorValue || '#FFFFFF'
+  }
+
   // Updates CSS variables
   updateCSSVariables() {
     const selectedColors = this.palettes[this.currentPalette][this.currentColor]
 
     // Apply changes to correct scope (content-only or full-page)
     Object.keys(this.variables).forEach((key) => {
-      // unwrap label/value objects if present
-      const entry = selectedColors[key]
-      const colorValue = entry && typeof entry === 'object' && entry.value
-        ? entry.value
-        : entry
+      const colorValue = this.getColorValue(selectedColors, key)
       this.targetElement.style.setProperty(this.variables[key], colorValue)
     })
   }
@@ -217,7 +219,7 @@ class ColorSwatches {
       .map((key) => {
         // unwrap label/value objects if present
         const entry = selectedColors[key]
-        const colorValue = entry && typeof entry === 'object' && entry.value ? entry.value : entry
+        const colorValue = this.getColorValue(selectedColors, key)
         const colorLabel = entry && typeof entry === 'object' && entry.label ? entry.label : ''
         return `
           <tr class="nsw-color-swatches__data">
