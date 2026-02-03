@@ -38,6 +38,7 @@ class Carousel extends SwipeContent {
     this.navigationPagination = !!((this.element.getAttribute('data-navigation-pagination') && this.element.getAttribute('data-navigation-pagination') === 'on'))
     this.justifyContent = !!((this.element.getAttribute('data-justify-content') && this.element.getAttribute('data-justify-content') === 'on'))
     this.shiftTabActive = false
+    this.focusAfterTransitionHandler = null
     this.focusableSelectors = [
       'a[href]',
       'area[href]',
@@ -46,7 +47,7 @@ class Carousel extends SwipeContent {
       'select:not([disabled])',
       'textarea:not([disabled])',
       '[contenteditable="true"]',
-      '[tabindex]',
+      '[tabindex]:not([tabindex="-1"])',
     ].join(', ')
     this.initItems = []
     this.itemsNb = this.items.length
@@ -778,12 +779,16 @@ class Carousel extends SwipeContent {
     }
 
     if (this.transitionSupported && this.list) {
-      const onTransitionEnd = (event) => {
+      if (this.focusAfterTransitionHandler) {
+        this.list.removeEventListener('transitionend', this.focusAfterTransitionHandler)
+      }
+      this.focusAfterTransitionHandler = (event) => {
         if (event.propertyName && event.propertyName !== 'transform') return
-        this.list.removeEventListener('transitionend', onTransitionEnd)
+        this.list.removeEventListener('transitionend', this.focusAfterTransitionHandler)
+        this.focusAfterTransitionHandler = null
         focusElement()
       }
-      this.list.addEventListener('transitionend', onTransitionEnd)
+      this.list.addEventListener('transitionend', this.focusAfterTransitionHandler)
     } else {
       setTimeout(focusElement, 0)
     }
