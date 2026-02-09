@@ -87,7 +87,9 @@ meta-index: true
 
 <p>Do not use <code>tabindex</code> to force focus order to match a visual swap. This creates a separate focus sequence that is difficult to maintain and often causes accessibility issues.</p>
  
-<p class="nsw-m-bottom-md">Once the DOM order is correct, you may apply order utilities (for example <code>nsw-order-lg-first</code> and <code>nsw-order-lg-last</code>) as a visual enhancement only.</p>
+<p>Once the DOM order is correct, you may apply order utilities (for example <code>nsw-order-lg-first</code> and <code>nsw-order-lg-last</code>) as a visual enhancement only.</p>
+
+<p class="nsw-m-bottom-md">There are 2 order options: prefer first/last utilities for alternating layouts, and only use numeric order when the DOM cannot be changed. See <a href="/docs/content/utilities/flex.html#order">Flex order utilities</a> for details.</p>
 
 {{#>_docs-example showcode=true separated=true}}
   <section class="nsw-row">
@@ -99,10 +101,10 @@ meta-index: true
     </div>
   </section>
   <section class="nsw-row">
-    <div class="nsw-col nsw-col-lg-6 nsw-order-first nsw-order-lg-first">
+    <div class="nsw-col nsw-col-lg-6">
       <div class="nsw-p-md nsw-bg--grey-03 nsw-border nsw-border--grey-03">Image</div>
     </div>
-    <div class="nsw-col nsw-col-lg-6 nsw-order-last nsw-order-lg-last">
+    <div class="nsw-col nsw-col-lg-6">
       <div class="nsw-p-md nsw-border nsw-border--grey-01">Text</div>
     </div>
   </section>
@@ -126,6 +128,8 @@ meta-index: true
   </div>
 </section>
 {{/_docs-code}}
+
+<p class="nsw-m-bottom-md"><strong>Note:</strong> <code>nsw-row</code> is a grid row and already uses <code>display: flex</code> (like <code>nsw-display-flex</code>). Its direct child <code>nsw-col</code> elements are flex items, so order utilities apply to the columns.</p>
 
 <div class="nsw-in-page-alert nsw-in-page-alert--warning">
   <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">info</span>
