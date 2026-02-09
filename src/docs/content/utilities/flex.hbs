@@ -314,12 +314,12 @@ meta-index: true
 <p>This is the preferred approach for responsive alternating layouts. Keep the DOM in a logical reading sequence, then swap visual placement from a breakpoint.</p>
 
 {{#>_docs-example showcode=true separated=true}}
-<div class="nsw-display-flex nsw-flex-column nsw-gap-sm">
-  <div class="nsw-display-flex nsw-flex-column nsw-flex-lg-row nsw-gap-sm nsw-m-bottom-sm">
+<div class="nsw-display-flex nsw-flex-column">
+  <div class="nsw-display-flex nsw-flex-column nsw-flex-lg-row nsw-m-bottom-sm">
     <div class="nsw-order-lg-last nsw-width-lg-50 nsw-p-xs nsw-bg--brand-light nsw-border nsw-border--grey-01">Image</div>
     <div class="nsw-order-lg-first nsw-width-lg-50 nsw-p-xs nsw-bg--grey-04 nsw-border nsw-border--grey-01">Text</div>
   </div>
-  <div class="nsw-display-flex nsw-flex-column nsw-flex-lg-row nsw-gap-sm">
+  <div class="nsw-display-flex nsw-flex-column nsw-flex-lg-row">
     <div class="nsw-width-lg-50 nsw-p-xs nsw-bg--brand-light nsw-border nsw-border--grey-01">Image</div>
     <div class="nsw-width-lg-50 nsw-p-xs nsw-bg--grey-04 nsw-border nsw-border--grey-01">Text</div>
   </div>
@@ -341,11 +341,11 @@ meta-index: true
 <p>Numeric order utilities are an advanced option and are best reserved for constraints where DOM order cannot be changed. If used, prefer breakpoint-qualified classes so mobile keeps the default logical sequence.</p>
 
 {{#>_docs-example showcode=true separated=true}}
-<div class="nsw-display-flex nsw-flex-column nsw-flex-lg-row nsw-gap-sm nsw-m-bottom-sm">
+<div class="nsw-display-flex nsw-flex-column nsw-flex-lg-row nsw-m-bottom-sm">
   <div class="nsw-order-lg-2 nsw-width-lg-50 nsw-p-xs nsw-bg--brand-light nsw-border nsw-border--grey-01">Image</div>
   <div class="nsw-order-lg-1 nsw-width-lg-50 nsw-p-xs nsw-bg--grey-04 nsw-border nsw-border--grey-01">Text</div>
 </div>
-<div class="nsw-display-flex nsw-flex-column nsw-flex-lg-row nsw-gap-sm">
+<div class="nsw-display-flex nsw-flex-column nsw-flex-lg-row">
   <div class="nsw-order-lg-1 nsw-width-lg-50 nsw-p-xs nsw-bg--brand-light nsw-border nsw-border--grey-01">Image</div>
   <div class="nsw-order-lg-2 nsw-width-lg-50 nsw-p-xs nsw-bg--grey-04 nsw-border nsw-border--grey-01">Text</div>
 </div>
