@@ -66,12 +66,12 @@ meta-index: true
   <li><a href="https://www.w3.org/WAI/WCAG22/Understanding/focus-order.html">2.4.3</a> Focus Order</li>
 </ul>
 
-<p>To avoid this, alternating layouts must always start with the correct reading order in the HTML.</p>
+<p>To avoid this, alternating layouts must always start with the correct reading order in the HTML (the DOM order for assistive technology).</p>
 
 <h4>How it works</h4>
 <ol>
   <li>Write the HTML in the intended reading order. This ensures mobile users, screen reader users, and keyboard users experience content in the correct sequence.</li>
-  <li>Use order utilities to swap the visual position at larger breakpoints. Order utilities change how items appear visually, without changing DOM order. This allows layouts to alternate left and right while preserving accessibility.</li>
+  <li>Use order utilities to swap the visual position at larger breakpoints. Order utilities change how items appear visually, without changing DOM order. This is only appropriate when the DOM order remains a meaningful reading and focus sequence and the visual swap does not change task flow or meaning.</li>
 </ol>
 
 <h4>When to use</h4>
