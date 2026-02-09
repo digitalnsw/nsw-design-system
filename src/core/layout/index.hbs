@@ -15,7 +15,7 @@ meta-index: true
       <a href="#page-layouts">Page layouts</a>
     </li>
     <li>
-      <a href="#alternating-layouts">Alternating layouts</a>
+      <a href="#alternating-layouts">Alternating layouts (visual order only)</a>
     </li>
     <li>
       <a href="#global-page-structure">Global page structure</a>
@@ -50,7 +50,6 @@ meta-index: true
   </div>
 {{/_docs-example}}
 
-
 <h4>Two column - Right side</h4>
 <p>Displays a right hand sidebar that stacks on 0 - 991px viewports, with main content area that is always visible. </p>
 {{#>_docs-example separated="true"}}
@@ -59,40 +58,74 @@ meta-index: true
   </div>
 {{/_docs-example}}
 
-<h3 id="alternating-layouts">Alternating layouts</h3>
-<p>Alternating image-and-text layouts can make longer pages easier to scan, but the DOM order must remain the primary source of truth for reading and focus order. Screen readers and keyboard focus follow the DOM, so changing the visual order can create a mismatch. This supports WCAG 2.2 SC 1.3.2 (Meaningful Sequence) and 2.4.3 (Focus Order).</p>
+<h3 id="alternating-layouts">Alternating layouts (visual order only)</h3>
+<p>Alternating image-and-text layouts can help people scan long pages. In the NSW Design System, this is done by <strong>changing the visual order only</strong>, while keeping the HTML order logical and consistent.</p>
+<p>Screen readers and keyboard focus follow the DOM, not the visual layout. If visual and DOM order diverge, users may hear or tab through content in a sequence that does not match what they see. This relates directly to WCAG 2.2:</p>
+<ul>
+  <li><a href="https://www.w3.org/WAI/WCAG22/Understanding/meaningful-sequence.html">1.3.2</a> Meaningful Sequence</li>
+  <li><a href="https://www.w3.org/WAI/WCAG22/Understanding/focus-order.html">2.4.3</a> Focus Order</li>
+</ul>
+
+<p>To avoid this, alternating layouts must always start with the correct reading order in the HTML.</p>
+
+<h4>How it works</h4>
+<ol>
+  <li>Write the HTML in the intended reading order. This ensures mobile users, screen reader users, and keyboard users experience content in the correct sequence.</li>
+  <li>Use order utilities to swap the visual position at larger breakpoints. Order utilities change how items appear visually, without changing DOM order. This allows layouts to alternate left and right while preserving accessibility.</li>
+</ol>
 
 <h4>When to use</h4>
 <ul>
-  <li>Only alternate layouts when each pair of items communicates the same idea (for example, a supporting image and its related text).</li>
-  <li>Write the HTML in the intended reading order first so mobile, screen reader, and keyboard users get the correct sequence.</li>
+  <li>When each pair of items communicates the same idea, such as an image and its related text</li>
+  <li>For non-functional, descriptive content where visual alternation improves scannability</li>
 </ul>
 <h4>When not to use</h4>
 <ul>
-  <li>Do not change the visual order for functional content such as forms, navigation, or other interactive controls.</li>
-  <li>Do not use <code>tabindex</code> to override focus order to match a visual swap.</li>
+  <li>For functional content such as forms, navigation, or interactive controls</li>
+  <li>When visual order affects task flow or meaning</li>
 </ul>
 
-<p class="nsw-m-bottom-md">Once the DOM order is correct, you may swap the visual order on larger screens with order utilities (for example, <code>nsw-order-lg-first</code> and <code>nsw-order-lg-last</code>).</p>
+<p>Do not use <code>tabindex</code> to force focus order to match a visual swap. This creates a separate focus sequence that is difficult to maintain and often causes accessibility issues.</p>
+ 
+<p class="nsw-m-bottom-md">Once the DOM order is correct, you may apply order utilities (for example <code>nsw-order-lg-first</code> and <code>nsw-order-lg-last</code>) as a visual enhancement only.</p>
 
-{{#>_docs-example open="true" code="html"}}
+{{#>_docs-example showcode=true separated=true}}
   <section class="nsw-row">
-    <div class="nsw-col nsw-col-lg-6 nsw-order-1">
+    <div class="nsw-col nsw-col-lg-6 nsw-order-lg-last">
       <div class="nsw-p-md nsw-bg--grey-03 nsw-border nsw-border--grey-03">Image</div>
     </div>
-    <div class="nsw-col nsw-col-lg-6 nsw-order-2">
+    <div class="nsw-col nsw-col-lg-6 nsw-order-lg-first">
       <div class="nsw-p-md nsw-border nsw-border--grey-01">Text</div>
     </div>
   </section>
   <section class="nsw-row">
-    <div class="nsw-col nsw-col-lg-6 nsw-order-1 nsw-order-lg-last">
+    <div class="nsw-col nsw-col-lg-6 nsw-order-first nsw-order-lg-first">
       <div class="nsw-p-md nsw-bg--grey-03 nsw-border nsw-border--grey-03">Image</div>
     </div>
-    <div class="nsw-col nsw-col-lg-6 nsw-order-2 nsw-order-lg-first">
+    <div class="nsw-col nsw-col-lg-6 nsw-order-last nsw-order-lg-last">
       <div class="nsw-p-md nsw-border nsw-border--grey-01">Text</div>
     </div>
   </section>
 {{/_docs-example}}
+
+{{#>_docs-code open=true separated=true}}
+<section class="nsw-row">
+  <div class="nsw-col nsw-col-lg-6 nsw-order-lg-last">
+    <div>Image</div>
+  </div>
+  <div class="nsw-col nsw-col-lg-6 nsw-order-lg-first">
+    <div>Text</div>
+  </div>
+</section>
+<section class="nsw-row">
+  <div class="nsw-col nsw-col-lg-6">
+    <div>Image</div>
+  </div>
+  <div class="nsw-col nsw-col-lg-6">
+    <div>Text</div>
+  </div>
+</section>
+{{/_docs-code}}
 
 <div class="nsw-in-page-alert nsw-in-page-alert--warning">
   <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">info</span>
