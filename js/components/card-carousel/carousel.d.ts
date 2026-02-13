@@ -32,6 +32,8 @@ declare class Carousel extends SwipeContent {
     navigationPagination: boolean;
     justifyContent: boolean;
     shiftTabActive: boolean;
+    focusAfterTransitionHandler: any;
+    focusableSelectors: string;
     initItems: any[];
     itemsNb: any;
     visibItemsNb: number;
@@ -49,7 +51,7 @@ declare class Carousel extends SwipeContent {
     flexSupported: boolean;
     transitionSupported: boolean;
     cssPropertiesSupported: boolean;
-    uid: string | undefined;
+    uid: any;
     initCarouselLayout(): void;
     carouselCreateContainer(): void;
     setItemsWidth(bool: any): void;
@@ -95,5 +97,7 @@ declare class Carousel extends SwipeContent {
     emitCarouselActiveItemsEvent(): void;
     emitCarouselEvents(eventName: any, eventDetail: any): void;
     resetVisibilityOverflowItems(j: any): void;
+    focusAfterTransition(element: any): void;
+    toggleItemFocusable(item: any, isHidden: any): void;
 }
 import SwipeContent from './swipe-content';
