@@ -136,7 +136,7 @@ meta-index: true
   <div class="nsw-in-page-alert__content">
     <h4>Use <code>order</code> with care</h4>
     <p><a href="/docs/content/utilities/flex.html#order">Order utilities</a> only change the visual order. Screen readers and keyboard focus follow the DOM order, so changing the visual order can misalign what people see, hear, and tab through. Do not use <code>order</code> (or other layout-only CSS) to rearrange functional content like forms, navigation, or controls. Trying to fix this with the <code>tabindex</code> attribute creates a separate focus sequence that can diverge from the DOM and is hard to maintain.</p>
-    <p>It is only suitable when items communicate the same, non-functional message such as an image and its accompanying text. Always keep the HTML order logical first, then apply <code>nsw-order-*</code> classes as a visual enhancement. This supports WCAG 2.2 SC <a href="https://www.w3.org/WAI/WCAG22/Understanding/meaningful-sequence.html">1.3.2 Meaningful Sequence</a> and <a href="https://www.w3.org/WAI/WCAG22/Understanding/focus-order.html">2.4.3 Focus Order</a>.</p>
+    <p>It is only suitable when items communicate the same, non-functional message such as an image and its accompanying text. Always keep the HTML order logical and meaningful for reading and focus, then apply <code>nsw-order-*</code> classes only as a visual enhancement where this does not change the intended sequence. Preserving a meaningful DOM order is key to meeting the intent of WCAG 2.2 SC <a href="https://www.w3.org/WAI/WCAG22/Understanding/meaningful-sequence.html">1.3.2 Meaningful Sequence</a> and <a href="https://www.w3.org/WAI/WCAG22/Understanding/focus-order.html">2.4.3 Focus Order</a>.</p>
   </div>
 </div>
 
