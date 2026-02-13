@@ -8,7 +8,6 @@ const autoprefixer = require('autoprefixer')
 const cssnano = require('cssnano')
 const sourcemaps = require('gulp-sourcemaps')
 const browsersync = require('browser-sync')
-const surge = require('gulp-surge')
 const zip = require('gulp-zip')
 const del = require('del')
 const postcssNormalize = require('postcss-normalize')
@@ -125,8 +124,23 @@ function reload(done) {
   done()
 }
 
-function surgeDeploy() {
-  return surge(config.surge)
+function surgeDeploy(done) {
+  const npxCommand = process.platform === 'win32' ? 'npx.cmd' : 'npx'
+  const args = [
+    'surge',
+    '--project',
+    config.surge.project,
+    '--domain',
+    config.surge.domain,
+  ]
+  const childProcess = child.spawn(npxCommand, args, { stdio: 'inherit' })
+  childProcess.on('close', (code) => {
+    if (code !== 0) {
+      done(new Error(`surge exited with code ${code}`))
+      return
+    }
+    done()
+  })
 }
 
 function cleanUp() {

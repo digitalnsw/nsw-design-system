@@ -1,25 +1,41 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const fs = require('fs')
 const path = require('path')
-const inquirer = require('inquirer')
+const readline = require('readline')
 
-const logger = require('./src/global/scripts/helpers/logger');
+const log = (...args) => {
+  if (process.env.NODE_ENV !== 'production') {
+    console.log(...args)
+  }
+}
 
-const askQuestions = () => {
-  const questions = [
-    {
-      type: 'list',
-      name: 'FOLDERTYPE',
-      message: 'What are we creating?',
-      choices: ['component', 'pattern', 'style', 'page'],
-    },
-    {
-      name: 'FOLDERNAME',
-      type: 'input',
-      message: 'What is the name of the component/pattern/style/page?',
-    },
-  ]
-  return inquirer.prompt(questions)
+const ask = (rl, question) => new Promise((resolve) => {
+  rl.question(question, (answer) => resolve(String(answer).trim()))
+})
+
+const askList = async (rl, question, choices) => {
+  const prompt = `${question} (${choices.join('/')}), default ${choices[0]}: `
+  while (true) {
+    const answer = await ask(rl, prompt)
+    if (!answer) {
+      return choices[0]
+    }
+    const match = choices.find((choice) => choice.toLowerCase() === answer.toLowerCase())
+    if (match) {
+      return match
+    }
+    log(`Please enter one of: ${choices.join(', ')}`)
+  }
+}
+
+const askText = async (rl, question) => {
+  while (true) {
+    const answer = await ask(rl, question)
+    if (answer) {
+      return answer
+    }
+    log('Please enter a value.')
+  }
 }
 
 const createFile = (filePath, name) => {
@@ -31,27 +47,24 @@ const createFile = (filePath, name) => {
 
 const createDir = (type, name) => {
   const currentDir = path.resolve(process.cwd())
-  const filePath = `${currentDir}/src/${type}s/${name}`
+  const filePath = path.join(currentDir, 'src', `${type}s`, name)
 
   if (!fs.existsSync(filePath)) {
-    fs.mkdir(filePath, (err) => {
-      if (err) {
-        log(err.message)
-      } else {
-        log(`${filePath} created!`)
-        createFile(filePath, name)
-      }
-    })
-  } else {
-    createFile(filePath, name)
+    fs.mkdirSync(filePath, { recursive: true })
+    log(`${filePath} created!`)
   }
+  createFile(filePath, name)
 }
 
 const run = async () => {
-  const answers = await askQuestions()
-  const { FOLDERTYPE, FOLDERNAME } = answers
-
-  createDir(FOLDERTYPE, FOLDERNAME)
+  const rl = readline.createInterface({ input: process.stdin, output: process.stdout })
+  try {
+    const folderType = await askList(rl, 'What are we creating?', ['component', 'pattern', 'style', 'page'])
+    const folderName = await askText(rl, 'What is the name of the component/pattern/style/page? ')
+    createDir(folderType, folderName)
+  } finally {
+    rl.close()
+  }
 }
 
 run()
