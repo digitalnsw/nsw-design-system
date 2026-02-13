@@ -452,6 +452,9 @@
       <a href="#page-layouts">Page layouts</a>
     </li>
     <li>
+      <a href="#alternating-layouts">Alternating layouts (visual order only)</a>
+    </li>
+    <li>
       <a href="#global-page-structure">Global page structure</a>
     </li>
   </ul>
@@ -585,7 +588,6 @@
 </div>
 
 
-
 <h4>Two column - Right side</h4>
 <p>Displays a right hand sidebar that stacks on 0 - 991px viewports, with main content area that is always visible. </p>
 <div class="nsw-docs__example nsw-m-top-sm">
@@ -651,6 +653,116 @@
   </div>
 </div>
 
+
+<h3 id="alternating-layouts">Alternating layouts (visual order only)</h3>
+<p>Alternating image-and-text layouts can help people scan long pages. In the NSW Design System, this is done by <strong>changing the visual order only</strong>, while keeping the HTML order logical and consistent.</p>
+<p>Screen readers and keyboard focus follow the DOM, not the visual layout. If visual and DOM order diverge, users may hear or tab through content in a sequence that does not match what they see. This relates directly to WCAG 2.2:</p>
+<ul>
+  <li><a href="https://www.w3.org/WAI/WCAG22/Understanding/meaningful-sequence.html">1.3.2</a> Meaningful Sequence</li>
+  <li><a href="https://www.w3.org/WAI/WCAG22/Understanding/focus-order.html">2.4.3</a> Focus Order</li>
+</ul>
+
+<p>To avoid this, alternating layouts must always start with the correct reading order in the HTML (the DOM order for assistive technology).</p>
+
+<h4>How it works</h4>
+<ol>
+  <li>Write the HTML in the intended reading order. This ensures mobile users, screen reader users, and keyboard users experience content in the correct sequence.</li>
+  <li>Use order utilities to swap the visual position at larger breakpoints. Order utilities change how items appear visually, without changing DOM order. This is only appropriate when the DOM order remains a meaningful reading and focus sequence and the visual swap does not change task flow or meaning.</li>
+</ol>
+
+<h4>When to use</h4>
+<ul>
+  <li>When each pair of items communicates the same idea, such as an image and its related text</li>
+  <li>For non-functional, descriptive content where visual alternation improves scannability</li>
+</ul>
+<h4>When not to use</h4>
+<ul>
+  <li>For functional content such as forms, navigation, or interactive controls</li>
+  <li>When visual order affects task flow or meaning</li>
+</ul>
+
+<p>Do not use <code>tabindex</code> to force focus order to match a visual swap. This creates a separate focus sequence that is difficult to maintain and often causes accessibility issues.</p>
+ 
+<p>Once the DOM order is correct, apply order utilities at a breakpoint (for example <code>nsw-order-lg-first</code> and <code>nsw-order-lg-last</code>) as a visual enhancement only.</p>
+
+<p class="nsw-m-bottom-md">There are 2 order options: prefer first/last utilities for alternating layouts, and only use numeric order when the DOM cannot be changed. See <a href="https://designsystem.nsw.gov.au/docs/content/utilities/flex.html#order">Flex order utilities</a> for details.</p>
+
+<div class="nsw-docs__example nsw-m-top-sm">
+  <div class="nsw-docs__component">
+      <section class="nsw-row">
+        <div class="nsw-col nsw-col-lg-6 nsw-order-lg-last">
+          <div class="nsw-p-md nsw-bg--grey-03 nsw-border nsw-border--grey-03">Image</div>
+        </div>
+        <div class="nsw-col nsw-col-lg-6 nsw-order-lg-first">
+          <div class="nsw-p-md nsw-border nsw-border--grey-01">Text</div>
+        </div>
+      </section>
+      <section class="nsw-row">
+        <div class="nsw-col nsw-col-lg-6">
+          <div class="nsw-p-md nsw-bg--grey-03 nsw-border nsw-border--grey-03">Image</div>
+        </div>
+        <div class="nsw-col nsw-col-lg-6">
+          <div class="nsw-p-md nsw-border nsw-border--grey-01">Text</div>
+        </div>
+      </section>
+  </div>
+</div>
+
+<div class="nsw-docs-code">
+  <div class="nsw-docs-code__content active">
+    <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
+      <span>Copy</span>
+      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
+    </button>
+    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`<section class="nsw-row">
+  <div class="nsw-col nsw-col-lg-6 nsw-order-lg-last">
+    <div>Image</div>
+  </div>
+  <div class="nsw-col nsw-col-lg-6 nsw-order-lg-first">
+    <div>Text</div>
+  </div>
+</section>
+<section class="nsw-row">
+  <div class="nsw-col nsw-col-lg-6">
+    <div>Image</div>
+  </div>
+  <div class="nsw-col nsw-col-lg-6">
+    <div>Text</div>
+  </div>
+</section>
+`).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
+    <div class="nsw-docs-code__wrapper">
+<pre><code class="html"><script>document.write((`<section class="nsw-row">
+  <div class="nsw-col nsw-col-lg-6 nsw-order-lg-last">
+    <div>Image</div>
+  </div>
+  <div class="nsw-col nsw-col-lg-6 nsw-order-lg-first">
+    <div>Text</div>
+  </div>
+</section>
+<section class="nsw-row">
+  <div class="nsw-col nsw-col-lg-6">
+    <div>Image</div>
+  </div>
+  <div class="nsw-col nsw-col-lg-6">
+    <div>Text</div>
+  </div>
+</section>
+`).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
+    </div>
+  </div>
+</div>
+
+<p class="nsw-m-bottom-md"><strong>Note:</strong> <code>nsw-row</code> is a grid row and already uses <code>display: flex</code> (like <code>nsw-display-flex</code>). Its direct child <code>nsw-col</code> elements are flex items, so order utilities apply to the columns.</p>
+
+<div class="nsw-in-page-alert nsw-in-page-alert--warning">
+  <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">info</span>
+  <div class="nsw-in-page-alert__content">
+    <h4>Use <code>order</code> with care</h4>
+    <p><a href="https://designsystem.nsw.gov.au/docs/content/utilities/flex.html#order">Order utilities</a> only change the visual order. Screen readers and keyboard focus follow the DOM order, so changing the visual order can misalign what people see, hear, and tab through. Do not use <code>order</code> (or other layout-only CSS) to rearrange functional content like forms, navigation, or controls. Trying to fix this with the <code>tabindex</code> attribute creates a separate focus sequence that can diverge from the DOM and is hard to maintain.</p>
+    <p>It is only suitable when items communicate the same, non-functional message such as an image and its accompanying text. Always keep the HTML order logical and meaningful for reading and focus, then apply <code>nsw-order-*</code> classes only as a visual enhancement where this does not change the intended sequence. Preserving a meaningful DOM order is key to meeting the intent of WCAG 2.2 SC <a href="https://www.w3.org/WAI/WCAG22/Understanding/meaningful-sequence.html">1.3.2 Meaningful Sequence</a> and <a href="https://www.w3.org/WAI/WCAG22/Understanding/focus-order.html">2.4.3 Focus Order</a>.</p>
+  </div>
+</div>
 
 <h2 id="global-page-structure">Global page structure</h2>
 <p>The global page structure provides page-level regions that sit outside in-content layout patterns. Use it for persistent, site-wide controls like the Sticky container, mastheads and footers. These regions form the shell of a page and are not composition patterns.</p>
