@@ -344,7 +344,7 @@ const searchValues = [
   {
     label: 'Getting Started',
     template: 'result',
-    keywords: 'npm, CDN, starter kit, Installing, Import styles, Core and selected components, Public Sans, Material Icons, Node, SASS, base theme, typography, mixins, functions, javascript, JSDelivr, Browser support, starter kit',
+    keywords: 'npm, CDN, starter kit, Installing, Import styles, Core and selected components, Public Sans, Material Symbols, Node, SASS, base theme, typography, mixins, functions, javascript, JSDelivr, Browser support, starter kit',
     url: '/docs/content/develop/getting-started.html',
   },
   {

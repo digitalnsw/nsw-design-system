@@ -4,7 +4,7 @@ import DownloadPDF from './download-pdf'
 import ColorSwatches from './color-swatches'
 
 // Prevent icon flash: hide icons until font loads
-document.documentElement.classList.add('material-icons-loading')
+document.documentElement.classList.add('material-symbols-outlined-loading')
 
 function initDocs() {
   const codeButtons = document.querySelectorAll('.js-code-button')
@@ -415,10 +415,10 @@ function initDocs() {
 
 initDocs()
 
-// Show icons when Material Icons font is ready
+// Show icons when Material Symbols font is ready
 function handleIconsReady() {
-  document.documentElement.classList.remove('material-icons-loading')
-  document.documentElement.classList.add('material-icons-loaded')
+  document.documentElement.classList.remove('material-symbols-outlined-loading')
+  document.documentElement.classList.add('material-symbols-outlined-loaded')
 }
 
 if (document.fonts && document.fonts.ready) {

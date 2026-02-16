@@ -1,20 +1,20 @@
 <{{#if instant}}div{{else}}form{{/if}} class="nsw-filters{{#if instant}} nsw-filters--instant{{/if}}{{#if popup}} nsw-filters--fixed{{/if}}{{#if right}} nsw-filters--right{{/if}}{{#if down}} nsw-filters--down{{/if}}{{#if js}} js-filters{{/if}}">{{#if (or right popup down)}}
   <div class="nsw-filters__controls{{#unless no-count}} js-filters__count{{/unless}}">
     <button>
-      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">tune</span>
+      <span class="material-symbols-outlined nsw-material-symbols-outlined" focusable="false" aria-hidden="true">tune</span>
       <span>{{#if name}}{{name}}{{else}}Filters{{/if}}</span>{{#if down}}
-      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>{{else}}
-      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_right</span>{{/if}}
+      <span class="material-symbols-outlined nsw-material-symbols-outlined" focusable="false" aria-hidden="true">keyboard_arrow_down</span>{{else}}
+      <span class="material-symbols-outlined nsw-material-symbols-outlined" focusable="false" aria-hidden="true">keyboard_arrow_right</span>{{/if}}
     </button>
   </div>{{/if}}
   <div class="nsw-filters__wrapper">{{#if (or right popup)}}
     <div class="nsw-filters__back">
       <button class="nsw-icon-button nsw-icon-button--flex js-close-sub-nav" type="button">
         {{#if right}}
-        <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">close</span>
+        <span class="material-symbols-outlined nsw-material-symbols-outlined" focusable="false" aria-hidden="true">close</span>
         <span class="sr-only">Close filters</span>
         {{else}}
-        <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_left</span>
+        <span class="material-symbols-outlined nsw-material-symbols-outlined" focusable="false" aria-hidden="true">keyboard_arrow_left</span>
         <span>Back</span> 
         {{/if}}
       </button>
@@ -24,7 +24,7 @@
       <div class="nsw-filters__item">{{#if collapsed}}
         <button class="nsw-filters__item-button">
           <span class="nsw-filters__item-name">{{input.name}}</span>
-          <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
+          <span class="material-symbols-outlined nsw-material-symbols-outlined" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
         </button>{{/if}}
         <div class="nsw-filters__item-content">
           <label class="nsw-form__label{{#if collapsed}} sr-only{{/if}}" for="{{input.id}}-{{filters-id}}">{{input.name}}</label>
@@ -34,7 +34,7 @@
       <div class="nsw-filters__item">{{#if collapsed}}
         <button class="nsw-filters__item-button">
           <span class="nsw-filters__item-name">{{select.name}}</span>
-          <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
+          <span class="material-symbols-outlined nsw-material-symbols-outlined" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
         </button>{{/if}}
         <div class="nsw-filters__item-content">
           <label class="nsw-form__label{{#if collapsed}} sr-only{{/if}}" for="{{select.id}}-{{filters-id}}">{{select.name}}</label>{{#if multiple}}
@@ -50,7 +50,7 @@
       <div class="nsw-filters__item">{{#if collapsed}}
         <button class="nsw-filters__item-button">
           <span class="nsw-filters__item-name">{{checkboxes.name}}</span>
-          <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
+          <span class="material-symbols-outlined nsw-material-symbols-outlined" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
         </button>{{/if}}
         <div class="nsw-filters__item-content">
           <fieldset class="nsw-form__fieldset">
@@ -68,7 +68,7 @@
       <div class="nsw-filters__item">{{#if collapsed}}
         <button class="nsw-filters__item-button">
           <span class="nsw-filters__item-name">Date</span>
-          <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
+          <span class="material-symbols-outlined nsw-material-symbols-outlined" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
         </button>{{/if}}
         <div class="nsw-filters__item-content">{{#each dates.list}}
           <div class="nsw-form__group">

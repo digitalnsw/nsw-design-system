@@ -100,15 +100,15 @@ meta-index: true
 <p><strong>Tip:</strong> Prefer the barrel for consistency. If a file needs exactly one tool and you want explicit coupling, you can import that file directly (for example, <code>@use 'node_modules/nsw-design-system/src/global/scss/base/mixins' as mixins;</code>).</p>
 
 <h3 id="fonticon">Adding the fonts and the icons</h3>
-<p>In your main html document add this line of code inside the head tag. Make sure that it's placed before the NSW Design System styles import. Or install <a href="https://www.npmjs.com/package/material-icons" target="_blank">icon</a> and <a href="https://www.npmjs.com/package/@fontsource/public-sans" target="_blank">font</a> from npm.</p>
+<p>In your main html document add this line of code inside the head tag. Make sure that it's placed before the NSW Design System styles import. Or install <a href="https://www.npmjs.com/package/@fontsource/material-symbols-outlined" target="_blank">icon</a> and <a href="https://www.npmjs.com/package/@fontsource/public-sans" target="_blank">font</a> from npm.</p>
 {{#>_docs-example hidden="true" open="true" code="html"}}
 <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&display=block" rel="stylesheet">
 {{/_docs-example}}
 <p>Another way is to import it in css:</p>
 {{#>_docs-example hidden="true" open="true" code="scss"}}
 @import url('https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,700;1,400&display=swap');
-@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&display=block');
 {{/_docs-example}}
 
 <h3 id="javascript">Importing javascript into your project</h3>
