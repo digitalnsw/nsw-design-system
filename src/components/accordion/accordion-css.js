@@ -81,16 +81,17 @@ class CssAccordion {
     // Optional: open by hash (deep-linking)
     const { location } = window
     if (location && location.hash) {
-      const { hash } = location
-      let byId = null
+      let hashId = location.hash.slice(1)
 
-      if (container.matches && container.matches(hash)) {
-        byId = container
-      } else if (container.querySelector) {
-        byId = container.querySelector(hash)
+      try {
+        hashId = decodeURIComponent(hashId)
+      } catch (error) {
+        hashId = location.hash.slice(1)
       }
 
-      const details = byId && (byId.matches && byId.matches('details.nsw-accordion__item')
+      const byId = hashId ? document.getElementById(hashId) : null
+      const scoped = byId && (byId === container || (container.contains && container.contains(byId)))
+      const details = scoped && (byId.matches && byId.matches('details.nsw-accordion__item')
         ? byId
         : byId.closest('details.nsw-accordion__item'))
       if (details) {
