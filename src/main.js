@@ -46,7 +46,8 @@ if (!Element.prototype.closest) {
 
 function initSite() {
   const jsAccordions = document.querySelectorAll('.js-accordion')
-  const detailsAccordions = document.querySelectorAll('.js-accordion-details')
+  const detailsAccordions = Array.from(document.querySelectorAll('.js-accordion-details'))
+    .filter((element) => !element.parentElement || !element.parentElement.closest('.js-accordion-details'))
   const backTop = document.querySelectorAll('button.js-back-to-top')
   const breadcrumbs = document.querySelectorAll('.js-breadcrumbs')
   const carousel = document.querySelectorAll('.js-carousel')
