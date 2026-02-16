@@ -13,7 +13,11 @@ class CssAccordion {
     const { container } = this
     if (!container || !container.classList) return
 
-    this.items = Array.from(container.querySelectorAll('details.nsw-accordion__item'))
+    if (container.matches && container.matches('details.nsw-accordion__item')) {
+      this.items = [container]
+    } else {
+      this.items = Array.from(container.querySelectorAll('details.nsw-accordion__item'))
+    }
     if (!this.items.length) return
 
     // Initial ARIA sync
@@ -29,7 +33,7 @@ class CssAccordion {
       panel.setAttribute('aria-labelledby', summary.id)
     })
 
-    const toolbar = container.querySelector('.nsw-accordion__toggle')
+    const toolbar = container.querySelector ? container.querySelector('.nsw-accordion__toggle') : null
     let updateButtons
 
     if (toolbar) {
@@ -75,9 +79,20 @@ class CssAccordion {
     })
 
     // Optional: open by hash (deep-linking)
-    if (window.location && window.location.hash) {
-      const byId = container.querySelector(window.location.hash)
-      const details = byId && byId.closest('details.nsw-accordion__item')
+    const { location } = window
+    if (location && location.hash) {
+      const { hash } = location
+      let byId = null
+
+      if (container.matches && container.matches(hash)) {
+        byId = container
+      } else if (container.querySelector) {
+        byId = container.querySelector(hash)
+      }
+
+      const details = byId && (byId.matches && byId.matches('details.nsw-accordion__item')
+        ? byId
+        : byId.closest('details.nsw-accordion__item'))
       if (details) {
         if (!details.open) {
           details.open = true

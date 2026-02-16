@@ -60,7 +60,7 @@ layout: blank-layout.hbs
 <p>Consider tabs if the user would likely need to flick between content sections.</p>
 
 <h2 id="details-variation">Details variation (Recommended)</h2>
-<p>The details based accordion (<code>.nsw-accordion--details</code>) is the default and recommended implementation. It uses native <code>&lt;details&gt;</code> and <code>&lt;summary&gt;</code> elements for the disclosure pattern, which provides built in semantics, keyboard support and state announcement for assistive technologies. This version delivers the core expand and collapse interaction without requiring JavaScript and is progressively enhanced when JavaScript is available.</p>
+<p>The details based accordion is the default and recommended implementation. It uses native <code>&lt;details&gt;</code> and <code>&lt;summary&gt;</code> elements for the disclosure pattern, which provides built in semantics, keyboard support and state announcement for assistive technologies. This version delivers the core expand and collapse interaction without requiring JavaScript and is progressively enhanced when JavaScript is available.</p>
 
 <h3>Why we included it</h3>
 <ul>
@@ -80,9 +80,10 @@ layout: blank-layout.hbs
 
 <h3>How to use</h3>
 <ul>
-  <li>Add the modifier class <code>.nsw-accordion--details</code> on the accordion container to render the details based variant.</li>
   <li>Use <code>&lt;details&gt;</code> for each item and <code>&lt;summary&gt;</code> for the clickable header, following the markup in the examples.</li>
-  <li>Optional: add a toolbar container <code>.nsw-accordion__toggle</code> with "Expand all" and "Collapse all" buttons. When JavaScript is available, these controls are wired up automatically.</li>
+  <li>Optional: wrap multiple items in a container with <code>.nsw-accordion--details</code>. Use this when you want a grouped accordion and the "Expand all / Collapse all" toolbar.</li>
+  <li>Optional: add a toolbar container <code>.nsw-accordion__toggle</code> with "Expand all" and "Collapse all" buttons inside the wrapper. When JavaScript is available, these controls are wired up automatically.</li>
+  <li>Optional: add the <code>.js-accordion-details</code> hook to either the wrapper or a single <code>&lt;details&gt;</code> item to enable progressive enhancement.</li>
 </ul>
 
 <h3>Compatibility and support</h3>
