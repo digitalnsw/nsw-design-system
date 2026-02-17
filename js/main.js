@@ -269,6 +269,12 @@
   // - Wires optional Expand all / Collapse all toolbar if present
   // - Keeps toolbar buttons in sync with open state and honours deep links
 
+  const generateId = details => {
+    if (details.id) return details.id;
+    const generatedId = uniqueId('accordion-details');
+    details.setAttribute('id', generatedId);
+    return generatedId;
+  };
   class CssAccordion {
     constructor(container) {
       this.container = container;
@@ -279,21 +285,25 @@
         container
       } = this;
       if (!container || !container.classList) return;
-      this.items = Array.from(container.querySelectorAll('details.nsw-accordion__item'));
+      if (container.matches && container.matches('details.nsw-accordion__item')) {
+        this.items = [container];
+      } else {
+        this.items = Array.from(container.querySelectorAll('details.nsw-accordion__item'));
+      }
       if (!this.items.length) return;
 
       // Initial ARIA sync
       this.items.forEach(details => {
         const summary = details.querySelector('.nsw-accordion__title');
-        const panel = details.querySelector('.nsw-accordion__content-wrap');
+        const panel = details.querySelector('.nsw-accordion__content-wrap') || details.querySelector('.nsw-accordion__content');
         if (!summary || !panel) return;
-        const baseId = details.id || 'accordion-details';
+        const baseId = details.id || generateId(details);
         if (!panel.id) panel.id = `${baseId}-panel`;
         if (!summary.id) summary.id = `${baseId}-summary`;
         panel.setAttribute('role', 'region');
         panel.setAttribute('aria-labelledby', summary.id);
       });
-      const toolbar = container.querySelector('.nsw-accordion__toggle');
+      const toolbar = container.querySelector ? container.querySelector('.nsw-accordion__toggle') : null;
       let updateButtons;
       if (toolbar) {
         const expandBtn = toolbar.querySelector('button[aria-label^="Expand all"]');
@@ -334,9 +344,19 @@
       });
 
       // Optional: open by hash (deep-linking)
-      if (window.location && window.location.hash) {
-        const byId = container.querySelector(window.location.hash);
-        const details = byId && byId.closest('details.nsw-accordion__item');
+      const {
+        location
+      } = window;
+      if (location && location.hash) {
+        let hashId = location.hash.slice(1);
+        try {
+          hashId = decodeURIComponent(hashId);
+        } catch (error) {
+          hashId = location.hash.slice(1);
+        }
+        const byId = hashId ? document.getElementById(hashId) : null;
+        const scoped = byId && (byId === container || container.contains && container.contains(byId));
+        const details = scoped && (byId.matches && byId.matches('details.nsw-accordion__item') ? byId : byId.closest('details.nsw-accordion__item'));
         if (details) {
           if (!details.open) {
             details.open = true;
@@ -6700,7 +6720,7 @@
   }
   function initSite() {
     const jsAccordions = document.querySelectorAll('.js-accordion');
-    const detailsAccordions = document.querySelectorAll('.js-accordion-details');
+    const detailsAccordions = Array.from(document.querySelectorAll('.js-accordion-details')).filter(element => !element.parentElement || !element.parentElement.closest('.js-accordion-details'));
     const backTop = document.querySelectorAll('button.js-back-to-top');
     const breadcrumbs = document.querySelectorAll('.js-breadcrumbs');
     const carousel = document.querySelectorAll('.js-carousel');

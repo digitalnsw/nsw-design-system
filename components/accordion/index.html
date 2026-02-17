@@ -511,7 +511,7 @@
 <p>Consider tabs if the user would likely need to flick between content sections.</p>
 
 <h2 id="details-variation">Details variation (Recommended)</h2>
-<p>The details based accordion (<code>.nsw-accordion--details</code>) is the default and recommended implementation. It uses native <code>&lt;details&gt;</code> and <code>&lt;summary&gt;</code> elements for the disclosure pattern, which provides built in semantics, keyboard support and state announcement for assistive technologies. This version delivers the core expand and collapse interaction without requiring JavaScript and is progressively enhanced when JavaScript is available.</p>
+<p>The details based accordion is the default and recommended implementation. It uses native <code>&lt;details&gt;</code> and <code>&lt;summary&gt;</code> elements for the disclosure pattern, which provides built in semantics, keyboard support and state announcement for assistive technologies. This version delivers the core expand and collapse interaction without requiring JavaScript and is progressively enhanced when JavaScript is available.</p>
 
 <h3>Why we included it</h3>
 <ul>
@@ -531,9 +531,10 @@
 
 <h3>How to use</h3>
 <ul>
-  <li>Add the modifier class <code>.nsw-accordion--details</code> on the accordion container to render the details based variant.</li>
   <li>Use <code>&lt;details&gt;</code> for each item and <code>&lt;summary&gt;</code> for the clickable header, following the markup in the examples.</li>
-  <li>Optional: add a toolbar container <code>.nsw-accordion__toggle</code> with "Expand all" and "Collapse all" buttons. When JavaScript is available, these controls are wired up automatically.</li>
+  <li>Optional: wrap multiple items in a container with <code>.nsw-accordion--details</code>. Use this when you want a grouped accordion and the "Expand all / Collapse all" toolbar. For a single item, the wrapper is not required.</li>
+  <li>Optional: add a toolbar container <code>.nsw-accordion__toggle</code> with "Expand all" and "Collapse all" buttons inside the wrapper. When JavaScript is available, these controls are wired up automatically.</li>
+  <li>Optional: add the <code>.js-accordion-details</code> hook to either the wrapper or a single <code>&lt;details&gt;</code> item to enable progressive enhancement (ARIA labelling and toolbar wiring).</li>
 </ul>
 
 <h3>Compatibility and support</h3>
@@ -578,38 +579,38 @@
 <h3>Regular</h3>
 <div class="nsw-docs__example">
   <div class="nsw-docs__component">
-      <div class="nsw-accordion--details js-accordion-details" id="accordion-4">
-        <details class="nsw-accordion__item" open id="a1f9b3c2d7e4">
-          <summary class="nsw-accordion__title">
-            Integrating content into agile workflows
-          </summary>
-          <div class="nsw-accordion__content-wrap" id="a1f9b3c2d7e4-panel">
-            <div class="nsw-accordion__content">
-              <p>Build content into the sprint from day one. Treat words as part of the product, not an afterthought. Add content tasks to the backlog and review them in stand ups alongside design and development.</p><p>Collaborate with product owners to define a clear Definition of Done for content. Encourage early reviews of copy within design critiques so language decisions move at the same pace as the interface.</p><ul><li>Join daily stand ups and retrospectives to stay aligned</li><li>Include content tickets in sprint demos</li><li>Track feedback and updates using the same agile tools as your team</li></ul>
+        <div class="nsw-accordion--details js-accordion-details" id="accordion-4">
+          <details class="nsw-accordion__item" open id="a1f9b3c2d7e4">
+            <summary class="nsw-accordion__title">
+              Integrating content into agile workflows
+            </summary>
+            <div class="nsw-accordion__content-wrap" id="a1f9b3c2d7e4-panel">
+              <div class="nsw-accordion__content">
+                <p>Build content into the sprint from day one. Treat words as part of the product, not an afterthought. Add content tasks to the backlog and review them in stand ups alongside design and development.</p><p>Collaborate with product owners to define a clear Definition of Done for content. Encourage early reviews of copy within design critiques so language decisions move at the same pace as the interface.</p><ul><li>Join daily stand ups and retrospectives to stay aligned</li><li>Include content tickets in sprint demos</li><li>Track feedback and updates using the same agile tools as your team</li></ul>
+              </div>
             </div>
-          </div>
-        </details>
-        <details class="nsw-accordion__item" id="b2d6e8f1a9c3">
-          <summary class="nsw-accordion__title">
-            Designing simple paths through complex tasks
-          </summary>
-          <div class="nsw-accordion__content-wrap" id="b2d6e8f1a9c3-panel">
-            <div class="nsw-accordion__content">
-              <p>Start by naming the single outcome the user needs to achieve. Remove anything that doesn’t help them get there.</p><p>Structure the page like a conversation: set expectations up front, group related steps, and explain why you’re asking for information.</p><ul><li>Lead with clear, task‑focused headings</li><li>Break long processes into confident, named steps</li><li>Use examples only where users typically hesitate</li></ul>
+          </details>
+          <details class="nsw-accordion__item" id="b2d6e8f1a9c3">
+            <summary class="nsw-accordion__title">
+              Designing simple paths through complex tasks
+            </summary>
+            <div class="nsw-accordion__content-wrap" id="b2d6e8f1a9c3-panel">
+              <div class="nsw-accordion__content">
+                <p>Start by naming the single outcome the user needs to achieve. Remove anything that doesn’t help them get there.</p><p>Structure the page like a conversation: set expectations up front, group related steps, and explain why you’re asking for information.</p><ul><li>Lead with clear, task‑focused headings</li><li>Break long processes into confident, named steps</li><li>Use examples only where users typically hesitate</li></ul>
+              </div>
             </div>
-          </div>
-        </details>
-        <details class="nsw-accordion__item" id="c3e7a1b9d5f8">
-          <summary class="nsw-accordion__title">
-            Partnering with subject matter experts
-          </summary>
-          <div class="nsw-accordion__content-wrap" id="c3e7a1b9d5f8-panel">
-            <div class="nsw-accordion__content">
-              <p>Make it easy for SMEs to help. Share a short agenda and a live doc. Ask them to walk a realistic scenario instead of describing the system.</p><p>Capture source links and who approved wording so changes are auditable. Follow up with a redline or prototype to make feedback fast.</p><ul><li>Record facts with dates and owners</li><li>Translate jargon into plain language</li><li>Agree on the exact words users will see</li></ul>
+          </details>
+          <details class="nsw-accordion__item" id="c3e7a1b9d5f8">
+            <summary class="nsw-accordion__title">
+              Partnering with subject matter experts
+            </summary>
+            <div class="nsw-accordion__content-wrap" id="c3e7a1b9d5f8-panel">
+              <div class="nsw-accordion__content">
+                <p>Make it easy for SMEs to help. Share a short agenda and a live doc. Ask them to walk a realistic scenario instead of describing the system.</p><p>Capture source links and who approved wording so changes are auditable. Follow up with a redline or prototype to make feedback fast.</p><ul><li>Record facts with dates and owners</li><li>Translate jargon into plain language</li><li>Agree on the exact words users will see</li></ul>
+              </div>
             </div>
-          </div>
-        </details>
-      </div>
+          </details>
+        </div>
   </div>
 </div>
 <div class="nsw-docs-code">
@@ -622,72 +623,126 @@
       <span>Copy</span>
       <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
     </button>
-    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`  <div class="nsw-accordion--details js-accordion-details" id="accordion-4">
-    <details class="nsw-accordion__item" open id="a1f9b3c2d7e4">
-      <summary class="nsw-accordion__title">
-        Integrating content into agile workflows
-      </summary>
-      <div class="nsw-accordion__content-wrap" id="a1f9b3c2d7e4-panel">
-        <div class="nsw-accordion__content">
-          <p>Build content into the sprint from day one. Treat words as part of the product, not an afterthought. Add content tasks to the backlog and review them in stand ups alongside design and development.</p><p>Collaborate with product owners to define a clear Definition of Done for content. Encourage early reviews of copy within design critiques so language decisions move at the same pace as the interface.</p><ul><li>Join daily stand ups and retrospectives to stay aligned</li><li>Include content tickets in sprint demos</li><li>Track feedback and updates using the same agile tools as your team</li></ul>
+    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`    <div class="nsw-accordion--details js-accordion-details" id="accordion-4">
+      <details class="nsw-accordion__item" open id="a1f9b3c2d7e4">
+        <summary class="nsw-accordion__title">
+          Integrating content into agile workflows
+        </summary>
+        <div class="nsw-accordion__content-wrap" id="a1f9b3c2d7e4-panel">
+          <div class="nsw-accordion__content">
+            <p>Build content into the sprint from day one. Treat words as part of the product, not an afterthought. Add content tasks to the backlog and review them in stand ups alongside design and development.</p><p>Collaborate with product owners to define a clear Definition of Done for content. Encourage early reviews of copy within design critiques so language decisions move at the same pace as the interface.</p><ul><li>Join daily stand ups and retrospectives to stay aligned</li><li>Include content tickets in sprint demos</li><li>Track feedback and updates using the same agile tools as your team</li></ul>
+          </div>
         </div>
-      </div>
-    </details>
-    <details class="nsw-accordion__item" id="b2d6e8f1a9c3">
-      <summary class="nsw-accordion__title">
-        Designing simple paths through complex tasks
-      </summary>
-      <div class="nsw-accordion__content-wrap" id="b2d6e8f1a9c3-panel">
-        <div class="nsw-accordion__content">
-          <p>Start by naming the single outcome the user needs to achieve. Remove anything that doesn’t help them get there.</p><p>Structure the page like a conversation: set expectations up front, group related steps, and explain why you’re asking for information.</p><ul><li>Lead with clear, task‑focused headings</li><li>Break long processes into confident, named steps</li><li>Use examples only where users typically hesitate</li></ul>
+      </details>
+      <details class="nsw-accordion__item" id="b2d6e8f1a9c3">
+        <summary class="nsw-accordion__title">
+          Designing simple paths through complex tasks
+        </summary>
+        <div class="nsw-accordion__content-wrap" id="b2d6e8f1a9c3-panel">
+          <div class="nsw-accordion__content">
+            <p>Start by naming the single outcome the user needs to achieve. Remove anything that doesn’t help them get there.</p><p>Structure the page like a conversation: set expectations up front, group related steps, and explain why you’re asking for information.</p><ul><li>Lead with clear, task‑focused headings</li><li>Break long processes into confident, named steps</li><li>Use examples only where users typically hesitate</li></ul>
+          </div>
         </div>
-      </div>
-    </details>
-    <details class="nsw-accordion__item" id="c3e7a1b9d5f8">
-      <summary class="nsw-accordion__title">
-        Partnering with subject matter experts
-      </summary>
-      <div class="nsw-accordion__content-wrap" id="c3e7a1b9d5f8-panel">
-        <div class="nsw-accordion__content">
-          <p>Make it easy for SMEs to help. Share a short agenda and a live doc. Ask them to walk a realistic scenario instead of describing the system.</p><p>Capture source links and who approved wording so changes are auditable. Follow up with a redline or prototype to make feedback fast.</p><ul><li>Record facts with dates and owners</li><li>Translate jargon into plain language</li><li>Agree on the exact words users will see</li></ul>
+      </details>
+      <details class="nsw-accordion__item" id="c3e7a1b9d5f8">
+        <summary class="nsw-accordion__title">
+          Partnering with subject matter experts
+        </summary>
+        <div class="nsw-accordion__content-wrap" id="c3e7a1b9d5f8-panel">
+          <div class="nsw-accordion__content">
+            <p>Make it easy for SMEs to help. Share a short agenda and a live doc. Ask them to walk a realistic scenario instead of describing the system.</p><p>Capture source links and who approved wording so changes are auditable. Follow up with a redline or prototype to make feedback fast.</p><ul><li>Record facts with dates and owners</li><li>Translate jargon into plain language</li><li>Agree on the exact words users will see</li></ul>
+          </div>
         </div>
-      </div>
-    </details>
-  </div>
+      </details>
+    </div>
 `).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
     <div class="nsw-docs-code__wrapper">
-<pre><code class="html"><script>document.write((`  <div class="nsw-accordion--details js-accordion-details" id="accordion-4">
-    <details class="nsw-accordion__item" open id="a1f9b3c2d7e4">
-      <summary class="nsw-accordion__title">
-        Integrating content into agile workflows
-      </summary>
-      <div class="nsw-accordion__content-wrap" id="a1f9b3c2d7e4-panel">
-        <div class="nsw-accordion__content">
-          <p>Build content into the sprint from day one. Treat words as part of the product, not an afterthought. Add content tasks to the backlog and review them in stand ups alongside design and development.</p><p>Collaborate with product owners to define a clear Definition of Done for content. Encourage early reviews of copy within design critiques so language decisions move at the same pace as the interface.</p><ul><li>Join daily stand ups and retrospectives to stay aligned</li><li>Include content tickets in sprint demos</li><li>Track feedback and updates using the same agile tools as your team</li></ul>
+<pre><code class="html"><script>document.write((`    <div class="nsw-accordion--details js-accordion-details" id="accordion-4">
+      <details class="nsw-accordion__item" open id="a1f9b3c2d7e4">
+        <summary class="nsw-accordion__title">
+          Integrating content into agile workflows
+        </summary>
+        <div class="nsw-accordion__content-wrap" id="a1f9b3c2d7e4-panel">
+          <div class="nsw-accordion__content">
+            <p>Build content into the sprint from day one. Treat words as part of the product, not an afterthought. Add content tasks to the backlog and review them in stand ups alongside design and development.</p><p>Collaborate with product owners to define a clear Definition of Done for content. Encourage early reviews of copy within design critiques so language decisions move at the same pace as the interface.</p><ul><li>Join daily stand ups and retrospectives to stay aligned</li><li>Include content tickets in sprint demos</li><li>Track feedback and updates using the same agile tools as your team</li></ul>
+          </div>
         </div>
-      </div>
-    </details>
-    <details class="nsw-accordion__item" id="b2d6e8f1a9c3">
-      <summary class="nsw-accordion__title">
-        Designing simple paths through complex tasks
-      </summary>
-      <div class="nsw-accordion__content-wrap" id="b2d6e8f1a9c3-panel">
-        <div class="nsw-accordion__content">
-          <p>Start by naming the single outcome the user needs to achieve. Remove anything that doesn’t help them get there.</p><p>Structure the page like a conversation: set expectations up front, group related steps, and explain why you’re asking for information.</p><ul><li>Lead with clear, task‑focused headings</li><li>Break long processes into confident, named steps</li><li>Use examples only where users typically hesitate</li></ul>
+      </details>
+      <details class="nsw-accordion__item" id="b2d6e8f1a9c3">
+        <summary class="nsw-accordion__title">
+          Designing simple paths through complex tasks
+        </summary>
+        <div class="nsw-accordion__content-wrap" id="b2d6e8f1a9c3-panel">
+          <div class="nsw-accordion__content">
+            <p>Start by naming the single outcome the user needs to achieve. Remove anything that doesn’t help them get there.</p><p>Structure the page like a conversation: set expectations up front, group related steps, and explain why you’re asking for information.</p><ul><li>Lead with clear, task‑focused headings</li><li>Break long processes into confident, named steps</li><li>Use examples only where users typically hesitate</li></ul>
+          </div>
         </div>
-      </div>
-    </details>
-    <details class="nsw-accordion__item" id="c3e7a1b9d5f8">
-      <summary class="nsw-accordion__title">
-        Partnering with subject matter experts
-      </summary>
-      <div class="nsw-accordion__content-wrap" id="c3e7a1b9d5f8-panel">
-        <div class="nsw-accordion__content">
-          <p>Make it easy for SMEs to help. Share a short agenda and a live doc. Ask them to walk a realistic scenario instead of describing the system.</p><p>Capture source links and who approved wording so changes are auditable. Follow up with a redline or prototype to make feedback fast.</p><ul><li>Record facts with dates and owners</li><li>Translate jargon into plain language</li><li>Agree on the exact words users will see</li></ul>
+      </details>
+      <details class="nsw-accordion__item" id="c3e7a1b9d5f8">
+        <summary class="nsw-accordion__title">
+          Partnering with subject matter experts
+        </summary>
+        <div class="nsw-accordion__content-wrap" id="c3e7a1b9d5f8-panel">
+          <div class="nsw-accordion__content">
+            <p>Make it easy for SMEs to help. Share a short agenda and a live doc. Ask them to walk a realistic scenario instead of describing the system.</p><p>Capture source links and who approved wording so changes are auditable. Follow up with a redline or prototype to make feedback fast.</p><ul><li>Record facts with dates and owners</li><li>Translate jargon into plain language</li><li>Agree on the exact words users will see</li></ul>
+          </div>
         </div>
-      </div>
-    </details>
+      </details>
+    </div>
+`).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
+    </div>
   </div>
+</div>
+
+
+
+<h3>Single item (no wrapper)</h3>
+<div class="nsw-docs__example">
+  <div class="nsw-docs__component">
+        <details class="nsw-accordion__item js-accordion-details" open id="13fbfoojb1j">
+          <summary class="nsw-accordion__title">
+            Sprint cadence or workflow
+          </summary>
+          <div class="nsw-accordion__content-wrap" id="13fbfoojb1j-panel">
+            <div class="nsw-accordion__content">
+              <p>Join the team’s rhythm early. Be part of stand ups, planning sessions, and retros to spot content needs before they become blockers. Work closely with design and engineering to align intent and tone.</p><p>Keep a living content backlog and track it with the same tools your team uses for features. Make small, iterative improvements instead of waiting for a rewrite cycle.</p> 
+            </div>
+          </div>
+        </details>
+  </div>
+</div>
+<div class="nsw-docs-code">
+  <button class="nsw-link nsw-link--button nsw-link--icon nsw-small js-code-button">
+    <span>Show code</span>
+    <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
+  </button>
+  <div class="nsw-docs-code__content">
+    <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
+      <span>Copy</span>
+      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
+    </button>
+    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`    <details class="nsw-accordion__item js-accordion-details" open id="13fbfoojb1j">
+      <summary class="nsw-accordion__title">
+        Sprint cadence or workflow
+      </summary>
+      <div class="nsw-accordion__content-wrap" id="13fbfoojb1j-panel">
+        <div class="nsw-accordion__content">
+          <p>Join the team’s rhythm early. Be part of stand ups, planning sessions, and retros to spot content needs before they become blockers. Work closely with design and engineering to align intent and tone.</p><p>Keep a living content backlog and track it with the same tools your team uses for features. Make small, iterative improvements instead of waiting for a rewrite cycle.</p> 
+        </div>
+      </div>
+    </details>
+`).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
+    <div class="nsw-docs-code__wrapper">
+<pre><code class="html"><script>document.write((`    <details class="nsw-accordion__item js-accordion-details" open id="13fbfoojb1j">
+      <summary class="nsw-accordion__title">
+        Sprint cadence or workflow
+      </summary>
+      <div class="nsw-accordion__content-wrap" id="13fbfoojb1j-panel">
+        <div class="nsw-accordion__content">
+          <p>Join the team’s rhythm early. Be part of stand ups, planning sessions, and retros to spot content needs before they become blockers. Work closely with design and engineering to align intent and tone.</p><p>Keep a living content backlog and track it with the same tools your team uses for features. Make small, iterative improvements instead of waiting for a rewrite cycle.</p> 
+        </div>
+      </div>
+    </details>
 `).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
     </div>
   </div>
@@ -698,42 +753,42 @@
 <h3>Toggle controls (progressively enhanced)</h3>
 <div class="nsw-docs__example">
   <div class="nsw-docs__component">
-      <div class="nsw-accordion--details js-accordion-details" id="accordion-5">
-        <div class="nsw-accordion__toggle">
-          <button type="button" aria-label="Expand all sections in accordion-5 accordion">Expand all</button>
-          <button type="button" aria-label="Collapse all sections in accordion-5 accordion">Collapse all</button>
+        <div class="nsw-accordion--details js-accordion-details" id="accordion-5">
+          <div class="nsw-accordion__toggle">
+            <button type="button" aria-label="Expand all sections in accordion-5 accordion">Expand all</button>
+            <button type="button" aria-label="Collapse all sections in accordion-5 accordion">Collapse all</button>
+          </div>
+          <details class="nsw-accordion__item" id="d1e8a3b9f4c7">
+            <summary class="nsw-accordion__title">
+              Embedding content design in agile delivery
+            </summary>
+            <div class="nsw-accordion__content-wrap" id="d1e8a3b9f4c7-panel">
+              <div class="nsw-accordion__content">
+                <p>Bring content into every stage of the sprint, not just the end. Treat it like any other design asset: plan it, review it, and test it early.</p><p>When copy and interface evolve together, teams avoid last‑minute rewrites and mismatched intent.</p>
+              </div>
+            </div>
+          </details>
+          <details class="nsw-accordion__item" open id="b3a2f7e6d9c1">
+            <summary class="nsw-accordion__title">
+              Making complex information easy to follow
+            </summary>
+            <div class="nsw-accordion__content-wrap" id="b3a2f7e6d9c1-panel">
+              <div class="nsw-accordion__content">
+                <p>Help users reach their goal quickly. Use strong verbs and avoid multi‑step sentences that hide the action.</p><ul><li>Cut instructions down to what matters</li><li>Show one decision at a time</li><li>Keep headings short and concrete</li></ul><p>Sometimes a simple label swap or reordered field makes the biggest difference.</p>
+              </div>
+            </div>
+          </details>
+          <details class="nsw-accordion__item" id="e5c4b8d2a9f6">
+            <summary class="nsw-accordion__title">
+              Collaborating with subject matter experts
+            </summary>
+            <div class="nsw-accordion__content-wrap" id="e5c4b8d2a9f6-panel">
+              <div class="nsw-accordion__content">
+                <p>Ask SMEs to explain how people actually use a service, not just how it works on paper. Listen for pain points or unclear language that can inform your content choices.</p><p>Keep notes visible to everyone so edits don’t get lost. A few short comments are better than one long document review.</p><p>Follow up with a quick playback—what you heard, what will change, and what stays the same.</p>
+              </div>
+            </div>
+          </details>
         </div>
-        <details class="nsw-accordion__item" id="d1e8a3b9f4c7">
-          <summary class="nsw-accordion__title">
-            Embedding content design in agile delivery
-          </summary>
-          <div class="nsw-accordion__content-wrap" id="d1e8a3b9f4c7-panel">
-            <div class="nsw-accordion__content">
-              <p>Bring content into every stage of the sprint, not just the end. Treat it like any other design asset: plan it, review it, and test it early.</p><p>When copy and interface evolve together, teams avoid last‑minute rewrites and mismatched intent.</p>
-            </div>
-          </div>
-        </details>
-        <details class="nsw-accordion__item" open id="b3a2f7e6d9c1">
-          <summary class="nsw-accordion__title">
-            Making complex information easy to follow
-          </summary>
-          <div class="nsw-accordion__content-wrap" id="b3a2f7e6d9c1-panel">
-            <div class="nsw-accordion__content">
-              <p>Help users reach their goal quickly. Use strong verbs and avoid multi‑step sentences that hide the action.</p><ul><li>Cut instructions down to what matters</li><li>Show one decision at a time</li><li>Keep headings short and concrete</li></ul><p>Sometimes a simple label swap or reordered field makes the biggest difference.</p>
-            </div>
-          </div>
-        </details>
-        <details class="nsw-accordion__item" id="e5c4b8d2a9f6">
-          <summary class="nsw-accordion__title">
-            Collaborating with subject matter experts
-          </summary>
-          <div class="nsw-accordion__content-wrap" id="e5c4b8d2a9f6-panel">
-            <div class="nsw-accordion__content">
-              <p>Ask SMEs to explain how people actually use a service, not just how it works on paper. Listen for pain points or unclear language that can inform your content choices.</p><p>Keep notes visible to everyone so edits don’t get lost. A few short comments are better than one long document review.</p><p>Follow up with a quick playback—what you heard, what will change, and what stays the same.</p>
-            </div>
-          </div>
-        </details>
-      </div>
   </div>
 </div>
 <div class="nsw-docs-code">
@@ -746,80 +801,80 @@
       <span>Copy</span>
       <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
     </button>
-    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`  <div class="nsw-accordion--details js-accordion-details" id="accordion-5">
-    <div class="nsw-accordion__toggle">
-      <button type="button" aria-label="Expand all sections in accordion-5 accordion">Expand all</button>
-      <button type="button" aria-label="Collapse all sections in accordion-5 accordion">Collapse all</button>
+    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`    <div class="nsw-accordion--details js-accordion-details" id="accordion-5">
+      <div class="nsw-accordion__toggle">
+        <button type="button" aria-label="Expand all sections in accordion-5 accordion">Expand all</button>
+        <button type="button" aria-label="Collapse all sections in accordion-5 accordion">Collapse all</button>
+      </div>
+      <details class="nsw-accordion__item" id="d1e8a3b9f4c7">
+        <summary class="nsw-accordion__title">
+          Embedding content design in agile delivery
+        </summary>
+        <div class="nsw-accordion__content-wrap" id="d1e8a3b9f4c7-panel">
+          <div class="nsw-accordion__content">
+            <p>Bring content into every stage of the sprint, not just the end. Treat it like any other design asset: plan it, review it, and test it early.</p><p>When copy and interface evolve together, teams avoid last‑minute rewrites and mismatched intent.</p>
+          </div>
+        </div>
+      </details>
+      <details class="nsw-accordion__item" open id="b3a2f7e6d9c1">
+        <summary class="nsw-accordion__title">
+          Making complex information easy to follow
+        </summary>
+        <div class="nsw-accordion__content-wrap" id="b3a2f7e6d9c1-panel">
+          <div class="nsw-accordion__content">
+            <p>Help users reach their goal quickly. Use strong verbs and avoid multi‑step sentences that hide the action.</p><ul><li>Cut instructions down to what matters</li><li>Show one decision at a time</li><li>Keep headings short and concrete</li></ul><p>Sometimes a simple label swap or reordered field makes the biggest difference.</p>
+          </div>
+        </div>
+      </details>
+      <details class="nsw-accordion__item" id="e5c4b8d2a9f6">
+        <summary class="nsw-accordion__title">
+          Collaborating with subject matter experts
+        </summary>
+        <div class="nsw-accordion__content-wrap" id="e5c4b8d2a9f6-panel">
+          <div class="nsw-accordion__content">
+            <p>Ask SMEs to explain how people actually use a service, not just how it works on paper. Listen for pain points or unclear language that can inform your content choices.</p><p>Keep notes visible to everyone so edits don’t get lost. A few short comments are better than one long document review.</p><p>Follow up with a quick playback—what you heard, what will change, and what stays the same.</p>
+          </div>
+        </div>
+      </details>
     </div>
-    <details class="nsw-accordion__item" id="d1e8a3b9f4c7">
-      <summary class="nsw-accordion__title">
-        Embedding content design in agile delivery
-      </summary>
-      <div class="nsw-accordion__content-wrap" id="d1e8a3b9f4c7-panel">
-        <div class="nsw-accordion__content">
-          <p>Bring content into every stage of the sprint, not just the end. Treat it like any other design asset: plan it, review it, and test it early.</p><p>When copy and interface evolve together, teams avoid last‑minute rewrites and mismatched intent.</p>
-        </div>
-      </div>
-    </details>
-    <details class="nsw-accordion__item" open id="b3a2f7e6d9c1">
-      <summary class="nsw-accordion__title">
-        Making complex information easy to follow
-      </summary>
-      <div class="nsw-accordion__content-wrap" id="b3a2f7e6d9c1-panel">
-        <div class="nsw-accordion__content">
-          <p>Help users reach their goal quickly. Use strong verbs and avoid multi‑step sentences that hide the action.</p><ul><li>Cut instructions down to what matters</li><li>Show one decision at a time</li><li>Keep headings short and concrete</li></ul><p>Sometimes a simple label swap or reordered field makes the biggest difference.</p>
-        </div>
-      </div>
-    </details>
-    <details class="nsw-accordion__item" id="e5c4b8d2a9f6">
-      <summary class="nsw-accordion__title">
-        Collaborating with subject matter experts
-      </summary>
-      <div class="nsw-accordion__content-wrap" id="e5c4b8d2a9f6-panel">
-        <div class="nsw-accordion__content">
-          <p>Ask SMEs to explain how people actually use a service, not just how it works on paper. Listen for pain points or unclear language that can inform your content choices.</p><p>Keep notes visible to everyone so edits don’t get lost. A few short comments are better than one long document review.</p><p>Follow up with a quick playback—what you heard, what will change, and what stays the same.</p>
-        </div>
-      </div>
-    </details>
-  </div>
 `).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
     <div class="nsw-docs-code__wrapper">
-<pre><code class="html"><script>document.write((`  <div class="nsw-accordion--details js-accordion-details" id="accordion-5">
-    <div class="nsw-accordion__toggle">
-      <button type="button" aria-label="Expand all sections in accordion-5 accordion">Expand all</button>
-      <button type="button" aria-label="Collapse all sections in accordion-5 accordion">Collapse all</button>
+<pre><code class="html"><script>document.write((`    <div class="nsw-accordion--details js-accordion-details" id="accordion-5">
+      <div class="nsw-accordion__toggle">
+        <button type="button" aria-label="Expand all sections in accordion-5 accordion">Expand all</button>
+        <button type="button" aria-label="Collapse all sections in accordion-5 accordion">Collapse all</button>
+      </div>
+      <details class="nsw-accordion__item" id="d1e8a3b9f4c7">
+        <summary class="nsw-accordion__title">
+          Embedding content design in agile delivery
+        </summary>
+        <div class="nsw-accordion__content-wrap" id="d1e8a3b9f4c7-panel">
+          <div class="nsw-accordion__content">
+            <p>Bring content into every stage of the sprint, not just the end. Treat it like any other design asset: plan it, review it, and test it early.</p><p>When copy and interface evolve together, teams avoid last‑minute rewrites and mismatched intent.</p>
+          </div>
+        </div>
+      </details>
+      <details class="nsw-accordion__item" open id="b3a2f7e6d9c1">
+        <summary class="nsw-accordion__title">
+          Making complex information easy to follow
+        </summary>
+        <div class="nsw-accordion__content-wrap" id="b3a2f7e6d9c1-panel">
+          <div class="nsw-accordion__content">
+            <p>Help users reach their goal quickly. Use strong verbs and avoid multi‑step sentences that hide the action.</p><ul><li>Cut instructions down to what matters</li><li>Show one decision at a time</li><li>Keep headings short and concrete</li></ul><p>Sometimes a simple label swap or reordered field makes the biggest difference.</p>
+          </div>
+        </div>
+      </details>
+      <details class="nsw-accordion__item" id="e5c4b8d2a9f6">
+        <summary class="nsw-accordion__title">
+          Collaborating with subject matter experts
+        </summary>
+        <div class="nsw-accordion__content-wrap" id="e5c4b8d2a9f6-panel">
+          <div class="nsw-accordion__content">
+            <p>Ask SMEs to explain how people actually use a service, not just how it works on paper. Listen for pain points or unclear language that can inform your content choices.</p><p>Keep notes visible to everyone so edits don’t get lost. A few short comments are better than one long document review.</p><p>Follow up with a quick playback—what you heard, what will change, and what stays the same.</p>
+          </div>
+        </div>
+      </details>
     </div>
-    <details class="nsw-accordion__item" id="d1e8a3b9f4c7">
-      <summary class="nsw-accordion__title">
-        Embedding content design in agile delivery
-      </summary>
-      <div class="nsw-accordion__content-wrap" id="d1e8a3b9f4c7-panel">
-        <div class="nsw-accordion__content">
-          <p>Bring content into every stage of the sprint, not just the end. Treat it like any other design asset: plan it, review it, and test it early.</p><p>When copy and interface evolve together, teams avoid last‑minute rewrites and mismatched intent.</p>
-        </div>
-      </div>
-    </details>
-    <details class="nsw-accordion__item" open id="b3a2f7e6d9c1">
-      <summary class="nsw-accordion__title">
-        Making complex information easy to follow
-      </summary>
-      <div class="nsw-accordion__content-wrap" id="b3a2f7e6d9c1-panel">
-        <div class="nsw-accordion__content">
-          <p>Help users reach their goal quickly. Use strong verbs and avoid multi‑step sentences that hide the action.</p><ul><li>Cut instructions down to what matters</li><li>Show one decision at a time</li><li>Keep headings short and concrete</li></ul><p>Sometimes a simple label swap or reordered field makes the biggest difference.</p>
-        </div>
-      </div>
-    </details>
-    <details class="nsw-accordion__item" id="e5c4b8d2a9f6">
-      <summary class="nsw-accordion__title">
-        Collaborating with subject matter experts
-      </summary>
-      <div class="nsw-accordion__content-wrap" id="e5c4b8d2a9f6-panel">
-        <div class="nsw-accordion__content">
-          <p>Ask SMEs to explain how people actually use a service, not just how it works on paper. Listen for pain points or unclear language that can inform your content choices.</p><p>Keep notes visible to everyone so edits don’t get lost. A few short comments are better than one long document review.</p><p>Follow up with a quick playback—what you heard, what will change, and what stays the same.</p>
-        </div>
-      </div>
-    </details>
-  </div>
 `).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
     </div>
   </div>
