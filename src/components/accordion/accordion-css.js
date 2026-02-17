@@ -1,7 +1,4 @@
-// Progressive enhancement for <details> accordions
-// - Syncs ARIA labelling for panels
-// - Wires optional Expand all / Collapse all toolbar if present
-// - Keeps toolbar buttons in sync with open state and honours deep links
+import { setAriaDisabled, isAriaDisabled } from '../../global/scripts/helpers/utilities'
 
 class CssAccordion {
   constructor(container) {
@@ -35,23 +32,17 @@ class CssAccordion {
     if (toolbar) {
       const expandBtn = toolbar.querySelector('button[aria-label^="Expand all"]')
       const collapseBtn = toolbar.querySelector('button[aria-label^="Collapse all"]')
-      const setToggleDisabled = (button, isDisabled) => {
-        if (!button) return
-        button.setAttribute('aria-disabled', isDisabled ? 'true' : 'false')
-        button.classList.toggle('disabled', !!isDisabled)
-      }
-      const isToggleDisabled = (button) => button && button.getAttribute('aria-disabled') === 'true'
 
       const update = () => {
         const allOpen = this.items.length && this.items.every((d) => d.open === true)
         const allClosed = this.items.length && this.items.every((d) => d.open === false)
-        if (expandBtn) setToggleDisabled(expandBtn, !!allOpen)
-        if (collapseBtn) setToggleDisabled(collapseBtn, !!allClosed)
+        if (expandBtn) setAriaDisabled(expandBtn, !!allOpen)
+        if (collapseBtn) setAriaDisabled(collapseBtn, !!allClosed)
       }
 
       if (expandBtn) {
         expandBtn.addEventListener('click', () => {
-          if (isToggleDisabled(expandBtn)) return
+          if (isAriaDisabled(expandBtn)) return
           for (let i = 0; i < this.items.length; i += 1) {
             const details = this.items[i]
             if (!details.open) details.open = true
@@ -62,7 +53,7 @@ class CssAccordion {
 
       if (collapseBtn) {
         collapseBtn.addEventListener('click', () => {
-          if (isToggleDisabled(collapseBtn)) return
+          if (isAriaDisabled(collapseBtn)) return
           for (let i = 0; i < this.items.length; i += 1) {
             const details = this.items[i]
             if (details.open) details.open = false

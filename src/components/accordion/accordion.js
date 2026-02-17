@@ -1,4 +1,4 @@
-import { uniqueId } from '../../global/scripts/helpers/utilities'
+import { uniqueId, setAriaDisabled, isAriaDisabled } from '../../global/scripts/helpers/utilities'
 
 function createButtons({ textContent }) {
   const fragment = document.createDocumentFragment()
@@ -42,7 +42,7 @@ class Accordion {
   setUpDom() {
     this.element.classList.add('ready')
     if (this.collapseAllBtn) {
-      this.constructor.setToggleDisabled(this.collapseAllBtn, true)
+      setAriaDisabled(this.collapseAllBtn, true)
     }
     this.headings.forEach((heading) => {
       const headingElem = heading
@@ -68,6 +68,8 @@ class Accordion {
         this.setAccordionState(openButton, 'open')
       })
     }
+
+    this.updateToggleButtons()
   }
 
   controls() {
@@ -81,14 +83,12 @@ class Accordion {
     }
   }
 
-  static setToggleDisabled(button, isDisabled) {
-    if (!button) return
-    button.setAttribute('aria-disabled', isDisabled ? 'true' : 'false')
-    button.classList.toggle('disabled', !!isDisabled)
-  }
-
-  static isToggleDisabled(button) {
-    return button && button.getAttribute('aria-disabled') === 'true'
+  updateToggleButtons() {
+    if (!this.expandAllBtn || !this.collapseAllBtn) return
+    const allOpen = this.content.length && this.content.every((item) => !item.hasAttribute('hidden'))
+    const allClosed = this.content.length && this.content.every((item) => item.hasAttribute('hidden'))
+    setAriaDisabled(this.expandAllBtn, !!allOpen)
+    setAriaDisabled(this.collapseAllBtn, !!allClosed)
   }
 
   getTargetContent(element) {
@@ -123,29 +123,24 @@ class Accordion {
         this.setAccordionState(currentTarget, 'close')
       }
 
-      if (this.expandAllBtn && this.collapseAllBtn) {
-        this.constructor.setToggleDisabled(this.expandAllBtn, this.content.every((item) => !item.hasAttribute('hidden')))
-        this.constructor.setToggleDisabled(this.collapseAllBtn, this.content.every((item) => item.hasAttribute('hidden')))
-      }
+      this.updateToggleButtons()
     }
   }
 
   expandAll(event) {
-    if (event && this.constructor.isToggleDisabled(event.currentTarget)) return
+    if (event && isAriaDisabled(event.currentTarget)) return
     this.buttons.forEach((element) => {
       this.setAccordionState(element, 'open')
     })
-    this.constructor.setToggleDisabled(this.expandAllBtn, true)
-    this.constructor.setToggleDisabled(this.collapseAllBtn, false)
+    this.updateToggleButtons()
   }
 
   collapseAll(event) {
-    if (event && this.constructor.isToggleDisabled(event.currentTarget)) return
+    if (event && isAriaDisabled(event.currentTarget)) return
     this.buttons.forEach((element) => {
       this.setAccordionState(element, 'close')
     })
-    this.constructor.setToggleDisabled(this.expandAllBtn, false)
-    this.constructor.setToggleDisabled(this.collapseAllBtn, true)
+    this.updateToggleButtons()
   }
 }
 

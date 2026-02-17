@@ -23,7 +23,6 @@ class Toggletip {
     this.closeButton = false
     this.toggletipIsOpen = false
     this.toggletipVisibleClass = 'active'
-    this.ignoreNextTriggerKeyup = false
     this.firstFocusable = false
     this.lastFocusable = false
   }
@@ -35,6 +34,7 @@ class Toggletip {
       tabindex: '0',
       'aria-haspopup': 'dialog',
       'aria-expanded': 'false',
+      role: 'button',
     })
     this.initEvents()
   }
@@ -42,16 +42,12 @@ class Toggletip {
   initEvents() {
     this.toggletip.addEventListener('click', this.toggleToggletip.bind(this))
 
-    this.toggletip.addEventListener('keyup', (event) => {
-      if (this.ignoreNextTriggerKeyup) {
-        this.ignoreNextTriggerKeyup = false
-        return
-      }
-
-      const key = event.key && event.key.toLowerCase()
-      const code = event.code && event.code.toLowerCase()
-      const isEnter = key === 'enter' || code === 'enter'
-      const isSpace = key === ' ' || key === 'spacebar' || code === 'space'
+    this.toggletip.addEventListener('keydown', (event) => {
+      const { key, code } = event
+      const eventKey = key && key.toLowerCase()
+      const eventCode = code && code.toLowerCase()
+      const isEnter = eventKey === 'enter' || eventCode === 'enter'
+      const isSpace = eventKey === ' ' || eventKey === 'spacebar' || eventCode === 'space'
 
       if (isEnter || isSpace) {
         event.preventDefault()
@@ -66,11 +62,15 @@ class Toggletip {
     this.toggletipElement.addEventListener('keydown', this.trapFocus.bind(this))
 
     window.addEventListener('click', (event) => {
-      this.checkToggletipClick(event.target)
+      const { target } = event
+      this.checkToggletipClick(target)
     })
 
     window.addEventListener('keyup', (event) => {
-      if ((event.code && event.code.toLowerCase() === 'escape') || (event.key && event.key.toLowerCase() === 'escape')) {
+      const { key, code } = event
+      const eventKey = key && key.toLowerCase()
+      const eventCode = code && code.toLowerCase()
+      if (eventCode === 'escape' || eventKey === 'escape') {
         this.checkToggletipFocus()
       }
     })
@@ -134,14 +134,6 @@ class Toggletip {
 
     this.updateToggletip(this.toggletipElement, this.arrowElement)
     this.closeButton.addEventListener('click', this.toggleToggletip.bind(this))
-    this.closeButton.addEventListener('keydown', (event) => {
-      const key = event.key && event.key.toLowerCase()
-      const code = event.code && event.code.toLowerCase()
-      const isEnter = key === 'enter' || code === 'enter'
-      if (isEnter) {
-        this.ignoreNextTriggerKeyup = true
-      }
-    })
   }
 
   hideToggletip() {
@@ -149,7 +141,13 @@ class Toggletip {
     this.toggletipElement.classList.remove('active')
 
     this.toggletipIsOpen = false
-    this.constructor.moveFocus(this.toggletip)
+    const { activeElement } = document
+    const toggletipContainsFocus = this.toggletipElement
+      && activeElement
+      && (this.toggletipElement === activeElement || this.toggletipElement.contains(activeElement))
+    if (toggletipContainsFocus) {
+      this.constructor.moveFocus(this.toggletip)
+    }
   }
 
   updateToggletip(toggletip, arrowElement, anchor = this.toggletipAnchor) {
@@ -233,16 +231,19 @@ class Toggletip {
   }
 
   trapFocus(event) {
-    const isTab = (event.code && event.code.toLowerCase() === 'tab')
-      || (event.key && event.key.toLowerCase() === 'tab')
-      || event.keyCode === 9
+    const {
+      key, code, keyCode, shiftKey,
+    } = event
+    const eventKey = key && key.toLowerCase()
+    const eventCode = code && code.toLowerCase()
+    const isTab = eventCode === 'tab' || eventKey === 'tab' || keyCode === 9
     if (!isTab) return
 
-    if (this.firstFocusable === document.activeElement && event.shiftKey) {
+    if (this.firstFocusable === document.activeElement && shiftKey) {
       event.preventDefault()
       this.lastFocusable.focus()
     }
-    if (this.lastFocusable === document.activeElement && !event.shiftKey) {
+    if (this.lastFocusable === document.activeElement && !shiftKey) {
       event.preventDefault()
       this.firstFocusable.focus()
     }
