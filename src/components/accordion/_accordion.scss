@@ -56,7 +56,7 @@
       @include nsw.link;
       @include nsw.font-size('sm');
       
-      &:hover:enabled {
+      &:hover:enabled:not(.disabled) {
         @include nsw.nsw-hover;
         outline: 2px solid var(--nsw-hover);
         cursor: pointer;
@@ -75,7 +75,8 @@
         margin-right: nsw.rem(24px);
       }
 
-      &:disabled {
+      &:disabled,
+      &.disabled {
         opacity: 0.4;
         cursor: not-allowed;
       }      

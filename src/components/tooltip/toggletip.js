@@ -13,6 +13,8 @@ class Toggletip {
     this.toggletip = element
     this.toggletipId = this.toggletip.getAttribute('aria-controls')
     this.toggletipElement = this.toggletipId && document.querySelector(`#${this.toggletipId}`)
+    this.toggletipHeaderId = this.toggletipId ? `${this.toggletipId}-header` : ''
+    this.toggletipContentId = this.toggletipId ? `${this.toggletipId}-content` : ''
     this.toggletipContent = false
     this.toggletipAnchor = this.toggletip.querySelector('[data-anchor]') || this.toggletip
     this.toggletipText = this.toggletip.innerText
@@ -21,6 +23,7 @@ class Toggletip {
     this.closeButton = false
     this.toggletipIsOpen = false
     this.toggletipVisibleClass = 'active'
+    this.ignoreNextTriggerKeyup = false
     this.firstFocusable = false
     this.lastFocusable = false
   }
@@ -31,6 +34,7 @@ class Toggletip {
     this.constructor.setAttributes(this.toggletip, {
       tabindex: '0',
       'aria-haspopup': 'dialog',
+      'aria-expanded': 'false',
     })
     this.initEvents()
   }
@@ -39,7 +43,18 @@ class Toggletip {
     this.toggletip.addEventListener('click', this.toggleToggletip.bind(this))
 
     this.toggletip.addEventListener('keyup', (event) => {
-      if ((event.code && event.code.toLowerCase() === 'enter') || (event.key && event.key.toLowerCase() === 'enter')) {
+      if (this.ignoreNextTriggerKeyup) {
+        this.ignoreNextTriggerKeyup = false
+        return
+      }
+
+      const key = event.key && event.key.toLowerCase()
+      const code = event.code && event.code.toLowerCase()
+      const isEnter = key === 'enter' || code === 'enter'
+      const isSpace = key === ' ' || key === 'spacebar' || code === 'space'
+
+      if (isEnter || isSpace) {
+        event.preventDefault()
         this.toggleToggletip()
       }
     })
@@ -83,13 +98,13 @@ class Toggletip {
       this.toggletipElement.innerHTML = ''
       const createToggletip = `
       <div class="nsw-toggletip__header">
-        <div id="nsw-toggletip__header" class="sr-only">${cleanHTMLStrict(this.toggletipHeading)}</div>
+        <div id="${this.toggletipHeaderId}" class="sr-only">${cleanHTMLStrict(this.toggletipHeading)}</div>
         <button type="button" class="nsw-icon-button">
-          <span class="sr-only">Remove file</span>
+          <span class="sr-only">Close tooltip</span>
           <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">close</span>
         </button>
       </div>
-      <div id="nsw-toggletip__content" class="nsw-toggletip__content">
+      <div id="${this.toggletipContentId}" class="nsw-toggletip__content">
         ${cleanHTMLStrict(this.toggletipContent)}
       </div>
       <div class="nsw-toggletip__arrow"></div>`
@@ -97,9 +112,8 @@ class Toggletip {
     }
 
     this.constructor.setAttributes(this.toggletipElement, {
-      'aria-labelledby': 'nsw-toggletip__header',
-      'aria-describedby': 'nsw-toggletip__content',
-      'aria-expanded': 'false',
+      'aria-labelledby': this.toggletipHeaderId,
+      'aria-describedby': this.toggletipContentId,
       tabindex: '0',
       role: 'dialog',
     })
@@ -110,7 +124,7 @@ class Toggletip {
     this.arrowElement = this.toggletipElement.querySelector('.nsw-toggletip__arrow')
     this.closeButton = this.toggletipElement.querySelector('.nsw-icon-button')
 
-    this.toggletipElement.setAttribute('aria-expanded', 'true')
+    this.toggletip.setAttribute('aria-expanded', 'true')
     this.toggletipElement.classList.add('active')
     this.toggletipIsOpen = true
 
@@ -120,13 +134,22 @@ class Toggletip {
 
     this.updateToggletip(this.toggletipElement, this.arrowElement)
     this.closeButton.addEventListener('click', this.toggleToggletip.bind(this))
+    this.closeButton.addEventListener('keydown', (event) => {
+      const key = event.key && event.key.toLowerCase()
+      const code = event.code && event.code.toLowerCase()
+      const isEnter = key === 'enter' || code === 'enter'
+      if (isEnter) {
+        this.ignoreNextTriggerKeyup = true
+      }
+    })
   }
 
   hideToggletip() {
-    this.toggletipElement.setAttribute('aria-expanded', 'false')
+    this.toggletip.setAttribute('aria-expanded', 'false')
     this.toggletipElement.classList.remove('active')
 
     this.toggletipIsOpen = false
+    this.constructor.moveFocus(this.toggletip)
   }
 
   updateToggletip(toggletip, arrowElement, anchor = this.toggletipAnchor) {
@@ -210,6 +233,11 @@ class Toggletip {
   }
 
   trapFocus(event) {
+    const isTab = (event.code && event.code.toLowerCase() === 'tab')
+      || (event.key && event.key.toLowerCase() === 'tab')
+      || event.keyCode === 9
+    if (!isTab) return
+
     if (this.firstFocusable === document.activeElement && event.shiftKey) {
       event.preventDefault()
       this.lastFocusable.focus()

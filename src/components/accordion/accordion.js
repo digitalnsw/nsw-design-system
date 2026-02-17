@@ -42,7 +42,7 @@ class Accordion {
   setUpDom() {
     this.element.classList.add('ready')
     if (this.collapseAllBtn) {
-      this.collapseAllBtn.disabled = true
+      this.constructor.setToggleDisabled(this.collapseAllBtn, true)
     }
     this.headings.forEach((heading) => {
       const headingElem = heading
@@ -81,6 +81,16 @@ class Accordion {
     }
   }
 
+  static setToggleDisabled(button, isDisabled) {
+    if (!button) return
+    button.setAttribute('aria-disabled', isDisabled ? 'true' : 'false')
+    button.classList.toggle('disabled', !!isDisabled)
+  }
+
+  static isToggleDisabled(button) {
+    return button && button.getAttribute('aria-disabled') === 'true'
+  }
+
   getTargetContent(element) {
     const currentIndex = this.buttons.indexOf(element)
     return this.content[currentIndex]
@@ -114,26 +124,28 @@ class Accordion {
       }
 
       if (this.expandAllBtn && this.collapseAllBtn) {
-        this.expandAllBtn.disabled = this.content.every((item) => !item.hasAttribute('hidden'))
-        this.collapseAllBtn.disabled = this.content.every((item) => item.hasAttribute('hidden'))
+        this.constructor.setToggleDisabled(this.expandAllBtn, this.content.every((item) => !item.hasAttribute('hidden')))
+        this.constructor.setToggleDisabled(this.collapseAllBtn, this.content.every((item) => item.hasAttribute('hidden')))
       }
     }
   }
 
-  expandAll() {
+  expandAll(event) {
+    if (event && this.constructor.isToggleDisabled(event.currentTarget)) return
     this.buttons.forEach((element) => {
       this.setAccordionState(element, 'open')
     })
-    this.expandAllBtn.disabled = true
-    this.collapseAllBtn.disabled = false
+    this.constructor.setToggleDisabled(this.expandAllBtn, true)
+    this.constructor.setToggleDisabled(this.collapseAllBtn, false)
   }
 
-  collapseAll() {
+  collapseAll(event) {
+    if (event && this.constructor.isToggleDisabled(event.currentTarget)) return
     this.buttons.forEach((element) => {
       this.setAccordionState(element, 'close')
     })
-    this.expandAllBtn.disabled = false
-    this.collapseAllBtn.disabled = true
+    this.constructor.setToggleDisabled(this.expandAllBtn, false)
+    this.constructor.setToggleDisabled(this.collapseAllBtn, true)
   }
 }
 
