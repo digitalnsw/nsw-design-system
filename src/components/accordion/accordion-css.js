@@ -3,6 +3,15 @@
 // - Wires optional Expand all / Collapse all toolbar if present
 // - Keeps toolbar buttons in sync with open state and honours deep links
 
+import { uniqueId } from '../../global/scripts/helpers/utilities'
+
+const generateId = (details) => {
+  if (details.id) return details.id
+  const generatedId = uniqueId('accordion-details')
+  details.setAttribute('id', generatedId)
+  return generatedId
+}
+
 class CssAccordion {
   constructor(container) {
     this.container = container
@@ -24,8 +33,9 @@ class CssAccordion {
     this.items.forEach((details) => {
       const summary = details.querySelector('.nsw-accordion__title')
       const panel = details.querySelector('.nsw-accordion__content-wrap')
+        || details.querySelector('.nsw-accordion__content')
       if (!summary || !panel) return
-      const baseId = details.id || 'accordion-details'
+      const baseId = details.id || generateId(details)
 
       if (!panel.id) panel.id = `${baseId}-panel`
       if (!summary.id) summary.id = `${baseId}-summary`
@@ -110,5 +120,4 @@ class CssAccordion {
     }
   }
 }
-
 export default CssAccordion
