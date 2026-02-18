@@ -16,6 +16,7 @@ const generateId = (details) => {
   details.setAttribute('id', generatedId)
   return generatedId
 }
+
 class CssAccordion {
   constructor(container) {
     this.container = container
@@ -51,6 +52,13 @@ class CssAccordion {
     let updateButtons
 
     if (toolbar) {
+      const statusElement = this.constructor.ensureStatusElement(toolbar)
+      const announceStatus = (message) => {
+        if (!statusElement) return
+        statusElement.textContent = ''
+        statusElement.textContent = message
+      }
+
       const expandBtn = toolbar.querySelector('button[aria-label^="Expand all"]')
       const collapseBtn = toolbar.querySelector('button[aria-label^="Collapse all"]')
 
@@ -77,6 +85,7 @@ class CssAccordion {
             if (!details.open) details.open = true
           }
           update()
+          announceStatus('All sections expanded')
         })
       }
 
@@ -88,6 +97,7 @@ class CssAccordion {
             if (details.open) details.open = false
           }
           update()
+          announceStatus('All sections collapsed')
         })
       }
 
@@ -132,6 +142,20 @@ class CssAccordion {
         }
       }
     }
+  }
+
+  static ensureStatusElement(toolbar) {
+    if (!toolbar) return null
+    const existing = toolbar.querySelector('[data-accordion-status]')
+    if (existing) return existing
+    const statusElement = document.createElement('span')
+    statusElement.classList.add('sr-only')
+    statusElement.setAttribute('role', 'status')
+    statusElement.setAttribute('aria-live', 'polite')
+    statusElement.setAttribute('aria-atomic', 'true')
+    statusElement.setAttribute('data-accordion-status', 'true')
+    toolbar.appendChild(statusElement)
+    return statusElement
   }
 }
 export default CssAccordion

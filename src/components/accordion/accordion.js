@@ -29,6 +29,7 @@ class Accordion {
     this.isExpandedOnLoad = this.element.querySelectorAll('.nsw-accordion__open')
     this.buttons = []
     this.content = []
+    this.statusElement = null
     this.toggleEvent = (event) => this.toggle(event)
     this.expandAllEvent = (event) => this.expandAll(event)
     this.collapseAllEvent = (event) => this.collapseAll(event)
@@ -64,6 +65,10 @@ class Accordion {
         const openButton = element.querySelector('button')
         this.setAccordionState(openButton, 'open')
       })
+    }
+
+    if (this.expandAllBtn && this.collapseAllBtn) {
+      this.statusElement = this.ensureStatusElement()
     }
 
     this.updateToggleButtons()
@@ -142,6 +147,7 @@ class Accordion {
       this.setAccordionState(element, 'open')
     })
     this.updateToggleButtons()
+    this.announceStatus('All sections expanded')
   }
 
   collapseAll(event) {
@@ -150,6 +156,30 @@ class Accordion {
       this.setAccordionState(element, 'close')
     })
     this.updateToggleButtons()
+    this.announceStatus('All sections collapsed')
+  }
+
+  ensureStatusElement() {
+    const { element } = this
+    const toolbar = element && element.querySelector('.nsw-accordion__toggle')
+    if (!toolbar) return null
+    const existing = toolbar.querySelector('[data-accordion-status]')
+    if (existing) return existing
+    const statusElement = document.createElement('span')
+    statusElement.classList.add('sr-only')
+    statusElement.setAttribute('role', 'status')
+    statusElement.setAttribute('aria-live', 'polite')
+    statusElement.setAttribute('aria-atomic', 'true')
+    statusElement.setAttribute('data-accordion-status', 'true')
+    toolbar.appendChild(statusElement)
+    return statusElement
+  }
+
+  announceStatus(message) {
+    const { statusElement } = this
+    if (!statusElement) return
+    statusElement.textContent = ''
+    statusElement.textContent = message
   }
 }
 
