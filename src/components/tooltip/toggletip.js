@@ -13,7 +13,6 @@ class Toggletip {
     this.toggletip = element
     this.toggletipId = this.toggletip.getAttribute('aria-controls')
     this.toggletipElement = this.toggletipId && document.querySelector(`#${this.toggletipId}`)
-    this.toggletipHeaderId = this.toggletipId ? `${this.toggletipId}-header` : ''
     this.toggletipContentId = this.toggletipId ? `${this.toggletipId}-content` : ''
     this.toggletipContent = false
     this.toggletipAnchor = this.toggletip.querySelector('[data-anchor]') || this.toggletip
@@ -32,7 +31,6 @@ class Toggletip {
 
     this.constructor.setAttributes(this.toggletip, {
       tabindex: '0',
-      'aria-haspopup': 'dialog',
       'aria-expanded': 'false',
       role: 'button',
     })
@@ -93,17 +91,17 @@ class Toggletip {
   }
 
   createToggletipElement() {
+    const { toggletipContentId, toggletipHeading } = this
     if (this.toggletipElement) {
       this.toggletipElement.innerHTML = ''
       const createToggletip = `
       <div class="nsw-toggletip__header">
-        <div id="${this.toggletipHeaderId}" class="sr-only">${cleanHTMLStrict(this.toggletipHeading)}</div>
         <button type="button" class="nsw-icon-button">
           <span class="sr-only">Close tooltip</span>
           <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">close</span>
         </button>
       </div>
-      <div id="${this.toggletipContentId}" class="nsw-toggletip__content">
+      <div id="${toggletipContentId}" class="nsw-toggletip__content">
         ${cleanHTMLStrict(this.toggletipContent)}
       </div>
       <div class="nsw-toggletip__arrow"></div>`
@@ -111,8 +109,8 @@ class Toggletip {
     }
 
     this.constructor.setAttributes(this.toggletipElement, {
-      'aria-labelledby': this.toggletipHeaderId,
-      'aria-describedby': this.toggletipContentId,
+      'aria-label': toggletipHeading,
+      'aria-describedby': toggletipContentId,
       tabindex: '0',
       role: 'dialog',
     })

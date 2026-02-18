@@ -46,11 +46,11 @@ class Tooltip {
     switch (event.type) {
       case 'mouseenter':
       case 'focus':
-        this.showTooltip(this, event)
+        this.showTooltip()
         break
       case 'mouseleave':
       case 'blur':
-        this.hideTooltip(this, event)
+        this.hideTooltip()
         break
       default:
         logger.log(`Unexpected event type: ${event.type}`)
@@ -65,7 +65,7 @@ class Tooltip {
     const isEscape = eventCode === 'escape' || eventKey === 'escape' || keyCode === 27
     if (!isEscape) return
     event.preventDefault()
-    this.hideTooltip()
+    this.hideTooltip({ immediate: true })
   }
 
   createTooltipElement() {
@@ -92,10 +92,13 @@ class Tooltip {
   }
 
   showTooltip() {
+    const { tooltip, tooltipDelay, uID } = this
     clearTimeout(this.hideTimeout)
     this.showTimeout = window.setTimeout(() => {
       this.createTooltipElement()
 
+      if (this.tooltipElement) this.tooltipElement.removeAttribute('aria-hidden')
+      if (tooltip) tooltip.setAttribute('aria-describedby', uID)
       this.tooltipElement.classList.add('active')
 
       const range = document.createRange()
@@ -107,17 +110,26 @@ class Tooltip {
       this.tooltipElement.style.width = `${clientRect.width + this.screenSize}px`
 
       this.updateTooltip(this.tooltipElement, this.arrowElement)
-    }, this.tooltipDelay)
+    }, tooltipDelay)
   }
 
-  hideTooltip() {
+  hideTooltip({ immediate = false } = {}) {
+    const { tooltip } = this
     clearTimeout(this.showTimeout)
-    this.hideTimeout = window.setTimeout(() => {
+    const hide = () => {
       if (!this.tooltipElement) return
       this.tooltipElement.classList.remove('active')
-
+      this.tooltipElement.setAttribute('aria-hidden', 'true')
       this.tooltipElement.style.width = ''
-    }, this.tooltipDelay)
+      if (tooltip) tooltip.removeAttribute('aria-describedby')
+    }
+
+    if (immediate) {
+      hide()
+      return
+    }
+
+    this.hideTimeout = window.setTimeout(hide, this.tooltipDelay)
   }
 
   matchMedia() {
