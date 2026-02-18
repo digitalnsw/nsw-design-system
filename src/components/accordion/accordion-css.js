@@ -3,7 +3,11 @@
 // - Wires optional Expand all / Collapse all toolbar if present
 // - Keeps toolbar buttons in sync with open state and honours deep links
 
-import { uniqueId } from '../../global/scripts/helpers/utilities'
+import {
+  isAriaDisabled,
+  setAriaDisabled,
+  uniqueId,
+} from '../../global/scripts/helpers/utilities'
 
 const generateId = (details) => {
   const { id } = details
@@ -51,15 +55,23 @@ class CssAccordion {
       const collapseBtn = toolbar.querySelector('button[aria-label^="Collapse all"]')
 
       const update = () => {
-        const allOpen = this.items.length && this.items.every((d) => d.open === true)
-        const allClosed = this.items.length && this.items.every((d) => d.open === false)
-        if (expandBtn) this.constructor.setAriaDisabled(expandBtn, !!allOpen)
-        if (collapseBtn) this.constructor.setAriaDisabled(collapseBtn, !!allClosed)
+        const { items } = this
+        const allOpen = items.length && items.every((d) => d.open === true)
+        const allClosed = items.length && items.every((d) => d.open === false)
+        const { activeElement } = document
+        const shouldMoveToCollapse = allOpen && activeElement === expandBtn
+        const shouldMoveToExpand = allClosed && activeElement === collapseBtn
+
+        if (shouldMoveToCollapse && collapseBtn) collapseBtn.focus()
+        if (shouldMoveToExpand && expandBtn) expandBtn.focus()
+
+        if (expandBtn) setAriaDisabled(expandBtn, !!allOpen)
+        if (collapseBtn) setAriaDisabled(collapseBtn, !!allClosed)
       }
 
       if (expandBtn) {
         expandBtn.addEventListener('click', () => {
-          if (this.constructor.isAriaDisabled(expandBtn)) return
+          if (isAriaDisabled(expandBtn)) return
           for (let i = 0; i < this.items.length; i += 1) {
             const details = this.items[i]
             if (!details.open) details.open = true
@@ -70,7 +82,7 @@ class CssAccordion {
 
       if (collapseBtn) {
         collapseBtn.addEventListener('click', () => {
-          if (this.constructor.isAriaDisabled(collapseBtn)) return
+          if (isAriaDisabled(collapseBtn)) return
           for (let i = 0; i < this.items.length; i += 1) {
             const details = this.items[i]
             if (details.open) details.open = false
@@ -120,17 +132,6 @@ class CssAccordion {
         }
       }
     }
-  }
-
-  static setAriaDisabled(element, isDisabled) {
-    if (!element) return
-    const { classList } = element
-    element.setAttribute('aria-disabled', isDisabled ? 'true' : 'false')
-    classList.toggle('disabled', !!isDisabled)
-  }
-
-  static isAriaDisabled(element) {
-    return element && element.getAttribute('aria-disabled') === 'true'
   }
 }
 export default CssAccordion

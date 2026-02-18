@@ -112,9 +112,15 @@ class FileUpload {
   }
 
   handleFileRemove(event) {
-    if (!event.target.closest('.nsw-icon-button')) return
+    const { target } = event
+    const removeButton = target.closest('.nsw-icon-button')
+    if (!removeButton) return
     event.preventDefault()
-    const item = event.target.closest('.nsw-file-upload__item')
+    const item = removeButton.closest('.nsw-file-upload__item')
+    if (!item) return
+    const nextItem = item.nextElementSibling || item.previousElementSibling
+    const nextButton = nextItem && nextItem.querySelector('.nsw-icon-button')
+    const { input } = this
     const { filename } = item.querySelector('.nsw-file-upload__item-filename').dataset
 
     const dataTransfer = new DataTransfer()
@@ -133,6 +139,9 @@ class FileUpload {
     if (this.filesList.children.length === 0) {
       this.filesList.classList.remove('active')
     }
+
+    const focusTarget = nextButton || input
+    if (focusTarget) focusTarget.focus()
   }
 
   static truncateString(str, num) {

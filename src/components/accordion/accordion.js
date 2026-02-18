@@ -81,11 +81,23 @@ class Accordion {
   }
 
   updateToggleButtons() {
-    if (!this.expandAllBtn || !this.collapseAllBtn) return
-    const allOpen = this.content.length && this.content.every((item) => !item.hasAttribute('hidden'))
-    const allClosed = this.content.length && this.content.every((item) => item.hasAttribute('hidden'))
-    setAriaDisabled(this.expandAllBtn, !!allOpen)
-    setAriaDisabled(this.collapseAllBtn, !!allClosed)
+    const {
+      collapseAllBtn,
+      content,
+      expandAllBtn,
+    } = this
+    if (!expandAllBtn || !collapseAllBtn) return
+    const allOpen = content.length && content.every((item) => !item.hasAttribute('hidden'))
+    const allClosed = content.length && content.every((item) => item.hasAttribute('hidden'))
+    const { activeElement } = document
+    const shouldMoveToCollapse = allOpen && activeElement === expandAllBtn
+    const shouldMoveToExpand = allClosed && activeElement === collapseAllBtn
+
+    if (shouldMoveToCollapse) collapseAllBtn.focus()
+    if (shouldMoveToExpand) expandAllBtn.focus()
+
+    setAriaDisabled(expandAllBtn, !!allOpen)
+    setAriaDisabled(collapseAllBtn, !!allClosed)
   }
 
   getTargetContent(element) {

@@ -88,7 +88,6 @@ class Toggletip {
     if (this.toggletipElement.classList.contains('active')) {
       this.hideToggletip()
     } else {
-      this.toggletipElement.focus()
       this.showToggletip()
     }
   }
@@ -130,7 +129,6 @@ class Toggletip {
 
     this.getFocusableElements()
     this.toggletipElement.focus({ preventScroll: true })
-    this.toggletip.addEventListener('transitionend', () => { this.focusToggletip() }, { once: true })
 
     this.updateToggletip(this.toggletipElement, this.arrowElement)
     this.closeButton.addEventListener('click', this.toggleToggletip.bind(this))
@@ -195,14 +193,6 @@ class Toggletip {
     if (!this.toggletipIsOpen) return
     this.constructor.moveFocus(this.toggletip)
     this.toggleToggletip()
-  }
-
-  focusToggletip() {
-    if (this.firstFocusable) {
-      this.firstFocusable.focus({ preventScroll: true })
-    } else {
-      this.constructor.moveFocus(this.toggletipElement)
-    }
   }
 
   getFocusableElements() {

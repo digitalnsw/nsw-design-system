@@ -19,6 +19,8 @@ class Tooltip {
     this.tooltipDelay = 400
     this.screenSize = false
     this.tooltipTheme = this.tooltip.getAttribute('data-theme') || 'dark'
+    this.showTimeout = null
+    this.hideTimeout = null
   }
 
   init() {
@@ -36,6 +38,8 @@ class Tooltip {
     eventArray.forEach((event, { listener = this.handleEvent.bind(this) }) => {
       this.tooltip.addEventListener(event, listener)
     })
+
+    this.tooltip.addEventListener('keydown', this.handleKeydown.bind(this))
   }
 
   handleEvent(event) {
@@ -52,6 +56,16 @@ class Tooltip {
         logger.log(`Unexpected event type: ${event.type}`)
         break
     }
+  }
+
+  handleKeydown(event) {
+    const { key, code, keyCode } = event
+    const eventKey = key && key.toLowerCase()
+    const eventCode = code && code.toLowerCase()
+    const isEscape = eventCode === 'escape' || eventKey === 'escape' || keyCode === 27
+    if (!isEscape) return
+    event.preventDefault()
+    this.hideTooltip()
   }
 
   createTooltipElement() {
@@ -78,7 +92,8 @@ class Tooltip {
   }
 
   showTooltip() {
-    setTimeout(() => {
+    clearTimeout(this.hideTimeout)
+    this.showTimeout = window.setTimeout(() => {
       this.createTooltipElement()
 
       this.tooltipElement.classList.add('active')
@@ -96,7 +111,9 @@ class Tooltip {
   }
 
   hideTooltip() {
-    setTimeout(() => {
+    clearTimeout(this.showTimeout)
+    this.hideTimeout = window.setTimeout(() => {
+      if (!this.tooltipElement) return
       this.tooltipElement.classList.remove('active')
 
       this.tooltipElement.style.width = ''
