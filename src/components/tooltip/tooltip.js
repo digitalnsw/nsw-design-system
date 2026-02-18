@@ -12,6 +12,7 @@ import logger from '../../global/scripts/helpers/logger'
 class Tooltip {
   constructor(element) {
     this.tooltip = element
+    const { tooltip } = this
     this.uID = uniqueId('tooltip')
     this.tooltipElement = false
     this.arrowElement = false
@@ -21,17 +22,25 @@ class Tooltip {
     this.tooltipTheme = this.tooltip.getAttribute('data-theme') || 'dark'
     this.showTimeout = null
     this.hideTimeout = null
+    this.initialDescribedBy = tooltip.getAttribute('aria-describedby')
+    this.describedByAdded = false
   }
 
   init() {
-    this.tooltipContent = this.tooltip.getAttribute('title')
+    const { tooltip } = this
+    this.tooltipContent = tooltip.getAttribute('title')
     if (!this.tooltipContent) return
-    this.constructor.setAttributes(this.tooltip, {
+    const labelText = (tooltip.textContent || '').trim()
+    const hasAriaLabel = tooltip.hasAttribute('aria-label')
+    const attributes = {
       'data-tooltip-content': this.tooltipContent,
-      'aria-describedby': this.uID,
       tabindex: '0',
-    })
-    this.tooltip.removeAttribute('title')
+    }
+    if (!hasAriaLabel && labelText) {
+      attributes['aria-label'] = `${labelText} tooltip`
+    }
+    this.constructor.setAttributes(tooltip, attributes)
+    tooltip.removeAttribute('title')
 
     const eventArray = ['mouseenter', 'mouseleave', 'focus', 'blur']
 
@@ -39,7 +48,7 @@ class Tooltip {
       this.tooltip.addEventListener(event, listener)
     })
 
-    this.tooltip.addEventListener('keydown', this.handleKeydown.bind(this))
+    tooltip.addEventListener('keydown', this.handleKeydown.bind(this))
   }
 
   handleEvent(event) {
@@ -92,13 +101,28 @@ class Tooltip {
   }
 
   showTooltip() {
-    const { tooltip, tooltipDelay, uID } = this
+    const {
+      initialDescribedBy,
+      tooltip,
+      tooltipDelay,
+      uID,
+    } = this
     clearTimeout(this.hideTimeout)
     this.showTimeout = window.setTimeout(() => {
       this.createTooltipElement()
 
       if (this.tooltipElement) this.tooltipElement.removeAttribute('aria-hidden')
-      if (tooltip) tooltip.setAttribute('aria-describedby', uID)
+      if (tooltip) {
+        const describedByTokens = (initialDescribedBy || '').split(/\s+/).filter(Boolean)
+        if (describedByTokens.includes(uID)) {
+          tooltip.setAttribute('aria-describedby', describedByTokens.join(' '))
+          this.describedByAdded = false
+        } else {
+          const nextDescribedBy = [...describedByTokens, uID].join(' ')
+          tooltip.setAttribute('aria-describedby', nextDescribedBy)
+          this.describedByAdded = true
+        }
+      }
       this.tooltipElement.classList.add('active')
 
       const range = document.createRange()
@@ -114,14 +138,25 @@ class Tooltip {
   }
 
   hideTooltip({ immediate = false } = {}) {
-    const { tooltip } = this
+    const {
+      describedByAdded,
+      initialDescribedBy,
+      tooltip,
+    } = this
     clearTimeout(this.showTimeout)
     const hide = () => {
       if (!this.tooltipElement) return
       this.tooltipElement.classList.remove('active')
       this.tooltipElement.setAttribute('aria-hidden', 'true')
       this.tooltipElement.style.width = ''
-      if (tooltip) tooltip.removeAttribute('aria-describedby')
+      if (tooltip && describedByAdded) {
+        if (initialDescribedBy) {
+          tooltip.setAttribute('aria-describedby', initialDescribedBy)
+        } else {
+          tooltip.removeAttribute('aria-describedby')
+        }
+        this.describedByAdded = false
+      }
     }
 
     if (immediate) {

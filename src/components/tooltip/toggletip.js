@@ -29,11 +29,23 @@ class Toggletip {
   init() {
     if (!this.toggletipElement) return
 
-    this.constructor.setAttributes(this.toggletip, {
+    const {
+      toggletip,
+      toggletipHeading,
+      toggletipText,
+    } = this
+    const labelText = (toggletipText || '').trim() || (toggletipHeading || '').trim()
+    const hasAriaLabel = toggletip.hasAttribute('aria-label')
+    const attributes = {
       tabindex: '0',
       'aria-expanded': 'false',
       role: 'button',
-    })
+    }
+    if (!hasAriaLabel && labelText) {
+      attributes['aria-label'] = `${labelText} toggletip`
+    }
+
+    this.constructor.setAttributes(toggletip, attributes)
     this.initEvents()
   }
 
