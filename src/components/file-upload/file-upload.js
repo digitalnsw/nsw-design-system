@@ -38,6 +38,7 @@ class FileUpload {
   }
 
   createFileItem(file) {
+    const { name } = file
     const li = document.createElement('li')
     li.classList.add('nsw-file-upload__item')
     const html = `
@@ -48,8 +49,15 @@ class FileUpload {
       </button>`
 
     li.insertAdjacentHTML('afterbegin', html)
-    li.querySelector('.nsw-file-upload__item-filename').textContent = this.constructor.truncateString(file.name, 50)
-    li.querySelector('.nsw-file-upload__item-filename').dataset.filename = file.name
+    const filename = li.querySelector('.nsw-file-upload__item-filename')
+    const removeButton = li.querySelector('.nsw-icon-button')
+    if (filename) {
+      filename.textContent = this.constructor.truncateString(name, 50)
+      filename.dataset.filename = name
+    }
+    if (removeButton) {
+      removeButton.setAttribute('aria-label', `Remove file ${name}`)
+    }
     return li.outerHTML
   }
 
