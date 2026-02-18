@@ -1,5 +1,3 @@
-import { setAriaDisabled, isAriaDisabled } from '../../global/scripts/helpers/utilities'
-
 class CssAccordion {
   constructor(container) {
     this.container = container
@@ -36,13 +34,13 @@ class CssAccordion {
       const update = () => {
         const allOpen = this.items.length && this.items.every((d) => d.open === true)
         const allClosed = this.items.length && this.items.every((d) => d.open === false)
-        if (expandBtn) setAriaDisabled(expandBtn, !!allOpen)
-        if (collapseBtn) setAriaDisabled(collapseBtn, !!allClosed)
+        if (expandBtn) this.constructor.setAriaDisabled(expandBtn, !!allOpen)
+        if (collapseBtn) this.constructor.setAriaDisabled(collapseBtn, !!allClosed)
       }
 
       if (expandBtn) {
         expandBtn.addEventListener('click', () => {
-          if (isAriaDisabled(expandBtn)) return
+          if (this.constructor.isAriaDisabled(expandBtn)) return
           for (let i = 0; i < this.items.length; i += 1) {
             const details = this.items[i]
             if (!details.open) details.open = true
@@ -53,7 +51,7 @@ class CssAccordion {
 
       if (collapseBtn) {
         collapseBtn.addEventListener('click', () => {
-          if (isAriaDisabled(collapseBtn)) return
+          if (this.constructor.isAriaDisabled(collapseBtn)) return
           for (let i = 0; i < this.items.length; i += 1) {
             const details = this.items[i]
             if (details.open) details.open = false
@@ -91,6 +89,17 @@ class CssAccordion {
         }
       }
     }
+  }
+
+  static setAriaDisabled(element, isDisabled) {
+    if (!element) return
+    const { classList } = element
+    element.setAttribute('aria-disabled', isDisabled ? 'true' : 'false')
+    classList.toggle('disabled', !!isDisabled)
+  }
+
+  static isAriaDisabled(element) {
+    return element && element.getAttribute('aria-disabled') === 'true'
   }
 }
 

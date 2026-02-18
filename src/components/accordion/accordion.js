@@ -41,9 +41,6 @@ class Accordion {
 
   setUpDom() {
     this.element.classList.add('ready')
-    if (this.collapseAllBtn) {
-      setAriaDisabled(this.collapseAllBtn, true)
-    }
     this.headings.forEach((heading) => {
       const headingElem = heading
       const contentElem = heading.nextElementSibling
