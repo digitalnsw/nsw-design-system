@@ -3,10 +3,15 @@
 // - Wires optional Expand all / Collapse all toolbar if present
 // - Keeps toolbar buttons in sync with open state and honours deep links
 
-import { uniqueId } from '../../global/scripts/helpers/utilities'
+import {
+  isAriaDisabled,
+  setAriaDisabled,
+  uniqueId,
+} from '../../global/scripts/helpers/utilities'
 
 const generateId = (details) => {
-  if (details.id) return details.id
+  const { id } = details
+  if (id) return id
   const generatedId = uniqueId('accordion-details')
   details.setAttribute('id', generatedId)
   return generatedId
@@ -47,33 +52,52 @@ class CssAccordion {
     let updateButtons
 
     if (toolbar) {
+      const statusElement = this.constructor.ensureStatusElement(toolbar)
+      const announceStatus = (message) => {
+        if (!statusElement) return
+        statusElement.textContent = ''
+        statusElement.textContent = message
+      }
+
       const expandBtn = toolbar.querySelector('button[aria-label^="Expand all"]')
       const collapseBtn = toolbar.querySelector('button[aria-label^="Collapse all"]')
 
       const update = () => {
-        const allOpen = this.items.length && this.items.every((d) => d.open === true)
-        const allClosed = this.items.length && this.items.every((d) => d.open === false)
-        if (expandBtn) expandBtn.disabled = !!allOpen
-        if (collapseBtn) collapseBtn.disabled = !!allClosed
+        const { items } = this
+        const allOpen = items.length && items.every((d) => d.open === true)
+        const allClosed = items.length && items.every((d) => d.open === false)
+        const { activeElement } = document
+        const shouldMoveToCollapse = allOpen && activeElement === expandBtn
+        const shouldMoveToExpand = allClosed && activeElement === collapseBtn
+
+        if (shouldMoveToCollapse && collapseBtn) collapseBtn.focus()
+        if (shouldMoveToExpand && expandBtn) expandBtn.focus()
+
+        if (expandBtn) setAriaDisabled(expandBtn, !!allOpen)
+        if (collapseBtn) setAriaDisabled(collapseBtn, !!allClosed)
       }
 
       if (expandBtn) {
         expandBtn.addEventListener('click', () => {
+          if (isAriaDisabled(expandBtn)) return
           for (let i = 0; i < this.items.length; i += 1) {
             const details = this.items[i]
             if (!details.open) details.open = true
           }
           update()
+          announceStatus('All sections expanded')
         })
       }
 
       if (collapseBtn) {
         collapseBtn.addEventListener('click', () => {
+          if (isAriaDisabled(collapseBtn)) return
           for (let i = 0; i < this.items.length; i += 1) {
             const details = this.items[i]
             if (details.open) details.open = false
           }
           update()
+          announceStatus('All sections collapsed')
         })
       }
 
@@ -118,6 +142,20 @@ class CssAccordion {
         }
       }
     }
+  }
+
+  static ensureStatusElement(toolbar) {
+    if (!toolbar) return null
+    const existing = toolbar.querySelector('[data-accordion-status]')
+    if (existing) return existing
+    const statusElement = document.createElement('span')
+    statusElement.classList.add('sr-only')
+    statusElement.setAttribute('role', 'status')
+    statusElement.setAttribute('aria-live', 'polite')
+    statusElement.setAttribute('aria-atomic', 'true')
+    statusElement.setAttribute('data-accordion-status', 'true')
+    toolbar.appendChild(statusElement)
+    return statusElement
   }
 }
 export default CssAccordion

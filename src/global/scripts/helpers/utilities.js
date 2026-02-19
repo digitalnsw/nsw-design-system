@@ -105,3 +105,11 @@ export const popupWindow = (url, width, height) => {
     width=${width}, height=${height}, top=${y}, left=${x}`,
   )
 }
+
+export const setAriaDisabled = (element, isDisabled, className = 'disabled') => {
+  if (!element) return
+  element.setAttribute('aria-disabled', isDisabled ? 'true' : 'false')
+  if (className) element.classList.toggle(className, !!isDisabled)
+}
+
+export const isAriaDisabled = (element) => element && element.getAttribute('aria-disabled') === 'true'

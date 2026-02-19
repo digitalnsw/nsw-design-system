@@ -1,4 +1,4 @@
-import { uniqueId } from '../../global/scripts/helpers/utilities'
+import { uniqueId, setAriaDisabled, isAriaDisabled } from '../../global/scripts/helpers/utilities'
 
 function createButtons({ textContent }) {
   const fragment = document.createDocumentFragment()
@@ -29,6 +29,7 @@ class Accordion {
     this.isExpandedOnLoad = this.element.querySelectorAll('.nsw-accordion__open')
     this.buttons = []
     this.content = []
+    this.statusElement = null
     this.toggleEvent = (event) => this.toggle(event)
     this.expandAllEvent = (event) => this.expandAll(event)
     this.collapseAllEvent = (event) => this.collapseAll(event)
@@ -41,9 +42,6 @@ class Accordion {
 
   setUpDom() {
     this.element.classList.add('ready')
-    if (this.collapseAllBtn) {
-      this.collapseAllBtn.disabled = true
-    }
     this.headings.forEach((heading) => {
       const headingElem = heading
       const contentElem = heading.nextElementSibling
@@ -68,6 +66,12 @@ class Accordion {
         this.setAccordionState(openButton, 'open')
       })
     }
+
+    if (this.expandAllBtn && this.collapseAllBtn) {
+      this.statusElement = this.ensureStatusElement()
+    }
+
+    this.updateToggleButtons()
   }
 
   controls() {
@@ -79,6 +83,26 @@ class Accordion {
       this.expandAllBtn.addEventListener('click', this.expandAllEvent, false)
       this.collapseAllBtn.addEventListener('click', this.collapseAllEvent, false)
     }
+  }
+
+  updateToggleButtons() {
+    const {
+      collapseAllBtn,
+      content,
+      expandAllBtn,
+    } = this
+    if (!expandAllBtn || !collapseAllBtn) return
+    const allOpen = content.length && content.every((item) => !item.hasAttribute('hidden'))
+    const allClosed = content.length && content.every((item) => item.hasAttribute('hidden'))
+    const { activeElement } = document
+    const shouldMoveToCollapse = allOpen && activeElement === expandAllBtn
+    const shouldMoveToExpand = allClosed && activeElement === collapseAllBtn
+
+    if (shouldMoveToCollapse) collapseAllBtn.focus()
+    if (shouldMoveToExpand) expandAllBtn.focus()
+
+    setAriaDisabled(expandAllBtn, !!allOpen)
+    setAriaDisabled(collapseAllBtn, !!allClosed)
   }
 
   getTargetContent(element) {
@@ -113,27 +137,49 @@ class Accordion {
         this.setAccordionState(currentTarget, 'close')
       }
 
-      if (this.expandAllBtn && this.collapseAllBtn) {
-        this.expandAllBtn.disabled = this.content.every((item) => !item.hasAttribute('hidden'))
-        this.collapseAllBtn.disabled = this.content.every((item) => item.hasAttribute('hidden'))
-      }
+      this.updateToggleButtons()
     }
   }
 
-  expandAll() {
+  expandAll(event) {
+    if (event && isAriaDisabled(event.currentTarget)) return
     this.buttons.forEach((element) => {
       this.setAccordionState(element, 'open')
     })
-    this.expandAllBtn.disabled = true
-    this.collapseAllBtn.disabled = false
+    this.updateToggleButtons()
+    this.announceStatus('All sections expanded')
   }
 
-  collapseAll() {
+  collapseAll(event) {
+    if (event && isAriaDisabled(event.currentTarget)) return
     this.buttons.forEach((element) => {
       this.setAccordionState(element, 'close')
     })
-    this.expandAllBtn.disabled = false
-    this.collapseAllBtn.disabled = true
+    this.updateToggleButtons()
+    this.announceStatus('All sections collapsed')
+  }
+
+  ensureStatusElement() {
+    const { element } = this
+    const toolbar = element && element.querySelector('.nsw-accordion__toggle')
+    if (!toolbar) return null
+    const existing = toolbar.querySelector('[data-accordion-status]')
+    if (existing) return existing
+    const statusElement = document.createElement('span')
+    statusElement.classList.add('sr-only')
+    statusElement.setAttribute('role', 'status')
+    statusElement.setAttribute('aria-live', 'polite')
+    statusElement.setAttribute('aria-atomic', 'true')
+    statusElement.setAttribute('data-accordion-status', 'true')
+    toolbar.appendChild(statusElement)
+    return statusElement
+  }
+
+  announceStatus(message) {
+    const { statusElement } = this
+    if (!statusElement) return
+    statusElement.textContent = ''
+    statusElement.textContent = message
   }
 }
 
