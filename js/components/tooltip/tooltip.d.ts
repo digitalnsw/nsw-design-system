@@ -10,11 +10,18 @@ declare class Tooltip {
     tooltipDelay: number;
     screenSize: boolean;
     tooltipTheme: any;
+    showTimeout: number | null;
+    hideTimeout: number | null;
+    initialDescribedBy: any;
+    describedByAdded: boolean;
     init(): void;
     handleEvent(event: any): void;
+    handleKeydown(event: any): void;
     createTooltipElement(): void;
     showTooltip(): void;
-    hideTooltip(): void;
+    hideTooltip({ immediate }?: {
+        immediate?: boolean | undefined;
+    }): void;
     matchMedia(): void;
     updateTooltip(tooltip: any, arrowElement: any, anchor?: any): void;
 }

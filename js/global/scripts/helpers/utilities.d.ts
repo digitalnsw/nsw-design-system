@@ -21,3 +21,5 @@ export function trapTabKey(event: any, focusObject: any): boolean;
 export function whichTransitionEvent(): any;
 export function validateUrl(raw: any, fallback?: string): string;
 export function popupWindow(url: any, width: any, height: any): void;
+export function setAriaDisabled(element: any, isDisabled: any, className?: string): void;
+export function isAriaDisabled(element: any): any;

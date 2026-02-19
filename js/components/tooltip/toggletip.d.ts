@@ -7,6 +7,7 @@ declare class Toggletip {
     toggletip: any;
     toggletipId: any;
     toggletipElement: any;
+    toggletipContentId: string;
     toggletipContent: boolean;
     toggletipAnchor: any;
     toggletipText: any;
@@ -17,16 +18,19 @@ declare class Toggletip {
     toggletipVisibleClass: string;
     firstFocusable: boolean;
     lastFocusable: boolean;
+    handleDocumentFocusIn: (event: any) => void;
     init(): void;
     initEvents(): void;
     toggleToggletip(): void;
     createToggletipElement(): void;
     showToggletip(): void;
-    hideToggletip(): void;
+    hideToggletip({ returnFocus }?: {
+        returnFocus?: boolean | undefined;
+    }): void;
+    onDocumentFocusIn(event: any): void;
     updateToggletip(toggletip: any, arrowElement: any, anchor?: any): void;
     checkToggletipClick(target: any): void;
     checkToggletipFocus(): void;
-    focusToggletip(): void;
     getFocusableElements(): void;
     getFirstVisible(elements: any): void;
     getLastVisible(elements: any): void;

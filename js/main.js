@@ -141,6 +141,12 @@
       return fallback;
     }
   };
+  const setAriaDisabled = (element, isDisabled, className = 'disabled') => {
+    if (!element) return;
+    element.setAttribute('aria-disabled', isDisabled ? 'true' : 'false');
+    if (className) element.classList.toggle(className, !!isDisabled);
+  };
+  const isAriaDisabled = element => element && element.getAttribute('aria-disabled') === 'true';
 
   function createButtons({
     textContent
@@ -170,6 +176,7 @@
       this.isExpandedOnLoad = this.element.querySelectorAll('.nsw-accordion__open');
       this.buttons = [];
       this.content = [];
+      this.statusElement = null;
       this.toggleEvent = event => this.toggle(event);
       this.expandAllEvent = event => this.expandAll(event);
       this.collapseAllEvent = event => this.collapseAll(event);
@@ -180,9 +187,6 @@
     }
     setUpDom() {
       this.element.classList.add('ready');
-      if (this.collapseAllBtn) {
-        this.collapseAllBtn.disabled = true;
-      }
       this.headings.forEach(heading => {
         const headingElem = heading;
         const contentElem = heading.nextElementSibling;
@@ -203,6 +207,10 @@
           this.setAccordionState(openButton, 'open');
         });
       }
+      if (this.expandAllBtn && this.collapseAllBtn) {
+        this.statusElement = this.ensureStatusElement();
+      }
+      this.updateToggleButtons();
     }
     controls() {
       this.buttons.forEach(element => {
@@ -213,6 +221,25 @@
         this.expandAllBtn.addEventListener('click', this.expandAllEvent, false);
         this.collapseAllBtn.addEventListener('click', this.collapseAllEvent, false);
       }
+    }
+    updateToggleButtons() {
+      const {
+        collapseAllBtn,
+        content,
+        expandAllBtn
+      } = this;
+      if (!expandAllBtn || !collapseAllBtn) return;
+      const allOpen = content.length && content.every(item => !item.hasAttribute('hidden'));
+      const allClosed = content.length && content.every(item => item.hasAttribute('hidden'));
+      const {
+        activeElement
+      } = document;
+      const shouldMoveToCollapse = allOpen && activeElement === expandAllBtn;
+      const shouldMoveToExpand = allClosed && activeElement === collapseAllBtn;
+      if (shouldMoveToCollapse) collapseAllBtn.focus();
+      if (shouldMoveToExpand) expandAllBtn.focus();
+      setAriaDisabled(expandAllBtn, !!allOpen);
+      setAriaDisabled(collapseAllBtn, !!allClosed);
     }
     getTargetContent(element) {
       const currentIndex = this.buttons.indexOf(element);
@@ -242,25 +269,49 @@
         } else {
           this.setAccordionState(currentTarget, 'close');
         }
-        if (this.expandAllBtn && this.collapseAllBtn) {
-          this.expandAllBtn.disabled = this.content.every(item => !item.hasAttribute('hidden'));
-          this.collapseAllBtn.disabled = this.content.every(item => item.hasAttribute('hidden'));
-        }
+        this.updateToggleButtons();
       }
     }
-    expandAll() {
+    expandAll(event) {
+      if (event && isAriaDisabled(event.currentTarget)) return;
       this.buttons.forEach(element => {
         this.setAccordionState(element, 'open');
       });
-      this.expandAllBtn.disabled = true;
-      this.collapseAllBtn.disabled = false;
+      this.updateToggleButtons();
+      this.announceStatus('All sections expanded');
     }
-    collapseAll() {
+    collapseAll(event) {
+      if (event && isAriaDisabled(event.currentTarget)) return;
       this.buttons.forEach(element => {
         this.setAccordionState(element, 'close');
       });
-      this.expandAllBtn.disabled = false;
-      this.collapseAllBtn.disabled = true;
+      this.updateToggleButtons();
+      this.announceStatus('All sections collapsed');
+    }
+    ensureStatusElement() {
+      const {
+        element
+      } = this;
+      const toolbar = element && element.querySelector('.nsw-accordion__toggle');
+      if (!toolbar) return null;
+      const existing = toolbar.querySelector('[data-accordion-status]');
+      if (existing) return existing;
+      const statusElement = document.createElement('span');
+      statusElement.classList.add('sr-only');
+      statusElement.setAttribute('role', 'status');
+      statusElement.setAttribute('aria-live', 'polite');
+      statusElement.setAttribute('aria-atomic', 'true');
+      statusElement.setAttribute('data-accordion-status', 'true');
+      toolbar.appendChild(statusElement);
+      return statusElement;
+    }
+    announceStatus(message) {
+      const {
+        statusElement
+      } = this;
+      if (!statusElement) return;
+      statusElement.textContent = '';
+      statusElement.textContent = message;
     }
   }
 
@@ -270,7 +321,10 @@
   // - Keeps toolbar buttons in sync with open state and honours deep links
 
   const generateId = details => {
-    if (details.id) return details.id;
+    const {
+      id
+    } = details;
+    if (id) return id;
     const generatedId = uniqueId('accordion-details');
     details.setAttribute('id', generatedId);
     return generatedId;
@@ -306,30 +360,50 @@
       const toolbar = container.querySelector ? container.querySelector('.nsw-accordion__toggle') : null;
       let updateButtons;
       if (toolbar) {
+        const statusElement = this.constructor.ensureStatusElement(toolbar);
+        const announceStatus = message => {
+          if (!statusElement) return;
+          statusElement.textContent = '';
+          statusElement.textContent = message;
+        };
         const expandBtn = toolbar.querySelector('button[aria-label^="Expand all"]');
         const collapseBtn = toolbar.querySelector('button[aria-label^="Collapse all"]');
         const update = () => {
-          const allOpen = this.items.length && this.items.every(d => d.open === true);
-          const allClosed = this.items.length && this.items.every(d => d.open === false);
-          if (expandBtn) expandBtn.disabled = !!allOpen;
-          if (collapseBtn) collapseBtn.disabled = !!allClosed;
+          const {
+            items
+          } = this;
+          const allOpen = items.length && items.every(d => d.open === true);
+          const allClosed = items.length && items.every(d => d.open === false);
+          const {
+            activeElement
+          } = document;
+          const shouldMoveToCollapse = allOpen && activeElement === expandBtn;
+          const shouldMoveToExpand = allClosed && activeElement === collapseBtn;
+          if (shouldMoveToCollapse && collapseBtn) collapseBtn.focus();
+          if (shouldMoveToExpand && expandBtn) expandBtn.focus();
+          if (expandBtn) setAriaDisabled(expandBtn, !!allOpen);
+          if (collapseBtn) setAriaDisabled(collapseBtn, !!allClosed);
         };
         if (expandBtn) {
           expandBtn.addEventListener('click', () => {
+            if (isAriaDisabled(expandBtn)) return;
             for (let i = 0; i < this.items.length; i += 1) {
               const details = this.items[i];
               if (!details.open) details.open = true;
             }
             update();
+            announceStatus('All sections expanded');
           });
         }
         if (collapseBtn) {
           collapseBtn.addEventListener('click', () => {
+            if (isAriaDisabled(collapseBtn)) return;
             for (let i = 0; i < this.items.length; i += 1) {
               const details = this.items[i];
               if (details.open) details.open = false;
             }
             update();
+            announceStatus('All sections collapsed');
           });
         }
         updateButtons = update;
@@ -373,6 +447,19 @@
           }
         }
       }
+    }
+    static ensureStatusElement(toolbar) {
+      if (!toolbar) return null;
+      const existing = toolbar.querySelector('[data-accordion-status]');
+      if (existing) return existing;
+      const statusElement = document.createElement('span');
+      statusElement.classList.add('sr-only');
+      statusElement.setAttribute('role', 'status');
+      statusElement.setAttribute('aria-live', 'polite');
+      statusElement.setAttribute('aria-atomic', 'true');
+      statusElement.setAttribute('data-accordion-status', 'true');
+      toolbar.appendChild(statusElement);
+      return statusElement;
     }
   }
 
@@ -2058,20 +2145,20 @@
           <nav>
             <ul class="nsw-date-picker__title-nav js-date-picker__title-nav">
               <li>
-                <button class="nsw-icon-button nsw-date-picker__title-nav-btn js-date-picker__year-nav-btn js-date-picker__year-nav-btn--prev" type="button">
-                  <span class="material-icons nsw-material-icons">keyboard_double_arrow_left</span>
+                <button class="nsw-icon-button nsw-date-picker__title-nav-btn js-date-picker__year-nav-btn js-date-picker__year-nav-btn--prev" type="button" aria-label="Previous year">
+                  <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_double_arrow_left</span>
                 </button>
-                <button class="nsw-icon-button nsw-date-picker__title-nav-btn js-date-picker__month-nav-btn js-date-picker__month-nav-btn--prev" type="button">
-                  <span class="material-icons nsw-material-icons">chevron_left</span>
+                <button class="nsw-icon-button nsw-date-picker__title-nav-btn js-date-picker__month-nav-btn js-date-picker__month-nav-btn--prev" type="button" aria-label="Previous month">
+                  <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">chevron_left</span>
                 </button>
               </li>
 
               <li>
-                <button class="nsw-icon-button nsw-date-picker__title-nav-btn js-date-picker__month-nav-btn js-date-picker__month-nav-btn--next" type="button">
-                  <span class="material-icons nsw-material-icons">chevron_right</span>
+                <button class="nsw-icon-button nsw-date-picker__title-nav-btn js-date-picker__month-nav-btn js-date-picker__month-nav-btn--next" type="button" aria-label="Next month">
+                  <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">chevron_right</span>
                 </button>
-                <button class="nsw-icon-button nsw-date-picker__title-nav-btn js-date-picker__year-nav-btn js-date-picker__year-nav-btn--next" type="button">
-                  <span class="material-icons nsw-material-icons">keyboard_double_arrow_right</span>
+                <button class="nsw-icon-button nsw-date-picker__title-nav-btn js-date-picker__year-nav-btn js-date-picker__year-nav-btn--next" type="button" aria-label="Next year">
+                  <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_double_arrow_right</span>
                 </button>
               </li>
             </ul>
@@ -2686,6 +2773,9 @@
       this.filesList = this.element.querySelector('.nsw-file-upload__list');
     }
     createFileItem(file) {
+      const {
+        name
+      } = file;
       const li = document.createElement('li');
       li.classList.add('nsw-file-upload__item');
       const html = `
@@ -2695,8 +2785,15 @@
         <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span>
       </button>`;
       li.insertAdjacentHTML('afterbegin', html);
-      li.querySelector('.nsw-file-upload__item-filename').textContent = this.constructor.truncateString(file.name, 50);
-      li.querySelector('.nsw-file-upload__item-filename').dataset.filename = file.name;
+      const filename = li.querySelector('.nsw-file-upload__item-filename');
+      const removeButton = li.querySelector('.nsw-icon-button');
+      if (filename) {
+        filename.textContent = this.constructor.truncateString(name, 50);
+        filename.dataset.filename = name;
+      }
+      if (removeButton) {
+        removeButton.setAttribute('aria-label', `Remove file ${name}`);
+      }
       return li.outerHTML;
     }
     updateFileList() {
@@ -2749,9 +2846,19 @@
       this.input.files = this.currentFiles.files;
     }
     handleFileRemove(event) {
-      if (!event.target.closest('.nsw-icon-button')) return;
+      const {
+        target
+      } = event;
+      const removeButton = target.closest('.nsw-icon-button');
+      if (!removeButton) return;
       event.preventDefault();
-      const item = event.target.closest('.nsw-file-upload__item');
+      const item = removeButton.closest('.nsw-file-upload__item');
+      if (!item) return;
+      const nextItem = item.nextElementSibling || item.previousElementSibling;
+      const nextButton = nextItem && nextItem.querySelector('.nsw-icon-button');
+      const {
+        input
+      } = this;
       const {
         filename
       } = item.querySelector('.nsw-file-upload__item-filename').dataset;
@@ -2768,6 +2875,8 @@
       if (this.filesList.children.length === 0) {
         this.filesList.classList.remove('active');
       }
+      const focusTarget = nextButton || input;
+      if (focusTarget) focusTarget.focus();
     }
     static truncateString(str, num) {
       return str.length <= num ? str : `${str.slice(0, num)}...`;
@@ -6216,6 +6325,7 @@
       this.toggletip = element;
       this.toggletipId = this.toggletip.getAttribute('aria-controls');
       this.toggletipElement = this.toggletipId && document.querySelector(`#${this.toggletipId}`);
+      this.toggletipContentId = this.toggletipId ? `${this.toggletipId}-content` : '';
       this.toggletipContent = false;
       this.toggletipAnchor = this.toggletip.querySelector('[data-anchor]') || this.toggletip;
       this.toggletipText = this.toggletip.innerText;
@@ -6226,31 +6336,63 @@
       this.toggletipVisibleClass = 'active';
       this.firstFocusable = false;
       this.lastFocusable = false;
+      this.handleDocumentFocusIn = event => this.onDocumentFocusIn(event);
     }
     init() {
       if (!this.toggletipElement) return;
-      this.constructor.setAttributes(this.toggletip, {
+      const {
+        toggletipElement
+      } = this;
+      this.toggletipContent = toggletipElement.innerHTML;
+      const {
+        toggletip,
+        toggletipHeading,
+        toggletipText
+      } = this;
+      const labelText = (toggletipText || '').trim() || (toggletipHeading || '').trim();
+      const hasAriaLabel = toggletip.hasAttribute('aria-label');
+      const attributes = {
         tabindex: '0',
-        'aria-haspopup': 'dialog'
-      });
+        'aria-expanded': 'false',
+        role: 'button'
+      };
+      if (!hasAriaLabel && labelText) {
+        attributes['aria-label'] = `${labelText} toggletip`;
+      }
+      this.constructor.setAttributes(toggletip, attributes);
       this.initEvents();
     }
     initEvents() {
       this.toggletip.addEventListener('click', this.toggleToggletip.bind(this));
-      this.toggletip.addEventListener('keyup', event => {
-        if (event.code && event.code.toLowerCase() === 'enter' || event.key && event.key.toLowerCase() === 'enter') {
+      this.toggletip.addEventListener('keydown', event => {
+        const {
+          key,
+          code
+        } = event;
+        const eventKey = key && key.toLowerCase();
+        const eventCode = code && code.toLowerCase();
+        const isEnter = eventKey === 'enter' || eventCode === 'enter';
+        const isSpace = eventKey === ' ' || eventKey === 'spacebar' || eventCode === 'space';
+        if (isEnter || isSpace) {
+          event.preventDefault();
           this.toggleToggletip();
         }
       });
-      window.addEventListener('DOMContentLoaded', () => {
-        this.toggletipContent = this.toggletipElement.innerHTML;
-      });
       this.toggletipElement.addEventListener('keydown', this.trapFocus.bind(this));
       window.addEventListener('click', event => {
-        this.checkToggletipClick(event.target);
+        const {
+          target
+        } = event;
+        this.checkToggletipClick(target);
       });
       window.addEventListener('keyup', event => {
-        if (event.code && event.code.toLowerCase() === 'escape' || event.key && event.key.toLowerCase() === 'escape') {
+        const {
+          key,
+          code
+        } = event;
+        const eventKey = key && key.toLowerCase();
+        const eventCode = code && code.toLowerCase();
+        if (eventCode === 'escape' || eventKey === 'escape') {
           this.checkToggletipFocus();
         }
       });
@@ -6265,31 +6407,32 @@
       if (this.toggletipElement.classList.contains('active')) {
         this.hideToggletip();
       } else {
-        this.toggletipElement.focus();
         this.showToggletip();
       }
     }
     createToggletipElement() {
+      const {
+        toggletipContentId,
+        toggletipHeading
+      } = this;
       if (this.toggletipElement) {
         this.toggletipElement.innerHTML = '';
         const createToggletip = `
       <div class="nsw-toggletip__header">
-        <div id="nsw-toggletip__header" class="sr-only">${cleanHTMLStrict(this.toggletipHeading)}</div>
         <button type="button" class="nsw-icon-button">
-          <span class="sr-only">Remove file</span>
+          <span class="sr-only">Close tooltip</span>
           <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">close</span>
         </button>
       </div>
-      <div id="nsw-toggletip__content" class="nsw-toggletip__content">
+      <div id="${toggletipContentId}" class="nsw-toggletip__content">
         ${cleanHTMLStrict(this.toggletipContent)}
       </div>
       <div class="nsw-toggletip__arrow"></div>`;
         this.toggletipElement.insertAdjacentHTML('afterbegin', createToggletip);
       }
       this.constructor.setAttributes(this.toggletipElement, {
-        'aria-labelledby': 'nsw-toggletip__header',
-        'aria-describedby': 'nsw-toggletip__content',
-        'aria-expanded': 'false',
+        'aria-label': toggletipHeading,
+        'aria-describedby': toggletipContentId,
         tabindex: '0',
         role: 'dialog'
       });
@@ -6298,25 +6441,42 @@
       this.createToggletipElement();
       this.arrowElement = this.toggletipElement.querySelector('.nsw-toggletip__arrow');
       this.closeButton = this.toggletipElement.querySelector('.nsw-icon-button');
-      this.toggletipElement.setAttribute('aria-expanded', 'true');
+      this.toggletip.setAttribute('aria-expanded', 'true');
       this.toggletipElement.classList.add('active');
       this.toggletipIsOpen = true;
       this.getFocusableElements();
       this.toggletipElement.focus({
         preventScroll: true
       });
-      this.toggletip.addEventListener('transitionend', () => {
-        this.focusToggletip();
-      }, {
-        once: true
-      });
       this.updateToggletip(this.toggletipElement, this.arrowElement);
       this.closeButton.addEventListener('click', this.toggleToggletip.bind(this));
+      document.addEventListener('focusin', this.handleDocumentFocusIn);
     }
-    hideToggletip() {
-      this.toggletipElement.setAttribute('aria-expanded', 'false');
+    hideToggletip({
+      returnFocus = true
+    } = {}) {
+      this.toggletip.setAttribute('aria-expanded', 'false');
       this.toggletipElement.classList.remove('active');
       this.toggletipIsOpen = false;
+      const {
+        activeElement
+      } = document;
+      const toggletipContainsFocus = this.toggletipElement && activeElement && (this.toggletipElement === activeElement || this.toggletipElement.contains(activeElement));
+      if (toggletipContainsFocus && returnFocus) {
+        this.constructor.moveFocus(this.toggletip);
+      }
+      document.removeEventListener('focusin', this.handleDocumentFocusIn);
+    }
+    onDocumentFocusIn(event) {
+      if (!this.toggletipIsOpen) return;
+      const {
+        target
+      } = event;
+      if (!this.toggletipElement || !target) return;
+      if (this.toggletipElement.contains(target)) return;
+      this.hideToggletip({
+        returnFocus: false
+      });
     }
     updateToggletip(toggletip, arrowElement, anchor = this.toggletipAnchor) {
       computePosition(anchor, toggletip, {
@@ -6364,15 +6524,6 @@
       this.constructor.moveFocus(this.toggletip);
       this.toggleToggletip();
     }
-    focusToggletip() {
-      if (this.firstFocusable) {
-        this.firstFocusable.focus({
-          preventScroll: true
-        });
-      } else {
-        this.constructor.moveFocus(this.toggletipElement);
-      }
-    }
     getFocusableElements() {
       const focusableElString = '[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex]:not([tabindex="-1"]), [contenteditable], audio[controls], video[controls], summary';
       const allFocusable = this.toggletipElement.querySelectorAll(focusableElString);
@@ -6396,13 +6547,40 @@
       }
     }
     trapFocus(event) {
-      if (this.firstFocusable === document.activeElement && event.shiftKey) {
-        event.preventDefault();
-        this.lastFocusable.focus();
+      const {
+        key,
+        code,
+        keyCode,
+        shiftKey
+      } = event;
+      const eventKey = key && key.toLowerCase();
+      const eventCode = code && code.toLowerCase();
+      const isTab = eventCode === 'tab' || eventKey === 'tab' || keyCode === 9;
+      if (!isTab) return;
+      const {
+        firstFocusable,
+        lastFocusable
+      } = this;
+      const isSingleFocusable = firstFocusable && lastFocusable && firstFocusable === lastFocusable;
+      if (isSingleFocusable) {
+        const {
+          activeElement
+        } = document;
+        if (activeElement === firstFocusable && !shiftKey) {
+          event.preventDefault();
+          this.hideToggletip({
+            returnFocus: true
+          });
+        }
+        return;
       }
-      if (this.lastFocusable === document.activeElement && !event.shiftKey) {
+      if (firstFocusable === document.activeElement && shiftKey) {
         event.preventDefault();
-        this.firstFocusable.focus();
+        lastFocusable.focus();
+      }
+      if (lastFocusable === document.activeElement && !shiftKey) {
+        event.preventDefault();
+        firstFocusable.focus();
       }
     }
     static isVisible(element) {
@@ -6426,6 +6604,9 @@
   class Tooltip {
     constructor(element) {
       this.tooltip = element;
+      const {
+        tooltip
+      } = this;
       this.uID = uniqueId('tooltip');
       this.tooltipElement = false;
       this.arrowElement = false;
@@ -6433,37 +6614,65 @@
       this.tooltipDelay = 400;
       this.screenSize = false;
       this.tooltipTheme = this.tooltip.getAttribute('data-theme') || 'dark';
+      this.showTimeout = null;
+      this.hideTimeout = null;
+      this.initialDescribedBy = tooltip.getAttribute('aria-describedby');
+      this.describedByAdded = false;
     }
     init() {
-      this.tooltipContent = this.tooltip.getAttribute('title');
+      const {
+        tooltip
+      } = this;
+      this.tooltipContent = tooltip.getAttribute('title');
       if (!this.tooltipContent) return;
-      this.constructor.setAttributes(this.tooltip, {
+      const labelText = (tooltip.textContent || '').trim();
+      const hasAriaLabel = tooltip.hasAttribute('aria-label');
+      const attributes = {
         'data-tooltip-content': this.tooltipContent,
-        'aria-describedby': this.uID,
         tabindex: '0'
-      });
-      this.tooltip.removeAttribute('title');
+      };
+      if (!hasAriaLabel && labelText) {
+        attributes['aria-label'] = `${labelText} tooltip`;
+      }
+      this.constructor.setAttributes(tooltip, attributes);
+      tooltip.removeAttribute('title');
       const eventArray = ['mouseenter', 'mouseleave', 'focus', 'blur'];
       eventArray.forEach((event, {
         listener = this.handleEvent.bind(this)
       }) => {
         this.tooltip.addEventListener(event, listener);
       });
+      tooltip.addEventListener('keydown', this.handleKeydown.bind(this));
     }
     handleEvent(event) {
       switch (event.type) {
         case 'mouseenter':
         case 'focus':
-          this.showTooltip(this, event);
+          this.showTooltip();
           break;
         case 'mouseleave':
         case 'blur':
-          this.hideTooltip(this, event);
+          this.hideTooltip();
           break;
         default:
           logger.log(`Unexpected event type: ${event.type}`);
           break;
       }
+    }
+    handleKeydown(event) {
+      const {
+        key,
+        code,
+        keyCode
+      } = event;
+      const eventKey = key && key.toLowerCase();
+      const eventCode = code && code.toLowerCase();
+      const isEscape = eventCode === 'escape' || eventKey === 'escape' || keyCode === 27;
+      if (!isEscape) return;
+      event.preventDefault();
+      this.hideTooltip({
+        immediate: true
+      });
     }
     createTooltipElement() {
       if (!this.tooltipElement) {
@@ -6484,8 +6693,27 @@
       this.tooltipElement.insertAdjacentElement('beforeend', this.arrowElement);
     }
     showTooltip() {
-      setTimeout(() => {
+      const {
+        initialDescribedBy,
+        tooltip,
+        tooltipDelay,
+        uID
+      } = this;
+      clearTimeout(this.hideTimeout);
+      this.showTimeout = window.setTimeout(() => {
         this.createTooltipElement();
+        if (this.tooltipElement) this.tooltipElement.removeAttribute('aria-hidden');
+        if (tooltip) {
+          const describedByTokens = (initialDescribedBy || '').split(/\s+/).filter(Boolean);
+          if (describedByTokens.includes(uID)) {
+            tooltip.setAttribute('aria-describedby', describedByTokens.join(' '));
+            this.describedByAdded = false;
+          } else {
+            const nextDescribedBy = [...describedByTokens, uID].join(' ');
+            tooltip.setAttribute('aria-describedby', nextDescribedBy);
+            this.describedByAdded = true;
+          }
+        }
         this.tooltipElement.classList.add('active');
         const range = document.createRange();
         const text = this.tooltipElement.childNodes[0];
@@ -6495,13 +6723,36 @@
         this.matchMedia();
         this.tooltipElement.style.width = `${clientRect.width + this.screenSize}px`;
         this.updateTooltip(this.tooltipElement, this.arrowElement);
-      }, this.tooltipDelay);
+      }, tooltipDelay);
     }
-    hideTooltip() {
-      setTimeout(() => {
+    hideTooltip({
+      immediate = false
+    } = {}) {
+      const {
+        describedByAdded,
+        initialDescribedBy,
+        tooltip
+      } = this;
+      clearTimeout(this.showTimeout);
+      const hide = () => {
+        if (!this.tooltipElement) return;
         this.tooltipElement.classList.remove('active');
+        this.tooltipElement.setAttribute('aria-hidden', 'true');
         this.tooltipElement.style.width = '';
-      }, this.tooltipDelay);
+        if (tooltip && describedByAdded) {
+          if (initialDescribedBy) {
+            tooltip.setAttribute('aria-describedby', initialDescribedBy);
+          } else {
+            tooltip.removeAttribute('aria-describedby');
+          }
+          this.describedByAdded = false;
+        }
+      };
+      if (immediate) {
+        hide();
+        return;
+      }
+      this.hideTimeout = window.setTimeout(hide, this.tooltipDelay);
     }
     matchMedia() {
       if (window.matchMedia('(min-width: 576px)').matches) {
