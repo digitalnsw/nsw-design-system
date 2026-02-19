@@ -24,6 +24,7 @@ class Toggletip {
     this.toggletipVisibleClass = 'active'
     this.firstFocusable = false
     this.lastFocusable = false
+    this.handleDocumentFocusIn = (event) => this.onDocumentFocusIn(event)
   }
 
   init() {
@@ -141,6 +142,7 @@ class Toggletip {
 
     this.updateToggletip(this.toggletipElement, this.arrowElement)
     this.closeButton.addEventListener('click', this.toggleToggletip.bind(this))
+    document.addEventListener('focusin', this.handleDocumentFocusIn)
   }
 
   hideToggletip({ returnFocus = true } = {}) {
@@ -155,6 +157,15 @@ class Toggletip {
     if (toggletipContainsFocus && returnFocus) {
       this.constructor.moveFocus(this.toggletip)
     }
+    document.removeEventListener('focusin', this.handleDocumentFocusIn)
+  }
+
+  onDocumentFocusIn(event) {
+    if (!this.toggletipIsOpen) return
+    const { target } = event
+    if (!this.toggletipElement || !target) return
+    if (this.toggletipElement.contains(target)) return
+    this.hideToggletip({ returnFocus: false })
   }
 
   updateToggletip(toggletip, arrowElement, anchor = this.toggletipAnchor) {
@@ -241,7 +252,7 @@ class Toggletip {
     const isSingleFocusable = firstFocusable && lastFocusable && firstFocusable === lastFocusable
     if (isSingleFocusable) {
       const { activeElement } = document
-      if (activeElement === firstFocusable) {
+      if (activeElement === firstFocusable && !shiftKey) {
         event.preventDefault()
         this.hideToggletip({ returnFocus: true })
       }
