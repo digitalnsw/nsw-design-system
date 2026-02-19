@@ -29,6 +29,9 @@ class Toggletip {
   init() {
     if (!this.toggletipElement) return
 
+    const { toggletipElement } = this
+    this.toggletipContent = toggletipElement.innerHTML
+
     const {
       toggletip,
       toggletipHeading,
@@ -63,10 +66,6 @@ class Toggletip {
         event.preventDefault()
         this.toggleToggletip()
       }
-    })
-
-    window.addEventListener('DOMContentLoaded', () => {
-      this.toggletipContent = this.toggletipElement.innerHTML
     })
 
     this.toggletipElement.addEventListener('keydown', this.trapFocus.bind(this))
@@ -144,7 +143,7 @@ class Toggletip {
     this.closeButton.addEventListener('click', this.toggleToggletip.bind(this))
   }
 
-  hideToggletip() {
+  hideToggletip({ returnFocus = true } = {}) {
     this.toggletip.setAttribute('aria-expanded', 'false')
     this.toggletipElement.classList.remove('active')
 
@@ -153,7 +152,7 @@ class Toggletip {
     const toggletipContainsFocus = this.toggletipElement
       && activeElement
       && (this.toggletipElement === activeElement || this.toggletipElement.contains(activeElement))
-    if (toggletipContainsFocus) {
+    if (toggletipContainsFocus && returnFocus) {
       this.constructor.moveFocus(this.toggletip)
     }
   }
@@ -238,14 +237,24 @@ class Toggletip {
     const eventCode = code && code.toLowerCase()
     const isTab = eventCode === 'tab' || eventKey === 'tab' || keyCode === 9
     if (!isTab) return
-
-    if (this.firstFocusable === document.activeElement && shiftKey) {
-      event.preventDefault()
-      this.lastFocusable.focus()
+    const { firstFocusable, lastFocusable } = this
+    const isSingleFocusable = firstFocusable && lastFocusable && firstFocusable === lastFocusable
+    if (isSingleFocusable) {
+      const { activeElement } = document
+      if (activeElement === firstFocusable) {
+        event.preventDefault()
+        this.hideToggletip({ returnFocus: true })
+      }
+      return
     }
-    if (this.lastFocusable === document.activeElement && !shiftKey) {
+
+    if (firstFocusable === document.activeElement && shiftKey) {
       event.preventDefault()
-      this.firstFocusable.focus()
+      lastFocusable.focus()
+    }
+    if (lastFocusable === document.activeElement && !shiftKey) {
+      event.preventDefault()
+      firstFocusable.focus()
     }
   }
 

@@ -8,6 +8,10 @@
   &:focus,
   &:active {
     @include nsw.nsw-focus;
+
+    .nsw-section--invert & {
+      @include nsw.nsw-focus($color: var(--nsw-focus-light));
+    }
   }
 
   &__element {
@@ -108,6 +112,15 @@
 
 .nsw-toggletip {
   cursor: pointer;
+
+  &__element {
+    &:focus,
+    &:active {
+      .nsw-section--invert & {
+        @include nsw.nsw-focus($color: var(--nsw-focus-light));
+      }
+    }
+  }
 
   &__header {
     display: flex;
