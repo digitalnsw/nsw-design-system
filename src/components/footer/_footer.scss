@@ -3,7 +3,7 @@
 .nsw-footer {
   hr {
     margin: nsw.rem(16px) 0;
-    height: 1px;
+    block-size: 1px;
     border: 0;
     background-color: var(--nsw-grey-03);
   }
@@ -19,19 +19,19 @@
 
   &__upper {
     background-color: var(--nsw-white);
-    border-top: solid 1px var(--nsw-grey-03);
-    padding-top: nsw.rem(24px);
+    border-block-start: solid 1px var(--nsw-grey-03);
+    padding-block-start: nsw.rem(24px);
 
     .nsw-container {
-      padding-left: nsw.rem(8px);
-      padding-right: nsw.rem(8px);
+      padding-inline-start: nsw.rem(8px);
+      padding-inline-end: nsw.rem(8px);
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
 
       @include nsw.breakpoint('lg') {
-        padding-left: 0;
-        padding-right: 0;
+        padding-inline-start: 0;
+        padding-inline-end: 0;
       }
     }
   }
@@ -39,12 +39,12 @@
   &__group {
     padding: 0 nsw.rem(8px) nsw.rem(16px) nsw.rem(8px);
     flex: 1 0 auto;
-    min-width: nsw.rem(256px);
-    max-width: 50%;
+    min-inline-size: nsw.rem(256px);
+    max-inline-size: 50%;
 
     @include nsw.breakpoint('md') {
       flex-basis: 50%;
-      min-width: auto;
+      min-inline-size: auto;
     }
 
     @include nsw.breakpoint('lg') {
@@ -65,7 +65,7 @@
     }
 
     li:first-child {
-      margin-top: 0;
+      margin-block-start: 0;
     }
   }
 
@@ -97,22 +97,22 @@
       flex-wrap: wrap;
 
       @include nsw.breakpoint('md') {
-        margin-left: 0;
-        margin-right: 0;
+        margin-inline-start: 0;
+        margin-inline-end: 0;
       }
     }
 
     li {
       flex: 1 0 50%;
-      max-width: 50%;
+      max-inline-size: 50%;
       padding: 0 nsw.rem(8px);
       margin: 0 0 nsw.rem(16px) 0;
 
       @include nsw.breakpoint('md') {
-        margin-right: nsw.rem(24px);
+        margin-inline-end: nsw.rem(24px);
         padding: 0;
         flex: 0 0 auto;
-        max-width: none;
+        max-inline-size: none;
       }
     }
   }
@@ -121,12 +121,12 @@
     @include nsw.breakpoint('md') {
       display: flex;
       justify-content: space-between;
-      margin-top: nsw.rem(-16px);
+      margin-block-start: nsw.rem(-16px);
     }
   }
 
   &__acknowledgement {
-    padding-bottom: nsw.rem(12px);
+    padding-block-end: nsw.rem(12px);
 
     @include nsw.font-size('sm');
   }
@@ -139,7 +139,7 @@
     padding: nsw.rem(8px) 0 nsw.rem(12px) 0;
 
     @include nsw.breakpoint('md') {
-      padding-bottom: nsw.rem(8px);
+      padding-block-end: nsw.rem(8px);
     }
 
     a {
@@ -164,7 +164,7 @@
     margin: nsw.rem(12px) 0;
 
     @include nsw.breakpoint('md') {
-      text-align: right;
+      text-align: end;
     }
   }
 

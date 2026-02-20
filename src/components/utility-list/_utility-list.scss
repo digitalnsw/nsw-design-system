@@ -11,12 +11,12 @@
 
   &__title {
     font-weight: var(--nsw-font-bold);
-    padding-bottom: nsw.rem(16px);
+    padding-block-end: nsw.rem(16px);
     
     @include nsw.font-size('lg');
     
     @include nsw.breakpoint('md') {
-      padding-bottom: nsw.rem(24px);
+      padding-block-end: nsw.rem(24px);
     }
   }
 
@@ -35,7 +35,7 @@
     text-decoration: none;
     cursor: pointer;
     font-weight: var(--nsw-font-bold);
-    border-bottom: 1px solid var(--nsw-grey-04);
+    border-block-end: 1px solid var(--nsw-grey-04);
     color: var(--nsw-brand-dark);
 
     @include nsw.font-size('sm');
@@ -50,7 +50,7 @@
     }
 
     &:last-child {
-      border-bottom: unset;
+      border-block-end: unset;
     }
 
     .nsw-section--invert & {    
@@ -82,8 +82,8 @@
     }
 
     svg {
-      width: nsw.rem(24px);
-      height: nsw.rem(24px);
+      inline-size: nsw.rem(24px);
+      block-size: nsw.rem(24px);
 
       path {
         fill: var(--nsw-brand-dark);
@@ -96,7 +96,7 @@
   }
 
   .nsw-toggletip {
-    border-bottom: unset;
+    border-block-end: unset;
 
     &__header {
       display: none;
@@ -126,11 +126,11 @@
     
       ul {
         display: flex;
-        width: 100%;
+        inline-size: 100%;
       }
   
       li {
-        border-bottom: unset;
+        border-block-end: unset;
       }
     }
   }

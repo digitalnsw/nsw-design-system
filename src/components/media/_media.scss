@@ -1,7 +1,7 @@
 @use '../../global/scss/tools' as nsw;
 
 .nsw-media {
-  width: 100%;
+  inline-size: 100%;
   margin: nsw.rem(16px) auto;
 
   .nsw-section--invert & {    
@@ -9,84 +9,84 @@
   }
 
   @include nsw.breakpoint('md') {
-    margin-top: nsw.rem(32px);
-    margin-bottom: nsw.rem(32px);
+    margin-block-start: nsw.rem(32px);
+    margin-block-end: nsw.rem(32px);
 
     &--90 {
-      width: 90%;
+      inline-size: 90%;
     }
 
     &--80 {
-      width: 80%;
+      inline-size: 80%;
     }
 
     &--70 {
-      width: 70%;
+      inline-size: 70%;
     }
 
     &--60 {
-      width: 60%;
+      inline-size: 60%;
     }
 
     &--left-50,
     &--left-40,
     &--left-30 {
-      margin-left: 0;
-      padding-right: nsw.rem(16px);
-      margin-right: nsw.rem(16px);
-      float: left;
+      margin-inline-start: 0;
+      padding-inline-end: nsw.rem(16px);
+      margin-inline-end: nsw.rem(16px);
+      float: inline-start;
     }
 
     &--right-50,
     &--right-40,
     &--right-30 {
-      padding-left: nsw.rem(16px);
-      margin-left: nsw.rem(16px);
-      margin-right: 0;
-      float: right;
+      padding-inline-start: nsw.rem(16px);
+      margin-inline-start: nsw.rem(16px);
+      margin-inline-end: 0;
+      float: inline-end;
     }
 
     &--right-50,
     &--left-50 {
-      width: 50%;
+      inline-size: 50%;
     }
 
     &--right-40,
     &--left-40 {
-      width: 40%;
+      inline-size: 40%;
     }
 
     &--right-30,
     &--left-30 {
-      width: 30%;
+      inline-size: 30%;
     }
   }
 
   &__video {
     overflow: hidden;
     position: relative;
-    width: 100%;
+    inline-size: 100%;
 
     &::after {
       content: '';
       display: block;
-      padding-top: 56.25%;
+      padding-block-start: 56.25%;
     }
 
     iframe,
     video {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      inset-block-start: 0;
+      inset-inline-start: 0;
+      inline-size: 100%;
+      block-size: 100%;
     }
   }
 
   img {
     display: block;
     border: 0;
-    width: 100%;
+    inline-size: 100%;
   }
 
   figcaption {
@@ -112,9 +112,9 @@
   &--transparent {
     figcaption {
       background-color: transparent;
-      padding-left: 0;
-      padding-right: 0;
-      padding-bottom: 0;
+      padding-inline-start: 0;
+      padding-inline-end: 0;
+      padding-block-end: 0;
 
       .nsw-section--invert & {    
         color: var(--nsw-text-light);

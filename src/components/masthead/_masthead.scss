@@ -3,19 +3,19 @@
 
 .nsw-skip {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  inline-size: 100%;
 
   a {
     background-color: var(--nsw-brand-dark);
     color: var(--nsw-white);
-    width: 100%;
+    inline-size: 100%;
     text-decoration: none;
     padding: nsw.rem(8px) nsw.rem(16px);
     position: absolute;
-    top: 0;
-    left: 0;
+    inset-block-start: 0;
+    inset-inline-start: 0;
     transform: translateY(-101%);
 
     @include nsw.z-index('middle');
@@ -31,7 +31,7 @@
     }
 
     @include nsw.breakpoint('lg') {
-      text-align: left;
+      text-align: start;
     }
   }
 

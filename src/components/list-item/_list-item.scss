@@ -6,10 +6,10 @@
   flex-direction: row;
   flex-wrap: nowrap;
   padding: nsw.rem(24px) 0;
-  border-bottom: 1px solid var(--nsw-grey-04);
+  border-block-end: 1px solid var(--nsw-grey-04);
 
   &:first-child {
-    border-top: 1px solid var(--nsw-grey-04);
+    border-block-start: 1px solid var(--nsw-grey-04);
   }
 
   &__title {
@@ -19,7 +19,7 @@
   }
 
   &__content {
-    width: 100%;
+    inline-size: 100%;
   }
 
   &__label,
@@ -27,7 +27,7 @@
   &__title,
   &__copy,
   &__tags {
-    margin-top: nsw.rem(8px);
+    margin-block-start: nsw.rem(8px);
 
     &:first-child {
       margin: 0;
@@ -44,8 +44,8 @@
   }
 
   &__image {
-    min-width: nsw.rem(250px);
-    width: nsw.rem(250px);
+    min-inline-size: nsw.rem(250px);
+    inline-size: nsw.rem(250px);
     margin: 0 0 0 nsw.rem(24px);
     display: none;
 
@@ -54,8 +54,8 @@
     }
 
     img {
-      width: 100%;
-      height: 100%;
+      inline-size: 100%;
+      block-size: 100%;
       object-fit: cover;      
     }
   }

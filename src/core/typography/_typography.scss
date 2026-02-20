@@ -30,18 +30,18 @@ dl {
 * + ul,
 * + ol,
 * + dl {
-  margin-top: nsw.rem(16px);
+  margin-block-start: nsw.rem(16px);
 }
 
 ul,
 ol {
   li {
-    margin-top: nsw.rem(8px);
+    margin-block-start: nsw.rem(8px);
   }
 }
 
 dt {
-  margin-top: nsw.rem(8px);
+  margin-block-start: nsw.rem(8px);
 }
 
 small,
@@ -55,47 +55,47 @@ abbr,
 abbr[title], /* stylelint-disable-line selector-no-qualifying-type */
 acronym {
   text-decoration: none;
-  border-bottom: 1px var(--nsw-brand-dark) dashed;
+  border-block-end: 1px var(--nsw-brand-dark) dashed;
 }
 
 /* stylelint-enable selector-no-qualifying-type */
 
 blockquote {
-  margin-left: 0;
-  margin-right: 0;
-  margin-bottom: 0;
-  border-left: solid 2px var(--nsw-brand-accent);
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+  margin-block-end: 0;
+  border-inline-start: solid 2px var(--nsw-brand-accent);
   padding: nsw.rem(20px) nsw.rem(24px);
 
   @include nsw.component-spacing;
   @include nsw.font-size('lg');
 
   @include nsw.breakpoint('md') {
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 75%;
+    margin-inline-start: auto;
+    margin-inline-end: auto;
+    max-inline-size: 75%;
   }
 }
 
 table {
   border: 0;
   border-collapse: collapse;
-  width: 100%;
-  caption-side: bottom;
+  inline-size: 100%;
+  caption-side: block-end;
 
   @include nsw.component-spacing;
 
   caption {
     padding: nsw.rem(12px) nsw.rem(8px);
-    text-align: left;
+    text-align: start;
   }
 
   th,
   td {
     padding: nsw.rem(12px) nsw.rem(8px);
-    text-align: left;
+    text-align: start;
     vertical-align: baseline;
-    border-bottom: solid 1px var(--nsw-grey-01);
+    border-block-end: solid 1px var(--nsw-grey-01);
 
     .nsw-section--invert & {    
       border-color: var(--nsw-white);
@@ -109,7 +109,7 @@ table {
   }
 
   thead {
-    border-bottom: solid 2px var(--nsw-grey-01);
+    border-block-end: solid 2px var(--nsw-grey-01);
     
     .nsw-section--invert & {    
       border-color: var(--nsw-white);
@@ -118,7 +118,7 @@ table {
 }
 
 cite {
-  margin-top: nsw.rem(16px);
+  margin-block-start: nsw.rem(16px);
   display: block;
   font-style: normal;
 
@@ -131,7 +131,7 @@ cite::before {
 
 hr {
   border: 0;
-  height: 1px;
+  block-size: 1px;
   background-color: var(--nsw-grey-04);
   margin: nsw.rem(16) 0;
 }
@@ -145,7 +145,7 @@ kbd {
   border-radius: 4px;
   padding: nsw.rem(4px);
   margin: 0 nsw.rem(4px);
-  min-width: nsw.rem(20px);
+  min-inline-size: nsw.rem(20px);
   line-height: 1;
   display: inline-flex;
   align-items: center;
@@ -203,17 +203,17 @@ h6,
 
 * + h1,
 * + .nsw-h1 {
-  margin-top: nsw.rem(64px);
+  margin-block-start: nsw.rem(64px);
 }
 
 * + h2,
 * + .nsw-h2 {
-  margin-top: nsw.rem(48px);
+  margin-block-start: nsw.rem(48px);
 }
 
 * + h3,
 * + .nsw-h3 {
-  margin-top: nsw.rem(32px);
+  margin-block-start: nsw.rem(32px);
 }
 
 * + h4,
@@ -222,7 +222,7 @@ h6,
 * + .nsw-h4,
 * + .nsw-h5,
 * + .nsw-h6 {
-  margin-top: nsw.rem(24px);
+  margin-block-start: nsw.rem(24px);
 }
 
 .nsw-intro {
@@ -242,7 +242,7 @@ a {
 
 .nsw-section-separator {    
   border: 0;
-  height: 1px;
+  block-size: 1px;
   background-color: var(--nsw-grey-04);
   margin: nsw.rem(32) 0;
 
@@ -252,17 +252,17 @@ a {
 }
 
 .nsw-section-text {
-  margin-top: nsw.rem(-8px);
-  padding-bottom: nsw.rem(8px);
+  margin-block-start: nsw.rem(-8px);
+  padding-block-end: nsw.rem(8px);
 }
 
 .nsw-section-title {
   margin: 0;
-  padding-top: nsw.rem(nsw.$grid-gutters);
-  padding-bottom: nsw.rem(8px);
+  padding-block-start: nsw.rem(nsw.$grid-gutters);
+  padding-block-end: nsw.rem(8px);
 
   @include nsw.breakpoint('md') {
-    padding-top: nsw.rem(nsw.$grid-gutters*2);
+    padding-block-start: nsw.rem(nsw.$grid-gutters*2);
   }
 }
 

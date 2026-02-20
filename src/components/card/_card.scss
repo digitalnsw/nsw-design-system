@@ -6,7 +6,7 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  height: 100%;
+  block-size: 100%;
   color: var(--nsw-text-dark);
   border-radius: var(--nsw-border-radius);
 
@@ -68,7 +68,7 @@
     border: 1px solid var(--nsw-grey-03);
     display: flex;
     flex-direction: column;
-    height: 100%;
+    block-size: 100%;
     transition: background nsw.$nsw-transition-duration, border nsw.$nsw-transition-duration;
 
     @include nsw.font-size('sm');
@@ -109,14 +109,14 @@
   }
 
   &__copy {
-    margin-top: nsw.rem(16px);
+    margin-block-start: nsw.rem(16px);
     transition: color nsw.$nsw-transition-duration;
   }
 
   &__tag,
   &__date {
     transition: color nsw.$nsw-transition-duration;
-    margin-bottom: nsw.rem(16px);
+    margin-block-end: nsw.rem(16px);
 
     @include nsw.font-size('xs');
   }
@@ -125,7 +125,7 @@
     font-weight: var(--nsw-font-bold);
 
     + .nsw-card__date {
-      margin-top: nsw.rem(-8);
+      margin-block-start: nsw.rem(-8);
     }
   }
 
@@ -133,13 +133,13 @@
     font-size: nsw.rem(map.get(nsw.$nsw-icon-sizes, 30));
     color: var(--nsw-brand-dark);
     position: absolute;
-    bottom: nsw.rem(16px);
-    left: nsw.rem(16px);
+    inset-block-end: nsw.rem(16px);
+    inset-inline-start: nsw.rem(16px);
     transition: color nsw.$nsw-transition-duration;
 
     @include nsw.breakpoint('lg') {
-      bottom: nsw.rem(32px);
-      left: nsw.rem(32px);
+      inset-block-end: nsw.rem(32px);
+      inset-inline-start: nsw.rem(32px);
     }
 
     .nsw-section--invert & {    
@@ -148,20 +148,20 @@
   }
 
   &__image {
-    min-height: nsw.rem(200px);
-    height: nsw.rem(200px);
+    min-block-size: nsw.rem(200px);
+    block-size: nsw.rem(200px);
     position: relative;
 
     img {
-      width: 100%;
-      height: 100%;
+      inline-size: 100%;
+      block-size: 100%;
       object-fit: cover;
     }
 
     + .nsw-card__content {
-      border-top-left-radius: 0;
-      border-top-right-radius: 0;
-      border-top-width: 0;
+      border-start-start-radius: 0;
+      border-start-end-radius: 0;
+      border-block-start-width: 0;
 
       &::after {
         display: none;
@@ -268,16 +268,16 @@
     .nsw-card__content {
       &::before {
         content: '';
-        height: 4px;
+        block-size: 4px;
       }
 
       &::after {
         content: '';
         position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 4px;
+        inset-block-start: 0;
+        inset-inline-start: 0;
+        inset-inline-end: 0;
+        block-size: 4px;
         background-color: var(--nsw-brand-accent);
         transition: background nsw.$nsw-transition-duration;
       }
@@ -287,10 +287,10 @@
       &::after {
         content: '';
         position: absolute;
-        bottom: -4px;
-        left: 0;
-        right: 0;
-        height: 4px;
+        inset-block-end: -4px;
+        inset-inline-start: 0;
+        inset-inline-end: 0;
+        block-size: 4px;
         background-color: var(--nsw-brand-accent);
         transition: background nsw.$nsw-transition-duration;
       }
@@ -304,41 +304,41 @@
 
       .nsw-card__content {
         flex: 1 1 50%;
-        height: auto;
+        block-size: auto;
 
         > .nsw-material-icons {
-          left: calc(50% + #{nsw.rem(16px)});
+          inset-inline-start: calc(50% + #{nsw.rem(16px)});
         }
       }
 
       .nsw-card__image {
         flex: 1 1 50%;
         position: relative;
-        height: auto;
+        block-size: auto;
 
         + .nsw-card__content {
-          border-top-right-radius: var(--nsw-border-radius);
-          border-bottom-left-radius: 0;
-          border-top-width: 1px;
-          border-left-width: 0;
+          border-start-end-radius: var(--nsw-border-radius);
+          border-end-start-radius: 0;
+          border-block-start-width: 1px;
+          border-inline-start-width: 0;
         }
       }
 
       &.nsw-card--highlight {
         .nsw-card__image::after {
-          top: 0;
-          bottom: 0;
-          left: auto;
-          right: -4px;
-          width: 4px;
-          height: auto;
+          inset-block-start: 0;
+          inset-block-end: 0;
+          inset-inline-start: auto;
+          inset-inline-end: -4px;
+          inline-size: 4px;
+          block-size: auto;
         }
       }
     }
 
     @include nsw.breakpoint('lg') {
       .nsw-card__content > .nsw-material-icons {
-        left: calc(50% + #{nsw.rem(32px)});
+        inset-inline-start: calc(50% + #{nsw.rem(32px)});
       }
     }
   }
@@ -362,8 +362,8 @@
         position: absolute;
         inset: 0;
         border-radius: var(--nsw-border-radius);
-        border-bottom-left-radius: 0;
-        border-bottom-right-radius: 0;
+        border-end-start-radius: 0;
+        border-end-end-radius: 0;
         box-shadow:
           inset 0 1px 0 rgba(17, 24, 39, 0.2), /* top */
           inset 1px 0 0 rgba(17, 24, 39, 0.2), /* right */
@@ -378,8 +378,8 @@
           position: absolute;
           inset: 0;
           border-radius: var(--nsw-border-radius);
-          border-bottom-right-radius: 0;
-          border-top-right-radius: 0;
+          border-end-end-radius: 0;
+          border-start-end-radius: 0;
           box-shadow:
             inset 0 1px 0 rgba(17, 24, 39, 0.2), /* top */
             inset 1px 0 0 rgba(17, 24, 39, 0.2), /* right */
@@ -393,8 +393,8 @@
       .nsw-card__image {
         &::after {
           background-color: transparent;
-          height: unset;
-          width: unset;
+          block-size: unset;
+          inline-size: unset;
         }
       }
 
@@ -417,8 +417,8 @@
 
         &.nsw-card--horizontal .nsw-card__image {
           border-radius: var(--nsw-border-radius);
-          border-top-right-radius: 0;
-          border-bottom-right-radius: 0;
+          border-start-end-radius: 0;
+          border-end-end-radius: 0;
           box-shadow:
             -1px 0 0 0 var(--nsw-grey-03),  /* Left */
             4px 0 0 0 transparent, /* Right */
@@ -430,8 +430,8 @@
       &.nsw-card--horizontal {
         .nsw-card__image {
           border-radius: var(--nsw-border-radius);
-          border-top-right-radius: 0;
-          border-bottom-right-radius: 0;
+          border-start-end-radius: 0;
+          border-end-end-radius: 0;
           box-shadow:
             -1px 0 0 0 var(--nsw-grey-03),  /* Left */
             4px 0 0 0 var(--nsw-brand-accent), /* Right */

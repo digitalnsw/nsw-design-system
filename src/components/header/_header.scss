@@ -4,15 +4,15 @@
 .nsw-header {
   background-color: var(--nsw-white);
   position: relative;
-  border-bottom: solid 1px var(--nsw-grey-04);
+  border-block-end: solid 1px var(--nsw-grey-04);
 
   @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
-    border-bottom: 0;
+    border-block-end: 0;
   }
 
   &--simple {
     @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
-      border-bottom: solid 1px var(--nsw-grey-04);
+      border-block-end: solid 1px var(--nsw-grey-04);
     }
   }
 
@@ -36,8 +36,8 @@
       font-weight: var(--nsw-font-bold);
       border-radius: var(--nsw-border-radius);
       color: var(--nsw-brand-dark);
-      width: nsw.rem(48px);
-      height: nsw.rem(48px);
+      inline-size: nsw.rem(48px);
+      block-size: nsw.rem(48px);
       background: none;
       border: 0;
       padding: 0;
@@ -68,8 +68,8 @@
 
   &__menu {
     position: absolute;
-    top: nsw.rem(12px);
-    left: nsw.rem(-6px);
+    inset-block-start: nsw.rem(12px);
+    inset-inline-start: nsw.rem(-6px);
 
     button {      
       @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
@@ -80,13 +80,13 @@
 
   &__search {
     position: absolute;
-    top: nsw.rem(12px);
-    right: nsw.rem(-4px);
+    inset-block-start: nsw.rem(12px);
+    inset-inline-end: nsw.rem(-4px);
 
     @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
-      right: 0;
-      top: 50%;
-      margin-top: nsw.rem(-24px);
+      inset-inline-end: 0;
+      inset-block-start: 50%;
+      margin-block-start: nsw.rem(-24px);
     }
 
     button {      
@@ -117,9 +117,9 @@
 
     .nsw-header__rectangular-logo {
       @include nsw.breakpoint('lg') {
-        height: nsw.rem(60px);
-        margin-top: nsw.rem(8px);
-        margin-bottom: nsw.rem(8px);
+        block-size: nsw.rem(60px);
+        margin-block-start: nsw.rem(8px);
+        margin-block-end: nsw.rem(8px);
       }
     }
   }
@@ -134,18 +134,18 @@
     }
 
     svg {
-      height: nsw.rem(48px);
+      block-size: nsw.rem(48px);
       display: block;
 
       @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
-        height: nsw.rem(76px);
+        block-size: nsw.rem(76px);
       }
 
       &.nsw-header__waratah-gov {
-        height: nsw.rem(55px);
+        block-size: nsw.rem(55px);
 
         @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
-          height: nsw.rem(76px);
+          block-size: nsw.rem(76px);
         }
       }
     }
@@ -174,20 +174,20 @@
       }
 
       svg:not(:first-child) {
-        margin-left: nsw.rem(24px);
+        margin-inline-start: nsw.rem(24px);
 
         @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
-          margin-left: nsw.rem(40px);
+          margin-inline-start: nsw.rem(40px);
         }
       }      
     }
   }
 
   &__waratah-gov {
-    margin-bottom: nsw.rem(-7px);
+    margin-block-end: nsw.rem(-7px);
 
     @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
-      margin-bottom: 0;
+      margin-block-end: 0;
     }
 
     .hide {
@@ -205,7 +205,7 @@
 
     @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
       padding: 0;
-      margin-left: nsw.rem(40px);
+      margin-inline-start: nsw.rem(40px);
     }
   }
 
@@ -222,7 +222,7 @@
     }
 
     .nsw-tag {
-      margin-left: nsw.rem(24px);
+      margin-inline-start: nsw.rem(24px);
     }
   }
 
@@ -241,34 +241,34 @@
     }
 
     svg {
-      height: nsw.rem(48px);
+      block-size: nsw.rem(48px);
       display: block;
 
       @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
-        height: nsw.rem(76px);
+        block-size: nsw.rem(76px);
       }
     }
   }
   
   &__search-area {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
+    inset-block-start: 0;
+    inset-inline-start: 0;
+    inset-inline-end: 0;
 
     @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
-      width: nsw.rem(394px);
-      left: auto;
-      right: nsw.rem(16px);
-      top: 50%;
+      inline-size: nsw.rem(394px);
+      inset-inline-start: auto;
+      inset-inline-end: nsw.rem(16px);
+      inset-block-start: 50%;
       transform: translateY(-50%);
     }
 
     button {
       position: absolute;
-      right: 0;
-      top: 0;
-      bottom: 0;
+      inset-inline-end: 0;
+      inset-block-start: 0;
+      inset-block-end: 0;
       cursor: pointer;
     }
 
@@ -285,7 +285,7 @@
       button {
         display: none;
         padding: 0;
-        width: nsw.rem(48px);
+        inline-size: nsw.rem(48px);
 
         @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
           display: flex;
@@ -301,10 +301,10 @@
       background: var(--nsw-off-white);
       padding: nsw.rem(8px) nsw.rem(72px) nsw.rem(8px) nsw.rem(16px);
       color: var(--nsw-text-dark);
-      width: 100%;
+      inline-size: 100%;
       appearance: none;
       border: 0;
-      height: nsw.rem(72px);
+      block-size: nsw.rem(72px);
       
       @include nsw.font-size('md');
 
@@ -314,7 +314,7 @@
 
       @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
         border-radius: var(--nsw-border-radius);
-        height: nsw.rem(48px);
+        block-size: nsw.rem(48px);
         padding: 0 nsw.rem(16px);
       }
     }

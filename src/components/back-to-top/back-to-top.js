@@ -90,7 +90,7 @@ class BackTop {
     const stickyH = getStickyHeight()
     // Apply inline bottom so it clears the sticky stack plus a small gap
     try {
-      this.element.style.bottom = `${stickyH + this.bottomGap}px`
+      this.element.style.insetBlockEnd = `${stickyH + this.bottomGap}px`
     } catch (_) {
       // no-op
     }

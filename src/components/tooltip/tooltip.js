@@ -131,7 +131,7 @@ class Tooltip {
       range.setEndAfter(text)
       const clientRect = range.getBoundingClientRect()
       this.matchMedia()
-      this.tooltipElement.style.width = `${clientRect.width + this.screenSize}px`
+      this.tooltipElement.style.inlineSize = `${clientRect.width + this.screenSize}px`
 
       this.updateTooltip(this.tooltipElement, this.arrowElement)
     }, tooltipDelay)
@@ -148,7 +148,7 @@ class Tooltip {
       if (!this.tooltipElement) return
       this.tooltipElement.classList.remove('active')
       this.tooltipElement.setAttribute('aria-hidden', 'true')
-      this.tooltipElement.style.width = ''
+      this.tooltipElement.style.inlineSize = ''
       if (tooltip && describedByAdded) {
         if (initialDescribedBy) {
           tooltip.setAttribute('aria-describedby', initialDescribedBy)

@@ -23,13 +23,13 @@ $nsw-layout-gap: 32px;
 
     &:first-child {
       @include nsw.breakpoint('lg') {
-        padding-right: nsw.rem(nsw.$grid-gutters*2 + $nsw-layout-gap);
+        padding-inline-end: nsw.rem(nsw.$grid-gutters*2 + $nsw-layout-gap);
       }
     }
 
     &:last-child {
       @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
-        padding-left: nsw.rem(nsw.$grid-gutters*2 + $nsw-layout-gap);
+        padding-inline-start: nsw.rem(nsw.$grid-gutters*2 + $nsw-layout-gap);
       }
     }
 
@@ -46,10 +46,10 @@ $nsw-layout-gap: 32px;
 .nsw-sticky-container,
 .js-sticky-container {
   position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
+  inset-block-end: 0;
+  inset-inline-start: 0;
+  inset-inline-end: 0;
+  inline-size: 100%;
   z-index: var(--nsw-layer-sticky, 1000);
   display: block;
 }

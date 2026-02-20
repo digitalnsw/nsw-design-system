@@ -3,7 +3,7 @@
 .nsw-tooltip,
 .nsw-toggletip {
   white-space: nowrap;
-  border-bottom: 2px dotted var(--nsw-brand-dark);
+  border-block-end: 2px dotted var(--nsw-brand-dark);
 
   &:focus,
   &:active {
@@ -16,11 +16,11 @@
 
   &__element {
     display: none;
-    width: max-content;
+    inline-size: max-content;
     position: absolute;
-    top: 0;
-    left: 0;
-    max-width: 260px;
+    inset-block-start: 0;
+    inset-inline-start: 0;
+    max-inline-size: 260px;
     border-radius: var(--nsw-border-radius);
     box-shadow: var(--nsw-box-shadow);
     line-height: var(--nsw-line-height-md-desktop);
@@ -88,13 +88,13 @@
   &__arrow {
     position: absolute;
     background-color: var(--nsw-grey-02);
-    width: 12px;
-    height: 12px;
+    inline-size: 12px;
+    block-size: 12px;
     transform: rotate(45deg);
   }
 
   .nsw-section--invert & {    
-    border-bottom: 2px dotted var(--nsw-text-light);
+    border-block-end: 2px dotted var(--nsw-text-light);
   }
 }
 
@@ -144,7 +144,7 @@
     padding: 0 nsw.rem(16px) nsw.rem(16px);
     
     &:first-child {
-      margin-top: 0;
+      margin-block-start: 0;
     }
   }
 }

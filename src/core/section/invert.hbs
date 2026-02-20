@@ -2,6 +2,8 @@
 title: Section
 page: true
 model:
+  accordion-1: ../../components/accordion/json/accordion-3.json
+  accordion-2: ../../components/accordion/json/accordion-4.json
   filters-options-1: ../../components/filters/json/options-1.json
   filters-options-2: ../../components/filters/json/options-2.json
   filters-options-3: ../../components/filters/json/options-3.json
@@ -15,25 +17,10 @@ model:
       <div class="nsw-row">
         <div class="nsw-col nsw-col-lg-8">
           <h2>Accordion</h2>
-          <div class="nsw-accordion js-accordion">
-            <div class="nsw-accordion__toggle">
-              <button type="button">Expand all</button>
-              <button type="button">Collapse all</button>
-            </div>
-            <div class="nsw-accordion__title">First Home Owner&#x27;s Grant (New Homes) scheme (FHOG)</div>
-            <div class="nsw-accordion__content">
-              <p>Buying or building your first home? You may be eligible for a $10,000 grant under the First Home Owner's Grant (FHOG) scheme.</p><p>This grant scheme only applies to buying or building a new home.</p><p>You can make a claim if:</p><ul><li>your home is newly constructed and has a total value of less than $600,000</li><li>the land and the dwelling you intend to build has a combined value of less than $750,000.</li></ul>
-            </div>
-            <div class="nsw-accordion__title">HomeBuilder program</div>
-            <div class="nsw-accordion__content">
-              <p>If you are building a new home, you could also be able to apply for the Australian Government grant of $25,000. To be eligible you must:</p><ul><li>sign the contract between 4 June 2020 and 31 December 2020</li><li>commence within 3 months of the contract date.</li></ul><p>HomeBuilder complements the NSW Government’s existing First Home Owner Grant and stamp duty concessions.</p>
-            </div>
-            <div class="nsw-accordion__title">First Home Buyer Assistance scheme (FHBAS)</div>
-            <div class="nsw-accordion__content">
-              <p>The NSW Government recently announced increased thresholds for purchases of new homes and vacant land to build a new home from 1 August 2020.  The threshold for existing home purchases remains unchanged.</p>
-            </div>
-          </div>
-        </div>
+          <h3>JS</h3>
+          {{>_accordion model.accordion-2 type='js'}}
+          <h3>CSS only</h3>
+          {{>_accordion model.accordion-1 type='css'}}
       </div>
       <div class="nsw-row">
         <div class="nsw-col"><hr></div>
@@ -628,7 +615,7 @@ model:
         <div class="nsw-col"><hr></div>
       </div>
       <div class="nsw-row">
-        <div class="nsw-col nsw-col-lg-4" style="max-width: 368px;">
+        <div class="nsw-col nsw-col-lg-4" style="max-inline-size: 368px;">
           <h2>Side nav</h2>
           <nav class="nsw-side-nav nsw-block" aria-labelledby="sksm7sss26ns">
             <div class="nsw-side-nav__header" id="sksm7sss26ns">

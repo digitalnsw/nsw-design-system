@@ -2,6 +2,7 @@
 
 .nsw-form {
   &__select {
+    --nsw-form-select-icon-position: calc(100% - #{nsw.rem(16px)});
     padding: nsw.rem(11px) nsw.rem(16px);
     border-radius: var(--nsw-border-radius);
     background-color: var(--nsw-white);
@@ -9,16 +10,20 @@
     border: 1px solid var(--nsw-grey-01);
     vertical-align: middle;
     appearance: none;
-    width: 100%;
-    padding-right: nsw.rem(48px);
-    background: var(--nsw-white) nsw.svg-url(nsw.$nsw-form-chevron-down) no-repeat right nsw.rem(16px) center;
+    inline-size: 100%;
+    padding-inline-end: nsw.rem(48px);
+    background: var(--nsw-white) nsw.svg-url(nsw.$nsw-form-chevron-down) no-repeat var(--nsw-form-select-icon-position) center;
     background-size: nsw.rem(16px) auto;
     cursor: pointer;
 
     @include nsw.font-size('sm');
 
+    &:dir(rtl) {
+      --nsw-form-select-icon-position: #{nsw.rem(16px)};
+    }
+
     &:hover:not(.nsw-multi-select__button) {
-      background: nsw.svg-url(nsw.$nsw-form-chevron-down) no-repeat right nsw.rem(16px) center, linear-gradient(var(--nsw-hover), var(--nsw-hover));
+      background: nsw.svg-url(nsw.$nsw-form-chevron-down) no-repeat var(--nsw-form-select-icon-position) center, linear-gradient(var(--nsw-hover), var(--nsw-hover));
       background-size: nsw.rem(16px) auto, auto;
       background-color: var(--nsw-white);
     }
@@ -33,7 +38,7 @@
 
     &:disabled,
     &[readonly='true'] {
-      background: var(--nsw-off-white) nsw.svg-url(nsw.$nsw-form-chevron-down) no-repeat right nsw.rem(16px) center;
+      background: var(--nsw-off-white) nsw.svg-url(nsw.$nsw-form-chevron-down) no-repeat var(--nsw-form-select-icon-position) center;
       background-size: nsw.rem(16px) auto;
       border-color: var(--nsw-grey-03);
       color: var(--nsw-grey-01);
@@ -41,7 +46,7 @@
       opacity: 1;
       
       &:hover {
-        background: var(--nsw-off-white) nsw.svg-url(nsw.$nsw-form-chevron-down) no-repeat right nsw.rem(16px) center;
+        background: var(--nsw-off-white) nsw.svg-url(nsw.$nsw-form-chevron-down) no-repeat var(--nsw-form-select-icon-position) center;
         background-size: nsw.rem(16px) auto, auto;
         background-color: var(--nsw-off-white);
       }
@@ -53,7 +58,7 @@
       border-width: 2px;
 
       &:hover {
-        background: var(--nsw-status-error-bg) nsw.svg-url(nsw.$nsw-form-chevron-down) no-repeat right nsw.rem(16px) center;
+        background: var(--nsw-status-error-bg) nsw.svg-url(nsw.$nsw-form-chevron-down) no-repeat var(--nsw-form-select-icon-position) center;
         background-size: nsw.rem(16px) auto;
       }
     }
@@ -65,7 +70,7 @@
 
   &__label {
     + .nsw-multi-select {
-      margin-top: 0.35rem;
+      margin-block-start: 0.35rem;
     }
   }
 }
@@ -74,19 +79,19 @@
   position: relative;
 
   &__button {
-    text-align: left;
+    text-align: start;
     background: var(--nsw-white);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-right: 0.5rem;
+    padding-inline-end: 0.5rem;
 
     .nsw-material-icons {
       font-size: nsw.rem(32px);
       line-height: 0.8;
       transform: rotate(0deg);
       transition: transform nsw.$nsw-transition-duration, color nsw.$nsw-transition-duration;
-      width: 2rem;
+      inline-size: 2rem;
     }
 
     &:hover {
@@ -119,12 +124,13 @@
   }
 
   &__clear-all-button {
-    margin-top: nsw.rem(20px);
+    margin-block-start: nsw.rem(20px);
     text-decoration: underline;
     cursor: pointer;
     background: 0;
     border: 0;
-    padding: nsw.rem(4px) nsw.rem(4px) nsw.rem(4px) 0;
+    padding-block: nsw.rem(4px);
+    padding-inline: 0 nsw.rem(4px);
 
     @include nsw.link;
     @include nsw.font-size('sm');
@@ -145,16 +151,16 @@
 
     > li {
       &:first-child {
-        margin-top: 0;
+        margin-block-start: 0;
       }
     }
 
     &:not(:first-of-type) {
-      padding-top: 0.25rem;
+      padding-block-start: 0.25rem;
     }
     
     &:not(:last-of-type) {
-      padding-bottom: 0.25rem;
+      padding-block-end: 0.25rem;
     }
   }
 
@@ -166,11 +172,11 @@
   
   &__dropdown {
     position: absolute;
-    left: 0;
-    top: 100%;
-    width: 100%;
-    min-width: nsw.rem(200px);
-    max-height: 1px;
+    inset-inline-start: 0;
+    inset-block-start: 100%;
+    inline-size: 100%;
+    min-inline-size: nsw.rem(200px);
+    max-block-size: 1px;
     background-color: var(--nsw-white);
     box-shadow: var(--nsw-box-shadow);
     padding: 1rem;
@@ -187,14 +193,14 @@
       }
     }
 
-    &--right {
-      right: 0;
-      left: auto;
+    &--inline-end {
+      inset-inline-end: 0;
+      inset-inline-start: auto;
     }
     
     &--up {
-      bottom: 100%;
-      top: auto;
+      inset-block-end: 100%;
+      inset-block-start: auto;
     }
   }
 
@@ -205,16 +211,18 @@
   }
 
   &__all {
-    padding: nsw.rem(4px) 0 nsw.rem(4px) nsw.rem(48px);
-    min-height: nsw.rem(32px);
+    padding-block: nsw.rem(4px);
+    padding-inline-start: nsw.rem(48px);
+    padding-inline-end: 0;
+    min-block-size: nsw.rem(32px);
     display: block;
     position: relative;
     border: 0;
     background: transparent;
     appearance: none;
     cursor: pointer;
-    width: 100%;
-    text-align: left;
+    inline-size: 100%;
+    text-align: start;
 
     @include nsw.font-size('sm');
   
@@ -225,14 +233,14 @@
   
     &::before {
       content: '';
-      width: nsw.rem(32px);
-      height: nsw.rem(32px);
-      margin-right: nsw.rem(16px);
+      inline-size: nsw.rem(32px);
+      block-size: nsw.rem(32px);
+      margin-inline-end: nsw.rem(16px);
       border: 1px var(--nsw-grey-01) solid;
       border-radius: var(--nsw-border-radius);
       background-color: var(--nsw-white);
-      top: 0;
-      left: 0;
+      inset-block-start: 0;
+      inset-inline-start: 0;
       display: inline-block;
       vertical-align: middle;
       position: absolute;
@@ -241,13 +249,13 @@
     &::after {
       content: '';
       position: absolute;
-      width: nsw.rem(22px);
-      height: nsw.rem(22px);
+      inline-size: nsw.rem(22px);
+      block-size: nsw.rem(22px);
       background-repeat: no-repeat;
       background-position: center center;
       background-size: nsw.rem(16px) auto;
-      left: nsw.rem(5px);
-      top: nsw.rem(5px);
+      inset-inline-start: nsw.rem(5px);
+      inset-block-start: nsw.rem(5px);
     }
   
     &:focus::before {

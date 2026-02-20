@@ -22,12 +22,12 @@
       &::before {
         content: '';
         position: absolute;
-        width: nsw.rem(4px);
-        height: nsw.rem(4px);
+        inline-size: nsw.rem(4px);
+        block-size: nsw.rem(4px);
         border-radius: 100%;
         background-color: var(--nsw-text-dark);
-        top: nsw.rem(18px);
-        left: 0;
+        inset-block-start: nsw.rem(18px);
+        inset-inline-start: 0;
       
         .nsw-section--invert & {    
           background-color: var(--nsw-text-light);
@@ -37,27 +37,27 @@
   }
 
   &__link {
-    margin-top: nsw.rem(16px);
+    margin-block-start: nsw.rem(16px);
   }
 
   &__image {
-    max-height: nsw.rem(200px);
-    margin-bottom: nsw.rem(24px);
+    max-block-size: nsw.rem(200px);
+    margin-block-end: nsw.rem(24px);
 
     img {
-      width: 100%;
-      height: nsw.rem(200px);
+      inline-size: 100%;
+      block-size: nsw.rem(200px);
       object-fit: cover;      
     }
   }
 
   &__icon {
-    max-width: nsw.rem(64px);
-    max-height: nsw.rem(64px);
+    max-inline-size: nsw.rem(64px);
+    max-block-size: nsw.rem(64px);
 
     svg {
-      max-width: nsw.rem(64px);
-      max-height: nsw.rem(64px);
+      max-inline-size: nsw.rem(64px);
+      max-block-size: nsw.rem(64px);
 
       .nsw-section--invert & {
         --nsw-icon-colour-dark: var(--nsw-text-light);

@@ -19,7 +19,7 @@ $nsw-loaders: (
 
 .nsw-loader {
   text-align: center;
-  width: fit-content;
+  inline-size: fit-content;
 
   &__circle {
     position: relative;
@@ -30,17 +30,17 @@ $nsw-loaders: (
     animation-duration: 1.4s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
-    width: nsw.rem(64px);
-    height: nsw.rem(64px);
+    inline-size: nsw.rem(64px);
+    block-size: nsw.rem(64px);
     border-width: 4px;
     transform-origin: 50% 50% calc((4rem / 2) + 4px);
     border-color: var(--nsw-grey-03);
-    border-top-color: var(--nsw-brand-accent);
+    border-block-start-color: var(--nsw-brand-accent);
     
     @each $size, $variant in $nsw-loaders {
       &--#{"" + $size} {
-        width: map.get($variant, size);
-        height: map.get($variant, size);
+        inline-size: map.get($variant, size);
+        block-size: map.get($variant, size);
         transform-origin: 50% 50% calc((#{map.get($variant, size)} / 2) + #{map.get($variant, border)});
         @if map.get($variant, border) == 3px {
           border-width: map.get($variant, border);
