@@ -10,7 +10,7 @@
 
   &__form {
     padding: nsw.rem(24px) 0;
-    text-align: left;
+    text-align: start;
 
     .nsw-material-icons { 
       &:first-child {
@@ -22,17 +22,17 @@
   &__wrapper {
     padding: nsw.rem(32px) nsw.rem(16px);
     background-color: var(--nsw-off-white);
-    border-bottom: solid 4px var(--nsw-brand-accent);
+    border-block-end: solid 4px var(--nsw-brand-accent);
 
     @include nsw.breakpoint('md') {
-      border-top-left-radius: var(--nsw-border-radius);
-      border-top-right-radius: var(--nsw-border-radius);
+      border-start-start-radius: var(--nsw-border-radius);
+      border-start-end-radius: var(--nsw-border-radius);
       padding: nsw.rem(32px) nsw.rem(80px);
     }
   }
 
   &__content {    
-    max-width: nsw.rem(700px);
+    max-inline-size: nsw.rem(700px);
     margin: 0 auto;
     text-align: center;
   }
@@ -41,7 +41,7 @@
     ul {
       list-style: none;
       text-align: center;
-      margin-top: nsw.rem(-8px);
+      margin-block-start: nsw.rem(-8px);
       padding: 0;
     }
 

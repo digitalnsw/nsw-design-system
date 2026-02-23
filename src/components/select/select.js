@@ -132,16 +132,23 @@ class Select {
   }
 
   placeDropdown() {
-    const {
-      top, bottom, left,
-    } = this.trigger.getBoundingClientRect()
+    const rect = this.trigger.getBoundingClientRect()
+    const isRtl = getComputedStyle(this.element).direction === 'rtl'
+    const blockStartEdge = rect.top
+    const blockEndEdge = rect.bottom
+    const inlineStartEdge = isRtl ? rect.right : rect.left
+    const viewportInlineSize = window.innerWidth
+    const viewportBlockSize = window.innerHeight
+    const dropdownInlineSize = this.dropdown.offsetWidth
+    const inlineEndSpace = isRtl ? inlineStartEdge : viewportInlineSize - inlineStartEdge
+    const alignInlineEnd = dropdownInlineSize > inlineEndSpace
 
-    this.dropdown.classList.toggle(`${this.prefix}${this.dropdownClass}--right`, (window.innerWidth < left + this.dropdown.offsetWidth))
-    const moveUp = (window.innerHeight - bottom) < top
-    this.dropdown.classList.toggle(`${this.prefix}${this.dropdownClass}--up`, moveUp)
-    const maxHeight = moveUp ? top - 20 : window.innerHeight - bottom - 20
-    const vhCalc = Math.ceil((100 * maxHeight) / window.innerHeight)
-    this.dropdown.setAttribute('style', `max-height: ${vhCalc}vh;`)
+    this.dropdown.classList.toggle(`${this.prefix}${this.dropdownClass}--inline-end`, alignInlineEnd)
+    const moveToBlockStart = (viewportBlockSize - blockEndEdge) < blockStartEdge
+    this.dropdown.classList.toggle(`${this.prefix}${this.dropdownClass}--up`, moveToBlockStart)
+    const maxBlockSize = moveToBlockStart ? blockStartEdge - 20 : viewportBlockSize - blockEndEdge - 20
+    const vhCalc = Math.ceil((100 * maxBlockSize) / viewportBlockSize)
+    this.dropdown.setAttribute('style', `max-block-size: ${vhCalc}vh;`)
   }
 
   keyboardCustomSelect(direction, event) {

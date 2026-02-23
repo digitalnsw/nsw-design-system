@@ -14,7 +14,11 @@ $utilities: map.merge((
     responsive: true,
     property: float,
     class: nsw-float,
-    values: left right none
+    values: (
+      left: inline-start,
+      right: inline-end,
+      none: none,
+    )
   ),
   "object-fit": (
     responsive: true,
@@ -68,22 +72,22 @@ $utilities: map.merge((
     values: static relative absolute fixed sticky
   ),
   "top": (
-    property: top,
+    property: inset-block-start,
     class: nsw-position-top,
     values: settings.$nsw-position-values
   ),
   "bottom": (
-    property: bottom,
+    property: inset-block-end,
     class: nsw-position-bottom,
     values: settings.$nsw-position-values
   ),
   "left": (
-    property: left,
+    property: inset-inline-start,
     class: nsw-position-left,
     values: settings.$nsw-position-values
   ),
   "right": (
-    property: right,
+    property: inset-inline-end,
     class: nsw-position-right,
     values: settings.$nsw-position-values
   ),
@@ -110,7 +114,7 @@ $utilities: map.merge((
     values: settings.$nsw-border-widths,
   ),
   "border-top": (
-    property: border-top,
+    property: border-block-start,
     class: nsw-border--top,
     values: (
       null: settings.$nsw-border,
@@ -118,7 +122,7 @@ $utilities: map.merge((
     )
   ),
   "border-right": (
-    property: border-right,
+    property: border-inline-end,
     class: nsw-border--right,
     values: (
       null: settings.$nsw-border,
@@ -126,7 +130,7 @@ $utilities: map.merge((
     )
   ),
   "border-bottom": (
-    property: border-bottom,
+    property: border-block-end,
     class: nsw-border--bottom,
     values: (
       null: settings.$nsw-border,
@@ -134,7 +138,7 @@ $utilities: map.merge((
     )
   ),
   "border-left": (
-    property: border-left,
+    property: border-inline-start,
     class: nsw-border--left,
     values: (
       null: settings.$nsw-border,
@@ -165,43 +169,43 @@ $utilities: map.merge((
     )
   ),
   "width": (
-    property: width,
+    property: inline-size,
     class: nsw-width,
     responsive: true,
     values: settings.$sizes
   ),
   "max-width": (
-    property: max-width,
+    property: max-inline-size,
     class: nsw-mw,
     values: (100: 100%)
   ),
   "viewport-width": (
-    property: width,
+    property: inline-size,
     class: nsw-vw,
     values: (100: 100vw)
   ),
   "min-viewport-width": (
-    property: min-width,
+    property: min-inline-size,
     class: nsw-min-vw,
     values: (100: 100vw)
   ),
   "height": (
-    property: height,
+    property: block-size,
     class: nsw-height,
     values: settings.$sizes
   ),
   "max-height": (
-    property: max-height,
+    property: max-block-size,
     class: nsw-mh,
     values: (100: 100%)
   ),
   "viewport-height": (
-    property: height,
+    property: block-size,
     class: nsw-vh,
     values: (100: 100vh)
   ),
   "min-viewport-height": (
-    property: min-height,
+    property: min-block-size,
     class: nsw-min-vh,
     values: (100: 100vh)
   ),
@@ -335,7 +339,11 @@ $utilities: map.merge((
     responsive: true,
     property: text-align,
     class: nsw-text,
-    values: left right center
+    values: (
+      left: start,
+      right: end,
+      center: center,
+    )
   ),
   "text-decoration": (
     property: text-decoration,

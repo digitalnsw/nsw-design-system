@@ -25,7 +25,7 @@
     text-decoration: none;
     text-align: center;
     padding: nsw.rem(4px);
-    min-width: nsw.rem(30px);
+    min-inline-size: nsw.rem(30px);
     border-radius: var(--nsw-border-radius);
 
     &:hover {
@@ -53,10 +53,10 @@
       &::after {
         content: '';
         position: absolute;
-        bottom: 0;
-        left: nsw.rem(4px);
-        right: nsw.rem(4px);
-        height: 2px;
+        inset-block-end: 0;
+        inset-inline-start: nsw.rem(4px);
+        inset-inline-end: nsw.rem(4px);
+        block-size: 2px;
         background-color: var(--nsw-brand-accent);        
       }
       

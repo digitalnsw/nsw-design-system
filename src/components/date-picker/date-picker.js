@@ -632,14 +632,19 @@ class DatePicker {
   }
 
   placeCalendar() {
-    this.datePicker.style.left = '0px'
-    this.datePicker.style.right = 'auto'
+    const isRtl = getComputedStyle(this.datePicker).direction === 'rtl'
+    this.datePicker.style.insetInlineStart = '0px'
+    this.datePicker.style.insetInlineEnd = 'auto'
 
     const pickerBoundingRect = this.datePicker.getBoundingClientRect()
 
-    if (pickerBoundingRect.right > window.innerWidth) {
-      this.datePicker.style.left = 'auto'
-      this.datePicker.style.right = '0px'
+    const overflowsInlineEnd = isRtl
+      ? pickerBoundingRect.left < 0
+      : pickerBoundingRect.right > window.innerWidth
+
+    if (overflowsInlineEnd) {
+      this.datePicker.style.insetInlineStart = 'auto'
+      this.datePicker.style.insetInlineEnd = '0px'
     }
   }
 }

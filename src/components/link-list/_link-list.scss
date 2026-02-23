@@ -6,12 +6,12 @@
 
   &__title {
     font-weight: var(--nsw-font-bold);
-    padding-bottom: nsw.rem(16px);
+    padding-block-end: nsw.rem(16px);
     
     @include nsw.font-size('lg');
     
     @include nsw.breakpoint('md') {
-      padding-bottom: nsw.rem(24px);
+      padding-block-end: nsw.rem(24px);
     }
   }
 
@@ -23,10 +23,10 @@
 
   li {
     margin: 0;
-    border-top: 1px solid var(--nsw-grey-04);
+    border-block-start: 1px solid var(--nsw-grey-04);
 
     &:last-child {
-      border-bottom: 1px solid var(--nsw-grey-04);
+      border-block-end: 1px solid var(--nsw-grey-04);
     }
   }
 
@@ -51,13 +51,13 @@
       text-decoration: underline;
 
       span.nsw-material-icons {
-        bottom: nsw.rem(-5px);
+        inset-block-end: nsw.rem(-5px);
       }
     }
 
     .nsw-material-icons {
       text-decoration: none;
-      bottom: 0;
+      inset-block-end: 0;
     }
 
     .nsw-section--invert & {    
@@ -78,6 +78,6 @@
 
   .nsw-material-icons {
     font-size: nsw.rem(map.get(nsw.$nsw-icon-sizes, 20));
-    margin-left: nsw.rem(16px);
+    margin-inline-start: nsw.rem(16px);
   }
 }

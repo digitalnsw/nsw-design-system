@@ -7,10 +7,10 @@
 .nsw-main-nav {
   @include nsw.z-index('middle');
   position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
+  inset-inline-start: 0;
+  inset-block-start: 0;
+  inline-size: 100%;
+  block-size: 100%;
   background-color: var(--nsw-white);
   transition: all 0.25s ease-in-out;
   transform: translateX(-100%);
@@ -39,17 +39,17 @@
     position: relative;
     transform: none;
     background-color: var(--nsw-off-white);
-    top: auto;
-    left: auto;
+    inset-block-start: auto;
+    inset-inline-start: auto;
     transition: none;
     visibility: visible;
     overflow-y: visible;
-    height: auto;
+    block-size: auto;
   }
 
   &__header {
     padding: nsw.rem(8px) nsw.rem(16px);
-    border-bottom: solid 2px var(--nsw-brand-dark);
+    border-block-end: solid 2px var(--nsw-brand-dark);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -60,11 +60,11 @@
 
     .nsw-icon-button {
       &:first-child {
-        margin-left: nsw.rem(-16px);
+        margin-inline-start: nsw.rem(-16px);
       }
 
       &:last-child {
-        margin-right: nsw.rem(-16px);
+        margin-inline-end: nsw.rem(-16px);
       }
     }
   }
@@ -95,7 +95,7 @@
       @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
         .nsw-material-icons {
           transform: rotate(90deg);
-          margin-left: nsw.rem(6px);
+          margin-inline-start: nsw.rem(6px);
           transition: transform nsw.$nsw-transition-duration, color nsw.$nsw-transition-duration;
         }
 
@@ -119,7 +119,7 @@
 
   li {    
     margin: 0;
-    border-bottom: solid 1px var(--nsw-grey-04);
+    border-block-end: solid 1px var(--nsw-grey-04);
 
     @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
       border: 0;
@@ -141,7 +141,7 @@
 
       .nsw-material-icons {
         color: var(--nsw-brand-dark);
-        margin-right: nsw.rem(-8px);
+        margin-inline-end: nsw.rem(-8px);
       }
 
       @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
@@ -177,10 +177,10 @@
     }      
 
     .nsw-main-nav__sub-nav & {
-      border-bottom: solid 1px var(--nsw-grey-04);
+      border-block-end: solid 1px var(--nsw-grey-04);
 
       @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
-        border-bottom: 0;
+        border-block-end: 0;
       }      
     }
 
@@ -198,7 +198,7 @@
   }
 
   &__description {
-    margin-top: nsw.rem(16px);
+    margin-block-start: nsw.rem(16px);
     display: none;
     
     @include nsw.font-size('xs');
@@ -212,10 +212,10 @@
     @include nsw.z-index;
     background-color: var(--nsw-white);
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset-block-start: 0;
+    inset-inline-start: 0;
+    inline-size: 100%;
+    block-size: 100%;
     transition: all 0.25s ease-in-out;
     transform: translateX(-100%);
     visibility: hidden;
@@ -237,23 +237,23 @@
     @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
       @include nsw.container;
       padding: nsw.rem(48) nsw.rem(40);
-      top: 100%;
+      inset-block-start: 100%;
       background-color: var(--nsw-white);
       box-shadow: 0 4px 9px -5px rgba(var(--nsw-black-rgb), 0.4);
       transition: none;
       transform: none;
-      height: auto;
+      block-size: auto;
       overflow: auto;
 
       &.active {
-        left: 50%;
+        inset-inline-start: 50%;
         transform: translateX(-50%);
       }
     }
 
     ul {      
       @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
-        margin-top: nsw.rem(32px);
+        margin-block-start: nsw.rem(32px);
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
@@ -266,12 +266,12 @@
 
     li {      
       @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
-        width: 32%;
-        border-top: solid 1px var(--nsw-grey-04);
+        inline-size: 32%;
+        border-block-start: solid 1px var(--nsw-grey-04);
 
         &:nth-child(3n+2) {
-          margin-left: 2%;
-          margin-right: 2%;
+          margin-inline-start: 2%;
+          margin-inline-end: 2%;
         }
 
         &:nth-last-child(-n+3) {

@@ -55,7 +55,7 @@ $header-height: 151px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 0.25rem;
-    width: 100%;
+    inline-size: 100%;
 
     @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
       grid-auto-flow: column;
@@ -63,8 +63,8 @@ $header-height: 151px;
       grid-auto-columns: 80px;
       gap: 0;
       /* overflow-x: auto; */
-      width: auto;
-      max-width: 100%;
+      inline-size: auto;
+      max-inline-size: 100%;
     }
   }
 
@@ -76,12 +76,12 @@ $header-height: 151px;
     font-weight: 500;
     padding: 0.25rem;
     box-sizing: border-box;
-    text-align: left;
-    height: 80px;
+    text-align: start;
+    block-size: 80px;
 
     @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
-      height: 120px;
-      width: 80px;
+      block-size: 120px;
+      inline-size: 80px;
       font-size: 12px;
       padding: 0.5rem;
     }
@@ -106,7 +106,7 @@ $header-height: 151px;
     @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
       content: '';
       display: block;
-      height: nsw.rem($header-height);
+      block-size: nsw.rem($header-height);
       margin: nsw.rem(-$header-height) 0 0;
     }
   }
@@ -119,16 +119,16 @@ $header-height: 151px;
 
   &__header {
     @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
-      height: nsw.rem($header-height);
+      block-size: nsw.rem($header-height);
     }
 
     &-wrapper {
       @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
         @include nsw.z-index('upper');
         position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
+        inset-block-start: 0;
+        inset-inline-start: 0;
+        inset-inline-end: 0;
         background-color: var(--nsw-white);
       }
     }
@@ -141,7 +141,7 @@ $header-height: 151px;
     @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
       .nsw-container,
       .nsw-header__container {
-        max-width: nsw.rem($content-width + $nav-width + 172px);
+        max-inline-size: nsw.rem($content-width + $nav-width + 172px);
       }
 
       .nsw-header__container .nsw-header__inner {
@@ -159,20 +159,20 @@ $header-height: 151px;
 
   &__nav {
     @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
-      min-width: nsw.rem($nav-width);
-      max-width: nsw.rem($nav-width);
+      min-inline-size: nsw.rem($nav-width);
+      max-inline-size: nsw.rem($nav-width);
     }
 
     &-wrapper {
       @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
         @include nsw.z-index('upper');
         position: fixed;
-        top: nsw.rem($header-height);
-        bottom: 0;
-        left: 0;
-        width: nsw.rem($nav-width);
+        inset-block-start: nsw.rem($header-height);
+        inset-block-end: 0;
+        inset-inline-start: 0;
+        inline-size: nsw.rem($nav-width);
         overflow-y: auto;
-        border-right: 1px solid var(--nsw-grey-04);
+        border-inline-end: 1px solid var(--nsw-grey-04);
         background-color: var(--nsw-white);
         padding: nsw.rem(16px);
       }
@@ -182,7 +182,7 @@ $header-height: 151px;
 
     .nsw-main-nav__sub-nav a {
       .nsw-brand {
-        margin-right: nsw.rem(-8px);
+        margin-inline-end: nsw.rem(-8px);
       }
     }
 
@@ -191,7 +191,7 @@ $header-height: 151px;
         background-color: transparent;
 
         li {
-          border-top: 1px solid var(--nsw-grey-04);
+          border-block-start: 1px solid var(--nsw-grey-04);
         }
 
         a {
@@ -203,7 +203,7 @@ $header-height: 151px;
 
           &.current-section {
             font-weight: var(--nsw-font-bold);
-            border-left: 2px solid var(--nsw-brand-accent);
+            border-inline-start: 2px solid var(--nsw-brand-accent);
 
             &:hover {
               background-color: var(--nsw-hover);
@@ -216,14 +216,14 @@ $header-height: 151px;
         }
 
         &__list {
-          max-width: none;
+          max-inline-size: none;
           margin: 0;
           flex-direction: column;
           cursor: pointer;
 
           > li {
             &:first-child {
-              border-top: 0;
+              border-block-start: 0;
             }
           }
 
@@ -238,9 +238,9 @@ $header-height: 151px;
 
         &__sub-nav {
           position: relative;
-          top: auto;
-          left: auto;
-          max-width: none;
+          inset-block-start: auto;
+          inset-inline-start: auto;
+          max-inline-size: none;
           margin: 0;
           padding: 0;
           box-shadow: none;
@@ -249,11 +249,11 @@ $header-height: 151px;
           &.active {
             display: block;
             transform: none;
-            left: auto;
+            inset-inline-start: auto;
           }
 
           &.current-section {
-            border-left: 2px solid var(--nsw-brand-accent);
+            border-inline-start: 2px solid var(--nsw-brand-accent);
           }
 
           ul {
@@ -262,13 +262,13 @@ $header-height: 151px;
           }
 
           li {
-            width: auto;
+            inline-size: auto;
             margin: 0;
-            border-bottom: 0;
+            border-block-end: 0;
           }
 
           a {
-            padding-left: nsw.rem(24px);
+            padding-inline-start: nsw.rem(24px);
             color: var(--nsw-text-dark);
           }
         }
@@ -280,8 +280,8 @@ $header-height: 151px;
   }
 
   &__main {
-    width: 100%;
-    min-height: 100vh;
+    inline-size: 100%;
+    min-block-size: 100vh;
     display: flex;
     flex-direction: column;
     background-color: var(--nsw-off-white);
@@ -294,36 +294,36 @@ $header-height: 151px;
     &--narrow,
     &--menu {
       .nsw-docs__demo {
-        max-width: nsw.rem($content-width + 32px);
+        max-inline-size: nsw.rem($content-width + 32px);
 
         @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
-          max-width: nsw.rem($content-width + 104px);
+          max-inline-size: nsw.rem($content-width + 104px);
         }
       }
     }
 
     &--wide {
       .nsw-docs__demo {
-        max-width: calc(var(--nsw-container-width) + #{nsw.rem(32px)});
+        max-inline-size: calc(var(--nsw-container-width) + #{nsw.rem(32px)});
 
         @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
-          max-width: calc(var(--nsw-container-width) + #{nsw.rem(104px)});
+          max-inline-size: calc(var(--nsw-container-width) + #{nsw.rem(104px)});
         }
       }
     }
 
     &--menu {
       .nsw-docs__component {
-        max-width: nsw.rem(336px);
+        max-inline-size: nsw.rem(336px);
       }
     }
   }
 
   &__container {
-    max-width: nsw.rem($content-width + 32px);
+    max-inline-size: nsw.rem($content-width + 32px);
 
     @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
-      max-width: nsw.rem($content-width + 104px);
+      max-inline-size: nsw.rem($content-width + 104px);
     }
   }
 
@@ -339,13 +339,13 @@ $header-height: 151px;
     }
 
     &--tabs {
-      margin-bottom: nsw.rem(-48px);
+      margin-block-end: nsw.rem(-48px);
 
       .nsw-docs__container {
-        padding-bottom: nsw.rem(78px);
+        padding-block-end: nsw.rem(78px);
 
         @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
-          padding-bottom: nsw.rem(88px);
+          padding-block-end: nsw.rem(88px);
         }
       }
     }
@@ -387,8 +387,8 @@ $header-height: 151px;
   }
 
   &__iframe {
-    width: 100%;
-    height: 500px;
+    inline-size: 100%;
+    block-size: 500px;
     background-color: var(--nsw-white);
   }
 
@@ -397,16 +397,16 @@ $header-height: 151px;
       padding: nsw.rem(16px) 0;
 
       &:first-child {
-        padding-top: 0;
+        padding-block-start: 0;
       }
 
       + p {
-        margin-top: nsw.rem(-12px);
-        padding-bottom: nsw.rem(16px);
+        margin-block-start: nsw.rem(-12px);
+        padding-block-end: nsw.rem(16px);
       }
 
       + h4 {
-        padding-top: 0;
+        padding-block-start: 0;
       }
     }
 
@@ -424,7 +424,7 @@ $header-height: 151px;
   }
 
   &__external {
-    padding-top: nsw.rem(8px);
+    padding-block-start: nsw.rem(8px);
   }
 
   &__list {
@@ -468,16 +468,16 @@ $header-height: 151px;
 
     .nsw-brand {
       position: absolute;
-      right: nsw.rem(-24px);
+      inset-inline-end: nsw.rem(-24px);
     }
   }
 
   &__box {
     background-color: var(--nsw-grey-03);
-    min-height: nsw.rem(56);
+    min-block-size: nsw.rem(56);
 
     &--large {
-      min-height: nsw.rem(150);
+      min-block-size: nsw.rem(150);
     }
   }
 
@@ -505,21 +505,21 @@ $header-height: 151px;
   &__swatch {
     margin: 0 auto;
     background-color: var(--nsw-brand-dark);
-    width: nsw.rem(40px);
-    height: nsw.rem(40px);
+    inline-size: nsw.rem(40px);
+    block-size: nsw.rem(40px);
     border-radius: 100%;
   }
 
   &__loader {
     @include nsw.z-index('upper');
-    height: 100%;
-    max-height: 100vh;
+    block-size: 100%;
+    max-block-size: 100vh;
     overflow-y: auto;
     position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
+    inset-inline-start: 0;
+    inset-inline-end: 0;
+    inset-block-start: 0;
+    inset-block-end: 0;
     background-color: rgba(var(--nsw-white-rgb), 0.7);
     display: flex;
     justify-content: center;
@@ -528,7 +528,7 @@ $header-height: 151px;
 
   &__guideline {
     img {
-      width: 100%;
+      inline-size: 100%;
     }
 
     &--do,
@@ -558,16 +558,16 @@ $header-height: 151px;
   }
 
   .nsw-in-page-alert + h1 {
-    margin-top: nsw.rem(24px);
+    margin-block-start: nsw.rem(24px);
 
     @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
-      margin-top: nsw.rem(48px);
+      margin-block-start: nsw.rem(48px);
     }
   }
 
   .nsw-card {
     .nsw-brand {
-      margin-left: nsw.rem(8px);
+      margin-inline-start: nsw.rem(8px);
     }
   }
 }
@@ -576,7 +576,7 @@ $header-height: 151px;
   position: relative;
 
   > button {
-    margin-top: nsw.rem(24px);
+    margin-block-start: nsw.rem(24px);
     padding: nsw.rem(2px);
     cursor: pointer;
 
@@ -590,8 +590,8 @@ $header-height: 151px;
   &__content {
     position: relative;
     display: none;
-    margin-top: nsw.rem(24px);
-    max-width: nsw.rem(872px);
+    margin-block-start: nsw.rem(24px);
+    max-inline-size: nsw.rem(872px);
 
     &.active {
       display: block;
@@ -609,25 +609,25 @@ $header-height: 151px;
 
     > button {
       position: absolute;
-      top: nsw.rem(16px);
-      right: nsw.rem(16px);
+      inset-block-start: nsw.rem(16px);
+      inset-inline-end: nsw.rem(16px);
     }
   }
 
   &__copy {
     padding: 0;
     border: 0;
-    width: 1px;
-    height: 1px;
+    inline-size: 1px;
+    block-size: 1px;
     opacity: 0;
     position: absolute;
     display: none;
   }
 
   &__wrapper {
-    min-height: nsw.rem(68px);
-    max-width: nsw.rem(872px);
-    max-height: nsw.rem(400px);
+    min-block-size: nsw.rem(68px);
+    max-inline-size: nsw.rem(872px);
+    max-block-size: nsw.rem(400px);
     overflow: auto;
     background-color: var(--nsw-white);
   }
@@ -645,7 +645,7 @@ $header-height: 151px;
 
   >.nsw-tabs__content {
     padding: 0;
-    border-bottom: 0;
+    border-block-end: 0;
     border-color: var(--nsw-white);
 
     &:focus {
@@ -690,13 +690,13 @@ $header-height: 151px;
   color: var(--nsw-brand-dark);
   text-decoration: none;
   display: inline-block;
-  margin-left: nsw.rem(16px);
+  margin-inline-start: nsw.rem(16px);
   
   @include nsw.font-size('xs');
 }
 
 .nsw-docs__element {
-  height: 100%;
+  block-size: 100%;
 }
 
 .nsw-autocomplete {
@@ -707,8 +707,8 @@ $header-height: 151px;
   &__item {
     cursor: pointer;
     transition: 0.2s;
-    padding-left: 0;
-    margin-top: 0;
+    padding-inline-start: 0;
+    margin-block-start: 0;
 
     &.nsw-autocomplete__no-results {
       padding: 0.5rem 0.75rem;
@@ -720,12 +720,12 @@ $header-height: 151px;
 
     > *:first-child,
     > *:last-child {
-      margin-top: 0;
+      margin-block-start: 0;
     }
 
     a {
       display: block;
-      width: 100%;
+      inline-size: 100%;
       margin: 0;
       padding: 0.5rem 0.75rem;
       font-weight: 400;
@@ -740,9 +740,9 @@ $header-height: 151px;
   &__results {
     position: absolute;
     z-index: 5;
-    width: 100%;
-    left: 0;
-    top: calc(100% + 3px);
+    inline-size: 100%;
+    inset-inline-start: 0;
+    inset-block-start: calc(100% + 3px);
     transform: translateY(4px);
     background-color: var(--nsw-white);
     box-shadow: var(--nsw-box-shadow);
@@ -764,15 +764,15 @@ $header-height: 151px;
 
   &__list {
     list-style: none;
-    padding-left: 0;
-    max-height: 250px;
+    padding-inline-start: 0;
+    max-block-size: 250px;
     overflow: auto;
   }
 }
 
 .nsw-color-swatches-header {
   position: sticky;
-  top: 0;
+  inset-block-start: 0;
   z-index: 1000;
   background: rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(10px);
@@ -781,7 +781,7 @@ $header-height: 151px;
 
 .nsw-color-swatches {
   border: 0;
-  width: 100%;
+  inline-size: 100%;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
@@ -790,14 +790,14 @@ $header-height: 151px;
   margin: 16px 0;
 
   &__palette-selector {
-    width: auto;
+    inline-size: auto;
     white-space: nowrap;
     flex: 0 0 auto; 
   }
 
   &__list {
     list-style: none;
-    margin-top: 0;
+    margin-block-start: 0;
     padding: 0;
     display: flex;
     gap: 0.375rem;
@@ -814,19 +814,19 @@ $header-height: 151px;
   &__swatch {
     position: relative;
     display: block;
-    height: 32px;
-    width: 32px;
+    block-size: 32px;
+    inline-size: 32px;
     border-radius: 50%;
     cursor: pointer;
 
     &::before {
       content: '';
       position: absolute;
-      top: 50%;
-      left: 50%;
+      inset-block-start: 50%;
+      inset-inline-start: 50%;
       transform: translate(-50%, -50%);
-      width: 100%;
-      height: 100%;
+      inline-size: 100%;
+      block-size: 100%;
       border: 1px solid rgba(var(--nsw-brand-dark-rgb), 0.1);
       border-radius: inherit;
       pointer-events: none;
@@ -839,13 +839,13 @@ $header-height: 151px;
   }
 
   &__item {
-    margin-top: 0;
+    margin-block-start: 0;
 
     &--selected {
       .nsw-color-swatches__swatch::before {
         border-color: rgba(var(--nsw-brand-dark-rgb), 0.8);
-        width: calc(100% + 6px);
-        height: calc(100% + 6px);
+        inline-size: calc(100% + 6px);
+        block-size: calc(100% + 6px);
       }
     }
   }
