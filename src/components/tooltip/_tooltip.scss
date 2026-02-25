@@ -24,18 +24,12 @@
     border-radius: var(--nsw-border-radius);
     box-shadow: var(--nsw-box-shadow);
     line-height: var(--nsw-line-height-md-desktop);
+    
+    text-wrap: pretty;
 
     @include nsw.z-index('upper');
     @include nsw.font-size('xs');
 
-    @supports (text-wrap: pretty) {
-      text-wrap: pretty;
-    }
-
-    // Safari/WebKit: avoid text jumbling when toggling tooltip content.
-    @supports (-webkit-touch-callout: none) {
-      text-wrap: wrap;
-    }
 
     &:focus,
     &:active {
