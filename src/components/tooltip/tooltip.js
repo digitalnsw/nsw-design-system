@@ -24,7 +24,6 @@ class Tooltip {
     this.hideTimeout = null
     this.initialDescribedBy = tooltip.getAttribute('aria-describedby')
     this.describedByAdded = false
-    this.pointerActive = false
   }
 
   init() {
@@ -50,16 +49,12 @@ class Tooltip {
     })
 
     tooltip.addEventListener('keydown', this.handleKeydown.bind(this))
-    tooltip.addEventListener('pointerdown', this.handlePointerDown.bind(this))
-    tooltip.addEventListener('pointerup', this.handlePointerUp.bind(this))
-    tooltip.addEventListener('pointercancel', this.handlePointerUp.bind(this))
   }
 
   handleEvent(event) {
     switch (event.type) {
       case 'mouseenter':
       case 'focus':
-        if (event.type === 'focus' && this.pointerActive) return
         this.showTooltip()
         break
       case 'mouseleave':
@@ -70,14 +65,6 @@ class Tooltip {
         logger.log(`Unexpected event type: ${event.type}`)
         break
     }
-  }
-
-  handlePointerDown() {
-    this.pointerActive = true
-  }
-
-  handlePointerUp() {
-    this.pointerActive = false
   }
 
   handleKeydown(event) {
@@ -121,9 +108,6 @@ class Tooltip {
       uID,
     } = this
     clearTimeout(this.hideTimeout)
-    if (this.tooltipElement && this.tooltipElement.classList.contains('active')) {
-      return
-    }
     this.showTimeout = window.setTimeout(() => {
       this.createTooltipElement()
 
