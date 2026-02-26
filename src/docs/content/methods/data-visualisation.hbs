@@ -1,108 +1,892 @@
 ---
-title: Data visualisation
+title: Charts and graphs
 no-blank: true
-intro: Graphs and charts allow data to be comprehended quickly, allowing for faster analysis and conclusions
+intro: Charts and graphs help users understand patterns, comparisons and trends in data. This guidance sets clear expectations for accessibility, clarity and consistency across NSW digital products, and is tool-agnostic.
 order: 30
-meta-description: NSW Design System data visualisation method allows users to comprehend data comprehended quickly, allowing for faster analysis and conclusions.  
+meta-description: NSW Design System guidance for charts and graphs in digital products, aligned to NSW Brand Toolkit principles and accessibility requirements.
 meta-index: true
 ---
-
-<!-- TODO: Move to header -->
-<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js'></script>
-
 
     <nav class="nsw-in-page-nav" aria-labelledby="in-page-nav">
       <div id="in-page-nav" class="nsw-in-page-nav__title">On this page</div>
       <ul>
         <li>
-          <a href="#when-to-use">When to use</a>
+          <a href="#scope">Scope</a>
         </li>
         <li>
-          <a href="#colours-and-theming">Colours and theming</a>
+          <a href="#principles">Principles</a>
         </li>
         <li>
-          <a href="#code-implementation">Code implementation</a>
+          <a href="#match-the-chart-to-the-task">Match the chart to the task</a>
         </li>
         <li>
-          <a href="#full-docs">Full documentation</a>
+          <a href="#choosing-the-right-chart">Choosing the right chart</a>
+        </li>
+        <li>
+          <a href="#represent-data-honestly">Represent data honestly</a>
+        </li>
+        <li>
+          <a href="#keep-only-what-matters">Keep only what matters</a>
+        </li>
+        <li>
+          <a href="#chart-anatomy">Chart anatomy</a>
+        </li>
+        <li>
+          <a href="#accessibility-requirements">Accessibility requirements</a>
+        </li>
+        <li>
+          <a href="#brand-and-typography">Brand and typography</a>
+        </li>
+        <li>
+          <a href="#tool-configuration">Tool configuration</a>
+        </li>
+        <li>
+          <a href="#examples">Examples</a>
+        </li>
+        <li>
+          <a href="#review-checklist">Review checklist</a>
+        </li>
+        <li>
+          <a href="#code-implementation">Implementation examples</a>
         </li>
       </ul>
     </nav>
 
 
-<h2 id="when-to-use">When to use</h2>
+<h2 id="scope">Scope</h2>
+<p>This guidance is tool-agnostic and applies regardless of platform. It covers common charts and graphs used to communicate structured data in digital products, including bar charts, line charts, scatter plots and similar formats. It applies to both public-facing services and internal dashboards.</p>
 
-<p>Use graphs and charts to easily show relationships, patterns and trends visually between data sets to users. Use the chart or graph type that best tells the story of the data and clearly represents the core insights.</p>
-<p>Representing data using graphics can be more widely understood by those with reading disabilities, accessibility needs or those for whom English is not their first language.</p>
-<p>Data visualisation can be used when:</p>
+<h3>Out of scope</h3>
 <ul>
-  <li>Comparing data </li>
-  <li>Showing trends </li>
-  <li>Displaying statistics  </li>
-  <li>Processes and workflows </li>
-  <li>Mapping and diagramming</li>
+  <li>Expressive infographics designed for campaigns or marketing</li>
+  <li>Advanced analytical visualisations such as network graphs or complex relationship mapping</li>
+  <li>Interactive GIS mapping</li>
+  <li>Highly specialised investigative tools built for internal compliance work</li>
+</ul>
+<p>Where technical limitations exist, teams must document the limitation and provide an accessible alternative where possible.</p>
+
+
+<h2 id="principles">Principles</h2>
+<ul>
+  <li>Match the chart to the task</li>
+  <li>Represent data honestly</li>
+  <li>Make charts accessible</li>
+  <li>Keep only what matters</li>
+  <li>Apply brand with structure</li>
+  <li>Configure tools to meet standards</li>
 </ul>
 
-<h2 id="colours-and-theming">Colours and theming</h2>
-<p>Colour plays a large role in data visualisation to communicate insights. </p>
-<p>Use colours from your website’s colour sets. If you need extra colours, use the NSW palette.</p>
-<p>Where possible, use either:</p>
+
+<h2 id="match-the-chart-to-the-task">Match the chart to the task</h2>
+<p>Every chart must answer a clear question. Choose the chart type based on the relationship you need to show: comparison, trend, distribution or correlation.</p>
+<p>See <a href="https://dsia.atlassian.net/wiki/spaces/GDS/pages/1197604868/Design+System+documentation#Choosing-the-right-chart" target="_blank">Choosing the right chart</a> for deeper guidance.</p>
+
+<h3>Use charts and graphs when</h3>
 <ul>
-  <li>Shades 01 to 04 of your Brand colour set</li>
-  <li>The same shade (row) across different colours</li>
+  <li>Comparing categories</li>
+  <li>Showing change over time</li>
+  <li>Showing distribution</li>
+  <li>Showing correlation between variables</li>
+  <li>Helping users quickly see patterns or trends</li>
 </ul>
-<p>For corporate websites, your colours are blue, grey, and red. For campaigns and brand-exempt sites, you'll have your own colours.</p>
 
-<h3>Colour contrast</h3>
-<p>The colours in the NSW Design System follow a pattern from the darkest (e.g. Blue 01) to lightest (e.g. Row 04). Prioritise the colours with the best constrast to your background.</p>
+<h3>Do not use a chart when</h3>
+<ul>
+  <li>A single number communicates the message</li>
+  <li>A table is clearer</li>
+  <li>The dataset is too small</li>
+  <li>The chart requires heavy explanation</li>
+  <li>It is used for decoration</li>
+</ul>
+<p>If users need precise values, provide a table.</p>
 
-<div class="nsw-section nsw-section--white nsw-block nsw-p-x-sm nsw-p-top-sm">
-  <h3>Colour examples</h3>
-  <div class="nsw-grid nsw-m-top-md">
-    <div class="nsw-col nsw-col-sm-6">
-      <canvas id="bar" height="300" width="500"></canvas>
-    </div>
-    <div class="nsw-col nsw-col-sm-6 nsw-p-left-sm">
-      <h4>Single colour</h4>
-      <p>For charts with a single dataset, you can use just one colour. In most cases, aim to use your brand dark colour, or brand light if the chart sits on a dark background.</p>
+
+<h2 id="choosing-the-right-chart">Choosing the right chart</h2>
+<p>Choose the simplest chart that matches the data relationship.</p>
+
+<h3>Comparison and ranking</h3>
+<h4 id="chart-bar-vertical" class="nsw-m-bottom-sm">Bar (vertical)</h4>
+<div class="nsw-grid nsw-m-top-md">
+  <div class="nsw-col nsw-col-md-5 nsw-col-lg-5">
+    <canvas id="chartCompBar" height="200" role="img" aria-label="Vertical bar chart example showing visits by channel."></canvas>
+    {{#> _docs-code code="js"}}
+const ctx = document.getElementById('chartCompBar');
+const styles = getComputedStyle(document.body);
+const blue02 = styles.getPropertyValue('--nsw-palette-blue-02').trim();
+
+new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: ['Online', 'Phone', 'In person'],
+    datasets: [{
+      label: 'Visits',
+      data: [320, 210, 140],
+      backgroundColor: blue02
+    }]
+  },
+  options: {
+    plugins: { legend: { display: false } },
+    scales: { y: { beginAtZero: true, title: { display: true, text: 'Visits' } } }
+  }
+});
+    {{/_docs-code}}
+  </div>
+  <div class="nsw-col nsw-col-md-7 nsw-col-lg-7">
+    <ul class="nsw-list nsw-list--8 nsw-docs__list-stack">
+      <li><strong>Use when:</strong> Comparing categories.</li>
+      <li><strong>Avoid when:</strong> Labels are long.</li>
+      <li><strong>Notes:</strong> Default choice for most comparisons.</li>
+    </ul>
+  </div>
+</div>
+<h4 id="chart-bar-horizontal" class="nsw-m-bottom-sm">Bar (horizontal)</h4>
+<div class="nsw-grid nsw-m-top-md">
+  <div class="nsw-col nsw-col-md-5 nsw-col-lg-5">
+    <canvas id="chartCompBarHorizontal" height="200" role="img" aria-label="Horizontal bar chart example showing requests by region."></canvas>
+    {{#> _docs-code code="js"}}
+const ctx = document.getElementById('chartCompBarHorizontal');
+const styles = getComputedStyle(document.body);
+const blue02 = styles.getPropertyValue('--nsw-palette-blue-02').trim();
+
+new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: ['South Western Sydney', 'Northern Sydney', 'Illawarra Shoalhaven'],
+    datasets: [{
+      label: 'Requests',
+      data: [88, 74, 65],
+      backgroundColor: blue02
+    }]
+  },
+  options: {
+    indexAxis: 'y',
+    plugins: { legend: { display: false } },
+    scales: { x: { beginAtZero: true, title: { display: true, text: 'Requests' } } }
+  }
+});
+    {{/_docs-code}}
+  </div>
+  <div class="nsw-col nsw-col-md-7 nsw-col-lg-7">
+    <ul class="nsw-list nsw-list--8 nsw-docs__list-stack">
+      <li><strong>Use when:</strong> Labels are long or showing a ranked list.</li>
+      <li><strong>Avoid when:</strong> Few short labels.</li>
+      <li><strong>Notes:</strong> Improves readability for top 10 views.</li>
+    </ul>
+  </div>
+</div>
+<h4 id="chart-stacked-bar" class="nsw-m-bottom-sm">Stacked bar</h4>
+<div class="nsw-grid nsw-m-top-md">
+  <div class="nsw-col nsw-col-md-5 nsw-col-lg-5">
+    <canvas id="chartCompStacked" height="200" role="img" aria-label="Stacked bar chart example showing targets met and below target."></canvas>
+    {{#> _docs-code code="js"}}
+const ctx = document.getElementById('chartCompStacked');
+const styles = getComputedStyle(document.body);
+const blue02 = styles.getPropertyValue('--nsw-palette-blue-02').trim();
+const grey02 = styles.getPropertyValue('--nsw-palette-grey-02').trim();
+
+new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: ['Q1', 'Q2', 'Q3', 'Q4'],
+    datasets: [{
+      label: 'Met target',
+      data: [45, 52, 48, 60],
+      backgroundColor: blue02
+    }, {
+      label: 'Below target',
+      data: [15, 12, 18, 10],
+      backgroundColor: grey02
+    }]
+  },
+  options: {
+    scales: { x: { stacked: true }, y: { stacked: true, beginAtZero: true } },
+    plugins: { legend: { position: 'bottom' } }
+  }
+});
+    {{/_docs-code}}
+  </div>
+  <div class="nsw-col nsw-col-md-7 nsw-col-lg-7">
+    <ul class="nsw-list nsw-list--8 nsw-docs__list-stack">
+      <li><strong>Use when:</strong> Showing composition within categories.</li>
+      <li><strong>Avoid when:</strong> Precise comparison between segments is required.</li>
+      <li><strong>Notes:</strong> Limit number of segments.</li>
+    </ul>
+  </div>
+</div>
+
+<h3>Trends over time</h3>
+<h4 id="chart-line" class="nsw-m-bottom-sm">Line</h4>
+<div class="nsw-grid nsw-m-top-md">
+  <div class="nsw-col nsw-col-md-5 nsw-col-lg-5">
+    <canvas id="chartTrendLine" height="200" role="img" aria-label="Line chart example showing applications over time."></canvas>
+    {{#> _docs-code code="js"}}
+const ctx = document.getElementById('chartTrendLine');
+const styles = getComputedStyle(document.body);
+const blue02 = styles.getPropertyValue('--nsw-palette-blue-02').trim();
+
+new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+    datasets: [{
+      label: 'Applications',
+      data: [120, 160, 210, 260, 310, 295],
+      borderColor: blue02,
+      backgroundColor: blue02,
+      pointRadius: 3,
+      tension: 0.3
+    }]
+  },
+  options: {
+    plugins: { legend: { display: false } },
+    scales: { y: { beginAtZero: true } }
+  }
+});
+    {{/_docs-code}}
+  </div>
+  <div class="nsw-col nsw-col-md-7 nsw-col-lg-7">
+    <ul class="nsw-list nsw-list--8 nsw-docs__list-stack">
+      <li><strong>Use when:</strong> Showing change over time.</li>
+      <li><strong>Avoid when:</strong> No meaningful time dimension.</li>
+      <li><strong>Notes:</strong> Limit number of lines.</li>
+    </ul>
+  </div>
+</div>
+<h4 id="chart-area" class="nsw-m-bottom-sm">Area</h4>
+<div class="nsw-grid nsw-m-top-md">
+  <div class="nsw-col nsw-col-md-5 nsw-col-lg-5">
+    <canvas id="chartTrendArea" height="200" role="img" aria-label="Area chart example showing total users over time."></canvas>
+    {{#> _docs-code code="js"}}
+const ctx = document.getElementById('chartTrendArea');
+const styles = getComputedStyle(document.body);
+const blue02 = styles.getPropertyValue('--nsw-palette-blue-02').trim();
+const blue04 = styles.getPropertyValue('--nsw-palette-blue-04').trim();
+
+new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+    datasets: [{
+      label: 'Total users',
+      data: [300, 360, 420, 520, 610, 580],
+      borderColor: blue02,
+      backgroundColor: blue04,
+      fill: true,
+      pointRadius: 2,
+      tension: 0.3
+    }]
+  },
+  options: {
+    plugins: { legend: { display: false } },
+    scales: { y: { beginAtZero: true } }
+  }
+});
+    {{/_docs-code}}
+  </div>
+  <div class="nsw-col nsw-col-md-7 nsw-col-lg-7">
+    <ul class="nsw-list nsw-list--8 nsw-docs__list-stack">
+      <li><strong>Use when:</strong> Showing cumulative volume or share over time.</li>
+      <li><strong>Avoid when:</strong> Many overlapping series.</li>
+      <li><strong>Notes:</strong> Use sparingly.</li>
+    </ul>
+  </div>
+</div>
+<h4 id="chart-sparkline" class="nsw-m-bottom-sm">Sparkline</h4>
+<div class="nsw-grid nsw-m-top-md">
+  <div class="nsw-col nsw-col-md-5 nsw-col-lg-5">
+    <canvas id="chartTrendSparkline" height="200" role="img" aria-label="Sparkline example showing a quick trend."></canvas>
+    {{#> _docs-code code="js"}}
+const ctx = document.getElementById('chartTrendSparkline');
+const styles = getComputedStyle(document.body);
+const blue02 = styles.getPropertyValue('--nsw-palette-blue-02').trim();
+
+new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+    datasets: [{
+      label: 'Trend',
+      data: [12, 18, 22, 20, 26, 24],
+      borderColor: blue02,
+      backgroundColor: blue02,
+      borderWidth: 2,
+      pointRadius: 0,
+      tension: 0.3
+    }]
+  },
+  options: {
+    plugins: { legend: { display: false } },
+    scales: { x: { display: false }, y: { display: false } }
+  }
+});
+    {{/_docs-code}}
+  </div>
+  <div class="nsw-col nsw-col-md-7 nsw-col-lg-7">
+    <ul class="nsw-list nsw-list--8 nsw-docs__list-stack">
+      <li><strong>Use when:</strong> Showing a quick trend beside a key metric.</li>
+      <li><strong>Avoid when:</strong> Detailed interpretation is required.</li>
+      <li><strong>Notes:</strong> Must still meet contrast requirements.</li>
+    </ul>
+  </div>
+</div>
+
+<h3>Proportion</h3>
+<h4 id="chart-doughnut" class="nsw-m-bottom-sm">Doughnut</h4>
+<div class="nsw-grid nsw-m-top-md">
+  <div class="nsw-col nsw-col-md-5 nsw-col-lg-5">
+    <canvas id="chartPropDoughnut" height="200" role="img" aria-label="Doughnut chart example showing approval status."></canvas>
+    {{#> _docs-code code="js"}}
+const ctx = document.getElementById('chartPropDoughnut');
+const styles = getComputedStyle(document.body);
+const blue02 = styles.getPropertyValue('--nsw-palette-blue-02').trim();
+const yellow02 = styles.getPropertyValue('--nsw-palette-yellow-02').trim();
+const red02 = styles.getPropertyValue('--nsw-palette-red-02').trim();
+
+new Chart(ctx, {
+  type: 'doughnut',
+  data: {
+    labels: ['Approved', 'Pending', 'Declined'],
+    datasets: [{
+      data: [62, 24, 14],
+      backgroundColor: [blue02, yellow02, red02]
+    }]
+  },
+  options: { plugins: { legend: { position: 'bottom' } } }
+});
+    {{/_docs-code}}
+  </div>
+  <div class="nsw-col nsw-col-md-7 nsw-col-lg-7">
+    <ul class="nsw-list nsw-list--8 nsw-docs__list-stack">
+      <li><strong>Use when:</strong> Showing simple proportion (2 to 4 segments).</li>
+      <li><strong>Avoid when:</strong> Many small slices.</li>
+      <li><strong>Notes:</strong> Include percentage and total value.</li>
+    </ul>
+  </div>
+</div>
+<h4 id="chart-pie" class="nsw-m-bottom-sm">Pie</h4>
+<div class="nsw-grid nsw-m-top-md">
+  <div class="nsw-col nsw-col-md-5 nsw-col-lg-5">
+    <canvas id="chartPropPie" height="200" role="img" aria-label="Pie chart example showing channel share."></canvas>
+    {{#> _docs-code code="js"}}
+const ctx = document.getElementById('chartPropPie');
+const styles = getComputedStyle(document.body);
+const blue02 = styles.getPropertyValue('--nsw-palette-blue-02').trim();
+const green02 = styles.getPropertyValue('--nsw-palette-green-02').trim();
+const orange02 = styles.getPropertyValue('--nsw-palette-orange-02').trim();
+const grey02 = styles.getPropertyValue('--nsw-palette-grey-02').trim();
+
+new Chart(ctx, {
+  type: 'pie',
+  data: {
+    labels: ['Digital', 'Phone', 'In person', 'Mail'],
+    datasets: [{
+      data: [40, 25, 20, 15],
+      backgroundColor: [blue02, green02, orange02, grey02]
+    }]
+  },
+  options: { plugins: { legend: { position: 'bottom' } } }
+});
+    {{/_docs-code}}
+  </div>
+  <div class="nsw-col nsw-col-md-7 nsw-col-lg-7">
+    <ul class="nsw-list nsw-list--8 nsw-docs__list-stack">
+      <li><strong>Use when:</strong> Rarely recommended in digital.</li>
+      <li><strong>Avoid when:</strong> Complex or close values.</li>
+      <li><strong>Notes:</strong> Prefer doughnut or bar chart.</li>
+    </ul>
+  </div>
+</div>
+<h4 id="chart-stacked-bar-column" class="nsw-m-bottom-sm">Stacked bar or column</h4>
+<div class="nsw-grid nsw-m-top-md">
+  <div class="nsw-col nsw-col-md-5 nsw-col-lg-5">
+    <canvas id="chartPropStacked" height="200" role="img" aria-label="Stacked bar chart example showing completion status by program."></canvas>
+    {{#> _docs-code code="js"}}
+const ctx = document.getElementById('chartPropStacked');
+const styles = getComputedStyle(document.body);
+const blue02 = styles.getPropertyValue('--nsw-palette-blue-02').trim();
+const grey02 = styles.getPropertyValue('--nsw-palette-grey-02').trim();
+
+new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: ['Program A', 'Program B', 'Program C'],
+    datasets: [{
+      label: 'Completed',
+      data: [70, 55, 62],
+      backgroundColor: blue02
+    }, {
+      label: 'In progress',
+      data: [20, 30, 18],
+      backgroundColor: grey02
+    }]
+  },
+  options: {
+    scales: { x: { stacked: true }, y: { stacked: true, beginAtZero: true } },
+    plugins: { legend: { position: 'bottom' } }
+  }
+});
+    {{/_docs-code}}
+  </div>
+  <div class="nsw-col nsw-col-md-7 nsw-col-lg-7">
+    <ul class="nsw-list nsw-list--8 nsw-docs__list-stack">
+      <li><strong>Use when:</strong> Comparing composition across categories.</li>
+      <li><strong>Avoid when:</strong> Precise comparison of segments is required.</li>
+      <li><strong>Notes:</strong> Label clearly.</li>
+    </ul>
+  </div>
+</div>
+
+<h3>Distribution and correlation</h3>
+<h4 id="chart-scatter-plot" class="nsw-m-bottom-sm">Scatter plot</h4>
+<div class="nsw-grid nsw-m-top-md">
+  <div class="nsw-col nsw-col-md-5 nsw-col-lg-5">
+    <canvas id="chartDistScatter" height="200" role="img" aria-label="Scatter plot example showing relationship between two variables."></canvas>
+    {{#> _docs-code code="js"}}
+const ctx = document.getElementById('chartDistScatter');
+const styles = getComputedStyle(document.body);
+const blue02 = styles.getPropertyValue('--nsw-palette-blue-02').trim();
+
+new Chart(ctx, {
+  type: 'scatter',
+  data: {
+    datasets: [{
+      label: 'Submissions',
+      data: [
+        { x: 1, y: 12 },
+        { x: 2, y: 18 },
+        { x: 3, y: 22 },
+        { x: 4, y: 28 },
+        { x: 5, y: 31 },
+        { x: 6, y: 36 },
+        { x: 7, y: 40 }
+      ],
+      backgroundColor: blue02
+    }]
+  },
+  options: {
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { title: { display: true, text: 'Weeks active' }, ticks: { stepSize: 1 } },
+      y: { title: { display: true, text: 'Submissions' } }
+    }
+  }
+});
+    {{/_docs-code}}
+  </div>
+  <div class="nsw-col nsw-col-md-7 nsw-col-lg-7">
+    <ul class="nsw-list nsw-list--8 nsw-docs__list-stack">
+      <li><strong>Use when:</strong> Showing relationship between two variables.</li>
+      <li><strong>Avoid when:</strong> No meaningful correlation.</li>
+      <li><strong>Notes:</strong> Ensure accessible markers.</li>
+    </ul>
+  </div>
+</div>
+
+<h4 id="chart-heatmap" class="nsw-m-bottom-sm">Heatmap</h4>
+<div class="nsw-grid nsw-m-top-md">
+  <div class="nsw-col nsw-col-md-5 nsw-col-lg-5">
+    <canvas id="chartDistHeatmap" height="200" role="img" aria-label="Heatmap example showing intensity across two dimensions."></canvas>
+    {{#> _docs-code code="js"}}
+const ctx = document.getElementById('chartDistHeatmap');
+const styles = getComputedStyle(document.body);
+const blue01 = styles.getPropertyValue('--nsw-palette-blue-01').trim();
+const blue02 = styles.getPropertyValue('--nsw-palette-blue-02').trim();
+const blue03 = styles.getPropertyValue('--nsw-palette-blue-03').trim();
+const blue04 = styles.getPropertyValue('--nsw-palette-blue-04').trim();
+const grey01 = styles.getPropertyValue('--nsw-palette-grey-01').trim();
+
+new Chart(ctx, {
+  type: 'scatter',
+  data: {
+    datasets: [{
+      data: [
+        { x: 1, y: 1 }, { x: 2, y: 1 }, { x: 3, y: 1 }, { x: 4, y: 1 },
+        { x: 1, y: 2 }, { x: 2, y: 2 }, { x: 3, y: 2 }, { x: 4, y: 2 },
+        { x: 1, y: 3 }, { x: 2, y: 3 }, { x: 3, y: 3 }, { x: 4, y: 3 }
+      ],
+      pointStyle: 'rect',
+      pointRadius: 8,
+      backgroundColor: [
+        blue04, blue04, blue03, blue02,
+        blue04, blue03, blue02, blue01,
+        blue03, blue02, blue01, blue01
+      ],
+      borderColor: grey01,
+      borderWidth: 1
+    }]
+  },
+  options: {
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { min: 0.5, max: 4.5, ticks: { stepSize: 1 }, title: { display: true, text: 'Weekday' } },
+      y: { min: 0.5, max: 3.5, ticks: { stepSize: 1 }, title: { display: true, text: 'Service type' } }
+    }
+  }
+});
+    {{/_docs-code}}
+  </div>
+  <div class="nsw-col nsw-col-md-7 nsw-col-lg-7">
+    <ul class="nsw-list nsw-list--8 nsw-docs__list-stack">
+      <li><strong>Use when:</strong> Showing intensity across two dimensions.</li>
+      <li><strong>Avoid when:</strong> Meaning depends only on subtle colour.</li>
+      <li><strong>Notes:</strong> Must not rely solely on colour.</li>
+    </ul>
+  </div>
+</div>
+
+
+<h2 id="represent-data-honestly">Represent data honestly</h2>
+<p>Charts must represent data truthfully and support informed decisions, not visual emphasis.</p>
+<ul>
+  <li>Do not manipulate axis scales to exaggerate differences.</li>
+  <li>Start bar charts at zero unless there is a documented reason not to.</li>
+  <li>Clearly label units, timeframes and scope of the data.</li>
+  <li>Avoid 3D styling or visual effects that can distort perception.</li>
+</ul>
+
+<h3>Each chart should include</h3>
+<ul>
+  <li>Clear title</li>
+  <li>Axis labels with units</li>
+  <li>Legend or direct labels</li>
+  <li>Source where relevant</li>
+  <li>Last updated date where relevant</li>
+</ul>
+
+
+<h2 id="keep-only-what-matters">Keep only what matters</h2>
+<p>Only include data that supports the primary message or decision. Clarity should take priority over density.</p>
+<ul>
+  <li>Limit the number of data series.</li>
+  <li>Avoid clutter or unnecessary visual elements.</li>
+  <li>Use annotations to highlight the key insight.</li>
+</ul>
+
+<h3>Dashboards</h3>
+<ul>
+  <li>Place key metrics first.</li>
+  <li>Group related charts.</li>
+  <li>Avoid horizontal scrolling for primary information.</li>
+  <li>If metadata applies to all charts, include it at the container level.</li>
+</ul>
+
+
+<h2 id="chart-anatomy">Chart anatomy</h2>
+<p>Every chart must include the core elements required for clarity and accurate interpretation.</p>
+
+<h3>Title</h3>
+<p>Provide a clear, descriptive title that states what the data represents. Include the time period and unit of measurement where relevant.</p>
+
+<h3>Axis labels</h3>
+<p>Clearly label all axes. Include units such as percentage, dollars or count, and time intervals where applicable. Avoid abbreviations that are not widely understood.</p>
+
+<h3>Data labels</h3>
+<p>Label datasets directly where possible. Direct labelling improves readability and reduces reliance on legends. For bar and column charts, including numerical labels can improve clarity and accessibility.</p>
+
+<h3>Legend</h3>
+<p>Use legends only when direct labelling is not practical. Legends must be clearly associated with the chart, not rely solely on colour, and remain readable at 200 percent zoom.</p>
+
+<h3>Scale</h3>
+<p>Use appropriate and consistent scales. Bar charts should start at zero unless there is a documented reason not to. Clearly indicate if axes are truncated.</p>
+
+<h3>Source and metadata</h3>
+<p>Include source information where relevant, such as data source, last updated date and definitions. If multiple charts share the same source, this may be placed at the container level.</p>
+
+<h3>Spacing and alignment</h3>
+<p>Maintain consistent spacing between data elements, labels and grid lines. When colours sit adjacent to each other, include sufficient negative space to maintain clarity.</p>
+
+
+<h2 id="accessibility-requirements">Accessibility requirements</h2>
+<p>Charts must meet WCAG 2.2 AA and AAA where possible. Users must be able to access the same information without relying on the visual chart.</p>
+
+<h3>Contrast</h3>
+<ul>
+  <li>Text must meet a minimum contrast ratio of 4.5 to 1 (WCAG 1.4.3).</li>
+  <li>Graphical elements such as bars, lines, data points and focus indicators must meet a minimum contrast ratio of 3 to 1 against adjacent colours and background (WCAG 1.4.11).</li>
+  <li>Test contrast in the rendered environment, not just in design files.</li>
+</ul>
+
+<h3>Use of colour</h3>
+<ul>
+  <li>Colour must not be the only way to communicate meaning (WCAG 1.4.1).</li>
+  <li>Use direct labels where possible.</li>
+  <li>Use different marker shapes or stroke styles for data series.</li>
+  <li>Avoid relying solely on red and green distinctions.</li>
+  <li>Charts must remain understandable in greyscale.</li>
+</ul>
+
+<h3>Keyboard access</h3>
+<ul>
+  <li>Interactive charts must support full keyboard operation (WCAG 2.1.1).</li>
+  <li>All interactive elements are focusable with logical tab order.</li>
+  <li>Visible focus indicators must not be hidden or obscured (WCAG 2.4.11).</li>
+  <li>Interactive targets are at least 24 by 24 pixels (WCAG 2.5.8).</li>
+  <li>Test keyboard interaction manually.</li>
+</ul>
+
+<h3>Text alternatives</h3>
+<ul>
+  <li>Provide a semantic data table.</li>
+  <li>Provide a short summary of the key insight where appropriate.</li>
+  <li>The data table must reflect the same dataset as the chart.</li>
+  <li>Static image exports without alternatives are not acceptable.</li>
+</ul>
+
+<h3>Zoom and responsiveness</h3>
+<ul>
+  <li>Charts must remain usable at 200 percent zoom and at 375 pixel viewport width.</li>
+  <li>Labels do not overlap.</li>
+  <li>Primary information remains visible.</li>
+  <li>Horizontal scrolling does not hide critical data.</li>
+</ul>
+
+<h3>Tool limitations</h3>
+<ul>
+  <li>Some third-party tools may restrict accessibility customisation.</li>
+  <li>If a tool cannot meet WCAG requirements, document the limitation and provide an accessible alternative where possible.</li>
+  <li>Accessibility responsibility remains with the product team.</li>
+</ul>
+
+
+<h2 id="brand-and-typography">Brand and typography</h2>
+<p>Apply NSW brand colour and typography with care. Prioritise contrast and readability, and do not use the palette decoratively.</p>
+
+<h3>Selecting colour for your charts</h3>
+<p>Apply colours from your main colour theme first. If additional colours are required, they can be drawn from the wider colour palette.</p>
+
+<h3>Applying brand with structure</h3>
+<ul>
+  <li>Use NSW Brand colour and typography intentionally.</li>
+  <li>Use consistent shade rows across series to improve readability.</li>
+  <li>Keep only what matters by limiting the number of data series.</li>
+</ul>
+
+
+<h2 id="tool-configuration">Tool configuration</h2>
+<p>DDS does not prescribe tools. Tool defaults are not automatically compliant.</p>
+<ul>
+  <li>Apply the official NSW chart theme where available.</li>
+  <li>Override default colour and typography settings.</li>
+  <li>Test accessibility in the rendered environment.</li>
+  <li>If a tool cannot meet requirements, provide an alternative.</li>
+  <li>Consider accessibility capability when selecting vendors.</li>
+</ul>
+
+
+<h2 id="examples">Examples</h2>
+<p>These examples show common issues and better implementations. Use them to spot risks early and improve consistency.</p>
+
+<h3>Example 1: Truncated axis and unclear labels</h3>
+<div class="nsw-grid nsw-m-top-md">
+  <div class="nsw-col nsw-col-md-6">
+    <div class="nsw-callout">
+      <div class="nsw-callout__content">
+        <p class="nsw-h4">Avoid</p>
+        <p>Column chart starts at 90, labels are rotated and the title does not explain the timeframe.</p>
+        <div class="nsw-m-top-sm">
+          <canvas id="example1Bad" height="180" role="img" aria-label="Column chart with truncated axis and rotated labels."></canvas>
+        </div>
+        <ul>
+          <li>Exaggerates differences by truncating the axis.</li>
+          <li>Missing units and time period.</li>
+          <li>Long labels are hard to read.</li>
+        </ul>
+      </div>
     </div>
   </div>
-
-  <div class="nsw-grid nsw-m-top-md">
-    <div class="nsw-col nsw-col-sm-6">
-      <h4>Row-02 colours</h4>
-      <p>This example uses multiple colours from row 02 of the brand framework. If you're displaying data side-by-side, such as a pie chart, use colours from the NSW palette. Instructions for developers are below.</p>
-    </div>
-    <div class="nsw-col nsw-col-sm-6">
-      <canvas id="pie" height="300" width="500"></canvas>
+  <div class="nsw-col nsw-col-md-6">
+    <div class="nsw-callout">
+      <div class="nsw-callout__content">
+        <p class="nsw-h4">Better</p>
+        <p>Horizontal bar chart starts at zero with direct labels and a clear timeframe.</p>
+        <div class="nsw-m-top-sm">
+          <canvas id="example1Good" height="180" role="img" aria-label="Horizontal bar chart starting at zero with clear labels."></canvas>
+        </div>
+        <ul>
+          <li>Axis starts at zero or clearly indicates truncation.</li>
+          <li>Title includes timeframe and unit.</li>
+          <li>Labels are readable and aligned.</li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>
 
-<h2 id="code-implementation">Code implementation</h2>
+<h3>Example 2: Colour-only differentiation</h3>
+<div class="nsw-grid nsw-m-top-md">
+  <div class="nsw-col nsw-col-md-6">
+    <div class="nsw-callout">
+      <div class="nsw-callout__content">
+        <p class="nsw-h4">Avoid</p>
+        <p>Stacked bar uses red and green only, with no labels and low contrast.</p>
+        <div class="nsw-m-top-sm">
+          <canvas id="example2Bad" height="180" role="img" aria-label="Stacked bar chart using red and green only with no labels."></canvas>
+        </div>
+        <ul>
+          <li>Relies on colour alone to communicate meaning.</li>
+          <li>Insufficient contrast for some users.</li>
+          <li>No direct labels or markers.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="nsw-col nsw-col-md-6">
+    <div class="nsw-callout">
+      <div class="nsw-callout__content">
+        <p class="nsw-h4">Better</p>
+        <p>Stacked bar uses accessible colours, clear contrast, and a supporting table for labels.</p>
+        <div class="nsw-m-top-sm">
+          <canvas id="example2Good" height="180" role="img" aria-label="Stacked bar chart with accessible colours and clear labels."></canvas>
+        </div>
+        <ul>
+          <li>Labels are available in a table, not colour alone.</li>
+          <li>Contrast meets WCAG requirements.</li>
+          <li>Greyscale and colour-blind tests remain clear.</li>
+        </ul>
+        <div class="nsw-table-responsive nsw-m-top-sm">
+          <table class="nsw-table">
+            <caption class="sr-only">Resolution by quarter</caption>
+            <thead>
+              <tr>
+                <th scope="col">Quarter</th>
+                <th scope="col">Resolved on time</th>
+                <th scope="col">Resolved late</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Q1</th>
+                <td>120</td>
+                <td>30</td>
+              </tr>
+              <tr>
+                <th scope="row">Q2</th>
+                <td>140</td>
+                <td>25</td>
+              </tr>
+              <tr>
+                <th scope="row">Q3</th>
+                <td>110</td>
+                <td>40</td>
+              </tr>
+              <tr>
+                <th scope="row">Q4</th>
+                <td>150</td>
+                <td>20</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h3>Example 3: Tooltip-only values</h3>
+<div class="nsw-grid nsw-m-top-md">
+  <div class="nsw-col nsw-col-md-6">
+    <div class="nsw-callout">
+      <div class="nsw-callout__content">
+        <p class="nsw-h4">Avoid</p>
+        <p>Line chart shows values only on hover with no table or summary.</p>
+        <div class="nsw-m-top-sm">
+          <canvas id="example3Bad" height="180" role="img" aria-label="Line chart with values available only on hover."></canvas>
+        </div>
+        <ul>
+          <li>Keyboard and touch users cannot access key values.</li>
+          <li>No text alternative for screen readers.</li>
+          <li>Users cannot verify exact values.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="nsw-col nsw-col-md-6">
+    <div class="nsw-callout">
+      <div class="nsw-callout__content">
+        <p class="nsw-h4">Better</p>
+        <p>Line chart includes a summary and a semantic table of the same data.</p>
+        <div class="nsw-m-top-sm">
+          <canvas id="example3Good" height="180" role="img" aria-label="Line chart with a summary and data table."></canvas>
+        </div>
+        <ul>
+          <li>Summary communicates the key insight.</li>
+          <li>Table provides precise values for all users.</li>
+          <li>Interactive elements remain keyboard accessible.</li>
+        </ul>
+        <p class="nsw-m-top-sm"><strong>Summary:</strong> Applications rose steadily from January to May, with a small drop in June.</p>
+        <div class="nsw-table-responsive nsw-m-top-sm">
+          <table>
+            <caption class="sr-only">Online applications by month</caption>
+            <thead>
+              <tr>
+                <th class="nsw-width-60" scope="col">Month</th>
+                <th scope="col">Applications</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">January</th>
+                <td>220</td>
+              </tr>
+              <tr>
+                <th scope="row">February</th>
+                <td>260</td>
+              </tr>
+              <tr>
+                <th scope="row">March</th>
+                <td>310</td>
+              </tr>
+              <tr>
+                <th scope="row">April</th>
+                <td>370</td>
+              </tr>
+              <tr>
+                <th scope="row">May</th>
+                <td>420</td>
+              </tr>
+              <tr>
+                <th scope="row">June</th>
+                <td>390</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<h2 id="review-checklist">Review checklist</h2>
+<ul>
+  <li>Does the chart match the user task?</li>
+  <li>Is it the simplest suitable type?</li>
+  <li>Is contrast sufficient?</li>
+  <li>Is colour supported by other markers?</li>
+  <li>Is there a semantic table?</li>
+  <li>Is keyboard access supported?</li>
+  <li>Does it work at 200 percent zoom?</li>
+  <li>Are units and source clearly stated?</li>
+</ul>
+<p>If any answer is no, revise before release.</p>
+
+
+<h2 id="code-implementation">Implementation examples</h2>
 <p class="intro">
-  The NSW Design System uses charts.js, the leading open-source library, to create charts and graphs. The instructions below show how it can be used in a brand compliant and accessible way.
+  The examples below show how to apply NSW palette and typography using Chart.js. Use them as a reference if you are using Chart.js or a similar library, and adapt the same principles for other tools.
 </p>
 
-<h3>Installing and Usage</h3>
-<p>Follow the <a href="https://www.chartjs.org/docs/latest/getting-started/installation.html" target="_blank">charts.js installation instructions</a> in their documentation.</p>
-<p>Once installed, follow the normal <a href="https://www.chartjs.org/docs/latest/getting-started/usage.html" target="_blank">charts.js usage instructions</a> - we'll change some config settings to folow NSW best practice.</p>
-
-<h3>Screen readers</h3>
-<p>Canvas elements cannot be read by screen readers, similar to images. Use the NSW Design System <code>.sr-only</code> class - this will hide elements from screens but allow screen readers to read them. To make your graphs accessible to screen readers, create screen-reader friendly in an <code>.sr-only</code> container, and make sure to include content on the graphic so screen readers can give context to users:</p>
-{{#>_docs-example hidden="true" open="true" code="html"}}
-<canvas id="accessibleGraph" width="400" height="400" aria-label="Graph showing value of bitcoin over time" role="img"></canvas>
-{{/_docs-example}}
-
-<p>For maximum accessibility, we recommend offering a text-based alternative to all users.</p>
+<h3>Installing and usage (Chart.js)</h3>
+<p>Follow the <a href="https://www.chartjs.org/docs/latest/getting-started/installation.html" target="_blank">Chart.js installation instructions</a> in their documentation.</p>
+<p>Once installed, follow the normal <a href="https://www.chartjs.org/docs/latest/getting-started/usage.html" target="_blank">Chart.js usage instructions</a> and apply the settings below to align with NSW branding and accessibility expectations.</p>
 
 <h3>Theming with the NSW Government Palette</h3>
-<p>Use the design guidance above to decide which colours your chart or graph should use. You can access the full palette via javascript.</p>
+<p>Use the design guidance above to decide which colours your chart or graph should use. You can access the full palette via JavaScript.</p>
 <p>First, set fonts and a default theme. These will be the default colours for your charts and graphs, but you can override them if needed.</p>
 
 {{#>_docs-example hidden="true" open="true" code="html"}}
 <script>
-//Set a default theme to avoid rework
+// Set a default theme to avoid rework
 var nswStyles = getComputedStyle(document.body)
 Chart.defaults.backgroundColor = [
   nswStyles.getPropertyValue('--nsw-palette-blue-02'),
@@ -151,80 +935,9 @@ var myChart = new Chart(
 <\/script>
 {{/_docs-example}}
 
-<h2 id="full-docs">Full Documentation</h2>
-<p>The information above shows you how to configure charts.js for use in a way that meets the digital brand framework, and the digital standards. For full documentation see the <a target="_blank" href="https://www.chartjs.org/docs/latest/">charts.js documentation</a></p>
-
-<script>
-
-//Set a default theme to avoid rework
-
-var nswStyles = getComputedStyle(document.body)
-Chart.defaults.backgroundColor = [
-  nswStyles.getPropertyValue('--nsw-palette-blue-02'),
-  nswStyles.getPropertyValue('--nsw-palette-red-02'),
-  nswStyles.getPropertyValue('--nsw-palette-yellow-02'),
-  nswStyles.getPropertyValue('--nsw-palette-green-02'),
-  nswStyles.getPropertyValue('--nsw-palette-purple-02'),
-  nswStyles.getPropertyValue('--nsw-palette-orange-02'),
-  nswStyles.getPropertyValue('--nsw-palette-fuchsia-02'),
-];
-Chart.defaults.font.family = "'Public Sans'";
-Chart.defaults.font.size = 14;
-Chart.defaults.font.weight = 400;
-Chart.defaults.plugins.legend.position = 'bottom';
-
-var ctx = document.getElementById('pie');
-var pieChart = new Chart(ctx, {
-    type: 'pie',
-    data: {
-      labels: [
-        'A thing',
-        'Another thing',
-        'Third thing',
-        'Fourth thing',
-        'Fifth thing',
-        'Penultimate thing',
-        'Last thing',
-      ],
-      datasets: [{
-        label: 'Example Dataset',
-        data: [125, 50, 100, 75, 50, 25, 75],
-        hoverOffset: 8,
-      }]
-    },
-});
-
-var ctx = document.getElementById('bar');
-var barChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: [
-        'A thing',
-        'Another thing',
-        'Third thing',
-        'Fourth thing',
-        'Fifth thing',
-        'Penultimate thing',
-        'Last thing',
-      ],
-      datasets: [{
-        label: false,
-        data: [125, 50, 100, 75, 50, 25, 75],
-        backgroundColor: [nswStyles.getPropertyValue('--nsw-palette-blue-02')],
-      }],
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true
-        }
-      },
-      plugins: {
-            legend: {
-                display: false
-            }
-        }
-    },
-});
-
-</script>
+<h2 id="full-docs">References</h2>
+<ul>
+  <li>NSW Brand Toolkit: Charts and graphs (print guidance)</li>
+  <li>NSW Design System: <a href="/core/colour/index.html">Colour</a>, <a href="/core/typography/index.html">Typography</a>, and <a href="/components/table/index.html">Table</a></li>
+  <li>Chart.js documentation (if you use Chart.js)</li>
+</ul>

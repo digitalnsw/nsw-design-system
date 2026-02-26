@@ -3,8 +3,723 @@ import ExpandableSearch from './expandable-search'
 import DownloadPDF from './download-pdf'
 import ColorSwatches from './color-swatches'
 
+const CHART_JS_CDN = 'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js'
+const CHART_JS_FALLBACK = 'https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js'
+
 // Prevent icon flash: hide icons until font loads
 document.documentElement.classList.add('material-icons-loading')
+
+function loadScriptOnce(src) {
+  return new Promise((resolve, reject) => {
+    const existing = document.querySelector(`script[src="${src}"]`)
+    if (existing) {
+      if (window.Chart) {
+        resolve()
+        return
+      }
+      existing.addEventListener('load', () => resolve(), { once: true })
+      existing.addEventListener('error', () => reject(new Error(`Failed to load ${src}`)), { once: true })
+      return
+    }
+
+    const script = document.createElement('script')
+    script.src = src
+    script.async = true
+    script.onload = () => resolve()
+    script.onerror = () => reject(new Error(`Failed to load ${src}`))
+    document.head.appendChild(script)
+  })
+}
+
+function initChartsAndGraphs() {
+  const chartTargets = document.querySelectorAll(
+    '#bar, #pie, #example1Bad, #example1Good, #example2Bad, #example2Good, #example3Bad, #example3Good, ' +
+    '#chartCompBar, #chartCompBarHorizontal, #chartCompStacked, ' +
+    '#chartTrendLine, #chartTrendArea, #chartTrendSparkline, ' +
+    '#chartPropDoughnut, #chartPropPie, #chartPropStacked, ' +
+    '#chartDistScatter, #chartDistHeatmap'
+  )
+  if (!chartTargets.length) return
+
+  const renderCharts = () => {
+    if (!window.Chart) return
+
+    const nswStyles = getComputedStyle(document.body)
+    const getNswColor = (name, fallback) => {
+      const value = nswStyles.getPropertyValue(name)
+      if (value && value.trim().length) {
+        return value.trim()
+      }
+      return fallback
+    }
+
+    const textDark = getNswColor('--nsw-palette-grey-01', '#22272b')
+    const palette = {
+      blue01: getNswColor('--nsw-palette-blue-01', '#002664'),
+      blue02: getNswColor('--nsw-palette-blue-02', '#146cfd'),
+      blue03: getNswColor('--nsw-palette-blue-03', '#8ce0ff'),
+      blue04: getNswColor('--nsw-palette-blue-04', '#cbedfd'),
+      red02: getNswColor('--nsw-palette-red-02', '#d7153a'),
+      red04: getNswColor('--nsw-palette-red-04', '#ffe6ea'),
+      yellow02: getNswColor('--nsw-palette-yellow-02', '#faaf05'),
+      green02: getNswColor('--nsw-palette-green-02', '#00aa45'),
+      green04: getNswColor('--nsw-palette-green-04', '#dbfadf'),
+      purple02: getNswColor('--nsw-palette-purple-02', '#8055f1'),
+      orange02: getNswColor('--nsw-palette-orange-02', '#f3631b'),
+      fuchsia02: getNswColor('--nsw-palette-fuchsia-02', '#d912ae'),
+      grey01: getNswColor('--nsw-palette-grey-01', '#22272b'),
+      grey02: getNswColor('--nsw-palette-grey-02', '#495054'),
+      grey03: getNswColor('--nsw-palette-grey-03', '#cdd3d6'),
+    }
+
+    Chart.defaults.font.family = "'Public Sans'"
+    Chart.defaults.font.size = 14
+    Chart.defaults.font.weight = 400
+    Chart.defaults.color = textDark
+
+    const createChart = (canvasId, config) => {
+      const canvas = document.getElementById(canvasId)
+      if (!canvas) return
+      if (Chart.getChart && Chart.getChart(canvas)) return
+      new Chart(canvas, config)
+    }
+
+    createChart('bar', {
+      type: 'bar',
+      data: {
+        labels: [
+          'A thing',
+          'Another thing',
+          'Third thing',
+          'Fourth thing',
+          'Fifth thing',
+          'Penultimate thing',
+          'Last thing',
+        ],
+        datasets: [{
+          label: false,
+          data: [125, 50, 100, 75, 50, 25, 75],
+          backgroundColor: [palette.blue02],
+        }],
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+          },
+        },
+        plugins: {
+          legend: {
+            display: false,
+          },
+        },
+      },
+    })
+
+    createChart('pie', {
+      type: 'pie',
+      data: {
+        labels: [
+          'A thing',
+          'Another thing',
+          'Third thing',
+          'Fourth thing',
+          'Fifth thing',
+          'Penultimate thing',
+          'Last thing',
+        ],
+        datasets: [{
+          label: 'Example Dataset',
+          data: [125, 50, 100, 75, 50, 25, 75],
+          hoverOffset: 8,
+          backgroundColor: [
+            palette.blue02,
+            palette.red02,
+            palette.yellow02,
+            palette.green02,
+            palette.purple02,
+            palette.orange02,
+            palette.fuchsia02,
+          ],
+        }],
+      },
+      options: {
+        plugins: {
+          legend: {
+            position: 'bottom',
+          },
+        },
+      },
+    })
+
+    createChart('example1Bad', {
+      type: 'bar',
+      data: {
+        labels: [
+          'Illawarra Shoalhaven',
+          'Central Coast',
+          'Hunter New England',
+          'Western NSW',
+        ],
+        datasets: [{
+          data: [96, 101, 98, 104],
+          backgroundColor: [palette.blue02],
+        }],
+      },
+      options: {
+        scales: {
+          y: {
+            min: 90,
+            max: 110,
+          },
+          x: {
+            ticks: {
+              maxRotation: 60,
+              minRotation: 60,
+            },
+          },
+        },
+        plugins: {
+          legend: {
+            display: false,
+          },
+        },
+      },
+    })
+
+    createChart('example1Good', {
+      type: 'bar',
+      data: {
+        labels: [
+          'Illawarra Shoalhaven',
+          'Central Coast',
+          'Hunter New England',
+          'Western NSW',
+        ],
+        datasets: [{
+          label: 'Completions',
+          data: [96, 101, 98, 104],
+          backgroundColor: [palette.blue02],
+        }],
+      },
+      options: {
+        indexAxis: 'y',
+        scales: {
+          x: {
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: 'Completions (count)',
+            },
+          },
+        },
+        plugins: {
+          legend: {
+            display: false,
+          },
+          title: {
+            display: true,
+            text: 'Service completions by region (Jan to Jun 2025)',
+          },
+        },
+      },
+    })
+
+    createChart('example2Bad', {
+      type: 'bar',
+      data: {
+        labels: ['Q1', 'Q2', 'Q3', 'Q4'],
+        datasets: [{
+          label: 'Resolved on time',
+          data: [120, 140, 110, 150],
+          backgroundColor: palette.green04,
+        }, {
+          label: 'Resolved late',
+          data: [30, 25, 40, 20],
+          backgroundColor: palette.red04,
+        }],
+      },
+      options: {
+        scales: {
+          x: {
+            stacked: true,
+          },
+          y: {
+            stacked: true,
+            beginAtZero: true,
+          },
+        },
+        plugins: {
+          legend: {
+            display: false,
+          },
+        },
+      },
+    })
+
+    createChart('example2Good', {
+      type: 'bar',
+      data: {
+        labels: ['Q1', 'Q2', 'Q3', 'Q4'],
+        datasets: [{
+          label: 'Resolved on time',
+          data: [120, 140, 110, 150],
+          backgroundColor: palette.blue02,
+          borderColor: palette.grey01,
+          borderWidth: 1,
+        }, {
+          label: 'Resolved late',
+          data: [30, 25, 40, 20],
+          backgroundColor: palette.grey02,
+          borderColor: palette.grey01,
+          borderWidth: 1,
+        }],
+      },
+      options: {
+        scales: {
+          x: {
+            stacked: true,
+          },
+          y: {
+            stacked: true,
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: 'Cases',
+            },
+          },
+        },
+        plugins: {
+          legend: {
+            position: 'bottom',
+          },
+          title: {
+            display: true,
+            text: 'Resolution by quarter (2025)',
+          },
+        },
+      },
+    })
+
+    createChart('example3Bad', {
+      type: 'line',
+      data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+        datasets: [{
+          label: 'Applications',
+          data: [220, 260, 310, 370, 420, 390],
+          borderColor: palette.grey02,
+          backgroundColor: palette.grey03,
+          pointRadius: 3,
+          tension: 0.3,
+        }],
+      },
+      options: {
+        plugins: {
+          legend: {
+            display: false,
+          },
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+          },
+        },
+      },
+    })
+
+    createChart('example3Good', {
+      type: 'line',
+      data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+        datasets: [{
+          label: 'Applications',
+          data: [220, 260, 310, 370, 420, 390],
+          borderColor: palette.blue02,
+          backgroundColor: palette.blue02,
+          pointRadius: 3,
+          tension: 0.3,
+        }],
+      },
+      options: {
+        plugins: {
+          legend: {
+            display: false,
+          },
+          title: {
+            display: true,
+            text: 'Online applications (Jan to Jun 2025)',
+          },
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: 'Applications',
+            },
+          },
+        },
+      },
+    })
+
+    createChart('chartCompBar', {
+      type: 'bar',
+      data: {
+        labels: ['Online', 'Phone', 'In person'],
+        datasets: [{
+          label: 'Visits',
+          data: [320, 210, 140],
+          backgroundColor: palette.blue02,
+        }],
+      },
+      options: {
+        plugins: {
+          legend: {
+            display: false,
+          },
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: 'Visits',
+            },
+          },
+        },
+      },
+    })
+
+    createChart('chartCompBarHorizontal', {
+      type: 'bar',
+      data: {
+        labels: ['South Western Sydney', 'Northern Sydney', 'Illawarra Shoalhaven'],
+        datasets: [{
+          label: 'Requests',
+          data: [88, 74, 65],
+          backgroundColor: palette.blue02,
+        }],
+      },
+      options: {
+        indexAxis: 'y',
+        plugins: {
+          legend: {
+            display: false,
+          },
+        },
+        scales: {
+          x: {
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: 'Requests',
+            },
+          },
+        },
+      },
+    })
+
+    createChart('chartCompStacked', {
+      type: 'bar',
+      data: {
+        labels: ['Q1', 'Q2', 'Q3', 'Q4'],
+        datasets: [{
+          label: 'Met target',
+          data: [45, 52, 48, 60],
+          backgroundColor: palette.blue02,
+        }, {
+          label: 'Below target',
+          data: [15, 12, 18, 10],
+          backgroundColor: palette.grey02,
+        }],
+      },
+      options: {
+        scales: {
+          x: {
+            stacked: true,
+          },
+          y: {
+            stacked: true,
+            beginAtZero: true,
+          },
+        },
+        plugins: {
+          legend: {
+            position: 'bottom',
+          },
+        },
+      },
+    })
+
+    createChart('chartTrendLine', {
+      type: 'line',
+      data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+        datasets: [{
+          label: 'Applications',
+          data: [120, 160, 210, 260, 310, 295],
+          borderColor: palette.blue02,
+          backgroundColor: palette.blue02,
+          pointRadius: 3,
+          tension: 0.3,
+        }],
+      },
+      options: {
+        plugins: {
+          legend: {
+            display: false,
+          },
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+          },
+        },
+      },
+    })
+
+    createChart('chartTrendArea', {
+      type: 'line',
+      data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+        datasets: [{
+          label: 'Total users',
+          data: [300, 360, 420, 520, 610, 580],
+          borderColor: palette.blue02,
+          backgroundColor: palette.blue04,
+          fill: true,
+          pointRadius: 2,
+          tension: 0.3,
+        }],
+      },
+      options: {
+        plugins: {
+          legend: {
+            display: false,
+          },
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+          },
+        },
+      },
+    })
+
+    createChart('chartTrendSparkline', {
+      type: 'line',
+      data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+        datasets: [{
+          label: 'Trend',
+          data: [12, 18, 22, 20, 26, 24],
+          borderColor: palette.blue02,
+          backgroundColor: palette.blue02,
+          borderWidth: 2,
+          pointRadius: 0,
+          tension: 0.3,
+        }],
+      },
+      options: {
+        plugins: {
+          legend: {
+            display: false,
+          },
+        },
+        scales: {
+          x: {
+            display: false,
+          },
+          y: {
+            display: false,
+          },
+        },
+      },
+    })
+
+    createChart('chartPropDoughnut', {
+      type: 'doughnut',
+      data: {
+        labels: ['Approved', 'Pending', 'Declined'],
+        datasets: [{
+          data: [62, 24, 14],
+          backgroundColor: [palette.blue02, palette.yellow02, palette.red02],
+        }],
+      },
+      options: {
+        plugins: {
+          legend: {
+            position: 'bottom',
+          },
+        },
+      },
+    })
+
+    createChart('chartPropPie', {
+      type: 'pie',
+      data: {
+        labels: ['Digital', 'Phone', 'In person', 'Mail'],
+        datasets: [{
+          data: [40, 25, 20, 15],
+          backgroundColor: [palette.blue02, palette.green02, palette.orange02, palette.grey02],
+        }],
+      },
+      options: {
+        plugins: {
+          legend: {
+            position: 'bottom',
+          },
+        },
+      },
+    })
+
+    createChart('chartPropStacked', {
+      type: 'bar',
+      data: {
+        labels: ['Program A', 'Program B', 'Program C'],
+        datasets: [{
+          label: 'Completed',
+          data: [70, 55, 62],
+          backgroundColor: palette.blue02,
+        }, {
+          label: 'In progress',
+          data: [20, 30, 18],
+          backgroundColor: palette.grey02,
+        }],
+      },
+      options: {
+        scales: {
+          x: {
+            stacked: true,
+          },
+          y: {
+            stacked: true,
+            beginAtZero: true,
+          },
+        },
+        plugins: {
+          legend: {
+            position: 'bottom',
+          },
+        },
+      },
+    })
+
+    createChart('chartDistScatter', {
+      type: 'scatter',
+      data: {
+        datasets: [{
+          label: 'Submissions',
+          data: [
+            { x: 1, y: 12 },
+            { x: 2, y: 18 },
+            { x: 3, y: 22 },
+            { x: 4, y: 28 },
+            { x: 5, y: 31 },
+            { x: 6, y: 36 },
+            { x: 7, y: 40 },
+          ],
+          backgroundColor: palette.blue02,
+        }],
+      },
+      options: {
+        plugins: {
+          legend: {
+            display: false,
+          },
+        },
+        scales: {
+          x: {
+            title: {
+              display: true,
+              text: 'Weeks active',
+            },
+            ticks: {
+              stepSize: 1,
+            },
+          },
+          y: {
+            title: {
+              display: true,
+              text: 'Submissions',
+            },
+          },
+        },
+      },
+    })
+
+    createChart('chartDistHeatmap', {
+      type: 'scatter',
+      data: {
+        datasets: [{
+          label: 'Intensity',
+          data: [
+            { x: 1, y: 1 }, { x: 2, y: 1 }, { x: 3, y: 1 }, { x: 4, y: 1 },
+            { x: 1, y: 2 }, { x: 2, y: 2 }, { x: 3, y: 2 }, { x: 4, y: 2 },
+            { x: 1, y: 3 }, { x: 2, y: 3 }, { x: 3, y: 3 }, { x: 4, y: 3 },
+          ],
+          pointStyle: 'rect',
+          pointRadius: 8,
+          backgroundColor: [
+            palette.blue04, palette.blue04, palette.blue03, palette.blue02,
+            palette.blue04, palette.blue03, palette.blue02, palette.blue01,
+            palette.blue03, palette.blue02, palette.blue01, palette.blue01,
+          ],
+          borderColor: palette.grey01,
+          borderWidth: 1,
+        }],
+      },
+      options: {
+        plugins: {
+          legend: {
+            display: false,
+          },
+        },
+        scales: {
+          x: {
+            min: 0.5,
+            max: 4.5,
+            ticks: {
+              stepSize: 1,
+            },
+            title: {
+              display: true,
+              text: 'Weekday',
+            },
+          },
+          y: {
+            min: 0.5,
+            max: 3.5,
+            ticks: {
+              stepSize: 1,
+            },
+            title: {
+              display: true,
+              text: 'Service type',
+            },
+          },
+        },
+      },
+    })
+  }
+
+  const ensureChartJS = () => {
+    if (window.Chart) {
+      renderCharts()
+      return
+    }
+    loadScriptOnce(CHART_JS_CDN)
+      .then(renderCharts)
+      .catch(() => loadScriptOnce(CHART_JS_FALLBACK).then(renderCharts))
+      .catch((err) => {
+        // eslint-disable-next-line no-console
+        console.warn('Chart.js failed to load:', err)
+      })
+  }
+
+  ensureChartJS()
+}
 
 function initDocs() {
   const codeButtons = document.querySelectorAll('.js-code-button')
@@ -101,6 +816,8 @@ function initDocs() {
       new DownloadPDF(element).init()
     })
   }
+
+  initChartsAndGraphs()
 
   const colorConfig = {
     variables: {
