@@ -2,6 +2,9 @@ import Autocomplete from './autocomplete'
 import ExpandableSearch from './expandable-search'
 import DownloadPDF from './download-pdf'
 import ColorSwatches from './color-swatches'
+import { createPattern, preloadSvgPattern, DEFAULT_NSW_INK_INDEX } from './chart-patterns'
+
+/* global Chart */
 
 const CHART_JS_CDN = 'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js'
 const CHART_JS_FALLBACK = 'https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js'
@@ -33,16 +36,23 @@ function loadScriptOnce(src) {
 
 function initChartsAndGraphs() {
   const chartTargets = document.querySelectorAll(
-    '#bar, #pie, #example1Bad, #example1Good, #example2Bad, #example2Good, #example3Bad, #example3Good, ' +
-    '#chartCompBar, #chartCompBarHorizontal, #chartCompStacked, ' +
-    '#chartTrendLine, #chartTrendArea, #chartTrendSparkline, ' +
-    '#chartPropDoughnut, #chartPropPie, #chartPropStacked, ' +
-    '#chartDistScatter, #chartDistHeatmap'
+    `#bar, #pie, #example1Bad, #example1Good, #example2Bad, #example2Good, #example3Bad, #example3Good,
+    #chartCompBar, #chartCompBarHorizontal, #chartCompStacked,
+    #chartTrendLine, #chartTrendArea, #chartTrendSparkline,
+    #chartPropDoughnut, #chartPropPie, #chartPropStacked,
+    #chartDistScatter, #chartDistHeatmap`,
   )
   if (!chartTargets.length) return
 
-  const renderCharts = () => {
+  const renderCharts = async () => {
     if (!window.Chart) return
+
+    await Promise.all([
+      preloadSvgPattern('/assets/images/chart-pattern-1.svg'),
+      preloadSvgPattern('/assets/images/chart-pattern-4.svg'),
+      preloadSvgPattern('/assets/images/chart-pattern-5.svg'),
+      preloadSvgPattern('/assets/images/chart-pattern-7.svg'),
+    ])
 
     const nswStyles = getComputedStyle(document.body)
     const getNswColor = (name, fallback) => {
@@ -64,6 +74,7 @@ function initChartsAndGraphs() {
       yellow02: getNswColor('--nsw-palette-yellow-02', '#faaf05'),
       green02: getNswColor('--nsw-palette-green-02', '#00aa45'),
       green04: getNswColor('--nsw-palette-green-04', '#dbfadf'),
+      teal02: getNswColor('--nsw-palette-teal-02', '#2e808e'),
       purple02: getNswColor('--nsw-palette-purple-02', '#8055f1'),
       orange02: getNswColor('--nsw-palette-orange-02', '#f3631b'),
       fuchsia02: getNswColor('--nsw-palette-fuchsia-02', '#d912ae'),
@@ -73,9 +84,57 @@ function initChartsAndGraphs() {
     }
 
     Chart.defaults.font.family = "'Public Sans'"
-    Chart.defaults.font.size = 14
+    Chart.defaults.font.size = 12
     Chart.defaults.font.weight = 400
     Chart.defaults.color = textDark
+    Chart.defaults.borderColor = palette.grey03
+    Chart.defaults.elements.line.borderWidth = 2
+    Chart.defaults.elements.point.radius = 2
+    Chart.defaults.elements.point.hoverRadius = 4
+    Chart.defaults.elements.point.borderWidth = 1
+    Chart.defaults.elements.bar.borderRadius = 0
+    Chart.defaults.elements.bar.borderWidth = 0
+    Chart.defaults.plugins.legend.labels.boxWidth = 18
+    Chart.defaults.plugins.legend.labels.boxHeight = 18
+    Chart.defaults.plugins.legend.labels.padding = 12
+    Chart.defaults.plugins.legend.labels.color = palette.grey01
+    Chart.defaults.plugins.legend.labels.font = { size: 11, weight: 500 }
+    if (Chart.defaults.scale) {
+      Chart.defaults.scale.grid.color = palette.grey03
+      Chart.defaults.scale.grid.drawBorder = false
+      Chart.defaults.scale.ticks.color = palette.grey02
+      Chart.defaults.scale.ticks.font = { size: 11 }
+    }
+
+    const patternPresets = {
+      default: {
+        size: 8,
+        rotate: 0,
+        alignToElement: false,
+        tintSvg: true,
+        inkColor: 'auto',
+        inkAlpha: 1,
+        minContrast: 4.5,
+        inkIndex: DEFAULT_NSW_INK_INDEX,
+      },
+      diagonal: {},
+      vertical: {},
+      dots: {},
+      zigzag: {},
+    }
+
+    const getPatternFill = (context, style, baseColor, overrides = {}) => {
+      if (!context || !context.chart || !context.chart.ctx) return baseColor
+      const resolvedStyle = style === 'cross' ? 'zigzag' : style
+      const preset = patternPresets[resolvedStyle] || patternPresets.default
+      return createPattern(context, {
+        ...patternPresets.default,
+        ...preset,
+        ...overrides,
+        style: resolvedStyle,
+        baseColor,
+      }) || baseColor
+    }
 
     const createChart = (canvasId, config) => {
       const canvas = document.getElementById(canvasId)
@@ -134,12 +193,11 @@ function initChartsAndGraphs() {
           hoverOffset: 8,
           backgroundColor: [
             palette.blue02,
-            palette.red02,
-            palette.yellow02,
-            palette.green02,
+            palette.teal02,
+            palette.grey02,
             palette.purple02,
             palette.orange02,
-            palette.fuchsia02,
+            palette.yellow02,
           ],
         }],
       },
@@ -270,9 +328,11 @@ function initChartsAndGraphs() {
         }, {
           label: 'Resolved late',
           data: [30, 25, 40, 20],
-          backgroundColor: palette.grey02,
-          borderColor: palette.grey01,
-          borderWidth: 1,
+          backgroundColor: (context) => getPatternFill(context, 'vertical', palette.blue04, {
+            svgUrl: '/assets/images/chart-pattern-5.svg',
+          }),
+          borderColor: palette.grey03,
+          borderWidth: 0,
         }],
       },
       options: {
@@ -370,7 +430,7 @@ function initChartsAndGraphs() {
         datasets: [{
           label: 'Visits',
           data: [320, 210, 140],
-          backgroundColor: palette.blue02,
+          backgroundColor: [palette.grey02, palette.blue02, palette.purple02],
         }],
       },
       options: {
@@ -431,7 +491,9 @@ function initChartsAndGraphs() {
         }, {
           label: 'Below target',
           data: [15, 12, 18, 10],
-          backgroundColor: palette.grey02,
+          backgroundColor: (context) => getPatternFill(context, 'cross', palette.blue04, {
+            svgUrl: '/assets/images/chart-pattern-1.svg',
+          }),
         }],
       },
       options: {
@@ -544,7 +606,14 @@ function initChartsAndGraphs() {
         labels: ['Approved', 'Pending', 'Declined'],
         datasets: [{
           data: [62, 24, 14],
-          backgroundColor: [palette.blue02, palette.yellow02, palette.red02],
+          backgroundColor: (context) => {
+            if (context.dataIndex === 1) {
+              return getPatternFill(context, 'diagonal', palette.yellow02, {
+                svgUrl: '/assets/images/chart-pattern-7.svg',
+              })
+            }
+            return [palette.blue02, palette.yellow02, palette.red02][context.dataIndex]
+          },
         }],
       },
       options: {
@@ -562,7 +631,14 @@ function initChartsAndGraphs() {
         labels: ['Digital', 'Phone', 'In person', 'Mail'],
         datasets: [{
           data: [40, 25, 20, 15],
-          backgroundColor: [palette.blue02, palette.green02, palette.orange02, palette.grey02],
+          backgroundColor: (context) => {
+            if (context.dataIndex === 3) {
+              return getPatternFill(context, 'dots', palette.grey03, {
+                svgUrl: '/assets/images/chart-pattern-4.svg',
+              })
+            }
+            return [palette.blue02, palette.teal02, palette.purple02, palette.grey03][context.dataIndex]
+          },
         }],
       },
       options: {
@@ -585,7 +661,9 @@ function initChartsAndGraphs() {
         }, {
           label: 'In progress',
           data: [20, 30, 18],
-          backgroundColor: palette.grey02,
+          backgroundColor: (context) => getPatternFill(context, 'vertical', palette.blue04, {
+            svgUrl: '/assets/images/chart-pattern-5.svg',
+          }),
         }],
       },
       options: {
@@ -620,7 +698,9 @@ function initChartsAndGraphs() {
             { x: 6, y: 36 },
             { x: 7, y: 40 },
           ],
-          backgroundColor: palette.blue02,
+          backgroundColor: palette.fuchsia02,
+          borderColor: palette.purple02,
+          borderWidth: 1,
         }],
       },
       options: {

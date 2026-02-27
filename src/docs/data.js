@@ -273,7 +273,7 @@ const searchValues = [
     label: 'Charts and graphs',
     template: 'result',
     keywords: 'Comparison, data, data visualisation, trends, Display, statistics, Processes, workflows, Mapping, diagramming, Colours, theming, charts, graphs, accessibility, dashboards, NSW Brand Toolkit, Screen readers, Chart.js',
-    url: '/docs/content/methods/data-visualisation.html',
+    url: '/docs/content/methods/charts-and-graphs.html',
   },
   {
     label: 'You are here',
