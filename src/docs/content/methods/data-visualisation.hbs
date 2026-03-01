@@ -618,7 +618,7 @@ new Chart(ctx, {
 <h4>Pattern fills for colour-blind accessibility</h4>
 <p>For stacked, pie and doughnut charts, add a pattern fill to at least one series in addition to colour. Use this when colours are adjacent or close in tone.</p>
 {{#>_docs-example hidden="true" code="js"}}
-const { createPattern } = window.NSWChartUtilities;
+const { createPattern } = window.NSWChartPatterns;
 
 new Chart(ctx, {
   type: 'bar',
@@ -644,7 +644,7 @@ new Chart(ctx, {
 <p>You can map uploaded SVG tiles onto chart fills by passing <code>svgUrl</code>. The pattern utility includes a NSW palette ink index and picks an accessible <code>inkColor</code> automatically (minimum contrast 4.5 by default).</p>
 <p>Use the same utility in any canvas-based charting library by passing a canvas 2D context instead of Chart.js context.</p>
 {{#>_docs-example hidden="true" code="js"}}
-const patternFill = window.NSWChartUtilities.createPattern(canvas2DContext, {
+const patternFill = window.NSWChartPatterns.createPattern(canvas2DContext, {
   style: 'diagonal',
   baseColor: '--nsw-palette-yellow-02',
   svgUrl: '/assets/images/chart-pattern-7.svg',

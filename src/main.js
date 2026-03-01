@@ -23,6 +23,7 @@ import Tooltip from './components/tooltip/tooltip'
 import UtilityList from './components/utility-list/utility-list'
 
 import stickyContainer from './global/scripts/sticky-container'
+import chartUtilities from './global/scripts/helpers/chart-utilities'
 
 if (window.NodeList && !NodeList.prototype.forEach) {
   NodeList.prototype.forEach = Array.prototype.forEach
@@ -197,5 +198,5 @@ function initSite() {
 }
 
 export {
-  initSite, Accordion, CssAccordion, BackTop, Carousel, CookieConsent, DatePicker, Dialog, ExternalLink, FileUpload, Filters, GlobalAlert, Navigation, Popover, QuickExit, Select, SideNav, SiteSearch, Tabs, Toggletip, Tooltip, UtilityList,
+  initSite, Accordion, CssAccordion, BackTop, Carousel, CookieConsent, DatePicker, Dialog, ExternalLink, FileUpload, Filters, GlobalAlert, Navigation, Popover, QuickExit, Select, SideNav, SiteSearch, Tabs, Toggletip, Tooltip, UtilityList, chartUtilities,
 }

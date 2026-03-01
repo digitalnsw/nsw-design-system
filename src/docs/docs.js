@@ -2,7 +2,12 @@ import Autocomplete from './autocomplete'
 import ExpandableSearch from './expandable-search'
 import DownloadPDF from './download-pdf'
 import ColorSwatches from './color-swatches'
-import { createPattern, preloadSvgPattern, DEFAULT_NSW_INK_INDEX } from './chart-patterns'
+import {
+  createPattern,
+  preloadSvgPattern,
+  DEFAULT_NSW_INK_INDEX,
+  getNswChartPalette,
+} from '../global/scripts/helpers/chart-utilities'
 
 /* global Chart */
 
@@ -54,34 +59,8 @@ function initChartsAndGraphs() {
       preloadSvgPattern('/assets/images/chart-pattern-7.svg'),
     ])
 
-    const nswStyles = getComputedStyle(document.body)
-    const getNswColor = (name, fallback) => {
-      const value = nswStyles.getPropertyValue(name)
-      if (value && value.trim().length) {
-        return value.trim()
-      }
-      return fallback
-    }
-
-    const textDark = getNswColor('--nsw-palette-grey-01', '#22272b')
-    const palette = {
-      blue01: getNswColor('--nsw-palette-blue-01', '#002664'),
-      blue02: getNswColor('--nsw-palette-blue-02', '#146cfd'),
-      blue03: getNswColor('--nsw-palette-blue-03', '#8ce0ff'),
-      blue04: getNswColor('--nsw-palette-blue-04', '#cbedfd'),
-      red02: getNswColor('--nsw-palette-red-02', '#d7153a'),
-      red04: getNswColor('--nsw-palette-red-04', '#ffe6ea'),
-      yellow02: getNswColor('--nsw-palette-yellow-02', '#faaf05'),
-      green02: getNswColor('--nsw-palette-green-02', '#00aa45'),
-      green04: getNswColor('--nsw-palette-green-04', '#dbfadf'),
-      teal02: getNswColor('--nsw-palette-teal-02', '#2e808e'),
-      purple02: getNswColor('--nsw-palette-purple-02', '#8055f1'),
-      orange02: getNswColor('--nsw-palette-orange-02', '#f3631b'),
-      fuchsia02: getNswColor('--nsw-palette-fuchsia-02', '#d912ae'),
-      grey01: getNswColor('--nsw-palette-grey-01', '#22272b'),
-      grey02: getNswColor('--nsw-palette-grey-02', '#495054'),
-      grey03: getNswColor('--nsw-palette-grey-03', '#cdd3d6'),
-    }
+    const palette = getNswChartPalette({ cssScope: document.body })
+    const textDark = palette.grey01
 
     Chart.defaults.font.family = "'Public Sans'"
     Chart.defaults.font.size = 12
