@@ -337,6 +337,7 @@ new Chart(ctx, {
     <canvas id="chartPropDoughnut" height="200" role="img" aria-label="Doughnut chart example showing approval status."></canvas>
     {{#> _docs-code code="js"}}
 const ctx = document.getElementById('chartPropDoughnut');
+const { createPattern, defaultPatternSources } = window.NSWChartUtilities;
 const styles = getComputedStyle(document.body);
 const blue02 = styles.getPropertyValue('--nsw-palette-blue-02').trim();
 const yellow02 = styles.getPropertyValue('--nsw-palette-yellow-02').trim();
@@ -348,7 +349,17 @@ new Chart(ctx, {
     labels: ['Approved', 'Pending', 'Declined'],
     datasets: [{
       data: [62, 24, 14],
-      backgroundColor: [blue02, yellow02, red02]
+      backgroundColor: (context) => {
+        if (context.dataIndex === 1) {
+          return createPattern(context, {
+            style: 'diagonal',
+            baseColor: '--nsw-palette-yellow-02',
+            patternSources: defaultPatternSources,
+            size: 8
+          });
+        }
+        return [blue02, yellow02, red02][context.dataIndex];
+      }
     }]
   },
   options: { plugins: { legend: { position: 'bottom' } } }
@@ -369,6 +380,7 @@ new Chart(ctx, {
     <canvas id="chartPropPie" height="200" role="img" aria-label="Pie chart example showing channel share."></canvas>
     {{#> _docs-code code="js"}}
 const ctx = document.getElementById('chartPropPie');
+const { createPattern, defaultPatternSources } = window.NSWChartUtilities;
 const styles = getComputedStyle(document.body);
 const blue02 = styles.getPropertyValue('--nsw-palette-blue-02').trim();
 const green02 = styles.getPropertyValue('--nsw-palette-green-02').trim();
@@ -381,7 +393,17 @@ new Chart(ctx, {
     labels: ['Digital', 'Phone', 'In person', 'Mail'],
     datasets: [{
       data: [40, 25, 20, 15],
-      backgroundColor: [blue02, green02, orange02, grey02]
+      backgroundColor: (context) => {
+        if (context.dataIndex === 3) {
+          return createPattern(context, {
+            style: 'dots',
+            baseColor: '--nsw-palette-grey-03',
+            patternSources: defaultPatternSources,
+            size: 8
+          });
+        }
+        return [blue02, green02, orange02, grey02][context.dataIndex];
+      }
     }]
   },
   options: { plugins: { legend: { position: 'bottom' } } }
@@ -402,9 +424,9 @@ new Chart(ctx, {
     <canvas id="chartPropStacked" height="200" role="img" aria-label="Stacked bar chart example showing completion status by program."></canvas>
     {{#> _docs-code code="js"}}
 const ctx = document.getElementById('chartPropStacked');
+const { createPattern, defaultPatternSources } = window.NSWChartUtilities;
 const styles = getComputedStyle(document.body);
 const blue02 = styles.getPropertyValue('--nsw-palette-blue-02').trim();
-const grey02 = styles.getPropertyValue('--nsw-palette-grey-02').trim();
 
 new Chart(ctx, {
   type: 'bar',
@@ -417,7 +439,12 @@ new Chart(ctx, {
     }, {
       label: 'In progress',
       data: [20, 30, 18],
-      backgroundColor: grey02
+      backgroundColor: (context) => createPattern(context, {
+        style: 'vertical',
+        baseColor: '--nsw-palette-blue-04',
+        patternSources: defaultPatternSources,
+        size: 8
+      })
     }]
   },
   options: {
@@ -618,7 +645,7 @@ new Chart(ctx, {
 <h4>Pattern fills for colour-blind accessibility</h4>
 <p>For stacked, pie and doughnut charts, add a pattern fill to at least one series in addition to colour. Use this when colours are adjacent or close in tone.</p>
 {{#>_docs-example hidden="true" code="js"}}
-const { createPattern } = window.NSWChartUtilities;
+const { createPattern, defaultPatternSources } = window.NSWChartUtilities;
 
 new Chart(ctx, {
   type: 'bar',
@@ -634,20 +661,27 @@ new Chart(ctx, {
       backgroundColor: (context) => createPattern(context, {
         style: 'vertical',
         baseColor: '--nsw-palette-blue-04',
-        svgUrl: '/assets/images/chart-pattern-5.svg',
+        patternSources: defaultPatternSources,
         size: 8
       })
     }]
   }
 });
 {{/_docs-example}}
-<p>You can map uploaded SVG tiles onto chart fills by passing <code>svgUrl</code>. The pattern utility includes a NSW palette ink index and picks an accessible <code>inkColor</code> automatically (minimum contrast 4.5 by default).</p>
+<p>You can map uploaded SVG tiles onto chart fills by passing <code>svgUrl</code>, or define a shared style map with <code>patternSources</code>. The pattern utility includes a NSW palette ink index and picks an accessible <code>inkColor</code> automatically (minimum contrast 4.5 by default).</p>
+<p>When <code>enforceContrast</code> is true (default), a mapped ink colour may be overridden if it does not pass contrast. For design testing only, you can temporarily set <code>enforceContrast: false</code> to inspect raw index mappings.</p>
 <p>Use the same utility in any canvas-based charting library by passing a canvas 2D context instead of Chart.js context.</p>
 {{#>_docs-example hidden="true" code="js"}}
+const patternSources = {
+  ...window.NSWChartUtilities.defaultPatternSources,
+  diagonal: '/assets/images/chart-pattern-diagonal-lines.svg',
+  dots: '/assets/images/chart-pattern-dot-grid.svg'
+};
+
 const patternFill = window.NSWChartUtilities.createPattern(canvas2DContext, {
   style: 'diagonal',
   baseColor: '--nsw-palette-yellow-02',
-  svgUrl: '/assets/images/chart-pattern-7.svg',
+  patternSources,
   size: 8
 });
 {{/_docs-example}}
@@ -913,6 +947,7 @@ const patternFill = window.NSWChartUtilities.createPattern(canvas2DContext, {
 <p class="intro">
   The examples below show how to apply NSW palette and typography using Chart.js. Use them as a reference if you are using Chart.js or a similar library, and adapt the same principles for other tools.
 </p>
+<p>On this page, the live chart canvases are rendered from the docs script using the canvas IDs shown above.</p>
 
 <h3>Installing and usage (Chart.js)</h3>
 <p>Follow the <a href="https://www.chartjs.org/docs/latest/getting-started/installation.html" target="_blank">Chart.js installation instructions</a> in their documentation.</p>
@@ -924,16 +959,17 @@ const patternFill = window.NSWChartUtilities.createPattern(canvas2DContext, {
 
 {{#>_docs-example hidden="true" open="true" code="html"}}
 <script>
-// Set a default theme to avoid rework
-var nswStyles = getComputedStyle(document.body)
+const { getNswChartPalette } = window.NSWChartUtilities;
+const palette = getNswChartPalette();
+
 Chart.defaults.backgroundColor = [
-  nswStyles.getPropertyValue('--nsw-palette-blue-02'),
-  nswStyles.getPropertyValue('--nsw-palette-red-02'),
-  nswStyles.getPropertyValue('--nsw-palette-yellow-02'),
-  nswStyles.getPropertyValue('--nsw-palette-green-02'),
-  nswStyles.getPropertyValue('--nsw-palette-purple-02'),
-  nswStyles.getPropertyValue('--nsw-palette-orange-02'),
-  nswStyles.getPropertyValue('--nsw-palette-fuchsia-02'),
+  palette.blue02,
+  palette.red02,
+  palette.yellow02,
+  palette.green02,
+  palette.purple02,
+  palette.orange02,
+  palette.fuchsia02,
 ];
 Chart.defaults.font.family = "'Public Sans'";
 Chart.defaults.font.size = 14;
@@ -946,6 +982,9 @@ Chart.defaults.font.weight = 400;
 
 {{#>_docs-example hidden="true" open="true" code="html"}}
 <script>
+const { getNswChartPalette } = window.NSWChartUtilities;
+const palette = getNswChartPalette();
+
 const data = {
   labels: [
     'Item 1',
@@ -956,9 +995,9 @@ const data = {
     label: 'Example Dataset',
     data: [300, 50, 100],
     backgroundColor: [
-      nswStyles.getPropertyValue('--nsw-palette-blue-01'),
-      nswStyles.getPropertyValue('--nsw-palette-blue-02'),
-      nswStyles.getPropertyValue('--nsw-palette-blue-03')
+      palette.blue01,
+      palette.blue02,
+      palette.blue03
     ],
     hoverOffset: 4
   }]

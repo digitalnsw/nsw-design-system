@@ -5,7 +5,7 @@ import ColorSwatches from './color-swatches'
 import {
   createPattern,
   preloadSvgPattern,
-  DEFAULT_NSW_INK_INDEX,
+  defaultNswInkIndex,
   getNswChartPalette,
 } from '../global/scripts/helpers/chart-utilities'
 
@@ -53,10 +53,13 @@ function initChartsAndGraphs() {
     if (!window.Chart) return
 
     await Promise.all([
-      preloadSvgPattern('/assets/images/chart-pattern-1.svg'),
-      preloadSvgPattern('/assets/images/chart-pattern-4.svg'),
-      preloadSvgPattern('/assets/images/chart-pattern-5.svg'),
-      preloadSvgPattern('/assets/images/chart-pattern-7.svg'),
+      preloadSvgPattern('/assets/images/chart-pattern-grid-tight.svg'),
+      preloadSvgPattern('/assets/images/chart-pattern-cross-diagonal.svg'),
+      preloadSvgPattern('/assets/images/chart-pattern-diagonal-lines.svg'),
+      preloadSvgPattern('/assets/images/chart-pattern-dot-grid.svg'),
+      preloadSvgPattern('/assets/images/chart-pattern-checker-small.svg'),
+      preloadSvgPattern('/assets/images/chart-pattern-zigzag-chevron.svg'),
+      preloadSvgPattern('/assets/images/chart-pattern-grid-wide.svg'),
     ])
 
     const palette = getNswChartPalette({ cssScope: document.body })
@@ -92,9 +95,9 @@ function initChartsAndGraphs() {
         alignToElement: false,
         tintSvg: true,
         inkColor: 'auto',
-        inkAlpha: 1,
         minContrast: 4.5,
-        inkIndex: DEFAULT_NSW_INK_INDEX,
+        enforceContrast: false,
+        inkIndex: defaultNswInkIndex,
       },
       diagonal: {},
       vertical: {},
@@ -308,7 +311,7 @@ function initChartsAndGraphs() {
           label: 'Resolved late',
           data: [30, 25, 40, 20],
           backgroundColor: (context) => getPatternFill(context, 'vertical', palette.blue04, {
-            svgUrl: '/assets/images/chart-pattern-5.svg',
+            svgUrl: '/assets/images/chart-pattern-diagonal-lines.svg',
           }),
           borderColor: palette.grey03,
           borderWidth: 0,
@@ -471,7 +474,7 @@ function initChartsAndGraphs() {
           label: 'Below target',
           data: [15, 12, 18, 10],
           backgroundColor: (context) => getPatternFill(context, 'cross', palette.blue04, {
-            svgUrl: '/assets/images/chart-pattern-1.svg',
+            svgUrl: '/assets/images/chart-pattern-cross-diagonal.svg',
           }),
         }],
       },
@@ -587,11 +590,11 @@ function initChartsAndGraphs() {
           data: [62, 24, 14],
           backgroundColor: (context) => {
             if (context.dataIndex === 1) {
-              return getPatternFill(context, 'diagonal', palette.yellow02, {
-                svgUrl: '/assets/images/chart-pattern-7.svg',
+              return getPatternFill(context, 'diagonal', palette.purple03, {
+                svgUrl: '/assets/images/chart-pattern-diagonal-lines.svg',
               })
             }
-            return [palette.blue02, palette.yellow02, palette.red02][context.dataIndex]
+            return [palette.blue02, palette.purple03, palette.red02][context.dataIndex]
           },
         }],
       },
@@ -613,7 +616,7 @@ function initChartsAndGraphs() {
           backgroundColor: (context) => {
             if (context.dataIndex === 3) {
               return getPatternFill(context, 'dots', palette.grey03, {
-                svgUrl: '/assets/images/chart-pattern-4.svg',
+                svgUrl: '/assets/images/chart-pattern-dot-grid.svg',
               })
             }
             return [palette.blue02, palette.teal02, palette.purple02, palette.grey03][context.dataIndex]
@@ -641,7 +644,7 @@ function initChartsAndGraphs() {
           label: 'In progress',
           data: [20, 30, 18],
           backgroundColor: (context) => getPatternFill(context, 'vertical', palette.blue04, {
-            svgUrl: '/assets/images/chart-pattern-5.svg',
+            svgUrl: '/assets/images/chart-pattern-grid-wide.svg',
           }),
         }],
       },

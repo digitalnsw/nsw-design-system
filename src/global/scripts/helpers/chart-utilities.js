@@ -123,6 +123,60 @@ const withAlpha = (color, alpha) => {
   return `rgba(${rgba.r}, ${rgba.g}, ${rgba.b}, ${round(clamp(alpha, 0, 1), 4)})`
 }
 
+const blendRgb = (background, foreground, alpha) => {
+  const ratio = clamp(alpha, 0, 1)
+  return {
+    r: Math.round((foreground.r * ratio) + (background.r * (1 - ratio))),
+    g: Math.round((foreground.g * ratio) + (background.g * (1 - ratio))),
+    b: Math.round((foreground.b * ratio) + (background.b * (1 - ratio))),
+  }
+}
+
+const getContrastAtAlpha = (baseColor, inkColor, alpha) => {
+  const base = parseColorToRgb(baseColor)
+  const ink = parseColorToRgb(inkColor)
+  if (!base || !ink) return 0
+  const blended = blendRgb(base, ink, alpha)
+  return getContrastRatio(
+    getRelativeLuminance(base),
+    getRelativeLuminance(blended),
+  )
+}
+
+const getMinimumAlphaForContrast = (baseColor, inkColor, options = {}) => {
+  const {
+    minContrast = 4.5,
+    minAlpha = 0.35,
+    maxAlpha = 1,
+    precision = 4,
+  } = options
+
+  const threshold = Number.isFinite(minContrast) ? minContrast : 4.5
+  const lowerBound = clamp(Number.isFinite(minAlpha) ? minAlpha : 0.35, 0, 1)
+  const upperBound = clamp(Number.isFinite(maxAlpha) ? maxAlpha : 1, lowerBound, 1)
+
+  const maxContrast = getContrastAtAlpha(baseColor, inkColor, upperBound)
+  if (maxContrast < threshold) return round(upperBound, precision)
+
+  const minContrastAtLower = getContrastAtAlpha(baseColor, inkColor, lowerBound)
+  if (minContrastAtLower >= threshold) return round(lowerBound, precision)
+
+  let low = lowerBound
+  let high = upperBound
+
+  for (let i = 0; i < 14; i += 1) {
+    const midpoint = (low + high) / 2
+    const contrast = getContrastAtAlpha(baseColor, inkColor, midpoint)
+    if (contrast >= threshold) {
+      high = midpoint
+    } else {
+      low = midpoint
+    }
+  }
+
+  return round(high, precision)
+}
+
 const getAutoInk = (baseColor, darkColor = '#22272b', lightColor = '#ffffff') => {
   const base = parseColorToRgba(baseColor)
   const dark = parseColorToRgba(darkColor)
@@ -147,34 +201,44 @@ const toHexKey = (color) => {
   return `#${toHex(rgb.r)}${toHex(rgb.g)}${toHex(rgb.b)}`
 }
 
-const DEFAULT_NSW_INK_INDEX = Object.freeze({
+const defaultNswInkIndex = Object.freeze({
   '--nsw-palette-blue-01': { baseColor: '#002664', inkColor: '#cbedfd' },
   '--nsw-palette-blue-02': { baseColor: '#146cfd', inkColor: '#ffffff' },
-  '--nsw-palette-blue-03': { baseColor: '#8ce0ff', inkColor: '#002664' },
-  '--nsw-palette-blue-04': { baseColor: '#cbedfd', inkColor: '#002664' },
+  '--nsw-palette-blue-03': { baseColor: '#8ce0ff', inkColor: '#495054' },
+  '--nsw-palette-blue-04': { baseColor: '#cbedfd', inkColor: '#495054' },
   '--nsw-palette-red-02': { baseColor: '#d7153a', inkColor: '#ffffff' },
-  '--nsw-palette-red-04': { baseColor: '#ffe6ea', inkColor: '#002664' },
-  '--nsw-palette-yellow-02': { baseColor: '#faaf05', inkColor: '#002664' },
+  '--nsw-palette-red-04': { baseColor: '#ffe6ea', inkColor: '#495054' },
+  '--nsw-palette-yellow-02': { baseColor: '#faaf05', inkColor: '#22272b' },
   '--nsw-palette-green-02': { baseColor: '#00aa45', inkColor: '#ffffff' },
-  '--nsw-palette-green-04': { baseColor: '#dbfadf', inkColor: '#002664' },
+  '--nsw-palette-green-04': { baseColor: '#dbfadf', inkColor: '#495054' },
   '--nsw-palette-teal-02': { baseColor: '#2e808e', inkColor: '#ffffff' },
   '--nsw-palette-purple-02': { baseColor: '#8055f1', inkColor: '#ffffff' },
-  '--nsw-palette-orange-02': { baseColor: '#f3631b', inkColor: '#002664' },
+  '--nsw-palette-purple-03': { baseColor: '#CEBFFF', inkColor: '#630019' },
+  '--nsw-palette-orange-02': { baseColor: '#f3631b', inkColor: '#22272b' },
   '--nsw-palette-fuchsia-02': { baseColor: '#d912ae', inkColor: '#ffffff' },
   '--nsw-palette-grey-01': { baseColor: '#22272b', inkColor: '#ffffff' },
   '--nsw-palette-grey-02': { baseColor: '#495054', inkColor: '#ffffff' },
-  '--nsw-palette-grey-03': { baseColor: '#cdd3d6', inkColor: '#22272b' },
+  '--nsw-palette-grey-03': { baseColor: '#cdd3d6', inkColor: '#495054' },
 })
 
-const DEFAULT_INK_CANDIDATES = Object.freeze([
+const defaultInkCandidates = Object.freeze([
   '#ffffff',
   '#22272b',
-  '#002664',
   '#495054',
+  '#002664',
   '#cbedfd',
 ])
 
-const NSW_CHART_PALETTE_TOKENS = Object.freeze({
+const defaultPatternBaseAlphaByStyle = Object.freeze({
+  default: 0.5,
+  diagonal: 0.48,
+  vertical: 0.52,
+  dots: 0.54,
+  zigzag: 0.5,
+  cross: 0.5,
+})
+
+const nswChartPaletteTokens = Object.freeze({
   blue01: '--nsw-palette-blue-01',
   blue02: '--nsw-palette-blue-02',
   blue03: '--nsw-palette-blue-03',
@@ -186,6 +250,7 @@ const NSW_CHART_PALETTE_TOKENS = Object.freeze({
   green04: '--nsw-palette-green-04',
   teal02: '--nsw-palette-teal-02',
   purple02: '--nsw-palette-purple-02',
+  purple03: '--nsw-palette-purple-03',
   orange02: '--nsw-palette-orange-02',
   fuchsia02: '--nsw-palette-fuchsia-02',
   grey01: '--nsw-palette-grey-01',
@@ -193,7 +258,7 @@ const NSW_CHART_PALETTE_TOKENS = Object.freeze({
   grey03: '--nsw-palette-grey-03',
 })
 
-const DEFAULT_NSW_CHART_PALETTE = Object.freeze({
+const defaultNswChartPalette = Object.freeze({
   blue01: '#002664',
   blue02: '#146cfd',
   blue03: '#8ce0ff',
@@ -205,6 +270,7 @@ const DEFAULT_NSW_CHART_PALETTE = Object.freeze({
   green04: '#dbfadf',
   teal02: '#2e808e',
   purple02: '#8055f1',
+  purple03: '#CEBFFF',
   orange02: '#f3631b',
   fuchsia02: '#d912ae',
   grey01: '#22272b',
@@ -237,14 +303,14 @@ const getNswChartPalette = (options = {}) => {
   const {
     cssVariables = null,
     cssScope = null,
-    fallbackPalette = DEFAULT_NSW_CHART_PALETTE,
+    fallbackPalette = defaultNswChartPalette,
   } = options
 
   const resolvedCssVariables = resolveCssVariables(cssVariables, cssScope)
   const palette = {}
-  Object.keys(NSW_CHART_PALETTE_TOKENS).forEach((key) => {
-    const token = NSW_CHART_PALETTE_TOKENS[key]
-    const fallback = fallbackPalette[key] || DEFAULT_NSW_CHART_PALETTE[key]
+  Object.keys(nswChartPaletteTokens).forEach((key) => {
+    const token = nswChartPaletteTokens[key]
+    const fallback = fallbackPalette[key] || defaultNswChartPalette[key]
     const value = getCssVariableColor(resolvedCssVariables, token)
     palette[key] = value || fallback
   })
@@ -283,21 +349,25 @@ const normaliseInkIndexEntry = (key, entry, cssVariables) => {
 
   if (!baseColor || !inkColor) return null
 
+  const resolvedInkColor = resolveBaseColor(inkColor, cssVariables)
+  if (!resolvedInkColor) return null
+
   const baseHex = toHexKey(baseColor)
   if (!baseHex) return null
 
   return {
     baseHex,
-    inkColor,
+    inkColor: resolvedInkColor,
     minContrast: entryMinContrast,
   }
 }
 
 const getAccessibleInk = (baseColor, options = {}) => {
   const {
-    inkIndex = DEFAULT_NSW_INK_INDEX,
-    inkCandidates = DEFAULT_INK_CANDIDATES,
+    inkIndex = defaultNswInkIndex,
+    inkCandidates = defaultInkCandidates,
     minContrast = 4.5,
+    enforceContrast = true,
     darkColor = '#22272b',
     lightColor = '#ffffff',
     cssVariables = null,
@@ -313,24 +383,38 @@ const getAccessibleInk = (baseColor, options = {}) => {
   const candidates = []
   const addCandidate = (value) => {
     if (!value || typeof value !== 'string') return
-    if (!candidates.includes(value)) candidates.push(value)
+    const resolvedValue = resolveBaseColor(value, resolvedCssVariables)
+    if (!resolvedValue || candidates.includes(resolvedValue)) return
+    candidates.push(resolvedValue)
   }
 
   let bestColor = darkColor
   let bestContrast = -1
+  let accessibleColor = null
+  let accessibleContrast = Number.POSITIVE_INFINITY
   const updateBest = (color, contrast) => {
     if (contrast > bestContrast) {
       bestContrast = contrast
       bestColor = color
     }
   }
+  const updateAccessible = (color, contrast) => {
+    if (contrast < accessibleContrast) {
+      accessibleContrast = contrast
+      accessibleColor = color
+    }
+  }
 
   const baseLuminance = getRelativeLuminance(base)
   const baseHex = toHexKey(resolvedBaseColor)
   if (baseHex && inkIndex && typeof inkIndex === 'object') {
+    let indexedInk = null
     Object.keys(inkIndex).forEach((key) => {
       const resolved = normaliseInkIndexEntry(key, inkIndex[key], resolvedCssVariables)
       if (!resolved || resolved.baseHex !== baseHex) return
+      if (!indexedInk) indexedInk = resolved.inkColor
+
+      if (!enforceContrast) return
 
       const candidateRgb = parseColorToRgba(resolved.inkColor)
       if (!candidateRgb) return
@@ -346,15 +430,17 @@ const getAccessibleInk = (baseColor, options = {}) => {
       )
 
       if (contrast >= requiredContrast) {
-        bestColor = resolved.inkColor
-        bestContrast = contrast
+        updateAccessible(resolved.inkColor, contrast)
       } else {
         updateBest(resolved.inkColor, contrast)
       }
     })
 
-    if (bestContrast >= contrastThreshold) return bestColor
+    if (!enforceContrast && indexedInk) return indexedInk
+    if (accessibleColor) return accessibleColor
   }
+
+  if (!enforceContrast) return bestColor
 
   if (Array.isArray(inkCandidates)) {
     inkCandidates.forEach(addCandidate)
@@ -368,12 +454,38 @@ const getAccessibleInk = (baseColor, options = {}) => {
     const candidateRgb = parseColorToRgba(candidate)
     if (candidateRgb) {
       const contrast = getContrastRatio(baseLuminance, getRelativeLuminance(candidateRgb))
-      if (contrast >= contrastThreshold) return candidate
-      updateBest(candidate, contrast)
+      if (contrast >= contrastThreshold) {
+        updateAccessible(candidate, contrast)
+      } else {
+        updateBest(candidate, contrast)
+      }
     }
   }
 
+  if (accessibleColor) return accessibleColor
   return bestColor
+}
+
+const getPatternInkAlpha = (baseColor, inkColor, style, options = {}) => {
+  const {
+    minContrast = 4.5,
+    baseAlphaByStyle = defaultPatternBaseAlphaByStyle,
+    minAlpha = 0.35,
+    maxAlpha = 1,
+  } = options
+
+  const styleKey = style === 'cross' ? 'zigzag' : style
+  const styleAlpha = Number.isFinite(baseAlphaByStyle[styleKey])
+    ? baseAlphaByStyle[styleKey]
+    : baseAlphaByStyle.default
+
+  const requiredAlpha = getMinimumAlphaForContrast(baseColor, inkColor, {
+    minContrast,
+    minAlpha,
+    maxAlpha,
+  })
+
+  return clamp(Math.max(styleAlpha, requiredAlpha), minAlpha, maxAlpha)
 }
 
 const resolveContext = (input) => {
@@ -423,13 +535,15 @@ const patternCache = new Map()
 const svgImageCache = new Map()
 const pendingChartUpdates = new Set()
 
-const SVG_BY_STYLE = {
-  diagonal: '/assets/images/chart-pattern-7.svg',
-  dots: '/assets/images/chart-pattern-4.svg',
-  vertical: '/assets/images/chart-pattern-5.svg',
-  zigzag: '/assets/images/chart-pattern-1.svg',
-  cross: '/assets/images/chart-pattern-1.svg',
-}
+const defaultPatternSources = Object.freeze({
+  diagonal: '/assets/images/chart-pattern-diagonal-lines.svg',
+  dots: '/assets/images/chart-pattern-dot-grid.svg',
+  vertical: '/assets/images/chart-pattern-grid-tight.svg',
+  zigzag: '/assets/images/chart-pattern-zigzag-chevron.svg',
+  cross: '/assets/images/chart-pattern-cross-diagonal.svg',
+  checker: '/assets/images/chart-pattern-checker-small.svg',
+  grid: '/assets/images/chart-pattern-grid-wide.svg',
+})
 
 const toSvgDataUri = (svgMarkup) => `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svgMarkup)}`
 
@@ -499,15 +613,20 @@ const createPattern = (input, options = {}) => {
     offsetY = 0,
     tintSvg = true,
     inkColor = 'auto',
-    inkIndex = DEFAULT_NSW_INK_INDEX,
-    inkCandidates = DEFAULT_INK_CANDIDATES,
+    inkIndex = defaultNswInkIndex,
+    inkCandidates = defaultInkCandidates,
     minContrast = 4.5,
+    enforceContrast = true,
     darkColor = '#22272b',
     lightColor = '#ffffff',
-    inkAlpha = 0.92,
+    inkAlpha = null,
+    baseAlphaByStyle = defaultPatternBaseAlphaByStyle,
+    minPatternAlpha = 0.35,
+    maxPatternAlpha = 1,
     cssVariables = null,
     cssScope = null,
     dpr = null,
+    patternSources = defaultPatternSources,
     svgUrl = null,
     svgMarkup = null,
     svgKey = null,
@@ -515,6 +634,16 @@ const createPattern = (input, options = {}) => {
 
   const resolvedCssVariables = resolveCssVariables(cssVariables, cssScope)
   const resolvedBaseColor = resolveBaseColor(baseColor, resolvedCssVariables)
+  const resolvedMinPatternAlpha = clamp(
+    Number.isFinite(minPatternAlpha) ? minPatternAlpha : 0.35,
+    0,
+    1,
+  )
+  const resolvedMaxPatternAlpha = clamp(
+    Number.isFinite(maxPatternAlpha) ? maxPatternAlpha : 1,
+    resolvedMinPatternAlpha,
+    1,
+  )
 
   if (!targetContext || !resolvedBaseColor) return baseColor
 
@@ -523,13 +652,23 @@ const createPattern = (input, options = {}) => {
       inkIndex,
       inkCandidates,
       minContrast,
+      enforceContrast,
       darkColor,
       lightColor,
       cssVariables: resolvedCssVariables,
       cssScope,
     })
     : inkColor
-  const svgInk = withAlpha(resolvedInk, inkAlpha)
+
+  const resolvedInkAlpha = Number.isFinite(inkAlpha)
+    ? clamp(inkAlpha, resolvedMinPatternAlpha, resolvedMaxPatternAlpha)
+    : getPatternInkAlpha(resolvedBaseColor, resolvedInk, style, {
+      minContrast,
+      baseAlphaByStyle,
+      minAlpha: resolvedMinPatternAlpha,
+      maxAlpha: resolvedMaxPatternAlpha,
+    })
+  const svgInk = withAlpha(resolvedInk, resolvedInkAlpha)
 
   let devicePixelRatio = dpr
   if (!devicePixelRatio) {
@@ -545,7 +684,10 @@ const createPattern = (input, options = {}) => {
   const ratio = Math.max(1, Math.round(devicePixelRatio))
   const pixelWidth = Math.max(1, Math.round(size * ratio))
   const offset = getPatternOffset(input, size, alignToElement, offsetX, offsetY)
-  const svgSource = resolveSvgSource(svgUrl || SVG_BY_STYLE[style], svgMarkup)
+  const resolvedPatternSources = patternSources && typeof patternSources === 'object'
+    ? patternSources
+    : defaultPatternSources
+  const svgSource = resolveSvgSource(svgUrl || resolvedPatternSources[style], svgMarkup)
   const resolvedSvgKey = svgSource ? (svgKey || svgSource) : null
   if (!svgSource || !resolvedSvgKey) return resolvedBaseColor
 
@@ -560,7 +702,9 @@ const createPattern = (input, options = {}) => {
     svg: resolvedSvgKey,
     tintSvg,
     svgInk,
+    resolvedInkAlpha,
     minContrast,
+    enforceContrast,
   })
 
   if (patternCache.has(cacheKey)) return patternCache.get(cacheKey)
@@ -651,17 +795,22 @@ const preloadSvgPattern = (source, key = null) => {
 }
 
 const chartUtilities = {
-  NSW_CHART_PALETTE_TOKENS,
-  DEFAULT_NSW_CHART_PALETTE,
-  DEFAULT_NSW_INK_INDEX,
-  DEFAULT_INK_CANDIDATES,
+  nswChartPaletteTokens,
+  defaultNswChartPalette,
+  defaultNswInkIndex,
+  defaultInkCandidates,
+  defaultPatternBaseAlphaByStyle,
+  defaultPatternSources,
   getNswChartPalette,
   parseColorToRgb,
   parseColorToRgba,
   getRelativeLuminance,
   getContrastRatio,
+  getContrastAtAlpha,
+  getMinimumAlphaForContrast,
   getAutoInk,
   getAccessibleInk,
+  getPatternInkAlpha,
   withAlpha,
   createPattern,
   clearPatternCache,
@@ -675,17 +824,22 @@ if (typeof window !== 'undefined') {
 }
 
 export {
-  NSW_CHART_PALETTE_TOKENS,
-  DEFAULT_NSW_CHART_PALETTE,
-  DEFAULT_NSW_INK_INDEX,
-  DEFAULT_INK_CANDIDATES,
+  nswChartPaletteTokens,
+  defaultNswChartPalette,
+  defaultNswInkIndex,
+  defaultInkCandidates,
+  defaultPatternBaseAlphaByStyle,
+  defaultPatternSources,
   getNswChartPalette,
   parseColorToRgb,
   parseColorToRgba,
   getRelativeLuminance,
   getContrastRatio,
+  getContrastAtAlpha,
+  getMinimumAlphaForContrast,
   getAutoInk,
   getAccessibleInk,
+  getPatternInkAlpha,
   withAlpha,
   createPattern,
   clearPatternCache,
