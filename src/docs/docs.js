@@ -617,6 +617,7 @@ function initChartsAndGraphs() {
             if (context.dataIndex === 3) {
               return getPatternFill(context, 'dots', palette.grey03, {
                 svgUrl: '/assets/images/chart-pattern-dot-grid.svg',
+                size: 12,
               })
             }
             return [palette.blue02, palette.teal02, palette.purple02, palette.grey03][context.dataIndex]
@@ -645,6 +646,7 @@ function initChartsAndGraphs() {
           data: [20, 30, 18],
           backgroundColor: (context) => getPatternFill(context, 'vertical', palette.blue04, {
             svgUrl: '/assets/images/chart-pattern-grid-wide.svg',
+            size: 12,
           }),
         }],
       },

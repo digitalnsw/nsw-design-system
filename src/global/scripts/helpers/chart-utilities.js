@@ -502,13 +502,14 @@ const resolveContext = (input) => {
   return null
 }
 
-const normaliseOffset = (value, size) => {
-  const rounded = Math.round(value)
-  const remainder = rounded % size
+const normaliseOffset = (value, size, scale = 1) => {
+  const step = Number.isFinite(scale) && scale > 0 ? scale : 1
+  const snapped = Math.round(value * step) / step
+  const remainder = snapped % size
   return remainder < 0 ? remainder + size : remainder
 }
 
-const getPatternOffset = (input, size, alignToElement, offsetX = 0, offsetY = 0) => {
+const getPatternOffset = (input, size, alignToElement, offsetX = 0, offsetY = 0, scale = 1) => {
   let x = offsetX
   let y = offsetY
 
@@ -526,8 +527,8 @@ const getPatternOffset = (input, size, alignToElement, offsetX = 0, offsetY = 0)
   }
 
   return {
-    x: normaliseOffset(x, size),
-    y: normaliseOffset(y, size),
+    x: normaliseOffset(x, size, scale),
+    y: normaliseOffset(y, size, scale),
   }
 }
 
@@ -681,9 +682,10 @@ const createPattern = (input, options = {}) => {
     }
   }
 
-  const ratio = Math.max(1, Math.round(devicePixelRatio))
-  const pixelWidth = Math.max(1, Math.round(size * ratio))
-  const offset = getPatternOffset(input, size, alignToElement, offsetX, offsetY)
+  const ratio = Math.max(1, Number(devicePixelRatio) || 1)
+  const pixelWidth = Math.max(1, Math.ceil(size * ratio))
+  const renderScale = pixelWidth / size
+  const offset = getPatternOffset(input, size, alignToElement, offsetX, offsetY, renderScale)
   const resolvedPatternSources = patternSources && typeof patternSources === 'object'
     ? patternSources
     : defaultPatternSources
@@ -698,7 +700,7 @@ const createPattern = (input, options = {}) => {
     rotate: round(rotate, 2),
     alignToElement,
     offset,
-    ratio,
+    ratio: round(renderScale, 4),
     svg: resolvedSvgKey,
     tintSvg,
     svgInk,
@@ -730,7 +732,7 @@ const createPattern = (input, options = {}) => {
   const patternContext = patternCanvas.getContext('2d')
   if (!patternContext) return resolvedBaseColor
 
-  patternContext.setTransform(ratio, 0, 0, ratio, 0, 0)
+  patternContext.setTransform(renderScale, 0, 0, renderScale, 0, 0)
   patternContext.clearRect(0, 0, size, size)
   patternContext.fillStyle = resolvedBaseColor
   patternContext.fillRect(0, 0, size, size)
@@ -757,7 +759,7 @@ const createPattern = (input, options = {}) => {
 
     const overlayContext = overlayCanvas.getContext('2d')
     if (overlayContext) {
-      overlayContext.setTransform(ratio, 0, 0, ratio, 0, 0)
+      overlayContext.setTransform(renderScale, 0, 0, renderScale, 0, 0)
       overlayContext.clearRect(0, 0, size, size)
       overlayContext.imageSmoothingEnabled = false
       overlayContext.drawImage(record.image, 0, 0, size, size)
@@ -775,6 +777,13 @@ const createPattern = (input, options = {}) => {
   patternContext.restore()
 
   const pattern = targetContext.createPattern(patternCanvas, 'repeat') || resolvedBaseColor
+  if (pattern && typeof pattern.setTransform === 'function' && renderScale !== 1) {
+    if (typeof DOMMatrix !== 'undefined') {
+      const matrix = new DOMMatrix()
+      matrix.scaleSelf(1 / renderScale, 1 / renderScale)
+      pattern.setTransform(matrix)
+    }
+  }
   patternCache.set(cacheKey, pattern)
   return pattern
 }
