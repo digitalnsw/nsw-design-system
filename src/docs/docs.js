@@ -95,7 +95,7 @@ function initChartsAndGraphs() {
         alignToElement: false,
         tintSvg: true,
         inkColor: 'auto',
-        minContrast: 4.5,
+        minContrast: 3,
         enforceContrast: false,
         inkIndex: defaultNswInkIndex,
       },

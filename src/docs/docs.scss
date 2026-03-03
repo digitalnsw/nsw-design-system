@@ -563,6 +563,39 @@ $header-height: 151px;
     align-items: flex-start;
   }
 
+  &__pattern-swatch-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(nsw.rem(110px), 1fr));
+    gap: nsw.rem(16px);
+  }
+
+  &__pattern-swatch {
+    margin: 0;
+    text-align: center;
+    font-size: var(--nsw-font-size-xxs-desktop);
+    color: var(--nsw-text-dark);
+
+    svg {
+      display: block;
+      width: nsw.rem(84px);
+      height: nsw.rem(84px);
+      margin: 0 auto nsw.rem(8px);
+    }
+
+    figcaption {
+      margin: 0;
+      font-weight: var(--nsw-font-bold);
+    }
+  }
+
+  &__pattern-swatch-overlay {
+    opacity: 0.55;
+  }
+
+  &__pattern-swatch-note {
+    margin-top: nsw.rem(12px);
+  }
+
   .nsw-in-page-alert + h1 {
     margin-top: nsw.rem(24px);
 

@@ -145,13 +145,13 @@ const getContrastAtAlpha = (baseColor, inkColor, alpha) => {
 
 const getMinimumAlphaForContrast = (baseColor, inkColor, options = {}) => {
   const {
-    minContrast = 4.5,
+    minContrast = 3,
     minAlpha = 0.35,
     maxAlpha = 1,
     precision = 4,
   } = options
 
-  const threshold = Number.isFinite(minContrast) ? minContrast : 4.5
+  const threshold = Number.isFinite(minContrast) ? minContrast : 3
   const lowerBound = clamp(Number.isFinite(minAlpha) ? minAlpha : 0.35, 0, 1)
   const upperBound = clamp(Number.isFinite(maxAlpha) ? maxAlpha : 1, lowerBound, 1)
 
@@ -366,7 +366,7 @@ const getAccessibleInk = (baseColor, options = {}) => {
   const {
     inkIndex = defaultNswInkIndex,
     inkCandidates = defaultInkCandidates,
-    minContrast = 4.5,
+    minContrast = 3,
     enforceContrast = true,
     darkColor = '#22272b',
     lightColor = '#ffffff',
@@ -379,7 +379,7 @@ const getAccessibleInk = (baseColor, options = {}) => {
   const base = parseColorToRgba(resolvedBaseColor)
   if (!base) return darkColor
 
-  const contrastThreshold = Number.isFinite(minContrast) ? minContrast : 4.5
+  const contrastThreshold = Number.isFinite(minContrast) ? minContrast : 3
   const candidates = []
   const addCandidate = (value) => {
     if (!value || typeof value !== 'string') return
@@ -468,7 +468,7 @@ const getAccessibleInk = (baseColor, options = {}) => {
 
 const getPatternInkAlpha = (baseColor, inkColor, style, options = {}) => {
   const {
-    minContrast = 4.5,
+    minContrast = 3,
     baseAlphaByStyle = defaultPatternBaseAlphaByStyle,
     minAlpha = 0.35,
     maxAlpha = 1,
@@ -616,7 +616,7 @@ const createPattern = (input, options = {}) => {
     inkColor = 'auto',
     inkIndex = defaultNswInkIndex,
     inkCandidates = defaultInkCandidates,
-    minContrast = 4.5,
+    minContrast = 3,
     enforceContrast = true,
     darkColor = '#22272b',
     lightColor = '#ffffff',

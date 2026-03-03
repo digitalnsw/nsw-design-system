@@ -643,49 +643,119 @@ new Chart(ctx, {
 </ul>
 
 <h4>Pattern fills for colour-blind accessibility</h4>
-<p>For stacked, pie and doughnut charts, add a pattern fill to at least one series in addition to colour. Use this when colours are adjacent or close in tone.</p>
-{{#>_docs-example hidden="true" code="js"}}
-const { createPattern, defaultPatternSources } = window.NSWChartUtilities;
+<p>Use pattern fills as a secondary differentiator for stacked, pie and doughnut charts when adjacent colours are close in tone.</p>
 
-new Chart(ctx, {
-  type: 'bar',
-  data: {
-    labels: ['Q1', 'Q2', 'Q3', 'Q4'],
-    datasets: [{
-      label: 'Met target',
-      data: [45, 52, 48, 60],
-      backgroundColor: '#146CFD'
-    }, {
-      label: 'Below target',
-      data: [15, 12, 18, 10],
-      backgroundColor: (context) => createPattern(context, {
-        style: 'vertical',
-        baseColor: '--nsw-palette-blue-04',
-        patternSources: defaultPatternSources,
-        size: 8
-      })
-    }]
-  }
-});
-{{/_docs-example}}
-<p>You can map uploaded SVG tiles onto chart fills by passing <code>svgUrl</code>, or define a shared style map with <code>patternSources</code>. The pattern utility includes a NSW palette ink index and picks an accessible <code>inkColor</code> automatically (minimum contrast 4.5 by default).</p>
-<p>When <code>enforceContrast</code> is true (default), a mapped ink colour may be overridden if it does not pass contrast. For design testing only, you can temporarily set <code>enforceContrast: false</code> to inspect raw index mappings.</p>
-<p>Use the same utility in any canvas-based charting library by passing a canvas 2D context instead of Chart.js context.</p>
-{{#>_docs-example hidden="true" code="js"}}
-const patternSources = {
-  ...window.NSWChartUtilities.defaultPatternSources,
-  diagonal: '/assets/images/chart-pattern-diagonal-lines.svg',
-  dots: '/assets/images/chart-pattern-dot-grid.svg'
-};
+<h5>Requirements</h5>
+<ul>
+  <li>Pattern strokes and other non-text graphics must meet at least 3 to 1 contrast against adjacent colours and background (WCAG 1.4.11).</li>
+  <li>Chart text, labels and legends must still meet 4.5 to 1 contrast (WCAG 1.4.3).</li>
+  <li>Do not rely on colour alone. Use colour plus pattern, labels or legends.</li>
+</ul>
 
-const patternFill = window.NSWChartUtilities.createPattern(canvas2DContext, {
-  style: 'diagonal',
-  baseColor: '--nsw-palette-yellow-02',
-  patternSources,
-  size: 8
-});
-{{/_docs-example}}
-<p>Available styles are <code>diagonal</code>, <code>vertical</code>, <code>dots</code> and <code>zigzag</code>.</p>
+<h5>Pattern selection and scale</h5>
+<ul>
+  <li>Use simple patterns that are easy to distinguish, such as diagonal, crosshatch, grid and dots.</li>
+  <li>Avoid overly dense or tiny patterns that merge at small sizes.</li>
+  <li>Avoid oversized patterns that dominate the chart and distract from data.</li>
+  <li>Use the swatches below as a scale reference for a medium density pattern in digital charts.</li>
+</ul>
+
+<div class="nsw-docs__pattern-swatch-grid nsw-m-top-md" role="list" aria-label="Pattern scale reference swatches">
+  <figure class="nsw-docs__pattern-swatch" role="listitem">
+    <svg viewBox="0 0 80 80" aria-hidden="true" focusable="false">
+      <defs>
+        <pattern id="nsw-pattern-swatch-diagonal" patternUnits="userSpaceOnUse" width="8" height="8">
+          <image href="/assets/images/chart-pattern-diagonal-lines.svg" x="0" y="0" width="8" height="8"></image>
+        </pattern>
+      </defs>
+      <circle cx="40" cy="40" r="34" fill="var(--nsw-palette-yellow-02)"></circle>
+      <circle class="nsw-docs__pattern-swatch-overlay" cx="40" cy="40" r="34" fill="url(#nsw-pattern-swatch-diagonal)"></circle>
+    </svg>
+    <figcaption>Diagonal</figcaption>
+  </figure>
+  <figure class="nsw-docs__pattern-swatch" role="listitem">
+    <svg viewBox="0 0 80 80" aria-hidden="true" focusable="false">
+      <defs>
+        <pattern id="nsw-pattern-swatch-cross" patternUnits="userSpaceOnUse" width="8" height="8">
+          <image href="/assets/images/chart-pattern-cross-diagonal.svg" x="0" y="0" width="8" height="8"></image>
+        </pattern>
+      </defs>
+      <circle cx="40" cy="40" r="34" fill="var(--nsw-palette-blue-04)"></circle>
+      <circle class="nsw-docs__pattern-swatch-overlay" cx="40" cy="40" r="34" fill="url(#nsw-pattern-swatch-cross)"></circle>
+    </svg>
+    <figcaption>Crosshatch</figcaption>
+  </figure>
+  <figure class="nsw-docs__pattern-swatch" role="listitem">
+    <svg viewBox="0 0 80 80" aria-hidden="true" focusable="false">
+      <defs>
+        <pattern id="nsw-pattern-swatch-dots" patternUnits="userSpaceOnUse" width="12" height="12">
+          <image href="/assets/images/chart-pattern-dot-grid.svg" x="0" y="0" width="12" height="12"></image>
+        </pattern>
+      </defs>
+      <circle cx="40" cy="40" r="34" fill="var(--nsw-palette-grey-03)"></circle>
+      <circle class="nsw-docs__pattern-swatch-overlay" cx="40" cy="40" r="34" fill="url(#nsw-pattern-swatch-dots)"></circle>
+    </svg>
+    <figcaption>Dots</figcaption>
+  </figure>
+  <figure class="nsw-docs__pattern-swatch" role="listitem">
+    <svg viewBox="0 0 80 80" aria-hidden="true" focusable="false">
+      <defs>
+        <pattern id="nsw-pattern-swatch-grid-tight" patternUnits="userSpaceOnUse" width="8" height="8">
+          <image href="/assets/images/chart-pattern-grid-tight.svg" x="0" y="0" width="8" height="8"></image>
+        </pattern>
+      </defs>
+      <circle cx="40" cy="40" r="34" fill="var(--nsw-palette-blue-04)"></circle>
+      <circle class="nsw-docs__pattern-swatch-overlay" cx="40" cy="40" r="34" fill="url(#nsw-pattern-swatch-grid-tight)"></circle>
+    </svg>
+    <figcaption>Grid (tight)</figcaption>
+  </figure>
+  <figure class="nsw-docs__pattern-swatch" role="listitem">
+    <svg viewBox="0 0 80 80" aria-hidden="true" focusable="false">
+      <defs>
+        <pattern id="nsw-pattern-swatch-grid-wide" patternUnits="userSpaceOnUse" width="12" height="12">
+          <image href="/assets/images/chart-pattern-grid-wide.svg" x="0" y="0" width="12" height="12"></image>
+        </pattern>
+      </defs>
+      <circle cx="40" cy="40" r="34" fill="var(--nsw-palette-green-04)"></circle>
+      <circle class="nsw-docs__pattern-swatch-overlay" cx="40" cy="40" r="34" fill="url(#nsw-pattern-swatch-grid-wide)"></circle>
+    </svg>
+    <figcaption>Grid (wide)</figcaption>
+  </figure>
+  <figure class="nsw-docs__pattern-swatch" role="listitem">
+    <svg viewBox="0 0 80 80" aria-hidden="true" focusable="false">
+      <defs>
+        <pattern id="nsw-pattern-swatch-zigzag" patternUnits="userSpaceOnUse" width="8" height="8">
+          <image href="/assets/images/chart-pattern-zigzag-chevron.svg" x="0" y="0" width="8" height="8"></image>
+        </pattern>
+      </defs>
+      <circle cx="40" cy="40" r="34" fill="var(--nsw-palette-purple-03)"></circle>
+      <circle class="nsw-docs__pattern-swatch-overlay" cx="40" cy="40" r="34" fill="url(#nsw-pattern-swatch-zigzag)"></circle>
+    </svg>
+    <figcaption>Zigzag</figcaption>
+  </figure>
+</div>
+<p class="nsw-docs__pattern-swatch-note">Reference swatches only. Use similar pattern density and scale in production charts, then validate at 200 percent zoom and at mobile widths.</p>
+
+<h5>Implementation approach</h5>
+<ul>
+  <li>DDS does not prescribe a specific charting library, SVG pattern library or reusable pattern utility for canvas charts.</li>
+  <li>Use any implementation approach that produces clear patterns and meets accessibility requirements.</li>
+  <li>Examples on this page use pattern assets from <a href="https://patterns.helloyes.dev/">patterns.helloyes.dev</a>.</li>
+</ul>
+
+<h5>Usage in charts</h5>
+<ul>
+  <li>Do not pattern every series in a chart.</li>
+  <li>Apply patterns selectively where colour and lightness alone are not enough to distinguish data.</li>
+  <li>Avoid placing multiple series with similar colours and similar pattern density directly beside each other.</li>
+</ul>
+
+<h5>Colour blindness checks</h5>
+<ul>
+  <li>Test charts in greyscale and with colour-vision deficiency simulation (deuteranopia, protanopia and tritanopia).</li>
+  <li>Confirm key insights are still clear without colour.</li>
+  <li>If interpretation remains ambiguous, add direct labels and provide a semantic data table.</li>
+</ul>
 
 <h3>Keyboard access</h3>
 <ul>
