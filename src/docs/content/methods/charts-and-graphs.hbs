@@ -657,90 +657,175 @@ new Chart(ctx, {
   <li>Use simple patterns that are easy to distinguish, such as diagonal, crosshatch, grid and dots.</li>
   <li>Avoid overly dense or tiny patterns that merge at small sizes.</li>
   <li>Avoid oversized patterns that dominate the chart and distract from data.</li>
+  <li>A pattern is too small if the smallest expected data mark cannot show at least 2 to 3 repeats of the motif.</li>
+  <li>If pattern detail is lost, simplify the pattern or rely on direct labels and a data table instead.</li>
   <li>Use the swatches below as a scale reference for a medium density pattern in digital charts.</li>
 </ul>
 
-<div class="nsw-docs__pattern-swatch-grid nsw-m-top-md" role="list" aria-label="Pattern scale reference swatches">
-  <figure class="nsw-docs__pattern-swatch" role="listitem">
-    <svg viewBox="0 0 80 80" aria-hidden="true" focusable="false">
-      <defs>
-        <pattern id="nsw-pattern-swatch-diagonal" patternUnits="userSpaceOnUse" width="8" height="8">
-          <image href="/assets/images/chart-pattern-diagonal-lines.svg" x="0" y="0" width="8" height="8"></image>
-        </pattern>
-      </defs>
-      <circle cx="40" cy="40" r="34" fill="var(--nsw-palette-yellow-02)"></circle>
-      <circle class="nsw-docs__pattern-swatch-overlay" cx="40" cy="40" r="34" fill="url(#nsw-pattern-swatch-diagonal)"></circle>
-    </svg>
-    <figcaption>Diagonal</figcaption>
-  </figure>
-  <figure class="nsw-docs__pattern-swatch" role="listitem">
-    <svg viewBox="0 0 80 80" aria-hidden="true" focusable="false">
-      <defs>
-        <pattern id="nsw-pattern-swatch-cross" patternUnits="userSpaceOnUse" width="8" height="8">
-          <image href="/assets/images/chart-pattern-cross-diagonal.svg" x="0" y="0" width="8" height="8"></image>
-        </pattern>
-      </defs>
-      <circle cx="40" cy="40" r="34" fill="var(--nsw-palette-blue-04)"></circle>
-      <circle class="nsw-docs__pattern-swatch-overlay" cx="40" cy="40" r="34" fill="url(#nsw-pattern-swatch-cross)"></circle>
-    </svg>
-    <figcaption>Crosshatch</figcaption>
-  </figure>
-  <figure class="nsw-docs__pattern-swatch" role="listitem">
-    <svg viewBox="0 0 80 80" aria-hidden="true" focusable="false">
-      <defs>
-        <pattern id="nsw-pattern-swatch-dots" patternUnits="userSpaceOnUse" width="12" height="12">
-          <image href="/assets/images/chart-pattern-dot-grid.svg" x="0" y="0" width="12" height="12"></image>
-        </pattern>
-      </defs>
-      <circle cx="40" cy="40" r="34" fill="var(--nsw-palette-grey-03)"></circle>
-      <circle class="nsw-docs__pattern-swatch-overlay" cx="40" cy="40" r="34" fill="url(#nsw-pattern-swatch-dots)"></circle>
-    </svg>
-    <figcaption>Dots</figcaption>
-  </figure>
-  <figure class="nsw-docs__pattern-swatch" role="listitem">
-    <svg viewBox="0 0 80 80" aria-hidden="true" focusable="false">
-      <defs>
-        <pattern id="nsw-pattern-swatch-grid-tight" patternUnits="userSpaceOnUse" width="8" height="8">
-          <image href="/assets/images/chart-pattern-grid-tight.svg" x="0" y="0" width="8" height="8"></image>
-        </pattern>
-      </defs>
-      <circle cx="40" cy="40" r="34" fill="var(--nsw-palette-blue-04)"></circle>
-      <circle class="nsw-docs__pattern-swatch-overlay" cx="40" cy="40" r="34" fill="url(#nsw-pattern-swatch-grid-tight)"></circle>
-    </svg>
-    <figcaption>Grid (tight)</figcaption>
-  </figure>
-  <figure class="nsw-docs__pattern-swatch" role="listitem">
-    <svg viewBox="0 0 80 80" aria-hidden="true" focusable="false">
-      <defs>
-        <pattern id="nsw-pattern-swatch-grid-wide" patternUnits="userSpaceOnUse" width="12" height="12">
-          <image href="/assets/images/chart-pattern-grid-wide.svg" x="0" y="0" width="12" height="12"></image>
-        </pattern>
-      </defs>
-      <circle cx="40" cy="40" r="34" fill="var(--nsw-palette-green-04)"></circle>
-      <circle class="nsw-docs__pattern-swatch-overlay" cx="40" cy="40" r="34" fill="url(#nsw-pattern-swatch-grid-wide)"></circle>
-    </svg>
-    <figcaption>Grid (wide)</figcaption>
-  </figure>
-  <figure class="nsw-docs__pattern-swatch" role="listitem">
-    <svg viewBox="0 0 80 80" aria-hidden="true" focusable="false">
-      <defs>
-        <pattern id="nsw-pattern-swatch-zigzag" patternUnits="userSpaceOnUse" width="8" height="8">
-          <image href="/assets/images/chart-pattern-zigzag-chevron.svg" x="0" y="0" width="8" height="8"></image>
-        </pattern>
-      </defs>
-      <circle cx="40" cy="40" r="34" fill="var(--nsw-palette-purple-03)"></circle>
-      <circle class="nsw-docs__pattern-swatch-overlay" cx="40" cy="40" r="34" fill="url(#nsw-pattern-swatch-zigzag)"></circle>
-    </svg>
-    <figcaption>Zigzag</figcaption>
-  </figure>
+<div class="nsw-docs__pattern-swatch-row nsw-m-top-md">
+  <p class="nsw-docs__pattern-swatch-row-title">Light base colours</p>
+  <div class="nsw-docs__pattern-swatch-grid" role="list" aria-label="Pattern scale reference swatches for light base colours">
+    <figure class="nsw-docs__pattern-swatch" role="listitem" style="--nsw-pattern-base: var(--nsw-palette-red-04); --nsw-pattern-stroke: var(--nsw-palette-red-02);">
+      <svg viewBox="0 0 80 80" aria-hidden="true" focusable="false">
+        <defs>
+          <pattern id="nsw-pattern-swatch-light-diagonal" patternUnits="userSpaceOnUse" width="8" height="8">
+            <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-pattern-stroke)" stroke-width="1.15" fill="none" shape-rendering="crispEdges"></path>
+          </pattern>
+        </defs>
+        <circle cx="40" cy="40" r="34" fill="var(--nsw-pattern-base)"></circle>
+        <circle class="nsw-docs__pattern-swatch-overlay" cx="40" cy="40" r="34" fill="url(#nsw-pattern-swatch-light-diagonal)"></circle>
+      </svg>
+      <span class="sr-only">Diagonal pattern, light base colour</span>
+    </figure>
+    <figure class="nsw-docs__pattern-swatch" role="listitem" style="--nsw-pattern-base: var(--nsw-palette-teal-04); --nsw-pattern-stroke: var(--nsw-palette-teal-02);">
+      <svg viewBox="0 0 80 80" aria-hidden="true" focusable="false">
+        <defs>
+          <pattern id="nsw-pattern-swatch-light-crosshatch" patternUnits="userSpaceOnUse" width="12" height="12">
+            <path d="M0,0 l12,12 M12,0 l-12,12" stroke="var(--nsw-pattern-stroke)" stroke-width="1.15" fill="none" shape-rendering="crispEdges"></path>
+          </pattern>
+        </defs>
+        <circle cx="40" cy="40" r="34" fill="var(--nsw-pattern-base)"></circle>
+        <circle class="nsw-docs__pattern-swatch-overlay" cx="40" cy="40" r="34" fill="url(#nsw-pattern-swatch-light-crosshatch)"></circle>
+      </svg>
+      <span class="sr-only">Crosshatch pattern, light base colour</span>
+    </figure>
+    <figure class="nsw-docs__pattern-swatch" role="listitem" style="--nsw-pattern-base: var(--nsw-palette-grey-03); --nsw-pattern-stroke: var(--nsw-palette-grey-01);">
+      <svg viewBox="0 0 80 80" aria-hidden="true" focusable="false">
+        <defs>
+          <pattern id="nsw-pattern-swatch-light-dots" patternUnits="userSpaceOnUse" width="12" height="12">
+            <circle cx="6" cy="6" r="1.4" fill="var(--nsw-pattern-stroke)"></circle>
+          </pattern>
+        </defs>
+        <circle cx="40" cy="40" r="34" fill="var(--nsw-pattern-base)"></circle>
+        <circle class="nsw-docs__pattern-swatch-overlay" cx="40" cy="40" r="34" fill="url(#nsw-pattern-swatch-light-dots)"></circle>
+      </svg>
+      <span class="sr-only">Dots pattern, light base colour</span>
+    </figure>
+    <figure class="nsw-docs__pattern-swatch" role="listitem" style="--nsw-pattern-base: var(--nsw-palette-green-04); --nsw-pattern-stroke: var(--nsw-palette-green-01);">
+      <svg viewBox="0 0 80 80" aria-hidden="true" focusable="false">
+        <defs>
+          <pattern id="nsw-pattern-swatch-light-grid-tight" patternUnits="userSpaceOnUse" width="8" height="8">
+            <path d="M4,0 l0,8 M0,4 l8,0" stroke="var(--nsw-pattern-stroke)" stroke-width="1.15" fill="none" shape-rendering="crispEdges"></path>
+          </pattern>
+        </defs>
+        <circle cx="40" cy="40" r="34" fill="var(--nsw-pattern-base)"></circle>
+        <circle class="nsw-docs__pattern-swatch-overlay" cx="40" cy="40" r="34" fill="url(#nsw-pattern-swatch-light-grid-tight)"></circle>
+      </svg>
+      <span class="sr-only">Grid tight pattern, light base colour</span>
+    </figure>
+    <figure class="nsw-docs__pattern-swatch" role="listitem" style="--nsw-pattern-base: var(--nsw-palette-yellow-04); --nsw-pattern-stroke: var(--nsw-palette-yellow-01);">
+      <svg viewBox="0 0 80 80" aria-hidden="true" focusable="false">
+        <defs>
+          <pattern id="nsw-pattern-swatch-light-grid-wide" patternUnits="userSpaceOnUse" width="12" height="12">
+            <path d="M6,0 l0,12 M0,6 l12,0" stroke="var(--nsw-pattern-stroke)" stroke-width="1.15" fill="none" shape-rendering="crispEdges"></path>
+          </pattern>
+        </defs>
+        <circle cx="40" cy="40" r="34" fill="var(--nsw-pattern-base)"></circle>
+        <circle class="nsw-docs__pattern-swatch-overlay" cx="40" cy="40" r="34" fill="url(#nsw-pattern-swatch-light-grid-wide)"></circle>
+      </svg>
+      <span class="sr-only">Grid wide pattern, light base colour</span>
+    </figure>
+    <figure class="nsw-docs__pattern-swatch" role="listitem" style="--nsw-pattern-base: var(--nsw-palette-purple-03); --nsw-pattern-stroke: var(--nsw-palette-purple-01);">
+      <svg viewBox="0 0 80 80" aria-hidden="true" focusable="false">
+        <defs>
+          <pattern id="nsw-pattern-swatch-light-zigzag" patternUnits="userSpaceOnUse" width="8" height="8">
+            <polyline points="0,0 4,4 0,8" stroke="var(--nsw-pattern-stroke)" stroke-width="1.15" fill="none" shape-rendering="crispEdges"></polyline>
+            <path d="M7,-1 l2,2 M7,9 l2,-2" stroke="var(--nsw-pattern-stroke)" stroke-width="1.15" fill="none" shape-rendering="crispEdges"></path>
+          </pattern>
+        </defs>
+        <circle cx="40" cy="40" r="34" fill="var(--nsw-pattern-base)"></circle>
+        <circle class="nsw-docs__pattern-swatch-overlay" cx="40" cy="40" r="34" fill="url(#nsw-pattern-swatch-light-zigzag)"></circle>
+      </svg>
+      <span class="sr-only">Zigzag pattern, light base colour</span>
+    </figure>
+  </div>
 </div>
-<p class="nsw-docs__pattern-swatch-note">Reference swatches only. Use similar pattern density and scale in production charts, then validate at 200 percent zoom and at mobile widths.</p>
+
+<div class="nsw-docs__pattern-swatch-row nsw-m-top-md">
+  <p class="nsw-docs__pattern-swatch-row-title">Dark base colours</p>
+  <div class="nsw-docs__pattern-swatch-grid" role="list" aria-label="Pattern scale reference swatches for dark base colours">
+    <figure class="nsw-docs__pattern-swatch" role="listitem" style="--nsw-pattern-base: var(--nsw-palette-red-02); --nsw-pattern-stroke: var(--nsw-white);">
+      <svg viewBox="0 0 80 80" aria-hidden="true" focusable="false">
+        <defs>
+          <pattern id="nsw-pattern-swatch-dark-diagonal" patternUnits="userSpaceOnUse" width="8" height="8">
+            <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-pattern-stroke)" stroke-width="1.15" fill="none" shape-rendering="crispEdges"></path>
+          </pattern>
+        </defs>
+        <circle cx="40" cy="40" r="34" fill="var(--nsw-pattern-base)"></circle>
+        <circle class="nsw-docs__pattern-swatch-overlay" cx="40" cy="40" r="34" fill="url(#nsw-pattern-swatch-dark-diagonal)"></circle>
+      </svg>
+      <span class="sr-only">Diagonal pattern, dark base colour</span>
+    </figure>
+    <figure class="nsw-docs__pattern-swatch" role="listitem" style="--nsw-pattern-base: var(--nsw-palette-blue-01); --nsw-pattern-stroke: var(--nsw-palette-blue-04);">
+      <svg viewBox="0 0 80 80" aria-hidden="true" focusable="false">
+        <defs>
+          <pattern id="nsw-pattern-swatch-dark-crosshatch" patternUnits="userSpaceOnUse" width="12" height="12">
+            <path d="M0,0 l12,12 M12,0 l-12,12" stroke="var(--nsw-pattern-stroke)" stroke-width="1.15" fill="none" shape-rendering="crispEdges"></path>
+          </pattern>
+        </defs>
+        <circle cx="40" cy="40" r="34" fill="var(--nsw-pattern-base)"></circle>
+        <circle class="nsw-docs__pattern-swatch-overlay" cx="40" cy="40" r="34" fill="url(#nsw-pattern-swatch-dark-crosshatch)"></circle>
+      </svg>
+      <span class="sr-only">Crosshatch pattern, dark base colour</span>
+    </figure>
+    <figure class="nsw-docs__pattern-swatch" role="listitem" style="--nsw-pattern-base: var(--nsw-palette-grey-01); --nsw-pattern-stroke: var(--nsw-palette-grey-04);">
+      <svg viewBox="0 0 80 80" aria-hidden="true" focusable="false">
+        <defs>
+          <pattern id="nsw-pattern-swatch-dark-dots" patternUnits="userSpaceOnUse" width="12" height="12">
+            <circle cx="6" cy="6" r="1.4" fill="var(--nsw-pattern-stroke)"></circle>
+          </pattern>
+        </defs>
+        <circle cx="40" cy="40" r="34" fill="var(--nsw-pattern-base)"></circle>
+        <circle class="nsw-docs__pattern-swatch-overlay" cx="40" cy="40" r="34" fill="url(#nsw-pattern-swatch-dark-dots)"></circle>
+      </svg>
+      <span class="sr-only">Dots pattern, dark base colour</span>
+    </figure>
+    <figure class="nsw-docs__pattern-swatch" role="listitem" style="--nsw-pattern-base: var(--nsw-palette-green-01); --nsw-pattern-stroke: var(--nsw-palette-green-04);">
+      <svg viewBox="0 0 80 80" aria-hidden="true" focusable="false">
+        <defs>
+          <pattern id="nsw-pattern-swatch-dark-grid-tight" patternUnits="userSpaceOnUse" width="8" height="8">
+            <path d="M4,0 l0,8 M0,4 l8,0" stroke="var(--nsw-pattern-stroke)" stroke-width="1.15" fill="none" shape-rendering="crispEdges"></path>
+          </pattern>
+        </defs>
+        <circle cx="40" cy="40" r="34" fill="var(--nsw-pattern-base)"></circle>
+        <circle class="nsw-docs__pattern-swatch-overlay" cx="40" cy="40" r="34" fill="url(#nsw-pattern-swatch-dark-grid-tight)"></circle>
+      </svg>
+      <span class="sr-only">Grid tight pattern, dark base colour</span>
+    </figure>
+    <figure class="nsw-docs__pattern-swatch" role="listitem" style="--nsw-pattern-base: var(--nsw-palette-yellow-01); --nsw-pattern-stroke: var(--nsw-palette-yellow-04);">
+      <svg viewBox="0 0 80 80" aria-hidden="true" focusable="false">
+        <defs>
+          <pattern id="nsw-pattern-swatch-dark-grid-wide" patternUnits="userSpaceOnUse" width="12" height="12">
+            <path d="M6,0 l0,12 M0,6 l12,0" stroke="var(--nsw-pattern-stroke)" stroke-width="1.15" fill="none" shape-rendering="crispEdges"></path>
+          </pattern>
+        </defs>
+        <circle cx="40" cy="40" r="34" fill="var(--nsw-pattern-base)"></circle>
+        <circle class="nsw-docs__pattern-swatch-overlay" cx="40" cy="40" r="34" fill="url(#nsw-pattern-swatch-dark-grid-wide)"></circle>
+      </svg>
+      <span class="sr-only">Grid wide pattern, dark base colour</span>
+    </figure>
+    <figure class="nsw-docs__pattern-swatch" role="listitem" style="--nsw-pattern-base: var(--nsw-palette-purple-01); --nsw-pattern-stroke: var(--nsw-palette-purple-04);">
+      <svg viewBox="0 0 80 80" aria-hidden="true" focusable="false">
+        <defs>
+          <pattern id="nsw-pattern-swatch-dark-zigzag" patternUnits="userSpaceOnUse" width="8" height="8">
+            <polyline points="0,0 4,4 0,8" stroke="var(--nsw-pattern-stroke)" stroke-width="1.15" fill="none" shape-rendering="crispEdges"></polyline>
+            <path d="M7,-1 l2,2 M7,9 l2,-2" stroke="var(--nsw-pattern-stroke)" stroke-width="1.15" fill="none" shape-rendering="crispEdges"></path>
+          </pattern>
+        </defs>
+        <circle cx="40" cy="40" r="34" fill="var(--nsw-pattern-base)"></circle>
+        <circle class="nsw-docs__pattern-swatch-overlay" cx="40" cy="40" r="34" fill="url(#nsw-pattern-swatch-dark-zigzag)"></circle>
+      </svg>
+      <span class="sr-only">Zigzag pattern, dark base colour</span>
+    </figure>
+  </div>
+</div>
+<p class="nsw-docs__pattern-swatch-note">Reference swatches only. Use similar pattern density and scale in production charts, then validate at 200 percent zoom and at mobile widths. Pattern stroke is chosen to maintain minimum 3 to 1 non-text contrast.</p>
 
 <h5>Implementation approach</h5>
 <ul>
   <li>DDS does not prescribe a specific charting library, SVG pattern library or reusable pattern utility for canvas charts.</li>
   <li>Use any implementation approach that produces clear patterns and meets accessibility requirements.</li>
-  <li>Examples on this page use pattern assets from <a href="https://patterns.helloyes.dev/">patterns.helloyes.dev</a>.</li>
+  <li>Examples on this page use pattern assets from <a target="_blank" href="https://patterns.helloyes.dev/">patterns.helloyes.dev</a>.</li>
 </ul>
 
 <h5>Usage in charts</h5>

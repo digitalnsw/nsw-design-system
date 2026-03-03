@@ -7,7 +7,7 @@ import {
   preloadSvgPattern,
   defaultNswInkIndex,
   getNswChartPalette,
-} from '../global/scripts/helpers/chart-utilities'
+} from './chart-utilities'
 
 /* global Chart */
 
@@ -475,6 +475,7 @@ function initChartsAndGraphs() {
           data: [15, 12, 18, 10],
           backgroundColor: (context) => getPatternFill(context, 'cross', palette.blue04, {
             svgUrl: '/assets/images/chart-pattern-cross-diagonal.svg',
+            size: 12,
           }),
         }],
       },

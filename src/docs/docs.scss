@@ -569,27 +569,28 @@ $header-height: 151px;
     gap: nsw.rem(16px);
   }
 
+  &__pattern-swatch-row-title {
+    margin: 0 0 nsw.rem(12px);
+    font-weight: var(--nsw-font-bold);
+  }
+
   &__pattern-swatch {
     margin: 0;
-    text-align: center;
-    font-size: var(--nsw-font-size-xxs-desktop);
-    color: var(--nsw-text-dark);
+    display: flex;
+    justify-content: center;
+    --nsw-pattern-base: var(--nsw-palette-blue-04);
+    --nsw-pattern-stroke: var(--nsw-palette-grey-02);
 
     svg {
       display: block;
       width: nsw.rem(84px);
       height: nsw.rem(84px);
-      margin: 0 auto nsw.rem(8px);
-    }
-
-    figcaption {
-      margin: 0;
-      font-weight: var(--nsw-font-bold);
+      margin: 0 auto;
     }
   }
 
   &__pattern-swatch-overlay {
-    opacity: 0.55;
+    opacity: 1;
   }
 
   &__pattern-swatch-note {
