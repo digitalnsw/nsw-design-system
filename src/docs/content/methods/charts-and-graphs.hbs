@@ -904,181 +904,157 @@ new Chart(ctx, {
 <p>These examples show common issues and better implementations. Use them to spot risks early and improve consistency.</p>
 
 <h3>Example 1: Truncated axis and unclear labels</h3>
-<div class="nsw-grid nsw-m-top-md">
-  <div class="nsw-col nsw-col-md-6">
-    <div class="nsw-callout">
-      <div class="nsw-callout__content">
-        <p class="nsw-h4">Avoid</p>
-        <p>Column chart starts at 90, labels are rotated and the title does not explain the timeframe.</p>
-        <div class="nsw-m-top-sm">
-          <canvas id="example1Bad" height="180" role="img" aria-label="Column chart with truncated axis and rotated labels."></canvas>
-        </div>
-        <ul>
-          <li>Exaggerates differences by truncating the axis.</li>
-          <li>Missing units and time period.</li>
-          <li>Long labels are hard to read.</li>
-        </ul>
-      </div>
+<div class="nsw-grid nsw-m-top-sm">
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--dont">Don't</div>
+    <p>Column chart starts at 90, labels are rotated and the title does not explain the timeframe.</p>
+    <div class="nsw-m-top-sm">
+      <canvas id="example1Bad" height="180" role="img" aria-label="Column chart with truncated axis and rotated labels."></canvas>
     </div>
+    <ul>
+      <li>Exaggerates differences by truncating the axis.</li>
+      <li>Missing units and time period.</li>
+      <li>Long labels are hard to read.</li>
+    </ul>
   </div>
-  <div class="nsw-col nsw-col-md-6">
-    <div class="nsw-callout">
-      <div class="nsw-callout__content">
-        <p class="nsw-h4">Better</p>
-        <p>Horizontal bar chart starts at zero with direct labels and a clear timeframe.</p>
-        <div class="nsw-m-top-sm">
-          <canvas id="example1Good" height="180" role="img" aria-label="Horizontal bar chart starting at zero with clear labels."></canvas>
-        </div>
-        <ul>
-          <li>Axis starts at zero or clearly indicates truncation.</li>
-          <li>Title includes timeframe and unit.</li>
-          <li>Labels are readable and aligned.</li>
-        </ul>
-      </div>
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--do">Do</div>
+    <p>Use a horizontal bar chart that starts at zero with direct labels and a clear timeframe.</p>
+    <div class="nsw-m-top-sm">
+      <canvas id="example1Good" height="180" role="img" aria-label="Horizontal bar chart starting at zero with clear labels."></canvas>
     </div>
+    <ul>
+      <li>Start the axis at zero or clearly indicate truncation.</li>
+      <li>Include timeframe and unit in the title.</li>
+      <li>Keep labels readable and aligned.</li>
+    </ul>
   </div>
 </div>
 
 <h3>Example 2: Colour-only differentiation</h3>
-<div class="nsw-grid nsw-m-top-md">
-  <div class="nsw-col nsw-col-md-6">
-    <div class="nsw-callout">
-      <div class="nsw-callout__content">
-        <p class="nsw-h4">Avoid</p>
-        <p>Stacked bar uses red and green only, with no labels and low contrast.</p>
-        <div class="nsw-m-top-sm">
-          <canvas id="example2Bad" height="180" role="img" aria-label="Stacked bar chart using red and green only with no labels."></canvas>
-        </div>
-        <ul>
-          <li>Relies on colour alone to communicate meaning.</li>
-          <li>Insufficient contrast for some users.</li>
-          <li>No direct labels or markers.</li>
-        </ul>
-      </div>
+<div class="nsw-grid nsw-m-top-sm">
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--dont">Don't</div>
+    <p>Stacked bar uses red and green only, with no labels and low contrast.</p>
+    <div class="nsw-m-top-sm">
+      <canvas id="example2Bad" height="180" role="img" aria-label="Stacked bar chart using red and green only with no labels."></canvas>
     </div>
+    <ul>
+      <li>Relies on colour alone to communicate meaning.</li>
+      <li>Insufficient contrast for some users.</li>
+      <li>No direct labels or markers.</li>
+    </ul>
   </div>
-  <div class="nsw-col nsw-col-md-6">
-    <div class="nsw-callout">
-      <div class="nsw-callout__content">
-        <p class="nsw-h4">Better</p>
-        <p>Stacked bar uses accessible colours, clear contrast, and a supporting table for labels.</p>
-        <div class="nsw-m-top-sm">
-          <canvas id="example2Good" height="180" role="img" aria-label="Stacked bar chart with accessible colours and clear labels."></canvas>
-        </div>
-        <ul>
-          <li>Labels are available in a table, not colour alone.</li>
-          <li>Contrast meets WCAG requirements.</li>
-          <li>Greyscale and colour-blind tests remain clear.</li>
-        </ul>
-        <div class="nsw-table-responsive nsw-m-top-sm">
-          <table class="nsw-table">
-            <caption class="sr-only">Resolution by quarter</caption>
-            <thead>
-              <tr>
-                <th scope="col">Quarter</th>
-                <th scope="col">Resolved on time</th>
-                <th scope="col">Resolved late</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">Q1</th>
-                <td>120</td>
-                <td>30</td>
-              </tr>
-              <tr>
-                <th scope="row">Q2</th>
-                <td>140</td>
-                <td>25</td>
-              </tr>
-              <tr>
-                <th scope="row">Q3</th>
-                <td>110</td>
-                <td>40</td>
-              </tr>
-              <tr>
-                <th scope="row">Q4</th>
-                <td>150</td>
-                <td>20</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--do">Do</div>
+    <p>Use accessible colours, clear contrast, and a supporting table for labels.</p>
+    <div class="nsw-m-top-sm">
+      <canvas id="example2Good" height="180" role="img" aria-label="Stacked bar chart with accessible colours and clear labels."></canvas>
+    </div>
+    <ul>
+      <li>Provide labels in a table, not colour alone.</li>
+      <li>Meet WCAG contrast requirements.</li>
+      <li>Keep the chart clear in greyscale and colour-blind testing.</li>
+    </ul>
+    <div class="nsw-table-responsive nsw-m-top-sm">
+      <table class="nsw-table">
+        <caption class="sr-only">Resolution by quarter</caption>
+        <thead>
+          <tr>
+            <th scope="col">Quarter</th>
+            <th scope="col">Resolved on time</th>
+            <th scope="col">Resolved late</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Q1</th>
+            <td>120</td>
+            <td>30</td>
+          </tr>
+          <tr>
+            <th scope="row">Q2</th>
+            <td>140</td>
+            <td>25</td>
+          </tr>
+          <tr>
+            <th scope="row">Q3</th>
+            <td>110</td>
+            <td>40</td>
+          </tr>
+          <tr>
+            <th scope="row">Q4</th>
+            <td>150</td>
+            <td>20</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
 
 <h3>Example 3: Tooltip-only values</h3>
-<div class="nsw-grid nsw-m-top-md">
-  <div class="nsw-col nsw-col-md-6">
-    <div class="nsw-callout">
-      <div class="nsw-callout__content">
-        <p class="nsw-h4">Avoid</p>
-        <p>Line chart shows values only on hover with no table or summary.</p>
-        <div class="nsw-m-top-sm">
-          <canvas id="example3Bad" height="180" role="img" aria-label="Line chart with values available only on hover."></canvas>
-        </div>
-        <ul>
-          <li>Keyboard and touch users cannot access key values.</li>
-          <li>No text alternative for screen readers.</li>
-          <li>Users cannot verify exact values.</li>
-        </ul>
-      </div>
+<div class="nsw-grid nsw-m-top-sm">
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--dont">Don't</div>
+    <p>Line chart shows values only on hover with no table or summary.</p>
+    <div class="nsw-m-top-sm">
+      <canvas id="example3Bad" height="180" role="img" aria-label="Line chart with values available only on hover."></canvas>
     </div>
+    <ul>
+      <li>Keyboard and touch users cannot access key values.</li>
+      <li>No text alternative for screen readers.</li>
+      <li>Users cannot verify exact values.</li>
+    </ul>
   </div>
-  <div class="nsw-col nsw-col-md-6">
-    <div class="nsw-callout">
-      <div class="nsw-callout__content">
-        <p class="nsw-h4">Better</p>
-        <p>Line chart includes a summary and a semantic table of the same data.</p>
-        <div class="nsw-m-top-sm">
-          <canvas id="example3Good" height="180" role="img" aria-label="Line chart with a summary and data table."></canvas>
-        </div>
-        <ul>
-          <li>Summary communicates the key insight.</li>
-          <li>Table provides precise values for all users.</li>
-          <li>Interactive elements remain keyboard accessible.</li>
-        </ul>
-        <p class="nsw-m-top-sm"><strong>Summary:</strong> Applications rose steadily from January to May, with a small drop in June.</p>
-        <div class="nsw-table-responsive nsw-m-top-sm">
-          <table>
-            <caption class="sr-only">Online applications by month</caption>
-            <thead>
-              <tr>
-                <th class="nsw-width-60" scope="col">Month</th>
-                <th scope="col">Applications</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">January</th>
-                <td>220</td>
-              </tr>
-              <tr>
-                <th scope="row">February</th>
-                <td>260</td>
-              </tr>
-              <tr>
-                <th scope="row">March</th>
-                <td>310</td>
-              </tr>
-              <tr>
-                <th scope="row">April</th>
-                <td>370</td>
-              </tr>
-              <tr>
-                <th scope="row">May</th>
-                <td>420</td>
-              </tr>
-              <tr>
-                <th scope="row">June</th>
-                <td>390</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--do">Do</div>
+    <p>Include a summary and a semantic table for the same data.</p>
+    <div class="nsw-m-top-sm">
+      <canvas id="example3Good" height="180" role="img" aria-label="Line chart with a summary and data table."></canvas>
+    </div>
+    <ul>
+      <li>Use summary text for the key insight.</li>
+      <li>Provide precise values in a table.</li>
+      <li>Keep interactions keyboard accessible.</li>
+    </ul>
+    <p class="nsw-m-top-sm"><strong>Summary:</strong> Applications rose steadily from January to May, with a small drop in June.</p>
+    <div class="nsw-table-responsive nsw-m-top-sm">
+      <table>
+        <caption class="sr-only">Online applications by month</caption>
+        <thead>
+          <tr>
+            <th class="nsw-width-60" scope="col">Month</th>
+            <th scope="col">Applications</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">January</th>
+            <td>220</td>
+          </tr>
+          <tr>
+            <th scope="row">February</th>
+            <td>260</td>
+          </tr>
+          <tr>
+            <th scope="row">March</th>
+            <td>310</td>
+          </tr>
+          <tr>
+            <th scope="row">April</th>
+            <td>370</td>
+          </tr>
+          <tr>
+            <th scope="row">May</th>
+            <td>420</td>
+          </tr>
+          <tr>
+            <th scope="row">June</th>
+            <td>390</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
