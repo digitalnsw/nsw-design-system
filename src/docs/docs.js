@@ -621,7 +621,7 @@ function initChartsAndGraphs() {
                 size: 12,
               })
             }
-            return [palette.blue02, palette.teal02, palette.purple02, palette.grey03][context.dataIndex]
+            return [palette.blue02, palette.red03, palette.purple02, palette.grey03][context.dataIndex]
           },
         }],
       },
@@ -672,43 +672,74 @@ function initChartsAndGraphs() {
     createChart('chartDistScatter', {
       type: 'scatter',
       data: {
-        datasets: [{
-          label: 'Submissions',
-          data: [
-            { x: 1, y: 12 },
-            { x: 2, y: 18 },
-            { x: 3, y: 22 },
-            { x: 4, y: 28 },
-            { x: 5, y: 31 },
-            { x: 6, y: 36 },
-            { x: 7, y: 40 },
-          ],
-          backgroundColor: palette.fuchsia02,
-          borderColor: palette.purple02,
-          borderWidth: 1,
-        }],
+        datasets: [
+          {
+            label: 'Metro service centres',
+            data: [
+              { x: 2.0, y: 5.0 },
+              { x: 3.0, y: 6.1 },
+              { x: 4.0, y: 7.0 },
+              { x: 4.5, y: 6.6 },
+              { x: 5.5, y: 8.1 },
+              { x: 6.0, y: 8.9 },
+              { x: 7.0, y: 10.1 },
+              { x: 7.5, y: 9.4 },
+              { x: 8.2, y: 11.2 },
+              { x: 9.0, y: 12.0 },
+              { x: 10.0, y: 13.3 },
+              { x: 10.8, y: 12.9 },
+              { x: 11.5, y: 14.2 },
+              { x: 12.2, y: 15.1 },
+              { x: 13.0, y: 16.3 },
+              { x: 14.0, y: 17.2 },
+              { x: 15.0, y: 18.6 },
+              { x: 16.0, y: 19.4 },
+            ],
+            backgroundColor: palette.blue02,
+            borderColor: palette.blue01,
+            borderWidth: 1,
+            pointRadius: 2,
+          },
+          {
+            label: 'Regional service centres',
+            data: [
+              { x: 5.0, y: 11.4 },
+              { x: 9.0, y: 15.1 },
+              { x: 12.0, y: 10.8 },
+            ],
+            backgroundColor: palette.red02,
+            borderColor: palette.red01,
+            borderWidth: 1,
+            pointStyle: 'rect',
+            pointRadius: 5,
+          },
+        ],
       },
       options: {
         plugins: {
           legend: {
-            display: false,
+            position: 'bottom',
           },
         },
         scales: {
           x: {
             title: {
               display: true,
-              text: 'Weeks active',
+              text: 'Weekly case volume',
             },
+            min: 0,
+            max: 18,
             ticks: {
-              stepSize: 1,
+              stepSize: 2,
             },
           },
           y: {
             title: {
               display: true,
-              text: 'Submissions',
+              text: 'Average processing time (days)',
             },
+            min: 4,
+            max: 22,
           },
         },
       },
@@ -725,7 +756,7 @@ function initChartsAndGraphs() {
             { x: 1, y: 3 }, { x: 2, y: 3 }, { x: 3, y: 3 }, { x: 4, y: 3 },
           ],
           pointStyle: 'rect',
-          pointRadius: 8,
+          pointRadius: 12,
           backgroundColor: [
             palette.blue04, palette.blue04, palette.blue03, palette.blue02,
             palette.blue04, palette.blue03, palette.blue02, palette.blue01,
