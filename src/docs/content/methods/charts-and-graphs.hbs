@@ -601,26 +601,41 @@ new Chart(ctx, {
 <h2 id="chart-anatomy">Chart anatomy</h2>
 <p>Every chart must include the core elements required for clarity and accurate interpretation.</p>
 
-<h3>Title</h3>
-<p>Provide a clear, descriptive title that states what the data represents. Include the time period and unit of measurement where relevant.</p>
-
-<h3>Axis labels</h3>
-<p>Clearly label all axes. Include units such as percentage, dollars or count, and time intervals where applicable. Avoid abbreviations that are not widely understood.</p>
-
-<h3>Data labels</h3>
-<p>Label datasets directly where possible. Direct labelling improves readability and reduces reliance on legends. For bar and column charts, including numerical labels can improve clarity and accessibility.</p>
-
-<h3>Legend</h3>
-<p>Use legends only when direct labelling is not practical. Legends must be clearly associated with the chart, not rely solely on colour, and remain readable at 200 percent zoom.</p>
-
-<h3>Scale</h3>
-<p>Use appropriate and consistent scales. Bar charts should start at zero unless there is a documented reason not to. Clearly indicate if axes are truncated.</p>
-
-<h3>Source and metadata</h3>
-<p>Include source information where relevant, such as data source, last updated date and definitions. If multiple charts share the same source, this may be placed at the container level.</p>
-
-<h3>Spacing and alignment</h3>
-<p>Maintain consistent spacing between data elements, labels and grid lines. When colours sit adjacent to each other, include sufficient negative space to maintain clarity.</p>
+<div class="nsw-grid nsw-m-top-sm">
+  <div class="nsw-col nsw-col-lg-12">
+    <div class="nsw-docs__chart-anatomy">
+      <p class="nsw-docs__chart-anatomy-note sr-only">Numbered markers on the chart map to the anatomy list.</p>
+      <div class="nsw-docs__chart-anatomy-stage">
+        <div class="nsw-docs__chart-anatomy-canvas">
+          <canvas id="chartAnatomy" role="img" aria-label="Annotated bar chart showing chart anatomy elements including title, axis labels, data labels, legend, scale and metadata."></canvas>
+        </div>
+        <p class="nsw-docs__chart-anatomy-meta">
+          <strong>Source:</strong> Service NSW request volumes.
+          <span class="nsw-docs__chart-anatomy-meta-divider" aria-hidden="true">|</span>
+          <strong>Last updated:</strong> 1 March 2026.
+        </p>
+        <span class="nsw-docs__chart-anatomy-pin nsw-docs__chart-anatomy-pin--title" aria-hidden="true">1</span>
+        <span class="nsw-docs__chart-anatomy-pin nsw-docs__chart-anatomy-pin--axis-labels" aria-hidden="true">2</span>
+        <span class="nsw-docs__chart-anatomy-pin nsw-docs__chart-anatomy-pin--data-labels" aria-hidden="true">3</span>
+        <span class="nsw-docs__chart-anatomy-pin nsw-docs__chart-anatomy-pin--legend" aria-hidden="true">4</span>
+        <span class="nsw-docs__chart-anatomy-pin nsw-docs__chart-anatomy-pin--scale" aria-hidden="true">5</span>
+        <span class="nsw-docs__chart-anatomy-pin nsw-docs__chart-anatomy-pin--source" aria-hidden="true">6</span>
+        <span class="nsw-docs__chart-anatomy-pin nsw-docs__chart-anatomy-pin--spacing" aria-hidden="true">7</span>
+      </div>
+    </div>
+  </div>
+  <div class="nsw-col nsw-col-lg-12">
+    <ol class="nsw-list nsw-list--8 nsw-docs__chart-anatomy-list">
+      <li><strong>Title:</strong> Use a descriptive title that states what the data represents, and include timeframe and unit where relevant.</li>
+      <li><strong>Axis labels:</strong> Label each axis clearly with unit and time interval. Avoid abbreviations that are not widely understood.</li>
+      <li><strong>Data labels:</strong> Label data directly where practical, especially for bar and column values.</li>
+      <li><strong>Legend:</strong> Use a legend only when direct labels are not practical. Keep it close to the chart and readable at 200 percent zoom.</li>
+      <li><strong>Scale:</strong> Use consistent scales. Start bar charts at zero unless you have a documented reason not to, and indicate any truncation.</li>
+      <li><strong>Source and metadata:</strong> Include source, last updated date, and any definitions required for interpretation.</li>
+      <li><strong>Spacing and alignment:</strong> Keep spacing consistent between bars, labels and grid lines so the chart remains scannable.</li>
+    </ol>
+  </div>
+</div>
 
 
 <h2 id="accessibility-requirements">Accessibility requirements</h2>

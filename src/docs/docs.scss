@@ -564,6 +564,102 @@ $header-height: 151px;
     align-items: flex-start;
   }
 
+  &__chart-anatomy {
+    padding: nsw.rem(12px);
+    background-color: var(--nsw-off-white);
+    border: 1px solid var(--nsw-grey-03);
+  }
+
+  &__chart-anatomy-stage {
+    position: relative;
+    background-color: var(--nsw-white);
+    border: 1px solid var(--nsw-grey-03);
+    padding: nsw.rem(8px) nsw.rem(8px) nsw.rem(10px);
+
+    .nsw-docs__chart-anatomy-canvas {
+      height: nsw.rem(300px);
+
+      @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+        height: nsw.rem(340px);
+      }
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__chart-anatomy-meta {
+    margin: nsw.rem(6px) nsw.rem(8px) 0;
+    color: var(--nsw-text-dark);
+
+    @include nsw.font-size('xxs');
+  }
+
+  &__chart-anatomy-meta-divider {
+    margin: 0 nsw.rem(6px);
+    color: var(--nsw-text-dark);
+  }
+
+  &__chart-anatomy-pin {
+    position: absolute;
+    width: nsw.rem(24px);
+    height: nsw.rem(24px);
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--nsw-white);
+    background-color: var(--nsw-brand-dark);
+    border: 2px solid var(--nsw-white);
+    box-shadow: 0 0 0 1px var(--nsw-brand-dark);
+    transform: translate(-50%, -50%);
+    font-weight: var(--nsw-font-bold);
+
+    @include nsw.font-size('xxs');
+  }
+
+  &__chart-anatomy-pin--title {
+    top: 6%;
+    left: 66%;
+  }
+
+  &__chart-anatomy-pin--axis-labels {
+    top: 44%;
+    left: 7%;
+  }
+
+  &__chart-anatomy-pin--data-labels {
+    top: 26%;
+    left: 57%;
+  }
+
+  &__chart-anatomy-pin--legend {
+    top: 82%;
+    left: 52%;
+  }
+
+  &__chart-anatomy-pin--scale {
+    top: 52%;
+    left: 17%;
+  }
+
+  &__chart-anatomy-pin--source {
+    top: 95%;
+    left: 15%;
+  }
+
+  &__chart-anatomy-pin--spacing {
+    top: 48%;
+    left: 69%;
+  }
+
+  &__chart-anatomy-list {
+    margin-top: nsw.rem(4px);
+  }
+
   &__pattern-swatch-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(nsw.rem(110px), 1fr));

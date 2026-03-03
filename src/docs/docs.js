@@ -42,6 +42,7 @@ function loadScriptOnce(src) {
 function initChartsAndGraphs() {
   const chartTargets = document.querySelectorAll(
     `#bar, #pie, #example1Bad, #example1Good, #example2Bad, #example2Good, #example3Bad, #example3Good,
+    #chartAnatomy,
     #chartCompBar, #chartCompBarHorizontal, #chartCompStacked,
     #chartTrendLine, #chartTrendArea, #chartTrendSparkline,
     #chartPropDoughnut, #chartPropPie, #chartPropStacked,
@@ -403,6 +404,90 @@ function initChartsAndGraphs() {
           },
         },
       },
+    })
+
+    const anatomyDataLabelsPlugin = {
+      id: 'anatomyDataLabelsPlugin',
+      afterDatasetsDraw: (chart) => {
+        const { ctx, data } = chart
+        ctx.save()
+        ctx.fillStyle = palette.grey01
+        ctx.font = "600 11px 'Public Sans'"
+        ctx.textAlign = 'center'
+        ctx.textBaseline = 'bottom'
+
+        data.datasets.forEach((dataset, datasetIndex) => {
+          const meta = chart.getDatasetMeta(datasetIndex)
+          if (!meta || meta.hidden) return
+          meta.data.forEach((point, pointIndex) => {
+            const value = dataset.data[pointIndex]
+            if (!Number.isFinite(value)) return
+            const position = point.tooltipPosition()
+            ctx.fillText(String(value), position.x, position.y - 4)
+          })
+        })
+
+        ctx.restore()
+      },
+    }
+
+    createChart('chartAnatomy', {
+      type: 'bar',
+      data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+        datasets: [
+          {
+            label: 'Resolved on time',
+            data: [410, 438, 467, 492, 525, 508],
+            backgroundColor: palette.blue02,
+          },
+          {
+            label: 'Resolved late',
+            data: [72, 68, 74, 70, 66, 61],
+            backgroundColor: palette.red02,
+          },
+        ],
+      },
+      options: {
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            position: 'bottom',
+          },
+          title: {
+            display: true,
+            text: 'Service request resolutions by month (Jan to Jun 2026, count)',
+          },
+          tooltip: {
+            callbacks: {
+              label: (context) => `${context.dataset.label}: ${context.formattedValue}`,
+            },
+          },
+        },
+        scales: {
+          x: {
+            title: {
+              display: true,
+              text: 'Month (2026)',
+            },
+            grid: {
+              display: false,
+            },
+          },
+          y: {
+            beginAtZero: true,
+            suggestedMax: 560,
+            ticks: {
+              stepSize: 100,
+            },
+            title: {
+              display: true,
+              text: 'Requests (count)',
+            },
+          },
+        },
+      },
+      plugins: [anatomyDataLabelsPlugin],
     })
 
     createChart('chartCompBar', {
