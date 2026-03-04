@@ -532,25 +532,57 @@ $header-height: 151px;
     }
 
     &--do,
-    &--dont,
+    &--dont {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-weight: var(--nsw-font-bold);
+      padding: nsw.rem(8px) nsw.rem(12px);
+      outline-offset: nsw.rem(-2px);
+      color: var(--nsw-text-dark);
+
+      @include nsw.font-size('md');
+
+      .nsw-material-icons {
+        position: absolute;
+        left: nsw.rem(12px);
+        font-size: nsw.rem(20px);
+      }
+
+      > span:last-child {
+        display: block;
+        width: 100%;
+      }
+    }
+
     &--heading {
       text-align: center;
       font-weight: var(--nsw-font-bold);
       padding: nsw.rem(8px) 0;
-      outline-offset: -4px;
+      outline-offset: nsw.rem(-2px);
       color: var(--nsw-text-dark);
 
       @include nsw.font-size('md');
     }
     
     &--do {
-      background-color: var(--nsw-off-white);
-      outline: 4px solid var(--nsw-palette-green-02);
+      background-color: var(--nsw-palette-green-04);
+      outline: nsw.rem(2px) solid var(--nsw-palette-green-02);
+
+      .nsw-material-icons {
+        color: var(--nsw-palette-green-02);
+      }
     }
     
     &--dont {
-      background-color: var(--nsw-off-white);
-      outline: 4px solid var(--nsw-palette-red-02);
+      background-color: var(--nsw-palette-red-04);
+      outline: nsw.rem(2px) solid var(--nsw-palette-red-02);
+
+      .nsw-material-icons {
+        color: var(--nsw-palette-red-02);
+      }
     }
 
     &--heading {
@@ -658,6 +690,37 @@ $header-height: 151px;
 
   &__chart-anatomy-list {
     margin-top: nsw.rem(4px);
+  }
+
+  &__review-checklist {
+    border: 1px solid var(--nsw-grey-03);
+    background-color: var(--nsw-off-white);
+    padding: nsw.rem(16px);
+
+    .nsw-form__checkbox-label {
+      margin-top: nsw.rem(12px);
+    }
+  }
+
+  &__review-checklist-header {
+    margin-bottom: nsw.rem(8px);
+    display: flex;
+    flex-direction: column;
+    gap: nsw.rem(12px);
+
+    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    p {
+      margin: 0;
+    }
+  }
+
+  &__review-checklist-help {
+    margin-top: nsw.rem(12px);
   }
 
   &__pattern-table-swatch {

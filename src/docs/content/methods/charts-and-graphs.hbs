@@ -79,7 +79,7 @@ meta-index: true
 
 <h2 id="match-the-chart-to-the-task">Match the chart to the task</h2>
 <p>Every chart must answer a clear question. Choose the chart type based on the relationship you need to show: comparison, trend, distribution or correlation.</p>
-<p>See <a href="https://dsia.atlassian.net/wiki/spaces/GDS/pages/1197604868/Design+System+documentation#Choosing-the-right-chart" target="_blank">Choosing the right chart</a> for deeper guidance.</p>
+<p>See <a href="#choosing-the-right-chart">Choosing the right chart</a> for deeper guidance.</p>
 
 <h3>Use charts and graphs when</h3>
 <ul>
@@ -1019,19 +1019,7 @@ new Chart(ctx, {
 <h3>Example 1: Truncated axis and unclear labels</h3>
 <div class="nsw-grid nsw-m-top-sm">
   <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
-    <div class="nsw-docs__guideline--dont">Don't</div>
-    <p>Column chart starts at 90, labels are rotated and the title does not explain the timeframe.</p>
-    <div class="nsw-m-top-sm">
-      <canvas id="example1Bad" height="180" role="img" aria-label="Column chart with truncated axis and rotated labels."></canvas>
-    </div>
-    <ul>
-      <li>Exaggerates differences by truncating the axis.</li>
-      <li>Missing units and time period.</li>
-      <li>Long labels are hard to read.</li>
-    </ul>
-  </div>
-  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
-    <div class="nsw-docs__guideline--do">Do</div>
+    <div class="nsw-docs__guideline--do"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span><span>Do</span></div>
     <p>Use a horizontal bar chart that starts at zero with direct labels and a clear timeframe.</p>
     <div class="nsw-m-top-sm">
       <canvas id="example1Good" height="180" role="img" aria-label="Horizontal bar chart starting at zero with clear labels."></canvas>
@@ -1042,24 +1030,24 @@ new Chart(ctx, {
       <li>Keep labels readable and aligned.</li>
     </ul>
   </div>
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--dont"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span><span>Don't</span></div>
+    <p>Column chart starts at 90, labels are rotated and the title does not explain the timeframe.</p>
+    <div class="nsw-m-top-sm">
+      <canvas id="example1Bad" height="180" role="img" aria-label="Column chart with truncated axis and rotated labels."></canvas>
+    </div>
+    <ul>
+      <li>Exaggerates differences by truncating the axis.</li>
+      <li>Missing units and time period.</li>
+      <li>Long labels are hard to read.</li>
+    </ul>
+  </div>
 </div>
 
 <h3>Example 2: Colour-only differentiation</h3>
 <div class="nsw-grid nsw-m-top-sm">
   <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
-    <div class="nsw-docs__guideline--dont">Don't</div>
-    <p>Stacked bar uses red and green only, with no labels and low contrast.</p>
-    <div class="nsw-m-top-sm">
-      <canvas id="example2Bad" height="180" role="img" aria-label="Stacked bar chart using red and green only with no labels."></canvas>
-    </div>
-    <ul>
-      <li>Relies on colour alone to communicate meaning.</li>
-      <li>Insufficient contrast for some users.</li>
-      <li>No direct labels or markers.</li>
-    </ul>
-  </div>
-  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
-    <div class="nsw-docs__guideline--do">Do</div>
+    <div class="nsw-docs__guideline--do"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span><span>Do</span></div>
     <p>Use accessible colours, clear contrast, and a supporting table for labels.</p>
     <div class="nsw-m-top-sm">
       <canvas id="example2Good" height="180" role="img" aria-label="Stacked bar chart with accessible colours and clear labels."></canvas>
@@ -1070,7 +1058,7 @@ new Chart(ctx, {
       <li>Keep the chart clear in greyscale and colour-blind testing.</li>
     </ul>
     <div class="nsw-table-responsive nsw-m-top-sm">
-      <table class="nsw-table">
+      <table>
         <caption class="sr-only">Resolution by quarter</caption>
         <thead>
           <tr>
@@ -1104,24 +1092,24 @@ new Chart(ctx, {
       </table>
     </div>
   </div>
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--dont"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span><span>Don't</span></div>
+    <p>Stacked bar uses red and green only, with no labels and low contrast.</p>
+    <div class="nsw-m-top-sm">
+      <canvas id="example2Bad" height="180" role="img" aria-label="Stacked bar chart using red and green only with no labels."></canvas>
+    </div>
+    <ul>
+      <li>Relies on colour alone to communicate meaning.</li>
+      <li>Insufficient contrast for some users.</li>
+      <li>No direct labels or markers.</li>
+    </ul>
+  </div>
 </div>
 
 <h3>Example 3: Tooltip-only values</h3>
 <div class="nsw-grid nsw-m-top-sm">
   <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
-    <div class="nsw-docs__guideline--dont">Don't</div>
-    <p>Line chart shows values only on hover with no table or summary.</p>
-    <div class="nsw-m-top-sm">
-      <canvas id="example3Bad" height="180" role="img" aria-label="Line chart with values available only on hover."></canvas>
-    </div>
-    <ul>
-      <li>Keyboard and touch users cannot access key values.</li>
-      <li>No text alternative for screen readers.</li>
-      <li>Users cannot verify exact values.</li>
-    </ul>
-  </div>
-  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
-    <div class="nsw-docs__guideline--do">Do</div>
+    <div class="nsw-docs__guideline--do"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span><span>Do</span></div>
     <p>Include a summary and a semantic table for the same data.</p>
     <div class="nsw-m-top-sm">
       <canvas id="example3Good" height="180" role="img" aria-label="Line chart with a summary and data table."></canvas>
@@ -1170,91 +1158,51 @@ new Chart(ctx, {
       </table>
     </div>
   </div>
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--dont"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span><span>Don't</span></div>
+    <p>Line chart shows values only on hover with no table or summary.</p>
+    <div class="nsw-m-top-sm">
+      <canvas id="example3Bad" height="180" role="img" aria-label="Line chart with values available only on hover."></canvas>
+    </div>
+    <ul>
+      <li>Keyboard and touch users cannot access key values.</li>
+      <li>No text alternative for screen readers.</li>
+      <li>Users cannot verify exact values.</li>
+    </ul>
+  </div>
 </div>
 
 
 <h2 id="review-checklist">Review checklist</h2>
-<ul>
-  <li>Does the chart match the user task?</li>
-  <li>Is it the simplest suitable type?</li>
-  <li>Is contrast sufficient?</li>
-  <li>Is colour supported by other markers?</li>
-  <li>Is there a semantic table?</li>
-  <li>Is keyboard access supported?</li>
-  <li>Does it work at 200 percent zoom?</li>
-  <li>Are units and source clearly stated?</li>
-</ul>
-<p>If any answer is no, revise before release.</p>
-
-
-<h2 id="code-implementation">Implementation examples</h2>
-<p class="intro">
-  The examples below show how to apply NSW palette and typography using Chart.js. Use them as a reference if you are using Chart.js or a similar library, and adapt the same principles for other tools.
-</p>
-<p>On this page, the live chart canvases are rendered from the docs script using the canvas IDs shown above.</p>
-
-<h3>Installing and usage (Chart.js)</h3>
-<p>Follow the <a href="https://www.chartjs.org/docs/latest/getting-started/installation.html" target="_blank">Chart.js installation instructions</a> in their documentation.</p>
-<p>Once installed, follow the normal <a href="https://www.chartjs.org/docs/latest/getting-started/usage.html" target="_blank">Chart.js usage instructions</a> and apply the settings below to align with NSW branding and accessibility expectations.</p>
-
-<h3>Theming with the NSW Government Palette</h3>
-<p>Use the design guidance above to decide which colours your chart or graph should use. You can access the full palette via JavaScript.</p>
-<p>First, set fonts and a default theme. These will be the default colours for your charts and graphs, but you can override them if needed.</p>
-
-{{#>_docs-example hidden="true" open="true" code="html"}}
-<script>
-const { getNswChartPalette } = window.NSWChartUtilities;
-const palette = getNswChartPalette();
-
-Chart.defaults.backgroundColor = [
-  palette.blue02,
-  palette.red02,
-  palette.yellow02,
-  palette.green02,
-  palette.purple02,
-  palette.orange02,
-  palette.fuchsia02,
-];
-Chart.defaults.font.family = "'Public Sans'";
-Chart.defaults.font.size = 14;
-Chart.defaults.font.weight = 400;
-<\/script>
-{{/_docs-example}}
-
-<h3>Setting colours for a specific graph</h3>
-<p>You can theme each chart or graph individually.</p>
-
-{{#>_docs-example hidden="true" open="true" code="html"}}
-<script>
-const { getNswChartPalette } = window.NSWChartUtilities;
-const palette = getNswChartPalette();
-
-const data = {
-  labels: [
-    'Item 1',
-    'Item 2',
-    'Item 3'
-  ],
-  datasets: [{
-    label: 'Example Dataset',
-    data: [300, 50, 100],
-    backgroundColor: [
-      palette.blue01,
-      palette.blue02,
-      palette.blue03
-    ],
-    hoverOffset: 4
-  }]
-};
-
-var myChart = new Chart(
-  document.getElementById('myChart'), {
-    type: 'pie',
-    data: data,
-  }
-);
-<\/script>
-{{/_docs-example}}
+<div class="nsw-docs__review-checklist nsw-m-top-sm nsw-p-md nsw-bg--brand-dark nsw-section--invert">
+  <div class="nsw-docs__review-checklist-header nsw-section--invert">
+    <p class="nsw-m-bottom-xs"><strong>Use this checklist before publishing:</strong></p>
+    <button type="button" class="nsw-button nsw-button--outline nsw-button--small js-review-checklist-copy" data-checklist-id="chart-review-checklist">
+      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
+      <span>Copy checklist</span>
+    </button>
+  </div>
+  <fieldset id="chart-review-checklist" class="nsw-form__fieldset" aria-describedby="review-checklist-help">
+    <legend class="sr-only">Charts and graphs review checklist</legend>
+    <input class="nsw-form__checkbox-input" type="checkbox" id="chart-review-check-1">
+    <label class="nsw-form__checkbox-label" for="chart-review-check-1">The chart matches the user task.</label>
+    <input class="nsw-form__checkbox-input" type="checkbox" id="chart-review-check-2">
+    <label class="nsw-form__checkbox-label" for="chart-review-check-2">It is the simplest suitable chart type.</label>
+    <input class="nsw-form__checkbox-input" type="checkbox" id="chart-review-check-3">
+    <label class="nsw-form__checkbox-label" for="chart-review-check-3">Contrast is sufficient.</label>
+    <input class="nsw-form__checkbox-input" type="checkbox" id="chart-review-check-4">
+    <label class="nsw-form__checkbox-label" for="chart-review-check-4">Colour is supported by labels, markers or patterns.</label>
+    <input class="nsw-form__checkbox-input" type="checkbox" id="chart-review-check-5">
+    <label class="nsw-form__checkbox-label" for="chart-review-check-5">A semantic data table is provided.</label>
+    <input class="nsw-form__checkbox-input" type="checkbox" id="chart-review-check-6">
+    <label class="nsw-form__checkbox-label" for="chart-review-check-6">Keyboard access is supported where interaction exists.</label>
+    <input class="nsw-form__checkbox-input" type="checkbox" id="chart-review-check-7">
+    <label class="nsw-form__checkbox-label" for="chart-review-check-7">The chart remains usable at 200 percent zoom.</label>
+    <input class="nsw-form__checkbox-input" type="checkbox" id="chart-review-check-8">
+    <label class="nsw-form__checkbox-label" for="chart-review-check-8">Units and data source are clearly stated.</label>
+  </fieldset>
+</div>
+<p id="review-checklist-help" class="nsw-docs__review-checklist-help">If any answer is no, revise before release.</p>
 
 <h2 id="full-docs">References</h2>
 <ul>
