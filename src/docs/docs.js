@@ -619,7 +619,7 @@ function initChartsAndGraphs() {
         datasets: [{
           label: 'Requests',
           data: [88, 74, 65],
-          backgroundColor: palette.blue02,
+          backgroundColor: palette.red01,
         }],
       },
       options: {
@@ -820,12 +820,12 @@ function initChartsAndGraphs() {
         datasets: [{
           label: 'Completed',
           data: [70, 55, 62],
-          backgroundColor: palette.blue02,
+          backgroundColor: palette.blue01,
         }, {
           label: 'In progress',
           data: [20, 30, 18],
-          backgroundColor: (context) => getPatternFill(context, 'vertical', palette.blue04, {
-            svgUrl: '/assets/images/chart-pattern-grid-wide.svg',
+          backgroundColor: (context) => getPatternFill(context, 'vertical', palette.fuchsia02, {
+            svgUrl: '/assets/images/chart-pattern-zigzag-chevron.svg',
             size: 12,
           }),
         }],
