@@ -737,7 +737,7 @@ function initChartsAndGraphs() {
         labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
         datasets: [{
           label: 'Trend',
-          data: [12, 18, 22, 20, 26, 24],
+          data: [12, 18, 22, 20, 25, 23],
           borderColor: palette.blue02,
           backgroundColor: palette.blue02,
           borderWidth: 2,

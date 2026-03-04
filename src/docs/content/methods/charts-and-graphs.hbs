@@ -3,6 +3,7 @@ title: Charts and graphs
 no-blank: true
 intro: Charts and graphs help users understand patterns, comparisons and trends in data. This guidance sets clear expectations for accessibility, clarity and consistency across NSW digital products, and is tool-agnostic.
 order: 30
+model: json/charts-and-graphs-principles.json
 meta-description: NSW Design System guidance for charts and graphs in digital products, aligned to NSW Brand Toolkit principles and accessibility requirements.
 meta-index: true
 ---
@@ -67,14 +68,14 @@ meta-index: true
 
 
 <h2 id="principles">Principles</h2>
-<ul>
-  <li>Match the chart to the task</li>
-  <li>Represent data honestly</li>
-  <li>Make charts accessible</li>
-  <li>Keep only what matters</li>
-  <li>Apply brand with structure</li>
-  <li>Configure tools to meet standards</li>
-</ul>
+<p>Use these principles as your pre-flight checklist before publishing any graph.</p>
+<div class="nsw-grid nsw-grid--spaced nsw-m-top-md">
+  {{#each model.principlesIconBlocks}}
+  <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+    {{>_content-block this}}
+  </div>
+  {{/each}}
+</div>
 
 
 <h2 id="match-the-chart-to-the-task">Match the chart to the task</h2>
