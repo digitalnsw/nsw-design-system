@@ -675,9 +675,8 @@ const getPatternInkAlpha = (baseColor, inkColor, style, options = {}) => {
     maxAlpha = 1,
   } = options
 
-  const styleKey = style === 'cross' ? 'zigzag' : style
-  const styleAlpha = Number.isFinite(baseAlphaByStyle[styleKey])
-    ? baseAlphaByStyle[styleKey]
+  const styleAlpha = Number.isFinite(baseAlphaByStyle[style])
+    ? baseAlphaByStyle[style]
     : baseAlphaByStyle.default
 
   const requiredAlpha = getMinimumAlphaForContrast(baseColor, inkColor, {

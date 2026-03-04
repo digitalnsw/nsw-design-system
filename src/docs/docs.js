@@ -198,17 +198,17 @@ function initChartsAndGraphs() {
       vertical: {},
       dots: {},
       zigzag: {},
+      cross: {},
     }
 
     const getPatternFill = (context, style, baseColor, overrides = {}) => {
       if (!context || !context.chart || !context.chart.ctx) return baseColor
-      const resolvedStyle = style === 'cross' ? 'zigzag' : style
-      const preset = patternPresets[resolvedStyle] || patternPresets.default
+      const preset = patternPresets[style] || patternPresets.default
       return createPattern(context, {
         ...patternPresets.default,
         ...preset,
         ...overrides,
-        style: resolvedStyle,
+        style,
         baseColor,
       }) || baseColor
     }
