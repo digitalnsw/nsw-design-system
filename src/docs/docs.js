@@ -159,6 +159,12 @@ function initChartsAndGraphs() {
 
     const palette = getNswChartPalette({ cssScope: document.body })
     const textDark = palette.grey01
+    const chartLayoutPadding = {
+      top: 4,
+      right: 4,
+      bottom: 4,
+      left: 6,
+    }
 
     Chart.defaults.font.family = "'Public Sans'"
     Chart.defaults.font.size = 12
@@ -173,14 +179,22 @@ function initChartsAndGraphs() {
     Chart.defaults.elements.bar.borderWidth = 0
     Chart.defaults.plugins.legend.labels.boxWidth = 18
     Chart.defaults.plugins.legend.labels.boxHeight = 18
-    Chart.defaults.plugins.legend.labels.padding = 12
+    Chart.defaults.plugins.legend.labels.padding = 10
     Chart.defaults.plugins.legend.labels.color = palette.grey01
     Chart.defaults.plugins.legend.labels.font = { size: 11, weight: 500 }
+    Chart.defaults.layout = Chart.defaults.layout || {}
+    Chart.defaults.layout.padding = chartLayoutPadding
     if (Chart.defaults.scale) {
       Chart.defaults.scale.grid.color = palette.grey03
       Chart.defaults.scale.grid.drawBorder = false
       Chart.defaults.scale.ticks.color = palette.grey02
       Chart.defaults.scale.ticks.font = { size: 11 }
+      Chart.defaults.scale.ticks.padding = 6
+      Chart.defaults.scale.title = Chart.defaults.scale.title || {}
+      Chart.defaults.scale.title.padding = {
+        top: 8,
+        bottom: 8,
+      }
     }
 
     const patternPresets = {
@@ -216,6 +230,8 @@ function initChartsAndGraphs() {
     const createChart = (canvasId, config) => {
       const canvas = document.getElementById(canvasId)
       if (!canvas) return
+      canvas.classList.add('nsw-docs__chart-canvas')
+      canvas.style.backgroundColor = '#FFFFFF'
       if (Chart.getChart && Chart.getChart(canvas)) return
       new Chart(canvas, config)
     }
@@ -274,7 +290,7 @@ function initChartsAndGraphs() {
             palette.grey02,
             palette.purple02,
             palette.orange02,
-            palette.yellow02,
+            palette.brown02,
           ],
         }],
       },
@@ -770,11 +786,11 @@ function initChartsAndGraphs() {
           data: [62, 24, 14],
           backgroundColor: (context) => {
             if (context.dataIndex === 1) {
-              return getPatternFill(context, 'diagonal', palette.purple03, {
+              return getPatternFill(context, 'diagonal', palette.orange02, {
                 svgUrl: '/assets/images/chart-pattern-diagonal-lines.svg',
               })
             }
-            return [palette.blue02, palette.purple03, palette.red02][context.dataIndex]
+            return [palette.blue02, palette.orange02, palette.red02][context.dataIndex]
           },
         }],
       },

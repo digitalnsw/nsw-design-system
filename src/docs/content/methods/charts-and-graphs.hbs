@@ -320,7 +320,7 @@ const ctx = document.getElementById('chartPropDoughnut');
 const { createPattern, defaultPatternSources } = window.NSWChartUtilities;
 const styles = getComputedStyle(document.body);
 const blue02 = styles.getPropertyValue('--nsw-palette-blue-02').trim();
-const yellow02 = styles.getPropertyValue('--nsw-palette-yellow-02').trim();
+const orange02 = styles.getPropertyValue('--nsw-palette-orange-02').trim();
 const red02 = styles.getPropertyValue('--nsw-palette-red-02').trim();
 
 new Chart(ctx, {
@@ -333,12 +333,12 @@ new Chart(ctx, {
         if (context.dataIndex === 1) {
           return createPattern(context, {
             style: 'diagonal',
-            baseColor: '--nsw-palette-yellow-02',
+            baseColor: '--nsw-palette-orange-02',
             patternSources: defaultPatternSources,
             size: 8
           });
         }
-        return [blue02, yellow02, red02][context.dataIndex];
+        return [blue02, orange02, red02][context.dataIndex];
       }
     }]
   },
@@ -657,135 +657,8 @@ new Chart(ctx, {
   <li>Use the swatches below as a scale reference for a medium density pattern in digital charts.</li>
 </ul>
 
-<h5>Light base colour examples</h5>
-<div class="nsw-section nsw-section--white nsw-block nsw-p-x-sm nsw-p-top-sm">
-  <div class="nsw-table nsw-table--valign-middle">
-    <table>
-      <thead>
-        <tr>
-          <th style="width: 12%">Swatch</th>
-          <th>Base colour value</th>
-          <th>Line colour value</th>
-          <th>Contrast ratio</th>
-          <th>Pattern type</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
-              <defs>
-                <pattern id="nsw-pattern-table-light-diagonal" patternUnits="userSpaceOnUse" width="8" height="8">
-                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-palette-red-02)" stroke-width="1.15" fill="none" shape-rendering="crispEdges"></path>
-                </pattern>
-              </defs>
-              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-red-04)"></circle>
-              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-table-light-diagonal)"></circle>
-            </svg>
-            <span class="sr-only">Light diagonal pattern swatch</span>
-          </td>
-          <td>Red 04 (<code>#FFE6EA</code>)</td>
-          <td>Red 02 (<code>#D7153A</code>)</td>
-          <td><code>4.38:1</code></td>
-          <td>Diagonal</td>
-        </tr>
-        <tr>
-          <td>
-            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
-              <defs>
-                <pattern id="nsw-pattern-table-light-crosshatch" patternUnits="userSpaceOnUse" width="12" height="12">
-                  <path d="M0,0 l12,12 M12,0 l-12,12" stroke="var(--nsw-palette-teal-02)" stroke-width="1.15" fill="none" shape-rendering="crispEdges"></path>
-                </pattern>
-              </defs>
-              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-teal-04)"></circle>
-              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-table-light-crosshatch)"></circle>
-            </svg>
-            <span class="sr-only">Light crosshatch pattern swatch</span>
-          </td>
-          <td>Teal 04 (<code>#D1EEEA</code>)</td>
-          <td>Teal 02 (<code>#2E808E</code>)</td>
-          <td><code>3.73:1</code></td>
-          <td>Crosshatch</td>
-        </tr>
-        <tr>
-          <td>
-            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
-              <defs>
-                <pattern id="nsw-pattern-table-light-dots" patternUnits="userSpaceOnUse" width="12" height="12">
-                  <circle cx="6" cy="6" r="1.4" fill="var(--nsw-palette-grey-01)"></circle>
-                </pattern>
-              </defs>
-              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-grey-03)"></circle>
-              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-table-light-dots)"></circle>
-            </svg>
-            <span class="sr-only">Light dots pattern swatch</span>
-          </td>
-          <td>Grey 03 (<code>#CDD3D6</code>)</td>
-          <td>Grey 01 (<code>#22272B</code>)</td>
-          <td><code>9.97:1</code></td>
-          <td>Dots</td>
-        </tr>
-        <tr>
-          <td>
-            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
-              <defs>
-                <pattern id="nsw-pattern-table-light-grid-tight" patternUnits="userSpaceOnUse" width="8" height="8">
-                  <path d="M4,0 l0,8 M0,4 l8,0" stroke="var(--nsw-palette-green-01)" stroke-width="1.15" fill="none" shape-rendering="crispEdges"></path>
-                </pattern>
-              </defs>
-              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-green-04)"></circle>
-              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-table-light-grid-tight)"></circle>
-            </svg>
-            <span class="sr-only">Light grid tight pattern swatch</span>
-          </td>
-          <td>Green 04 (<code>#DBFADF</code>)</td>
-          <td>Green 01 (<code>#004000</code>)</td>
-          <td><code>10.82:1</code></td>
-          <td>Grid (tight)</td>
-        </tr>
-        <tr>
-          <td>
-            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
-              <defs>
-                <pattern id="nsw-pattern-table-light-grid-wide" patternUnits="userSpaceOnUse" width="12" height="12">
-                  <path d="M6,0 l0,12 M0,6 l12,0" stroke="var(--nsw-palette-yellow-01)" stroke-width="1.15" fill="none" shape-rendering="crispEdges"></path>
-                </pattern>
-              </defs>
-              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-yellow-04)"></circle>
-              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-table-light-grid-wide)"></circle>
-            </svg>
-            <span class="sr-only">Light grid wide pattern swatch</span>
-          </td>
-          <td>Yellow 04 (<code>#FFF4CF</code>)</td>
-          <td>Yellow 01 (<code>#694800</code>)</td>
-          <td><code>7.55:1</code></td>
-          <td>Grid (wide)</td>
-        </tr>
-        <tr>
-          <td>
-            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
-              <defs>
-                <pattern id="nsw-pattern-table-light-zigzag" patternUnits="userSpaceOnUse" width="8" height="8">
-                  <polyline points="0,0 4,4 0,8" stroke="var(--nsw-palette-purple-01)" stroke-width="1.15" fill="none" shape-rendering="crispEdges"></polyline>
-                  <path d="M7,-1 l2,2 M7,9 l2,-2" stroke="var(--nsw-palette-purple-01)" stroke-width="1.15" fill="none" shape-rendering="crispEdges"></path>
-                </pattern>
-              </defs>
-              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-purple-03)"></circle>
-              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-table-light-zigzag)"></circle>
-            </svg>
-            <span class="sr-only">Light zigzag pattern swatch</span>
-          </td>
-          <td>Purple 03 (<code>#CEBFFF</code>)</td>
-          <td>Purple 01 (<code>#441170</code>)</td>
-          <td><code>8.03:1</code></td>
-          <td>Zigzag</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-
-<h5>Dark base colour examples</h5>
+<h5>Compliant pattern examples on white background</h5>
+<p>Use darker chart marks on <code>--nsw-brand-white</code> and apply pattern strokes with strong contrast so marks remain distinct for all users.</p>
 <div class="nsw-section nsw-section--white nsw-block nsw-p-x-sm nsw-p-top-sm">
   <div class="nsw-table nsw-table--valign-middle">
     <table>
@@ -971,14 +844,564 @@ new Chart(ctx, {
 <h2 id="brand-and-typography">Brand and typography</h2>
 <p>Apply NSW brand colour and typography with care. Prioritise contrast and readability, and do not use the palette decoratively.</p>
 
-<h3>Selecting colour for your charts</h3>
-<p>Apply colours from your main colour theme first. If additional colours are required, they can be drawn from the wider colour palette.</p>
+<h3>Background colour</h3>
+<p>Charts must use a white background (<code>#FFFFFF</code> or <code>--nsw-brand-white</code>) to ensure sufficient contrast for data marks.</p>
 
-<h3>Applying brand with structure</h3>
+<h3>Selecting colour for your charts</h3>
+<p>Data marks must have a minimum contrast ratio of <code>3:1</code> against the background surface.</p>
+<p>Use the approved options below, combining plain and patterned swatches in one row for each valid chart-mark colour.</p>
+<div class="nsw-section nsw-section--white nsw-block nsw-p-x-sm nsw-p-top-sm">
+  <div class="nsw-table nsw-table--valign-middle">
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 12%">Swatch (plain)</th>
+          <th>Colour value</th>
+          <th>Contrast ratio on white</th>
+          <th style="width: 12%">Swatch (pattern)</th>
+          <th>Base + line values</th>
+          <th>Contrast ratio between base and pattern</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-blue-01)"></circle>
+            </svg>
+            <span class="sr-only">Blue 01 plain swatch</span>
+          </td>
+          <td>Blue 01 (<code>#002664</code>)</td>
+          <td><code>14.37:1</code></td>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <defs>
+                <pattern id="nsw-pattern-select-blue-01" patternUnits="userSpaceOnUse" width="8" height="8">
+                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-palette-blue-04)" stroke-width="1.15" fill="none" shape-rendering="crispEdges"></path>
+                </pattern>
+              </defs>
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-blue-01)"></circle>
+              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-blue-01)"></circle>
+            </svg>
+            <span class="sr-only">Blue 01 patterned swatch</span>
+          </td>
+          <td>Base: Blue 01 (<code>#002664</code>)<br>Line: Blue 04 (<code>#CBEDFD</code>)</td>
+          <td><code>11.68:1</code></td>
+        </tr>
+        <tr>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-blue-02)"></circle>
+            </svg>
+            <span class="sr-only">Blue 02 plain swatch</span>
+          </td>
+          <td>Blue 02 (<code>#146CFD</code>)</td>
+          <td><code>4.57:1</code></td>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <defs>
+                <pattern id="nsw-pattern-select-blue-02" patternUnits="userSpaceOnUse" width="8" height="8">
+                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-palette-blue-04)" stroke-width="1.15" fill="none" shape-rendering="crispEdges"></path>
+                </pattern>
+              </defs>
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-blue-02)"></circle>
+              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-blue-02)"></circle>
+            </svg>
+            <span class="sr-only">Blue 02 patterned swatch</span>
+          </td>
+          <td>Base: Blue 02 (<code>#146CFD</code>)<br>Line: Blue 04 (<code>#CBEDFD</code>)</td>
+          <td><code>3.72:1</code></td>
+        </tr>
+        <tr>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-purple-01)"></circle>
+            </svg>
+            <span class="sr-only">Purple 01 plain swatch</span>
+          </td>
+          <td>Purple 01 (<code>#441170</code>)</td>
+          <td><code>13.46:1</code></td>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <defs>
+                <pattern id="nsw-pattern-select-purple-01" patternUnits="userSpaceOnUse" width="8" height="8">
+                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-palette-purple-04)" stroke-width="1.15" fill="none" shape-rendering="crispEdges"></path>
+                </pattern>
+              </defs>
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-purple-01)"></circle>
+              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-purple-01)"></circle>
+            </svg>
+            <span class="sr-only">Purple 01 patterned swatch</span>
+          </td>
+          <td>Base: Purple 01 (<code>#441170</code>)<br>Line: Purple 04 (<code>#E6E1FD</code>)</td>
+          <td><code>10.61:1</code></td>
+        </tr>
+        <tr>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-purple-02)"></circle>
+            </svg>
+            <span class="sr-only">Purple 02 plain swatch</span>
+          </td>
+          <td>Purple 02 (<code>#8055F1</code>)</td>
+          <td><code>4.68:1</code></td>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <defs>
+                <pattern id="nsw-pattern-select-purple-02" patternUnits="userSpaceOnUse" width="8" height="8">
+                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-palette-purple-04)" stroke-width="1.15" fill="none" shape-rendering="crispEdges"></path>
+                </pattern>
+              </defs>
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-purple-02)"></circle>
+              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-purple-02)"></circle>
+            </svg>
+            <span class="sr-only">Purple 02 patterned swatch</span>
+          </td>
+          <td>Base: Purple 02 (<code>#8055F1</code>)<br>Line: Purple 04 (<code>#E6E1FD</code>)</td>
+          <td><code>3.69:1</code></td>
+        </tr>
+        <tr>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-fuchsia-01)"></circle>
+            </svg>
+            <span class="sr-only">Fuchsia 01 plain swatch</span>
+          </td>
+          <td>Fuchsia 01 (<code>#65004D</code>)</td>
+          <td><code>12.65:1</code></td>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <defs>
+                <pattern id="nsw-pattern-select-fuchsia-01" patternUnits="userSpaceOnUse" width="8" height="8">
+                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-palette-fuchsia-04)" stroke-width="1.15" fill="none" shape-rendering="crispEdges"></path>
+                </pattern>
+              </defs>
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-fuchsia-01)"></circle>
+              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-fuchsia-01)"></circle>
+            </svg>
+            <span class="sr-only">Fuchsia 01 patterned swatch</span>
+          </td>
+          <td>Base: Fuchsia 01 (<code>#65004D</code>)<br>Line: Fuchsia 04 (<code>#FDDEF2</code>)</td>
+          <td><code>10.18:1</code></td>
+        </tr>
+        <tr>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-fuchsia-02)"></circle>
+            </svg>
+            <span class="sr-only">Fuchsia 02 plain swatch</span>
+          </td>
+          <td>Fuchsia 02 (<code>#D912AE</code>)</td>
+          <td><code>4.52:1</code></td>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <defs>
+                <pattern id="nsw-pattern-select-fuchsia-02" patternUnits="userSpaceOnUse" width="8" height="8">
+                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-palette-fuchsia-04)" stroke-width="1.15" fill="none" shape-rendering="crispEdges"></path>
+                </pattern>
+              </defs>
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-fuchsia-02)"></circle>
+              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-fuchsia-02)"></circle>
+            </svg>
+            <span class="sr-only">Fuchsia 02 patterned swatch</span>
+          </td>
+          <td>Base: Fuchsia 02 (<code>#D912AE</code>)<br>Line: Fuchsia 04 (<code>#FDDEF2</code>)</td>
+          <td><code>3.64:1</code></td>
+        </tr>
+        <tr>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-red-01)"></circle>
+            </svg>
+            <span class="sr-only">Red 01 plain swatch</span>
+          </td>
+          <td>Red 01 (<code>#630019</code>)</td>
+          <td><code>13.60:1</code></td>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <defs>
+                <pattern id="nsw-pattern-select-red-01" patternUnits="userSpaceOnUse" width="8" height="8">
+                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-palette-red-04)" stroke-width="1.15" fill="none" shape-rendering="crispEdges"></path>
+                </pattern>
+              </defs>
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-red-01)"></circle>
+              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-red-01)"></circle>
+            </svg>
+            <span class="sr-only">Red 01 patterned swatch</span>
+          </td>
+          <td>Base: Red 01 (<code>#630019</code>)<br>Line: Red 04 (<code>#FFE6EA</code>)</td>
+          <td><code>11.50:1</code></td>
+        </tr>
+        <tr>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-red-02)"></circle>
+            </svg>
+            <span class="sr-only">Red 02 plain swatch</span>
+          </td>
+          <td>Red 02 (<code>#D7153A</code>)</td>
+          <td><code>5.18:1</code></td>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <defs>
+                <pattern id="nsw-pattern-select-red-02" patternUnits="userSpaceOnUse" width="8" height="8">
+                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-palette-red-04)" stroke-width="1.15" fill="none" shape-rendering="crispEdges"></path>
+                </pattern>
+              </defs>
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-red-02)"></circle>
+              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-red-02)"></circle>
+            </svg>
+            <span class="sr-only">Red 02 patterned swatch</span>
+          </td>
+          <td>Base: Red 02 (<code>#D7153A</code>)<br>Line: Red 04 (<code>#FFE6EA</code>)</td>
+          <td><code>4.38:1</code></td>
+        </tr>
+        <tr>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-orange-01)"></circle>
+            </svg>
+            <span class="sr-only">Orange 01 plain swatch</span>
+          </td>
+          <td>Orange 01 (<code>#941B00</code>)</td>
+          <td><code>8.69:1</code></td>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <defs>
+                <pattern id="nsw-pattern-select-orange-01" patternUnits="userSpaceOnUse" width="8" height="8">
+                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-palette-orange-04)" stroke-width="1.15" fill="none" shape-rendering="crispEdges"></path>
+                </pattern>
+              </defs>
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-orange-01)"></circle>
+              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-orange-01)"></circle>
+            </svg>
+            <span class="sr-only">Orange 01 patterned swatch</span>
+          </td>
+          <td>Base: Orange 01 (<code>#941B00</code>)<br>Line: Orange 04 (<code>#FDEDDF</code>)</td>
+          <td><code>7.60:1</code></td>
+        </tr>
+        <tr>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-orange-02)"></circle>
+            </svg>
+            <span class="sr-only">Orange 02 plain swatch</span>
+          </td>
+          <td>Orange 02 (<code>#F3631B</code>)</td>
+          <td><code>3.18:1</code></td>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <defs>
+                <pattern id="nsw-pattern-select-orange-02" patternUnits="userSpaceOnUse" width="8" height="8">
+                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-white)" stroke-width="1.15" fill="none" shape-rendering="crispEdges"></path>
+                </pattern>
+              </defs>
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-orange-02)"></circle>
+              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-orange-02)"></circle>
+            </svg>
+            <span class="sr-only">Orange 02 patterned swatch</span>
+          </td>
+          <td>Base: Orange 02 (<code>#F3631B</code>)<br>Line: White (<code>#FFFFFF</code>)</td>
+          <td><code>3.18:1</code></td>
+        </tr>
+        <tr>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-brown-01)"></circle>
+            </svg>
+            <span class="sr-only">Brown 01 plain swatch</span>
+          </td>
+          <td>Brown 01 (<code>#523719</code>)</td>
+          <td><code>10.94:1</code></td>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <defs>
+                <pattern id="nsw-pattern-select-brown-01" patternUnits="userSpaceOnUse" width="8" height="8">
+                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-palette-brown-04)" stroke-width="1.15" fill="none" shape-rendering="crispEdges"></path>
+                </pattern>
+              </defs>
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-brown-01)"></circle>
+              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-brown-01)"></circle>
+            </svg>
+            <span class="sr-only">Brown 01 patterned swatch</span>
+          </td>
+          <td>Base: Brown 01 (<code>#523719</code>)<br>Line: Brown 04 (<code>#EDE3D7</code>)</td>
+          <td><code>8.63:1</code></td>
+        </tr>
+        <tr>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-brown-02)"></circle>
+            </svg>
+            <span class="sr-only">Brown 02 plain swatch</span>
+          </td>
+          <td>Brown 02 (<code>#B68D5D</code>)</td>
+          <td><code>3.02:1</code></td>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <defs>
+                <pattern id="nsw-pattern-select-brown-02" patternUnits="userSpaceOnUse" width="8" height="8">
+                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-palette-brown-01)" stroke-width="1.15" fill="none" shape-rendering="crispEdges"></path>
+                </pattern>
+              </defs>
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-brown-02)"></circle>
+              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-brown-02)"></circle>
+            </svg>
+            <span class="sr-only">Brown 02 patterned swatch</span>
+          </td>
+          <td>Base: Brown 02 (<code>#B68D5D</code>)<br>Line: Brown 01 (<code>#523719</code>)</td>
+          <td><code>3.62:1</code></td>
+        </tr>
+        <tr>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-yellow-01)"></circle>
+            </svg>
+            <span class="sr-only">Yellow 01 plain swatch</span>
+          </td>
+          <td>Yellow 01 (<code>#694800</code>)</td>
+          <td><code>8.31:1</code></td>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <defs>
+                <pattern id="nsw-pattern-select-yellow-01" patternUnits="userSpaceOnUse" width="8" height="8">
+                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-palette-yellow-04)" stroke-width="1.15" fill="none" shape-rendering="crispEdges"></path>
+                </pattern>
+              </defs>
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-yellow-01)"></circle>
+              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-yellow-01)"></circle>
+            </svg>
+            <span class="sr-only">Yellow 01 patterned swatch</span>
+          </td>
+          <td>Base: Yellow 01 (<code>#694800</code>)<br>Line: Yellow 04 (<code>#FFF4CF</code>)</td>
+          <td><code>7.55:1</code></td>
+        </tr>
+        <tr>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-green-01)"></circle>
+            </svg>
+            <span class="sr-only">Green 01 plain swatch</span>
+          </td>
+          <td>Green 01 (<code>#004000</code>)</td>
+          <td><code>12.12:1</code></td>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <defs>
+                <pattern id="nsw-pattern-select-green-01" patternUnits="userSpaceOnUse" width="8" height="8">
+                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-palette-green-04)" stroke-width="1.15" fill="none" shape-rendering="crispEdges"></path>
+                </pattern>
+              </defs>
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-green-01)"></circle>
+              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-green-01)"></circle>
+            </svg>
+            <span class="sr-only">Green 01 patterned swatch</span>
+          </td>
+          <td>Base: Green 01 (<code>#004000</code>)<br>Line: Green 04 (<code>#DBFADF</code>)</td>
+          <td><code>10.82:1</code></td>
+        </tr>
+        <tr>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-green-02)"></circle>
+            </svg>
+            <span class="sr-only">Green 02 plain swatch</span>
+          </td>
+          <td>Green 02 (<code>#00AA45</code>)</td>
+          <td><code>3.07:1</code></td>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <defs>
+                <pattern id="nsw-pattern-select-green-02" patternUnits="userSpaceOnUse" width="8" height="8">
+                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-palette-green-01)" stroke-width="1.15" fill="none" shape-rendering="crispEdges"></path>
+                </pattern>
+              </defs>
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-green-02)"></circle>
+              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-green-02)"></circle>
+            </svg>
+            <span class="sr-only">Green 02 patterned swatch</span>
+          </td>
+          <td>Base: Green 02 (<code>#00AA45</code>)<br>Line: Green 01 (<code>#004000</code>)</td>
+          <td><code>3.94:1</code></td>
+        </tr>
+        <tr>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-teal-01)"></circle>
+            </svg>
+            <span class="sr-only">Teal 01 plain swatch</span>
+          </td>
+          <td>Teal 01 (<code>#0B3F47</code>)</td>
+          <td><code>11.56:1</code></td>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <defs>
+                <pattern id="nsw-pattern-select-teal-01" patternUnits="userSpaceOnUse" width="8" height="8">
+                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-palette-teal-04)" stroke-width="1.15" fill="none" shape-rendering="crispEdges"></path>
+                </pattern>
+              </defs>
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-teal-01)"></circle>
+              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-teal-01)"></circle>
+            </svg>
+            <span class="sr-only">Teal 01 patterned swatch</span>
+          </td>
+          <td>Base: Teal 01 (<code>#0B3F47</code>)<br>Line: Teal 04 (<code>#D1EEEA</code>)</td>
+          <td><code>9.43:1</code></td>
+        </tr>
+        <tr>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-teal-02)"></circle>
+            </svg>
+            <span class="sr-only">Teal 02 plain swatch</span>
+          </td>
+          <td>Teal 02 (<code>#2E808E</code>)</td>
+          <td><code>4.57:1</code></td>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <defs>
+                <pattern id="nsw-pattern-select-teal-02" patternUnits="userSpaceOnUse" width="8" height="8">
+                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-palette-teal-04)" stroke-width="1.15" fill="none" shape-rendering="crispEdges"></path>
+                </pattern>
+              </defs>
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-teal-02)"></circle>
+              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-teal-02)"></circle>
+            </svg>
+            <span class="sr-only">Teal 02 patterned swatch</span>
+          </td>
+          <td>Base: Teal 02 (<code>#2E808E</code>)<br>Line: Teal 04 (<code>#D1EEEA</code>)</td>
+          <td><code>3.73:1</code></td>
+        </tr>
+        <tr>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-grey-01)"></circle>
+            </svg>
+            <span class="sr-only">Grey 01 plain swatch</span>
+          </td>
+          <td>Grey 01 (<code>#22272B</code>)</td>
+          <td><code>15.07:1</code></td>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <defs>
+                <pattern id="nsw-pattern-select-grey-01" patternUnits="userSpaceOnUse" width="8" height="8">
+                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-palette-grey-04)" stroke-width="1.15" fill="none" shape-rendering="crispEdges"></path>
+                </pattern>
+              </defs>
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-grey-01)"></circle>
+              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-grey-01)"></circle>
+            </svg>
+            <span class="sr-only">Grey 01 patterned swatch</span>
+          </td>
+          <td>Base: Grey 01 (<code>#22272B</code>)<br>Line: Grey 04 (<code>#EBEBEB</code>)</td>
+          <td><code>12.64:1</code></td>
+        </tr>
+        <tr>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-grey-02)"></circle>
+            </svg>
+            <span class="sr-only">Grey 02 plain swatch</span>
+          </td>
+          <td>Grey 02 (<code>#495054</code>)</td>
+          <td><code>8.21:1</code></td>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <defs>
+                <pattern id="nsw-pattern-select-grey-02" patternUnits="userSpaceOnUse" width="8" height="8">
+                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-palette-grey-04)" stroke-width="1.15" fill="none" shape-rendering="crispEdges"></path>
+                </pattern>
+              </defs>
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-grey-02)"></circle>
+              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-grey-02)"></circle>
+            </svg>
+            <span class="sr-only">Grey 02 patterned swatch</span>
+          </td>
+          <td>Base: Grey 02 (<code>#495054</code>)<br>Line: Grey 04 (<code>#EBEBEB</code>)</td>
+          <td><code>6.88:1</code></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<p><strong>Excluded:</strong> Yellow 02 (<code>#FAAF05</code>) is <code>1.88:1</code> on white and is not compliant for chart marks.</p>
+<p class="nsw-docs__pattern-swatch-note">In a few 02 rows, the line colour uses White or 01 to keep pattern contrast at or above <code>3:1</code>.</p>
 <ul>
-  <li>Use NSW Brand colour and typography intentionally.</li>
-  <li>Use consistent shade rows across series to improve readability.</li>
-  <li>Keep only what matters by limiting the number of data series.</li>
+  <li>Start with 01 and 02 from your main colour theme.</li>
+  <li>If more colours are needed, add additional colour columns using 01 first, then 02.</li>
+  <li>For a series of charts, keep category colours consistent across all charts so users can follow the story.</li>
+</ul>
+
+<h3>Colour-blind safety</h3>
+<p>The most common type of colour vision deficiency is red-green confusion. Avoid placing these colour pairs next to each other:</p>
+<ul>
+  <li>Green and brown</li>
+  <li>Red and brown</li>
+  <li>Purple and blue</li>
+</ul>
+
+<h3>Using patterns</h3>
+<p>Colour is usually the primary cue for distinguishing datasets, but charts must remain understandable when users cannot rely on colour alone.</p>
+<ul>
+  <li>Use two colours per pattern: a fill and a pattern stroke.</li>
+  <li>Keep at least <code>3:1</code> contrast between fill and pattern stroke.</li>
+  <li>Use colours from the same palette column where possible (for example, Blue 03 fill with Blue 01 pattern).</li>
+  <li>Use patterns sparingly to avoid visual noise; keep to 4 to 5 patterns maximum in one chart.</li>
+  <li>Avoid thin lines or dense patterns; use stroke widths between 1.5 and 2px.</li>
+  <li>Avoid complicated image-based patterns.</li>
+</ul>
+
+<h3>Typography in charts</h3>
+<p>Text should help users quickly understand the data without competing with visual elements. Use NSW Government primary typeface, Public Sans. If this is not possible, use Arial as fallback.</p>
+
+<h4>Minimum text sizes</h4>
+<div class="nsw-table nsw-table--valign-middle">
+  <table>
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Size</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Chart title</td>
+        <td>16 to 18px</td>
+      </tr>
+      <tr>
+        <td>Axis labels</td>
+        <td>12 to 14px</td>
+      </tr>
+      <tr>
+        <td>Dataset labels</td>
+        <td>12 to 14px</td>
+      </tr>
+      <tr>
+        <td>Data labels</td>
+        <td>12px minimum</td>
+      </tr>
+      <tr>
+        <td>Notes or sources</td>
+        <td>11 to 12px</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p>Avoid text smaller than 12px in digital charts.</p>
+
+<h4>Text alignment</h4>
+<ul>
+  <li>Y-axis labels: right aligned</li>
+  <li>X-axis labels: centred</li>
+  <li>Dataset labels: placed close to the data they describe</li>
+  <li>Direct labelling is preferred over legends where possible.</li>
+</ul>
+
+<h4>Number formatting</h4>
+<ul>
+  <li>Use commas for thousands (for example, <code>1,000</code>).</li>
+  <li>Avoid spaces between digits, as screen readers may read them incorrectly.</li>
+  <li>Use consistent decimal precision.</li>
 </ul>
 
 
@@ -1169,7 +1592,7 @@ new Chart(ctx, {
     <input class="nsw-form__checkbox-input" type="checkbox" id="chart-review-check-2">
     <label class="nsw-form__checkbox-label" for="chart-review-check-2">It is the simplest suitable chart type.</label>
     <input class="nsw-form__checkbox-input" type="checkbox" id="chart-review-check-3">
-    <label class="nsw-form__checkbox-label" for="chart-review-check-3">Contrast is sufficient.</label>
+    <label class="nsw-form__checkbox-label" for="chart-review-check-3">Chart marks meet contrast requirements on a white background.</label>
     <input class="nsw-form__checkbox-input" type="checkbox" id="chart-review-check-4">
     <label class="nsw-form__checkbox-label" for="chart-review-check-4">Colour is supported by labels, markers or patterns.</label>
     <input class="nsw-form__checkbox-input" type="checkbox" id="chart-review-check-5">
