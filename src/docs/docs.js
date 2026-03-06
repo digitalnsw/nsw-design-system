@@ -176,7 +176,7 @@ function initReviewChecklistCopy() {
 
 function initChartsAndGraphs() {
   const chartTargets = document.querySelectorAll(
-    `#bar, #pie, #example1Bad, #example1Good, #example2Bad, #example2Good, #example3Bad, #example3Good,
+    `#bar, #pie, #example1Bad, #example1Good, #example2Bad, #example2Good, #example3Bad, #example3Good, #example4Bad, #example4Good,
     #chartAnatomy,
     #chartCompBar, #chartCompBarHorizontal, #chartCompStacked,
     #chartTrendLine, #chartTrendArea, #chartTrendSparkline,
@@ -279,7 +279,24 @@ function initChartsAndGraphs() {
       canvas.classList.add('nsw-docs__chart-canvas')
       canvas.style.backgroundColor = canvas.dataset.chartBg === 'none' ? 'transparent' : '#FFFFFF'
       if (Chart.getChart && Chart.getChart(canvas)) return
-      new Chart(canvas, config)
+
+      const options = config && config.options ? config.options : {}
+      const plugins = options.plugins || {}
+      const legend = plugins.legend || {}
+
+      new Chart(canvas, {
+        ...config,
+        options: {
+          ...options,
+          plugins: {
+            ...plugins,
+            legend: {
+              ...legend,
+              onClick: () => {},
+            },
+          },
+        },
+      })
     }
 
     createChart('bar', {
@@ -557,6 +574,63 @@ function initChartsAndGraphs() {
               display: true,
               text: 'Applications',
             },
+          },
+        },
+      },
+    })
+
+    createChart('example4Bad', {
+      type: 'pie',
+      data: {
+        labels: [
+          'Category A', 'Category B', 'Category C', 'Category D',
+          'Category E', 'Category F', 'Category G', 'Category H',
+          'Category I', 'Category J', 'Category K', 'Category L',
+        ],
+        datasets: [{
+          data: [12, 11, 10, 9, 8, 8, 7, 7, 6, 6, 5, 4],
+          backgroundColor: [
+            palette.blue02, palette.red02, palette.green02, palette.orange02,
+            palette.purple02, palette.teal02, palette.fuchsia02, palette.brown02,
+            palette.blue03, palette.red03, palette.green03, palette.orange03,
+          ],
+        }],
+      },
+      options: {
+        plugins: {
+          legend: {
+            position: 'bottom',
+          },
+        },
+      },
+    })
+
+    createChart('example4Good', {
+      type: 'pie',
+      data: {
+        labels: ['Digital', 'Phone', 'In person', 'Mail'],
+        datasets: [{
+          data: [46, 28, 17, 9],
+          backgroundColor: (context) => {
+            if (context.dataIndex === 3) {
+              return getPatternFill(context, 'dots', palette.blue01, {
+                svgUrl: '/assets/images/chart-pattern-dot-grid.svg',
+                size: 12,
+                inkColor: '#FFFFFF',
+              })
+            }
+            return [palette.red01, palette.red02, palette.blue02, palette.blue01][context.dataIndex]
+          },
+        }],
+      },
+      options: {
+        plugins: {
+          legend: {
+            position: 'bottom',
+          },
+          title: {
+            display: true,
+            text: 'Service channel share (Q2 2025, percent)',
           },
         },
       },
@@ -900,7 +974,7 @@ function initChartsAndGraphs() {
                 svgUrl: '/assets/images/chart-pattern-diagonal-lines.svg',
               })
             }
-            return [palette.blue02, palette.orange02, palette.red02][context.dataIndex]
+            return [palette.purple01, palette.orange02, palette.red02][context.dataIndex]
           },
         }],
       },
@@ -928,7 +1002,7 @@ function initChartsAndGraphs() {
           data: [40, 25, 20, 15],
           backgroundColor: (context) => {
             if (context.dataIndex === 1) {
-              return getPatternFill(context, 'diagonal', aboriginalPalette.emberRed, {
+              return getPatternFill(context, 'diagonal', aboriginalPalette.billabongBlue, {
                 svgUrl: '/assets/images/chart-pattern-diagonal-lines.svg',
                 size: 8,
                 inkColor: '#FFFFFF',
@@ -942,8 +1016,8 @@ function initChartsAndGraphs() {
               })
             }
             return [
-              aboriginalPalette.firewoodBrown,
-              aboriginalPalette.emberRed,
+              aboriginalPalette.orangeOchre,
+              aboriginalPalette.billabongBlue,
               aboriginalPalette.marshlandLime,
               aboriginalPalette.bushPlum,
             ][context.dataIndex]
