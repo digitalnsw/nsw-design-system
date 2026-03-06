@@ -613,13 +613,13 @@ function initChartsAndGraphs() {
           data: [46, 28, 17, 9],
           backgroundColor: (context) => {
             if (context.dataIndex === 3) {
-              return getPatternFill(context, 'dots', palette.blue01, {
+              return getPatternFill(context, 'dots', palette.purple01, {
                 svgUrl: '/assets/images/chart-pattern-dot-grid.svg',
                 size: 12,
                 inkColor: '#FFFFFF',
               })
             }
-            return [palette.red01, palette.red02, palette.blue02, palette.blue01][context.dataIndex]
+            return [palette.red01, palette.red02, palette.purple02, palette.purple01][context.dataIndex]
           },
         }],
       },
