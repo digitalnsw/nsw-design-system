@@ -7,6 +7,7 @@ import {
   preloadSvgPattern,
   defaultNswInkIndex,
   getNswChartPalette,
+  getNswAboriginalChartPalette,
 } from './chart-utilities'
 
 /* global Chart */
@@ -198,6 +199,7 @@ function initChartsAndGraphs() {
     ])
 
     const palette = getNswChartPalette({ cssScope: document.body })
+    const aboriginalPalette = getNswAboriginalChartPalette({ cssScope: document.body })
     const textDark = palette.grey01
     const chartLayoutPadding = {
       top: 12,
@@ -660,13 +662,23 @@ function initChartsAndGraphs() {
           legend: {
             display: false,
           },
+          title: {
+            display: true,
+            text: 'Visits by channel (Q1 2025, count)',
+          },
         },
         scales: {
+          x: {
+            title: {
+              display: true,
+              text: 'Channel',
+            },
+          },
           y: {
             beginAtZero: true,
             title: {
               display: true,
-              text: 'Visits',
+              text: 'Visits (count)',
             },
           },
         },
@@ -689,13 +701,23 @@ function initChartsAndGraphs() {
           legend: {
             display: false,
           },
+          title: {
+            display: true,
+            text: 'Requests by service region (Q1 2025, count)',
+          },
         },
         scales: {
           x: {
             beginAtZero: true,
             title: {
               display: true,
-              text: 'Requests',
+              text: 'Requests (count)',
+            },
+          },
+          y: {
+            title: {
+              display: true,
+              text: 'Service region',
             },
           },
         },
@@ -722,15 +744,27 @@ function initChartsAndGraphs() {
         scales: {
           x: {
             stacked: true,
+            title: {
+              display: true,
+              text: 'Quarter (2025)',
+            },
           },
           y: {
             stacked: true,
             beginAtZero: true,
+            title: {
+              display: true,
+              text: 'Cases (count)',
+            },
           },
         },
         plugins: {
           legend: {
             position: 'bottom',
+          },
+          title: {
+            display: true,
+            text: 'Target status by quarter (2025, count)',
           },
         },
       },
@@ -754,10 +788,24 @@ function initChartsAndGraphs() {
           legend: {
             display: false,
           },
+          title: {
+            display: true,
+            text: 'Applications by month (Jan to Jun 2025, count)',
+          },
         },
         scales: {
+          x: {
+            title: {
+              display: true,
+              text: 'Month (2025)',
+            },
+          },
           y: {
             beginAtZero: true,
+            title: {
+              display: true,
+              text: 'Applications (count)',
+            },
           },
         },
       },
@@ -782,10 +830,24 @@ function initChartsAndGraphs() {
           legend: {
             display: false,
           },
+          title: {
+            display: true,
+            text: 'Total users by month (Jan to Jun 2025, count)',
+          },
         },
         scales: {
+          x: {
+            title: {
+              display: true,
+              text: 'Month (2025)',
+            },
+          },
           y: {
             beginAtZero: true,
+            title: {
+              display: true,
+              text: 'Users (count)',
+            },
           },
         },
       },
@@ -809,6 +871,10 @@ function initChartsAndGraphs() {
         plugins: {
           legend: {
             display: false,
+          },
+          title: {
+            display: true,
+            text: 'Monthly trend sparkline (Jan to Jun 2025)',
           },
         },
         scales: {
@@ -846,6 +912,10 @@ function initChartsAndGraphs() {
           legend: {
             position: 'bottom',
           },
+          title: {
+            display: true,
+            text: 'Application status share (Q2 2025, percent)',
+          },
         },
       },
     })
@@ -857,13 +927,26 @@ function initChartsAndGraphs() {
         datasets: [{
           data: [40, 25, 20, 15],
           backgroundColor: (context) => {
-            if (context.dataIndex === 3) {
-              return getPatternFill(context, 'dots', palette.grey03, {
-                svgUrl: '/assets/images/chart-pattern-dot-grid.svg',
-                size: 12,
+            if (context.dataIndex === 1) {
+              return getPatternFill(context, 'diagonal', aboriginalPalette.emberRed, {
+                svgUrl: '/assets/images/chart-pattern-diagonal-lines.svg',
+                size: 8,
+                inkColor: '#FFFFFF',
               })
             }
-            return [palette.blue02, palette.fuchsia01, palette.purple02, palette.grey03][context.dataIndex]
+            if (context.dataIndex === 3) {
+              return getPatternFill(context, 'dots', aboriginalPalette.bushPlum, {
+                svgUrl: '/assets/images/chart-pattern-dot-grid.svg',
+                size: 12,
+                inkColor: '#FFFFFF',
+              })
+            }
+            return [
+              aboriginalPalette.firewoodBrown,
+              aboriginalPalette.emberRed,
+              aboriginalPalette.marshlandLime,
+              aboriginalPalette.bushPlum,
+            ][context.dataIndex]
           },
         }],
       },
@@ -873,6 +956,10 @@ function initChartsAndGraphs() {
         plugins: {
           legend: {
             position: 'bottom',
+          },
+          title: {
+            display: true,
+            text: 'Channel share (Q2 2025, Aboriginal palette example)',
           },
         },
       },
@@ -901,15 +988,27 @@ function initChartsAndGraphs() {
         scales: {
           x: {
             stacked: true,
+            title: {
+              display: true,
+              text: 'Program',
+            },
           },
           y: {
             stacked: true,
             beginAtZero: true,
+            title: {
+              display: true,
+              text: 'Status (count)',
+            },
           },
         },
         plugins: {
           legend: {
             position: 'bottom',
+          },
+          title: {
+            display: true,
+            text: 'Program completion status (Q2 2025, count)',
           },
         },
       },
@@ -974,6 +1073,10 @@ function initChartsAndGraphs() {
           legend: {
             position: 'bottom',
           },
+          title: {
+            display: true,
+            text: 'Case volume vs processing time (Q2 2025)',
+          },
         },
         scales: {
           x: {
@@ -1033,6 +1136,10 @@ function initChartsAndGraphs() {
         plugins: {
           legend: {
             display: false,
+          },
+          title: {
+            display: true,
+            text: 'Service demand intensity by weekday and service type',
           },
         },
         scales: {
