@@ -207,7 +207,7 @@ function initChartsAndGraphs() {
     }
 
     Chart.defaults.font.family = "'Public Sans'"
-    Chart.defaults.font.size = 12
+    Chart.defaults.font.size = 13
     Chart.defaults.font.weight = 400
     Chart.defaults.color = textDark
     Chart.defaults.borderColor = palette.grey03
@@ -221,16 +221,20 @@ function initChartsAndGraphs() {
     Chart.defaults.plugins.legend.labels.boxHeight = 18
     Chart.defaults.plugins.legend.labels.padding = 10
     Chart.defaults.plugins.legend.labels.color = palette.grey01
-    Chart.defaults.plugins.legend.labels.font = { size: 11, weight: 500 }
+    Chart.defaults.plugins.legend.labels.font = { size: 12, weight: 500 }
+    Chart.defaults.plugins.title = Chart.defaults.plugins.title || {}
+    Chart.defaults.plugins.title.font = { size: 16, weight: 600 }
+    Chart.defaults.plugins.legend.onClick = () => {}
     Chart.defaults.layout = Chart.defaults.layout || {}
     Chart.defaults.layout.padding = chartLayoutPadding
     if (Chart.defaults.scale) {
       Chart.defaults.scale.grid.color = palette.grey03
       Chart.defaults.scale.grid.drawBorder = false
       Chart.defaults.scale.ticks.color = palette.grey02
-      Chart.defaults.scale.ticks.font = { size: 11 }
+      Chart.defaults.scale.ticks.font = { size: 12 }
       Chart.defaults.scale.ticks.padding = 6
       Chart.defaults.scale.title = Chart.defaults.scale.title || {}
+      Chart.defaults.scale.title.font = { size: 13, weight: 500 }
       Chart.defaults.scale.title.padding = {
         top: 8,
         bottom: 8,
@@ -271,7 +275,7 @@ function initChartsAndGraphs() {
       const canvas = document.getElementById(canvasId)
       if (!canvas) return
       canvas.classList.add('nsw-docs__chart-canvas')
-      canvas.style.backgroundColor = '#FFFFFF'
+      canvas.style.backgroundColor = canvas.dataset.chartBg === 'none' ? 'transparent' : '#FFFFFF'
       if (Chart.getChart && Chart.getChart(canvas)) return
       new Chart(canvas, config)
     }
@@ -455,13 +459,13 @@ function initChartsAndGraphs() {
         datasets: [{
           label: 'Resolved on time',
           data: [120, 140, 110, 150],
-          backgroundColor: palette.blue02,
-          borderColor: palette.grey01,
+          backgroundColor: palette.purple01,
+          borderColor: palette.purple01,
           borderWidth: 1,
         }, {
           label: 'Resolved late',
           data: [30, 25, 40, 20],
-          backgroundColor: (context) => getPatternFill(context, 'vertical', palette.blue04, {
+          backgroundColor: (context) => getPatternFill(context, 'vertical', palette.purple02, {
             svgUrl: '/assets/images/chart-pattern-diagonal-lines.svg',
           }),
           borderColor: palette.grey03,
@@ -594,7 +598,7 @@ function initChartsAndGraphs() {
           {
             label: 'Resolved late',
             data: [72, 68, 74, 70, 66, 61],
-            backgroundColor: palette.red02,
+            backgroundColor: palette.fuchsia02,
           },
         ],
       },
@@ -648,6 +652,7 @@ function initChartsAndGraphs() {
           label: 'Visits',
           data: [320, 210, 140],
           backgroundColor: palette.purple02,
+          barThickness: 72,
         }],
       },
       options: {
@@ -705,10 +710,12 @@ function initChartsAndGraphs() {
           label: 'Met target',
           data: [45, 52, 48, 60],
           backgroundColor: palette.blue02,
+          barThickness: 72,
         }, {
           label: 'Below target',
           data: [15, 12, 18, 10],
           backgroundColor: palette.blue01,
+          barThickness: 72,
         }],
       },
       options: {
@@ -856,7 +863,7 @@ function initChartsAndGraphs() {
                 size: 12,
               })
             }
-            return [palette.blue02, palette.green01, palette.purple02, palette.grey03][context.dataIndex]
+            return [palette.blue02, palette.fuchsia01, palette.purple02, palette.grey03][context.dataIndex]
           },
         }],
       },
@@ -879,6 +886,7 @@ function initChartsAndGraphs() {
           label: 'Completed',
           data: [70, 55, 62],
           backgroundColor: palette.blue01,
+          barThickness: 72,
         }, {
           label: 'In progress',
           data: [20, 30, 18],
@@ -886,6 +894,7 @@ function initChartsAndGraphs() {
             svgUrl: '/assets/images/chart-pattern-zigzag-chevron.svg',
             size: 12,
           }),
+          barThickness: 72,
         }],
       },
       options: {
@@ -932,27 +941,35 @@ function initChartsAndGraphs() {
               { x: 15.0, y: 18.6 },
               { x: 16.0, y: 19.4 },
             ],
-            backgroundColor: palette.blue02,
-            borderColor: palette.blue01,
-            borderWidth: 1,
-            pointRadius: 2,
+            backgroundColor: palette.red01,
+            borderColor: palette.red01,
+            borderWidth: 1.5,
+            pointRadius: 4,
           },
           {
             label: 'Regional service centres',
             data: [
               { x: 5.0, y: 11.4 },
-              { x: 9.0, y: 15.1 },
+              { x: 9.0, y: 16.1 },
               { x: 12.0, y: 10.8 },
             ],
-            backgroundColor: palette.red02,
-            borderColor: palette.red01,
-            borderWidth: 1,
-            pointStyle: 'rect',
-            pointRadius: 5,
+            backgroundColor: palette.fuchsia02,
+            borderColor: palette.fuchsia01,
+            borderWidth: 1.5,
+            pointRadius: 8,
+            pointStyle: 'triangle',
           },
         ],
       },
       options: {
+        layout: {
+          padding: {
+            left: 12,
+            right: 8,
+            top: 8,
+            bottom: 4,
+          },
+        },
         plugins: {
           legend: {
             position: 'bottom',
@@ -994,16 +1011,25 @@ function initChartsAndGraphs() {
           ],
           pointStyle: 'rect',
           pointRadius: 12,
+          pointHoverRadius: 12,
           backgroundColor: [
-            palette.blue04, palette.blue04, palette.blue03, palette.blue02,
-            palette.blue04, palette.blue03, palette.blue02, palette.blue01,
-            palette.blue03, palette.blue02, palette.blue01, palette.blue01,
+            palette.purple04, palette.purple04, palette.purple03, palette.purple02,
+            palette.purple04, palette.purple03, palette.purple02, palette.purple01,
+            palette.purple03, palette.purple02, palette.purple01, palette.purple01,
           ],
-          borderColor: palette.grey01,
+          borderColor: palette.purple01,
           borderWidth: 1,
         }],
       },
       options: {
+        layout: {
+          padding: {
+            left: 14,
+            right: 8,
+            top: 4,
+            bottom: 4,
+          },
+        },
         plugins: {
           legend: {
             display: false,
