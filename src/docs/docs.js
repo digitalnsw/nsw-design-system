@@ -200,10 +200,10 @@ function initChartsAndGraphs() {
     const palette = getNswChartPalette({ cssScope: document.body })
     const textDark = palette.grey01
     const chartLayoutPadding = {
-      top: 4,
-      right: 4,
-      bottom: 4,
-      left: 6,
+      top: 12,
+      right: 12,
+      bottom: 12,
+      left: 12,
     }
 
     Chart.defaults.font.family = "'Public Sans'"
@@ -647,7 +647,7 @@ function initChartsAndGraphs() {
         datasets: [{
           label: 'Visits',
           data: [320, 210, 140],
-          backgroundColor: palette.blue02,
+          backgroundColor: palette.purple02,
         }],
       },
       options: {
@@ -708,7 +708,7 @@ function initChartsAndGraphs() {
         }, {
           label: 'Below target',
           data: [15, 12, 18, 10],
-          backgroundColor: palette.grey02,
+          backgroundColor: palette.blue01,
         }],
       },
       options: {
@@ -823,7 +823,7 @@ function initChartsAndGraphs() {
           data: [62, 24, 14],
           backgroundColor: (context) => {
             if (context.dataIndex === 1) {
-              return getPatternFill(context, 'diagonal', palette.orange02, {
+              return getPatternFill(context, 'diagonal', palette.purple02, {
                 svgUrl: '/assets/images/chart-pattern-diagonal-lines.svg',
               })
             }
@@ -832,6 +832,9 @@ function initChartsAndGraphs() {
         }],
       },
       options: {
+        aspectRatio: 1.4,
+        radius: '86%',
+        cutout: '58%',
         plugins: {
           legend: {
             position: 'bottom',
@@ -853,11 +856,13 @@ function initChartsAndGraphs() {
                 size: 12,
               })
             }
-            return [palette.blue02, palette.red03, palette.purple02, palette.grey03][context.dataIndex]
+            return [palette.blue02, palette.green01, palette.purple02, palette.grey03][context.dataIndex]
           },
         }],
       },
       options: {
+        aspectRatio: 1.4,
+        radius: '86%',
         plugins: {
           legend: {
             position: 'bottom',

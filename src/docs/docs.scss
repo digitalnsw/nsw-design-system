@@ -590,15 +590,27 @@ $header-height: 151px;
   }
 
   &__list-stack {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    display: grid;
+    gap: nsw.rem(8px);
+    width: 100%;
+
+    p {
+      margin: 0;
+    }
+  }
+
+  &__chart-example {
+    margin-top: nsw.rem(8px);
+  }
+
+  &__chart-example-details {
+    margin-top: nsw.rem(8px);
   }
 
   &__chart-canvas {
     display: block;
     width: 100%;
-    background-color: var(--nsw-white);
+    background-color: var(--nsw-brand-white);
   }
 
   &__chart-anatomy {
@@ -737,6 +749,11 @@ $header-height: 151px;
 
   &__pattern-swatch-note {
     margin-top: nsw.rem(12px);
+  }
+
+  &__chart-colour-table {
+    width: 100%;
+    table-layout: fixed;
   }
 
   .nsw-in-page-alert + h1 {
