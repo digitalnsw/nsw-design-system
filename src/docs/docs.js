@@ -1146,6 +1146,10 @@ function initChartsAndGraphs() {
         plugins: {
           legend: {
             position: 'bottom',
+            labels: {
+              usePointStyle: true,
+              pointStyleWidth: 16,
+            },
           },
           title: {
             display: true,
