@@ -25,16 +25,56 @@ function loadScriptOnce(src) {
         resolve()
         return
       }
-      existing.addEventListener('load', () => resolve(), { once: true })
-      existing.addEventListener('error', () => reject(new Error(`Failed to load ${src}`)), { once: true })
+
+      if (existing.dataset && existing.dataset.loaded === 'true') {
+        resolve()
+        return
+      }
+      if (existing.dataset && existing.dataset.error === 'true') {
+        reject(new Error(`Failed to load ${src}`))
+        return
+      }
+      if (existing.readyState === 'complete') {
+        reject(new Error(`Failed to load ${src}`))
+        return
+      }
+
+      let timeoutId = null
+      const handleLoad = () => {
+        if (timeoutId) clearTimeout(timeoutId)
+        resolve()
+      }
+      const handleError = () => {
+        if (timeoutId) clearTimeout(timeoutId)
+        reject(new Error(`Failed to load ${src}`))
+      }
+
+      existing.addEventListener('load', handleLoad, { once: true })
+      existing.addEventListener('error', handleError, { once: true })
+
+      timeoutId = window.setTimeout(() => {
+        existing.removeEventListener('load', handleLoad)
+        existing.removeEventListener('error', handleError)
+        if (window.Chart) {
+          resolve()
+          return
+        }
+        reject(new Error(`Timed out while loading ${src}`))
+      }, 10000)
       return
     }
 
     const script = document.createElement('script')
     script.src = src
     script.async = true
-    script.onload = () => resolve()
-    script.onerror = () => reject(new Error(`Failed to load ${src}`))
+    script.onload = () => {
+      if (script.dataset) script.dataset.loaded = 'true'
+      resolve()
+    }
+    script.onerror = () => {
+      if (script.dataset) script.dataset.error = 'true'
+      reject(new Error(`Failed to load ${src}`))
+    }
     document.head.appendChild(script)
   })
 }
@@ -103,14 +143,14 @@ function initReviewChecklistCopy() {
 
   copyButtons.forEach((button) => {
     let resetTimer = null
+    const buttonText = button.querySelector('span:last-child')
+    const originalLabel = buttonText ? buttonText.textContent : 'Copy checklist'
 
     button.addEventListener('click', () => {
       const checklistId = button.getAttribute('data-checklist-id')
       const fieldset = checklistId ? document.getElementById(checklistId) : null
       if (!fieldset) return
 
-      const buttonText = button.querySelector('span:last-child')
-      const originalLabel = buttonText ? buttonText.textContent : 'Copy checklist'
       const { text, checkedCount, total } = buildChecklistCopyText(fieldset)
 
       copyTextToClipboard(text).then((copied) => {
@@ -607,7 +647,7 @@ function initChartsAndGraphs() {
         datasets: [{
           label: 'Visits',
           data: [320, 210, 140],
-          backgroundColor: [palette.grey02, palette.blue02, palette.purple02],
+          backgroundColor: palette.blue02,
         }],
       },
       options: {
@@ -668,10 +708,7 @@ function initChartsAndGraphs() {
         }, {
           label: 'Below target',
           data: [15, 12, 18, 10],
-          backgroundColor: (context) => getPatternFill(context, 'cross', palette.blue04, {
-            svgUrl: '/assets/images/chart-pattern-cross-diagonal.svg',
-            size: 12,
-          }),
+          backgroundColor: palette.grey02,
         }],
       },
       options: {
