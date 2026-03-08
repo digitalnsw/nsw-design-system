@@ -4,7 +4,6 @@ import DownloadPDF from './download-pdf'
 import ColorSwatches from './color-swatches'
 import {
   createPattern,
-  preloadSvgPattern,
   defaultNswInkIndex,
   getNswChartPalette,
   getNswAboriginalChartPalette,
@@ -28,7 +27,7 @@ function loadScriptOnce(src) {
       }
 
       if (existing.dataset && existing.dataset.loaded === 'true') {
-        resolve()
+        reject(new Error(`Loaded ${src} but window.Chart is unavailable`))
         return
       }
       if (existing.dataset && existing.dataset.error === 'true') {
@@ -43,7 +42,11 @@ function loadScriptOnce(src) {
       let timeoutId = null
       const handleLoad = () => {
         if (timeoutId) clearTimeout(timeoutId)
-        resolve()
+        if (window.Chart) {
+          resolve()
+          return
+        }
+        reject(new Error(`Loaded ${src} but window.Chart is unavailable`))
       }
       const handleError = () => {
         if (timeoutId) clearTimeout(timeoutId)
@@ -70,7 +73,12 @@ function loadScriptOnce(src) {
     script.async = true
     script.onload = () => {
       if (script.dataset) script.dataset.loaded = 'true'
-      resolve()
+      if (window.Chart) {
+        resolve()
+        return
+      }
+      if (script.dataset) script.dataset.error = 'true'
+      reject(new Error(`Loaded ${src} but window.Chart is unavailable`))
     }
     script.onerror = () => {
       if (script.dataset) script.dataset.error = 'true'
@@ -175,28 +183,16 @@ function initReviewChecklistCopy() {
 }
 
 function initChartsAndGraphs() {
-  const chartTargets = document.querySelectorAll(
-    `#bar, #pie, #example1Bad, #example1Good, #example2Bad, #example2Good, #example3Bad, #example3Good, #example4Bad, #example4Good,
-    #chartAnatomy,
-    #chartCompBar, #chartCompBarHorizontal, #chartCompStacked,
-    #chartTrendLine, #chartTrendArea, #chartTrendSparkline,
-    #chartPropDoughnut, #chartPropPie, #chartPropStacked,
-    #chartDistScatter, #chartDistHeatmap`,
-  )
+  let chartTargets = document.querySelectorAll('canvas[data-chart]')
+  if (!chartTargets.length) {
+    chartTargets = document.querySelectorAll(
+      'canvas[id^="chart"], canvas[id^="example"], #bar, #pie',
+    )
+  }
   if (!chartTargets.length) return
 
   const renderCharts = async () => {
     if (!window.Chart) return
-
-    await Promise.all([
-      preloadSvgPattern('/assets/images/chart-pattern-grid-tight.svg'),
-      preloadSvgPattern('/assets/images/chart-pattern-cross-diagonal.svg'),
-      preloadSvgPattern('/assets/images/chart-pattern-diagonal-lines.svg'),
-      preloadSvgPattern('/assets/images/chart-pattern-dot-grid.svg'),
-      preloadSvgPattern('/assets/images/chart-pattern-checker-small.svg'),
-      preloadSvgPattern('/assets/images/chart-pattern-zigzag-chevron.svg'),
-      preloadSvgPattern('/assets/images/chart-pattern-grid-wide.svg'),
-    ])
 
     const palette = getNswChartPalette({ cssScope: document.body })
     const aboriginalPalette = getNswAboriginalChartPalette({ cssScope: document.body })
