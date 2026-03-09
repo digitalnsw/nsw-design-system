@@ -107,100 +107,6 @@ function loadScriptOnce(scriptSource) {
   })
 }
 
-function copyTextToClipboard(text) {
-  if (navigator.clipboard && window.isSecureContext) {
-    return navigator.clipboard.writeText(text)
-      .then(() => true)
-      .catch(() => false)
-  }
-
-  const input = document.createElement('textarea')
-  input.value = text
-  input.setAttribute('readonly', '')
-  input.style.position = 'absolute'
-  input.style.left = '-9999px'
-  document.body.appendChild(input)
-  input.select()
-
-  let copied = false
-  try {
-    copied = document.execCommand('copy')
-  } catch (error) {
-    copied = false
-  }
-
-  document.body.removeChild(input)
-  return Promise.resolve(copied)
-}
-
-function buildChecklistCopyText(fieldset) {
-  const items = Array.from(fieldset.querySelectorAll('.nsw-form__checkbox-input'))
-    .map((input) => {
-      if (!input.id) return null
-      const label = fieldset.querySelector(`label[for="${input.id}"]`)
-      if (!label) return null
-      return {
-        checked: Boolean(input.checked),
-        text: label.textContent.trim(),
-      }
-    })
-    .filter(Boolean)
-
-  const checkedCount = items.filter((item) => item.checked).length
-  const total = items.length
-  const remaining = Math.max(0, total - checkedCount)
-
-  const lines = [
-    'Charts and graphs review checklist',
-    `Completed: ${checkedCount}/${total}`,
-    `Remaining: ${remaining}`,
-    '',
-    ...items.map((item) => `- [${item.checked ? 'x' : ' '}] ${item.text}`),
-  ]
-
-  return {
-    text: lines.join('\n'),
-    checkedCount,
-    total,
-  }
-}
-
-function initReviewChecklistCopy() {
-  const copyButtons = document.querySelectorAll('.js-review-checklist-copy')
-  if (!copyButtons.length) return
-
-  copyButtons.forEach((button) => {
-    let resetTimer = null
-    const buttonText = button.querySelector('span:last-child')
-    const originalLabel = buttonText ? buttonText.textContent : 'Copy checklist'
-
-    button.addEventListener('click', () => {
-      const checklistId = button.getAttribute('data-checklist-id')
-      const fieldset = checklistId ? document.getElementById(checklistId) : null
-      if (!fieldset) return
-
-      const { text, checkedCount, total } = buildChecklistCopyText(fieldset)
-
-      copyTextToClipboard(text).then((copied) => {
-        if (buttonText) {
-          buttonText.textContent = copied
-            ? `Copied checklist (${checkedCount}/${total} complete)`
-            : 'Copy failed'
-        }
-
-        if (resetTimer) {
-          clearTimeout(resetTimer)
-        }
-
-        resetTimer = setTimeout(() => {
-          if (buttonText) buttonText.textContent = originalLabel
-          resetTimer = null
-        }, 5000)
-      })
-    }, false)
-  })
-}
-
 function initChartsAndGraphs() {
   let chartTargets = document.querySelectorAll('canvas[data-chart]')
   if (!chartTargets.length) {
@@ -1280,5 +1186,4 @@ function initChartsAndGraphs() {
   ensureChartJS()
 }
 
-initReviewChecklistCopy()
 initChartsAndGraphs()
