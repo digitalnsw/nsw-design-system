@@ -43,6 +43,7 @@ meta-index: true
   <li>Interactive GIS mapping</li>
   <li>Highly specialised investigative tools built for internal compliance work</li>
 </ul>
+<p>These use cases may require bespoke design and technical decisions beyond the scope of the design system. Future guidance may expand to cover additional visualisation types as needs mature.</p>
 <p>Where technical limitations exist, teams must document the limitation and provide an accessible alternative where possible.</p>
 
 <h2 id="principles">Principles</h2>
@@ -58,6 +59,7 @@ meta-index: true
 
 <h2 id="match-the-chart-to-the-task">Match the chart to the task</h2>
 <p>Every chart must answer a clear question. Choose the chart type based on the relationship you need to show: comparison, trend, distribution or correlation. If users need precise values, provide a table.</p>
+<p>See <a href="https://dsia.atlassian.net/wiki/spaces/GDS/pages/1197604868/Design+System+documentation+-+Charts+and+graphs#Choosing-the-right-chart" target="_blank" rel="noopener noreferrer">Choosing the right chart</a> for the relationship-based chart selection approach used in this guidance.</p>
 
 <div class="nsw-grid nsw-m-top-sm">
   <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
@@ -85,6 +87,7 @@ meta-index: true
 
 <h2 id="choosing-the-right-chart">Choosing the right chart</h2>
 <p>Choose the simplest chart that matches the data relationship.</p>
+<p>There are four common relationship types: comparison and ranking, trends over time, proportion, and distribution and correlation. For additional chart relationships and examples, refer to the <a href="https://ft-interactive.github.io/visual-vocabulary/" target="_blank" rel="noopener noreferrer">Financial Times Visual Vocabulary</a>.</p>
 
 <h3>Comparison and ranking</h3>
 <h4 id="chart-bar-vertical" class="nsw-m-bottom-sm">Bar (vertical)</h4>
@@ -306,7 +309,7 @@ meta-index: true
       <li><strong>Title:</strong> Use a descriptive title that states what the data represents, and include timeframe and unit where relevant.</li>
       <li><strong>Axis labels:</strong> Label each axis clearly with unit and time interval. Avoid abbreviations that are not widely understood.</li>
       <li><strong>Data labels:</strong> Label data directly where practical, especially for bar and column values.</li>
-      <li><strong>Legend:</strong> Use a legend only when direct labels are not practical. Keep it close to the chart and readable at 200 percent zoom.</li>
+      <li><strong>Legend:</strong> Use a legend only when direct labels are not practical. Keep it close to the chart and readable at 200% zoom.</li>
       <li><strong>Scale:</strong> Use consistent scales. Start bar charts at zero unless you have a documented reason not to, and indicate any truncation.</li>
       <li><strong>Source and metadata:</strong> Include source, last updated date, and any definitions required for interpretation.</li>
       <li><strong>Spacing and alignment:</strong> Keep spacing consistent between bars, labels and grid lines so the chart remains scannable.</li>
@@ -316,12 +319,12 @@ meta-index: true
 
 
 <h2 id="accessibility-requirements">Accessibility requirements</h2>
-<p>Charts must meet WCAG 2.2 AA and users must be able to access the same information without relying on the visual chart.</p>
+<p>Charts must meet WCAG 2.2 AA and AAA where possible. Users must be able to access the same information without relying on the visual chart.</p>
 
 <h3>Contrast</h3>
 <ul>
-  <li>Text must meet a minimum contrast ratio of 4.5 to 1 (WCAG 1.4.3).</li>
-  <li>Graphical elements such as bars, lines, data points and focus indicators must meet a minimum contrast ratio of 3 to 1 against adjacent colours and background (WCAG 1.4.11).</li>
+  <li>Text must meet a minimum contrast ratio of 4.5:1 (WCAG 1.4.3).</li>
+  <li>Graphical elements such as bars, lines, data points and focus indicators must meet a minimum contrast ratio of 3:1 against adjacent colours and background (WCAG 1.4.11).</li>
   <li>Test contrast in the rendered environment, not just in design files.</li>
 </ul>
 
@@ -341,7 +344,7 @@ meta-index: true
   <li>Logical tab order.</li>
   <li>Visible focus indicators.</li>
   <li>Focus is not hidden or obscured (WCAG 2.4.11).</li>
-  <li>Interactive targets are at least 24 by 24 pixels (WCAG 2.5.8).</li>
+  <li>Interactive targets are at least 24×24px (WCAG 2.5.8).</li>
   <li>Test keyboard interaction manually.</li>
 </ul>
 
@@ -355,7 +358,7 @@ meta-index: true
 </ul>
 
 <h3>Zoom and responsiveness</h3>
-<p>Charts must remain usable at 200 percent zoom and 375px viewport width. Ensure:</p>
+<p>Charts must remain usable at 200% zoom and 375px viewport width. Ensure:</p>
 <ul>
   <li>Labels do not overlap.</li>
   <li>Primary information remains visible.</li>
@@ -371,7 +374,7 @@ meta-index: true
 </ul>
 
 
-<h2 id="brand-and-typography">Brand and typography</h2>
+<h2 id="brand-and-typography">Apply brand with structure</h2>
 <p>Apply NSW brand colour and typography with care. Prioritise contrast and readability, and do not use the palette decoratively.</p>
 
 <h3>Background colour</h3>
@@ -1174,7 +1177,7 @@ meta-index: true
     </table>
   </div>
 </div>
-<p class="nsw-docs__pattern-swatch-note">Reference swatches only. Validate final pattern scale at 200 percent zoom and at mobile widths.</p>
+<p class="nsw-docs__pattern-swatch-note">Reference swatches only. Validate final pattern scale at 200% zoom and at mobile widths.</p>
 
 <h3>Typography in charts</h3>
 <p>Text should help users quickly understand the data without competing with visual elements. Use NSW Government primary typeface, Public Sans. If this is not possible, use Arial as fallback.</p>
@@ -1234,7 +1237,7 @@ meta-index: true
 </ul>
 
 
-<h2 id="tool-configuration">Tool configuration</h2>
+<h2 id="tool-configuration">Configure tools to meet standards</h2>
 <p>DDS does not prescribe tools. Tool defaults are not automatically compliant.</p>
 <ul>
   <li>Apply the official NSW chart theme where available.</li>
@@ -1448,7 +1451,7 @@ meta-index: true
   <li><strong>Table alternative:</strong> Provide the same dataset in a semantic table, with a short text summary of the key insight where appropriate.</li>
   <li><strong>Zoom and mobile:</strong> Ensure the chart remains readable at 200% zoom and at mobile widths.</li>
 </ul>
-<p>If a custom visualisation cannot meet these requirements, provide a simpler accessible representation. Use the <a href="#review-checklist">review checklist</a> before release.</p>
+<p>If a custom visualisation cannot meet these requirements, provide a simpler accessible representation. Use the review checklist below before release.</p>
 
 <h2 id="review-checklist">Review checklist</h2>
 <div class="nsw-docs__review-checklist nsw-m-top-sm nsw-p-md nsw-bg--brand-dark nsw-section--invert">
@@ -1470,7 +1473,7 @@ meta-index: true
     <input class="nsw-form__checkbox-input" type="checkbox" id="chart-review-check-6">
     <label class="nsw-form__checkbox-label" for="chart-review-check-6">Keyboard access is supported where interaction exists.</label>
     <input class="nsw-form__checkbox-input" type="checkbox" id="chart-review-check-7">
-    <label class="nsw-form__checkbox-label" for="chart-review-check-7">The chart remains usable at 200 percent zoom.</label>
+    <label class="nsw-form__checkbox-label" for="chart-review-check-7">The chart remains usable at 200% zoom.</label>
     <input class="nsw-form__checkbox-input" type="checkbox" id="chart-review-check-8">
     <label class="nsw-form__checkbox-label" for="chart-review-check-8">Units and data source are clearly stated.</label>
   </fieldset>
@@ -1482,6 +1485,7 @@ meta-index: true
   <li>NSW Brand Toolkit: Charts and graphs (print guidance)</li>
   <li>NSW Design System: <a href="/core/colour/index.html">Colour</a>, <a href="/core/typography/index.html">Typography</a>, and <a href="/components/table/index.html">Table</a></li>
   <li><a href="https://www.chartjs.org/docs/latest/" target="_blank" rel="noopener noreferrer">Chart.js documentation</a> (if you use Chart.js)</li>
+  <li><a href="https://ft-interactive.github.io/visual-vocabulary/" target="_blank" rel="noopener noreferrer">Financial Times Visual Vocabulary</a></li>
 </ul>
 
 <script src="/docs/js/charts-and-graphs.js"></script>
