@@ -148,6 +148,10 @@ function initChartsAndGraphs() {
     Chart.defaults.plugins.legend.labels.font = { size: 12, weight: 500 }
     Chart.defaults.plugins.title = Chart.defaults.plugins.title || {}
     Chart.defaults.plugins.title.font = { size: 16, weight: 600 }
+    Chart.defaults.plugins.title.padding = {
+      top: 8,
+      bottom: 16,
+    }
     Chart.defaults.plugins.legend.onClick = () => {}
     Chart.defaults.layout = Chart.defaults.layout || {}
     Chart.defaults.layout.padding = chartLayoutPadding
@@ -205,10 +209,20 @@ function initChartsAndGraphs() {
       const options = config && config.options ? config.options : {}
       const plugins = options.plugins || {}
       const legend = plugins.legend || {}
+      const chartHeight = canvas.dataset.chartHeight || canvas.getAttribute('height')
+      const hasExplicitChartHeight = Boolean(chartHeight)
+
+      if (hasExplicitChartHeight) {
+        canvas.style.height = /^\d+(\.\d+)?$/.test(chartHeight) ? `${chartHeight}px` : chartHeight
+      }
 
       new Chart(canvas, {
         ...config,
         options: {
+          responsive: options.responsive !== false,
+          maintainAspectRatio: Object.prototype.hasOwnProperty.call(options, 'maintainAspectRatio')
+            ? options.maintainAspectRatio
+            : !hasExplicitChartHeight,
           ...options,
           plugins: {
             ...plugins,
@@ -720,6 +734,49 @@ function initChartsAndGraphs() {
       },
     })
 
+    createChart('chartCompGroupedHorizontal', {
+      type: 'bar',
+      data: {
+        labels: ['South Western Sydney', 'Northern Sydney', 'Illawarra Shoalhaven'],
+        datasets: [{
+          label: '2024',
+          data: [74, 68, 59],
+          backgroundColor: palette.blue02,
+        }, {
+          label: '2025',
+          data: [88, 74, 65],
+          backgroundColor: palette.orange02,
+        }],
+      },
+      options: {
+        indexAxis: 'y',
+        plugins: {
+          legend: {
+            position: 'bottom',
+          },
+          title: {
+            display: true,
+            text: 'Requests by region (2024 vs 2025, count)',
+          },
+        },
+        scales: {
+          x: {
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: 'Requests (count)',
+            },
+          },
+          y: {
+            title: {
+              display: true,
+              text: 'Service region',
+            },
+          },
+        },
+      },
+    })
+
     createChart('chartCompStacked', {
       type: 'bar',
       data: {
@@ -775,7 +832,8 @@ function initChartsAndGraphs() {
           data: [120, 160, 210, 260, 310, 295],
           borderColor: palette.blue02,
           backgroundColor: palette.blue02,
-          pointRadius: 3,
+          pointRadius: 4,
+          borderWidth: 2,
           tension: 0.3,
         }],
       },
@@ -816,14 +874,18 @@ function initChartsAndGraphs() {
           data: [95, 120, 140, 165, 190, 210],
           borderColor: palette.blue02,
           backgroundColor: palette.blue02,
-          pointRadius: 3,
+          pointRadius: 4,
+          borderWidth: 2,
+          borderDash: [],
           tension: 0.25,
         }, {
           label: 'Phone submissions',
           data: [130, 125, 118, 110, 105, 98],
-          borderColor: palette.orange01,
-          backgroundColor: palette.orange02,
-          pointRadius: 3,
+          borderColor: palette.brown01,
+          backgroundColor: palette.brown02,
+          pointRadius: 4,
+          borderWidth: 2,
+          borderDash: [8, 6],
           tension: 0.25,
         }],
       },
@@ -865,7 +927,8 @@ function initChartsAndGraphs() {
           borderColor: palette.blue02,
           backgroundColor: palette.blue04,
           fill: true,
-          pointRadius: 2,
+          pointRadius: 4,
+          borderWidth: 2,
           tension: 0.3,
         }],
       },
@@ -891,6 +954,73 @@ function initChartsAndGraphs() {
             title: {
               display: true,
               text: 'Users (count)',
+            },
+          },
+        },
+      },
+    })
+
+    createChart('chartTrendLineBarCombo', {
+      type: 'bar',
+      data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+        datasets: [{
+          type: 'bar',
+          label: 'Applications',
+          data: [120, 160, 210, 260, 310, 295],
+          yAxisID: 'y',
+          backgroundColor: palette.fuchsia01,
+          order: 2,
+        }, {
+          type: 'line',
+          label: 'Conversion rate',
+          data: [38, 41, 43, 47, 49, 46],
+          yAxisID: 'y1',
+          borderColor: palette.fuchsia01,
+          backgroundColor: palette.fuchsia02,
+          borderWidth: 2,
+          pointRadius: 4,
+          tension: 0.25,
+          order: 1,
+        }],
+      },
+      options: {
+        plugins: {
+          legend: {
+            position: 'bottom',
+          },
+          title: {
+            display: true,
+            text: 'Applications and conversion rate (Jan to Jun 2025)',
+          },
+        },
+        scales: {
+          x: {
+            title: {
+              display: true,
+              text: 'Month (2025)',
+            },
+          },
+          y: {
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: 'Applications (count)',
+            },
+          },
+          y1: {
+            beginAtZero: true,
+            max: 60,
+            position: 'right',
+            grid: {
+              drawOnChartArea: false,
+            },
+            ticks: {
+              callback: (value) => `${value}%`,
+            },
+            title: {
+              display: true,
+              text: 'Conversion rate (%)',
             },
           },
         },
@@ -1003,7 +1133,7 @@ function initChartsAndGraphs() {
           },
           title: {
             display: true,
-            text: 'Channel share (Q2 2025, Aboriginal palette example)',
+            text: 'Channel share (Q2 2025)',
           },
         },
       },
@@ -1058,6 +1188,58 @@ function initChartsAndGraphs() {
       },
     })
 
+    createChart('chartPropStackedProportional', {
+      type: 'bar',
+      data: {
+        labels: ['Digital', 'Phone', 'In person', 'Mail'],
+        datasets: [{
+          label: 'Completed',
+          data: [72, 66, 58, 64],
+          backgroundColor: palette.red01,
+        }, {
+          label: 'In progress',
+          data: [28, 34, 42, 36],
+          backgroundColor: (context) => getPatternFill(context, 'diagonal', palette.orange02, {
+            svgUrl: '/assets/images/chart-pattern-diagonal-lines.svg',
+            size: 8,
+          }),
+        }],
+      },
+      options: {
+        scales: {
+          x: {
+            stacked: true,
+            title: {
+              display: true,
+              text: 'Channel',
+            },
+          },
+          y: {
+            stacked: true,
+            beginAtZero: true,
+            max: 100,
+            ticks: {
+              stepSize: 20,
+              callback: (value) => `${value}%`,
+            },
+            title: {
+              display: true,
+              text: 'Share of total (%)',
+            },
+          },
+        },
+        plugins: {
+          legend: {
+            position: 'bottom',
+          },
+          title: {
+            display: true,
+            text: 'Outcome share by channel (Q2 2025, 100% stacked)',
+          },
+        },
+      },
+    })
+
     createChart('chartDistScatter', {
       type: 'scatter',
       data: {
@@ -1086,8 +1268,8 @@ function initChartsAndGraphs() {
             ],
             backgroundColor: palette.red01,
             borderColor: palette.red01,
-            borderWidth: 1.5,
             pointRadius: 4,
+            borderWidth: 2,
           },
           {
             label: 'Regional service centres',
@@ -1098,7 +1280,8 @@ function initChartsAndGraphs() {
             ],
             backgroundColor: palette.fuchsia02,
             borderColor: palette.fuchsia01,
-            borderWidth: 1.5,
+            pointRadius: 4,
+            borderWidth: 2,
             pointRadius: 8,
             pointStyle: 'triangle',
           },
@@ -1164,7 +1347,8 @@ function initChartsAndGraphs() {
           ],
           backgroundColor: palette.blue02,
           borderColor: palette.blue01,
-          borderWidth: 1.5,
+          pointRadius: 4,
+          borderWidth: 2,
         }, {
           label: 'Regional locations',
           data: [
@@ -1176,7 +1360,8 @@ function initChartsAndGraphs() {
           ],
           backgroundColor: palette.fuchsia02,
           borderColor: palette.fuchsia01,
-          borderWidth: 1.5,
+          pointRadius: 4,
+          borderWidth: 2,
         }],
       },
       options: {
@@ -1243,7 +1428,7 @@ function initChartsAndGraphs() {
           ],
           backgroundColor: palette.green02,
           borderColor: palette.green01,
-          borderWidth: 1,
+          borderWidth: 1.5,
           pointRadius: 6,
         }],
       },
@@ -1292,10 +1477,10 @@ function initChartsAndGraphs() {
     createChart('chartDistHistogram', {
       type: 'bar',
       data: {
-        labels: ['0-2', '3-4', '5-6', '7-8', '9-10', '11-12'],
+        labels: ['0-2', '3-4', '5-6', '7-8', '9-10', '11-12', '13+'],
         datasets: [{
           label: 'Case frequency',
-          data: [4, 9, 15, 12, 6, 3],
+          data: [4, 9, 15, 12, 6, 3, 1],
           backgroundColor: palette.purple02,
           borderColor: palette.purple01,
           borderWidth: 1,
@@ -1353,9 +1538,9 @@ function initChartsAndGraphs() {
           label: 'Service B',
           data: [55, 72, 87, 68, 74],
           borderColor: palette.orange01,
-          backgroundColor: withAlpha(palette.orange02, 0.2),
-          pointBackgroundColor: palette.orange02,
-          pointBorderColor: palette.orange01,
+          backgroundColor: withAlpha(palette.red02, 0.2),
+          pointBackgroundColor: palette.red02,
+          pointBorderColor: palette.red01,
           pointRadius: 3,
         }],
       },

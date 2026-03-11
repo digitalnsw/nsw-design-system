@@ -750,6 +750,39 @@ $header-height: 151px;
     margin-top: nsw.rem(12px);
   }
 
+  &__line-style-swatch {
+    display: inline-block;
+    width: nsw.rem(72px);
+    height: 0;
+    border-top: nsw.rem(3px) solid var(--nsw-brand-dark);
+  }
+
+  &__line-style-swatch--solid {
+    border-top-style: solid;
+  }
+
+  &__line-style-swatch--dashed {
+    border-top-style: dashed;
+  }
+
+  &__line-style-swatch--dotted {
+    border-top-style: dotted;
+  }
+
+  &__line-style-swatch--dashdot {
+    border: 0;
+    height: nsw.rem(3px);
+    background: repeating-linear-gradient(to right, var(--nsw-brand-dark) 0 nsw.rem(12px), transparent nsw.rem(12px) nsw.rem(16px), var(--nsw-brand-dark) nsw.rem(16px) nsw.rem(18px), transparent nsw.rem(18px) nsw.rem(24px));
+  }
+
+  &__line-style-table-wrap {
+    width: 100%;
+
+    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+      width: 66.6667%;
+    }
+  }
+
   &__table-wrap {
     @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
       overflow-x: visible;
