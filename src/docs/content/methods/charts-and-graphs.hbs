@@ -88,6 +88,12 @@ meta-index: true
 <h2 id="choosing-the-right-chart">Choosing the right chart</h2>
 <p>Choose the simplest chart that matches the data relationship.</p>
 <p>There are four common relationship types: comparison and ranking, trends over time, proportion, and distribution and correlation. For additional chart relationships and examples, refer to the <a href="https://ft-interactive.github.io/visual-vocabulary/" target="_blank" rel="noopener noreferrer">Financial Times Visual Vocabulary</a>.</p>
+<p>To keep this guidance maintainable and consistent, chart examples on this page use native Chart.js types only.</p>
+<ul>
+  <li>Included here: bar and column (including stacked), line and multi-line, area, sparkline, pie, doughnut, scatter, bubble, dot plot, histogram, and radar.</li>
+  <li>Supported by Chart.js but not currently shown: horizontal dot-plot variants.</li>
+  <li>Usually requires plugin or custom visualisation library: heatmap, treemap, packed circles, funnel, streamgraph, and hierarchy charts.</li>
+</ul>
 
 <h3>Comparison and ranking</h3>
 <h4 id="chart-bar-vertical" class="nsw-m-bottom-sm">Bar (vertical)</h4>
@@ -141,6 +147,19 @@ meta-index: true
       <p><strong>Use when:</strong> Showing change over time.</p>
       <p><strong>Avoid when:</strong> No meaningful time dimension.</p>
       <p><strong>Notes:</strong> Limit number of lines.</p>
+    </div>
+  </div>
+</div>
+<h4 id="chart-multi-line" class="nsw-m-bottom-sm">Multi-line</h4>
+<div class="nsw-grid nsw-docs__chart-example">
+  <div class="nsw-col nsw-col-sm-12 nsw-col-md-8 nsw-col-lg-8">
+    <canvas id="chartTrendMultiLine" height="280" role="img" aria-label="Multi-line chart example showing two monthly trends over time."></canvas>
+  </div>
+  <div class="nsw-col nsw-col-sm-12 nsw-col-md-8 nsw-col-lg-8 nsw-docs__chart-example-details">
+    <div class="nsw-docs__list-stack">
+      <p><strong>Use when:</strong> Comparing trends across multiple series over the same time period.</p>
+      <p><strong>Avoid when:</strong> Too many lines make patterns difficult to read.</p>
+      <p><strong>Notes:</strong> Keep line count low and label series clearly.</p>
     </div>
   </div>
 </div>
@@ -227,16 +246,55 @@ meta-index: true
   </div>
 </div>
 
-<h4 id="chart-heatmap" class="nsw-m-bottom-sm">Heatmap</h4>
+<h4 id="chart-bubble-plot" class="nsw-m-bottom-sm">Bubble plot</h4>
 <div class="nsw-grid nsw-docs__chart-example">
   <div class="nsw-col nsw-col-sm-12 nsw-col-md-8 nsw-col-lg-8">
-    <canvas id="chartDistHeatmap" height="240" role="img" aria-label="Heatmap example showing intensity across two dimensions."></canvas>
+    <canvas id="chartDistBubble" height="280" role="img" aria-label="Bubble plot example showing demand and wait time across locations with bubble size as volume."></canvas>
   </div>
   <div class="nsw-col nsw-col-sm-12 nsw-col-md-8 nsw-col-lg-8 nsw-docs__chart-example-details">
     <div class="nsw-docs__list-stack">
-      <p><strong>Use when:</strong> Showing intensity across two dimensions.</p>
-      <p><strong>Avoid when:</strong> Meaning depends only on subtle colour.</p>
-      <p><strong>Notes:</strong> Must not rely solely on colour.</p>
+      <p><strong>Use when:</strong> Showing relationship and magnitude across two variables.</p>
+      <p><strong>Avoid when:</strong> Bubble area is the only cue and labels are missing.</p>
+      <p><strong>Notes:</strong> Keep bubble sizes distinct and provide labels or table support.</p>
+    </div>
+  </div>
+</div>
+<h4 id="chart-dot-plot" class="nsw-m-bottom-sm">Vertical dot plot</h4>
+<div class="nsw-grid nsw-docs__chart-example">
+  <div class="nsw-col nsw-col-sm-12 nsw-col-md-8 nsw-col-lg-8">
+    <canvas id="chartDistDotPlot" height="360" role="img" aria-label="Vertical dot plot example showing distribution of wait times by weekday."></canvas>
+  </div>
+  <div class="nsw-col nsw-col-sm-12 nsw-col-md-8 nsw-col-lg-8 nsw-docs__chart-example-details">
+    <div class="nsw-docs__list-stack">
+      <p><strong>Use when:</strong> Showing distributions across categories without bars.</p>
+      <p><strong>Avoid when:</strong> Overplotting makes points overlap heavily.</p>
+      <p><strong>Notes:</strong> Use jitter, labels, or supporting summaries for readability.</p>
+    </div>
+  </div>
+</div>
+<h4 id="chart-histogram" class="nsw-m-bottom-sm">Histogram</h4>
+<div class="nsw-grid nsw-docs__chart-example">
+  <div class="nsw-col nsw-col-sm-12 nsw-col-md-8 nsw-col-lg-8">
+    <canvas id="chartDistHistogram" height="320" role="img" aria-label="Histogram example showing distribution of processing times in binned ranges."></canvas>
+  </div>
+  <div class="nsw-col nsw-col-sm-12 nsw-col-md-8 nsw-col-lg-8 nsw-docs__chart-example-details">
+    <div class="nsw-docs__list-stack">
+      <p><strong>Use when:</strong> Showing frequency distribution across numeric ranges.</p>
+      <p><strong>Avoid when:</strong> Exact values per individual record are required.</p>
+      <p><strong>Notes:</strong> Use sensible bin widths and label ranges clearly.</p>
+    </div>
+  </div>
+</div>
+<h4 id="chart-radar" class="nsw-m-bottom-sm">Radar</h4>
+<div class="nsw-grid nsw-docs__chart-example">
+  <div class="nsw-col nsw-col-sm-12 nsw-col-md-8 nsw-col-lg-8">
+    <canvas id="chartDistRadar" height="280" role="img" aria-label="Radar chart example comparing capability scores across dimensions."></canvas>
+  </div>
+  <div class="nsw-col nsw-col-sm-12 nsw-col-md-8 nsw-col-lg-8 nsw-docs__chart-example-details">
+    <div class="nsw-docs__list-stack">
+      <p><strong>Use when:</strong> Comparing profiles across the same fixed dimensions.</p>
+      <p><strong>Avoid when:</strong> Precise value comparison is the primary goal.</p>
+      <p><strong>Notes:</strong> Limit categories and provide supporting values in text or table.</p>
     </div>
   </div>
 </div>

@@ -3,6 +3,7 @@ import {
   defaultNswInkIndex,
   getNswChartPalette,
   getNswAboriginalChartPalette,
+  withAlpha,
 } from './chart-utilities'
 
 /* global Chart */
@@ -806,6 +807,54 @@ function initChartsAndGraphs() {
       },
     })
 
+    createChart('chartTrendMultiLine', {
+      type: 'line',
+      data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+        datasets: [{
+          label: 'Online submissions',
+          data: [95, 120, 140, 165, 190, 210],
+          borderColor: palette.blue02,
+          backgroundColor: palette.blue02,
+          pointRadius: 3,
+          tension: 0.25,
+        }, {
+          label: 'Phone submissions',
+          data: [130, 125, 118, 110, 105, 98],
+          borderColor: palette.orange01,
+          backgroundColor: palette.orange02,
+          pointRadius: 3,
+          tension: 0.25,
+        }],
+      },
+      options: {
+        plugins: {
+          legend: {
+            position: 'bottom',
+          },
+          title: {
+            display: true,
+            text: 'Submissions by channel (Jan to Jun 2025, count)',
+          },
+        },
+        scales: {
+          x: {
+            title: {
+              display: true,
+              text: 'Month (2025)',
+            },
+          },
+          y: {
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: 'Submissions (count)',
+            },
+          },
+        },
+      },
+    })
+
     createChart('chartTrendArea', {
       type: 'line',
       data: {
@@ -1101,52 +1150,124 @@ function initChartsAndGraphs() {
       },
     })
 
-    createChart('chartDistHeatmap', {
-      type: 'scatter',
+    createChart('chartDistBubble', {
+      type: 'bubble',
       data: {
         datasets: [{
-          label: 'Intensity',
+          label: 'Metro locations',
           data: [
-            { x: 1, y: 1 }, { x: 2, y: 1 }, { x: 3, y: 1 }, { x: 4, y: 1 },
-            { x: 1, y: 2 }, { x: 2, y: 2 }, { x: 3, y: 2 }, { x: 4, y: 2 },
-            { x: 1, y: 3 }, { x: 2, y: 3 }, { x: 3, y: 3 }, { x: 4, y: 3 },
+            { x: 4, y: 6, r: 8 },
+            { x: 6, y: 8, r: 10 },
+            { x: 9, y: 11, r: 12 },
+            { x: 12, y: 14, r: 14 },
+            { x: 15, y: 18, r: 16 },
           ],
-          pointStyle: 'rect',
-          pointRadius: 12,
-          pointHoverRadius: 12,
-          backgroundColor: [
-            palette.purple04, palette.purple04, palette.purple03, palette.purple02,
-            palette.purple04, palette.purple03, palette.purple02, palette.purple01,
-            palette.purple03, palette.purple02, palette.purple01, palette.purple01,
+          backgroundColor: palette.blue02,
+          borderColor: palette.blue01,
+          borderWidth: 1.5,
+        }, {
+          label: 'Regional locations',
+          data: [
+            { x: 3, y: 7, r: 7 },
+            { x: 5, y: 10, r: 8 },
+            { x: 8, y: 13, r: 10 },
+            { x: 10, y: 16, r: 11 },
+            { x: 13, y: 19, r: 13 },
           ],
-          borderColor: palette.purple01,
-          borderWidth: 1,
+          backgroundColor: palette.fuchsia02,
+          borderColor: palette.fuchsia01,
+          borderWidth: 1.5,
         }],
       },
       options: {
         layout: {
           padding: {
-            left: 14,
+            left: 12,
             right: 8,
-            top: 4,
-            bottom: 4,
+            top: 8,
+            bottom: 6,
           },
         },
         plugins: {
           legend: {
-            display: false,
+            position: 'bottom',
+            labels: {
+              usePointStyle: true,
+              pointStyle: 'circle',
+              pointStyleWidth: 12,
+            },
           },
           title: {
             display: true,
-            text: 'Service demand intensity by weekday and service type',
+            text: 'Demand, wait time and volume by location (Q2 2025)',
+          },
+        },
+        scales: {
+          x: {
+            min: 0,
+            max: 18,
+            ticks: {
+              stepSize: 2,
+            },
+            title: {
+              display: true,
+              text: 'Weekly demand (index)',
+            },
+          },
+          y: {
+            min: 4,
+            max: 22,
+            ticks: {
+              stepSize: 3,
+            },
+            title: {
+              display: true,
+              text: 'Average wait time (days)',
+            },
+          },
+        },
+      },
+    })
+
+    createChart('chartDistDotPlot', {
+      type: 'scatter',
+      data: {
+        datasets: [{
+          label: 'Processing time observations',
+          data: [
+            { x: 1, y: 4.1 }, { x: 1, y: 5.2 }, { x: 1, y: 6.0 }, { x: 1, y: 7.2 },
+            { x: 2, y: 5.1 }, { x: 2, y: 5.8 }, { x: 2, y: 6.5 }, { x: 2, y: 7.8 },
+            { x: 3, y: 6.0 }, { x: 3, y: 6.9 }, { x: 3, y: 7.6 }, { x: 3, y: 8.9 },
+            { x: 4, y: 5.5 }, { x: 4, y: 6.4 }, { x: 4, y: 7.0 }, { x: 4, y: 8.3 },
+            { x: 5, y: 4.8 }, { x: 5, y: 5.9 }, { x: 5, y: 6.7 }, { x: 5, y: 7.4 },
+          ],
+          backgroundColor: palette.green02,
+          borderColor: palette.green01,
+          borderWidth: 1,
+          pointRadius: 6,
+        }],
+      },
+      options: {
+        plugins: {
+          legend: {
+            position: 'bottom',
+            labels: {
+              usePointStyle: true,
+              pointStyle: 'circle',
+            },
+          },
+          title: {
+            display: true,
+            text: 'Wait-time distribution by weekday (Q2 2025, days)',
           },
         },
         scales: {
           x: {
             min: 0.5,
-            max: 4.5,
+            max: 5.5,
             ticks: {
               stepSize: 1,
+              callback: (value) => ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'][value - 1] || '',
             },
             title: {
               display: true,
@@ -1154,14 +1275,118 @@ function initChartsAndGraphs() {
             },
           },
           y: {
-            min: 0.5,
-            max: 3.5,
+            beginAtZero: true,
+            max: 10,
             ticks: {
-              stepSize: 1,
+              stepSize: 2,
             },
             title: {
               display: true,
-              text: 'Service type',
+              text: 'Processing time (days)',
+            },
+          },
+        },
+      },
+    })
+
+    createChart('chartDistHistogram', {
+      type: 'bar',
+      data: {
+        labels: ['0-2', '3-4', '5-6', '7-8', '9-10', '11-12'],
+        datasets: [{
+          label: 'Case frequency',
+          data: [4, 9, 15, 12, 6, 3],
+          backgroundColor: palette.purple02,
+          borderColor: palette.purple01,
+          borderWidth: 1,
+          barPercentage: 1,
+          categoryPercentage: 1,
+        }],
+      },
+      options: {
+        plugins: {
+          legend: {
+            display: false,
+          },
+          title: {
+            display: true,
+            text: 'Processing-time distribution (Q2 2025, binned days)',
+          },
+        },
+        scales: {
+          x: {
+            title: {
+              display: true,
+              text: 'Processing time range (days)',
+            },
+            grid: {
+              display: false,
+            },
+          },
+          y: {
+            beginAtZero: true,
+            ticks: {
+              stepSize: 3,
+            },
+            title: {
+              display: true,
+              text: 'Number of cases',
+            },
+          },
+        },
+      },
+    })
+
+    createChart('chartDistRadar', {
+      type: 'radar',
+      data: {
+        labels: ['Timeliness', 'Accuracy', 'Coverage', 'Clarity', 'Accessibility'],
+        datasets: [{
+          label: 'Service A',
+          data: [78, 84, 72, 81, 75],
+          borderColor: palette.blue02,
+          backgroundColor: withAlpha(palette.blue02, 0.2),
+          pointBackgroundColor: palette.blue02,
+          pointBorderColor: palette.blue01,
+          pointRadius: 3,
+        }, {
+          label: 'Service B',
+          data: [55, 72, 87, 68, 74],
+          borderColor: palette.orange01,
+          backgroundColor: withAlpha(palette.orange02, 0.2),
+          pointBackgroundColor: palette.orange02,
+          pointBorderColor: palette.orange01,
+          pointRadius: 3,
+        }],
+      },
+      options: {
+        plugins: {
+          legend: {
+            position: 'bottom',
+          },
+          title: {
+            display: true,
+            text: 'Capability profile comparison (2025 index)',
+          },
+        },
+        scales: {
+          r: {
+            min: 0,
+            max: 100,
+            ticks: {
+              stepSize: 20,
+              showLabelBackdrop: false,
+            },
+            pointLabels: {
+              font: {
+                size: 12,
+              },
+            },
+            angleLines: {
+              color: palette.grey03,
+            },
+            grid: {
+              color: palette.grey03,
             },
           },
         },
