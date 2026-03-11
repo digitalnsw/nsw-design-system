@@ -734,6 +734,55 @@ function initChartsAndGraphs() {
       },
     })
 
+    createChart('chartPropStacked', {
+      type: 'bar',
+      data: {
+        labels: ['Program A', 'Program B', 'Program C'],
+        datasets: [{
+          label: 'Completed',
+          data: [70, 55, 62],
+          backgroundColor: palette.blue01,
+          barThickness: 72,
+        }, {
+          label: 'In progress',
+          data: [20, 30, 18],
+          backgroundColor: (context) => getPatternFill(context, 'vertical', palette.fuchsia02, {
+            svgUrl: '/assets/images/chart-pattern-zigzag-chevron.svg',
+            size: 12,
+          }),
+          barThickness: 72,
+        }],
+      },
+      options: {
+        scales: {
+          x: {
+            stacked: true,
+            title: {
+              display: true,
+              text: 'Program',
+            },
+          },
+          y: {
+            stacked: true,
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: 'Status (count)',
+            },
+          },
+        },
+        plugins: {
+          legend: {
+            position: 'bottom',
+          },
+          title: {
+            display: true,
+            text: 'Program completion status (Q2 2025, count)',
+          },
+        },
+      },
+    })
+
     createChart('chartCompGroupedHorizontal', {
       type: 'bar',
       data: {
@@ -745,7 +794,7 @@ function initChartsAndGraphs() {
         }, {
           label: '2025',
           data: [88, 74, 65],
-          backgroundColor: palette.orange02,
+          backgroundColor: palette.brown02,
         }],
       },
       options: {
@@ -772,52 +821,6 @@ function initChartsAndGraphs() {
               display: true,
               text: 'Service region',
             },
-          },
-        },
-      },
-    })
-
-    createChart('chartCompStacked', {
-      type: 'bar',
-      data: {
-        labels: ['Q1', 'Q2', 'Q3', 'Q4'],
-        datasets: [{
-          label: 'Met target',
-          data: [45, 52, 48, 60],
-          backgroundColor: palette.blue02,
-          barThickness: 72,
-        }, {
-          label: 'Below target',
-          data: [15, 12, 18, 10],
-          backgroundColor: palette.blue01,
-          barThickness: 72,
-        }],
-      },
-      options: {
-        scales: {
-          x: {
-            stacked: true,
-            title: {
-              display: true,
-              text: 'Quarter (2025)',
-            },
-          },
-          y: {
-            stacked: true,
-            beginAtZero: true,
-            title: {
-              display: true,
-              text: 'Cases (count)',
-            },
-          },
-        },
-        plugins: {
-          legend: {
-            position: 'bottom',
-          },
-          title: {
-            display: true,
-            text: 'Target status by quarter (2025, count)',
           },
         },
       },
@@ -1170,55 +1173,6 @@ function initChartsAndGraphs() {
           title: {
             display: true,
             text: 'Channel share (Q2 2025)',
-          },
-        },
-      },
-    })
-
-    createChart('chartPropStacked', {
-      type: 'bar',
-      data: {
-        labels: ['Program A', 'Program B', 'Program C'],
-        datasets: [{
-          label: 'Completed',
-          data: [70, 55, 62],
-          backgroundColor: palette.blue01,
-          barThickness: 72,
-        }, {
-          label: 'In progress',
-          data: [20, 30, 18],
-          backgroundColor: (context) => getPatternFill(context, 'vertical', palette.fuchsia02, {
-            svgUrl: '/assets/images/chart-pattern-zigzag-chevron.svg',
-            size: 12,
-          }),
-          barThickness: 72,
-        }],
-      },
-      options: {
-        scales: {
-          x: {
-            stacked: true,
-            title: {
-              display: true,
-              text: 'Program',
-            },
-          },
-          y: {
-            stacked: true,
-            beginAtZero: true,
-            title: {
-              display: true,
-              text: 'Status (count)',
-            },
-          },
-        },
-        plugins: {
-          legend: {
-            position: 'bottom',
-          },
-          title: {
-            display: true,
-            text: 'Program completion status (Q2 2025, count)',
           },
         },
       },
