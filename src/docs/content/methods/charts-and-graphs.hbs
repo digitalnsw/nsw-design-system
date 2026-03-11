@@ -18,13 +18,10 @@ meta-index: true
         <a href="#choosing-the-right-chart">Choosing the right chart</a>
       </li>
       <li>
-        <a href="#make-charts-accessible">Make charts accessible</a>
+        <a href="#meet-accessibility-standards">Meet accessibility standards</a>
       </li>
       <li>
         <a href="#examples">Examples</a>
-      </li>
-      <li>
-        <a href="#complex-visualisations-guidance">Complex visualisations guidance</a>
       </li>
       <li>
         <a href="#review-checklist">Review checklist</a>
@@ -35,6 +32,7 @@ meta-index: true
 
 <h2 id="scope">Scope</h2>
 <p>This guidance is tool-agnostic and applies regardless of platform. It covers common charts and graphs used to communicate structured data in digital products, including bar charts, line charts, scatter plots and similar formats. It applies to both public-facing services and internal dashboards.</p>
+<p>For custom or complex visualisation methods (for example, D3), this guidance does not prescribe exact implementation patterns because the range of possible visual forms is broad. In these cases, use the principles below as the baseline to maintain accessibility, clarity and consistency.</p>
 
 <h3>Out of scope</h3>
 <ul>
@@ -57,9 +55,9 @@ meta-index: true
 </div>
 
 
-<h2 id="choose-the-right-chart-type">Choose the right chart type</h2>
+<h2 id="choose-the-right-chart-type">1. Choose the right chart type</h2>
 <p>Every chart must answer a clear question. Choose the chart type based on the relationship you need to show: comparison, trend, distribution or correlation. If users need precise values, provide a table.</p>
-<p>See <a href="https://dsia.atlassian.net/wiki/spaces/GDS/pages/1197604868/Design+System+documentation+-+Charts+and+graphs#Choosing-the-right-chart" target="_blank" rel="noopener noreferrer">Choosing the right chart</a> for the relationship-based chart selection approach used in this guidance.</p>
+<p>See <a href="#choosing-the-right-chart">Choosing the right chart</a> for the relationship-based chart selection approach used in this guidance.</p>
 
 <div class="nsw-grid nsw-m-top-sm">
   <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
@@ -85,7 +83,7 @@ meta-index: true
 </div>
 
 
-<h2 id="choosing-the-right-chart">Choosing the right chart</h2>
+<h3 id="choosing-the-right-chart">Choosing the right chart</h3>
 <p>Choose the simplest chart that matches the data relationship.</p>
 <p>There are four common relationship types: comparison and ranking, trends over time, proportion, and distribution and correlation. For additional chart relationships and examples, refer to the <a href="https://ft-interactive.github.io/visual-vocabulary/" target="_blank" rel="noopener noreferrer">Financial Times Visual Vocabulary</a>.</p>
 <p>To keep this guidance maintainable and consistent, chart examples on this page use native Chart.js types only.</p>
@@ -367,7 +365,7 @@ meta-index: true
 </div>
 
 
-<h2 id="never-mislead-with-data">Never mislead with data</h2>
+<h2 id="never-mislead-with-data">2. Never mislead with data</h2>
 <p>Charts must represent data truthfully and support informed decisions, not visual emphasis.</p>
 <ul>
   <li>Do not manipulate axis scales to exaggerate differences.</li>
@@ -376,34 +374,7 @@ meta-index: true
   <li>Avoid 3D styling or visual effects that can distort perception.</li>
 </ul>
 
-<h3>Each chart should include</h3>
-<ul>
-  <li>Clear title</li>
-  <li>Axis labels with units</li>
-  <li>Legend or direct labels</li>
-  <li>Source where relevant</li>
-  <li>Last updated date where relevant</li>
-</ul>
-
-
-<h2 id="make-the-message-obvious">Make the message obvious</h2>
-<p>Remove clutter and make the key insight clear at a glance. A good chart answers one question well rather than several questions poorly.</p>
-<ul>
-  <li>Limit the number of data series.</li>
-  <li>Avoid clutter or unnecessary visual elements.</li>
-  <li>Use annotations to highlight the key insight.</li>
-</ul>
-
-<h3>Dashboards</h3>
-<ul>
-  <li>Place key metrics first.</li>
-  <li>Group related charts.</li>
-  <li>Avoid horizontal scrolling for primary information.</li>
-  <li>If metadata applies to all charts, include it at the container level.</li>
-</ul>
-
-
-<h2 id="chart-anatomy">Chart anatomy</h2>
+<h3 id="chart-anatomy">Chart anatomy</h3>
 <p>Every chart must include the core elements required for clarity and accurate interpretation.</p>
 
 <div class="nsw-grid nsw-m-top-sm">
@@ -442,8 +413,23 @@ meta-index: true
   </div>
 </div>
 
+<h2 id="make-the-message-obvious">3. Make the message obvious</h2>
+<p>Remove clutter and make the key insight clear at a glance. A good chart answers one question well rather than several questions poorly.</p>
+<ul>
+  <li>Limit the number of data series.</li>
+  <li>Avoid clutter or unnecessary visual elements.</li>
+  <li>Use annotations to highlight the key insight.</li>
+</ul>
 
-<h2 id="make-charts-accessible">Make charts accessible</h2>
+<h3>Dashboards</h3>
+<ul>
+  <li>Place key metrics first.</li>
+  <li>Group related charts.</li>
+  <li>Avoid horizontal scrolling for primary information.</li>
+  <li>If metadata applies to all charts, include it at the container level.</li>
+</ul>
+
+<h2 id="meet-accessibility-standards">4. Meet accessibility standards</h2>
 <p>Charts must meet WCAG 2.2 AA and AAA where possible. Users must be able to access the same information without relying on the visual chart.</p>
 
 <h3>Contrast</h3>
@@ -499,7 +485,7 @@ meta-index: true
 </ul>
 
 
-<h2 id="apply-nsw-brand-consistently">Apply NSW brand consistently</h2>
+<h2 id="apply-nsw-brand-consistently">5. Apply NSW brand consistently</h2>
 <p>Apply NSW brand colour and typography with care. Prioritise contrast and readability, and do not use the palette decoratively.</p>
 
 <h3>Background colour</h3>
@@ -1435,7 +1421,7 @@ meta-index: true
 </ul>
 
 
-<h2 id="configure-tools-with-good-defaults">Configure tools with good defaults</h2>
+<h2 id="configure-tools-with-good-defaults">6. Configure tools with good defaults</h2>
 <p>DDS does not prescribe tools. Tool defaults are not automatically compliant.</p>
 <ul>
   <li>Apply the official NSW chart theme where available.</li>
@@ -1637,19 +1623,6 @@ meta-index: true
   </div>
 </div>
 
-
-<h2 id="complex-visualisations-guidance">Complex/custom visualisations guidance</h2>
-<p>We do not prescribe detailed implementation guidance for advanced or highly custom visualisation types. This includes bespoke visuals created with tools such as D3.</p>
-<p>For these charts, apply the same principles in this page. At minimum, ensure:</p>
-<ul>
-  <li><strong>Title:</strong> Use a clear, specific title that explains what the chart shows, including timeframe and unit.</li>
-  <li><strong>Labels and legend:</strong> Ensure axes, labels, legends and annotations are present, legible and unambiguous.</li>
-  <li><strong>Non-colour cues:</strong> Do not rely on colour alone; use labels, shape, stroke or pattern where needed.</li>
-  <li><strong>Keyboard and screen reader access:</strong> Provide keyboard access, visible focus and screen reader alternatives for any interaction.</li>
-  <li><strong>Table alternative:</strong> Provide the same dataset in a semantic table, with a short text summary of the key insight where appropriate.</li>
-  <li><strong>Zoom and mobile:</strong> Ensure the chart remains readable at 200% zoom and at mobile widths.</li>
-</ul>
-<p>If a custom visualisation cannot meet these requirements, provide a simpler accessible representation. Use the review checklist below before release.</p>
 
 <h2 id="review-checklist">Review checklist</h2>
 <div class="nsw-docs__review-checklist nsw-m-top-sm nsw-p-md nsw-bg--brand-dark nsw-section--invert">
