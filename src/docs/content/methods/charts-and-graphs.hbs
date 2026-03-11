@@ -90,7 +90,7 @@ meta-index: true
 <p>There are four common relationship types: comparison and ranking, trends over time, proportion, and distribution and correlation. For additional chart relationships and examples, refer to the <a href="https://ft-interactive.github.io/visual-vocabulary/" target="_blank" rel="noopener noreferrer">Financial Times Visual Vocabulary</a>.</p>
 <p>To keep this guidance maintainable and consistent, chart examples on this page use native Chart.js types only.</p>
 <ul>
-  <li>Included here: bar and column (including grouped, stacked and 100% stacked), line, multi-line, line+bar combo, area, sparkline, pie, doughnut, scatter, bubble, dot plot, histogram, and radar.</li>
+  <li>Included here: bar and column (including grouped, stacked and 100% stacked), line, multi-line, line+bar combo, area, stacked area, pie, doughnut, scatter, bubble, dot plot, histogram, and radar.</li>
   <li>Supported by Chart.js but not currently shown: horizontal dot-plot variants.</li>
   <li>Usually requires plugin or custom visualisation library: heatmap, treemap, packed circles, funnel, streamgraph, and hierarchy charts.</li>
 </ul>
@@ -222,16 +222,16 @@ meta-index: true
     </div>
   </div>
   <div class="nsw-col nsw-col-12 nsw-col-lg-6 nsw-docs__chart-option">
-    <h4 id="chart-sparkline" class="nsw-m-bottom-sm">Sparkline</h4>
+    <h4 id="chart-stacked-area" class="nsw-m-bottom-sm">Stacked area</h4>
     <div class="nsw-grid nsw-docs__chart-example">
       <div class="nsw-col nsw-col-12">
-        <canvas id="chartTrendSparkline" data-chart-height="300" role="img" aria-label="Sparkline example showing a quick trend."></canvas>
+        <canvas id="chartTrendStackedArea" data-chart-height="360" role="img" aria-label="Stacked area chart example showing cumulative channel share over time."></canvas>
       </div>
       <div class="nsw-col nsw-col-12 nsw-docs__chart-example-details">
         <div class="nsw-docs__list-stack">
-          <p><strong>Use when:</strong> Showing a quick trend beside a key metric.</p>
-          <p><strong>Avoid when:</strong> Detailed interpretation is required.</p>
-          <p><strong>Notes:</strong> Must still meet contrast requirements.</p>
+          <p><strong>Use when:</strong> Showing how components contribute to a total over time.</p>
+          <p><strong>Avoid when:</strong> Users need precise comparison of individual series values.</p>
+          <p><strong>Notes:</strong> Keep series count low and order layers consistently.</p>
         </div>
       </div>
     </div>

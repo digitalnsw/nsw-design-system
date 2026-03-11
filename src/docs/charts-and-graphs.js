@@ -976,7 +976,7 @@ function initChartsAndGraphs() {
           label: 'Conversion rate',
           data: [38, 41, 43, 47, 49, 46],
           yAxisID: 'y1',
-          borderColor: palette.fuchsia01,
+          borderColor: palette.fuchsia02,
           backgroundColor: palette.fuchsia02,
           borderWidth: 2,
           pointRadius: 4,
@@ -1027,36 +1027,72 @@ function initChartsAndGraphs() {
       },
     })
 
-    createChart('chartTrendSparkline', {
+    createChart('chartTrendStackedArea', {
       type: 'line',
       data: {
         labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
         datasets: [{
-          label: 'Trend',
-          data: [12, 18, 22, 20, 25, 23],
-          borderColor: palette.blue02,
-          backgroundColor: palette.blue02,
+          label: 'Online',
+          data: [120, 135, 150, 170, 182, 176],
+          borderColor: palette.purple01,
+          backgroundColor: palette.purple02,
+          fill: true,
+          pointRadius: 3,
           borderWidth: 2,
-          pointRadius: 0,
-          tension: 0.3,
+          tension: 0.25,
+          stack: 'stackedArea',
+          order: 1,
+        }, {
+          label: 'Phone',
+          data: [95, 88, 84, 80, 75, 72],
+          borderColor: palette.brown01,
+          backgroundColor: palette.brown02,
+          fill: true,
+          pointRadius: 3,
+          borderWidth: 2,
+          borderDash: [8, 6],
+          tension: 0.25,
+          stack: 'stackedArea',
+          order: 2,
+        }, {
+          label: 'Counter',
+          data: [60, 57, 52, 50, 47, 45],
+          borderColor: palette.fuchsia01,
+          backgroundColor: palette.fuchsia02,
+          fill: true,
+          pointRadius: 3,
+          borderWidth: 2,
+          borderDash: [2, 6],
+          tension: 0.25,
+          stack: 'stackedArea',
+          order: 3,
         }],
       },
       options: {
         plugins: {
           legend: {
-            display: false,
+            position: 'bottom',
           },
           title: {
             display: true,
-            text: 'Monthly trend sparkline (Jan to Jun 2025)',
+            text: 'Channel mix over time (Jan to Jun 2025, count)',
           },
         },
         scales: {
           x: {
-            display: false,
+            stacked: true,
+            title: {
+              display: true,
+              text: 'Month (2025)',
+            },
           },
           y: {
-            display: false,
+            beginAtZero: true,
+            stacked: true,
+            title: {
+              display: true,
+              text: 'Requests (count)',
+            },
           },
         },
       },
@@ -1345,8 +1381,8 @@ function initChartsAndGraphs() {
             { x: 12, y: 14, r: 14 },
             { x: 15, y: 18, r: 16 },
           ],
-          backgroundColor: palette.blue02,
-          borderColor: palette.blue01,
+          backgroundColor: palette.purple02,
+          borderColor: palette.purple01,
           pointRadius: 4,
           borderWidth: 2,
         }, {
