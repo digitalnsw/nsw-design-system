@@ -50,12 +50,16 @@ function initDocs() {
     }, false)
   })
 
-  const navLinks = document.querySelectorAll('.nsw-docs__nav a')
+  const navLinks = document.querySelectorAll('.nsw-docs__primary-nav a[href]')
   let currentURL = window.location.pathname
 
   if (currentURL === '/') currentURL = '/home/index.html'
 
   navLinks.forEach((link) => {
+    const href = link.getAttribute('href')
+
+    if (!href || href === '#') return
+
     let linkURL = link.getAttribute('href')
     const sanitisedURL = new URL(linkURL, window.location.origin)
     linkURL = sanitisedURL.pathname + sanitisedURL.search + sanitisedURL.hash
@@ -66,13 +70,23 @@ function initDocs() {
       link.classList.add('current')
 
       if (link.closest('ul').classList.contains('nsw-main-nav__sub-list')) {
-        const list = link.closest('.nsw-main-nav__sub-nav')
-        const button = list.previousElementSibling
+        const subNav = link.closest('.nsw-main-nav__sub-nav')
+        const mainNavItem = subNav ? subNav.parentElement : null
 
-        list.classList.add('current-section')
-        button.classList.add('current-section')
-        button.click()
+        if (mainNavItem) {
+          mainNavItem.classList.add('active')
+
+          if (mainNavItem.firstElementChild && mainNavItem.firstElementChild !== link) {
+            mainNavItem.firstElementChild.classList.add('current-section')
+          }
+        }
       } else {
+        const topNavItem = link.closest('li')
+
+        if (topNavItem && topNavItem.parentElement.classList.contains('nsw-main-nav__list')) {
+          topNavItem.classList.add('active')
+        }
+
         link.classList.add('current-section')
       }
     }
