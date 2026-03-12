@@ -57,11 +57,15 @@
     {{#if tabs}}
 {{>_docs-tabs}}
     {{else}}
+    {{#if home_full_width}}
+{{{contents}}}
+    {{else}}
     <div class="nsw-docs__content">
       <div class="nsw-docs__container">
 {{{contents}}}
       </div>
     </div>
+    {{/if}}
     {{/if}}
     <footer class="nsw-footer nsw-docs-footer">
       <div class="nsw-footer__lower">

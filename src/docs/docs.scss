@@ -2,8 +2,6 @@
 @use '../global/scss/themes/all';
 @use '../global/scss/tools' as nsw;
 
-$content-width: 768px;
-
 @media (prefers-reduced-motion: no-preference) {
   html {
     scroll-behavior: smooth;
@@ -90,11 +88,27 @@ $content-width: 768px;
   }
 }
 
+.nsw-docs-home-hero {
+  .nsw-hero-banner::after {
+    display: none;
+  }
+}
+
 .nsw-docs {
+  --nsw-docs-text-body-width: calc(var(--nsw-container-width) * 2 / 3);
+
   :not(pre) code {
     padding: nsw.rem(3px);
     background: var(--nsw-grey-04);
     border-radius: var(--nsw-border-radius);
+  }
+
+  @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+    &__intro .nsw-docs__container > :is(h1, h2, h3, h4, h5, h6, p, ul, ol, dl, blockquote, table, .nsw-table, pre, hr, .nsw-docs__external, .nsw-in-page-alert),
+    &__content > .nsw-docs__container > :is(h1, h2, h3, h4, h5, h6, p, ul, ol, dl, blockquote, table, .nsw-table, pre, hr, .nsw-docs__external, .nsw-in-page-alert),
+    .nsw-docs-tabs__guidance .nsw-docs__container > :is(h1, h2, h3, h4, h5, h6, p, ul, ol, dl, blockquote, table, .nsw-table, pre, hr, .nsw-docs__external, .nsw-in-page-alert) {
+      max-width: var(--nsw-docs-text-body-width);
+    }
   }
 
   &--light {
@@ -138,27 +152,6 @@ $content-width: 768px;
       background-color: var(--nsw-white);
     }
 
-    &--narrow,
-    &--menu {
-      .nsw-docs__demo {
-        max-width: nsw.rem($content-width + 32px);
-
-        @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
-          max-width: nsw.rem($content-width + 104px);
-        }
-      }
-    }
-
-    &--wide {
-      .nsw-docs__demo {
-        max-width: calc(var(--nsw-container-width) + #{nsw.rem(32px)});
-
-        @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
-          max-width: calc(var(--nsw-container-width) + #{nsw.rem(104px)});
-        }
-      }
-    }
-
     &--menu {
       .nsw-docs__component {
         max-width: nsw.rem(336px);
@@ -169,11 +162,7 @@ $content-width: 768px;
   &__container {
     width: 100%;
     margin: 0 auto;
-    max-width: nsw.rem($content-width + 32px);
-
-    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
-      max-width: nsw.rem($content-width + 104px);
-    }
+    max-width: var(--nsw-container-width);
   }
 
   &__intro {
@@ -183,7 +172,7 @@ $content-width: 768px;
       padding: nsw.rem(24px) nsw.rem(16px);
 
       @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
-        padding: nsw.rem(48px) nsw.rem(52px);
+        padding: nsw.rem(48px) nsw.rem(16px);
       }
     }
 
@@ -202,14 +191,23 @@ $content-width: 768px;
 
   &__tabs {
     flex-grow: 1;
+    width: 100%;
+    max-width: var(--nsw-container-width);
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding: 0 nsw.rem(16px);
   }
 
   &__content {
-    padding: nsw.rem(24px) nsw.rem(16px);
     flex-grow: 1;
+    width: 100%;
+    max-width: var(--nsw-container-width);
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding: nsw.rem(24px) nsw.rem(16px);
 
     @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
-      padding: nsw.rem(48px) nsw.rem(52px);
+      padding: nsw.rem(48px) nsw.rem(16px);
     }
   }
 
@@ -244,6 +242,7 @@ $content-width: 768px;
   &__demo {
     width: 100%;
     margin: 0 auto;
+    max-width: var(--nsw-container-width);
 
     > h3 {
       padding: nsw.rem(16px) 0;
@@ -443,7 +442,7 @@ $content-width: 768px;
     position: relative;
     display: none;
     margin-top: nsw.rem(24px);
-    max-width: nsw.rem(872px);
+    max-width: none;
 
     &.active {
       display: block;
@@ -478,7 +477,7 @@ $content-width: 768px;
 
   &__wrapper {
     min-height: nsw.rem(68px);
-    max-width: nsw.rem(872px);
+    max-width: none;
     max-height: nsw.rem(400px);
     overflow: auto;
     background-color: var(--nsw-white);
@@ -488,11 +487,7 @@ $content-width: 768px;
 .nsw-docs-tabs {
   >.nsw-tabs__list-wrapper {
     background-color: transparent;
-    padding: 0 nsw.rem(16px);
-
-    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
-      padding: 0 nsw.rem(52px);
-    }
+    padding: 0;
   }
 
   >.nsw-tabs__content {
@@ -506,10 +501,10 @@ $content-width: 768px;
 
     .nsw-docs__container,
     .nsw-docs__demo {
-      padding: nsw.rem(24px) nsw.rem(16px);
+      padding: nsw.rem(24px) 0;
 
       @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
-        padding: nsw.rem(48px) nsw.rem(52px);
+        padding: nsw.rem(48px) 0;
       }
     }
   }
@@ -522,10 +517,6 @@ $content-width: 768px;
 .nsw-docs-footer {
   .nsw-container {
     padding: 0 nsw.rem(16px);
-
-    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
-      padding: 0 nsw.rem(52px);
-    }
   }
 
   .nsw-footer__lower {
