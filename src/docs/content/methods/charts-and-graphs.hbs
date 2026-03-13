@@ -21,7 +21,7 @@ meta-index: true
         <a href="#meet-accessibility-standards">Meet accessibility standards</a>
       </li>
       <li>
-        <a href="#examples">Examples</a>
+        <a href="#examples">Common chart pitfalls</a>
       </li>
       <li>
         <a href="#review-checklist">Review checklist</a>
@@ -56,11 +56,15 @@ meta-index: true
 
 
 <h2 id="choose-the-right-chart-type">1. Choose the right chart type</h2>
-<p>There are four common relationship types: comparison and ranking, trends over time, proportion, and distribution and correlation. For additional chart relationships and examples, refer to the <a href="https://ft-interactive.github.io/visual-vocabulary/" target="_blank" rel="noopener noreferrer">Financial Times Visual Vocabulary</a>.</p>
+<p>Every chart must answer a clear question.</p>
+<p>Choose the chart type based on the relationship you need to show. The most common relationships are comparison and ranking, trend, proportion, distribution and correlation.</p>
+<p>If a single number tells the story, use a callout value. If users need precise figures, use a table. Only use a chart when the visual pattern adds meaning the data alone cannot.</p>
+<p>Chart examples on this page use Chart.js but the guidance applies regardless of which charting library you use.</p>
+<p>For additional chart relationships and examples, refer to the <a href="https://ft-interactive.github.io/visual-vocabulary/" target="_blank" rel="noopener noreferrer">Financial Times Visual Vocabulary</a>.</p>
 
 <div class="nsw-grid nsw-m-top-sm">
   <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
-    <div class="nsw-docs__guideline--do"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span><span>Do use when</span></div>
+    <div class="nsw-docs__guideline--do"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span><span>Use charts and graphs when</span></div>
     <ul>
       <li>Comparing categories</li>
       <li>Showing change over time</li>
@@ -70,7 +74,7 @@ meta-index: true
     </ul>
   </div>
   <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
-    <div class="nsw-docs__guideline--dont"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span><span>Don't use when</span></div>
+    <div class="nsw-docs__guideline--dont"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span><span>Do not use a chart when</span></div>
     <ul>
       <li>A single number communicates the message</li>
       <li>A table is clearer</li>
@@ -80,12 +84,6 @@ meta-index: true
     </ul>
   </div>
 </div>
-<p>To keep this guidance maintainable and consistent, chart examples on this page use native Chart.js types only.</p>
-<ul>
-  <li>Included here: bar and column (including grouped, stacked and 100% stacked), line, multi-line, line+bar combo, area, stacked area, pie, doughnut, scatter, bubble, dot plot, histogram, and radar.</li>
-  <li>Supported by Chart.js but not currently shown: horizontal dot-plot variants.</li>
-  <li>Usually requires plugin or custom visualisation library: heatmap, treemap, packed circles, funnel, streamgraph, and hierarchy charts.</li>
-</ul>
 
 <h3>Comparison and ranking</h3>
 <div class="nsw-grid nsw-docs__chart-option-grid">
@@ -1426,16 +1424,57 @@ meta-index: true
 </ul>
 
 
-<h2 id="examples">Examples</h2>
+<h2 id="examples">Common chart pitfalls</h2>
 <p>These examples show common issues and better implementations. Use them to spot risks early and improve consistency.</p>
 
 <h3>Example 1: Truncated axis and unclear labels</h3>
 <div class="nsw-grid nsw-m-top-sm">
   <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--dont"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span><span>Don't</span></div>
+    <p>Column chart starts at 90, labels are rotated and the title does not explain the timeframe.</p>
+    <div class="nsw-m-top-sm">
+      <canvas id="example1Bad" data-chart-height="240" role="img" aria-label="Column chart with truncated axis and rotated labels."></canvas>
+    </div>
+    <ul>
+      <li>Exaggerates differences by truncating the axis.</li>
+      <li>Missing units and time period.</li>
+      <li>Long labels are hard to read.</li>
+    </ul>
+  </div>
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
     <div class="nsw-docs__guideline--do"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span><span>Do</span></div>
     <p>Use a horizontal bar chart that starts at zero with direct labels and a clear timeframe.</p>
     <div class="nsw-m-top-sm">
       <canvas id="example1Good" data-chart-height="240" role="img" aria-label="Horizontal bar chart starting at zero with clear labels."></canvas>
+    </div>
+    <div class="nsw-table nsw-table--valign-middle nsw-docs__table-wrap nsw-m-top-sm">
+      <table>
+        <caption class="sr-only">Service completions by region (Jan to Jun 2025)</caption>
+        <thead>
+          <tr>
+            <th scope="col">Region</th>
+            <th scope="col">Completions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Illawarra Shoalhaven</th>
+            <td>96</td>
+          </tr>
+          <tr>
+            <th scope="row">Central Coast</th>
+            <td>101</td>
+          </tr>
+          <tr>
+            <th scope="row">Hunter New England</th>
+            <td>98</td>
+          </tr>
+          <tr>
+            <th scope="row">Western NSW</th>
+            <td>104</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
     <ul>
       <li>Set the chart canvas to a white background.</li>
@@ -1444,22 +1483,22 @@ meta-index: true
       <li>Keep labels readable and aligned.</li>
     </ul>
   </div>
-  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
-    <div class="nsw-docs__guideline--dont"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span><span>Don't</span></div>
-    <p>Column chart starts at 90, labels are rotated and the title does not explain the timeframe.</p>
-    <div class="nsw-m-top-sm">
-      <canvas id="example1Bad" data-chart-bg="none" data-chart-height="240" role="img" aria-label="Column chart with truncated axis and rotated labels."></canvas>
-    </div>
-    <ul>
-      <li>Exaggerates differences by truncating the axis.</li>
-      <li>Missing units and time period.</li>
-      <li>Long labels are hard to read.</li>
-    </ul>
-  </div>
 </div>
 
 <h3>Example 2: Colour-only differentiation</h3>
 <div class="nsw-grid nsw-m-top-sm">
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--dont"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span><span>Don't</span></div>
+    <p>Stacked bar uses red and green only, with no labels and low contrast.</p>
+    <div class="nsw-m-top-sm">
+      <canvas id="example2Bad" data-chart-height="260" role="img" aria-label="Stacked bar chart using red and green only with no labels."></canvas>
+    </div>
+    <ul>
+      <li>Relies on colour alone to communicate meaning.</li>
+      <li>Insufficient contrast for some users.</li>
+      <li>No direct labels or markers.</li>
+    </ul>
+  </div>
   <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
     <div class="nsw-docs__guideline--do"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span><span>Do</span></div>
     <p>Use accessible colours, clear contrast, and a supporting table for labels.</p>
@@ -1507,22 +1546,22 @@ meta-index: true
       <li>Keep the chart clear in greyscale and colour-blind testing.</li>
     </ul>
   </div>
-  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
-    <div class="nsw-docs__guideline--dont"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span><span>Don't</span></div>
-    <p>Stacked bar uses red and green only, with no labels and low contrast.</p>
-    <div class="nsw-m-top-sm">
-      <canvas id="example2Bad" data-chart-bg="none" data-chart-height="260" role="img" aria-label="Stacked bar chart using red and green only with no labels."></canvas>
-    </div>
-    <ul>
-      <li>Relies on colour alone to communicate meaning.</li>
-      <li>Insufficient contrast for some users.</li>
-      <li>No direct labels or markers.</li>
-    </ul>
-  </div>
 </div>
 
 <h3>Example 3: Tooltip-only values</h3>
 <div class="nsw-grid nsw-m-top-sm">
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--dont"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span><span>Don't</span></div>
+    <p>Line chart shows values only on hover with no table or summary.</p>
+    <div class="nsw-m-top-sm">
+      <canvas id="example3Bad" data-chart-height="220" role="img" aria-label="Line chart with values available only on hover."></canvas>
+    </div>
+    <ul>
+      <li>Keyboard and touch users cannot access key values.</li>
+      <li>No text alternative for screen readers.</li>
+      <li>Users cannot verify exact values.</li>
+    </ul>
+  </div>
   <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
     <div class="nsw-docs__guideline--do"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span><span>Do</span></div>
     <p>Include a summary and a semantic table for the same data.</p>
@@ -1574,45 +1613,62 @@ meta-index: true
       <li>Keep interactions keyboard accessible.</li>
     </ul>
   </div>
-  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
-    <div class="nsw-docs__guideline--dont"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span><span>Don't</span></div>
-    <p>Line chart shows values only on hover with no table or summary.</p>
-    <div class="nsw-m-top-sm">
-      <canvas id="example3Bad" data-chart-bg="none" data-chart-height="220" role="img" aria-label="Line chart with values available only on hover."></canvas>
-    </div>
-    <ul>
-      <li>Keyboard and touch users cannot access key values.</li>
-      <li>No text alternative for screen readers.</li>
-      <li>Users cannot verify exact values.</li>
-    </ul>
-  </div>
 </div>
 
 <h3>Example 4: Too many pie segments</h3>
 <div class="nsw-grid nsw-m-top-sm">
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--dont"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span><span>Don't</span></div>
+    <p>Using many small slices makes comparison difficult and creates visual clutter.</p>
+    <div class="nsw-m-top-sm">
+      <canvas id="example4Bad" data-chart-height="360" role="img" aria-label="Pie chart with twelve segments that are difficult to compare."></canvas>
+    </div>
+    <ul>
+      <li>Too many slices reduce readability.</li>
+      <li>Small segments are hard to compare accurately.</li>
+      <li>Large legends force users to cross-reference excessively.</li>
+    </ul>
+  </div>
   <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
     <div class="nsw-docs__guideline--do"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span><span>Do</span></div>
     <p>Keep pie segments limited so users can quickly compare relative share.</p>
     <div class="nsw-m-top-sm">
       <canvas id="example4Good" data-chart-height="360" role="img" aria-label="Pie chart with four clearly distinguishable segments and direct labels."></canvas>
     </div>
+    <div class="nsw-table nsw-table--valign-middle nsw-docs__table-wrap nsw-m-top-sm">
+      <table>
+        <caption class="sr-only">Service channel share (Q2 2025)</caption>
+        <thead>
+          <tr>
+            <th scope="col">Channel</th>
+            <th scope="col">Share</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Digital</th>
+            <td>46%</td>
+          </tr>
+          <tr>
+            <th scope="row">Phone</th>
+            <td>28%</td>
+          </tr>
+          <tr>
+            <th scope="row">In person</th>
+            <td>17%</td>
+          </tr>
+          <tr>
+            <th scope="row">Mail</th>
+            <td>9%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
     <ul>
       <li>Set the chart canvas to a white background.</li>
       <li>Limit pie segments to 2 to 4 where possible.</li>
       <li>Use labels and pattern support for clear distinction.</li>
       <li>Include direct labels, a clear title and percentages.</li>
-    </ul>
-  </div>
-  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
-    <div class="nsw-docs__guideline--dont"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span><span>Don't</span></div>
-    <p>Using many small slices makes comparison difficult and creates visual clutter.</p>
-    <div class="nsw-m-top-sm">
-      <canvas id="example4Bad" data-chart-bg="none" data-chart-height="360" role="img" aria-label="Pie chart with twelve segments that are difficult to compare."></canvas>
-    </div>
-    <ul>
-      <li>Too many slices reduce readability.</li>
-      <li>Small segments are hard to compare accurately.</li>
-      <li>Large legends force users to cross-reference excessively.</li>
     </ul>
   </div>
 </div>

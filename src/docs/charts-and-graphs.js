@@ -141,8 +141,9 @@ function initChartsAndGraphs() {
     Chart.defaults.elements.point.borderWidth = 1
     Chart.defaults.elements.bar.borderRadius = 0
     Chart.defaults.elements.bar.borderWidth = 0
-    Chart.defaults.plugins.legend.labels.boxWidth = 18
-    Chart.defaults.plugins.legend.labels.boxHeight = 18
+    Chart.defaults.plugins.legend.labels.boxWidth = 8
+    Chart.defaults.plugins.legend.labels.boxHeight = 8
+    Chart.defaults.plugins.legend.labels.pointStyleWidth = 8
     Chart.defaults.plugins.legend.labels.padding = 10
     Chart.defaults.plugins.legend.labels.color = palette.grey01
     Chart.defaults.plugins.legend.labels.font = {
@@ -488,11 +489,13 @@ function initChartsAndGraphs() {
       return defaults.map((item) => {
         const dataset = chart.data.datasets[item.datasetIndex] || {}
         const datasetType = dataset.type || chart.config.type
-        if (!['line', 'bar'].includes(datasetType)) return item
+        if (!['line', 'bar', 'radar', 'scatter', 'bubble'].includes(datasetType)) return item
 
+        const pointBorderColor = getDatasetColor(dataset.pointBorderColor)
+        const borderColor = getDatasetColor(dataset.borderColor)
         const pointBackgroundColor = getDatasetColor(dataset.pointBackgroundColor)
         const backgroundColor = getDatasetColor(dataset.backgroundColor)
-        const fillStyle = pointBackgroundColor || backgroundColor || item.fillStyle
+        const fillStyle = pointBorderColor || borderColor || pointBackgroundColor || backgroundColor || item.fillStyle
 
         return {
           ...item,
@@ -1739,7 +1742,7 @@ function initChartsAndGraphs() {
             position: 'bottom',
             labels: {
               usePointStyle: true,
-              pointStyleWidth: 16,
+              pointStyleWidth: 8,
             },
           },
           title: {
@@ -1817,7 +1820,7 @@ function initChartsAndGraphs() {
             labels: {
               usePointStyle: true,
               pointStyle: 'circle',
-              pointStyleWidth: 12,
+              pointStyleWidth: 8,
             },
           },
           title: {
@@ -1923,8 +1926,8 @@ function initChartsAndGraphs() {
           backgroundColor: palette.blue01,
           borderColor: palette.blue01,
           borderWidth: 1,
-          barPercentage: 1,
-          categoryPercentage: 1,
+          barPercentage: 0.9,
+          categoryPercentage: 0.92,
         }],
       },
       options: {
@@ -1973,7 +1976,7 @@ function initChartsAndGraphs() {
           pointBackgroundColor: palette.blue01,
           pointBorderColor: palette.blue01,
           pointStyle: 'circle',
-          pointRadius: 3,
+          pointRadius: 4,
         }, {
           label: 'Service B',
           data: [55, 72, 87, 68, 74],
@@ -1983,13 +1986,20 @@ function initChartsAndGraphs() {
           pointBorderColor: palette.blue02,
           pointStyle: 'triangle',
           borderDash: [8, 6],
-          pointRadius: 3,
+          pointRadius: 4,
         }],
       },
       options: {
         plugins: {
           legend: {
             position: 'bottom',
+            labels: {
+              usePointStyle: true,
+              pointStyleWidth: 8,
+              boxWidth: 8,
+              boxHeight: 8,
+              generateLabels: pointStyleLegendLabels,
+            },
           },
           title: {
             display: true,
@@ -2002,7 +2012,15 @@ function initChartsAndGraphs() {
             max: 100,
             ticks: {
               stepSize: 20,
-              showLabelBackdrop: false,
+              color: palette.grey01,
+              font: {
+                size: 13,
+                weight: 400,
+              },
+              showLabelBackdrop: true,
+              backdropColor: withAlpha(palette.white, 0.92),
+              backdropPadding: 3,
+              z: 0,
             },
             pointLabels: {
               font: {
@@ -2012,9 +2030,11 @@ function initChartsAndGraphs() {
             },
             angleLines: {
               color: palette.grey03,
+              z: -1,
             },
             grid: {
               color: palette.grey03,
+              z: -1,
             },
           },
         },
