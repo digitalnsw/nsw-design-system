@@ -130,7 +130,9 @@ function initChartsAndGraphs() {
       left: 12,
     }
 
-    Chart.defaults.font.family = "'Public Sans'"
+    const publicSansFontFamily = "'Public Sans', Arial, sans-serif"
+
+    Chart.defaults.font.family = publicSansFontFamily
     Chart.defaults.font.size = 13
     Chart.defaults.font.weight = 400
     Chart.defaults.color = textDark
@@ -145,12 +147,20 @@ function initChartsAndGraphs() {
     Chart.defaults.plugins.legend.labels.boxHeight = 18
     Chart.defaults.plugins.legend.labels.padding = 10
     Chart.defaults.plugins.legend.labels.color = palette.grey01
-    Chart.defaults.plugins.legend.labels.font = { size: 12, weight: 500 }
+    Chart.defaults.plugins.legend.labels.font = {
+      family: publicSansFontFamily,
+      size: 12,
+      weight: 500,
+    }
     Chart.defaults.plugins.title = Chart.defaults.plugins.title || {}
-    Chart.defaults.plugins.title.font = { size: 16, weight: 600 }
+    Chart.defaults.plugins.title.font = {
+      family: publicSansFontFamily,
+      size: 16,
+      weight: 700,
+    }
     Chart.defaults.plugins.title.padding = {
       top: 8,
-      bottom: 16,
+      bottom: 24,
     }
     Chart.defaults.plugins.legend.onClick = () => {}
     Chart.defaults.layout = Chart.defaults.layout || {}
@@ -159,10 +169,17 @@ function initChartsAndGraphs() {
       Chart.defaults.scale.grid.color = palette.grey03
       Chart.defaults.scale.grid.drawBorder = false
       Chart.defaults.scale.ticks.color = palette.grey02
-      Chart.defaults.scale.ticks.font = { size: 12 }
+      Chart.defaults.scale.ticks.font = {
+        family: publicSansFontFamily,
+        size: 12,
+      }
       Chart.defaults.scale.ticks.padding = 6
       Chart.defaults.scale.title = Chart.defaults.scale.title || {}
-      Chart.defaults.scale.title.font = { size: 13, weight: 500 }
+      Chart.defaults.scale.title.font = {
+        family: publicSansFontFamily,
+        size: 13,
+        weight: 500,
+      }
       Chart.defaults.scale.title.padding = {
         top: 8,
         bottom: 8,
@@ -199,6 +216,270 @@ function initChartsAndGraphs() {
       }) || baseColor
     }
 
+    const toPaddingObject = (padding) => {
+      if (Number.isFinite(padding)) {
+        return {
+          top: padding,
+          right: padding,
+          bottom: padding,
+          left: padding,
+        }
+      }
+
+      const value = padding || {}
+      return {
+        top: Number.isFinite(value.top) ? value.top : 0,
+        right: Number.isFinite(value.right) ? value.right : 0,
+        bottom: Number.isFinite(value.bottom) ? value.bottom : 0,
+        left: Number.isFinite(value.left) ? value.left : 0,
+      }
+    }
+
+    const mergePadding = (basePadding, extraPadding) => {
+      const base = toPaddingObject(basePadding)
+      const extra = toPaddingObject(extraPadding)
+      return {
+        top: base.top + extra.top,
+        right: base.right + extra.right,
+        bottom: base.bottom + extra.bottom,
+        left: base.left + extra.left,
+      }
+    }
+
+    const formatCompactNumber = (value) => {
+      if (!Number.isFinite(value)) return ''
+      if (Math.abs(value) >= 100 || Number.isInteger(value)) return `${Math.round(value)}`
+      return `${Number(value.toFixed(1))}`
+    }
+
+    const toCanvasFont = (fontOptions = {}) => {
+      const style = fontOptions.style || 'normal'
+      const weight = fontOptions.weight || 400
+      const size = fontOptions.size || 12
+      const family = fontOptions.family || publicSansFontFamily
+      return `${style} ${weight} ${size}px ${family}`
+    }
+
+    const normaliseDirectLabelLines = (value) => {
+      if (Array.isArray(value)) {
+        return value
+          .filter((line) => line != null && line !== '')
+          .map((line) => `${line}`)
+      }
+
+      if (value == null || value === '') return []
+      return [`${value}`]
+    }
+
+    const directSegmentLabelsPlugin = {
+      id: 'nswDirectLabels',
+      afterDatasetsDraw: (chart, _args, pluginOptions = {}) => {
+        if (pluginOptions.display === false) return
+        if (!['pie', 'doughnut'].includes(chart.config.type)) return
+
+        const datasetIndex = Number.isInteger(pluginOptions.datasetIndex)
+          ? pluginOptions.datasetIndex
+          : 0
+        const dataset = chart.data.datasets[datasetIndex]
+        const meta = chart.getDatasetMeta(datasetIndex)
+        if (!dataset || !meta || meta.hidden || !meta.data || !meta.data.length) return
+
+        const total = dataset.data.reduce((sum, entry) => {
+          const value = Number(entry)
+          return Number.isFinite(value) ? sum + value : sum
+        }, 0)
+        if (total <= 0) return
+
+        const { ctx } = chart
+        const labelFontOptions = {
+          family: publicSansFontFamily,
+          size: 12,
+          weight: 600,
+          ...pluginOptions.labelFont,
+        }
+        const valueFontOptions = {
+          family: publicSansFontFamily,
+          size: 12,
+          weight: 400,
+          ...pluginOptions.valueFont,
+        }
+        const labelFont = toCanvasFont(labelFontOptions)
+        const valueFont = toCanvasFont(valueFontOptions)
+        const labelLineHeight = Number.isFinite(pluginOptions.labelLineHeight)
+          ? pluginOptions.labelLineHeight
+          : 14
+        const valueLineHeight = Number.isFinite(pluginOptions.valueLineHeight)
+          ? pluginOptions.valueLineHeight
+          : 14
+        const lineGap = Number.isFinite(pluginOptions.lineGap) ? pluginOptions.lineGap : 2
+        const minGap = Number.isFinite(pluginOptions.minGap) ? pluginOptions.minGap : 10
+        const radialOffset = Number.isFinite(pluginOptions.radialOffset)
+          ? pluginOptions.radialOffset
+          : 18
+        const canvasMargin = Number.isFinite(pluginOptions.canvasMargin)
+          ? pluginOptions.canvasMargin
+          : 14
+        const labelPadding = Number.isFinite(pluginOptions.labelPadding)
+          ? pluginOptions.labelPadding
+          : 8
+        const leaderLineWidth = Number.isFinite(pluginOptions.leaderLineWidth)
+          ? pluginOptions.leaderLineWidth
+          : 1.5
+        const labels = Array.isArray(chart.data.labels) ? chart.data.labels : []
+        const itemsBySide = {
+          left: [],
+          right: [],
+        }
+
+        meta.data.forEach((arc, dataIndex) => {
+          const value = Number(dataset.data[dataIndex])
+          if (!Number.isFinite(value) || value <= 0) return
+
+          const percentage = (value / total) * 100
+          const label = labels[dataIndex] || `Segment ${dataIndex + 1}`
+          const lines = normaliseDirectLabelLines(
+            typeof pluginOptions.formatter === 'function'
+              ? pluginOptions.formatter({
+                chart,
+                dataset,
+                datasetIndex,
+                dataIndex,
+                label,
+                total,
+                value,
+                percentage,
+              })
+              : [label, `${formatCompactNumber(percentage)}%`],
+          )
+          if (!lines.length) return
+
+          const startAngle = Number.isFinite(arc.startAngle) ? arc.startAngle : 0
+          const endAngle = Number.isFinite(arc.endAngle) ? arc.endAngle : 0
+          const midAngle = (startAngle + endAngle) / 2
+          const side = Math.cos(midAngle) >= 0 ? 'right' : 'left'
+          const outerRadius = Number.isFinite(arc.outerRadius) ? arc.outerRadius : 0
+          const anchorRadius = outerRadius + 4
+          const elbowRadius = outerRadius + radialOffset
+          const x = Number.isFinite(arc.x) ? arc.x : chart.width / 2
+          const y = Number.isFinite(arc.y) ? arc.y : chart.height / 2
+
+          const measureLineWidth = (line, index) => {
+            ctx.font = index === 0 ? labelFont : valueFont
+            return ctx.measureText(line).width
+          }
+
+          const textWidth = lines.reduce((max, line, index) => (
+            Math.max(max, measureLineWidth(line, index))
+          ), 0)
+          const textHeight = lines.reduce((height, _line, index) => (
+            height + (index === 0 ? labelLineHeight : valueLineHeight)
+          ), 0) + (lines.length > 1 ? lineGap * (lines.length - 1) : 0)
+
+          itemsBySide[side].push({
+            side,
+            lines,
+            textWidth,
+            textHeight,
+            targetY: y + (Math.sin(midAngle) * elbowRadius),
+            anchorX: x + (Math.cos(midAngle) * anchorRadius),
+            anchorY: y + (Math.sin(midAngle) * anchorRadius),
+            elbowX: x + (Math.cos(midAngle) * elbowRadius),
+            elbowY: y + (Math.sin(midAngle) * elbowRadius),
+          })
+        })
+
+        const clampLabelsWithinCanvas = (items) => {
+          if (!items.length) return []
+
+          const minY = canvasMargin
+          const maxY = chart.height - canvasMargin
+          const sortedItems = [...items]
+            .sort((leftItem, rightItem) => leftItem.targetY - rightItem.targetY)
+            .map((item) => ({
+              ...item,
+              resolvedY: item.targetY,
+            }))
+
+          let cursorTop = minY - minGap
+          sortedItems.forEach((item, index) => {
+            const halfHeight = item.textHeight / 2
+            const resolvedY = Math.max(item.targetY, cursorTop + minGap + halfHeight)
+            sortedItems[index] = {
+              ...item,
+              resolvedY,
+            }
+            cursorTop = resolvedY + halfHeight
+          })
+
+          let cursorBottom = maxY + minGap
+          for (let index = sortedItems.length - 1; index >= 0; index -= 1) {
+            const item = sortedItems[index]
+            const halfHeight = item.textHeight / 2
+            const resolvedY = Math.min(item.resolvedY, cursorBottom - minGap - halfHeight)
+            sortedItems[index] = {
+              ...item,
+              resolvedY,
+            }
+            cursorBottom = resolvedY - halfHeight
+          }
+
+          cursorTop = minY - minGap
+          sortedItems.forEach((item, index) => {
+            const halfHeight = item.textHeight / 2
+            const resolvedY = Math.max(item.resolvedY, cursorTop + minGap + halfHeight)
+            sortedItems[index] = {
+              ...item,
+              resolvedY,
+            }
+            cursorTop = resolvedY + halfHeight
+          })
+
+          return sortedItems
+        }
+
+        itemsBySide.left = clampLabelsWithinCanvas(itemsBySide.left)
+        itemsBySide.right = clampLabelsWithinCanvas(itemsBySide.right)
+
+        ctx.save()
+        ctx.strokeStyle = pluginOptions.lineColor || palette.grey02
+        ctx.lineWidth = leaderLineWidth
+        ctx.lineCap = 'round'
+        ctx.lineJoin = 'round'
+        ctx.textBaseline = 'top'
+
+        Object.values(itemsBySide).forEach((items) => {
+          items.forEach((item) => {
+            const lineEndX = item.side === 'right'
+              ? chart.width - canvasMargin - item.textWidth - labelPadding
+              : canvasMargin + item.textWidth + labelPadding
+
+            ctx.beginPath()
+            ctx.moveTo(item.anchorX, item.anchorY)
+            ctx.lineTo(item.elbowX, item.elbowY)
+            ctx.lineTo(lineEndX, item.resolvedY)
+            ctx.stroke()
+
+            ctx.textAlign = item.side === 'right' ? 'left' : 'right'
+            const textX = item.side === 'right'
+              ? lineEndX + labelPadding
+              : lineEndX - labelPadding
+
+            let lineY = item.resolvedY - (item.textHeight / 2)
+            item.lines.forEach((line, index) => {
+              ctx.font = index === 0 ? labelFont : valueFont
+              ctx.fillStyle = index === 0
+                ? (pluginOptions.labelColor || textDark)
+                : (pluginOptions.valueColor || textDark)
+              ctx.fillText(line, textX, lineY)
+              lineY += index === 0 ? labelLineHeight + lineGap : valueLineHeight + lineGap
+            })
+          })
+        })
+
+        ctx.restore()
+      },
+    }
+
     const createChart = (canvasId, config) => {
       const canvas = document.getElementById(canvasId)
       if (!canvas) return
@@ -209,8 +490,22 @@ function initChartsAndGraphs() {
       const options = config && config.options ? config.options : {}
       const plugins = options.plugins || {}
       const legend = plugins.legend || {}
+      const layout = options.layout || {}
+      const directLabels = plugins.nswDirectLabels || {}
+      const useDirectLabels = ['pie', 'doughnut'].includes(config.type) && directLabels.display === true
+      const directLabelLayoutPadding = directLabels.layoutPadding || {
+        top: 20,
+        right: 56,
+        bottom: 20,
+        left: 56,
+      }
       const chartHeight = canvas.dataset.chartHeight || canvas.getAttribute('height')
       const hasExplicitChartHeight = Boolean(chartHeight)
+      const chartPlugins = Array.isArray(config.plugins) ? [...config.plugins] : []
+
+      if (useDirectLabels && !chartPlugins.includes(directSegmentLabelsPlugin)) {
+        chartPlugins.push(directSegmentLabelsPlugin)
+      }
 
       if (hasExplicitChartHeight) {
         canvas.style.height = /^\d+(\.\d+)?$/.test(chartHeight) ? `${chartHeight}px` : chartHeight
@@ -218,16 +513,28 @@ function initChartsAndGraphs() {
 
       new Chart(canvas, {
         ...config,
+        plugins: chartPlugins,
         options: {
           responsive: options.responsive !== false,
           maintainAspectRatio: Object.prototype.hasOwnProperty.call(options, 'maintainAspectRatio')
             ? options.maintainAspectRatio
             : !hasExplicitChartHeight,
           ...options,
+          layout: {
+            ...layout,
+            padding: useDirectLabels
+              ? mergePadding(layout.padding, directLabelLayoutPadding)
+              : layout.padding,
+          },
           plugins: {
             ...plugins,
+            nswDirectLabels: {
+              display: useDirectLabels,
+              ...directLabels,
+            },
             legend: {
               ...legend,
+              display: useDirectLabels ? false : legend.display,
               onClick: () => {},
             },
           },
@@ -295,6 +602,9 @@ function initChartsAndGraphs() {
       },
       options: {
         plugins: {
+          nswDirectLabels: {
+            display: false,
+          },
           legend: {
             position: 'bottom',
           },
@@ -534,6 +844,9 @@ function initChartsAndGraphs() {
       },
       options: {
         plugins: {
+          nswDirectLabels: {
+            display: false,
+          },
           legend: {
             position: 'bottom',
           },
@@ -561,12 +874,28 @@ function initChartsAndGraphs() {
       },
       options: {
         plugins: {
-          legend: {
-            position: 'bottom',
+          nswDirectLabels: {
+            display: true,
+            layoutPadding: {
+              top: 20,
+              right: 56,
+              bottom: 20,
+              left: 56,
+            },
           },
           title: {
             display: true,
             text: 'Service channel share (Q2 2025, percent)',
+            fullSize: true,
+            align: 'center',
+            font: {
+              size: 15,
+              weight: 700,
+            },
+            padding: {
+              top: 8,
+              bottom: 30,
+            },
           },
         },
       },
@@ -1122,12 +1451,28 @@ function initChartsAndGraphs() {
         radius: '86%',
         cutout: '58%',
         plugins: {
-          legend: {
-            position: 'bottom',
+          nswDirectLabels: {
+            display: true,
+            layoutPadding: {
+              top: 20,
+              right: 56,
+              bottom: 20,
+              left: 56,
+            },
           },
           title: {
             display: true,
             text: 'Application status share (Q2 2025, percent)',
+            fullSize: true,
+            align: 'center',
+            font: {
+              size: 15,
+              weight: 700,
+            },
+            padding: {
+              top: 8,
+              bottom: 24,
+            },
           },
         },
       },
@@ -1167,12 +1512,28 @@ function initChartsAndGraphs() {
         aspectRatio: 1.4,
         radius: '86%',
         plugins: {
-          legend: {
-            position: 'bottom',
+          nswDirectLabels: {
+            display: true,
+            layoutPadding: {
+              top: 20,
+              right: 56,
+              bottom: 20,
+              left: 56,
+            },
           },
           title: {
             display: true,
             text: 'Channel share (Q2 2025)',
+            fullSize: true,
+            align: 'center',
+            font: {
+              size: 15,
+              weight: 700,
+            },
+            padding: {
+              top: 8,
+              bottom: 24,
+            },
           },
         },
       },
@@ -1270,9 +1631,8 @@ function initChartsAndGraphs() {
             ],
             backgroundColor: palette.fuchsia02,
             borderColor: palette.fuchsia01,
-            pointRadius: 4,
-            borderWidth: 2,
             pointRadius: 8,
+            borderWidth: 2,
             pointStyle: 'triangle',
           },
         ],
@@ -1554,6 +1914,7 @@ function initChartsAndGraphs() {
             },
             pointLabels: {
               font: {
+                family: publicSansFontFamily,
                 size: 12,
               },
             },
@@ -1569,14 +1930,36 @@ function initChartsAndGraphs() {
     })
   }
 
+  const waitForChartFonts = () => {
+    if (!document.fonts || typeof document.fonts.load !== 'function') {
+      return Promise.resolve()
+    }
+
+    const fontReadyPromise = Promise.all([
+      document.fonts.load("400 16px 'Public Sans'"),
+      document.fonts.load("600 16px 'Public Sans'"),
+    ]).catch(() => {})
+
+    // Avoid blocking charts indefinitely if a font request stalls.
+    const timeoutPromise = new Promise((resolve) => {
+      window.setTimeout(resolve, 1800)
+    })
+
+    return Promise.race([fontReadyPromise, timeoutPromise])
+  }
+
+  const renderChartsWhenReady = () => waitForChartFonts().then(() => {
+    renderCharts()
+  })
+
   const ensureChartJS = () => {
     if (window.Chart) {
-      renderCharts()
+      renderChartsWhenReady()
       return
     }
     loadScriptOnce(chartJsPrimary)
-      .then(renderCharts)
-      .catch(() => loadScriptOnce(chartJsFallback).then(renderCharts))
+      .then(renderChartsWhenReady)
+      .catch(() => loadScriptOnce(chartJsFallback).then(renderChartsWhenReady))
       .catch((err) => {
         // eslint-disable-next-line no-console
         console.warn('Chart.js failed to load:', err)
