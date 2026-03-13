@@ -487,6 +487,23 @@ meta-index: true
 <p>Data marks must have a minimum contrast ratio of <code>3:1</code> against the background surface.</p>
 <p>Use the approved options below, combining plain and patterned swatches in one row for each valid chart-mark colour.</p>
 <p>In the <strong>Line value</strong> column, the base colour is the plain swatch shown in the same row.</p>
+<h4>Recommended colour selection method</h4>
+<p>We recommend the following method for selecting your colours:</p>
+<p>Start with 01 and 02 colours from your main colour theme. If your colour theme is Blue and Red, use Blue 01, Blue 02, Red 01, Red 02.</p>
+<div class="nsw-m-top-sm nsw-m-bottom-md">
+  <img class="nsw-display-block nsw-width-100 nsw-width-md-75" src="/assets/images/charts-and-graphs-colour-selection-1.png" alt="Colour selection example showing use of 01 and 02 colours from the main theme before introducing additional palette columns." loading="lazy">
+</div>
+<div class="nsw-in-page-alert nsw-width-100 nsw-width-md-75 nsw-in-page-alert--warning nsw-in-page-alert--compact nsw-m-bottom-md">
+  <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">error</span>
+  <div class="nsw-in-page-alert__content">
+    <p class="nsw-small"><strong>Excluded:</strong> Yellow 02 (<code>#FAAF05</code>) is <code>1.88:1</code> on white and is not compliant for chart marks.</p>
+  </div>
+</div>
+<p>Once that colour is exhausted, you can use colours from additional colour columns starting from 01 and then 02 colours.</p>
+<div class="nsw-m-top-sm nsw-m-bottom-md">
+  <img class="nsw-display-block nsw-width-100 nsw-width-md-75" src="/assets/images/charts-and-graphs-colour-selection-2.png" alt="Chart series example demonstrating consistent category colours across multiple charts for easier comparison." loading="lazy">
+</div>
+<p>If you have a series of charts, use the same colours for the same categories across all your charts. This makes it easier for users to follow the story and they will be less likely to mistake one data series for another.</p>
 <div class="nsw-section nsw-section--white nsw-block nsw-p-x-sm nsw-p-top-sm">
   <div class="nsw-table nsw-table--valign-middle nsw-docs__table-wrap">
     <table class="nsw-docs__chart-colour-table">
@@ -970,7 +987,6 @@ meta-index: true
     </table>
   </div>
 </div>
-<p><strong>Excluded:</strong> Yellow 02 (<code>#FAAF05</code>) is <code>1.88:1</code> on white and is not compliant for chart marks.</p>
 <p class="nsw-docs__pattern-swatch-note">In a few 02 rows, the line colour uses White or 01 to keep pattern contrast at or above <code>3:1</code>.</p>
 <ul>
   <li>Start with 01 and 02 from your main colour theme.</li>
@@ -1237,6 +1253,7 @@ meta-index: true
     <p>Keep to 4 to 5 patterns maximum in a single chart. Avoid thin lines or dense fills, use stroke widths 1.5 to 2px. Validate at 200% zoom and 375px viewport width before publishing. Patterns are reference swatches only: final scale must be validated in the rendered environment.</p>
   </div>
 </div>
+
 <h4>Pattern swatch examples</h4>
 <div class="nsw-section nsw-section--white nsw-block nsw-p-x-sm nsw-p-top-sm">
   <div class="nsw-table nsw-table--valign-middle nsw-docs__table-wrap">
@@ -1433,7 +1450,7 @@ meta-index: true
     <div class="nsw-docs__guideline--dont"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span><span>Don't</span></div>
     <p>Column chart starts at 90, labels are rotated and the title does not explain the timeframe.</p>
     <div class="nsw-m-top-sm">
-      <canvas id="example1Bad" data-chart-height="240" role="img" aria-label="Column chart with truncated axis and rotated labels."></canvas>
+      <canvas id="example1Bad" data-chart-height="320" role="img" aria-label="Column chart with truncated axis and rotated labels."></canvas>
     </div>
     <ul>
       <li>Exaggerates differences by truncating the axis.</li>
@@ -1445,7 +1462,7 @@ meta-index: true
     <div class="nsw-docs__guideline--do"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span><span>Do</span></div>
     <p>Use a horizontal bar chart that starts at zero with direct labels and a clear timeframe.</p>
     <div class="nsw-m-top-sm">
-      <canvas id="example1Good" data-chart-height="240" role="img" aria-label="Horizontal bar chart starting at zero with clear labels."></canvas>
+      <canvas id="example1Good" data-chart-height="320" role="img" aria-label="Horizontal bar chart starting at zero with clear labels."></canvas>
     </div>
     <div class="nsw-table nsw-table--valign-middle nsw-docs__table-wrap nsw-m-top-sm">
       <table>
@@ -1491,7 +1508,7 @@ meta-index: true
     <div class="nsw-docs__guideline--dont"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span><span>Don't</span></div>
     <p>Stacked bar uses red and green only, with no labels and low contrast.</p>
     <div class="nsw-m-top-sm">
-      <canvas id="example2Bad" data-chart-height="260" role="img" aria-label="Stacked bar chart using red and green only with no labels."></canvas>
+      <canvas id="example2Bad" data-chart-height="320" role="img" aria-label="Stacked bar chart using red and green only with no labels."></canvas>
     </div>
     <ul>
       <li>Relies on colour alone to communicate meaning.</li>
@@ -1503,7 +1520,7 @@ meta-index: true
     <div class="nsw-docs__guideline--do"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span><span>Do</span></div>
     <p>Use accessible colours, clear contrast, and a supporting table for labels.</p>
     <div class="nsw-m-top-sm">
-      <canvas id="example2Good" data-chart-height="260" role="img" aria-label="Stacked bar chart with accessible colours and clear labels."></canvas>
+      <canvas id="example2Good" data-chart-height="320" role="img" aria-label="Stacked bar chart with accessible colours and clear labels."></canvas>
     </div>
     <div class="nsw-table nsw-table--valign-middle nsw-docs__table-wrap nsw-m-top-sm">
       <table>
@@ -1554,7 +1571,7 @@ meta-index: true
     <div class="nsw-docs__guideline--dont"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span><span>Don't</span></div>
     <p>Line chart shows values only on hover with no table or summary.</p>
     <div class="nsw-m-top-sm">
-      <canvas id="example3Bad" data-chart-height="220" role="img" aria-label="Line chart with values available only on hover."></canvas>
+      <canvas id="example3Bad" data-chart-height="280" role="img" aria-label="Line chart with values available only on hover."></canvas>
     </div>
     <ul>
       <li>Keyboard and touch users cannot access key values.</li>
@@ -1566,7 +1583,7 @@ meta-index: true
     <div class="nsw-docs__guideline--do"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span><span>Do</span></div>
     <p>Include a summary and a semantic table for the same data.</p>
     <div class="nsw-m-top-sm">
-      <canvas id="example3Good" data-chart-height="220" role="img" aria-label="Line chart with a summary and data table."></canvas>
+      <canvas id="example3Good" data-chart-height="280" role="img" aria-label="Line chart with a summary and data table."></canvas>
     </div>
     <p class="nsw-m-top-sm"><strong>Summary:</strong> Applications rose steadily from January to May, with a small drop in June.</p>
     <div class="nsw-table nsw-table--valign-middle nsw-docs__table-wrap nsw-m-top-sm">
@@ -1703,10 +1720,10 @@ meta-index: true
 
 <h2 id="full-docs">References</h2>
 <ul>
-  <li>NSW Brand Toolkit: Charts and graphs (print guidance)</li>
+  <li><a href="https://branding.nsw.gov.au/guidelines/co-brand/infographics/charts-and-graphs/" target="_blank" rel="noopener noreferrer">NSW Brand Toolkit: Charts and graphs (print guidance)</a></li>
   <li>NSW Design System: <a href="/core/colour/index.html">Colour</a>, <a href="/core/typography/index.html">Typography</a>, and <a href="/components/table/index.html">Table</a></li>
   <li><a href="https://www.chartjs.org/docs/latest/" target="_blank" rel="noopener noreferrer">Chart.js documentation</a> (if you use Chart.js)</li>
-  <li><a href="https://ft-interactive.github.io/visual-vocabulary/" target="_blank" rel="noopener noreferrer">Financial Times Visual Vocabulary</a></li>
+  <li><a href="https://ft-interactive.github.io/visual-vocabulary/" target="_blank" rel="noopener noreferrer">Financial Times Visual Vocabulary</a> for extended chart type support.</li>
 </ul>
 
 <script src="/docs/js/charts-and-graphs.js"></script>
