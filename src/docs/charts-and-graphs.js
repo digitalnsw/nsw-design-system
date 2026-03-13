@@ -2,7 +2,6 @@ import {
   createPattern,
   defaultNswInkIndex,
   getNswChartPalette,
-  getNswAboriginalChartPalette,
   withAlpha,
 } from './chart-utilities'
 
@@ -121,7 +120,6 @@ function initChartsAndGraphs() {
     if (!window.Chart) return
 
     const palette = getNswChartPalette({ cssScope: document.body })
-    const aboriginalPalette = getNswAboriginalChartPalette({ cssScope: document.body })
     const textDark = palette.grey01
     const chartLayoutPadding = {
       top: 12,
@@ -480,6 +478,32 @@ function initChartsAndGraphs() {
       },
     }
 
+    const getDatasetColor = (value) => {
+      if (Array.isArray(value)) return value[0]
+      return value
+    }
+
+    const pointStyleLegendLabels = (chart) => {
+      const defaults = Chart.defaults.plugins.legend.labels.generateLabels(chart)
+      return defaults.map((item) => {
+        const dataset = chart.data.datasets[item.datasetIndex] || {}
+        const datasetType = dataset.type || chart.config.type
+        if (!['line', 'bar'].includes(datasetType)) return item
+
+        const pointBackgroundColor = getDatasetColor(dataset.pointBackgroundColor)
+        const backgroundColor = getDatasetColor(dataset.backgroundColor)
+        const fillStyle = pointBackgroundColor || backgroundColor || item.fillStyle
+
+        return {
+          ...item,
+          pointStyle: dataset.pointStyle || (datasetType === 'bar' ? 'rect' : 'circle'),
+          fillStyle,
+          strokeStyle: fillStyle,
+          lineWidth: 0,
+        }
+      })
+    }
+
     const createChart = (canvasId, config) => {
       const canvas = document.getElementById(canvasId)
       if (!canvas) return
@@ -511,8 +535,23 @@ function initChartsAndGraphs() {
         canvas.style.height = /^\d+(\.\d+)?$/.test(chartHeight) ? `${chartHeight}px` : chartHeight
       }
 
+      const sourceData = config && config.data ? config.data : {}
+      const sourceDatasets = Array.isArray(sourceData.datasets) ? sourceData.datasets : []
+      const normalisedDatasets = sourceDatasets.map((dataset) => {
+        const datasetType = dataset && dataset.type ? dataset.type : config.type
+        if (datasetType !== 'line') return dataset
+        return {
+          ...dataset,
+          pointRadius: 4,
+        }
+      })
+
       new Chart(canvas, {
         ...config,
+        data: {
+          ...sourceData,
+          datasets: normalisedDatasets,
+        },
         plugins: chartPlugins,
         options: {
           responsive: options.responsive !== false,
@@ -934,12 +973,14 @@ function initChartsAndGraphs() {
           {
             label: 'Resolved on time',
             data: [410, 438, 467, 492, 525, 508],
-            backgroundColor: palette.blue02,
+            backgroundColor: palette.blue01,
           },
           {
             label: 'Resolved late',
             data: [72, 68, 74, 70, 66, 61],
-            backgroundColor: palette.fuchsia02,
+            backgroundColor: (context) => getPatternFill(context, 'diagonal', palette.blue02, {
+            svgUrl: '/assets/images/chart-pattern-diagonal-lines.svg',
+          }),
           },
         ],
       },
@@ -992,7 +1033,7 @@ function initChartsAndGraphs() {
         datasets: [{
           label: 'Visits',
           data: [320, 210, 140],
-          backgroundColor: palette.purple02,
+          backgroundColor: palette.blue01,
           barThickness: 72,
         }],
       },
@@ -1031,7 +1072,7 @@ function initChartsAndGraphs() {
         datasets: [{
           label: 'Requests',
           data: [88, 74, 65],
-          backgroundColor: palette.red01,
+          backgroundColor: palette.blue01,
         }],
       },
       options: {
@@ -1069,15 +1110,15 @@ function initChartsAndGraphs() {
         labels: ['Program A', 'Program B', 'Program C'],
         datasets: [{
           label: 'Completed',
-          data: [70, 55, 62],
+          data: [120, 82, 54],
           backgroundColor: palette.blue01,
           barThickness: 72,
         }, {
           label: 'In progress',
-          data: [20, 30, 18],
-          backgroundColor: (context) => getPatternFill(context, 'vertical', palette.fuchsia02, {
-            svgUrl: '/assets/images/chart-pattern-zigzag-chevron.svg',
-            size: 12,
+          data: [35, 44, 26],
+          backgroundColor: (context) => getPatternFill(context, 'diagonal', palette.blue02, {
+            svgUrl: '/assets/images/chart-pattern-diagonal-lines.svg',
+            size: 8,
           }),
           barThickness: 72,
         }],
@@ -1094,6 +1135,10 @@ function initChartsAndGraphs() {
           y: {
             stacked: true,
             beginAtZero: true,
+            suggestedMax: 180,
+            ticks: {
+              stepSize: 20,
+            },
             title: {
               display: true,
               text: 'Status (count)',
@@ -1119,11 +1164,14 @@ function initChartsAndGraphs() {
         datasets: [{
           label: '2024',
           data: [74, 68, 59],
-          backgroundColor: palette.blue02,
+          backgroundColor: palette.blue01,
         }, {
           label: '2025',
           data: [88, 74, 65],
-          backgroundColor: palette.brown02,
+          backgroundColor: (context) => getPatternFill(context, 'diagonal', palette.blue02, {
+            svgUrl: '/assets/images/chart-pattern-diagonal-lines.svg',
+            size: 8,
+          }),
         }],
       },
       options: {
@@ -1162,9 +1210,12 @@ function initChartsAndGraphs() {
         datasets: [{
           label: 'Applications',
           data: [120, 160, 210, 260, 310, 295],
-          borderColor: palette.blue02,
-          backgroundColor: palette.blue02,
+          borderColor: palette.blue01,
+          backgroundColor: palette.blue01,
           pointRadius: 4,
+          pointStyle: 'circle',
+          pointBackgroundColor: palette.blue01,
+          pointBorderColor: palette.blue01,
           borderWidth: 2,
           tension: 0.3,
         }],
@@ -1204,18 +1255,24 @@ function initChartsAndGraphs() {
         datasets: [{
           label: 'Online submissions',
           data: [95, 120, 140, 165, 190, 210],
-          borderColor: palette.blue02,
-          backgroundColor: palette.blue02,
+          borderColor: palette.blue01,
+          backgroundColor: palette.blue01,
           pointRadius: 4,
+          pointStyle: 'circle',
+          pointBackgroundColor: palette.blue01,
+          pointBorderColor: palette.blue01,
           borderWidth: 2,
           borderDash: [],
           tension: 0.25,
         }, {
           label: 'Phone submissions',
           data: [130, 125, 118, 110, 105, 98],
-          borderColor: palette.brown01,
-          backgroundColor: palette.brown02,
+          borderColor: palette.blue02,
+          backgroundColor: palette.blue02,
           pointRadius: 4,
+          pointStyle: 'triangle',
+          pointBackgroundColor: palette.blue02,
+          pointBorderColor: palette.blue02,
           borderWidth: 2,
           borderDash: [8, 6],
           tension: 0.25,
@@ -1225,6 +1282,13 @@ function initChartsAndGraphs() {
         plugins: {
           legend: {
             position: 'bottom',
+            labels: {
+              usePointStyle: true,
+              pointStyleWidth: 8,
+              boxWidth: 8,
+              boxHeight: 8,
+              generateLabels: pointStyleLegendLabels,
+            },
           },
           title: {
             display: true,
@@ -1256,10 +1320,13 @@ function initChartsAndGraphs() {
         datasets: [{
           label: 'Total users',
           data: [300, 360, 420, 520, 610, 580],
-          borderColor: palette.blue02,
-          backgroundColor: palette.blue04,
+          borderColor: palette.blue01,
+          backgroundColor: withAlpha(palette.blue01, 0.2),
           fill: true,
           pointRadius: 4,
+          pointStyle: 'circle',
+          pointBackgroundColor: palette.blue01,
+          pointBorderColor: palette.blue01,
           borderWidth: 2,
           tension: 0.3,
         }],
@@ -1301,17 +1368,21 @@ function initChartsAndGraphs() {
           label: 'Applications',
           data: [120, 160, 210, 260, 310, 295],
           yAxisID: 'y',
-          backgroundColor: palette.fuchsia01,
+          backgroundColor: palette.blue01,
           order: 2,
         }, {
           type: 'line',
           label: 'Conversion rate',
           data: [38, 41, 43, 47, 49, 46],
           yAxisID: 'y1',
-          borderColor: palette.fuchsia02,
-          backgroundColor: palette.fuchsia02,
+          borderColor: palette.blue02,
+          backgroundColor: palette.blue02,
           borderWidth: 2,
           pointRadius: 4,
+          pointStyle: 'triangle',
+          pointBackgroundColor: palette.blue02,
+          pointBorderColor: palette.blue02,
+          borderDash: [8, 6],
           tension: 0.25,
           order: 1,
         }],
@@ -1320,6 +1391,13 @@ function initChartsAndGraphs() {
         plugins: {
           legend: {
             position: 'bottom',
+            labels: {
+              usePointStyle: true,
+              pointStyleWidth: 8,
+              boxWidth: 8,
+              boxHeight: 8,
+              generateLabels: pointStyleLegendLabels,
+            },
           },
           title: {
             display: true,
@@ -1366,10 +1444,13 @@ function initChartsAndGraphs() {
         datasets: [{
           label: 'Online',
           data: [120, 135, 150, 170, 182, 176],
-          borderColor: palette.purple01,
-          backgroundColor: palette.purple02,
+          borderColor: palette.blue01,
+          backgroundColor: withAlpha(palette.blue01, 0.2),
           fill: true,
           pointRadius: 3,
+          pointStyle: 'circle',
+          pointBackgroundColor: palette.blue01,
+          pointBorderColor: palette.blue01,
           borderWidth: 2,
           tension: 0.25,
           stack: 'stackedArea',
@@ -1377,10 +1458,13 @@ function initChartsAndGraphs() {
         }, {
           label: 'Phone',
           data: [95, 88, 84, 80, 75, 72],
-          borderColor: palette.brown01,
-          backgroundColor: palette.brown02,
+          borderColor: palette.blue02,
+          backgroundColor: withAlpha(palette.blue02, 0.2),
           fill: true,
           pointRadius: 3,
+          pointStyle: 'triangle',
+          pointBackgroundColor: palette.blue02,
+          pointBorderColor: palette.blue02,
           borderWidth: 2,
           borderDash: [8, 6],
           tension: 0.25,
@@ -1389,10 +1473,13 @@ function initChartsAndGraphs() {
         }, {
           label: 'Counter',
           data: [60, 57, 52, 50, 47, 45],
-          borderColor: palette.fuchsia01,
-          backgroundColor: palette.fuchsia02,
+          borderColor: palette.red01,
+          backgroundColor: withAlpha(palette.red01, 0.2),
           fill: true,
           pointRadius: 3,
+          pointStyle: 'rectRot',
+          pointBackgroundColor: palette.red01,
+          pointBorderColor: palette.red01,
           borderWidth: 2,
           borderDash: [2, 6],
           tension: 0.25,
@@ -1404,6 +1491,13 @@ function initChartsAndGraphs() {
         plugins: {
           legend: {
             position: 'bottom',
+            labels: {
+              usePointStyle: true,
+              pointStyleWidth: 8,
+              boxWidth: 8,
+              boxHeight: 8,
+              generateLabels: pointStyleLegendLabels,
+            },
           },
           title: {
             display: true,
@@ -1438,11 +1532,12 @@ function initChartsAndGraphs() {
           data: [62, 24, 14],
           backgroundColor: (context) => {
             if (context.dataIndex === 1) {
-              return getPatternFill(context, 'diagonal', palette.purple02, {
+              return getPatternFill(context, 'diagonal', palette.blue02, {
                 svgUrl: '/assets/images/chart-pattern-diagonal-lines.svg',
+                size: 8,
               })
             }
-            return [palette.purple01, palette.orange02, palette.red02][context.dataIndex]
+            return [palette.blue01, palette.blue02, palette.red02][context.dataIndex]
           },
         }],
       },
@@ -1486,24 +1581,16 @@ function initChartsAndGraphs() {
           data: [40, 25, 20, 15],
           backgroundColor: (context) => {
             if (context.dataIndex === 1) {
-              return getPatternFill(context, 'diagonal', aboriginalPalette.billabongBlue, {
+              return getPatternFill(context, 'diagonal', palette.blue02, {
                 svgUrl: '/assets/images/chart-pattern-diagonal-lines.svg',
                 size: 8,
-                inkColor: '#FFFFFF',
-              })
-            }
-            if (context.dataIndex === 3) {
-              return getPatternFill(context, 'dots', aboriginalPalette.bushPlum, {
-                svgUrl: '/assets/images/chart-pattern-dot-grid.svg',
-                size: 12,
-                inkColor: '#FFFFFF',
               })
             }
             return [
-              aboriginalPalette.orangeOchre,
-              aboriginalPalette.billabongBlue,
-              aboriginalPalette.marshlandLime,
-              aboriginalPalette.bushPlum,
+              palette.blue01,
+              palette.blue02,
+              palette.red01,
+              palette.red02,
             ][context.dataIndex]
           },
         }],
@@ -1546,11 +1633,11 @@ function initChartsAndGraphs() {
         datasets: [{
           label: 'Completed',
           data: [72, 66, 58, 64],
-          backgroundColor: palette.red01,
+          backgroundColor: palette.blue01,
         }, {
           label: 'In progress',
           data: [28, 34, 42, 36],
-          backgroundColor: (context) => getPatternFill(context, 'diagonal', palette.orange02, {
+          backgroundColor: (context) => getPatternFill(context, 'diagonal', palette.blue02, {
             svgUrl: '/assets/images/chart-pattern-diagonal-lines.svg',
             size: 8,
           }),
@@ -1617,10 +1704,11 @@ function initChartsAndGraphs() {
               { x: 15.0, y: 18.6 },
               { x: 16.0, y: 19.4 },
             ],
-            backgroundColor: palette.red01,
-            borderColor: palette.red01,
+            backgroundColor: palette.blue01,
+            borderColor: palette.blue01,
             pointRadius: 4,
             borderWidth: 2,
+            pointStyle: 'circle',
           },
           {
             label: 'Regional service centres',
@@ -1629,8 +1717,8 @@ function initChartsAndGraphs() {
               { x: 9.0, y: 16.1 },
               { x: 12.0, y: 10.8 },
             ],
-            backgroundColor: palette.fuchsia02,
-            borderColor: palette.fuchsia01,
+            backgroundColor: palette.blue02,
+            borderColor: palette.blue02,
             pointRadius: 8,
             borderWidth: 2,
             pointStyle: 'triangle',
@@ -1695,8 +1783,8 @@ function initChartsAndGraphs() {
             { x: 12, y: 14, r: 14 },
             { x: 15, y: 18, r: 16 },
           ],
-          backgroundColor: palette.purple02,
-          borderColor: palette.purple01,
+          backgroundColor: palette.blue01,
+          borderColor: palette.blue01,
           pointRadius: 4,
           borderWidth: 2,
         }, {
@@ -1708,8 +1796,8 @@ function initChartsAndGraphs() {
             { x: 10, y: 16, r: 11 },
             { x: 13, y: 19, r: 13 },
           ],
-          backgroundColor: palette.fuchsia02,
-          borderColor: palette.fuchsia01,
+          backgroundColor: palette.blue02,
+          borderColor: palette.blue02,
           pointRadius: 4,
           borderWidth: 2,
         }],
@@ -1776,10 +1864,11 @@ function initChartsAndGraphs() {
             { x: 4, y: 5.5 }, { x: 4, y: 6.4 }, { x: 4, y: 7.0 }, { x: 4, y: 8.3 },
             { x: 5, y: 4.8 }, { x: 5, y: 5.9 }, { x: 5, y: 6.7 }, { x: 5, y: 7.4 },
           ],
-          backgroundColor: palette.green02,
-          borderColor: palette.green01,
+          backgroundColor: palette.blue01,
+          borderColor: palette.blue01,
           borderWidth: 1.5,
           pointRadius: 6,
+          pointStyle: 'circle',
         }],
       },
       options: {
@@ -1827,12 +1916,12 @@ function initChartsAndGraphs() {
     createChart('chartDistHistogram', {
       type: 'bar',
       data: {
-        labels: ['0-2', '3-4', '5-6', '7-8', '9-10', '11-12', '13+'],
+        labels: ['0-1', '2-3', '4-5', '6-7', '8-9', '10-11', '12-13', '14-15', '16-17', '18-19', '20+'],
         datasets: [{
           label: 'Case frequency',
-          data: [4, 9, 15, 12, 6, 3, 1],
-          backgroundColor: palette.purple02,
-          borderColor: palette.purple01,
+          data: [1, 3, 6, 10, 14, 12, 9, 6, 4, 2, 1],
+          backgroundColor: palette.blue01,
+          borderColor: palette.blue01,
           borderWidth: 1,
           barPercentage: 1,
           categoryPercentage: 1,
@@ -1861,7 +1950,7 @@ function initChartsAndGraphs() {
           y: {
             beginAtZero: true,
             ticks: {
-              stepSize: 3,
+              stepSize: 2,
             },
             title: {
               display: true,
@@ -1879,18 +1968,21 @@ function initChartsAndGraphs() {
         datasets: [{
           label: 'Service A',
           data: [78, 84, 72, 81, 75],
-          borderColor: palette.blue02,
-          backgroundColor: withAlpha(palette.blue02, 0.2),
-          pointBackgroundColor: palette.blue02,
+          borderColor: palette.blue01,
+          backgroundColor: withAlpha(palette.blue01, 0.2),
+          pointBackgroundColor: palette.blue01,
           pointBorderColor: palette.blue01,
+          pointStyle: 'circle',
           pointRadius: 3,
         }, {
           label: 'Service B',
           data: [55, 72, 87, 68, 74],
-          borderColor: palette.orange01,
-          backgroundColor: withAlpha(palette.red02, 0.2),
-          pointBackgroundColor: palette.red02,
-          pointBorderColor: palette.red01,
+          borderColor: palette.blue02,
+          backgroundColor: withAlpha(palette.blue02, 0.2),
+          pointBackgroundColor: palette.blue02,
+          pointBorderColor: palette.blue02,
+          pointStyle: 'triangle',
+          borderDash: [8, 6],
           pointRadius: 3,
         }],
       },
