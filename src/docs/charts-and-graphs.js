@@ -903,14 +903,21 @@ function initChartsAndGraphs() {
         datasets: [{
           data: [46, 28, 17, 9],
           backgroundColor: (context) => {
-            if (context.dataIndex === 3) {
+            if (context.dataIndex === 2) {
               return getPatternFill(context, 'dots', palette.purple01, {
                 svgUrl: '/assets/images/chart-pattern-dot-grid.svg',
                 size: 12,
                 inkColor: '#FFFFFF',
               })
             }
-            return [palette.red01, palette.red02, palette.purple02, palette.purple01][context.dataIndex]
+            if (context.dataIndex === 0) {
+              return getPatternFill(context, 'diagonal', palette.red01, {
+                svgUrl: '/assets/images/chart-pattern-diagonal-lines.svg',
+                size: 12,
+                inkColor: '#FFFFFF',
+              })
+            }
+            return [palette.red01, palette.red02, palette.purple01, palette.purple02][context.dataIndex]
           },
         }],
       },
