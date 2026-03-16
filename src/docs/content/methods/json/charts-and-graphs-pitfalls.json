@@ -1,0 +1,284 @@
+{
+  "heading": "Common chart pitfalls",
+  "intro": "These examples show common issues and better implementations. Use them to spot risks early and improve consistency.",
+  "examples": [
+    {
+      "title": "Example 1: Truncated axis and unclear labels",
+      "panels": [
+        {
+          "variant": "dont",
+          "label": "Don't",
+          "description": "Column chart starts at 90, labels are rotated and the title does not explain the timeframe.",
+          "canvasId": "example1Bad",
+          "canvasHeight": 320,
+          "ariaLabel": "Column chart with truncated axis and rotated labels.",
+          "bullets": [
+            "Exaggerates differences by truncating the axis.",
+            "Missing units and time period.",
+            "Long labels are hard to read."
+          ]
+        },
+        {
+          "variant": "do",
+          "label": "Do",
+          "description": "Use a horizontal bar chart that starts at zero with direct labels and a clear timeframe.",
+          "canvasId": "example1Good",
+          "canvasHeight": 320,
+          "ariaLabel": "Horizontal bar chart starting at zero with clear labels.",
+          "table": {
+            "caption": "Service completions by region (Jan to Jun 2025)",
+            "headers": [
+              "Region",
+              "Completions"
+            ],
+            "rows": [
+              {
+                "label": "Illawarra Shoalhaven",
+                "values": [
+                  "96"
+                ]
+              },
+              {
+                "label": "Central Coast",
+                "values": [
+                  "101"
+                ]
+              },
+              {
+                "label": "Hunter New England",
+                "values": [
+                  "98"
+                ]
+              },
+              {
+                "label": "Western NSW",
+                "values": [
+                  "104"
+                ]
+              }
+            ]
+          },
+          "bullets": [
+            "Set the chart canvas to a white background.",
+            "Start the axis at zero or clearly indicate truncation.",
+            "Include timeframe and unit in the title.",
+            "Keep labels readable and aligned."
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Example 2: Colour-only differentiation",
+      "panels": [
+        {
+          "variant": "dont",
+          "label": "Don't",
+          "description": "Stacked bar uses red and green only, with no labels and low contrast.",
+          "canvasId": "example2Bad",
+          "canvasHeight": 320,
+          "ariaLabel": "Stacked bar chart using red and green only with no labels.",
+          "bullets": [
+            "Relies on colour alone to communicate meaning.",
+            "Insufficient contrast for some users.",
+            "No direct labels or markers."
+          ]
+        },
+        {
+          "variant": "do",
+          "label": "Do",
+          "description": "Use accessible colours, clear contrast, and a supporting table for labels.",
+          "canvasId": "example2Good",
+          "canvasHeight": 320,
+          "ariaLabel": "Stacked bar chart with accessible colours and clear labels.",
+          "table": {
+            "caption": "Resolution by quarter",
+            "headers": [
+              "Quarter",
+              "Resolved on time",
+              "Resolved late"
+            ],
+            "rows": [
+              {
+                "label": "Q1",
+                "values": [
+                  "120",
+                  "30"
+                ]
+              },
+              {
+                "label": "Q2",
+                "values": [
+                  "140",
+                  "25"
+                ]
+              },
+              {
+                "label": "Q3",
+                "values": [
+                  "110",
+                  "40"
+                ]
+              },
+              {
+                "label": "Q4",
+                "values": [
+                  "150",
+                  "20"
+                ]
+              }
+            ]
+          },
+          "bullets": [
+            "Set the chart canvas to a white background.",
+            "Provide labels in a table, not colour alone.",
+            "Meet WCAG contrast requirements.",
+            "Keep the chart clear in greyscale and colour-blind testing."
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Example 3: Tooltip-only values",
+      "panels": [
+        {
+          "variant": "dont",
+          "label": "Don't",
+          "description": "Line chart shows values only on hover with no table or summary.",
+          "canvasId": "example3Bad",
+          "canvasHeight": 280,
+          "ariaLabel": "Line chart with values available only on hover.",
+          "bullets": [
+            "Keyboard and touch users cannot access key values.",
+            "No text alternative for screen readers.",
+            "Users cannot verify exact values."
+          ]
+        },
+        {
+          "variant": "do",
+          "label": "Do",
+          "description": "Include a summary and a semantic table for the same data.",
+          "canvasId": "example3Good",
+          "canvasHeight": 280,
+          "ariaLabel": "Line chart with a summary and data table.",
+          "summary": "Applications rose steadily from January to May, with a small drop in June.",
+          "table": {
+            "caption": "Online applications by month",
+            "headers": [
+              "Month",
+              "Applications"
+            ],
+            "rows": [
+              {
+                "label": "January",
+                "values": [
+                  "220"
+                ]
+              },
+              {
+                "label": "February",
+                "values": [
+                  "260"
+                ]
+              },
+              {
+                "label": "March",
+                "values": [
+                  "310"
+                ]
+              },
+              {
+                "label": "April",
+                "values": [
+                  "370"
+                ]
+              },
+              {
+                "label": "May",
+                "values": [
+                  "420"
+                ]
+              },
+              {
+                "label": "June",
+                "values": [
+                  "390"
+                ]
+              }
+            ]
+          },
+          "bullets": [
+            "Set the chart canvas to a white background.",
+            "Use summary text for the key insight.",
+            "Provide precise values in a table.",
+            "Keep interactions keyboard accessible."
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Example 4: Too many pie segments",
+      "panels": [
+        {
+          "variant": "dont",
+          "label": "Don't",
+          "description": "Using many small slices makes comparison difficult and creates visual clutter.",
+          "canvasId": "example4Bad",
+          "canvasHeight": 360,
+          "ariaLabel": "Pie chart with twelve segments that are difficult to compare.",
+          "bullets": [
+            "Too many slices reduce readability.",
+            "Small segments are hard to compare accurately.",
+            "Large legends force users to cross-reference excessively."
+          ]
+        },
+        {
+          "variant": "do",
+          "label": "Do",
+          "description": "Keep pie segments limited so users can quickly compare relative share.",
+          "canvasId": "example4Good",
+          "canvasHeight": 360,
+          "ariaLabel": "Pie chart with four clearly distinguishable segments and direct labels.",
+          "table": {
+            "caption": "Service channel share (Q2 2025)",
+            "headers": [
+              "Channel",
+              "Share"
+            ],
+            "rows": [
+              {
+                "label": "Digital",
+                "values": [
+                  "46%"
+                ]
+              },
+              {
+                "label": "Phone",
+                "values": [
+                  "28%"
+                ]
+              },
+              {
+                "label": "In person",
+                "values": [
+                  "17%"
+                ]
+              },
+              {
+                "label": "Mail",
+                "values": [
+                  "9%"
+                ]
+              }
+            ]
+          },
+          "bullets": [
+            "Set the chart canvas to a white background.",
+            "Limit pie segments to 2 to 4 where possible.",
+            "Use labels and pattern support for clear distinction.",
+            "Include direct labels, a clear title and percentages."
+          ]
+        }
+      ]
+    }
+  ]
+}

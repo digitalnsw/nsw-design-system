@@ -3,51 +3,47 @@ title: Charts and graphs
 no-blank: true
 intro: Charts and graphs help users understand data quickly.
 order: 15
-model: json/charts-and-graphs-principles.json
+model:
+  principles: json/charts-and-graphs-principles.json
+  page: json/charts-and-graphs-page.json
+  chartTypes: json/charts-and-graphs-chart-types.json
+  sections: json/charts-and-graphs-content-sections.json
+  brand: json/charts-and-graphs-brand-guidance.json
+  pitfalls: json/charts-and-graphs-pitfalls.json
+  review: json/charts-and-graphs-review.json
 meta-description: NSW Design System guidance for charts and graphs in digital products, aligned to NSW Brand Toolkit principles and accessibility requirements.
 meta-index: true
 ---
 
-  <nav class="nsw-in-page-nav" aria-labelledby="in-page-nav">
-    <div id="in-page-nav" class="nsw-in-page-nav__title">On this page</div>
-    <ul>
-      <li>
-        <a href="#principles">Principles</a>
-      </li>
-      <li>
-        <a href="#choosing-the-right-chart">Choosing the right chart</a>
-      </li>
-      <li>
-        <a href="#meet-accessibility-standards">Meet accessibility standards</a>
-      </li>
-      <li>
-        <a href="#examples">Common chart pitfalls</a>
-      </li>
-      <li>
-        <a href="#review-checklist">Review checklist</a>
-      </li>
-    </ul>
-  </nav>
+<nav class="nsw-in-page-nav" aria-labelledby="in-page-nav">
+  <div id="in-page-nav" class="nsw-in-page-nav__title">On this page</div>
+  <ul>
+    {{#each model.page.inPageNav}}
+    <li>
+      <a href="{{href}}">{{label}}</a>
+    </li>
+    {{/each}}
+  </ul>
+</nav>
 
 
-<h2 id="about-this-guidance">About this guidance</h2>
-<p>This guidance helps teams choose and design charts and graphs that communicate data clearly and consistently across NSW digital products.</p>
-<p>It covers common chart types used in services and dashboards, including bar charts, line charts, scatter plots and similar formats. The guidance is tool-agnostic and applies regardless of charting library or platform.</p>
-<p>It sets shared principles for clarity, accessibility and consistency rather than prescribing exact implementation. Teams using custom visualisation tools such as D3 should apply the same principles to ensure charts remain understandable and accessible.</p>
+<h2 id="about-this-guidance">{{model.page.about.heading}}</h2>
+{{#each model.page.about.paragraphs}}
+<p>{{this}}</p>
+{{/each}}
 
-<h3>Out of scope</h3>
+<h3>{{model.page.about.outOfScopeHeading}}</h3>
 <ul>
-  <li>Expressive infographics designed for campaigns or marketing</li>
-  <li>Advanced analytical visualisations such as network graphs or complex relationship mapping</li>
-  <li>Interactive GIS mapping</li>
-  <li>Highly specialised investigative tools built for internal compliance work</li>
+  {{#each model.page.about.outOfScopeItems}}
+  <li>{{this}}</li>
+  {{/each}}
 </ul>
-<p>These use cases may require bespoke design and technical decisions beyond the scope of the design system. Future guidance may expand to cover additional visualisation types as needs mature.</p>
+<p>{{model.page.about.outOfScopeConclusion}}</p>
 
 <h2 id="principles">Principles</h2>
 <p>These principles apply to all charts and graphs in NSW digital products.</p>
 <div class="nsw-grid nsw-grid--spaced nsw-m-top-sm">
-  {{#each model.principlesIconBlocks}}
+  {{#each model.principles.principlesIconBlocks}}
   <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
     {{>_content-block this}}
   </div>
@@ -55,458 +51,153 @@ meta-index: true
 </div>
 
 
-<h2 id="choose-the-right-chart-type">1. Choose the right chart type</h2>
-<p>Every chart must answer a clear question.</p>
-<p>Choose the chart type based on the relationship you need to show. The most common relationships are comparison and ranking, trend, proportion, distribution and correlation.</p>
-<p>If a single number tells the story, use a callout value. If users need precise figures, use a table. Only use a chart when the visual pattern adds meaning the data alone cannot.</p>
-<p>Chart examples on this page use Chart.js but the guidance applies regardless of which charting library you use.</p>
-<p>For additional chart relationships and examples, refer to the <a href="https://ft-interactive.github.io/visual-vocabulary/" target="_blank" rel="noopener noreferrer">Financial Times Visual Vocabulary</a>.</p>
+<h2 id="choose-the-right-chart-type">{{model.page.chooseChartType.heading}}</h2>
+{{#each model.page.chooseChartType.introHtml}}
+<p>{{{this}}}</p>
+{{/each}}
 
 <div class="nsw-grid nsw-m-top-sm">
   <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
-    <div class="nsw-docs__guideline--do"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span><span>Use charts and graphs when</span></div>
+    <div class="nsw-docs__guideline--do"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span><span>{{model.page.chooseChartType.guidelines.doTitle}}</span></div>
     <ul>
-      <li>Comparing categories</li>
-      <li>Showing change over time</li>
-      <li>Showing distribution</li>
-      <li>Showing correlation between variables</li>
-      <li>Helping users quickly see patterns or trends</li>
+      {{#each model.page.chooseChartType.guidelines.doItems}}
+      <li>{{this}}</li>
+      {{/each}}
     </ul>
   </div>
   <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
-    <div class="nsw-docs__guideline--dont"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span><span>Do not use a chart when</span></div>
+    <div class="nsw-docs__guideline--dont"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span><span>{{model.page.chooseChartType.guidelines.dontTitle}}</span></div>
     <ul>
-      <li>A single number communicates the message</li>
-      <li>A table is clearer</li>
-      <li>The dataset is too small</li>
-      <li>The chart requires heavy explanation</li>
-      <li>It is used for decoration</li>
+      {{#each model.page.chooseChartType.guidelines.dontItems}}
+      <li>{{this}}</li>
+      {{/each}}
     </ul>
   </div>
 </div>
 
-<h3>Comparison and ranking</h3>
+{{#each model.chartTypes.sections}}
+<h3>{{title}}</h3>
 <div class="nsw-grid nsw-docs__chart-option-grid">
+  {{#each charts}}
   <div class="nsw-col nsw-col-12 nsw-col-lg-6 nsw-docs__chart-option">
-    <h4 id="chart-bar-vertical" class="nsw-m-bottom-sm">Bar (vertical)</h4>
+    <h4 id="{{id}}" class="nsw-m-bottom-sm">{{title}}</h4>
     <div class="nsw-grid nsw-docs__chart-example">
       <div class="nsw-col nsw-col-12">
-        <canvas id="chartCompBar" data-chart-height="300" role="img" aria-label="Vertical bar chart example showing visits by channel."></canvas>
+        <canvas id="{{canvasId}}" data-chart-height="{{canvasHeight}}" role="img" aria-label="{{ariaLabel}}"></canvas>
       </div>
       <div class="nsw-col nsw-col-12 nsw-docs__chart-example-details">
         <div class="nsw-docs__list-stack">
-          <p><strong>Use when:</strong> Comparing categories.</p>
-          <p><strong>Avoid when:</strong> Labels are long.</p>
-          <p><strong>Notes:</strong> Default choice for most comparisons.</p>
+          <p><strong>Use when:</strong> {{details.useWhen}}</p>
+          <p><strong>Avoid when:</strong> {{details.avoidWhen}}</p>
+          <p><strong>Notes:</strong> {{details.notes}}</p>
         </div>
       </div>
     </div>
   </div>
-  <div class="nsw-col nsw-col-12 nsw-col-lg-6 nsw-docs__chart-option">
-    <h4 id="chart-bar-horizontal" class="nsw-m-bottom-sm">Bar (horizontal)</h4>
-    <div class="nsw-grid nsw-docs__chart-example">
-      <div class="nsw-col nsw-col-12">
-        <canvas id="chartCompBarHorizontal" data-chart-height="300" role="img" aria-label="Horizontal bar chart example showing requests by region."></canvas>
-      </div>
-      <div class="nsw-col nsw-col-12 nsw-docs__chart-example-details">
-        <div class="nsw-docs__list-stack">
-          <p><strong>Use when:</strong> Labels are long or showing a ranked list.</p>
-          <p><strong>Avoid when:</strong> Few short labels.</p>
-          <p><strong>Notes:</strong> Improves readability for top 10 views.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="nsw-col nsw-col-12 nsw-col-lg-6 nsw-docs__chart-option">
-    <h4 id="chart-stacked-bar-column" class="nsw-m-bottom-sm">Stacked bar or column</h4>
-    <div class="nsw-grid nsw-docs__chart-example">
-      <div class="nsw-col nsw-col-12">
-        <canvas id="chartPropStacked" data-chart-height="380" role="img" aria-label="Stacked bar chart example showing completion status by program."></canvas>
-      </div>
-      <div class="nsw-col nsw-col-12 nsw-docs__chart-example-details">
-        <div class="nsw-docs__list-stack">
-          <p><strong>Use when:</strong> Comparing composition across categories.</p>
-          <p><strong>Avoid when:</strong> Precise comparison of segments is required.</p>
-          <p><strong>Notes:</strong> Label clearly and limit number of segments.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="nsw-col nsw-col-12 nsw-col-lg-6 nsw-docs__chart-option">
-    <h4 id="chart-grouped-horizontal-bar" class="nsw-m-bottom-sm">Grouped horizontal bar</h4>
-    <div class="nsw-grid nsw-docs__chart-example">
-      <div class="nsw-col nsw-col-12">
-        <canvas id="chartCompGroupedHorizontal" data-chart-height="380" role="img" aria-label="Grouped horizontal bar chart comparing request counts by region across two years."></canvas>
-      </div>
-      <div class="nsw-col nsw-col-12 nsw-docs__chart-example-details">
-        <div class="nsw-docs__list-stack">
-          <p><strong>Use when:</strong> Comparing multiple series across categories with long labels.</p>
-          <p><strong>Avoid when:</strong> Too many categories or series create visual clutter.</p>
-          <p><strong>Notes:</strong> Keep category count manageable and series colours clearly distinct.</p>
-        </div>
-      </div>
-    </div>
-  </div>
+  {{/each}}
 </div>
-
-<h3>Trends over time</h3>
-<div class="nsw-grid nsw-docs__chart-option-grid">
-  <div class="nsw-col nsw-col-12 nsw-col-lg-6 nsw-docs__chart-option">
-    <h4 id="chart-line" class="nsw-m-bottom-sm">Line</h4>
-    <div class="nsw-grid nsw-docs__chart-example">
-      <div class="nsw-col nsw-col-12">
-        <canvas id="chartTrendLine" data-chart-height="320" role="img" aria-label="Line chart example showing applications over time."></canvas>
-      </div>
-      <div class="nsw-col nsw-col-12 nsw-docs__chart-example-details">
-        <div class="nsw-docs__list-stack">
-          <p><strong>Use when:</strong> Showing change over time.</p>
-          <p><strong>Avoid when:</strong> No meaningful time dimension.</p>
-          <p><strong>Notes:</strong> Limit number of lines.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="nsw-col nsw-col-12 nsw-col-lg-6 nsw-docs__chart-option">
-    <h4 id="chart-multi-line" class="nsw-m-bottom-sm">Multi-line</h4>
-    <div class="nsw-grid nsw-docs__chart-example">
-      <div class="nsw-col nsw-col-12">
-        <canvas id="chartTrendMultiLine" data-chart-height="320" role="img" aria-label="Multi-line chart example showing two monthly trends over time."></canvas>
-      </div>
-      <div class="nsw-col nsw-col-12 nsw-docs__chart-example-details">
-        <div class="nsw-docs__list-stack">
-          <p><strong>Use when:</strong> Comparing trends across multiple series over the same time period.</p>
-          <p><strong>Avoid when:</strong> Too many lines make patterns difficult to read.</p>
-          <p><strong>Notes:</strong> Keep line count low and label series clearly.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="nsw-col nsw-col-12 nsw-col-lg-6 nsw-docs__chart-option">
-    <h4 id="chart-area" class="nsw-m-bottom-sm">Area</h4>
-    <div class="nsw-grid nsw-docs__chart-example">
-      <div class="nsw-col nsw-col-12">
-        <canvas id="chartTrendArea" data-chart-height="360" role="img" aria-label="Area chart example showing total users over time."></canvas>
-      </div>
-      <div class="nsw-col nsw-col-12 nsw-docs__chart-example-details">
-        <div class="nsw-docs__list-stack">
-          <p><strong>Use when:</strong> Showing cumulative volume or share over time.</p>
-          <p><strong>Avoid when:</strong> Many overlapping series.</p>
-          <p><strong>Notes:</strong> Use sparingly.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="nsw-col nsw-col-12 nsw-col-lg-6 nsw-docs__chart-option">
-    <h4 id="chart-line-bar-combo" class="nsw-m-bottom-sm">Line + bar</h4>
-    <div class="nsw-grid nsw-docs__chart-example">
-      <div class="nsw-col nsw-col-12">
-        <canvas id="chartTrendLineBarCombo" data-chart-height="360" role="img" aria-label="Combined line and bar chart showing application volume and conversion rate by month."></canvas>
-      </div>
-      <div class="nsw-col nsw-col-12 nsw-docs__chart-example-details">
-        <div class="nsw-docs__list-stack">
-          <p><strong>Use when:</strong> Showing two related measures with different units over time.</p>
-          <p><strong>Avoid when:</strong> Combined series are unrelated or dual axes may mislead interpretation.</p>
-          <p><strong>Notes:</strong> Label both axes clearly and use sparingly.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="nsw-col nsw-col-12 nsw-col-lg-6 nsw-docs__chart-option">
-    <h4 id="chart-stacked-area" class="nsw-m-bottom-sm">Stacked area</h4>
-    <div class="nsw-grid nsw-docs__chart-example">
-      <div class="nsw-col nsw-col-12">
-        <canvas id="chartTrendStackedArea" data-chart-height="360" role="img" aria-label="Stacked area chart example showing cumulative channel share over time."></canvas>
-      </div>
-      <div class="nsw-col nsw-col-12 nsw-docs__chart-example-details">
-        <div class="nsw-docs__list-stack">
-          <p><strong>Use when:</strong> Showing how components contribute to a total over time.</p>
-          <p><strong>Avoid when:</strong> Users need precise comparison of individual series values.</p>
-          <p><strong>Notes:</strong> Keep series count low and order layers consistently.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<h3>Proportion</h3>
-<div class="nsw-grid nsw-docs__chart-option-grid">
-  <div class="nsw-col nsw-col-12 nsw-col-lg-6 nsw-docs__chart-option">
-    <h4 id="chart-doughnut" class="nsw-m-bottom-sm">Doughnut</h4>
-    <div class="nsw-grid nsw-docs__chart-example">
-      <div class="nsw-col nsw-col-12">
-        <canvas id="chartPropDoughnut" data-chart-height="360" role="img" aria-label="Doughnut chart example showing approval status with direct slice labels."></canvas>
-      </div>
-      <div class="nsw-col nsw-col-12 nsw-docs__chart-example-details">
-        <div class="nsw-docs__list-stack">
-          <p><strong>Use when:</strong> Showing simple proportion (2 to 4 segments).</p>
-          <p><strong>Avoid when:</strong> Many small slices.</p>
-          <p><strong>Notes:</strong> Label slices directly with category and percentage; include total value nearby when relevant.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="nsw-col nsw-col-12 nsw-col-lg-6 nsw-docs__chart-option">
-    <h4 id="chart-pie" class="nsw-m-bottom-sm">Pie</h4>
-    <div class="nsw-grid nsw-docs__chart-example">
-      <div class="nsw-col nsw-col-12">
-        <canvas id="chartPropPie" data-chart-height="360" role="img" aria-label="Pie chart example showing channel share with direct slice labels."></canvas>
-      </div>
-      <div class="nsw-col nsw-col-12 nsw-docs__chart-example-details">
-        <div class="nsw-docs__list-stack">
-          <p><strong>Use when:</strong> Rarely recommended in digital.</p>
-          <p><strong>Avoid when:</strong> Complex or close values.</p>
-          <p><strong>Notes:</strong> Prefer doughnut or bar chart. When you do use a pie chart, label slices directly.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="nsw-col nsw-col-12 nsw-col-lg-6 nsw-docs__chart-option">
-    <h4 id="chart-stacked-proportional-bar" class="nsw-m-bottom-sm">Stacked proportional bar (100%)</h4>
-    <div class="nsw-grid nsw-docs__chart-example">
-      <div class="nsw-col nsw-col-12">
-        <canvas id="chartPropStackedProportional" data-chart-height="360" role="img" aria-label="100 percent stacked bar chart showing proportional outcome share by channel."></canvas>
-      </div>
-      <div class="nsw-col nsw-col-12 nsw-docs__chart-example-details">
-        <div class="nsw-docs__list-stack">
-          <p><strong>Use when:</strong> Comparing composition where each category sums to 100%.</p>
-          <p><strong>Avoid when:</strong> Users need absolute totals rather than proportions.</p>
-          <p><strong>Notes:</strong> Label percentages clearly and provide totals separately when needed.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<h3>Distribution and correlation</h3>
-<div class="nsw-grid nsw-docs__chart-option-grid">
-  <div class="nsw-col nsw-col-12 nsw-col-lg-6 nsw-docs__chart-option">
-    <h4 id="chart-scatter-plot" class="nsw-m-bottom-sm">Scatter plot</h4>
-    <div class="nsw-grid nsw-docs__chart-example">
-      <div class="nsw-col nsw-col-12">
-        <canvas id="chartDistScatter" data-chart-height="360" role="img" aria-label="Scatter plot example showing relationship between two variables."></canvas>
-      </div>
-      <div class="nsw-col nsw-col-12 nsw-docs__chart-example-details">
-        <div class="nsw-docs__list-stack">
-          <p><strong>Use when:</strong> Showing relationship between two variables.</p>
-          <p><strong>Avoid when:</strong> No meaningful correlation.</p>
-          <p><strong>Notes:</strong> Ensure accessible markers.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="nsw-col nsw-col-12 nsw-col-lg-6 nsw-docs__chart-option">
-    <h4 id="chart-bubble-plot" class="nsw-m-bottom-sm">Bubble plot</h4>
-    <div class="nsw-grid nsw-docs__chart-example">
-      <div class="nsw-col nsw-col-12">
-        <canvas id="chartDistBubble" data-chart-height="360" role="img" aria-label="Bubble plot example showing demand and wait time across locations with bubble size as volume."></canvas>
-      </div>
-      <div class="nsw-col nsw-col-12 nsw-docs__chart-example-details">
-        <div class="nsw-docs__list-stack">
-          <p><strong>Use when:</strong> Showing relationship and magnitude across two variables.</p>
-          <p><strong>Avoid when:</strong> Bubble area is the only cue and labels are missing.</p>
-          <p><strong>Notes:</strong> Keep bubble sizes distinct and provide labels or table support.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="nsw-col nsw-col-12 nsw-col-lg-6 nsw-docs__chart-option">
-    <h4 id="chart-dot-plot" class="nsw-m-bottom-sm">Vertical dot plot</h4>
-    <div class="nsw-grid nsw-docs__chart-example">
-      <div class="nsw-col nsw-col-12">
-        <canvas id="chartDistDotPlot" data-chart-height="360" role="img" aria-label="Vertical dot plot example showing distribution of wait times by weekday."></canvas>
-      </div>
-      <div class="nsw-col nsw-col-12 nsw-docs__chart-example-details">
-        <div class="nsw-docs__list-stack">
-          <p><strong>Use when:</strong> Showing distributions across categories without bars.</p>
-          <p><strong>Avoid when:</strong> Overplotting makes points overlap heavily.</p>
-          <p><strong>Notes:</strong> Use jitter, labels, or supporting summaries for readability.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="nsw-col nsw-col-12 nsw-col-lg-6 nsw-docs__chart-option">
-    <h4 id="chart-histogram" class="nsw-m-bottom-sm">Histogram</h4>
-    <div class="nsw-grid nsw-docs__chart-example">
-      <div class="nsw-col nsw-col-12">
-        <canvas id="chartDistHistogram" data-chart-height="360" role="img" aria-label="Histogram example showing distribution of processing times in binned ranges."></canvas>
-      </div>
-      <div class="nsw-col nsw-col-12 nsw-docs__chart-example-details">
-        <div class="nsw-docs__list-stack">
-          <p><strong>Use when:</strong> Showing frequency distribution across numeric ranges.</p>
-          <p><strong>Avoid when:</strong> Exact values per individual record are required.</p>
-          <p><strong>Notes:</strong> Use sensible bin widths and label ranges clearly.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="nsw-col nsw-col-12 nsw-col-lg-6 nsw-docs__chart-option">
-    <h4 id="chart-radar" class="nsw-m-bottom-sm">Radar</h4>
-    <div class="nsw-grid nsw-docs__chart-example">
-      <div class="nsw-col nsw-col-12">
-        <canvas id="chartDistRadar" data-chart-height="400" role="img" aria-label="Radar chart example comparing capability scores across dimensions."></canvas>
-      </div>
-      <div class="nsw-col nsw-col-12 nsw-docs__chart-example-details">
-        <div class="nsw-docs__list-stack">
-          <p><strong>Use when:</strong> Comparing profiles across the same fixed dimensions.</p>
-          <p><strong>Avoid when:</strong> Precise value comparison is the primary goal.</p>
-          <p><strong>Notes:</strong> Limit categories and provide supporting values in text or table.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+{{/each}}
 
 
-<h2 id="never-mislead-with-data">2. Never mislead with data</h2>
-<p>Charts must represent data truthfully and support informed decisions, not visual emphasis.</p>
+<h2 id="never-mislead-with-data">{{model.sections.section2.heading}}</h2>
+<p>{{model.sections.section2.intro}}</p>
 <ul>
-  <li>Do not manipulate axis scales to exaggerate differences.</li>
-  <li>Start bar charts at zero unless there is a documented reason not to.</li>
-  <li>Clearly label units, timeframes and scope of the data.</li>
-  <li>Avoid 3D styling or visual effects that can distort perception.</li>
+  {{#each model.sections.section2.bullets}}
+  <li>{{this}}</li>
+  {{/each}}
 </ul>
 
-<h3 id="chart-anatomy">Chart anatomy</h3>
-<p>Every chart must include the core elements required for clarity and accurate interpretation.</p>
+<h3 id="chart-anatomy">{{model.sections.section2.anatomy.heading}}</h3>
+<p>{{model.sections.section2.anatomy.intro}}</p>
 
 <div class="nsw-grid nsw-m-top-sm">
   <div class="nsw-col nsw-col-lg-12">
     <div class="nsw-docs__chart-anatomy">
-      <p class="nsw-docs__chart-anatomy-note sr-only">Numbered markers on the chart map to the anatomy list.</p>
+      <p class="nsw-docs__chart-anatomy-note sr-only">{{model.sections.section2.anatomy.srNote}}</p>
       <div class="nsw-docs__chart-anatomy-stage">
         <div class="nsw-docs__chart-anatomy-canvas">
-          <canvas id="chartAnatomy" role="img" aria-label="Annotated bar chart showing chart anatomy elements including title, axis labels, data labels, legend, scale and metadata."></canvas>
+          <canvas id="chartAnatomy" role="img" aria-label="{{model.sections.section2.anatomy.canvasAriaLabel}}"></canvas>
         </div>
         <p class="nsw-docs__chart-anatomy-meta">
-          <strong>Source:</strong> Service NSW request volumes.
+          <strong>{{model.sections.section2.anatomy.meta.sourceLabel}}</strong> {{model.sections.section2.anatomy.meta.sourceValue}}
           <span class="nsw-docs__chart-anatomy-meta-divider" aria-hidden="true">|</span>
-          <strong>Last updated:</strong> 1 March 2026.
+          <strong>{{model.sections.section2.anatomy.meta.updatedLabel}}</strong> {{model.sections.section2.anatomy.meta.updatedValue}}
         </p>
-        <span class="nsw-docs__chart-anatomy-pin nsw-docs__chart-anatomy-pin--title" aria-hidden="true">1</span>
-        <span class="nsw-docs__chart-anatomy-pin nsw-docs__chart-anatomy-pin--axis-labels" aria-hidden="true">2</span>
-        <span class="nsw-docs__chart-anatomy-pin nsw-docs__chart-anatomy-pin--data-labels" aria-hidden="true">3</span>
-        <span class="nsw-docs__chart-anatomy-pin nsw-docs__chart-anatomy-pin--legend" aria-hidden="true">4</span>
-        <span class="nsw-docs__chart-anatomy-pin nsw-docs__chart-anatomy-pin--scale" aria-hidden="true">5</span>
-        <span class="nsw-docs__chart-anatomy-pin nsw-docs__chart-anatomy-pin--source" aria-hidden="true">6</span>
-        <span class="nsw-docs__chart-anatomy-pin nsw-docs__chart-anatomy-pin--spacing" aria-hidden="true">7</span>
+        {{#each model.sections.section2.anatomy.pins}}
+        <span class="nsw-docs__chart-anatomy-pin nsw-docs__chart-anatomy-pin--{{modifier}}" aria-hidden="true">{{number}}</span>
+        {{/each}}
       </div>
     </div>
   </div>
   <div class="nsw-col nsw-col-lg-12">
     <ol class="nsw-list nsw-list--8 nsw-docs__chart-anatomy-list">
-      <li><strong>Title:</strong> Use a descriptive title that states what the data represents, and include timeframe and unit where relevant.</li>
-      <li><strong>Axis labels:</strong> Label each axis clearly with unit and time interval. Avoid abbreviations that are not widely understood.</li>
-      <li><strong>Data labels:</strong> Label data directly where practical, especially for bar and column values.</li>
-      <li><strong>Legend:</strong> Use a legend only when direct labels are not practical. Keep it close to the chart and readable at 200% zoom.</li>
-      <li><strong>Scale:</strong> Use consistent scales. Start bar charts at zero unless you have a documented reason not to, and indicate any truncation.</li>
-      <li><strong>Source and metadata:</strong> Include source, last updated date, and any definitions required for interpretation.</li>
-      <li><strong>Spacing and alignment:</strong> Keep spacing consistent between bars, labels and grid lines so the chart remains scannable.</li>
+      {{#each model.sections.section2.anatomy.items}}
+      <li><strong>{{label}}</strong> {{text}}</li>
+      {{/each}}
     </ol>
   </div>
 </div>
 
-<h2 id="make-the-message-obvious">3. Make the message obvious</h2>
-<p>Remove clutter and make the key insight clear at a glance. A good chart answers one question well rather than several questions poorly.</p>
+<h2 id="make-the-message-obvious">{{model.sections.section3.heading}}</h2>
+<p>{{model.sections.section3.intro}}</p>
 <ul>
-  <li>Limit the number of data series.</li>
-  <li>Avoid clutter or unnecessary visual elements.</li>
-  <li>Use annotations to highlight the key insight.</li>
+  {{#each model.sections.section3.bullets}}
+  <li>{{this}}</li>
+  {{/each}}
 </ul>
 
-<h3>Dashboards</h3>
+<h3>{{model.sections.section3.dashboardHeading}}</h3>
 <ul>
-  <li>Place key metrics first.</li>
-  <li>Group related charts.</li>
-  <li>Avoid horizontal scrolling for primary information.</li>
-  <li>If metadata applies to all charts, include it at the container level.</li>
+  {{#each model.sections.section3.dashboardBullets}}
+  <li>{{this}}</li>
+  {{/each}}
 </ul>
 
-<h2 id="meet-accessibility-standards">4. Meet accessibility standards</h2>
-<p>Charts must meet WCAG 2.2 AA and AAA where possible. Users must be able to access the same information without relying on the visual chart.</p>
-
-<h3>Contrast</h3>
+<h2 id="meet-accessibility-standards">{{model.sections.section4.heading}}</h2>
+<p>{{model.sections.section4.intro}}</p>
+{{#each model.sections.section4.subsections}}
+<h3>{{heading}}</h3>
+{{#if intro}}
+<p>{{intro}}</p>
+{{/if}}
 <ul>
-  <li>Text must meet a minimum contrast ratio of 4.5:1 (WCAG 1.4.3).</li>
-  <li>Graphical elements such as bars, lines, data points and focus indicators must meet a minimum contrast ratio of 3:1 against adjacent colours and background (WCAG 1.4.11).</li>
-  <li>Test contrast in the rendered environment, not just in design files.</li>
+  {{#each bullets}}
+  <li>{{this}}</li>
+  {{/each}}
 </ul>
-
-<h3>Use of colour</h3>
-<p>Colour must not be the only way to communicate meaning (WCAG 1.4.1). When differentiating data series:</p>
-<ul>
-  <li>Use direct labels where possible.</li>
-  <li>Use different marker shapes or stroke styles.</li>
-  <li>Avoid relying solely on red and green distinctions.</li>
-  <li>Confirm charts remain understandable in greyscale.</li>
-</ul>
-
-<h3>Keyboard access</h3>
-<p>Interactive charts must support full keyboard operation (WCAG 2.1.1). This includes:</p>
-<ul>
-  <li>All interactive elements are focusable.</li>
-  <li>Logical tab order.</li>
-  <li>Visible focus indicators.</li>
-  <li>Focus is not hidden or obscured (WCAG 2.4.11).</li>
-  <li>Interactive targets are at least 24×24px (WCAG 2.5.8).</li>
-  <li>Test keyboard interaction manually.</li>
-</ul>
-
-<h3>Text alternatives</h3>
-<p>Users must be able to access the same information without relying on the visual chart. Provide:</p>
-<ul>
-  <li>A semantic data table.</li>
-  <li>A short summary of the key insight where appropriate.</li>
-  <li>A data table that reflects the same dataset as the chart.</li>
-  <li>Static image exports without alternatives are not acceptable.</li>
-</ul>
-
-<h3>Zoom and responsiveness</h3>
-<p>Charts must remain usable at 200% zoom and 375px viewport width. Ensure:</p>
-<ul>
-  <li>Labels do not overlap.</li>
-  <li>Primary information remains visible.</li>
-  <li>Horizontal scrolling does not hide critical data.</li>
-</ul>
-
-<h3>Tool limitations</h3>
-<ul>
-  <li>Some third-party tools may restrict accessibility customisation.</li>
-  <li>If a tool cannot meet WCAG requirements, document the limitation.</li>
-  <li>Provide an accessible alternative where possible.</li>
-  <li>Accessibility responsibility remains with the product team.</li>
-</ul>
+{{/each}}
 
 
-<h2 id="apply-nsw-brand-consistently">5. Apply NSW brand consistently</h2>
-<p>Apply NSW brand colour and typography with care. Prioritise contrast and readability, and do not use the palette decoratively.</p>
+<h2 id="apply-nsw-brand-consistently">{{model.brand.heading}}</h2>
+<p>{{model.brand.intro}}</p>
 
-<h3>Recommended colour selection method</h3>
-<p>For accessibility compliance, data marks must have a minimum contrast ratio of <code>3:1</code> against the background surface.</p>
-<p>We recommend the following method for selecting your colours:</p>
-<p>Start with 01 and 02 colours from your main colour theme. If your colour theme is Blue and Red, use Blue 01, Blue 02, Red 01, Red 02.</p>
+<h3>{{model.brand.selectionMethod.heading}}</h3>
+<p>{{{model.brand.selectionMethod.contrastRule}}}</p>
+<p>{{model.brand.selectionMethod.intro}}</p>
+<p>{{model.brand.selectionMethod.beforeImageText}}</p>
 <div class="nsw-m-top-sm nsw-m-bottom-md">
-  <img class="nsw-display-block nsw-width-100 nsw-width-md-75" src="/assets/images/charts-and-graphs-colour-selection-1.png" alt="Colour selection example showing use of 01 and 02 colours from the main theme before introducing additional palette columns." loading="lazy">
+  <img class="nsw-display-block nsw-width-100 nsw-width-md-75" src="{{model.brand.selectionMethod.images.[0].src}}" alt="{{model.brand.selectionMethod.images.[0].alt}}" loading="lazy">
 </div>
 <div class="nsw-in-page-alert nsw-width-100 nsw-width-md-75 nsw-in-page-alert--warning nsw-in-page-alert--compact nsw-m-bottom-md">
   <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">error</span>
   <div class="nsw-in-page-alert__content">
-    <p class="nsw-small"><strong>Excluded:</strong> Yellow 02 (<code>#FAAF05</code>) is <code>1.88:1</code> on white and is not compliant for chart marks.</p>
+    <p class="nsw-small">{{{model.brand.selectionMethod.warning}}}</p>
   </div>
 </div>
-<p>Once that colour is exhausted, you can use colours from additional colour columns starting from 01 and then 02 colours.</p>
+<p>{{model.brand.selectionMethod.afterImageText}}</p>
 <div class="nsw-m-top-sm nsw-m-bottom-md">
-  <img class="nsw-display-block nsw-width-100 nsw-width-md-75" src="/assets/images/charts-and-graphs-colour-selection-2.png" alt="Chart series example demonstrating consistent category colours across multiple charts for easier comparison." loading="lazy">
+  <img class="nsw-display-block nsw-width-100 nsw-width-md-75" src="{{model.brand.selectionMethod.images.[1].src}}" alt="{{model.brand.selectionMethod.images.[1].alt}}" loading="lazy">
 </div>
-<p>If you have a series of charts, use the same colours for the same categories across all your charts. This makes it easier for users to follow the story and they will be less likely to mistake one data series for another.</p>
+<p>{{model.brand.selectionMethod.consistencyText}}</p>
 
-<h4>Background colour</h4>
-<p>Charts must use a white background (<code>#FFFFFF</code> or <code>--nsw-brand-white</code>) to ensure sufficient contrast for data marks.</p>
+<h4>{{model.brand.background.heading}}</h4>
+<p>{{{model.brand.background.text}}}</p>
 
-<h4>NSW Government palette chart-mark options</h4>
+<h4>{{model.brand.nswPalette.heading}}</h4>
 <div class="nsw-section nsw-section--white nsw-block nsw-p-x-sm nsw-p-top-sm">
   <div class="nsw-table nsw-table--valign-middle nsw-docs__table-wrap">
     <table class="nsw-docs__chart-colour-table">
-      <caption class="sr-only">Approved chart-mark colour options on white background</caption>
+      <caption class="sr-only">{{model.brand.nswPalette.caption}}</caption>
       <colgroup>
         <col class="nsw-docs__chart-colour-col-swatch">
         <col class="nsw-docs__chart-colour-col-colour-value">
@@ -517,482 +208,49 @@ meta-index: true
       </colgroup>
       <thead>
         <tr>
-          <th>Swatch (plain)</th>
-          <th>Colour value</th>
-          <th>Contrast ratio on white</th>
-          <th>Swatch (pattern)</th>
-          <th>Line value</th>
-          <th>Pattern contrast</th>
+          {{#each model.brand.nswPalette.headers}}
+          <th>{{this}}</th>
+          {{/each}}
         </tr>
       </thead>
       <tbody>
+        {{#each model.brand.nswPalette.rows}}
         <tr>
           <td>
             <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
-              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-blue-01)"></circle>
+              <circle cx="20" cy="20" r="18" fill="var({{fillVar}})"></circle>
             </svg>
-            <span class="sr-only">Blue 01 plain swatch</span>
+            <span class="sr-only">{{name}} plain swatch</span>
           </td>
-          <td>Blue 01 (<code>#002664</code>)</td>
-          <td><code>14.37:1</code></td>
+          <td>{{name}} (<code>{{hex}}</code>)</td>
+          <td><code>{{contrast}}</code></td>
           <td>
             <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
               <defs>
-                <pattern id="nsw-pattern-select-blue-01" patternUnits="userSpaceOnUse" width="8" height="8">
-                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-palette-blue-04)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
+                <pattern id="nsw-pattern-select-{{key}}" patternUnits="userSpaceOnUse" width="8" height="8">
+                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var({{lineVar}})" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
                 </pattern>
               </defs>
-              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-blue-01)"></circle>
-              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-blue-01)"></circle>
+              <circle cx="20" cy="20" r="18" fill="var({{fillVar}})"></circle>
+              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-{{key}})"></circle>
             </svg>
-            <span class="sr-only">Blue 01 patterned swatch</span>
+            <span class="sr-only">{{name}} patterned swatch</span>
           </td>
-          <td>Blue 04 (<code>#CBEDFD</code>)</td>
-          <td><code>11.68:1</code></td>
+          <td>{{lineName}} (<code>{{lineHex}}</code>)</td>
+          <td><code>{{patternContrast}}</code></td>
         </tr>
-        <tr>
-          <td>
-            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
-              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-blue-02)"></circle>
-            </svg>
-            <span class="sr-only">Blue 02 plain swatch</span>
-          </td>
-          <td>Blue 02 (<code>#146CFD</code>)</td>
-          <td><code>4.57:1</code></td>
-          <td>
-            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
-              <defs>
-                <pattern id="nsw-pattern-select-blue-02" patternUnits="userSpaceOnUse" width="8" height="8">
-                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-palette-blue-04)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
-                </pattern>
-              </defs>
-              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-blue-02)"></circle>
-              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-blue-02)"></circle>
-            </svg>
-            <span class="sr-only">Blue 02 patterned swatch</span>
-          </td>
-          <td>Blue 04 (<code>#CBEDFD</code>)</td>
-          <td><code>3.72:1</code></td>
-        </tr>
-        <tr>
-          <td>
-            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
-              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-purple-01)"></circle>
-            </svg>
-            <span class="sr-only">Purple 01 plain swatch</span>
-          </td>
-          <td>Purple 01 (<code>#441170</code>)</td>
-          <td><code>13.46:1</code></td>
-          <td>
-            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
-              <defs>
-                <pattern id="nsw-pattern-select-purple-01" patternUnits="userSpaceOnUse" width="8" height="8">
-                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-palette-purple-04)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
-                </pattern>
-              </defs>
-              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-purple-01)"></circle>
-              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-purple-01)"></circle>
-            </svg>
-            <span class="sr-only">Purple 01 patterned swatch</span>
-          </td>
-          <td>Purple 04 (<code>#E6E1FD</code>)</td>
-          <td><code>10.61:1</code></td>
-        </tr>
-        <tr>
-          <td>
-            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
-              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-purple-02)"></circle>
-            </svg>
-            <span class="sr-only">Purple 02 plain swatch</span>
-          </td>
-          <td>Purple 02 (<code>#8055F1</code>)</td>
-          <td><code>4.68:1</code></td>
-          <td>
-            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
-              <defs>
-                <pattern id="nsw-pattern-select-purple-02" patternUnits="userSpaceOnUse" width="8" height="8">
-                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-palette-purple-04)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
-                </pattern>
-              </defs>
-              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-purple-02)"></circle>
-              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-purple-02)"></circle>
-            </svg>
-            <span class="sr-only">Purple 02 patterned swatch</span>
-          </td>
-          <td>Purple 04 (<code>#E6E1FD</code>)</td>
-          <td><code>3.69:1</code></td>
-        </tr>
-        <tr>
-          <td>
-            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
-              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-fuchsia-01)"></circle>
-            </svg>
-            <span class="sr-only">Fuchsia 01 plain swatch</span>
-          </td>
-          <td>Fuchsia 01 (<code>#65004D</code>)</td>
-          <td><code>12.65:1</code></td>
-          <td>
-            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
-              <defs>
-                <pattern id="nsw-pattern-select-fuchsia-01" patternUnits="userSpaceOnUse" width="8" height="8">
-                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-palette-fuchsia-04)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
-                </pattern>
-              </defs>
-              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-fuchsia-01)"></circle>
-              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-fuchsia-01)"></circle>
-            </svg>
-            <span class="sr-only">Fuchsia 01 patterned swatch</span>
-          </td>
-          <td>Fuchsia 04 (<code>#FDDEF2</code>)</td>
-          <td><code>10.18:1</code></td>
-        </tr>
-        <tr>
-          <td>
-            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
-              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-fuchsia-02)"></circle>
-            </svg>
-            <span class="sr-only">Fuchsia 02 plain swatch</span>
-          </td>
-          <td>Fuchsia 02 (<code>#D912AE</code>)</td>
-          <td><code>4.52:1</code></td>
-          <td>
-            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
-              <defs>
-                <pattern id="nsw-pattern-select-fuchsia-02" patternUnits="userSpaceOnUse" width="8" height="8">
-                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-palette-fuchsia-04)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
-                </pattern>
-              </defs>
-              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-fuchsia-02)"></circle>
-              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-fuchsia-02)"></circle>
-            </svg>
-            <span class="sr-only">Fuchsia 02 patterned swatch</span>
-          </td>
-          <td>Fuchsia 04 (<code>#FDDEF2</code>)</td>
-          <td><code>3.64:1</code></td>
-        </tr>
-        <tr>
-          <td>
-            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
-              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-red-01)"></circle>
-            </svg>
-            <span class="sr-only">Red 01 plain swatch</span>
-          </td>
-          <td>Red 01 (<code>#630019</code>)</td>
-          <td><code>13.60:1</code></td>
-          <td>
-            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
-              <defs>
-                <pattern id="nsw-pattern-select-red-01" patternUnits="userSpaceOnUse" width="8" height="8">
-                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-palette-red-04)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
-                </pattern>
-              </defs>
-              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-red-01)"></circle>
-              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-red-01)"></circle>
-            </svg>
-            <span class="sr-only">Red 01 patterned swatch</span>
-          </td>
-          <td>Red 04 (<code>#FFE6EA</code>)</td>
-          <td><code>11.50:1</code></td>
-        </tr>
-        <tr>
-          <td>
-            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
-              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-red-02)"></circle>
-            </svg>
-            <span class="sr-only">Red 02 plain swatch</span>
-          </td>
-          <td>Red 02 (<code>#D7153A</code>)</td>
-          <td><code>5.18:1</code></td>
-          <td>
-            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
-              <defs>
-                <pattern id="nsw-pattern-select-red-02" patternUnits="userSpaceOnUse" width="8" height="8">
-                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-palette-red-04)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
-                </pattern>
-              </defs>
-              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-red-02)"></circle>
-              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-red-02)"></circle>
-            </svg>
-            <span class="sr-only">Red 02 patterned swatch</span>
-          </td>
-          <td>Red 04 (<code>#FFE6EA</code>)</td>
-          <td><code>4.38:1</code></td>
-        </tr>
-        <tr>
-          <td>
-            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
-              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-orange-01)"></circle>
-            </svg>
-            <span class="sr-only">Orange 01 plain swatch</span>
-          </td>
-          <td>Orange 01 (<code>#941B00</code>)</td>
-          <td><code>8.69:1</code></td>
-          <td>
-            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
-              <defs>
-                <pattern id="nsw-pattern-select-orange-01" patternUnits="userSpaceOnUse" width="8" height="8">
-                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-palette-orange-04)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
-                </pattern>
-              </defs>
-              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-orange-01)"></circle>
-              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-orange-01)"></circle>
-            </svg>
-            <span class="sr-only">Orange 01 patterned swatch</span>
-          </td>
-          <td>Orange 04 (<code>#FDEDDF</code>)</td>
-          <td><code>7.60:1</code></td>
-        </tr>
-        <tr>
-          <td>
-            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
-              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-orange-02)"></circle>
-            </svg>
-            <span class="sr-only">Orange 02 plain swatch</span>
-          </td>
-          <td>Orange 02 (<code>#F3631B</code>)</td>
-          <td><code>3.18:1</code></td>
-          <td>
-            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
-              <defs>
-                <pattern id="nsw-pattern-select-orange-02" patternUnits="userSpaceOnUse" width="8" height="8">
-                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-white)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
-                </pattern>
-              </defs>
-              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-orange-02)"></circle>
-              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-orange-02)"></circle>
-            </svg>
-            <span class="sr-only">Orange 02 patterned swatch</span>
-          </td>
-          <td>White (<code>#FFFFFF</code>)</td>
-          <td><code>3.18:1</code></td>
-        </tr>
-        <tr>
-          <td>
-            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
-              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-brown-01)"></circle>
-            </svg>
-            <span class="sr-only">Brown 01 plain swatch</span>
-          </td>
-          <td>Brown 01 (<code>#523719</code>)</td>
-          <td><code>10.94:1</code></td>
-          <td>
-            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
-              <defs>
-                <pattern id="nsw-pattern-select-brown-01" patternUnits="userSpaceOnUse" width="8" height="8">
-                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-palette-brown-04)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
-                </pattern>
-              </defs>
-              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-brown-01)"></circle>
-              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-brown-01)"></circle>
-            </svg>
-            <span class="sr-only">Brown 01 patterned swatch</span>
-          </td>
-          <td>Brown 04 (<code>#EDE3D7</code>)</td>
-          <td><code>8.63:1</code></td>
-        </tr>
-        <tr>
-          <td>
-            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
-              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-brown-02)"></circle>
-            </svg>
-            <span class="sr-only">Brown 02 plain swatch</span>
-          </td>
-          <td>Brown 02 (<code>#B68D5D</code>)</td>
-          <td><code>3.02:1</code></td>
-          <td>
-            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
-              <defs>
-                <pattern id="nsw-pattern-select-brown-02" patternUnits="userSpaceOnUse" width="8" height="8">
-                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-white)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
-                </pattern>
-              </defs>
-              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-brown-02)"></circle>
-              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-brown-02)"></circle>
-            </svg>
-            <span class="sr-only">Brown 02 patterned swatch</span>
-          </td>
-          <td>White (<code>#FFFFFF</code>)</td>
-          <td><code>3.02:1</code></td>
-        </tr>
-        <tr>
-          <td>
-            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
-              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-yellow-01)"></circle>
-            </svg>
-            <span class="sr-only">Yellow 01 plain swatch</span>
-          </td>
-          <td>Yellow 01 (<code>#694800</code>)</td>
-          <td><code>8.31:1</code></td>
-          <td>
-            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
-              <defs>
-                <pattern id="nsw-pattern-select-yellow-01" patternUnits="userSpaceOnUse" width="8" height="8">
-                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-palette-yellow-04)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
-                </pattern>
-              </defs>
-              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-yellow-01)"></circle>
-              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-yellow-01)"></circle>
-            </svg>
-            <span class="sr-only">Yellow 01 patterned swatch</span>
-          </td>
-          <td>Yellow 04 (<code>#FFF4CF</code>)</td>
-          <td><code>7.55:1</code></td>
-        </tr>
-        <tr>
-          <td>
-            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
-              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-green-01)"></circle>
-            </svg>
-            <span class="sr-only">Green 01 plain swatch</span>
-          </td>
-          <td>Green 01 (<code>#004000</code>)</td>
-          <td><code>12.12:1</code></td>
-          <td>
-            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
-              <defs>
-                <pattern id="nsw-pattern-select-green-01" patternUnits="userSpaceOnUse" width="8" height="8">
-                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-palette-green-04)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
-                </pattern>
-              </defs>
-              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-green-01)"></circle>
-              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-green-01)"></circle>
-            </svg>
-            <span class="sr-only">Green 01 patterned swatch</span>
-          </td>
-          <td>Green 04 (<code>#DBFADF</code>)</td>
-          <td><code>10.82:1</code></td>
-        </tr>
-        <tr>
-          <td>
-            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
-              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-green-02)"></circle>
-            </svg>
-            <span class="sr-only">Green 02 plain swatch</span>
-          </td>
-          <td>Green 02 (<code>#00AA45</code>)</td>
-          <td><code>3.07:1</code></td>
-          <td>
-            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
-              <defs>
-                <pattern id="nsw-pattern-select-green-02" patternUnits="userSpaceOnUse" width="8" height="8">
-                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-white)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
-                </pattern>
-              </defs>
-              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-green-02)"></circle>
-              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-green-02)"></circle>
-            </svg>
-            <span class="sr-only">Green 02 patterned swatch</span>
-          </td>
-          <td>White (<code>#FFFFFF</code>)</td>
-          <td><code>3.07:1</code></td>
-        </tr>
-        <tr>
-          <td>
-            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
-              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-teal-01)"></circle>
-            </svg>
-            <span class="sr-only">Teal 01 plain swatch</span>
-          </td>
-          <td>Teal 01 (<code>#0B3F47</code>)</td>
-          <td><code>11.56:1</code></td>
-          <td>
-            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
-              <defs>
-                <pattern id="nsw-pattern-select-teal-01" patternUnits="userSpaceOnUse" width="8" height="8">
-                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-palette-teal-04)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
-                </pattern>
-              </defs>
-              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-teal-01)"></circle>
-              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-teal-01)"></circle>
-            </svg>
-            <span class="sr-only">Teal 01 patterned swatch</span>
-          </td>
-          <td>Teal 04 (<code>#D1EEEA</code>)</td>
-          <td><code>9.43:1</code></td>
-        </tr>
-        <tr>
-          <td>
-            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
-              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-teal-02)"></circle>
-            </svg>
-            <span class="sr-only">Teal 02 plain swatch</span>
-          </td>
-          <td>Teal 02 (<code>#2E808E</code>)</td>
-          <td><code>4.57:1</code></td>
-          <td>
-            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
-              <defs>
-                <pattern id="nsw-pattern-select-teal-02" patternUnits="userSpaceOnUse" width="8" height="8">
-                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-palette-teal-04)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
-                </pattern>
-              </defs>
-              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-teal-02)"></circle>
-              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-teal-02)"></circle>
-            </svg>
-            <span class="sr-only">Teal 02 patterned swatch</span>
-          </td>
-          <td>Teal 04 (<code>#D1EEEA</code>)</td>
-          <td><code>3.73:1</code></td>
-        </tr>
-        <tr>
-          <td>
-            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
-              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-grey-01)"></circle>
-            </svg>
-            <span class="sr-only">Grey 01 plain swatch</span>
-          </td>
-          <td>Grey 01 (<code>#22272B</code>)</td>
-          <td><code>15.07:1</code></td>
-          <td>
-            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
-              <defs>
-                <pattern id="nsw-pattern-select-grey-01" patternUnits="userSpaceOnUse" width="8" height="8">
-                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-palette-grey-04)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
-                </pattern>
-              </defs>
-              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-grey-01)"></circle>
-              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-grey-01)"></circle>
-            </svg>
-            <span class="sr-only">Grey 01 patterned swatch</span>
-          </td>
-          <td>Grey 04 (<code>#EBEBEB</code>)</td>
-          <td><code>12.64:1</code></td>
-        </tr>
-        <tr>
-          <td>
-            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
-              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-grey-02)"></circle>
-            </svg>
-            <span class="sr-only">Grey 02 plain swatch</span>
-          </td>
-          <td>Grey 02 (<code>#495054</code>)</td>
-          <td><code>8.21:1</code></td>
-          <td>
-            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
-              <defs>
-                <pattern id="nsw-pattern-select-grey-02" patternUnits="userSpaceOnUse" width="8" height="8">
-                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-palette-grey-04)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
-                </pattern>
-              </defs>
-              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-grey-02)"></circle>
-              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-grey-02)"></circle>
-            </svg>
-            <span class="sr-only">Grey 02 patterned swatch</span>
-          </td>
-          <td>Grey 04 (<code>#EBEBEB</code>)</td>
-          <td><code>6.88:1</code></td>
-        </tr>
+        {{/each}}
       </tbody>
     </table>
   </div>
 </div>
-<p class="nsw-docs__pattern-swatch-note">In a few 02 rows, the line colour uses White or 01 to keep pattern contrast at or above <code>3:1</code>.</p>
+<p class="nsw-docs__pattern-swatch-note">{{{model.brand.nswPalette.note}}}</p>
 
-<h4>Aboriginal palette chart-mark options</h4>
+<h4>{{model.brand.aboriginalPalette.heading}}</h4>
 <div class="nsw-section nsw-section--white nsw-block nsw-p-x-sm nsw-p-top-sm">
   <div class="nsw-table nsw-table--valign-middle nsw-docs__table-wrap">
     <table class="nsw-docs__chart-colour-table">
-      <caption class="sr-only">Approved Aboriginal palette chart-mark options on white background</caption>
+      <caption class="sr-only">{{model.brand.aboriginalPalette.caption}}</caption>
       <colgroup>
         <col class="nsw-docs__chart-colour-col-swatch">
         <col class="nsw-docs__chart-colour-col-colour-value">
@@ -1003,256 +261,98 @@ meta-index: true
       </colgroup>
       <thead>
         <tr>
-          <th>Swatch (plain)</th>
-          <th>Colour value</th>
-          <th>Contrast ratio on white</th>
-          <th>Swatch (pattern)</th>
-          <th>Line value</th>
-          <th>Pattern contrast</th>
+          {{#each model.brand.aboriginalPalette.headers}}
+          <th>{{this}}</th>
+          {{/each}}
         </tr>
       </thead>
       <tbody>
+        {{#each model.brand.aboriginalPalette.rows}}
         <tr>
-          <td><svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><circle cx="20" cy="20" r="18" fill="var(--nsw-aboriginal-palette-earth-red)"></circle></svg><span class="sr-only">Earth red plain swatch</span></td>
-          <td>Earth red (<code>#950906</code>)</td>
-          <td><code>9.05:1</code></td>
           <td>
-            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><defs><pattern id="nsw-pattern-select-aboriginal-earth-red" patternUnits="userSpaceOnUse" width="8" height="8"><path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-aboriginal-palette-galah-pink)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path></pattern></defs><circle cx="20" cy="20" r="18" fill="var(--nsw-aboriginal-palette-earth-red)"></circle><circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-aboriginal-earth-red)"></circle></svg>
-            <span class="sr-only">Earth red patterned swatch</span>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <circle cx="20" cy="20" r="18" fill="var({{fillVar}})"></circle>
+            </svg>
+            <span class="sr-only">{{name}} plain swatch</span>
           </td>
-          <td>Galah pink (<code>#FDD9D9</code>)</td>
-          <td><code>6.94:1</code></td>
-        </tr>
-        <tr>
-          <td><svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><circle cx="20" cy="20" r="18" fill="var(--nsw-aboriginal-palette-ember-red)"></circle></svg><span class="sr-only">Ember red plain swatch</span></td>
-          <td>Ember red (<code>#E1261C</code>)</td>
-          <td><code>4.67:1</code></td>
+          <td>{{name}} (<code>{{hex}}</code>)</td>
+          <td><code>{{contrast}}</code></td>
           <td>
-            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><defs><pattern id="nsw-pattern-select-aboriginal-ember-red" patternUnits="userSpaceOnUse" width="8" height="8"><path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-aboriginal-palette-galah-pink)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path></pattern></defs><circle cx="20" cy="20" r="18" fill="var(--nsw-aboriginal-palette-ember-red)"></circle><circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-aboriginal-ember-red)"></circle></svg>
-            <span class="sr-only">Ember red patterned swatch</span>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <defs>
+                <pattern id="nsw-pattern-select-aboriginal-{{key}}" patternUnits="userSpaceOnUse" width="8" height="8">
+                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var({{lineVar}})" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
+                </pattern>
+              </defs>
+              <circle cx="20" cy="20" r="18" fill="var({{fillVar}})"></circle>
+              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-aboriginal-{{key}})"></circle>
+            </svg>
+            <span class="sr-only">{{name}} patterned swatch</span>
           </td>
-          <td>Galah pink (<code>#FDD9D9</code>)</td>
-          <td><code>3.58:1</code></td>
+          <td>{{lineName}} (<code>{{lineHex}}</code>)</td>
+          <td><code>{{patternContrast}}</code></td>
         </tr>
-        <tr>
-          <td><svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><circle cx="20" cy="20" r="18" fill="var(--nsw-aboriginal-palette-deep-orange)"></circle></svg><span class="sr-only">Deep orange plain swatch</span></td>
-          <td>Deep orange (<code>#882600</code>)</td>
-          <td><code>9.04:1</code></td>
-          <td>
-            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><defs><pattern id="nsw-pattern-select-aboriginal-deep-orange" patternUnits="userSpaceOnUse" width="8" height="8"><path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-aboriginal-palette-sunset-orange)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path></pattern></defs><circle cx="20" cy="20" r="18" fill="var(--nsw-aboriginal-palette-deep-orange)"></circle><circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-aboriginal-deep-orange)"></circle></svg>
-            <span class="sr-only">Deep orange patterned swatch</span>
-          </td>
-          <td>Sunset orange (<code>#F9D4BE</code>)</td>
-          <td><code>6.54:1</code></td>
-        </tr>
-        <tr>
-          <td><svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><circle cx="20" cy="20" r="18" fill="var(--nsw-aboriginal-palette-orange-ochre)"></circle></svg><span class="sr-only">Orange ochre plain swatch</span></td>
-          <td>Orange ochre (<code>#EE6314</code>)</td>
-          <td><code>3.27:1</code></td>
-          <td>
-            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><defs><pattern id="nsw-pattern-select-aboriginal-orange-ochre" patternUnits="userSpaceOnUse" width="8" height="8"><path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-white)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path></pattern></defs><circle cx="20" cy="20" r="18" fill="var(--nsw-aboriginal-palette-orange-ochre)"></circle><circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-aboriginal-orange-ochre)"></circle></svg>
-            <span class="sr-only">Orange ochre patterned swatch</span>
-          </td>
-          <td>White (<code>#FFFFFF</code>)</td>
-          <td><code>3.27:1</code></td>
-        </tr>
-        <tr>
-          <td><svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><circle cx="20" cy="20" r="18" fill="var(--nsw-aboriginal-palette-bush-honey-yellow)"></circle></svg><span class="sr-only">Bush honey yellow plain swatch</span></td>
-          <td>Bush honey yellow (<code>#895E00</code>)</td>
-          <td><code>5.73:1</code></td>
-          <td>
-            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><defs><pattern id="nsw-pattern-select-aboriginal-bush-honey-yellow" patternUnits="userSpaceOnUse" width="8" height="8"><path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-aboriginal-palette-sunbeam-yellow)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path></pattern></defs><circle cx="20" cy="20" r="18" fill="var(--nsw-aboriginal-palette-bush-honey-yellow)"></circle><circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-aboriginal-bush-honey-yellow)"></circle></svg>
-            <span class="sr-only">Bush honey yellow patterned swatch</span>
-          </td>
-          <td>Sunbeam yellow (<code>#FFF1C5</code>)</td>
-          <td><code>5.09:1</code></td>
-        </tr>
-        <tr>
-          <td><svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><circle cx="20" cy="20" r="18" fill="var(--nsw-aboriginal-palette-riverbed-brown)"></circle></svg><span class="sr-only">Riverbed brown plain swatch</span></td>
-          <td>Riverbed brown (<code>#552105</code>)</td>
-          <td><code>13.08:1</code></td>
-          <td>
-            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><defs><pattern id="nsw-pattern-select-aboriginal-riverbed-brown" patternUnits="userSpaceOnUse" width="8" height="8"><path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-aboriginal-palette-macadamia-brown)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path></pattern></defs><circle cx="20" cy="20" r="18" fill="var(--nsw-aboriginal-palette-riverbed-brown)"></circle><circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-aboriginal-riverbed-brown)"></circle></svg>
-            <span class="sr-only">Riverbed brown patterned swatch</span>
-          </td>
-          <td>Macadamia brown (<code>#E9C8B2</code>)</td>
-          <td><code>8.32:1</code></td>
-        </tr>
-        <tr>
-          <td><svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><circle cx="20" cy="20" r="18" fill="var(--nsw-aboriginal-palette-firewood-brown)"></circle></svg><span class="sr-only">Firewood brown plain swatch</span></td>
-          <td>Firewood brown (<code>#9E5332</code>)</td>
-          <td><code>5.62:1</code></td>
-          <td>
-            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><defs><pattern id="nsw-pattern-select-aboriginal-firewood-brown" patternUnits="userSpaceOnUse" width="8" height="8"><path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-aboriginal-palette-macadamia-brown)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path></pattern></defs><circle cx="20" cy="20" r="18" fill="var(--nsw-aboriginal-palette-firewood-brown)"></circle><circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-aboriginal-firewood-brown)"></circle></svg>
-            <span class="sr-only">Firewood brown patterned swatch</span>
-          </td>
-          <td>Macadamia brown (<code>#E9C8B2</code>)</td>
-          <td><code>3.58:1</code></td>
-        </tr>
-        <tr>
-          <td><svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><circle cx="20" cy="20" r="18" fill="var(--nsw-aboriginal-palette-charcoal-grey)"></circle></svg><span class="sr-only">Charcoal grey plain swatch</span></td>
-          <td>Charcoal grey (<code>#272727</code>)</td>
-          <td><code>14.94:1</code></td>
-          <td>
-            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><defs><pattern id="nsw-pattern-select-aboriginal-charcoal-grey" patternUnits="userSpaceOnUse" width="8" height="8"><path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-aboriginal-palette-smoke-grey)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path></pattern></defs><circle cx="20" cy="20" r="18" fill="var(--nsw-aboriginal-palette-charcoal-grey)"></circle><circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-aboriginal-charcoal-grey)"></circle></svg>
-            <span class="sr-only">Charcoal grey patterned swatch</span>
-          </td>
-          <td>Smoke grey (<code>#E5E3E0</code>)</td>
-          <td><code>11.66:1</code></td>
-        </tr>
-        <tr>
-          <td><svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><circle cx="20" cy="20" r="18" fill="var(--nsw-aboriginal-palette-emu-grey)"></circle></svg><span class="sr-only">Emu grey plain swatch</span></td>
-          <td>Emu grey (<code>#555555</code>)</td>
-          <td><code>7.46:1</code></td>
-          <td>
-            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><defs><pattern id="nsw-pattern-select-aboriginal-emu-grey" patternUnits="userSpaceOnUse" width="8" height="8"><path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-aboriginal-palette-smoke-grey)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path></pattern></defs><circle cx="20" cy="20" r="18" fill="var(--nsw-aboriginal-palette-emu-grey)"></circle><circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-aboriginal-emu-grey)"></circle></svg>
-            <span class="sr-only">Emu grey patterned swatch</span>
-          </td>
-          <td>Smoke grey (<code>#E5E3E0</code>)</td>
-          <td><code>5.82:1</code></td>
-        </tr>
-        <tr>
-          <td><svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><circle cx="20" cy="20" r="18" fill="var(--nsw-aboriginal-palette-bushland-green)"></circle></svg><span class="sr-only">Bushland green plain swatch</span></td>
-          <td>Bushland green (<code>#215834</code>)</td>
-          <td><code>8.37:1</code></td>
-          <td>
-            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><defs><pattern id="nsw-pattern-select-aboriginal-bushland-green" patternUnits="userSpaceOnUse" width="8" height="8"><path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-aboriginal-palette-saltbush-green)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path></pattern></defs><circle cx="20" cy="20" r="18" fill="var(--nsw-aboriginal-palette-bushland-green)"></circle><circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-aboriginal-bushland-green)"></circle></svg>
-            <span class="sr-only">Bushland green patterned swatch</span>
-          </td>
-          <td>Saltbush green (<code>#DAE6D1</code>)</td>
-          <td><code>6.46:1</code></td>
-        </tr>
-        <tr>
-          <td><svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><circle cx="20" cy="20" r="18" fill="var(--nsw-aboriginal-palette-marshland-lime)"></circle></svg><span class="sr-only">Marshland lime plain swatch</span></td>
-          <td>Marshland lime (<code>#78A146</code>)</td>
-          <td><code>3.01:1</code></td>
-          <td>
-            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><defs><pattern id="nsw-pattern-select-aboriginal-marshland-lime" patternUnits="userSpaceOnUse" width="8" height="8"><path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-white)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path></pattern></defs><circle cx="20" cy="20" r="18" fill="var(--nsw-aboriginal-palette-marshland-lime)"></circle><circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-aboriginal-marshland-lime)"></circle></svg>
-            <span class="sr-only">Marshland lime patterned swatch</span>
-          </td>
-          <td>White (<code>#FFFFFF</code>)</td>
-          <td><code>3.01:1</code></td>
-        </tr>
-        <tr>
-          <td><svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><circle cx="20" cy="20" r="18" fill="var(--nsw-aboriginal-palette-billabong-blue)"></circle></svg><span class="sr-only">Billabong blue plain swatch</span></td>
-          <td>Billabong blue (<code>#00405E</code>)</td>
-          <td><code>11.08:1</code></td>
-          <td>
-            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><defs><pattern id="nsw-pattern-select-aboriginal-billabong-blue" patternUnits="userSpaceOnUse" width="8" height="8"><path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-aboriginal-palette-coastal-blue)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path></pattern></defs><circle cx="20" cy="20" r="18" fill="var(--nsw-aboriginal-palette-billabong-blue)"></circle><circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-aboriginal-billabong-blue)"></circle></svg>
-            <span class="sr-only">Billabong blue patterned swatch</span>
-          </td>
-          <td>Coastal blue (<code>#C1E2E8</code>)</td>
-          <td><code>8.08:1</code></td>
-        </tr>
-        <tr>
-          <td><svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><circle cx="20" cy="20" r="18" fill="var(--nsw-aboriginal-palette-saltwater-blue)"></circle></svg><span class="sr-only">Saltwater blue plain swatch</span></td>
-          <td>Saltwater blue (<code>#0D6791</code>)</td>
-          <td><code>6.24:1</code></td>
-          <td>
-            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><defs><pattern id="nsw-pattern-select-aboriginal-saltwater-blue" patternUnits="userSpaceOnUse" width="8" height="8"><path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-aboriginal-palette-coastal-blue)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path></pattern></defs><circle cx="20" cy="20" r="18" fill="var(--nsw-aboriginal-palette-saltwater-blue)"></circle><circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-aboriginal-saltwater-blue)"></circle></svg>
-            <span class="sr-only">Saltwater blue patterned swatch</span>
-          </td>
-          <td>Coastal blue (<code>#C1E2E8</code>)</td>
-          <td><code>4.55:1</code></td>
-        </tr>
-        <tr>
-          <td><svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><circle cx="20" cy="20" r="18" fill="var(--nsw-aboriginal-palette-bush-plum)"></circle></svg><span class="sr-only">Bush plum plain swatch</span></td>
-          <td>Bush plum (<code>#472642</code>)</td>
-          <td><code>12.93:1</code></td>
-          <td>
-            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><defs><pattern id="nsw-pattern-select-aboriginal-bush-plum" patternUnits="userSpaceOnUse" width="8" height="8"><path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-aboriginal-palette-dusk-purple)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path></pattern></defs><circle cx="20" cy="20" r="18" fill="var(--nsw-aboriginal-palette-bush-plum)"></circle><circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-aboriginal-bush-plum)"></circle></svg>
-            <span class="sr-only">Bush plum patterned swatch</span>
-          </td>
-          <td>Dusk purple (<code>#E4CCE0</code>)</td>
-          <td><code>8.63:1</code></td>
-        </tr>
-        <tr>
-          <td><svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><circle cx="20" cy="20" r="18" fill="var(--nsw-aboriginal-palette-spirit-lilac)"></circle></svg><span class="sr-only">Spirit lilac plain swatch</span></td>
-          <td>Spirit lilac (<code>#9A5E93</code>)</td>
-          <td><code>4.78:1</code></td>
-          <td>
-            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><defs><pattern id="nsw-pattern-select-aboriginal-spirit-lilac" patternUnits="userSpaceOnUse" width="8" height="8"><path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-aboriginal-palette-dusk-purple)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path></pattern></defs><circle cx="20" cy="20" r="18" fill="var(--nsw-aboriginal-palette-spirit-lilac)"></circle><circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-aboriginal-spirit-lilac)"></circle></svg>
-            <span class="sr-only">Spirit lilac patterned swatch</span>
-          </td>
-          <td>Dusk purple (<code>#E4CCE0</code>)</td>
-          <td><code>3.19:1</code></td>
-        </tr>
+        {{/each}}
       </tbody>
     </table>
   </div>
 </div>
-<p class="nsw-docs__pattern-swatch-note">Aboriginal palette options shown here all meet at least <code>3:1</code> contrast on white. Where same-family pairings are too low, white pattern lines are used to maintain compliance.</p>
+<p class="nsw-docs__pattern-swatch-note">{{{model.brand.aboriginalPalette.note}}}</p>
 
-<h3>Colour-blind safety</h3>
-<p>The most common type of colour vision deficiency is red-green confusion. Avoid placing these colour pairs next to each other:</p>
+<h3>{{model.brand.colourBlindSafety.heading}}</h3>
+<p>{{model.brand.colourBlindSafety.intro}}</p>
 <ul>
-  <li>Green and brown</li>
-  <li>Red and brown</li>
-  <li>Purple and blue</li>
+  {{#each model.brand.colourBlindSafety.pairs}}
+  <li>{{this}}</li>
+  {{/each}}
 </ul>
 
-<h3>Line-series differentiation</h3>
-<p>For line charts, use dash styles, not fill patterns. Dash patterns (solid, dashed, dotted, dash-dot) are the correct redundant channel for distinguishing line series. Fill patterns are for bar, area and pie/doughnut chart marks only.</p>
+<h3>{{model.brand.lineSeries.heading}}</h3>
+<p>{{model.brand.lineSeries.intro}}</p>
 <div class="nsw-section nsw-section--white nsw-block nsw-p-x-sm nsw-p-top-sm nsw-m-bottom-md nsw-docs__line-style-table-wrap">
   <div class="nsw-table nsw-table--valign-middle nsw-docs__table-wrap">
     <table>
-      <caption class="sr-only">Line style definitions for chart series differentiation</caption>
+      <caption class="sr-only">{{model.brand.lineSeries.caption}}</caption>
       <thead>
         <tr>
-          <th width="30%">Style swatch</th>
-          <th width="30%">Name</th>
-          <th width="40%">Use</th>
+          <th width="30%">{{model.brand.lineSeries.headers.[0]}}</th>
+          <th width="30%">{{model.brand.lineSeries.headers.[1]}}</th>
+          <th width="40%">{{model.brand.lineSeries.headers.[2]}}</th>
         </tr>
       </thead>
       <tbody>
+        {{#each model.brand.lineSeries.rows}}
         <tr>
-          <td><span class="nsw-docs__line-style-swatch nsw-docs__line-style-swatch--solid" aria-hidden="true"></span><span class="sr-only">Solid line style</span></td>
-          <td>Solid</td>
-          <td>Primary series</td>
+          <td><span class="nsw-docs__line-style-swatch nsw-docs__line-style-swatch--{{styleClass}}" aria-hidden="true"></span><span class="sr-only">{{srLabel}}</span></td>
+          <td>{{name}}</td>
+          <td>{{use}}</td>
         </tr>
-        <tr>
-          <td><span class="nsw-docs__line-style-swatch nsw-docs__line-style-swatch--dashed" aria-hidden="true"></span><span class="sr-only">Dashed line style</span></td>
-          <td>Dashed</td>
-          <td>Secondary</td>
-        </tr>
-        <tr>
-          <td><span class="nsw-docs__line-style-swatch nsw-docs__line-style-swatch--dotted" aria-hidden="true"></span><span class="sr-only">Dotted line style</span></td>
-          <td>Dotted</td>
-          <td>Tertiary</td>
-        </tr>
-        <tr>
-          <td><span class="nsw-docs__line-style-swatch nsw-docs__line-style-swatch--dashdot" aria-hidden="true"></span><span class="sr-only">Dash-dot line style</span></td>
-          <td>Dash-dot</td>
-          <td>Quaternary</td>
-        </tr>
+        {{/each}}
       </tbody>
     </table>
   </div>
 </div>
 
-<h3>Using patterns</h3>
-<p>Colour is usually the primary cue for distinguishing datasets, but charts must remain understandable when users cannot rely on colour alone.</p>
+<h3>{{model.brand.patterns.heading}}</h3>
+<p>{{model.brand.patterns.intro}}</p>
 <ul>
-  <li>Use two colours per pattern: a fill and a pattern stroke.</li>
-  <li>Keep at least <code>3:1</code> contrast between fill and pattern stroke.</li>
-  <li>Use colours from the same palette column where possible (for example, Blue 03 fill with Blue 01 pattern).</li>
-  <li>Use patterns sparingly to avoid visual noise; keep to 4 to 5 patterns maximum in one chart.</li>
-  <li>Avoid thin lines or dense patterns; use stroke widths between 1.5 and 2px.</li>
-  <li>Avoid complicated image-based patterns.</li>
+  {{#each model.brand.patterns.bullets}}
+  <li>{{{this}}}</li>
+  {{/each}}
 </ul>
 <div class="nsw-in-page-alert nsw-in-page-alert--warning nsw-m-bottom-md">
   <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">warning</span>
   <div class="nsw-in-page-alert__content">
-    <p class="nsw-h5">Pattern usage limits</p>
-    <p>Keep to 4 to 5 patterns maximum in a single chart. Avoid thin lines or dense fills, use stroke widths 1.5 to 2px. Validate at 200% zoom and 375px viewport width before publishing. Patterns are reference swatches only: final scale must be validated in the rendered environment.</p>
+    <p class="nsw-h5">{{model.brand.patterns.alert.title}}</p>
+    <p>{{model.brand.patterns.alert.copy}}</p>
   </div>
 </div>
 
-<h4>Pattern swatch examples</h4>
+<h4>{{model.brand.patterns.swatchesHeading}}</h4>
 <div class="nsw-section nsw-section--white nsw-block nsw-p-x-sm nsw-p-top-sm">
   <div class="nsw-table nsw-table--valign-middle nsw-docs__table-wrap">
     <table>
-      <caption class="sr-only">Pattern swatch examples and typical use cases</caption>
+      <caption class="sr-only">{{model.brand.patterns.swatchesCaption}}</caption>
       <colgroup>
         <col class="nsw-docs__pattern-usage-col-swatch">
         <col>
@@ -1260,119 +360,73 @@ meta-index: true
       </colgroup>
       <thead>
         <tr>
-          <th>Swatch</th>
-          <th>Pattern type</th>
-          <th>Typical use</th>
+          {{#each model.brand.patterns.swatchesHeaders}}
+          <th>{{this}}</th>
+          {{/each}}
         </tr>
       </thead>
       <tbody>
+        {{#each model.brand.patterns.swatches}}
         <tr>
           <td>
             <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
               <defs>
-                <pattern id="nsw-pattern-usage-diagonal" patternUnits="userSpaceOnUse" width="8" height="8">
-                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-palette-blue-04)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
+                {{#eq patternKind "diagonal"}}
+                <pattern id="nsw-pattern-usage-{{key}}" patternUnits="userSpaceOnUse" width="8" height="8">
+                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var({{strokeVar}})" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
                 </pattern>
+                {{/eq}}
+                {{#eq patternKind "crosshatch"}}
+                <pattern id="nsw-pattern-usage-{{key}}" patternUnits="userSpaceOnUse" width="12" height="12">
+                  <path d="M0,0 l12,12 M12,0 l-12,12" stroke="var({{strokeVar}})" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
+                </pattern>
+                {{/eq}}
+                {{#eq patternKind "dots"}}
+                <pattern id="nsw-pattern-usage-{{key}}" patternUnits="userSpaceOnUse" width="12" height="12">
+                  <circle cx="6" cy="6" r="1.4" fill="var({{strokeVar}})"></circle>
+                </pattern>
+                {{/eq}}
+                {{#eq patternKind "grid-tight"}}
+                <pattern id="nsw-pattern-usage-{{key}}" patternUnits="userSpaceOnUse" width="8" height="8">
+                  <path d="M4,0 l0,8 M0,4 l8,0" stroke="var({{strokeVar}})" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
+                </pattern>
+                {{/eq}}
+                {{#eq patternKind "grid-wide"}}
+                <pattern id="nsw-pattern-usage-{{key}}" patternUnits="userSpaceOnUse" width="12" height="12">
+                  <path d="M6,0 l0,12 M0,6 l12,0" stroke="var({{strokeVar}})" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
+                </pattern>
+                {{/eq}}
+                {{#eq patternKind "zigzag"}}
+                <pattern id="nsw-pattern-usage-{{key}}" patternUnits="userSpaceOnUse" width="8" height="8">
+                  <polyline points="0,0 4,4 0,8" stroke="var({{strokeVar}})" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></polyline>
+                  <path d="M7,-1 l2,2 M7,9 l2,-2" stroke="var({{strokeVar}})" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
+                </pattern>
+                {{/eq}}
               </defs>
-              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-blue-01)"></circle>
-              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-usage-diagonal)"></circle>
+              <circle cx="20" cy="20" r="18" fill="var({{fillVar}})"></circle>
+              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-usage-{{key}})"></circle>
             </svg>
           </td>
-          <td>Diagonal</td>
-          <td>Good for secondary series in stacked bars and columns.</td>
+          <td>{{type}}</td>
+          <td>{{use}}</td>
         </tr>
-        <tr>
-          <td>
-            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
-              <defs>
-                <pattern id="nsw-pattern-usage-crosshatch" patternUnits="userSpaceOnUse" width="12" height="12">
-                  <path d="M0,0 l12,12 M12,0 l-12,12" stroke="var(--nsw-palette-blue-04)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
-                </pattern>
-              </defs>
-              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-blue-01)"></circle>
-              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-usage-crosshatch)"></circle>
-            </svg>
-          </td>
-          <td>Crosshatch</td>
-          <td>Useful where stronger differentiation is required than single-line patterns.</td>
-        </tr>
-        <tr>
-          <td>
-            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
-              <defs>
-                <pattern id="nsw-pattern-usage-dots" patternUnits="userSpaceOnUse" width="12" height="12">
-                  <circle cx="6" cy="6" r="1.4" fill="var(--nsw-palette-blue-04)"></circle>
-                </pattern>
-              </defs>
-              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-blue-01)"></circle>
-              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-usage-dots)"></circle>
-            </svg>
-          </td>
-          <td>Dots</td>
-          <td>Works well for pie and doughnut slices where subtle texture is enough.</td>
-        </tr>
-        <tr>
-          <td>
-            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
-              <defs>
-                <pattern id="nsw-pattern-usage-grid-tight" patternUnits="userSpaceOnUse" width="8" height="8">
-                  <path d="M4,0 l0,8 M0,4 l8,0" stroke="var(--nsw-palette-blue-04)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
-                </pattern>
-              </defs>
-              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-blue-01)"></circle>
-              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-usage-grid-tight)"></circle>
-            </svg>
-          </td>
-          <td>Grid (tight)</td>
-          <td>Suitable for medium-to-large marks where repeated structure is clear.</td>
-        </tr>
-        <tr>
-          <td>
-            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
-              <defs>
-                <pattern id="nsw-pattern-usage-grid-wide" patternUnits="userSpaceOnUse" width="12" height="12">
-                  <path d="M6,0 l0,12 M0,6 l12,0" stroke="var(--nsw-palette-blue-04)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
-                </pattern>
-              </defs>
-              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-blue-01)"></circle>
-              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-usage-grid-wide)"></circle>
-            </svg>
-          </td>
-          <td>Grid (wide)</td>
-          <td>Best for larger visual marks where denser patterns would look noisy.</td>
-        </tr>
-        <tr>
-          <td>
-            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
-              <defs>
-                <pattern id="nsw-pattern-usage-zigzag" patternUnits="userSpaceOnUse" width="8" height="8">
-                  <polyline points="0,0 4,4 0,8" stroke="var(--nsw-palette-blue-04)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></polyline>
-                  <path d="M7,-1 l2,2 M7,9 l2,-2" stroke="var(--nsw-palette-blue-04)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
-                </pattern>
-              </defs>
-              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-blue-01)"></circle>
-              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-usage-zigzag)"></circle>
-            </svg>
-          </td>
-          <td>Zigzag</td>
-          <td>Useful for highlighting one key series when other series are solid.</td>
-        </tr>
+        {{/each}}
       </tbody>
     </table>
   </div>
 </div>
-<p class="nsw-docs__pattern-swatch-note">Reference swatches only. Validate final pattern scale at 200% zoom and at mobile widths.</p>
+<p class="nsw-docs__pattern-swatch-note">{{model.brand.patterns.swatchesNote}}</p>
 
-<h3>Typography in charts</h3>
-<p>Text should help users quickly understand the data without competing with visual elements. Use NSW Government primary typeface, Public Sans. If this is not possible, use Arial as fallback.</p>
+<h3>{{model.brand.typography.heading}}</h3>
+<p>{{model.brand.typography.intro}}</p>
 
-<h4>Minimum text sizes</h4>
+<h4>{{model.brand.typography.minimumTextSizesHeading}}</h4>
 <div class="nsw-grid">
   <div class="nsw-col nsw-col-sm-12 nsw-col-md-8 nsw-col-lg-8">
     <div class="nsw-section nsw-section--white nsw-block nsw-p-x-sm nsw-p-top-sm">
       <div class="nsw-table nsw-table--valign-middle nsw-docs__table-wrap">
         <table>
-          <caption class="sr-only">Minimum text sizes for chart elements</caption>
+          <caption class="sr-only">{{model.brand.typography.minimumTextSizesCaption}}</caption>
           <thead>
             <tr>
               <th>Element</th>
@@ -1380,344 +434,119 @@ meta-index: true
             </tr>
           </thead>
           <tbody>
+            {{#each model.brand.typography.minimumTextSizesRows}}
             <tr>
-              <td>Chart title</td>
-              <td>16 to 18px</td>
+              <td>{{element}}</td>
+              <td>{{size}}</td>
             </tr>
-            <tr>
-              <td>Axis labels</td>
-              <td>12 to 14px</td>
-            </tr>
-            <tr>
-              <td>Dataset labels</td>
-              <td>12 to 14px</td>
-            </tr>
-            <tr>
-              <td>Data labels</td>
-              <td>12px minimum</td>
-            </tr>
-            <tr>
-              <td>Notes or sources</td>
-              <td>11 to 12px</td>
-            </tr>
+            {{/each}}
           </tbody>
         </table>
       </div>
     </div>
   </div>
 </div>
-<p>Avoid text smaller than 12px in digital charts.</p>
+<p>{{model.brand.typography.minimumTextSizesNote}}</p>
 
-<h4>Text alignment</h4>
+<h4>{{model.brand.typography.textAlignmentHeading}}</h4>
 <ul>
-  <li>Y-axis labels: right aligned</li>
-  <li>X-axis labels: centred</li>
-  <li>Dataset labels: placed close to the data they describe</li>
-  <li>Direct labelling is preferred over legends where possible.</li>
+  {{#each model.brand.typography.textAlignment}}
+  <li>{{this}}</li>
+  {{/each}}
 </ul>
 
-<h4>Number formatting</h4>
+<h4>{{model.brand.typography.numberFormattingHeading}}</h4>
 <ul>
-  <li>Use commas for thousands (for example, <code>1,000</code>).</li>
-  <li>Avoid spaces between digits, as screen readers may read them incorrectly.</li>
-  <li>Use consistent decimal precision.</li>
-</ul>
-
-
-<h2 id="configure-tools-with-good-defaults">6. Configure tools with good defaults</h2>
-<p>DDS does not prescribe tools. Tool defaults are not automatically compliant.</p>
-<ul>
-  <li>Apply the official NSW chart theme where available.</li>
-  <li>Override default colour and typography settings.</li>
-  <li>Test accessibility in the rendered environment.</li>
-  <li>If a tool cannot meet requirements, provide an alternative.</li>
-  <li>Consider accessibility capability when selecting vendors.</li>
+  {{#each model.brand.typography.numberFormatting}}
+  <li>{{{this}}}</li>
+  {{/each}}
 </ul>
 
 
-<h2 id="examples">Common chart pitfalls</h2>
-<p>These examples show common issues and better implementations. Use them to spot risks early and improve consistency.</p>
+<h2 id="configure-tools-with-good-defaults">{{model.sections.section6.heading}}</h2>
+<p>{{model.sections.section6.intro}}</p>
+<ul>
+  {{#each model.sections.section6.bullets}}
+  <li>{{this}}</li>
+  {{/each}}
+</ul>
 
-<h3>Example 1: Truncated axis and unclear labels</h3>
+
+<h2 id="examples">{{model.pitfalls.heading}}</h2>
+<p>{{model.pitfalls.intro}}</p>
+{{#each model.pitfalls.examples}}
+<h3>{{title}}</h3>
 <div class="nsw-grid nsw-m-top-sm">
+  {{#each panels}}
   <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
-    <div class="nsw-docs__guideline--dont"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span><span>Don't</span></div>
-    <p>Column chart starts at 90, labels are rotated and the title does not explain the timeframe.</p>
-    <div class="nsw-m-top-sm">
-      <canvas id="example1Bad" data-chart-height="320" role="img" aria-label="Column chart with truncated axis and rotated labels."></canvas>
+    <div class="nsw-docs__guideline--{{variant}}">
+      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">
+        {{#eq variant "dont"}}cancel{{else}}check_circle{{/eq}}
+      </span>
+      <span>{{label}}</span>
     </div>
-    <ul>
-      <li>Exaggerates differences by truncating the axis.</li>
-      <li>Missing units and time period.</li>
-      <li>Long labels are hard to read.</li>
-    </ul>
-  </div>
-  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
-    <div class="nsw-docs__guideline--do"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span><span>Do</span></div>
-    <p>Use a horizontal bar chart that starts at zero with direct labels and a clear timeframe.</p>
-    <div class="nsw-m-top-sm">
-      <canvas id="example1Good" data-chart-height="320" role="img" aria-label="Horizontal bar chart starting at zero with clear labels."></canvas>
+    <p>{{description}}</p>
+    <div class="nsw-m-top-sm{{#eq variant "dont"}} nsw-bg--white nsw-p-sm{{/eq}}">
+      <canvas id="{{canvasId}}" data-chart-height="{{canvasHeight}}" role="img" aria-label="{{ariaLabel}}"></canvas>
     </div>
+    {{#if summary}}
+    <p class="nsw-m-top-sm"><strong>Summary:</strong> {{summary}}</p>
+    {{/if}}
+    {{#if table}}
     <div class="nsw-table nsw-table--valign-middle nsw-docs__table-wrap nsw-m-top-sm">
       <table>
-        <caption class="sr-only">Service completions by region (Jan to Jun 2025)</caption>
+        <caption class="sr-only">{{table.caption}}</caption>
         <thead>
           <tr>
-            <th scope="col">Region</th>
-            <th scope="col">Completions</th>
+            {{#each table.headers}}
+            <th scope="col">{{this}}</th>
+            {{/each}}
           </tr>
         </thead>
         <tbody>
+          {{#each table.rows}}
           <tr>
-            <th scope="row">Illawarra Shoalhaven</th>
-            <td>96</td>
+            <th scope="row">{{label}}</th>
+            {{#each values}}
+            <td>{{this}}</td>
+            {{/each}}
           </tr>
-          <tr>
-            <th scope="row">Central Coast</th>
-            <td>101</td>
-          </tr>
-          <tr>
-            <th scope="row">Hunter New England</th>
-            <td>98</td>
-          </tr>
-          <tr>
-            <th scope="row">Western NSW</th>
-            <td>104</td>
-          </tr>
+          {{/each}}
         </tbody>
       </table>
     </div>
+    {{/if}}
     <ul>
-      <li>Set the chart canvas to a white background.</li>
-      <li>Start the axis at zero or clearly indicate truncation.</li>
-      <li>Include timeframe and unit in the title.</li>
-      <li>Keep labels readable and aligned.</li>
+      {{#each bullets}}
+      <li>{{this}}</li>
+      {{/each}}
     </ul>
   </div>
+  {{/each}}
 </div>
-
-<h3>Example 2: Colour-only differentiation</h3>
-<div class="nsw-grid nsw-m-top-sm">
-  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
-    <div class="nsw-docs__guideline--dont"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span><span>Don't</span></div>
-    <p>Stacked bar uses red and green only, with no labels and low contrast.</p>
-    <div class="nsw-m-top-sm">
-      <canvas id="example2Bad" data-chart-height="320" role="img" aria-label="Stacked bar chart using red and green only with no labels."></canvas>
-    </div>
-    <ul>
-      <li>Relies on colour alone to communicate meaning.</li>
-      <li>Insufficient contrast for some users.</li>
-      <li>No direct labels or markers.</li>
-    </ul>
-  </div>
-  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
-    <div class="nsw-docs__guideline--do"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span><span>Do</span></div>
-    <p>Use accessible colours, clear contrast, and a supporting table for labels.</p>
-    <div class="nsw-m-top-sm">
-      <canvas id="example2Good" data-chart-height="320" role="img" aria-label="Stacked bar chart with accessible colours and clear labels."></canvas>
-    </div>
-    <div class="nsw-table nsw-table--valign-middle nsw-docs__table-wrap nsw-m-top-sm">
-      <table>
-        <caption class="sr-only">Resolution by quarter</caption>
-        <thead>
-          <tr>
-            <th scope="col">Quarter</th>
-            <th scope="col">Resolved on time</th>
-            <th scope="col">Resolved late</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">Q1</th>
-            <td>120</td>
-            <td>30</td>
-          </tr>
-          <tr>
-            <th scope="row">Q2</th>
-            <td>140</td>
-            <td>25</td>
-          </tr>
-          <tr>
-            <th scope="row">Q3</th>
-            <td>110</td>
-            <td>40</td>
-          </tr>
-          <tr>
-            <th scope="row">Q4</th>
-            <td>150</td>
-            <td>20</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <ul>
-      <li>Set the chart canvas to a white background.</li>
-      <li>Provide labels in a table, not colour alone.</li>
-      <li>Meet WCAG contrast requirements.</li>
-      <li>Keep the chart clear in greyscale and colour-blind testing.</li>
-    </ul>
-  </div>
-</div>
-
-<h3>Example 3: Tooltip-only values</h3>
-<div class="nsw-grid nsw-m-top-sm">
-  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
-    <div class="nsw-docs__guideline--dont"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span><span>Don't</span></div>
-    <p>Line chart shows values only on hover with no table or summary.</p>
-    <div class="nsw-m-top-sm">
-      <canvas id="example3Bad" data-chart-height="280" role="img" aria-label="Line chart with values available only on hover."></canvas>
-    </div>
-    <ul>
-      <li>Keyboard and touch users cannot access key values.</li>
-      <li>No text alternative for screen readers.</li>
-      <li>Users cannot verify exact values.</li>
-    </ul>
-  </div>
-  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
-    <div class="nsw-docs__guideline--do"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span><span>Do</span></div>
-    <p>Include a summary and a semantic table for the same data.</p>
-    <div class="nsw-m-top-sm">
-      <canvas id="example3Good" data-chart-height="280" role="img" aria-label="Line chart with a summary and data table."></canvas>
-    </div>
-    <p class="nsw-m-top-sm"><strong>Summary:</strong> Applications rose steadily from January to May, with a small drop in June.</p>
-    <div class="nsw-table nsw-table--valign-middle nsw-docs__table-wrap nsw-m-top-sm">
-      <table>
-        <caption class="sr-only">Online applications by month</caption>
-        <thead>
-          <tr>
-            <th scope="col">Month</th>
-            <th scope="col">Applications</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">January</th>
-            <td>220</td>
-          </tr>
-          <tr>
-            <th scope="row">February</th>
-            <td>260</td>
-          </tr>
-          <tr>
-            <th scope="row">March</th>
-            <td>310</td>
-          </tr>
-          <tr>
-            <th scope="row">April</th>
-            <td>370</td>
-          </tr>
-          <tr>
-            <th scope="row">May</th>
-            <td>420</td>
-          </tr>
-          <tr>
-            <th scope="row">June</th>
-            <td>390</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <ul>
-      <li>Set the chart canvas to a white background.</li>
-      <li>Use summary text for the key insight.</li>
-      <li>Provide precise values in a table.</li>
-      <li>Keep interactions keyboard accessible.</li>
-    </ul>
-  </div>
-</div>
-
-<h3>Example 4: Too many pie segments</h3>
-<div class="nsw-grid nsw-m-top-sm">
-  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
-    <div class="nsw-docs__guideline--dont"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span><span>Don't</span></div>
-    <p>Using many small slices makes comparison difficult and creates visual clutter.</p>
-    <div class="nsw-m-top-sm">
-      <canvas id="example4Bad" data-chart-height="360" role="img" aria-label="Pie chart with twelve segments that are difficult to compare."></canvas>
-    </div>
-    <ul>
-      <li>Too many slices reduce readability.</li>
-      <li>Small segments are hard to compare accurately.</li>
-      <li>Large legends force users to cross-reference excessively.</li>
-    </ul>
-  </div>
-  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
-    <div class="nsw-docs__guideline--do"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span><span>Do</span></div>
-    <p>Keep pie segments limited so users can quickly compare relative share.</p>
-    <div class="nsw-m-top-sm">
-      <canvas id="example4Good" data-chart-height="360" role="img" aria-label="Pie chart with four clearly distinguishable segments and direct labels."></canvas>
-    </div>
-    <div class="nsw-table nsw-table--valign-middle nsw-docs__table-wrap nsw-m-top-sm">
-      <table>
-        <caption class="sr-only">Service channel share (Q2 2025)</caption>
-        <thead>
-          <tr>
-            <th scope="col">Channel</th>
-            <th scope="col">Share</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">Digital</th>
-            <td>46%</td>
-          </tr>
-          <tr>
-            <th scope="row">Phone</th>
-            <td>28%</td>
-          </tr>
-          <tr>
-            <th scope="row">In person</th>
-            <td>17%</td>
-          </tr>
-          <tr>
-            <th scope="row">Mail</th>
-            <td>9%</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <ul>
-      <li>Set the chart canvas to a white background.</li>
-      <li>Limit pie segments to 2 to 4 where possible.</li>
-      <li>Use labels and pattern support for clear distinction.</li>
-      <li>Include direct labels, a clear title and percentages.</li>
-    </ul>
-  </div>
-</div>
+{{/each}}
 
 
-<h2 id="review-checklist">Review checklist</h2>
+<h2 id="review-checklist">{{model.review.checklistHeading}}</h2>
 <div class="nsw-docs__review-checklist nsw-m-top-sm nsw-p-md nsw-bg--brand-dark nsw-section--invert">
   <div class="nsw-docs__review-checklist-header nsw-section--invert">
-    <p class="nsw-m-bottom-xs"><strong>Use this checklist before publishing:</strong></p>
+    <p class="nsw-m-bottom-xs"><strong>{{model.review.checklistLead}}</strong></p>
   </div>
   <fieldset id="chart-review-checklist" class="nsw-form__fieldset" aria-describedby="review-checklist-help">
-    <legend class="sr-only">Charts and graphs review checklist</legend>
-    <input class="nsw-form__checkbox-input" type="checkbox" id="chart-review-check-1">
-    <label class="nsw-form__checkbox-label" for="chart-review-check-1">The chart matches the user task.</label>
-    <input class="nsw-form__checkbox-input" type="checkbox" id="chart-review-check-2">
-    <label class="nsw-form__checkbox-label" for="chart-review-check-2">It is the simplest suitable chart type.</label>
-    <input class="nsw-form__checkbox-input" type="checkbox" id="chart-review-check-3">
-    <label class="nsw-form__checkbox-label" for="chart-review-check-3">Chart marks meet contrast requirements on a white background.</label>
-    <input class="nsw-form__checkbox-input" type="checkbox" id="chart-review-check-4">
-    <label class="nsw-form__checkbox-label" for="chart-review-check-4">Colour is supported by labels, markers or patterns.</label>
-    <input class="nsw-form__checkbox-input" type="checkbox" id="chart-review-check-5">
-    <label class="nsw-form__checkbox-label" for="chart-review-check-5">A semantic data table is provided.</label>
-    <input class="nsw-form__checkbox-input" type="checkbox" id="chart-review-check-6">
-    <label class="nsw-form__checkbox-label" for="chart-review-check-6">Keyboard access is supported where interaction exists.</label>
-    <input class="nsw-form__checkbox-input" type="checkbox" id="chart-review-check-7">
-    <label class="nsw-form__checkbox-label" for="chart-review-check-7">The chart remains usable at 200% zoom.</label>
-    <input class="nsw-form__checkbox-input" type="checkbox" id="chart-review-check-8">
-    <label class="nsw-form__checkbox-label" for="chart-review-check-8">Units and data source are clearly stated.</label>
+    <legend class="sr-only">{{model.review.checklistLegend}}</legend>
+    {{#each model.review.checklistItems}}
+    <input class="nsw-form__checkbox-input" type="checkbox" id="chart-review-check-{{id}}">
+    <label class="nsw-form__checkbox-label" for="chart-review-check-{{id}}">{{text}}</label>
+    {{/each}}
   </fieldset>
 </div>
-<p id="review-checklist-help" class="nsw-docs__review-checklist-help">If any answer is no, revise before release.</p>
+<p id="review-checklist-help" class="nsw-docs__review-checklist-help">{{model.review.checklistHelp}}</p>
 
-<h2 id="full-docs">References</h2>
+<h2 id="full-docs">{{model.review.referencesHeading}}</h2>
 <ul>
-  <li><a href="https://branding.nsw.gov.au/guidelines/co-brand/infographics/charts-and-graphs/" target="_blank" rel="noopener noreferrer">NSW Brand Toolkit: Charts and graphs (print guidance)</a></li>
-  <li>NSW Design System: <a href="/core/colour/index.html">Colour</a>, <a href="/core/typography/index.html">Typography</a>, and <a href="/components/table/index.html">Table</a></li>
-  <li><a href="https://www.chartjs.org/docs/latest/" target="_blank" rel="noopener noreferrer">Chart.js documentation</a> (if you use Chart.js)</li>
-  <li><a href="https://ft-interactive.github.io/visual-vocabulary/" target="_blank" rel="noopener noreferrer">Financial Times Visual Vocabulary</a> for extended chart type support.</li>
+  {{#each model.review.references}}
+  <li>{{{this}}}</li>
+  {{/each}}
 </ul>
 
 <script src="/docs/js/charts-and-graphs.js"></script>

@@ -1,0 +1,592 @@
+{
+  "heading": "5. Apply NSW brand consistently",
+  "intro": "Apply NSW brand colour and typography with care. Prioritise contrast and readability, and do not use the palette decoratively.",
+  "selectionMethod": {
+    "heading": "Recommended colour selection method",
+    "contrastRule": "For accessibility compliance, data marks must have a minimum contrast ratio of <code>3:1</code> against the background surface.",
+    "intro": "We recommend the following method for selecting your colours:",
+    "beforeImageText": "Start with 01 and 02 colours from your main colour theme. If your colour theme is Blue and Red, use Blue 01, Blue 02, Red 01, Red 02.",
+    "afterImageText": "Once that colour is exhausted, you can use colours from additional colour columns starting from 01 and then 02 colours.",
+    "consistencyText": "If you have a series of charts, use the same colours for the same categories across all your charts. This makes it easier for users to follow the story and they will be less likely to mistake one data series for another.",
+    "images": [
+      {
+        "src": "/assets/images/charts-and-graphs-colour-selection-1.png",
+        "alt": "Colour selection example showing use of 01 and 02 colours from the main theme before introducing additional palette columns."
+      },
+      {
+        "src": "/assets/images/charts-and-graphs-colour-selection-2.png",
+        "alt": "Chart series example demonstrating consistent category colours across multiple charts for easier comparison."
+      }
+    ],
+    "warning": "<strong>Excluded:</strong> Yellow 02 (<code>#FAAF05</code>) is <code>1.88:1</code> on white and is not compliant for chart marks."
+  },
+  "background": {
+    "heading": "Background colour",
+    "text": "Charts must use a white background (<code>#FFFFFF</code> or <code>--nsw-brand-white</code>) to ensure sufficient contrast for data marks."
+  },
+  "nswPalette": {
+    "heading": "NSW Government palette chart-mark options",
+    "caption": "Approved chart-mark colour options on white background",
+    "headers": [
+      "Swatch (plain)",
+      "Colour value",
+      "Contrast ratio on white",
+      "Swatch (pattern)",
+      "Line value",
+      "Pattern contrast"
+    ],
+    "note": "In a few 02 rows, the line colour uses White or 01 to keep pattern contrast at or above <code>3:1</code>.",
+    "rows": [
+      {
+        "key": "blue-01",
+        "name": "Blue 01",
+        "hex": "#002664",
+        "fillVar": "--nsw-palette-blue-01",
+        "contrast": "14.37:1",
+        "lineName": "Blue 04",
+        "lineHex": "#CBEDFD",
+        "lineVar": "--nsw-palette-blue-04",
+        "patternContrast": "11.68:1"
+      },
+      {
+        "key": "blue-02",
+        "name": "Blue 02",
+        "hex": "#146CFD",
+        "fillVar": "--nsw-palette-blue-02",
+        "contrast": "4.57:1",
+        "lineName": "Blue 04",
+        "lineHex": "#CBEDFD",
+        "lineVar": "--nsw-palette-blue-04",
+        "patternContrast": "3.72:1"
+      },
+      {
+        "key": "purple-01",
+        "name": "Purple 01",
+        "hex": "#441170",
+        "fillVar": "--nsw-palette-purple-01",
+        "contrast": "13.46:1",
+        "lineName": "Purple 04",
+        "lineHex": "#E6E1FD",
+        "lineVar": "--nsw-palette-purple-04",
+        "patternContrast": "10.61:1"
+      },
+      {
+        "key": "purple-02",
+        "name": "Purple 02",
+        "hex": "#8055F1",
+        "fillVar": "--nsw-palette-purple-02",
+        "contrast": "4.68:1",
+        "lineName": "Purple 04",
+        "lineHex": "#E6E1FD",
+        "lineVar": "--nsw-palette-purple-04",
+        "patternContrast": "3.69:1"
+      },
+      {
+        "key": "fuchsia-01",
+        "name": "Fuchsia 01",
+        "hex": "#65004D",
+        "fillVar": "--nsw-palette-fuchsia-01",
+        "contrast": "12.65:1",
+        "lineName": "Fuchsia 04",
+        "lineHex": "#FDDEF2",
+        "lineVar": "--nsw-palette-fuchsia-04",
+        "patternContrast": "10.18:1"
+      },
+      {
+        "key": "fuchsia-02",
+        "name": "Fuchsia 02",
+        "hex": "#D912AE",
+        "fillVar": "--nsw-palette-fuchsia-02",
+        "contrast": "4.52:1",
+        "lineName": "Fuchsia 04",
+        "lineHex": "#FDDEF2",
+        "lineVar": "--nsw-palette-fuchsia-04",
+        "patternContrast": "3.64:1"
+      },
+      {
+        "key": "red-01",
+        "name": "Red 01",
+        "hex": "#630019",
+        "fillVar": "--nsw-palette-red-01",
+        "contrast": "13.60:1",
+        "lineName": "Red 04",
+        "lineHex": "#FFE6EA",
+        "lineVar": "--nsw-palette-red-04",
+        "patternContrast": "11.50:1"
+      },
+      {
+        "key": "red-02",
+        "name": "Red 02",
+        "hex": "#D7153A",
+        "fillVar": "--nsw-palette-red-02",
+        "contrast": "5.18:1",
+        "lineName": "Red 04",
+        "lineHex": "#FFE6EA",
+        "lineVar": "--nsw-palette-red-04",
+        "patternContrast": "4.38:1"
+      },
+      {
+        "key": "orange-01",
+        "name": "Orange 01",
+        "hex": "#941B00",
+        "fillVar": "--nsw-palette-orange-01",
+        "contrast": "8.69:1",
+        "lineName": "Orange 04",
+        "lineHex": "#FDEDDF",
+        "lineVar": "--nsw-palette-orange-04",
+        "patternContrast": "7.60:1"
+      },
+      {
+        "key": "orange-02",
+        "name": "Orange 02",
+        "hex": "#F3631B",
+        "fillVar": "--nsw-palette-orange-02",
+        "contrast": "3.18:1",
+        "lineName": "White",
+        "lineHex": "#FFFFFF",
+        "lineVar": "--nsw-white",
+        "patternContrast": "3.18:1"
+      },
+      {
+        "key": "brown-01",
+        "name": "Brown 01",
+        "hex": "#523719",
+        "fillVar": "--nsw-palette-brown-01",
+        "contrast": "10.94:1",
+        "lineName": "Brown 04",
+        "lineHex": "#EDE3D7",
+        "lineVar": "--nsw-palette-brown-04",
+        "patternContrast": "8.63:1"
+      },
+      {
+        "key": "brown-02",
+        "name": "Brown 02",
+        "hex": "#B68D5D",
+        "fillVar": "--nsw-palette-brown-02",
+        "contrast": "3.02:1",
+        "lineName": "White",
+        "lineHex": "#FFFFFF",
+        "lineVar": "--nsw-white",
+        "patternContrast": "3.02:1"
+      },
+      {
+        "key": "yellow-01",
+        "name": "Yellow 01",
+        "hex": "#694800",
+        "fillVar": "--nsw-palette-yellow-01",
+        "contrast": "8.31:1",
+        "lineName": "Yellow 04",
+        "lineHex": "#FFF4CF",
+        "lineVar": "--nsw-palette-yellow-04",
+        "patternContrast": "7.55:1"
+      },
+      {
+        "key": "green-01",
+        "name": "Green 01",
+        "hex": "#004000",
+        "fillVar": "--nsw-palette-green-01",
+        "contrast": "12.12:1",
+        "lineName": "Green 04",
+        "lineHex": "#DBFADF",
+        "lineVar": "--nsw-palette-green-04",
+        "patternContrast": "10.82:1"
+      },
+      {
+        "key": "green-02",
+        "name": "Green 02",
+        "hex": "#00AA45",
+        "fillVar": "--nsw-palette-green-02",
+        "contrast": "3.07:1",
+        "lineName": "White",
+        "lineHex": "#FFFFFF",
+        "lineVar": "--nsw-white",
+        "patternContrast": "3.07:1"
+      },
+      {
+        "key": "teal-01",
+        "name": "Teal 01",
+        "hex": "#0B3F47",
+        "fillVar": "--nsw-palette-teal-01",
+        "contrast": "11.56:1",
+        "lineName": "Teal 04",
+        "lineHex": "#D1EEEA",
+        "lineVar": "--nsw-palette-teal-04",
+        "patternContrast": "9.43:1"
+      },
+      {
+        "key": "teal-02",
+        "name": "Teal 02",
+        "hex": "#2E808E",
+        "fillVar": "--nsw-palette-teal-02",
+        "contrast": "4.57:1",
+        "lineName": "Teal 04",
+        "lineHex": "#D1EEEA",
+        "lineVar": "--nsw-palette-teal-04",
+        "patternContrast": "3.73:1"
+      },
+      {
+        "key": "grey-01",
+        "name": "Grey 01",
+        "hex": "#22272B",
+        "fillVar": "--nsw-palette-grey-01",
+        "contrast": "15.07:1",
+        "lineName": "Grey 04",
+        "lineHex": "#EBEBEB",
+        "lineVar": "--nsw-palette-grey-04",
+        "patternContrast": "12.64:1"
+      },
+      {
+        "key": "grey-02",
+        "name": "Grey 02",
+        "hex": "#495054",
+        "fillVar": "--nsw-palette-grey-02",
+        "contrast": "8.21:1",
+        "lineName": "Grey 04",
+        "lineHex": "#EBEBEB",
+        "lineVar": "--nsw-palette-grey-04",
+        "patternContrast": "6.88:1"
+      }
+    ]
+  },
+  "aboriginalPalette": {
+    "heading": "Aboriginal palette chart-mark options",
+    "caption": "Approved Aboriginal palette chart-mark options on white background",
+    "headers": [
+      "Swatch (plain)",
+      "Colour value",
+      "Contrast ratio on white",
+      "Swatch (pattern)",
+      "Line value",
+      "Pattern contrast"
+    ],
+    "note": "Aboriginal palette options shown here all meet at least <code>3:1</code> contrast on white. Where same-family pairings are too low, white pattern lines are used to maintain compliance.",
+    "rows": [
+      {
+        "key": "earth-red",
+        "name": "Earth red",
+        "hex": "#950906",
+        "fillVar": "--nsw-aboriginal-palette-earth-red",
+        "contrast": "9.05:1",
+        "lineName": "Galah pink",
+        "lineHex": "#FDD9D9",
+        "lineVar": "--nsw-aboriginal-palette-galah-pink",
+        "patternContrast": "6.94:1"
+      },
+      {
+        "key": "ember-red",
+        "name": "Ember red",
+        "hex": "#E1261C",
+        "fillVar": "--nsw-aboriginal-palette-ember-red",
+        "contrast": "4.67:1",
+        "lineName": "Galah pink",
+        "lineHex": "#FDD9D9",
+        "lineVar": "--nsw-aboriginal-palette-galah-pink",
+        "patternContrast": "3.58:1"
+      },
+      {
+        "key": "deep-orange",
+        "name": "Deep orange",
+        "hex": "#882600",
+        "fillVar": "--nsw-aboriginal-palette-deep-orange",
+        "contrast": "9.04:1",
+        "lineName": "Sunset orange",
+        "lineHex": "#F9D4BE",
+        "lineVar": "--nsw-aboriginal-palette-sunset-orange",
+        "patternContrast": "6.54:1"
+      },
+      {
+        "key": "orange-ochre",
+        "name": "Orange ochre",
+        "hex": "#EE6314",
+        "fillVar": "--nsw-aboriginal-palette-orange-ochre",
+        "contrast": "3.27:1",
+        "lineName": "White",
+        "lineHex": "#FFFFFF",
+        "lineVar": "--nsw-white",
+        "patternContrast": "3.27:1"
+      },
+      {
+        "key": "bush-honey-yellow",
+        "name": "Bush honey yellow",
+        "hex": "#895E00",
+        "fillVar": "--nsw-aboriginal-palette-bush-honey-yellow",
+        "contrast": "5.73:1",
+        "lineName": "Sunbeam yellow",
+        "lineHex": "#FFF1C5",
+        "lineVar": "--nsw-aboriginal-palette-sunbeam-yellow",
+        "patternContrast": "5.09:1"
+      },
+      {
+        "key": "riverbed-brown",
+        "name": "Riverbed brown",
+        "hex": "#552105",
+        "fillVar": "--nsw-aboriginal-palette-riverbed-brown",
+        "contrast": "13.08:1",
+        "lineName": "Macadamia brown",
+        "lineHex": "#E9C8B2",
+        "lineVar": "--nsw-aboriginal-palette-macadamia-brown",
+        "patternContrast": "8.32:1"
+      },
+      {
+        "key": "firewood-brown",
+        "name": "Firewood brown",
+        "hex": "#9E5332",
+        "fillVar": "--nsw-aboriginal-palette-firewood-brown",
+        "contrast": "5.62:1",
+        "lineName": "Macadamia brown",
+        "lineHex": "#E9C8B2",
+        "lineVar": "--nsw-aboriginal-palette-macadamia-brown",
+        "patternContrast": "3.58:1"
+      },
+      {
+        "key": "charcoal-grey",
+        "name": "Charcoal grey",
+        "hex": "#272727",
+        "fillVar": "--nsw-aboriginal-palette-charcoal-grey",
+        "contrast": "14.94:1",
+        "lineName": "Smoke grey",
+        "lineHex": "#E5E3E0",
+        "lineVar": "--nsw-aboriginal-palette-smoke-grey",
+        "patternContrast": "11.66:1"
+      },
+      {
+        "key": "emu-grey",
+        "name": "Emu grey",
+        "hex": "#555555",
+        "fillVar": "--nsw-aboriginal-palette-emu-grey",
+        "contrast": "7.46:1",
+        "lineName": "Smoke grey",
+        "lineHex": "#E5E3E0",
+        "lineVar": "--nsw-aboriginal-palette-smoke-grey",
+        "patternContrast": "5.82:1"
+      },
+      {
+        "key": "bushland-green",
+        "name": "Bushland green",
+        "hex": "#215834",
+        "fillVar": "--nsw-aboriginal-palette-bushland-green",
+        "contrast": "8.37:1",
+        "lineName": "Saltbush green",
+        "lineHex": "#DAE6D1",
+        "lineVar": "--nsw-aboriginal-palette-saltbush-green",
+        "patternContrast": "6.46:1"
+      },
+      {
+        "key": "marshland-lime",
+        "name": "Marshland lime",
+        "hex": "#78A146",
+        "fillVar": "--nsw-aboriginal-palette-marshland-lime",
+        "contrast": "3.01:1",
+        "lineName": "White",
+        "lineHex": "#FFFFFF",
+        "lineVar": "--nsw-white",
+        "patternContrast": "3.01:1"
+      },
+      {
+        "key": "billabong-blue",
+        "name": "Billabong blue",
+        "hex": "#00405E",
+        "fillVar": "--nsw-aboriginal-palette-billabong-blue",
+        "contrast": "11.08:1",
+        "lineName": "Coastal blue",
+        "lineHex": "#C1E2E8",
+        "lineVar": "--nsw-aboriginal-palette-coastal-blue",
+        "patternContrast": "8.08:1"
+      },
+      {
+        "key": "saltwater-blue",
+        "name": "Saltwater blue",
+        "hex": "#0D6791",
+        "fillVar": "--nsw-aboriginal-palette-saltwater-blue",
+        "contrast": "6.24:1",
+        "lineName": "Coastal blue",
+        "lineHex": "#C1E2E8",
+        "lineVar": "--nsw-aboriginal-palette-coastal-blue",
+        "patternContrast": "4.55:1"
+      },
+      {
+        "key": "bush-plum",
+        "name": "Bush plum",
+        "hex": "#472642",
+        "fillVar": "--nsw-aboriginal-palette-bush-plum",
+        "contrast": "12.93:1",
+        "lineName": "Dusk purple",
+        "lineHex": "#E4CCE0",
+        "lineVar": "--nsw-aboriginal-palette-dusk-purple",
+        "patternContrast": "8.63:1"
+      },
+      {
+        "key": "spirit-lilac",
+        "name": "Spirit lilac",
+        "hex": "#9A5E93",
+        "fillVar": "--nsw-aboriginal-palette-spirit-lilac",
+        "contrast": "4.78:1",
+        "lineName": "Dusk purple",
+        "lineHex": "#E4CCE0",
+        "lineVar": "--nsw-aboriginal-palette-dusk-purple",
+        "patternContrast": "3.19:1"
+      }
+    ]
+  },
+  "colourBlindSafety": {
+    "heading": "Colour-blind safety",
+    "intro": "The most common type of colour vision deficiency is red-green confusion. Avoid placing these colour pairs next to each other:",
+    "pairs": [
+      "Green and brown",
+      "Red and brown",
+      "Purple and blue"
+    ]
+  },
+  "lineSeries": {
+    "heading": "Line-series differentiation",
+    "intro": "For line charts, use dash styles, not fill patterns. Dash patterns (solid, dashed, dotted, dash-dot) are the correct redundant channel for distinguishing line series. Fill patterns are for bar, area and pie/doughnut chart marks only.",
+    "caption": "Line style definitions for chart series differentiation",
+    "headers": [
+      "Style swatch",
+      "Name",
+      "Use"
+    ],
+    "rows": [
+      {
+        "styleClass": "solid",
+        "srLabel": "Solid line style",
+        "name": "Solid",
+        "use": "Primary series"
+      },
+      {
+        "styleClass": "dashed",
+        "srLabel": "Dashed line style",
+        "name": "Dashed",
+        "use": "Secondary"
+      },
+      {
+        "styleClass": "dotted",
+        "srLabel": "Dotted line style",
+        "name": "Dotted",
+        "use": "Tertiary"
+      },
+      {
+        "styleClass": "dashdot",
+        "srLabel": "Dash-dot line style",
+        "name": "Dash-dot",
+        "use": "Quaternary"
+      }
+    ]
+  },
+  "patterns": {
+    "heading": "Using patterns",
+    "intro": "Colour is usually the primary cue for distinguishing datasets, but charts must remain understandable when users cannot rely on colour alone.",
+    "bullets": [
+      "Use two colours per pattern: a fill and a pattern stroke.",
+      "Keep at least <code>3:1</code> contrast between fill and pattern stroke.",
+      "Use colours from the same palette column where possible (for example, Blue 03 fill with Blue 01 pattern).",
+      "Use patterns sparingly to avoid visual noise; keep to 4 to 5 patterns maximum in one chart.",
+      "Avoid thin lines or dense patterns; use stroke widths between 1.5 and 2px.",
+      "Avoid complicated image-based patterns."
+    ],
+    "alert": {
+      "title": "Pattern usage limits",
+      "copy": "Keep to 4 to 5 patterns maximum in a single chart. Avoid thin lines or dense fills, use stroke widths 1.5 to 2px. Validate at 200% zoom and 375px viewport width before publishing. Patterns are reference swatches only: final scale must be validated in the rendered environment."
+    },
+    "swatchesHeading": "Pattern swatch examples",
+    "swatchesCaption": "Pattern swatch examples and typical use cases",
+    "swatchesHeaders": [
+      "Swatch",
+      "Pattern type",
+      "Typical use"
+    ],
+    "swatchesNote": "Reference swatches only. Validate final pattern scale at 200% zoom and at mobile widths.",
+    "swatches": [
+      {
+        "key": "diagonal",
+        "type": "Diagonal",
+        "use": "Good for secondary series in stacked bars and columns.",
+        "patternKind": "diagonal",
+        "fillVar": "--nsw-palette-blue-01",
+        "strokeVar": "--nsw-palette-blue-04"
+      },
+      {
+        "key": "crosshatch",
+        "type": "Crosshatch",
+        "use": "Useful where stronger differentiation is required than single-line patterns.",
+        "patternKind": "crosshatch",
+        "fillVar": "--nsw-palette-blue-01",
+        "strokeVar": "--nsw-palette-blue-04"
+      },
+      {
+        "key": "dots",
+        "type": "Dots",
+        "use": "Works well for pie and doughnut slices where subtle texture is enough.",
+        "patternKind": "dots",
+        "fillVar": "--nsw-palette-blue-01",
+        "strokeVar": "--nsw-palette-blue-04"
+      },
+      {
+        "key": "grid-tight",
+        "type": "Grid (tight)",
+        "use": "Suitable for medium-to-large marks where repeated structure is clear.",
+        "patternKind": "grid-tight",
+        "fillVar": "--nsw-palette-blue-01",
+        "strokeVar": "--nsw-palette-blue-04"
+      },
+      {
+        "key": "grid-wide",
+        "type": "Grid (wide)",
+        "use": "Best for larger visual marks where denser patterns would look noisy.",
+        "patternKind": "grid-wide",
+        "fillVar": "--nsw-palette-blue-01",
+        "strokeVar": "--nsw-palette-blue-04"
+      },
+      {
+        "key": "zigzag",
+        "type": "Zigzag",
+        "use": "Useful for highlighting one key series when other series are solid.",
+        "patternKind": "zigzag",
+        "fillVar": "--nsw-palette-blue-01",
+        "strokeVar": "--nsw-palette-blue-04"
+      }
+    ]
+  },
+  "typography": {
+    "heading": "Typography in charts",
+    "intro": "Text should help users quickly understand the data without competing with visual elements. Use NSW Government primary typeface, Public Sans. If this is not possible, use Arial as fallback.",
+    "minimumTextSizesHeading": "Minimum text sizes",
+    "minimumTextSizesCaption": "Minimum text sizes for chart elements",
+    "minimumTextSizesRows": [
+      {
+        "element": "Chart title",
+        "size": "16 to 18px"
+      },
+      {
+        "element": "Axis labels",
+        "size": "12 to 14px"
+      },
+      {
+        "element": "Dataset labels",
+        "size": "12 to 14px"
+      },
+      {
+        "element": "Data labels",
+        "size": "12px minimum"
+      },
+      {
+        "element": "Notes or sources",
+        "size": "11 to 12px"
+      }
+    ],
+    "minimumTextSizesNote": "Avoid text smaller than 12px in digital charts.",
+    "textAlignmentHeading": "Text alignment",
+    "textAlignment": [
+      "Y-axis labels: right aligned",
+      "X-axis labels: centred",
+      "Dataset labels: placed close to the data they describe",
+      "Direct labelling is preferred over legends where possible."
+    ],
+    "numberFormattingHeading": "Number formatting",
+    "numberFormatting": [
+      "Use commas for thousands (for example, <code>1,000</code>).",
+      "Avoid spaces between digits, as screen readers may read them incorrectly.",
+      "Use consistent decimal precision."
+    ]
+  }
+}
