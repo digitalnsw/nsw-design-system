@@ -486,6 +486,35 @@ function initChartsAndGraphs() {
       return value
     }
 
+    const isTrianglePointStyle = (pointStyle) => pointStyle === 'triangle'
+
+    const legendTrianglePointStyles = new Map()
+
+    const getLegendTrianglePointStyle = (color) => {
+      const cacheKey = typeof color === 'string' ? color : palette.blue02
+      if (legendTrianglePointStyles.has(cacheKey)) {
+        return legendTrianglePointStyles.get(cacheKey)
+      }
+
+      const symbol = document.createElement('canvas')
+      symbol.width = 12
+      symbol.height = 12
+      const context = symbol.getContext('2d')
+      if (context) {
+        context.clearRect(0, 0, 12, 12)
+        context.fillStyle = cacheKey
+        context.beginPath()
+        context.moveTo(6, 0.5)
+        context.lineTo(11.5, 11)
+        context.lineTo(0.5, 11)
+        context.closePath()
+        context.fill()
+      }
+
+      legendTrianglePointStyles.set(cacheKey, symbol)
+      return symbol
+    }
+
     const pointStyleLegendLabels = (chart) => {
       const defaults = Chart.defaults.plugins.legend.labels.generateLabels(chart)
       return defaults.map((item) => {
@@ -499,9 +528,14 @@ function initChartsAndGraphs() {
         const backgroundColor = getDatasetColor(dataset.backgroundColor)
         const fillStyle = borderColor || pointBackgroundColor || backgroundColor || pointBorderColor || item.fillStyle
 
+        const pointStyle = dataset.pointStyle || (datasetType === 'bar' ? 'rect' : 'circle')
+        const legendPointStyle = isTrianglePointStyle(pointStyle)
+          ? getLegendTrianglePointStyle(fillStyle)
+          : pointStyle
+
         return {
           ...item,
-          pointStyle: dataset.pointStyle || (datasetType === 'bar' ? 'rect' : 'circle'),
+          pointStyle: legendPointStyle,
           fillStyle,
           strokeStyle: fillStyle,
           lineWidth: 0,
@@ -653,9 +687,23 @@ function initChartsAndGraphs() {
       const normalisedDatasets = sourceDatasets.map((dataset) => {
         const datasetType = dataset && dataset.type ? dataset.type : config.type
         if (datasetType !== 'line') return dataset
+
+        const pointStyle = dataset.pointStyle || 'circle'
+        const trianglePointStyle = isTrianglePointStyle(pointStyle)
+        const basePointRadius = Number.isFinite(dataset.pointRadius) ? dataset.pointRadius : 6
+        const basePointHoverRadius = Number.isFinite(dataset.pointHoverRadius)
+          ? dataset.pointHoverRadius
+          : basePointRadius + 2
+        const basePointHitRadius = Number.isFinite(dataset.pointHitRadius)
+          ? dataset.pointHitRadius
+          : 4
+        const triangleRadiusOffset = trianglePointStyle ? 2 : 0
+
         return {
           ...dataset,
-          pointRadius: 6,
+          pointRadius: basePointRadius + triangleRadiusOffset,
+          pointHoverRadius: basePointHoverRadius + triangleRadiusOffset,
+          pointHitRadius: basePointHitRadius + triangleRadiusOffset,
         }
       })
 
