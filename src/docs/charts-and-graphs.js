@@ -122,10 +122,10 @@ function initChartsAndGraphs() {
     const palette = getNswChartPalette({ cssScope: document.body })
     const textDark = palette.grey01
     const chartLayoutPadding = {
-      top: 12,
-      right: 12,
-      bottom: 12,
-      left: 12,
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
     }
 
     const publicSansFontFamily = "'Public Sans', Arial, sans-serif"
