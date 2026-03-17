@@ -514,6 +514,28 @@ function initChartsAndGraphs() {
       return typeof value === 'string' ? value : ''
     }
 
+    const splitTrailingBracketedText = (value) => {
+      if (!value) {
+        return {
+          heading: '',
+          bracketed: '',
+        }
+      }
+
+      const match = value.match(/^(.*)\s+\(([^()]*)\)\s*$/)
+      if (!match) {
+        return {
+          heading: value.trim(),
+          bracketed: '',
+        }
+      }
+
+      return {
+        heading: match[1].trim(),
+        bracketed: match[2].trim(),
+      }
+    }
+
     const createChart = (canvasId, config) => {
       const canvas = document.getElementById(canvasId)
       if (!canvas) return
@@ -559,12 +581,18 @@ function initChartsAndGraphs() {
         const existingHeader = chartPanel.querySelector('.nsw-docs__chart-panel-header')
         if (existingHeader) existingHeader.remove()
 
-        const titleText = toHeadingText(title.text)
-        const subtitleText = toHeadingText(subtitle.text)
+        const rawTitleText = toHeadingText(title.text)
+        const rawSubtitleText = toHeadingText(subtitle.text)
+        const splitTitle = splitTrailingBracketedText(rawTitleText)
+        const inferredSubtitleText = !rawSubtitleText ? splitTitle.bracketed : ''
+        const titleText = splitTitle.heading
+        const subtitleText = rawSubtitleText || inferredSubtitleText
         const calloutValue = toHeadingText(callout.value)
         const calloutContext = toHeadingText(callout.context)
         const hasTitle = title.display === true && titleText
-        const hasSubtitle = subtitle.display === true && subtitleText
+        const hasSubtitle = Boolean(subtitleText) && (
+          subtitle.display === true || Boolean(inferredSubtitleText)
+        )
         const hasCallout = callout.display === true && calloutValue
 
         if (hasTitle || hasSubtitle || hasCallout) {
