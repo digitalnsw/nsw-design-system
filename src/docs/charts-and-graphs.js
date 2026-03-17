@@ -141,9 +141,9 @@ function initChartsAndGraphs() {
     Chart.defaults.elements.point.borderWidth = 1
     Chart.defaults.elements.bar.borderRadius = 0
     Chart.defaults.elements.bar.borderWidth = 0
-    Chart.defaults.plugins.legend.labels.boxWidth = 8
-    Chart.defaults.plugins.legend.labels.boxHeight = 8
-    Chart.defaults.plugins.legend.labels.pointStyleWidth = 8
+    Chart.defaults.plugins.legend.labels.boxWidth = 12
+    Chart.defaults.plugins.legend.labels.boxHeight = 12
+    Chart.defaults.plugins.legend.labels.pointStyleWidth = 12
     Chart.defaults.plugins.legend.labels.padding = 10
     Chart.defaults.plugins.legend.labels.color = palette.grey01
     Chart.defaults.plugins.legend.labels.font = {
@@ -161,12 +161,14 @@ function initChartsAndGraphs() {
       top: 8,
       bottom: 24,
     }
+    Chart.defaults.plugins.title.align = 'start'
     Chart.defaults.plugins.legend.onClick = () => {}
     Chart.defaults.layout = Chart.defaults.layout || {}
     Chart.defaults.layout.padding = chartLayoutPadding
     if (Chart.defaults.scale) {
-      Chart.defaults.scale.grid.color = palette.grey03
-      Chart.defaults.scale.grid.drawBorder = false
+      Chart.defaults.scale.grid.color = palette.grey04
+      Chart.defaults.scale.grid.borderColor = palette.grey03
+      Chart.defaults.scale.grid.drawBorder = true
       Chart.defaults.scale.ticks.color = palette.grey02
       Chart.defaults.scale.ticks.font = {
         family: publicSansFontFamily,
@@ -495,7 +497,7 @@ function initChartsAndGraphs() {
         const borderColor = getDatasetColor(dataset.borderColor)
         const pointBackgroundColor = getDatasetColor(dataset.pointBackgroundColor)
         const backgroundColor = getDatasetColor(dataset.backgroundColor)
-        const fillStyle = pointBorderColor || borderColor || pointBackgroundColor || backgroundColor || item.fillStyle
+        const fillStyle = borderColor || pointBackgroundColor || backgroundColor || pointBorderColor || item.fillStyle
 
         return {
           ...item,
@@ -507,17 +509,24 @@ function initChartsAndGraphs() {
       })
     }
 
+    const toHeadingText = (value) => {
+      if (Array.isArray(value)) return value.join(' ')
+      return typeof value === 'string' ? value : ''
+    }
+
     const createChart = (canvasId, config) => {
       const canvas = document.getElementById(canvasId)
       if (!canvas) return
       canvas.classList.add('nsw-docs__chart-canvas')
       canvas.style.backgroundColor = canvas.dataset.chartBg === 'none' ? 'transparent' : '#FFFFFF'
-      if (Chart.getChart && Chart.getChart(canvas)) return
 
       const options = config && config.options ? config.options : {}
       const plugins = options.plugins || {}
       const legend = plugins.legend || {}
       const layout = options.layout || {}
+      const title = plugins.title || {}
+      const subtitle = plugins.subtitle || {}
+      const callout = plugins.callout || {}
       const directLabels = plugins.nswDirectLabels || {}
       const useDirectLabels = ['pie', 'doughnut'].includes(config.type) && directLabels.display === true
       const directLabelLayoutPadding = directLabels.layoutPadding || {
@@ -529,13 +538,86 @@ function initChartsAndGraphs() {
       const chartHeight = canvas.dataset.chartHeight || canvas.getAttribute('height')
       const hasExplicitChartHeight = Boolean(chartHeight)
       const chartPlugins = Array.isArray(config.plugins) ? [...config.plugins] : []
+      const host = canvas.parentElement
+      if (!host) return
+      let chartPanel = canvas.closest('.nsw-docs__chart-panel')
 
-      if (useDirectLabels && !chartPlugins.includes(directSegmentLabelsPlugin)) {
-        chartPlugins.push(directSegmentLabelsPlugin)
+      if (!chartPanel || chartPanel.parentElement !== host) {
+        chartPanel = document.createElement('div')
+        chartPanel.className = 'nsw-docs__chart-panel'
+        host.insertBefore(chartPanel, canvas)
+      }
+
+      let plot = chartPanel.querySelector('.nsw-docs__chart-panel-plot')
+      if (!plot) {
+        plot = document.createElement('div')
+        plot.className = 'nsw-docs__chart-panel-plot'
+        chartPanel.appendChild(plot)
+      }
+
+      if (chartPanel) {
+        const existingHeader = chartPanel.querySelector('.nsw-docs__chart-panel-header')
+        if (existingHeader) existingHeader.remove()
+
+        const titleText = toHeadingText(title.text)
+        const subtitleText = toHeadingText(subtitle.text)
+        const calloutValue = toHeadingText(callout.value)
+        const calloutContext = toHeadingText(callout.context)
+        const hasTitle = title.display === true && titleText
+        const hasSubtitle = subtitle.display === true && subtitleText
+        const hasCallout = callout.display === true && calloutValue
+
+        if (hasTitle || hasSubtitle || hasCallout) {
+          const heading = document.createElement('div')
+          heading.className = 'nsw-docs__chart-panel-header'
+
+          if (hasTitle) {
+            const headingTitle = document.createElement('p')
+            headingTitle.className = 'nsw-docs__chart-panel-title'
+            headingTitle.textContent = titleText
+            heading.appendChild(headingTitle)
+          }
+
+          if (hasSubtitle) {
+            const headingSubtitle = document.createElement('p')
+            headingSubtitle.className = 'nsw-docs__chart-panel-subtitle'
+            headingSubtitle.textContent = subtitleText
+            heading.appendChild(headingSubtitle)
+          }
+
+          if (hasCallout) {
+            const headingCallout = document.createElement('p')
+            headingCallout.className = 'nsw-docs__chart-panel-callout-value'
+            headingCallout.textContent = calloutValue
+            heading.appendChild(headingCallout)
+
+            if (calloutContext) {
+              const headingCalloutContext = document.createElement('p')
+              headingCalloutContext.className = 'nsw-docs__chart-panel-callout-context'
+              headingCalloutContext.textContent = calloutContext
+              heading.appendChild(headingCalloutContext)
+            }
+          }
+
+          chartPanel.insertBefore(heading, plot)
+        }
+      }
+
+      if (canvas.parentElement !== plot) {
+        plot.appendChild(canvas)
       }
 
       if (hasExplicitChartHeight) {
-        canvas.style.height = /^\d+(\.\d+)?$/.test(chartHeight) ? `${chartHeight}px` : chartHeight
+        plot.style.height = /^\d+(\.\d+)?$/.test(chartHeight) ? `${chartHeight}px` : chartHeight
+      } else {
+        plot.style.height = ''
+      }
+
+      canvas.style.height = '100%'
+      if (Chart.getChart && Chart.getChart(canvas)) return
+
+      if (useDirectLabels && !chartPlugins.includes(directSegmentLabelsPlugin)) {
+        chartPlugins.push(directSegmentLabelsPlugin)
       }
 
       const sourceData = config && config.data ? config.data : {}
@@ -545,7 +627,7 @@ function initChartsAndGraphs() {
         if (datasetType !== 'line') return dataset
         return {
           ...dataset,
-          pointRadius: 4,
+          pointRadius: 6,
         }
       })
 
@@ -578,6 +660,18 @@ function initChartsAndGraphs() {
               ...legend,
               display: useDirectLabels ? false : legend.display,
               onClick: () => {},
+            },
+            title: {
+              ...title,
+              display: false,
+            },
+            subtitle: {
+              ...subtitle,
+              display: false,
+            },
+            callout: {
+              ...callout,
+              display: false,
             },
           },
         },
@@ -902,23 +996,9 @@ function initChartsAndGraphs() {
         labels: ['Digital', 'Phone', 'In person', 'Mail'],
         datasets: [{
           data: [46, 28, 17, 9],
-          backgroundColor: (context) => {
-            if (context.dataIndex === 2) {
-              return getPatternFill(context, 'dots', palette.purple01, {
-                svgUrl: '/assets/images/chart-pattern-dot-grid.svg',
-                size: 12,
-                inkColor: '#FFFFFF',
-              })
-            }
-            if (context.dataIndex === 0) {
-              return getPatternFill(context, 'diagonal', palette.red01, {
-                svgUrl: '/assets/images/chart-pattern-diagonal-lines.svg',
-                size: 12,
-                inkColor: '#FFFFFF',
-              })
-            }
-            return [palette.red01, palette.red02, palette.purple01, palette.purple02][context.dataIndex]
-          },
+          backgroundColor: (context) => [
+            palette.red01, palette.red02, palette.purple01, palette.purple02,
+          ][context.dataIndex],
         }],
       },
       options: {
@@ -936,7 +1016,7 @@ function initChartsAndGraphs() {
             display: true,
             text: 'Service channel share (Q2 2025, percent)',
             fullSize: true,
-            align: 'center',
+            align: 'start',
             font: {
               size: 15,
               weight: 700,
@@ -988,9 +1068,7 @@ function initChartsAndGraphs() {
           {
             label: 'Resolved late',
             data: [72, 68, 74, 70, 66, 61],
-            backgroundColor: (context) => getPatternFill(context, 'diagonal', palette.blue02, {
-            svgUrl: '/assets/images/chart-pattern-diagonal-lines.svg',
-          }),
+            backgroundColor: palette.blue02,
           },
         ],
       },
@@ -1002,7 +1080,20 @@ function initChartsAndGraphs() {
           },
           title: {
             display: true,
-            text: 'Service request resolutions by month (Jan to Jun 2026, count)',
+            text: 'Service requests by type',
+            padding: {
+              top: 8,
+              bottom: 8,
+            },
+          },
+          subtitle: {
+            display: true,
+            text: 'Number of requests (000s)',
+          },
+          callout: {
+            display: true,
+            value: '5,500',
+            context: '',
           },
           tooltip: {
             callbacks: {
@@ -1222,10 +1313,11 @@ function initChartsAndGraphs() {
           data: [120, 160, 210, 260, 310, 295],
           borderColor: palette.blue01,
           backgroundColor: palette.blue01,
-          pointRadius: 4,
+          pointRadius: 6,
           pointStyle: 'circle',
           pointBackgroundColor: palette.blue01,
-          pointBorderColor: palette.blue01,
+          pointBorderColor: palette.white,
+          pointBorderWidth: 2,
           borderWidth: 2,
           tension: 0.3,
         }],
@@ -1267,10 +1359,11 @@ function initChartsAndGraphs() {
           data: [95, 120, 140, 165, 190, 210],
           borderColor: palette.blue01,
           backgroundColor: palette.blue01,
-          pointRadius: 4,
+          pointRadius: 6,
           pointStyle: 'circle',
           pointBackgroundColor: palette.blue01,
-          pointBorderColor: palette.blue01,
+          pointBorderColor: palette.white,
+          pointBorderWidth: 2,
           borderWidth: 2,
           borderDash: [],
           tension: 0.25,
@@ -1279,10 +1372,11 @@ function initChartsAndGraphs() {
           data: [130, 125, 118, 110, 105, 98],
           borderColor: palette.blue02,
           backgroundColor: palette.blue02,
-          pointRadius: 4,
+          pointRadius: 8,
           pointStyle: 'triangle',
           pointBackgroundColor: palette.blue02,
-          pointBorderColor: palette.blue02,
+          pointBorderColor: palette.white,
+          pointBorderWidth: 2,
           borderWidth: 2,
           borderDash: [8, 6],
           tension: 0.25,
@@ -1294,9 +1388,9 @@ function initChartsAndGraphs() {
             position: 'bottom',
             labels: {
               usePointStyle: true,
-              pointStyleWidth: 8,
-              boxWidth: 8,
-              boxHeight: 8,
+              pointStyleWidth: 12,
+              boxWidth: 12,
+              boxHeight: 12,
               generateLabels: pointStyleLegendLabels,
             },
           },
@@ -1333,10 +1427,11 @@ function initChartsAndGraphs() {
           borderColor: palette.blue01,
           backgroundColor: withAlpha(palette.blue01, 0.2),
           fill: true,
-          pointRadius: 4,
+          pointRadius: 6,
           pointStyle: 'circle',
           pointBackgroundColor: palette.blue01,
-          pointBorderColor: palette.blue01,
+          pointBorderColor: palette.white,
+          pointBorderWidth: 2,
           borderWidth: 2,
           tension: 0.3,
         }],
@@ -1388,11 +1483,11 @@ function initChartsAndGraphs() {
           borderColor: palette.blue02,
           backgroundColor: palette.blue02,
           borderWidth: 2,
-          pointRadius: 4,
-          pointStyle: 'triangle',
+          pointRadius: 8,
+          pointStyle: 'circle',
           pointBackgroundColor: palette.blue02,
-          pointBorderColor: palette.blue02,
-          borderDash: [8, 6],
+          pointBorderColor: palette.white,
+          pointBorderWidth: 2,
           tension: 0.25,
           order: 1,
         }],
@@ -1403,9 +1498,9 @@ function initChartsAndGraphs() {
             position: 'bottom',
             labels: {
               usePointStyle: true,
-              pointStyleWidth: 8,
-              boxWidth: 8,
-              boxHeight: 8,
+              pointStyleWidth: 12,
+              boxWidth: 12,
+              boxHeight: 12,
               generateLabels: pointStyleLegendLabels,
             },
           },
@@ -1456,11 +1551,12 @@ function initChartsAndGraphs() {
           data: [120, 135, 150, 170, 182, 176],
           borderColor: palette.blue01,
           backgroundColor: withAlpha(palette.blue01, 0.2),
-          fill: true,
-          pointRadius: 3,
+          fill: 'origin',
+          pointRadius: 6,
           pointStyle: 'circle',
           pointBackgroundColor: palette.blue01,
-          pointBorderColor: palette.blue01,
+          pointBorderColor: palette.white,
+          pointBorderWidth: 2,
           borderWidth: 2,
           tension: 0.25,
           stack: 'stackedArea',
@@ -1468,33 +1564,19 @@ function initChartsAndGraphs() {
         }, {
           label: 'Phone',
           data: [95, 88, 84, 80, 75, 72],
-          borderColor: palette.blue02,
-          backgroundColor: withAlpha(palette.blue02, 0.2),
-          fill: true,
-          pointRadius: 3,
-          pointStyle: 'triangle',
-          pointBackgroundColor: palette.blue02,
-          pointBorderColor: palette.blue02,
+          borderColor: palette.fuchsia01,
+          backgroundColor: withAlpha(palette.fuchsia01, 0.2),
+          fill: '-1',
+          pointRadius: 8,
+          pointStyle: 'rectRot',
+          pointBackgroundColor: palette.fuchsia01,
+          pointBorderColor: palette.white,
+          pointBorderWidth: 2,
           borderWidth: 2,
           borderDash: [8, 6],
           tension: 0.25,
           stack: 'stackedArea',
           order: 2,
-        }, {
-          label: 'Counter',
-          data: [60, 57, 52, 50, 47, 45],
-          borderColor: palette.red01,
-          backgroundColor: withAlpha(palette.red01, 0.2),
-          fill: true,
-          pointRadius: 3,
-          pointStyle: 'rectRot',
-          pointBackgroundColor: palette.red01,
-          pointBorderColor: palette.red01,
-          borderWidth: 2,
-          borderDash: [2, 6],
-          tension: 0.25,
-          stack: 'stackedArea',
-          order: 3,
         }],
       },
       options: {
@@ -1503,9 +1585,9 @@ function initChartsAndGraphs() {
             position: 'bottom',
             labels: {
               usePointStyle: true,
-              pointStyleWidth: 8,
-              boxWidth: 8,
-              boxHeight: 8,
+              pointStyleWidth: 12,
+              boxWidth: 12,
+              boxHeight: 12,
               generateLabels: pointStyleLegendLabels,
             },
           },
@@ -1541,13 +1623,13 @@ function initChartsAndGraphs() {
         datasets: [{
           data: [62, 24, 14],
           backgroundColor: (context) => {
-            if (context.dataIndex === 1) {
-              return getPatternFill(context, 'diagonal', palette.blue02, {
+            if (context.dataIndex === 2) {
+              return getPatternFill(context, 'diagonal', palette.red01, {
                 svgUrl: '/assets/images/chart-pattern-diagonal-lines.svg',
                 size: 8,
               })
             }
-            return [palette.blue01, palette.blue02, palette.red02][context.dataIndex]
+            return [palette.blue01, palette.blue02, palette.red01][context.dataIndex]
           },
         }],
       },
@@ -1569,7 +1651,7 @@ function initChartsAndGraphs() {
             display: true,
             text: 'Application status share (Q2 2025, percent)',
             fullSize: true,
-            align: 'center',
+            align: 'start',
             font: {
               size: 15,
               weight: 700,
@@ -1589,20 +1671,12 @@ function initChartsAndGraphs() {
         labels: ['Digital', 'Phone', 'In person', 'Mail'],
         datasets: [{
           data: [40, 25, 20, 15],
-          backgroundColor: (context) => {
-            if (context.dataIndex === 1) {
-              return getPatternFill(context, 'diagonal', palette.blue02, {
-                svgUrl: '/assets/images/chart-pattern-diagonal-lines.svg',
-                size: 8,
-              })
-            }
-            return [
-              palette.blue01,
-              palette.blue02,
-              palette.red01,
-              palette.red02,
-            ][context.dataIndex]
-          },
+          backgroundColor: (context) => [
+            palette.blue01,
+            palette.blue02,
+            palette.red01,
+            palette.red02,
+          ][context.dataIndex],
         }],
       },
       options: {
@@ -1622,7 +1696,7 @@ function initChartsAndGraphs() {
             display: true,
             text: 'Channel share (Q2 2025)',
             fullSize: true,
-            align: 'center',
+            align: 'start',
             font: {
               size: 15,
               weight: 700,
@@ -1714,11 +1788,14 @@ function initChartsAndGraphs() {
               { x: 15.0, y: 18.6 },
               { x: 16.0, y: 19.4 },
             ],
-            backgroundColor: palette.blue01,
+            backgroundColor: withAlpha(palette.blue01, 0.8),
             borderColor: palette.blue01,
             pointRadius: 4,
             borderWidth: 2,
             pointStyle: 'circle',
+            pointBackgroundColor: withAlpha(palette.blue01, 0.8),
+            pointBorderColor: palette.blue01,
+            pointBorderWidth: 2,
           },
           {
             label: 'Regional service centres',
@@ -1727,11 +1804,14 @@ function initChartsAndGraphs() {
               { x: 9.0, y: 16.1 },
               { x: 12.0, y: 10.8 },
             ],
-            backgroundColor: palette.blue02,
+            backgroundColor: withAlpha(palette.blue02, 0.8),
             borderColor: palette.blue02,
             pointRadius: 8,
             borderWidth: 2,
             pointStyle: 'triangle',
+            pointBackgroundColor: withAlpha(palette.blue02, 0.8),
+            pointBorderColor: palette.blue02,
+            pointBorderWidth: 2,
           },
         ],
       },
@@ -1749,7 +1829,7 @@ function initChartsAndGraphs() {
             position: 'bottom',
             labels: {
               usePointStyle: true,
-              pointStyleWidth: 8,
+              pointStyleWidth: 12,
             },
           },
           title: {
@@ -1793,10 +1873,13 @@ function initChartsAndGraphs() {
             { x: 12, y: 14, r: 14 },
             { x: 15, y: 18, r: 16 },
           ],
-          backgroundColor: palette.blue01,
+          backgroundColor: withAlpha(palette.blue01, 0.8),
           borderColor: palette.blue01,
           pointRadius: 4,
           borderWidth: 2,
+          pointBackgroundColor: withAlpha(palette.blue01, 0.8),
+          pointBorderColor: palette.blue01,
+          pointBorderWidth: 2,
         }, {
           label: 'Regional locations',
           data: [
@@ -1806,10 +1889,13 @@ function initChartsAndGraphs() {
             { x: 10, y: 16, r: 11 },
             { x: 13, y: 19, r: 13 },
           ],
-          backgroundColor: palette.blue02,
+          backgroundColor: withAlpha(palette.blue02, 0.8),
           borderColor: palette.blue02,
           pointRadius: 4,
           borderWidth: 2,
+          pointBackgroundColor: withAlpha(palette.blue02, 0.8),
+          pointBorderColor: palette.blue02,
+          pointBorderWidth: 2,
         }],
       },
       options: {
@@ -1827,7 +1913,7 @@ function initChartsAndGraphs() {
             labels: {
               usePointStyle: true,
               pointStyle: 'circle',
-              pointStyleWidth: 8,
+              pointStyleWidth: 12,
             },
           },
           title: {
@@ -1874,11 +1960,13 @@ function initChartsAndGraphs() {
             { x: 4, y: 5.5 }, { x: 4, y: 6.4 }, { x: 4, y: 7.0 }, { x: 4, y: 8.3 },
             { x: 5, y: 4.8 }, { x: 5, y: 5.9 }, { x: 5, y: 6.7 }, { x: 5, y: 7.4 },
           ],
-          backgroundColor: palette.blue01,
+          backgroundColor: withAlpha(palette.blue01, 0.8),
           borderColor: palette.blue01,
           borderWidth: 1.5,
           pointRadius: 6,
           pointStyle: 'circle',
+          pointBackgroundColor: withAlpha(palette.blue01, 0.8),
+          pointBorderColor: palette.blue01,
         }],
       },
       options: {
@@ -2002,9 +2090,9 @@ function initChartsAndGraphs() {
             position: 'bottom',
             labels: {
               usePointStyle: true,
-              pointStyleWidth: 8,
-              boxWidth: 8,
-              boxHeight: 8,
+              pointStyleWidth: 12,
+              boxWidth: 12,
+              boxHeight: 12,
               generateLabels: pointStyleLegendLabels,
             },
           },
@@ -2040,7 +2128,7 @@ function initChartsAndGraphs() {
               z: -1,
             },
             grid: {
-              color: palette.grey03,
+              color: palette.grey04,
               z: -1,
             },
           },

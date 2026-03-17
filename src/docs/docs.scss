@@ -610,7 +610,65 @@ $header-height: 151px;
   &__chart-canvas {
     display: block;
     width: 100%;
+    height: 100%;
     background-color: var(--nsw-brand-white);
+  }
+
+  &__chart-panel {
+    background-color: var(--nsw-white);
+    padding: nsw.rem(12px);
+  }
+
+  &__chart-panel-plot {
+    position: relative;
+    width: 100%;
+  }
+
+  &__chart-panel-header {
+    margin-bottom: nsw.rem(8px);
+  }
+
+  &__chart-panel-title {
+    margin: 0;
+    color: var(--nsw-text-dark);
+    font-weight: var(--nsw-font-bold);
+    font-size: clamp(1rem, 1.8vw, 1.125rem);
+    line-height: 1.3;
+  }
+
+  &__chart-panel-subtitle {
+    margin: nsw.rem(4px) 0 0;
+    color: var(--nsw-text-dark);
+
+    @include nsw.font-size('sm');
+  }
+
+  &__chart-panel-callout-value {
+    margin: nsw.rem(6px) 0 0;
+    color: var(--nsw-text-dark);
+    font-size: nsw.rem(40px);
+    line-height: 1.1;
+    font-weight: 400;
+  }
+
+  &__chart-panel-callout-context {
+    margin: nsw.rem(8px) 0 0;
+    color: var(--nsw-text-dark);
+
+    @include nsw.font-size('sm');
+  }
+
+  &__chart-anatomy-canvas {
+    .nsw-docs__chart-panel {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .nsw-docs__chart-panel-plot {
+      flex: 1 1 auto;
+      min-height: 0;
+    }
   }
 
   &__chart-anatomy {
@@ -625,10 +683,10 @@ $header-height: 151px;
     padding: nsw.rem(8px) nsw.rem(8px) nsw.rem(10px);
 
     .nsw-docs__chart-anatomy-canvas {
-      height: nsw.rem(300px);
+      height: nsw.rem(380px);
 
       @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
-        height: nsw.rem(340px);
+        height: nsw.rem(430px);
       }
     }
 
@@ -670,38 +728,48 @@ $header-height: 151px;
   }
 
   &__chart-anatomy-pin--title {
-    top: 6%;
-    left: 66%;
+    top: 7%;
+    left: 30%;
+  }
+
+  &__chart-anatomy-pin--subtitle {
+    top: 13%;
+    left: 28%;
+  }
+
+  &__chart-anatomy-pin--callout {
+    top: 21%;
+    left: 17%;
   }
 
   &__chart-anatomy-pin--axis-labels {
-    top: 44%;
-    left: 7%;
+    top: 42%;
+    left: 4%;
   }
 
   &__chart-anatomy-pin--data-labels {
-    top: 26%;
-    left: 57%;
+    top: 30%;
+    left: 58%;
   }
 
   &__chart-anatomy-pin--legend {
-    top: 82%;
-    left: 52%;
+    top: 80%;
+    left: 50%;
   }
 
   &__chart-anatomy-pin--scale {
     top: 52%;
-    left: 17%;
+    left: 10%;
   }
 
   &__chart-anatomy-pin--source {
     top: 95%;
-    left: 15%;
+    left: 13%;
   }
 
   &__chart-anatomy-pin--spacing {
-    top: 48%;
-    left: 69%;
+    top: 46%;
+    left: 67%;
   }
 
   &__chart-anatomy-list {
