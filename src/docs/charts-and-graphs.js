@@ -604,6 +604,9 @@ function initChartsAndGraphs() {
         host.insertBefore(chartPanel, canvas)
       }
 
+      const isRadialChart = ['pie', 'doughnut', 'radar'].includes(config.type)
+      chartPanel.classList.toggle('nsw-docs__chart-panel--radial', isRadialChart)
+
       let plot = chartPanel.querySelector('.nsw-docs__chart-panel-plot')
       if (!plot) {
         plot = document.createElement('div')
