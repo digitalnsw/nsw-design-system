@@ -7,7 +7,6 @@ model:
   principles: json/charts-and-graphs-principles.json
   page: json/charts-and-graphs-page.json
   chartTypes: json/charts-and-graphs-chart-types.json
-  sections: json/charts-and-graphs-content-sections.json
   brand: json/charts-and-graphs-brand-guidance.json
   pitfalls: json/charts-and-graphs-pitfalls.json
   review: json/charts-and-graphs-review.json
@@ -99,105 +98,170 @@ meta-index: true
 {{/each}}
 
 
-<h2 id="never-mislead-with-data">{{model.sections.section2.heading}}</h2>
-<p>{{model.sections.section2.intro}}</p>
+<h2 id="never-mislead-with-data">2. Never mislead with data</h2>
+<p>Use honest scales, clear labels and consistent ordering so charts reflect the data accurately.</p>
 <ul>
-  {{#each model.sections.section2.bullets}}
-  <li>{{this}}</li>
-  {{/each}}
+  <li>Use honest baselines and avoid truncating axes without clear indication.</li>
+  <li>Keep time intervals and category order consistent.</li>
+  <li>Label clearly so users can read values without guessing.</li>
 </ul>
 
-<h3 id="chart-anatomy">{{model.sections.section2.anatomy.heading}}</h3>
-<p>{{model.sections.section2.anatomy.intro}}</p>
+<h3 id="chart-anatomy">Chart anatomy</h3>
+<p>Every chart must include the core elements required for clarity and accurate interpretation. The title can optionally include either a subtitle or a callout value.</p>
 
 <div class="nsw-grid nsw-m-top-sm">
   <div class="nsw-col nsw-col-lg-12">
     <div class="nsw-docs__chart-anatomy">
-      <p class="nsw-docs__chart-anatomy-note sr-only">{{model.sections.section2.anatomy.srNote}}</p>
+      <p class="nsw-docs__chart-anatomy-note sr-only">Numbered markers on the chart map to the anatomy list.</p>
       <div class="nsw-docs__chart-anatomy-stage">
         <div class="nsw-docs__chart-anatomy-canvas">
-          <canvas id="chartAnatomy" role="img" aria-label="{{model.sections.section2.anatomy.canvasAriaLabel}}"></canvas>
+          <canvas id="chartAnatomy" role="img" aria-label="Annotated bar chart showing chart anatomy elements including title, subtitle, callout, axis labels, data labels, legend, scale and metadata."></canvas>
         </div>
         <p class="nsw-docs__chart-anatomy-meta">
-          <strong>{{model.sections.section2.anatomy.meta.sourceLabel}}</strong> {{model.sections.section2.anatomy.meta.sourceValue}}
+          <strong>Source:</strong> Service NSW request volumes.
           <span class="nsw-docs__chart-anatomy-meta-divider" aria-hidden="true">|</span>
-          <strong>{{model.sections.section2.anatomy.meta.updatedLabel}}</strong> {{model.sections.section2.anatomy.meta.updatedValue}}
+          <strong>Last updated:</strong> 1 March 2026.
         </p>
-        {{#each model.sections.section2.anatomy.pins}}
-        <span class="nsw-docs__chart-anatomy-pin nsw-docs__chart-anatomy-pin--{{modifier}}" aria-hidden="true">{{number}}</span>
-        {{/each}}
+        <span class="nsw-docs__chart-anatomy-pin nsw-docs__chart-anatomy-pin--title" aria-hidden="true">1</span>
+        <span class="nsw-docs__chart-anatomy-pin nsw-docs__chart-anatomy-pin--subtitle" aria-hidden="true">2</span>
+        <span class="nsw-docs__chart-anatomy-pin nsw-docs__chart-anatomy-pin--callout" aria-hidden="true">3</span>
+        <span class="nsw-docs__chart-anatomy-pin nsw-docs__chart-anatomy-pin--axis-labels" aria-hidden="true">4</span>
+        <span class="nsw-docs__chart-anatomy-pin nsw-docs__chart-anatomy-pin--data-labels" aria-hidden="true">5</span>
+        <span class="nsw-docs__chart-anatomy-pin nsw-docs__chart-anatomy-pin--legend" aria-hidden="true">6</span>
+        <span class="nsw-docs__chart-anatomy-pin nsw-docs__chart-anatomy-pin--scale" aria-hidden="true">7</span>
+        <span class="nsw-docs__chart-anatomy-pin nsw-docs__chart-anatomy-pin--source" aria-hidden="true">8</span>
+        <span class="nsw-docs__chart-anatomy-pin nsw-docs__chart-anatomy-pin--spacing" aria-hidden="true">9</span>
       </div>
     </div>
   </div>
   <div class="nsw-col nsw-col-lg-12">
     <ol class="nsw-list nsw-list--8 nsw-docs__chart-anatomy-list">
-      {{#each model.sections.section2.anatomy.items}}
-      <li><strong>{{label}}</strong> {{text}}</li>
-      {{/each}}
+      <li><strong>Title:</strong> Use a descriptive title that states what the data represents, and include timeframe and unit where relevant.</li>
+      <li><strong>Subtitle (optional):</strong> Use a subtitle directly beneath the title to clarify unit, scope or measure. Use either a subtitle or a callout in most cases, not both.</li>
+      <li><strong>Callout (optional):</strong> Use a callout directly beneath the title to emphasise one key figure. Use either a subtitle or a callout in most cases, not both.</li>
+      <li><strong>Axis labels:</strong> Label each axis clearly with unit and time interval. Avoid abbreviations that are not widely understood.</li>
+      <li><strong>Data labels:</strong> Label data directly where practical, especially for bar and column values.</li>
+      <li><strong>Legend:</strong> Use a legend only when direct labels are not practical. Keep it close to the chart and readable at 200% zoom.</li>
+      <li><strong>Scale:</strong> Use consistent scales. Start bar charts at zero unless you have a documented reason not to, and indicate any truncation.</li>
+      <li><strong>Source and metadata:</strong> Include source, last updated date, and any definitions required for interpretation.</li>
+      <li><strong>Spacing and alignment:</strong> Keep spacing consistent between bars, labels and grid lines so the chart remains scannable.</li>
     </ol>
   </div>
 </div>
 
-<h2 id="make-the-message-obvious">{{model.sections.section3.heading}}</h2>
-<p>{{model.sections.section3.intro}}</p>
+<h2 id="make-the-message-obvious">3. Make the message obvious</h2>
+<p>Remove clutter and make the key insight clear at a glance. A good chart answers one question well rather than several questions poorly.</p>
 <ul>
-  {{#each model.sections.section3.bullets}}
-  <li>{{this}}</li>
-  {{/each}}
+  <li>Limit the number of data series.</li>
+  <li>Avoid clutter or unnecessary visual elements.</li>
+  <li>Use annotations to highlight the key insight.</li>
 </ul>
 
-<h3>{{model.sections.section3.dashboardHeading}}</h3>
+<h3>Dashboards</h3>
 <ul>
-  {{#each model.sections.section3.dashboardBullets}}
-  <li>{{this}}</li>
-  {{/each}}
+  <li>Place key metrics first.</li>
+  <li>Group related charts.</li>
+  <li>Avoid horizontal scrolling for primary information.</li>
+  <li>If metadata applies to all charts, include it at the container level.</li>
 </ul>
 
-<h2 id="meet-accessibility-standards">{{model.sections.section4.heading}}</h2>
-<p>{{model.sections.section4.intro}}</p>
-{{#each model.sections.section4.subsections}}
-<h3>{{heading}}</h3>
-{{#if intro}}
-<p>{{intro}}</p>
-{{/if}}
+<h2 id="meet-accessibility-standards">4. Meet accessibility standards</h2>
+<p>Charts must meet WCAG 2.2 AA and AAA where possible. Users must be able to access the same information without relying on the visual chart.</p>
+<h3>Contrast</h3>
 <ul>
-  {{#each bullets}}
-  <li>{{this}}</li>
-  {{/each}}
+  <li>Text must meet a minimum contrast ratio of 4.5:1 (WCAG 1.4.3).</li>
+  <li>Graphical elements such as bars, lines, data points and focus indicators must meet a minimum contrast ratio of 3:1 against adjacent colours and background (WCAG 1.4.11).</li>
+  <li>Test contrast in the rendered environment, not just in design files.</li>
 </ul>
-{{/each}}
+<h3>Use of colour</h3>
+<p>Colour must not be the only way to communicate meaning (WCAG 1.4.1). When differentiating data series:</p>
+<ul>
+  <li>Use direct labels where possible.</li>
+  <li>Use different marker shapes or stroke styles.</li>
+  <li>Avoid relying solely on red and green distinctions.</li>
+  <li>Confirm charts remain understandable in greyscale.</li>
+</ul>
+<h3>Keyboard access</h3>
+<p>Interactive charts must support full keyboard operation (WCAG 2.1.1). This includes:</p>
+<ul>
+  <li>All interactive elements are focusable.</li>
+  <li>Logical tab order.</li>
+  <li>Visible focus indicators.</li>
+  <li>Focus is not hidden or obscured (WCAG 2.4.11).</li>
+  <li>Interactive targets are at least 24×24px (WCAG 2.5.8).</li>
+  <li>Test keyboard interaction manually.</li>
+</ul>
+<h3>Text alternatives</h3>
+<p>Users must be able to access the same information without relying on the visual chart. Provide:</p>
+<ul>
+  <li>A semantic data table.</li>
+  <li>A short summary of the key insight where appropriate.</li>
+  <li>A data table that reflects the same dataset as the chart.</li>
+  <li>Static image exports without alternatives are not acceptable.</li>
+</ul>
+<h3>Zoom and responsiveness</h3>
+<p>Charts must remain usable at 200% zoom and 375px viewport width. Ensure:</p>
+<ul>
+  <li>Labels do not overlap.</li>
+  <li>Primary information remains visible.</li>
+  <li>Horizontal scrolling does not hide critical data.</li>
+</ul>
+<h3>Tool limitations</h3>
+<ul>
+  <li>Some third-party tools may restrict accessibility customisation.</li>
+  <li>If a tool cannot meet WCAG requirements, document the limitation.</li>
+  <li>Provide an accessible alternative where possible.</li>
+  <li>Accessibility responsibility remains with the product team.</li>
+</ul>
 
 
-<h2 id="apply-nsw-brand-consistently">{{model.brand.heading}}</h2>
-<p>{{model.brand.intro}}</p>
+<h2 id="apply-nsw-brand-consistently">5. Apply NSW brand consistently</h2>
 
-<h3>{{model.brand.selectionMethod.heading}}</h3>
-<p>{{{model.brand.selectionMethod.contrastRule}}}</p>
-<p>{{model.brand.selectionMethod.intro}}</p>
-<p>{{model.brand.selectionMethod.beforeImageText}}</p>
-<div class="nsw-m-top-sm nsw-m-bottom-md">
-  <img class="nsw-display-block nsw-width-100 nsw-width-md-75" src="{{model.brand.selectionMethod.images.[0].src}}" alt="{{model.brand.selectionMethod.images.[0].alt}}" loading="lazy">
-</div>
-<div class="nsw-in-page-alert nsw-width-100 nsw-width-md-75 nsw-in-page-alert--warning nsw-in-page-alert--compact nsw-m-bottom-md">
-  <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">error</span>
-  <div class="nsw-in-page-alert__content">
-    <p class="nsw-small">{{{model.brand.selectionMethod.warning}}}</p>
+<h3>Recommended colour selection method</h3>
+<div class="nsw-steps nsw-steps--fill nsw-steps--counters nsw-steps--dark nsw-docs__chart-colour-steps">
+  <div class="nsw-steps__item">
+    <div class="nsw-steps__content">
+      <h4>Check valid contrast colours</h4>
+      <p>Data marks must have a minimum contrast ratio of <code>3:1</code> against the background surface. Here are the valid colours.</p>
+      <div class="nsw-m-top-sm nsw-m-bottom-md">
+        <img class="nsw-display-block nsw-width-100 nsw-width-md-75" src="/assets/images/charts-and-graphs-colour-selection-1.png" alt="Valid chart colours that meet minimum contrast requirements for data marks." loading="lazy">
+      </div>
+      <div class="nsw-in-page-alert nsw-width-100 nsw-width-md-75 nsw-in-page-alert--warning nsw-in-page-alert--compact">
+        <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">error</span>
+        <div class="nsw-in-page-alert__content">
+          <p class="nsw-small"><strong>Excluded:</strong> Yellow 02 (<code>#FAAF05</code>) is <code>1.88:1</code> on white and is not compliant for chart marks.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="nsw-steps__item">
+    <div class="nsw-steps__content">
+      <h4>Start with your main theme 01 and 02</h4>
+      <p>We recommend the following method for selecting colours. Start with 01 and 02 colours from your main colour theme. If your colour theme is Blue and Red, use Blue 01, Blue 02, Red 01 and Red 02.</p>
+      <div class="nsw-m-top-sm nsw-m-bottom-md">
+        <img class="nsw-display-block nsw-width-100 nsw-width-md-75" src="/assets/images/charts-and-graphs-colour-selection-2.png" alt="Example sequence showing where to start when selecting chart colours from the main theme." loading="lazy">
+      </div>
+    </div>
+  </div>
+  <div class="nsw-steps__item">
+    <div class="nsw-steps__content">
+      <h4>Add another colour set when exhausted</h4>
+      <p>Once that colour is exhausted, you can pick another colour set.</p>
+      <div class="nsw-m-top-sm nsw-m-bottom-md">
+        <img class="nsw-display-block nsw-width-100 nsw-width-md-75" src="/assets/images/charts-and-graphs-colour-selection-3.png" alt="Example showing blue and red already used, then selecting additional colours for new data series." loading="lazy">
+      </div>
+    </div>
   </div>
 </div>
-<p>{{model.brand.selectionMethod.afterImageText}}</p>
-<div class="nsw-m-top-sm nsw-m-bottom-md">
-  <img class="nsw-display-block nsw-width-100 nsw-width-md-75" src="{{model.brand.selectionMethod.images.[1].src}}" alt="{{model.brand.selectionMethod.images.[1].alt}}" loading="lazy">
-</div>
-<p>{{model.brand.selectionMethod.consistencyText}}</p>
 
-<h4>{{model.brand.background.heading}}</h4>
-<p>{{{model.brand.background.text}}}</p>
+<h4>Background colour</h4>
+<p>Charts must use a white background (<code>#FFFFFF</code> or <code>--nsw-brand-white</code>) to ensure sufficient contrast for data marks.</p>
 
-<h4>{{model.brand.nswPalette.heading}}</h4>
+<h4>NSW Government palette chart-mark options</h4>
 <div class="nsw-section nsw-section--white nsw-block nsw-p-x-sm nsw-p-top-sm">
   <div class="nsw-table nsw-table--valign-middle nsw-docs__table-wrap">
     <table class="nsw-docs__chart-colour-table">
-      <caption class="sr-only">{{model.brand.nswPalette.caption}}</caption>
+      <caption class="sr-only">Approved chart-mark colour options on white background</caption>
       <colgroup>
         <col class="nsw-docs__chart-colour-col-swatch">
         <col class="nsw-docs__chart-colour-col-colour-value">
@@ -208,9 +272,12 @@ meta-index: true
       </colgroup>
       <thead>
         <tr>
-          {{#each model.brand.nswPalette.headers}}
-          <th>{{this}}</th>
-          {{/each}}
+          <th>Swatch (plain)</th>
+          <th>Colour value</th>
+          <th>Contrast ratio on white</th>
+          <th>Swatch (pattern)</th>
+          <th>Line value</th>
+          <th>Pattern contrast</th>
         </tr>
       </thead>
       <tbody>
@@ -244,7 +311,7 @@ meta-index: true
     </table>
   </div>
 </div>
-<p class="nsw-docs__pattern-swatch-note">{{{model.brand.nswPalette.note}}}</p>
+<p class="nsw-docs__pattern-swatch-note">In a few 02 rows, the line colour uses White or 01 to keep pattern contrast at or above <code>3:1</code>.</p>
 
 <h4>{{model.brand.aboriginalPalette.heading}}</h4>
 <div class="nsw-section nsw-section--white nsw-block nsw-p-x-sm nsw-p-top-sm">
@@ -463,12 +530,14 @@ meta-index: true
 </ul>
 
 
-<h2 id="configure-tools-with-good-defaults">{{model.sections.section6.heading}}</h2>
-<p>{{model.sections.section6.intro}}</p>
+<h2 id="configure-tools-with-good-defaults">6. Configure tools with good defaults</h2>
+<p>DDS does not prescribe tools. Tool defaults are not automatically compliant.</p>
 <ul>
-  {{#each model.sections.section6.bullets}}
-  <li>{{this}}</li>
-  {{/each}}
+  <li>Apply the official NSW chart theme where available.</li>
+  <li>Override default colour and typography settings.</li>
+  <li>Test accessibility in the rendered environment.</li>
+  <li>If a tool cannot meet requirements, provide an alternative.</li>
+  <li>Consider accessibility capability when selecting vendors.</li>
 </ul>
 
 
