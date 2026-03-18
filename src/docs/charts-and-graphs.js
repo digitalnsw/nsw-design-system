@@ -573,6 +573,9 @@ function initChartsAndGraphs() {
     const createChart = (canvasId, config) => {
       const canvas = document.getElementById(canvasId)
       if (!canvas) return
+      if (!canvas.hasAttribute('tabindex')) {
+        canvas.setAttribute('tabindex', '0')
+      }
       canvas.classList.add('nsw-docs__chart-canvas')
       canvas.style.backgroundColor = canvas.dataset.chartBg === 'none' ? 'transparent' : '#FFFFFF'
 
