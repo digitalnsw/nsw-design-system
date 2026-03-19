@@ -641,6 +641,18 @@ $header-height: 151px;
     margin-bottom: nsw.rem(24px);
   }
 
+  &__chart-panel-header--split {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: nsw.rem(12px) nsw.rem(24px);
+  }
+
+  &__chart-panel-header-main {
+    flex: 1 1 nsw.rem(320px);
+  }
+
   &__chart-panel-title {
     margin: 0;
     color: var(--nsw-text-dark);
@@ -662,6 +674,37 @@ $header-height: 151px;
     font-size: nsw.rem(40px);
     line-height: 1.1;
     font-weight: 400;
+  }
+
+  &__chart-panel-callout-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: nsw.rem(12px) nsw.rem(16px);
+  }
+
+  &__chart-panel-callout-item {
+    min-width: nsw.rem(148px);
+  }
+
+  &__chart-panel-callout-label {
+    margin: 0;
+    color: var(--nsw-text-dark);
+
+    @include nsw.font-size('sm');
+  }
+
+  &__chart-panel-callout-grid &__chart-panel-callout-value {
+    margin-top: nsw.rem(2px);
+  }
+
+  @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+    &__chart-panel-callout-grid {
+      margin-left: auto;
+    }
+
+    &__chart-panel-callout-item {
+      text-align: right;
+    }
   }
 
   &__chart-panel-callout-context {
@@ -751,8 +794,8 @@ $header-height: 151px;
   }
 
   &__chart-anatomy-pin--callout {
-    top: 21%;
-    left: 17%;
+    top: 17%;
+    left: 61%;
   }
 
   &__chart-anatomy-pin--axis-labels {

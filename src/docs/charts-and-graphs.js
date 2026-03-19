@@ -629,42 +629,93 @@ function initChartsAndGraphs() {
         const subtitleText = rawSubtitleText || inferredSubtitleText
         const calloutValue = toHeadingText(callout.value)
         const calloutContext = toHeadingText(callout.context)
+        const calloutItems = Array.isArray(callout.items)
+          ? callout.items
+            .map((item) => ({
+              label: toHeadingText(item && item.label),
+              value: toHeadingText(item && item.value),
+            }))
+            .filter((item) => item.label || item.value)
+          : []
         const hasTitle = title.display === true && titleText
         const hasSubtitle = Boolean(subtitleText) && (
           subtitle.display === true || Boolean(inferredSubtitleText)
         )
-        const hasCallout = callout.display === true && calloutValue
+        const hasCalloutValue = callout.display === true && calloutValue
+        const hasCalloutItems = callout.display === true && calloutItems.length > 0
+        const hasCallout = hasCalloutValue || hasCalloutItems
 
         if (hasTitle || hasSubtitle || hasCallout) {
           const heading = document.createElement('div')
           heading.className = 'nsw-docs__chart-panel-header'
 
-          if (hasTitle) {
-            const headingTitle = document.createElement('p')
-            headingTitle.className = 'nsw-docs__chart-panel-title'
-            headingTitle.textContent = titleText
-            heading.appendChild(headingTitle)
-          }
-
-          if (hasSubtitle) {
-            const headingSubtitle = document.createElement('p')
-            headingSubtitle.className = 'nsw-docs__chart-panel-subtitle'
-            headingSubtitle.textContent = subtitleText
-            heading.appendChild(headingSubtitle)
-          }
-
-          if (hasCallout) {
-            const headingCallout = document.createElement('p')
-            headingCallout.className = 'nsw-docs__chart-panel-callout-value'
-            headingCallout.textContent = calloutValue
-            heading.appendChild(headingCallout)
-
-            if (calloutContext) {
-              const headingCalloutContext = document.createElement('p')
-              headingCalloutContext.className = 'nsw-docs__chart-panel-callout-context'
-              headingCalloutContext.textContent = calloutContext
-              heading.appendChild(headingCalloutContext)
+          const appendHeadingText = (target) => {
+            if (hasTitle) {
+              const headingTitle = document.createElement('p')
+              headingTitle.className = 'nsw-docs__chart-panel-title'
+              headingTitle.textContent = titleText
+              target.appendChild(headingTitle)
             }
+
+            if (hasSubtitle) {
+              const headingSubtitle = document.createElement('p')
+              headingSubtitle.className = 'nsw-docs__chart-panel-subtitle'
+              headingSubtitle.textContent = subtitleText
+              target.appendChild(headingSubtitle)
+            }
+
+            if (hasCalloutValue) {
+              const headingCallout = document.createElement('p')
+              headingCallout.className = 'nsw-docs__chart-panel-callout-value'
+              headingCallout.textContent = calloutValue
+              target.appendChild(headingCallout)
+
+              if (calloutContext) {
+                const headingCalloutContext = document.createElement('p')
+                headingCalloutContext.className = 'nsw-docs__chart-panel-callout-context'
+                headingCalloutContext.textContent = calloutContext
+                target.appendChild(headingCalloutContext)
+              }
+            }
+          }
+
+          if (hasCalloutItems) {
+            heading.classList.add('nsw-docs__chart-panel-header--split')
+
+            const headingMain = document.createElement('div')
+            headingMain.className = 'nsw-docs__chart-panel-header-main'
+            appendHeadingText(headingMain)
+            if (headingMain.childElementCount > 0) {
+              heading.appendChild(headingMain)
+            }
+
+            const headingCalloutGrid = document.createElement('div')
+            headingCalloutGrid.className = 'nsw-docs__chart-panel-callout-grid'
+
+            calloutItems.forEach((item) => {
+              const headingCalloutItem = document.createElement('div')
+              headingCalloutItem.className = 'nsw-docs__chart-panel-callout-item'
+
+              if (item.label) {
+                const headingCalloutLabel = document.createElement('p')
+                headingCalloutLabel.className = 'nsw-docs__chart-panel-callout-label'
+                headingCalloutLabel.textContent = item.label
+                headingCalloutItem.appendChild(headingCalloutLabel)
+              }
+
+              if (item.value) {
+                const headingCalloutValue = document.createElement('p')
+                headingCalloutValue.className = 'nsw-docs__chart-panel-callout-value'
+                headingCalloutValue.textContent = item.value
+                headingCalloutItem.appendChild(headingCalloutValue)
+              }
+
+              headingCalloutGrid.appendChild(headingCalloutItem)
+            })
+
+            heading.appendChild(headingCalloutGrid)
+          } else {
+            appendHeadingText(heading)
           }
 
           chartPanel.insertBefore(heading, plot)
@@ -1137,6 +1188,17 @@ function initChartsAndGraphs() {
       },
     }
 
+    const anatomyResolvedEarlyData = [410, 438, 467, 492, 525, 508]
+    const anatomyResolvedLateData = [72, 68, 74, 70, 66, 61]
+    const anatomyResolvedEarlyTotal = anatomyResolvedEarlyData.reduce(
+      (total, value) => total + value,
+      0,
+    )
+    const anatomyResolvedLateTotal = anatomyResolvedLateData.reduce(
+      (total, value) => total + value,
+      0,
+    )
+
     createChart('chartAnatomy', {
       type: 'bar',
       data: {
@@ -1144,12 +1206,12 @@ function initChartsAndGraphs() {
         datasets: [
           {
             label: 'Resolved on time',
-            data: [410, 438, 467, 492, 525, 508],
+            data: anatomyResolvedEarlyData,
             backgroundColor: palette.blue01,
           },
           {
             label: 'Resolved late',
-            data: [72, 68, 74, 70, 66, 61],
+            data: anatomyResolvedLateData,
             backgroundColor: palette.blue02,
           },
         ],
@@ -1174,8 +1236,16 @@ function initChartsAndGraphs() {
           },
           callout: {
             display: true,
-            value: '5,500',
-            context: '',
+            items: [
+              {
+                label: 'Resolved early',
+                value: anatomyResolvedEarlyTotal.toLocaleString('en-AU'),
+              },
+              {
+                label: 'Resolved late',
+                value: anatomyResolvedLateTotal.toLocaleString('en-AU'),
+              },
+            ],
           },
           tooltip: {
             callbacks: {
