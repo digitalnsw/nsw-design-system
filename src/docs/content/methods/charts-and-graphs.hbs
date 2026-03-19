@@ -239,8 +239,8 @@ meta-index: true
 <div class="nsw-steps nsw-steps--fill nsw-steps--counters nsw-steps--dark nsw-docs__chart-colour-steps">
   <div class="nsw-steps__item">
     <div class="nsw-steps__content">
-      <h4>Check valid contrast colours</h4>
-      <p>Data marks must have a minimum contrast ratio of <code>3:1</code> against the background surface. Here are the valid colours.</p>
+      <h4>Step 1: Use only approved chart colours</h4>
+      <p>Not all NSW palette colours meet the minimum contrast requirement for chart marks. The colours below have been pre-validated against a white background and are approved for use in charts and graphs.</p>
       <div class="nsw-m-top-sm nsw-m-bottom-md">
         <img class="nsw-display-block nsw-width-100 nsw-width-md-75" src="/assets/images/charts-and-graphs-colour-selection-1.png" alt="Valid chart colours that meet minimum contrast requirements for data marks." loading="lazy">
       </div>
@@ -254,8 +254,9 @@ meta-index: true
   </div>
   <div class="nsw-steps__item">
     <div class="nsw-steps__content">
-      <h4>Start with your main theme 01 and 02</h4>
-      <p>We recommend the following method for selecting colours. Start with 01 and 02 colours from your main colour theme. If your colour theme is Blue and Red, use Blue 01, Blue 02, Red 01 and Red 02.</p>
+      <h4>Step 2: Start with your main theme colour 01 and 02</h4>
+      <p>Begin with the 01 and 02 colours from your main colour theme. If your theme is Blue and Red, start with Blue 01, Blue 02, Red 01 and Red 02, in that order.</p>
+      <p>Starting with your theme colours ensures charts feel consistent with the rest of your digital product before introducing additional colours.</p>
       <div class="nsw-m-top-sm nsw-m-bottom-md">
         <img class="nsw-display-block nsw-width-100 nsw-width-md-75" src="/assets/images/charts-and-graphs-colour-selection-2.png" alt="Example sequence showing where to start when selecting chart colours from the main theme." loading="lazy">
       </div>
@@ -263,8 +264,9 @@ meta-index: true
   </div>
   <div class="nsw-steps__item">
     <div class="nsw-steps__content">
-      <h4>Add another colour set when exhausted</h4>
-      <p>Once that colour is exhausted, you can pick another colour set.</p>
+      <h4>Step 3: Expand to another colour set when needed</h4>
+      <p>Once your main theme colours are used, bring in 01 and 02 colours from another colour column. Apply the same sequence – 01 before 02 – and avoid mixing colours from too many sets in a single chart.</p>
+      <p>If you find yourself needing more than six to eight colours in one chart, consider whether the data can be simplified, grouped, or split across multiple charts instead.</p>
       <div class="nsw-m-top-sm nsw-m-bottom-md">
         <img class="nsw-display-block nsw-width-100 nsw-width-md-75" src="/assets/images/charts-and-graphs-colour-selection-3.png" alt="Example showing blue and red already used, then selecting additional colours for new data series." loading="lazy">
       </div>
@@ -383,6 +385,22 @@ meta-index: true
   </div>
 </div>
 <p class="nsw-docs__pattern-swatch-note">{{{model.brand.aboriginalPalette.note}}}</p>
+
+<h4>Using a single colour</h4>
+<p>Not all charts need multiple colours. Some chart types communicate clearly with a single colour and do not require colour differentiation between categories.</p>
+<p>A bar chart comparing values across categories is a good example. Each bar represents a separate category, and the position and length of the bar communicates the difference - not the colour. Using a single colour in this case reduces visual noise and keeps the focus on the data.</p>
+<p>Use a single colour when:</p>
+<ul>
+  <li>Each bar, column or data point represents a separate category that is already labelled.</li>
+  <li>There is only one data series.</li>
+  <li>Colour differentiation would add no meaning.</li>
+</ul>
+<p>Use multiple colours when:</p>
+<ul>
+  <li>Multiple data series appear in the same chart space (for example, a grouped bar or multi-line chart).</li>
+  <li>A specific segment or value needs to be highlighted.</li>
+  <li>Colour is used alongside other cues to distinguish series.</li>
+</ul>
 
 <h3>{{model.brand.colourBlindSafety.heading}}</h3>
 <p>{{model.brand.colourBlindSafety.intro}}</p>
@@ -539,6 +557,15 @@ meta-index: true
   <li>{{this}}</li>
   {{/each}}
 </ul>
+
+<h4>Axis label orientation</h4>
+<p>Keep all text horizontal where possible. Angled or vertical text is harder to read and fails more easily at 200% zoom and on mobile viewports.</p>
+<ul>
+  <li><strong>Category labels:</strong> display horizontally. If labels are too long to fit horizontally, switch to a horizontal bar chart rather than rotating the text.</li>
+  <li><strong>Axis titles:</strong> keep short enough to sit horizontally above (Y-axis) or beside (X-axis) the axis. Avoid vertical axis titles. Use the chart title and sub-title to carry that context.</li>
+  <li><strong>Data labels:</strong> always horizontal.</li>
+</ul>
+<p>If rotating text cannot be avoided due to tool constraints, limit rotation to 45 degrees and ensure the text still meets the 12px minimum size at all viewport widths.</p>
 
 <h4>{{model.brand.typography.numberFormattingHeading}}</h4>
 <ul>
