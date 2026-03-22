@@ -244,12 +244,6 @@ meta-index: true
       <div class="nsw-m-top-sm nsw-m-bottom-md">
         <img class="nsw-display-block nsw-width-100 nsw-width-md-75" src="/assets/images/charts-and-graphs-colour-selection-1.png" alt="Valid chart colours that meet minimum contrast requirements for data marks." loading="lazy">
       </div>
-      <div class="nsw-in-page-alert nsw-width-100 nsw-width-md-75 nsw-in-page-alert--warning nsw-in-page-alert--compact">
-        <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">error</span>
-        <div class="nsw-in-page-alert__content">
-          <p class="nsw-small"><strong>Excluded:</strong> Yellow 02 (<code>#FAAF05</code>) is <code>1.88:1</code> on white and is not compliant for chart marks.</p>
-        </div>
-      </div>
     </div>
   </div>
   <div class="nsw-steps__item">
@@ -640,17 +634,21 @@ meta-index: true
 
 
 <h2 id="review-checklist">{{model.review.checklistHeading}}</h2>
-<div class="nsw-docs__review-checklist nsw-m-top-sm nsw-p-md nsw-bg--brand-dark nsw-section--invert">
-  <div class="nsw-docs__review-checklist-header nsw-section--invert">
-    <p class="nsw-m-bottom-xs"><strong>{{model.review.checklistLead}}</strong></p>
+<div class="nsw-grid nsw-m-top-sm">
+  <div class="nsw-col nsw-col-12 nsw-col-md-8">
+    <div class="nsw-docs__review-checklist nsw-p-md nsw-bg--brand-dark nsw-section--invert">
+      <div class="nsw-docs__review-checklist-header nsw-section--invert">
+        <p class="nsw-m-bottom-xs"><strong>{{model.review.checklistLead}}</strong></p>
+      </div>
+      <fieldset id="chart-review-checklist" class="nsw-form__fieldset" aria-describedby="review-checklist-help">
+        <legend class="sr-only">{{model.review.checklistLegend}}</legend>
+        {{#each model.review.checklistItems}}
+        <input class="nsw-form__checkbox-input" type="checkbox" id="chart-review-check-{{id}}">
+        <label class="nsw-form__checkbox-label" for="chart-review-check-{{id}}">{{text}}</label>
+        {{/each}}
+      </fieldset>
+    </div>
   </div>
-  <fieldset id="chart-review-checklist" class="nsw-form__fieldset" aria-describedby="review-checklist-help">
-    <legend class="sr-only">{{model.review.checklistLegend}}</legend>
-    {{#each model.review.checklistItems}}
-    <input class="nsw-form__checkbox-input" type="checkbox" id="chart-review-check-{{id}}">
-    <label class="nsw-form__checkbox-label" for="chart-review-check-{{id}}">{{text}}</label>
-    {{/each}}
-  </fieldset>
 </div>
 <p id="review-checklist-help" class="nsw-docs__review-checklist-help">{{model.review.checklistHelp}}</p>
 
