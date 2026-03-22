@@ -86,6 +86,36 @@ meta-index: true
         <canvas id="{{canvasId}}" data-chart-height="{{canvasHeight}}" role="img" aria-label="{{ariaLabel}}" tabindex="0"></canvas>
       </div>
     </div>
+    {{#if summary}}
+    <p class="nsw-m-top-sm"><strong>Summary:</strong> {{summary}}</p>
+    {{/if}}
+    {{#if table}}
+    <div class="nsw-table nsw-table--valign-middle nsw-docs__table-wrap nsw-m-top-sm">
+      <table>
+        <caption class="sr-only">{{table.caption}}</caption>
+        <thead>
+          <tr>
+            {{#each table.headers}}
+            <th scope="col">{{this}}</th>
+            {{/each}}
+          </tr>
+        </thead>
+        <tbody>
+          {{#each table.rows}}
+          <tr>
+            <th scope="row">{{label}}</th>
+            {{#each values}}
+            <td>{{this}}</td>
+            {{/each}}
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+    {{/if}}
+    {{#if source}}
+    <p class="nsw-m-top-sm"><strong>Source:</strong> {{source}}</p>
+    {{/if}}
   </div>
   {{/each}}
 </div>
@@ -127,6 +157,61 @@ meta-index: true
         <span class="nsw-docs__chart-anatomy-pin nsw-docs__chart-anatomy-pin--spacing" aria-hidden="true">9</span>
       </div>
     </div>
+    <div class="nsw-docs__chart-anatomy-section nsw-docs__chart-anatomy-section--summary nsw-m-top-sm">
+      <span class="nsw-docs__chart-anatomy-pin nsw-docs__chart-anatomy-pin--section" aria-hidden="true">10</span>
+      <p><strong>Summary:</strong> Requests resolved on time increased from January to May 2026, then eased slightly in June. Late resolutions trended down across the same period.</p>
+    </div>
+    <div class="nsw-docs__chart-anatomy-section nsw-docs__chart-anatomy-section--table nsw-m-top-sm">
+      <div class="nsw-grid">
+        <div class="nsw-col nsw-col-12 nsw-col-md-8">
+          <div class="nsw-table nsw-table--valign-middle nsw-docs__table-wrap nsw-docs__chart-anatomy-table">
+            <span class="nsw-docs__chart-anatomy-pin nsw-docs__chart-anatomy-pin--section nsw-docs__chart-anatomy-pin--table" aria-hidden="true">11</span>
+            <table>
+              <caption class="sr-only">Service requests by type, January to June 2026</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Month</th>
+                  <th scope="col">Resolved on time</th>
+                  <th scope="col">Resolved late</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Jan</th>
+                  <td>410</td>
+                  <td>72</td>
+                </tr>
+                <tr>
+                  <th scope="row">Feb</th>
+                  <td>438</td>
+                  <td>68</td>
+                </tr>
+                <tr>
+                  <th scope="row">Mar</th>
+                  <td>467</td>
+                  <td>74</td>
+                </tr>
+                <tr>
+                  <th scope="row">Apr</th>
+                  <td>492</td>
+                  <td>70</td>
+                </tr>
+                <tr>
+                  <th scope="row">May</th>
+                  <td>525</td>
+                  <td>66</td>
+                </tr>
+                <tr>
+                  <th scope="row">Jun</th>
+                  <td>508</td>
+                  <td>61</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   <div class="nsw-col nsw-col-lg-12">
     <ol class="nsw-list nsw-list--8 nsw-docs__chart-anatomy-list">
@@ -139,6 +224,8 @@ meta-index: true
       <li><strong>Scale:</strong> Use consistent scales. Start bar charts at zero unless you have a documented reason not to, and indicate any truncation.</li>
       <li><strong>Source and metadata:</strong> Include source, last updated date, and any definitions required for interpretation.</li>
       <li><strong>Spacing and alignment:</strong> Keep spacing consistent between bars, labels and grid lines so the chart remains scannable.</li>
+      <li><strong>Summary text:</strong> Include a short plain-language summary of the key insight directly below the chart.</li>
+      <li><strong>Data table:</strong> Provide a semantic table for the same data so users can access exact values without relying on the visual chart.</li>
     </ol>
   </div>
 </div>

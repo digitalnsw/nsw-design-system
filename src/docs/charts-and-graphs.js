@@ -1282,12 +1282,12 @@ function initChartsAndGraphs() {
     createChart('chartCompBar', {
       type: 'bar',
       data: {
-        labels: ['Online', 'Phone', 'In person'],
+        labels: ['City of Sydney', 'Parramatta', 'Blacktown', 'Liverpool', 'Penrith', 'Camden'],
         datasets: [{
-          label: 'Visits',
-          data: [320, 210, 140],
+          label: 'Applications assessed',
+          data: [312, 284, 251, 198, 176, 143],
           backgroundColor: palette.blue01,
-          barThickness: 72,
+          barThickness: 34,
         }],
       },
       options: {
@@ -1297,21 +1297,25 @@ function initChartsAndGraphs() {
           },
           title: {
             display: true,
-            text: 'Visits by channel (Q1 2025, count)',
+            text: 'Development applications assessed',
+          },
+          subtitle: {
+            display: true,
+            text: 'By local government area, January to March 2025',
           },
         },
         scales: {
           x: {
             title: {
               display: true,
-              text: 'Channel',
+              text: 'Local government area',
             },
           },
           y: {
             beginAtZero: true,
             title: {
               display: true,
-              text: 'Visits (count)',
+              text: 'Applications assessed (count)',
             },
           },
         },
@@ -1321,10 +1325,17 @@ function initChartsAndGraphs() {
     createChart('chartCompBarHorizontal', {
       type: 'bar',
       data: {
-        labels: ['South Western Sydney', 'Northern Sydney', 'Illawarra Shoalhaven'],
+        labels: [
+          'Rental Assistance for Vulnerable Households',
+          'Small Business Digital Transformation Grant',
+          'Regional Infrastructure Maintenance Program',
+          'Early Childhood Development Support Initiative',
+          'Aboriginal Community Housing Improvement Fund',
+          'Domestic Violence Crisis Response Program',
+        ],
         datasets: [{
-          label: 'Requests',
-          data: [88, 74, 65],
+          label: 'Funding ($M)',
+          data: [48.2, 31.6, 27.4, 22.8, 18.3, 14.7],
           backgroundColor: palette.blue01,
         }],
       },
@@ -1336,7 +1347,11 @@ function initChartsAndGraphs() {
           },
           title: {
             display: true,
-            text: 'Requests by service region (Q1 2025, count)',
+            text: 'Programme funding allocations',
+          },
+          subtitle: {
+            display: true,
+            text: 'By programme, 2024-25 ($M)',
           },
         },
         scales: {
@@ -1344,13 +1359,13 @@ function initChartsAndGraphs() {
             beginAtZero: true,
             title: {
               display: true,
-              text: 'Requests (count)',
+              text: 'Funding ($M)',
             },
           },
           y: {
             title: {
               display: true,
-              text: 'Service region',
+              text: 'Programme',
             },
           },
         },
@@ -1360,20 +1375,25 @@ function initChartsAndGraphs() {
     createChart('chartPropStacked', {
       type: 'bar',
       data: {
-        labels: ['Program A', 'Program B', 'Program C'],
+        labels: ['Q1', 'Q2', 'Q3', 'Q4'],
         datasets: [{
-          label: 'Completed',
-          data: [120, 82, 54],
+          label: 'Phone',
+          data: [4200, 3900, 3600, 3200],
           backgroundColor: palette.blue01,
-          barThickness: 72,
+          barThickness: 56,
         }, {
-          label: 'In progress',
-          data: [35, 44, 26],
+          label: 'Digital',
+          data: [5800, 6400, 7100, 8200],
           backgroundColor: (context) => getPatternFill(context, 'diagonal', palette.blue02, {
             svgUrl: '/assets/images/chart-pattern-diagonal-lines.svg',
             size: 8,
           }),
-          barThickness: 72,
+          barThickness: 56,
+        }, {
+          label: 'In person',
+          data: [1100, 980, 890, 760],
+          backgroundColor: palette.red01,
+          barThickness: 56,
         }],
       },
       options: {
@@ -1382,19 +1402,19 @@ function initChartsAndGraphs() {
             stacked: true,
             title: {
               display: true,
-              text: 'Program',
+              text: 'Quarter',
             },
           },
           y: {
             stacked: true,
             beginAtZero: true,
-            suggestedMax: 180,
+            suggestedMax: 14000,
             ticks: {
-              stepSize: 20,
+              stepSize: 2000,
             },
             title: {
               display: true,
-              text: 'Status (count)',
+              text: 'Support requests (count)',
             },
           },
         },
@@ -1404,7 +1424,11 @@ function initChartsAndGraphs() {
           },
           title: {
             display: true,
-            text: 'Program completion status (Q2 2025, count)',
+            text: 'Support requests by contact type',
+          },
+          subtitle: {
+            display: true,
+            text: 'Volume by channel, 2024-25 financial year',
           },
         },
       },
@@ -1413,14 +1437,20 @@ function initChartsAndGraphs() {
     createChart('chartCompGroupedHorizontal', {
       type: 'bar',
       data: {
-        labels: ['South Western Sydney', 'Northern Sydney', 'Illawarra Shoalhaven'],
+        labels: [
+          'Contractor licence -- building',
+          'Contractor licence -- electrical',
+          'Supervisor certificate',
+          'Tradesperson certificate',
+          'Owner-builder permit',
+        ],
         datasets: [{
-          label: '2024',
-          data: [74, 68, 59],
+          label: 'Lodged',
+          data: [1840, 1210, 980, 760, 430],
           backgroundColor: palette.blue01,
         }, {
-          label: '2025',
-          data: [88, 74, 65],
+          label: 'Approved',
+          data: [1620, 1090, 870, 690, 380],
           backgroundColor: (context) => getPatternFill(context, 'diagonal', palette.blue02, {
             svgUrl: '/assets/images/chart-pattern-diagonal-lines.svg',
             size: 8,
@@ -1435,7 +1465,11 @@ function initChartsAndGraphs() {
           },
           title: {
             display: true,
-            text: 'Requests by region (2024 vs 2025, count)',
+            text: 'Licence applications lodged and approved',
+          },
+          subtitle: {
+            display: true,
+            text: 'By category, January to June 2025',
           },
         },
         scales: {
@@ -1443,13 +1477,13 @@ function initChartsAndGraphs() {
             beginAtZero: true,
             title: {
               display: true,
-              text: 'Requests (count)',
+              text: 'Applications (count)',
             },
           },
           y: {
             title: {
               display: true,
-              text: 'Service region',
+              text: 'Licence category',
             },
           },
         },
@@ -1459,10 +1493,10 @@ function initChartsAndGraphs() {
     createChart('chartTrendLine', {
       type: 'line',
       data: {
-        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
         datasets: [{
-          label: 'Applications',
-          data: [120, 160, 210, 260, 310, 295],
+          label: 'Incidents',
+          data: [3240, 2980, 3100, 2760, 2640, 2580, 2490, 2520, 2710, 2890, 3040, 3380],
           borderColor: palette.blue01,
           backgroundColor: palette.blue01,
           pointRadius: 6,
@@ -1481,21 +1515,25 @@ function initChartsAndGraphs() {
           },
           title: {
             display: true,
-            text: 'Applications by month (Jan to Jun 2025, count)',
+            text: 'Road incident reports',
+          },
+          subtitle: {
+            display: true,
+            text: 'NSW monthly total, January to December 2024',
           },
         },
         scales: {
           x: {
             title: {
               display: true,
-              text: 'Month (2025)',
+              text: 'Month (2024)',
             },
           },
           y: {
             beginAtZero: true,
             title: {
               display: true,
-              text: 'Applications (count)',
+              text: 'Incidents (count)',
             },
           },
         },
@@ -1505,10 +1543,10 @@ function initChartsAndGraphs() {
     createChart('chartTrendMultiLine', {
       type: 'line',
       data: {
-        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+        labels: ['Jul 2024', 'Jan 2025', 'Jun 2025'],
         datasets: [{
-          label: 'Online submissions',
-          data: [95, 120, 140, 165, 190, 210],
+          label: 'Web',
+          data: [42000, 48000, 51000],
           borderColor: palette.blue01,
           backgroundColor: palette.blue01,
           pointRadius: 6,
@@ -1520,8 +1558,8 @@ function initChartsAndGraphs() {
           borderDash: [],
           tension: 0.25,
         }, {
-          label: 'Phone submissions',
-          data: [130, 125, 118, 110, 105, 98],
+          label: 'App',
+          data: [18000, 24000, 31000],
           borderColor: palette.blue02,
           backgroundColor: palette.blue02,
           pointRadius: 8,
@@ -1531,6 +1569,19 @@ function initChartsAndGraphs() {
           pointBorderWidth: 2,
           borderWidth: 2,
           borderDash: [8, 6],
+          tension: 0.25,
+        }, {
+          label: 'Assisted digital',
+          data: [6200, 5400, 4100],
+          borderColor: palette.red01,
+          backgroundColor: palette.red01,
+          pointRadius: 7,
+          pointStyle: 'rectRot',
+          pointBackgroundColor: palette.red01,
+          pointBorderColor: palette.white,
+          pointBorderWidth: 2,
+          borderWidth: 2,
+          borderDash: [2, 6],
           tension: 0.25,
         }],
       },
@@ -1548,21 +1599,25 @@ function initChartsAndGraphs() {
           },
           title: {
             display: true,
-            text: 'Submissions by channel (Jan to Jun 2025, count)',
+            text: 'Online service transactions by channel',
+          },
+          subtitle: {
+            display: true,
+            text: 'Monthly volume, July 2024 to June 2025',
           },
         },
         scales: {
           x: {
             title: {
               display: true,
-              text: 'Month (2025)',
+              text: 'Period',
             },
           },
           y: {
             beginAtZero: true,
             title: {
               display: true,
-              text: 'Submissions (count)',
+              text: 'Transactions (count)',
             },
           },
         },
@@ -1572,10 +1627,10 @@ function initChartsAndGraphs() {
     createChart('chartTrendArea', {
       type: 'line',
       data: {
-        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+        labels: ['Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
         datasets: [{
-          label: 'Total users',
-          data: [300, 360, 420, 520, 610, 580],
+          label: 'Cumulative total',
+          data: [12.4, 28.7, 41.2, 58.9, 74.3, 89.1],
           borderColor: palette.blue01,
           backgroundColor: withAlpha(palette.blue01, 0.2),
           fill: true,
@@ -1595,21 +1650,25 @@ function initChartsAndGraphs() {
           },
           title: {
             display: true,
-            text: 'Total users by month (Jan to Jun 2025, count)',
+            text: 'Grant funding disbursed',
+          },
+          subtitle: {
+            display: true,
+            text: 'Running total by month, July to December 2024',
           },
         },
         scales: {
           x: {
             title: {
               display: true,
-              text: 'Month (2025)',
+              text: 'Month (2024)',
             },
           },
           y: {
             beginAtZero: true,
             title: {
               display: true,
-              text: 'Users (count)',
+              text: 'Cumulative total ($M)',
             },
           },
         },
@@ -1622,15 +1681,15 @@ function initChartsAndGraphs() {
         labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
         datasets: [{
           type: 'bar',
-          label: 'Applications',
-          data: [120, 160, 210, 260, 310, 295],
+          label: 'Visits',
+          data: [18400, 16200, 19100, 17800, 20400, 21200],
           yAxisID: 'y',
           backgroundColor: palette.blue01,
           order: 2,
         }, {
           type: 'line',
-          label: 'Conversion rate',
-          data: [38, 41, 43, 47, 49, 46],
+          label: 'Average wait time',
+          data: [12, 10, 14, 11, 16, 18],
           yAxisID: 'y1',
           borderColor: palette.blue02,
           backgroundColor: palette.blue02,
@@ -1658,36 +1717,37 @@ function initChartsAndGraphs() {
           },
           title: {
             display: true,
-            text: 'Applications and conversion rate (Jan to Jun 2025)',
+            text: 'Service centre visits and average wait time',
+          },
+          subtitle: {
+            display: true,
+            text: 'Monthly comparison, January to June 2025',
           },
         },
         scales: {
           x: {
             title: {
               display: true,
-              text: 'Month (2025)',
+              text: 'Month',
             },
           },
           y: {
             beginAtZero: true,
             title: {
               display: true,
-              text: 'Applications (count)',
+              text: 'Visits (count)',
             },
           },
           y1: {
             beginAtZero: true,
-            max: 60,
+            max: 24,
             position: 'right',
             grid: {
               drawOnChartArea: false,
             },
-            ticks: {
-              callback: (value) => `${value}%`,
-            },
             title: {
               display: true,
-              text: 'Conversion rate (%)',
+              text: 'Average wait time (minutes)',
             },
           },
         },
@@ -1697,10 +1757,10 @@ function initChartsAndGraphs() {
     createChart('chartTrendStackedArea', {
       type: 'line',
       data: {
-        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+        labels: ['Jul 2024', 'Jan 2025', 'Jun 2025'],
         datasets: [{
-          label: 'Online',
-          data: [120, 135, 150, 170, 182, 176],
+          label: 'Web',
+          data: [62, 60, 57],
           borderColor: palette.blue01,
           backgroundColor: withAlpha(palette.blue01, 0.2),
           fill: 'origin',
@@ -1714,8 +1774,24 @@ function initChartsAndGraphs() {
           stack: 'stackedArea',
           order: 1,
         }, {
-          label: 'Phone',
-          data: [95, 88, 84, 80, 75, 72],
+          label: 'App',
+          data: [27, 31, 36],
+          borderColor: palette.blue02,
+          backgroundColor: withAlpha(palette.blue02, 0.2),
+          fill: '-1',
+          pointRadius: 8,
+          pointStyle: 'triangle',
+          pointBackgroundColor: palette.blue02,
+          pointBorderColor: palette.white,
+          pointBorderWidth: 2,
+          borderWidth: 2,
+          borderDash: [8, 6],
+          tension: 0.25,
+          stack: 'stackedArea',
+          order: 2,
+        }, {
+          label: 'Assisted',
+          data: [11, 9, 7],
           borderColor: palette.red01,
           backgroundColor: withAlpha(palette.red01, 0.2),
           fill: '-1',
@@ -1728,7 +1804,7 @@ function initChartsAndGraphs() {
           borderDash: [8, 6],
           tension: 0.25,
           stack: 'stackedArea',
-          order: 2,
+          order: 3,
         }],
       },
       options: {
@@ -1745,7 +1821,11 @@ function initChartsAndGraphs() {
           },
           title: {
             display: true,
-            text: 'Channel mix over time (Jan to Jun 2025, count)',
+            text: 'Digital service adoption by channel',
+          },
+          subtitle: {
+            display: true,
+            text: 'Monthly share of total transactions, July 2024 to June 2025',
           },
         },
         scales: {
@@ -1753,15 +1833,20 @@ function initChartsAndGraphs() {
             stacked: true,
             title: {
               display: true,
-              text: 'Month (2025)',
+              text: 'Period',
             },
           },
           y: {
             beginAtZero: true,
             stacked: true,
+            max: 100,
+            ticks: {
+              stepSize: 20,
+              callback: (value) => `${value}%`,
+            },
             title: {
               display: true,
-              text: 'Requests (count)',
+              text: 'Share of total (%)',
             },
           },
         },
@@ -1771,17 +1856,17 @@ function initChartsAndGraphs() {
     createChart('chartPropDoughnut', {
       type: 'doughnut',
       data: {
-        labels: ['Approved', 'Pending', 'Declined'],
+        labels: ['Resolved on first contact', 'Escalated'],
         datasets: [{
-          data: [62, 24, 14],
+          data: [78, 22],
           backgroundColor: (context) => {
-            if (context.dataIndex === 2) {
+            if (context.dataIndex === 1) {
               return getPatternFill(context, 'diagonal', palette.red01, {
                 svgUrl: '/assets/images/chart-pattern-diagonal-lines.svg',
                 size: 8,
               })
             }
-            return [palette.blue01, palette.blue02, palette.red01][context.dataIndex]
+            return [palette.blue01, palette.red01][context.dataIndex]
           },
         }],
       },
@@ -1801,17 +1886,25 @@ function initChartsAndGraphs() {
           },
           title: {
             display: true,
-            text: 'Application status share (Q2 2025, percent)',
+            text: 'Service requests resolved on first contact',
+          },
+          subtitle: {
+            display: true,
+            text: 'Share of total requests, Q2 2025. Total: 14,820 requests.',
             fullSize: true,
             align: 'start',
             font: {
-              size: 15,
-              weight: 700,
+              size: 13,
+              weight: 400,
             },
             padding: {
-              top: 8,
-              bottom: 24,
+              top: 0,
+              bottom: 12,
             },
+          },
+          legend: {
+            display: false,
+            fullSize: true,
           },
         },
       },
@@ -1846,17 +1939,25 @@ function initChartsAndGraphs() {
           },
           title: {
             display: true,
-            text: 'Channel share (Q2 2025)',
+            text: 'Service request channel share',
+          },
+          subtitle: {
+            display: true,
+            text: 'Q2 2025',
             fullSize: true,
             align: 'start',
             font: {
-              size: 15,
-              weight: 700,
+              size: 13,
+              weight: 400,
             },
             padding: {
-              top: 8,
-              bottom: 24,
+              top: 0,
+              bottom: 12,
             },
+          },
+          legend: {
+            display: false,
+            fullSize: true,
           },
         },
       },
@@ -1865,18 +1966,22 @@ function initChartsAndGraphs() {
     createChart('chartPropStackedProportional', {
       type: 'bar',
       data: {
-        labels: ['Digital', 'Phone', 'In person', 'Mail'],
+        labels: ['Metro', 'Hunter', 'Illawarra', 'Western NSW'],
         datasets: [{
-          label: 'Completed',
-          data: [72, 66, 58, 64],
+          label: 'Resolved',
+          data: [74, 71, 68, 65],
           backgroundColor: palette.blue01,
         }, {
-          label: 'In progress',
-          data: [28, 34, 42, 36],
+          label: 'Escalated',
+          data: [18, 20, 22, 24],
           backgroundColor: (context) => getPatternFill(context, 'diagonal', palette.blue02, {
             svgUrl: '/assets/images/chart-pattern-diagonal-lines.svg',
             size: 8,
           }),
+        }, {
+          label: 'Withdrawn',
+          data: [8, 9, 10, 11],
+          backgroundColor: palette.red01,
         }],
       },
       options: {
@@ -1885,7 +1990,7 @@ function initChartsAndGraphs() {
             stacked: true,
             title: {
               display: true,
-              text: 'Channel',
+              text: 'Region',
             },
           },
           y: {
@@ -1908,7 +2013,11 @@ function initChartsAndGraphs() {
           },
           title: {
             display: true,
-            text: 'Outcome share by channel (Q2 2025, 100% stacked)',
+            text: 'Complaint outcomes by region',
+          },
+          subtitle: {
+            display: true,
+            text: 'Percentage share, January to June 2025',
           },
         },
       },
@@ -1919,50 +2028,29 @@ function initChartsAndGraphs() {
       data: {
         datasets: [
           {
-            label: 'Metro service centres',
+            label: 'Applications',
             data: [
-              { x: 2.0, y: 5.0 },
-              { x: 3.0, y: 6.1 },
-              { x: 4.0, y: 7.0 },
-              { x: 4.5, y: 6.6 },
-              { x: 5.5, y: 8.1 },
-              { x: 6.0, y: 8.9 },
-              { x: 7.0, y: 10.1 },
-              { x: 7.5, y: 9.4 },
-              { x: 8.2, y: 11.2 },
-              { x: 9.0, y: 12.0 },
-              { x: 10.0, y: 13.3 },
-              { x: 10.8, y: 12.9 },
-              { x: 11.5, y: 14.2 },
-              { x: 12.2, y: 15.1 },
-              { x: 13.0, y: 16.3 },
-              { x: 14.0, y: 17.2 },
-              { x: 15.0, y: 18.6 },
-              { x: 16.0, y: 19.4 },
+              { x: 18, y: 3.8 },
+              { x: 22, y: 4.5 },
+              { x: 26, y: 4.9 },
+              { x: 31, y: 6.2 },
+              { x: 38, y: 7.4 },
+              { x: 45, y: 8.9 },
+              { x: 52, y: 10.8 },
+              { x: 58, y: 12.6 },
+              { x: 62, y: 14.2 },
+              { x: 69, y: 16.4 },
+              { x: 74, y: 17.9 },
+              { x: 79, y: 19.1 },
+              { x: 86, y: 22.0 },
             ],
             backgroundColor: withAlpha(palette.blue01, 0.8),
             borderColor: palette.blue01,
-            pointRadius: 4,
+            pointRadius: 6,
             borderWidth: 2,
             pointStyle: 'circle',
             pointBackgroundColor: withAlpha(palette.blue01, 0.8),
             pointBorderColor: palette.blue01,
-            pointBorderWidth: 2,
-          },
-          {
-            label: 'Regional service centres',
-            data: [
-              { x: 5.0, y: 11.4 },
-              { x: 9.0, y: 16.1 },
-              { x: 12.0, y: 10.8 },
-            ],
-            backgroundColor: withAlpha(palette.blue02, 0.8),
-            borderColor: palette.blue02,
-            pointRadius: 8,
-            borderWidth: 2,
-            pointStyle: 'triangle',
-            pointBackgroundColor: withAlpha(palette.blue02, 0.8),
-            pointBorderColor: palette.blue02,
             pointBorderWidth: 2,
           },
         ],
@@ -1978,36 +2066,39 @@ function initChartsAndGraphs() {
         },
         plugins: {
           legend: {
-            position: 'bottom',
-            labels: {
-              usePointStyle: true,
-              pointStyleWidth: 12,
-            },
+            display: false,
           },
           title: {
             display: true,
-            text: 'Case volume vs processing time (Q2 2025)',
+            text: 'Application complexity and processing time',
+          },
+          subtitle: {
+            display: true,
+            text: 'Individual applications, Q1 2025',
           },
         },
         scales: {
           x: {
             title: {
               display: true,
-              text: 'Weekly case volume',
+              text: 'Complexity score (0 to 100)',
             },
             min: 0,
-            max: 18,
+            max: 100,
             ticks: {
-              stepSize: 2,
+              stepSize: 10,
             },
           },
           y: {
             title: {
               display: true,
-              text: 'Average processing time (days)',
+              text: 'Processing time (working days)',
             },
-            min: 4,
-            max: 22,
+            min: 0,
+            max: 24,
+            ticks: {
+              stepSize: 4,
+            },
           },
         },
       },
@@ -2017,36 +2108,21 @@ function initChartsAndGraphs() {
       type: 'bubble',
       data: {
         datasets: [{
-          label: 'Metro locations',
+          label: 'Locations',
           data: [
-            { x: 4, y: 6, r: 8 },
-            { x: 6, y: 8, r: 10 },
-            { x: 9, y: 11, r: 12 },
-            { x: 12, y: 14, r: 14 },
-            { x: 15, y: 18, r: 16 },
+            { x: 42, y: 9, r: 14 },
+            { x: 51, y: 11, r: 12 },
+            { x: 57, y: 13, r: 11 },
+            { x: 63, y: 15, r: 10 },
+            { x: 68, y: 17, r: 9 },
+            { x: 74, y: 19, r: 8 },
           ],
-          backgroundColor: withAlpha(palette.blue01, 0.8),
+          backgroundColor: withAlpha(palette.blue01, 0.75),
           borderColor: palette.blue01,
-          pointRadius: 4,
+          pointRadius: 5,
           borderWidth: 2,
-          pointBackgroundColor: withAlpha(palette.blue01, 0.8),
+          pointBackgroundColor: withAlpha(palette.blue01, 0.75),
           pointBorderColor: palette.blue01,
-          pointBorderWidth: 2,
-        }, {
-          label: 'Regional locations',
-          data: [
-            { x: 3, y: 7, r: 7 },
-            { x: 5, y: 10, r: 8 },
-            { x: 8, y: 13, r: 10 },
-            { x: 10, y: 16, r: 11 },
-            { x: 13, y: 19, r: 13 },
-          ],
-          backgroundColor: withAlpha(palette.blue02, 0.8),
-          borderColor: palette.blue02,
-          pointRadius: 4,
-          borderWidth: 2,
-          pointBackgroundColor: withAlpha(palette.blue02, 0.8),
-          pointBorderColor: palette.blue02,
           pointBorderWidth: 2,
         }],
       },
@@ -2061,39 +2137,38 @@ function initChartsAndGraphs() {
         },
         plugins: {
           legend: {
-            position: 'bottom',
-            labels: {
-              usePointStyle: true,
-              pointStyle: 'circle',
-              pointStyleWidth: 12,
-            },
+            display: false,
           },
           title: {
             display: true,
-            text: 'Demand, wait time and volume by location (Q2 2025)',
+            text: 'Application complexity, processing time and volume',
+          },
+          subtitle: {
+            display: true,
+            text: 'By location, Q1 2025',
           },
         },
         scales: {
           x: {
-            min: 0,
-            max: 18,
+            min: 35,
+            max: 80,
+            ticks: {
+              stepSize: 5,
+            },
+            title: {
+              display: true,
+              text: 'Complexity score (0 to 100)',
+            },
+          },
+          y: {
+            min: 6,
+            max: 22,
             ticks: {
               stepSize: 2,
             },
             title: {
               display: true,
-              text: 'Weekly demand (index)',
-            },
-          },
-          y: {
-            min: 4,
-            max: 22,
-            ticks: {
-              stepSize: 3,
-            },
-            title: {
-              display: true,
-              text: 'Average wait time (days)',
+              text: 'Processing time (working days)',
             },
           },
         },
@@ -2132,7 +2207,11 @@ function initChartsAndGraphs() {
           },
           title: {
             display: true,
-            text: 'Wait-time distribution by weekday (Q2 2025, days)',
+            text: 'Wait-time distribution by weekday',
+          },
+          subtitle: {
+            display: true,
+            text: 'Individual observations, Q2 2025',
           },
         },
         scales: {
@@ -2166,10 +2245,10 @@ function initChartsAndGraphs() {
     createChart('chartDistHistogram', {
       type: 'bar',
       data: {
-        labels: ['0-1', '2-3', '4-5', '6-7', '8-9', '10-11', '12-13', '14-15', '16-17', '18-19', '20+'],
+        labels: ['0-1', '1-2', '2-3', '3-5', '5-10', '10+'],
         datasets: [{
-          label: 'Case frequency',
-          data: [1, 3, 6, 10, 14, 12, 9, 6, 4, 2, 1],
+          label: 'Number of calls',
+          data: [1840, 3210, 4890, 6120, 3840, 1100],
           backgroundColor: palette.blue01,
           borderColor: palette.blue01,
           borderWidth: 1,
@@ -2184,14 +2263,18 @@ function initChartsAndGraphs() {
           },
           title: {
             display: true,
-            text: 'Processing-time distribution (Q2 2025, binned days)',
+            text: 'Customer call response times',
+          },
+          subtitle: {
+            display: true,
+            text: 'Distribution of call duration, March 2025',
           },
         },
         scales: {
           x: {
             title: {
               display: true,
-              text: 'Processing time range (days)',
+              text: 'Duration (minutes)',
             },
             grid: {
               display: false,
@@ -2200,11 +2283,11 @@ function initChartsAndGraphs() {
           y: {
             beginAtZero: true,
             ticks: {
-              stepSize: 2,
+              stepSize: 1000,
             },
             title: {
               display: true,
-              text: 'Number of cases',
+              text: 'Number of calls',
             },
           },
         },
@@ -2214,10 +2297,10 @@ function initChartsAndGraphs() {
     createChart('chartDistRadar', {
       type: 'radar',
       data: {
-        labels: ['Timeliness', 'Accuracy', 'Coverage', 'Clarity', 'Accessibility'],
+        labels: ['Timeliness', 'Accuracy', 'Satisfaction', 'Accessibility', 'Resolution rate'],
         datasets: [{
-          label: 'Service A',
-          data: [78, 84, 72, 81, 75],
+          label: 'Metro',
+          data: [84, 91, 87, 79, 88],
           borderColor: palette.blue01,
           backgroundColor: withAlpha(palette.blue01, 0.2),
           pointBackgroundColor: palette.blue01,
@@ -2225,8 +2308,8 @@ function initChartsAndGraphs() {
           pointStyle: 'circle',
           pointRadius: 4,
         }, {
-          label: 'Service B',
-          data: [55, 72, 87, 68, 74],
+          label: 'Regional',
+          data: [76, 88, 82, 71, 80],
           borderColor: palette.blue02,
           backgroundColor: withAlpha(palette.blue02, 0.2),
           pointBackgroundColor: palette.blue02,
@@ -2250,7 +2333,11 @@ function initChartsAndGraphs() {
           },
           title: {
             display: true,
-            text: 'Capability profile comparison (2025 index)',
+            text: 'Service delivery performance across five dimensions',
+          },
+          subtitle: {
+            display: true,
+            text: 'Regional comparison, 2024-25 (score out of 100)',
           },
         },
         scales: {
