@@ -603,6 +603,20 @@ $header-height: 151px;
     margin-top: nsw.rem(8px);
   }
 
+  &__chart-option {
+    margin-top: nsw.rem(24px);
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+    &__chart-option:nth-child(-n + 2) {
+      margin-top: 0;
+    }
+  }
+
   &__chart-example-details {
     margin-top: nsw.rem(8px);
   }

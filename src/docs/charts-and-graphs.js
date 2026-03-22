@@ -496,17 +496,18 @@ function initChartsAndGraphs() {
         return legendTrianglePointStyles.get(cacheKey)
       }
 
+      const size = 14
       const symbol = document.createElement('canvas')
-      symbol.width = 12
-      symbol.height = 12
+      symbol.width = size
+      symbol.height = size
       const context = symbol.getContext('2d')
       if (context) {
-        context.clearRect(0, 0, 12, 12)
+        context.clearRect(0, 0, size, size)
         context.fillStyle = cacheKey
         context.beginPath()
-        context.moveTo(6, 0.5)
-        context.lineTo(11.5, 11)
-        context.lineTo(0.5, 11)
+        context.moveTo(size / 2, 0.5)
+        context.lineTo(size - 0.5, size - 1)
+        context.lineTo(0.5, size - 1)
         context.closePath()
         context.fill()
       }
@@ -743,7 +744,7 @@ function initChartsAndGraphs() {
       const sourceDatasets = Array.isArray(sourceData.datasets) ? sourceData.datasets : []
       const normalisedDatasets = sourceDatasets.map((dataset) => {
         const datasetType = dataset && dataset.type ? dataset.type : config.type
-        if (datasetType !== 'line') return dataset
+        if (!['line', 'radar'].includes(datasetType)) return dataset
 
         const pointStyle = dataset.pointStyle || 'circle'
         const trianglePointStyle = isTrianglePointStyle(pointStyle)
@@ -754,7 +755,7 @@ function initChartsAndGraphs() {
         const basePointHitRadius = Number.isFinite(dataset.pointHitRadius)
           ? dataset.pointHitRadius
           : 4
-        const triangleRadiusOffset = trianglePointStyle ? 2 : 0
+        const triangleRadiusOffset = trianglePointStyle && datasetType === 'radar' ? 2 : 0
 
         return {
           ...dataset,
