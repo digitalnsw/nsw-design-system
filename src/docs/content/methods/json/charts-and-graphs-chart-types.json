@@ -9,11 +9,7 @@
           "canvasId": "chartCompBar",
           "canvasHeight": 300,
           "ariaLabel": "Vertical bar chart example showing visits by channel.",
-          "details": {
-            "useWhen": "Comparing categories.",
-            "avoidWhen": "Labels are long.",
-            "notes": "Default choice for most comparisons."
-          }
+          "description": "The default choice for comparing value across categories. Switch to horizontal bars if category labels are long."
         },
         {
           "id": "chart-bar-horizontal",
@@ -21,35 +17,23 @@
           "canvasId": "chartCompBarHorizontal",
           "canvasHeight": 300,
           "ariaLabel": "Horizontal bar chart example showing requests by region.",
-          "details": {
-            "useWhen": "Labels are long or showing a ranked list.",
-            "avoidWhen": "Few short labels.",
-            "notes": "Improves readability for top 10 views."
-          }
+          "description": "Use when showing a ranked list, or when category labels are too long to read on a vertical chart."
         },
         {
           "id": "chart-stacked-bar-column",
-          "title": "Stacked bar or column",
+          "title": "Stacked bar",
           "canvasId": "chartPropStacked",
           "canvasHeight": 380,
           "ariaLabel": "Stacked bar chart example showing completion status by program.",
-          "details": {
-            "useWhen": "Comparing composition across categories.",
-            "avoidWhen": "Precise comparison of segments is required.",
-            "notes": "Label clearly and limit number of segments."
-          }
+          "description": "Shows the composition of a whole across categories, making it easy to spot differences in the mix. Keep segments to three or four and label clearly."
         },
         {
           "id": "chart-grouped-horizontal-bar",
-          "title": "Grouped horizontal bar",
+          "title": "Grouped bar",
           "canvasId": "chartCompGroupedHorizontal",
           "canvasHeight": 380,
           "ariaLabel": "Grouped horizontal bar chart comparing request counts by region across two years.",
-          "details": {
-            "useWhen": "Comparing multiple series across categories with long labels.",
-            "avoidWhen": "Too many categories or series create visual clutter.",
-            "notes": "Keep category count manageable and series colours clearly distinct."
-          }
+          "description": "Compares two or more series side by side within each category, making it easy to see differences between series at a glance."
         }
       ]
     },
@@ -62,11 +46,7 @@
           "canvasId": "chartTrendLine",
           "canvasHeight": 320,
           "ariaLabel": "Line chart example showing applications over time.",
-          "details": {
-            "useWhen": "Showing change over time.",
-            "avoidWhen": "No meaningful time dimension.",
-            "notes": "Limit number of lines."
-          }
+          "description": "The standard choice for showing change over a continuous time period. Use multi-line when you need to compare more than one series."
         },
         {
           "id": "chart-multi-line",
@@ -74,11 +54,7 @@
           "canvasId": "chartTrendMultiLine",
           "canvasHeight": 320,
           "ariaLabel": "Multi-line chart example showing two monthly trends over time.",
-          "details": {
-            "useWhen": "Comparing trends across multiple series over the same time period.",
-            "avoidWhen": "Too many lines make patterns difficult to read.",
-            "notes": "Keep line count low and label series clearly."
-          }
+          "description": "Compares how multiple series trend over the same time period. Works best with three or four series. Beyond that, patterns become difficult to separate."
         },
         {
           "id": "chart-area",
@@ -86,23 +62,15 @@
           "canvasId": "chartTrendArea",
           "canvasHeight": 360,
           "ariaLabel": "Area chart example showing total users over time.",
-          "details": {
-            "useWhen": "Showing cumulative volume or share over time.",
-            "avoidWhen": "Many overlapping series.",
-            "notes": "Use sparingly."
-          }
+          "description": "Shows cumulative volume or share building over time. Use sparingly as a line chart is usually clearer for non-cumulative data."
         },
         {
           "id": "chart-line-bar-combo",
-          "title": "Line + bar",
+          "title": "Lines + bar",
           "canvasId": "chartTrendLineBarCombo",
           "canvasHeight": 360,
           "ariaLabel": "Combined line and bar chart showing application volume and conversion rate by month.",
-          "details": {
-            "useWhen": "Showing two related measures with different units over time.",
-            "avoidWhen": "Combined series are unrelated or dual axes may mislead interpretation.",
-            "notes": "Label both axes clearly and use sparingly."
-          }
+          "description": "Shows two related measures with different units over the same period. Only use this when the relationship between the two measures is the point of the chart."
         },
         {
           "id": "chart-stacked-area",
@@ -110,11 +78,7 @@
           "canvasId": "chartTrendStackedArea",
           "canvasHeight": 360,
           "ariaLabel": "Stacked area chart example showing cumulative channel share over time.",
-          "details": {
-            "useWhen": "Showing how components contribute to a total over time.",
-            "avoidWhen": "Users need precise comparison of individual series values.",
-            "notes": "Keep series count low and order layers consistently."
-          }
+          "description": "Shows how components contribute to a changing total over time. Better than a multi-line chart when the cumulative total is as important as the individual series."
         }
       ]
     },
@@ -127,11 +91,7 @@
           "canvasId": "chartPropDoughnut",
           "canvasHeight": 400,
           "ariaLabel": "Doughnut chart example showing approval status with direct slice labels.",
-          "details": {
-            "useWhen": "Showing simple proportion (2 to 4 segments).",
-            "avoidWhen": "Many small slices.",
-            "notes": "Label slices directly with category and percentage; include total value nearby when relevant."
-          }
+          "description": "Shows simple proportion between two to four segments. The centre space can display a total or key callout value, which makes it a common choice for dashboards. Use a bar chart when precise comparison between segments matters more than showing the whole."
         },
         {
           "id": "chart-pie",
@@ -139,11 +99,7 @@
           "canvasId": "chartPropPie",
           "canvasHeight": 400,
           "ariaLabel": "Pie chart example showing channel share with direct slice labels.",
-          "details": {
-            "useWhen": "Rarely recommended in digital.",
-            "avoidWhen": "Complex or close values.",
-            "notes": "Prefer doughnut or bar chart. When you do use a pie chart, label slices directly."
-          }
+          "description": "Functionally identical to a doughnut but without the centre space. Doughnuts are generally preferred in digital products as the centre can carry additional context."
         },
         {
           "id": "chart-stacked-proportional-bar",
@@ -151,11 +107,7 @@
           "canvasId": "chartPropStackedProportional",
           "canvasHeight": 360,
           "ariaLabel": "100 percent stacked bar chart showing proportional outcome share by channel.",
-          "details": {
-            "useWhen": "Comparing composition where each category sums to 100%.",
-            "avoidWhen": "Users need absolute totals rather than proportions.",
-            "notes": "Label percentages clearly and provide totals separately when needed."
-          }
+          "description": "Compares proportional composition across categories where each bar sums to 100%. Because actual counts are hidden, provide the absolute total for each category so users can judge the scale behind the percentages."
         }
       ]
     },
@@ -168,11 +120,7 @@
           "canvasId": "chartDistScatter",
           "canvasHeight": 360,
           "ariaLabel": "Scatter plot example showing relationship between two variables.",
-          "details": {
-            "useWhen": "Showing relationship between two variables.",
-            "avoidWhen": "No meaningful correlation.",
-            "notes": "Ensure accessible markers."
-          }
+          "description": "Shows the relationship or correlation between two variables across a dataset. Use only when there is a genuine relationship worth showing."
         },
         {
           "id": "chart-bubble-plot",
@@ -180,11 +128,7 @@
           "canvasId": "chartDistBubble",
           "canvasHeight": 360,
           "ariaLabel": "Bubble plot example showing demand and wait time across locations with bubble size as volume.",
-          "details": {
-            "useWhen": "Showing relationship and magnitude across two variables.",
-            "avoidWhen": "Bubble area is the only cue and labels are missing.",
-            "notes": "Keep bubble sizes distinct and provide labels or table support."
-          }
+          "description": "Shows relationship and magnitude across two variables, with bubble size encoding a third dimension. Use only when all three dimensions are meaningful, otherwise a scatter plot is simpler and clearer."
         },
         {
           "id": "chart-dot-plot",
@@ -192,11 +136,7 @@
           "canvasId": "chartDistDotPlot",
           "canvasHeight": 360,
           "ariaLabel": "Vertical dot plot example showing distribution of wait times by weekday.",
-          "details": {
-            "useWhen": "Showing distributions across categories without bars.",
-            "avoidWhen": "Overplotting makes points overlap heavily.",
-            "notes": "Use jitter, labels, or supporting summaries for readability."
-          }
+          "description": "Shows distribution across categories with less visual weight than bars. A good alternative to a bar chart when showing the spread of individual data points matters as much as the category totals."
         },
         {
           "id": "chart-histogram",
@@ -204,11 +144,7 @@
           "canvasId": "chartDistHistogram",
           "canvasHeight": 360,
           "ariaLabel": "Histogram example showing distribution of processing times in binned ranges.",
-          "details": {
-            "useWhen": "Showing frequency distribution across numeric ranges.",
-            "avoidWhen": "Exact values per individual record are required.",
-            "notes": "Use sensible bin widths and label ranges clearly."
-          }
+          "description": "Shows how values are distributed across a continuous numeric range. Use this instead of a bar chart when the data is continuous and the shape of the distribution is the story."
         },
         {
           "id": "chart-radar",
@@ -216,11 +152,7 @@
           "canvasId": "chartDistRadar",
           "canvasHeight": 400,
           "ariaLabel": "Radar chart example comparing capability scores across dimensions.",
-          "details": {
-            "useWhen": "Comparing profiles across the same fixed dimensions.",
-            "avoidWhen": "Precise value comparison is the primary goal.",
-            "notes": "Limit categories and provide supporting values in text or table."
-          }
+          "description": "Compares profiles across the same fixed set of dimensions. Use only when the overall shape of the profile matters, as a grouped bar chart or table is clearer when precise values are the priority."
         }
       ]
     }

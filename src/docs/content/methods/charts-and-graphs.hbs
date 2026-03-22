@@ -80,16 +80,10 @@ meta-index: true
   {{#each charts}}
   <div class="nsw-col nsw-col-12 nsw-col-lg-6 nsw-docs__chart-option">
     <h4 id="{{id}}" class="nsw-m-bottom-sm">{{title}}</h4>
+    <p class="nsw-m-bottom-sm">{{description}}</p>
     <div class="nsw-grid nsw-docs__chart-example">
       <div class="nsw-col nsw-col-12">
         <canvas id="{{canvasId}}" data-chart-height="{{canvasHeight}}" role="img" aria-label="{{ariaLabel}}" tabindex="0"></canvas>
-      </div>
-      <div class="nsw-col nsw-col-12 nsw-docs__chart-example-details">
-        <div class="nsw-docs__list-stack">
-          <p><strong>Use when:</strong> {{details.useWhen}}</p>
-          <p><strong>Avoid when:</strong> {{details.avoidWhen}}</p>
-          <p><strong>Notes:</strong> {{details.notes}}</p>
-        </div>
       </div>
     </div>
   </div>
