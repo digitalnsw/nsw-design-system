@@ -2,7 +2,9 @@
 
 const fs = require('fs')
 const path = require('path')
-const { execFileSync } = require('child_process')
+const { finished } = require('stream/promises')
+const gulp = require('gulp')
+const zip = require('gulp-zip')
 
 const repoRoot = path.resolve(__dirname, '..')
 const aiDir = path.join(repoRoot, 'ai')
@@ -37,6 +39,27 @@ const excludedGuideFiles = new Set([
 
 const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'))
 
+const resolveGeneratedAt = () => {
+  const sourceDateEpoch = process.env.SOURCE_DATE_EPOCH
+  if (!sourceDateEpoch) return null
+
+  const epochSeconds = Number(sourceDateEpoch)
+  if (!Number.isInteger(epochSeconds) || epochSeconds < 0) {
+    throw new Error('SOURCE_DATE_EPOCH must be a non-negative integer (seconds since Unix epoch).')
+  }
+
+  return new Date(epochSeconds * 1000).toISOString()
+}
+
+const writeFileIfChanged = (filePath, nextContent) => {
+  if (fs.existsSync(filePath)) {
+    const currentContent = fs.readFileSync(filePath, 'utf8')
+    if (currentContent === nextContent) return
+  }
+
+  fs.writeFileSync(filePath, nextContent, 'utf8')
+}
+
 const getMarkdownTitle = (content, fallbackTitle) => {
   const firstHeading = content.split('\n').find((line) => line.trim().startsWith('# '))
   if (!firstHeading) return fallbackTitle
@@ -69,6 +92,7 @@ const getDomainGuides = () => {
     const entries = fs.readdirSync(absoluteDir, { withFileTypes: true })
     entries.forEach((entry) => {
       if (entry.name.startsWith('.')) return
+      if (excludedGuideFiles.has(entry.name)) return
       const absolutePath = path.join(absoluteDir, entry.name)
       const relativePath = path.posix.join(relativePrefix, entry.name)
       if (entry.isDirectory()) {
@@ -103,7 +127,7 @@ const buildBundleMarkdown = (guides, generatedAt) => {
   const heading = [
     '# NSW Design System LLM Guide Bundle',
     '',
-    `Generated: ${generatedAt}`,
+    ...(generatedAt ? [`Generated: ${generatedAt}`] : []),
     `Package: ${packageJson.name}@${packageJson.version}`,
     '',
     'Use this file when you want a single-file import into an LLM.',
@@ -124,27 +148,34 @@ const buildBundleMarkdown = (guides, generatedAt) => {
   return [...heading, ...guideList, '', '---', '', ...sections].join('\n')
 }
 
-const createArchive = (guides) => {
-  const archiveEntries = new Set([
+const createArchive = async (guides) => {
+  const archiveEntries = [
     'guides/README.md',
     ...guides.map((guide) => `guides/${guide.path}`),
     bundleFilename,
     manifestFilename,
-  ])
+  ]
 
   if (fs.existsSync(archivePath)) {
     fs.unlinkSync(archivePath)
   }
 
-  execFileSync(
-    'zip',
-    ['-r', '-q', archiveFilename, ...Array.from(archiveEntries)],
-    { cwd: aiDir, stdio: 'inherit' },
-  )
+  const zipStream = gulp
+    .src(archiveEntries, {
+      cwd: aiDir,
+      base: '.',
+      nodir: true,
+      dot: false,
+      allowEmpty: false,
+    })
+    .pipe(zip(archiveFilename))
+    .pipe(gulp.dest(aiDir))
+
+  await finished(zipStream)
 }
 
-const main = () => {
-  const generatedAt = new Date().toISOString()
+const main = async () => {
+  const generatedAt = resolveGeneratedAt()
   const guides = createGuideList()
 
   ;[legacyBundlePath, legacyManifestPath, legacyArchivePath].forEach((legacyPath) => {
@@ -152,11 +183,10 @@ const main = () => {
   })
 
   const bundle = buildBundleMarkdown(guides, generatedAt)
-  fs.writeFileSync(bundlePath, `${bundle}\n`, 'utf8')
+  writeFileIfChanged(bundlePath, `${bundle}\n`)
 
   const manifest = {
     name: 'nsw-design-system-llm-guides',
-    generatedAt,
     package: {
       name: packageJson.name,
       version: packageJson.version,
@@ -173,13 +203,17 @@ const main = () => {
       path: guide.path,
     })),
   }
+  if (generatedAt) manifest.generatedAt = generatedAt
 
-  fs.writeFileSync(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`, 'utf8')
-  createArchive(guides)
+  writeFileIfChanged(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`)
+  await createArchive(guides)
 
   process.stdout.write(
     `Generated ${bundleFilename}, ${manifestFilename}, and ${archiveFilename} in ai\n`,
   )
 }
 
-main()
+main().catch((error) => {
+  process.stderr.write(`${error.message}\n`)
+  process.exitCode = 1
+})

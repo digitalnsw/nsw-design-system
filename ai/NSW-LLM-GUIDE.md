@@ -1,7 +1,6 @@
 # NSW Design System LLM Guide Bundle
 
-Generated: 2026-03-13T02:12:53.388Z
-Package: nsw-design-system@3.24.4
+Package: nsw-design-system@3.24.5
 
 Use this file when you want a single-file import into an LLM.
 
@@ -308,11 +307,22 @@ Use this file for chart-specific rules. For shared rules, link to:
 - [Typography and layout](../core/typography-and-layout.md)
 - [Accessibility](../core/accessibility.md)
 
-## Scope
+## About this guidance
 
-- Applies to NSW Design System chart and graph guidance in this repo.
-- Targets Chart.js implementations and examples.
-- Prioritises readable, accessible, decision-support visualisations.
+This guidance helps teams choose and design charts and graphs that communicate data clearly and consistently across NSW digital products.
+
+It covers common chart types used in services and dashboards, including bar charts, line charts, scatter plots and similar formats. The guidance is tool-agnostic and applies regardless of charting library or platform.
+
+It sets shared principles for clarity, accessibility and consistency rather than prescribing exact implementation. Teams using custom visualisation tools such as D3 should apply the same principles to ensure charts remain understandable and accessible.
+
+## Out of scope
+
+- Expressive infographics designed for campaigns or marketing
+- Advanced analytical visualisations such as network graphs or complex relationship mapping
+- Interactive GIS mapping
+- Highly specialised investigative tools built for internal compliance work
+
+These use cases may require bespoke design and technical decisions beyond the scope of the design system. Future guidance may expand to cover additional visualisation types as needs mature.
 
 ## Chart Selection Rules
 
