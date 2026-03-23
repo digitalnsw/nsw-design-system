@@ -253,6 +253,28 @@ function initChartsAndGraphs() {
       return `${Number(value.toFixed(1))}`
     }
 
+    const wrapTickLabel = (value, maxCharsPerLine = 24) => {
+      const text = typeof value === 'string' ? value.trim() : `${value || ''}`.trim()
+      if (!text) return ''
+      if (text.length <= maxCharsPerLine) return text
+
+      const words = text.split(/\s+/)
+      const lines = []
+      let currentLine = words.shift() || ''
+
+      words.forEach((word) => {
+        if ((`${currentLine} ${word}`).length <= maxCharsPerLine) {
+          currentLine = `${currentLine} ${word}`
+          return
+        }
+        lines.push(currentLine)
+        currentLine = word
+      })
+
+      if (currentLine) lines.push(currentLine)
+      return lines
+    }
+
     const toCanvasFont = (fontOptions = {}) => {
       const style = fontOptions.style || 'normal'
       const weight = fontOptions.weight || 400
@@ -1307,17 +1329,9 @@ function initChartsAndGraphs() {
         },
         scales: {
           x: {
-            title: {
-              display: true,
-              text: 'Local government area',
-            },
           },
           y: {
             beginAtZero: true,
-            title: {
-              display: true,
-              text: 'Applications assessed (count)',
-            },
           },
         },
       },
@@ -1333,7 +1347,7 @@ function initChartsAndGraphs() {
           'Early Childhood Development Support Initiative',
           'Aboriginal Community Housing Improvement Fund',
           'Domestic Violence Crisis Response Program',
-        ],
+        ].map((label) => wrapTickLabel(label)),
         datasets: [{
           label: 'Funding ($M)',
           data: [48.2, 31.6, 27.4, 22.8, 18.3, 14.7],
@@ -1358,16 +1372,8 @@ function initChartsAndGraphs() {
         scales: {
           x: {
             beginAtZero: true,
-            title: {
-              display: true,
-              text: 'Funding ($M)',
-            },
           },
           y: {
-            title: {
-              display: true,
-              text: 'Programme',
-            },
           },
         },
       },
@@ -1401,10 +1407,6 @@ function initChartsAndGraphs() {
         scales: {
           x: {
             stacked: true,
-            title: {
-              display: true,
-              text: 'Quarter',
-            },
           },
           y: {
             stacked: true,
@@ -1412,10 +1414,6 @@ function initChartsAndGraphs() {
             suggestedMax: 14000,
             ticks: {
               stepSize: 2000,
-            },
-            title: {
-              display: true,
-              text: 'Support requests (count)',
             },
           },
         },
@@ -1444,7 +1442,7 @@ function initChartsAndGraphs() {
           'Supervisor certificate',
           'Tradesperson certificate',
           'Owner-builder permit',
-        ],
+        ].map((label) => wrapTickLabel(label)),
         datasets: [{
           label: 'Lodged',
           data: [1840, 1210, 980, 760, 430],
@@ -1476,16 +1474,8 @@ function initChartsAndGraphs() {
         scales: {
           x: {
             beginAtZero: true,
-            title: {
-              display: true,
-              text: 'Applications (count)',
-            },
           },
           y: {
-            title: {
-              display: true,
-              text: 'Licence category',
-            },
           },
         },
       },
@@ -1525,17 +1515,9 @@ function initChartsAndGraphs() {
         },
         scales: {
           x: {
-            title: {
-              display: true,
-              text: 'Month (2024)',
-            },
           },
           y: {
             beginAtZero: true,
-            title: {
-              display: true,
-              text: 'Incidents (count)',
-            },
           },
         },
       },
@@ -1609,17 +1591,9 @@ function initChartsAndGraphs() {
         },
         scales: {
           x: {
-            title: {
-              display: true,
-              text: 'Period',
-            },
           },
           y: {
             beginAtZero: true,
-            title: {
-              display: true,
-              text: 'Transactions (count)',
-            },
           },
         },
       },
@@ -1660,17 +1634,9 @@ function initChartsAndGraphs() {
         },
         scales: {
           x: {
-            title: {
-              display: true,
-              text: 'Month (2024)',
-            },
           },
           y: {
             beginAtZero: true,
-            title: {
-              display: true,
-              text: 'Cumulative total ($M)',
-            },
           },
         },
       },
@@ -1758,51 +1724,43 @@ function initChartsAndGraphs() {
     createChart('chartTrendStackedArea', {
       type: 'line',
       data: {
-        labels: ['Jul 2024', 'Jan 2025', 'Jun 2025'],
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
         datasets: [{
-          label: 'Web',
-          data: [62, 60, 57],
-          borderColor: palette.blue01,
-          backgroundColor: withAlpha(palette.blue01, 0.2),
+          label: 'Standard',
+          data: [200, 230, 300, 330, 520, 600],
+          borderColor: palette.green01,
+          backgroundColor: palette.green04,
           fill: 'origin',
-          pointRadius: 6,
-          pointStyle: 'circle',
-          pointBackgroundColor: palette.blue01,
-          pointBorderColor: palette.white,
-          pointBorderWidth: 2,
+          pointRadius: 0,
+          pointHoverRadius: 0,
           borderWidth: 2,
+          borderDash: [],
           tension: 0.25,
           stack: 'stackedArea',
           order: 1,
         }, {
-          label: 'App',
-          data: [27, 31, 36],
-          borderColor: palette.blue02,
-          backgroundColor: withAlpha(palette.blue02, 0.2),
+          label: 'High',
+          data: [540, 620, 640, 680, 690, 700],
+          borderColor: palette.blue01,
+          backgroundColor: palette.blue04,
           fill: '-1',
-          pointRadius: 8,
-          pointStyle: 'triangle',
-          pointBackgroundColor: palette.blue02,
-          pointBorderColor: palette.white,
-          pointBorderWidth: 2,
+          pointRadius: 0,
+          pointHoverRadius: 0,
           borderWidth: 2,
-          borderDash: [8, 6],
+          borderDash: [],
           tension: 0.25,
           stack: 'stackedArea',
           order: 2,
         }, {
-          label: 'Assisted',
-          data: [11, 9, 7],
+          label: 'Critical',
+          data: [80, 90, 95, 120, 135, 150],
           borderColor: palette.red01,
-          backgroundColor: withAlpha(palette.red01, 0.2),
+          backgroundColor: palette.red04,
           fill: '-1',
-          pointRadius: 8,
-          pointStyle: 'rectRot',
-          pointBackgroundColor: palette.red01,
-          pointBorderColor: palette.white,
-          pointBorderWidth: 2,
+          pointRadius: 0,
+          pointHoverRadius: 0,
           borderWidth: 2,
-          borderDash: [8, 6],
+          borderDash: [],
           tension: 0.25,
           stack: 'stackedArea',
           order: 3,
@@ -1822,32 +1780,23 @@ function initChartsAndGraphs() {
           },
           title: {
             display: true,
-            text: 'Digital service adoption by channel',
+            text: 'Support cases open by priority level',
           },
           subtitle: {
             display: true,
-            text: 'Monthly share of total transactions, July 2024 to June 2025',
+            text: 'Cumulative open cases, January to June 2025',
           },
         },
         scales: {
           x: {
             stacked: true,
-            title: {
-              display: true,
-              text: 'Period',
-            },
           },
           y: {
             beginAtZero: true,
             stacked: true,
-            max: 100,
+            max: 1500,
             ticks: {
-              stepSize: 20,
-              callback: (value) => `${value}%`,
-            },
-            title: {
-              display: true,
-              text: 'Share of total (%)',
+              stepSize: 300,
             },
           },
         },
@@ -1880,9 +1829,15 @@ function initChartsAndGraphs() {
             display: true,
             layoutPadding: {
               top: 20,
-              right: 56,
+              right: 84,
               bottom: 20,
               left: 56,
+            },
+            formatter: ({ label, percentage }) => {
+              if (label === 'Resolved on first contact') {
+                return ['Resolved on first', 'contact', `${formatCompactNumber(percentage)}%`]
+              }
+              return [label, `${formatCompactNumber(percentage)}%`]
             },
           },
           title: {
@@ -1989,10 +1944,6 @@ function initChartsAndGraphs() {
         scales: {
           x: {
             stacked: true,
-            title: {
-              display: true,
-              text: 'Region',
-            },
           },
           y: {
             stacked: true,
@@ -2001,10 +1952,6 @@ function initChartsAndGraphs() {
             ticks: {
               stepSize: 20,
               callback: (value) => `${value}%`,
-            },
-            title: {
-              display: true,
-              text: 'Share of total (%)',
             },
           },
         },
@@ -2080,10 +2027,6 @@ function initChartsAndGraphs() {
         },
         scales: {
           x: {
-            title: {
-              display: true,
-              text: 'Complexity score (0 to 100)',
-            },
             min: 0,
             max: 100,
             ticks: {
@@ -2091,10 +2034,6 @@ function initChartsAndGraphs() {
             },
           },
           y: {
-            title: {
-              display: true,
-              text: 'Processing time (working days)',
-            },
             min: 0,
             max: 24,
             ticks: {
@@ -2156,20 +2095,12 @@ function initChartsAndGraphs() {
             ticks: {
               stepSize: 5,
             },
-            title: {
-              display: true,
-              text: 'Complexity score (0 to 100)',
-            },
           },
           y: {
             min: 6,
             max: 22,
             ticks: {
               stepSize: 2,
-            },
-            title: {
-              display: true,
-              text: 'Processing time (working days)',
             },
           },
         },
@@ -2179,14 +2110,15 @@ function initChartsAndGraphs() {
     createChart('chartDistDotPlot', {
       type: 'scatter',
       data: {
+        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
         datasets: [{
           label: 'Processing time observations',
           data: [
-            { x: 1, y: 4.1 }, { x: 1, y: 5.2 }, { x: 1, y: 6.0 }, { x: 1, y: 7.2 },
-            { x: 2, y: 5.1 }, { x: 2, y: 5.8 }, { x: 2, y: 6.5 }, { x: 2, y: 7.8 },
-            { x: 3, y: 6.0 }, { x: 3, y: 6.9 }, { x: 3, y: 7.6 }, { x: 3, y: 8.9 },
-            { x: 4, y: 5.5 }, { x: 4, y: 6.4 }, { x: 4, y: 7.0 }, { x: 4, y: 8.3 },
-            { x: 5, y: 4.8 }, { x: 5, y: 5.9 }, { x: 5, y: 6.7 }, { x: 5, y: 7.4 },
+            { x: 'Mon', y: 4.1 }, { x: 'Mon', y: 5.2 }, { x: 'Mon', y: 6.0 }, { x: 'Mon', y: 7.2 },
+            { x: 'Tue', y: 5.1 }, { x: 'Tue', y: 5.8 }, { x: 'Tue', y: 6.5 }, { x: 'Tue', y: 7.8 },
+            { x: 'Wed', y: 6.0 }, { x: 'Wed', y: 6.9 }, { x: 'Wed', y: 7.6 }, { x: 'Wed', y: 8.9 },
+            { x: 'Thu', y: 5.5 }, { x: 'Thu', y: 6.4 }, { x: 'Thu', y: 7.0 }, { x: 'Thu', y: 8.3 },
+            { x: 'Fri', y: 4.8 }, { x: 'Fri', y: 5.9 }, { x: 'Fri', y: 6.7 }, { x: 'Fri', y: 7.4 },
           ],
           backgroundColor: withAlpha(palette.blue01, 0.8),
           borderColor: palette.blue01,
@@ -2217,15 +2149,13 @@ function initChartsAndGraphs() {
         },
         scales: {
           x: {
-            min: 0.5,
-            max: 5.5,
-            ticks: {
-              stepSize: 1,
-              callback: (value) => ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'][value - 1] || '',
+            type: 'category',
+            offset: true,
+            grid: {
+              offset: true,
             },
-            title: {
-              display: true,
-              text: 'Weekday',
+            ticks: {
+              autoSkip: false,
             },
           },
           y: {
@@ -2233,10 +2163,6 @@ function initChartsAndGraphs() {
             max: 10,
             ticks: {
               stepSize: 2,
-            },
-            title: {
-              display: true,
-              text: 'Processing time (days)',
             },
           },
         },
@@ -2273,10 +2199,6 @@ function initChartsAndGraphs() {
         },
         scales: {
           x: {
-            title: {
-              display: true,
-              text: 'Duration (minutes)',
-            },
             grid: {
               display: false,
             },
@@ -2285,10 +2207,6 @@ function initChartsAndGraphs() {
             beginAtZero: true,
             ticks: {
               stepSize: 1000,
-            },
-            title: {
-              display: true,
-              text: 'Number of calls',
             },
           },
         },

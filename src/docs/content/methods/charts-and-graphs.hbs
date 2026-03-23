@@ -5,7 +5,6 @@ intro: Charts and graphs help users understand data quickly.
 order: 15
 model:
   principles: json/charts-and-graphs-principles.json
-  page: json/charts-and-graphs-page.json
   chartTypes: json/charts-and-graphs-chart-types.json
   brand: json/charts-and-graphs-brand-guidance.json
   pitfalls: json/charts-and-graphs-pitfalls.json
@@ -17,27 +16,38 @@ meta-index: true
 <nav class="nsw-in-page-nav" aria-labelledby="in-page-nav">
   <div id="in-page-nav" class="nsw-in-page-nav__title">On this page</div>
   <ul>
-    {{#each model.page.inPageNav}}
     <li>
-      <a href="{{href}}">{{label}}</a>
+      <a href="#principles">Principles</a>
     </li>
-    {{/each}}
+    <li>
+      <a href="#choose-the-right-chart-type">Start with the story</a>
+    </li>
+    <li>
+      <a href="#meet-accessibility-standards">Meet accessibility standards</a>
+    </li>
+    <li>
+      <a href="#examples">Common chart pitfalls</a>
+    </li>
+    <li>
+      <a href="#review-checklist">Review checklist</a>
+    </li>
   </ul>
 </nav>
 
 
-<h2 id="about-this-guidance">{{model.page.about.heading}}</h2>
-{{#each model.page.about.paragraphs}}
-<p>{{this}}</p>
-{{/each}}
+<h2 id="about-this-guidance">About this guidance</h2>
+<p>This guidance helps teams choose and design charts and graphs that communicate data clearly and consistently across NSW digital products. This guidance was previously titled ‘Data visualisation’. The rename to ‘Charts and graphs’ aligns with the NSW Brand Toolkit and reflects the current scope of this guidance.</p>
+<p>It covers common chart types used in services and dashboards, including bar charts, line charts, scatter plots and similar formats. The guidance is tool-agnostic and applies regardless of charting library or platform.</p>
+<p>It sets shared principles for clarity, accessibility and consistency rather than prescribing exact implementation. Teams using custom visualisation tools such as D3 should apply the same principles to ensure charts remain understandable and accessible.</p>
 
-<h3>{{model.page.about.outOfScopeHeading}}</h3>
+<h3>Out of scope</h3>
 <ul>
-  {{#each model.page.about.outOfScopeItems}}
-  <li>{{this}}</li>
-  {{/each}}
+  <li>Expressive infographics designed for campaigns or marketing</li>
+  <li>Advanced analytical visualisations such as network graphs or complex relationship mapping</li>
+  <li>Interactive GIS mapping</li>
+  <li>Highly specialised investigative tools built for internal compliance work</li>
 </ul>
-<p>{{model.page.about.outOfScopeConclusion}}</p>
+<p>These use cases may require bespoke design and technical decisions beyond the scope of the design system. Future guidance may expand to cover additional visualisation types as needs mature.</p>
 
 <h2 id="principles">Principles</h2>
 <p>These principles apply to all charts and graphs in NSW digital products.</p>
@@ -50,26 +60,32 @@ meta-index: true
 </div>
 
 
-<h2 id="choose-the-right-chart-type">{{model.page.chooseChartType.heading}}</h2>
-{{#each model.page.chooseChartType.introHtml}}
-<p>{{{this}}}</p>
-{{/each}}
+<h2 id="choose-the-right-chart-type">1. Start with the story, not the chart</h2>
+<p>Each chart type is designed to reveal a specific kind of relationship in data, and choosing the wrong one obscures the message rather than clarifying it.</p>
+<p>The most common relationships are comparison and ranking, trend, proportion, distribution and correlation.</p>
+<p>You may not need a chart at all. If a single number tells the story, use a callout value. If users need precise figures, use a table. Only use a chart when the visual pattern adds meaning the data alone cannot.</p>
+<p>Chart examples on this page use Chart.js but the guidance applies regardless of which charting library you use.</p>
+<p>For additional chart relationships and examples, refer to the <a href="https://ft-interactive.github.io/visual-vocabulary/" target="_blank" rel="noopener noreferrer">Financial Times Visual Vocabulary</a>.</p>
 
 <div class="nsw-grid nsw-m-top-sm">
   <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
-    <div class="nsw-docs__guideline--do"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span><span>{{model.page.chooseChartType.guidelines.doTitle}}</span></div>
+    <div class="nsw-docs__guideline--do"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span><span>Use charts and graphs when</span></div>
     <ul>
-      {{#each model.page.chooseChartType.guidelines.doItems}}
-      <li>{{this}}</li>
-      {{/each}}
+      <li>Comparing categories</li>
+      <li>Showing change over time</li>
+      <li>Showing distribution</li>
+      <li>Showing correlation between variables</li>
+      <li>Helping users quickly see patterns or trends</li>
     </ul>
   </div>
   <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
-    <div class="nsw-docs__guideline--dont"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span><span>{{model.page.chooseChartType.guidelines.dontTitle}}</span></div>
+    <div class="nsw-docs__guideline--dont"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span><span>Do not use a chart when</span></div>
     <ul>
-      {{#each model.page.chooseChartType.guidelines.dontItems}}
-      <li>{{this}}</li>
-      {{/each}}
+      <li>A single number communicates the message</li>
+      <li>A table is clearer</li>
+      <li>The dataset is too small</li>
+      <li>The chart requires heavy explanation</li>
+      <li>It is used for decoration</li>
     </ul>
   </div>
 </div>
@@ -129,6 +145,59 @@ meta-index: true
   <li>Keep time intervals and category order consistent.</li>
   <li>Label clearly so users can read values without guessing.</li>
 </ul>
+
+{{#each model.pitfalls.examples}}
+{{#if @first}}
+<div class="nsw-grid nsw-m-top-sm">
+  {{#each panels}}
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--{{variant}}">
+      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">
+        {{#eq variant "dont"}}cancel{{else}}check_circle{{/eq}}
+      </span>
+      <span>{{label}}</span>
+    </div>
+    <p>{{description}}</p>
+    <div class="nsw-m-top-sm">
+      <canvas id="{{canvasId}}" data-chart-height="{{canvasHeight}}" role="img" aria-label="{{ariaLabel}}" tabindex="0"></canvas>
+    </div>
+    {{#if summary}}
+    <p class="nsw-m-top-sm"><strong>Summary:</strong> {{summary}}</p>
+    {{/if}}
+    {{#if table}}
+    <div class="nsw-table nsw-table--valign-middle nsw-docs__table-wrap nsw-m-top-sm">
+      <table>
+        <caption class="sr-only">{{table.caption}}</caption>
+        <thead>
+          <tr>
+            {{#each table.headers}}
+            <th scope="col">{{this}}</th>
+            {{/each}}
+          </tr>
+        </thead>
+        <tbody>
+          {{#each table.rows}}
+          <tr>
+            <th scope="row">{{label}}</th>
+            {{#each values}}
+            <td>{{this}}</td>
+            {{/each}}
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+    {{/if}}
+    <ul>
+      {{#each bullets}}
+      <li>{{this}}</li>
+      {{/each}}
+    </ul>
+  </div>
+  {{/each}}
+</div>
+{{/if}}
+{{/each}}
 
 <h3 id="chart-anatomy">Chart anatomy</h3>
 <p>Every chart must include the core elements required for clarity and accurate interpretation. The title can optionally include either a subtitle or a callout value.</p>
@@ -310,7 +379,7 @@ meta-index: true
 </ul>
 
 
-<h2 id="apply-nsw-brand-consistently">5. Apply NSW brand consistently</h2>
+<h2 id="apply-nsw-visual-identity-consistently">5. Apply NSW visual identity consistently</h2>
 <p>Apply the NSW brand colour and typography with care. Prioritise contrast and readability. Do not use the palette decoratively.</p>
 <ul>
   <li>Use NSW Brand colour and typography intentionally.</li>
@@ -663,6 +732,7 @@ meta-index: true
 <h2 id="examples">{{model.pitfalls.heading}}</h2>
 <p>{{model.pitfalls.intro}}</p>
 {{#each model.pitfalls.examples}}
+{{#unless @first}}
 <h3>{{title}}</h3>
 <div class="nsw-grid nsw-m-top-sm">
   {{#each panels}}
@@ -712,6 +782,7 @@ meta-index: true
   </div>
   {{/each}}
 </div>
+{{/unless}}
 {{/each}}
 
 
