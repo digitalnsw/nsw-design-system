@@ -1,2 +1,2 @@
-declare function _exports(hexColor: any): "#000000" | "#ffffff";
+declare function _exports(hexColor: any): "#ffffff" | "#000000";
 export = _exports;

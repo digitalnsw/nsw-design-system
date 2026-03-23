@@ -1,0 +1,3211 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head><script async data-category="analytics" src="https://www.googletagmanager.com/gtag/js?id=G-49T9M12F86"></script>
+<script data-category="analytics">
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-49T9M12F86');
+</script>
+  <script data-category="analytics">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-P2NKBBJZ');</script>
+  
+  <title>NSW Digital Design System - Charts and graphs</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://designsystem.nsw.gov.au/nsw-og-image.jpg">
+  <meta name="description" content="NSW Design System guidance for charts and graphs in digital products, aligned to NSW Brand Toolkit principles and accessibility requirements." />
+  <link rel="icon" href="https://designsystem.nsw.gov.au/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+  <link rel="stylesheet" href="https://designsystem.nsw.gov.au/docs/css/docs.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.0.1/dist/cookieconsent.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/atom-one-light.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/xml.min.js"></script>
+  <!-- Hotjar Tracking Code for NSW Design System -->
+  <script data-category="analytics">
+    (function (h, o, t, j, a, r) {
+      h.hj = h.hj || function () { (h.hj.q = h.hj.q || []).push(arguments) };
+      h._hjSettings = { hjid: 5063548, hjsv: 6 };
+      a = o.getElementsByTagName('head')[0];
+      r = o.createElement('script'); r.async = 1; 
+      r.setAttribute('data-category', 'analytics');
+      r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+      a.appendChild(r);
+    })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+  </script>
+  <script src="https://designsystem.nsw.gov.au/cookie-consent-config.js"></script>
+</head>
+
+<body class="nsw-docs">
+  <div class="nsw-docs__header">
+    <div class="nsw-docs__header-wrapper">
+      <nav class="nsw-skip" aria-label="Skip to links">
+        <a href="#main-nav"><span>Skip to navigation</span></a>
+      </nav>
+      <div class="nsw-masthead">
+        <div class="nsw-container">A NSW Government website</div>
+      </div>
+      <header class="nsw-header nsw-header--simple">
+        <div class="nsw-header__container js-header">
+          <div class="nsw-header__inner">
+            <div class="nsw-header__main">
+              <div class="nsw-header__waratah">
+                <a href="https://designsystem.nsw.gov.au/">
+                  <svg class="nsw-header__waratah-gov" viewBox="0 0 259 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path class="hide" fill-rule="evenodd" clip-rule="evenodd" d="M24.208 270.207h-5.045v-4.277l11.15.054v13.676H26.08v-2.491c-.266.278-.553.556-.86.833-.673.585-1.49 1.07-2.433 1.434-.96.373-2.143.564-3.513.564-2.33 0-4.385-.539-6.109-1.6-1.727-1.065-3.073-2.594-4.007-4.538-.926-1.927-1.395-4.231-1.395-6.85 0-2.657.494-4.994 1.47-6.946.971-1.96 2.363-3.498 4.132-4.571 1.768-1.065 3.849-1.604 6.183-1.604 1.515 0 2.915.245 4.156.725 1.255.485 2.36 1.157 3.273 1.985a9.61 9.61 0 0 1 2.192 2.852 8.196 8.196 0 0 1 .872 3.319l.021.435h-6.038l-.062-.339a5.22 5.22 0 0 0-.814-1.981 4.562 4.562 0 0 0-1.537-1.43c-.614-.352-1.345-.531-2.175-.531-1.005 0-1.931.261-2.741.775-.806.51-1.458 1.351-1.935 2.495-.486 1.169-.731 2.74-.731 4.679 0 1.579.162 2.897.482 3.925.311 1.011.739 1.819 1.266 2.403.523.581 1.117.991 1.773 1.219a6.036 6.036 0 0 0 2.089.369c.669 0 1.27-.112 1.79-.328.523-.224.98-.514 1.354-.866.377-.356.676-.746.884-1.152.216-.41.349-.816.399-1.21l.14-1.028Zm20.878-16.312c2.354 0 4.435.534 6.179 1.587 1.752 1.061 3.13 2.59 4.086 4.546.947 1.935 1.428 4.281 1.428 6.967 0 2.648-.473 4.969-1.412 6.9-.946 1.948-2.317 3.469-4.073 4.521-1.744 1.053-3.837 1.583-6.212 1.583-2.396 0-4.502-.534-6.254-1.583-1.753-1.044-3.135-2.557-4.099-4.505-.947-1.927-1.428-4.252-1.428-6.912 0-2.673.486-5.015 1.449-6.954.968-1.956 2.355-3.486 4.12-4.551 1.764-1.061 3.853-1.599 6.216-1.599Zm0 21.185c1.117 0 2.093-.265 2.898-.787.802-.523 1.433-1.372 1.881-2.516.453-1.185.686-2.772.686-4.712 0-1.993-.237-3.618-.698-4.832-.444-1.181-1.08-2.056-1.885-2.603-.814-.543-1.782-.82-2.878-.82-1.1 0-2.072.277-2.886.82-.81.543-1.453 1.422-1.906 2.611-.47 1.223-.706 2.843-.706 4.82 0 1.944.237 3.531.702 4.712.452 1.148 1.092 1.997 1.902 2.515.81.527 1.781.792 2.89.792Zm23.764-2.93-6.162-17.829H57.09l8.654 25.251h6.195l8.73-25.251h-5.607L68.85 272.15Zm30.312-2.827H88.863v5.206l12.043.016v5.027H83.103v-25.251h17.632l-.016 4.99H88.892v5.089h10.27v4.923Zm22.482-1.529c.685-.613 1.246-1.401 1.678-2.341.419-.933.635-2.081.635-3.419 0-1.497-.311-2.835-.93-3.983-.619-1.169-1.599-2.093-2.919-2.756-1.3-.647-2.973-.974-4.975-.974h-10.738v25.243h5.759v-9.404h4.24l3.991 9.404h6.046l-4.651-10.456c.673-.357 1.3-.8 1.864-1.314Zm-3.513-5.64c0 .999-.336 1.79-1.025 2.428-.69.63-1.649.949-2.857.949h-4.095v-6.606h4.456c1.038 0 1.873.286 2.545.875.657.576.976 1.347.976 2.354Zm15.159-7.833 10.527 15.23v-15.23h5.776v25.251h-5.086l-10.98-15.86v15.86h-5.759v-25.251h5.522Zm33.949 16.461-5.29-16.461h-7.894v25.251h5.809v-16.266l5.124 16.266h4.485l5.162-16.357v16.357h5.826v-25.251h-7.878l-5.344 16.461Zm33.727-1.459h-10.298v5.206l12.046.016v5.027h-17.806v-25.251h17.636l-.021 4.99h-11.818v5.089h10.261v4.923Zm21.494.228-10.523-15.23h-5.527v25.251h5.756v-15.86l10.979 15.86h5.087v-25.251h-5.772v15.23Zm15.586-10.004h-7.388v-5.226h20.402v5.226h-7.217v20.025h-5.797v-20.025Z" fill="#002664"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M146.699 209.236c-1.482-2.395-3.717-4.571-6.64-6.465-2.919-1.894-6.897-3.34-11.81-4.297l-13.678-2.814c-4.132-.891-6.981-2.043-8.468-3.419-1.449-1.343-2.184-3.129-2.184-5.309 0-1.388.316-2.652.943-3.759.623-1.111 1.528-2.093 2.687-2.922 1.166-.828 2.616-1.483 4.306-1.943 1.711-.469 3.633-.705 5.714-.705 2.74 0 5.211.361 7.346 1.078 2.109.713 3.857 1.881 5.194 3.481 1.338 1.6 2.16 3.775 2.442 6.465l.038.373h16.971l-.008-.427c-.075-4.575-1.371-8.773-3.85-12.474-2.483-3.705-6.141-6.681-10.879-8.852-4.726-2.164-10.623-3.262-17.528-3.262-5.801 0-11.117 1.011-15.805 3.009-4.7 2.002-8.475 4.89-11.212 8.587-2.749 3.717-4.12 8.164-4.078 13.224.112 6.175 1.99 11.186 5.577 14.903 3.576 3.697 8.476 6.158 14.567 7.306l13.795 2.81c2.529.502 4.825 1.16 6.823 1.96 1.96.784 3.525 1.803 4.651 3.03 1.1 1.197 1.657 2.772 1.657 4.67 0 2.114-.694 3.9-2.06 5.301-1.4 1.434-3.301 2.515-5.643 3.224-2.388.721-5.058 1.086-7.936 1.086-2.807 0-5.394-.435-7.686-1.297-2.28-.85-4.194-2.093-5.689-3.693-1.491-1.591-2.513-3.585-3.04-5.918l-.075-.327H83.846l.045.46c.407 4.045 1.666 7.629 3.738 10.659 2.068 3.009 4.717 5.545 7.873 7.551 3.148 1.993 6.677 3.514 10.494 4.513a46.33 46.33 0 0 0 11.693 1.5c6.466 0 12.2-1.019 17.046-3.034 4.867-2.022 8.717-4.807 11.449-8.276 2.753-3.493 4.148-7.476 4.148-11.848 0-2.064-.232-4.36-.697-6.822-.478-2.482-1.466-4.948-2.936-7.327ZM25.937 191.763l36.916 53.312H77.87v-79.724H61.072v51.282L25.754 165.53l-.125-.179H9.19v79.724h16.748v-53.312Zm196.637 24.577 14.388-50.987h16.457l-23.587 79.724h-13.367l-14.554-50.469-14.659 50.469h-13.147l-23.533-79.724h16.511l14.384 50.979 14.389-50.979h12.167l14.551 50.987Z" fill="#002664"/>
+                    <path d="M122.291 145.572c-19.75-2.424-38.934 3.904-72.69-5.263-3.447-.937-4.718 2.694-2.854 5.736 9.07 14.803 54.881 3.203 75.635 1.065.906-.095.814-1.426-.091-1.538ZM208.735 140.309c-33.756 9.167-52.941 2.839-72.691 5.263-.905.112-1 1.447-.091 1.538 20.759 2.138 66.566 13.738 75.635-1.065 1.864-3.042.594-6.673-2.853-5.736ZM59.882 119.132c-6.864-10.058-12.474-21.31-16.818-33.69-13.101 3.826-26.51 9.346-40.16 16.57a5.388 5.388 0 0 0-2.902 4.67 5.38 5.38 0 0 0 2.653 4.812c26.431 15.802 52.273 24.841 76.93 26.933-7.34-4.475-14.072-11.044-19.703-19.295ZM23.059 85.513a201.529 201.529 0 0 1 17.976-6.233c-2.126-6.896-3.87-14.12-5.249-21.658-6.827-.85-13.89-1.4-21.199-1.641-.062 0-.128-.004-.19-.004a5.391 5.391 0 0 0-4.647 2.602 5.383 5.383 0 0 0-.12 5.483c4.243 7.659 8.724 14.808 13.429 21.45ZM88.005 135.572c4.099 1.807 8.293 2.818 12.358 3.029-9.953-7.12-17.773-19.192-22.278-34.58-5.805-19.81-7.745-41.666-5.83-65.247-7.832-4.936-16.32-9.557-25.46-13.85a5.428 5.428 0 0 0-5.402.43 5.396 5.396 0 0 0-2.388 4.841c2.126 34.215 10.95 62.915 26.223 85.298 6.404 9.391 14.281 16.332 22.777 20.079ZM107.488 23.577A253.323 253.323 0 0 0 92.235 6.735c-1.063-1.078-2.433-1.65-3.85-1.65-.506 0-1.017.075-1.523.224-1.923.568-3.314 2.106-3.733 4.115-1.072 5.164-3.11 15.69-4.012 26.101 7.014 4.613 13.492 9.49 19.426 14.621 2.3-8.757 5.29-17.63 8.945-26.569ZM255.42 102.007c-13.65-7.223-27.058-12.744-40.16-16.569-4.343 12.38-9.953 23.631-16.818 33.689-5.63 8.255-12.362 14.82-19.708 19.296 24.658-2.093 50.5-11.132 76.931-26.934 1.715-1.024 2.707-2.822 2.653-4.811-.045-1.99-1.133-3.734-2.898-4.671ZM235.273 85.513c4.705-6.643 9.186-13.796 13.43-21.455.963-1.74.922-3.788-.121-5.483a5.4 5.4 0 0 0-4.837-2.598c-7.309.24-14.377.796-21.199 1.641-1.375 7.539-3.123 14.762-5.249 21.658a203.803 203.803 0 0 1 17.976 6.237ZM180.247 104.025c-4.505 15.384-12.329 27.46-22.278 34.58 4.065-.211 8.263-1.227 12.358-3.034 8.496-3.746 16.373-10.688 22.777-20.075 15.273-22.383 24.097-51.082 26.223-85.297a5.394 5.394 0 0 0-2.388-4.84 5.428 5.428 0 0 0-5.402-.432c-9.14 4.29-17.628 8.91-25.46 13.85 1.915 23.582-.029 45.434-5.83 65.248ZM179.214 35.52c-.901-10.406-2.94-20.932-4.011-26.1-.416-2.01-1.811-3.547-3.733-4.115a5.39 5.39 0 0 0-1.524-.224c-1.416 0-2.787.572-3.85 1.65-5.485 5.549-10.568 11.164-15.252 16.842 3.654 8.939 6.644 17.812 8.949 26.565 5.934-5.127 12.407-10.005 19.421-14.617ZM129.144 87.229c6.64-13.092 17.246-24.829 25.21-32.243-4.372-17.779-11.104-34.55-20.397-52.097C132.998 1.078 131.195 0 129.148 0s-3.845 1.082-4.808 2.889c-9.389 17.604-16.237 35.122-20.377 52.093 8.313 7.688 19.28 20.224 25.181 32.247Z" fill="#D7153A"/>
+                    <path d="M153.541 133.686c6.885-4.833 13.77-13.254 18.139-24.97 8.458-22.681 9.334-47.945 8.122-65.823-15.331 10.215-39.665 31.55-47.975 54.36-3.911 10.734-5.734 25.355-2.72 33.511 1.259 3.411 3.401 5.997 6.345 7.227 4.46 1.865 11.312.456 18.089-4.305ZM125.713 95.261c-2.027-4.724-4.261-9.18-7.728-14.186-9.809-14.16-23.026-26.933-39.475-38.185-.17 2.652-2.57 31.297 5.851 59.304 6.408 21.302 17.354 29.98 23.354 33.333 6.038 3.369 11.561 4.165 18.039 2.557-6.565-8.935-5.747-27.27-.041-42.823Z" fill="#D7153A"/>
+                  </svg>
+                  <span class="sr-only">NSW Government</span>
+                </a>
+              </div>
+              <div class="nsw-header__name">
+                <div class="nsw-header__title">Design System <span class="nsw-docs__version">v3.24.5</span></div>
+              </div>
+              <div class="nsw-header__menu">
+                <button type="button" class="js-open-nav" aria-expanded="false" aria-controls="main-nav">
+                  <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">menu</span>
+                  <span><span class="sr-only">Open</span> Menu</span>
+                </button>
+              </div>
+            </div>
+      
+            <div class="nsw-header__search">
+              <button type="button" class="js-open-search" aria-expanded="false" aria-controls="header-autocomplete">
+                <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">search</span>
+                <span><span class="sr-only">Show</span> Search</span>
+              </button>
+            </div>
+      
+          </div>
+      
+          <div class="nsw-header__search-area nsw-autocomplete js-search-area js-autocomplete" id="header-autocomplete" hidden>
+            <div role="search">
+              <label for="nsw-header-autocomplete" class="sr-only">Search site for:</label>
+              <input class="nsw-header__input js-autocomplete__input js-search-input" type="text" autocomplete="off" id="nsw-header-autocomplete" name="input-autocomplete">
+      
+              <button class="nsw-icon-button nsw-icon-button--flex js-open-search" aria-expanded="true" aria-controls="header-autocomplete">
+                <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">search</span>
+                <span class="sr-only">Search</span>
+              </button>
+      
+              <div class="nsw-autocomplete__results js-autocomplete__results">
+                <ul id="autocomplete" class="nsw-autocomplete__list js-autocomplete__list">
+                  <li class="nsw-autocomplete__item nsw-text-truncate js-autocomplete__item" data-autocomplete-template="result">
+                    <a href="" data-autocomplete-url data-autocomplete-label></a>
+                  </li>
+                  <li class="nsw-autocomplete__item nsw-autocomplete__no-results nsw-text-truncate js-autocomplete__item" data-autocomplete-template="no-results" role="presentation"></li>
+                </ul>
+              </div>
+      
+              <p class="sr-only" aria-live="polite" aria-atomic="true">
+                <span class="js-autocomplete__aria-results">0</span> results found.
+              </p>
+      
+            </div>
+            <button class="nsw-icon-button js-close-search" aria-expanded="true" aria-controls="header-autocomplete">
+              <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">close</span>
+              <span class="sr-only">Close search</span>
+            </button>
+      
+          </div>
+      
+        </div>
+      </header>
+    </div>
+  </div>
+  <div class="nsw-docs__wrapper">
+    <div class="nsw-docs__nav">
+      <div class="nsw-docs__nav-wrapper">
+        <nav class="nsw-main-nav js-mega-menu" id="main-nav" aria-label="Main menu">
+          <div class="nsw-main-nav__header">
+            <div class="nsw-main-nav__title">Menu</div>
+            <button class="nsw-icon-button js-close-nav" type="button" aria-expanded="true">
+              <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">close</span>
+              <span class="sr-only">Close Menu</span>
+            </button>
+          </div>
+          <ul class="nsw-main-nav__list">
+            <li>
+              <a role="button" aria-expanded="false" aria-controls="sub-nav-about">
+                <span>About</span>
+                <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_right</span>
+              </a>
+        
+              <div class="nsw-main-nav__sub-nav" id="sub-nav-about" role="region" aria-label="Design Submenu">
+                <div class="nsw-main-nav__header">
+                  <button class="nsw-icon-button nsw-icon-button--flex js-close-sub-nav" type="button" aria-expanded="true" aria-controls="sub-nav-about">
+                    <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_left</span>
+                    <span>Back<span class="sr-only"> to Main Menu</span></span>
+                  </button>
+        
+                  <button class="nsw-icon-button js-close-nav" type="button" aria-expanded="true">
+                    <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">close</span>
+                    <span class="sr-only">Close Menu</span>
+                  </button>
+                </div>
+        
+                <ul class="nsw-main-nav__sub-list">
+                  <li><a href="https://designsystem.nsw.gov.au/docs/content/about/what-is-design-system.html"><span>What is Design System</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/docs/content/about/supporting-different-roles.html"><span>Supporting different roles</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/docs/content/about/our-ecosystem.html"><span>Our ecosystem</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/docs/content/about/release-notes.html"><span>Release notes</span></a></li>
+                </ul>
+              </div>
+            </li>
+        
+            <li>
+              <a role="button" aria-expanded="false" aria-controls="sub-nav-design">
+                <span>Design</span>
+                <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_right</span>
+              </a>
+        
+              <div class="nsw-main-nav__sub-nav" id="sub-nav-design" role="region" aria-label="Design Submenu">
+                <div class="nsw-main-nav__header">
+                  <button class="nsw-icon-button nsw-icon-button--flex js-close-sub-nav" type="button" aria-expanded="true" aria-controls="sub-nav-design">
+                    <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_left</span>
+                    <span>Back<span class="sr-only"> to Main Menu</span></span>
+                  </button>
+        
+                  <button class="nsw-icon-button js-close-nav" type="button" aria-expanded="true">
+                    <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">close</span>
+                    <span class="sr-only">Close Menu</span>
+                  </button>
+                </div>
+        
+                <ul class="nsw-main-nav__sub-list">
+                  <li><a href="https://designsystem.nsw.gov.au/docs/content/design/getting-started.html"><span>Getting Started</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/docs/content/design/figma-ui-kit.html"><span>Figma UI Kit</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/docs/content/design/extending.html"><span>Extending</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/docs/content/design/theming.html"><span>Theming</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/docs/content/design/guides.html"><span>Guides</span></a></li>
+                </ul>
+              </div>
+            </li>
+        
+            <li>
+              <a role="button" aria-expanded="false" aria-controls="sub-nav-develop">
+                <span>Develop</span>
+                <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_right</span>
+              </a>
+        
+              <div class="nsw-main-nav__sub-nav" id="sub-nav-develop" role="region" aria-label="Develop Submenu">
+                <div class="nsw-main-nav__header">
+                  <button class="nsw-icon-button nsw-icon-button--flex js-close-sub-nav" type="button" aria-expanded="true" aria-controls="sub-nav-develop">
+                    <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_left</span>
+                    <span>Back<span class="sr-only"> to Main Menu</span></span>
+                  </button>
+        
+                  <button class="nsw-icon-button js-close-nav" type="button" aria-expanded="true">
+                    <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">close</span>
+                    <span class="sr-only">Close Menu</span>
+                  </button>
+                </div>
+        
+                <ul class="nsw-main-nav__sub-list">
+                  <li><a href="https://designsystem.nsw.gov.au/docs/content/develop/getting-started.html"><span>Getting Started</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/docs/content/develop/theming.html"><span>Theming</span></a></li>
+                </ul>
+              </div>
+            </li>
+        
+            <li>
+              <a role="button" aria-expanded="false" aria-controls="sub-nav-core">
+                <span>Core styles</span>
+                <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_right</span>
+              </a>
+        
+              <div class="nsw-main-nav__sub-nav" id="sub-nav-core" role="region" aria-label="Core styles Submenu">
+                <div class="nsw-main-nav__header">
+                  <button class="nsw-icon-button nsw-icon-button--flex js-close-sub-nav" type="button" aria-expanded="true" aria-controls="sub-nav-core">
+                    <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_left</span>
+                    <span>Back<span class="sr-only"> to Main Menu</span></span>
+                  </button>
+        
+                  <button class="nsw-icon-button js-close-nav" type="button" aria-expanded="true">
+                    <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">close</span>
+                    <span class="sr-only">Close Menu</span>
+                  </button>
+                </div>
+        
+                <ul class="nsw-main-nav__sub-list">
+                  <li><a href="https://designsystem.nsw.gov.au/core/logo/index.html"><span>Logo</span><span class="nsw-brand">&#128313;</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/core/colour/index.html"><span>Colour</span><span class="nsw-brand">&#128313;</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/core/typography/index.html"><span>Typography</span><span class="nsw-brand">&#128313;</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/core/iconography/index.html"><span>Iconography</span><span class="nsw-brand">&#128313;</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/core/pictograms/index.html"><span>Pictograms</span><span class="nsw-brand">&#128313;</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/core/grid/index.html"><span>Grid</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/core/layout/index.html"><span>Layout</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/core/section/index.html"><span>Section</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/core/graphic-elements/index.html"><span>Graphic elements</span><span class="nsw-brand">&#128313;</span></a></li>
+                </ul>
+              </div>
+            </li>
+        
+            <li>
+              <a role="button" aria-expanded="false" aria-controls="sub-nav-components">
+                <span>Components</span>
+                <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_right</span>
+              </a>
+        
+              <div class="nsw-main-nav__sub-nav" id="sub-nav-components" role="region" aria-label="Components Submenu">
+                <div class="nsw-main-nav__header">
+                  <button class="nsw-icon-button nsw-icon-button--flex js-close-sub-nav" type="button" aria-expanded="true" aria-controls="sub-nav-components">
+                    <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_left</span>
+                    <span>Back<span class="sr-only"> to Main Menu</span></span>
+                  </button>
+        
+                  <button class="nsw-icon-button js-close-nav" type="button" aria-expanded="true">
+                    <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">close</span>
+                    <span class="sr-only">Close Menu</span>
+                  </button>
+                </div>
+        
+                <ul class="nsw-main-nav__sub-list">
+                  <li><a href="https://designsystem.nsw.gov.au/components/accordion/index.html"><span>Accordion</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/components/back-to-top/index.html"><span>Back to top</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/components/breadcrumbs/index.html"><span>Breadcrumbs</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/components/button/index.html"><span>Buttons</span><span class="nsw-brand">&#128313;</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/components/callout/index.html"><span>Callout</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/components/card-carousel/index.html"><span>Card carousel</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/components/card/index.html"><span>Cards</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/components/close-button/index.html"><span>Close button</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/components/content-block/index.html"><span>Content blocks</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/components/cookie-consent/index.html"><span>Cookie consent</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/components/date-input/index.html"><span>Date input</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/components/date-picker/index.html"><span>Date picker</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/components/dialog/index.html"><span>Dialog</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/components/file-upload/index.html"><span>File upload</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/components/filters/index.html"><span>Filters</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/components/footer/index.html"><span>Footer</span><span class="nsw-brand">&#128313;</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/components/form/index.html"><span>Forms</span><span class="nsw-brand">&#128313;</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/components/global-alert/index.html"><span>Global alert</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/components/header/index.html"><span>Header</span><span class="nsw-brand">&#128313;</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/components/hero-banner/index.html"><span>Hero banner</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/components/hero-search/index.html"><span>Hero search</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/components/in-page-alert/index.html"><span>In-page alert</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/components/in-page-nav/index.html"><span>In-page navigation</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/components/link/index.html"><span>Link</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/components/link-list/index.html"><span>Link list</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/components/list-item/index.html"><span>List items</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/components/loader/index.html"><span>Loader</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/components/main-nav/index.html"><span>Main navigation</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/components/masthead/index.html"><span>Masthead</span><span class="nsw-brand">&#128313;</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/components/media/index.html"><span>Media</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/components/pagination/index.html"><span>Pagination</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/components/popover/index.html"><span>Popover</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/components/progress-indicator/index.html"><span>Progress Indicator</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/components/quick-exit/index.html"><span>Quick exit</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/components/results-bar/index.html"><span>Results bar</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/components/select/index.html"><span>Select</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/components/side-nav/index.html"><span>Side navigation</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/components/status-labels/index.html"><span>Status labels</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/components/steps/index.html"><span>Steps</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/components/support-list/index.html"><span>Support list</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/components/table/index.html"><span>Tables</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/components/tabs/index.html"><span>Tabs</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/components/tag/index.html"><span>Tags</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/components/tooltip/index.html"><span>Tooltip</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/components/utility-list/index.html"><span>Utility list</span></a></li>
+                </ul>
+              </div>
+            </li>
+        
+            <li>
+              <a role="button" aria-expanded="false" aria-controls="sub-nav-utilities">
+                <span>Utility classes</span>
+                <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_right</span>
+              </a>
+        
+              <div class="nsw-main-nav__sub-nav" id="sub-nav-utilities" role="region" aria-label="Utilities Submenu">
+                <div class="nsw-main-nav__header">
+                  <button class="nsw-icon-button nsw-icon-button--flex js-close-sub-nav" type="button" aria-expanded="true" aria-controls="sub-nav-utilities">
+                    <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_left</span>
+                    <span>Back<span class="sr-only"> to Main Menu</span></span>
+                  </button>
+        
+                  <button class="nsw-icon-button js-close-nav" type="button" aria-expanded="true">
+                    <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">close</span>
+                    <span class="sr-only">Close Menu</span>
+                  </button>
+                </div>
+        
+                <ul class="nsw-main-nav__sub-list">
+                  <li><a href="https://designsystem.nsw.gov.au/docs/content/utilities/background.html"><span>Background</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/docs/content/utilities/borders.html"><span>Borders</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/docs/content/utilities/box-shadow.html"><span>Box shadow</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/docs/content/utilities/display.html"><span>Display</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/docs/content/utilities/flex.html"><span>Flex</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/docs/content/utilities/float.html"><span>Float</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/docs/content/utilities/overflow.html"><span>Overflow</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/docs/content/utilities/position.html"><span>Position</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/docs/content/utilities/spacing.html"><span>Spacing</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/docs/content/utilities/svg.html"><span>SVG</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/docs/content/utilities/text.html"><span>Text</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/docs/content/utilities/vertical-align.html"><span>Vertical align</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/docs/content/utilities/visibility.html"><span>Visibility</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/docs/content/utilities/z-index.html"><span>Z-index</span></a></li>
+                </ul>
+              </div>
+            </li>
+        
+            <li>
+              <a role="button" aria-expanded="false" aria-controls="sub-nav-methods">
+                <span>Methods</span>
+                <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_right</span>
+              </a>
+        
+              <div class="nsw-main-nav__sub-nav" id="sub-nav-methods" role="region" aria-label="Methods Submenu">
+                <div class="nsw-main-nav__header">
+                  <button class="nsw-icon-button nsw-icon-button--flex js-close-sub-nav" type="button" aria-expanded="true" aria-controls="sub-nav-methods">
+                    <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_left</span>
+                    <span>Back<span class="sr-only"> to Main Menu</span></span>
+                  </button>
+        
+                  <button class="nsw-icon-button js-close-nav" type="button" aria-expanded="true">
+                    <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">close</span>
+                    <span class="sr-only">Close Menu</span>
+                  </button>
+                </div>
+        
+                <ul class="nsw-main-nav__sub-list">
+                  <li><a href="https://designsystem.nsw.gov.au/docs/content/methods/search.html"><span>Search &amp; Filters</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/docs/content/methods/charts-and-graphs.html"><span>Charts and graphs</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/docs/content/methods/inactive-fields.html"><span>Inactive fields</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/docs/content/methods/maps.html"><span>Maps</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/docs/content/methods/you-are-here.html"><span>You are here</span></a></li>
+                </ul>
+              </div>
+            </li>
+        
+            <li>
+              <a href="https://designsystem.nsw.gov.au/templates/index.html">
+                <span>Templates</span>
+              </a>
+            </li>
+        
+                <li>
+              <a role="button" aria-expanded="false" aria-controls="sub-nav-contribute">
+                <span>Contribute</span>
+                <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_right</span>
+              </a>
+        
+              <div class="nsw-main-nav__sub-nav" id="sub-nav-contribute" role="region" aria-label="Contribute Submenu">
+                <div class="nsw-main-nav__header">
+                  <button class="nsw-icon-button nsw-icon-button--flex js-close-sub-nav" type="button" aria-expanded="true" aria-controls="sub-nav-contribute">
+                    <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_left</span>
+                    <span>Back<span class="sr-only"> to Main Menu</span></span>
+                  </button>
+        
+                  <button class="nsw-icon-button js-close-nav" type="button" aria-expanded="true">
+                    <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">close</span>
+                    <span class="sr-only">Close Menu</span>
+                  </button>
+                </div>
+        
+                <ul class="nsw-main-nav__sub-list">
+                  <li><a href="https://designsystem.nsw.gov.au/docs/content/contribute/contribution-criteria.html"><span>Contribution criteria</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/docs/content/contribute/propose-a-new-component.html"><span>Propose a new component</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/docs/content/contribute/build-a-new-component.html"><span>Build a new component</span></a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <div class="nsw-docs__main">
+      <div class="nsw-docs__intro">
+        <div class="nsw-docs__container">
+          <h1>Charts and graphs</h1>
+          
+          <p class="nsw-intro">Charts and graphs help users understand data quickly.</p>
+          
+        </div>
+      </div>
+      <div class="nsw-docs__content">
+        <div class="nsw-docs__container">
+
+<nav class="nsw-in-page-nav" aria-labelledby="in-page-nav">
+  <div id="in-page-nav" class="nsw-in-page-nav__title">On this page</div>
+  <ul>
+    <li>
+      <a href="#principles">Principles</a>
+    </li>
+    <li>
+      <a href="#examples">Common chart pitfalls</a>
+    </li>
+    <li>
+      <a href="#review-checklist">Review checklist</a>
+    </li>
+  </ul>
+</nav>
+
+<h2 id="about-this-guidance">About this guidance</h2>
+<p>This guidance helps teams choose and design charts and graphs that communicate data clearly and consistently across NSW digital products. This guidance was previously titled ‘Data visualisation’. The rename to ‘Charts and graphs’ aligns with the NSW Brand Toolkit and reflects the current scope of this guidance.</p>
+<p>It covers common chart types used in services and dashboards, including bar charts, line charts, scatter plots and similar formats. The guidance is tool-agnostic and applies regardless of charting library or platform.</p>
+<p>It sets shared principles for clarity, accessibility and consistency rather than prescribing exact implementation. Teams using custom visualisation tools such as D3 should apply the same principles to ensure charts remain understandable and accessible.</p>
+
+<h3>Out of scope</h3>
+<ul>
+  <li>Expressive infographics designed for campaigns or marketing</li>
+  <li>Advanced analytical visualisations such as network graphs or complex relationship mapping</li>
+  <li>Interactive GIS mapping</li>
+  <li>Highly specialised investigative tools built for internal compliance work</li>
+</ul>
+<p>These use cases may require bespoke design and technical decisions beyond the scope of the design system. Future guidance may expand to cover additional visualisation types as needs mature.</p>
+
+<h2 id="principles">Principles</h2>
+<p>These principles apply to all charts and graphs in NSW digital products.</p>
+<div class="nsw-grid nsw-grid--spaced nsw-m-top-sm">
+  <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+    <div class="nsw-content-block">
+      <div class="nsw-content-block__image">
+          <div class="nsw-content-block__icon"><svg data-name='Pictograms main colour' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'><path fill='none' stroke='var(--nsw-brand-supplementary)' stroke-linejoin='round' d='M42.59,33.55,38.05,29a2.73,2.73,0,0,0-3.86,0l-.57.57'/><path fill='none' stroke='var(--nsw-brand-supplementary)' stroke-linejoin='round' d='M36.24,44.18,23.86,31.84a2,2,0,0,1,0-2.87h0a2,2,0,0,1,2.87,0l5.19,5.2'/><path fill='none' stroke='var(--nsw-brand-supplementary)' stroke-linejoin='round' d='M45.5,32.2l-3.73-3.73a2.79,2.79,0,0,0-4,0'/><path fill='none' stroke='var(--nsw-brand-supplementary)' stroke-linejoin='round' d='M36.58,38.89l-6.12-6.12a2,2,0,0,1,0-2.85h0a2,2,0,0,1,2.84,0l6.13,6.13'/><path fill='none' stroke='var(--nsw-brand-supplementary)' stroke-linejoin='round' d='M32.82,45l-.67-.66a2.92,2.92,0,0,1,0-4.11h0'/><path fill='none' stroke='var(--nsw-brand-dark)' stroke-linejoin='round' d='M44.5,27.5V9.5c-10-3-20,0-20,0s-12-3-21,0v31c10-3,21,0,21,0l4-1'/><path fill='none' stroke='var(--nsw-brand-dark)' stroke-linejoin='round' d='M22,12.61s-9.14-2.08-16,0'/><path fill='none' stroke='var(--nsw-brand-dark)' stroke-linejoin='round' d='M42.34,22.84s-8.67-2.26-15.18,0'/><path fill='none' stroke='var(--nsw-brand-dark)' stroke-linejoin='round' d='M22,15.08s-9.14-2.09-16,0'/><path fill='none' stroke='var(--nsw-brand-dark)' stroke-linejoin='round' d='M21.44,26.12s-8.56-1.95-15,0v-8.5c6.42-2,15,0,15,0Z'/><path fill='none' stroke='var(--nsw-brand-dark)' stroke-linejoin='round' d='M41.59,20.09s-8-1.95-14.06,0v-8.5c6-1.95,14.06,0,14.06,0Z'/><line fill='none' stroke='var(--nsw-brand-dark)' stroke-linejoin='round' x1='24.5' y1='11.5' x2='24.5' y2='26.5'/><line fill='none' stroke='var(--nsw-brand-dark)' stroke-linejoin='round' x1='24.5' y1='35.5' x2='24.5' y2='37.5'/></svg></div>
+      </div>
+      <div class="nsw-content-block__content">
+        <div class="nsw-content-block__title">1. Start with the story, not the chart</div>
+        <p class="nsw-content-block__copy">Every chart communicates something. Be clear on what that is before you choose how to show it.</p>
+        <div class="nsw-content-block__link">
+          <a href="#choose-the-right-chart-type">Read more</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+    <div class="nsw-content-block">
+      <div class="nsw-content-block__image">
+          <div class="nsw-content-block__icon"><svg viewBox='0 0 48 48' class='nsw-pictogram' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M39.4902 29.156C43.2802 25.203 41.5032 24.042 43.6432 21.902L45.0002 20.545' stroke='var(--nsw-brand-supplementary)' stroke-linejoin='round'></path><path d='M27.7136 27.025C27.7136 27.025 33.1206 32.205 34.8046 33.644C37.6266 35.859 40.0376 31.844 38.2856 30.329C36.5336 28.814 30.4686 22.454 30.4686 22.454L26.1056 18.394H23.1346C21.9454 19.2452 20.6619 19.9563 19.3096 20.513C18.3912 20.8543 17.3914 20.9113 16.4401 20.6768C15.4889 20.4423 14.6301 19.9271 13.9756 19.198C15.7066 17.367 17.4346 15.618 17.4346 15.618L20.7836 12.23C21.4198 11.6811 22.2323 11.3794 23.0726 11.38H28.4436C29.5986 11.38 31.9516 11.38 33.1206 10.21L40.5006 3.42004' stroke='var(--nsw-brand-dark)' stroke-linejoin='round'></path><path d='M35.6097 34.118C35.0937 35.342 33.0097 38.218 30.3597 36.21C28.6767 34.773 25.1807 31.462 25.1807 31.462' stroke='var(--nsw-brand-dark)' stroke-linejoin='round'></path><path d='M31.3668 36.7781C30.1668 39.2081 28.0508 40.1901 26.1358 38.6781C24.7948 37.6221 22.7568 35.5381 22.7568 35.5381' stroke='var(--nsw-brand-dark)' stroke-linejoin='round'></path><path d='M26.7638 39.079C26.0378 40.879 23.9638 42.045 22.2818 40.998C21.8738 40.744 21.3508 40.391 20.8818 40.067' stroke='var(--nsw-brand-dark)' stroke-linejoin='round'></path><path d='M18.3413 12.244C16.9303 11.076 15.8033 11.507 13.8413 9.54402L8.19531 3.35303' stroke='var(--nsw-brand-dark)' stroke-linejoin='round'></path><path d='M5.48 27.408C4.233 25.119 5.98 23.373 3 20.389' stroke='var(--nsw-brand-dark)' stroke-linejoin='round'></path><path d='M8.79731 29.166L8.78531 29.154C8.59241 28.9539 8.36191 28.7937 8.10701 28.6828C7.85212 28.5719 7.57783 28.5124 7.29989 28.5076C7.02195 28.5029 6.7458 28.553 6.48728 28.6552C6.22875 28.7574 5.99293 28.9096 5.79331 29.103L4.59731 30.248C4.19285 30.6413 3.96121 31.1792 3.95333 31.7433C3.94546 32.3074 4.16199 32.8516 4.55531 33.256C4.94862 33.6605 5.48651 33.8921 6.05062 33.9C6.61472 33.9079 7.15886 33.6913 7.56331 33.298L8.74631 32.164C9.14803 31.7718 9.37873 31.2369 9.38828 30.6755C9.39783 30.1141 9.18546 29.5717 8.79731 29.166Z' stroke='var(--nsw-brand-supplementary)' stroke-linejoin='round'></path><path d='M13.7715 30.2291L13.7595 30.2171C13.5664 30.0171 13.3359 29.8571 13.0809 29.7464C12.826 29.6356 12.5517 29.5762 12.2738 29.5716C11.9959 29.5669 11.7198 29.6171 11.4614 29.7193C11.2029 29.8215 10.9671 29.9736 10.7675 30.1671L7.29247 33.5581C6.89651 33.9532 6.67217 34.4885 6.66803 35.0478C6.66389 35.6072 6.88028 36.1457 7.27034 36.5467C7.66041 36.9477 8.19274 37.1789 8.75203 37.1902C9.31132 37.2015 9.85254 36.992 10.2585 36.6071L13.7215 33.2281C14.1231 32.8355 14.3537 32.3004 14.363 31.7388C14.3724 31.1773 14.1598 30.6348 13.7715 30.2291Z' stroke='var(--nsw-brand-supplementary)' stroke-linejoin='round'></path><path d='M17.0279 33.01L17.016 32.997C16.8245 32.7954 16.5952 32.6336 16.3411 32.5207C16.0871 32.4079 15.8132 32.3463 15.5353 32.3394C15.2574 32.3325 14.9808 32.3805 14.7215 32.4807C14.4622 32.5808 14.2251 32.7311 14.024 32.923L10.837 36.037C10.6304 36.229 10.4642 36.4601 10.3478 36.717C10.2314 36.9738 10.1673 37.2512 10.1591 37.5331C10.1509 37.8149 10.1989 38.0956 10.3001 38.3588C10.4014 38.6219 10.554 38.8623 10.749 39.066C10.9441 39.2696 11.1776 39.4324 11.4362 39.545C11.6947 39.6576 11.973 39.7176 12.255 39.7216C12.5369 39.7256 12.8169 39.6735 13.0785 39.5683C13.3401 39.4632 13.5782 39.307 13.779 39.109L16.954 36.009C17.3591 35.6198 17.5942 35.0864 17.6081 34.5247C17.6219 33.9631 17.4134 33.4187 17.0279 33.01Z' stroke='var(--nsw-brand-supplementary)' stroke-linejoin='round'></path><path d='M19.0972 36.897L19.0852 36.885C18.8912 36.686 18.6598 36.5272 18.4043 36.4178C18.1488 36.3083 17.8742 36.2504 17.5963 36.2472C17.3183 36.244 17.0425 36.2958 16.7846 36.3994C16.5267 36.503 16.2917 36.6565 16.0932 36.851L15.2742 37.644C14.872 38.0396 14.6434 38.5788 14.6387 39.1429C14.6341 39.707 14.8536 40.2498 15.2492 40.652C15.6448 41.0542 16.1839 41.2828 16.748 41.2875C17.3122 41.2922 17.855 41.0726 18.2572 40.677L19.0632 39.896C19.4629 39.5015 19.6908 38.9651 19.6971 38.4035C19.7035 37.8419 19.4879 37.3005 19.0972 36.897Z' stroke='var(--nsw-brand-supplementary)' stroke-linejoin='round'></path></svg></div>
+      </div>
+      <div class="nsw-content-block__content">
+        <div class="nsw-content-block__title">2. Represent the data honestly</div>
+        <p class="nsw-content-block__copy">Use honest scales, meaningful baselines and clear labels. Let the data speak for itself.</p>
+        <div class="nsw-content-block__link">
+          <a href="#never-mislead-with-data">Read more</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+    <div class="nsw-content-block">
+      <div class="nsw-content-block__image">
+          <div class="nsw-content-block__icon"><svg class='nsw-pictogram' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48' fill='none'><polygon points='7.55 24.77 9.3 28.3 13.2 28.88 10.38 31.6 11.04 35.47 7.55 33.63 4.06 35.47 4.72 31.6 1.9 28.88 5.8 28.3 7.55 24.77' stroke='var(--nsw-palette-blue-02)' stroke-linejoin='round'/><polygon points='24 9.95 28.35 18.75 37.75 20.13 31 26.65 32.6 36.05 24 31.4 15.4 36.05 17 26.65 10.25 20.13 19.65 18.75 24 9.95' fill='none' stroke='var(--nsw-palette-blue-01)' stroke-linejoin='round'/><polygon points='40.45 24.77 42.2 28.3 46.1 28.88 43.28 31.6 43.94 35.47 40.45 33.63 36.96 35.47 37.62 31.6 34.8 28.88 38.7 28.3 40.45 24.77' stroke='var(--nsw-palette-blue-02)' stroke-linejoin='round'/></svg></div>
+      </div>
+      <div class="nsw-content-block__content">
+        <div class="nsw-content-block__title">3. Make the key insight obvious</div>
+        <p class="nsw-content-block__copy">Remove anything that doesn’t help the reader get to the insight faster. If a chart is trying to say everything, it ends up saying nothing.</p>
+        <div class="nsw-content-block__link">
+          <a href="#make-the-message-obvious">Read more</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+    <div class="nsw-content-block">
+      <div class="nsw-content-block__image">
+          <div class="nsw-content-block__icon"><svg viewBox='0 0 64 64' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M 445,240 C 445,126.781 353.223,35 240,35 126.777,35 35,126.781 35,240 c 0,113.219 91.777,205 205,205 113.223,0 205,-91.781 205,-205 z' stroke='var(--nsw-brand-dark)' stroke-width='10' stroke-linecap='butt' stroke-linejoin='round' stroke-miterlimit='10' transform='matrix(0.13333333,0,0,-0.13333333,0,64)'/><path d='M 265.73,354.063 c 0,-14.215 -11.519,-25.739 -25.73,-25.739 -14.211,0 -25.73,11.524 -25.73,25.739 0,14.207 11.519,25.726 25.73,25.726 14.211,0 25.73,-11.519 25.73,-25.726 z M 356.926,305.121 c -2.61,9.012 -11.965,13.957 -21.035,11.574 -71.692,-18.812 -121.621,-18.535 -191.782,0 -9.058,2.399 -18.425,-2.562 -21.035,-11.574 -2.625,-9.004 2.563,-18.422 11.567,-21.039 27.886,-8.102 45.918,-11.301 73.98,-13.496 -0.672,-52.957 -5.848,-97.68 -25.359,-152.727 -3.133,-8.836 1.484,-18.5426 10.332,-21.6754 1.875,-0.6641 3.789,-0.9805 5.676,-0.9805 6.98,0 13.535,4.3477 16.003,11.3129 14.512,40.929 21.473,63.578 24.727,98.742 3.254,-35.168 10.215,-57.813 24.727,-98.742 2.468,-6.9652 9.023,-11.3129 16.003,-11.3129 1.887,0 3.801,0.3164 5.676,0.9805 8.848,3.1328 13.465,12.8394 10.332,21.6754 -14.425,40.68 -24.297,80.215 -25.351,152.727 28.066,2.195 46.093,5.394 73.972,13.496 9.004,2.617 14.192,12.035 11.567,21.039 z' stroke='var(--nsw-brand-supplementary)' stroke-width='10' stroke-linecap='butt' stroke-linejoin='round' stroke-miterlimit='10' transform='matrix(0.13333333,0,0,-0.13333333,0,64)'/></svg></div>
+      </div>
+      <div class="nsw-content-block__content">
+        <div class="nsw-content-block__title">4. Meet accessibility standards</div>
+        <p class="nsw-content-block__copy">Ensure sufficient colour contrast, label data directly where possible, and always provide a text or table alternative.</p>
+        <div class="nsw-content-block__link">
+          <a href="#meet-accessibility-standards">Read more</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+    <div class="nsw-content-block">
+      <div class="nsw-content-block__image">
+          <div class="nsw-content-block__icon"><svg viewBox='0 0 48 48' class='nsw-pictogram' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M33 7.5h3.5a2 2 0 0 1 2 2v33a2 2 0 0 1-2 2h-25a2 2 0 0 1-2-2V9.5a2 2 0 0 1 2-2H15' stroke='var(--nsw-brand-dark)' stroke-linejoin='round'/><path d='M27 6.5a3 3 0 0 0-6 0h-4.5v4h15v-4Z' stroke='var(--nsw-brand-dark)' stroke-linejoin='round'/><circle cx='24' cy='6.5' r='1' stroke='var(--nsw-brand-dark)' stroke-linejoin='round'/><polyline points='19.5 15.38 16.38 18.5 14.5 16.63' stroke='var(--nsw-brand-supplementary)' stroke-linejoin='round'/><polyline points='19.5 22.38 16.38 25.5 14.5 23.63' stroke='var(--nsw-brand-supplementary)' stroke-linejoin='round'/><polyline points='19.5 29.38 16.38 32.5 14.5 30.63' stroke='var(--nsw-brand-supplementary)' stroke-linejoin='round'/><polyline points='19.5 36.38 16.38 39.5 14.5 37.63' stroke='var(--nsw-brand-supplementary)' stroke-linejoin='round'/><line x1='21.5' y1='17.5' x2='34.5' y2='17.5' stroke='var(--nsw-brand-dark)' stroke-linejoin='round'/><line x1='21.5' y1='24.5' x2='34.5' y2='24.5' stroke='var(--nsw-brand-dark)' stroke-linejoin='round'/><line x1='21.5' y1='31.5' x2='34.5' y2='31.5' stroke='var(--nsw-brand-dark)' stroke-linejoin='round'/><line x1='21.5' y1='38.5' x2='34.5' y2='38.5' stroke='var(--nsw-brand-dark)' stroke-linejoin='round'/></svg></div>
+      </div>
+      <div class="nsw-content-block__content">
+        <div class="nsw-content-block__title">5. Apply NSW visual identity consistently</div>
+        <p class="nsw-content-block__copy">Use the approved palette, typeface and spacing so charts feel recognisably NSW Government.</p>
+        <div class="nsw-content-block__link">
+          <a href="#apply-nsw-visual-identity-consistently">Read more</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+    <div class="nsw-content-block">
+      <div class="nsw-content-block__image">
+          <div class="nsw-content-block__icon"><svg viewBox='0 0 48 48' fill="none" xmlns="http://www.w3.org/2000/svg"><g transform='translate(-2.88 -2.88) scale(1.12)'><path d="M10.35 23.0802L10.29 21.5202C10.26 20.7202 10.8 20.0302 11.58 19.8602L14.36 19.2802L14.45 18.9502C14.56 18.5502 14.68 18.1602 14.82 17.7802C14.96 17.4002 15.11 17.0302 15.28 16.6802L15.42 16.3702L13.66 14.1002C13.45 13.8302 13.33 13.5102 13.32 13.1802C13.3 12.7502 13.45 12.3302 13.75 12.0102L14.87 10.7902L15.85 9.73023C16.39 9.14023 17.26 9.03023 17.93 9.47023L20.29 11.0202L20.59 10.8402C20.99 10.6002 21.41 10.3802 21.83 10.1902C22.16 10.0402 22.5 9.90023 22.84 9.78023L23.16 9.67023L23.53 6.82023C23.63 6.03023 24.28 5.43023 25.08 5.40023L26.7 5.33023L28.17 5.27023C28.97 5.24023 29.66 5.78023 29.83 6.56023L30.41 9.32023L30.74 9.40023C31.15 9.50023 31.55 9.63023 31.94 9.77023C32.33 9.91023 32.72 10.0702 33.09 10.2402L33.4 10.3802L35.67 8.62023C36.3 8.13023 37.18 8.17023 37.77 8.71023L38.88 9.73023L40.06 10.8202C40.38 11.1102 40.57 11.5102 40.59 11.9502C40.6 12.2902 40.51 12.6202 40.33 12.9002L38.77 15.2702L38.95 15.5702C39.16 15.9302 39.36 16.3002 39.54 16.6702C39.72 17.0502 39.88 17.4302 40.02 17.8202L40.13 18.1402L42.98 18.5002C43.77 18.6002 44.37 19.2502 44.4 20.0502L44.47 21.6602L44.53 23.1402C44.56 23.9402 44.02 24.6302 43.24 24.8002L40.48 25.3802L40.4 25.7102C40.3 26.1202 40.17 26.5302 40.02 26.9302C39.87 27.3402 39.7 27.7402 39.52 28.1302L39.37 28.4402L41.12 30.6902C41.33 30.9602 41.45 31.2802 41.46 31.6102C41.48 32.0402 41.33 32.4602 41.03 32.7802L40.1 33.8002L38.93 35.0702C38.39 35.6602 37.52 35.7702 36.85 35.3302L34.47 33.7702L34.18 33.9402C33.84 34.1402 33.5 34.3202 33.14 34.4802C32.74 34.6702 32.33 34.8402 31.91 34.9802L31.59 35.0902L31.23 37.9102C31.13 38.7002 30.48 39.3002 29.69 39.3202L28.14 39.3802L26.59 39.4402C25.79 39.4702 25.1 38.9302 24.93 38.1502L24.35 35.3602L24.02 35.2702" stroke="var(--nsw-brand-dark)" stroke-linejoin="round"/><path d="M20.3601 21.93C20.6001 18.05 23.9501 15.09 27.8301 15.33C31.7101 15.57 34.6701 18.92 34.4301 22.8C34.1901 26.68 30.8401 29.64 26.9601 29.4C23.0801 29.16 20.1201 25.81 20.3601 21.93Z" stroke="var(--nsw-brand-dark)" stroke-linejoin="round"/><path d="M11.68 31.6001C13.6019 31.6001 15.16 30.0421 15.16 28.1201C15.16 26.1982 13.6019 24.6401 11.68 24.6401C9.758 24.6401 8.19995 26.1982 8.19995 28.1201C8.19995 30.0421 9.758 31.6001 11.68 31.6001Z" stroke='var(--nsw-brand-supplementary)' stroke-linejoin="round"/><path d="M3.5 42.7402L7.1 36.1201C7.1 36.1201 7.97 33.8601 9.89 33.9701C11.81 34.0801 16.04 34.3201 16.04 34.3201L20.97 31.8801C20.97 31.8801 22.42 31.2401 22.88 31.8801C23.34 32.5201 24.33 33.6201 21.72 35.1901C19.11 36.7601 16.85 38.1501 16.85 38.1501L10.23 38.4401" stroke='var(--nsw-brand-supplementary)' stroke-linejoin="round"/><path d="M13.02 42.7402L13.95 38.6802" stroke='var(--nsw-brand-supplementary)' stroke-linejoin="round"/></g></svg></div>
+      </div>
+      <div class="nsw-content-block__content">
+        <div class="nsw-content-block__title">6. Configure tools with good defaults</div>
+        <p class="nsw-content-block__copy">Set up your charting tool to enforce accessibility, clarity and brand from the start.</p>
+        <div class="nsw-content-block__link">
+          <a href="#configure-tools-with-good-defaults">Read more</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h2 id="choose-the-right-chart-type">1. Start with the story, not the chart</h2>
+<p>Each chart type is designed to reveal a specific kind of relationship in data, and choosing the wrong one obscures the message rather than clarifying it.</p>
+<p>The most common relationships are comparison and ranking, trend, proportion, distribution and correlation.</p>
+<p>You may not need a chart at all. If a single number tells the story, use a callout value. If users need precise figures, use a table. Only use a chart when the visual pattern adds meaning the data alone cannot.</p>
+<p>Chart examples on this page use Chart.js but the guidance applies regardless of which charting library you use.</p>
+<p>For additional chart relationships and examples, refer to the <a href="https://ft-interactive.github.io/visual-vocabulary/" target="_blank" rel="noopener noreferrer">Financial Times Visual Vocabulary</a>.</p>
+
+<div class="nsw-grid nsw-m-top-sm">
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--do"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span><span>Use charts and graphs when</span></div>
+    <ul>
+      <li>Comparing categories</li>
+      <li>Showing change over time</li>
+      <li>Showing distribution</li>
+      <li>Showing correlation between variables</li>
+      <li>Helping users quickly see patterns or trends</li>
+    </ul>
+  </div>
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--dont"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span><span>Do not use a chart when</span></div>
+    <ul>
+      <li>A single number communicates the message</li>
+      <li>A table is clearer</li>
+      <li>The dataset is too small</li>
+      <li>The chart requires heavy explanation</li>
+      <li>It is used for decoration</li>
+    </ul>
+  </div>
+</div>
+
+<h3>Comparison and ranking</h3>
+<div class="nsw-grid nsw-docs__chart-option-grid">
+  <div class="nsw-col nsw-col-12 nsw-col-lg-6 nsw-docs__chart-option">
+    <h4 id="chart-bar-vertical" class="nsw-m-bottom-sm">Bar (vertical)</h4>
+    <p class="nsw-m-bottom-sm">The default choice for comparing value across categories. Switch to horizontal bars if category labels are long.</p>
+    <div class="nsw-grid nsw-docs__chart-example">
+      <div class="nsw-col nsw-col-12">
+        <canvas id="chartCompBar" data-chart-height="320" role="img" aria-label="Vertical bar chart showing development applications assessed by local government area." tabindex="0"></canvas>
+      </div>
+    </div>
+    <p class="nsw-m-top-sm"><strong>Summary:</strong> City of Sydney and Parramatta assessed the highest number of applications in Q1 2025, together accounting for over a third of the total.</p>
+    <div class="nsw-table nsw-table--valign-middle nsw-docs__table-wrap nsw-m-top-sm">
+      <table>
+        <caption class="sr-only">Development applications assessed by local government area, January to March 2025</caption>
+        <thead>
+          <tr>
+            <th scope="col">Local government area</th>
+            <th scope="col">Applications assessed</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">City of Sydney</th>
+            <td>312</td>
+          </tr>
+          <tr>
+            <th scope="row">Parramatta</th>
+            <td>284</td>
+          </tr>
+          <tr>
+            <th scope="row">Blacktown</th>
+            <td>251</td>
+          </tr>
+          <tr>
+            <th scope="row">Liverpool</th>
+            <td>198</td>
+          </tr>
+          <tr>
+            <th scope="row">Penrith</th>
+            <td>176</td>
+          </tr>
+          <tr>
+            <th scope="row">Camden</th>
+            <td>143</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="nsw-m-top-sm"><strong>Source:</strong> NSW Planning Portal. Last updated: March 2025.</p>
+  </div>
+  <div class="nsw-col nsw-col-12 nsw-col-lg-6 nsw-docs__chart-option">
+    <h4 id="chart-bar-horizontal" class="nsw-m-bottom-sm">Bar (horizontal)</h4>
+    <p class="nsw-m-bottom-sm">Use when showing a ranked list, or when category labels are too long to read on a vertical chart.</p>
+    <div class="nsw-grid nsw-docs__chart-example">
+      <div class="nsw-col nsw-col-12">
+        <canvas id="chartCompBarHorizontal" data-chart-height="380" role="img" aria-label="Horizontal bar chart showing programme funding by programme name." tabindex="0"></canvas>
+      </div>
+    </div>
+    <p class="nsw-m-top-sm"><strong>Summary:</strong> Rental Assistance for Vulnerable Households received the largest allocation, at nearly three times the funding of the smallest programme.</p>
+    <div class="nsw-table nsw-table--valign-middle nsw-docs__table-wrap nsw-m-top-sm">
+      <table>
+        <caption class="sr-only">Programme funding allocations, 2024–25</caption>
+        <thead>
+          <tr>
+            <th scope="col">Programme</th>
+            <th scope="col">Funding ($M)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Rental Assistance for Vulnerable Households</th>
+            <td>48.2</td>
+          </tr>
+          <tr>
+            <th scope="row">Small Business Digital Transformation Grant</th>
+            <td>31.6</td>
+          </tr>
+          <tr>
+            <th scope="row">Regional Infrastructure Maintenance Program</th>
+            <td>27.4</td>
+          </tr>
+          <tr>
+            <th scope="row">Early Childhood Development Support Initiative</th>
+            <td>22.8</td>
+          </tr>
+          <tr>
+            <th scope="row">Aboriginal Community Housing Improvement Fund</th>
+            <td>18.3</td>
+          </tr>
+          <tr>
+            <th scope="row">Domestic Violence Crisis Response Program</th>
+            <td>14.7</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="nsw-m-top-sm"><strong>Source:</strong> Service NSW. Last updated: June 2025.</p>
+  </div>
+  <div class="nsw-col nsw-col-12 nsw-col-lg-6 nsw-docs__chart-option">
+    <h4 id="chart-stacked-bar-column" class="nsw-m-bottom-sm">Stacked bar</h4>
+    <p class="nsw-m-bottom-sm">Shows the composition of a whole across categories, making it easy to spot differences in the mix. Keep segments to three or four and label clearly.</p>
+    <div class="nsw-grid nsw-docs__chart-example">
+      <div class="nsw-col nsw-col-12">
+        <canvas id="chartPropStacked" data-chart-height="380" role="img" aria-label="Stacked bar chart showing support requests by contact type and quarter." tabindex="0"></canvas>
+      </div>
+    </div>
+    <p class="nsw-m-top-sm"><strong>Summary:</strong> Digital contact grew steadily across all four quarters, while phone and in-person volumes declined. By Q4, digital accounted for more than two-thirds of all requests.</p>
+    <div class="nsw-table nsw-table--valign-middle nsw-docs__table-wrap nsw-m-top-sm">
+      <table>
+        <caption class="sr-only">Support requests by contact type, 2024–25 financial year</caption>
+        <thead>
+          <tr>
+            <th scope="col">Quarter</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Digital</th>
+            <th scope="col">In person</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Q1</th>
+            <td>4,200</td>
+            <td>5,800</td>
+            <td>1,100</td>
+          </tr>
+          <tr>
+            <th scope="row">Q2</th>
+            <td>3,900</td>
+            <td>6,400</td>
+            <td>980</td>
+          </tr>
+          <tr>
+            <th scope="row">Q3</th>
+            <td>3,600</td>
+            <td>7,100</td>
+            <td>890</td>
+          </tr>
+          <tr>
+            <th scope="row">Q4</th>
+            <td>3,200</td>
+            <td>8,200</td>
+            <td>760</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="nsw-m-top-sm"><strong>Source:</strong> Service NSW. Last updated: June 2025.</p>
+  </div>
+  <div class="nsw-col nsw-col-12 nsw-col-lg-6 nsw-docs__chart-option">
+    <h4 id="chart-grouped-horizontal-bar" class="nsw-m-bottom-sm">Grouped bar</h4>
+    <p class="nsw-m-bottom-sm">Compares two or more series side by side within each category, making it easy to see differences between series at a glance.</p>
+    <div class="nsw-grid nsw-docs__chart-example">
+      <div class="nsw-col nsw-col-12">
+        <canvas id="chartCompGroupedHorizontal" data-chart-height="420" role="img" aria-label="Grouped horizontal bar chart showing lodged and approved licence applications by category." tabindex="0"></canvas>
+      </div>
+    </div>
+    <p class="nsw-m-top-sm"><strong>Summary:</strong> Approval rates were consistent across all categories, ranging from 87% to 89%. Building contractor licences had the highest volume overall.</p>
+    <div class="nsw-table nsw-table--valign-middle nsw-docs__table-wrap nsw-m-top-sm">
+      <table>
+        <caption class="sr-only">Licence applications lodged and approved by category, January to June 2025</caption>
+        <thead>
+          <tr>
+            <th scope="col">Licence category</th>
+            <th scope="col">Lodged</th>
+            <th scope="col">Approved</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Contractor licence -- building</th>
+            <td>1,840</td>
+            <td>1,620</td>
+          </tr>
+          <tr>
+            <th scope="row">Contractor licence -- electrical</th>
+            <td>1,210</td>
+            <td>1,090</td>
+          </tr>
+          <tr>
+            <th scope="row">Supervisor certificate</th>
+            <td>980</td>
+            <td>870</td>
+          </tr>
+          <tr>
+            <th scope="row">Tradesperson certificate</th>
+            <td>760</td>
+            <td>690</td>
+          </tr>
+          <tr>
+            <th scope="row">Owner-builder permit</th>
+            <td>430</td>
+            <td>380</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="nsw-m-top-sm"><strong>Source:</strong> NSW Fair Trading. Last updated: June 2025.</p>
+  </div>
+</div>
+<h3>Trends over time</h3>
+<div class="nsw-grid nsw-docs__chart-option-grid">
+  <div class="nsw-col nsw-col-12 nsw-col-lg-6 nsw-docs__chart-option">
+    <h4 id="chart-line" class="nsw-m-bottom-sm">Line</h4>
+    <p class="nsw-m-bottom-sm">The standard choice for showing change over a continuous time period. Use multi-line when you need to compare more than one series.</p>
+    <div class="nsw-grid nsw-docs__chart-example">
+      <div class="nsw-col nsw-col-12">
+        <canvas id="chartTrendLine" data-chart-height="340" role="img" aria-label="Line chart showing monthly road incident reports in NSW." tabindex="0"></canvas>
+      </div>
+    </div>
+    <p class="nsw-m-top-sm"><strong>Summary:</strong> Incidents were highest in summer months, peaking in December and January. July recorded the lowest monthly total for the year.</p>
+    <div class="nsw-table nsw-table--valign-middle nsw-docs__table-wrap nsw-m-top-sm">
+      <table>
+        <caption class="sr-only">Road incident reports, NSW monthly total, January to December 2024</caption>
+        <thead>
+          <tr>
+            <th scope="col">Month</th>
+            <th scope="col">Incidents</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">January</th>
+            <td>3,240</td>
+          </tr>
+          <tr>
+            <th scope="row">February</th>
+            <td>2,980</td>
+          </tr>
+          <tr>
+            <th scope="row">March</th>
+            <td>3,100</td>
+          </tr>
+          <tr>
+            <th scope="row">April</th>
+            <td>2,760</td>
+          </tr>
+          <tr>
+            <th scope="row">May</th>
+            <td>2,640</td>
+          </tr>
+          <tr>
+            <th scope="row">June</th>
+            <td>2,580</td>
+          </tr>
+          <tr>
+            <th scope="row">July</th>
+            <td>2,490</td>
+          </tr>
+          <tr>
+            <th scope="row">August</th>
+            <td>2,520</td>
+          </tr>
+          <tr>
+            <th scope="row">September</th>
+            <td>2,710</td>
+          </tr>
+          <tr>
+            <th scope="row">October</th>
+            <td>2,890</td>
+          </tr>
+          <tr>
+            <th scope="row">November</th>
+            <td>3,040</td>
+          </tr>
+          <tr>
+            <th scope="row">December</th>
+            <td>3,380</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="nsw-m-top-sm"><strong>Source:</strong> Transport for NSW. Last updated: December 2024.</p>
+  </div>
+  <div class="nsw-col nsw-col-12 nsw-col-lg-6 nsw-docs__chart-option">
+    <h4 id="chart-multi-line" class="nsw-m-bottom-sm">Multi-line</h4>
+    <p class="nsw-m-bottom-sm">Compares how multiple series trend over the same time period. Works best with three or four series. Beyond that, patterns become difficult to separate.</p>
+    <div class="nsw-grid nsw-docs__chart-example">
+      <div class="nsw-col nsw-col-12">
+        <canvas id="chartTrendMultiLine" data-chart-height="340" role="img" aria-label="Multi-line chart comparing web, app and assisted digital transactions over time." tabindex="0"></canvas>
+      </div>
+    </div>
+    <p class="nsw-m-top-sm"><strong>Summary:</strong> App transactions grew fastest over the year, nearly doubling. Web remained the largest channel. Assisted digital declined steadily as self-service adoption increased.</p>
+    <div class="nsw-table nsw-table--valign-middle nsw-docs__table-wrap nsw-m-top-sm">
+      <table>
+        <caption class="sr-only">Online service transactions by channel, July 2024 to June 2025 (sample periods)</caption>
+        <thead>
+          <tr>
+            <th scope="col">Period</th>
+            <th scope="col">Web</th>
+            <th scope="col">App</th>
+            <th scope="col">Assisted digital</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Jul 2024</th>
+            <td>42,000</td>
+            <td>18,000</td>
+            <td>6,200</td>
+          </tr>
+          <tr>
+            <th scope="row">Jan 2025</th>
+            <td>48,000</td>
+            <td>24,000</td>
+            <td>5,400</td>
+          </tr>
+          <tr>
+            <th scope="row">Jun 2025</th>
+            <td>51,000</td>
+            <td>31,000</td>
+            <td>4,100</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="nsw-m-top-sm"><strong>Source:</strong> Service NSW. Last updated: June 2025.</p>
+  </div>
+  <div class="nsw-col nsw-col-12 nsw-col-lg-6 nsw-docs__chart-option">
+    <h4 id="chart-area" class="nsw-m-bottom-sm">Area</h4>
+    <p class="nsw-m-bottom-sm">Shows cumulative volume or share building over time. Use sparingly as a line chart is usually clearer for non-cumulative data.</p>
+    <div class="nsw-grid nsw-docs__chart-example">
+      <div class="nsw-col nsw-col-12">
+        <canvas id="chartTrendArea" data-chart-height="360" role="img" aria-label="Area chart showing cumulative grant funding disbursed by month." tabindex="0"></canvas>
+      </div>
+    </div>
+    <p class="nsw-m-top-sm"><strong>Summary:</strong> Grant disbursements accelerated from October, with the final quarter accounting for more than half of the full-year total.</p>
+    <div class="nsw-table nsw-table--valign-middle nsw-docs__table-wrap nsw-m-top-sm">
+      <table>
+        <caption class="sr-only">Grant funding disbursed, running total by month, July to December 2024</caption>
+        <thead>
+          <tr>
+            <th scope="col">Month</th>
+            <th scope="col">Cumulative total ($M)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">July</th>
+            <td>12.4</td>
+          </tr>
+          <tr>
+            <th scope="row">August</th>
+            <td>28.7</td>
+          </tr>
+          <tr>
+            <th scope="row">September</th>
+            <td>41.2</td>
+          </tr>
+          <tr>
+            <th scope="row">October</th>
+            <td>58.9</td>
+          </tr>
+          <tr>
+            <th scope="row">November</th>
+            <td>74.3</td>
+          </tr>
+          <tr>
+            <th scope="row">December</th>
+            <td>89.1</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="nsw-m-top-sm"><strong>Source:</strong> NSW Treasury. Last updated: December 2024.</p>
+  </div>
+  <div class="nsw-col nsw-col-12 nsw-col-lg-6 nsw-docs__chart-option">
+    <h4 id="chart-line-bar-combo" class="nsw-m-bottom-sm">Lines and bar</h4>
+    <p class="nsw-m-bottom-sm">Shows two related measures with different units over the same period. Only use this when the relationship between the two measures is the point of the chart.</p>
+    <div class="nsw-grid nsw-docs__chart-example">
+      <div class="nsw-col nsw-col-12">
+        <canvas id="chartTrendLineBarCombo" data-chart-height="360" role="img" aria-label="Combined line and bar chart showing service centre visits and average wait time by month." tabindex="0"></canvas>
+      </div>
+    </div>
+    <p class="nsw-m-top-sm"><strong>Summary:</strong> Visit volumes and wait times both increased in May and June, suggesting capacity pressure heading into the second half of the year.</p>
+    <div class="nsw-table nsw-table--valign-middle nsw-docs__table-wrap nsw-m-top-sm">
+      <table>
+        <caption class="sr-only">Service centre visits and average wait time, January to June 2025</caption>
+        <thead>
+          <tr>
+            <th scope="col">Month</th>
+            <th scope="col">Visits</th>
+            <th scope="col">Average wait time (minutes)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">January</th>
+            <td>18,400</td>
+            <td>12</td>
+          </tr>
+          <tr>
+            <th scope="row">February</th>
+            <td>16,200</td>
+            <td>10</td>
+          </tr>
+          <tr>
+            <th scope="row">March</th>
+            <td>19,100</td>
+            <td>14</td>
+          </tr>
+          <tr>
+            <th scope="row">April</th>
+            <td>17,800</td>
+            <td>11</td>
+          </tr>
+          <tr>
+            <th scope="row">May</th>
+            <td>20,400</td>
+            <td>16</td>
+          </tr>
+          <tr>
+            <th scope="row">June</th>
+            <td>21,200</td>
+            <td>18</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="nsw-m-top-sm"><strong>Source:</strong> Service NSW. Last updated: June 2025.</p>
+  </div>
+  <div class="nsw-col nsw-col-12 nsw-col-lg-6 nsw-docs__chart-option">
+    <h4 id="chart-stacked-area" class="nsw-m-bottom-sm">Stacked area</h4>
+    <p class="nsw-m-bottom-sm">Shows how components contribute to a changing total over time. Better than a multi-line chart when the cumulative total is as important as the individual series.</p>
+    <div class="nsw-grid nsw-docs__chart-example">
+      <div class="nsw-col nsw-col-12">
+        <canvas id="chartTrendStackedArea" data-chart-height="360" role="img" aria-label="Stacked area chart showing cumulative support cases by priority level from January to June 2025." tabindex="0"></canvas>
+      </div>
+    </div>
+    <p class="nsw-m-top-sm"><strong>Summary:</strong> The total number of open cases grew steadily across all priority levels. Critical cases grew fastest proportionally, nearly doubling between January and June.</p>
+    <div class="nsw-table nsw-table--valign-middle nsw-docs__table-wrap nsw-m-top-sm">
+      <table>
+        <caption class="sr-only">Support cases open by priority level, January to June 2025</caption>
+        <thead>
+          <tr>
+            <th scope="col">Period</th>
+            <th scope="col">Standard</th>
+            <th scope="col">High</th>
+            <th scope="col">Critical</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Jan</th>
+            <td>200</td>
+            <td>540</td>
+            <td>80</td>
+          </tr>
+          <tr>
+            <th scope="row">Feb</th>
+            <td>230</td>
+            <td>620</td>
+            <td>90</td>
+          </tr>
+          <tr>
+            <th scope="row">Mar</th>
+            <td>300</td>
+            <td>640</td>
+            <td>95</td>
+          </tr>
+          <tr>
+            <th scope="row">Apr</th>
+            <td>330</td>
+            <td>680</td>
+            <td>120</td>
+          </tr>
+          <tr>
+            <th scope="row">May</th>
+            <td>520</td>
+            <td>690</td>
+            <td>135</td>
+          </tr>
+          <tr>
+            <th scope="row">Jun</th>
+            <td>600</td>
+            <td>700</td>
+            <td>150</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="nsw-m-top-sm"><strong>Source:</strong> Service NSW. Last updated: June 2025.</p>
+  </div>
+</div>
+<h3>Proportion</h3>
+<div class="nsw-grid nsw-docs__chart-option-grid">
+  <div class="nsw-col nsw-col-12 nsw-col-lg-6 nsw-docs__chart-option">
+    <h4 id="chart-doughnut" class="nsw-m-bottom-sm">Doughnut</h4>
+    <p class="nsw-m-bottom-sm">Shows simple proportion between two to four segments. The centre space can display a total or key callout value, which makes it a common choice for dashboards. Use a bar chart when precise comparison between segments matters more than showing the whole.</p>
+    <div class="nsw-grid nsw-docs__chart-example">
+      <div class="nsw-col nsw-col-12">
+        <canvas id="chartPropDoughnut" data-chart-height="400" role="img" aria-label="Doughnut chart showing the share of service requests resolved on first contact." tabindex="0"></canvas>
+      </div>
+    </div>
+    <p class="nsw-m-top-sm"><strong>Summary:</strong> More than three-quarters of service requests were resolved on first contact in Q2 2025.</p>
+    <div class="nsw-table nsw-table--valign-middle nsw-docs__table-wrap nsw-m-top-sm">
+      <table>
+        <caption class="sr-only">Service requests resolved on first contact, Q2 2025</caption>
+        <thead>
+          <tr>
+            <th scope="col">Outcome</th>
+            <th scope="col">Share</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Resolved on first contact</th>
+            <td>78%</td>
+          </tr>
+          <tr>
+            <th scope="row">Escalated</th>
+            <td>22%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="nsw-m-top-sm"><strong>Source:</strong> Service NSW. Last updated: June 2025.</p>
+  </div>
+  <div class="nsw-col nsw-col-12 nsw-col-lg-6 nsw-docs__chart-option">
+    <h4 id="chart-pie" class="nsw-m-bottom-sm">Pie</h4>
+    <p class="nsw-m-bottom-sm">Functionally identical to a doughnut but without the centre space. Doughnuts are generally preferred in digital products as the centre can carry additional context.</p>
+    <div class="nsw-grid nsw-docs__chart-example">
+      <div class="nsw-col nsw-col-12">
+        <canvas id="chartPropPie" data-chart-height="400" role="img" aria-label="Pie chart showing service request channel share." tabindex="0"></canvas>
+      </div>
+    </div>
+    <p class="nsw-m-top-sm"><strong>Summary:</strong> Digital channels accounted for the largest share of service requests in Q2 2025, followed by phone and in-person channels.</p>
+    <div class="nsw-table nsw-table--valign-middle nsw-docs__table-wrap nsw-m-top-sm">
+      <table>
+        <caption class="sr-only">Service request channel share, Q2 2025</caption>
+        <thead>
+          <tr>
+            <th scope="col">Channel</th>
+            <th scope="col">Share</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Digital</th>
+            <td>40%</td>
+          </tr>
+          <tr>
+            <th scope="row">Phone</th>
+            <td>25%</td>
+          </tr>
+          <tr>
+            <th scope="row">In person</th>
+            <td>20%</td>
+          </tr>
+          <tr>
+            <th scope="row">Mail</th>
+            <td>15%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="nsw-m-top-sm"><strong>Source:</strong> Service NSW. Last updated: June 2025.</p>
+  </div>
+  <div class="nsw-col nsw-col-12 nsw-col-lg-6 nsw-docs__chart-option">
+    <h4 id="chart-stacked-proportional-bar" class="nsw-m-bottom-sm">Stacked proportional bar (100%)</h4>
+    <p class="nsw-m-bottom-sm">Compares proportional composition across categories where each bar sums to 100%. Because actual counts are hidden, provide the absolute total for each category so users can judge the scale behind the percentages.</p>
+    <div class="nsw-grid nsw-docs__chart-example">
+      <div class="nsw-col nsw-col-12">
+        <canvas id="chartPropStackedProportional" data-chart-height="360" role="img" aria-label="100 percent stacked bar chart showing complaint outcomes by region." tabindex="0"></canvas>
+      </div>
+    </div>
+    <p class="nsw-m-top-sm"><strong>Summary:</strong> Resolution rates were highest in Metro and Hunter regions. Western NSW had the lowest resolution rate and the highest escalation rate.</p>
+    <div class="nsw-table nsw-table--valign-middle nsw-docs__table-wrap nsw-m-top-sm">
+      <table>
+        <caption class="sr-only">Complaint outcomes by region, January to June 2025</caption>
+        <thead>
+          <tr>
+            <th scope="col">Region</th>
+            <th scope="col">Resolved (%)</th>
+            <th scope="col">Escalated (%)</th>
+            <th scope="col">Withdrawn (%)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Metro</th>
+            <td>74</td>
+            <td>18</td>
+            <td>8</td>
+          </tr>
+          <tr>
+            <th scope="row">Hunter</th>
+            <td>71</td>
+            <td>20</td>
+            <td>9</td>
+          </tr>
+          <tr>
+            <th scope="row">Illawarra</th>
+            <td>68</td>
+            <td>22</td>
+            <td>10</td>
+          </tr>
+          <tr>
+            <th scope="row">Western NSW</th>
+            <td>65</td>
+            <td>24</td>
+            <td>11</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="nsw-m-top-sm"><strong>Source:</strong> NSW Fair Trading. Last updated: June 2025.</p>
+  </div>
+</div>
+<h3>Distribution and correlation</h3>
+<div class="nsw-grid nsw-docs__chart-option-grid">
+  <div class="nsw-col nsw-col-12 nsw-col-lg-6 nsw-docs__chart-option">
+    <h4 id="chart-scatter-plot" class="nsw-m-bottom-sm">Scatter plot</h4>
+    <p class="nsw-m-bottom-sm">Shows the relationship or correlation between two variables across a dataset. Use only when there is a genuine relationship worth showing.</p>
+    <div class="nsw-grid nsw-docs__chart-example">
+      <div class="nsw-col nsw-col-12">
+        <canvas id="chartDistScatter" data-chart-height="360" role="img" aria-label="Scatter plot showing application complexity score against processing time." tabindex="0"></canvas>
+      </div>
+    </div>
+    <p class="nsw-m-top-sm"><strong>Summary:</strong> Applications with higher complexity scores consistently took longer to process. Most straightforward applications (score below 30) resolved within 5 working days. Complex applications (score above 70) averaged 18 days, with significant variation.</p>
+    <div class="nsw-table nsw-table--valign-middle nsw-docs__table-wrap nsw-m-top-sm">
+      <table>
+        <caption class="sr-only">Sample application points: complexity score and processing time (days), Q1 2025</caption>
+        <thead>
+          <tr>
+            <th scope="col">Application</th>
+            <th scope="col">Complexity score</th>
+            <th scope="col">Processing time (days)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">A</th>
+            <td>24</td>
+            <td>4</td>
+          </tr>
+          <tr>
+            <th scope="row">B</th>
+            <td>31</td>
+            <td>6</td>
+          </tr>
+          <tr>
+            <th scope="row">C</th>
+            <td>45</td>
+            <td>9</td>
+          </tr>
+          <tr>
+            <th scope="row">D</th>
+            <td>62</td>
+            <td>14</td>
+          </tr>
+          <tr>
+            <th scope="row">E</th>
+            <td>74</td>
+            <td>18</td>
+          </tr>
+          <tr>
+            <th scope="row">F</th>
+            <td>86</td>
+            <td>22</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="nsw-m-top-sm"><strong>Source:</strong> NSW Planning Portal. Last updated: March 2025.</p>
+  </div>
+  <div class="nsw-col nsw-col-12 nsw-col-lg-6 nsw-docs__chart-option">
+    <h4 id="chart-bubble-plot" class="nsw-m-bottom-sm">Bubble plot</h4>
+    <p class="nsw-m-bottom-sm">Shows relationship and magnitude across two variables, with bubble size encoding a third dimension. Use only when all three dimensions are meaningful, otherwise a scatter plot is simpler and clearer.</p>
+    <div class="nsw-grid nsw-docs__chart-example">
+      <div class="nsw-col nsw-col-12">
+        <canvas id="chartDistBubble" data-chart-height="360" role="img" aria-label="Bubble plot showing application complexity, processing time and application volume by location." tabindex="0"></canvas>
+      </div>
+    </div>
+    <p class="nsw-m-top-sm"><strong>Summary:</strong> Higher-complexity applications generally had longer processing times, with the largest application volumes clustered in the mid-complexity range.</p>
+    <div class="nsw-table nsw-table--valign-middle nsw-docs__table-wrap nsw-m-top-sm">
+      <table>
+        <caption class="sr-only">Application complexity, processing time and volume by location, Q1 2025</caption>
+        <thead>
+          <tr>
+            <th scope="col">Location</th>
+            <th scope="col">Complexity score</th>
+            <th scope="col">Processing time (days)</th>
+            <th scope="col">Applications</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Sydney</th>
+            <td>42</td>
+            <td>9</td>
+            <td>480</td>
+          </tr>
+          <tr>
+            <th scope="row">Parramatta</th>
+            <td>51</td>
+            <td>11</td>
+            <td>420</td>
+          </tr>
+          <tr>
+            <th scope="row">Blacktown</th>
+            <td>57</td>
+            <td>13</td>
+            <td>390</td>
+          </tr>
+          <tr>
+            <th scope="row">Liverpool</th>
+            <td>63</td>
+            <td>15</td>
+            <td>350</td>
+          </tr>
+          <tr>
+            <th scope="row">Penrith</th>
+            <td>68</td>
+            <td>17</td>
+            <td>310</td>
+          </tr>
+          <tr>
+            <th scope="row">Camden</th>
+            <td>74</td>
+            <td>19</td>
+            <td>260</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="nsw-m-top-sm"><strong>Source:</strong> NSW Planning Portal. Last updated: March 2025.</p>
+  </div>
+  <div class="nsw-col nsw-col-12 nsw-col-lg-6 nsw-docs__chart-option">
+    <h4 id="chart-dot-plot" class="nsw-m-bottom-sm">Vertical dot plot</h4>
+    <p class="nsw-m-bottom-sm">Shows distribution across categories with less visual weight than bars. A good alternative to a bar chart when showing the spread of individual data points matters as much as the category totals.</p>
+    <div class="nsw-grid nsw-docs__chart-example">
+      <div class="nsw-col nsw-col-12">
+        <canvas id="chartDistDotPlot" data-chart-height="360" role="img" aria-label="Vertical dot plot showing wait-time observations by weekday." tabindex="0"></canvas>
+      </div>
+    </div>
+    <p class="nsw-m-top-sm"><strong>Summary:</strong> Processing-time variation was widest in the middle of the week. Monday and Friday showed tighter clustering, while Wednesday and Thursday had more spread.</p>
+    <div class="nsw-table nsw-table--valign-middle nsw-docs__table-wrap nsw-m-top-sm">
+      <table>
+        <caption class="sr-only">Wait-time observations by weekday, Q2 2025</caption>
+        <thead>
+          <tr>
+            <th scope="col">Weekday</th>
+            <th scope="col">Observed processing times (days)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Mon</th>
+            <td>4.1, 5.2, 6.0, 7.2</td>
+          </tr>
+          <tr>
+            <th scope="row">Tue</th>
+            <td>5.1, 5.8, 6.5, 7.8</td>
+          </tr>
+          <tr>
+            <th scope="row">Wed</th>
+            <td>6.0, 6.9, 7.6, 8.9</td>
+          </tr>
+          <tr>
+            <th scope="row">Thu</th>
+            <td>5.5, 6.4, 7.0, 8.3</td>
+          </tr>
+          <tr>
+            <th scope="row">Fri</th>
+            <td>4.8, 5.9, 6.7, 7.4</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="nsw-m-top-sm"><strong>Source:</strong> Service NSW. Last updated: June 2025.</p>
+  </div>
+  <div class="nsw-col nsw-col-12 nsw-col-lg-6 nsw-docs__chart-option">
+    <h4 id="chart-histogram" class="nsw-m-bottom-sm">Histogram</h4>
+    <p class="nsw-m-bottom-sm">Shows how values are distributed across a continuous numeric range. Use this instead of a bar chart when the data is continuous and the shape of the distribution is the story.</p>
+    <div class="nsw-grid nsw-docs__chart-example">
+      <div class="nsw-col nsw-col-12">
+        <canvas id="chartDistHistogram" data-chart-height="360" role="img" aria-label="Histogram showing distribution of customer call response times." tabindex="0"></canvas>
+      </div>
+    </div>
+    <p class="nsw-m-top-sm"><strong>Summary:</strong> The majority of calls were handled within 3 to 5 minutes. Calls under 1 minute and over 10 minutes each represented less than 10% of total volume.</p>
+    <div class="nsw-table nsw-table--valign-middle nsw-docs__table-wrap nsw-m-top-sm">
+      <table>
+        <caption class="sr-only">Customer call response times, March 2025</caption>
+        <thead>
+          <tr>
+            <th scope="col">Duration (minutes)</th>
+            <th scope="col">Number of calls</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">0–1</th>
+            <td>1,840</td>
+          </tr>
+          <tr>
+            <th scope="row">1–2</th>
+            <td>3,210</td>
+          </tr>
+          <tr>
+            <th scope="row">2–3</th>
+            <td>4,890</td>
+          </tr>
+          <tr>
+            <th scope="row">3–5</th>
+            <td>6,120</td>
+          </tr>
+          <tr>
+            <th scope="row">5–10</th>
+            <td>3,840</td>
+          </tr>
+          <tr>
+            <th scope="row">10+</th>
+            <td>1,100</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="nsw-m-top-sm"><strong>Source:</strong> Service NSW. Last updated: March 2025.</p>
+  </div>
+  <div class="nsw-col nsw-col-12 nsw-col-lg-6 nsw-docs__chart-option">
+    <h4 id="chart-radar" class="nsw-m-bottom-sm">Radar</h4>
+    <p class="nsw-m-bottom-sm">Compares profiles across the same fixed set of dimensions. Use only when the overall shape of the profile matters, as a grouped bar chart or table is clearer when precise values are the priority.</p>
+    <div class="nsw-grid nsw-docs__chart-example">
+      <div class="nsw-col nsw-col-12">
+        <canvas id="chartDistRadar" data-chart-height="400" role="img" aria-label="Radar chart comparing service delivery performance for metro and regional areas." tabindex="0"></canvas>
+      </div>
+    </div>
+    <p class="nsw-m-top-sm"><strong>Summary:</strong> Metro outperformed Regional on all five dimensions. Accessibility showed the largest gap between the two regions.</p>
+    <div class="nsw-table nsw-table--valign-middle nsw-docs__table-wrap nsw-m-top-sm">
+      <table>
+        <caption class="sr-only">Service delivery performance by dimension, 2024–25</caption>
+        <thead>
+          <tr>
+            <th scope="col">Dimension</th>
+            <th scope="col">Metro</th>
+            <th scope="col">Regional</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Timeliness</th>
+            <td>84</td>
+            <td>76</td>
+          </tr>
+          <tr>
+            <th scope="row">Accuracy</th>
+            <td>91</td>
+            <td>88</td>
+          </tr>
+          <tr>
+            <th scope="row">Satisfaction</th>
+            <td>87</td>
+            <td>82</td>
+          </tr>
+          <tr>
+            <th scope="row">Accessibility</th>
+            <td>79</td>
+            <td>71</td>
+          </tr>
+          <tr>
+            <th scope="row">Resolution rate</th>
+            <td>88</td>
+            <td>80</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="nsw-m-top-sm"><strong>Source:</strong> Service NSW. Last updated: June 2025.</p>
+  </div>
+</div>
+
+
+<h2 id="never-mislead-with-data">2. Represent the data honestly</h2>
+<p>Use honest scales, meaningful baselines and clear labels. Let the data speak for itself.</p>
+<ul>
+  <li>Use honest baselines and avoid truncating axes without clear indication.</li>
+  <li>Keep time intervals and category order consistent.</li>
+  <li>Label clearly so users can read values without guessing.</li>
+</ul>
+
+<div class="nsw-grid nsw-m-top-sm">
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--dont">
+      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">
+        cancel
+      </span>
+      <span>Don&#x27;t</span>
+    </div>
+    <p>Column chart starts at 90, labels are rotated and the title does not explain the timeframe.</p>
+    <div class="nsw-m-top-sm">
+      <canvas id="example1Bad" data-chart-height="320" role="img" aria-label="Column chart with truncated axis and rotated labels." tabindex="0"></canvas>
+    </div>
+    <ul>
+      <li>Exaggerates differences by truncating the axis.</li>
+      <li>Missing units and time period.</li>
+      <li>Long labels are hard to read.</li>
+    </ul>
+  </div>
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--do">
+      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">
+        check_circle
+      </span>
+      <span>Do</span>
+    </div>
+    <p>Use a horizontal bar chart that starts at zero with direct labels and a clear timeframe.</p>
+    <div class="nsw-m-top-sm">
+      <canvas id="example1Good" data-chart-height="320" role="img" aria-label="Horizontal bar chart starting at zero with clear labels." tabindex="0"></canvas>
+    </div>
+    <div class="nsw-table nsw-table--valign-middle nsw-docs__table-wrap nsw-m-top-sm">
+      <table>
+        <caption class="sr-only">Service completions by region (Jan to Jun 2025)</caption>
+        <thead>
+          <tr>
+            <th scope="col">Region</th>
+            <th scope="col">Completions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Illawarra Shoalhaven</th>
+            <td>96</td>
+          </tr>
+          <tr>
+            <th scope="row">Central Coast</th>
+            <td>101</td>
+          </tr>
+          <tr>
+            <th scope="row">Hunter New England</th>
+            <td>98</td>
+          </tr>
+          <tr>
+            <th scope="row">Western NSW</th>
+            <td>104</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <ul>
+      <li>Set the chart canvas to a white background.</li>
+      <li>Start the axis at zero or clearly indicate truncation.</li>
+      <li>Include timeframe and unit in the title.</li>
+      <li>Keep labels readable and aligned.</li>
+    </ul>
+  </div>
+</div>
+
+<h3 id="chart-anatomy">Chart anatomy</h3>
+<p>Every chart must include the core elements required for clarity and accurate interpretation. The title can optionally include either a subtitle or a callout value.</p>
+
+<div class="nsw-grid nsw-m-top-sm">
+  <div class="nsw-col nsw-col-lg-12">
+    <div class="nsw-docs__chart-anatomy">
+      <p class="nsw-docs__chart-anatomy-note sr-only">Numbered markers on the chart map to the anatomy list.</p>
+      <div class="nsw-docs__chart-anatomy-stage">
+        <div class="nsw-docs__chart-anatomy-canvas">
+          <canvas id="chartAnatomy" role="img" aria-label="Annotated bar chart showing chart anatomy elements including title, subtitle, callout, axis labels, data labels, legend, scale and metadata." tabindex="0"></canvas>
+        </div>
+        <p class="nsw-docs__chart-anatomy-meta">
+          <strong>Source:</strong> Service NSW request volumes.
+          <span class="nsw-docs__chart-anatomy-meta-divider" aria-hidden="true">|</span>
+          <strong>Last updated:</strong> 1 March 2026.
+        </p>
+        <span class="nsw-docs__chart-anatomy-pin nsw-docs__chart-anatomy-pin--title" aria-hidden="true">1</span>
+        <span class="nsw-docs__chart-anatomy-pin nsw-docs__chart-anatomy-pin--subtitle" aria-hidden="true">2</span>
+        <span class="nsw-docs__chart-anatomy-pin nsw-docs__chart-anatomy-pin--callout" aria-hidden="true">3</span>
+        <span class="nsw-docs__chart-anatomy-pin nsw-docs__chart-anatomy-pin--axis-labels" aria-hidden="true">4</span>
+        <span class="nsw-docs__chart-anatomy-pin nsw-docs__chart-anatomy-pin--data-labels" aria-hidden="true">5</span>
+        <span class="nsw-docs__chart-anatomy-pin nsw-docs__chart-anatomy-pin--legend" aria-hidden="true">6</span>
+        <span class="nsw-docs__chart-anatomy-pin nsw-docs__chart-anatomy-pin--scale" aria-hidden="true">7</span>
+        <span class="nsw-docs__chart-anatomy-pin nsw-docs__chart-anatomy-pin--source" aria-hidden="true">8</span>
+        <span class="nsw-docs__chart-anatomy-pin nsw-docs__chart-anatomy-pin--spacing" aria-hidden="true">9</span>
+      </div>
+    </div>
+    <div class="nsw-docs__chart-anatomy-section nsw-docs__chart-anatomy-section--summary nsw-m-top-sm">
+      <span class="nsw-docs__chart-anatomy-pin nsw-docs__chart-anatomy-pin--section" aria-hidden="true">10</span>
+      <p><strong>Summary:</strong> Requests resolved on time increased from January to May 2026, then eased slightly in June. Late resolutions trended down across the same period.</p>
+    </div>
+    <div class="nsw-docs__chart-anatomy-section nsw-docs__chart-anatomy-section--table nsw-m-top-sm">
+      <div class="nsw-grid">
+        <div class="nsw-col nsw-col-12 nsw-col-md-8">
+          <div class="nsw-table nsw-table--valign-middle nsw-docs__table-wrap nsw-docs__chart-anatomy-table">
+            <span class="nsw-docs__chart-anatomy-pin nsw-docs__chart-anatomy-pin--section nsw-docs__chart-anatomy-pin--table" aria-hidden="true">11</span>
+            <table>
+              <caption class="sr-only">Service requests by type, January to June 2026</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Month</th>
+                  <th scope="col">Resolved on time</th>
+                  <th scope="col">Resolved late</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Jan</th>
+                  <td>410</td>
+                  <td>72</td>
+                </tr>
+                <tr>
+                  <th scope="row">Feb</th>
+                  <td>438</td>
+                  <td>68</td>
+                </tr>
+                <tr>
+                  <th scope="row">Mar</th>
+                  <td>467</td>
+                  <td>74</td>
+                </tr>
+                <tr>
+                  <th scope="row">Apr</th>
+                  <td>492</td>
+                  <td>70</td>
+                </tr>
+                <tr>
+                  <th scope="row">May</th>
+                  <td>525</td>
+                  <td>66</td>
+                </tr>
+                <tr>
+                  <th scope="row">Jun</th>
+                  <td>508</td>
+                  <td>61</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="nsw-col nsw-col-lg-12">
+    <ol class="nsw-list nsw-list--8 nsw-docs__chart-anatomy-list">
+      <li><strong>Title:</strong> Use a descriptive title that states what the data represents, and include timeframe and unit where relevant.</li>
+      <li><strong>Subtitle (optional):</strong> Use a subtitle directly beneath the title to clarify unit, scope or measure. Use either a subtitle or a callout in most cases, not both.</li>
+      <li><strong>Callout (optional):</strong> Use a callout directly beneath the title to emphasise one key figure. Use either a subtitle or a callout in most cases, not both.</li>
+      <li><strong>Axis labels:</strong> Label each axis clearly with unit and time interval. Avoid abbreviations that are not widely understood.</li>
+      <li><strong>Data labels:</strong> Label data directly where practical, especially for bar and column values.</li>
+      <li><strong>Legend:</strong> Use a legend only when direct labels are not practical. Keep it close to the chart and readable at 200% zoom.</li>
+      <li><strong>Scale:</strong> Use consistent scales. Start bar charts at zero unless you have a documented reason not to, and indicate any truncation.</li>
+      <li><strong>Source and metadata:</strong> Include source, last updated date, and any definitions required for interpretation.</li>
+      <li><strong>Spacing and alignment:</strong> Keep spacing consistent between bars, labels and grid lines so the chart remains scannable.</li>
+      <li><strong>Summary text:</strong> Include a short plain-language summary of the key insight directly below the chart.</li>
+      <li><strong>Data table:</strong> Provide a semantic table for the same data so users can access exact values without relying on the visual chart.</li>
+    </ol>
+  </div>
+</div>
+
+<h2 id="make-the-message-obvious">3. Make the key insight obvious</h2>
+<p>Remove anything that doesn’t help the reader get to the insight faster. If a chart is trying to say everything, it ends up saying nothing.</p>
+<ul>
+  <li>Limit the number of data series.</li>
+  <li>Avoid clutter or unnecessary visual elements.</li>
+  <li>Use annotations to highlight the key insight.</li>
+</ul>
+
+<h3>Dashboards</h3>
+<ul>
+  <li>Place key metrics first.</li>
+  <li>Group related charts.</li>
+  <li>Avoid horizontal scrolling for primary information.</li>
+  <li>If metadata applies to all charts, include it at the container level.</li>
+</ul>
+
+<h2 id="meet-accessibility-standards">4. Meet accessibility standards</h2>
+<p>Charts must meet WCAG 2.2 AA and AAA where possible. Accessibility is the responsibility of the product team, regardless of which tool or library is used.</p>
+<h3>Contrast</h3>
+<ul>
+  <li>Text in charts must meet a minimum contrast ratio of 4.5:1 (WCAG 1.4.3).</li>
+  <li>Graphical elements such as bars, lines, data points and focus indicators must meet a minimum contrast ratio of 3:1 against adjacent colours and background (WCAG 1.4.11).</li>
+  <li>Test contrast in the rendered environment, not just in design files.</li>
+</ul>
+<h3>Use of colour</h3>
+<p>Colour must not be the only way to communicate meaning (WCAG 1.4.1).</p>
+<p>When differentiating data series:</p>
+<ul>
+  <li>Use direct labels where possible.</li>
+  <li>Use different marker shapes or stroke styles.</li>
+  <li>Avoid relying solely on red/green distinctions.</li>
+  <li>Confirm charts remain understandable in greyscale.</li>
+</ul>
+<h3>Keyboard access</h3>
+<p>Interactive charts must support full keyboard operation (WCAG 2.1.1).</p>
+<ul>
+  <li>All interactive elements are focusable.</li>
+  <li>Logical tab order.</li>
+  <li>Visible focus indicators.</li>
+  <li>Focus is not hidden or obscured (WCAG 2.4.11).</li>
+  <li>Interactive targets are at least 24×24px (WCAG 2.5.8).</li>
+  <li>Test keyboard interaction manually.</li>
+</ul>
+<h3>Text alternatives</h3>
+<p>Every chart must have a text alternative. Users must be able to access the same information without relying on the visual chart. This includes screen reader users, users who have disabled images, and users in low-bandwidth environments.</p>
+<h3>Summary text</h3>
+<p>Write a short summary that captures the key insight in plain language. Place it directly above or below the chart.</p>
+<p>A summary is not a description of the chart. Do not write ‘the chart shows a line going up.’ Write what the data means.</p>
+<ul>
+  <li>Example: Service requests increased steadily from January to May 2025, rising from 220 to 420. A small drop occurred in June.</li>
+</ul>
+<h3>Data table</h3>
+<p>A data table gives users access to to the underlying data. The right approach depends on the complexity of the data set.</p>
+<ul>
+  <li>For small datasets, provide a full data table using semantic HTML. Keep it visible on the page. Do not hide it behind a toggle or accordion.</li>
+  <li>For medium datasets, a summarised table covering the key values is sufficient.</li>
+  <li>For large or complex datasets, a written summary plus a link to download the source data is more useful than a large rendered table.</li>
+</ul>
+<h3>Alt text for images</h3>
+<p>If a chart is rendered as a static image, it must have descriptive alt text.</p>
+<ul>
+  <li>Alt text should convey the key insight, not describe the visual</li>
+  <li>For complex charts, use a short alt text and point to the accompanying table or summary</li>
+  <li>Example: <code>alt=“Line chart showing monthly service applications for January to June 2025. Data in table below”</code></li>
+</ul>
+<h3>Zoom and responsiveness</h3>
+<p>Charts must remain usable at 200% zoom and 375px viewport width</p>
+<ul>
+  <li>Labels do not overlap.</li>
+  <li>Primary information remains visible.</li>
+  <li>Horizontal scrolling does not hide critical data.</li>
+</ul>
+<h3>Tool limitations</h3>
+<ul>
+  <li>Some third-party tools may restrict accessibility customisation.</li>
+  <li>If a tool cannot meet WCAG requirements, document the limitation and provide an accessible alternative.</li>
+  <li>Accessibility responsibility remains with the product team.</li>
+</ul>
+
+
+<h2 id="apply-nsw-visual-identity-consistently">5. Apply NSW visual identity consistently</h2>
+<p>Apply the NSW brand colour and typography with care. Prioritise contrast and readability. Do not use the palette decoratively.</p>
+<ul>
+  <li>Use NSW Brand colour and typography intentionally.</li>
+</ul>
+
+<h3>Recommended colour selection method</h3>
+<div class="nsw-steps nsw-steps--fill nsw-steps--counters nsw-steps--dark nsw-docs__chart-colour-steps">
+  <div class="nsw-steps__item">
+    <div class="nsw-steps__content">
+      <h4>Step 1: Use only approved chart colours</h4>
+      <p>Not all NSW palette colours meet the minimum contrast requirement for chart marks. The colours below have been pre-validated against a white background and are approved for use in charts and graphs.</p>
+      <div class="nsw-m-top-sm nsw-m-bottom-md">
+        <img class="nsw-display-block nsw-width-100 nsw-width-md-75" src="https://designsystem.nsw.gov.au/assets/images/charts-and-graphs-colour-selection-1.png" alt="Valid chart colours that meet minimum contrast requirements for data marks." loading="lazy">
+      </div>
+    </div>
+  </div>
+  <div class="nsw-steps__item">
+    <div class="nsw-steps__content">
+      <h4>Step 2: Start with your main theme colour 01 and 02</h4>
+      <p>Begin with the 01 and 02 colours from your main colour theme. If your theme is Blue and Red, start with Blue 01, Blue 02, Red 01 and Red 02, in that order.</p>
+      <p>Starting with your theme colours ensures charts feel consistent with the rest of your digital product before introducing additional colours.</p>
+      <div class="nsw-m-top-sm nsw-m-bottom-md">
+        <img class="nsw-display-block nsw-width-100 nsw-width-md-75" src="https://designsystem.nsw.gov.au/assets/images/charts-and-graphs-colour-selection-2.png" alt="Example sequence showing where to start when selecting chart colours from the main theme." loading="lazy">
+      </div>
+    </div>
+  </div>
+  <div class="nsw-steps__item">
+    <div class="nsw-steps__content">
+      <h4>Step 3: Expand to another colour set when needed</h4>
+      <p>Once your main theme colours are used, bring in 01 and 02 colours from another colour column. Apply the same sequence – 01 before 02 – and avoid mixing colours from too many sets in a single chart.</p>
+      <p>If you find yourself needing more than six to eight colours in one chart, consider whether the data can be simplified, grouped, or split across multiple charts instead.</p>
+      <div class="nsw-m-top-sm nsw-m-bottom-md">
+        <img class="nsw-display-block nsw-width-100 nsw-width-md-75" src="https://designsystem.nsw.gov.au/assets/images/charts-and-graphs-colour-selection-3.png" alt="Example showing blue and red already used, then selecting additional colours for new data series." loading="lazy">
+      </div>
+    </div>
+  </div>
+</div>
+
+<h4>Background colour</h4>
+<p>Charts must use a white background (<code>#FFFFFF</code> or <code>--nsw-brand-white</code>) to ensure sufficient contrast for data marks.</p>
+
+<h4>NSW Government palette chart-mark options</h4>
+<div class="nsw-section nsw-section--white nsw-block nsw-p-x-sm nsw-p-top-sm">
+  <div class="nsw-table nsw-table--valign-middle nsw-docs__table-wrap">
+    <table class="nsw-docs__chart-colour-table">
+      <caption class="sr-only">Approved chart-mark colour options on white background</caption>
+      <colgroup>
+        <col class="nsw-docs__chart-colour-col-swatch">
+        <col class="nsw-docs__chart-colour-col-colour-value">
+        <col class="nsw-docs__chart-colour-col-contrast">
+        <col class="nsw-docs__chart-colour-col-swatch">
+        <col class="nsw-docs__chart-colour-col-line-value">
+        <col class="nsw-docs__chart-colour-col-pattern-contrast">
+      </colgroup>
+      <thead>
+        <tr>
+          <th>Swatch (plain)</th>
+          <th>Colour value</th>
+          <th>Contrast ratio on white</th>
+          <th>Swatch (pattern)</th>
+          <th>Line value</th>
+          <th>Pattern contrast</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-blue-01)"></circle>
+            </svg>
+            <span class="sr-only">Blue 01 plain swatch</span>
+          </td>
+          <td>Blue 01 (<code>#002664</code>)</td>
+          <td><code>14.37:1</code></td>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <defs>
+                <pattern id="nsw-pattern-select-blue-01" patternUnits="userSpaceOnUse" width="8" height="8">
+                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-palette-blue-04)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
+                </pattern>
+              </defs>
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-blue-01)"></circle>
+              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-blue-01)"></circle>
+            </svg>
+            <span class="sr-only">Blue 01 patterned swatch</span>
+          </td>
+          <td>Blue 04 (<code>#CBEDFD</code>)</td>
+          <td><code>11.68:1</code></td>
+        </tr>
+        <tr>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-blue-02)"></circle>
+            </svg>
+            <span class="sr-only">Blue 02 plain swatch</span>
+          </td>
+          <td>Blue 02 (<code>#146CFD</code>)</td>
+          <td><code>4.57:1</code></td>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <defs>
+                <pattern id="nsw-pattern-select-blue-02" patternUnits="userSpaceOnUse" width="8" height="8">
+                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-palette-blue-04)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
+                </pattern>
+              </defs>
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-blue-02)"></circle>
+              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-blue-02)"></circle>
+            </svg>
+            <span class="sr-only">Blue 02 patterned swatch</span>
+          </td>
+          <td>Blue 04 (<code>#CBEDFD</code>)</td>
+          <td><code>3.72:1</code></td>
+        </tr>
+        <tr>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-purple-01)"></circle>
+            </svg>
+            <span class="sr-only">Purple 01 plain swatch</span>
+          </td>
+          <td>Purple 01 (<code>#441170</code>)</td>
+          <td><code>13.46:1</code></td>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <defs>
+                <pattern id="nsw-pattern-select-purple-01" patternUnits="userSpaceOnUse" width="8" height="8">
+                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-palette-purple-04)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
+                </pattern>
+              </defs>
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-purple-01)"></circle>
+              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-purple-01)"></circle>
+            </svg>
+            <span class="sr-only">Purple 01 patterned swatch</span>
+          </td>
+          <td>Purple 04 (<code>#E6E1FD</code>)</td>
+          <td><code>10.61:1</code></td>
+        </tr>
+        <tr>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-purple-02)"></circle>
+            </svg>
+            <span class="sr-only">Purple 02 plain swatch</span>
+          </td>
+          <td>Purple 02 (<code>#8055F1</code>)</td>
+          <td><code>4.68:1</code></td>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <defs>
+                <pattern id="nsw-pattern-select-purple-02" patternUnits="userSpaceOnUse" width="8" height="8">
+                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-palette-purple-04)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
+                </pattern>
+              </defs>
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-purple-02)"></circle>
+              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-purple-02)"></circle>
+            </svg>
+            <span class="sr-only">Purple 02 patterned swatch</span>
+          </td>
+          <td>Purple 04 (<code>#E6E1FD</code>)</td>
+          <td><code>3.69:1</code></td>
+        </tr>
+        <tr>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-fuchsia-01)"></circle>
+            </svg>
+            <span class="sr-only">Fuchsia 01 plain swatch</span>
+          </td>
+          <td>Fuchsia 01 (<code>#65004D</code>)</td>
+          <td><code>12.65:1</code></td>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <defs>
+                <pattern id="nsw-pattern-select-fuchsia-01" patternUnits="userSpaceOnUse" width="8" height="8">
+                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-palette-fuchsia-04)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
+                </pattern>
+              </defs>
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-fuchsia-01)"></circle>
+              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-fuchsia-01)"></circle>
+            </svg>
+            <span class="sr-only">Fuchsia 01 patterned swatch</span>
+          </td>
+          <td>Fuchsia 04 (<code>#FDDEF2</code>)</td>
+          <td><code>10.18:1</code></td>
+        </tr>
+        <tr>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-fuchsia-02)"></circle>
+            </svg>
+            <span class="sr-only">Fuchsia 02 plain swatch</span>
+          </td>
+          <td>Fuchsia 02 (<code>#D912AE</code>)</td>
+          <td><code>4.52:1</code></td>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <defs>
+                <pattern id="nsw-pattern-select-fuchsia-02" patternUnits="userSpaceOnUse" width="8" height="8">
+                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-palette-fuchsia-04)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
+                </pattern>
+              </defs>
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-fuchsia-02)"></circle>
+              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-fuchsia-02)"></circle>
+            </svg>
+            <span class="sr-only">Fuchsia 02 patterned swatch</span>
+          </td>
+          <td>Fuchsia 04 (<code>#FDDEF2</code>)</td>
+          <td><code>3.64:1</code></td>
+        </tr>
+        <tr>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-red-01)"></circle>
+            </svg>
+            <span class="sr-only">Red 01 plain swatch</span>
+          </td>
+          <td>Red 01 (<code>#630019</code>)</td>
+          <td><code>13.60:1</code></td>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <defs>
+                <pattern id="nsw-pattern-select-red-01" patternUnits="userSpaceOnUse" width="8" height="8">
+                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-palette-red-04)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
+                </pattern>
+              </defs>
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-red-01)"></circle>
+              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-red-01)"></circle>
+            </svg>
+            <span class="sr-only">Red 01 patterned swatch</span>
+          </td>
+          <td>Red 04 (<code>#FFE6EA</code>)</td>
+          <td><code>11.50:1</code></td>
+        </tr>
+        <tr>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-red-02)"></circle>
+            </svg>
+            <span class="sr-only">Red 02 plain swatch</span>
+          </td>
+          <td>Red 02 (<code>#D7153A</code>)</td>
+          <td><code>5.18:1</code></td>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <defs>
+                <pattern id="nsw-pattern-select-red-02" patternUnits="userSpaceOnUse" width="8" height="8">
+                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-palette-red-04)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
+                </pattern>
+              </defs>
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-red-02)"></circle>
+              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-red-02)"></circle>
+            </svg>
+            <span class="sr-only">Red 02 patterned swatch</span>
+          </td>
+          <td>Red 04 (<code>#FFE6EA</code>)</td>
+          <td><code>4.38:1</code></td>
+        </tr>
+        <tr>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-orange-01)"></circle>
+            </svg>
+            <span class="sr-only">Orange 01 plain swatch</span>
+          </td>
+          <td>Orange 01 (<code>#941B00</code>)</td>
+          <td><code>8.69:1</code></td>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <defs>
+                <pattern id="nsw-pattern-select-orange-01" patternUnits="userSpaceOnUse" width="8" height="8">
+                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-palette-orange-04)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
+                </pattern>
+              </defs>
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-orange-01)"></circle>
+              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-orange-01)"></circle>
+            </svg>
+            <span class="sr-only">Orange 01 patterned swatch</span>
+          </td>
+          <td>Orange 04 (<code>#FDEDDF</code>)</td>
+          <td><code>7.60:1</code></td>
+        </tr>
+        <tr>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-orange-02)"></circle>
+            </svg>
+            <span class="sr-only">Orange 02 plain swatch</span>
+          </td>
+          <td>Orange 02 (<code>#F3631B</code>)</td>
+          <td><code>3.18:1</code></td>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <defs>
+                <pattern id="nsw-pattern-select-orange-02" patternUnits="userSpaceOnUse" width="8" height="8">
+                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-white)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
+                </pattern>
+              </defs>
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-orange-02)"></circle>
+              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-orange-02)"></circle>
+            </svg>
+            <span class="sr-only">Orange 02 patterned swatch</span>
+          </td>
+          <td>White (<code>#FFFFFF</code>)</td>
+          <td><code>3.18:1</code></td>
+        </tr>
+        <tr>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-brown-01)"></circle>
+            </svg>
+            <span class="sr-only">Brown 01 plain swatch</span>
+          </td>
+          <td>Brown 01 (<code>#523719</code>)</td>
+          <td><code>10.94:1</code></td>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <defs>
+                <pattern id="nsw-pattern-select-brown-01" patternUnits="userSpaceOnUse" width="8" height="8">
+                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-palette-brown-04)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
+                </pattern>
+              </defs>
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-brown-01)"></circle>
+              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-brown-01)"></circle>
+            </svg>
+            <span class="sr-only">Brown 01 patterned swatch</span>
+          </td>
+          <td>Brown 04 (<code>#EDE3D7</code>)</td>
+          <td><code>8.63:1</code></td>
+        </tr>
+        <tr>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-brown-02)"></circle>
+            </svg>
+            <span class="sr-only">Brown 02 plain swatch</span>
+          </td>
+          <td>Brown 02 (<code>#B68D5D</code>)</td>
+          <td><code>3.02:1</code></td>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <defs>
+                <pattern id="nsw-pattern-select-brown-02" patternUnits="userSpaceOnUse" width="8" height="8">
+                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-white)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
+                </pattern>
+              </defs>
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-brown-02)"></circle>
+              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-brown-02)"></circle>
+            </svg>
+            <span class="sr-only">Brown 02 patterned swatch</span>
+          </td>
+          <td>White (<code>#FFFFFF</code>)</td>
+          <td><code>3.02:1</code></td>
+        </tr>
+        <tr>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-yellow-01)"></circle>
+            </svg>
+            <span class="sr-only">Yellow 01 plain swatch</span>
+          </td>
+          <td>Yellow 01 (<code>#694800</code>)</td>
+          <td><code>8.31:1</code></td>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <defs>
+                <pattern id="nsw-pattern-select-yellow-01" patternUnits="userSpaceOnUse" width="8" height="8">
+                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-palette-yellow-04)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
+                </pattern>
+              </defs>
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-yellow-01)"></circle>
+              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-yellow-01)"></circle>
+            </svg>
+            <span class="sr-only">Yellow 01 patterned swatch</span>
+          </td>
+          <td>Yellow 04 (<code>#FFF4CF</code>)</td>
+          <td><code>7.55:1</code></td>
+        </tr>
+        <tr>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-green-01)"></circle>
+            </svg>
+            <span class="sr-only">Green 01 plain swatch</span>
+          </td>
+          <td>Green 01 (<code>#004000</code>)</td>
+          <td><code>12.12:1</code></td>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <defs>
+                <pattern id="nsw-pattern-select-green-01" patternUnits="userSpaceOnUse" width="8" height="8">
+                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-palette-green-04)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
+                </pattern>
+              </defs>
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-green-01)"></circle>
+              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-green-01)"></circle>
+            </svg>
+            <span class="sr-only">Green 01 patterned swatch</span>
+          </td>
+          <td>Green 04 (<code>#DBFADF</code>)</td>
+          <td><code>10.82:1</code></td>
+        </tr>
+        <tr>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-green-02)"></circle>
+            </svg>
+            <span class="sr-only">Green 02 plain swatch</span>
+          </td>
+          <td>Green 02 (<code>#00AA45</code>)</td>
+          <td><code>3.07:1</code></td>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <defs>
+                <pattern id="nsw-pattern-select-green-02" patternUnits="userSpaceOnUse" width="8" height="8">
+                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-white)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
+                </pattern>
+              </defs>
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-green-02)"></circle>
+              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-green-02)"></circle>
+            </svg>
+            <span class="sr-only">Green 02 patterned swatch</span>
+          </td>
+          <td>White (<code>#FFFFFF</code>)</td>
+          <td><code>3.07:1</code></td>
+        </tr>
+        <tr>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-teal-01)"></circle>
+            </svg>
+            <span class="sr-only">Teal 01 plain swatch</span>
+          </td>
+          <td>Teal 01 (<code>#0B3F47</code>)</td>
+          <td><code>11.56:1</code></td>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <defs>
+                <pattern id="nsw-pattern-select-teal-01" patternUnits="userSpaceOnUse" width="8" height="8">
+                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-palette-teal-04)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
+                </pattern>
+              </defs>
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-teal-01)"></circle>
+              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-teal-01)"></circle>
+            </svg>
+            <span class="sr-only">Teal 01 patterned swatch</span>
+          </td>
+          <td>Teal 04 (<code>#D1EEEA</code>)</td>
+          <td><code>9.43:1</code></td>
+        </tr>
+        <tr>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-teal-02)"></circle>
+            </svg>
+            <span class="sr-only">Teal 02 plain swatch</span>
+          </td>
+          <td>Teal 02 (<code>#2E808E</code>)</td>
+          <td><code>4.57:1</code></td>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <defs>
+                <pattern id="nsw-pattern-select-teal-02" patternUnits="userSpaceOnUse" width="8" height="8">
+                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-palette-teal-04)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
+                </pattern>
+              </defs>
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-teal-02)"></circle>
+              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-teal-02)"></circle>
+            </svg>
+            <span class="sr-only">Teal 02 patterned swatch</span>
+          </td>
+          <td>Teal 04 (<code>#D1EEEA</code>)</td>
+          <td><code>3.73:1</code></td>
+        </tr>
+        <tr>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-grey-01)"></circle>
+            </svg>
+            <span class="sr-only">Grey 01 plain swatch</span>
+          </td>
+          <td>Grey 01 (<code>#22272B</code>)</td>
+          <td><code>15.07:1</code></td>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <defs>
+                <pattern id="nsw-pattern-select-grey-01" patternUnits="userSpaceOnUse" width="8" height="8">
+                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-palette-grey-04)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
+                </pattern>
+              </defs>
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-grey-01)"></circle>
+              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-grey-01)"></circle>
+            </svg>
+            <span class="sr-only">Grey 01 patterned swatch</span>
+          </td>
+          <td>Grey 04 (<code>#EBEBEB</code>)</td>
+          <td><code>12.64:1</code></td>
+        </tr>
+        <tr>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-grey-02)"></circle>
+            </svg>
+            <span class="sr-only">Grey 02 plain swatch</span>
+          </td>
+          <td>Grey 02 (<code>#495054</code>)</td>
+          <td><code>8.21:1</code></td>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <defs>
+                <pattern id="nsw-pattern-select-grey-02" patternUnits="userSpaceOnUse" width="8" height="8">
+                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-palette-grey-04)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
+                </pattern>
+              </defs>
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-grey-02)"></circle>
+              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-grey-02)"></circle>
+            </svg>
+            <span class="sr-only">Grey 02 patterned swatch</span>
+          </td>
+          <td>Grey 04 (<code>#EBEBEB</code>)</td>
+          <td><code>6.88:1</code></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<p class="nsw-docs__pattern-swatch-note">In a few 02 rows, the line colour uses White or 01 to keep pattern contrast at or above <code>3:1</code>.</p>
+
+<h4>Aboriginal palette chart-mark options</h4>
+<div class="nsw-section nsw-section--white nsw-block nsw-p-x-sm nsw-p-top-sm">
+  <div class="nsw-table nsw-table--valign-middle nsw-docs__table-wrap">
+    <table class="nsw-docs__chart-colour-table">
+      <caption class="sr-only">Approved Aboriginal palette chart-mark options on white background</caption>
+      <colgroup>
+        <col class="nsw-docs__chart-colour-col-swatch">
+        <col class="nsw-docs__chart-colour-col-colour-value">
+        <col class="nsw-docs__chart-colour-col-contrast">
+        <col class="nsw-docs__chart-colour-col-swatch">
+        <col class="nsw-docs__chart-colour-col-line-value">
+        <col class="nsw-docs__chart-colour-col-pattern-contrast">
+      </colgroup>
+      <thead>
+        <tr>
+          <th>Swatch (plain)</th>
+          <th>Colour value</th>
+          <th>Contrast ratio on white</th>
+          <th>Swatch (pattern)</th>
+          <th>Line value</th>
+          <th>Pattern contrast</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-aboriginal-palette-earth-red)"></circle>
+            </svg>
+            <span class="sr-only">Earth red plain swatch</span>
+          </td>
+          <td>Earth red (<code>#950906</code>)</td>
+          <td><code>9.05:1</code></td>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <defs>
+                <pattern id="nsw-pattern-select-aboriginal-earth-red" patternUnits="userSpaceOnUse" width="8" height="8">
+                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-aboriginal-palette-galah-pink)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
+                </pattern>
+              </defs>
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-aboriginal-palette-earth-red)"></circle>
+              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-aboriginal-earth-red)"></circle>
+            </svg>
+            <span class="sr-only">Earth red patterned swatch</span>
+          </td>
+          <td>Galah pink (<code>#FDD9D9</code>)</td>
+          <td><code>6.94:1</code></td>
+        </tr>
+        <tr>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-aboriginal-palette-ember-red)"></circle>
+            </svg>
+            <span class="sr-only">Ember red plain swatch</span>
+          </td>
+          <td>Ember red (<code>#E1261C</code>)</td>
+          <td><code>4.67:1</code></td>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <defs>
+                <pattern id="nsw-pattern-select-aboriginal-ember-red" patternUnits="userSpaceOnUse" width="8" height="8">
+                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-aboriginal-palette-galah-pink)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
+                </pattern>
+              </defs>
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-aboriginal-palette-ember-red)"></circle>
+              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-aboriginal-ember-red)"></circle>
+            </svg>
+            <span class="sr-only">Ember red patterned swatch</span>
+          </td>
+          <td>Galah pink (<code>#FDD9D9</code>)</td>
+          <td><code>3.58:1</code></td>
+        </tr>
+        <tr>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-aboriginal-palette-deep-orange)"></circle>
+            </svg>
+            <span class="sr-only">Deep orange plain swatch</span>
+          </td>
+          <td>Deep orange (<code>#882600</code>)</td>
+          <td><code>9.04:1</code></td>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <defs>
+                <pattern id="nsw-pattern-select-aboriginal-deep-orange" patternUnits="userSpaceOnUse" width="8" height="8">
+                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-aboriginal-palette-sunset-orange)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
+                </pattern>
+              </defs>
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-aboriginal-palette-deep-orange)"></circle>
+              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-aboriginal-deep-orange)"></circle>
+            </svg>
+            <span class="sr-only">Deep orange patterned swatch</span>
+          </td>
+          <td>Sunset orange (<code>#F9D4BE</code>)</td>
+          <td><code>6.54:1</code></td>
+        </tr>
+        <tr>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-aboriginal-palette-orange-ochre)"></circle>
+            </svg>
+            <span class="sr-only">Orange ochre plain swatch</span>
+          </td>
+          <td>Orange ochre (<code>#EE6314</code>)</td>
+          <td><code>3.27:1</code></td>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <defs>
+                <pattern id="nsw-pattern-select-aboriginal-orange-ochre" patternUnits="userSpaceOnUse" width="8" height="8">
+                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-white)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
+                </pattern>
+              </defs>
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-aboriginal-palette-orange-ochre)"></circle>
+              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-aboriginal-orange-ochre)"></circle>
+            </svg>
+            <span class="sr-only">Orange ochre patterned swatch</span>
+          </td>
+          <td>White (<code>#FFFFFF</code>)</td>
+          <td><code>3.27:1</code></td>
+        </tr>
+        <tr>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-aboriginal-palette-bush-honey-yellow)"></circle>
+            </svg>
+            <span class="sr-only">Bush honey yellow plain swatch</span>
+          </td>
+          <td>Bush honey yellow (<code>#895E00</code>)</td>
+          <td><code>5.73:1</code></td>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <defs>
+                <pattern id="nsw-pattern-select-aboriginal-bush-honey-yellow" patternUnits="userSpaceOnUse" width="8" height="8">
+                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-aboriginal-palette-sunbeam-yellow)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
+                </pattern>
+              </defs>
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-aboriginal-palette-bush-honey-yellow)"></circle>
+              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-aboriginal-bush-honey-yellow)"></circle>
+            </svg>
+            <span class="sr-only">Bush honey yellow patterned swatch</span>
+          </td>
+          <td>Sunbeam yellow (<code>#FFF1C5</code>)</td>
+          <td><code>5.09:1</code></td>
+        </tr>
+        <tr>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-aboriginal-palette-riverbed-brown)"></circle>
+            </svg>
+            <span class="sr-only">Riverbed brown plain swatch</span>
+          </td>
+          <td>Riverbed brown (<code>#552105</code>)</td>
+          <td><code>13.08:1</code></td>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <defs>
+                <pattern id="nsw-pattern-select-aboriginal-riverbed-brown" patternUnits="userSpaceOnUse" width="8" height="8">
+                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-aboriginal-palette-macadamia-brown)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
+                </pattern>
+              </defs>
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-aboriginal-palette-riverbed-brown)"></circle>
+              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-aboriginal-riverbed-brown)"></circle>
+            </svg>
+            <span class="sr-only">Riverbed brown patterned swatch</span>
+          </td>
+          <td>Macadamia brown (<code>#E9C8B2</code>)</td>
+          <td><code>8.32:1</code></td>
+        </tr>
+        <tr>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-aboriginal-palette-firewood-brown)"></circle>
+            </svg>
+            <span class="sr-only">Firewood brown plain swatch</span>
+          </td>
+          <td>Firewood brown (<code>#9E5332</code>)</td>
+          <td><code>5.62:1</code></td>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <defs>
+                <pattern id="nsw-pattern-select-aboriginal-firewood-brown" patternUnits="userSpaceOnUse" width="8" height="8">
+                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-aboriginal-palette-macadamia-brown)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
+                </pattern>
+              </defs>
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-aboriginal-palette-firewood-brown)"></circle>
+              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-aboriginal-firewood-brown)"></circle>
+            </svg>
+            <span class="sr-only">Firewood brown patterned swatch</span>
+          </td>
+          <td>Macadamia brown (<code>#E9C8B2</code>)</td>
+          <td><code>3.58:1</code></td>
+        </tr>
+        <tr>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-aboriginal-palette-charcoal-grey)"></circle>
+            </svg>
+            <span class="sr-only">Charcoal grey plain swatch</span>
+          </td>
+          <td>Charcoal grey (<code>#272727</code>)</td>
+          <td><code>14.94:1</code></td>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <defs>
+                <pattern id="nsw-pattern-select-aboriginal-charcoal-grey" patternUnits="userSpaceOnUse" width="8" height="8">
+                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-aboriginal-palette-smoke-grey)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
+                </pattern>
+              </defs>
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-aboriginal-palette-charcoal-grey)"></circle>
+              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-aboriginal-charcoal-grey)"></circle>
+            </svg>
+            <span class="sr-only">Charcoal grey patterned swatch</span>
+          </td>
+          <td>Smoke grey (<code>#E5E3E0</code>)</td>
+          <td><code>11.66:1</code></td>
+        </tr>
+        <tr>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-aboriginal-palette-emu-grey)"></circle>
+            </svg>
+            <span class="sr-only">Emu grey plain swatch</span>
+          </td>
+          <td>Emu grey (<code>#555555</code>)</td>
+          <td><code>7.46:1</code></td>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <defs>
+                <pattern id="nsw-pattern-select-aboriginal-emu-grey" patternUnits="userSpaceOnUse" width="8" height="8">
+                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-aboriginal-palette-smoke-grey)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
+                </pattern>
+              </defs>
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-aboriginal-palette-emu-grey)"></circle>
+              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-aboriginal-emu-grey)"></circle>
+            </svg>
+            <span class="sr-only">Emu grey patterned swatch</span>
+          </td>
+          <td>Smoke grey (<code>#E5E3E0</code>)</td>
+          <td><code>5.82:1</code></td>
+        </tr>
+        <tr>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-aboriginal-palette-bushland-green)"></circle>
+            </svg>
+            <span class="sr-only">Bushland green plain swatch</span>
+          </td>
+          <td>Bushland green (<code>#215834</code>)</td>
+          <td><code>8.37:1</code></td>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <defs>
+                <pattern id="nsw-pattern-select-aboriginal-bushland-green" patternUnits="userSpaceOnUse" width="8" height="8">
+                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-aboriginal-palette-saltbush-green)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
+                </pattern>
+              </defs>
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-aboriginal-palette-bushland-green)"></circle>
+              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-aboriginal-bushland-green)"></circle>
+            </svg>
+            <span class="sr-only">Bushland green patterned swatch</span>
+          </td>
+          <td>Saltbush green (<code>#DAE6D1</code>)</td>
+          <td><code>6.46:1</code></td>
+        </tr>
+        <tr>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-aboriginal-palette-marshland-lime)"></circle>
+            </svg>
+            <span class="sr-only">Marshland lime plain swatch</span>
+          </td>
+          <td>Marshland lime (<code>#78A146</code>)</td>
+          <td><code>3.01:1</code></td>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <defs>
+                <pattern id="nsw-pattern-select-aboriginal-marshland-lime" patternUnits="userSpaceOnUse" width="8" height="8">
+                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-white)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
+                </pattern>
+              </defs>
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-aboriginal-palette-marshland-lime)"></circle>
+              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-aboriginal-marshland-lime)"></circle>
+            </svg>
+            <span class="sr-only">Marshland lime patterned swatch</span>
+          </td>
+          <td>White (<code>#FFFFFF</code>)</td>
+          <td><code>3.01:1</code></td>
+        </tr>
+        <tr>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-aboriginal-palette-billabong-blue)"></circle>
+            </svg>
+            <span class="sr-only">Billabong blue plain swatch</span>
+          </td>
+          <td>Billabong blue (<code>#00405E</code>)</td>
+          <td><code>11.08:1</code></td>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <defs>
+                <pattern id="nsw-pattern-select-aboriginal-billabong-blue" patternUnits="userSpaceOnUse" width="8" height="8">
+                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-aboriginal-palette-coastal-blue)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
+                </pattern>
+              </defs>
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-aboriginal-palette-billabong-blue)"></circle>
+              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-aboriginal-billabong-blue)"></circle>
+            </svg>
+            <span class="sr-only">Billabong blue patterned swatch</span>
+          </td>
+          <td>Coastal blue (<code>#C1E2E8</code>)</td>
+          <td><code>8.08:1</code></td>
+        </tr>
+        <tr>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-aboriginal-palette-saltwater-blue)"></circle>
+            </svg>
+            <span class="sr-only">Saltwater blue plain swatch</span>
+          </td>
+          <td>Saltwater blue (<code>#0D6791</code>)</td>
+          <td><code>6.24:1</code></td>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <defs>
+                <pattern id="nsw-pattern-select-aboriginal-saltwater-blue" patternUnits="userSpaceOnUse" width="8" height="8">
+                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-aboriginal-palette-coastal-blue)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
+                </pattern>
+              </defs>
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-aboriginal-palette-saltwater-blue)"></circle>
+              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-aboriginal-saltwater-blue)"></circle>
+            </svg>
+            <span class="sr-only">Saltwater blue patterned swatch</span>
+          </td>
+          <td>Coastal blue (<code>#C1E2E8</code>)</td>
+          <td><code>4.55:1</code></td>
+        </tr>
+        <tr>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-aboriginal-palette-bush-plum)"></circle>
+            </svg>
+            <span class="sr-only">Bush plum plain swatch</span>
+          </td>
+          <td>Bush plum (<code>#472642</code>)</td>
+          <td><code>12.93:1</code></td>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <defs>
+                <pattern id="nsw-pattern-select-aboriginal-bush-plum" patternUnits="userSpaceOnUse" width="8" height="8">
+                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-aboriginal-palette-dusk-purple)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
+                </pattern>
+              </defs>
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-aboriginal-palette-bush-plum)"></circle>
+              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-aboriginal-bush-plum)"></circle>
+            </svg>
+            <span class="sr-only">Bush plum patterned swatch</span>
+          </td>
+          <td>Dusk purple (<code>#E4CCE0</code>)</td>
+          <td><code>8.63:1</code></td>
+        </tr>
+        <tr>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-aboriginal-palette-spirit-lilac)"></circle>
+            </svg>
+            <span class="sr-only">Spirit lilac plain swatch</span>
+          </td>
+          <td>Spirit lilac (<code>#9A5E93</code>)</td>
+          <td><code>4.78:1</code></td>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <defs>
+                <pattern id="nsw-pattern-select-aboriginal-spirit-lilac" patternUnits="userSpaceOnUse" width="8" height="8">
+                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-aboriginal-palette-dusk-purple)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
+                </pattern>
+              </defs>
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-aboriginal-palette-spirit-lilac)"></circle>
+              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-aboriginal-spirit-lilac)"></circle>
+            </svg>
+            <span class="sr-only">Spirit lilac patterned swatch</span>
+          </td>
+          <td>Dusk purple (<code>#E4CCE0</code>)</td>
+          <td><code>3.19:1</code></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<p class="nsw-docs__pattern-swatch-note">Aboriginal palette options shown here all meet at least <code>3:1</code> contrast on white. Where same-family pairings are too low, white pattern lines are used to maintain compliance.</p>
+
+<h4>Using a single colour</h4>
+<p>Not all charts need multiple colours. Some chart types communicate clearly with a single colour and do not require colour differentiation between categories.</p>
+<p>A bar chart comparing values across categories is a good example. Each bar represents a separate category, and the position and length of the bar communicates the difference - not the colour. Using a single colour in this case reduces visual noise and keeps the focus on the data.</p>
+<p>Use a single colour when:</p>
+<ul>
+  <li>Each bar, column or data point represents a separate category that is already labelled.</li>
+  <li>There is only one data series.</li>
+  <li>Colour differentiation would add no meaning.</li>
+</ul>
+<p>Use multiple colours when:</p>
+<ul>
+  <li>Multiple data series appear in the same chart space (for example, a grouped bar or multi-line chart).</li>
+  <li>A specific segment or value needs to be highlighted.</li>
+  <li>Colour is used alongside other cues to distinguish series.</li>
+</ul>
+
+<h3>Colour-blind safety</h3>
+<p>The most common type of colour vision deficiency is red-green confusion. Avoid placing these colour pairs next to each other:</p>
+<ul>
+  <li>Green and brown</li>
+  <li>Red and brown</li>
+  <li>Purple and blue</li>
+</ul>
+
+<h3>Line-series differentiation</h3>
+<p>For line charts, use dash styles, not fill patterns. Dash patterns (solid, dashed, dotted, dash-dot) are the correct redundant channel for distinguishing line series. Fill patterns are for bar, area and pie/doughnut chart marks only.</p>
+<div class="nsw-section nsw-section--white nsw-block nsw-p-x-sm nsw-p-top-sm nsw-m-bottom-md nsw-docs__line-style-table-wrap">
+  <div class="nsw-table nsw-table--valign-middle nsw-docs__table-wrap">
+    <table>
+      <caption class="sr-only">Line style definitions for chart series differentiation</caption>
+      <thead>
+        <tr>
+          <th width="30%">Style swatch</th>
+          <th width="30%">Name</th>
+          <th width="40%">Use</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="nsw-docs__line-style-swatch nsw-docs__line-style-swatch--solid" aria-hidden="true"></span><span class="sr-only">Solid line style</span></td>
+          <td>Solid</td>
+          <td>Primary series</td>
+        </tr>
+        <tr>
+          <td><span class="nsw-docs__line-style-swatch nsw-docs__line-style-swatch--dashed" aria-hidden="true"></span><span class="sr-only">Dashed line style</span></td>
+          <td>Dashed</td>
+          <td>Secondary</td>
+        </tr>
+        <tr>
+          <td><span class="nsw-docs__line-style-swatch nsw-docs__line-style-swatch--dotted" aria-hidden="true"></span><span class="sr-only">Dotted line style</span></td>
+          <td>Dotted</td>
+          <td>Tertiary</td>
+        </tr>
+        <tr>
+          <td><span class="nsw-docs__line-style-swatch nsw-docs__line-style-swatch--dashdot" aria-hidden="true"></span><span class="sr-only">Dash-dot line style</span></td>
+          <td>Dash-dot</td>
+          <td>Quaternary</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<h3>Using patterns</h3>
+<p>Colour is usually the primary cue for distinguishing datasets, but charts must remain understandable when users cannot rely on colour alone.</p>
+<ul>
+  <li>Use two colours per pattern: a fill and a pattern stroke.</li>
+  <li>Keep at least <code>3:1</code> contrast between fill and pattern stroke.</li>
+  <li>Use colours from the same palette column where possible (for example, Blue 03 fill with Blue 01 pattern).</li>
+  <li>Use patterns sparingly to avoid visual noise; keep to 4 to 5 patterns maximum in one chart.</li>
+  <li>Avoid thin lines or dense patterns; use stroke widths between 1.5 and 2px.</li>
+  <li>Avoid complicated image-based patterns.</li>
+</ul>
+<div class="nsw-in-page-alert nsw-in-page-alert--warning nsw-m-bottom-md">
+  <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">warning</span>
+  <div class="nsw-in-page-alert__content">
+    <p class="nsw-h5">Pattern usage limits</p>
+    <p>Keep to 4 to 5 patterns maximum in a single chart. Avoid thin lines or dense fills, use stroke widths 1.5 to 2px. Validate at 200% zoom and 375px viewport width before publishing. Patterns are reference swatches only: final scale must be validated in the rendered environment.</p>
+  </div>
+</div>
+
+<h4>Pattern swatch examples</h4>
+<div class="nsw-section nsw-section--white nsw-block nsw-p-x-sm nsw-p-top-sm">
+  <div class="nsw-table nsw-table--valign-middle nsw-docs__table-wrap">
+    <table>
+      <caption class="sr-only">Pattern swatch examples and typical use cases</caption>
+      <colgroup>
+        <col class="nsw-docs__pattern-usage-col-swatch">
+        <col>
+        <col>
+      </colgroup>
+      <thead>
+        <tr>
+          <th>Swatch</th>
+          <th>Pattern type</th>
+          <th>Typical use</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <defs>
+                <pattern id="nsw-pattern-usage-diagonal" patternUnits="userSpaceOnUse" width="8" height="8">
+                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var(--nsw-palette-blue-04)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
+                </pattern>
+              </defs>
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-blue-01)"></circle>
+              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-usage-diagonal)"></circle>
+            </svg>
+          </td>
+          <td>Diagonal</td>
+          <td>Good for secondary series in stacked bars and columns.</td>
+        </tr>
+        <tr>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <defs>
+                <pattern id="nsw-pattern-usage-crosshatch" patternUnits="userSpaceOnUse" width="12" height="12">
+                  <path d="M0,0 l12,12 M12,0 l-12,12" stroke="var(--nsw-palette-blue-04)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
+                </pattern>
+              </defs>
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-blue-01)"></circle>
+              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-usage-crosshatch)"></circle>
+            </svg>
+          </td>
+          <td>Crosshatch</td>
+          <td>Useful where stronger differentiation is required than single-line patterns.</td>
+        </tr>
+        <tr>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <defs>
+                <pattern id="nsw-pattern-usage-dots" patternUnits="userSpaceOnUse" width="12" height="12">
+                  <circle cx="6" cy="6" r="1.4" fill="var(--nsw-palette-blue-04)"></circle>
+                </pattern>
+              </defs>
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-blue-01)"></circle>
+              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-usage-dots)"></circle>
+            </svg>
+          </td>
+          <td>Dots</td>
+          <td>Works well for pie and doughnut slices where subtle texture is enough.</td>
+        </tr>
+        <tr>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <defs>
+                <pattern id="nsw-pattern-usage-grid-tight" patternUnits="userSpaceOnUse" width="8" height="8">
+                  <path d="M4,0 l0,8 M0,4 l8,0" stroke="var(--nsw-palette-blue-04)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
+                </pattern>
+              </defs>
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-blue-01)"></circle>
+              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-usage-grid-tight)"></circle>
+            </svg>
+          </td>
+          <td>Grid (tight)</td>
+          <td>Suitable for medium-to-large marks where repeated structure is clear.</td>
+        </tr>
+        <tr>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <defs>
+                <pattern id="nsw-pattern-usage-grid-wide" patternUnits="userSpaceOnUse" width="12" height="12">
+                  <path d="M6,0 l0,12 M0,6 l12,0" stroke="var(--nsw-palette-blue-04)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
+                </pattern>
+              </defs>
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-blue-01)"></circle>
+              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-usage-grid-wide)"></circle>
+            </svg>
+          </td>
+          <td>Grid (wide)</td>
+          <td>Best for larger visual marks where denser patterns would look noisy.</td>
+        </tr>
+        <tr>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <defs>
+                <pattern id="nsw-pattern-usage-zigzag" patternUnits="userSpaceOnUse" width="8" height="8">
+                  <polyline points="0,0 4,4 0,8" stroke="var(--nsw-palette-blue-04)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></polyline>
+                  <path d="M7,-1 l2,2 M7,9 l2,-2" stroke="var(--nsw-palette-blue-04)" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
+                </pattern>
+              </defs>
+              <circle cx="20" cy="20" r="18" fill="var(--nsw-palette-blue-01)"></circle>
+              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-usage-zigzag)"></circle>
+            </svg>
+          </td>
+          <td>Zigzag</td>
+          <td>Useful for highlighting one key series when other series are solid.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<p class="nsw-docs__pattern-swatch-note">Reference swatches only. Validate final pattern scale at 200% zoom and at mobile widths.</p>
+
+<h3>Typography in charts</h3>
+<p>Text should help users quickly understand the data without competing with visual elements. Use NSW Government primary typeface, Public Sans. If this is not possible, use Arial as fallback.</p>
+
+<h4>Minimum text sizes</h4>
+<div class="nsw-grid">
+  <div class="nsw-col nsw-col-sm-12 nsw-col-md-8 nsw-col-lg-8">
+    <div class="nsw-section nsw-section--white nsw-block nsw-p-x-sm nsw-p-top-sm">
+      <div class="nsw-table nsw-table--valign-middle nsw-docs__table-wrap">
+        <table>
+          <caption class="sr-only">Minimum text sizes for chart elements</caption>
+          <thead>
+            <tr>
+              <th>Element</th>
+              <th>Size</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Chart title</td>
+              <td>16 to 18px</td>
+            </tr>
+            <tr>
+              <td>Subtitle</td>
+              <td>12 to 14px</td>
+            </tr>
+            <tr>
+              <td>Callout</td>
+              <td>32 to 40px</td>
+            </tr>
+            <tr>
+              <td>Axis labels</td>
+              <td>12 to 14px</td>
+            </tr>
+            <tr>
+              <td>Dataset labels</td>
+              <td>12 to 14px</td>
+            </tr>
+            <tr>
+              <td>Data labels</td>
+              <td>12px minimum</td>
+            </tr>
+            <tr>
+              <td>Notes or sources</td>
+              <td>11 to 12px</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<p>Avoid text smaller than 12px in digital charts.</p>
+
+<h4>Text alignment</h4>
+<ul>
+  <li>Y-axis labels: right aligned</li>
+  <li>X-axis labels: centred</li>
+  <li>Dataset labels: placed close to the data they describe</li>
+  <li>Direct labelling is preferred over legends where possible.</li>
+</ul>
+
+<h4>Axis label orientation</h4>
+<p>Keep all text horizontal where possible. Angled or vertical text is harder to read and fails more easily at 200% zoom and on mobile viewports.</p>
+<ul>
+  <li><strong>Category labels:</strong> display horizontally. If labels are too long to fit horizontally, switch to a horizontal bar chart rather than rotating the text.</li>
+  <li><strong>Axis titles:</strong> keep short enough to sit horizontally above (Y-axis) or beside (X-axis) the axis. Avoid vertical axis titles. Use the chart title and sub-title to carry that context.</li>
+  <li><strong>Data labels:</strong> always horizontal.</li>
+</ul>
+<p>If rotating text cannot be avoided due to tool constraints, limit rotation to 45 degrees and ensure the text still meets the 12px minimum size at all viewport widths.</p>
+
+<h4>Number formatting</h4>
+<ul>
+  <li>Use commas for thousands (for example, <code>1,000</code>).</li>
+  <li>Avoid spaces between digits, as screen readers may read them incorrectly.</li>
+  <li>Use consistent decimal precision.</li>
+</ul>
+
+
+<h2 id="configure-tools-with-good-defaults">6. Configure tools with good defaults</h2>
+<p>DDS does not prescribe tools. However, because tool defaults are not automatically compliant, teams must:</p>
+<ul>
+  <li>Override default colours and typography to align with DDS.</li>
+  <li>Test accessibility within the actual tool environment.</li>
+  <li>If a tool cannot meet requirements, provide an alternative.</li>
+  <li>Consider accessibility capability when selecting vendors.</li>
+</ul>
+
+
+<h2 id="examples">Common chart pitfalls</h2>
+<p>These examples show common issues and better implementations. Use them to spot risks early and improve consistency.</p>
+<h3>Colour-only differentiation</h3>
+<div class="nsw-grid nsw-m-top-sm">
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--dont">
+      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">
+        cancel
+      </span>
+      <span>Don&#x27;t</span>
+    </div>
+    <p>Stacked bar uses red and green only, with no labels and low contrast.</p>
+    <div class="nsw-m-top-sm">
+      <canvas id="example2Bad" data-chart-height="320" role="img" aria-label="Stacked bar chart using red and green only with no labels." tabindex="0"></canvas>
+    </div>
+    <ul>
+      <li>Relies on colour alone to communicate meaning.</li>
+      <li>Insufficient contrast for some users.</li>
+      <li>No direct labels or markers.</li>
+    </ul>
+  </div>
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--do">
+      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">
+        check_circle
+      </span>
+      <span>Do</span>
+    </div>
+    <p>Use accessible colours, clear contrast, and a supporting table for labels.</p>
+    <div class="nsw-m-top-sm">
+      <canvas id="example2Good" data-chart-height="320" role="img" aria-label="Stacked bar chart with accessible colours and clear labels." tabindex="0"></canvas>
+    </div>
+    <div class="nsw-table nsw-table--valign-middle nsw-docs__table-wrap nsw-m-top-sm">
+      <table>
+        <caption class="sr-only">Resolution by quarter</caption>
+        <thead>
+          <tr>
+            <th scope="col">Quarter</th>
+            <th scope="col">Resolved on time</th>
+            <th scope="col">Resolved late</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Q1</th>
+            <td>120</td>
+            <td>30</td>
+          </tr>
+          <tr>
+            <th scope="row">Q2</th>
+            <td>140</td>
+            <td>25</td>
+          </tr>
+          <tr>
+            <th scope="row">Q3</th>
+            <td>110</td>
+            <td>40</td>
+          </tr>
+          <tr>
+            <th scope="row">Q4</th>
+            <td>150</td>
+            <td>20</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <ul>
+      <li>Set the chart canvas to a white background.</li>
+      <li>Provide labels in a table, not colour alone.</li>
+      <li>Meet WCAG contrast requirements.</li>
+      <li>Keep the chart clear in greyscale and colour-blind testing.</li>
+    </ul>
+  </div>
+</div>
+<h3>Tooltip-only values</h3>
+<div class="nsw-grid nsw-m-top-sm">
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--dont">
+      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">
+        cancel
+      </span>
+      <span>Don&#x27;t</span>
+    </div>
+    <p>Line chart shows values only on hover with no table or summary.</p>
+    <div class="nsw-m-top-sm">
+      <canvas id="example3Bad" data-chart-height="280" role="img" aria-label="Line chart with values available only on hover." tabindex="0"></canvas>
+    </div>
+    <ul>
+      <li>Keyboard and touch users cannot access key values.</li>
+      <li>No text alternative for screen readers.</li>
+      <li>Users cannot verify exact values.</li>
+    </ul>
+  </div>
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--do">
+      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">
+        check_circle
+      </span>
+      <span>Do</span>
+    </div>
+    <p>Include a summary and a semantic table for the same data.</p>
+    <div class="nsw-m-top-sm">
+      <canvas id="example3Good" data-chart-height="280" role="img" aria-label="Line chart with a summary and data table." tabindex="0"></canvas>
+    </div>
+    <p class="nsw-m-top-sm"><strong>Summary:</strong> Applications rose steadily from January to May, with a small drop in June.</p>
+    <div class="nsw-table nsw-table--valign-middle nsw-docs__table-wrap nsw-m-top-sm">
+      <table>
+        <caption class="sr-only">Online applications by month</caption>
+        <thead>
+          <tr>
+            <th scope="col">Month</th>
+            <th scope="col">Applications</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">January</th>
+            <td>220</td>
+          </tr>
+          <tr>
+            <th scope="row">February</th>
+            <td>260</td>
+          </tr>
+          <tr>
+            <th scope="row">March</th>
+            <td>310</td>
+          </tr>
+          <tr>
+            <th scope="row">April</th>
+            <td>370</td>
+          </tr>
+          <tr>
+            <th scope="row">May</th>
+            <td>420</td>
+          </tr>
+          <tr>
+            <th scope="row">June</th>
+            <td>390</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <ul>
+      <li>Set the chart canvas to a white background.</li>
+      <li>Use summary text for the key insight.</li>
+      <li>Provide precise values in a table.</li>
+      <li>Keep interactions keyboard accessible.</li>
+    </ul>
+  </div>
+</div>
+<h3>Too many pie segments</h3>
+<div class="nsw-grid nsw-m-top-sm">
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--dont">
+      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">
+        cancel
+      </span>
+      <span>Don&#x27;t</span>
+    </div>
+    <p>Using many small slices makes comparison difficult and creates visual clutter.</p>
+    <div class="nsw-m-top-sm">
+      <canvas id="example4Bad" data-chart-height="340" role="img" aria-label="Pie chart with twelve segments that are difficult to compare." tabindex="0"></canvas>
+    </div>
+    <ul>
+      <li>Too many slices reduce readability.</li>
+      <li>Small segments are hard to compare accurately.</li>
+      <li>Large legends force users to cross-reference excessively.</li>
+    </ul>
+  </div>
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--do">
+      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">
+        check_circle
+      </span>
+      <span>Do</span>
+    </div>
+    <p>Keep pie segments limited so users can quickly compare relative share.</p>
+    <div class="nsw-m-top-sm">
+      <canvas id="example4Good" data-chart-height="280" role="img" aria-label="Pie chart with four clearly distinguishable segments and direct labels." tabindex="0"></canvas>
+    </div>
+    <div class="nsw-table nsw-table--valign-middle nsw-docs__table-wrap nsw-m-top-sm">
+      <table>
+        <caption class="sr-only">Service channel share (Q2 2025)</caption>
+        <thead>
+          <tr>
+            <th scope="col">Channel</th>
+            <th scope="col">Share</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Digital</th>
+            <td>46%</td>
+          </tr>
+          <tr>
+            <th scope="row">Phone</th>
+            <td>28%</td>
+          </tr>
+          <tr>
+            <th scope="row">In person</th>
+            <td>17%</td>
+          </tr>
+          <tr>
+            <th scope="row">Mail</th>
+            <td>9%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <ul>
+      <li>Set the chart canvas to a white background.</li>
+      <li>Limit pie segments to 2 to 4 where possible.</li>
+      <li>Use labels and pattern support for clear distinction.</li>
+      <li>Include direct labels, a clear title and percentages.</li>
+    </ul>
+  </div>
+</div>
+
+
+<h2 id="review-checklist">Review checklist</h2>
+<div class="nsw-grid nsw-m-top-sm">
+  <div class="nsw-col nsw-col-12 nsw-col-md-8">
+    <div class="nsw-docs__review-checklist nsw-p-md nsw-bg--brand-dark nsw-section--invert">
+      <div class="nsw-docs__review-checklist-header nsw-section--invert">
+        <p class="nsw-m-bottom-xs"><strong>Before publishing:</strong></p>
+      </div>
+      <fieldset id="chart-review-checklist" class="nsw-form__fieldset" aria-describedby="review-checklist-help">
+        <legend class="sr-only">Charts and graphs review checklist</legend>
+        <input class="nsw-form__checkbox-input" type="checkbox" id="chart-review-check-1">
+        <label class="nsw-form__checkbox-label" for="chart-review-check-1">Does the chart match the user task?</label>
+        <input class="nsw-form__checkbox-input" type="checkbox" id="chart-review-check-2">
+        <label class="nsw-form__checkbox-label" for="chart-review-check-2">Is it the simplest suitable type?</label>
+        <input class="nsw-form__checkbox-input" type="checkbox" id="chart-review-check-3">
+        <label class="nsw-form__checkbox-label" for="chart-review-check-3">Is contrast sufficient?</label>
+        <input class="nsw-form__checkbox-input" type="checkbox" id="chart-review-check-4">
+        <label class="nsw-form__checkbox-label" for="chart-review-check-4">Is colour supported by other markers?</label>
+        <input class="nsw-form__checkbox-input" type="checkbox" id="chart-review-check-5">
+        <label class="nsw-form__checkbox-label" for="chart-review-check-5">Is there a semantic table?</label>
+        <input class="nsw-form__checkbox-input" type="checkbox" id="chart-review-check-6">
+        <label class="nsw-form__checkbox-label" for="chart-review-check-6">Is keyboard access supported?</label>
+        <input class="nsw-form__checkbox-input" type="checkbox" id="chart-review-check-7">
+        <label class="nsw-form__checkbox-label" for="chart-review-check-7">Does it work at 200% zoom?</label>
+        <input class="nsw-form__checkbox-input" type="checkbox" id="chart-review-check-8">
+        <label class="nsw-form__checkbox-label" for="chart-review-check-8">Are units and source clearly stated?</label>
+      </fieldset>
+    </div>
+  </div>
+</div>
+<p id="review-checklist-help" class="nsw-docs__review-checklist-help">If any answer is no, revise before release.</p>
+
+<h2 id="full-docs">References</h2>
+<ul>
+  <li><a href="https://branding.nsw.gov.au/guidelines/co-brand/infographics/charts-and-graphs/" target="_blank" rel="noopener noreferrer">NSW Brand Toolkit: Charts and graphs</a> (print guidance)</li>
+  <li>NSW Design System: <a href="https://designsystem.nsw.gov.au/core/colour/index.html">Colour</a>, <a href="https://designsystem.nsw.gov.au/core/typography/index.html">Typography</a>, and <a href="https://designsystem.nsw.gov.au/components/table/index.html">Table</a></li>
+  <li><a href="https://www.chartjs.org/docs/latest/" target="_blank" rel="noopener noreferrer">Chart.js documentation</a> (if you use Chart.js)</li>
+  <li><a href="https://ft-interactive.github.io/visual-vocabulary/" target="_blank" rel="noopener noreferrer">Financial Times Visual Vocabulary</a> for extended chart type support.</li>
+</ul>
+
+<script src="https://designsystem.nsw.gov.au/docs/js/charts-and-graphs.js"></script>
+
+        </div>
+      </div>
+      <footer class="nsw-footer nsw-docs-footer">
+        <div class="nsw-footer__lower">
+          <div class="nsw-container">
+            <p>We pay respect to the Traditional Custodians and First Peoples of NSW, and acknowledge their continued connection to their country and culture.</p>
+            <hr>
+            <ul>
+              <li><a href="#cookie-consent" class="js-open-dialog-cookie-consent-preferences" aria-haspopup="dialog">Cookie preferences</a></li>
+              <li><a href="https://github.com/digitalnsw/nsw-design-system" target="_blank">Github</a></li>
+              <li><a href="https://www.figma.com/design/PVrERKnckLTlJSPk12gbtS/NSW-Digital-Design-System?node-id=18830-13437&p=f&t=wz6pwwPdSDJOHzk2-0" target="_blank">Figma</a></li>
+              <li><a href="https://confirmsubscription.com/h/i/73DE733140B743AF" target="_blank">Sign up</a></li>
+              <li><a href="mailto:digital@customerservice.nsw.gov.au">Contact us</a></li>
+            </ul>
+            <div class="nsw-footer__info">
+              <div class="nsw-footer__copyright">Copyright © <script>document.write(new Date().getFullYear())</script></div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+  <script src="https://designsystem.nsw.gov.au/js/main.js"></script>
+  <script>
+    window.NSW.initSite()
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://designsystem.nsw.gov.au/docs/js/docs.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
+</body>
+</html>

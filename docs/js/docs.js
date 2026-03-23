@@ -230,10 +230,10 @@
     keywords: 'Markers, Mapbox, MapMarker.io, leaflet.js, location, pin',
     url: '/docs/content/methods/maps.html'
   }, {
-    label: 'Data visualisation',
+    label: 'Charts and graphs',
     template: 'result',
-    keywords: 'Comparison, data, trends, Display, statistics, Processes, workflows, Mapping, diagramming, Colours, theming, charts.js, charts, graphs, Screen readers',
-    url: '/docs/content/methods/data-visualisation.html'
+    keywords: 'Comparison, data, data visualisation, trends, Display, statistics, Processes, workflows, Mapping, diagramming, Colours, theming, charts, graphs, accessibility, dashboards, NSW Brand Toolkit, Screen readers, Chart.js',
+    url: '/docs/content/methods/charts-and-graphs.html'
   }, {
     label: 'You are here',
     template: 'result',
