@@ -9,7 +9,7 @@ model:
   footer: ../../components/footer/json/footer.json
 ---
 
-{{>_masthead content="#content-left" nav="#main-nav"}}
+{{>_masthead content="#content" nav="#main-nav"}}
 {{>_header header-title="NSW Design System"}}
 {{>_main-nav model.nav-basic}}
 <div class="nsw-container nsw-p-bottom-md">
@@ -24,12 +24,12 @@ model:
   img="https://picsum.photos/id/1042/1600/900"
 }}
 
-<div class="nsw-container nsw-p-top-md nsw-p-bottom-lg">
-  <div class="nsw-layout">
+<main id="content" class="nsw-container nsw-p-top-md nsw-p-bottom-lg">
+  <section class="nsw-layout">
     <div class="nsw-layout__sidebar js-side-nav">
       {{>_side-nav model.side-nav}}
     </div>
-    <main id="content-left" class="nsw-layout__main js-copy-headings">
+    <div id="content-left" class="nsw-layout__main js-copy-headings">
       <div class="nsw-block">
         <h2>Plan your implementation approach</h2>
         <p>Start by selecting the template structure that best matches your service journey. The NSW Design System is most effective when teams map component choices to user needs, rather than assembling pages from isolated UI elements.</p>
@@ -46,13 +46,13 @@ model:
         <p>Generated IDs should remain readable and unique, even when headings have similar names, to support reliable linking and analytics tracking.</p>
         <p>This approach reduces manual content maintenance while keeping user-facing behavior consistent across templates.</p>
       </div>
-    </main>
-  </div>
+    </div>
+  </section>
 
   <hr class="nsw-section-break nsw-m-top-lg nsw-m-bottom-md">
 
-  <div class="nsw-layout">
-    <main id="content-right" class="nsw-layout__main js-copy-headings">
+  <section class="nsw-layout">
+    <div id="content-right" class="nsw-layout__main js-copy-headings">
       <div class="nsw-grid nsw-align-items-start">
         <div class="nsw-col nsw-col-md-8">
           <div class="nsw-block">
@@ -82,8 +82,8 @@ model:
           </div>
         </div>
       </div>
-    </main>
-  </div>
-</div>
+    </div>
+  </section>
+</main>
 
 {{>_footer model.footer}}

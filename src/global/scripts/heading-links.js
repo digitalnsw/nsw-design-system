@@ -125,6 +125,30 @@ function legacyCopyText(text) {
   return false
 }
 
+function commandCopyText(text) {
+  if (!hasDocument || typeof document.execCommand !== 'function') return false
+
+  let copied = false
+  const onCopy = (event) => {
+    if (!event.clipboardData) return
+    event.preventDefault()
+    event.clipboardData.setData('text/plain', text)
+    copied = true
+  }
+
+  document.addEventListener('copy', onCopy, true)
+
+  try {
+    document.execCommand('copy')
+  } catch (error) {
+    copied = false
+  } finally {
+    document.removeEventListener('copy', onCopy, true)
+  }
+
+  return copied
+}
+
 function copyText(text) {
   if (
     hasWindow
@@ -134,10 +158,10 @@ function copyText(text) {
   ) {
     return window.navigator.clipboard.writeText(text)
       .then(() => true)
-      .catch(() => legacyCopyText(text))
+      .catch(() => commandCopyText(text) || legacyCopyText(text))
   }
 
-  return Promise.resolve(legacyCopyText(text))
+  return Promise.resolve(commandCopyText(text) || legacyCopyText(text))
 }
 
 function getHeadingUrl(headingId) {
