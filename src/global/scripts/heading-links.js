@@ -109,23 +109,20 @@ function createCopyButton(headingId) {
   return button
 }
 
-function fallbackCopy(text) {
-  const textArea = document.createElement('textarea')
-  textArea.value = text
-  textArea.setAttribute('readonly', '')
-  textArea.style.position = 'fixed'
-  textArea.style.top = '0'
-  textArea.style.left = '0'
-  textArea.style.opacity = '0'
+function legacyCopyText(text) {
+  if (
+    hasWindow
+    && window.clipboardData
+    && typeof window.clipboardData.setData === 'function'
+  ) {
+    try {
+      return window.clipboardData.setData('Text', text)
+    } catch (error) {
+      return false
+    }
+  }
 
-  document.body.appendChild(textArea)
-  textArea.focus()
-  textArea.select()
-
-  const copied = document.execCommand('copy')
-  document.body.removeChild(textArea)
-
-  return copied
+  return false
 }
 
 function copyText(text) {
@@ -137,10 +134,10 @@ function copyText(text) {
   ) {
     return window.navigator.clipboard.writeText(text)
       .then(() => true)
-      .catch(() => fallbackCopy(text))
+      .catch(() => legacyCopyText(text))
   }
 
-  return Promise.resolve(fallbackCopy(text))
+  return Promise.resolve(legacyCopyText(text))
 }
 
 function getHeadingUrl(headingId) {
