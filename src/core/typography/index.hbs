@@ -192,6 +192,32 @@ meta-index: true
   </table>
 </div>
 
+<h3>Optional heading anchor links</h3>
+<p>You can enable copyable anchor links for <code>h2</code> headings by adding <code>js-copy-headings</code> to the content container.</p>
+
+{{#>_docs-code open="true"}}
+<main class="js-copy-headings">
+  <h2 id="eligibility">Eligibility</h2>
+  <p>Eligibility requirements for this service.</p>
+
+  <h2>How to apply</h2>
+  <p>Complete the required application steps.</p>
+</main>
+{{/_docs-code}}
+
+<p>When this class is present:</p>
+<ul>
+  <li>The script scans descendant <code>h2</code> elements only.</li>
+  <li>Existing heading IDs are preserved; missing IDs are generated automatically.</li>
+  <li>An anchor copy icon is appended to each <code>h2</code> and copies the full URL including hash.</li>
+  <li>On desktop, the icon reveals when the heading or icon area is hovered. On tablet and mobile it remains visible for touch users.</li>
+  <li>Heading text remains selectable, so users can still copy heading text without copying a link.</li>
+  <li>Initialisation runs only when <code>js-copy-headings</code> is detected on the page.</li>
+</ul>
+
+<p>Use this pattern for long-form content bodies. Avoid enabling it on navigation, cards or compact UI areas where section-level linking is not useful.</p>
+<p>See the working example template: <a href="/templates/content/header-links.html" target="_blank" rel="noopener">Header links</a>.</p>
+
 <h3>Links</h3>
 {{#>_docs-example simple="true" separated="true"}}
 <p>
@@ -247,4 +273,3 @@ meta-index: true
   <dd>1300 300 300</dd>
 </dl>
 {{/_docs-example}}
-
