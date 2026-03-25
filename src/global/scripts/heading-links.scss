@@ -1,0 +1,100 @@
+@use '../scss/tools' as nsw;
+
+.js-copy-headings {
+  $heading-link-touch-size: nsw.rem(24px);
+  $heading-link-gap: nsw.rem(8px);
+
+  h2.nsw-heading-link {
+    margin-right: 0;
+  }
+
+  .nsw-heading-link__button {
+    position: relative;
+    width: $heading-link-touch-size;
+    height: $heading-link-touch-size;
+    padding: 0;
+    margin: 0 0 0 $heading-link-gap;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    flex-shrink: 0;
+    box-sizing: border-box;
+    line-height: 1;
+    cursor: pointer;
+    opacity: 1;
+    pointer-events: auto;
+
+    .nsw-material-icons {
+      display: block;
+      margin: 0;
+      line-height: 1;
+      font-size: nsw.rem(20px);
+      color: var(--nsw-link);
+    }
+
+    &::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      bottom: calc(100% + #{nsw.rem(8px)});
+      left: 50%;
+      transform: translateX(-50%);
+      white-space: nowrap;
+      padding: nsw.rem(4px) nsw.rem(8px);
+      border-radius: var(--nsw-border-radius);
+      background-color: var(--nsw-grey-01);
+      color: var(--nsw-text-light);
+      opacity: 0;
+      pointer-events: none;
+
+      @include nsw.font-size('xs');
+    }
+  }
+
+  .nsw-heading-link__button:hover,
+  .nsw-heading-link__button:focus {
+    background-color: var(--nsw-hover);
+    outline-width: 0;
+  }
+
+  .nsw-heading-link__button:hover::after,
+  .nsw-heading-link__button:focus::after,
+  .nsw-heading-link__button.is-copied::after {
+    opacity: 1;
+  }
+
+  .nsw-heading-link__button.is-tooltip-hidden::after,
+  .nsw-heading-link__button.is-tooltip-hidden:hover::after,
+  .nsw-heading-link__button.is-tooltip-hidden:focus::after {
+    opacity: 0;
+  }
+}
+
+@include nsw.breakpoint('lg') {
+  .js-copy-headings {
+    .nsw-heading-link__button {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    h2.nsw-heading-link:hover > .nsw-heading-link__button,
+    h2.nsw-heading-link:focus-within > .nsw-heading-link__button,
+    .nsw-heading-link__button:hover,
+    .nsw-heading-link__button:focus {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+}
+
+@include nsw.breakpoint('lg') {
+  @media (prefers-reduced-motion: no-preference) {
+    .js-copy-headings .nsw-heading-link__button {
+      transition: opacity 0.15s ease-in-out;
+
+      &::after {
+        transition: opacity 0.15s ease-in-out;
+      }
+    }
+  }
+}
