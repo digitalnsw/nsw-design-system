@@ -8,8 +8,9 @@ const headingClass = 'nsw-heading-link'
 const headingInitAttr = 'data-heading-link-init'
 const buttonBoundAttr = 'data-heading-link-bound'
 const buttonClass = 'nsw-heading-link__button'
+const buttonHeadingTextAttr = 'data-heading-text'
 const buttonLabel = 'Copy link to heading'
-const buttonCopiedLabel = 'Copied!'
+const buttonCopiedLabel = 'Link copied'
 const buttonCopiedClass = 'is-copied'
 const buttonTooltipHiddenClass = 'is-tooltip-hidden'
 const copiedMessageDuration = 2000
@@ -84,16 +85,23 @@ function ensureHeadingId(heading, usedIds) {
   return nextId
 }
 
-function createCopyButton(headingId) {
+function getContextualButtonLabel(label, headingText) {
+  if (!headingText) return label
+  return `${label}: ${headingText}`
+}
+
+function createCopyButton(headingId, headingText) {
   const button = document.createElement('button')
   const icon = document.createElement('span')
   const srText = document.createElement('span')
+  const contextualLabel = getContextualButtonLabel(buttonLabel, headingText)
 
   button.type = 'button'
   button.className = `nsw-icon-button ${buttonClass}`
   button.setAttribute('data-heading-id', headingId)
+  button.setAttribute(buttonHeadingTextAttr, headingText)
   button.setAttribute('data-tooltip', buttonLabel)
-  button.setAttribute('aria-label', buttonLabel)
+  button.setAttribute('aria-label', contextualLabel)
 
   icon.className = 'material-icons nsw-material-icons'
   icon.setAttribute('focusable', 'false')
@@ -101,7 +109,7 @@ function createCopyButton(headingId) {
   icon.textContent = 'link'
 
   srText.className = 'sr-only'
-  srText.textContent = buttonLabel
+  srText.textContent = contextualLabel
 
   button.appendChild(icon)
   button.appendChild(srText)
@@ -171,10 +179,12 @@ function getHeadingUrl(headingId) {
 }
 
 function setButtonLabel(button, label) {
+  const headingText = button.getAttribute(buttonHeadingTextAttr)
+  const contextualLabel = getContextualButtonLabel(label, headingText)
   const srText = button.querySelector('.sr-only')
   button.setAttribute('data-tooltip', label)
-  button.setAttribute('aria-label', label)
-  if (srText) srText.textContent = label
+  button.setAttribute('aria-label', contextualLabel)
+  if (srText) srText.textContent = contextualLabel
 }
 
 function resetCopiedLabel(button) {
@@ -215,8 +225,10 @@ function handleCopyClick(event) {
   })
 }
 
-function bindButton(button, headingId) {
+function bindButton(button, headingId, headingText) {
   button.setAttribute('data-heading-id', headingId)
+  button.setAttribute(buttonHeadingTextAttr, headingText)
+  setButtonLabel(button, buttonLabel)
 
   if (button.getAttribute(buttonBoundAttr) === '1') return
 
@@ -245,18 +257,19 @@ function getExistingHeadingButton(heading) {
 
 function enhanceHeading(heading, usedIds) {
   const headingId = ensureHeadingId(heading, usedIds)
+  const headingText = getHeadingText(heading)
   const existingButton = getExistingHeadingButton(heading)
 
   heading.classList.add(headingClass)
 
   if (existingButton) {
-    bindButton(existingButton, headingId)
+    bindButton(existingButton, headingId, headingText)
     heading.setAttribute(headingInitAttr, '1')
     return
   }
 
-  const button = createCopyButton(headingId)
-  bindButton(button, headingId)
+  const button = createCopyButton(headingId, headingText)
+  bindButton(button, headingId, headingText)
   heading.appendChild(button)
   heading.setAttribute(headingInitAttr, '1')
 }
