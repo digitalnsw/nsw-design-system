@@ -215,7 +215,25 @@ meta-index: true
   <li>Initialisation runs only when <code>js-copy-headings</code> is detected on the page.</li>
 </ul>
 
-<p>Use this pattern for long-form content bodies. Avoid enabling it on navigation, cards or compact UI areas where section-level linking is not useful.</p>
+<div class="nsw-grid nsw-m-top-sm">
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--do"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span><span>Do</span></div>
+    <ul>
+      <li>Use this in long-form content bodies where there are multiple section headings.</li>
+      <li>Prefer enabling it when there are more than 3 <code>h2</code> headings in the same content area.</li>
+      <li>Apply <code>js-copy-headings</code> to a specific container that represents the main reading content.</li>
+    </ul>
+  </div>
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--dont"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span><span>Don't</span></div>
+    <ul>
+      <li>Do not apply this globally to pages with sparse headings or short content.</li>
+      <li>Do not enable it outside content bodies such as navigation, cards, filters or utility regions.</li>
+      <li>Do not target random standalone <code>h2</code> elements that are not part of a coherent document structure.</li>
+    </ul>
+  </div>
+</div>
+
 <p>See the working example template: <a href="/templates/content/header-links.html" target="_blank" rel="noopener">Header links</a>.</p>
 
 <h3 id="links">Links</h3>
