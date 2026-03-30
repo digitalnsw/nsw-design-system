@@ -4,17 +4,40 @@ layout: blank-layout.hbs
 ---
 
 <h2>Usage</h2>
-<p>Use tabs to organise content and allow users to move between related content sections or views at the same level of hierarchy. They allow users to focus on specific content whilst remaining clear on the overall context of the screen. </p>
-<p>Do:</p>
+<p>Use tabs to organise related content sections or views at the same level of hierarchy on the same page.</p>
+
+<h3>Do</h3>
 <ul>
   <li>ensure each tab contains content that is distinct from the others</li>
-  <li>use short (preferably single word), easily scannable, unique titles</li>
-  <li>order the tabs by importance/relevance to the user, from left to right</li>
+  <li>use short, scannable and unique tab labels</li>
+  <li>keep tab labels on one line and order tabs from most to least important</li>
+  <li>include a heading inside every panel that matches the tab label</li>
+  <li>use between 2 and 5 tabs for public-facing content</li>
 </ul>
-<p>Don't:</p>
+
+<h3>Don&apos;t</h3>
 <ul>
   <li>use tabs within tabs</li>
-  <li>display disabled tabs.</li>
+  <li>place accordions inside tab panels as nested navigation</li>
+  <li>use tabs as page navigation or site navigation</li>
+  <li>use tabs to show progress through a multi-step task; use <a href="/components/progress-indicator/index.html">Progress indicator</a> instead</li>
+  <li>display disabled tabs</li>
+</ul>
+
+<h2>Mobile behaviour</h2>
+<p>On small viewports, tabs are presented as a horizontally scrollable tab strip. Tabs must not wrap to multiple lines.</p>
+<p>A fade indicator appears at the edge of the tab list when additional tabs are available off-screen.</p>
+<ul>
+  <li>keep labels concise so users can identify options quickly while scrolling</li>
+  <li>if labels are consistently long or tab count grows beyond 5, choose <a href="/components/accordion/index.html">Accordion</a> at design time instead of switching tabs to accordion at a breakpoint</li>
+</ul>
+
+<h2>Choose the right pattern</h2>
+<ul>
+  <li><strong>Tabs</strong>: switch between related sections within the same page region</li>
+  <li><strong><a href="/components/in-page-nav/index.html">In-page nav</a> / <a href="/components/side-nav/index.html">Side nav</a></strong>: navigate sections of a page or page group</li>
+  <li><strong><a href="/components/main-nav/index.html">Main navigation</a></strong>: navigate across the site or service</li>
+  <li><strong><a href="/components/progress-indicator/index.html">Progress indicator</a></strong>: communicate task progress</li>
 </ul>
 
 <h3>When to avoid</h3>
@@ -22,9 +45,32 @@ layout: blank-layout.hbs
 <ul>
   <li>use where important information can be hidden and missed</li>
   <li>use with very short content, consider using lists or paragraphs</li>
-  <li>use for very long content where the physical tabs become lost, consider breaking content into separate pages</li>
+  <li>use for very long content where tab controls become disconnected from the content; consider separate pages</li>
   <li>use for content where users are likely to want to compare information across multiple tabs</li>
 </ul>
 
 <h2>Accessibility</h2>
 <p>All components are responsive and designed to comply with WCAG 2.2 AA accessibility standards. Full compliance depends on using and configuring the components correctly.</p>
+
+<h3>Keyboard support</h3>
+<ul>
+  <li>use left and right arrow keys to move between tabs; <code>Home</code> and <code>End</code> jump to first and last tab</li>
+  <li>use <code>Tab</code> to move into the active panel content</li>
+  <li>use down arrow on the selected tab to move focus to the associated panel</li>
+</ul>
+<p>For audiences with high assistive-technology usage, run usability testing to confirm whether an alternative hybrid keyboard approach is needed.</p>
+
+<h3>Panel focus</h3>
+<p>If a panel contains only static content, keep <code>tabindex=&quot;0&quot;</code> on the <code>tabpanel</code> so keyboard users can move focus into that content region.</p>
+
+<h3>No JavaScript fallback</h3>
+<p>Without JavaScript, all tab panels are visible and stacked in document order, and tab labels work as same-page links to each section.</p>
+
+<h3>ARIA requirements</h3>
+<ul>
+  <li>each tab must map to a real panel via matching <code>href</code> and panel <code>id</code></li>
+  <li>where there are more than 3 tabs, include <code>aria-posinset</code> and <code>aria-setsize</code> for each tab</li>
+</ul>
+
+<h3>Deep linking</h3>
+<p>Tabs support URL hash deep linking. If the page loads with a matching hash, the corresponding panel is opened, and back/forward browser navigation updates the active tab.</p>

@@ -4,18 +4,59 @@
   @include nsw.component-spacing();
 
   &__list-wrapper {
+    position: relative;
     overflow: hidden;
     height: nsw.rem(48px);
     background-color: var(--nsw-off-white);
+    --nsw-tabs-overflow-fade: var(--nsw-off-white);
 
-    .nsw-section--invert & {    
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: nsw.rem(24px);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.2s ease-out;
+
+      @include nsw.z-index;
+    }
+
+    &::before {
+      left: 0;
+      background: linear-gradient(to right, var(--nsw-tabs-overflow-fade), rgba(var(--nsw-white-rgb), 0));
+    }
+
+    &::after {
+      right: 0;
+      background: linear-gradient(to left, var(--nsw-tabs-overflow-fade), rgba(var(--nsw-white-rgb), 0));
+    }
+
+    &[data-overflow-start='true']::before {
+      opacity: 1;
+    }
+
+    &[data-overflow-end='true']::after {
+      opacity: 1;
+    }
+
+    .nsw-section--invert & {
       background-color: rgba(var(--nsw-white-rgb), 0.15);
+      --nsw-tabs-overflow-fade: rgba(var(--nsw-white-rgb), 0.15);
     }
 
     @include nsw.breakpoint('md') {
       background-color: transparent;
+      --nsw-tabs-overflow-fade: transparent;
 
-      .nsw-section--invert & {    
+      &::before,
+      &::after {
+        display: none;
+      }
+
+      .nsw-section--invert & {
         background-color: transparent;
       }
     }
@@ -28,20 +69,26 @@
     display: flex;
     position: relative;
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    flex-wrap: nowrap;
     white-space: nowrap;
 
     li {
       margin: 0;
+      flex: 0 0 auto;
     }
 
     a {
       @include nsw.z-index;
-      display: block;
+      display: flex;
+      align-items: center;
       padding: nsw.rem(12px) nsw.rem(16px);
       position: relative;
       text-decoration: none;
       color: var(--nsw-brand-dark);
       height: 100%;
+      min-height: nsw.rem(44px);
+      white-space: nowrap;
 
       &:hover {
         @include nsw.nsw-hover;
@@ -52,7 +99,7 @@
         outline-width: 3px;
         outline-offset: -3px;
 
-        .nsw-section--invert & {    
+        .nsw-section--invert & {
           outline-color: var(--nsw-text-light);
         }
       }
@@ -69,13 +116,13 @@
           height: 0;
           border-bottom: solid 2px var(--nsw-brand-accent);
         }
-      
-        .nsw-section--invert & {    
+
+        .nsw-section--invert & {
           color: var(--nsw-text-light);
         }
       }
-      
-      .nsw-section--invert & {    
+
+      .nsw-section--invert & {
         color: var(--nsw-text-light);
       }
     }
@@ -90,7 +137,7 @@
     &:focus {
       @include nsw.nsw-focus;
 
-      .nsw-section--invert & {    
+      .nsw-section--invert & {
         outline-color: var(--nsw-white);
       }
     }
@@ -106,6 +153,39 @@
 
     &--no-border {
       border-bottom: 0;
+    }
+  }
+}
+
+@media (forced-colors: active) {
+  .nsw-tabs {
+    &__list-wrapper {
+      &::before,
+      &::after {
+        display: none;
+      }
+    }
+
+    &__list {
+      a {
+        border: 1px solid transparent;
+
+        &.active {
+          border: 2px solid CanvasText;
+          border-bottom-width: 0;
+          margin-bottom: nsw.rem(-2px);
+          transform: translateY(2px);
+
+          &::after {
+            border-bottom: 0;
+          }
+        }
+      }
+    }
+
+    &__content {
+      border: 1px solid CanvasText;
+      margin-top: 0;
     }
   }
 }
