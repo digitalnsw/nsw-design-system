@@ -446,18 +446,16 @@
       }
     }
   }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .nsw-card {
-    .nsw-card__content {
+  
+  @media (prefers-reduced-motion: no-preference) {
+    &__content {
       transition: background-color nsw.$nsw-transition-duration, border-color nsw.$nsw-transition-duration;
     }
 
-    .nsw-card__title a,
-    .nsw-card__copy,
-    .nsw-card__tag,
-    .nsw-card__date,
+    &__title a,
+    &__copy,
+    &__tag,
+    &__date,
     .nsw-material-icons {
       transition: color nsw.$nsw-transition-duration;
     }
@@ -469,8 +467,12 @@
       }
     }
 
-    &--border.nsw-card--highlight .nsw-card__image {
-      transition: box-shadow nsw.$nsw-transition-duration;
+    &--border {
+      &.nsw-card--highlight {
+        .nsw-card__image {
+          transition: box-shadow nsw.$nsw-transition-duration;
+        }
+      }
     }
   }
 }
