@@ -173,6 +173,12 @@
 
   &--light {
     &:hover {      
+      .nsw-section--brand-light & {
+        .nsw-card__content {
+          border-color: var(--nsw-brand-dark);
+        }
+      }
+
       .nsw-section--invert & {  
         .nsw-card__content {  
           background-color: var(--nsw-white);
@@ -183,6 +189,10 @@
     .nsw-card__content {
       background-color: var(--nsw-brand-light);
       border-color: transparent;
+
+      .nsw-section--brand-light & {
+        border-color: var(--nsw-brand-dark);
+      }
 
       &::before,
       &::after {
