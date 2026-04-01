@@ -48,8 +48,8 @@ function baseCleanHTML(str, nodes, opts = {}) {
 
       bodyEl.innerHTML = safe
     } else {
-      // No allowlist: just assign raw as text, no HTML interpretation
-      bodyEl.textContent = raw
+      // No allowlist: parse raw HTML and then strip scripts/dangerous attributes
+      bodyEl.innerHTML = raw
     }
 
     return bodyEl

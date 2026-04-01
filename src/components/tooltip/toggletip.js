@@ -6,15 +6,19 @@ import {
   offset,
   arrow,
 } from '@floating-ui/dom'
-import { cleanHTMLStrict } from '../../global/scripts/helpers/sanitize'
+import { cleanHTMLOpen, cleanHTMLStrict } from '../../global/scripts/helpers/sanitize'
 
 class Toggletip {
   constructor(element) {
     this.toggletip = element
     this.toggletipId = this.toggletip.getAttribute('aria-controls')
-    this.toggletipElement = this.toggletipId && document.querySelector(`#${this.toggletipId}`)
+    this.toggletipElement = this.toggletipId && (
+      this.toggletip.querySelector(`#${this.toggletipId}`)
+      || document.querySelector(`#${this.toggletipId}`)
+    )
     this.toggletipContentId = this.toggletipId ? `${this.toggletipId}-content` : ''
     this.toggletipContent = false
+    this.sanitiseMode = this.toggletip.getAttribute('data-sanitise') || 'strict'
     this.toggletipAnchor = this.toggletip.querySelector('[data-anchor]') || this.toggletip
     this.toggletipText = this.toggletip.innerText
     this.toggletipHeading = this.toggletip.getAttribute('data-title') || this.toggletipText
@@ -104,6 +108,10 @@ class Toggletip {
 
   createToggletipElement() {
     const { toggletipContentId, toggletipHeading } = this
+    const sanitisedContent = this.sanitiseMode === 'open'
+      ? cleanHTMLOpen(this.toggletipContent)
+      : cleanHTMLStrict(this.toggletipContent)
+
     if (this.toggletipElement) {
       this.toggletipElement.innerHTML = ''
       const createToggletip = `
@@ -114,7 +122,7 @@ class Toggletip {
         </button>
       </div>
       <div id="${toggletipContentId}" class="nsw-toggletip__content">
-        ${cleanHTMLStrict(this.toggletipContent)}
+        ${sanitisedContent}
       </div>
       <div class="nsw-toggletip__arrow"></div>`
       this.toggletipElement.insertAdjacentHTML('afterbegin', createToggletip)
