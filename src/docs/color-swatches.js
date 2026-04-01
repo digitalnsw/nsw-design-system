@@ -1,10 +1,6 @@
 /* eslint-disable max-len */
 class ColorSwatches {
   constructor(element, config) {
-    if (element.dataset.initialised) {
-      return;
-    }
-    element.dataset.initialised = 'true';
     this.element = element
     this.variables = config.variables
     this.palettes = config.palettes
@@ -22,12 +18,13 @@ class ColorSwatches {
     this.legendKey = this.element.dataset.legendKey || null
     this.swatchKey = this.element.dataset.swatchKey || null
     this.swatchList = null // Swatch list container
-
-    this.init()
   }
 
   // Initialise the color swatches
   init() {
+    if (this.element.dataset.initialised) return
+    this.element.dataset.initialised = 'true'
+
     this.createColorSwatches() // Creates the color swatch list first
     // Create the palette select dropdown (and its label) before reading URL param
     this.paletteSelect = this.createPaletteSelector()
@@ -115,12 +112,14 @@ class ColorSwatches {
         swatchItem.classList.add('nsw-color-swatches__item', 'js-color-swatches__item')
         const isSelected = colorKey === this.currentColor
         const swatchEntry = this.swatchKey ? colorData[this.swatchKey] : null
-        const swatchLabel = swatchEntry && typeof swatchEntry === 'object'
+        const isObjectEntry = swatchEntry && typeof swatchEntry === 'object'
+        const swatchLabel = (isObjectEntry && swatchEntry.label != null)
           ? swatchEntry.label
           : this.constructor.formatLabel(colorKey)
-        const swatchColor = swatchEntry && typeof swatchEntry === 'object'
+        const fallbackSwatchColor = swatchEntry != null ? swatchEntry : colorData.val
+        const swatchColor = (isObjectEntry && swatchEntry.value != null)
           ? swatchEntry.value
-          : swatchEntry || colorData.val
+          : fallbackSwatchColor
 
         if (isSelected) swatchItem.classList.add('nsw-color-swatches__item--selected')
         swatchItem.setAttribute('data-color', colorKey)
