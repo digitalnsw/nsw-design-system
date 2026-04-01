@@ -14,6 +14,7 @@ class Tabs {
     this.tabPanel = []
     this.selectedTab = null
     this.tabListWrapper = null
+    this.desktopModeQuery = window.matchMedia('(min-width: 62rem)')
     this.enableHashNavigation = false
     this.focusableSelector = `a[href],button:not([disabled]),
       area[href],input:not([disabled]):not([type=hidden]),
@@ -23,7 +24,7 @@ class Tabs {
     this.clickTabEvent = (event) => this.clickTab(event)
     this.arrowKeysEvent = (event) => this.arrowKeys(event)
     this.hashChangeEvent = () => this.handleHashChange()
-    this.updateScrollableStateEvent = () => this.updateScrollableState()
+    this.viewportChangeEvent = () => this.handleViewportChange()
     this.owns = []
   }
 
@@ -32,7 +33,7 @@ class Tabs {
     this.setUpDom()
     this.controls()
     this.setInitialTab()
-    this.updateScrollableState()
+    this.handleViewportChange()
   }
 
   setUpDom() {
@@ -173,6 +174,8 @@ class Tabs {
   }
 
   handleHashChange() {
+    if (!this.desktopModeQuery.matches) return
+
     const hashTabIndex = this.getTabIndexByHash(window.location.hash)
     if (hashTabIndex < 0) return
 
@@ -186,20 +189,65 @@ class Tabs {
     })
   }
 
-  updateScrollableState() {
-    const { tabList, tabListWrapper } = this
-    if (!tabList || !tabListWrapper) return
+  handleViewportChange() {
+    if (this.desktopModeQuery.matches) {
+      this.enableTabsView()
+    } else {
+      this.enableStackedView()
+    }
+  }
 
-    const maxScroll = Math.max(tabList.scrollWidth - tabList.clientWidth, 0)
-    const hasOverflow = maxScroll > 1
-    const hasOverflowAtStart = hasOverflow && tabList.scrollLeft > 1
-    const hasOverflowAtEnd = hasOverflow && tabList.scrollLeft < (maxScroll - 1)
+  enableTabsView() {
+    const selectedLink = this.selectedTab || this.tabLinks[this.getInitialTabIndex()]
 
-    tabListWrapper.setAttribute('data-overflow-start', hasOverflowAtStart ? 'true' : 'false')
-    tabListWrapper.setAttribute('data-overflow-end', hasOverflowAtEnd ? 'true' : 'false')
+    this.tabLinks.forEach((link) => {
+      link.classList.remove('active')
+      link.setAttribute('aria-selected', false)
+      link.setAttribute('tabindex', '-1')
+    })
+
+    this.tabPanel.forEach((panel) => {
+      const panelElem = panel
+
+      if (!this.hasFocusableContent(panelElem)) {
+        panelElem.setAttribute('tabindex', '0')
+      } else {
+        panelElem.removeAttribute('tabindex')
+      }
+      panelElem.hidden = true
+    })
+
+    this.selectedTab = null
+
+    if (selectedLink) {
+      this.switchTabs(selectedLink, {
+        focus: false,
+        updateHash: false,
+        smoothScroll: false,
+      })
+    }
+  }
+
+  enableStackedView() {
+    this.tabLinks.forEach((link) => {
+      link.classList.remove('active')
+      link.setAttribute('aria-selected', false)
+      link.removeAttribute('tabindex')
+    })
+
+    this.tabPanel.forEach((panel) => {
+      const panelElem = panel
+      panelElem.hidden = false
+      panelElem.removeAttribute('tabindex')
+    })
   }
 
   clickTab(e) {
+    if (!this.desktopModeQuery.matches) {
+      this.selectedTab = e.currentTarget
+      return
+    }
+
     e.preventDefault()
     this.switchTabs(e.currentTarget)
   }
@@ -212,6 +260,7 @@ class Tabs {
     } = options
     const clickedTab = elem
 
+    if (!this.desktopModeQuery.matches) return
     if (!clickedTab) return
 
     const clickedTabIndex = this.tabLinks.indexOf(clickedTab)
@@ -263,6 +312,8 @@ class Tabs {
   }
 
   arrowKeys(event) {
+    if (!this.desktopModeQuery.matches) return
+
     const keycode = event.which || event.keyCode
     const linkLength = this.tabLinks.length - 1
     let index = this.tabLinks.indexOf(this.selectedTab)
@@ -307,8 +358,11 @@ class Tabs {
       link.addEventListener('keydown', this.arrowKeysEvent, false)
     })
 
-    this.tabList.addEventListener('scroll', this.updateScrollableStateEvent, { passive: true })
-    window.addEventListener('resize', this.updateScrollableStateEvent, false)
+    if (this.desktopModeQuery.addEventListener) {
+      this.desktopModeQuery.addEventListener('change', this.viewportChangeEvent, false)
+    } else {
+      this.desktopModeQuery.addListener(this.viewportChangeEvent)
+    }
 
     if (this.enableHashNavigation) {
       window.addEventListener('hashchange', this.hashChangeEvent, false)

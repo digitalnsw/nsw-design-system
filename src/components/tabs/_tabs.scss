@@ -4,57 +4,16 @@
   @include nsw.component-spacing();
 
   &__list-wrapper {
-    position: relative;
     overflow: hidden;
     height: nsw.rem(48px);
     background-color: var(--nsw-off-white);
-    --nsw-tabs-overflow-fade: var(--nsw-off-white);
-
-    &::before,
-    &::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      width: nsw.rem(24px);
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity 0.2s ease-out;
-
-      @include nsw.z-index;
-    }
-
-    &::before {
-      left: 0;
-      background: linear-gradient(to right, var(--nsw-tabs-overflow-fade), rgba(var(--nsw-white-rgb), 0));
-    }
-
-    &::after {
-      right: 0;
-      background: linear-gradient(to left, var(--nsw-tabs-overflow-fade), rgba(var(--nsw-white-rgb), 0));
-    }
-
-    &[data-overflow-start='true']::before {
-      opacity: 1;
-    }
-
-    &[data-overflow-end='true']::after {
-      opacity: 1;
-    }
 
     .nsw-section--invert & {
       background-color: rgba(var(--nsw-white-rgb), 0.15);
-      --nsw-tabs-overflow-fade: rgba(var(--nsw-white-rgb), 0.15);
     }
 
     @include nsw.breakpoint('md') {
       background-color: transparent;
-      --nsw-tabs-overflow-fade: transparent;
-
-      &::before,
-      &::after {
-        display: none;
-      }
 
       .nsw-section--invert & {
         background-color: transparent;
@@ -157,15 +116,49 @@
   }
 }
 
-@media (forced-colors: active) {
+@media (max-width: nsw.rem(991px)) {
   .nsw-tabs {
     &__list-wrapper {
-      &::before,
-      &::after {
-        display: none;
+      overflow: visible;
+      height: auto;
+      background-color: transparent;
+
+      .nsw-section--invert & {
+        background-color: transparent;
       }
     }
 
+    &__list {
+      display: block;
+      overflow-x: visible;
+      flex-wrap: wrap;
+      white-space: normal;
+      padding: 0;
+
+      li {
+        flex: initial;
+      }
+
+      a {
+        display: block;
+        height: auto;
+        min-height: 0;
+        white-space: normal;
+
+        &.active::after {
+          display: none;
+        }
+      }
+    }
+
+    &__content {
+      margin-top: 0;
+    }
+  }
+}
+
+@media (forced-colors: active) {
+  .nsw-tabs {
     &__list {
       a {
         border: 1px solid transparent;
