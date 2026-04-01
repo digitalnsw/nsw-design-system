@@ -6324,9 +6324,10 @@
     constructor(element) {
       this.toggletip = element;
       this.toggletipId = this.toggletip.getAttribute('aria-controls');
-      this.toggletipElement = this.toggletipId && document.querySelector(`#${this.toggletipId}`);
+      this.toggletipElement = this.toggletipId && (this.toggletip.querySelector(`#${this.toggletipId}`) || document.querySelector(`#${this.toggletipId}`));
       this.toggletipContentId = this.toggletipId ? `${this.toggletipId}-content` : '';
       this.toggletipContent = false;
+      this.sanitiseMode = this.toggletip.getAttribute('data-sanitise') || 'strict';
       this.toggletipAnchor = this.toggletip.querySelector('[data-anchor]') || this.toggletip;
       this.toggletipText = this.toggletip.innerText;
       this.toggletipHeading = this.toggletip.getAttribute('data-title') || this.toggletipText;
@@ -6415,6 +6416,7 @@
         toggletipContentId,
         toggletipHeading
       } = this;
+      const sanitisedContent = this.sanitiseMode === 'open' ? this.constructor.sanitiseOpenContent(this.toggletipContent) : cleanHTMLStrict(this.toggletipContent);
       if (this.toggletipElement) {
         this.toggletipElement.innerHTML = '';
         const createToggletip = `
@@ -6425,7 +6427,7 @@
         </button>
       </div>
       <div id="${toggletipContentId}" class="nsw-toggletip__content">
-        ${cleanHTMLStrict(this.toggletipContent)}
+        ${sanitisedContent}
       </div>
       <div class="nsw-toggletip__arrow"></div>`;
         this.toggletipElement.insertAdjacentHTML('afterbegin', createToggletip);
@@ -6582,6 +6584,66 @@
         event.preventDefault();
         firstFocusable.focus();
       }
+    }
+    static sanitiseOpenContent(html) {
+      if (!html) return '';
+      if (typeof DOMParser === 'undefined') return cleanHTMLStrict(html);
+      let doc;
+      try {
+        doc = new DOMParser().parseFromString(String(html), 'text/html');
+      } catch (err) {
+        return cleanHTMLStrict(html);
+      }
+      const allowedTags = new Set(['a', 'svg', 'path', 'span']);
+      const blockedTags = new Set(['script', 'style', 'iframe', 'object', 'embed', 'template', 'link', 'meta', 'base']);
+      const allowedAttributes = {
+        a: new Set(['class', 'data-social', 'title', 'href', 'aria-label', 'data-url', 'data-subject', 'data-body', 'data-text', 'data-hashtags', 'data-username', 'target', 'rel']),
+        svg: new Set(['width', 'height', 'viewbox', 'fill', 'xmlns', 'aria-hidden', 'focusable', 'class', 'role']),
+        path: new Set(['d', 'fill', 'stroke', 'stroke-width', 'stroke-linecap', 'stroke-linejoin', 'fill-rule', 'clip-rule']),
+        span: new Set(['class', 'focusable', 'aria-hidden', 'aria-label'])
+      };
+      const dangerousUrlAttributes = new Set(['href', 'xlink:href']);
+      const isDangerousUrl = value => /^(?:javascript|vbscript|data):/i.test(String(value || '').replace(/\s+/g, ''));
+      const sanitiseNode = node => {
+        if (!node) return;
+        if (node.nodeType === Node.TEXT_NODE) return;
+        if (node.nodeType !== Node.ELEMENT_NODE) {
+          node.remove();
+          return;
+        }
+        const tag = node.tagName.toLowerCase();
+        if (blockedTags.has(tag)) {
+          node.remove();
+          return;
+        }
+        if (!allowedTags.has(tag)) {
+          const parent = node.parentNode;
+          if (!parent) {
+            node.remove();
+            return;
+          }
+          while (node.firstChild) parent.insertBefore(node.firstChild, node);
+          parent.removeChild(node);
+          return;
+        }
+        const tagAllowedAttributes = allowedAttributes[tag] || new Set();
+        Array.from(node.attributes).forEach(({
+          name,
+          value
+        }) => {
+          const attrName = String(name || '').toLowerCase();
+          if (attrName.startsWith('on') || attrName === 'style' || attrName === 'srcdoc' || !tagAllowedAttributes.has(attrName)) {
+            node.removeAttribute(name);
+            return;
+          }
+          if (dangerousUrlAttributes.has(attrName) && isDangerousUrl(value)) {
+            node.removeAttribute(name);
+          }
+        });
+        Array.from(node.childNodes || []).forEach(child => sanitiseNode(child));
+      };
+      Array.from(doc.body.childNodes || []).forEach(child => sanitiseNode(child));
+      return doc.body.innerHTML;
     }
     static isVisible(element) {
       return element.offsetWidth || element.offsetHeight || element.getClientRects().length;

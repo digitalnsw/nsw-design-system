@@ -767,10 +767,6 @@
   /* eslint-disable max-len */
   class ColorSwatches {
     constructor(element, config) {
-      if (element.dataset.initialised) {
-        return;
-      }
-      element.dataset.initialised = 'true';
       this.element = element;
       this.variables = config.variables;
       this.palettes = config.palettes;
@@ -782,13 +778,15 @@
       this.currentPalette = firstPalette;
       this.currentColor = firstColor;
       this.legend = this.element.querySelector('.js-color-swatches__color'); // Title element
+      this.legendKey = this.element.dataset.legendKey || null;
+      this.swatchKey = this.element.dataset.swatchKey || null;
       this.swatchList = null; // Swatch list container
-
-      this.init();
     }
 
     // Initialise the color swatches
     init() {
+      if (this.element.dataset.initialised) return;
+      this.element.dataset.initialised = 'true';
       this.createColorSwatches(); // Creates the color swatch list first
       // Create the palette select dropdown (and its label) before reading URL param
       this.paletteSelect = this.createPaletteSelector();
@@ -863,18 +861,24 @@
       } else {
         this.swatchList.innerHTML = ''; // Clear previous colors
       }
-      Object.entries(this.palettes[this.currentPalette]).filter(([colorKey]) => colorKey !== 'label').forEach(([colorKey, colorData], index) => {
+      Object.entries(this.palettes[this.currentPalette]).filter(([colorKey]) => colorKey !== 'label').forEach(([colorKey, colorData]) => {
         const swatchItem = document.createElement('li');
         swatchItem.classList.add('nsw-color-swatches__item', 'js-color-swatches__item');
-        if (index === 0) swatchItem.classList.add('nsw-color-swatches__item--selected'); // First one selected
+        const isSelected = colorKey === this.currentColor;
+        const swatchEntry = this.swatchKey ? colorData[this.swatchKey] : null;
+        const isObjectEntry = swatchEntry && typeof swatchEntry === 'object';
+        const swatchLabel = isObjectEntry && swatchEntry.label != null ? swatchEntry.label : this.constructor.formatLabel(colorKey);
+        const fallbackSwatchColor = swatchEntry != null ? swatchEntry : colorData.val;
+        const swatchColor = isObjectEntry && swatchEntry.value != null ? swatchEntry.value : fallbackSwatchColor;
+        if (isSelected) swatchItem.classList.add('nsw-color-swatches__item--selected');
         swatchItem.setAttribute('data-color', colorKey);
         swatchItem.setAttribute('role', 'radio');
-        swatchItem.setAttribute('aria-checked', index === 0 ? 'true' : 'false');
-        swatchItem.setAttribute('tabindex', index === 0 ? '0' : '-1');
+        swatchItem.setAttribute('aria-checked', isSelected ? 'true' : 'false');
+        swatchItem.setAttribute('tabindex', isSelected ? '0' : '-1');
         swatchItem.innerHTML = `
         <span class="nsw-color-swatches__option" tabindex="0">
-          <span class="sr-only js-color-swatch__label">${this.constructor.formatLabel(colorKey)}</span>
-          <span aria-hidden="true" style="background-color: ${colorData.val};" class="nsw-color-swatches__swatch"></span>
+          <span class="sr-only js-color-swatch__label">${swatchLabel}</span>
+          <span aria-hidden="true" style="background-color: ${swatchColor};" class="nsw-color-swatches__swatch"></span>
         </span>
       `;
         this.swatchList.appendChild(swatchItem);
@@ -975,7 +979,11 @@
     // Updates legend (title)
     updateLegend() {
       if (this.legend) {
-        this.legend.textContent = this.constructor.formatLabel(this.currentColor);
+        const selectedColors = this.palettes[this.currentPalette][this.currentColor];
+        const legendEntry = this.legendKey ? selectedColors[this.legendKey] : null;
+        const entryLabel = legendEntry && typeof legendEntry === 'object' ? legendEntry.label : legendEntry;
+        const legendText = entryLabel || this.constructor.formatLabel(this.currentColor);
+        this.legend.textContent = legendText;
         this.legend.setAttribute('aria-live', 'polite');
       }
     }

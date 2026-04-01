@@ -1,5 +1,6 @@
 export default Toggletip;
 declare class Toggletip {
+    static sanitiseOpenContent(html: any): string | DocumentFragment | null;
     static isVisible(element: any): any;
     static moveFocus(element: any): void;
     static setAttributes(el: any, attrs: any): void;
@@ -9,6 +10,7 @@ declare class Toggletip {
     toggletipElement: any;
     toggletipContentId: string;
     toggletipContent: boolean;
+    sanitiseMode: any;
     toggletipAnchor: any;
     toggletipText: any;
     toggletipHeading: any;

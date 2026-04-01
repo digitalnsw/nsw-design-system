@@ -5,12 +5,14 @@ declare class ColorSwatches {
     element: any;
     variables: any;
     palettes: any;
-    dataTable: Element | null | undefined;
+    dataTable: Element | null;
     targetSelector: any;
     targetElement: any;
-    currentPalette: string | undefined;
-    currentColor: string | undefined;
+    currentPalette: string;
+    currentColor: string;
     legend: any;
+    legendKey: any;
+    swatchKey: any;
     swatchList: HTMLUListElement | null;
     init(): void;
     paletteSelect: any;
