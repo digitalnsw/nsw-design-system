@@ -24,7 +24,43 @@ model: json/show-more.json
     {{/each}}
   {{/_layout-container}}
 
+  {{#>_layout-container brand-light="true"}}
+    <h2>Inline text reveal</h2>
+    {{>_show-more model.inline}}
+    <hr class="nsw-m-y-lg">
+    <h2>Supplementary content disclosure</h2>
+    {{>_show-more model.supplementary}}
+    <hr class="nsw-m-y-lg">
+    <h2>Truncated list reveal</h2>
+    {{>_show-more model.list}}
+    <hr class="nsw-m-y-lg">
+    <h2>Multiple instances with distinct context</h2>
+    {{#each model.multiple}}
+      <div class="nsw-m-y-md">
+        {{>_show-more this}}
+      </div>
+    {{/each}}
+  {{/_layout-container}}
+
   {{#>_layout-container brand-dark="true" invert="true"}}
+    <h2>Inline text reveal</h2>
+    {{>_show-more model.inline}}
+    <hr class="nsw-m-y-lg">
+    <h2>Supplementary content disclosure</h2>
+    {{>_show-more model.supplementary}}
+    <hr class="nsw-m-y-lg">
+    <h2>Truncated list reveal</h2>
+    {{>_show-more model.list}}
+    <hr class="nsw-m-y-lg">
+    <h2>Multiple instances with distinct context</h2>
+    {{#each model.multiple}}
+      <div class="nsw-m-y-md">
+        {{>_show-more this}}
+      </div>
+    {{/each}}
+  {{/_layout-container}}
+
+  {{#>_layout-container brand-supplementary="true" invert="true"}}
     <h2>Inline text reveal</h2>
     {{>_show-more model.inline}}
     <hr class="nsw-m-y-lg">
