@@ -1,0 +1,44 @@
+---
+title: Show more
+width: narrow
+page: true
+model: json/show-more.json
+---
+
+{{#>_layout-container}}
+  <h2>Inline text reveal</h2>
+  {{>_show-more model.inline}}
+  <hr class="nsw-m-y-lg">
+  <h2>Supplementary content disclosure</h2>
+  {{>_show-more model.supplementary}}
+  <hr class="nsw-m-y-lg">
+  <h2>Truncated list reveal</h2>
+  {{>_show-more model.list}}
+  <hr class="nsw-m-y-lg">
+  <h2>Multiple instances with distinct context</h2>
+  {{#each model.multiple}}
+    <div class="nsw-m-bottom-md">
+      {{>_show-more this}}
+    </div>
+    <hr class="nsw-m-y-lg">
+  {{/each}}
+{{/_layout-container}}
+
+{{#>_layout-container brand-dark="true" invert="true"}}
+  <h2>Inline text reveal</h2>
+  {{>_show-more model.inline}}
+  <hr class="nsw-m-y-lg">
+  <h2>Supplementary content disclosure</h2>
+  {{>_show-more model.supplementary}}
+  <hr class="nsw-m-y-lg">
+  <h2>Truncated list reveal</h2>
+  {{>_show-more model.list}}
+  <hr class="nsw-m-y-lg">
+  <h2>Multiple instances with distinct context</h2>
+  {{#each model.multiple}}
+    <div class="nsw-m-bottom-md">
+      {{>_show-more this}}
+    </div>
+    <hr class="nsw-m-y-lg">
+  {{/each}}
+{{/_layout-container}}

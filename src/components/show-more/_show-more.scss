@@ -1,0 +1,102 @@
+@use 'sass:map';
+@use '../../global/scss/tools' as nsw;
+
+.nsw-show-more {
+  @include nsw.component-spacing();
+
+  &__summary > :last-child {
+    margin-bottom: 0;
+  }
+
+  &__details {
+    margin-top: nsw.rem(8px);
+    interpolate-size: allow-keywords; /* stylelint-disable-line property-no-unknown -- experimental details animation property */
+
+    &::details-content {
+      block-size: 0;
+      overflow: hidden;
+      transition: block-size nsw.$nsw-transition-duration-smooth, content-visibility nsw.$nsw-transition-duration-smooth; /* stylelint-disable-line property-no-unknown -- experimental details animation property */
+      transition-behavior: allow-discrete; /* stylelint-disable-line property-no-unknown -- experimental details animation property */
+    }
+
+    &[open]::details-content {
+      block-size: auto;
+    }
+  }
+
+  &__toggle {
+    display: inline-flex;
+    align-items: center;
+    column-gap: nsw.rem(2px);
+    color: var(--nsw-link);
+    font-weight: var(--nsw-font-bold);
+    cursor: pointer;
+    user-select: none;
+
+    @include nsw.font-size('sm');
+
+    list-style: none;
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+
+    &::marker {
+      content: '';
+    }
+
+    &:focus-visible {
+      @include nsw.nsw-focus($offset: false);
+    }
+  }
+
+  &__toggle-text {
+    text-decoration: underline;
+    text-decoration-skip-ink: auto;
+  }
+
+  &__toggle-text--hide {
+    display: none;
+  }
+
+  &__icon {
+    font-size: nsw.rem(map.get(nsw.$nsw-icon-sizes, 20));
+    transition: transform nsw.$nsw-transition-duration-smooth;
+  }
+
+  &__details[open] {
+    .nsw-show-more__toggle-text--show {
+      display: none;
+    }
+
+    .nsw-show-more__toggle-text--hide {
+      display: inline;
+    }
+
+    .nsw-show-more__icon {
+      transform: rotate(180deg);
+    }
+  }
+
+  &__content > :first-child {
+    margin-top: nsw.rem(12px);
+  }
+}
+
+.nsw-section--invert .nsw-show-more__toggle {
+  color: var(--nsw-text-light);
+
+  &:focus-visible {
+    @include nsw.nsw-focus($color: var(--nsw-focus-light), $offset: false);
+  }
+}
+
+@include nsw.prefers-reduced-motion() {
+  .nsw-show-more__details::details-content {
+    transition: none;
+  }
+
+  .nsw-show-more__icon {
+    transition: none;
+  }
+}

@@ -1,0 +1,35 @@
+---
+title: Show more
+width: narrow
+tabs: true
+directory: show-more
+intro: Show more is a disclosure pattern for progressively revealing content already present in the DOM.
+theme: true
+model: json/show-more.json
+meta-description: Show more is a disclosure pattern for progressively revealing content already present in the DOM.
+meta-index: true
+---
+
+<h3>Inline text reveal</h3>
+{{#>_docs-example}}
+  {{>_show-more model.inline}}
+{{/_docs-example}}
+
+<h3>Supplementary content disclosure</h3>
+{{#>_docs-example}}
+  {{>_show-more model.supplementary}}
+{{/_docs-example}}
+
+<h3>Truncated list reveal</h3>
+{{#>_docs-example}}
+  {{>_show-more model.list}}
+{{/_docs-example}}
+
+<h3>Multiple instances with distinct context</h3>
+{{#>_docs-example}}
+  {{#each model.multiple}}
+    <div class="nsw-m-bottom-md">
+      {{>_show-more this}}
+    </div>
+  {{/each}}
+{{/_docs-example}}
