@@ -1,11 +1,18 @@
 <div class="nsw-tabs js-tabs{{#if fixed}} js-tabs-fixed{{/if}}">
+  <p class="nsw-tabs__signpost">{{#if signpost}}{{signpost}}{{else}}On this page{{/if}}</p>
   <ul class="nsw-tabs__list">
     {{#each tabitems}}
-    <li><a href="#{{urlHash}}">{{title}}</a></li>
+    <li>
+      {{#if ../idPrefix}}
+      <a href="#{{../idPrefix}}-{{urlHash}}">{{title}}</a>
+      {{else}}
+      <a href="#{{urlHash}}">{{title}}</a>
+      {{/if}}
+    </li>
     {{/each}}
   </ul>
   {{#each tabitems}}
-  <section id="{{urlHash}}" class="nsw-tabs__content">
+  <section id="{{#if ../idPrefix}}{{../idPrefix}}-{{urlHash}}{{else}}{{urlHash}}{{/if}}" class="nsw-tabs__content">
     {{{content}}}
   </section>
   {{/each}}

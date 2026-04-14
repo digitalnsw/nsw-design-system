@@ -14,8 +14,7 @@ class Tabs {
     this.tabPanel = []
     this.selectedTab = null
     this.tabListWrapper = null
-    this.desktopModeQuery = window.matchMedia('(min-width: 62rem)')
-    this.enableHashNavigation = false
+    this.desktopModeQuery = window.matchMedia('(min-width: 48rem)')
     this.focusableSelector = `a[href],button:not([disabled]),
       area[href],input:not([disabled]):not([type=hidden]),
       select:not([disabled]),textarea:not([disabled]),
@@ -25,6 +24,7 @@ class Tabs {
     this.arrowKeysEvent = (event) => this.arrowKeys(event)
     this.hashChangeEvent = () => this.handleHashChange()
     this.viewportChangeEvent = () => this.handleViewportChange()
+    this.updateScrollableStateEvent = () => this.updateScrollableState()
     this.owns = []
   }
 
@@ -43,8 +43,8 @@ class Tabs {
 
     if (!existingWrapper) {
       tabListWrapper.classList.add('nsw-tabs__list-wrapper')
-      this.element.prepend(tabListWrapper)
-      tabListWrapper.prepend(this.tabList)
+      this.tabList.before(tabListWrapper)
+      tabListWrapper.append(this.tabList)
     }
 
     this.tabList.setAttribute('role', 'tablist')
@@ -56,7 +56,6 @@ class Tabs {
       const panel = this.element.querySelector(itemLink.hash)
       if (!panel) return
       const uID = uniqueId('tab')
-      this.owns.push(uID)
       itemElem.setAttribute('role', 'presentation')
       this.enhanceTabLink(itemLink, panel, uID)
       this.enhanceTabPanel(panel, uID)
@@ -64,7 +63,6 @@ class Tabs {
 
     this.tabList.setAttribute('aria-owns', this.owns.join(' '))
     this.setTabMetadata()
-    this.enableHashNavigation = this.tabLinks.some((link) => this.shouldSyncHash(link))
   }
 
   enhanceTabLink(link, panel, id) {
@@ -115,7 +113,6 @@ class Tabs {
 
     this.switchTabs(selectedLink, {
       focus: false,
-      updateHash: false,
       smoothScroll: false,
     })
   }
@@ -128,10 +125,8 @@ class Tabs {
       index = 0
     }
 
-    if (this.enableHashNavigation) {
-      const hashTabIndex = this.getTabIndexByHash(window.location.hash)
-      if (hashTabIndex > -1) index = hashTabIndex
-    }
+    const hashTabIndex = this.getTabIndexByHash(window.location.hash)
+    if (hashTabIndex > -1) index = hashTabIndex
 
     return (index > lastIndex) ? 0 : index
   }
@@ -160,19 +155,6 @@ class Tabs {
     return this.tabLinks.findIndex((link) => Tabs.normaliseHash(Tabs.getTabHash(link)) === hash)
   }
 
-  shouldSyncHash(link) {
-    return !this.element.classList.contains('js-tabs-fixed') && !link.classList.contains('js-tabs-fixed')
-  }
-
-  syncHash(link) {
-    if (!this.shouldSyncHash(link)) return
-
-    const hash = Tabs.getTabHash(link)
-    if (!hash || window.location.hash === hash) return
-
-    window.location.hash = hash
-  }
-
   handleHashChange() {
     if (!this.desktopModeQuery.matches) return
 
@@ -184,7 +166,6 @@ class Tabs {
 
     this.switchTabs(targetTab, {
       focus: false,
-      updateHash: false,
       smoothScroll: false,
     })
   }
@@ -200,14 +181,37 @@ class Tabs {
   enableTabsView() {
     const selectedLink = this.selectedTab || this.tabLinks[this.getInitialTabIndex()]
 
-    this.tabLinks.forEach((link) => {
+    this.tabList.setAttribute('role', 'tablist')
+    this.tabList.setAttribute('aria-owns', this.owns.join(' '))
+
+    this.tabItems.forEach((item) => {
+      item.setAttribute('role', 'presentation')
+    })
+
+    this.tabLinks.forEach((link, index) => {
+      const panel = this.tabPanel[index]
+
       link.classList.remove('active')
+      link.setAttribute('role', 'tab')
+      if (this.owns[index]) {
+        link.setAttribute('id', this.owns[index])
+      }
+      if (panel) {
+        link.setAttribute('aria-controls', panel.id)
+      }
       link.setAttribute('aria-selected', false)
       link.setAttribute('tabindex', '-1')
     })
 
-    this.tabPanel.forEach((panel) => {
+    this.setTabMetadata()
+
+    this.tabPanel.forEach((panel, index) => {
       const panelElem = panel
+      const controllingTab = this.tabLinks[index]
+      panelElem.setAttribute('role', 'tabpanel')
+      if (controllingTab) {
+        panelElem.setAttribute('aria-labelledby', controllingTab.id)
+      }
 
       if (!this.hasFocusableContent(panelElem)) {
         panelElem.setAttribute('tabindex', '0')
@@ -222,24 +226,59 @@ class Tabs {
     if (selectedLink) {
       this.switchTabs(selectedLink, {
         focus: false,
-        updateHash: false,
         smoothScroll: false,
       })
     }
+
+    this.updateScrollableState()
   }
 
   enableStackedView() {
+    this.tabList.removeAttribute('role')
+    this.tabList.removeAttribute('aria-owns')
+
+    this.tabItems.forEach((item) => {
+      item.removeAttribute('role')
+    })
+
     this.tabLinks.forEach((link) => {
       link.classList.remove('active')
-      link.setAttribute('aria-selected', false)
+      link.removeAttribute('role')
+      link.removeAttribute('aria-controls')
+      link.removeAttribute('aria-selected')
       link.removeAttribute('tabindex')
+      link.removeAttribute('aria-posinset')
+      link.removeAttribute('aria-setsize')
     })
 
     this.tabPanel.forEach((panel) => {
       const panelElem = panel
+      panelElem.removeAttribute('role')
+      panelElem.removeAttribute('aria-labelledby')
       panelElem.hidden = false
       panelElem.removeAttribute('tabindex')
     })
+
+    this.updateScrollableState()
+  }
+
+  updateScrollableState() {
+    const { tabList, tabListWrapper } = this
+    if (!tabList || !tabListWrapper) return
+
+    if (!this.desktopModeQuery.matches) {
+      tabListWrapper.setAttribute('data-overflow-start', 'false')
+      tabListWrapper.setAttribute('data-overflow-end', 'false')
+      return
+    }
+
+    const maxScroll = Math.max(tabList.scrollWidth - tabList.clientWidth, 0)
+    const hasOverflow = maxScroll > 1
+    const hasOverflowAtStart = hasOverflow && tabList.scrollLeft > 1
+    const hasOverflowAtEnd = hasOverflow && tabList.scrollLeft < (maxScroll - 1)
+
+    tabListWrapper.setAttribute('data-overflow-start', hasOverflowAtStart ? 'true' : 'false')
+    tabListWrapper.setAttribute('data-overflow-end', hasOverflowAtEnd ? 'true' : 'false')
   }
 
   clickTab(e) {
@@ -255,7 +294,6 @@ class Tabs {
   switchTabs(elem, options = {}) {
     const {
       focus = true,
-      updateHash = true,
       smoothScroll = true,
     } = options
     const clickedTab = elem
@@ -294,8 +332,6 @@ class Tabs {
         })
       }
     }
-
-    if (updateHash) this.syncHash(clickedTab)
   }
 
   focusTabPanel(index) {
@@ -358,15 +394,16 @@ class Tabs {
       link.addEventListener('keydown', this.arrowKeysEvent, false)
     })
 
+    this.tabList.addEventListener('scroll', this.updateScrollableStateEvent, { passive: true })
+    window.addEventListener('resize', this.updateScrollableStateEvent, false)
+
     if (this.desktopModeQuery.addEventListener) {
       this.desktopModeQuery.addEventListener('change', this.viewportChangeEvent, false)
     } else {
       this.desktopModeQuery.addListener(this.viewportChangeEvent)
     }
 
-    if (this.enableHashNavigation) {
-      window.addEventListener('hashchange', this.hashChangeEvent, false)
-    }
+    window.addEventListener('hashchange', this.hashChangeEvent, false)
   }
 }
 

@@ -2,13 +2,21 @@
 title: Tabs
 width: narrow
 page: true
-model: json/tabs.json
+model:
+  default: json/tabs.json
+  truncated: json/tabs-5.json
 ---
 
 {{#>_layout-container}}
-{{>_tabs model}}
+<h2>Default tabs</h2>
+{{>_tabs model.default idPrefix="blank-default-light"}}
+<h2>Truncated tabs</h2>
+{{>_tabs model.truncated idPrefix="blank-truncated-light"}}
 {{/_layout-container}}
 
 {{#>_layout-container brand-dark="true" invert="true"}}
-{{>_tabs model}}
+<h2>Default tabs</h2>
+{{>_tabs model.default idPrefix="blank-default-dark"}}
+<h2>Truncated tabs</h2>
+{{>_tabs model.truncated idPrefix="blank-truncated-dark"}}
 {{/_layout-container}}

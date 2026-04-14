@@ -4,12 +4,46 @@
   @include nsw.component-spacing();
 
   &__list-wrapper {
+    position: relative;
     overflow: hidden;
     height: nsw.rem(48px);
     background-color: var(--nsw-off-white);
+    --nsw-tabs-overflow-fade: var(--nsw-off-white);
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: nsw.rem(2px);
+      width: nsw.rem(24px);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.2s ease-out;
+      z-index: 0;
+    }
+
+    &::before {
+      left: 0;
+      background: linear-gradient(to right, var(--nsw-tabs-overflow-fade), rgba(var(--nsw-white-rgb), 0));
+    }
+
+    &::after {
+      right: 0;
+      background: linear-gradient(to left, var(--nsw-tabs-overflow-fade), rgba(var(--nsw-white-rgb), 0));
+    }
+
+    &[data-overflow-start='true']::before {
+      opacity: 1;
+    }
+
+    &[data-overflow-end='true']::after {
+      opacity: 1;
+    }
 
     .nsw-section--invert & {
       background-color: rgba(var(--nsw-white-rgb), 0.15);
+      --nsw-tabs-overflow-fade: rgba(var(--nsw-white-rgb), 0.15);
     }
 
     @include nsw.breakpoint('md') {
@@ -18,6 +52,17 @@
       .nsw-section--invert & {
         background-color: transparent;
       }
+    }
+  }
+
+  &__signpost {
+    display: none;
+    margin: 0 0 nsw.rem(8px);
+    color: var(--nsw-text-dark);
+    font-weight: var(--nsw-font-bold);
+
+    .nsw-section--invert & {
+      color: var(--nsw-text-light);
     }
   }
 
@@ -95,6 +140,8 @@
 
     &:focus {
       @include nsw.nsw-focus;
+      position: relative;
+      z-index: 1;
 
       .nsw-section--invert & {
         outline-color: var(--nsw-white);
@@ -116,16 +163,25 @@
   }
 }
 
-@media (max-width: nsw.rem(991px)) {
+@media (max-width: nsw.rem(767px)) {
   .nsw-tabs {
     &__list-wrapper {
       overflow: visible;
       height: auto;
       background-color: transparent;
 
+      &::before,
+      &::after {
+        display: none;
+      }
+
       .nsw-section--invert & {
         background-color: transparent;
       }
+    }
+
+    &__signpost {
+      display: block;
     }
 
     &__list {
@@ -159,6 +215,13 @@
 
 @media (forced-colors: active) {
   .nsw-tabs {
+    &__list-wrapper {
+      &::before,
+      &::after {
+        display: none;
+      }
+    }
+
     &__list {
       a {
         border: 1px solid transparent;
