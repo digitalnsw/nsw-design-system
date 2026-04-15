@@ -78,8 +78,14 @@
     }
   }
 
-  &__content > :first-child {
+  &__content {
     margin-top: nsw.rem(12px);
+    padding: 0 0 0 nsw.rem(16px);
+    border-left: solid 2px var(--nsw-grey-03);
+  }
+
+  &__content > :first-child {
+    margin-top: 0;
   }
 }
 
@@ -89,6 +95,10 @@
   &:focus-visible {
     @include nsw.nsw-focus($color: var(--nsw-focus-light), $offset: false);
   }
+}
+
+.nsw-section--brand-light .nsw-show-more__content {
+  border-left-color: var(--nsw-grey-02);
 }
 
 @include nsw.prefers-reduced-motion() {

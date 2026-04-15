@@ -4,22 +4,37 @@ layout: blank-layout.hbs
 ---
 
 <h2>Usage</h2>
-<p>Use the Show more component to progressively disclose content that is already on the page but hidden by default.</p>
+<p>Use the Show more component to progressively disclose supplementary content that is already on the page but hidden by default.</p>
 
-<p>Do:</p>
+<h3>Show more and Accordion</h3>
 <ul>
-  <li>use when content is supplementary, optional, or constrained by layout</li>
-  <li>use clear trigger labels that describe the action and update on toggle (for example, "Show more" to "Show less")</li>
-  <li>add distinguishing context when multiple Show more controls appear on the same page</li>
-  <li>ensure users can decide whether to expand from the visible summary</li>
+  <li><strong>Show more</strong>: one disclosure control for optional supporting detail attached to a short summary.</li>
+  <li><strong>Accordion</strong>: multiple related sections, each with its own heading and panel, where users may open different sections as needed.</li>
+  <li>If your content fits the accordion behaviour, use the <a href="/components/accordion/index.html" aria-label="Accordion component documentation">Accordion component</a> instead.</li>
 </ul>
 
-<p>Do not:</p>
-<ul>
-  <li>hide critical information required for decisions, eligibility, safety, or legal understanding</li>
-  <li>use this pattern for loading additional data from a server (use Load more or pagination patterns instead)</li>
-  <li>truncate content that includes interactive controls such as links or buttons</li>
-</ul>
+<h3>Guidance</h3>
+<div class="nsw-grid nsw-m-top-sm">
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--do"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span><span>Do</span></div>
+    <ul class="nsw-m-top-sm">
+      <li>use when content is supplementary and optional</li>
+      <li>use clear trigger labels that describe the action and update on toggle (for example, "Show more" to "Show less")</li>
+      <li>keep the trigger location stable, directly before the revealed content</li>
+      <li>add distinguishing context when multiple Show more controls appear on the same page</li>
+      <li>ensure users can decide whether to expand from the visible summary</li>
+    </ul>
+  </div>
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--dont"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span><span>Don't</span></div>
+    <ul class="nsw-m-top-sm">
+      <li>hide critical information required for decisions, eligibility, safety, or legal understanding</li>
+      <li>use for inline text truncation or truncated list reveal where trigger position shifts with wrapping</li>
+      <li>use this pattern for loading additional data from a server (use Load more or pagination patterns instead)</li>
+      <li>truncate content that includes interactive controls such as links or buttons</li>
+    </ul>
+  </div>
+</div>
 
 <h3>When to avoid</h3>
 <p>If most users consistently expand the same content, show it by default instead of adding an extra interaction step.</p>
@@ -32,6 +47,7 @@ layout: blank-layout.hbs
 <ul>
   <li>Use native <code>&lt;summary&gt;</code> as the disclosure trigger.</li>
   <li>Place revealed content immediately after the summary in the same <code>&lt;details&gt;</code> element.</li>
+  <li>Keep trigger placement predictable so keyboard and assistive technology users can re-find it after toggle.</li>
   <li>Keep labels explicit and update visible wording between collapsed and expanded states.</li>
   <li>Do not override native disclosure semantics with custom roles or conflicting ARIA.</li>
 </ul>
