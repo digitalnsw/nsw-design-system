@@ -37,6 +37,18 @@ class Carousel extends SwipeContent {
     this.nav = !((this.element.getAttribute('data-navigation') && this.element.getAttribute('data-navigation') === 'off'))
     this.navigationPagination = !!((this.element.getAttribute('data-navigation-pagination') && this.element.getAttribute('data-navigation-pagination') === 'on'))
     this.justifyContent = !!((this.element.getAttribute('data-justify-content') && this.element.getAttribute('data-justify-content') === 'on'))
+    this.shiftTabActive = false
+    this.focusAfterTransitionHandler = null
+    this.focusableSelectors = [
+      'a[href]',
+      'area[href]',
+      'button:not([disabled])',
+      'input:not([disabled]):not([type="hidden"])',
+      'select:not([disabled])',
+      'textarea:not([disabled])',
+      '[contenteditable="true"]',
+      '[tabindex]:not([tabindex="-1"])',
+    ].join(', ')
     this.initItems = []
     this.itemsNb = this.items.length
     this.visibItemsNb = 1
@@ -61,7 +73,9 @@ class Carousel extends SwipeContent {
     if (!this.items) return
 
     if (!this.uid) {
-      if (this.element && this.element.id && !document.getElementById(`${this.element.id}__list`)) {
+      if (this.list && this.list.id) {
+        this.uid = this.list.id
+      } else if (this.element && this.element.id && !document.getElementById(`${this.element.id}__list`)) {
         this.uid = `${this.element.id}__list`
       } else {
         this.uid = uniqueId('nsw-carousel__list')
@@ -253,7 +267,9 @@ class Carousel extends SwipeContent {
     })
 
     this.element.addEventListener('keydown', (event) => {
-      if (event.key && event.key.toLowerCase() === 'arrowright') {
+      if (event.key === 'Tab') {
+        this.shiftTabActive = event.shiftKey
+      } else if (event.key && event.key.toLowerCase() === 'arrowright') {
         this.showNextItems()
       } else if (event.key && event.key.toLowerCase() === 'arrowleft') {
         this.showPrevItems()
@@ -267,11 +283,32 @@ class Carousel extends SwipeContent {
       }
     })
 
+    this.element.addEventListener('keyup', (event) => {
+      if (event.key === 'Tab') {
+        this.shiftTabActive = false
+      }
+    })
+
     const itemLinks = this.element.querySelectorAll('.nsw-carousel__item a')
 
     if (itemLinks.length > 0) {
       itemLinks.forEach((link, index) => {
         link.addEventListener('focus', () => {
+          const item = link.closest('.nsw-carousel__item')
+          const dataIndex = Number(item.getAttribute('data-index')) + 1
+
+          if (this.shiftTabActive && dataIndex > 1 && ((dataIndex - 1) % this.visibItemsNb === 0)) {
+            const previousLink = itemLinks[index - 1]
+            this.showPrevItems()
+
+            if (previousLink) {
+              this.focusAfterTransition(previousLink)
+            }
+
+            this.shiftTabActive = false
+            return
+          }
+
           const slider = link.closest('.js-carousel__wrapper')
           const carousel = slider.querySelector('.nsw-carousel__list')
           if (carousel) {
@@ -280,12 +317,21 @@ class Carousel extends SwipeContent {
         })
 
         link.addEventListener('focusout', () => {
+          if (this.shiftTabActive) {
+            return
+          }
+
           const item = link.closest('.nsw-carousel__item')
           const dataIndex = Number(item.getAttribute('data-index')) + 1
           if (dataIndex % this.visibItemsNb === 0 && dataIndex !== this.items.length) {
-            itemLinks[index + 1].focus({ preventScroll: true })
             this.showNextItems()
+            const nextLink = itemLinks[index + 1]
+            if (nextLink) {
+              this.focusAfterTransition(nextLink)
+            }
           }
+
+          this.shiftTabActive = false
         })
       })
     }
@@ -482,22 +528,26 @@ class Carousel extends SwipeContent {
           this.items[i].setAttribute('tabindex', '-1')
           this.items[i].setAttribute('aria-hidden', 'true')
           this.items[i].removeAttribute('aria-current')
+          this.toggleItemFocusable(this.items[i], true)
         } else {
           if (i < j) j = i
 
           this.items[i].removeAttribute('tabindex')
           this.items[i].removeAttribute('aria-hidden')
           this.items[i].setAttribute('aria-current', 'true')
+          this.toggleItemFocusable(this.items[i], false)
         }
       } else if ((i < this.selectedItem || i >= this.selectedItem + this.visibItemsNb) && carouselActive) {
         this.items[i].setAttribute('tabindex', '-1')
         this.items[i].setAttribute('aria-hidden', 'true')
         this.items[i].removeAttribute('aria-current')
+        this.toggleItemFocusable(this.items[i], true)
       } else {
         if (i < j) j = i
         this.items[i].removeAttribute('tabindex')
         this.items[i].removeAttribute('aria-hidden')
         this.items[i].setAttribute('aria-current', 'true')
+        this.toggleItemFocusable(this.items[i], false)
       }
     }
     this.resetVisibilityOverflowItems(j)
@@ -517,10 +567,17 @@ class Carousel extends SwipeContent {
   }
 
   getIndex(index) {
-    let i = index
-    if (i < 0) i = this.getPositiveValue(i, this.itemsNb)
-    if (i >= this.itemsNb) i %= this.itemsNb
-    return i
+    if (this.loop) {
+      let i = index
+      if (i < 0) i = this.getPositiveValue(i, this.itemsNb)
+      if (i >= this.itemsNb) i %= this.itemsNb
+      return i
+    }
+
+    const maxIndex = Math.max(0, this.itemsNb - this.visibItemsNb)
+    if (index < 0) return 0
+    if (index > maxIndex) return maxIndex
+    return index
   }
 
   getPositiveValue(value, add) {
@@ -710,6 +767,52 @@ class Carousel extends SwipeContent {
       const indexNext = j + this.visibItemsNb + i
       if (indexNext < this.items.length) this.items[indexNext].removeAttribute('tabindex')
     }
+  }
+
+  focusAfterTransition(element) {
+    if (!element) return
+
+    const focusElement = () => {
+      if (typeof element.focus === 'function') {
+        element.focus({ preventScroll: true })
+      }
+    }
+
+    if (this.transitionSupported && this.list) {
+      if (this.focusAfterTransitionHandler) {
+        this.list.removeEventListener('transitionend', this.focusAfterTransitionHandler)
+      }
+      this.focusAfterTransitionHandler = (event) => {
+        if (event.propertyName && event.propertyName !== 'transform') return
+        this.list.removeEventListener('transitionend', this.focusAfterTransitionHandler)
+        this.focusAfterTransitionHandler = null
+        focusElement()
+      }
+      this.list.addEventListener('transitionend', this.focusAfterTransitionHandler)
+    } else {
+      setTimeout(focusElement, 0)
+    }
+  }
+
+  toggleItemFocusable(item, isHidden) {
+    if (!item) return
+    const focusableElements = item.querySelectorAll(this.focusableSelectors)
+    focusableElements.forEach((element) => {
+      if (!element.hasAttribute('data-carousel-tabindex')) {
+        const existingTabIndex = element.getAttribute('tabindex')
+        element.setAttribute('data-carousel-tabindex', existingTabIndex === null ? '' : existingTabIndex)
+      }
+      if (isHidden) {
+        element.setAttribute('tabindex', '-1')
+      } else {
+        const originalTabIndex = element.getAttribute('data-carousel-tabindex')
+        if (originalTabIndex === '') {
+          element.removeAttribute('tabindex')
+        } else {
+          element.setAttribute('tabindex', originalTabIndex)
+        }
+      }
+    })
   }
 }
 

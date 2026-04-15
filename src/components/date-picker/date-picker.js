@@ -66,20 +66,20 @@ class DatePicker {
           <nav>
             <ul class="nsw-date-picker__title-nav js-date-picker__title-nav">
               <li>
-                <button class="nsw-icon-button nsw-date-picker__title-nav-btn js-date-picker__year-nav-btn js-date-picker__year-nav-btn--prev" type="button">
-                  <span class="material-icons nsw-material-icons">keyboard_double_arrow_left</span>
+                <button class="nsw-icon-button nsw-date-picker__title-nav-btn js-date-picker__year-nav-btn js-date-picker__year-nav-btn--prev" type="button" aria-label="Previous year">
+                  <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_double_arrow_left</span>
                 </button>
-                <button class="nsw-icon-button nsw-date-picker__title-nav-btn js-date-picker__month-nav-btn js-date-picker__month-nav-btn--prev" type="button">
-                  <span class="material-icons nsw-material-icons">chevron_left</span>
+                <button class="nsw-icon-button nsw-date-picker__title-nav-btn js-date-picker__month-nav-btn js-date-picker__month-nav-btn--prev" type="button" aria-label="Previous month">
+                  <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">chevron_left</span>
                 </button>
               </li>
 
               <li>
-                <button class="nsw-icon-button nsw-date-picker__title-nav-btn js-date-picker__month-nav-btn js-date-picker__month-nav-btn--next" type="button">
-                  <span class="material-icons nsw-material-icons">chevron_right</span>
+                <button class="nsw-icon-button nsw-date-picker__title-nav-btn js-date-picker__month-nav-btn js-date-picker__month-nav-btn--next" type="button" aria-label="Next month">
+                  <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">chevron_right</span>
                 </button>
-                <button class="nsw-icon-button nsw-date-picker__title-nav-btn js-date-picker__year-nav-btn js-date-picker__year-nav-btn--next" type="button">
-                  <span class="material-icons nsw-material-icons">keyboard_double_arrow_right</span>
+                <button class="nsw-icon-button nsw-date-picker__title-nav-btn js-date-picker__year-nav-btn js-date-picker__year-nav-btn--next" type="button" aria-label="Next year">
+                  <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_double_arrow_right</span>
                 </button>
               </li>
             </ul>

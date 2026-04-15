@@ -1,0 +1,793 @@
+---
+title: Charts and graphs
+no-blank: true
+intro: Charts and graphs help users understand data quickly.
+order: 20
+model:
+  principles: json/charts-and-graphs-principles.json
+  chartTypes: json/charts-and-graphs-chart-types.json
+  brand: json/charts-and-graphs-brand-guidance.json
+  pitfalls: json/charts-and-graphs-pitfalls.json
+  review: json/charts-and-graphs-review.json
+meta-description: NSW Design System guidance for charts and graphs in digital products, aligned to NSW Brand Toolkit principles and accessibility requirements.
+meta-index: true
+---
+
+<h2 id="about-this-guidance">About this guidance</h2>
+<p>This guidance helps teams choose and design charts and graphs that communicate data clearly and consistently across NSW digital products. This guidance was previously titled ‘Data visualisation’. The rename to ‘Charts and graphs’ aligns with the NSW Brand Toolkit and reflects the current scope of this guidance.</p>
+<p>It covers common chart types used in services and dashboards, including bar charts, line charts, scatter plots and similar formats. The guidance is tool-agnostic and applies regardless of charting library or platform.</p>
+<p>It sets shared principles for clarity, accessibility and consistency rather than prescribing exact implementation. Teams using custom visualisation tools such as D3 should apply the same principles to ensure charts remain understandable and accessible.</p>
+
+<h3>Out of scope</h3>
+<ul>
+  <li>Expressive infographics designed for campaigns or marketing</li>
+  <li>Advanced analytical visualisations such as network graphs or complex relationship mapping</li>
+  <li>Interactive GIS mapping</li>
+  <li>Highly specialised investigative tools built for internal compliance work</li>
+</ul>
+<p>These use cases may require bespoke design and technical decisions beyond the scope of the design system. Future guidance may expand to cover additional visualisation types as needs mature.</p>
+
+<h2 id="principles">Principles</h2>
+<p>These principles apply to all charts and graphs in NSW digital products.</p>
+<div class="nsw-grid nsw-grid--spaced nsw-m-top-sm">
+  {{#each model.principles.principlesIconBlocks}}
+  <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+    {{>_content-block this}}
+  </div>
+  {{/each}}
+</div>
+
+<h2 id="choose-the-right-chart-type">1. Start with the story, not the chart</h2>
+<p>Each chart type is designed to reveal a specific kind of relationship in data, and choosing the wrong one obscures the message rather than clarifying it.</p>
+<p>The most common relationships are comparison and ranking, trend, proportion, distribution and correlation.</p>
+<p>You may not need a chart at all. If a single number tells the story, use a callout value. If users need precise figures, use a table. Only use a chart when the visual pattern adds meaning the data alone cannot.</p>
+<p>Chart examples on this page use Chart.js but the guidance applies regardless of which charting library you use.</p>
+<p>For additional chart relationships and examples, refer to the <a href="https://ft-interactive.github.io/visual-vocabulary/" target="_blank" rel="noopener noreferrer">Financial Times Visual Vocabulary</a>.</p>
+
+<div class="nsw-grid nsw-m-top-sm">
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--do"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span><span>Use charts and graphs when</span></div>
+    <ul>
+      <li>Comparing categories</li>
+      <li>Showing change over time</li>
+      <li>Showing distribution</li>
+      <li>Showing correlation between variables</li>
+      <li>Helping users quickly see patterns or trends</li>
+    </ul>
+  </div>
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--dont"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span><span>Do not use a chart when</span></div>
+    <ul>
+      <li>A single number communicates the message</li>
+      <li>A table is clearer</li>
+      <li>The dataset is too small</li>
+      <li>The chart requires heavy explanation</li>
+      <li>It is used for decoration</li>
+    </ul>
+  </div>
+</div>
+
+{{#each model.chartTypes.sections}}
+<h3>{{title}}</h3>
+<div class="nsw-grid nsw-docs__chart-option-grid">
+  {{#each charts}}
+  <div class="nsw-col nsw-col-12 nsw-col-lg-6 nsw-docs__chart-option">
+    <h4 id="{{id}}" class="nsw-m-bottom-sm">{{title}}</h4>
+    <p class="nsw-m-bottom-sm">{{description}}</p>
+    <div class="nsw-grid nsw-docs__chart-example">
+      <div class="nsw-col nsw-col-12">
+        <canvas id="{{canvasId}}" data-chart-height="{{canvasHeight}}" role="img" aria-label="{{ariaLabel}}" tabindex="0"></canvas>
+      </div>
+    </div>
+    {{#if summary}}
+    <p class="nsw-m-top-sm"><strong>Summary:</strong> {{summary}}</p>
+    {{/if}}
+    {{#if table}}
+    <div class="nsw-table nsw-table--valign-middle nsw-docs__table-wrap nsw-m-top-sm">
+      <table>
+        <caption class="sr-only">{{table.caption}}</caption>
+        <thead>
+          <tr>
+            {{#each table.headers}}
+            <th scope="col">{{this}}</th>
+            {{/each}}
+          </tr>
+        </thead>
+        <tbody>
+          {{#each table.rows}}
+          <tr>
+            <th scope="row">{{label}}</th>
+            {{#each values}}
+            <td>{{this}}</td>
+            {{/each}}
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+    {{/if}}
+    {{#if source}}
+    <p class="nsw-m-top-sm"><strong>Source:</strong> {{source}}</p>
+    {{/if}}
+  </div>
+  {{/each}}
+</div>
+{{/each}}
+
+
+<h2 id="never-mislead-with-data">2. Represent the data honestly</h2>
+<p>Use honest scales, meaningful baselines and clear labels. Let the data speak for itself.</p>
+<ul>
+  <li>Use honest baselines and avoid truncating axes without clear indication.</li>
+  <li>Keep time intervals and category order consistent.</li>
+  <li>Label clearly so users can read values without guessing.</li>
+</ul>
+
+{{#each model.pitfalls.examples}}
+{{#if @first}}
+<div class="nsw-grid nsw-m-top-sm">
+  {{#each panels}}
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--{{variant}}">
+      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">
+        {{#eq variant "dont"}}cancel{{else}}check_circle{{/eq}}
+      </span>
+      <span>{{label}}</span>
+    </div>
+    <p>{{description}}</p>
+    <div class="nsw-m-top-sm">
+      <canvas id="{{canvasId}}" data-chart-height="{{canvasHeight}}" role="img" aria-label="{{ariaLabel}}" tabindex="0"></canvas>
+    </div>
+    {{#if summary}}
+    <p class="nsw-m-top-sm"><strong>Summary:</strong> {{summary}}</p>
+    {{/if}}
+    {{#if table}}
+    <div class="nsw-table nsw-table--valign-middle nsw-docs__table-wrap nsw-m-top-sm">
+      <table>
+        <caption class="sr-only">{{table.caption}}</caption>
+        <thead>
+          <tr>
+            {{#each table.headers}}
+            <th scope="col">{{this}}</th>
+            {{/each}}
+          </tr>
+        </thead>
+        <tbody>
+          {{#each table.rows}}
+          <tr>
+            <th scope="row">{{label}}</th>
+            {{#each values}}
+            <td>{{this}}</td>
+            {{/each}}
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+    {{/if}}
+    <ul>
+      {{#each bullets}}
+      <li>{{this}}</li>
+      {{/each}}
+    </ul>
+  </div>
+  {{/each}}
+</div>
+{{/if}}
+{{/each}}
+
+<h3 id="chart-anatomy">Chart anatomy</h3>
+<p>Every chart must include the core elements required for clarity and accurate interpretation. The title can optionally include either a subtitle or a callout value.</p>
+
+<div class="nsw-grid nsw-m-top-sm">
+  <div class="nsw-col nsw-col-lg-12">
+    <div class="nsw-docs__chart-anatomy">
+      <p class="nsw-docs__chart-anatomy-note sr-only">Numbered markers on the chart map to the anatomy list.</p>
+      <div class="nsw-docs__chart-anatomy-stage">
+        <div class="nsw-docs__chart-anatomy-canvas">
+          <canvas id="chartAnatomy" role="img" aria-label="Annotated bar chart showing chart anatomy elements including title, subtitle, callout, axis labels, data labels, legend, scale and metadata." tabindex="0"></canvas>
+        </div>
+        <p class="nsw-docs__chart-anatomy-meta">
+          <strong>Source:</strong> Service NSW request volumes.
+          <span class="nsw-docs__chart-anatomy-meta-divider" aria-hidden="true">|</span>
+          <strong>Last updated:</strong> 1 March 2026.
+        </p>
+        <span class="nsw-docs__chart-anatomy-pin nsw-docs__chart-anatomy-pin--title" aria-hidden="true">1</span>
+        <span class="nsw-docs__chart-anatomy-pin nsw-docs__chart-anatomy-pin--subtitle" aria-hidden="true">2</span>
+        <span class="nsw-docs__chart-anatomy-pin nsw-docs__chart-anatomy-pin--callout" aria-hidden="true">3</span>
+        <span class="nsw-docs__chart-anatomy-pin nsw-docs__chart-anatomy-pin--axis-labels" aria-hidden="true">4</span>
+        <span class="nsw-docs__chart-anatomy-pin nsw-docs__chart-anatomy-pin--data-labels" aria-hidden="true">5</span>
+        <span class="nsw-docs__chart-anatomy-pin nsw-docs__chart-anatomy-pin--legend" aria-hidden="true">6</span>
+        <span class="nsw-docs__chart-anatomy-pin nsw-docs__chart-anatomy-pin--scale" aria-hidden="true">7</span>
+        <span class="nsw-docs__chart-anatomy-pin nsw-docs__chart-anatomy-pin--source" aria-hidden="true">8</span>
+        <span class="nsw-docs__chart-anatomy-pin nsw-docs__chart-anatomy-pin--spacing" aria-hidden="true">9</span>
+      </div>
+    </div>
+    <div class="nsw-docs__chart-anatomy-section nsw-docs__chart-anatomy-section--summary nsw-m-top-sm">
+      <span class="nsw-docs__chart-anatomy-pin nsw-docs__chart-anatomy-pin--section" aria-hidden="true">10</span>
+      <p><strong>Summary:</strong> Requests resolved on time increased from January to May 2026, then eased slightly in June. Late resolutions trended down across the same period.</p>
+    </div>
+    <div class="nsw-docs__chart-anatomy-section nsw-docs__chart-anatomy-section--table nsw-m-top-sm">
+      <div class="nsw-grid">
+        <div class="nsw-col nsw-col-12 nsw-col-md-8">
+          <div class="nsw-table nsw-table--valign-middle nsw-docs__table-wrap nsw-docs__chart-anatomy-table">
+            <span class="nsw-docs__chart-anatomy-pin nsw-docs__chart-anatomy-pin--section nsw-docs__chart-anatomy-pin--table" aria-hidden="true">11</span>
+            <table>
+              <caption class="sr-only">Service requests by type, January to June 2026</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Month</th>
+                  <th scope="col">Resolved on time</th>
+                  <th scope="col">Resolved late</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Jan</th>
+                  <td>410</td>
+                  <td>72</td>
+                </tr>
+                <tr>
+                  <th scope="row">Feb</th>
+                  <td>438</td>
+                  <td>68</td>
+                </tr>
+                <tr>
+                  <th scope="row">Mar</th>
+                  <td>467</td>
+                  <td>74</td>
+                </tr>
+                <tr>
+                  <th scope="row">Apr</th>
+                  <td>492</td>
+                  <td>70</td>
+                </tr>
+                <tr>
+                  <th scope="row">May</th>
+                  <td>525</td>
+                  <td>66</td>
+                </tr>
+                <tr>
+                  <th scope="row">Jun</th>
+                  <td>508</td>
+                  <td>61</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="nsw-col nsw-col-lg-12">
+    <ol class="nsw-list nsw-list--8 nsw-docs__chart-anatomy-list">
+      <li><strong>Title:</strong> Use a descriptive title that states what the data represents, and include timeframe and unit where relevant.</li>
+      <li><strong>Subtitle (optional):</strong> Use a subtitle directly beneath the title to clarify unit, scope or measure. Use either a subtitle or a callout in most cases, not both.</li>
+      <li><strong>Callout (optional):</strong> Use a callout directly beneath the title to emphasise one key figure. Use either a subtitle or a callout in most cases, not both.</li>
+      <li><strong>Axis labels:</strong> Label each axis clearly with unit and time interval. Avoid abbreviations that are not widely understood.</li>
+      <li><strong>Data labels:</strong> Label data directly where practical, especially for bar and column values.</li>
+      <li><strong>Legend:</strong> Use a legend only when direct labels are not practical. Keep it close to the chart and readable at 200% zoom.</li>
+      <li><strong>Scale:</strong> Use consistent scales. Start bar charts at zero unless you have a documented reason not to, and indicate any truncation.</li>
+      <li><strong>Source and metadata:</strong> Include source, last updated date, and any definitions required for interpretation.</li>
+      <li><strong>Spacing and alignment:</strong> Keep spacing consistent between bars, labels and grid lines so the chart remains scannable.</li>
+      <li><strong>Summary text:</strong> Include a short plain-language summary of the key insight directly below the chart.</li>
+      <li><strong>Data table:</strong> Provide a semantic table for the same data so users can access exact values without relying on the visual chart.</li>
+    </ol>
+  </div>
+</div>
+
+<h2 id="make-the-message-obvious">3. Make the key insight obvious</h2>
+<p>Remove anything that doesn’t help the reader get to the insight faster. If a chart is trying to say everything, it ends up saying nothing.</p>
+<ul>
+  <li>Limit the number of data series.</li>
+  <li>Avoid clutter or unnecessary visual elements.</li>
+  <li>Use annotations to highlight the key insight.</li>
+</ul>
+
+<h3>Dashboards</h3>
+<ul>
+  <li>Place key metrics first.</li>
+  <li>Group related charts.</li>
+  <li>Avoid horizontal scrolling for primary information.</li>
+  <li>If metadata applies to all charts, include it at the container level.</li>
+</ul>
+
+<h2 id="meet-accessibility-standards">4. Meet accessibility standards</h2>
+<p>Charts must meet WCAG 2.2 AA and AAA where possible. Accessibility is the responsibility of the product team, regardless of which tool or library is used.</p>
+<h3>Contrast</h3>
+<ul>
+  <li>Text in charts must meet a minimum contrast ratio of 4.5:1 (WCAG 1.4.3).</li>
+  <li>Graphical elements such as bars, lines, data points and focus indicators must meet a minimum contrast ratio of 3:1 against adjacent colours and background (WCAG 1.4.11).</li>
+  <li>Test contrast in the rendered environment, not just in design files.</li>
+</ul>
+<h3>Use of colour</h3>
+<p>Colour must not be the only way to communicate meaning (WCAG 1.4.1).</p>
+<p>When differentiating data series:</p>
+<ul>
+  <li>Use direct labels where possible.</li>
+  <li>Use different marker shapes or stroke styles.</li>
+  <li>Avoid relying solely on red/green distinctions.</li>
+  <li>Confirm charts remain understandable in greyscale.</li>
+</ul>
+<h3>Keyboard access</h3>
+<p>Interactive charts must support full keyboard operation (WCAG 2.1.1).</p>
+<ul>
+  <li>All interactive elements are focusable.</li>
+  <li>Logical tab order.</li>
+  <li>Visible focus indicators.</li>
+  <li>Focus is not hidden or obscured (WCAG 2.4.11).</li>
+  <li>Interactive targets are at least 24×24px (WCAG 2.5.8).</li>
+  <li>Test keyboard interaction manually.</li>
+</ul>
+<h3>Text alternatives</h3>
+<p>Every chart must have a text alternative. Users must be able to access the same information without relying on the visual chart. This includes screen reader users, users who have disabled images, and users in low-bandwidth environments.</p>
+<h3>Summary text</h3>
+<p>Write a short summary that captures the key insight in plain language. Place it directly above or below the chart.</p>
+<p>A summary is not a description of the chart. Do not write ‘the chart shows a line going up.’ Write what the data means.</p>
+<ul>
+  <li>Example: Service requests increased steadily from January to May 2025, rising from 220 to 420. A small drop occurred in June.</li>
+</ul>
+<h3>Data table</h3>
+<p>A data table gives users access to to the underlying data. The right approach depends on the complexity of the data set.</p>
+<ul>
+  <li>For small datasets, provide a full data table using semantic HTML. Keep it visible on the page. Do not hide it behind a toggle or accordion.</li>
+  <li>For medium datasets, a summarised table covering the key values is sufficient.</li>
+  <li>For large or complex datasets, a written summary plus a link to download the source data is more useful than a large rendered table.</li>
+</ul>
+<h3>Alt text for images</h3>
+<p>If a chart is rendered as a static image, it must have descriptive alt text.</p>
+<ul>
+  <li>Alt text should convey the key insight, not describe the visual</li>
+  <li>For complex charts, use a short alt text and point to the accompanying table or summary</li>
+  <li>Example: <code>alt=“Line chart showing monthly service applications for January to June 2025. Data in table below”</code></li>
+</ul>
+<h3>Zoom and responsiveness</h3>
+<p>Charts must remain usable at 200% zoom and 375px viewport width</p>
+<ul>
+  <li>Labels do not overlap.</li>
+  <li>Primary information remains visible.</li>
+  <li>Horizontal scrolling does not hide critical data.</li>
+</ul>
+<h3>Tool limitations</h3>
+<ul>
+  <li>Some third-party tools may restrict accessibility customisation.</li>
+  <li>If a tool cannot meet WCAG requirements, document the limitation and provide an accessible alternative.</li>
+  <li>Accessibility responsibility remains with the product team.</li>
+</ul>
+
+
+<h2 id="apply-nsw-visual-identity-consistently">5. Apply NSW visual identity consistently</h2>
+<p>Apply the NSW brand colour and typography with care. Prioritise contrast and readability. Do not use the palette decoratively.</p>
+<ul>
+  <li>Use NSW Brand colour and typography intentionally.</li>
+</ul>
+
+<h3>Recommended colour selection method</h3>
+<div class="nsw-steps nsw-steps--fill nsw-steps--counters nsw-steps--dark nsw-docs__chart-colour-steps">
+  <div class="nsw-steps__item">
+    <div class="nsw-steps__content">
+      <h4>Step 1: Use only approved chart colours</h4>
+      <p>Not all NSW palette colours meet the minimum contrast requirement for chart marks. The colours below have been pre-validated against a white background and are approved for use in charts and graphs.</p>
+      <div class="nsw-m-top-sm nsw-m-bottom-md">
+        <img class="nsw-display-block nsw-width-100 nsw-width-md-75" src="/assets/images/charts-and-graphs-colour-selection-1.png" alt="Valid chart colours that meet minimum contrast requirements for data marks." loading="lazy">
+      </div>
+    </div>
+  </div>
+  <div class="nsw-steps__item">
+    <div class="nsw-steps__content">
+      <h4>Step 2: Start with your main theme colour 01 and 02</h4>
+      <p>Begin with the 01 and 02 colours from your main colour theme. If your theme is Blue and Red, start with Blue 01, Blue 02, Red 01 and Red 02, in that order.</p>
+      <p>Starting with your theme colours ensures charts feel consistent with the rest of your digital product before introducing additional colours.</p>
+      <div class="nsw-m-top-sm nsw-m-bottom-md">
+        <img class="nsw-display-block nsw-width-100 nsw-width-md-75" src="/assets/images/charts-and-graphs-colour-selection-2.png" alt="Example sequence showing where to start when selecting chart colours from the main theme." loading="lazy">
+      </div>
+    </div>
+  </div>
+  <div class="nsw-steps__item">
+    <div class="nsw-steps__content">
+      <h4>Step 3: Expand to another colour set when needed</h4>
+      <p>Once your main theme colours are used, bring in 01 and 02 colours from another colour column. Apply the same sequence – 01 before 02 – and avoid mixing colours from too many sets in a single chart.</p>
+      <p>If you find yourself needing more than six to eight colours in one chart, consider whether the data can be simplified, grouped, or split across multiple charts instead.</p>
+      <div class="nsw-m-top-sm nsw-m-bottom-md">
+        <img class="nsw-display-block nsw-width-100 nsw-width-md-75" src="/assets/images/charts-and-graphs-colour-selection-3.png" alt="Example showing blue and red already used, then selecting additional colours for new data series." loading="lazy">
+      </div>
+    </div>
+  </div>
+</div>
+
+<h4>Background colour</h4>
+<p>Charts must use a white background (<code>#FFFFFF</code> or <code>--nsw-brand-white</code>) to ensure sufficient contrast for data marks.</p>
+
+<h4>NSW Government palette chart-mark options</h4>
+<div class="nsw-section nsw-section--white nsw-block nsw-p-x-sm nsw-p-top-sm">
+  <div class="nsw-table nsw-table--valign-middle nsw-docs__table-wrap">
+    <table class="nsw-docs__chart-colour-table">
+      <caption class="sr-only">Approved chart-mark colour options on white background</caption>
+      <colgroup>
+        <col class="nsw-docs__chart-colour-col-swatch">
+        <col class="nsw-docs__chart-colour-col-colour-value">
+        <col class="nsw-docs__chart-colour-col-contrast">
+        <col class="nsw-docs__chart-colour-col-swatch">
+        <col class="nsw-docs__chart-colour-col-line-value">
+        <col class="nsw-docs__chart-colour-col-pattern-contrast">
+      </colgroup>
+      <thead>
+        <tr>
+          <th>Swatch (plain)</th>
+          <th>Colour value</th>
+          <th>Contrast ratio on white</th>
+          <th>Swatch (pattern)</th>
+          <th>Line value</th>
+          <th>Pattern contrast</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each model.brand.nswPalette.rows}}
+        <tr>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <circle cx="20" cy="20" r="18" fill="var({{fillVar}})"></circle>
+            </svg>
+            <span class="sr-only">{{name}} plain swatch</span>
+          </td>
+          <td>{{name}} (<code>{{hex}}</code>)</td>
+          <td><code>{{contrast}}</code></td>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <defs>
+                <pattern id="nsw-pattern-select-{{key}}" patternUnits="userSpaceOnUse" width="8" height="8">
+                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var({{lineVar}})" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
+                </pattern>
+              </defs>
+              <circle cx="20" cy="20" r="18" fill="var({{fillVar}})"></circle>
+              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-{{key}})"></circle>
+            </svg>
+            <span class="sr-only">{{name}} patterned swatch</span>
+          </td>
+          <td>{{lineName}} (<code>{{lineHex}}</code>)</td>
+          <td><code>{{patternContrast}}</code></td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</div>
+<p class="nsw-docs__pattern-swatch-note">In a few 02 rows, the line colour uses White or 01 to keep pattern contrast at or above <code>3:1</code>.</p>
+
+<h4>{{model.brand.aboriginalPalette.heading}}</h4>
+<div class="nsw-section nsw-section--white nsw-block nsw-p-x-sm nsw-p-top-sm">
+  <div class="nsw-table nsw-table--valign-middle nsw-docs__table-wrap">
+    <table class="nsw-docs__chart-colour-table">
+      <caption class="sr-only">{{model.brand.aboriginalPalette.caption}}</caption>
+      <colgroup>
+        <col class="nsw-docs__chart-colour-col-swatch">
+        <col class="nsw-docs__chart-colour-col-colour-value">
+        <col class="nsw-docs__chart-colour-col-contrast">
+        <col class="nsw-docs__chart-colour-col-swatch">
+        <col class="nsw-docs__chart-colour-col-line-value">
+        <col class="nsw-docs__chart-colour-col-pattern-contrast">
+      </colgroup>
+      <thead>
+        <tr>
+          {{#each model.brand.aboriginalPalette.headers}}
+          <th>{{this}}</th>
+          {{/each}}
+        </tr>
+      </thead>
+      <tbody>
+        {{#each model.brand.aboriginalPalette.rows}}
+        <tr>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <circle cx="20" cy="20" r="18" fill="var({{fillVar}})"></circle>
+            </svg>
+            <span class="sr-only">{{name}} plain swatch</span>
+          </td>
+          <td>{{name}} (<code>{{hex}}</code>)</td>
+          <td><code>{{contrast}}</code></td>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <defs>
+                <pattern id="nsw-pattern-select-aboriginal-{{key}}" patternUnits="userSpaceOnUse" width="8" height="8">
+                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var({{lineVar}})" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
+                </pattern>
+              </defs>
+              <circle cx="20" cy="20" r="18" fill="var({{fillVar}})"></circle>
+              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-select-aboriginal-{{key}})"></circle>
+            </svg>
+            <span class="sr-only">{{name}} patterned swatch</span>
+          </td>
+          <td>{{lineName}} (<code>{{lineHex}}</code>)</td>
+          <td><code>{{patternContrast}}</code></td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</div>
+<p class="nsw-docs__pattern-swatch-note">{{{model.brand.aboriginalPalette.note}}}</p>
+
+<h4>Using a single colour</h4>
+<p>Not all charts need multiple colours. Some chart types communicate clearly with a single colour and do not require colour differentiation between categories.</p>
+<p>A bar chart comparing values across categories is a good example. Each bar represents a separate category, and the position and length of the bar communicates the difference - not the colour. Using a single colour in this case reduces visual noise and keeps the focus on the data.</p>
+<p>Use a single colour when:</p>
+<ul>
+  <li>Each bar, column or data point represents a separate category that is already labelled.</li>
+  <li>There is only one data series.</li>
+  <li>Colour differentiation would add no meaning.</li>
+</ul>
+<p>Use multiple colours when:</p>
+<ul>
+  <li>Multiple data series appear in the same chart space (for example, a grouped bar or multi-line chart).</li>
+  <li>A specific segment or value needs to be highlighted.</li>
+  <li>Colour is used alongside other cues to distinguish series.</li>
+</ul>
+
+<h3>{{model.brand.colourBlindSafety.heading}}</h3>
+<p>{{model.brand.colourBlindSafety.intro}}</p>
+<ul>
+  {{#each model.brand.colourBlindSafety.pairs}}
+  <li>{{this}}</li>
+  {{/each}}
+</ul>
+
+<h3>{{model.brand.lineSeries.heading}}</h3>
+<p>{{model.brand.lineSeries.intro}}</p>
+<div class="nsw-section nsw-section--white nsw-block nsw-p-x-sm nsw-p-top-sm nsw-m-bottom-md nsw-docs__line-style-table-wrap">
+  <div class="nsw-table nsw-table--valign-middle nsw-docs__table-wrap">
+    <table>
+      <caption class="sr-only">{{model.brand.lineSeries.caption}}</caption>
+      <thead>
+        <tr>
+          <th width="30%">{{model.brand.lineSeries.headers.[0]}}</th>
+          <th width="30%">{{model.brand.lineSeries.headers.[1]}}</th>
+          <th width="40%">{{model.brand.lineSeries.headers.[2]}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each model.brand.lineSeries.rows}}
+        <tr>
+          <td><span class="nsw-docs__line-style-swatch nsw-docs__line-style-swatch--{{styleClass}}" aria-hidden="true"></span><span class="sr-only">{{srLabel}}</span></td>
+          <td>{{name}}</td>
+          <td>{{use}}</td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<h3>{{model.brand.patterns.heading}}</h3>
+<p>{{model.brand.patterns.intro}}</p>
+<ul>
+  {{#each model.brand.patterns.bullets}}
+  <li>{{{this}}}</li>
+  {{/each}}
+</ul>
+<div class="nsw-in-page-alert nsw-in-page-alert--warning nsw-m-bottom-md">
+  <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">warning</span>
+  <div class="nsw-in-page-alert__content">
+    <p class="nsw-h5">{{model.brand.patterns.alert.title}}</p>
+    <p>{{model.brand.patterns.alert.copy}}</p>
+  </div>
+</div>
+
+<h4>{{model.brand.patterns.swatchesHeading}}</h4>
+<div class="nsw-section nsw-section--white nsw-block nsw-p-x-sm nsw-p-top-sm">
+  <div class="nsw-table nsw-table--valign-middle nsw-docs__table-wrap">
+    <table>
+      <caption class="sr-only">{{model.brand.patterns.swatchesCaption}}</caption>
+      <colgroup>
+        <col class="nsw-docs__pattern-usage-col-swatch">
+        <col>
+        <col>
+      </colgroup>
+      <thead>
+        <tr>
+          {{#each model.brand.patterns.swatchesHeaders}}
+          <th>{{this}}</th>
+          {{/each}}
+        </tr>
+      </thead>
+      <tbody>
+        {{#each model.brand.patterns.swatches}}
+        <tr>
+          <td>
+            <svg class="nsw-docs__pattern-table-swatch" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <defs>
+                {{#eq patternKind "diagonal"}}
+                <pattern id="nsw-pattern-usage-{{key}}" patternUnits="userSpaceOnUse" width="8" height="8">
+                  <path d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="var({{strokeVar}})" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
+                </pattern>
+                {{/eq}}
+                {{#eq patternKind "crosshatch"}}
+                <pattern id="nsw-pattern-usage-{{key}}" patternUnits="userSpaceOnUse" width="12" height="12">
+                  <path d="M0,0 l12,12 M12,0 l-12,12" stroke="var({{strokeVar}})" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
+                </pattern>
+                {{/eq}}
+                {{#eq patternKind "dots"}}
+                <pattern id="nsw-pattern-usage-{{key}}" patternUnits="userSpaceOnUse" width="12" height="12">
+                  <circle cx="6" cy="6" r="1.4" fill="var({{strokeVar}})"></circle>
+                </pattern>
+                {{/eq}}
+                {{#eq patternKind "grid-tight"}}
+                <pattern id="nsw-pattern-usage-{{key}}" patternUnits="userSpaceOnUse" width="8" height="8">
+                  <path d="M4,0 l0,8 M0,4 l8,0" stroke="var({{strokeVar}})" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
+                </pattern>
+                {{/eq}}
+                {{#eq patternKind "grid-wide"}}
+                <pattern id="nsw-pattern-usage-{{key}}" patternUnits="userSpaceOnUse" width="12" height="12">
+                  <path d="M6,0 l0,12 M0,6 l12,0" stroke="var({{strokeVar}})" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
+                </pattern>
+                {{/eq}}
+                {{#eq patternKind "zigzag"}}
+                <pattern id="nsw-pattern-usage-{{key}}" patternUnits="userSpaceOnUse" width="8" height="8">
+                  <polyline points="0,0 4,4 0,8" stroke="var({{strokeVar}})" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></polyline>
+                  <path d="M7,-1 l2,2 M7,9 l2,-2" stroke="var({{strokeVar}})" stroke-width="1.5" fill="none" shape-rendering="crispEdges"></path>
+                </pattern>
+                {{/eq}}
+              </defs>
+              <circle cx="20" cy="20" r="18" fill="var({{fillVar}})"></circle>
+              <circle cx="20" cy="20" r="18" fill="url(#nsw-pattern-usage-{{key}})"></circle>
+            </svg>
+          </td>
+          <td>{{type}}</td>
+          <td>{{use}}</td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</div>
+<p class="nsw-docs__pattern-swatch-note">{{model.brand.patterns.swatchesNote}}</p>
+
+<h3>{{model.brand.typography.heading}}</h3>
+<p>{{model.brand.typography.intro}}</p>
+
+<h4>{{model.brand.typography.minimumTextSizesHeading}}</h4>
+<div class="nsw-grid">
+  <div class="nsw-col nsw-col-sm-12 nsw-col-md-8 nsw-col-lg-8">
+    <div class="nsw-section nsw-section--white nsw-block nsw-p-x-sm nsw-p-top-sm">
+      <div class="nsw-table nsw-table--valign-middle nsw-docs__table-wrap">
+        <table>
+          <caption class="sr-only">{{model.brand.typography.minimumTextSizesCaption}}</caption>
+          <thead>
+            <tr>
+              <th>Element</th>
+              <th>Size</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each model.brand.typography.minimumTextSizesRows}}
+            <tr>
+              <td>{{element}}</td>
+              <td>{{size}}</td>
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<p>{{model.brand.typography.minimumTextSizesNote}}</p>
+
+<h4>{{model.brand.typography.textAlignmentHeading}}</h4>
+<ul>
+  {{#each model.brand.typography.textAlignment}}
+  <li>{{this}}</li>
+  {{/each}}
+</ul>
+
+<h4>Axis label orientation</h4>
+<p>Keep all text horizontal where possible. Angled or vertical text is harder to read and fails more easily at 200% zoom and on mobile viewports.</p>
+<ul>
+  <li><strong>Category labels:</strong> display horizontally. If labels are too long to fit horizontally, switch to a horizontal bar chart rather than rotating the text.</li>
+  <li><strong>Axis titles:</strong> keep short enough to sit horizontally above (Y-axis) or beside (X-axis) the axis. Avoid vertical axis titles. Use the chart title and sub-title to carry that context.</li>
+  <li><strong>Data labels:</strong> always horizontal.</li>
+</ul>
+<p>If rotating text cannot be avoided due to tool constraints, limit rotation to 45 degrees and ensure the text still meets the 12px minimum size at all viewport widths.</p>
+
+<h4>{{model.brand.typography.numberFormattingHeading}}</h4>
+<ul>
+  {{#each model.brand.typography.numberFormatting}}
+  <li>{{{this}}}</li>
+  {{/each}}
+</ul>
+
+
+<h2 id="configure-tools-with-good-defaults">6. Configure tools with good defaults</h2>
+<p>DDS does not prescribe tools. However, because tool defaults are not automatically compliant, teams must:</p>
+<ul>
+  <li>Override default colours and typography to align with DDS.</li>
+  <li>Test accessibility within the actual tool environment.</li>
+  <li>If a tool cannot meet requirements, provide an alternative.</li>
+  <li>Consider accessibility capability when selecting vendors.</li>
+</ul>
+
+
+<h2 id="examples">{{model.pitfalls.heading}}</h2>
+<p>{{model.pitfalls.intro}}</p>
+{{#each model.pitfalls.examples}}
+{{#unless @first}}
+<h3>{{title}}</h3>
+<div class="nsw-grid nsw-m-top-sm">
+  {{#each panels}}
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--{{variant}}">
+      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">
+        {{#eq variant "dont"}}cancel{{else}}check_circle{{/eq}}
+      </span>
+      <span>{{label}}</span>
+    </div>
+    <p>{{description}}</p>
+    <div class="nsw-m-top-sm">
+      <canvas id="{{canvasId}}" data-chart-height="{{canvasHeight}}" role="img" aria-label="{{ariaLabel}}" tabindex="0"></canvas>
+    </div>
+    {{#if summary}}
+    <p class="nsw-m-top-sm"><strong>Summary:</strong> {{summary}}</p>
+    {{/if}}
+    {{#if table}}
+    <div class="nsw-table nsw-table--valign-middle nsw-docs__table-wrap nsw-m-top-sm">
+      <table>
+        <caption class="sr-only">{{table.caption}}</caption>
+        <thead>
+          <tr>
+            {{#each table.headers}}
+            <th scope="col">{{this}}</th>
+            {{/each}}
+          </tr>
+        </thead>
+        <tbody>
+          {{#each table.rows}}
+          <tr>
+            <th scope="row">{{label}}</th>
+            {{#each values}}
+            <td>{{this}}</td>
+            {{/each}}
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+    {{/if}}
+    <ul>
+      {{#each bullets}}
+      <li>{{this}}</li>
+      {{/each}}
+    </ul>
+  </div>
+  {{/each}}
+</div>
+{{/unless}}
+{{/each}}
+
+
+<h2 id="review-checklist">{{model.review.checklistHeading}}</h2>
+<div class="nsw-grid nsw-m-top-sm">
+  <div class="nsw-col nsw-col-12 nsw-col-md-8">
+    <div class="nsw-docs__review-checklist nsw-p-md nsw-bg--brand-dark nsw-section--invert">
+      <div class="nsw-docs__review-checklist-header nsw-section--invert">
+        <p class="nsw-m-bottom-xs"><strong>{{model.review.checklistLead}}</strong></p>
+      </div>
+      <fieldset id="chart-review-checklist" class="nsw-form__fieldset" aria-describedby="review-checklist-help">
+        <legend class="sr-only">{{model.review.checklistLegend}}</legend>
+        {{#each model.review.checklistItems}}
+        <input class="nsw-form__checkbox-input" type="checkbox" id="chart-review-check-{{id}}">
+        <label class="nsw-form__checkbox-label" for="chart-review-check-{{id}}">{{text}}</label>
+        {{/each}}
+      </fieldset>
+    </div>
+  </div>
+</div>
+<p id="review-checklist-help" class="nsw-docs__review-checklist-help">{{model.review.checklistHelp}}</p>
+
+<h2 id="full-docs">References</h2>
+<ul>
+  <li><a href="https://branding.nsw.gov.au/guidelines/co-brand/infographics/charts-and-graphs/" target="_blank" rel="noopener noreferrer">NSW Brand Toolkit: Charts and graphs</a> (print guidance)</li>
+  <li>NSW Design System: <a href="/core/colour/index.html">Colour</a>, <a href="/core/typography/index.html">Typography</a>, and <a href="/components/table/index.html">Table</a></li>
+  <li><a href="https://www.chartjs.org/docs/latest/" target="_blank" rel="noopener noreferrer">Chart.js documentation</a> (if you use Chart.js)</li>
+  <li><a href="https://ft-interactive.github.io/visual-vocabulary/" target="_blank" rel="noopener noreferrer">Financial Times Visual Vocabulary</a> for extended chart type support.</li>
+</ul>
+
+<script src="/docs/js/charts-and-graphs.js"></script>

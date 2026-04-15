@@ -12,6 +12,7 @@ import logger from '../../global/scripts/helpers/logger'
 class Tooltip {
   constructor(element) {
     this.tooltip = element
+    const { tooltip } = this
     this.uID = uniqueId('tooltip')
     this.tooltipElement = false
     this.arrowElement = false
@@ -19,39 +20,61 @@ class Tooltip {
     this.tooltipDelay = 400
     this.screenSize = false
     this.tooltipTheme = this.tooltip.getAttribute('data-theme') || 'dark'
+    this.showTimeout = null
+    this.hideTimeout = null
+    this.initialDescribedBy = tooltip.getAttribute('aria-describedby')
+    this.describedByAdded = false
   }
 
   init() {
-    this.tooltipContent = this.tooltip.getAttribute('title')
+    const { tooltip } = this
+    this.tooltipContent = tooltip.getAttribute('title')
     if (!this.tooltipContent) return
-    this.constructor.setAttributes(this.tooltip, {
+    const labelText = (tooltip.textContent || '').trim()
+    const hasAriaLabel = tooltip.hasAttribute('aria-label')
+    const attributes = {
       'data-tooltip-content': this.tooltipContent,
-      'aria-describedby': this.uID,
       tabindex: '0',
-    })
-    this.tooltip.removeAttribute('title')
+    }
+    if (!hasAriaLabel && labelText) {
+      attributes['aria-label'] = `${labelText} tooltip`
+    }
+    this.constructor.setAttributes(tooltip, attributes)
+    tooltip.removeAttribute('title')
 
     const eventArray = ['mouseenter', 'mouseleave', 'focus', 'blur']
 
     eventArray.forEach((event, { listener = this.handleEvent.bind(this) }) => {
       this.tooltip.addEventListener(event, listener)
     })
+
+    tooltip.addEventListener('keydown', this.handleKeydown.bind(this))
   }
 
   handleEvent(event) {
     switch (event.type) {
       case 'mouseenter':
       case 'focus':
-        this.showTooltip(this, event)
+        this.showTooltip()
         break
       case 'mouseleave':
       case 'blur':
-        this.hideTooltip(this, event)
+        this.hideTooltip()
         break
       default:
         logger.log(`Unexpected event type: ${event.type}`)
         break
     }
+  }
+
+  handleKeydown(event) {
+    const { key, code, keyCode } = event
+    const eventKey = key && key.toLowerCase()
+    const eventCode = code && code.toLowerCase()
+    const isEscape = eventCode === 'escape' || eventKey === 'escape' || keyCode === 27
+    if (!isEscape) return
+    event.preventDefault()
+    this.hideTooltip({ immediate: true })
   }
 
   createTooltipElement() {
@@ -78,9 +101,28 @@ class Tooltip {
   }
 
   showTooltip() {
-    setTimeout(() => {
+    const {
+      initialDescribedBy,
+      tooltip,
+      tooltipDelay,
+      uID,
+    } = this
+    clearTimeout(this.hideTimeout)
+    this.showTimeout = window.setTimeout(() => {
       this.createTooltipElement()
 
+      if (this.tooltipElement) this.tooltipElement.removeAttribute('aria-hidden')
+      if (tooltip) {
+        const describedByTokens = (initialDescribedBy || '').split(/\s+/).filter(Boolean)
+        if (describedByTokens.includes(uID)) {
+          tooltip.setAttribute('aria-describedby', describedByTokens.join(' '))
+          this.describedByAdded = false
+        } else {
+          const nextDescribedBy = [...describedByTokens, uID].join(' ')
+          tooltip.setAttribute('aria-describedby', nextDescribedBy)
+          this.describedByAdded = true
+        }
+      }
       this.tooltipElement.classList.add('active')
 
       const range = document.createRange()
@@ -92,15 +134,37 @@ class Tooltip {
       this.tooltipElement.style.width = `${clientRect.width + this.screenSize}px`
 
       this.updateTooltip(this.tooltipElement, this.arrowElement)
-    }, this.tooltipDelay)
+    }, tooltipDelay)
   }
 
-  hideTooltip() {
-    setTimeout(() => {
+  hideTooltip({ immediate = false } = {}) {
+    const {
+      describedByAdded,
+      initialDescribedBy,
+      tooltip,
+    } = this
+    clearTimeout(this.showTimeout)
+    const hide = () => {
+      if (!this.tooltipElement) return
       this.tooltipElement.classList.remove('active')
-
+      this.tooltipElement.setAttribute('aria-hidden', 'true')
       this.tooltipElement.style.width = ''
-    }, this.tooltipDelay)
+      if (tooltip && describedByAdded) {
+        if (initialDescribedBy) {
+          tooltip.setAttribute('aria-describedby', initialDescribedBy)
+        } else {
+          tooltip.removeAttribute('aria-describedby')
+        }
+        this.describedByAdded = false
+      }
+    }
+
+    if (immediate) {
+      hide()
+      return
+    }
+
+    this.hideTimeout = window.setTimeout(hide, this.tooltipDelay)
   }
 
   matchMedia() {

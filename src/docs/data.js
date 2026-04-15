@@ -2,7 +2,7 @@ const searchValues = [
   {
     label: 'Accordion',
     template: 'result',
-    keywords: 'show, hide, Collapse, Expand, expandable, vertical, panels',
+    keywords: 'show, hide, Collapse, Expand, expandable, vertical, panels, details, summary',
     url: '/components/accordion/index.html',
   },
   {
@@ -156,6 +156,12 @@ const searchValues = [
     url: '/components/progress-indicator/index.html',
   },
   {
+    label: 'Quick exit',
+    template: 'result',
+    keywords: 'safety, privacy, discreet, exit now, quick exit, safe destination, safe url, emergency exit, panic button, escape key, esc, double esc, keyboard, sticky, global sticky container',
+    url: '/components/quick-exit/index.html',
+  },
+  {
     label: 'Results bar',
     template: 'result',
     keywords: 'list, sort, counter, filter',
@@ -264,10 +270,10 @@ const searchValues = [
     url: '/docs/content/methods/maps.html',
   },
   {
-    label: 'Data visualisation',
+    label: 'Charts and graphs',
     template: 'result',
-    keywords: 'Comparison, data, trends, Display, statistics, Processes, workflows, Mapping, diagramming, Colours, theming, charts.js, charts, graphs, Screen readers',
-    url: '/docs/content/methods/data-visualisation.html',
+    keywords: 'Comparison, data, data visualisation, trends, Display, statistics, Processes, workflows, Mapping, diagramming, Colours, theming, charts, graphs, accessibility, dashboards, NSW Brand Toolkit, Screen readers, Chart.js',
+    url: '/docs/content/methods/charts-and-graphs.html',
   },
   {
     label: 'You are here',
@@ -300,10 +306,10 @@ const searchValues = [
     url: '/docs/content/about/our-ecosystem.html',
   },
   {
-    label: "What's happening",
+    label: 'Release notes',
     template: 'result',
-    keywords: 'Releases, Work in progress, Consulting with community, Backlog, Changelog, changed, Version, Change logs',
-    url: '/docs/content/about/whats-happening.html',
+    keywords: "Release notes, Releases, Work in progress, Consulting with community, Backlog, Roadmap, Version, Change log, Changes, What's happening, Changelog, Updates",
+    url: '/docs/content/about/release-notes.html',
   },
   {
     label: 'Getting Started',

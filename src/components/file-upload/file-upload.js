@@ -38,6 +38,7 @@ class FileUpload {
   }
 
   createFileItem(file) {
+    const { name } = file
     const li = document.createElement('li')
     li.classList.add('nsw-file-upload__item')
     const html = `
@@ -48,8 +49,15 @@ class FileUpload {
       </button>`
 
     li.insertAdjacentHTML('afterbegin', html)
-    li.querySelector('.nsw-file-upload__item-filename').textContent = this.constructor.truncateString(file.name, 50)
-    li.querySelector('.nsw-file-upload__item-filename').dataset.filename = file.name
+    const filename = li.querySelector('.nsw-file-upload__item-filename')
+    const removeButton = li.querySelector('.nsw-icon-button')
+    if (filename) {
+      filename.textContent = this.constructor.truncateString(name, 50)
+      filename.dataset.filename = name
+    }
+    if (removeButton) {
+      removeButton.setAttribute('aria-label', `Remove file ${name}`)
+    }
     return li.outerHTML
   }
 
@@ -112,9 +120,15 @@ class FileUpload {
   }
 
   handleFileRemove(event) {
-    if (!event.target.closest('.nsw-icon-button')) return
+    const { target } = event
+    const removeButton = target.closest('.nsw-icon-button')
+    if (!removeButton) return
     event.preventDefault()
-    const item = event.target.closest('.nsw-file-upload__item')
+    const item = removeButton.closest('.nsw-file-upload__item')
+    if (!item) return
+    const nextItem = item.nextElementSibling || item.previousElementSibling
+    const nextButton = nextItem && nextItem.querySelector('.nsw-icon-button')
+    const { input } = this
     const { filename } = item.querySelector('.nsw-file-upload__item-filename').dataset
 
     const dataTransfer = new DataTransfer()
@@ -133,6 +147,9 @@ class FileUpload {
     if (this.filesList.children.length === 0) {
       this.filesList.classList.remove('active')
     }
+
+    const focusTarget = nextButton || input
+    if (focusTarget) focusTarget.focus()
   }
 
   static truncateString(str, num) {
