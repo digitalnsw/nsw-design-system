@@ -1299,16 +1299,16 @@
               value: '#FDEDDF'
             },
             'brand-supplementary': {
-              label: 'Orange 02',
-              value: '#F3631B'
-            },
-            'brand-accent': {
               label: 'Purple 02',
               value: '#8055F1'
             },
+            'brand-accent': {
+              label: 'Orange 02',
+              value: '#F3631B'
+            },
             'brand-accent-light': {
-              label: 'Purple 04',
-              value: '#E6E1FD'
+              label: 'Orange 03',
+              value: '#FFCE99'
             },
             'link-colour': {
               label: 'Orange 01',
@@ -1342,8 +1342,8 @@
               value: '#EDE3D7'
             },
             'brand-supplementary': {
-              label: 'Brown 02',
-              value: '#B68D5D'
+              label: 'Purple 02',
+              value: '#8055F1'
             },
             'brand-accent': {
               label: 'Teal 02',
@@ -1385,16 +1385,16 @@
               value: '#FFF4CF'
             },
             'brand-supplementary': {
+              label: 'Blue 02',
+              value: '#146CFD'
+            },
+            'brand-accent': {
               label: 'Yellow 02',
               value: '#FAAF05'
             },
-            'brand-accent': {
-              label: 'Green 02',
-              value: '#00AA45'
-            },
             'brand-accent-light': {
-              label: 'Green 04',
-              value: '#DBFADF'
+              label: 'Yellow 03',
+              value: '#FDE79A'
             },
             'link-colour': {
               label: 'Yellow 01',
@@ -1428,16 +1428,16 @@
               value: '#DBFADF'
             },
             'brand-supplementary': {
-              label: 'Green 02',
-              value: '#00AA45'
-            },
-            'brand-accent': {
               label: 'Blue 02',
               value: '#146CFD'
             },
+            'brand-accent': {
+              label: 'Green 02',
+              value: '#00AA45'
+            },
             'brand-accent-light': {
-              label: 'Blue 04',
-              value: '#CBEDFD'
+              label: 'Green 03',
+              value: '#A8EDB3'
             },
             'link-colour': {
               label: 'Green 01',
@@ -1560,16 +1560,16 @@
               value: '#F9D4BE'
             },
             'brand-supplementary': {
-              label: 'Orange Ochre',
-              value: '#EE6314'
-            },
-            'brand-accent': {
               label: 'Saltwater Blue',
               value: '#0D6791'
             },
+            'brand-accent': {
+              label: 'Orange Ochre',
+              value: '#EE6314'
+            },
             'brand-accent-light': {
-              label: 'Coastal Blue',
-              value: '#C1E2E8'
+              label: 'Clay Orange',
+              value: '#F4AA7D'
             },
             'link-colour': {
               label: 'Deep Orange',
@@ -1646,16 +1646,16 @@
               value: '#FFF1C5'
             },
             'brand-supplementary': {
-              label: 'Sandstone Yellow',
-              value: '#FEA927'
-            },
-            'brand-accent': {
               label: 'Spirit Lilac',
               value: '#9A5E93'
             },
+            'brand-accent': {
+              label: 'Sandstone Yellow',
+              value: '#FEA927'
+            },
             'brand-accent-light': {
-              label: 'Dusk Purple',
-              value: '#E4CCE0'
+              label: 'Golden Wattle Yellow',
+              value: '#FEE48C'
             },
             'link-colour': {
               label: 'Bush Honey Yellow',
@@ -1689,16 +1689,16 @@
               value: '#DAE6D1'
             },
             'brand-supplementary': {
-              label: 'Marshland Lime',
-              value: '#78A146'
-            },
-            'brand-accent': {
               label: 'Firewood Brown',
               value: '#9E5332'
             },
+            'brand-accent': {
+              label: 'Marshland Lime',
+              value: '#78A146'
+            },
             'brand-accent-light': {
-              label: 'Macadamia Brown',
-              value: '#E9C8B2'
+              label: 'Gumleaf Green',
+              value: '#B5CDA4'
             },
             'link-colour': {
               label: 'Bushland Green',
