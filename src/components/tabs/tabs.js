@@ -15,6 +15,7 @@ class Tabs {
     this.selectedTab = null
     this.tabListWrapper = null
     this.desktopModeQuery = window.matchMedia('(min-width: 48rem)')
+    this.reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
     this.focusableSelector = `a[href],button:not([disabled]),
       area[href],input:not([disabled]):not([type=hidden]),
       select:not([disabled]),textarea:not([disabled]),
@@ -25,6 +26,7 @@ class Tabs {
     this.hashChangeEvent = () => this.handleHashChange()
     this.viewportChangeEvent = () => this.handleViewportChange()
     this.updateScrollableStateEvent = () => this.updateScrollableState()
+    this.resizeObserver = null
     this.owns = []
   }
 
@@ -155,8 +157,21 @@ class Tabs {
     return this.tabLinks.findIndex((link) => Tabs.normaliseHash(Tabs.getTabHash(link)) === hash)
   }
 
+  isMobileTabsMode() {
+    return this.element.classList.contains('nsw-tabs--mobile-tabs')
+      || this.element.classList.contains('js-tabs-fixed')
+  }
+
+  isTabsView() {
+    return this.isMobileTabsMode() || this.desktopModeQuery.matches
+  }
+
+  prefersReducedMotion() {
+    return this.reducedMotionQuery.matches
+  }
+
   handleHashChange() {
-    if (!this.desktopModeQuery.matches) return
+    if (!this.isTabsView()) return
 
     const hashTabIndex = this.getTabIndexByHash(window.location.hash)
     if (hashTabIndex < 0) return
@@ -171,7 +186,7 @@ class Tabs {
   }
 
   handleViewportChange() {
-    if (this.desktopModeQuery.matches) {
+    if (this.isTabsView()) {
       this.enableTabsView()
     } else {
       this.enableStackedView()
@@ -266,7 +281,7 @@ class Tabs {
     const { tabList, tabListWrapper } = this
     if (!tabList || !tabListWrapper) return
 
-    if (!this.desktopModeQuery.matches) {
+    if (!this.isTabsView()) {
       tabListWrapper.setAttribute('data-overflow-start', 'false')
       tabListWrapper.setAttribute('data-overflow-end', 'false')
       return
@@ -282,7 +297,7 @@ class Tabs {
   }
 
   clickTab(e) {
-    if (!this.desktopModeQuery.matches) {
+    if (!this.isTabsView()) {
       this.selectedTab = e.currentTarget
       return
     }
@@ -298,7 +313,7 @@ class Tabs {
     } = options
     const clickedTab = elem
 
-    if (!this.desktopModeQuery.matches) return
+    if (!this.isTabsView()) return
     if (!clickedTab) return
 
     const clickedTabIndex = this.tabLinks.indexOf(clickedTab)
@@ -326,7 +341,7 @@ class Tabs {
 
       if (!clickedTab.classList.contains('js-tabs-fixed') && smoothScroll) {
         clickedTab.scrollIntoView({
-          behavior: 'smooth',
+          behavior: this.prefersReducedMotion() ? 'auto' : 'smooth',
           block: 'nearest',
           inline: 'nearest',
         })
@@ -348,7 +363,7 @@ class Tabs {
   }
 
   arrowKeys(event) {
-    if (!this.desktopModeQuery.matches) return
+    if (!this.isTabsView()) return
 
     const keycode = event.which || event.keyCode
     const linkLength = this.tabLinks.length - 1
@@ -396,6 +411,14 @@ class Tabs {
 
     this.tabList.addEventListener('scroll', this.updateScrollableStateEvent, { passive: true })
     window.addEventListener('resize', this.updateScrollableStateEvent, false)
+    window.addEventListener('load', this.updateScrollableStateEvent, false)
+
+    if ('ResizeObserver' in window) {
+      this.resizeObserver = new ResizeObserver(this.updateScrollableStateEvent)
+      this.resizeObserver.observe(this.element)
+      this.resizeObserver.observe(this.tabList)
+      if (this.tabListWrapper) this.resizeObserver.observe(this.tabListWrapper)
+    }
 
     if (this.desktopModeQuery.addEventListener) {
       this.desktopModeQuery.addEventListener('change', this.viewportChangeEvent, false)

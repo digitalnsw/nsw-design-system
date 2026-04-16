@@ -6,23 +6,28 @@ layout: blank-layout.hbs
 <h2>Usage</h2>
 <p>Use tabs to organise related content sections or views at the same level of hierarchy on the same page.</p>
 
-<h3>Do</h3>
-<ul>
-  <li>ensure each tab contains content that is distinct from the others</li>
-  <li>use short, scannable and unique tab labels</li>
-  <li>keep tab labels on one line and order tabs from most to least important</li>
-  <li>include a heading inside every panel that matches the tab label</li>
-  <li>use between 2 and 5 tabs for public-facing content</li>
-</ul>
-
-<h3>Don&apos;t</h3>
-<ul>
-  <li>use tabs within tabs</li>
-  <li>place accordions inside tab panels as nested navigation</li>
-  <li>use tabs as page navigation or site navigation</li>
-  <li>use tabs to show progress through a multi-step task; use <a href="/components/progress-indicator/index.html">Progress indicator</a> instead</li>
-  <li>display disabled tabs</li>
-</ul>
+<div class="nsw-grid nsw-m-top-sm">
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--do"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span><span>Do</span></div>
+    <ul>
+      <li>ensure each tab contains content that is distinct from the others</li>
+      <li>use short, scannable and unique tab labels</li>
+      <li>keep tab labels on one line and order tabs from most to least important</li>
+      <li>include a heading inside every panel that matches the tab label</li>
+      <li>use between 2 and 5 tabs for public-facing content</li>
+    </ul>
+  </div>
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--dont"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span><span>Don't</span></div>
+    <ul>
+      <li>use tabs within tabs</li>
+      <li>place accordions inside tab panels as nested navigation</li>
+      <li>use tabs as page navigation or site navigation</li>
+      <li>use tabs to show progress through a multi-step task; use <a href="/components/progress-indicator/index.html">Progress indicator</a> instead</li>
+      <li>display disabled tabs</li>
+    </ul>
+  </div>
+</div>
 
 <h2>Mobile behaviour</h2>
 <p>Below <code>768px</code>, tabs transform into a same-page link list with all sections visible in document order.</p>
@@ -31,6 +36,16 @@ layout: blank-layout.hbs
   <li>include a clear heading at the start of each section so stacked content is easy to scan</li>
   <li>keep labels concise and unique so jump links stay meaningful out of context</li>
   <li>use the signpost label before the link list to explain what users can do next</li>
+</ul>
+
+<h3>Mobile tabs mode (opt-out)</h3>
+<p>For legacy implementations that must keep tab interaction on mobile, add <code>nsw-tabs--mobile-tabs</code> to the tabs container.</p>
+<pre><code>&lt;div class=&quot;nsw-tabs nsw-tabs--mobile-tabs js-tabs&quot;&gt;...&lt;/div&gt;</code></pre>
+<p>In mobile tabs mode, tab panels stay hidden/revealed by tab selection below <code>768px</code> instead of stacking all content.</p>
+<ul>
+  <li>use only as a migration fallback while restructuring content to meet the default stacked pattern</li>
+  <li>use only when testing confirms users must switch rapidly between sections on small screens</li>
+  <li>do not use for visual preference or to avoid correcting incorrect tab usage</li>
 </ul>
 
 <h3>Signpost label guidance</h3>
