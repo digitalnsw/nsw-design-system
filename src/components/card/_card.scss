@@ -84,6 +84,7 @@
 
   &__title {
     font-weight: var(--nsw-font-bold);
+    text-wrap: pretty;
 
     @include nsw.font-size('md');
 
@@ -91,7 +92,6 @@
       @include nsw.pseudo-clickable-block;
       text-decoration: none;
       color: var(--nsw-text-dark);
-      transition: color nsw.$nsw-transition-duration;
 
       &:focus {
         outline: none;
@@ -171,6 +171,12 @@
 
   &--light {
     &:hover {      
+      .nsw-section--brand-light & {
+        .nsw-card__content {
+          border-color: var(--nsw-brand-dark);
+        }
+      }
+
       .nsw-section--invert & {  
         .nsw-card__content {  
           background-color: var(--nsw-white);
@@ -181,6 +187,10 @@
     .nsw-card__content {
       background-color: var(--nsw-brand-light);
       border-color: transparent;
+
+      .nsw-section--brand-light & {
+        border-color: var(--nsw-brand-dark);
+      }
 
       &::before,
       &::after {
@@ -279,7 +289,6 @@
         inset-inline-end: 0;
         block-size: 4px;
         background-color: var(--nsw-brand-accent);
-        transition: background nsw.$nsw-transition-duration;
       }
     }
 
@@ -292,7 +301,6 @@
         inset-inline-end: 0;
         block-size: 4px;
         background-color: var(--nsw-brand-accent);
-        transition: background nsw.$nsw-transition-duration;
       }
     }
   }
@@ -437,6 +445,35 @@
             4px 0 0 0 var(--nsw-brand-accent), /* Right */
             0 -1px 0 0 var(--nsw-grey-03),  /* Top */
             0 1px 0 0 var(--nsw-grey-03);   /* Bottom */
+        }
+      }
+    }
+  }
+  
+  @media (prefers-reduced-motion: no-preference) {
+    &__content {
+      transition: background-color nsw.$nsw-transition-duration, border-color nsw.$nsw-transition-duration;
+    }
+
+    &__title a,
+    &__copy,
+    &__tag,
+    &__date,
+    .nsw-material-icons {
+      transition: color nsw.$nsw-transition-duration;
+    }
+
+    &--highlight {
+      .nsw-card__content::after,
+      .nsw-card__image::after {
+        transition: background-color nsw.$nsw-transition-duration;
+      }
+    }
+
+    &--border {
+      &.nsw-card--highlight {
+        .nsw-card__image {
+          transition: box-shadow nsw.$nsw-transition-duration;
         }
       }
     }

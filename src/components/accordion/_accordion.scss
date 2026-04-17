@@ -13,6 +13,7 @@
     display: block;
     inline-size: 100%;
     text-align: start;
+    text-wrap: pretty;
     position: relative;
     transition: background nsw.$nsw-transition-duration, color nsw.$nsw-transition-duration;
 
@@ -247,6 +248,16 @@
       }
     }
   }
+
+  @include nsw.prefers-reduced-motion() {
+    &__item {
+      &::details-content,
+      > .nsw-accordion__title,
+      > .nsw-accordion__title::after {
+        transition: none;
+      }
+    }
+  }
 }
 
 .nsw-section--invert .nsw-accordion__item > .nsw-accordion__title {
@@ -278,12 +289,4 @@
 
 .nsw-section--invert .nsw-accordion__item[open] > .nsw-accordion__title::after {
   color: var(--nsw-text-dark);
-}
-
-@include nsw.prefers-reduced-motion() {
-  .nsw-accordion__item::details-content,
-  .nsw-accordion__item > .nsw-accordion__title,
-  .nsw-accordion__item > .nsw-accordion__title::after {
-    transition: none;
-  }
 }

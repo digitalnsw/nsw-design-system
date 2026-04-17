@@ -30,6 +30,10 @@
     margin-block-start: nsw.rem(-2px);
   }
 
+  &__content {
+    text-wrap: pretty;
+  }
+
   @each $color, $variant in nsw.$nsw-in-page-alerts {
     &--#{"" + $color} {
       background-color: map.get($variant, background);
