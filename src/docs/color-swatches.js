@@ -264,21 +264,21 @@ class ColorSwatches {
     const paletteFromURL = params.get('palette')
     const colorFromURL = params.get('color')
 
-    if (!paletteFromURL || !this.palettes[paletteFromURL]) return
+    if (paletteFromURL && this.palettes[paletteFromURL]) {
+      this.currentPalette = paletteFromURL
 
-    this.currentPalette = paletteFromURL
+      const colors = Object.keys(this.palettes[this.currentPalette]).filter((key) => key !== 'label')
+      this.currentColor = (colorFromURL && colors.includes(colorFromURL)) ? colorFromURL : colors[0]
 
-    const colors = Object.keys(this.palettes[this.currentPalette]).filter((key) => key !== 'label')
-    this.currentColor = (colorFromURL && colors.includes(colorFromURL)) ? colorFromURL : colors[0]
+      this.createColorSwatches()
+
+      const selectedSwatch = this.swatchList.querySelector(`[data-color="${this.currentColor}"]`)
+      if (selectedSwatch) this.updateSelectedSwatch(selectedSwatch)
+    }
 
     if (this.paletteSelect) {
       this.paletteSelect.value = this.currentPalette
     }
-
-    this.createColorSwatches()
-
-    const selectedSwatch = this.swatchList.querySelector(`[data-color="${this.currentColor}"]`)
-    if (selectedSwatch) this.updateSelectedSwatch(selectedSwatch)
 
     this.updateCSSVariables()
     this.updateColorData()

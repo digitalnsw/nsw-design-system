@@ -1211,17 +1211,40 @@ $header-height: 151px;
 .nsw-color-swatches {
   border: 0;
   inline-size: 100%;
+  direction: ltr;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: flex-end;
   align-items: center;
   gap: 0.5rem;
   margin: 16px 0;
 
+  &__utility {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-right: auto;
+    flex: 0 0 auto;
+  }
+
+  &__direction-selector {
+    inline-size: auto;
+    min-inline-size: nsw.rem(120px);
+    white-space: nowrap;
+    flex: 0 0 auto;
+  }
+
   &__palette-selector {
     inline-size: auto;
     white-space: nowrap;
-    flex: 0 0 auto; 
+    flex: 0 0 auto;
+  }
+
+  // Keep utility bar layout LTR, but allow native select internals to render RTL correctly.
+
+  .nsw-form__select:dir(rtl) {
+    direction: rtl;
   }
 
   &__list {
@@ -1239,7 +1262,7 @@ $header-height: 151px;
       outline-offset: 2px;
     }
   }
-  
+
   &__swatch {
     position: relative;
     display: block;
