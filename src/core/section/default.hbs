@@ -2,10 +2,11 @@
 title: Section
 page: true
 model:
+  accordion-1: ../../components/accordion/json/accordion.json
+  accordion-2: ../../components/accordion/json/accordion-3.json
   filters-options-1: ../../components/filters/json/options-1.json
   filters-options-2: ../../components/filters/json/options-2.json
   filters-options-3: ../../components/filters/json/options-3.json
-  accordion-1: ../../components/accordion/json/accordion.json
   carousel-five: ../../components/card-carousel/json/carousel-five.json
   dialog-transactional: ../../components/dialog/json/dialog-transactional.json
   global-alert: ../../components/global-alert/json/global-alert.json
@@ -19,15 +20,18 @@ model:
   select-savings-program: ../../components/select/json/select-savings-program.json
 ---
 
-{{#>_theme legendKey="brand-supplementary" swatchKey="brand-supplementary"}}
-<section class="nsw-section nsw-section--brand-supplementary nsw-section--invert">
+{{#>_theme}}
+<section class="nsw-section">
   <!-- START: Section content -->
   <div class="nsw-container">
     <div class="nsw-grid">
       <div class="nsw-row">
         <div class="nsw-col nsw-col-lg-8">
           <h2>Accordion</h2>
-          {{>_accordion model.accordion-1 type="details"}}
+          <h3>JS</h3>
+          {{>_accordion model.accordion-2 type='js'}}
+          <h3>CSS only</h3>
+          {{>_accordion model.accordion-1 type='css'}}
         </div>
       </div>
       <div class="nsw-row">
@@ -998,7 +1002,7 @@ model:
           </blockquote>
         </div>
       </div>
-      {{>_coverage-additions heroTheme="light"}}
+      {{>_coverage-additions heroTheme="dark"}}
     </div>
   </div>
 </section>
