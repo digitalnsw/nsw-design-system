@@ -1,0 +1,93 @@
+---
+title: User journey - DCJ home
+order: 23
+page: true
+model:
+  nav: json/main-nav-user-journey.json
+  footer: ../../components/footer/json/footer-landing.json
+---
+
+<style>
+  .nsw-user-journey-header-link {
+    color: inherit;
+    text-decoration: none;
+  }
+</style>
+
+{{>_masthead content="#content" simple=true}}
+{{>_header
+  link="/templates/user-journeys/quick-exit-home.html"
+  header-title="Department of Communities and Justice"
+}}
+{{>_main-nav model.nav}}
+<script>
+  (function () {
+    var nav = document.getElementById('main-nav')
+    if (!nav) return
+    nav.querySelectorAll('a[href]').forEach(function (link) {
+      link.addEventListener('click', function (event) {
+        event.preventDefault()
+      })
+    })
+  })()
+</script>
+
+{{>_hero-banner
+  wide=true
+  theme="dark"
+  heading="Supporting safer communities and stronger families"
+  copy="Information, services and support for children, families, housing, legal matters and domestic and family violence."
+  img="https://www.nsw.gov.au/sites/default/files/styles/_large/public/2025-10/community-and-family-support-program-illustrations-b-01.png.avif?itok=JNGB5aLW"
+}}
+
+<main id="content">
+  <section class="nsw-section">
+    <div class="nsw-container">
+      <div class="nsw-layout">
+        <div class="nsw-layout__main">
+          <h2 class="nsw-section-title">Popular services</h2>
+          <p class="nsw-section-text">This prototype home page is designed for moderated user journey testing.</p>
+          <div class="nsw-grid">
+            <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+              <div class="nsw-card nsw-card--headline">
+                <div class="nsw-card__content">
+                  <div class="nsw-card__title">
+                    <a href="/templates/user-journeys/quick-exit-dv-landing.html">Family, domestic and sexual violence</a>
+                  </div>
+                  <div class="nsw-card__copy">
+                    <p>Find support options, urgent contacts and practical next steps.</p>
+                  </div>
+                  <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+              <article class="nsw-card nsw-card--headline" aria-label="Child and family support">
+                <div class="nsw-card__content">
+                  <h3 class="nsw-card__title">Child and family support</h3>
+                  <div class="nsw-card__copy">
+                    <p>Information for carers, young people and families in NSW.</p>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+              <article class="nsw-card nsw-card--headline" aria-label="Housing and homelessness">
+                <div class="nsw-card__content">
+                  <h3 class="nsw-card__title">Housing and homelessness</h3>
+                  <div class="nsw-card__copy">
+                    <p>Support and services to help people access safe housing.</p>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+{{>_footer model.footer}}

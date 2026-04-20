@@ -1,0 +1,110 @@
+---
+title: User journey - Support contacts
+order: 25
+page: true
+model:
+  nav: json/main-nav-user-journey.json
+  footer: ../../components/footer/json/footer-landing.json
+---
+
+<style>
+  .nsw-user-journey-header-link {
+    color: inherit;
+    text-decoration: none;
+  }
+</style>
+
+{{>_masthead content="#content" simple=true quickExit="true"}}
+{{>_header
+  link="/templates/user-journeys/quick-exit-home.html"
+  header-title="Department of Communities and Justice"
+}}
+{{>_main-nav model.nav}}
+<script>
+  (function () {
+    var nav = document.getElementById('main-nav')
+    if (!nav) return
+    nav.querySelectorAll('a[href]').forEach(function (link) {
+      link.addEventListener('click', function (event) {
+        event.preventDefault()
+      })
+    })
+  })()
+</script>
+
+{{>_hero-banner
+  wide=true
+  theme="light"
+  heading="Domestic, family and sexual violence support contacts"
+  copy="24-hour support lines and services for people affected by domestic, family and sexual violence."
+  img="https://www.nsw.gov.au/sites/default/files/styles/_large/public/2025-10/community-and-family-support-program-illustrations-c-01.png.avif?itok=JhBLMU-1"
+}}
+
+<main id="content">
+  <section class="nsw-section">
+    <div class="nsw-container">
+      <div class="nsw-layout">
+        <div class="nsw-layout__main">
+          <h2 class="nsw-section-title">Emergency and crisis support</h2>
+          <p>If you or someone else is in immediate danger, call <strong>000</strong>.</p>
+
+          <div class="nsw-grid nsw-m-top-sm">
+            <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+              <div class="nsw-content-block">
+                <div class="nsw-content-block__content">
+                  <div class="nsw-content-block__title">NSW Domestic Violence Line</div>
+                  <p class="nsw-content-block__copy">24 hours, 7 days</p>
+                  <div class="nsw-content-block__link"><a href="tel:1800656463">1800 656 463</a></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+              <div class="nsw-content-block">
+                <div class="nsw-content-block__content">
+                  <div class="nsw-content-block__title">1800 RESPECT</div>
+                  <p class="nsw-content-block__copy">National sexual assault and domestic violence counselling service.</p>
+                  <div class="nsw-content-block__link"><a href="tel:1800737732">1800 737 732</a></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+              <div class="nsw-content-block">
+                <div class="nsw-content-block__content">
+                  <div class="nsw-content-block__title">Link2home</div>
+                  <p class="nsw-content-block__copy">Domestic violence temporary accommodation support.</p>
+                  <div class="nsw-content-block__link"><a href="tel:1800152152">1800 152 152</a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="nsw-section nsw-section--off-white">
+    <div class="nsw-container">
+      <div class="nsw-layout">
+        <div class="nsw-layout__main">
+          <h2 class="nsw-section-title">More support contacts</h2>
+          <ul>
+            <li><strong>Child Protection Helpline:</strong> <a href="tel:132111">13 21 11</a></li>
+            <li><strong>MensLine Australia:</strong> <a href="tel:1300789978">1300 789 978</a></li>
+            <li><strong>Lifeline:</strong> <a href="tel:131114">13 11 14</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+{{>_footer model.footer}}
+
+<div class="nsw-sticky-container">
+  {{>_quick-exit
+    safeUrl="https://www.google.com/webhp"
+    qe-description="Leave quickly using this banner or press Esc 2 times."
+  }}
+</div>
