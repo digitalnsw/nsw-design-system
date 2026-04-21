@@ -48,15 +48,15 @@
       padding-bottom: nsw.rem(88px);
     }
 
-    .nsw-hero-banner--wide & {
-      @include nsw.column(8, md);
-      @include nsw.column(7, xl);      
-    } 
+    // Intentionally matches default content widths for compatibility.
+    // A selector(:has(*))-based conditional can restore wide-specific widths later
+    // (8/12 md, 7/12 xl with an image override to 7/12 md, 6/12 xl) once toolchain
+    // support is upgraded to handle @supports selector(:has(*)) without build errors.
 
-    .nsw-hero-banner--wide:has(.nsw-hero-banner__image) & {
+    .nsw-hero-banner--wide & {
       @include nsw.column(7, md);
       @include nsw.column(6, xl);
-    } 
+    }
 
     .nsw-hero-banner--featured & {
       @include nsw.breakpoint('md') { 
