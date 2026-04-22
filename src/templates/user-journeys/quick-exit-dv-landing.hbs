@@ -46,13 +46,10 @@ model:
       <div class="nsw-layout">
         <div class="nsw-layout__main">
           <h2 class="nsw-section-title">Get help now</h2>
-          <p class="nsw-section-text">If there is immediate danger, call <strong>000</strong>.</p>
-          <p>These links are provided for focus-group testing of a sensitive content journey.</p>
-
-          <h3 class="nsw-m-top-lg">In this section</h3>
-          <div class="nsw-grid">
+          {{>_callout heading="Emergency" copy="If you or someone else is in immediate danger, call 000."}}
+          <div class="nsw-grid nsw-m-top-md">
             <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
-              <div class="nsw-card nsw-card--headline">
+              <div class="nsw-card nsw-card--headline nsw-card--highlight">
                 <div class="nsw-card__content">
                   <div class="nsw-card__title">
                     <a href="/templates/user-journeys/quick-exit-support-contacts.html">Help and Support</a>
@@ -64,40 +61,138 @@ model:
                 </div>
               </div>
             </div>
-
-            <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
-              <article class="nsw-card nsw-card--headline" aria-label="Safer Pathway">
-                <div class="nsw-card__content">
-                  <h3 class="nsw-card__title">Safer Pathway</h3>
-                  <div class="nsw-card__copy">
-                    <p>Information about local coordination for women and children experiencing violence.</p>
-                  </div>
-                </div>
-              </article>
-            </div>
-
-            <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
-              <article class="nsw-card nsw-card--headline" aria-label="Help someone in a domestic violence situation">
-                <div class="nsw-card__content">
-                  <h3 class="nsw-card__title">Help someone in a domestic violence situation</h3>
-                  <div class="nsw-card__copy">
-                    <p>Guidance on what to do if you are concerned about a friend, family member or neighbour.</p>
-                  </div>
-                </div>
-              </article>
-            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="nsw-section nsw-section--off-white">
+  <section class="nsw-section nsw-section--brand-dark nsw-section--invert">
     <div class="nsw-container">
       <div class="nsw-layout">
         <div class="nsw-layout__main">
-          <h2 class="nsw-section-title">Before you continue</h2>
-          <p>If you need to leave this page quickly, use the Quick exit button at the bottom of the screen or press <kbd>Esc</kbd> twice.</p>
+          <h2 class="nsw-section-title">How to find support</h2>
+          <p class="nsw-m-bottom-sm">If you or someone you know needs support, there are free services that can help with safety, wellbeing and practical next steps.</p>
+
+          <div class="nsw-grid nsw-grid--spaced">
+            <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+              {{>_content-block
+                heading="Find services in your local area"
+                copy="Search by postcode and keywords to find relevant services, including Aboriginal-led and culturally safe support options."
+                link="Use Service Seeker"
+                linkUrl="https://www.serviceseeker.com.au"
+              }}
+            </div>
+
+            <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+              {{>_content-block
+                heading="Speak to someone about available services"
+                copy="Not sure where to start? Connect with a local Family Connect and Support provider to discuss options for your situation."
+                link="Find a Family Connect and Support provider"
+                linkUrl="https://www.nsw.gov.au/community-services/community-family-support/find-a-provider"
+              }}
+            </div>
+
+            <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+              {{>_content-block
+                heading="Eligibility and access"
+                copy="Community and Family Support services are free and voluntary, with no formal eligibility criteria for accessing help."
+                link="Learn about How to find support"
+                linkUrl="https://www.nsw.gov.au/community-services/community-family-support/how-to-find-support"
+              }}
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="nsw-section">
+    <div class="nsw-container">
+      <div class="nsw-layout">
+        <div class="nsw-layout__main">
+          <h2 class="nsw-section-title">How we can help</h2>
+          <p class="nsw-m-bottom-sm">Learn about different forms of abuse, options for safety planning, legal pathways and support services for victim-survivors.</p>
+
+          <div class="nsw-grid">
+            <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+              <article class="nsw-card nsw-card--headline" aria-label="About domestic and family violence">
+                <div class="nsw-card__content">
+                  <h4 class="nsw-card__title">About domestic and family violence</h4>
+                  <div class="nsw-card__copy">
+                    <p>Understand what domestic and family violence is, who it affects and key warning signs.</p>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+              <article class="nsw-card nsw-card--headline" aria-label="About sexual violence">
+                <div class="nsw-card__content">
+                  <h4 class="nsw-card__title">About sexual violence</h4>
+                  <div class="nsw-card__copy">
+                    <p>Get information about consent, sexual violence and available support services.</p>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+              <article class="nsw-card nsw-card--headline" aria-label="How to stay safe">
+                <div class="nsw-card__content">
+                  <h4 class="nsw-card__title">How to stay safe</h4>
+                  <div class="nsw-card__copy">
+                    <p>Safety planning guidance, online and technology safety, and practical self-care actions.</p>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+              <article class="nsw-card nsw-card--headline" aria-label="My situation is">
+                <div class="nsw-card__content">
+                  <h4 class="nsw-card__title">My situation is</h4>
+                  <div class="nsw-card__copy">
+                    <p>Support pathways tailored to different circumstances for you or someone you know.</p>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+              <article class="nsw-card nsw-card--headline" aria-label="Police, legal help and the law">
+                <div class="nsw-card__content">
+                  <h4 class="nsw-card__title">Police, legal help and the law</h4>
+                  <div class="nsw-card__copy">
+                    <p>Information on AVOs, victims' rights, legal help and how Police can support you.</p>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+              <article class="nsw-card nsw-card--headline" aria-label="Support programs">
+                <div class="nsw-card__content">
+                  <h4 class="nsw-card__title">Support programs</h4>
+                  <div class="nsw-card__copy">
+                    <p>Programs that support victim-survivors and help people change violent behaviour.</p>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+              <article class="nsw-card nsw-card--headline" aria-label="Counselling and financial support">
+                <div class="nsw-card__content">
+                  <h4 class="nsw-card__title">Counselling and financial support</h4>
+                  <div class="nsw-card__copy">
+                    <p>The Victims Support Scheme can provide counselling and financial support after violent crime.</p>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
         </div>
       </div>
     </div>
