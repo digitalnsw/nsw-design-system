@@ -6,9 +6,18 @@ directory: tabs
 intro: Tabs allow users to switch between multiple sections or views.
 theme: true
 figma: https://www.figma.com/file/PVrERKnckLTlJSPk12gbtS/NSW-Digital-Design-System?node-id=21298%3A24987
-model: json/tabs.json
+model:
+  default: json/tabs.json
+  truncated: json/tabs-5.json
 meta-description: Tabs allow users to switch between multiple sections or views.
 meta-index: true
 ---
 
-{{#>_docs-example}}{{>_tabs model}}{{/_docs-example}}
+<h3>Default tabs</h3>
+{{#>_docs-example}}{{>_tabs model.default idPrefix="docs-default"}}{{/_docs-example}}
+
+<h3>Truncated tabs</h3>
+{{#>_docs-example}}{{>_tabs model.truncated idPrefix="docs-truncated"}}{{/_docs-example}}
+
+<h3>Mobile tabs mode (opt-out)</h3>
+{{#>_docs-example}}{{>_tabs model.truncated idPrefix="docs-mobile-tabs" mobileTabs=true}}{{/_docs-example}}
