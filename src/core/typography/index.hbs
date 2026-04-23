@@ -10,7 +10,7 @@ meta-description: NSW Design System typography styles and examples, including fo
 meta-index: true
 ---
 
-<h2>Font</h2>
+<h2 id="font">Font</h2>
 
 <p>NSW Government uses Public Sans font for all digital products and services to create a distinct but consistent look and feel. Public Sans is the only font to be used for headings and body copy. It is a free font that is available from <a href="https://fonts.google.com/specimen/Public+Sans" target="_blank" rel="noopener">Google Fonts</a>.</p>
 
@@ -18,9 +18,9 @@ meta-index: true
 
 <p><code>body {font-family: 'Public Sans', Arial, sans-serif;}</code></p>
 
-<h2>Typography styles</h2>
+<h2 id="typography-styles">Typography styles</h2>
 
-<h3>Headings and paragraphs</h3>
+<h3 id="headings-and-paragraphs">Headings and paragraphs</h3>
 <p>In the NSW Design system there are different standard sizes for the headings for large screens and smaller screens.</p>
 
 <div class="nsw-table nsw-table--valign-top">
@@ -55,7 +55,7 @@ meta-index: true
       </tr>
       <tr>
         <td>
-          <h2>Heading 2</h2>
+          <h2 id="heading-2-example">Heading 2</h2>
         </td>
         <td>
           <p>
@@ -76,7 +76,7 @@ meta-index: true
       </tr>
       <tr>
         <td>
-          <h3>Heading 3</h3>
+          <h3 id="heading-3-example">Heading 3</h3>
         </td>
         <td>
           <p>
@@ -192,7 +192,51 @@ meta-index: true
   </table>
 </div>
 
-<h3>Links</h3>
+<h3 id="optional-heading-anchor-links">Optional heading anchor links</h3>
+<p>You can enable copyable anchor links for <code>h2</code> headings by adding <code>js-copy-headings</code> to the content container.</p>
+
+{{#>_docs-code open="true"}}
+<main class="js-copy-headings">
+  <h2 id="eligibility">Eligibility</h2>
+  <p>Eligibility requirements for this service.</p>
+
+  <h2>How to apply</h2>
+  <p>Complete the required application steps.</p>
+</main>
+{{/_docs-code}}
+
+<p>When this class is present:</p>
+<ul>
+  <li>The script scans descendant <code>h2</code> elements only.</li>
+  <li>Existing heading IDs are preserved; missing IDs are generated automatically.</li>
+  <li>An anchor copy icon is appended to each <code>h2</code> and copies the full URL including hash.</li>
+  <li>On desktop, the icon reveals when the heading or icon area is hovered. On tablet and mobile it remains visible for touch users.</li>
+  <li>Heading text remains selectable, so users can still copy heading text without copying a link.</li>
+  <li>Initialisation runs only when <code>js-copy-headings</code> is detected on the page.</li>
+</ul>
+
+<div class="nsw-grid nsw-m-top-sm">
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--do"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span><span>Do</span></div>
+    <ul>
+      <li>Use this in long-form content bodies where there are multiple section headings.</li>
+      <li>Prefer enabling it when there are more than 3 <code>h2</code> headings in the same content area.</li>
+      <li>Apply <code>js-copy-headings</code> to a specific container that represents the main reading content.</li>
+    </ul>
+  </div>
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--dont"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span><span>Don't</span></div>
+    <ul>
+      <li>Do not apply this globally to pages with sparse headings or short content.</li>
+      <li>Do not enable it outside content bodies such as navigation, cards, filters or utility regions.</li>
+      <li>Do not target random standalone <code>h2</code> elements that are not part of a coherent document structure.</li>
+    </ul>
+  </div>
+</div>
+
+<p>See the working example template: <a href="/templates/content/header-links.html" target="_blank" rel="noopener">Header links</a>.</p>
+
+<h3 id="links">Links</h3>
 {{#>_docs-example simple="true" separated="true"}}
 <p>
   Maecenas at risus ullamcorper odio facilisis <a href="#">ultrices et</a> et metus.
@@ -213,7 +257,7 @@ meta-index: true
 </blockquote>
 {{/_docs-example}}
 
-<h3>Unordered list</h3>
+<h3 id="unordered-list">Unordered list</h3>
 {{#>_docs-example simple="true" separated="true"}}
 <ul>
   <li>Understanding user needs</li>
@@ -224,7 +268,7 @@ meta-index: true
 </ul>
 {{/_docs-example}}
 
-<h3>Ordered list</h3>
+<h3 id="ordered-list">Ordered list</h3>
 {{#>_docs-example simple="true" separated="true"}}
 <ol>
   <li>Pre-discovery</li>
@@ -235,7 +279,7 @@ meta-index: true
 </ol>
 {{/_docs-example}}
 
-<h3>Definition list</h3>
+<h3 id="definition-list">Definition list</h3>
 {{#>_docs-example simple="true" separated="true"}}
 <dl>
   <dt>Website:</dt>
@@ -247,4 +291,3 @@ meta-index: true
   <dd>1300 300 300</dd>
 </dl>
 {{/_docs-example}}
-

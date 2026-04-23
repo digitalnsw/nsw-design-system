@@ -1,0 +1,89 @@
+---
+title: Content page - Header links
+order: 22
+page: true
+model:
+  nav-basic: ../../components/main-nav/json/main-nav-design-system.json
+  breadcrumbs: ../../components/breadcrumbs/json/breadcrumbs-design-system.json
+  side-nav: ../../components/side-nav/json/side-nav-level-2.json
+  footer: ../../components/footer/json/footer.json
+---
+
+{{>_masthead content="#content" nav="#main-nav"}}
+{{>_header header-title="NSW Design System"}}
+{{>_main-nav model.nav-basic}}
+<div class="nsw-container nsw-p-bottom-md">
+  {{>_breadcrumbs model.breadcrumbs}}
+</div>
+
+{{>_hero-banner
+  wide=true
+  theme="dark"
+  heading="Applying the NSW Design System"
+  copy="Use this page to test heading-link behavior while validating implementation guidance across left and right sidebar content patterns."
+  img="https://picsum.photos/id/1042/1600/900"
+}}
+
+<main id="content" class="nsw-container nsw-p-top-md nsw-p-bottom-lg">
+  <section class="nsw-layout">
+    <div class="nsw-layout__sidebar js-side-nav">
+      {{>_side-nav model.side-nav}}
+    </div>
+    <div id="content-left" class="nsw-layout__main js-copy-headings">
+      <div class="nsw-block">
+        <h2>Plan your implementation approach</h2>
+        <p>Start by selecting the template structure that best matches your service journey. The NSW Design System is most effective when teams map component choices to user needs, rather than assembling pages from isolated UI elements.</p>
+        <p>For content-heavy pages, a left sidebar can improve wayfinding by keeping section navigation visible while users scan long guidance and policy material.</p>
+        <p>During implementation, keep headings explicit and task-oriented so users can quickly understand page structure and share direct links to relevant sections.</p>
+
+        <h2 id="left-with-existing-id">Use existing anchors for stable references</h2>
+        <p>Where headings already include an ID, those anchors should be preserved to avoid breaking shared links in support documentation, onboarding guides and service manuals.</p>
+        <p>This is especially important for agencies that publish release notes or operational runbooks that are referenced across multiple teams.</p>
+        <p>Verify that copied links always resolve to the authored anchor and continue working after future content updates.</p>
+
+        <h2>Generate anchors when none are provided</h2>
+        <p>When an ID is missing, the heading-link script can generate one automatically so teams still get shareable section links without additional authoring overhead.</p>
+        <p>Generated IDs should remain readable and unique, even when headings have similar names, to support reliable linking and analytics tracking.</p>
+        <p>This approach reduces manual content maintenance while keeping user-facing behavior consistent across templates.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="nsw-section-break nsw-m-top-lg nsw-m-bottom-md">
+
+  <section class="nsw-layout">
+    <div id="content-right" class="nsw-layout__main js-copy-headings">
+      <div class="nsw-grid nsw-align-items-start">
+        <div class="nsw-col nsw-col-md-8">
+          <div class="nsw-block">
+            <h2>Apply guidance in a right sidebar layout</h2>
+            <p>A right sidebar works well when the main content flow should remain dominant and supplementary tools, references or actions sit alongside as secondary information.</p>
+            <p>Use this pattern for implementation pages that combine narrative guidance with quick links, examples or downloadable assets.</p>
+            <p>Heading-link behavior should remain predictable here, regardless of how the content column width changes across breakpoints.</p>
+
+            <h2 id="right-with-existing-id">Maintain reliable deep links</h2>
+            <p>Persistent anchors support collaboration between design, content and engineering teams by allowing precise references to implementation decisions.</p>
+            <p>This is useful in backlog tickets, design QA notes and service readiness checklists where teams need to point to exact sections.</p>
+            <p>Confirm copied links consistently return users to the intended heading after refresh, navigation and sharing.</p>
+
+            <h2>Support scalable content operations</h2>
+            <p>As teams extend the NSW Design System into more services, automatic heading anchors help keep content discoverable and easier to reference in delivery workflows.</p>
+            <p>Collision-safe generated IDs are essential when pages grow over time and headings are reordered, renamed or duplicated during iteration.</p>
+            <p>Test this section on desktop, tablet and mobile to ensure icon visibility, tooltip feedback and copy actions remain clear for all users.</p>
+          </div>
+        </div>
+        <div class="nsw-col nsw-col-md-4">
+          <div class="nsw-block">
+            {{>_media
+              image="https://picsum.photos/id/902/900/1200"
+              title="Working session to apply NSW Design System guidance"
+            }}
+            <p class="nsw-m-top-sm">Teams can pair implementation notes with visual examples to speed up review and maintain consistency across agency services.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+{{>_footer model.footer}}

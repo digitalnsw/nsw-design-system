@@ -22,6 +22,7 @@ import Toggletip from './components/tooltip/toggletip'
 import Tooltip from './components/tooltip/tooltip'
 import UtilityList from './components/utility-list/utility-list'
 
+import headingLinks from './global/scripts/heading-links'
 import stickyContainer from './global/scripts/sticky-container'
 
 if (window.NodeList && !NodeList.prototype.forEach) {
@@ -68,8 +69,11 @@ function initSite() {
   const tooltip = document.querySelectorAll('.js-tooltip')
   const utilityList = document.querySelectorAll('.js-utility-list')
 
-  // Sticky container initialisation
   stickyContainer()
+
+  if (document.querySelector('.js-copy-headings')) {
+    headingLinks()
+  }
 
   if (jsAccordions) {
     jsAccordions.forEach((element) => {
