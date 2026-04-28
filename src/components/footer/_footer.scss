@@ -10,10 +10,12 @@
 
   a:not(.nsw-icon-button) {
     line-height: 1.5;
-    padding: nsw.rem(8px) nsw.rem(24px) nsw.rem(8px) 0;
+    padding-block: nsw.rem(8px);
+    padding-inline: 0 nsw.rem(24px);
 
     @include nsw.breakpoint('md') {
-      padding: nsw.rem(4px) nsw.rem(4px) nsw.rem(4px) 0;
+      padding-block: nsw.rem(4px);
+      padding-inline: 0 nsw.rem(4px);
     }
   }
 
@@ -37,7 +39,8 @@
   }
 
   &__group {
-    padding: 0 nsw.rem(8px) nsw.rem(16px) nsw.rem(8px);
+    padding-block: 0 nsw.rem(16px);
+    padding-inline: nsw.rem(8px);
     flex: 1 0 auto;
     min-inline-size: nsw.rem(256px);
     max-inline-size: 50%;
@@ -48,13 +51,15 @@
     }
 
     @include nsw.breakpoint('lg') {
-      padding: 0 nsw.rem(16px) nsw.rem(24px) nsw.rem(16px);
+      padding-block: 0 nsw.rem(24px);
+      padding-inline: nsw.rem(16px);
       flex-basis: 25%;
     }
 
     ul {
       list-style: none;
-      margin: nsw.rem(4px) 0 0 0;
+      margin: 0;
+      margin-block-start: nsw.rem(4px);
       padding: 0;
 
       @include nsw.font-size('xs');
@@ -76,7 +81,8 @@
   &__lower {
     background-color: var(--nsw-grey-01);
     color: var(--nsw-text-light);
-    padding: nsw.rem(16px) 0 nsw.rem(24px) 0;
+    padding-block: nsw.rem(16px) nsw.rem(24px);
+    padding-inline: 0;
 
     @include nsw.font-size('xs');
 
@@ -90,7 +96,9 @@
 
     ul {
       list-style: none;
-      margin: nsw.rem(16px) nsw.rem(-8px) 0 nsw.rem(-8px);
+      margin: 0;
+      margin-block-start: nsw.rem(16px);
+      margin-inline: nsw.rem(-8px);
       padding: 0;
       display: flex;
       flex-direction: row;
@@ -106,7 +114,8 @@
       flex: 1 0 50%;
       max-inline-size: 50%;
       padding: 0 nsw.rem(8px);
-      margin: 0 0 nsw.rem(16px) 0;
+      margin: 0;
+      margin-block-end: nsw.rem(16px);
 
       @include nsw.breakpoint('md') {
         margin-inline-end: nsw.rem(24px);
@@ -136,7 +145,8 @@
     flex-wrap: wrap;
     align-items: center;
     margin: 0 nsw.rem(-12px);
-    padding: nsw.rem(8px) 0 nsw.rem(12px) 0;
+    padding-block: nsw.rem(8px) nsw.rem(12px);
+    padding-inline: 0;
 
     @include nsw.breakpoint('md') {
       padding-block-end: nsw.rem(8px);
