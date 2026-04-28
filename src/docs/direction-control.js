@@ -99,7 +99,9 @@ class DirectionControl {
     const params = new URLSearchParams(window.location.search)
     params.set('dir', this.currentDirection)
 
-    const newUrl = `${window.location.pathname}?${params.toString()}`
+    const search = params.toString()
+    const hash = window.location.hash || ''
+    const newUrl = `${window.location.pathname}${search ? `?${search}` : ''}${hash}`
     window.history.replaceState({}, '', newUrl)
   }
 }
