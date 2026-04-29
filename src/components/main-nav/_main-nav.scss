@@ -12,8 +12,11 @@
   inline-size: 100%;
   block-size: 100%;
   background-color: var(--nsw-white);
-  transition: all 0.25s ease-in-out;
   transform: translateX(-100%);
+
+  &:dir(rtl) {
+    transform: translateX(100%);
+  }
   visibility: hidden;
   overflow-y: auto;
 
@@ -33,6 +36,10 @@
 
   &.closing {
     transform: translateX(-100%);
+
+    &:dir(rtl) {
+      transform: translateX(100%);
+    }
   }
 
   @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
@@ -41,7 +48,6 @@
     background-color: var(--nsw-off-white);
     inset-block-start: auto;
     inset-inline-start: auto;
-    transition: none;
     visibility: visible;
     overflow-y: visible;
     block-size: auto;
@@ -93,10 +99,12 @@
 
     > li > a {      
       @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+        justify-content: flex-start;
+        column-gap: nsw.rem(8px);
+
         .nsw-material-icons {
           transform: rotate(90deg);
-          margin-inline-start: nsw.rem(6px);
-          transition: transform nsw.$nsw-transition-duration, color nsw.$nsw-transition-duration;
+          margin: 0;
         }
 
         &.active {
@@ -216,8 +224,11 @@
     inset-inline-start: 0;
     inline-size: 100%;
     block-size: 100%;
-    transition: all 0.25s ease-in-out;
     transform: translateX(-100%);
+
+    &:dir(rtl) {
+      transform: translateX(100%);
+    }
     visibility: hidden;
     overflow-y: auto;
 
@@ -238,6 +249,8 @@
       @include nsw.container;
       padding: nsw.rem(48) nsw.rem(40);
       inset-block-start: 100%;
+      inset-inline-start: 0;
+      inset-inline-end: 0;
       background-color: var(--nsw-white);
       box-shadow: 0 4px 9px -5px rgba(var(--nsw-black-rgb), 0.4);
       transition: none;
@@ -246,8 +259,9 @@
       overflow: auto;
 
       &.active {
-        inset-inline-start: 50%;
-        transform: translateX(-50%);
+        inset-inline-start: 0;
+        inset-inline-end: 0;
+        transform: none;
       }
     }
 
@@ -289,10 +303,14 @@
         a {      
           padding: 0;
           color: var(--nsw-brand-dark);
+          display: inline-flex;
+          align-items: center;
+          justify-content: flex-start;
+          column-gap: nsw.rem(8px);
         }
 
         .nsw-material-icons {
-          margin: 0 0 0 nsw.rem(12px);
+          margin: 0;
         }
       }
     }
@@ -300,6 +318,37 @@
     .nsw-main-nav__sub-nav {
       @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
         display: none;
+      }
+    }
+  }
+
+  &:dir(rtl) .nsw-main-nav__icon--title-link {
+    transform: scaleX(-1);
+  }
+
+  @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint, max-width) {
+    &:dir(rtl) {
+      .nsw-main-nav__icon--forward,
+      .nsw-main-nav__icon--back {
+        transform: scaleX(-1);
+      }
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint, max-width) {
+      transition: transform 0.25s ease-in-out;
+
+      &__sub-nav {
+        transition: transform 0.25s ease-in-out;
+      }
+    }
+
+    &__list > li > a {
+      @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+        .nsw-material-icons {
+          transition: transform nsw.$nsw-transition-duration-smooth, color nsw.$nsw-transition-duration-smooth;
+        }
       }
     }
   }
