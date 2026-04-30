@@ -51,6 +51,11 @@
     visibility: visible;
     overflow-y: visible;
     block-size: auto;
+
+    &:dir(rtl),
+    &.closing:dir(rtl) {
+      transform: none;
+    }
   }
 
   &__header {
@@ -257,6 +262,10 @@
       transform: none;
       block-size: auto;
       overflow: auto;
+
+      &:dir(rtl) {
+        transform: none;
+      }
 
       &.active {
         inset-inline-start: 0;
