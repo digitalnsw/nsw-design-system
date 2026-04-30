@@ -5,7 +5,7 @@
 
   &__list-wrapper {
     overflow: hidden;
-    height: nsw.rem(48px);
+    block-size: nsw.rem(48px);
     background-color: var(--nsw-off-white);
 
     .nsw-section--invert & {    
@@ -41,7 +41,7 @@
       position: relative;
       text-decoration: none;
       color: var(--nsw-brand-dark);
-      height: 100%;
+      block-size: 100%;
 
       &:hover {
         @include nsw.nsw-hover;
@@ -63,11 +63,11 @@
         &::after {
           content: '';
           position: absolute;
-          bottom: 0;
-          left: 0;
-          width: 100%;
-          height: 0;
-          border-bottom: solid 2px var(--nsw-brand-accent);
+          inset-block-end: 0;
+          inset-inline-start: 0;
+          inline-size: 100%;
+          block-size: 0;
+          border-block-end: solid 2px var(--nsw-brand-accent);
         }
       
         .nsw-section--invert & {    
@@ -83,9 +83,9 @@
 
   &__content {
     padding: nsw.rem(24px) nsw.rem(16px);
-    border-bottom: solid 1px var(--nsw-grey-04);
-    border-top: solid 2px var(--nsw-grey-04);
-    margin-top: -2px;
+    border-block-end: solid 1px var(--nsw-grey-04);
+    border-block-start: solid 2px var(--nsw-grey-04);
+    margin-block-start: -2px;
 
     &:focus {
       @include nsw.nsw-focus;
@@ -100,12 +100,12 @@
     }
 
     &--side-flush {
-      padding-left: 0;
-      padding-right: 0;
+      padding-inline-start: 0;
+      padding-inline-end: 0;
     }
 
     &--no-border {
-      border-bottom: 0;
+      border-block-end: 0;
     }
   }
 }

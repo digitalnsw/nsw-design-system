@@ -34,7 +34,7 @@ export function updateStickyBodyPadding() {
   const rect = el.getBoundingClientRect ? el.getBoundingClientRect() : { height: el.offsetHeight || 0 }
   const h = Math.max(0, Math.round(rect.height || 0))
   document.body.style.setProperty('--nsw-sticky-height', `${h}px`)
-  document.body.style.paddingBottom = `${h}px`
+  document.body.style.paddingBlockEnd = `${h}px`
 }
 
 function attachObservers(el) {
@@ -70,10 +70,10 @@ export default function stickyContainer() {
     created.id = STICKY_ID
     // Minimal inline safety if CSS hasn’t loaded yet
     created.style.position = 'fixed'
-    created.style.bottom = '0'
-    created.style.left = '0'
-    created.style.right = '0'
-    created.style.width = '100%'
+    created.style.insetBlockEnd = '0'
+    created.style.insetInlineStart = '0'
+    created.style.insetInlineEnd = '0'
+    created.style.inlineSize = '100%'
     created.style.display = 'block'
     document.body.appendChild(created)
     el = created

@@ -6,8 +6,8 @@
 
   .nsw-icon-button {
     position: absolute;
-    top: nsw.rem(-8px);
-    right: nsw.rem(4px);
+    inset-block-start: nsw.rem(-8px);
+    inset-inline-end: nsw.rem(4px);
 
     &:hover {
       background-color: var(--nsw-hover-light);
@@ -40,7 +40,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: nsw.rem(16px);
-    margin-top: nsw.rem(16px);
+    margin-block-start: nsw.rem(16px);
     flex-direction: column;
 
     @include nsw.breakpoint('md') {
@@ -93,27 +93,27 @@
   .nsw-dialog__top {
     z-index: 1101;
     position: sticky;
-    top: 0;
+    inset-block-start: 0;
     background: var(--nsw-white);
     border-radius: var(--nsw-border-radius);
   }
 
   .nsw-dialog__content {
-    padding-top: nsw.rem(16px);
-    padding-bottom: nsw.rem(72px);
+    padding-block-start: nsw.rem(16px);
+    padding-block-end: nsw.rem(72px);
 
     @include nsw.breakpoint('md') {
-      padding-top: nsw.rem(16px);
-      padding-bottom: nsw.rem(4px);
+      padding-block-start: nsw.rem(16px);
+      padding-block-end: nsw.rem(4px);
     }
   }
 
   &__bottom {
-    border-top: 1px solid var(--nsw-grey-04);
+    border-block-start: 1px solid var(--nsw-grey-04);
     position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    inset-block-end: 0;
+    inset-inline-start: 0;
+    inset-inline-end: 0;
     display: flex;
     flex-direction: column;
     padding: nsw.rem(16px);
@@ -130,14 +130,14 @@
 
     button {
       @include nsw.breakpoint('md') {
-        margin-bottom: 0;
+        margin-block-end: 0;
       }
 
       &:last-child {
-        margin-bottom: 0;
+        margin-block-end: 0;
 
         @include nsw.breakpoint('md') {
-          margin-left: 0;
+          margin-inline-start: 0;
         }
       }
     }
@@ -163,10 +163,10 @@
   &__content-wrapper {
     padding: nsw.rem(8px);
     overflow: scroll;
-    max-height: 280px;
+    max-block-size: 280px;
 
     &::-webkit-scrollbar {
-      width: 8px;
+      inline-size: 8px;
     }
     
     &::-webkit-scrollbar-thumb {
@@ -179,10 +179,10 @@
   .nsw-tabs__content {
     -webkit-overflow-scrolling: auto;
     padding: nsw.rem(12px) 0 nsw.rem(8px) nsw.rem(8px);
-    border-bottom: 0;
+    border-block-end: 0;
 
     @include nsw.breakpoint('md') {
-      max-height: 320px;
+      max-block-size: 320px;
     }
 
     &:focus-visible {
@@ -197,7 +197,7 @@
   &__list {
     display: flex;
     flex-direction: column;
-    padding-left: 0;
+    padding-inline-start: 0;
     gap: nsw.rem(8px);
   }
   
@@ -214,12 +214,12 @@
     }
 
     &:not(:nth-child(1)) {
-      border-top: 1px solid var(--nsw-grey-04);
-      padding-top: nsw.rem(24px);
+      border-block-start: 1px solid var(--nsw-grey-04);
+      padding-block-start: nsw.rem(24px);
     }
   }
 
   &__cookie-details {
-    margin-left: 48px;
+    margin-inline-start: 48px;
   }
 }

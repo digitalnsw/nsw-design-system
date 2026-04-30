@@ -1,7 +1,7 @@
 @use '../../global/scss/tools' as nsw;
 
 .nsw-file-upload {
-  margin-top: nsw.rem(8px);
+  margin-block-start: nsw.rem(8px);
   display: block;
 
   &__label {
@@ -10,8 +10,8 @@
 
   &__input {
     position: absolute;
-    width: 0;
-    height: 0;
+    inline-size: 0;
+    block-size: 0;
     opacity: 0;
     z-index: -1;
 
@@ -44,7 +44,7 @@
 
   &__item {
     display: flex;
-    max-width: nsw.rem(500px);
+    max-inline-size: nsw.rem(500px);
     align-items: center;
     justify-content: space-between;
     background-color: var(--nsw-off-white);
@@ -52,7 +52,7 @@
     padding: nsw.rem(8px);
 
     &:not(:last-child) {
-      margin-bottom: nsw.rem(8px);
+      margin-block-end: nsw.rem(8px);
     }
 
     .nsw-section--invert & {    
@@ -73,7 +73,7 @@
   }
 
   &__item-filename {
-    margin-left: nsw.rem(8px);
+    margin-inline-start: nsw.rem(8px);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

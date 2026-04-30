@@ -24,7 +24,7 @@
   @include nsw.font-size('sm');
 
   &:not(.nsw-button--flex) {
-    min-width: nsw.rem(124px);
+    min-inline-size: nsw.rem(124px);
   }
 
   &:hover {
@@ -45,14 +45,14 @@
     font-size: nsw.rem(map.get(nsw.$nsw-icon-sizes, 24));
     line-height: nsw.rem(10px);
     position: relative;
-    bottom: nsw.rem(-7px);
+    inset-block-end: nsw.rem(-7px);
 
     &:first-child {
-      margin-right: nsw.rem(8px);
+      margin-inline-end: nsw.rem(8px);
     }
 
     &:last-child {
-      margin-left: nsw.rem(8px);
+      margin-inline-start: nsw.rem(8px);
     }
 
     &:only-child {
@@ -69,11 +69,11 @@
       font-size: nsw.rem(map.get(nsw.$nsw-icon-sizes, 20));
 
       &:first-child {
-        margin-right: nsw.rem(4px);
+        margin-inline-end: nsw.rem(4px);
       }
 
       &:last-child {
-        margin-left: nsw.rem(4px);
+        margin-inline-start: nsw.rem(4px);
       }
 
       &:only-child {
@@ -94,11 +94,11 @@
 
   &--full-width {
     display: block;
-    width: 100%;
+    inline-size: 100%;
 
     @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
       display: inline-block;
-      width: auto;
+      inline-size: auto;
     }
   }
 }
