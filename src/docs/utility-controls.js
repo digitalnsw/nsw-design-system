@@ -1,5 +1,6 @@
 import ColorSwatches from './color-swatches'
 import DirectionControl from './direction-control'
+import LanguageControl from './language-control'
 
 class UtilityControls {
   constructor(element, config = {}) {
@@ -7,6 +8,7 @@ class UtilityControls {
     this.config = config
     this.colorSwatches = null
     this.directionControl = null
+    this.languageControl = null
   }
 
   init() {
@@ -16,6 +18,11 @@ class UtilityControls {
     if (this.element.classList.contains('js-direction-controls')) {
       this.directionControl = new DirectionControl(this.element)
       this.directionControl.init()
+    }
+
+    if (this.element.classList.contains('js-language-controls')) {
+      this.languageControl = new LanguageControl(this.element)
+      this.languageControl.init()
     }
 
     if (this.element.classList.contains('js-color-swatches')) {

@@ -148,6 +148,10 @@ $header-height: 151px;
         justify-content: space-between;
         align-items: center;
       }
+
+      .nsw-header__main {
+        margin-inline-end: nsw.rem(24px);
+      }
     }
   }
 
@@ -1235,6 +1239,12 @@ $header-height: 151px;
     flex: 0 0 auto;
   }
 
+  &__language-selector {
+    inline-size: nsw.rem(224px);
+    white-space: nowrap;
+    flex: 0 0 auto;
+  }
+
   &__palette-selector {
     inline-size: auto;
     white-space: nowrap;
@@ -1309,6 +1319,17 @@ $header-height: 151px;
       padding: 0.1875rem;
     }
   }
+}
+
+body > .skiptranslate,
+iframe.goog-te-banner-frame,
+iframe.skiptranslate {
+  display: none !important; /* stylelint-disable-line declaration-no-important */
+}
+
+html.translated-ltr body,
+html.translated-rtl body {
+  inset-block-start: 0 !important; /* stylelint-disable-line declaration-no-important */
 }
 
 .material-icons-loading .nsw-docs__nav .nsw-material-icons {
