@@ -14,9 +14,13 @@ class LanguageControl {
     this.labelRefreshTimers = []
     this.googleChromeObserver = null
     this.iconObserver = null
+    this.languageSelectFocused = false
+    this.pendingLanguageLabelUpdate = null
+    this.scrollStateKey = 'nsw-docs-scroll-position'
   }
 
   init() {
+    this.initialiseScrollPersistence()
     this.preventIconTranslation()
     this.captureOriginalText()
     this.languageSelect = this.createLanguageSelector()
@@ -76,15 +80,28 @@ class LanguageControl {
   }
 
   addEventListeners() {
+    this.languageSelect.addEventListener('focus', () => {
+      this.languageSelectFocused = true
+    })
+
+    this.languageSelect.addEventListener('blur', () => {
+      this.languageSelectFocused = false
+
+      if (this.pendingLanguageLabelUpdate) {
+        const queuedLanguage = this.pendingLanguageLabelUpdate
+        this.pendingLanguageLabelUpdate = null
+        this.updateLanguageLabels(queuedLanguage)
+      }
+    })
+
     this.languageSelect.addEventListener('change', (event) => {
       const language = languageOptions.find(({ code }) => code === event.target.value)
       if (!language) return
 
       this.applyLanguage(language)
-      const newUrl = this.updateURL(language.code)
+      this.updateURL(language.code === 'en' ? '' : language.code)
       this.translate(language.code)
       this.languageSelect.value = 'select'
-      if (language.code === 'en') window.location.replace(newUrl)
     })
   }
 
@@ -112,20 +129,18 @@ class LanguageControl {
       const language = languageOptions.find(({ code }) => code === option.value)
       if (!language) return
 
-      option.textContent = this.getOptionLabel(language.code, language.lang, currentLanguage)
-      option.dir = currentLanguage ? currentLanguage.dir || 'ltr' : 'ltr'
+      option.textContent = this.getOptionLabel(language.code, language.lang)
+      option.dir = 'ltr'
     })
   }
 
-  getOptionLabel(code, lang, currentLanguage = null) {
+  getOptionLabel(code, lang) {
+    const language = languageOptions.find((option) => option.code === code)
+    if (language) return language.label
+
     const englishName = this.getLanguageName(code, lang, 'en')
-    if (code === 'en') return 'English'
-
-    const selectedLanguageName = currentLanguage
-      ? this.getLanguageName(code, lang, currentLanguage.lang)
-      : this.getNativeLanguageName(code, lang)
-
-    return `${englishName} (${selectedLanguageName})`
+    const nativeName = this.getNativeLanguageName(code, lang)
+    return `${englishName} (${nativeName})`
   }
 
   getLanguageCtaLabel(currentLanguage = null) {
@@ -153,7 +168,24 @@ class LanguageControl {
     const languageCode = params.get('lang')
     const language = languageOptions.find(({ code }) => code === languageCode)
 
-    if (!language) return
+    if (!language) {
+      const english = languageOptions.find(({ code }) => code === 'en') || { code: 'en', lang: 'en', dir: 'ltr' }
+      this.resetGoogleTranslate()
+      this.applyLanguage(english)
+      this.restoreOriginalText()
+      this.updateLanguageLabels(english)
+      this.syncTitle('')
+      this.languageSelect.value = 'select'
+      return
+    }
+
+    if (language.code === 'en') {
+      this.applyLanguage(language)
+      this.updateURL('')
+      this.translate('en')
+      this.languageSelect.value = 'select'
+      return
+    }
 
     this.languageSelect.value = language.code
     this.applyLanguage(language)
@@ -164,7 +196,14 @@ class LanguageControl {
   queueLabelRefresh(language = this.currentLanguage) {
     this.labelRefreshTimers.forEach((timer) => window.clearTimeout(timer))
     this.labelRefreshTimers = [0, 250, 750, 1500, 3000].map((delay) => (
-      window.setTimeout(() => this.updateLanguageLabels(language), delay)
+      window.setTimeout(() => {
+        if (this.languageSelectFocused) {
+          this.pendingLanguageLabelUpdate = language
+          return
+        }
+
+        this.updateLanguageLabels(language)
+      }, delay)
     ))
   }
 
@@ -247,6 +286,9 @@ class LanguageControl {
     const language = languageOptions.find(({ code }) => code === languageCode)
 
     if (languageCode === 'en') {
+      this.labelRefreshTimers.forEach((timer) => window.clearTimeout(timer))
+      this.labelRefreshTimers = []
+      this.pendingLanguageLabelUpdate = null
       if (this.languageLabelProxy) this.languageLabelProxy.textContent = 'Language'
       this.resetGoogleTranslate()
       this.restoreOriginalText()
@@ -256,6 +298,7 @@ class LanguageControl {
     }
 
     if (!window.google || !window.google.translate) {
+      this.setGoogleTranslateCookie(`/en/${languageCode}`)
       window.nswPendingLanguage = languageCode
       return
     }
@@ -265,6 +308,7 @@ class LanguageControl {
 
     googleSelect.value = languageCode
     googleSelect.dispatchEvent(new Event('change'))
+    this.setGoogleTranslateCookie(`/en/${languageCode}`)
     this.hideGoogleChrome()
     this.syncTitle(languageCode)
     if (language) this.queueLabelRefresh(language)
@@ -272,22 +316,63 @@ class LanguageControl {
 
   resetGoogleTranslate() {
     this.clearGoogleTranslateCookies()
+    this.setGoogleTranslateCookie('/en/en')
+    window.nswPendingLanguage = null
 
     const googleSelect = document.querySelector('.goog-te-combo')
     if (googleSelect) {
+      googleSelect.value = 'en'
+      googleSelect.dispatchEvent(new Event('change'))
       googleSelect.value = ''
       googleSelect.dispatchEvent(new Event('change'))
+      window.setTimeout(() => {
+        googleSelect.value = 'en'
+        googleSelect.dispatchEvent(new Event('change'))
+        googleSelect.value = ''
+        googleSelect.dispatchEvent(new Event('change'))
+      }, 0)
     }
 
     this.hideGoogleChrome()
   }
 
-  clearGoogleTranslateCookies() {
-    const domains = [window.location.hostname, `.${window.location.hostname}`]
-    domains.forEach((domain) => {
-      document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; domain=${domain}`
+  getCookiePaths() {
+    const segments = window.location.pathname.split('/').filter(Boolean)
+    const paths = new Set(['/'])
+    let currentPath = ''
+
+    segments.forEach((segment) => {
+      currentPath = `${currentPath}/${segment}`
+      paths.add(currentPath)
+      paths.add(`${currentPath}/`)
     })
-    document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/'
+
+    return Array.from(paths)
+  }
+
+  getCookieDomains() {
+    const hostname = window.location.hostname
+    return [hostname, `.${hostname}`]
+  }
+
+  setGoogleTranslateCookie(value) {
+    const expires = new Date(Date.now() + (1000 * 60 * 60 * 24 * 365)).toUTCString()
+    this.getCookiePaths().forEach((path) => {
+      this.getCookieDomains().forEach((domain) => {
+        document.cookie = `googtrans=${value}; expires=${expires}; path=${path}; domain=${domain}`
+      })
+      document.cookie = `googtrans=${value}; expires=${expires}; path=${path}`
+    })
+  }
+
+  clearGoogleTranslateCookies() {
+    const expires = 'Thu, 01 Jan 1970 00:00:00 GMT'
+    this.getCookiePaths().forEach((path) => {
+      this.getCookieDomains().forEach((domain) => {
+        document.cookie = `googtrans=; expires=${expires}; path=${path}; domain=${domain}`
+      })
+      document.cookie = `googtrans=; expires=${expires}; path=${path}`
+    })
   }
 
   ensureTitleProxy() {
@@ -347,7 +432,7 @@ class LanguageControl {
 
       new TranslateElement({
         pageLanguage: 'en',
-        includedLanguages: languageOptions.map(({ code }) => code).filter((code) => code !== 'en').join(','),
+        includedLanguages: languageOptions.map(({ code }) => code).join(','),
         autoDisplay: false,
       }, 'google_translate_element')
 
@@ -363,6 +448,45 @@ class LanguageControl {
     script.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit'
     script.async = true
     document.head.appendChild(script)
+  }
+
+  initialiseScrollPersistence() {
+    if (window.nswDocsScrollPersistenceInitialised) return
+    window.nswDocsScrollPersistenceInitialised = true
+
+    this.restoreSavedScrollPosition()
+    window.addEventListener('beforeunload', () => this.saveScrollPosition())
+  }
+
+  saveScrollPosition() {
+    try {
+      const scrollState = {
+        path: window.location.pathname,
+        x: window.scrollX,
+        y: window.scrollY,
+      }
+      sessionStorage.setItem(this.scrollStateKey, JSON.stringify(scrollState))
+    } catch (error) {
+      // Ignore storage limitations in constrained browsers.
+    }
+  }
+
+  restoreSavedScrollPosition() {
+    if (window.location.hash) return
+
+    let scrollState = null
+    try {
+      scrollState = JSON.parse(sessionStorage.getItem(this.scrollStateKey))
+      sessionStorage.removeItem(this.scrollStateKey)
+    } catch (error) {
+      scrollState = null
+    }
+
+    if (!scrollState || scrollState.path !== window.location.pathname) return
+
+    window.requestAnimationFrame(() => {
+      window.scrollTo(scrollState.x || 0, scrollState.y || 0)
+    })
   }
 }
 
