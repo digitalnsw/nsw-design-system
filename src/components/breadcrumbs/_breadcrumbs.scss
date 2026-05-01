@@ -39,6 +39,10 @@
 
       @include nsw.material-icons;
     }
+
+    &:dir(rtl)::before {
+      content: 'keyboard_arrow_left';
+    }
   }
 
   .nsw-breadcrumbs__show-more-toggle {
@@ -107,6 +111,10 @@
     li {
       &::before {
         content: 'keyboard_arrow_right' / '';
+      }
+
+      &:dir(rtl)::before {
+        content: 'keyboard_arrow_left' / '';
       }
     }
   }
