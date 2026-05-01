@@ -16,11 +16,9 @@ class LanguageControl {
     this.iconObserver = null
     this.languageSelectFocused = false
     this.pendingLanguageLabelUpdate = null
-    this.scrollStateKey = 'nsw-docs-scroll-position'
   }
 
   init() {
-    this.initialiseScrollPersistence()
     this.preventIconTranslation()
     this.captureOriginalText()
     this.languageSelect = this.createLanguageSelector()
@@ -448,45 +446,6 @@ class LanguageControl {
     script.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit'
     script.async = true
     document.head.appendChild(script)
-  }
-
-  initialiseScrollPersistence() {
-    if (window.nswDocsScrollPersistenceInitialised) return
-    window.nswDocsScrollPersistenceInitialised = true
-
-    this.restoreSavedScrollPosition()
-    window.addEventListener('beforeunload', () => this.saveScrollPosition())
-  }
-
-  saveScrollPosition() {
-    try {
-      const scrollState = {
-        path: window.location.pathname,
-        x: window.scrollX,
-        y: window.scrollY,
-      }
-      sessionStorage.setItem(this.scrollStateKey, JSON.stringify(scrollState))
-    } catch (error) {
-      // Ignore storage limitations in constrained browsers.
-    }
-  }
-
-  restoreSavedScrollPosition() {
-    if (window.location.hash) return
-
-    let scrollState = null
-    try {
-      scrollState = JSON.parse(sessionStorage.getItem(this.scrollStateKey))
-      sessionStorage.removeItem(this.scrollStateKey)
-    } catch (error) {
-      scrollState = null
-    }
-
-    if (!scrollState || scrollState.path !== window.location.pathname) return
-
-    window.requestAnimationFrame(() => {
-      window.scrollTo(scrollState.x || 0, scrollState.y || 0)
-    })
   }
 }
 
