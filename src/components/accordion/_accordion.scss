@@ -7,7 +7,9 @@
   &__title,
   &__button {
     font-weight: var(--nsw-font-bold);
-    padding: nsw.rem(16px) nsw.rem(48px) nsw.rem(16px) nsw.rem(16px);
+    padding-block: nsw.rem(16px);
+    padding-inline-start: nsw.rem(16px);
+    padding-inline-end: nsw.rem(48px);
     margin-block-start: nsw.rem(8px);
     background-color: var(--nsw-off-white);
     display: block;
@@ -113,6 +115,36 @@
     border: 0;
     color: var(--nsw-text-dark);
 
+    &::after {
+      content: '\e313';
+      position: absolute;
+      transform: translateY(-50%);
+      inset-block-start: 50%;
+      inset-inline-end: nsw.rem(8px);
+      font-size: nsw.rem(map.get(nsw.$nsw-icon-sizes, 30));
+      font-weight: var(--nsw-font-normal);
+      color: var(--nsw-brand-dark);
+      transition: transform nsw.$nsw-transition-duration, color nsw.$nsw-transition-duration;
+      pointer-events: none;
+
+      @include nsw.material-icons;
+    }
+
+    .nsw-material-icons {
+      display: none;
+    }
+
+    &:hover,
+    &.active {
+      &::after {
+        color: var(--nsw-text-light);
+
+        .nsw-section--invert & {
+          color: var(--nsw-brand-dark);
+        }
+      }
+    }
+
     &:focus {
       position: relative;
 
@@ -125,7 +157,7 @@
     }
 
     &.active {
-      .nsw-material-icons {
+      &::after {
         transform: translateY(-50%) rotate(180deg);
       }
     }
@@ -172,7 +204,9 @@
   
     > .nsw-accordion__title {
       position: relative;
-      padding: nsw.rem(16px) nsw.rem(48px) nsw.rem(16px) nsw.rem(16px);
+      padding-block: nsw.rem(16px);
+      padding-inline-start: nsw.rem(16px);
+      padding-inline-end: nsw.rem(48px);
       margin-block-start: 0;
       inline-size: unset;
       display: block;
