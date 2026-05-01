@@ -378,6 +378,7 @@ class LanguageControl {
 
     this.titleProxy = document.createElement('span')
     this.titleProxy.classList.add('sr-only', 'js-language-title-proxy')
+    this.titleProxy.setAttribute('aria-hidden', 'true')
     this.titleProxy.textContent = this.originalTitle
     document.body.appendChild(this.titleProxy)
 
