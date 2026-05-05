@@ -3,7 +3,6 @@ title: User journey - DCJ home
 order: 23
 page: true
 model:
-  nav: json/main-nav-user-journey.json
   footer: ../../components/footer/json/footer-landing.json
 ---
 
@@ -12,7 +11,7 @@ model:
   link="/templates/user-journeys/quick-exit-home.html"
   header-title="Community Services"
 }}
-{{>_main-nav model.nav}}
+{{>_main-nav items=(JSONparse '[{"text":"Children and families","url":"#"},{"text":"Housing and homes","url":"#"},{"text":"Information and services","url":"#"},{"text":"Local programs","url":"#"}]')}}
 <script>
   (function () {
     var nav = document.getElementById('main-nav')
@@ -96,36 +95,36 @@ model:
       <div class="nsw-layout">
         <div class="nsw-layout__main">
           <h2 class="nsw-section-title">Services by topic</h2>
-          <p class="nsw-m-bottom-sm">Browse key support areas to find information and practical help.</p>
+          <p class="nsw-m-bottom-sm">Browse common service areas to find information and practical help.</p>
           <div class="nsw-grid">
             <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
-              <article class="nsw-card nsw-card--headline" aria-label="Housing and homelessness">
+              <article class="nsw-card nsw-card--headline" aria-label="Housing options">
                 <div class="nsw-card__content">
-                  <h3 class="nsw-card__title">Housing and homelessness</h3>
+                  <h3 class="nsw-card__title">Housing options</h3>
                   <div class="nsw-card__copy">
-                    <p>Support to find or keep housing, including social housing and private rental assistance.</p>
+                    <p>Information about finding a place to live, renting and social housing.</p>
                   </div>
                 </div>
               </article>
             </div>
 
             <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
-              <article class="nsw-card nsw-card--headline" aria-label="Legal and justice">
+              <article class="nsw-card nsw-card--headline" aria-label="Legal information">
                 <div class="nsw-card__content">
-                  <h3 class="nsw-card__title">Legal and justice</h3>
+                  <h3 class="nsw-card__title">Legal information</h3>
                   <div class="nsw-card__copy">
-                    <p>Information about legal help, courts and tribunals, and justice services in NSW.</p>
+                    <p>Find general legal information, forms and services in NSW.</p>
                   </div>
                 </div>
               </article>
             </div>
 
             <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
-              <article class="nsw-card nsw-card--headline" aria-label="Victims support">
+              <article class="nsw-card nsw-card--headline" aria-label="Health and wellbeing">
                 <div class="nsw-card__content">
-                  <h3 class="nsw-card__title">Victims support</h3>
+                  <h3 class="nsw-card__title">Health and wellbeing</h3>
                   <div class="nsw-card__copy">
-                    <p>Access counselling, financial support and information about victims' rights.</p>
+                    <p>Services and resources for wellbeing, counselling and everyday care.</p>
                   </div>
                 </div>
               </article>
@@ -143,22 +142,22 @@ model:
             </div>
 
             <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
-              <article class="nsw-card nsw-card--headline" aria-label="Youth justice">
+              <article class="nsw-card nsw-card--headline" aria-label="Young people">
                 <div class="nsw-card__content">
-                  <h3 class="nsw-card__title">Youth justice</h3>
+                  <h3 class="nsw-card__title">Young people</h3>
                   <div class="nsw-card__copy">
-                    <p>Programs and support for young people in contact with, or at risk of entering, the justice system.</p>
+                    <p>Programs, activities and services for young people and their families.</p>
                   </div>
                 </div>
               </article>
             </div>
 
             <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
-              <article class="nsw-card nsw-card--headline" aria-label="Community inclusion">
+              <article class="nsw-card nsw-card--headline" aria-label="Community programs">
                 <div class="nsw-card__content">
-                  <h3 class="nsw-card__title">Community inclusion</h3>
+                  <h3 class="nsw-card__title">Community programs</h3>
                   <div class="nsw-card__copy">
-                    <p>Programs supporting inclusive communities, including disability, seniors and carers services.</p>
+                    <p>Local programs for social connection, participation and community life.</p>
                   </div>
                 </div>
               </article>
