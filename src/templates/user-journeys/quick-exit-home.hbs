@@ -2,6 +2,16 @@
 title: User journey - DCJ home
 order: 23
 page: true
+nav:
+  items:
+    - text: Children and families
+      url: "#"
+    - text: Housing and homes
+      url: "#"
+    - text: Information and services
+      url: "#"
+    - text: Local programs
+      url: "#"
 model:
   footer: ../../components/footer/json/footer-landing.json
 ---
@@ -11,7 +21,7 @@ model:
   link="/templates/user-journeys/quick-exit-home.html"
   header-title="Community Services"
 }}
-{{>_main-nav items=(JSONparse '[{"text":"Children and families","url":"#"},{"text":"Housing and homes","url":"#"},{"text":"Information and services","url":"#"},{"text":"Local programs","url":"#"}]')}}
+{{>_main-nav nav}}
 <script>
   (function () {
     var nav = document.getElementById('main-nav')
