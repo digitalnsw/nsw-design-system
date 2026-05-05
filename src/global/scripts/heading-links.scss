@@ -4,8 +4,19 @@
   $heading-link-touch-size: nsw.rem(24px);
   $heading-link-gap: nsw.rem(8px);
 
-  h2.nsw-heading-link {
-    margin-right: 0;
+  .nsw-heading-link {
+    display: flex;
+    align-items: flex-start;
+    gap: $heading-link-gap;
+  }
+
+  * + .nsw-heading-link {
+    margin-top: nsw.rem(48px);
+  }
+
+  .nsw-heading-link__heading {
+    min-width: 0;
+    margin: 0;
   }
 
   .nsw-heading-link__button {
@@ -13,7 +24,7 @@
     width: $heading-link-touch-size;
     height: $heading-link-touch-size;
     padding: 0;
-    margin: 0 0 0 $heading-link-gap;
+    margin: nsw.rem(6px) 0 0;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -72,12 +83,13 @@
 @include nsw.breakpoint('lg') {
   .js-copy-headings {
     .nsw-heading-link__button {
+      margin-top: nsw.rem(8px);
       opacity: 0;
       pointer-events: none;
     }
 
-    h2.nsw-heading-link:hover > .nsw-heading-link__button,
-    h2.nsw-heading-link:focus-within > .nsw-heading-link__button,
+    .nsw-heading-link:hover > .nsw-heading-link__button,
+    .nsw-heading-link:focus-within > .nsw-heading-link__button,
     .nsw-heading-link__button:hover,
     .nsw-heading-link__button:focus {
       opacity: 1;

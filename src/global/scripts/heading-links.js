@@ -4,7 +4,8 @@ const hasDocument = typeof document !== 'undefined'
 export const copyHeadingsClass = 'js-copy-headings'
 
 const headingSelector = 'h2'
-const headingClass = 'nsw-heading-link'
+const headingWrapperClass = 'nsw-heading-link'
+const headingClass = 'nsw-heading-link__heading'
 const headingInitAttr = 'data-heading-link-init'
 const buttonBoundAttr = 'data-heading-link-bound'
 const buttonClass = 'nsw-heading-link__button'
@@ -252,17 +253,41 @@ function getExistingHeadingButton(heading) {
     }
   }
 
+  const nextElement = heading.nextElementSibling
+  if (nextElement && nextElement.classList && nextElement.classList.contains(buttonClass)) {
+    return nextElement
+  }
+
   return null
+}
+
+function getHeadingWrapper(heading) {
+  const parent = heading.parentElement
+
+  if (parent && parent.classList && parent.classList.contains(headingWrapperClass)) {
+    return parent
+  }
+
+  const wrapper = document.createElement('div')
+  wrapper.className = headingWrapperClass
+
+  heading.parentNode.insertBefore(wrapper, heading)
+  wrapper.appendChild(heading)
+
+  return wrapper
 }
 
 function enhanceHeading(heading, usedIds) {
   const headingId = ensureHeadingId(heading, usedIds)
   const headingText = getHeadingText(heading)
   const existingButton = getExistingHeadingButton(heading)
+  const wrapper = getHeadingWrapper(heading)
 
+  heading.classList.remove(headingWrapperClass)
   heading.classList.add(headingClass)
 
   if (existingButton) {
+    wrapper.appendChild(existingButton)
     bindButton(existingButton, headingId, headingText)
     heading.setAttribute(headingInitAttr, '1')
     return
@@ -270,7 +295,7 @@ function enhanceHeading(heading, usedIds) {
 
   const button = createCopyButton(headingId, headingText)
   bindButton(button, headingId, headingText)
-  heading.appendChild(button)
+  wrapper.appendChild(button)
   heading.setAttribute(headingInitAttr, '1')
 }
 
