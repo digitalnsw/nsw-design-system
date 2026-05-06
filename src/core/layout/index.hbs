@@ -15,6 +15,9 @@ meta-index: true
       <a href="#page-layouts">Page layouts</a>
     </li>
     <li>
+      <a href="#optional-heading-anchor-links">Optional heading anchor links</a>
+    </li>
+    <li>
       <a href="#alternating-layouts">Alternating layouts (visual order only)</a>
     </li>
     <li>
@@ -57,6 +60,55 @@ meta-index: true
     {{>_layout side="right"}}
   </div>
 {{/_docs-example}}
+
+<h2 id="optional-heading-anchor-links">Optional heading anchor links</h2>
+<p>You can enable copyable anchor links for <code>h2</code> headings by adding <code>js-copy-headings</code> to the content container.</p>
+<p>This is a progressive enhancement. Content remains usable without JavaScript: users see normal headings, authored heading IDs continue to work, and the copy controls and generated IDs are only added when the NSW Design System JavaScript runs.</p>
+<p>Treat this as a product or template-level convention for long-form reference content where users need to share, cite or return to exact sections. It is most useful for guidance, policy, manuals, release notes, eligibility information and help content that people scan or reference across channels.</p>
+
+{{#>_docs-code open="true"}}
+<main class="js-copy-headings">
+  <h2 id="eligibility">Eligibility</h2>
+  <p>Eligibility requirements for this service.</p>
+
+  <h2>How to apply</h2>
+  <p>Complete the required application steps.</p>
+</main>
+{{/_docs-code}}
+
+<p>When this class is present:</p>
+<ul>
+  <li>The script scans descendant <code>h2</code> elements only.</li>
+  <li>Existing heading IDs are preserved; missing IDs are generated automatically.</li>
+  <li>An anchor copy icon is shown next to each <code>h2</code> and copies the full URL including hash.</li>
+  <li>The copy control is separate from the <code>h2</code> in the accessibility tree, so screen reader heading names remain the authored heading text.</li>
+  <li>On desktop, the icon reveals when the heading or icon area is hovered. On tablet and mobile it remains visible for touch users.</li>
+  <li>Heading text remains selectable, so users can still copy heading text without copying a link.</li>
+  <li>Initialisation runs only when <code>js-copy-headings</code> is detected on the page.</li>
+</ul>
+
+<div class="nsw-grid nsw-m-top-sm">
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--do"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span><span>Do</span></div>
+    <ul>
+      <li>Use this only on <code>h2</code> headings in the primary content body.</li>
+      <li>Enable it consistently for content templates where users often share or return to sections.</li>
+      <li>Use 3 or more <code>h2</code> headings as a practical signal for long-form content, not as a compliance threshold.</li>
+      <li>Apply <code>js-copy-headings</code> to the smallest container that contains the main reading content.</li>
+    </ul>
+  </div>
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--dont"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span><span>Don't</span></div>
+    <ul>
+      <li>Do not switch it on and off per page based only on the exact number of headings.</li>
+      <li>Do not enable it on transactional forms, dashboards, search results, landing pages or short campaign pages where section sharing is not a user need.</li>
+      <li>Do not enable it outside content bodies such as navigation, cards, filters, sidebars, tabs or utility regions.</li>
+      <li>Do not target random standalone <code>h2</code> elements that are not part of a coherent document structure.</li>
+    </ul>
+  </div>
+</div>
+
+<p>See the working example template: <a href="/templates/content/header-links.html" target="_blank" rel="noopener">Header links</a>.</p>
 
 <h3 id="alternating-layouts">Alternating layouts (visual order only)</h3>
 <p>Alternating image-and-text layouts can help people scan long pages. In the NSW Design System, this is done by <strong>changing the visual order only</strong>, while keeping the HTML order logical and consistent.</p>
