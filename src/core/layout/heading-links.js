@@ -176,22 +176,35 @@ function legacyCopyText(text) {
 function commandCopyText(text) {
   if (!hasDocument || typeof document.execCommand !== 'function') return false
 
+  const textarea = document.createElement('textarea')
+  const { activeElement, body, documentElement } = document
+  const container = body || documentElement
   let copied = false
-  const onCopy = (event) => {
-    if (!event.clipboardData) return
-    event.preventDefault()
-    event.clipboardData.setData('text/plain', text)
-    copied = true
-  }
 
-  document.addEventListener('copy', onCopy, true)
+  textarea.value = text
+  textarea.setAttribute('readonly', '')
+  textarea.style.position = 'fixed'
+  textarea.style.top = '0'
+  textarea.style.left = '-9999px'
+  textarea.style.opacity = '0'
+
+  container.appendChild(textarea)
+  textarea.select()
+  textarea.setSelectionRange(0, textarea.value.length)
 
   try {
-    document.execCommand('copy')
+    copied = document.execCommand('copy')
   } catch (error) {
     copied = false
   } finally {
-    document.removeEventListener('copy', onCopy, true)
+    container.removeChild(textarea)
+    if (activeElement && typeof activeElement.focus === 'function') {
+      try {
+        activeElement.focus({ preventScroll: true })
+      } catch (error) {
+        activeElement.focus()
+      }
+    }
   }
 
   return copied
@@ -238,7 +251,6 @@ function resetCopiedLabel(button) {
 
   const timeoutId = window.setTimeout(() => {
     button.classList.add(buttonTooltipHiddenClass)
-    if (button.blur) button.blur()
 
     // Wait for tooltip fade-out to finish before restoring default state.
     const restoreTimeoutId = window.setTimeout(() => {

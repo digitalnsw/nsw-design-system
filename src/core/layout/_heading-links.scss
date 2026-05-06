@@ -1,7 +1,9 @@
 @use '../../global/scss/tools' as nsw;
 
+$heading-link: '.nsw-heading-link';
+
 .js-copy-headings {
-  $heading-link-touch-size: nsw.rem(24px);
+  $heading-link-touch-size: nsw.rem(44px);
   $heading-link-gap: nsw.rem(8px);
 
   * + .nsw-heading-link {
@@ -9,8 +11,6 @@
   }
 
   .nsw-heading-link {
-    $root: &;
-
     display: flex;
     align-items: flex-start;
     gap: $heading-link-gap;
@@ -22,10 +22,9 @@
 
     &__button {
       position: relative;
-      width: $heading-link-touch-size;
-      height: $heading-link-touch-size;
-      padding: 0;
-      margin: nsw.rem(6px) 0 0;
+      min-width: $heading-link-touch-size;
+      min-height: $heading-link-touch-size;
+      margin: nsw.rem(-4px) 0 0;
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -42,19 +41,19 @@
         background-color: var(--nsw-hover);
       }
 
-      &:hover #{$root}__tooltip,
-      &:focus #{$root}__tooltip,
-      &.is-copied #{$root}__tooltip {
+      &:hover #{$heading-link}__tooltip,
+      &:focus #{$heading-link}__tooltip,
+      &.is-copied #{$heading-link}__tooltip {
         opacity: 1;
       }
 
-      &.is-tooltip-hidden #{$root}__tooltip,
-      &.is-tooltip-hidden:hover #{$root}__tooltip,
-      &.is-tooltip-hidden:focus #{$root}__tooltip {
+      &.is-tooltip-hidden #{$heading-link}__tooltip,
+      &.is-tooltip-hidden:hover #{$heading-link}__tooltip,
+      &.is-tooltip-hidden:focus #{$heading-link}__tooltip {
         opacity: 0;
       }
 
-      &.is-copied #{$root}__tooltip-icon {
+      &.is-copied #{$heading-link}__tooltip-icon {
         display: block;
       }
     }
@@ -99,10 +98,8 @@
 @include nsw.breakpoint('lg') {
   .js-copy-headings {
     .nsw-heading-link {
-      $root: &;
-
       &__button {
-        margin-top: nsw.rem(8px);
+        margin-top: nsw.rem(-2px);
         opacity: 0;
         pointer-events: none;
 
@@ -113,8 +110,8 @@
         }
       }
 
-      &:hover > #{$root}__button,
-      &:focus-within > #{$root}__button {
+      &:hover > #{$heading-link}__button,
+      &:focus-within > #{$heading-link}__button {
         opacity: 1;
         pointer-events: auto;
       }

@@ -70,10 +70,7 @@ function initSite() {
   const utilityList = document.querySelectorAll('.js-utility-list')
 
   stickyContainer()
-
-  if (document.querySelector('.js-copy-headings')) {
-    headingLinks()
-  }
+  headingLinks()
 
   if (jsAccordions) {
     jsAccordions.forEach((element) => {
