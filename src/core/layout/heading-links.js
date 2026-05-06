@@ -181,7 +181,6 @@ function commandCopyText(text) {
   const container = body || documentElement
   let copied = false
 
-  textarea.value = text
   textarea.setAttribute('readonly', '')
   textarea.style.position = 'fixed'
   textarea.style.top = '0'
@@ -189,6 +188,7 @@ function commandCopyText(text) {
   textarea.style.opacity = '0'
 
   container.appendChild(textarea)
+  textarea.value = text
   textarea.select()
   textarea.setSelectionRange(0, textarea.value.length)
 
