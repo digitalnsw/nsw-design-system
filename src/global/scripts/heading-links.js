@@ -9,7 +9,11 @@ const headingClass = 'nsw-heading-link__heading'
 const headingInitAttr = 'data-heading-link-init'
 const buttonBoundAttr = 'data-heading-link-bound'
 const buttonClass = 'nsw-heading-link__button'
+const buttonIconClass = 'nsw-heading-link__button-icon'
 const buttonHeadingTextAttr = 'data-heading-text'
+const tooltipClass = 'nsw-heading-link__tooltip'
+const tooltipIconClass = 'nsw-heading-link__tooltip-icon'
+const tooltipTextClass = 'nsw-heading-link__tooltip-text'
 const buttonLabel = 'Copy link to heading'
 const buttonCopiedLabel = 'Link copied'
 const buttonCopiedClass = 'is-copied'
@@ -91,6 +95,40 @@ function getContextualButtonLabel(label, headingText) {
   return `${label}: ${headingText}`
 }
 
+function createTooltip(label) {
+  const tooltip = document.createElement('span')
+  const tooltipIcon = document.createElement('span')
+  const tooltipText = document.createElement('span')
+
+  tooltip.className = tooltipClass
+  tooltip.setAttribute('aria-hidden', 'true')
+
+  tooltipIcon.className = `material-icons nsw-material-icons ${tooltipIconClass}`
+  tooltipIcon.setAttribute('focusable', 'false')
+  tooltipIcon.setAttribute('aria-hidden', 'true')
+  tooltipIcon.textContent = 'check'
+
+  tooltipText.className = tooltipTextClass
+  tooltipText.textContent = label
+
+  tooltip.appendChild(tooltipIcon)
+  tooltip.appendChild(tooltipText)
+
+  return tooltip
+}
+
+function ensureButtonTooltip(button, label) {
+  const existingIcon = button.querySelector(`.nsw-material-icons:not(.${tooltipIconClass})`)
+  if (existingIcon) existingIcon.classList.add(buttonIconClass)
+
+  if (button.querySelector(`.${tooltipClass}`)) return
+
+  const tooltip = createTooltip(label)
+  const srText = button.querySelector('.sr-only')
+
+  button.insertBefore(tooltip, srText || null)
+}
+
 function createCopyButton(headingId, headingText) {
   const button = document.createElement('button')
   const icon = document.createElement('span')
@@ -104,7 +142,7 @@ function createCopyButton(headingId, headingText) {
   button.setAttribute('data-tooltip', buttonLabel)
   button.setAttribute('aria-label', contextualLabel)
 
-  icon.className = 'material-icons nsw-material-icons'
+  icon.className = `material-icons nsw-material-icons ${buttonIconClass}`
   icon.setAttribute('focusable', 'false')
   icon.setAttribute('aria-hidden', 'true')
   icon.textContent = 'link'
@@ -113,6 +151,7 @@ function createCopyButton(headingId, headingText) {
   srText.textContent = contextualLabel
 
   button.appendChild(icon)
+  button.appendChild(createTooltip(buttonLabel))
   button.appendChild(srText)
 
   return button
@@ -183,8 +222,10 @@ function setButtonLabel(button, label) {
   const headingText = button.getAttribute(buttonHeadingTextAttr)
   const contextualLabel = getContextualButtonLabel(label, headingText)
   const srText = button.querySelector('.sr-only')
+  const tooltipText = button.querySelector(`.${tooltipTextClass}`)
   button.setAttribute('data-tooltip', label)
   button.setAttribute('aria-label', contextualLabel)
+  if (tooltipText) tooltipText.textContent = label
   if (srText) srText.textContent = contextualLabel
 }
 
@@ -196,12 +237,12 @@ function resetCopiedLabel(button) {
   if (existingRestoreTimeout) window.clearTimeout(existingRestoreTimeout)
 
   const timeoutId = window.setTimeout(() => {
-    button.classList.remove(buttonCopiedClass)
     button.classList.add(buttonTooltipHiddenClass)
     if (button.blur) button.blur()
 
-    // Wait for tooltip fade-out to finish before restoring default text.
+    // Wait for tooltip fade-out to finish before restoring default state.
     const restoreTimeoutId = window.setTimeout(() => {
+      button.classList.remove(buttonCopiedClass)
       setButtonLabel(button, buttonLabel)
     }, tooltipFadeDuration)
 
@@ -229,6 +270,7 @@ function handleCopyClick(event) {
 function bindButton(button, headingId, headingText) {
   button.setAttribute('data-heading-id', headingId)
   button.setAttribute(buttonHeadingTextAttr, headingText)
+  ensureButtonTooltip(button, buttonLabel)
   setButtonLabel(button, buttonLabel)
 
   if (button.getAttribute(buttonBoundAttr) === '1') return

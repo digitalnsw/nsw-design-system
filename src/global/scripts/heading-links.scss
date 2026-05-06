@@ -36,30 +36,44 @@
     opacity: 1;
     pointer-events: auto;
 
-    .nsw-material-icons {
+    .nsw-heading-link__button-icon {
       display: block;
       margin: 0;
       line-height: 1;
       font-size: nsw.rem(20px);
       color: var(--nsw-link);
     }
+  }
 
-    &::after {
-      content: attr(data-tooltip);
-      position: absolute;
-      bottom: calc(100% + #{nsw.rem(8px)});
-      left: 50%;
-      transform: translateX(-50%);
-      white-space: nowrap;
-      padding: nsw.rem(4px) nsw.rem(8px);
-      border-radius: var(--nsw-border-radius);
-      background-color: var(--nsw-grey-01);
-      color: var(--nsw-text-light);
-      opacity: 0;
-      pointer-events: none;
+  .nsw-heading-link__tooltip {
+    position: absolute;
+    bottom: calc(100% + #{nsw.rem(8px)});
+    left: 50%;
+    transform: translateX(-50%);
+    display: inline-flex;
+    align-items: center;
+    gap: nsw.rem(4px);
+    white-space: nowrap;
+    padding: nsw.rem(4px) nsw.rem(8px);
+    border-radius: var(--nsw-border-radius);
+    background-color: var(--nsw-grey-01);
+    color: var(--nsw-text-light);
+    opacity: 0;
+    pointer-events: none;
 
-      @include nsw.font-size('xs');
-    }
+    @include nsw.font-size('xs');
+  }
+
+  .nsw-heading-link__tooltip-icon {
+    display: none;
+    margin: 0;
+    color: var(--nsw-text-light);
+    font-size: nsw.rem(16px);
+    line-height: 1;
+  }
+
+  .nsw-heading-link__button.is-copied .nsw-heading-link__tooltip-icon {
+    display: block;
   }
 
   .nsw-heading-link__button:hover,
@@ -67,15 +81,15 @@
     background-color: var(--nsw-hover);
   }
 
-  .nsw-heading-link__button:hover::after,
-  .nsw-heading-link__button:focus::after,
-  .nsw-heading-link__button.is-copied::after {
+  .nsw-heading-link__button:hover .nsw-heading-link__tooltip,
+  .nsw-heading-link__button:focus .nsw-heading-link__tooltip,
+  .nsw-heading-link__button.is-copied .nsw-heading-link__tooltip {
     opacity: 1;
   }
 
-  .nsw-heading-link__button.is-tooltip-hidden::after,
-  .nsw-heading-link__button.is-tooltip-hidden:hover::after,
-  .nsw-heading-link__button.is-tooltip-hidden:focus::after {
+  .nsw-heading-link__button.is-tooltip-hidden .nsw-heading-link__tooltip,
+  .nsw-heading-link__button.is-tooltip-hidden:hover .nsw-heading-link__tooltip,
+  .nsw-heading-link__button.is-tooltip-hidden:focus .nsw-heading-link__tooltip {
     opacity: 0;
   }
 }
@@ -103,7 +117,7 @@
     .js-copy-headings .nsw-heading-link__button {
       transition: opacity 0.15s ease-in-out;
 
-      &::after {
+      .nsw-heading-link__tooltip {
         transition: opacity 0.15s ease-in-out;
       }
     }
