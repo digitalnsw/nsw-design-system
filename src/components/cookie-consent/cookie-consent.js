@@ -447,30 +447,36 @@ class CookieConsent {
 
     this.consentSelectionMade = true
 
-    this.showConfirmationMessage()
-
-    // Hide banner if present or confirmation is present
-    if (!this.consentBannerConfirmationMessage) {
+    if (this.consentBannerConfirmationMessage) {
+      this.showConfirmationMessage()
+    } else {
       this.hideConsentBanner()
     }
   }
 
   showConfirmationMessage() {
+    this.consentBannerElement.style.display = 'block'
+    this.consentBannerElement.removeAttribute('hidden')
+
     // Select the confirmation message element
     const confirmationMessage = this.consentBannerElement.querySelector('.nsw-cookie-banner__confirmation-message')
 
     // Select the description element
     const description = this.consentBannerElement.querySelector('.nsw-cookie-banner__description')
+    let focusTarget = this.consentBannerElement
 
     if (confirmationMessage) {
       // Change the hidden attribute to false for the confirmation message
       confirmationMessage.removeAttribute('hidden')
+      focusTarget = confirmationMessage.querySelector('.js-dismiss-cookie-banner') || focusTarget
     }
 
     if (description) {
       // Change the hidden attribute to true for the description
       description.setAttribute('hidden', 'true')
     }
+
+    focusTarget.focus()
   }
 
   showConsentBanner() {
