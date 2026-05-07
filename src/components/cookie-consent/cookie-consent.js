@@ -232,6 +232,10 @@ class CookieConsent {
 
   createConsentBanner() {
     const { language: { translations: { en } } } = this.config
+    const { consentModal } = en
+    const bannerOffset = consentModal.bannerOffset ? consentModal.bannerOffset : '0'
+    this.consentBannerConfirmationMessage = consentModal.confirmationMessage || ''
+
     // Prevent multiple instances by reusing an existing banner if present
     const containerEl = stickyContainer()
     const existingBanner = containerEl.querySelector('.nsw-cookie-banner')
@@ -239,9 +243,6 @@ class CookieConsent {
       this.consentBannerElement = existingBanner
       return
     }
-    const { consentModal } = en
-    const bannerOffset = consentModal.bannerOffset ? consentModal.bannerOffset : '0'
-    this.consentBannerConfirmationMessage = consentModal.confirmationMessage || ''
 
     const consentBannerHtml = `
       <div class="nsw-cookie-banner" role="alert" tabindex="-1" aria-labelledby="cookie-banner-title" aria-live="assertive" style="bottom: ${bannerOffset};">
