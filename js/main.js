@@ -1793,6 +1793,12 @@
             }
           }
         } = this.config;
+        const {
+          consentModal
+        } = en;
+        const bannerOffset = consentModal.bannerOffset ? consentModal.bannerOffset : '0';
+        this.consentBannerConfirmationMessage = consentModal.confirmationMessage || '';
+
         // Prevent multiple instances by reusing an existing banner if present
         const containerEl = stickyContainer();
         const existingBanner = containerEl.querySelector('.nsw-cookie-banner');
@@ -1800,11 +1806,6 @@
           this.consentBannerElement = existingBanner;
           return;
         }
-        const {
-          consentModal
-        } = en;
-        const bannerOffset = consentModal.bannerOffset ? consentModal.bannerOffset : '0';
-        this.consentBannerConfirmationMessage = consentModal.confirmationMessage || '';
         const consentBannerHtml = `
       <div class="nsw-cookie-banner" role="alert" tabindex="-1" aria-labelledby="cookie-banner-title" aria-live="assertive" style="bottom: ${bannerOffset};">
         <div class="nsw-cookie-banner__wrapper">
@@ -1993,27 +1994,32 @@
             }
         }
         this.consentSelectionMade = true;
-        this.showConfirmationMessage();
-
-        // Hide banner if present or confirmation is present
-        if (!this.consentBannerConfirmationMessage) {
+        if (this.consentBannerConfirmationMessage) {
+          this.showConfirmationMessage();
+        } else {
           this.hideConsentBanner();
         }
       }
       showConfirmationMessage() {
+        this.consentBannerElement.style.display = 'block';
+        this.consentBannerElement.removeAttribute('hidden');
+
         // Select the confirmation message element
         const confirmationMessage = this.consentBannerElement.querySelector('.nsw-cookie-banner__confirmation-message');
 
         // Select the description element
         const description = this.consentBannerElement.querySelector('.nsw-cookie-banner__description');
+        let focusTarget = this.consentBannerElement;
         if (confirmationMessage) {
           // Change the hidden attribute to false for the confirmation message
           confirmationMessage.removeAttribute('hidden');
+          focusTarget = confirmationMessage.querySelector('.js-dismiss-cookie-banner') || focusTarget;
         }
         if (description) {
           // Change the hidden attribute to true for the description
           description.setAttribute('hidden', 'true');
         }
+        focusTarget.focus();
       }
       showConsentBanner() {
         if (this.consentBannerElement) {
