@@ -139,10 +139,10 @@
     @include z-index;
     content: '';
     position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+    inset-block-start: 0;
+    inset-inline-end: 0;
+    inset-block-end: 0;
+    inset-inline-start: 0;
   }
 }
 
@@ -158,8 +158,8 @@
 //Screen reader text
 /* stylelint-disable declaration-no-important  */
 @mixin sr-only() {
-  width: 1px !important;
-  height: 1px !important;
+  inline-size: 1px !important;
+  block-size: 1px !important;
   padding: 0 !important;
   margin: -1px !important;
   overflow: hidden !important;
@@ -182,14 +182,14 @@
 
 //Component spacing
 @mixin component-spacing() {
-  margin-top: functions.rem(24px);
+  margin-block-start: functions.rem(24px);
 
   &:first-child {
-    margin-top: 0;
+    margin-block-start: 0;
   }
 
   @include breakpoint('md') {
-    margin-top: functions.rem(32px);
+    margin-block-start: functions.rem(32px);
   }
 }
 
@@ -225,33 +225,33 @@
 
 //Grid
 @mixin container($offset: settings.$grid-gutters*2) {
-  max-width: var(--nsw-container-width);
-  padding-left: functions.rem($offset);
-  padding-right: functions.rem($offset);
-  margin-left: auto;
-  margin-right: auto;
+  max-inline-size: var(--nsw-container-width);
+  padding-inline-start: functions.rem($offset);
+  padding-inline-end: functions.rem($offset);
+  margin-inline-start: auto;
+  margin-inline-end: auto;
 }
 
 @mixin grid() {
   display: flex;
   flex-wrap: wrap;
-  margin-left: functions.rem(-(settings.$grid-gutters));
-  margin-right: functions.rem(-(settings.$grid-gutters));
+  margin-inline-start: functions.rem(-(settings.$grid-gutters));
+  margin-inline-end: functions.rem(-(settings.$grid-gutters));
 
   @include breakpoint('md') {
-    margin-left: functions.rem(-(settings.$grid-gutters)*2);
-    margin-right: functions.rem(-(settings.$grid-gutters)*2);
+    margin-inline-start: functions.rem(-(settings.$grid-gutters)*2);
+    margin-inline-end: functions.rem(-(settings.$grid-gutters)*2);
   }
 }
 
 @mixin row() {
-  width: 100%;
+  inline-size: 100%;
   display: flex;
   flex-wrap: wrap;
 }
 
 @mixin column-default() {
-  width: 100%;
+  inline-size: 100%;
   padding: functions.rem(settings.$grid-gutters);
 
   @include breakpoint('md') {
@@ -262,20 +262,20 @@
 @mixin column($size, $breakpoint: null, $offset: null) {
   @if ($breakpoint) {
     @include breakpoint($breakpoint) {
-      width: math.percentage(math.div($size, 12));
-      max-width: math.percentage(math.div($size, 12));
+      inline-size: math.percentage(math.div($size, 12));
+      max-inline-size: math.percentage(math.div($size, 12));
 
       @if ($offset) {
-        margin-left: math.percentage(math.div($offset, 12));
+        margin-inline-start: math.percentage(math.div($offset, 12));
       }
     }
 
   } @else {
-    width: math.percentage(math.div($size, 12));
-    max-width: math.percentage(math.div($size, 12));
+    inline-size: math.percentage(math.div($size, 12));
+    max-inline-size: math.percentage(math.div($size, 12));
 
     @if ($offset) {
-      margin-left: math.percentage(math.div($offset, 12));
+      margin-inline-start: math.percentage(math.div($offset, 12));
     }
   }
 }

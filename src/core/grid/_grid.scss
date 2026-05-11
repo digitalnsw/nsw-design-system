@@ -5,8 +5,8 @@
   @include nsw.container;
 
   &--flush {
-    padding-left: 0;
-    padding-right: 0;
+    padding-inline-start: 0;
+    padding-inline-end: 0;
   }
 }
 
@@ -14,53 +14,53 @@
   @include nsw.grid();
 
   &--spaced {
-    margin-top: nsw.rem(-(nsw.$grid-gutters));
-    margin-bottom: nsw.rem(-(nsw.$grid-gutters));
+    margin-block-start: nsw.rem(-(nsw.$grid-gutters));
+    margin-block-end: nsw.rem(-(nsw.$grid-gutters));
 
     @include nsw.breakpoint('md') {
-      margin-top: nsw.rem(-(nsw.$grid-gutters)*2);
-      margin-bottom: nsw.rem(-(nsw.$grid-gutters)*2);
+      margin-block-start: nsw.rem(-(nsw.$grid-gutters)*2);
+      margin-block-end: nsw.rem(-(nsw.$grid-gutters)*2);
     }
 
     .nsw-col {
-      padding-top: nsw.rem(nsw.$grid-gutters*2);
-      padding-bottom: nsw.rem(nsw.$grid-gutters*2);
+      padding-block-start: nsw.rem(nsw.$grid-gutters*2);
+      padding-block-end: nsw.rem(nsw.$grid-gutters*2);
 
       @include nsw.breakpoint('md') {
-        padding-top: nsw.rem(nsw.$grid-gutters*4);
-        padding-bottom: nsw.rem(nsw.$grid-gutters*4);
+        padding-block-start: nsw.rem(nsw.$grid-gutters*4);
+        padding-block-end: nsw.rem(nsw.$grid-gutters*4);
       }
     }
   }
 
   &--flush {
-    margin-top: nsw.rem(-(nsw.$grid-gutters));
-    margin-bottom: nsw.rem(-(nsw.$grid-gutters));
+    margin-block-start: nsw.rem(-(nsw.$grid-gutters));
+    margin-block-end: nsw.rem(-(nsw.$grid-gutters));
 
     @include nsw.breakpoint('md') {
-      margin-top: nsw.rem(-(nsw.$grid-gutters)*2);
-      margin-bottom: nsw.rem(-(nsw.$grid-gutters)*2);
+      margin-block-start: nsw.rem(-(nsw.$grid-gutters)*2);
+      margin-block-end: nsw.rem(-(nsw.$grid-gutters)*2);
     }
   }
 
   &-overlay {
     position: fixed;
-    right: 0;
-    left: 0;
-    top: 0;
-    bottom: 0;
+    inset-inline-end: 0;
+    inset-inline-start: 0;
+    inset-block-start: 0;
+    inset-block-end: 0;
 
     .nsw-container,
     .nsw-grid {
-      height: 100%;
+      block-size: 100%;
     }
 
     .nsw-col {
-      padding-top: 0;
-      padding-bottom: 0;
+      padding-block-start: 0;
+      padding-block-end: 0;
 
       > div {
-        height: 100%;
+        block-size: 100%;
         background-color: var(--nsw-brand-accent);
         opacity: 0.1;
       }
@@ -84,8 +84,8 @@
 
   @for $i from 1 through 12 {
     &-#{$i} {
-      width: math.percentage(math.div($i, 12));
-      max-width: math.percentage(math.div($i, 12));
+      inline-size: math.percentage(math.div($i, 12));
+      max-inline-size: math.percentage(math.div($i, 12));
     }
   }
 
@@ -93,8 +93,8 @@
     @include nsw.breakpoint($breakpoint) {
       @for $i from 1 through 12 {
         &-#{$breakpoint}-#{$i} {
-          width: math.percentage(math.div($i, 12));
-          max-width: math.percentage(math.div($i, 12));
+          inline-size: math.percentage(math.div($i, 12));
+          max-inline-size: math.percentage(math.div($i, 12));
         }
       }
     }
@@ -104,7 +104,7 @@
 .nsw-offset {
   @for $i from 1 through 12 {
     &-#{$i} {
-      margin-left: math.percentage(math.div($i, 12));
+      margin-inline-start: math.percentage(math.div($i, 12));
     }
   }
 
@@ -112,7 +112,7 @@
     @include nsw.breakpoint($breakpoint) {
       @for $i from 1 through 12 {
         &-#{$breakpoint}-#{$i} {
-          margin-left: math.percentage(math.div($i, 12));
+          margin-inline-start: math.percentage(math.div($i, 12));
         }
       }
     }

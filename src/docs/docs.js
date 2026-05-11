@@ -2,6 +2,7 @@ import Autocomplete from './autocomplete'
 import ExpandableSearch from './expandable-search'
 import DownloadPDF from './download-pdf'
 import ColorSwatches from './color-swatches'
+import UtilityControls from './utility-controls'
 
 // Prevent icon flash: hide icons until font loads
 document.documentElement.classList.add('material-icons-loading')
@@ -376,9 +377,9 @@ function initDocs() {
     },
   }
 
-  // Initialise Color Swatches for full-page and content-only pages
-  document.querySelectorAll('.js-color-swatches').forEach((element) => {
-    new ColorSwatches(element, colorConfig).init()
+  // Initialise utility controls (direction + color swatches) on theme utility bars
+  document.querySelectorAll('.js-utility-controls').forEach((element) => {
+    new UtilityControls(element, { colorSwatches: colorConfig }).init()
   })
 
   // Initialise Color Swatches for partial re-theming (only updates brand-accent)

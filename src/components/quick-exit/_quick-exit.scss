@@ -3,8 +3,8 @@
 
 .nsw-quick-exit {
   display: block;
-  width: 100%;
-  border-top: nsw.rem(6px) solid var(--Status-error, var(--nsw-status-error));
+  inline-size: 100%;
+  border-block-start: nsw.rem(6px) solid var(--Status-error, var(--nsw-status-error));
   font-weight: normal;
   cursor: pointer;
   background-color: var(--nsw-brand-dark);
@@ -51,16 +51,16 @@
     display: flex;
     gap: nsw.rem(8px);
     align-items: center;
-    width: 100%;
-    min-height: nsw.rem(64px);
+    inline-size: 100%;
+    min-block-size: nsw.rem(64px);
     justify-content: center;
     user-select: none;
 
     &::before {
       content: '';
-      width: nsw.rem(48px);
-      height: nsw.rem(48px);
-      margin-bottom: nsw.rem(4px);
+      inline-size: nsw.rem(48px);
+      block-size: nsw.rem(48px);
+      margin-block-end: nsw.rem(4px);
       line-height: 0;
       display: none;
       vertical-align: middle;
@@ -81,7 +81,7 @@
 
     @include nsw.breakpoint('md') {
       justify-content: flex-start;
-      min-height: nsw.rem(80px);
+      min-block-size: nsw.rem(80px);
 
       &::before {
         display: inline-block;
@@ -91,8 +91,8 @@
 
   &__description-text {
     position: absolute;
-    width: 1px;
-    height: 1px;
+    inline-size: 1px;
+    block-size: 1px;
     padding: 0;
     margin: 0;
     overflow: hidden;
@@ -102,8 +102,8 @@
 
     @include nsw.breakpoint('md') {
       position: static;
-      width: auto;
-      height: auto;
+      inline-size: auto;
+      block-size: auto;
       overflow: visible;
       clip: auto;
       white-space: normal;
@@ -119,7 +119,7 @@
       content: 'east';
       font-size: inherit;
       line-height: 1;
-      margin-left: nsw.rem(4px);
+      margin-inline-start: nsw.rem(4px);
       display: inline-block;
       vertical-align: middle;
 

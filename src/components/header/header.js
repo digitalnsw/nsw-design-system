@@ -3,12 +3,12 @@ class SiteSearch {
     this.element = element
     this.originalButton = document.querySelector('.js-open-search')
     this.targetElement = document.getElementById(this.element.getAttribute('aria-controls'))
-    this.searchInput = this.targetElement.querySelector('input.js-search-input')
+    this.searchInput = this.targetElement ? this.targetElement.querySelector('input.js-search-input') : null
     this.pressed = this.element.getAttribute('aria-expanded') === 'true'
   }
 
   init() {
-    if (!this.originalButton) return
+    if (!this.originalButton || !this.targetElement) return
     this.controls()
   }
 
@@ -17,6 +17,8 @@ class SiteSearch {
   }
 
   showHide() {
+    if (!this.targetElement) return
+
     if (this.pressed) {
       this.targetElement.hidden = true
       this.originalButton.hidden = false
@@ -24,7 +26,7 @@ class SiteSearch {
     } else {
       this.targetElement.hidden = false
       this.originalButton.hidden = true
-      this.searchInput.focus()
+      if (this.searchInput) this.searchInput.focus()
     }
   }
 }

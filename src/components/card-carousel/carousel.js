@@ -168,7 +168,7 @@ class Carousel extends SwipeContent {
     this.containerWidth = (this.itemsWidth + itemMargin) * this.items.length
     this.translateContainer = 0 - ((this.itemsWidth + itemMargin) * this.visibItemsNb)
 
-    if (!this.flexSupported) this.list.style.width = `${(this.itemsWidth + itemMargin) * this.visibItemsNb * 3}px`
+    if (!this.flexSupported) this.list.style.inlineSize = `${(this.itemsWidth + itemMargin) * this.visibItemsNb * 3}px`
 
     this.totTranslate = 0 - this.selectedItem * (this.itemsWidth + itemMargin)
     if (this.items.length <= this.visibItemsNb) this.totTranslate = 0
@@ -187,7 +187,7 @@ class Carousel extends SwipeContent {
 
   setItemsWidth(bool) {
     for (let i = 0; i < this.items.length; i += 1) {
-      this.items[i].style.width = `${this.itemsWidth}px`
+      this.items[i].style.inlineSize = `${this.itemsWidth}px`
       if (bool) this.initItems.push(this.items[i])
     }
   }
@@ -515,7 +515,7 @@ class Carousel extends SwipeContent {
   resetItemsWidth() {
     this.initItems.forEach((element) => {
       const el = element
-      el.style.width = `${this.itemsWidth}px`
+      el.style.inlineSize = `${this.itemsWidth}px`
     })
   }
 

@@ -53,6 +53,8 @@ class Navigation {
   }
 
   responsiveCheck(event) {
+    this.resetOpenNavState()
+
     let megaMenuListItems = []
     if (event.matches) {
       megaMenuListItems = [].slice.call(this.nav.querySelectorAll('ul > li'))
@@ -62,6 +64,38 @@ class Navigation {
     }
     this.tearDownNavControls()
     this.setUpNavControls(megaMenuListItems)
+  }
+
+  resetOpenNavState() {
+    this.mainNavIsOpen = false
+    document.body.classList.remove('main-nav-active')
+    this.nav.classList.remove('active', 'activating', 'closing', 'no-scroll')
+    this.nav.removeEventListener(this.transitionEvent, this.mobileShowMainTransitionEndEvent, false)
+    this.nav.removeEventListener(this.transitionEvent, this.mobileHideMainTransitionEndEvent, false)
+    this.nav.removeEventListener('keydown', this.mobileTrapTabKeyEvent, false)
+    this.nav.removeEventListener('focus', this.checkFocusEvent, true)
+    // fix: workaround for safari because it doesn't support focus event
+    this.nav.removeEventListener('click', this.checkFocusEvent, true)
+
+    const submenus = [].slice.call(this.nav.querySelectorAll('.nsw-main-nav__sub-nav'))
+    submenus.forEach((submenu) => {
+      submenu.classList.remove('active', 'closing', 'no-scroll')
+      submenu.removeEventListener('keydown', this.mobileSubNavTrapTabKeyEvent, false)
+      submenu.removeEventListener(this.transitionEvent, this.showSubNavTransitionEndEvent, false)
+
+      const scrollContainer = submenu.closest('ul').parentElement
+      if (scrollContainer) {
+        scrollContainer.classList.remove('no-scroll')
+      }
+    })
+
+    const controls = [].slice.call(this.nav.querySelectorAll('a[aria-controls]'))
+    controls.forEach((control) => {
+      control.classList.remove('active')
+      control.setAttribute('aria-expanded', 'false')
+    })
+
+    this.openSubNavElements = []
   }
 
   handleOutsideClick(event) {
@@ -115,8 +149,12 @@ class Navigation {
     trapTabKey(e, elemObj)
   }
 
-  mobileShowMainNav({ propertyName }) {
-    if (propertyName !== 'transform') return
+  shouldAnimateMobileNav() {
+    return !this.breakpoint.matches && window.matchMedia('(prefers-reduced-motion: no-preference)').matches
+  }
+
+  mobileShowMainNav({ propertyName } = {}) {
+    if (this.shouldAnimateMobileNav() && propertyName !== 'transform') return
     getFocusableElementBySelector(this.navID, ['> div button', '> ul > li > a']).all[1].focus()
     this.nav.classList.add('active')
     this.nav.classList.remove('activating')
@@ -124,9 +162,8 @@ class Navigation {
     this.nav.addEventListener('keydown', this.mobileTrapTabKeyEvent, false)
   }
 
-  mobileHideMainNav({ propertyName }) {
-    if (propertyName !== 'transform') return
-
+  mobileHideMainNav({ propertyName } = {}) {
+    if (this.shouldAnimateMobileNav() && propertyName !== 'transform') return
     this.nav.classList.remove('active')
     this.nav.classList.remove('closing')
 
@@ -149,11 +186,19 @@ class Navigation {
       document.body.classList.remove('main-nav-active')
       this.openNavButton.focus()
       this.nav.classList.add('closing')
-      this.nav.addEventListener(this.transitionEvent, this.mobileHideMainTransitionEndEvent, false)
+      if (this.shouldAnimateMobileNav()) {
+        this.nav.addEventListener(this.transitionEvent, this.mobileHideMainTransitionEndEvent, false)
+      } else {
+        this.mobileHideMainNav()
+      }
     } else {
       document.body.classList.add('main-nav-active')
       this.nav.classList.add('activating')
-      this.nav.addEventListener(this.transitionEvent, this.mobileShowMainTransitionEndEvent, false)
+      if (this.shouldAnimateMobileNav()) {
+        this.nav.addEventListener(this.transitionEvent, this.mobileShowMainTransitionEndEvent, false)
+      } else {
+        this.mobileShowMainNav()
+      }
     }
   }
 
@@ -200,9 +245,9 @@ class Navigation {
     this.openSubNavElements.push(temp)
   }
 
-  showSubNav({ propertyName }) {
+  showSubNav({ propertyName } = {}) {
     const { submenu } = this.whichSubNavLatest()
-    if (propertyName !== 'transform') return
+    if (this.shouldAnimateMobileNav() && propertyName !== 'transform') return
     getFocusableElementBySelector(submenu.id, ['> div button', '> .nsw-main-nav__title a', '> ul > li > a']).all[2].focus()
     submenu.removeEventListener(this.transitionEvent, this.showSubNavTransitionEndEvent, false)
   }
@@ -234,11 +279,17 @@ class Navigation {
       this.nav.addEventListener('click', this.checkFocusEvent, true)
     } else {
       submenu.addEventListener('keydown', this.mobileSubNavTrapTabKeyEvent, false)
-      submenu.addEventListener(this.transitionEvent, this.showSubNavTransitionEndEvent, false)
+      if (this.shouldAnimateMobileNav()) {
+        submenu.addEventListener(this.transitionEvent, this.showSubNavTransitionEndEvent, false)
+      }
     }
     submenu.closest('ul').parentElement.scrollTop = 0
     submenu.closest('ul').parentElement.classList.add('no-scroll')
     submenu.classList.add('active')
+
+    if (!this.breakpoint.matches && !this.shouldAnimateMobileNav()) {
+      this.showSubNav()
+    }
   }
 
   toggleSubNavDesktop() {

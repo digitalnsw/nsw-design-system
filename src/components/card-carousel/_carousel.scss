@@ -47,29 +47,29 @@
   video,
   svg {
     display: block;
-    max-width: 100%;
+    max-inline-size: 100%;
   }
 
   .nsw-icon {
-    height: var(--size, 1em);
-    width: var(--size, 1em);
+    block-size: var(--size, 1em);
+    inline-size: var(--size, 1em);
     display: inline-block;
     color: var(--nsw-brand-dark);
     fill: currentColor;
     line-height: 1;
     flex-shrink: 0;
-    max-width: initial;
+    max-inline-size: initial;
   }
 
   > nav,
   &__counter > nav {
     order: 1;
-    margin-bottom: 0.5rem;
-    margin-right: 0.25rem;
+    margin-block-end: 0.5rem;
+    margin-inline-end: 0.25rem;
 
     @include nsw.breakpoint('md') {
-      margin-bottom: 0.75rem;
-      margin-right: 0;
+      margin-block-end: 0.75rem;
+      margin-inline-end: 0;
     }
 
     ul {
@@ -78,8 +78,8 @@
       justify-content: flex-end;
 
       li.nsw-carousel__title {
-        margin-left: 0;
-        margin-bottom: 0;
+        margin-inline-start: 0;
+        margin-block-end: 0;
         margin-inline-end: auto;
       }
 
@@ -94,12 +94,12 @@
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
-    margin-bottom: 0.5rem;
-    margin-right: 0.25rem;
+    margin-block-end: 0.5rem;
+    margin-inline-end: 0.25rem;
 
     @include nsw.breakpoint('md') {
-      margin-bottom: 0.75rem;
-      margin-right: 0;
+      margin-block-end: 0.75rem;
+      margin-inline-end: 0;
     }
 
     .nsw-carousel__title {
@@ -127,11 +127,11 @@
 
   &__wrapper {
     order: 2;
-    width: calc(100% - 6rem);
+    inline-size: calc(100% - 6rem);
     margin: 0 auto;
 
     @include nsw.breakpoint('md') {
-      width: 100%;
+      inline-size: 100%;
     }
   }
 
@@ -141,7 +141,7 @@
     align-items: center;
 
     @include nsw.breakpoint('md') {
-      width: 100%;
+      inline-size: 100%;
     }
   }
 
@@ -164,9 +164,9 @@
   
   &__item {
     flex-shrink: 0;
-    width: var(--nsw-carousel-item-auto-size, 300px);
+    inline-size: var(--nsw-carousel-item-auto-size, 300px);
     opacity: 0;
-    margin-bottom: 0;
+    margin-block-end: 0;
   }
 
   &.nsw-carousel--loaded .nsw-carousel__item {
@@ -191,8 +191,8 @@
 
   &__control {
     --size: 40px;
-    width: 40px;
-    height: 40px;
+    inline-size: 40px;
+    block-size: 40px;
     display: flex;
     background-color: var(--nsw-white);
     border-radius: 50%;
@@ -257,35 +257,35 @@
   &__navigation {
     order: 3;
     position: absolute;
-    bottom: 0.5em;
-    left: 50%;
+    inset-block-end: 0.5em;
+    inset-inline-start: 50%;
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    inline-size: 100%;
     z-index: 2;
     transform: translateX(-50%);
 
     @include nsw.breakpoint('md') {
-      bottom: 0.8em;
+      inset-block-end: 0.8em;
     }
 
     li {
-      margin-top: 0;
+      margin-block-start: 0;
       line-height: 0;
     }
 
     &--pagination {
-      bottom: 0.3em;
+      inset-block-end: 0.3em;
 
       @include nsw.breakpoint('md') {
-        bottom: 0.5em;
+        inset-block-end: 0.5em;
       }
 
       .nsw-carousel__nav-item button {
         background-color: transparent;
-        width: nsw.rem(24px);
-        height: nsw.rem(24px);
+        inline-size: nsw.rem(24px);
+        block-size: nsw.rem(24px);
         color: var(--nsw-brand-dark);
         font-size: 12px;
         border-radius: var(--nsw-border-radius);
@@ -328,8 +328,8 @@
 
     button {
       background-color: transparent;
-      width: nsw.rem(16px);
-      height: nsw.rem(16px);
+      inline-size: nsw.rem(16px);
+      block-size: nsw.rem(16px);
       padding: 4px;
       border-radius: 50%;
       border: 2px solid var(--nsw-brand-dark);
@@ -412,12 +412,12 @@
     }
 
     span.nsw-material-icons {
-      bottom: nsw.rem(-5px);
+      inset-block-end: nsw.rem(-5px);
     }
 
     .nsw-material-icons {
       text-decoration: none;
-      bottom: 0;
+      inset-block-end: 0;
     }
   }
 }

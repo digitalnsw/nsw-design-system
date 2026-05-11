@@ -15,9 +15,12 @@ class Breadcrumbs {
 
   createToggle() {
     const toggle = this.constructor.createElement('li', ['nsw-breadcrumbs__show-more-toggle'])
-    toggle.innerHTML = '<button aria-label="Show more breadcrumbs" class="nsw-breadcrumbs__toggle-button" type="button">…</button>'
-    toggle.addEventListener('click', () => {
-      this.allBreadcrumbs.classList.toggle('nsw-breadcrumbs__show-all')
+    toggle.innerHTML = '<button aria-expanded="false" class="nsw-breadcrumbs__toggle-button" type="button"><span aria-hidden="true">…</span><span class="sr-only">Show more breadcrumbs</span></button>'
+
+    const button = toggle.querySelector('button')
+    button.addEventListener('click', () => {
+      this.allBreadcrumbs.classList.add('nsw-breadcrumbs__show-all')
+      button.setAttribute('aria-expanded', 'true')
     })
 
     this.allBreadcrumbs.insertBefore(toggle, this.secondBreadcrumb)
