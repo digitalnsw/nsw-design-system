@@ -58,6 +58,7 @@ class Tabs {
       const panel = this.element.querySelector(itemLink.hash)
       if (!panel) return
       const uID = uniqueId('tab')
+      this.owns.push(uID)
       itemElem.setAttribute('role', 'presentation')
       this.enhanceTabLink(itemLink, panel, uID)
       this.enhanceTabPanel(panel, uID)
