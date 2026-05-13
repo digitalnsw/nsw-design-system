@@ -205,46 +205,55 @@
       overflow-x: visible;
       flex-wrap: wrap;
       white-space: normal;
-      padding: 0;
+      padding: nsw.rem(16px) 0 nsw.rem(40px);
       --nsw-tabs-mobile-connector: var(--nsw-brand-dark);
 
       .nsw-section--invert & {
         --nsw-tabs-mobile-connector: var(--nsw-brand-light);
       }
 
-      &::before {
-        content: '';
-        position: absolute;
-        top: nsw.rem(24px);
-        bottom: nsw.rem(24px);
-        left: 0;
-        border-left: solid 2px var(--nsw-tabs-mobile-connector);
-      }
-
       li {
+        margin: 0;
         flex: initial;
         position: relative;
 
+        + li {
+          margin-top: nsw.rem(20px);
+        }
+
         &::before {
-          content: '';
+          content: '↳';
           position: absolute;
-          top: nsw.rem(24px);
+          top: 0;
           left: 0;
           width: nsw.rem(16px);
-          border-top: solid 2px var(--nsw-tabs-mobile-connector);
+          color: var(--nsw-tabs-mobile-connector);
+          font-size: nsw.rem(20px);
+          line-height: 1;
         }
       }
 
       a {
-        display: block;
+        display: inline-block;
         height: auto;
-        margin-left: nsw.rem(16px);
-        padding-left: nsw.rem(8px);
+        max-width: calc(100% - #{nsw.rem(44px)});
+        margin-left: nsw.rem(32px);
+        padding: 0;
         min-height: 0;
+        text-decoration: underline;
+        text-underline-offset: nsw.rem(4px);
         white-space: normal;
+
+        &.active {
+          color: var(--nsw-brand-dark);
+        }
 
         &.active::after {
           display: none;
+        }
+
+        .nsw-section--invert &.active {
+          color: var(--nsw-text-light);
         }
       }
     }
@@ -280,11 +289,8 @@
         white-space: nowrap;
         padding: 0 0 nsw.rem(20px) 0;
 
-        &::before {
-          display: none;
-        }
-
         li {
+          margin: 0;
           flex: 0 0 auto;
 
           &::before {
@@ -296,13 +302,23 @@
           display: flex;
           align-items: center;
           height: 100%;
+          max-width: none;
           margin-left: 0;
-          padding-left: nsw.rem(16px);
+          padding: nsw.rem(12px) nsw.rem(16px);
           min-height: nsw.rem(44px);
+          text-decoration: none;
           white-space: nowrap;
+
+          &.active {
+            color: var(--nsw-text-dark);
+          }
 
           &.active::after {
             display: block;
+          }
+
+          .nsw-section--invert &.active {
+            color: var(--nsw-text-light);
           }
         }
       }
