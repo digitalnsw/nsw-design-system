@@ -105,6 +105,8 @@
       }
 
       &:focus {
+        @include nsw.z-index('top');
+
         outline-width: 3px;
         outline-offset: -3px;
 
@@ -205,11 +207,21 @@
       overflow-x: visible;
       flex-wrap: wrap;
       white-space: normal;
-      padding: nsw.rem(16px) 0 nsw.rem(40px);
+      padding: nsw.rem(16px) 0 nsw.rem(32px);
       --nsw-tabs-mobile-connector: var(--nsw-brand-dark);
 
       .nsw-section--invert & {
         --nsw-tabs-mobile-connector: var(--nsw-brand-light);
+      }
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: nsw.rem(0);
+        bottom: nsw.rem(42px);
+        left: 0;
+        width: nsw.rem(2px);
+        background-color: var(--nsw-tabs-mobile-connector);
       }
 
       li {
@@ -222,21 +234,21 @@
         }
 
         &::before {
-          content: '↳';
+          content: '';
           position: absolute;
-          top: 0;
+          top: nsw.rem(12px);
           left: 0;
           width: nsw.rem(16px);
-          color: var(--nsw-tabs-mobile-connector);
-          font-size: nsw.rem(20px);
+          height: nsw.rem(2px);
+          background-color: var(--nsw-tabs-mobile-connector);
         }
       }
 
       a {
         display: inline-block;
         height: auto;
-        max-width: calc(100% - #{nsw.rem(44px)});
-        margin-left: nsw.rem(32px);
+        max-width: calc(100% - #{nsw.rem(56px)});
+        margin-left: nsw.rem(24px);
         padding: 0;
         min-height: 0;
         text-decoration: underline;
@@ -287,6 +299,10 @@
         flex-wrap: nowrap;
         white-space: nowrap;
         padding: 0 0 nsw.rem(20px) 0;
+
+        &::before {
+          display: none;
+        }
 
         li {
           margin: 0;
