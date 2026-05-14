@@ -14,7 +14,7 @@ class Tabs {
     this.tabPanel = []
     this.selectedTab = null
     this.tabListWrapper = null
-    this.desktopModeQuery = window.matchMedia('(min-width: 48rem)')
+    this.desktopModeQuery = window.matchMedia('(min-width: 768px)')
     this.reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
     this.focusableSelector = `a[href],button:not([disabled]),
       area[href],input:not([disabled]):not([type=hidden]),
@@ -24,6 +24,7 @@ class Tabs {
     this.clickTabEvent = (event) => this.clickTab(event)
     this.arrowKeysEvent = (event) => this.arrowKeys(event)
     this.hashChangeEvent = () => this.handleHashChange()
+    this.popStateEvent = () => this.handleHashChange()
     this.viewportChangeEvent = () => this.handleViewportChange()
     this.updateScrollableStateEvent = () => this.updateScrollableState()
     this.resizeObserver = null
@@ -95,17 +96,43 @@ class Tabs {
     const panelElem = panel
     panelElem.setAttribute('role', 'tabpanel')
     panelElem.setAttribute('aria-labelledby', id)
-    if (!this.hasFocusableContent(panelElem)) {
-      panelElem.setAttribute('tabindex', '0')
-    } else {
-      panelElem.removeAttribute('tabindex')
-    }
+    this.setPanelFocusability(panelElem)
     panelElem.hidden = true
     this.tabPanel.push(panelElem)
   }
 
-  hasFocusableContent(panel) {
-    return !!panel.querySelector(this.focusableSelector)
+  isFocusableElement(element) {
+    return element.matches(this.focusableSelector)
+  }
+
+  static hasDirectText(element) {
+    return Array.from(element.childNodes).some((node) => node.nodeType === 3 && node.textContent.trim())
+  }
+
+  static isIgnoredContent(element) {
+    return element.hidden
+      || element.getAttribute('aria-hidden') === 'true'
+      || ['SCRIPT', 'STYLE', 'TEMPLATE'].includes(element.tagName)
+  }
+
+  getFirstMeaningfulElement(panel) {
+    const elements = Array.from(panel.querySelectorAll('*'))
+
+    return elements.find((element) => !Tabs.isIgnoredContent(element)
+      && (this.isFocusableElement(element) || Tabs.hasDirectText(element)))
+  }
+
+  firstMeaningfulContentIsFocusable(panel) {
+    const firstMeaningfulElement = this.getFirstMeaningfulElement(panel)
+    return !!firstMeaningfulElement && this.isFocusableElement(firstMeaningfulElement)
+  }
+
+  setPanelFocusability(panel) {
+    if (this.firstMeaningfulContentIsFocusable(panel)) {
+      panel.removeAttribute('tabindex')
+    } else {
+      panel.setAttribute('tabindex', '0')
+    }
   }
 
   setInitialTab() {
@@ -121,15 +148,18 @@ class Tabs {
   }
 
   getInitialTabIndex() {
+    const index = this.getDefaultTabIndex()
+    const hashTabIndex = this.getTabIndexByHash(window.location.hash)
+    return (hashTabIndex > -1) ? hashTabIndex : index
+  }
+
+  getDefaultTabIndex() {
     const lastIndex = this.tabLinks.length - 1
     let index = (this.showTab === undefined) ? 0 : Number(this.showTab)
 
     if (Number.isNaN(index) || index < 0) {
       index = 0
     }
-
-    const hashTabIndex = this.getTabIndexByHash(window.location.hash)
-    if (hashTabIndex > -1) index = hashTabIndex
 
     return (index > lastIndex) ? 0 : index
   }
@@ -175,9 +205,10 @@ class Tabs {
     if (!this.isTabsView()) return
 
     const hashTabIndex = this.getTabIndexByHash(window.location.hash)
-    if (hashTabIndex < 0) return
+    if (hashTabIndex < 0 && window.location.hash) return
 
-    const targetTab = this.tabLinks[hashTabIndex]
+    const targetIndex = hashTabIndex > -1 ? hashTabIndex : this.getDefaultTabIndex()
+    const targetTab = this.tabLinks[targetIndex]
     if (!targetTab || targetTab === this.selectedTab) return
 
     this.switchTabs(targetTab, {
@@ -229,11 +260,7 @@ class Tabs {
         panelElem.setAttribute('aria-labelledby', controllingTab.id)
       }
 
-      if (!this.hasFocusableContent(panelElem)) {
-        panelElem.setAttribute('tabindex', '0')
-      } else {
-        panelElem.removeAttribute('tabindex')
-      }
+      this.setPanelFocusability(panelElem)
       panelElem.hidden = true
     })
 
@@ -304,13 +331,16 @@ class Tabs {
     }
 
     e.preventDefault()
-    this.switchTabs(e.currentTarget)
+    this.switchTabs(e.currentTarget, {
+      syncHash: true,
+    })
   }
 
   switchTabs(elem, options = {}) {
     const {
       focus = true,
       smoothScroll = true,
+      syncHash = false,
     } = options
     const clickedTab = elem
 
@@ -319,6 +349,8 @@ class Tabs {
 
     const clickedTabIndex = this.tabLinks.indexOf(clickedTab)
     if (clickedTabIndex < 0) return
+
+    if (syncHash) Tabs.syncHash(clickedTab)
 
     if (clickedTab !== this.selectedTab) {
       if (focus) clickedTab.focus()
@@ -350,13 +382,27 @@ class Tabs {
     }
   }
 
+  static syncHash(link) {
+    const hash = Tabs.getTabHash(link)
+    if (!hash || Tabs.normaliseHash(window.location.hash) === Tabs.normaliseHash(hash)) return
+
+    if (window.history && typeof window.history.pushState === 'function') {
+      window.history.pushState(null, '', hash)
+      return
+    }
+
+    const { scrollX, scrollY } = window
+    window.location.hash = hash
+    window.scrollTo(scrollX, scrollY)
+  }
+
   focusTabPanel(index) {
     const panel = this.tabPanel[index]
     if (!panel) return
 
-    const focusableChild = panel.querySelector(this.focusableSelector)
-    if (focusableChild) {
-      focusableChild.focus()
+    const firstMeaningfulElement = this.getFirstMeaningfulElement(panel)
+    if (firstMeaningfulElement && this.isFocusableElement(firstMeaningfulElement)) {
+      firstMeaningfulElement.focus()
       return
     }
 
@@ -428,6 +474,7 @@ class Tabs {
     }
 
     window.addEventListener('hashchange', this.hashChangeEvent, false)
+    window.addEventListener('popstate', this.popStateEvent, false)
   }
 }
 
