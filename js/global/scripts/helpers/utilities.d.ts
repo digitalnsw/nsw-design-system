@@ -1,3 +1,4 @@
+export function copyToClipboard(text: any): Promise<any>;
 export function uniqueId(prefix: any): string;
 export function focusObjectGenerator(arr: any): {
     all: any;

@@ -65,6 +65,66 @@
     }
 
     // eslint-disable-next-line import/no-extraneous-dependencies
+    const hasWindow$2 = typeof window !== 'undefined';
+    const hasDocument$2 = typeof document !== 'undefined';
+    const legacyCopyText = text => {
+      if (hasWindow$2 && window.clipboardData && typeof window.clipboardData.setData === 'function') {
+        try {
+          return window.clipboardData.setData('Text', text);
+        } catch (error) {
+          return false;
+        }
+      }
+      return false;
+    };
+    const commandCopyText = text => {
+      if (!hasDocument$2 || typeof document.execCommand !== 'function') return false;
+      const textarea = document.createElement('textarea');
+      const {
+        activeElement,
+        body,
+        documentElement
+      } = document;
+      const container = body || documentElement;
+      let copied = false;
+      if (!container) return false;
+      textarea.setAttribute('readonly', '');
+      textarea.style.position = 'fixed';
+      textarea.style.top = '0';
+      textarea.style.left = '-9999px';
+      textarea.style.opacity = '0';
+      container.appendChild(textarea);
+      // Keep untrusted clipboard text out of the DOM construction step.
+      textarea.value = text;
+      try {
+        textarea.select();
+        if (typeof textarea.setSelectionRange === 'function') {
+          textarea.setSelectionRange(0, textarea.value.length);
+        }
+        copied = document.execCommand('copy');
+      } catch (error) {
+        copied = false;
+      } finally {
+        container.removeChild(textarea);
+        if (activeElement && typeof activeElement.focus === 'function') {
+          try {
+            activeElement.focus({
+              preventScroll: true
+            });
+          } catch (error) {
+            activeElement.focus();
+          }
+        }
+      }
+      return copied;
+    };
+    const copyToClipboard = text => {
+      const copyText = String(text);
+      if (hasWindow$2 && window.navigator && window.navigator.clipboard && window.isSecureContext) {
+        return window.navigator.clipboard.writeText(copyText).then(() => true).catch(() => commandCopyText(copyText) || legacyCopyText(copyText));
+      }
+      return Promise.resolve(commandCopyText(copyText) || legacyCopyText(copyText));
+    };
     const uniqueId = prefix => {
       const prefixValue = prefix === undefined ? 'nsw' : prefix;
       const uuid = v4();
@@ -4314,7 +4374,7 @@
       };
     };
 
-    function hasWindow() {
+    function hasWindow$1() {
       return typeof window !== 'undefined';
     }
     function getNodeName(node) {
@@ -4335,25 +4395,25 @@
       return (_ref = (isNode(node) ? node.ownerDocument : node.document) || window.document) == null ? void 0 : _ref.documentElement;
     }
     function isNode(value) {
-      if (!hasWindow()) {
+      if (!hasWindow$1()) {
         return false;
       }
       return value instanceof Node || value instanceof getWindow(value).Node;
     }
     function isElement(value) {
-      if (!hasWindow()) {
+      if (!hasWindow$1()) {
         return false;
       }
       return value instanceof Element || value instanceof getWindow(value).Element;
     }
     function isHTMLElement(value) {
-      if (!hasWindow()) {
+      if (!hasWindow$1()) {
         return false;
       }
       return value instanceof HTMLElement || value instanceof getWindow(value).HTMLElement;
     }
     function isShadowRoot(value) {
-      if (!hasWindow() || typeof ShadowRoot === 'undefined') {
+      if (!hasWindow$1() || typeof ShadowRoot === 'undefined') {
         return false;
       }
       return value instanceof ShadowRoot || value instanceof getWindow(value).ShadowRoot;
@@ -5214,7 +5274,7 @@
       }
     }
 
-    const hasDocument = typeof document !== 'undefined';
+    const hasDocument$1 = typeof document !== 'undefined';
     const defaultSafeInlineTags = ['p', 'span', 'kbd', 'strong', 'em', 'br', 'code'];
     function escapeHTML(txt) {
       const str = String(txt || '');
@@ -5223,7 +5283,7 @@
 
     // Clean and optionally whitelist HTML into a safe set of tags with no attributes.
     function baseCleanHTML(str, nodes, opts = {}) {
-      if (!hasDocument) {
+      if (!hasDocument$1) {
         // In non-DOM environments, return safely-escaped text (no HTML interpretation)
         return nodes ? null : escapeHTML(str);
       }
@@ -6985,19 +7045,10 @@
         button.removeAttribute('data-username');
       }
       copyToClipboard(element) {
-        if (!navigator.clipboard) {
-          const input = document.createElement('input');
-          input.setAttribute('value', this.urlLocation);
-          document.body.appendChild(input);
-          input.select();
-          document.execCommand('copy');
-          document.body.removeChild(input);
+        copyToClipboard(this.urlLocation).then(copied => {
+          if (!copied) return;
           this.copiedMessage(element);
-        } else {
-          navigator.clipboard.writeText(this.urlLocation).then(() => {
-            this.copiedMessage(element);
-          });
-        }
+        });
       }
       copiedMessage(element) {
         this.copyElement = element;
@@ -7010,6 +7061,242 @@
           this.copyElement.innerHTML = originalText;
         }, 3000);
       }
+    }
+
+    const hasWindow = typeof window !== 'undefined';
+    const hasDocument = typeof document !== 'undefined' && hasWindow;
+    const copyHeadingsClass = 'js-copy-headings';
+    const headingSelector = 'h2';
+    const headingWrapperClass = 'nsw-heading-link';
+    const headingClass = 'nsw-heading-link__heading';
+    const headingInitAttr = 'data-heading-link-init';
+    const buttonBoundAttr = 'data-heading-link-bound';
+    const buttonClass = 'nsw-heading-link__button';
+    const buttonIconClass = 'nsw-heading-link__button-icon';
+    const buttonHeadingTextAttr = 'data-heading-text';
+    const tooltipClass = 'nsw-heading-link__tooltip';
+    const tooltipIconClass = 'nsw-heading-link__tooltip-icon';
+    const tooltipTextClass = 'nsw-heading-link__tooltip-text';
+    const buttonLabel = 'Copy link to heading';
+    const buttonCopiedLabel = 'Link copied';
+    const buttonCopiedClass = 'is-copied';
+    const buttonTooltipHiddenClass = 'is-tooltip-hidden';
+    const copiedMessageDuration = 2000;
+    const tooltipFadeDuration = 150;
+    const buttonResetTimeouts = new WeakMap();
+    const buttonLabelRestoreTimeouts = new WeakMap();
+    function getConfiguredRoots() {
+      if (!hasDocument) return [];
+      return Array.from(document.querySelectorAll(`.${copyHeadingsClass}`));
+    }
+    function getUsedIds() {
+      const usedIds = new Set();
+      const idElements = document.querySelectorAll('[id]');
+      idElements.forEach(element => {
+        const id = element.getAttribute('id');
+        if (id) usedIds.add(id);
+      });
+      return usedIds;
+    }
+    function getHeadingText(heading) {
+      const clone = heading.cloneNode(true);
+      const existingButtons = clone.querySelectorAll(`.${buttonClass}`);
+      existingButtons.forEach(button => {
+        button.remove();
+      });
+      return (clone.textContent || '').trim();
+    }
+    function slugifyHeading(text) {
+      const slug = text.toLowerCase().replace(/['"`]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+      return slug || 'heading';
+    }
+    function getUniqueId(baseId, usedIds) {
+      let candidate = baseId;
+      let suffix = 2;
+      while (usedIds.has(candidate)) {
+        candidate = `${baseId}-${suffix}`;
+        suffix += 1;
+      }
+      usedIds.add(candidate);
+      return candidate;
+    }
+    function ensureHeadingId(heading, usedIds) {
+      const existingId = heading.getAttribute('id');
+      if (existingId) {
+        if (!usedIds.has(existingId)) usedIds.add(existingId);
+        return existingId;
+      }
+      const headingText = getHeadingText(heading);
+      const slugBase = slugifyHeading(headingText);
+      const nextId = getUniqueId(slugBase, usedIds);
+      heading.setAttribute('id', nextId);
+      return nextId;
+    }
+    function getContextualButtonLabel(label, headingText) {
+      if (!headingText) return label;
+      return `${label}: ${headingText}`;
+    }
+    function createTooltip(label) {
+      const tooltip = document.createElement('span');
+      const tooltipIcon = document.createElement('span');
+      const tooltipText = document.createElement('span');
+      tooltip.className = tooltipClass;
+      tooltip.setAttribute('aria-hidden', 'true');
+      tooltipIcon.className = `material-icons nsw-material-icons ${tooltipIconClass}`;
+      tooltipIcon.setAttribute('focusable', 'false');
+      tooltipIcon.setAttribute('aria-hidden', 'true');
+      tooltipIcon.textContent = 'check';
+      tooltipText.className = tooltipTextClass;
+      tooltipText.textContent = label;
+      tooltip.appendChild(tooltipIcon);
+      tooltip.appendChild(tooltipText);
+      return tooltip;
+    }
+    function ensureButtonTooltip(button, label) {
+      const existingIcon = button.querySelector(`.nsw-material-icons:not(.${tooltipIconClass})`);
+      if (existingIcon) existingIcon.classList.add(buttonIconClass);
+      if (button.querySelector(`.${tooltipClass}`)) return;
+      const tooltip = createTooltip(label);
+      const srText = button.querySelector('.sr-only');
+      button.insertBefore(tooltip, srText || null);
+    }
+    function createCopyButton(headingId, headingText) {
+      const button = document.createElement('button');
+      const icon = document.createElement('span');
+      const srText = document.createElement('span');
+      const contextualLabel = getContextualButtonLabel(buttonLabel, headingText);
+      button.type = 'button';
+      button.className = `nsw-icon-button ${buttonClass}`;
+      button.setAttribute('data-heading-id', headingId);
+      button.setAttribute(buttonHeadingTextAttr, headingText);
+      button.setAttribute('data-tooltip', buttonLabel);
+      button.setAttribute('aria-label', contextualLabel);
+      icon.className = `material-icons nsw-material-icons ${buttonIconClass}`;
+      icon.setAttribute('focusable', 'false');
+      icon.setAttribute('aria-hidden', 'true');
+      icon.textContent = 'link';
+      srText.className = 'sr-only';
+      srText.textContent = contextualLabel;
+      button.appendChild(icon);
+      button.appendChild(createTooltip(buttonLabel));
+      button.appendChild(srText);
+      return button;
+    }
+    function getHeadingUrl(headingId) {
+      const currentUrl = new URL(window.location.href);
+      currentUrl.hash = headingId;
+      return currentUrl.toString();
+    }
+    function setButtonLabel(button, label) {
+      const headingText = button.getAttribute(buttonHeadingTextAttr);
+      const contextualLabel = getContextualButtonLabel(label, headingText);
+      const srText = button.querySelector('.sr-only');
+      const tooltipText = button.querySelector(`.${tooltipTextClass}`);
+      button.setAttribute('data-tooltip', label);
+      button.setAttribute('aria-label', contextualLabel);
+      if (tooltipText) tooltipText.textContent = label;
+      if (srText) srText.textContent = contextualLabel;
+    }
+    function resetCopiedLabel(button) {
+      const existingTimeout = buttonResetTimeouts.get(button);
+      if (existingTimeout) window.clearTimeout(existingTimeout);
+      const existingRestoreTimeout = buttonLabelRestoreTimeouts.get(button);
+      if (existingRestoreTimeout) window.clearTimeout(existingRestoreTimeout);
+      const timeoutId = window.setTimeout(() => {
+        button.classList.add(buttonTooltipHiddenClass);
+
+        // Wait for tooltip fade-out to finish before restoring default state.
+        const restoreTimeoutId = window.setTimeout(() => {
+          button.classList.remove(buttonCopiedClass);
+          setButtonLabel(button, buttonLabel);
+        }, tooltipFadeDuration);
+        buttonLabelRestoreTimeouts.set(button, restoreTimeoutId);
+      }, copiedMessageDuration);
+      buttonResetTimeouts.set(button, timeoutId);
+    }
+    function handleCopyClick(event) {
+      const button = event.currentTarget;
+      const headingId = button.getAttribute('data-heading-id');
+      if (!headingId) return;
+      const anchorUrl = getHeadingUrl(headingId);
+      copyToClipboard(anchorUrl).then(copied => {
+        if (!copied) return;
+        button.classList.remove(buttonTooltipHiddenClass);
+        setButtonLabel(button, buttonCopiedLabel);
+        button.classList.add(buttonCopiedClass);
+        resetCopiedLabel(button);
+      });
+    }
+    function bindButton(button, headingId, headingText) {
+      button.setAttribute('data-heading-id', headingId);
+      button.setAttribute(buttonHeadingTextAttr, headingText);
+      ensureButtonTooltip(button, buttonLabel);
+      setButtonLabel(button, buttonLabel);
+      if (button.getAttribute(buttonBoundAttr) === '1') return;
+      button.addEventListener('click', handleCopyClick);
+      button.addEventListener('mouseleave', () => {
+        button.classList.remove(buttonTooltipHiddenClass);
+      });
+      button.addEventListener('focus', () => {
+        button.classList.remove(buttonTooltipHiddenClass);
+      });
+      button.setAttribute(buttonBoundAttr, '1');
+    }
+    function getExistingHeadingButton(heading) {
+      const children = heading.children || [];
+      for (let i = 0; i < children.length; i += 1) {
+        const child = children[i];
+        if (child.classList && child.classList.contains(buttonClass)) {
+          return child;
+        }
+      }
+      const nextElement = heading.nextElementSibling;
+      if (nextElement && nextElement.classList && nextElement.classList.contains(buttonClass)) {
+        return nextElement;
+      }
+      return null;
+    }
+    function getHeadingWrapper(heading) {
+      const parent = heading.parentElement;
+      if (parent && parent.classList && parent.classList.contains(headingWrapperClass)) {
+        return parent;
+      }
+      const wrapper = document.createElement('div');
+      wrapper.className = headingWrapperClass;
+      heading.parentNode.insertBefore(wrapper, heading);
+      wrapper.appendChild(heading);
+      return wrapper;
+    }
+    function enhanceHeading(heading, usedIds) {
+      const headingId = ensureHeadingId(heading, usedIds);
+      const headingText = getHeadingText(heading);
+      const existingButton = getExistingHeadingButton(heading);
+      const wrapper = getHeadingWrapper(heading);
+      heading.classList.remove(headingWrapperClass);
+      heading.classList.add(headingClass);
+      if (existingButton) {
+        wrapper.appendChild(existingButton);
+        bindButton(existingButton, headingId, headingText);
+        heading.setAttribute(headingInitAttr, '1');
+        return;
+      }
+      const button = createCopyButton(headingId, headingText);
+      bindButton(button, headingId, headingText);
+      wrapper.appendChild(button);
+      heading.setAttribute(headingInitAttr, '1');
+    }
+    function headingLinks() {
+      if (!hasDocument) return;
+      const roots = getConfiguredRoots();
+      if (!roots.length) return;
+      const usedIds = getUsedIds();
+      roots.forEach(root => {
+        const headings = root.querySelectorAll(headingSelector);
+        headings.forEach(heading => {
+          if (heading.getAttribute(headingInitAttr) === '1') return;
+          enhanceHeading(heading, usedIds);
+        });
+      });
     }
 
     /* eslint-disable max-len */
@@ -7053,9 +7340,8 @@
       const toggletip = document.querySelectorAll('.js-toggletip');
       const tooltip = document.querySelectorAll('.js-tooltip');
       const utilityList = document.querySelectorAll('.js-utility-list');
-
-      // Sticky container initialisation
       stickyContainer();
+      headingLinks();
       if (jsAccordions) {
         jsAccordions.forEach(element => {
           new Accordion(element).init();

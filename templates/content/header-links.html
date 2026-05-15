@@ -14,7 +14,7 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-P2NKBBJZ');</script>
   
-  <title>Content page - Side nav - NSW Digital Design System</title>
+  <title>Content page - Header links - NSW Digital Design System</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -139,7 +139,7 @@
       </a>    </li>
   </ul>
 </nav>
-<div class="nsw-container nsw-p-bottom-xs">
+<div class="nsw-container nsw-p-bottom-md">
   <nav aria-label="Breadcrumbs" class="nsw-breadcrumbs js-breadcrumbs">
     <ol>
         <li>
@@ -161,8 +161,22 @@
   </nav>
 </div>
 
-<div class="nsw-container nsw-p-top-sm nsw-p-bottom-lg">
-  <div class="nsw-layout">
+<div class="nsw-hero-banner nsw-hero-banner--dark nsw-hero-banner--wide">
+  <div class="nsw-hero-banner__container">
+    <div class="nsw-hero-banner__wrapper">
+      <div class="nsw-hero-banner__content">
+        <h1>Applying the NSW Design System</h1>
+        <p class="nsw-intro">Use this page to test heading-link behavior while validating implementation guidance across left and right sidebar content patterns.</p>
+      </div>
+      <div class="nsw-hero-banner__box">
+        <img class="nsw-hero-banner__image" src="https://picsum.photos/id/1042/1600/900" alt="" />
+      </div>
+    </div>
+  </div>
+</div>
+
+<main id="content" class="nsw-container nsw-p-top-md nsw-p-bottom-lg">
+  <section class="nsw-layout">
     <div class="nsw-layout__sidebar js-side-nav">
       <nav class="nsw-side-nav js-side-nav" aria-labelledby="sksm7sss26ns">
         <button class="nsw-side-nav__toggle" aria-expanded="false">
@@ -204,142 +218,60 @@
         </ul>
       </nav>
     </div>
-    <main id="content" class="nsw-layout__main js-copy-headings">
-      <div class="nsw-block">
-        <h1>Content design</h1>
-        <p class="nsw-intro">Content designers create patterns of content to guide the user and help them achieve their goal.</p>
+    <div id="content-left" class="nsw-layout__main">
+      <div class="nsw-block js-copy-headings">
+        <h2>Plan your implementation approach</h2>
+        <p>Start by selecting the template structure that best matches your service journey. The NSW Design System is most effective when teams map component choices to user needs, rather than assembling pages from isolated UI elements.</p>
+        <p>For content-heavy pages, a left sidebar can improve wayfinding by keeping section navigation visible while users scan long guidance and policy material.</p>
+        <p>During implementation, keep headings explicit and task-oriented so users can quickly understand page structure and share direct links to relevant sections.</p>
+
+        <h2 id="left-with-existing-id">Use existing anchors for stable references</h2>
+        <p>Where headings already include an ID, those anchors should be preserved to avoid breaking shared links in support documentation, onboarding guides and service manuals.</p>
+        <p>This is especially important for agencies that publish release notes or operational runbooks that are referenced across multiple teams.</p>
+        <p>Verify that copied links always resolve to the authored anchor and continue working after future content updates.</p>
+
+        <h2>Generate anchors when none are provided</h2>
+        <p>When an ID is missing, the heading-link script can generate one automatically so teams still get shareable section links without additional authoring overhead.</p>
+        <p>Generated IDs should remain readable and unique, even when headings have similar names, to support reliable linking and analytics tracking.</p>
+        <p>This approach reduces manual content maintenance while keeping user-facing behavior consistent across templates.</p>
       </div>
+    </div>
+  </section>
 
-      <nav class="nsw-in-page-nav" aria-labelledby="in-page-nav">
-        <div id="in-page-nav" class="nsw-in-page-nav__title">On this page</div>
-        <ul>
-          <li>
-            <a href="#ways-of-working">Ways of working</a>
-          </li>
-          <li>
-            <a href="#core-skills">Core skills</a>
-          </li>
-          <li>
-            <a href="#content-design-for-transactions">Content design for transactions</a>
-          </li>
-        </ul>
-      </nav>
+  <hr class="nsw-section-break nsw-m-top-lg nsw-m-bottom-md">
 
-      <div class="nsw-block">
-        <h2 id="ways-of-working">Ways of working</h2>
-        <p>Content design is not copy writing. It may not even be about writing a lot of words. It’s a way of working that starts with the problem you need to resolve for users.</p>
+  <section class="nsw-layout">
+    <div id="content-right" class="nsw-layout__main">
+      <div class="nsw-grid nsw-align-items-start">
+        <div class="nsw-col nsw-col-md-8">
+          <div class="nsw-block js-copy-headings">
+            <h2>Apply guidance in a right sidebar layout</h2>
+            <p>A right sidebar works well when the main content flow should remain dominant and supplementary tools, references or actions sit alongside as secondary information.</p>
+            <p>Use this pattern for implementation pages that combine narrative guidance with quick links, examples or downloadable assets.</p>
+            <p>Heading-link behavior should remain predictable here, regardless of how the content column width changes across breakpoints.</p>
 
-        <h3>Building relationships</h3>
-        <p>Work with others to understand the problem you need to address on behalf of the user. Other people in your team may already be doing that.</p>
-        <p>A content person comes in many guises and you may not be a part of the <a href="#">multidisciplinary product team</a>. While you're gathering evidence about the user, try to build relationships across that product team.</p>
-      </div>
+            <h2 id="right-with-existing-id">Maintain reliable deep links</h2>
+            <p>Persistent anchors support collaboration between design, content and engineering teams by allowing precise references to implementation decisions.</p>
+            <p>This is useful in backlog tickets, design QA notes and service readiness checklists where teams need to point to exact sections.</p>
+            <p>Confirm copied links consistently return users to the intended heading after refresh, navigation and sharing.</p>
 
-          <div class="nsw-accordion--details js-accordion-details" id="accordion-3">
-            <div class="nsw-accordion__toggle">
-              <button type="button" aria-label="Expand all sections">Expand all</button>
-              <button type="button" aria-label="Collapse all sections">Collapse all</button>
-            </div>
-            <details class="nsw-accordion__item" open id="accordion-3-item-0">
-              <summary class="nsw-accordion__title">
-                Sprint cadence or workflow
-              </summary>
-              <div class="nsw-accordion__content-wrap" id="accordion-3-item-0-panel">
-                <div class="nsw-accordion__content">
-                  <p>In your team there may already be a sprint cadence that includes content design. Become familiar with agile practices such as the Kanban wall, daily stand ups and sprint planning. Understand the user journey and their needs. Get involved in usability testing sessions and iteration.</p><p>Otherwise, the content workflow may be separate from the product team. At the very least, make sure the team has real content to use, when they’re building a prototype. Also ensure your team uses real content when it does usability testing. Attend playbacks from this testing, to know how your content needs to change.</p><p>As well as designing the user experience with product team members, a content designer works to know the facts with subject matter experts.</p>
-                </div>
-              </div>
-            </details>
-            <details class="nsw-accordion__item" id="accordion-3-item-1">
-              <summary class="nsw-accordion__title">
-                Simplifying complexity
-              </summary>
-              <div class="nsw-accordion__content-wrap" id="accordion-3-item-1-panel">
-                <div class="nsw-accordion__content">
-                  <p>Your aim from the outset is to simplify everything for the user. Your main task will be to set up a clear path for them to achieve their goal. </p><p>Start with a user story. You should create one for each piece of content, from user research. If you’re part of a multidisciplinary product team, everyone is likely to be using them as you design and build.</p><p>A user story will help you to pinpoint the user need from the outset. It puts the user front-of-mind and gives you a focus when designing and writing the content.</p><p>Next, create a structure for your page, based on the user story. Write up meaningful H2 headers to serve as signposts to help the user do what they need to do.</p>
-                </div>
-              </div>
-            </details>
-            <details class="nsw-accordion__item" id="accordion-3-item-2">
-              <summary class="nsw-accordion__title">
-                Working with subject matter experts
-              </summary>
-              <div class="nsw-accordion__content-wrap" id="accordion-3-item-2-panel">
-                <div class="nsw-accordion__content">
-                  <p>Share your way of working with your subject matter experts – in person if possible. </p><p>They're a great way of introducing your approach to a subject matter expert, which may be completely foreign to them. It will show them how you're focusing on the user, and what you're trying to solve. Ask them for feedback. Find out if there’s anything missing and if you’re on the right track.</p>
-                </div>
-              </div>
-            </details>
+            <h2>Support scalable content operations</h2>
+            <p>As teams extend the NSW Design System into more services, automatic heading anchors help keep content discoverable and easier to reference in delivery workflows.</p>
+            <p>Collision-safe generated IDs are essential when pages grow over time and headings are reordered, renamed or duplicated during iteration.</p>
+            <p>Test this section on desktop, tablet and mobile to ensure icon visibility, tooltip feedback and copy actions remain clear for all users.</p>
           </div>
-
-      <div class="nsw-block">
-        <h2 id="core-skills">Core skills</h2>
-        <p>You may have come to content design from a variety of backgrounds – such as communications, marketing, web editing, copywriting, technical writing, journalism.</p>
-
-        <h3>Plain language</h3>
-        <p>Content designers need to know the basics of <a href="#">good readability</a>. They’re aware how readers scan content. There’s a skill involved in improving content for ease of use. They will know how to create signposts for users, mix up the length of sentences and use active language. They work hard to make the meaning succinct and clear.</p>
-      </div>
-
-      <div class="nsw-callout">
-        <div class="nsw-callout__content">
-          <p class="nsw-h4">Plain language tool</p>
-          <p>Learn more about writing clear, concise, organised, and appropriate content for your intended audience using <a href='#'>plain language tools</a>.</p>
+        </div>
+        <div class="nsw-col nsw-col-md-4">
+          <div class="nsw-block">
+            <figure class="nsw-media">
+              <img src="https://picsum.photos/id/902/900/1200" alt="Working session to apply NSW Design System guidance">
+            </figure>            <p class="nsw-m-top-sm">Teams can pair implementation notes with visual examples to speed up review and maintain consistency across agency services.</p>
+          </div>
         </div>
       </div>
-
-      <div class="nsw-block">
-        <h2 id="content-design-for-transactions">Content design for transactions</h2>
-        <p>As a content designer, your task is to get the user from A to B in the transaction. </p>
-        <p>When designing content for transactions:  </p>
-        <ul>
-          <li>minimise the user’s chance of error  </li>
-          <li>maximise collaborative teamwork </li>
-          <li>balance business and user needs.  </li>
-        </ul>
-        <p>In this guide we’ve used Service NSW examples. </p>
-      </div>
-
-      <div class="nsw-tabs js-tabs">
-        <ul class="nsw-tabs__list">
-          <li><a href="#section1">Explain transaction</a></li>
-          <li><a href="#section2">Map transaction</a></li>
-          <li><a href="#section3">Signpost steps</a></li>
-        </ul>
-        <section id="section1" class="nsw-tabs__content">
-          <h3>Explain transaction</h3><p>The landing page explains the entire transaction to a user. It serves as the front door.</p></p>By having a clear guide at the start, users know where they can return to for more information, or to start again.</p>
-        </section>
-        <section id="section2" class="nsw-tabs__content">
-          <h3>Map transaction</h3><p>The start of the transaction gives the user a map – the steps to take, and what to expect afterwards. The purpose of the landing page is to give the user context. It will display on the agency site that leads to the transaction.</p><p>The user arrives at this page when they’re looking to do a transaction. They’re likely to arrive via a Google search or email link. A user should be able to find what they need to know about the transaction, and how to complete it.</p>
-        </section>
-        <section id="section3" class="nsw-tabs__content">
-          <h3>Signpost steps</h3><p>The purpose of signposting the steps is to reduce the user’s chance of error. This helps the user move through the transaction with ease. The user can scan what they need to do so they can complete their task.  </p>
-        </section>
-      </div>
-
-      <div class="nsw-link-list">
-        <div class="nsw-link-list__title">Related guides</div>
-        <ul>
-          <li>
-            <a href="#">
-              <span>User-focused content design process</span>
-              <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <span>Digital collaboration tools</span>
-              <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <span>Testing and improving guides</span>
-              <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span>
-            </a>
-          </li>
-        </ul>
-      </div>    </main>
-  </div>
-</div>
+    </div>
+  </section>
+</main>
 
 <footer class="nsw-footer">
   <div class="nsw-footer__upper">
