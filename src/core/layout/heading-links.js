@@ -1,4 +1,5 @@
-const hasWindow = typeof window !== 'undefined'
+import { copyToClipboard } from '../../global/scripts/helpers/utilities'
+
 const hasDocument = typeof document !== 'undefined'
 
 export const copyHeadingsClass = 'js-copy-headings'
@@ -157,74 +158,6 @@ function createCopyButton(headingId, headingText) {
   return button
 }
 
-function legacyCopyText(text) {
-  if (
-    hasWindow
-    && window.clipboardData
-    && typeof window.clipboardData.setData === 'function'
-  ) {
-    try {
-      return window.clipboardData.setData('Text', text)
-    } catch (error) {
-      return false
-    }
-  }
-
-  return false
-}
-
-function commandCopyText(text) {
-  if (!hasDocument || typeof document.execCommand !== 'function') return false
-
-  const textarea = document.createElement('textarea')
-  const { activeElement, body, documentElement } = document
-  const container = body || documentElement
-  let copied = false
-
-  textarea.setAttribute('readonly', '')
-  textarea.style.position = 'fixed'
-  textarea.style.top = '0'
-  textarea.style.left = '-9999px'
-  textarea.style.opacity = '0'
-
-  container.appendChild(textarea)
-  textarea.value = text
-  textarea.select()
-  textarea.setSelectionRange(0, textarea.value.length)
-
-  try {
-    copied = document.execCommand('copy')
-  } catch (error) {
-    copied = false
-  } finally {
-    container.removeChild(textarea)
-    if (activeElement && typeof activeElement.focus === 'function') {
-      try {
-        activeElement.focus({ preventScroll: true })
-      } catch (error) {
-        activeElement.focus()
-      }
-    }
-  }
-
-  return copied
-}
-
-function copyText(text) {
-  if (
-    hasWindow
-    && window.navigator
-    && window.navigator.clipboard
-    && window.isSecureContext
-  ) {
-    return window.navigator.clipboard.writeText(text)
-      .then(() => true)
-      .catch(() => commandCopyText(text) || legacyCopyText(text))
-  }
-
-  return Promise.resolve(commandCopyText(text) || legacyCopyText(text))
-}
-
 function getHeadingUrl(headingId) {
   const currentUrl = new URL(window.location.href)
   currentUrl.hash = headingId
@@ -270,7 +203,7 @@ function handleCopyClick(event) {
   if (!headingId) return
 
   const anchorUrl = getHeadingUrl(headingId)
-  copyText(anchorUrl).then((copied) => {
+  copyToClipboard(anchorUrl).then((copied) => {
     if (!copied) return
     button.classList.remove(buttonTooltipHiddenClass)
     setButtonLabel(button, buttonCopiedLabel)

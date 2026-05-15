@@ -1,6 +1,83 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { v4 as uuidv4 } from 'uuid'
 
+const hasWindow = typeof window !== 'undefined'
+const hasDocument = typeof document !== 'undefined'
+
+const legacyCopyText = (text) => {
+  if (
+    hasWindow
+    && window.clipboardData
+    && typeof window.clipboardData.setData === 'function'
+  ) {
+    try {
+      return window.clipboardData.setData('Text', text)
+    } catch (error) {
+      return false
+    }
+  }
+
+  return false
+}
+
+const commandCopyText = (text) => {
+  if (!hasDocument || typeof document.execCommand !== 'function') return false
+
+  const textarea = document.createElement('textarea')
+  const { activeElement, body, documentElement } = document
+  const container = body || documentElement
+  let copied = false
+
+  if (!container) return false
+
+  textarea.value = text
+  textarea.setAttribute('readonly', '')
+  textarea.style.position = 'fixed'
+  textarea.style.top = '0'
+  textarea.style.left = '-9999px'
+  textarea.style.opacity = '0'
+
+  container.appendChild(textarea)
+
+  try {
+    textarea.select()
+    if (typeof textarea.setSelectionRange === 'function') {
+      textarea.setSelectionRange(0, textarea.value.length)
+    }
+    copied = document.execCommand('copy')
+  } catch (error) {
+    copied = false
+  } finally {
+    container.removeChild(textarea)
+    if (activeElement && typeof activeElement.focus === 'function') {
+      try {
+        activeElement.focus({ preventScroll: true })
+      } catch (error) {
+        activeElement.focus()
+      }
+    }
+  }
+
+  return copied
+}
+
+export const copyToClipboard = (text) => {
+  const copyText = String(text)
+
+  if (
+    hasWindow
+    && window.navigator
+    && window.navigator.clipboard
+    && window.isSecureContext
+  ) {
+    return window.navigator.clipboard.writeText(copyText)
+      .then(() => true)
+      .catch(() => commandCopyText(copyText) || legacyCopyText(copyText))
+  }
+
+  return Promise.resolve(commandCopyText(copyText) || legacyCopyText(copyText))
+}
+
 export const uniqueId = (prefix) => {
   const prefixValue = (prefix === undefined ? 'nsw' : prefix)
   const uuid = uuidv4()
