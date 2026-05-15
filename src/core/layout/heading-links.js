@@ -1,6 +1,7 @@
 import { copyToClipboard } from '../../global/scripts/helpers/utilities'
 
-const hasDocument = typeof document !== 'undefined'
+const hasWindow = typeof window !== 'undefined'
+const hasDocument = typeof document !== 'undefined' && hasWindow
 
 export const copyHeadingsClass = 'js-copy-headings'
 
