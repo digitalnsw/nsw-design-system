@@ -30,7 +30,6 @@ const commandCopyText = (text) => {
 
   if (!container) return false
 
-  textarea.value = text
   textarea.setAttribute('readonly', '')
   textarea.style.position = 'fixed'
   textarea.style.top = '0'
@@ -38,6 +37,8 @@ const commandCopyText = (text) => {
   textarea.style.opacity = '0'
 
   container.appendChild(textarea)
+  // Keep untrusted clipboard text out of the DOM construction step.
+  textarea.value = text
 
   try {
     textarea.select()

@@ -21,6 +21,7 @@ const activeElement = {
 }
 const body = {
   appendChild(element) {
+    assert.strictEqual(element.value, '')
     appendedElement = element
   },
   removeChild(element) {
