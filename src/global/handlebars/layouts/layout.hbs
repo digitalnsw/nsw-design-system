@@ -62,7 +62,28 @@
     {{else}}
     <div class="nsw-docs__content">
       <div class="nsw-docs__container">
+      {{#if home}}
+        <div class="nsw-docs__body">
 {{{contents}}}
+        </div>
+      {{else}}
+      {{#with (docs-side-nav-model collections path)}}
+        <div class="nsw-layout nsw-docs__layout">
+          <div class="nsw-layout__sidebar nsw-layout__sidebar--desktop">
+            {{>_side-nav this}}
+          </div>
+          <div class="nsw-layout__main">
+            <div class="nsw-docs__body">
+{{{../contents}}}
+            </div>
+          </div>
+        </div>
+      {{else}}
+        <div class="nsw-docs__body">
+{{{contents}}}
+        </div>
+      {{/with}}
+      {{/if}}
       </div>
     </div>
     {{/if}}

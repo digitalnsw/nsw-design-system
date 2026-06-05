@@ -106,8 +106,13 @@
   @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
     &__intro .nsw-docs__container > :is(h1, h2, h3, h4, h5, h6, p, ul, ol, dl, blockquote, table, .nsw-table, pre, hr, .nsw-docs__external, .nsw-in-page-alert),
     &__content > .nsw-docs__container > :is(h1, h2, h3, h4, h5, h6, p, ul, ol, dl, blockquote, table, .nsw-table, pre, hr, .nsw-docs__external, .nsw-in-page-alert),
+    &__content > .nsw-docs__container > .nsw-docs__body > :is(h1, h2, h3, h4, h5, h6, p, ul, ol, dl, blockquote, table, .nsw-table, pre, hr, .nsw-docs__external, .nsw-in-page-alert),
     .nsw-docs-tabs__guidance .nsw-docs__container > :is(h1, h2, h3, h4, h5, h6, p, ul, ol, dl, blockquote, table, .nsw-table, pre, hr, .nsw-docs__external, .nsw-in-page-alert) {
       max-width: var(--nsw-docs-text-body-width);
+    }
+
+    .nsw-layout__main > .nsw-docs__body > :is(h1, h2, h3, h4, h5, h6, p, ul, ol, dl, blockquote, table, .nsw-table, pre, hr, .nsw-docs__external, .nsw-in-page-alert) {
+      max-width: none;
     }
   }
 
@@ -209,6 +214,14 @@
     @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
       padding: nsw.rem(48px) nsw.rem(16px);
     }
+  }
+
+  &__layout {
+    row-gap: nsw.rem(32px);
+  }
+
+  &__body {
+    width: 100%;
   }
 
   &__example {
