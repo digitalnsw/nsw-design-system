@@ -220,6 +220,16 @@
     row-gap: nsw.rem(32px);
   }
 
+  &__side-nav {
+    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+      align-self: flex-start;
+      max-height: calc(100vh - #{nsw.rem(64px)});
+      overflow-y: auto;
+      position: sticky;
+      top: nsw.rem(32px);
+    }
+  }
+
   &__body {
     width: 100%;
   }
