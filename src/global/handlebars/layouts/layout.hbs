@@ -55,7 +55,22 @@
     {{>_docs-intro}}
     {{/unless}}
     {{#if tabs}}
+    {{#with (docs-side-nav-model collections path)}}
+    <div class="nsw-docs__content nsw-docs__content--tabs">
+      <div class="nsw-docs__container">
+        <div class="nsw-layout nsw-docs__layout nsw-docs__layout--tabs">
+          <div class="nsw-layout__sidebar nsw-layout__sidebar--desktop nsw-docs__side-nav">
+            {{>_side-nav this}}
+          </div>
+          <div class="nsw-layout__main">
+{{>_docs-tabs ..}}
+          </div>
+        </div>
+      </div>
+    </div>
+    {{else}}
 {{>_docs-tabs}}
+    {{/with}}
     {{else}}
     {{#if home_full_width}}
 {{{contents}}}
