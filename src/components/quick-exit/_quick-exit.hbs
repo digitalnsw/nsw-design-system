@@ -3,7 +3,10 @@
   href="{{#if safeUrl}}{{safeUrl}}{{else}}https://www.google.com/webhp{{/if}}"
   data-options='{
     "enableEsc": {{#if-equals enableEsc false}}false{{else}}true{{/if-equals}},
-    "enableCloak": {{#if-equals enableCloak false}}false{{else}}true{{/if-equals}}
+    "enableCloak": {{#if-equals enableCloak false}}false{{else}}true{{/if-equals}},
+    "enableHistoryMask": {{#if-equals enableHistoryMask false}}false{{else}}true{{/if-equals}},
+    "historyMaskUrl": "{{#if historyMaskUrl}}{{historyMaskUrl}}{{else}}/{{/if}}",
+    "historyMaskTitle": "{{#if historyMaskTitle}}{{historyMaskTitle}}{{else}}NSW Government{{/if}}"
   }'
   rel="nofollow noopener"
   id="nsw-quick-exit"
