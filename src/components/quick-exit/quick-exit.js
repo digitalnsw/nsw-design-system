@@ -8,11 +8,13 @@ import { validateUrl } from '../../global/scripts/helpers/utilities'
  * - Looks for a manually-authored element inside the sticky container and enhances it.
  * - If initialised programmatically and no element exists, creates one and appends it to the sticky container.
  * - Primary action is an <a> so it works without JS; JS enhances to navigate to the safe URL in the current tab.
- * - Optional progressive features: double-Esc, auto-focus first, URL sanitisation, history masking.
+ * - Optional progressive features: double-Esc, auto-focus first, URL sanitisation, page title update.
  */
 /** internal no-op to satisfy lint when intentionally swallowing errors */
 
 function ignoreError() {}
+
+const DEFAULT_PAGE_TITLE = 'NSW Government'
 
 // Helpers shared by QuickExit keyboard behaviour
 function quickExitIsEditable(el) {
@@ -52,9 +54,7 @@ export default class QuickExit {
       description = 'Leave quickly using this banner or press <kbd aria-label="Escape key">Esc</kbd> 2 times.',
       enableEsc = true,
       enableCloak = true,
-      enableHistoryMask = true,
-      historyMaskUrl = '/',
-      historyMaskTitle = 'NSW Government',
+      pageTitle = DEFAULT_PAGE_TITLE,
       focusFirst = true,
     } = {},
   ) {
@@ -107,9 +107,7 @@ export default class QuickExit {
       safeUrl: safeURLValidated,
       enableEsc,
       enableCloak,
-      enableHistoryMask,
-      historyMaskUrl,
-      historyMaskTitle,
+      pageTitle,
       focusFirst,
     })
   }
@@ -166,9 +164,7 @@ export default class QuickExit {
       safeUrl,
       enableEsc,
       enableCloak,
-      enableHistoryMask,
-      historyMaskUrl,
-      historyMaskTitle,
+      pageTitle,
       focusFirst,
     },
   ) {
@@ -231,12 +227,7 @@ export default class QuickExit {
 
       if (enableCloak) QuickExit.applyCloak()
 
-      if (enableHistoryMask) {
-        QuickExit.applyHistoryMask({
-          historyMaskUrl,
-          historyMaskTitle,
-        })
-      }
+      QuickExit.updatePageTitle(pageTitle)
 
       try {
         window.location.assign(safeURLValidated)
@@ -331,40 +322,11 @@ export default class QuickExit {
     }
   }
 
-  static normaliseHistoryMaskUrl(raw = '/') {
+  static updatePageTitle(pageTitle = DEFAULT_PAGE_TITLE) {
     try {
-      if (typeof window === 'undefined' || !window.location) return null
+      if (typeof document === 'undefined' || !pageTitle) return
 
-      const candidate = raw || '/'
-      const url = new URL(candidate, window.location.href)
-
-      if (url.origin !== window.location.origin) return null
-      if (url.protocol !== 'http:' && url.protocol !== 'https:') return null
-
-      return `${url.pathname}${url.search}${url.hash}`
-    } catch (err) {
-      ignoreError(err)
-      return null
-    }
-  }
-
-  static applyHistoryMask({
-    historyMaskUrl = '/',
-    historyMaskTitle = 'NSW Government',
-  } = {}) {
-    try {
-      if (typeof window === 'undefined' || !window.history || !window.history.replaceState) return
-
-      const maskUrl = QuickExit.normaliseHistoryMaskUrl(historyMaskUrl)
-      if (!maskUrl) return
-
-      const maskTitle = historyMaskTitle ? String(historyMaskTitle) : ''
-
-      if (typeof document !== 'undefined' && maskTitle) {
-        document.title = maskTitle
-      }
-
-      window.history.replaceState(window.history.state, maskTitle, maskUrl)
+      document.title = String(pageTitle)
     } catch (err) {
       ignoreError(err)
     }
@@ -450,9 +412,7 @@ export default class QuickExit {
         safeUrl: href,
         enableEsc: (typeof opts.enableEsc === 'boolean') ? opts.enableEsc : true,
         enableCloak: (typeof opts.enableCloak === 'boolean') ? opts.enableCloak : true,
-        enableHistoryMask: (typeof opts.enableHistoryMask === 'boolean') ? opts.enableHistoryMask : true,
-        historyMaskUrl: (typeof opts.historyMaskUrl === 'string') ? opts.historyMaskUrl : '/',
-        historyMaskTitle: (typeof opts.historyMaskTitle === 'string') ? opts.historyMaskTitle : 'NSW Government',
+        pageTitle: (typeof opts.pageTitle === 'string') ? opts.pageTitle : DEFAULT_PAGE_TITLE,
         focusFirst: true,
       })
       // Removed per instructions

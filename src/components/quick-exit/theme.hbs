@@ -9,7 +9,7 @@ model:  json/quick-exit.json
 <h3>Quick exit feature</h3>
 <ul class="nsw-m-bottom-md">
 <li>Cloaks page immediately on activation</li>
-<li>Replaces the current history entry with the same-origin home page and neutral page title before navigating to the Safe URL</li>
+<li>Updates the page title to a neutral value before navigating to the Safe URL</li>
 </ul>
 
 <button class="nsw-button nsw-button--dark" data-module="quick-exit" type="button">View banner</button>
@@ -27,9 +27,7 @@ model:  json/quick-exit.json
           description: "{{{model.qe-description}}}",
           enableEsc: true,
           enableCloak: true,
-          enableHistoryMask: true,
-          historyMaskUrl: "{{model.historyMaskUrl}}",
-          historyMaskTitle: "{{model.historyMaskTitle}}"
+          pageTitle: "{{model.pageTitle}}"
         });
 
       });
