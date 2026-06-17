@@ -42,6 +42,10 @@ class Select {
     this.checkboxLabelClass = 'form__checkbox-label'
     this.checkboxInputClass = 'form__checkbox-input'
     this.liveRegionClass = `${this.class}__status`
+    // Allow max-height to be set via data attribute (numeric vh value, 1–100), otherwise it will default to available viewport space
+    const maxHeightAttr = this.element.getAttribute('data-multi-select-max-height');
+    const maxHeight = maxHeightAttr && parseFloat(maxHeightAttr)
+    this.maxHeight = Number.isFinite(maxHeight) ? maxHeight : null
   }
 
   init() {
@@ -140,8 +144,8 @@ class Select {
     const moveUp = (window.innerHeight - bottom) < top
     this.dropdown.classList.toggle(`${this.prefix}${this.dropdownClass}--up`, moveUp)
     const maxHeight = moveUp ? top - 20 : window.innerHeight - bottom - 20
-    const vhCalc = Math.ceil((100 * maxHeight) / window.innerHeight)
-    this.dropdown.setAttribute('style', `max-height: ${vhCalc}vh;`)
+    const vhCalc = this.maxHeight ? this.maxHeight : Math.ceil((100 * maxHeight) / window.innerHeight)
+    this.dropdown.style.maxHeight = `${vhCalc}vh`
   }
 
   keyboardCustomSelect(direction, event) {
