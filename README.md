@@ -137,13 +137,13 @@ Get notified when there’s an update or new release on the NSW Design System's 
 
 * Join our [NSW Design System Community](https://community.designsystem.nsw.gov.au/).
 
-* Watch the [NSW Design System Github](https://github.com/digitalnsw/nsw-design-system).
+* Watch the [NSW Design System GitHub](https://github.com/digitalnsw/nsw-design-system).
 
 * Ask and explore [our GitHub Discussions](https://github.com/digitalnsw/nsw-design-system/discussions).
 
 ## Report an issue
 
-View and raise issues and bugs through our [Issues tracker on Github](https://github.com/digitalnsw/nsw-design-system/issues) or [report a bug on the NSW Design System Community](https://community.designsystem.nsw.gov.au/c/components/report-a-bug/27).
+View and raise issues and bugs through our [Issues tracker on GitHub](https://github.com/digitalnsw/nsw-design-system/issues) or [report a bug on the NSW Design System Community](https://community.designsystem.nsw.gov.au/c/components/report-a-bug/27).
 
 ## Design System Figma UI Kit
 
