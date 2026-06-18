@@ -29,7 +29,7 @@ Wherever you are, and whatever your discipline is, you are invited to contribute
 
 ## Contributing a new component
 
-The NSW Design System was created for you as a toolkit of style, patterns, standards and guidance for everyone creating distinctly NSW digital products and services. We are the caretakers and publishers of the design system. To help us with the up keep we need a few things from newly proposed component contributions. One of our goals is to ensure a welcoming environment for all contributors to our projects. If you’re unsure about anything, just ask us via the Digital NSW Community where the entire team will engage with you. 
+The NSW Design System was created for you as a toolkit of style, patterns, standards and guidance for everyone creating distinctly NSW digital products and services. We are the caretakers and publishers of the design system. To help us with the up keep we need a few things from newly proposed component contributions. One of our goals is to ensure a welcoming environment for all contributors to our projects. If you’re unsure about anything, just ask us via the NSW Design System Community where the entire team will engage with you. 
 
 We appreciate all well intended contributions.
 
@@ -176,11 +176,11 @@ Provide rationale; the more the better. We aim to explain design and code decisi
 
 ## Reporting Bugs, Asking Questions, Sending Suggestions
 
-Sign up to the [Digital NSW Community](https://community.digital.nsw.gov.au/) to get started.  Once signed up, you will be able to raise bugs, suggest patterns and generally contribute to the Design System as a whole. 
+Sign up to the [NSW Design System Community](https://community.designsystem.nsw.gov.au/) to get started.  Once signed up, you will be able to raise bugs, suggest patterns and generally contribute to the Design System as a whole. 
 
-For issues and bugs, Search our issues tracker on Github to see if the same bug has already been raised.  If not, raise the bug directly in the [Report a bug](https://community.digital.nsw.gov.au/c/components/report-a-bug/27) section of the community platform. Please provide specific steps to reproduce the bug and what your expected behaviour is.
+For issues and bugs, Search our issues tracker on Github to see if the same bug has already been raised.  If not, raise the bug directly in the [Report a bug](https://community.designsystem.nsw.gov.au/c/components/report-a-bug/27) section of the community platform. Please provide specific steps to reproduce the bug and what your expected behaviour is.
 
-You can also suggest a pattern via the Digital NSW Community platform in [Suggest a pattern](https://community.digital.nsw.gov.au/c/components/suggest-a-component/9). 
+You can also suggest a pattern via the NSW Design System Community platform in [Suggest a pattern](https://community.designsystem.nsw.gov.au/c/components/suggest-a-component/9). 
 
 
 -------------------------------------------------------------------------------------------------
