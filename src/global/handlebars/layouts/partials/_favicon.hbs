@@ -1,0 +1,21 @@
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" data-favicon-active />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" media="(prefers-color-scheme: light)" />
+  <link rel="icon" type="image/svg+xml" href="/favicon-dark.svg" media="(prefers-color-scheme: dark)" />
+  <script>
+    (function () {
+      var media = window.matchMedia("(prefers-color-scheme: dark)");
+      var setFavicon = function () {
+        var favicon = document.querySelector("link[data-favicon-active]");
+        if (!favicon) return;
+        favicon.href = media.matches ? "/favicon-dark-96x96.png" : "/favicon-96x96.png";
+      };
+
+      setFavicon();
+
+      if (media.addEventListener) {
+        media.addEventListener("change", setFavicon);
+      } else if (media.addListener) {
+        media.addListener(setFavicon);
+      }
+    })();
+  </script>
