@@ -10,7 +10,7 @@
     {{#each items}}
     <li{{#if active}} class="active"{{/if}}>
       <a href="{{url}}">
-        <span>{{text}}</span>
+        <span>{{text}}</span>{{#if brand}}<span class="nsw-brand">&#128313;</span>{{/if}}
         {{#if sub-nav}}
         <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_right</span>
         {{/if}}
@@ -31,8 +31,7 @@
 
         <div class="nsw-main-nav__title">
           <a href="{{url}}">
-            <span>{{text}}</span>
-            <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span>
+            <span>{{text}}</span>{{#if brand}}<span class="nsw-brand">&#128313;</span>{{/if}}
           </a>
         </div>
 
@@ -42,7 +41,7 @@
           {{#each sub-nav}}
           <li>
             <a href="{{url}}">
-              <span>{{text}}</span>
+              <span>{{text}}</span>{{#if brand}}<span class="nsw-brand">&#128313;</span>{{/if}}
               {{#if sub-nav}}
               <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_right</span>
               {{/if}}
@@ -62,14 +61,14 @@
               </div>
 
               <div class="nsw-main-nav__title">
-                <a href="{{url}}"><span>{{text}}</span></a>
+                <a href="{{url}}"><span>{{text}}</span>{{#if brand}}<span class="nsw-brand">&#128313;</span>{{/if}}</a>
               </div>
 
               <ul class="nsw-main-nav__sub-list">
                 {{#each sub-nav}}
                 <li>
                   <a href="{{url}}">
-                    <span>{{text}}</span>
+                    <span>{{text}}</span>{{#if brand}}<span class="nsw-brand">&#128313;</span>{{/if}}
                     {{#if sub-nav}}
                     <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_right</span>
                     {{/if}}
