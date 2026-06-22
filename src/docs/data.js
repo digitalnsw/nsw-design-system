@@ -168,6 +168,12 @@ const searchValues = [
     url: '/components/results-bar/index.html',
   },
   {
+    label: 'Show more',
+    template: 'result',
+    keywords: 'disclosure, show less, read more, read less, expand, collapse, progressive disclosure, supplementary content, optional details',
+    url: '/components/show-more/index.html',
+  },
+  {
     label: 'Side navigation',
     template: 'result',
     keywords: 'hierarchy, Single, Multiple, level, nesting, nav',

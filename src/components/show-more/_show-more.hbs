@@ -1,0 +1,17 @@
+<div class="nsw-show-more{{#if modifier}} nsw-show-more--{{modifier}}{{/if}}"{{#if id}} id="{{id}}"{{/if}}>
+  {{#if summary}}
+  <div class="nsw-show-more__summary">
+    {{{summary}}}
+  </div>
+  {{/if}}
+  <details class="nsw-show-more__details"{{#if open}} open{{/if}}>
+    <summary class="nsw-show-more__toggle">
+      <span class="nsw-show-more__toggle-text nsw-show-more__toggle-text--show">{{#if showText}}{{showText}}{{else}}Show more{{/if}}</span>
+      <span class="nsw-show-more__toggle-text nsw-show-more__toggle-text--hide">{{#if hideText}}{{hideText}}{{else}}Show less{{/if}}</span>{{#if context}}<span class="sr-only"> {{context}}</span>{{/if}}
+      <span class="material-icons nsw-material-icons nsw-show-more__icon" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
+    </summary>
+    <div class="nsw-show-more__content">
+      {{{content}}}
+    </div>
+  </details>
+</div>
