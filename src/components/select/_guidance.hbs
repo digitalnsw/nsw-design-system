@@ -4,7 +4,7 @@ layout: blank-layout.hbs
 ---
 
 <h2>Usage</h2>
-<p>A select field, also referred to as a dropdown, allows users to select single or multiple items from a list of available options. Consider dropdowns when the options exceed 8, or where it is not feasible to list all options as checkboxes or radio buttons. When using multislect, ensure you make it clear to the user that more than one option can be selected.</p>
+<p>A select field, also referred to as a dropdown, allows users to select single or multiple items from a list of available options. Consider dropdowns when the options exceed 8, or where it is not feasible to list all options as checkboxes or radio buttons. When using multi-select, ensure you make it clear to the user that more than one option can be selected.</p>
 
 <p>Do:</p>
 
@@ -25,6 +25,11 @@ layout: blank-layout.hbs
 
 <h3>Error messages</h3>
 <p>Error messages inform the user when there is an issue with the data they have input. Provide helpful error messages to clearly explain to the user what the issue is and how they can effectively address the errors.</p>
+
+<h3>Maximum dropdown height</h3>
+<p>By default, the multi-select dropdown calculates its maximum height from the available viewport space above or below the select field. For long option lists, add the <code>data-multi-select-max-height</code> attribute to the multi-select wrapper element, the element with <code>js-multi-select</code>, or pass <code>multi-select-max-height</code> into the <code>_select</code> Handlebars partial to set an upper limit.</p>
+
+<p>The value must be a number from 1 to 100 and is treated as a viewport height percentage. For example, <code>data-multi-select-max-height="45"</code> caps the dropdown at <code>45vh</code>. The component still uses the available viewport space when it is smaller than the configured value, so the configured value is a cap rather than a forced height.</p>
 
 <h2>Accessibility</h2>
 <p>All components are responsive and designed to comply with WCAG 2.2 AA accessibility standards. Full compliance depends on using and configuring the components correctly.</p>
