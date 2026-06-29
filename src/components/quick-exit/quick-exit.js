@@ -14,6 +14,8 @@ import { validateUrl } from '../../global/scripts/helpers/utilities'
 
 function ignoreError() {}
 
+const DEFAULT_SAFE_URL = 'https://www.google.com/webhp'
+
 // Helpers shared by QuickExit keyboard behaviour
 function quickExitIsEditable(el) {
   if (!el) return false
@@ -48,14 +50,14 @@ export default class QuickExit {
    */
   static init(
     {
-      safeUrl = 'https://www.google.com/webhp',
+      safeUrl = DEFAULT_SAFE_URL,
       description = 'Leave quickly using this banner or press <kbd aria-label="Escape key">Esc</kbd> 2 times.',
       enableEsc = true,
       enableCloak = true,
       focusFirst = true,
     } = {},
   ) {
-    const safeURLValidated = validateUrl(safeUrl) || 'https://www.google.com/webhp'
+    const safeURLValidated = validateUrl(safeUrl) || DEFAULT_SAFE_URL
     const container = stickyContainer()
     if (!container) return
 
@@ -390,7 +392,7 @@ export default class QuickExit {
         }
       }
       // Use current content and attributes; just wire behaviour with sensible defaults
-      const href = existingRoot.getAttribute('href') || 'https://www.google.com/webhp'
+      const href = existingRoot.getAttribute('href') || DEFAULT_SAFE_URL
       QuickExit.enhance(existingRoot, {
         safeUrl: href,
         enableEsc: (typeof opts.enableEsc === 'boolean') ? opts.enableEsc : true,
