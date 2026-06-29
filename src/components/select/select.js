@@ -1,4 +1,6 @@
 /* eslint-disable max-len */
+import { cleanHTMLOpen } from '../../global/scripts/helpers/sanitize'
+
 class Select {
   constructor(element) {
     this.element = element
@@ -22,6 +24,13 @@ class Select {
     this.noSelectText = this.element.getAttribute('data-select-text') || 'Select'
     this.multiSelectText = this.element.getAttribute('data-multi-select-text') || '{n} items selected'
     this.nMultiSelect = this.element.getAttribute('data-n-multi-select') || 1
+    this.allText = this.element.getAttribute('data-select-all-text') || 'All'
+    this.clearAllText = this.element.getAttribute('data-clear-all-text') || 'Clear all selections'
+    this.clearAllStatusText = this.element.getAttribute('data-clear-all-status-text') || 'All selections cleared.'
+    this.optionText = this.element.getAttribute('data-multi-select-option-text') || 'option'
+    this.optionsText = this.element.getAttribute('data-multi-select-options-text') || 'options'
+    this.allSelectedText = this.element.getAttribute('data-select-all-selected-text') || 'All {n} {label} selected.'
+    this.allDeselectedText = this.element.getAttribute('data-select-all-deselected-text') || 'All {n} {label} deselected.'
     this.noUpdateLabel = this.element.getAttribute('data-update-text') && this.element.getAttribute('data-update-text') === 'off'
     this.insetLabel = this.element.getAttribute('data-inset-label') && this.element.getAttribute('data-inset-label') === 'on'
     this.hideClass = 'nsw-display-none'
@@ -182,10 +191,9 @@ class Select {
       this.selectOption(option, shouldSelectAll)
     })
 
-    const optionLabel = totalEnabled === 1 ? 'option' : 'options'
-    const message = shouldSelectAll
-      ? `All ${totalEnabled} ${optionLabel} selected.`
-      : `All ${totalEnabled} ${optionLabel} deselected.`
+    const optionLabel = totalEnabled === 1 ? this.optionText : this.optionsText
+    const messageTemplate = shouldSelectAll ? this.allSelectedText : this.allDeselectedText
+    const message = messageTemplate.replace('{n}', totalEnabled).replace('{label}', optionLabel)
     this.updateLiveRegion(message)
     this.updateSelectionSummary()
   }
@@ -252,7 +260,7 @@ class Select {
     if (this.dropdown.querySelector('.nsw-multi-select__clear-all-button')) return
 
     const clearButton = document.createElement('button')
-    clearButton.textContent = 'Clear all selections'
+    clearButton.textContent = this.clearAllText
     clearButton.type = 'button'
     clearButton.setAttribute('aria-describedby', `${this.selectId}-description`)
     clearButton.className = 'nsw-multi-select__clear-all-button'
@@ -281,7 +289,7 @@ class Select {
         this.selectOption(option, false)
       }
     })
-    this.updateLiveRegion('All selections cleared.')
+    this.updateLiveRegion(this.clearAllStatusText)
     this.updateSelectionSummary()
   }
 
@@ -358,7 +366,7 @@ class Select {
   }
 
   initAllButton() {
-    return `<button class="${this.prefix}${this.allButtonClass} js-${this.allButtonClass}" aria-pressed="false"><span>All</span></button>`
+    return `<button class="${this.prefix}${this.allButtonClass} js-${this.allButtonClass}" aria-pressed="false"><span>${cleanHTMLOpen(this.allText)}</span></button>`
   }
 
   initLiveRegion() {
