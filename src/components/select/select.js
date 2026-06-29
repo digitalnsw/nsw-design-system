@@ -191,7 +191,9 @@ class Select {
 
     const optionLabel = totalEnabled === 1 ? this.optionText : this.optionsText
     const messageTemplate = shouldSelectAll ? this.allSelectedText : this.allDeselectedText
-    const message = messageTemplate.replace('{n}', totalEnabled).replace('{label}', optionLabel)
+    const message = messageTemplate
+      .replace(/\{n\}/g, String(totalEnabled))
+      .replace(/\{label\}/g, optionLabel)
     this.updateLiveRegion(message)
     this.updateSelectionSummary()
   }
