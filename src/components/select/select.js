@@ -11,7 +11,6 @@ class Select {
     this.trigger = false
     this.dropdown = false
     this.customOptions = false
-    this.list = false
     this.listScroll = false
     this.allButton = false
     this.clearAllControl = false
@@ -64,7 +63,6 @@ class Select {
     this.dropdown = this.element.querySelector(`.js-${this.dropdownClass}`)
     this.trigger = this.element.querySelector(`.js-${this.buttonClass}`)
     this.customOptions = this.dropdown.querySelectorAll(`.js-${this.optionClass}`)
-    this.list = this.dropdown.querySelector(`.js-${this.listClass}`)
     this.listScroll = this.dropdown.querySelector(`.js-${this.listScrollClass}`)
     this.allButton = this.dropdown.querySelector(`.js-${this.allButtonClass}`)
     this.initLiveRegion()
