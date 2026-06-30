@@ -14,7 +14,7 @@ import { validateUrl } from '../../global/scripts/helpers/utilities'
 
 function ignoreError() {}
 
-const DEFAULT_PAGE_TITLE = ' '
+const DEFAULT_PAGE_TITLE = '\u200B'
 
 // Helpers shared by QuickExit keyboard behaviour
 function quickExitIsEditable(el) {
