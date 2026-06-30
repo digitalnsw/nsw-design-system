@@ -14,13 +14,16 @@ meta-index: true
       <a href="#breakpoints">Breakpoints</a>
     </li>
     <li>
+      <a href="#micro-breakpoint">Micro breakpoint</a>
+    </li>
+    <li>
       <a href="#content-grids">Content grids</a>
     </li>
   </ul>
 </nav>
 
 <h2 id="breakpoints">Breakpoints</h2>
-<p>The NSW Design System is built on a 12 column responsive grid which adapts to the user’s viewport across 5 breakpoints.</p>
+<p>The NSW Design System is built on a 12 column responsive grid which adapts to the user’s viewport across 6 breakpoints.</p>
 <div class="nsw-section nsw-section--white nsw-block nsw-p-x-sm nsw-p-top-sm">
   <div class="nsw-table nsw-table--valign-middle">
     <table>
@@ -35,8 +38,15 @@ meta-index: true
       </thead>
       <tbody>
         <tr>
-          <td>xs (Extra Small)<br/>0-575px</td>
+          <td>xs (Extra Small)<br/>0-319px</td>
           <td><code>breakpoints-xs</code></td>
+          <td>16px</td>
+          <td>16px</td>
+          <td>288px</td>
+        </tr>
+        <tr>
+          <td>micro (Micro)<br/>320-575px</td>
+          <td><code>breakpoints-micro</code></td>
           <td>16px</td>
           <td>16px</td>
           <td>544px</td>
@@ -75,10 +85,15 @@ meta-index: true
 </div>
 <br>
 
+<h3 id="micro-breakpoint">Micro breakpoint</h3>
+<p>The <code>micro</code> breakpoint starts at 320px and is intended for constrained viewport support. Use it for very small displays and zoomed states up to 400%, where components may need tighter spacing or simpler layouts to avoid horizontal scrolling.</p>
+<p>The <code>micro</code> breakpoint is not intended to replace the normal small-screen breakpoint or target a specific mobile device width. In Sass, it can be used with <code>max-width</code> when a component needs a compact treatment at 320px and below.</p>
+
 <h2 id="content-grids">Content grids</h2>
 <p>Grid gives you the flexibility with Flexbox to build responsive layouts across different breakpoints. For example, to increase cards from a 2 column layout on the md breakpoint to a 3 column layout on the lg breakpoint. The NSW Design System recommends the below number of columns per breakpoint to ensure the content is at an optimal layout for readability and accessibility: </p>
 <ul>
   <li>xs (Extra small) - 1 column</li>
+  <li>micro (Micro) - 1 column</li>
   <li>sm (Small) - up to 2 columns</li>
   <li>md (Medium) - up to 3 columns</li>
   <li>lg (Large) - up to 4 columns</li>
@@ -87,7 +102,7 @@ meta-index: true
 <p>You can find base grid components in the Figma UI Kit to enable quick building and prototyping. </p>
 <p> A set of rows make up a grid, and a set of columns make up a row. Columns are set using classes in this format:
   <code>nsw-col-{breakpoint}-{columns}</code></p>
-<p>Where <strong>breakpoint</strong> is one of <strong>xs, sm, md, lg, xl</strong>.</p>
+<p>Where <strong>breakpoint</strong> is one of <strong>xs, micro, sm, md, lg, xl</strong>.</p>
 <p>Where <strong>columns</strong> is between <strong>1</strong> and <strong>12</strong>.</p>
 
 <h3>Grid layouts</h3>

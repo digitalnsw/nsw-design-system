@@ -14,7 +14,7 @@ import { validateUrl } from '../../global/scripts/helpers/utilities'
 
 function ignoreError() {}
 
-const DEFAULT_PAGE_TITLE = 'NSW Government'
+const DEFAULT_PAGE_TITLE = ' '
 
 // Helpers shared by QuickExit keyboard behaviour
 function quickExitIsEditable(el) {
@@ -324,7 +324,8 @@ export default class QuickExit {
 
   static updatePageTitle(pageTitle = DEFAULT_PAGE_TITLE) {
     try {
-      if (typeof document === 'undefined' || !pageTitle) return
+      if (typeof document === 'undefined') return
+      if (pageTitle === null || typeof pageTitle === 'undefined') return
 
       document.title = String(pageTitle)
     } catch (err) {
