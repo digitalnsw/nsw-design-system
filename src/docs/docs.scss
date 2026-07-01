@@ -1050,6 +1050,12 @@ $header-height: 151px;
     max-height: nsw.rem(400px);
     overflow: auto;
     background-color: var(--nsw-white);
+
+    &:focus {
+      @include nsw.nsw-focus($offset: false);
+
+      outline-offset: nsw.rem(-3px);
+    }
   }
 }
 

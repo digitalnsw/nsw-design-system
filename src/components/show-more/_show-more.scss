@@ -28,14 +28,14 @@
     display: inline-flex;
     align-items: center;
     column-gap: nsw.rem(2px);
-    color: var(--nsw-link);
-    font-weight: var(--nsw-font-bold);
     cursor: pointer;
     user-select: none;
 
+    @include nsw.link;
     @include nsw.font-size('sm');
 
     list-style: none;
+    text-decoration: none;
 
     &::-webkit-details-marker {
       display: none;
@@ -45,8 +45,8 @@
       content: '';
     }
 
-    &:focus-visible {
-      @include nsw.nsw-focus($offset: false);
+    &:focus {
+      @include nsw.nsw-focus;
     }
   }
 
@@ -81,8 +81,8 @@
 
   &__content {
     margin-top: nsw.rem(12px);
-    padding: 0 0 0 nsw.rem(16px);
-    border-left: solid 2px var(--nsw-grey-03);
+    padding-inline-start: nsw.rem(16px);
+    border-inline-start: solid 2px var(--nsw-grey-03);
   }
 
   &__content > :first-child {
@@ -91,15 +91,11 @@
 }
 
 .nsw-section--invert .nsw-show-more__toggle {
-  color: var(--nsw-text-light);
-
-  &:focus-visible {
-    @include nsw.nsw-focus($color: var(--nsw-focus-light), $offset: false);
-  }
+  @include nsw.link-light;
 }
 
 .nsw-section--brand-light .nsw-show-more__content {
-  border-left-color: var(--nsw-grey-02);
+  border-inline-start-color: var(--nsw-grey-02);
 }
 
 @include nsw.prefers-reduced-motion() {
