@@ -1,6 +1,7 @@
 export default Select;
 declare class Select {
     static createSafeCss(str: any): string;
+    static parseMaxHeight(value: any): number | null;
     static moveFocusFn(element: any): void;
     constructor(element: any);
     element: any;
@@ -11,8 +12,9 @@ declare class Select {
     trigger: boolean;
     dropdown: boolean;
     customOptions: boolean;
-    list: boolean;
+    listScroll: boolean;
     allButton: boolean;
+    clearAllControl: boolean;
     liveRegion: boolean;
     trapFocusHandler: ((event: any) => void) | null;
     arrowIcon: any;
@@ -22,6 +24,13 @@ declare class Select {
     noSelectText: any;
     multiSelectText: any;
     nMultiSelect: any;
+    allText: any;
+    clearAllText: any;
+    clearAllStatusText: any;
+    optionText: any;
+    optionsText: any;
+    allSelectedText: any;
+    allDeselectedText: any;
     noUpdateLabel: any;
     insetLabel: any;
     hideClass: string;
@@ -33,6 +42,7 @@ declare class Select {
     buttonClass: string;
     allButtonClass: string;
     listClass: string;
+    listScrollClass: string;
     optionClass: string;
     dropdownClass: string;
     checkboxClass: string;
@@ -44,10 +54,13 @@ declare class Select {
     checkboxLabelClass: string;
     checkboxInputClass: string;
     liveRegionClass: string;
+    maxHeight: any;
     init(): void;
     initCustomSelectEvents(): void;
     toggleCustomSelect(bool: any): void;
     placeDropdown(): void;
+    resetListScroll(): void;
+    resetDropdownScroll(): void;
     keyboardCustomSelect(direction: any, event: any): void;
     toggleAllButton(): void;
     initSelection(): void;
@@ -55,6 +68,7 @@ declare class Select {
     updateSelectionSummary(): void;
     updateAllButton(): void;
     clearAllButton(): void;
+    updateClearAllButton(): void;
     clearAllSelections(): void;
     updateNativeSelect(index: any, bool: any): void;
     updateTriggerAria(ariaLabel: any): void;
@@ -67,7 +81,6 @@ declare class Select {
     updateAllButtonAria(isPressed: any): void;
     getSelectLabelSR(): string;
     getOptionsList(options: any): string;
-    getSelectedOption(): any;
     getOptions(): any[];
     moveFocusToSelectTrigger(): void;
     addTrapFocus(): void;
