@@ -308,7 +308,7 @@ const searchValues = [
   {
     label: 'Our ecosystem',
     template: 'result',
-    keywords: 'Digital Visual Identity, Core styles and components, Digital NSW Community, Built in accessibility, UX, content guidance, UI, code starter kits',
+    keywords: 'Digital Visual Identity, Core styles and components, NSW Design System Community, Built in accessibility, UX, content guidance, UI, code starter kits',
     url: '/docs/content/about/our-ecosystem.html',
   },
   {

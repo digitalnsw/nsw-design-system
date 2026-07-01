@@ -17,7 +17,7 @@ layout: blank-layout.hbs
 <h3>Do</h3>
 <ul>
   <li>Use Quick exit on pages where user safety, privacy or comfort may be compromised.</li>
-  <li>Place it inside the <strong>global sticky container</strong> so it doesn't overlap with other components.</li>
+  <li>Place it inside the <a href="/core/layout/index.html#sticky-container-structure">global sticky container</a> so it doesn't overlap with other components.</li>
   <li>Ensure it redirects to a safe, neutral destination that loads quickly.</li>
   <li>Test the component with keyboard and screen readers.</li>
 </ul>
@@ -52,7 +52,7 @@ layout: blank-layout.hbs
 <h2>Customisations</h2>
 
 <h3>Safe destination URL</h3>
-<p>Redirect users to a neutral, trusted page such as <a href="https://nsw.gov.au" aria-label="NSW Government home page">nsw.gov.au</a>, <a href="https://www.bom.gov.au/" aria-label="Bureau of Meteorology home page">bom.gov.au</a> or <a href="https://google.com/hp" aria-label="Google home page">google.com/hp</a>. Choose and customise the destination based on who your users are and how they are likely to use the service, and test it to ensure it feels safe, appropriate and low-risk in context.</p>
+<p>Redirect users to a neutral, trusted page such as <a href="https://nsw.gov.au" aria-label="NSW Government home page">nsw.gov.au</a>, <a href="https://www.bom.gov.au/" aria-label="Bureau of Meteorology home page">bom.gov.au</a> or <a href="https://www.google.com/webhp" aria-label="Google home page">www.google.com/webhp</a>. Choose and customise the destination based on who your users are and how they are likely to use the service, and test it to ensure it feels safe, appropriate and low-risk in context.</p>
 
 <h3>Double Esc key support</h3>
 <p>Quick exit can optionally be triggered by pressing the <kbd aria-label="Escape key">Esc</kbd> key twice in quick succession within a one-second window.</p>
@@ -64,7 +64,7 @@ layout: blank-layout.hbs
   <div class="nsw-steps__item nsw-steps-medium">
     <div class="nsw-steps__content">
       <h3 id="quick-exit-sticky-container">Add the global sticky container</h3>
-      <p>Implement the <strong>global sticky container</strong> described in the <a href="/core/layout/index.html#global-page-structure" aria-label="Global page structure layout guidance">Global page structure</a> guide. This container hosts all bottom-sticky elements, including <a href="/components/quick-exit/" aria-label="Quick exit component" title="Quick exit component">Quick exit</a> and <a href="/components/cookie-consent/" aria-label="Cookie consent component" title="Cookie consent component">Cookie consent</a>, ensuring consistent placement and predictable stacking.</p>
+      <p>Implement the <a href="/core/layout/index.html#sticky-container-structure"><strong>global sticky container</strong></a> described in the <a href="/core/layout/index.html#global-page-structure" aria-label="Global page structure layout guidance">Global page structure</a> guide. This container hosts all bottom-sticky elements, including <a href="/components/quick-exit/" aria-label="Quick exit component" title="Quick exit component">Quick exit</a> and <a href="/components/cookie-consent/" aria-label="Cookie consent component" title="Cookie consent component">Cookie consent</a>, ensuring consistent placement and predictable stacking.</p>
       <p>Using the global sticky container:</p>
       <ol>
         <li>prevents conflicts with critical header content such as global alerts</li>
@@ -91,7 +91,7 @@ layout: blank-layout.hbs
 &lt;div class="nsw-sticky-container"&gt;
   &lt;a
     class="nsw-quick-exit"
-    href="https://google.com/hp"
+    href="https://www.google.com/webhp"
     data-options='{
       "enableEsc": true,
       "enableCloak": true
@@ -157,7 +157,7 @@ layout: blank-layout.hbs
 
       {{#>_docs-example hidden="true" open="true" code="js"}}
 window.NSW.QuickExit.init({
-  safeUrl: 'https://google.com/hp',
+  safeUrl: 'https://www.google.com/webhp',
   description: 'Leave quickly using this banner or press &lt;kbd aria-label="Escape key"&gt;Esc&lt;/kbd&gt; twice quickly.',
   enableEsc: true,
   enableCloak: true

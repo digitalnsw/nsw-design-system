@@ -1,4 +1,6 @@
 /* eslint-disable max-len */
+import { cleanHTMLOpen } from '../../global/scripts/helpers/sanitize'
+
 class Select {
   constructor(element) {
     this.element = element
@@ -9,8 +11,9 @@ class Select {
     this.trigger = false
     this.dropdown = false
     this.customOptions = false
-    this.list = false
+    this.listScroll = false
     this.allButton = false
+    this.clearAllControl = false
     this.liveRegion = false
     this.trapFocusHandler = null
     this.arrowIcon = this.element.getElementsByTagName('svg')
@@ -20,6 +23,13 @@ class Select {
     this.noSelectText = this.element.getAttribute('data-select-text') || 'Select'
     this.multiSelectText = this.element.getAttribute('data-multi-select-text') || '{n} items selected'
     this.nMultiSelect = this.element.getAttribute('data-n-multi-select') || 1
+    this.allText = this.element.getAttribute('data-select-all-text') || 'All'
+    this.clearAllText = this.element.getAttribute('data-clear-all-text') || 'Clear all selections'
+    this.clearAllStatusText = this.element.getAttribute('data-clear-all-status-text') || 'All selections cleared.'
+    this.optionText = this.element.getAttribute('data-multi-select-option-text') || 'option'
+    this.optionsText = this.element.getAttribute('data-multi-select-options-text') || 'options'
+    this.allSelectedText = this.element.getAttribute('data-select-all-selected-text') || 'All {n} {label} selected.'
+    this.allDeselectedText = this.element.getAttribute('data-select-all-deselected-text') || 'All {n} {label} deselected.'
     this.noUpdateLabel = this.element.getAttribute('data-update-text') && this.element.getAttribute('data-update-text') === 'off'
     this.insetLabel = this.element.getAttribute('data-inset-label') && this.element.getAttribute('data-inset-label') === 'on'
     this.hideClass = 'nsw-display-none'
@@ -31,6 +41,7 @@ class Select {
     this.buttonClass = `${this.class}__button`
     this.allButtonClass = `${this.class}__all`
     this.listClass = `${this.class}__list`
+    this.listScrollClass = `${this.class}__scroll`
     this.optionClass = `${this.class}__option`
     this.dropdownClass = `${this.class}__dropdown`
     this.checkboxClass = `${this.class}__checkbox`
@@ -42,6 +53,7 @@ class Select {
     this.checkboxLabelClass = 'form__checkbox-label'
     this.checkboxInputClass = 'form__checkbox-input'
     this.liveRegionClass = `${this.class}__status`
+    this.maxHeight = this.constructor.parseMaxHeight(this.element.getAttribute('data-multi-select-max-height'))
   }
 
   init() {
@@ -51,9 +63,8 @@ class Select {
     this.dropdown = this.element.querySelector(`.js-${this.dropdownClass}`)
     this.trigger = this.element.querySelector(`.js-${this.buttonClass}`)
     this.customOptions = this.dropdown.querySelectorAll(`.js-${this.optionClass}`)
-    this.list = this.dropdown.querySelector(`.js-${this.listClass}`)
-    this.list.insertAdjacentHTML('afterbegin', this.initAllButton())
-    this.allButton = this.list.querySelector(`.js-${this.allButtonClass}`)
+    this.listScroll = this.dropdown.querySelector(`.js-${this.listScrollClass}`)
+    this.allButton = this.dropdown.querySelector(`.js-${this.allButtonClass}`)
     this.initLiveRegion()
 
     this.select.classList.add(this.hideClass)
@@ -115,17 +126,20 @@ class Select {
     })
 
     if (ariaExpanded === 'true') {
-      const selectedOption = this.getSelectedOption() || this.allButton
-      this.constructor.moveFocusFn(selectedOption)
+      this.placeDropdown()
+      this.resetDropdownScroll()
+      this.resetListScroll()
+      this.constructor.moveFocusFn(this.allButton)
 
       const cb = () => {
-        this.constructor.moveFocusFn(selectedOption)
+        this.resetDropdownScroll()
+        this.resetListScroll()
+        this.constructor.moveFocusFn(this.allButton)
         this.dropdown.removeEventListener('transitionend', cb)
       }
 
       this.dropdown.addEventListener('transitionend', cb)
       this.addTrapFocus()
-      this.placeDropdown()
     } else {
       this.removeTrapFocus()
     }
@@ -140,14 +154,23 @@ class Select {
     const moveUp = (window.innerHeight - bottom) < top
     this.dropdown.classList.toggle(`${this.prefix}${this.dropdownClass}--up`, moveUp)
     const maxHeight = moveUp ? top - 20 : window.innerHeight - bottom - 20
-    const vhCalc = Math.ceil((100 * maxHeight) / window.innerHeight)
-    this.dropdown.setAttribute('style', `max-height: ${vhCalc}vh;`)
+    const availableVh = Math.max(1, Math.ceil((100 * maxHeight) / window.innerHeight))
+    const vhCalc = this.maxHeight ? Math.min(this.maxHeight, availableVh) : availableVh
+    this.dropdown.style.maxHeight = `${vhCalc}vh`
+  }
+
+  resetListScroll() {
+    if (this.listScroll) this.listScroll.scrollTop = 0
+  }
+
+  resetDropdownScroll() {
+    if (this.dropdown) this.dropdown.scrollTop = 0
   }
 
   keyboardCustomSelect(direction, event) {
     event.preventDefault()
-    const allOptions = [...this.customOptions, this.allButton]
-    let index = allOptions.findIndex((option) => option === document.activeElement.closest(`.js-${this.optionClass}`))
+    const allOptions = [this.allButton, ...this.customOptions]
+    let index = allOptions.findIndex((option) => option === document.activeElement || option === document.activeElement.closest(`.js-${this.optionClass}`))
     index = (direction === 'next') ? index + 1 : index - 1
     if (index < 0) index = allOptions.length - 1
     if (index >= allOptions.length) index = 0
@@ -166,10 +189,11 @@ class Select {
       this.selectOption(option, shouldSelectAll)
     })
 
-    const optionLabel = totalEnabled === 1 ? 'option' : 'options'
-    const message = shouldSelectAll
-      ? `All ${totalEnabled} ${optionLabel} selected.`
-      : `All ${totalEnabled} ${optionLabel} deselected.`
+    const optionLabel = totalEnabled === 1 ? this.optionText : this.optionsText
+    const messageTemplate = shouldSelectAll ? this.allSelectedText : this.allDeselectedText
+    const message = messageTemplate
+      .replace(/\{n\}/g, String(totalEnabled))
+      .replace(/\{label\}/g, optionLabel)
     this.updateLiveRegion(message)
     this.updateSelectionSummary()
   }
@@ -211,6 +235,13 @@ class Select {
     this.trigger.classList.toggle(`${this.prefix}${this.buttonClass}--active`, this.selectedOptCounter > 0)
     this.updateTriggerAria(triggerLabel[1])
     this.updateAllButton()
+    this.updateClearAllButton()
+    this.resetDropdownScroll()
+    if (window.requestAnimationFrame) {
+      window.requestAnimationFrame(() => {
+        this.resetDropdownScroll()
+      })
+    }
   }
 
   updateAllButton() {
@@ -229,17 +260,25 @@ class Select {
     if (this.dropdown.querySelector('.nsw-multi-select__clear-all-button')) return
 
     const clearButton = document.createElement('button')
-    clearButton.textContent = 'Clear all selections'
+    clearButton.textContent = this.clearAllText
     clearButton.type = 'button'
     clearButton.setAttribute('aria-describedby', `${this.selectId}-description`)
-    clearButton.className = `${this.prefix}link nsw-multi-select__clear-all-button`
-    clearButton.setAttribute('aria-describedby', `${this.selectId}-description`)
+    clearButton.className = 'nsw-multi-select__clear-all-button'
     clearButton.addEventListener('click', (e) => {
       e.preventDefault()
       this.clearAllSelections()
       this.moveFocusToSelectTrigger()
     })
     this.dropdown.appendChild(clearButton)
+    this.clearAllControl = clearButton
+    this.updateClearAllButton()
+  }
+
+  updateClearAllButton() {
+    if (!this.clearAllControl) return
+    const hideClearAll = this.selectedOptCounter === 0
+    this.clearAllControl.hidden = hideClearAll
+    this.clearAllControl.disabled = hideClearAll
   }
 
   clearAllSelections() {
@@ -250,7 +289,7 @@ class Select {
         this.selectOption(option, false)
       }
     })
-    this.updateLiveRegion('All selections cleared.')
+    this.updateLiveRegion(this.clearAllStatusText)
     this.updateSelectionSummary()
   }
 
@@ -312,6 +351,8 @@ class Select {
   initListSelect() {
     let list = `<div class="js-${this.dropdownClass} ${this.prefix}${this.dropdownClass}" aria-describedby="${this.selectId}-description" id="${this.selectId}-dropdown">`
     list += this.getSelectLabelSR()
+    list += this.initAllButton()
+    list += `<div class="${this.prefix}${this.listScrollClass} js-${this.listScrollClass}">`
     if (this.optGroups.length > 0) {
       for (let i = 0; i < this.optGroups.length; i += 1) {
         const optGroupList = this.optGroups[i].getElementsByTagName('option')
@@ -321,11 +362,11 @@ class Select {
     } else {
       list = `${list}<ul class="${this.prefix}${this.listClass} js-${this.listClass}">${this.getOptionsList(this.options)}</ul>`
     }
-    return list
+    return `${list}</div></div>`
   }
 
   initAllButton() {
-    return `<button class="${this.prefix}${this.allButtonClass} js-${this.allButtonClass}" aria-pressed="false"><span>All</span></button>`
+    return `<button class="${this.prefix}${this.allButtonClass} js-${this.allButtonClass}" aria-pressed="false"><span>${cleanHTMLOpen(this.allText)}</span></button>`
   }
 
   initLiveRegion() {
@@ -367,12 +408,6 @@ class Select {
       this.optionIndex += 1
     }
     return list
-  }
-
-  getSelectedOption() {
-    const option = this.dropdown.querySelector(`.js-${this.checkboxClass}:checked`)
-    if (option) return option
-    return this.allButton
   }
 
   getOptions() {
@@ -455,6 +490,15 @@ class Select {
     return invalidBeginningOfClassname.test(strippedClassname)
       ? `_${strippedClassname}`
       : strippedClassname
+  }
+
+  static parseMaxHeight(value) {
+    if (!value) return null
+
+    const maxHeight = Number(value)
+    if (!Number.isFinite(maxHeight) || maxHeight < 1 || maxHeight > 100) return null
+
+    return maxHeight
   }
 
   static moveFocusFn(element) {
