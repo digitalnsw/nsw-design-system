@@ -25,7 +25,7 @@ meta-index: true
 
 <p>Here’s an example that changes the theme colors when importing and compiling via npm:</p>
 
-{{#>_docs-example hidden="true" open="true" code="language-scss"}}
+{{#>_docs-example hidden="true" open="true" code="scss"}}
 $brand-dark: #0b3f47 !default;
 $brand-light: #d1eeea !default;
 $brand-supplementary: #2e808e !default;
@@ -40,7 +40,7 @@ $brand-accent: #d7153a !default;
 <p><a target="_blank" href="https://www.w3schools.com/css/css3_variables.asp">CSS variables</a> allow easy and on the fly customisation as they have access to the DOM, which means that you can change variables with local or global scope using plain CSS or JavaScript. We used CSS variables to control <strong>colours, typography settings, border radius, shadows and maximum container width</strong> to enable easy theming to match your <a href="/docs/content/design/theming.html">Brand requirements</a>.</p>
 
 <p>Below you can find full list of variables that we made availible. To theme you can simply copy the variables you want to update and assign them new values using <a href="/core/colour/index.html#gov-colour">NSW Government colour palette</a> or your own custom settings.</p>
-{{#>_docs-example hidden="true" open="true" code="language-css"}}
+{{#>_docs-example hidden="true" open="true" code="css"}}
 :root {
   /* Colours */
   --nsw-brand-dark: #002664;
@@ -170,6 +170,7 @@ $brand-accent: #d7153a !default;
 
   /* Maximum width of container */
   --nsw-container-width: 75rem;
+}
 {{/_docs-example}}
 
 <h2 id="theming-examples">Theming examples</h2>
@@ -179,7 +180,7 @@ $brand-accent: #d7153a !default;
 <h3>Full page</h3>
 <p><a target="_blank" href="/templates/theming/full-page.html">Full page re-theming example</a> has full brand colour palette updated to new theme and applied to full page/site by clicking on the colour swatches in the top right corner. This includes global elements (header, navigation, footer etc) but excludes masthead. To implement it you need to apply new colours to global scope.</p>
 
-{{#>_docs-example hidden="true" open="true" code="language-css"}}
+{{#>_docs-example hidden="true" open="true" code="css"}}
 :root {
   --nsw-brand-dark: #0b3f47;
   --nsw-brand-light: #d1eeea;
@@ -220,7 +221,7 @@ $brand-accent: #d7153a !default;
 <h3>Content only</h3>
 <p><a target="_blank" href="/templates/theming/content-only.html">Content only re-theming example</a> has full brand colour palette updated to new theme, but only applied to content section of the page. Global elements (header, navigation, footer etc) remain aligned to masterbrand corporate colour palette. To implement it you need to apply new colours to the container that wraps around content that you are re-theming.</p>
 
-{{#>_docs-example hidden="true" open="true" code="language-css"}}
+{{#>_docs-example hidden="true" open="true" code="css"}}
 .nsw-layout {
   --nsw-brand-dark: #441170;
   --nsw-brand-light: #e6e1fd;
@@ -261,7 +262,7 @@ $brand-accent: #d7153a !default;
 <h3>Partial</h3>
 <p><a target="_blank" href="/templates/theming/partial.html">Partial re-theming example</a> has brand accent colour updated to give that branding ‘pop’ while still aligning to materbrand corporate. This is applied to full page/site so to implement it you need to apply new colours to global scope.</p>
 
-{{#>_docs-example hidden="true" open="true" code="language-css"}}
+{{#>_docs-example hidden="true" open="true" code="css"}}
 :root {
   --nsw-brand-accent: #146cfd;
   --nsw-brand-accent-rgb: 20, 108, 253;

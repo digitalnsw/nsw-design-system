@@ -57,8 +57,7 @@ class Tabs {
   enhanceTabPanel(panel, id) {
     const panelElem = panel
     panelElem.setAttribute('role', 'tabpanel')
-    panelElem.setAttribute('role', 'tabpanel')
-    panelElem.setAttribute('aria-labelledBy', id)
+    panelElem.setAttribute('aria-labelledby', id)
     panelElem.setAttribute('tabindex', '0')
     panelElem.hidden = true
     this.tabPanel.push(panelElem)

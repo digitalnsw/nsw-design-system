@@ -1,6 +1,84 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { v4 as uuidv4 } from 'uuid'
 
+const hasWindow = typeof window !== 'undefined'
+const hasDocument = typeof document !== 'undefined'
+
+const legacyCopyText = (text) => {
+  if (
+    hasWindow
+    && window.clipboardData
+    && typeof window.clipboardData.setData === 'function'
+  ) {
+    try {
+      return window.clipboardData.setData('Text', text)
+    } catch (error) {
+      return false
+    }
+  }
+
+  return false
+}
+
+const commandCopyText = (text) => {
+  if (!hasDocument || typeof document.execCommand !== 'function') return false
+
+  const textarea = document.createElement('textarea')
+  const { activeElement, body, documentElement } = document
+  const container = body || documentElement
+  let copied = false
+
+  if (!container) return false
+
+  textarea.setAttribute('readonly', '')
+  textarea.style.position = 'fixed'
+  textarea.style.top = '0'
+  textarea.style.left = '-9999px'
+  textarea.style.opacity = '0'
+
+  container.appendChild(textarea)
+  // Keep untrusted clipboard text out of the DOM construction step.
+  textarea.value = text
+
+  try {
+    textarea.select()
+    if (typeof textarea.setSelectionRange === 'function') {
+      textarea.setSelectionRange(0, textarea.value.length)
+    }
+    copied = document.execCommand('copy')
+  } catch (error) {
+    copied = false
+  } finally {
+    container.removeChild(textarea)
+    if (activeElement && typeof activeElement.focus === 'function') {
+      try {
+        activeElement.focus({ preventScroll: true })
+      } catch (error) {
+        activeElement.focus()
+      }
+    }
+  }
+
+  return copied
+}
+
+export const copyToClipboard = (text) => {
+  const copyText = String(text)
+
+  if (
+    hasWindow
+    && window.navigator
+    && window.navigator.clipboard
+    && window.isSecureContext
+  ) {
+    return window.navigator.clipboard.writeText(copyText)
+      .then(() => true)
+      .catch(() => commandCopyText(copyText) || legacyCopyText(copyText))
+  }
+
+  return Promise.resolve(commandCopyText(copyText) || legacyCopyText(copyText))
+}
+
 export const uniqueId = (prefix) => {
   const prefixValue = (prefix === undefined ? 'nsw' : prefix)
   const uuid = uuidv4()
@@ -22,7 +100,7 @@ export const getFocusableElement = (el) => {
   const elementArr = [].slice.call(el.querySelectorAll(`a[href],button:not([disabled]),
   area[href],input:not([disabled]):not([type=hidden]),
   select:not([disabled]),textarea:not([disabled]),
-  iframe,object,embed,*:not(.is-draggabe)[tabindex],
+  iframe,object,embed,*:not(.is-draggable)[tabindex],
   *[contenteditable]`))
 
   return focusObjectGenerator(elementArr)
@@ -43,7 +121,7 @@ export const trapTabKey = (event, focusObject) => {
   const { activeElement } = document
   const focusableElement = focusObject
 
-  if (event.keyCode !== 9) return false
+  if (event.key !== 'Tab' && event.keyCode !== 9) return false
 
   if (focusableElement.length === 1) {
     event.preventDefault()
@@ -71,6 +149,28 @@ export const whichTransitionEvent = () => {
   return transitions[found[0]]
 }
 
+export const validateUrl = (raw, fallback = 'https://www.google.com/webhp') => {
+  try {
+    if (!raw || typeof raw !== 'string') return fallback
+    const trimmed = raw.trim()
+
+    // Require absolute URL with explicit protocol; reject relative or protocol-relative
+    if (!/^https?:\/\//i.test(trimmed)) return fallback
+
+    const url = new URL(trimmed)
+
+    // Only allow http/https protocols and disallow embedded credentials
+    if ((url.protocol !== 'http:' && url.protocol !== 'https:') || url.username || url.password) {
+      return fallback
+    }
+
+    // Return a credential-free URL (origin + path + search + hash), even if some environments would include creds in href
+    return `${url.origin}${url.pathname}${url.search}${url.hash}`
+  } catch (e) {
+    return fallback
+  }
+}
+
 export const popupWindow = (url, width, height) => {
   const y = window.top.outerHeight / 2 + window.top.screenY - (height / 2)
   const x = window.top.outerWidth / 2 + window.top.screenX - (width / 2)
@@ -83,3 +183,11 @@ export const popupWindow = (url, width, height) => {
     width=${width}, height=${height}, top=${y}, left=${x}`,
   )
 }
+
+export const setAriaDisabled = (element, isDisabled, className = 'disabled') => {
+  if (!element) return
+  element.setAttribute('aria-disabled', isDisabled ? 'true' : 'false')
+  if (className) element.classList.toggle(className, !!isDisabled)
+}
+
+export const isAriaDisabled = (element) => element && element.getAttribute('aria-disabled') === 'true'

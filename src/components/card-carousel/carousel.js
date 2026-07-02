@@ -1,4 +1,5 @@
 import SwipeContent from './swipe-content'
+import { uniqueId } from '../../global/scripts/helpers/utilities'
 
 /* eslint-disable max-len */
 class Carousel extends SwipeContent {
@@ -9,7 +10,7 @@ class Carousel extends SwipeContent {
     this.controlClass = 'js-carousel__control'
     this.wrapperClass = 'js-carousel__wrapper'
     this.counterClass = 'js-carousel__counter'
-    this.counterTorClass = 'js-carousel__counter-tot'
+    this.counterTotalClass = 'js-carousel__counter-tot'
     this.navClass = 'js-carousel__navigation'
     this.navItemClass = 'js-carousel__nav-item'
     this.navigationItemClass = this.element.getAttribute('data-navigation-item-class') ? this.element.getAttribute('data-navigation-item-class') : 'nsw-carousel__nav-item'
@@ -29,13 +30,25 @@ class Carousel extends SwipeContent {
     this.items = this.list ? this.list.getElementsByTagName('li') : false
     this.controls = this.element.querySelectorAll(`.${this.controlClass}`)
     this.counter = this.element.querySelectorAll(`.${this.counterClass}`)
-    this.counterTor = this.element.querySelectorAll(`.${this.counterTorClass}`)
+    this.counterTotal = this.element.querySelectorAll(`.${this.counterTotalClass}`)
     this.ariaLabel = this.element.getAttribute('data-description') ? this.element.getAttribute('data-description') : 'Card carousel'
     this.dragEnabled = !!((this.element.getAttribute('data-drag') && this.element.getAttribute('data-drag') === 'on'))
     this.loop = !!((this.element.getAttribute('data-loop') && this.element.getAttribute('data-loop') === 'on'))
     this.nav = !((this.element.getAttribute('data-navigation') && this.element.getAttribute('data-navigation') === 'off'))
     this.navigationPagination = !!((this.element.getAttribute('data-navigation-pagination') && this.element.getAttribute('data-navigation-pagination') === 'on'))
     this.justifyContent = !!((this.element.getAttribute('data-justify-content') && this.element.getAttribute('data-justify-content') === 'on'))
+    this.shiftTabActive = false
+    this.focusAfterTransitionHandler = null
+    this.focusableSelectors = [
+      'a[href]',
+      'area[href]',
+      'button:not([disabled])',
+      'input:not([disabled]):not([type="hidden"])',
+      'select:not([disabled])',
+      'textarea:not([disabled])',
+      '[contenteditable="true"]',
+      '[tabindex]:not([tabindex="-1"])',
+    ].join(', ')
     this.initItems = []
     this.itemsNb = this.items.length
     this.visibItemsNb = 1
@@ -59,6 +72,16 @@ class Carousel extends SwipeContent {
   init() {
     if (!this.items) return
 
+    if (!this.uid) {
+      if (this.list && this.list.id) {
+        this.uid = this.list.id
+      } else if (this.element && this.element.id && !document.getElementById(`${this.element.id}__list`)) {
+        this.uid = `${this.element.id}__list`
+      } else {
+        this.uid = uniqueId('nsw-carousel__list')
+      }
+    }
+
     this.initCarouselLayout()
     this.setItemsWidth(true)
     this.insertBefore(this.visibItemsNb)
@@ -81,15 +104,42 @@ class Carousel extends SwipeContent {
       element.setAttribute('data-index', index)
     })
 
+    // Ensure the list element has a unique id for a11y bindings
+    if (this.list && !this.list.id) {
+      this.list.id = this.uid
+    }
+
     this.carouselCreateContainer()
 
     const itemStyle = this.items && window.getComputedStyle(this.items[0])
+    const trackEl = this.list // the flex/grid container that actually applies gap
+    const trackStyle = trackEl && window.getComputedStyle(trackEl)
 
-    const containerStyle = this.listWrapper && window.getComputedStyle(this.listWrapper)
-    let itemWidth = itemStyle ? parseFloat(itemStyle.getPropertyValue('width')) : 0
-    const itemMargin = itemStyle ? parseFloat(itemStyle.getPropertyValue('margin-right')) : 0
-    const containerPadding = containerStyle ? parseFloat(containerStyle.getPropertyValue('padding-left')) : 0
-    let containerWidth = containerStyle ? parseFloat(containerStyle.getPropertyValue('width')) : 0
+    // Use the rendered (border-box) width of the item for consistent maths regardless of box-sizing
+    let itemWidth = this.items && this.items[0] ? this.items[0].getBoundingClientRect().width : 0
+
+    // Prefer gap from the track (ol). Fall back to item margin if gap is not set.
+    const trackGap = trackStyle
+      ? parseFloat(trackStyle.getPropertyValue('column-gap') || trackStyle.getPropertyValue('gap'))
+      : 0
+    const marginRight = itemStyle ? parseFloat(itemStyle.getPropertyValue('margin-right')) : 0
+    const itemMargin = Number.isFinite(trackGap) && trackGap > 0 ? trackGap : marginRight
+
+    // Measure the available **content** width for items (clientWidth includes padding -> subtract it)
+    let containerWidth = 0
+    if (trackEl) {
+      const padL = trackStyle ? parseFloat(trackStyle.getPropertyValue('padding-left')) : 0
+      const padR = trackStyle ? parseFloat(trackStyle.getPropertyValue('padding-right')) : 0
+      containerWidth = Math.max(0, trackEl.clientWidth - (Number.isFinite(padL) ? padL : 0) - (Number.isFinite(padR) ? padR : 0))
+    }
+    if (!containerWidth) {
+      // Fallback to previous logic if clientWidth is 0 due to visibility
+      const containerStyle = this.listWrapper && window.getComputedStyle(this.listWrapper)
+      const padL = containerStyle ? parseFloat(containerStyle.getPropertyValue('padding-left')) : 0
+      const padR = containerStyle ? parseFloat(containerStyle.getPropertyValue('padding-right')) : 0
+      const cw = this.listWrapper ? this.listWrapper.clientWidth : 0
+      containerWidth = Math.max(0, cw - (Number.isFinite(padL) ? padL : 0) - (Number.isFinite(padR) ? padR : 0))
+    }
 
     if (!this.itemAutoSize) {
       this.itemAutoSize = itemWidth
@@ -113,8 +163,8 @@ class Carousel extends SwipeContent {
       itemWidth = this.itemOriginalWidth
     }
 
-    this.visibItemsNb = parseInt((containerWidth - 2 * containerPadding + itemMargin) / (itemWidth + itemMargin), 10)
-    this.itemsWidth = parseFloat((((containerWidth - 2 * containerPadding + itemMargin) / this.visibItemsNb) - itemMargin).toFixed(1))
+    this.visibItemsNb = Math.max(1, Math.floor((containerWidth + itemMargin) / (itemWidth + itemMargin)))
+    this.itemsWidth = parseFloat((((containerWidth + itemMargin) / this.visibItemsNb) - itemMargin).toFixed(1))
     this.containerWidth = (this.itemsWidth + itemMargin) * this.items.length
     this.translateContainer = 0 - ((this.itemsWidth + itemMargin) * this.visibItemsNb)
 
@@ -161,6 +211,12 @@ class Carousel extends SwipeContent {
     }
 
     if (this.controls.length > 0) {
+      // Bind controls to the actual list id to satisfy aria-controls validity
+      if (this.list) {
+        this.controls.forEach((btn) => {
+          btn.setAttribute('aria-controls', this.uid)
+        })
+      }
       this.controls[0].addEventListener('click', (event) => {
         event.preventDefault()
         this.showPrevItems()
@@ -211,7 +267,9 @@ class Carousel extends SwipeContent {
     })
 
     this.element.addEventListener('keydown', (event) => {
-      if (event.key && event.key.toLowerCase() === 'arrowright') {
+      if (event.key === 'Tab') {
+        this.shiftTabActive = event.shiftKey
+      } else if (event.key && event.key.toLowerCase() === 'arrowright') {
         this.showNextItems()
       } else if (event.key && event.key.toLowerCase() === 'arrowleft') {
         this.showPrevItems()
@@ -225,11 +283,32 @@ class Carousel extends SwipeContent {
       }
     })
 
+    this.element.addEventListener('keyup', (event) => {
+      if (event.key === 'Tab') {
+        this.shiftTabActive = false
+      }
+    })
+
     const itemLinks = this.element.querySelectorAll('.nsw-carousel__item a')
 
     if (itemLinks.length > 0) {
       itemLinks.forEach((link, index) => {
         link.addEventListener('focus', () => {
+          const item = link.closest('.nsw-carousel__item')
+          const dataIndex = Number(item.getAttribute('data-index')) + 1
+
+          if (this.shiftTabActive && dataIndex > 1 && ((dataIndex - 1) % this.visibItemsNb === 0)) {
+            const previousLink = itemLinks[index - 1]
+            this.showPrevItems()
+
+            if (previousLink) {
+              this.focusAfterTransition(previousLink)
+            }
+
+            this.shiftTabActive = false
+            return
+          }
+
           const slider = link.closest('.js-carousel__wrapper')
           const carousel = slider.querySelector('.nsw-carousel__list')
           if (carousel) {
@@ -238,12 +317,21 @@ class Carousel extends SwipeContent {
         })
 
         link.addEventListener('focusout', () => {
+          if (this.shiftTabActive) {
+            return
+          }
+
           const item = link.closest('.nsw-carousel__item')
           const dataIndex = Number(item.getAttribute('data-index')) + 1
           if (dataIndex % this.visibItemsNb === 0 && dataIndex !== this.items.length) {
-            itemLinks[index + 1].focus({ preventScroll: true })
             this.showNextItems()
+            const nextLink = itemLinks[index + 1]
+            if (nextLink) {
+              this.focusAfterTransition(nextLink)
+            }
           }
+
+          this.shiftTabActive = false
         })
       })
     }
@@ -440,22 +528,26 @@ class Carousel extends SwipeContent {
           this.items[i].setAttribute('tabindex', '-1')
           this.items[i].setAttribute('aria-hidden', 'true')
           this.items[i].removeAttribute('aria-current')
+          this.toggleItemFocusable(this.items[i], true)
         } else {
           if (i < j) j = i
 
           this.items[i].removeAttribute('tabindex')
           this.items[i].removeAttribute('aria-hidden')
           this.items[i].setAttribute('aria-current', 'true')
+          this.toggleItemFocusable(this.items[i], false)
         }
       } else if ((i < this.selectedItem || i >= this.selectedItem + this.visibItemsNb) && carouselActive) {
         this.items[i].setAttribute('tabindex', '-1')
         this.items[i].setAttribute('aria-hidden', 'true')
         this.items[i].removeAttribute('aria-current')
+        this.toggleItemFocusable(this.items[i], true)
       } else {
         if (i < j) j = i
         this.items[i].removeAttribute('tabindex')
         this.items[i].removeAttribute('aria-hidden')
         this.items[i].setAttribute('aria-current', 'true')
+        this.toggleItemFocusable(this.items[i], false)
       }
     }
     this.resetVisibilityOverflowItems(j)
@@ -475,10 +567,17 @@ class Carousel extends SwipeContent {
   }
 
   getIndex(index) {
-    let i = index
-    if (i < 0) i = this.getPositiveValue(i, this.itemsNb)
-    if (i >= this.itemsNb) i %= this.itemsNb
-    return i
+    if (this.loop) {
+      let i = index
+      if (i < 0) i = this.getPositiveValue(i, this.itemsNb)
+      if (i >= this.itemsNb) i %= this.itemsNb
+      return i
+    }
+
+    const maxIndex = Math.max(0, this.itemsNb - this.visibItemsNb)
+    if (index < 0) return 0
+    if (index > maxIndex) return maxIndex
+    return index
   }
 
   getPositiveValue(value, add) {
@@ -632,7 +731,7 @@ class Carousel extends SwipeContent {
   }
 
   initCarouselCounter() {
-    if (this.counterTor.length > 0) this.counterTor[0].textContent = this.itemsNb
+    if (this.counterTotal.length > 0) this.counterTotal[0].textContent = this.itemsNb
     this.setCounterItem()
   }
 
@@ -668,6 +767,52 @@ class Carousel extends SwipeContent {
       const indexNext = j + this.visibItemsNb + i
       if (indexNext < this.items.length) this.items[indexNext].removeAttribute('tabindex')
     }
+  }
+
+  focusAfterTransition(element) {
+    if (!element) return
+
+    const focusElement = () => {
+      if (typeof element.focus === 'function') {
+        element.focus({ preventScroll: true })
+      }
+    }
+
+    if (this.transitionSupported && this.list) {
+      if (this.focusAfterTransitionHandler) {
+        this.list.removeEventListener('transitionend', this.focusAfterTransitionHandler)
+      }
+      this.focusAfterTransitionHandler = (event) => {
+        if (event.propertyName && event.propertyName !== 'transform') return
+        this.list.removeEventListener('transitionend', this.focusAfterTransitionHandler)
+        this.focusAfterTransitionHandler = null
+        focusElement()
+      }
+      this.list.addEventListener('transitionend', this.focusAfterTransitionHandler)
+    } else {
+      setTimeout(focusElement, 0)
+    }
+  }
+
+  toggleItemFocusable(item, isHidden) {
+    if (!item) return
+    const focusableElements = item.querySelectorAll(this.focusableSelectors)
+    focusableElements.forEach((element) => {
+      if (!element.hasAttribute('data-carousel-tabindex')) {
+        const existingTabIndex = element.getAttribute('tabindex')
+        element.setAttribute('data-carousel-tabindex', existingTabIndex === null ? '' : existingTabIndex)
+      }
+      if (isHidden) {
+        element.setAttribute('tabindex', '-1')
+      } else {
+        const originalTabIndex = element.getAttribute('data-carousel-tabindex')
+        if (originalTabIndex === '') {
+          element.removeAttribute('tabindex')
+        } else {
+          element.setAttribute('tabindex', originalTabIndex)
+        }
+      }
+    })
   }
 }
 

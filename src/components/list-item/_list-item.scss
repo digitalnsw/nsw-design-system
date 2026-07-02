@@ -1,13 +1,11 @@
-@use '../../global/scss/base/functions' as functions;
-@use '../../global/scss/base/mixins' as mixins;
-@use '../../global/scss/settings/settings' as settings;
+@use '../../global/scss/tools' as nsw;
 
 .nsw-list-item {
   position: relative;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  padding: functions.rem(24px) 0;
+  padding: nsw.rem(24px) 0;
   border-bottom: 1px solid var(--nsw-grey-04);
 
   &:first-child {
@@ -17,7 +15,7 @@
   &__title {
     font-weight: var(--nsw-font-bold);
     
-    @include mixins.font-size('md');
+    @include nsw.font-size('md');
   }
 
   &__content {
@@ -29,7 +27,7 @@
   &__title,
   &__copy,
   &__tags {
-    margin-top: functions.rem(8px);
+    margin-top: nsw.rem(8px);
 
     &:first-child {
       margin: 0;
@@ -38,7 +36,7 @@
 
   &__label,
   &__info {
-    @include mixins.font-size('xs');
+    @include nsw.font-size('xs');
   }
 
   &__label {
@@ -46,12 +44,12 @@
   }
 
   &__image {
-    min-width: functions.rem(250px);
-    width: functions.rem(250px);
-    margin: 0 0 0 functions.rem(24px);
+    min-width: nsw.rem(250px);
+    width: nsw.rem(250px);
+    margin: 0 0 0 nsw.rem(24px);
     display: none;
 
-    @include mixins.breakpoint('lg') {
+    @include nsw.breakpoint('lg') {
       display: block;
     }
 
@@ -64,15 +62,15 @@
 
   &--block {
     &:focus-within {
-      @include mixins.nsw-focus($offset: false);
+      @include nsw.nsw-focus($offset: false);
 
       .nsw-section--invert & {   
-        @include mixins.nsw-focus($color: var(--nsw-focus-light));
+        @include nsw.nsw-focus($color: var(--nsw-focus-light));
       }
     }
 
     .nsw-list-item__title a {
-      @include mixins.pseudo-clickable-block;
+      @include nsw.pseudo-clickable-block;
 
       &:focus {
         outline: none;
@@ -84,7 +82,7 @@
     flex-direction: row-reverse;
 
     .nsw-list-item__image {
-      margin: 0 functions.rem(24px) 0 0;
+      margin: 0 nsw.rem(24px) 0 0;
     }
   }
 }

@@ -46,6 +46,7 @@ $nsw-base-colours: (
   brand-light: var(--nsw-brand-light),
   brand-supplementary: var(--nsw-brand-supplementary),
   brand-accent: var(--nsw-brand-accent),
+  brand-accent-light: var(--nsw-brand-accent-light),
   black: var(--nsw-black),
   white: var(--nsw-white),
   off-white: var(--nsw-off-white),
@@ -56,30 +57,31 @@ $nsw-base-colours: (
 );
 
 $nsw-base-colours-rgb: (
-  brand-dark: rgba(var(--nsw-brand-dark-rgb), var(--nsw-bg-opacity)),
-  brand-light: rgba(var(--nsw-brand-light-rgb), var(--nsw-bg-opacity)),
-  brand-supplementary: rgba(var(--nsw-brand-supplementary-rgb), var(--nsw-bg-opacity)),
-  brand-accent: rgba(var(--nsw-brand-accent-rgb), var(--nsw-bg-opacity)),
-  black: rgba(var(--nsw-black-rgb), var(--nsw-bg-opacity)),
-  white: rgba(var(--nsw-white-rgb), var(--nsw-bg-opacity)),
-  off-white: rgba(var(--nsw-off-white-rgb), var(--nsw-bg-opacity)),
-  grey-01: rgba(var(--nsw-grey-01-rgb), var(--nsw-bg-opacity)),
-  grey-02: rgba(var(--nsw-grey-02-rgb), var(--nsw-bg-opacity)),
-  grey-03: rgba(var(--nsw-grey-03-rgb), var(--nsw-bg-opacity)),
-  grey-04: rgba(var(--nsw-grey-04-rgb), var(--nsw-bg-opacity))
+  brand-dark: rgba(var(--nsw-brand-dark-rgb), var(--nsw-bg-opacity, 1)),
+  brand-light: rgba(var(--nsw-brand-light-rgb), var(--nsw-bg-opacity, 1)),
+  brand-supplementary: rgba(var(--nsw-brand-supplementary-rgb), var(--nsw-bg-opacity, 1)),
+  brand-accent: rgba(var(--nsw-brand-accent-rgb), var(--nsw-bg-opacity, 1)),
+  brand-accent-light: rgba(var(--nsw-brand-accent-light-rgb), var(--nsw-bg-opacity, 1)),
+  black: rgba(var(--nsw-black-rgb), var(--nsw-bg-opacity, 1)),
+  white: rgba(var(--nsw-white-rgb), var(--nsw-bg-opacity, 1)),
+  off-white: rgba(var(--nsw-off-white-rgb), var(--nsw-bg-opacity, 1)),
+  grey-01: rgba(var(--nsw-grey-01-rgb), var(--nsw-bg-opacity, 1)),
+  grey-02: rgba(var(--nsw-grey-02-rgb), var(--nsw-bg-opacity, 1)),
+  grey-03: rgba(var(--nsw-grey-03-rgb), var(--nsw-bg-opacity, 1)),
+  grey-04: rgba(var(--nsw-grey-04-rgb), var(--nsw-bg-opacity, 1))
 );
 
 // Background Colours
 $nsw-bg-colours: map.merge($nsw-base-colours-rgb, (
   transparent: transparent,
-  info-dark: rgba(var(--nsw-status-info-rgb), var(--nsw-bg-opacity)),
-  info-light: rgba(var(--nsw-status-info-bg-rgb), var(--nsw-bg-opacity)),
-  success-dark: rgba(var(--nsw-status-success-rgb), var(--nsw-bg-opacity)),
-  success-light: rgba(var(--nsw-status-success-bg-rgb), var(--nsw-bg-opacity)),
-  warning-dark: rgba(var(--nsw-status-warning-rgb), var(--nsw-bg-opacity)),
-  warning-light: rgba(var(--nsw-status-warning-bg-rgb), var(--nsw-bg-opacity)),
-  error-dark: rgba(var(--nsw-status-error-rgb), var(--nsw-bg-opacity)),
-  error-light: rgba(var(--nsw-status-error-bg-rgb), var(--nsw-bg-opacity))
+  info-dark: rgba(var(--nsw-status-info-rgb), var(--nsw-bg-opacity, 1)),
+  info-light: rgba(var(--nsw-status-info-bg-rgb), var(--nsw-bg-opacity, 1)),
+  success-dark: rgba(var(--nsw-status-success-rgb), var(--nsw-bg-opacity, 1)),
+  success-light: rgba(var(--nsw-status-success-bg-rgb), var(--nsw-bg-opacity, 1)),
+  warning-dark: rgba(var(--nsw-status-warning-rgb), var(--nsw-bg-opacity, 1)),
+  warning-light: rgba(var(--nsw-status-warning-bg-rgb), var(--nsw-bg-opacity, 1)),
+  error-dark: rgba(var(--nsw-status-error-rgb), var(--nsw-bg-opacity, 1)),
+  error-light: rgba(var(--nsw-status-error-bg-rgb), var(--nsw-bg-opacity, 1))
 ));
 
 // Text Colours
@@ -172,6 +174,8 @@ $sizes: (
 
 // Transitions
 $nsw-transition-duration: 0.15s ease-in-out !default;
+$nsw-transition-duration-smooth: 0.6s cubic-bezier(0.25, 1, 0.5, 1) !default;
+$nsw-transition-duration-a11y: 0.35s cubic-bezier(0.4, 0, 0.2, 1) !default;
 
 // Iconography
 $nsw-icon-sizes: (
@@ -184,6 +188,7 @@ $nsw-icon-sizes: (
 $nsw-icon-colors: (
   brand: var(--nsw-brand-dark),
   accent: var(--nsw-brand-accent),
+  accent-light: var(--nsw-brand-accent-light),
   error: var(--nsw-status-error),
   success: var(--nsw-status-success),
   info: var(--nsw-status-info),
@@ -346,6 +351,7 @@ $nsw-buttons: (
 // Forms
 $nsw-form-tick: '<svg fill="#ffffff" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path d="M29.362 3.742l-18.867 19.204-7.857-7.997-2.638 2.685 9.175 9.34 1.319 1.284 1.318-1.284 20.187-20.547z"></path></svg>';
 $nsw-form-chevron-down: '<svg fill="#333333" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path d="M16 26l16-16-4-4-12 12-12-12-4 4 16 16z"></path></svg>';
+$nsw-quick-exit-shield: '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M480-320q102-92 131-129.5t29-74.5q0-36-26-62t-62-26q-21 0-40.5 8.5T480-580q-12-15-31-23.5t-41-8.5q-36 0-62 26t-26 62q0 19 5 35t22 37.5q17 21.5 48.5 52.5t84.5 79Zm0 240q-139-35-229.5-159.5T160-516v-244l320-120 320 120v244q0 152-90.5 276.5T480-80Zm0-84q104-33 172-132t68-220v-189l-240-90-240 90v189q0 121 68 220t172 132Zm0-316Z"/></svg>';
 
 // In-page alerts
 $nsw-in-page-alerts: (

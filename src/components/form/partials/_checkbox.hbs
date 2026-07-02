@@ -1,4 +1,4 @@
-<input class="nsw-form__checkbox-input" type="checkbox" name="{{name}}" id="{{id}}"{{#if error-text}} aria-describedby="{{id}}-error-text" aria-invalid="true"{{/if}}{{#if checked}} checked{{/if}}>
+<input class="nsw-form__checkbox-input" type="checkbox" name="{{name}}" id="{{id}}"{{#if error-text}} aria-describedby="{{id}}-error-text" aria-invalid="true"{{/if}}{{#if checked}} checked{{/if}} {{#if disabled}}disabled={{disabled}}{{/if}} {{#if readonly}}readonly="{{readonly}}"{{/if}}>
 <label class="nsw-form__checkbox-label" for="{{id}}">{{{label}}}{{#if required}}<span class="nsw-form__required"></span><span class="sr-only"> (required)</span>{{/if}}</label>{{#if error-text}}
 <span id="{{id}}-error-text" class="nsw-form__helper nsw-form__helper--error"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span>{{error-text}}</span>{{/if}}{{#if valid-text}}
 <span id="{{id}}-valid-text" class="nsw-form__helper nsw-form__helper--valid"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span>{{valid-text}}</span>{{/if}}

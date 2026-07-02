@@ -8,7 +8,7 @@ meta-description: Documentation and examples for common text utilities to contro
 meta-index: true
 ---
 
-<h3>Text alignment</h3>
+<h3 id="text-alignment">Text alignment</h3>
 
 {{#>_docs-example open=true separated=true}} 
 <p class="nsw-text-left">Start aligned text on all viewport sizes.</p>
@@ -16,7 +16,7 @@ meta-index: true
 <p class="nsw-text-right">End aligned text on all viewport sizes.</p>
 {{/_docs-example}}
 
-<h3>Text wrapping and overflow</h3>
+<h3 id="text-wrapping-and-overflow">Text wrapping and overflow</h3>
 
 <p>Wrap text with a <code>.nsw-text-wrap</code> class.</p>
 
@@ -30,7 +30,57 @@ meta-index: true
 <span class="nsw-status-label nsw-text-nowrap" style="width: 6rem;">This text should overflow the parent.</span>
 {{/_docs-example}}
 
-<h3>Word break</h3>
+<h3 id="text-wrap-style">Text wrap style</h3>
+
+<p>Make line endings more even and avoid single-word last lines (orphans) using <code>.nsw-text-wrap-pretty</code> for general text that is not centred and <code>.nsw-text-wrap-balance</code> for short, centre-aligned headings or lead copy.</p>
+
+{{#>_docs-example showcode=true separated=true}} 
+<p class="nsw-text-bold nsw-m-bottom-xs nsw-bg--grey-04 nsw-p-xs">Default wrapping</p>
+<section class="nsw-section--brand-dark nsw-p-y-md">
+  <h1 class="nsw-m-y-0 nsw-width-100 nsw-m-left-md nsw-width-md-60">Pretty wrapping keeps headings calm and even for users now.</h1>
+</section>
+
+<p class="nsw-text-bold nsw-m-bottom-xs nsw-bg--grey-04 nsw-p-xs">Pretty wrapping</p>
+<section class="nsw-section--brand-dark nsw-p-y-md">
+  <h1 class="nsw-text-wrap-pretty nsw-m-left-md nsw-m-y-0 nsw-width-100 nsw-width-md-60">Pretty wrapping keeps headings calm and even for users now.</h1>
+</section>
+
+<p class="nsw-text-bold nsw-m-bottom-xs nsw-bg--grey-04 nsw-p-xs">Default wrapping (centred)</p>
+<div class="nsw-text-center">
+  <p class="nsw-display-inline-block nsw-width-100 nsw-width-md-4xl">Balanced wrapping is best for short, centred headings and hero-style intros.</p>
+</div>
+<p class="nsw-text-bold nsw-m-top-sm nsw-m-bottom-xs nsw-bg--grey-04 nsw-p-xs">Balanced wrapping</p>
+<div class="nsw-text-center">
+  <p class="nsw-text-wrap-balance nsw-display-inline-block nsw-width-100 nsw-width-md-4xl">Balanced wrapping is best for short, centred headings and hero-style intros.</p>
+</div>
+{{/_docs-example}}
+
+{{#>_docs-code open=true separated=true}}
+<!-- Default wrapping -->
+<h1>Pretty wrapping keeps headings calm and even for users now.</h1>
+
+<!-- Pretty wrapping -->
+<h1 class="nsw-text-wrap-pretty">Pretty wrapping keeps headings calm and even for users now.</h1>
+
+<!-- Default wrapping (centred) -->
+<div class="nsw-text-center">
+  <p>Balanced wrapping is best for short, centred headings and hero-style intros.</p>
+</div>
+
+<!-- Balanced wrapping (centred) -->
+<div class="nsw-text-center">
+  <p class="nsw-text-wrap-balance">Balanced wrapping is best for short, centred headings and hero-style intros.</p>
+</div>
+{{/_docs-code}}
+
+<div class="nsw-in-page-alert nsw-in-page-alert--info">
+  <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">info</span>
+  <div class="nsw-in-page-alert__content">
+    <p><strong>Browser support:</strong> <code>text-wrap</code> is a progressive enhancement. Browsers that do not support <code>pretty</code> or <code>balance</code> will ignore the value and use default wrapping.</p>
+  </div>
+</div>
+
+<h3 id="word-break">Word break</h3>
 
 <p>Prevent long strings of text from breaking your components’ layout by using .nsw-text-break to set word-wrap: break-word and word-break: break-word. We use word-wrap instead of the more common overflow-wrap for wider browser support, and add the deprecated word-break: break-word to avoid issues with flex containers.</p>
 
@@ -72,7 +122,7 @@ meta-index: true
 <p class="nsw-word-break-keep-all">mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm</p>
 {{/_docs-example}}
 
-<h3>Text transform</h3>
+<h3 id="text-transform">Text transform</h3>
 <p>Transform text with text capitalization classes.</p>
 
 {{#>_docs-example open=true separated=true}} 
@@ -82,7 +132,7 @@ meta-index: true
 {{/_docs-example}}
 
 
-<h3>Font weight and italics </h3>
+<h3 id="font-weight-and-italics">Font weight and italics</h3>
 <p>Quickly change the font-weight or font-style of text with these utilities.</p>
 
 {{#>_docs-example open=true separated=true}} 
@@ -91,7 +141,7 @@ meta-index: true
 <p class="nsw-text-italic">Italic text.</p>
 {{/_docs-example}}
 
-<h3>Text color</h3>
+<h3 id="text-color">Text color</h3>
 
 <p>Control the text color of an element using the <code>nsw-text--{color}</code> utilities.</p>
 

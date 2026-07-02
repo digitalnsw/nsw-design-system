@@ -1,8 +1,7 @@
-@use '../../global/scss/base/functions' as functions;
-@use '../../global/scss/base/mixins' as mixins;
+@use '../../global/scss/tools' as nsw;
 
 .nsw-pagination {
-  @include mixins.component-spacing();
+  @include nsw.component-spacing();
 
   ul {
     display: flex;
@@ -17,7 +16,7 @@
     margin: 0;
 
     > span {
-      padding: functions.rem(4px);
+      padding: nsw.rem(4px);
     }
   }
 
@@ -25,16 +24,16 @@
     display: block;
     text-decoration: none;
     text-align: center;
-    padding: functions.rem(4px);
-    min-width: functions.rem(30px);
+    padding: nsw.rem(4px);
+    min-width: nsw.rem(30px);
     border-radius: var(--nsw-border-radius);
 
     &:hover {
-      @include mixins.nsw-hover;
+      @include nsw.nsw-hover;
       outline-width: 0;
 
       .nsw-section--invert & {    
-        @include mixins.nsw-hover-light;
+        @include nsw.nsw-hover-light;
         outline-width: 0;
       }
     }
@@ -55,8 +54,8 @@
         content: '';
         position: absolute;
         bottom: 0;
-        left: functions.rem(4px);
-        right: functions.rem(4px);
+        left: nsw.rem(4px);
+        right: nsw.rem(4px);
         height: 2px;
         background-color: var(--nsw-brand-accent);        
       }

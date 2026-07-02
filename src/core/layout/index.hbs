@@ -8,7 +8,25 @@ meta-description: NSW Design System layouts for structuring components for NSW G
 meta-index: true
 ---
 
-<h2>Page layouts</h2>
+<nav class="nsw-in-page-nav" aria-labelledby="in-page-nav">
+  <div id="in-page-nav" class="nsw-in-page-nav__title">On this page</div>
+  <ul class="nsw-in-page-nav__list">
+    <li>
+      <a href="#page-layouts">Page layouts</a>
+    </li>
+    <li>
+      <a href="#optional-heading-anchor-links">Optional heading anchor links</a>
+    </li>
+    <li>
+      <a href="#alternating-layouts">Alternating layouts (visual order only)</a>
+    </li>
+    <li>
+      <a href="#global-page-structure">Global page structure</a>
+    </li>
+  </ul>
+</nav>
+
+<h2 id="page-layouts">Page layouts</h2>
 <p>There are then 3 standard page layouts that can be used to enclose your grid:</p>
 <ul>
   <li>Full width <a target="_blank" href="/templates/homepage/hero-banner.html">(Demo)</a></li>
@@ -16,10 +34,10 @@ meta-index: true
   <li>Two column - Right side <a target="_blank" href="/templates/content/article.html">(Demo)</a></li>
 </ul>
 
-<h2>Usage</h2>
+<h3 id="usage">Usage</h3>
 <p>A <code>nsw-container</code> keeps a container width of 1200px and the <code>nsw-page-layout</code> acts as a wrapper to align the content's spacing.</p>
 
-<h3>Full width - Main content area</h3>
+<h4>Full width - Main content area</h4>
 <p>Displays main content area the full width of the container.</p>
 {{#>_docs-example separated="true"}}
   <div class="nsw-container">
@@ -27,7 +45,7 @@ meta-index: true
   </div>
 {{/_docs-example}}
 
-<h3>Two column - Left side desktop only</h3>
+<h4>Two column - Left side desktop only</h4>
 <p>Displays a left hand sidebar that is visible on 992px+ viewports, with a main content area that is always visible. (Recommended for side navigation).</p>
 {{#>_docs-example separated="true"}}
   <div class="nsw-container">
@@ -35,11 +53,219 @@ meta-index: true
   </div>
 {{/_docs-example}}
 
-
-<h3>Two column - Right side</h3>
+<h4>Two column - Right side</h4>
 <p>Displays a right hand sidebar that stacks on 0 - 991px viewports, with main content area that is always visible. </p>
 {{#>_docs-example separated="true"}}
   <div class="nsw-container">
     {{>_layout side="right"}}
   </div>
 {{/_docs-example}}
+
+<h2 id="optional-heading-anchor-links">Optional heading anchor links</h2>
+<p>You can enable copyable anchor links for <code>h2</code> headings by adding <code>js-copy-headings</code> to the content container.</p>
+<p>This is a progressive enhancement. Content remains usable without JavaScript: users see normal headings, authored heading IDs continue to work, and the copy controls and generated IDs are only added when the NSW Design System JavaScript runs.</p>
+<p>Treat this as a product or template-level convention for long-form reference content where users need to share, cite or return to exact sections. It is most useful for guidance, policy, manuals, release notes, eligibility information and help content that people scan or reference across channels.</p>
+
+{{#>_docs-code open="true"}}
+<main class="js-copy-headings">
+  <h2 id="eligibility">Eligibility</h2>
+  <p>Eligibility requirements for this service.</p>
+
+  <h2>How to apply</h2>
+  <p>Complete the required application steps.</p>
+</main>
+{{/_docs-code}}
+
+<p>When this class is present:</p>
+<ul>
+  <li>The script scans descendant <code>h2</code> elements only.</li>
+  <li>Existing heading IDs are preserved; missing IDs are generated automatically.</li>
+  <li>An anchor copy icon is shown next to each <code>h2</code> and copies the full URL including hash.</li>
+  <li>The copy control is separate from the <code>h2</code> in the accessibility tree, so screen reader heading names remain the authored heading text.</li>
+  <li>On desktop, the icon reveals when the heading or icon area is hovered. On tablet and mobile it remains visible for touch users.</li>
+  <li>Heading text remains selectable, so users can still copy heading text without copying a link.</li>
+  <li>Initialisation runs only when <code>js-copy-headings</code> is detected on the page.</li>
+</ul>
+
+<div class="nsw-grid nsw-m-top-sm">
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--do"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span><span>Do</span></div>
+    <ul>
+      <li>Use this only on <code>h2</code> headings in the primary content body.</li>
+      <li>Enable it consistently for content templates where users often share or return to sections.</li>
+      <li>Use 3 or more <code>h2</code> headings as a practical signal for long-form content, not as a compliance threshold.</li>
+      <li>Apply <code>js-copy-headings</code> to the smallest container that contains the main reading content.</li>
+    </ul>
+  </div>
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--dont"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span><span>Don't</span></div>
+    <ul>
+      <li>Do not switch it on and off per page based only on the exact number of headings.</li>
+      <li>Do not enable it on transactional forms, dashboards, search results, landing pages or short campaign pages where section sharing is not a user need.</li>
+      <li>Do not enable it outside content bodies such as navigation, cards, filters, sidebars, tabs or utility regions.</li>
+      <li>Do not target random standalone <code>h2</code> elements that are not part of a coherent document structure.</li>
+    </ul>
+  </div>
+</div>
+
+<p>See the working example template: <a href="/templates/content/header-links.html" target="_blank" rel="noopener">Header links</a>.</p>
+
+<h3 id="alternating-layouts">Alternating layouts (visual order only)</h3>
+<p>Alternating image-and-text layouts can help people scan long pages. In the NSW Design System, this is done by <strong>changing the visual order only</strong>, while keeping the HTML order logical and consistent.</p>
+<p>Screen readers and keyboard focus follow the DOM, not the visual layout. If visual and DOM order diverge, users may hear or tab through content in a sequence that does not match what they see. This relates directly to WCAG 2.2:</p>
+<ul>
+  <li><a href="https://www.w3.org/WAI/WCAG22/Understanding/meaningful-sequence.html">1.3.2</a> Meaningful Sequence</li>
+  <li><a href="https://www.w3.org/WAI/WCAG22/Understanding/focus-order.html">2.4.3</a> Focus Order</li>
+</ul>
+
+<p>To avoid this, alternating layouts must always start with the correct reading order in the HTML (the DOM order for assistive technology).</p>
+
+<h4>How it works</h4>
+<ol>
+  <li>Write the HTML in the intended reading order. This ensures mobile users, screen reader users, and keyboard users experience content in the correct sequence.</li>
+  <li>Use order utilities to swap the visual position at larger breakpoints. Order utilities change how items appear visually, without changing DOM order. This is only appropriate when the DOM order remains a meaningful reading and focus sequence and the visual swap does not change task flow or meaning.</li>
+</ol>
+
+<h4>When to use</h4>
+<ul>
+  <li>When each pair of items communicates the same idea, such as an image and its related text</li>
+  <li>For non-functional, descriptive content where visual alternation improves scannability</li>
+</ul>
+<h4>When not to use</h4>
+<ul>
+  <li>For functional content such as forms, navigation, or interactive controls</li>
+  <li>When visual order affects task flow or meaning</li>
+</ul>
+
+<p>Do not use <code>tabindex</code> to force focus order to match a visual swap. This creates a separate focus sequence that is difficult to maintain and often causes accessibility issues.</p>
+ 
+<p>Once the DOM order is correct, apply order utilities at a breakpoint (for example <code>nsw-order-lg-first</code> and <code>nsw-order-lg-last</code>) as a visual enhancement only.</p>
+
+<p class="nsw-m-bottom-md">There are 2 order options: prefer first/last utilities for alternating layouts, and only use numeric order when the DOM cannot be changed. See <a href="/docs/content/utilities/flex.html#order">Flex order utilities</a> for details.</p>
+
+{{#>_docs-example showcode=true separated=true}}
+  <section class="nsw-row">
+    <div class="nsw-col nsw-col-lg-6 nsw-order-lg-last">
+      <div class="nsw-p-md nsw-bg--grey-03 nsw-border nsw-border--grey-03">Image</div>
+    </div>
+    <div class="nsw-col nsw-col-lg-6 nsw-order-lg-first">
+      <div class="nsw-p-md nsw-border nsw-border--grey-01">Text</div>
+    </div>
+  </section>
+  <section class="nsw-row">
+    <div class="nsw-col nsw-col-lg-6">
+      <div class="nsw-p-md nsw-bg--grey-03 nsw-border nsw-border--grey-03">Image</div>
+    </div>
+    <div class="nsw-col nsw-col-lg-6">
+      <div class="nsw-p-md nsw-border nsw-border--grey-01">Text</div>
+    </div>
+  </section>
+{{/_docs-example}}
+
+{{#>_docs-code open=true separated=true}}
+<section class="nsw-row">
+  <div class="nsw-col nsw-col-lg-6 nsw-order-lg-last">
+    <div>Image</div>
+  </div>
+  <div class="nsw-col nsw-col-lg-6 nsw-order-lg-first">
+    <div>Text</div>
+  </div>
+</section>
+<section class="nsw-row">
+  <div class="nsw-col nsw-col-lg-6">
+    <div>Image</div>
+  </div>
+  <div class="nsw-col nsw-col-lg-6">
+    <div>Text</div>
+  </div>
+</section>
+{{/_docs-code}}
+
+<p class="nsw-m-bottom-md"><strong>Note:</strong> <code>nsw-row</code> is a grid row and already uses <code>display: flex</code> (like <code>nsw-display-flex</code>). Its direct child <code>nsw-col</code> elements are flex items, so order utilities apply to the columns.</p>
+
+<div class="nsw-in-page-alert nsw-in-page-alert--warning">
+  <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">info</span>
+  <div class="nsw-in-page-alert__content">
+    <h4>Use <code>order</code> with care</h4>
+    <p><a href="/docs/content/utilities/flex.html#order">Order utilities</a> only change the visual order. Screen readers and keyboard focus follow the DOM order, so changing the visual order can misalign what people see, hear, and tab through. Do not use <code>order</code> (or other layout-only CSS) to rearrange functional content like forms, navigation, or controls. Trying to fix this with the <code>tabindex</code> attribute creates a separate focus sequence that can diverge from the DOM and is hard to maintain.</p>
+    <p>It is only suitable when items communicate the same, non-functional message such as an image and its accompanying text. Always keep the HTML order logical and meaningful for reading and focus, then apply <code>nsw-order-*</code> classes only as a visual enhancement where this does not change the intended sequence. Preserving a meaningful DOM order is key to meeting the intent of WCAG 2.2 SC <a href="https://www.w3.org/WAI/WCAG22/Understanding/meaningful-sequence.html">1.3.2 Meaningful Sequence</a> and <a href="https://www.w3.org/WAI/WCAG22/Understanding/focus-order.html">2.4.3 Focus Order</a>.</p>
+  </div>
+</div>
+
+<h2 id="global-page-structure">Global page structure</h2>
+<p>The global page structure provides page-level regions that sit outside in-content layout patterns. Use it for persistent, site-wide controls like the Sticky container, mastheads and footers. These regions form the shell of a page and are not composition patterns.</p>
+
+<h3 id="sticky-container-structure">Sticky container</h3>
+<p>A site-wide container fixed to the bottom of the viewport for critical controls such as <a href="../../components/quick-exit/index.html" aria-label="View Quick Exit component documentation" title="View Quick Exit component documentation">Quick Exit</a> and <a href="../../components/cookie-consent/index.html" aria-label="View Cookie Consent component documentation" title="View Cookie Consent component documentation">Cookie Consent</a>. It is part of the page shell, not an in-content component.</p>
+
+<h4>When to use</h4>
+<ul>
+  <li>You need a persistent control that should sit above content at all times.</li>
+  <li>You want a no-JS baseline for safety or compliance, then progressive enhancement.</li>
+</ul>
+
+<h4>When not to use</h4>
+<ul>
+  <li>For local, in-content notices. Use <a href="../../core/section/index.html" aria-label="View Section core pattern documentation" title="View Section core pattern documentation">Section</a> and <a href="../../components/alert/index.html" aria-label="View Alert component documentation" title="View Alert component documentation">Alert</a> patterns instead.</li>
+  <li>For content that belongs in the main flow of the page.</li>
+</ul>
+
+<h4>HTML baseline</h4>
+<p>Place the Sticky container as the last child of <code>&lt;body&gt;</code>. Render baseline markup inside it so pages work without JavaScript.</p>
+
+{{#>_docs-example hidden="true" open="true" code="html"}}
+<body>
+  <!-- Page content -->
+
+  <div class="nsw-sticky-container">
+    <!-- Place components here that need to live in the sticky footer (including their fallback HTML). -->
+  </div>
+</body>
+{{/_docs-example}}
+
+<h4>CSS (included in Core)</h4>
+<p>The Sticky container styling is included with Core so it is available on every page.</p>
+
+{{#>_docs-example hidden="true" open="true" code="css"}}
+.nsw-sticky-container {
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: var(--nsw-layer-sticky, 1000);
+  display: block;
+}
+
+@media print {
+  .nsw-sticky-container { position: static !important; }
+}
+{{/_docs-example}}
+
+<h4>Placement</h4>
+<ul>
+  <li>Append as the last child of <code>&lt;body&gt;</code>.</li>
+  <li>Do not wrap it in elements that set <code>overflow</code> or <code>transform</code>. These can break sticky positioning.</li>
+</ul>
+
+<h4>Accessibility</h4>
+<ul>
+  <li>Page shell order stays logical. Main content appears before the Sticky container in the DOM.</li>
+  <li>Controls in the container must have clear text labels and visible focus.</li>
+  <li>Provide a working no-JS baseline. <a href="../../components/quick-exit/index.html" aria-label="View Quick Exit component documentation" title="View Quick Exit component documentation">Quick Exit</a> should include a real link that works without JavaScript.</li>
+</ul>
+
+<h4>Known limitations</h4>
+<ul>
+  <li>Sticky positioning is affected by ancestor <code>overflow</code> or <code>transform</code>. Keep the container as a direct child of <code>&lt;body&gt;</code>.</li>
+  <li>Ensure a z-index above the footer and other fixed elements.</li>
+</ul>
+
+<h4>Integration notes</h4>
+<ul>
+  <li><a href="../../components/quick-exit/index.html" aria-label="View Quick Exit component documentation" title="View Quick Exit component documentation">Quick Exit</a> and <a href="../../components/cookie-consent/index.html" aria-label="View Cookie Consent component documentation" title="View Cookie Consent component documentation">Cookie Consent</a> progressively enhance inside this container.</li>
+  <li>JavaScript can set body padding based on the container height to avoid overlap. The NSW components do this automatically.</li>
+</ul>
+
+<h4>Classification</h4>
+<p><strong>Is this a Layout pattern?</strong> No. Layout covers composition patterns inside the page. Global page structure covers the page shell. The Sticky container is part of the shell.</p>

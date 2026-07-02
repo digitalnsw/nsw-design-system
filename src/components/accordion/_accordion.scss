@@ -1,24 +1,23 @@
 @use 'sass:map';
-@use '../../global/scss/base/functions' as functions;
-@use '../../global/scss/base/mixins' as mixins;
-@use '../../global/scss/settings/settings' as settings;
+@use '../../global/scss/tools' as nsw;
 
 .nsw-accordion {
-  @include mixins.component-spacing();
+  @include nsw.component-spacing();
 
   &__title,
   &__button {
     font-weight: var(--nsw-font-bold);
-    padding: functions.rem(16px) functions.rem(48px) functions.rem(16px) functions.rem(16px);
-    margin-top: functions.rem(8px);
+    padding: nsw.rem(16px) nsw.rem(48px) nsw.rem(16px) nsw.rem(16px);
+    margin-top: nsw.rem(8px);
     background-color: var(--nsw-off-white);
     display: block;
     width: 100%;
     text-align: left;
+    text-wrap: pretty;
     position: relative;
-    transition: background settings.$nsw-transition-duration, color settings.$nsw-transition-duration;
+    transition: background nsw.$nsw-transition-duration, color nsw.$nsw-transition-duration;
 
-    @include mixins.font-size('md');
+    @include nsw.font-size('md');
 
     .active,
     &:hover & {
@@ -44,7 +43,7 @@
   &__toggle {
     display: flex;
     justify-content: flex-end;
-    margin-bottom: functions.rem(16px);
+    margin-bottom: nsw.rem(16px);
 
     button {
       color: var(--nsw-link);
@@ -54,11 +53,12 @@
       border: 0;
       padding: 0;
       background: none;
+
+      @include nsw.link;
+      @include nsw.font-size('sm');
       
-      @include mixins.font-size('sm');
-      
-      &:hover:enabled {
-        @include mixins.nsw-hover;
+      &:hover:enabled:not(.disabled) {
+        @include nsw.nsw-hover;
         outline: 2px solid var(--nsw-hover);
         cursor: pointer;
 
@@ -69,14 +69,15 @@
       }
 
       &:focus {
-        @include mixins.nsw-focus($offset: false);
+        @include nsw.nsw-focus($offset: false);
       }
 
       &:first-child {
-        margin-right: functions.rem(24px);
+        margin-right: nsw.rem(24px);
       }
 
-      &:disabled {
+      &:disabled,
+      &.disabled {
         opacity: 0.4;
         cursor: not-allowed;
       }      
@@ -85,7 +86,7 @@
         color: var(--nsw-text-light);
 
         &:focus {
-          outline-color: var(--nsw-white);
+          outline-color: var(--nsw-focus-light);
         }
       }
     }
@@ -98,13 +99,13 @@
     }
 
     .nsw-material-icons {
-      font-size: functions.rem(map.get(settings.$nsw-icon-sizes, 30));
+      font-size: nsw.rem(map.get(nsw.$nsw-icon-sizes, 30));
       color: var(--nsw-brand-dark);
       transform: translateY(-50%);
       position: absolute;
       top: 50%;
-      right: functions.rem(8px);
-      transition: transform settings.$nsw-transition-duration, color settings.$nsw-transition-duration;
+      right: nsw.rem(8px);
+      transition: transform nsw.$nsw-transition-duration, color nsw.$nsw-transition-duration;
     }
   }
 
@@ -115,11 +116,11 @@
     &:focus {
       position: relative;
 
-      @include mixins.nsw-focus;
-      @include mixins.z-index;
+      @include nsw.nsw-focus;
+      @include nsw.z-index;
       
       .nsw-section--invert & {   
-        @include mixins.nsw-focus($color: var(--nsw-focus-light));
+        @include nsw.nsw-focus($color: var(--nsw-focus-light));
       }
     }
 
@@ -139,6 +140,153 @@
   }
 
   &__content {
-    padding: functions.rem(16px);
+    padding-left: nsw.rem(16px);
+    padding-right: nsw.rem(16px);
   }
+
+  .nsw-accordion__content > :first-child {
+    padding-top: nsw.rem(16px);
+  }
+
+  .nsw-accordion__content > :last-child {
+    padding-bottom: nsw.rem(16px);
+  }
+
+  // Details/summary variation styles
+
+  &__item {
+    margin-top: nsw.rem(8px);
+    overflow: visible;
+    interpolate-size: allow-keywords; /* stylelint-disable-line property-no-unknown -- experimental details animation property */
+  
+    &::details-content {
+      block-size: 0;
+      overflow: hidden;
+      transition: block-size nsw.$nsw-transition-duration-smooth, content-visibility nsw.$nsw-transition-duration-smooth; /* stylelint-disable-line property-no-unknown -- experimental details animation property */
+      transition-behavior: allow-discrete; /* stylelint-disable-line property-no-unknown -- experimental details animation property */
+    }
+  
+    &[open]::details-content {
+      block-size: auto;
+    }
+  
+    > .nsw-accordion__title {
+      position: relative;
+      padding: nsw.rem(16px) nsw.rem(48px) nsw.rem(16px) nsw.rem(16px);
+      margin-top: 0;
+      width: unset;
+      display: block;
+      cursor: pointer;
+      user-select: none;
+      transition: background nsw.$nsw-transition-duration, color nsw.$nsw-transition-duration;
+  
+      // Remove native marker
+      list-style: none;
+  
+      &::-webkit-details-marker {
+        display: none;
+      }
+  
+      &::marker {
+        content: '';
+      }
+  
+      &::after {
+        content: '\e313';
+        position: absolute;
+        transform: translateY(-50%);
+        top: 50%;
+        right: nsw.rem(8px);
+        font-size: nsw.rem(map.get(nsw.$nsw-icon-sizes, 30));
+        font-weight: var(--nsw-font-normal);
+        color: var(--nsw-brand-dark);
+        transition: transform nsw.$nsw-transition-duration-smooth, color nsw.$nsw-transition-duration-smooth;
+        pointer-events: none;
+  
+        @include nsw.material-icons;
+      }
+  
+      &:hover {
+        background-color: var(--nsw-brand-dark);
+        color: var(--nsw-text-light);
+  
+        &::after {
+          color: var(--nsw-text-light);
+        }
+      }
+  
+      &:focus-visible {
+        @include nsw.nsw-focus;
+        @include nsw.z-index;
+      }
+    }
+  
+    > .nsw-accordion__content-wrap {
+      padding: 0;
+    }
+  
+    .nsw-accordion__content {
+      overflow: hidden;
+      min-block-size: 0;
+    }
+  
+    .nsw-accordion__content > :first-child {
+      padding-top: nsw.rem(16px);
+    }
+  
+    .nsw-accordion__content > :last-child {
+      padding-bottom: nsw.rem(16px);
+    }
+  
+    &[open] > .nsw-accordion__title {
+      background-color: var(--nsw-brand-dark);
+      color: var(--nsw-text-light);
+  
+      &::after {
+        transform: translateY(-50%) rotate(180deg);
+        color: var(--nsw-off-white);
+      }
+    }
+  }
+
+  @include nsw.prefers-reduced-motion() {
+    &__item {
+      &::details-content,
+      > .nsw-accordion__title,
+      > .nsw-accordion__title::after {
+        transition: none;
+      }
+    }
+  }
+}
+
+.nsw-section--invert .nsw-accordion__item > .nsw-accordion__title {
+  background-color: var(--nsw-off-white);
+  color: var(--nsw-text-dark);
+}
+
+.nsw-section--invert .nsw-accordion__item > .nsw-accordion__title::after {
+  color: var(--nsw-text-dark);
+}
+
+.nsw-section--invert .nsw-accordion__item > .nsw-accordion__title:hover {
+  background-color: var(--nsw-brand-light);
+  color: var(--nsw-text-dark);
+}
+
+.nsw-section--invert .nsw-accordion__item > .nsw-accordion__title:hover::after {
+  color: var(--nsw-text-dark);
+}
+
+.nsw-section--invert .nsw-accordion__item > .nsw-accordion__title:focus-visible {
+  @include nsw.nsw-focus($color: var(--nsw-focus-light));
+}
+
+.nsw-section--invert .nsw-accordion__item[open] > .nsw-accordion__title {
+  background-color: var(--nsw-brand-light);
+  color: var(--nsw-text-dark);
+}
+
+.nsw-section--invert .nsw-accordion__item[open] > .nsw-accordion__title::after {
+  color: var(--nsw-text-dark);
 }

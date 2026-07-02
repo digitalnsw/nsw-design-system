@@ -19,14 +19,30 @@ class ExpandableSearch {
       }
     })
 
-    this.buttons.forEach((element) => {
-      element.addEventListener('click', () => {
+    // Mouse: navigate through to each suggestion on click
+    this.buttons.forEach((btn) => {
+      btn.addEventListener('click', () => {
         if (this.searchInput.classList.contains(this.hasContentClass)) {
           this.searchArea.hidden = false
           this.searchInput.focus()
         }
       })
     })
+
+    // Keyboard: submit on Enter by navigating to the active suggestion (or first link)
+    if (this.searchInput && this.searchArea) {
+      this.searchInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+          const activeLink = this.searchArea.querySelector('[aria-selected="true"] a[href], .is-active a[href], [data-selected="true"] a[href]')
+          const firstLink = this.searchArea.querySelector('a[href]')
+          const target = activeLink || firstLink
+          if (target && target.href) {
+            e.preventDefault()
+            window.location.assign(target.href)
+          }
+        }
+      })
+    }
   }
 }
 

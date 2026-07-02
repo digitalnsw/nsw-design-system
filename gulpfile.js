@@ -36,6 +36,8 @@ const { argv } = require('yargs')
 const bump = require('gulp-bump')
 const config = require('./config')
 const package = require('./package')
+const Handlebars = require('handlebars')
+const handlebarsHelpers = require('handlebars-helpers')
 
 const server = browsersync.create()
 
@@ -44,6 +46,9 @@ const postcssProcessors = [
   autoprefixer({ grid: true }),
   cssnano,
 ]
+
+// Register all helpers globally on the Handlebars instance
+handlebarsHelpers({ handlebars: Handlebars })
 
 function moveImages() {
   return src(config.images.src)
@@ -64,6 +69,7 @@ function buildStyles() {
       this.emit('end')
     }))
     .pipe(postcss(postcssProcessors))
+    .pipe(inject.prepend(`/*! NSW Design System v${String(package.version).replace(/\*\//g, '*\\/')} | MIT License */\n`))
     .pipe(sourcemaps.write('.'))
     .pipe(dest(config.scss.build))
 }
@@ -160,7 +166,10 @@ function metalsmithBuild(callback) {
   metalsmith.destination(config.metalSmith.build)
   metalsmith.use(ignore(config.metalSmith.ignoreFiles))
   metalsmith.clean(false)
-  metalsmith.use(discoverHelpers(config.metalSmith.helpers))
+  metalsmith.use(discoverHelpers({
+    ...config.metalSmith.helpers,
+    handlebars: Handlebars
+  }))
   metalsmith.use(discoverPartials(config.metalSmith.partials))
   metalsmith.use(dataLoader(config.metalSmith.data))
   metalsmith.use(collections({
@@ -260,6 +269,9 @@ function compileJS() {
         },
       ),
     )
+    .pipe(replace(/\bprocess\.env\.NODE_ENV\b/g, JSON.stringify(process.env.NODE_ENV || 'production')))
+    .pipe(inject.prepend(`/*! NSW Design System v${String(package.version).replace(/\*\//g, '*\\/')} | MIT License */\n`))
+    .pipe(inject.append(`\n;(function(g){try{g.NSW=g.NSW||{};g.NSW.VERSION=${JSON.stringify(String(package.version))};}catch(e){} }(typeof globalThis!=='undefined'?globalThis:(typeof window!=='undefined'?window:self)));`))
     .pipe(dest(config.js.build))
 }
 
@@ -288,6 +300,8 @@ function compileDocsJS() {
         }
       ),
     )
+    .pipe(replace(/\bprocess\.env\.NODE_ENV\b/g, JSON.stringify(process.env.NODE_ENV || 'production')))
+    .pipe(inject.prepend(`/*! NSW Design System v${String(package.version).replace(/\*\//g, '*\\/')} | MIT License */\n`))
     .pipe(dest(config.jsDocs.build))
 }
 
@@ -311,6 +325,8 @@ function compileCookieConsentJS() {
         }
       ),
     )
+    .pipe(replace(/\bprocess\.env\.NODE_ENV\b/g, JSON.stringify(process.env.NODE_ENV || 'production')))
+    .pipe(inject.prepend(`/*! NSW Design System v${String(package.version).replace(/\*\//g, '*\\/')} | MIT License */\n`))
     .pipe(dest(config.jsCookieConsent.build))
 }
 
@@ -347,11 +363,19 @@ function renamePath() {
     .pipe(replace('/css/main.css', './css/main.css'))
     .pipe(replace('/js/main.js', './js/main.js'))
     .pipe(replace('/favicon.ico', './favicon.ico'))
+    .pipe(replace('/favicon.png', './favicon.png'))
+    .pipe(replace('/favicon.svg', './favicon.svg'))
+    .pipe(replace('/apple-touch-icon.png', './apple-touch-icon.png'))
+    .pipe(replace('/site.webmanifest', './site.webmanifest'))
     .pipe(dest(config.dir.build))
     .pipe(src([`${config.dir.build}**/*.html`, `!${config.dir.build}index.html`]))
     .pipe(replace('/css/main.css', '../../css/main.css'))
     .pipe(replace('/js/main.js', '../../js/main.js'))
     .pipe(replace('/favicon.ico', '../../favicon.ico'))
+    .pipe(replace('/favicon.png', '../../favicon.png'))
+    .pipe(replace('/favicon.svg', '../../favicon.svg'))
+    .pipe(replace('/apple-touch-icon.png', '../../apple-touch-icon.png'))
+    .pipe(replace('/site.webmanifest', '../../site.webmanifest'))
     .pipe(dest(config.dir.build))
 }
 
@@ -364,7 +388,7 @@ function renamePathForProd() {
 
 function addAnalytics() {
   return src(`${config.dir.build}/**/*.html`)
-  .pipe(inject.after('<head>', `<script data-category="analytics">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    .pipe(inject.after('<head>', `<script data-category="analytics">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
@@ -379,7 +403,7 @@ function addAnalytics() {
   gtag('config', 'G-49T9M12F86');
 </script>
   `))
-.pipe(inject.after('<body>', `<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P2NKBBJZ"
+    .pipe(inject.after('<body>', `<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P2NKBBJZ"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     `))
     .pipe(dest(config.dir.build))

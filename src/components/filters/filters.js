@@ -43,6 +43,8 @@ class Filters {
     this.content = []
     this.options = []
     this.selected = []
+
+    this.keydownHandler = null
   }
 
   init() {
@@ -181,6 +183,10 @@ class Filters {
     event.preventDefault()
     this.element.classList.remove(this.showClass)
     document.body.classList.remove(this.openClass)
+    if (this.keydownHandler) {
+      document.removeEventListener('keydown', this.keydownHandler)
+      this.keydownHandler = null
+    }
   }
 
   showFilters(event) {
@@ -214,7 +220,6 @@ class Filters {
           option.value = ''
         } else if (option.type === 'select-one') {
           if (this.selectedOption) {
-            console.log(Array.from(option.options).indexOf(this.selectedOption))
             option.selectedIndex = Array.from(option.options).indexOf(this.selectedOption)
           } else {
             option.selectedIndex = 0
@@ -236,7 +241,7 @@ class Filters {
 
       multiSelectOptions.forEach((element) => {
         element.setAttribute('aria-selected', 'true')
-        element.dispatchEvent(new Event(simulateEvent))
+        element.dispatchEvent(simulateEvent)
         element.click()
       })
     }
@@ -333,8 +338,8 @@ class Filters {
     const firstFocusableElement = focusableContent[0]
     const lastFocusableElement = focusableContent[focusableContent.length - 1]
 
-    document.addEventListener('keydown', (event) => {
-      const tab = (event.code && event.code === 9) || (event.key && event.key === 'Tab')
+    this.keydownHandler = (event) => {
+      const tab = (event.keyCode === 9 || event.code === 'Tab') || (event.key && event.key === 'Tab')
       if (!tab) return
 
       if (document.activeElement === firstFocusableElement && event.shiftKey) {
@@ -345,17 +350,19 @@ class Filters {
         event.preventDefault()
         firstFocusableElement.focus()
       }
-    })
+    }
+
+    document.addEventListener('keydown', this.keydownHandler)
 
     firstFocusableElement.focus()
   }
 
   static getMultiSelectValues(array) {
-    let selectedOptions = []
+    const selectedOptions = []
 
     if (array.length > 0) {
       array.forEach((element) => {
-        selectedOptions = Array.from(element.options).filter((option) => option.selected)
+        selectedOptions.push(...Array.from(element.options).filter((o) => o.selected))
       })
     }
 

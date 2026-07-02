@@ -1,4 +1,4 @@
-import { uniqueId } from '../../global/scripts/helpers/utilities'
+import { uniqueId, setAriaDisabled, isAriaDisabled } from '../../global/scripts/helpers/utilities'
 
 function createButtons({ textContent }) {
   const fragment = document.createDocumentFragment()
@@ -29,6 +29,7 @@ class Accordion {
     this.isExpandedOnLoad = this.element.querySelectorAll('.nsw-accordion__open')
     this.buttons = []
     this.content = []
+    this.statusElement = null
     this.toggleEvent = (event) => this.toggle(event)
     this.expandAllEvent = (event) => this.expandAll(event)
     this.collapseAllEvent = (event) => this.collapseAll(event)
@@ -41,9 +42,6 @@ class Accordion {
 
   setUpDom() {
     this.element.classList.add('ready')
-    if (this.collapseAllBtn) {
-      this.collapseAllBtn.disabled = true
-    }
     this.headings.forEach((heading) => {
       const headingElem = heading
       const contentElem = heading.nextElementSibling
@@ -55,7 +53,7 @@ class Accordion {
 
       if (contentElem) {
         contentElem.id = buttonElem.getAttribute('aria-controls')
-        contentElem.hidden = 'until-found'
+        contentElem.setAttribute('hidden', 'until-found')
         this.content.push(contentElem)
       }
 
@@ -68,6 +66,12 @@ class Accordion {
         this.setAccordionState(openButton, 'open')
       })
     }
+
+    if (this.expandAllBtn && this.collapseAllBtn) {
+      this.statusElement = this.ensureStatusElement()
+    }
+
+    this.updateToggleButtons()
   }
 
   controls() {
@@ -81,6 +85,26 @@ class Accordion {
     }
   }
 
+  updateToggleButtons() {
+    const {
+      collapseAllBtn,
+      content,
+      expandAllBtn,
+    } = this
+    if (!expandAllBtn || !collapseAllBtn) return
+    const allOpen = content.length && content.every((item) => !item.hasAttribute('hidden'))
+    const allClosed = content.length && content.every((item) => item.hasAttribute('hidden'))
+    const { activeElement } = document
+    const shouldMoveToCollapse = allOpen && activeElement === expandAllBtn
+    const shouldMoveToExpand = allClosed && activeElement === collapseAllBtn
+
+    if (shouldMoveToCollapse) collapseAllBtn.focus()
+    if (shouldMoveToExpand) expandAllBtn.focus()
+
+    setAriaDisabled(expandAllBtn, !!allOpen)
+    setAriaDisabled(collapseAllBtn, !!allClosed)
+  }
+
   getTargetContent(element) {
     const currentIndex = this.buttons.indexOf(element)
     return this.content[currentIndex]
@@ -92,11 +116,11 @@ class Accordion {
     if (state === 'open') {
       element.classList.add('active')
       element.setAttribute('aria-expanded', 'true')
-      targetContent.hidden = false
+      targetContent.removeAttribute('hidden')
     } else if (state === 'close') {
       element.classList.remove('active')
       element.setAttribute('aria-expanded', 'false')
-      targetContent.hidden = 'until-found'
+      targetContent.setAttribute('hidden', 'until-found')
     }
   }
 
@@ -105,35 +129,57 @@ class Accordion {
     const targetContent = this.getTargetContent(currentTarget)
 
     if (targetContent) {
-      const isHidden = targetContent.hidden
+      const isHidden = targetContent.hasAttribute('hidden')
 
-      if ((isHidden === true) || (isHidden === 'until-found')) {
+      if (isHidden) {
         this.setAccordionState(currentTarget, 'open')
       } else {
         this.setAccordionState(currentTarget, 'close')
       }
 
-      if (this.expandAllBtn && this.collapseAllBtn) {
-        this.expandAllBtn.disabled = this.content.every((item) => item.hidden === false)
-        this.collapseAllBtn.disabled = this.content.every((item) => item.hidden === 'until-found')
-      }
+      this.updateToggleButtons()
     }
   }
 
-  expandAll() {
+  expandAll(event) {
+    if (event && isAriaDisabled(event.currentTarget)) return
     this.buttons.forEach((element) => {
       this.setAccordionState(element, 'open')
     })
-    this.expandAllBtn.disabled = true
-    this.collapseAllBtn.disabled = false
+    this.updateToggleButtons()
+    this.announceStatus('All sections expanded')
   }
 
-  collapseAll() {
+  collapseAll(event) {
+    if (event && isAriaDisabled(event.currentTarget)) return
     this.buttons.forEach((element) => {
       this.setAccordionState(element, 'close')
     })
-    this.expandAllBtn.disabled = false
-    this.collapseAllBtn.disabled = true
+    this.updateToggleButtons()
+    this.announceStatus('All sections collapsed')
+  }
+
+  ensureStatusElement() {
+    const { element } = this
+    const toolbar = element && element.querySelector('.nsw-accordion__toggle')
+    if (!toolbar) return null
+    const existing = toolbar.querySelector('[data-accordion-status]')
+    if (existing) return existing
+    const statusElement = document.createElement('span')
+    statusElement.classList.add('sr-only')
+    statusElement.setAttribute('role', 'status')
+    statusElement.setAttribute('aria-live', 'polite')
+    statusElement.setAttribute('aria-atomic', 'true')
+    statusElement.setAttribute('data-accordion-status', 'true')
+    toolbar.appendChild(statusElement)
+    return statusElement
+  }
+
+  announceStatus(message) {
+    const { statusElement } = this
+    if (!statusElement) return
+    statusElement.textContent = ''
+    statusElement.textContent = message
   }
 }
 

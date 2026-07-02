@@ -1,17 +1,16 @@
-@use '../../global/scss/base/functions' as functions;
-@use '../../global/scss/base/mixins' as mixins;
+@use '../../global/scss/tools' as nsw;
 
 .nsw-in-page-nav {
-  padding: functions.rem(16px);
+  padding: nsw.rem(16px);
   border-left: solid 2px var(--nsw-brand-accent);
 
-  @include mixins.component-spacing();
+  @include nsw.component-spacing();
 
   &__title {
     font-weight: var(--nsw-font-bold);
     margin: 0;
     
-    @include mixins.font-size(md);
+    @include nsw.font-size(md);
   }
 
   ul {
@@ -22,15 +21,15 @@
 
   li {
     display: block;
-    margin-top: functions.rem(16px);
+    margin-top: nsw.rem(16px);
   }
 
   a:not(.nsw-icon-button) {
     line-height: 1.5;
-    padding: functions.rem(8px) functions.rem(24px) functions.rem(8px) 0;
+    padding: nsw.rem(8px) nsw.rem(24px) nsw.rem(8px) 0;
     
-    @include mixins.breakpoint('md') {
-      padding: functions.rem(4px) functions.rem(4px) functions.rem(4px) 0;
+    @include nsw.breakpoint('md') {
+      padding: nsw.rem(4px) nsw.rem(4px) nsw.rem(4px) 0;
     }
   }
 }

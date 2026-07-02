@@ -100,9 +100,10 @@ Alternatively, you can import fonts and icons directly in your CSS:
 Certain NSW Design System components require JavaScript to enable advanced functionality. To ensure your page is ready for JavaScript execution, include the following script tags at the end of your HTML document:
 
 ```
-<script src="path/to/main.js"></script>
-<script>window.NSW.initSite()</script>
-</body>
+    <!-- Page content -->
+    <script src="path/to/main.js"></script>
+    <script>window.NSW.initSite()</script>
+  </body>
 </html>
 ```
 
@@ -134,15 +135,15 @@ Please read through our [contributing guidelines](https://www.digital.nsw.gov.au
 
 Get notified when there’s an update or new release on the NSW Design System's and chat with the project maintainers and community members.
 
-* Join our [Digital NSW Community](https://community.digital.nsw.gov.au/).
+* Join our [NSW Design System Community](https://community.designsystem.nsw.gov.au/).
 
-* Watch the [NSW Design System Github](https://github.com/digitalnsw/nsw-design-system).
+* Watch the [NSW Design System GitHub](https://github.com/digitalnsw/nsw-design-system).
 
 * Ask and explore [our GitHub Discussions](https://github.com/digitalnsw/nsw-design-system/discussions).
 
 ## Report an issue
 
-View and raise issues and bugs through our [Issues tracker on Github](https://github.com/digitalnsw/nsw-design-system/issues) or [report a bug on the Digital NSW community](https://community.digital.nsw.gov.au/c/components/report-a-bug/27).
+View and raise issues and bugs through our [Issues tracker on GitHub](https://github.com/digitalnsw/nsw-design-system/issues) or [report a bug on the NSW Design System Community](https://community.designsystem.nsw.gov.au/c/components/report-a-bug/27).
 
 ## Design System Figma UI Kit
 
@@ -160,6 +161,6 @@ Our version numbers consist of MAJOR.MINOR.PATCH, where:
 
 * **PATCH** version is used for minor backward-compatible updates, new component variations, and bug fixes.
 
-See [the Releases section of our GitHub project](https://github.com/digitalnsw/nsw-design-system/releases) for changelogs for each release version. Release posts on our [what’s happening page](https://designsystem.nsw.gov.au/docs/content/about/whats-happening.html) contain summaries of the most noteworthy changes made in each release.
+See [the Releases section of our GitHub project](https://github.com/digitalnsw/nsw-design-system/releases) for release notes for each release version. Release posts on our [release notes page](https://designsystem.nsw.gov.au/docs/content/about/release-notes.html) contain summaries of the most noteworthy changes made in each release.
 
 Feel free to reach out if you have any questions or need more help with integrating the NSW Design System into your projects!

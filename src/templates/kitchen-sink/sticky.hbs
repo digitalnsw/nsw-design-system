@@ -1,0 +1,242 @@
+---
+title: Domestic, family and sexual violence
+order: 22
+page: true
+directory: Sticky
+model:
+  nav-basic: ../../components/main-nav/json/main-nav.json
+  nav-mega: ../../components/main-nav/json/main-nav-mega.json
+  breadcrumbs: ../../components/breadcrumbs/json/breadcrumbs-1.json
+  tag: ../../components/tag/json/tag-link.json
+  link-list: ../../components/link-list/json/link-list-3.json
+  card-blog-1: ../../components/card/json/card-blog-1.json
+  card-blog-2: ../../components/card/json/card-blog-2.json
+  card-blog-3: ../../components/card/json/card-blog-3.json
+  footer: ../../components/footer/json/footer.json
+  quick-exit: ../../components/quick-exit/json/quick-exit.json
+  cookie-consent: ../../components/cookie-consent/json/cookie-consent-1.json
+  dialog: ../../components/dialog/json/dialog-dismissible-dark.json
+  select: ../../components/select/json/select-region.json
+---
+
+{{>_masthead content="#content" nav="#main-nav" quickExit="true"}}
+{{>_header header-title="Premier & Cabinet"}}
+{{>_main-nav model.nav-basic}}
+<div class="nsw-container nsw-p-bottom-xs">
+  {{>_breadcrumbs model.breadcrumbs}}
+</div>
+
+<div class="nsw-container nsw-p-top-sm nsw-p-bottom-lg">
+  <div class="nsw-layout">
+    <main id="content" class="nsw-layout__main">
+      {{>_back-to-top}}
+      <div class="nsw-block">
+        <h1>Domestic, family and sexual violence</h1>
+        <p class="nsw-intro">How to get help and support, emergency housing, understanding domestic and sexual violence, sexual consent and the law, legal help, and how to stay safe.</p>
+
+        <h2>Hotlines</h2>
+        <ul>
+          <li><strong>NSW Domestic Violence Line</strong> <a href="tel:1800656463">1800 656 463</a></li>
+          <li><strong>1800 RESPECT</strong> <a href="tel:1800737732">1800 737 732</a></li>
+          <li><strong>Link2home Homelessness</strong> <a href="tel:1800152152">1800 152 152</a></li>
+          <li><strong>Link2Home Veterans</strong> <a href="tel:1800326989">1800 326 989</a></li>
+          <li><strong>Child Protection Helpline</strong> <a href="tel:132111">13 21 11</a></li>
+        </ul>
+
+        <h2 id="initialise-other-elements">Initialise other elements</h2>
+        <div class="nsw-grid nsw-grid--spaced nsw-m-top-sm">
+
+          <div class="nsw-col nsw-col-md-6">
+            <h3>Global alert</h3>
+            <button class="nsw-button nsw-button--dark nsw-m-top-md" id="init-global-alert" type="button">Initialise Global alert</button>
+            <script>
+              (function () {
+                var btn = document.getElementById('init-global-alert')
+                if (!btn) return
+
+                btn.addEventListener('click', function () {
+                  // Avoid duplicate injection
+                  if (document.querySelector('[data-module="global-alert"]')) return
+
+                  // Insert at the very top of the page (before the first child of <body>)
+                  var first = document.body.firstElementChild
+
+                  // Build Global Alert element
+                  var alertEl = document.createElement('div')
+                  alertEl.className = 'nsw-global-alert nsw-global-alert--critical'
+                  alertEl.setAttribute('data-module', 'global-alert')
+                  // alertEl.setAttribute('data-cookie-name', 'nsw-global-alert') - enable if cookie persistence is needed
+                  alertEl.setAttribute('role', 'alert')
+                  alertEl.style.position = 'relative'
+                  alertEl.style.zIndex = '2000'
+                  alertEl.innerHTML = '\
+                    <div class="nsw-global-alert__wrapper">\
+                      <div class="nsw-global-alert__content">\
+                        <div class="nsw-global-alert__title">Important update</div>\
+                        <p>Service outages may occur between 1am and 3am.</p>\
+                      </div>\
+                      <button class="nsw-icon-button js-close-alert" type="button">\
+                        <span class="material-icons nsw-material-icons" aria-hidden="true">close</span>\
+                        <span class="sr-only">Close message</span>\
+                      </button>\
+                    </div>'
+
+                  // Insert as the first element in <body> so it sits above everything
+                  if (first) {
+                    document.body.insertBefore(alertEl, first)
+                  } else {
+                    document.body.appendChild(alertEl)
+                  }
+
+                  if (window.NSW && window.NSW.GlobalAlert) {
+                    var instance = new window.NSW.GlobalAlert(alertEl)
+                    instance.init()
+                    var closeBtn = alertEl.querySelector('button.js-close-alert')
+                    if (closeBtn) {
+                      closeBtn.addEventListener('click', function () {
+                        // no-op: component hides itself; no layout padding to revert
+                      })
+                    }
+                  } else {
+                    console.warn('GlobalAlert module not found; injected markup only.')
+                  }
+                })
+              })()
+            </script>
+
+            <h3 class="nsw-m-top-lg">Back to top</h3>
+            <p>Currently active on this page, applied to the content body. Scroll down to the bottom then scroll upwards to see it in action.</p>
+          </div>
+
+          <div class="nsw-col nsw-col-md-6">
+            <h3>Cookie consent</h3>
+            <button class="nsw-button nsw-button--dark nsw-m-top-md" id="init-cookie-consent" type="button">Initialise Cookie consent banner</button>
+            <script>
+              document.getElementById('init-cookie-consent').addEventListener('click', function () {
+                var existing = document.querySelector('.js-sticky-container .nsw-cookie-banner, .nsw-cookie-banner')
+                if (existing) {
+                  existing.removeAttribute('hidden')
+                  existing.style.display = 'block'
+                  return
+                }
+                if (window.NSW && window.NSW.CookieConsent) {
+                  new window.NSW.CookieConsent(window.NSW.cookieConsentConfig || {
+                    consentBanner: {
+                      title: 'Cookie use on our website',
+                      description: 'We use cookies to improve your experience on our site.',
+                      acceptAllBtn: 'Accept all cookies',
+                      acceptNecessaryBtn: 'Reject non-essential cookies',
+                      showPreferencesBtn: 'Manage your cookies',
+                      confirmationMessage: 'Your cookie preferences have been saved.',
+                    },
+                    preferencesDialog: {}
+                  })
+                } else {
+                  console.error('CookieConsent module not found.')
+                }
+              })
+            </script>
+          </div>
+
+          <h2>Potential conflicts with <kbd>Esc</kbd> key function</h2>
+          <div class="nsw-col nsw-col-md-6 nsw-m-top-sm">
+            <h3>Dialog</h3>
+            {{>_dialog model.dialog button-title="Launch Dialog"}}
+            <h3 class="nsw-m-bottom-sm">Select</h3>
+            {{>_select model.select id="test-select"}}
+          </div>
+          <div class="nsw-col nsw-col-md-6 nsw-m-top-sm">
+            <h3>Toggletip</h3>
+            <p>In the quiet desperation of the third day, Santiago battles <span aria-controls="toggletip-example-dark" class="nsw-toggletip js-toggletip" data-title="A majestic fish symbolising pride, endurance, and loss">the marlin</span>, tied to his skiff and spirit. As exhaustion deepens, the struggle becomes not just physical, but spiritual — a reflection on pride, endurance, and the quiet dignity of effort. Some stories hold truths not in their facts, but in their silences — in what remains unspoken between man, sea, and sky.</p>
+            <div id="toggletip-example-dark" class="nsw-toggletip__element nsw-toggletip__element--dark">
+              <p>The marlin embodies Santiago's greatest struggle, blending themes of isolation, respect, and the dignity of effort.</p>
+            </div>
+          </div>
+        </div>
+
+        <hr class="nsw-section-break nsw-m-top-lg nsw-m-bottom-lg">
+
+        <h2>Quick access</h2>
+        <div class="nsw-grid nsw-m-bottom-md">
+          <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+            {{>_card heading="Domestic, family and sexual violence support contacts" href="#support-contacts"}}
+          </div>
+          <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+            {{>_card heading="Safer Pathway" href="#safer-pathway"}}
+          </div>
+          <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+            {{>_card heading="Help someone in a domestic violence situation" href="#help-someone"}}
+          </div>
+          <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+            {{>_card heading="NSW Victims Support Scheme" href="#victims-support"}}
+          </div>
+        </div>
+
+        <h2>How we can help</h2>
+        <div class="nsw-grid">
+          <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+            {{>_card heading="About domestic and family violence" href="#about-dfv"}}
+          </div>
+          <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+            {{>_card heading="About sexual violence" href="#about-sexual-violence"}}
+          </div>
+          <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+            {{>_card heading="How to stay safe" href="#stay-safe"}}
+          </div>
+          <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+            {{>_card heading="My situation is…" href="#my-situation"}}
+          </div>
+          <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+            {{>_card heading="Police, legal help and the law" href="#police-legal"}}
+          </div>
+          <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+            {{>_card heading="Support programs" href="#support-programs"}}
+          </div>
+        </div>
+      </div>
+
+      {{>_callout heading= "Keep up-to date" copy="Join our <a href='#'>community</a> and register for updates to stay up-to-date with all the latest patterns releases."}}
+
+    </main>
+    <div class="nsw-layout__sidebar">
+      <div class="nsw-section nsw-section--box">
+        <form class="nsw-form" action="#">
+          <h4 class="nsw-section-title">Want to stay in touch?</h4>
+          <p>Find out about work happening across NSW Government in the digital space. </p>
+          <div class="nsw-form__group">
+            {{>_text-input
+              id="subscribe-full-name"
+              label="Full name"
+              required=true
+            }}
+          </div>
+          <div class="nsw-form__group">
+            {{>_text-input
+              id="subscribe-email"
+              label="Email"
+              required=true
+            }}
+          </div>
+          <div class="nsw-form__group">
+            {{>_checkbox
+              id="subscribe-tc"
+              name="subscribe-terms"
+              label="I have read the information regarding <a href='#'>privacy policy</a>"
+            }}
+          </div>
+          <div class="nsw-form__group">
+            {{>_button-input type="submit" style="dark" text="Submit"}}
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+{{>_footer model.footer}}
+
+<div class="nsw-sticky-container">
+  {{>_quick-exit}}
+</div>

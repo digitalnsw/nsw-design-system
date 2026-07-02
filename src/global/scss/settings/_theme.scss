@@ -7,6 +7,7 @@ $brand-dark: palette.$blue-01 !default;
 $brand-light: palette.$blue-04 !default;
 $brand-supplementary: palette.$blue-02 !default;
 $brand-accent: palette.$red-02 !default;
+$brand-accent-light: palette.$red-04 !default;
 $off-white: palette.$grey-50 !default;
 
 // Text Colours
@@ -28,6 +29,7 @@ $theme-colors: (
   'brand-light': $brand-light,
   'brand-supplementary': $brand-supplementary,
   'brand-accent': $brand-accent,
+  'brand-accent-light': $brand-accent-light,
   'black': palette.$black,
   'grey-01': palette.$grey-01,
   'grey-02': palette.$grey-02,
@@ -61,9 +63,9 @@ $semantic-colors-rgb: functions.to-rgb-list($semantic-colors) !default;
 
 // State Colours
 $link: $brand-dark !default;
-$link-light: color.mix(#ffffff, $brand-dark, 90%) !default;
+$link-light: color.mix(#ffffff, $brand-dark, 100%) !default;
 $visited: functions.a11y-color(color.adjust(color.adjust(color.adjust($brand-dark, $hue: 54deg), $saturation: -31.52%), $lightness: 12.75%), #ffffff) !default;
-$visited-light: color.mix(#ffffff, $visited, 80%) !default;
+$visited-light: color.mix(#ffffff, $brand-dark, 100%) !default;
 $hover: color.adjust($brand-dark, $alpha: -0.9) !default;
 $hover-light: color.adjust($link-light, $alpha: -0.9) !default;
 $active: color.adjust($brand-dark, $alpha: -0.8) !default;
@@ -182,4 +184,10 @@ $state-colors-rgb: functions.to-rgb-list($state-colors) !default;
 
   /* Maximum width of container */
   --nsw-container-width: #{functions.rem(1200px)};
+
+  /* Background opacity */
+  --nsw-bg-opacity: 1;
+
+  /* Section background (global default used by components outside .nsw-section) */
+  --nsw-section-bg: transparent;
 }

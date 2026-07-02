@@ -1,6 +1,8 @@
 /* eslint-disable max-len */
 
 import * as CookieConsentAPI from 'vanilla-cookieconsent'
+import logger from '../../global/scripts/helpers/logger'
+import stickyContainer from '../../global/scripts/sticky-container'
 
 /* eslint-disable max-len */
 class CookieConsent {
@@ -234,6 +236,14 @@ class CookieConsent {
     const bannerOffset = consentModal.bannerOffset ? consentModal.bannerOffset : '0'
     this.consentBannerConfirmationMessage = consentModal.confirmationMessage || ''
 
+    // Prevent multiple instances by reusing an existing banner if present
+    const containerEl = stickyContainer()
+    const existingBanner = containerEl.querySelector('.nsw-cookie-banner')
+    if (existingBanner) {
+      this.consentBannerElement = existingBanner
+      return
+    }
+
     const consentBannerHtml = `
       <div class="nsw-cookie-banner" role="alert" tabindex="-1" aria-labelledby="cookie-banner-title" aria-live="assertive" style="bottom: ${bannerOffset};">
         <div class="nsw-cookie-banner__wrapper">
@@ -262,29 +272,50 @@ class CookieConsent {
       </div>
     `
 
-    // Append the banner to the body
+    // Append the banner to the shared sticky container so it stacks with other fixed UI
     const tempDiv = document.createElement('div')
     tempDiv.innerHTML = consentBannerHtml
     this.consentBannerElement = tempDiv.firstElementChild
-    document.body.appendChild(this.consentBannerElement)
+
+    // Ensure the cookie banner itself is a block-level child
+    this.consentBannerElement.style.display = 'block'
+
+    // Insert banner at the top so it appears above other items
+    if (containerEl.firstChild) {
+      containerEl.insertBefore(this.consentBannerElement, containerEl.firstChild)
+    } else {
+      containerEl.appendChild(this.consentBannerElement)
+    }
+
+    // Direct listener for confirmation close button (belt-and-braces)
+    const dismissBtn = this.consentBannerElement.querySelector('.js-dismiss-cookie-banner')
+    if (dismissBtn) {
+      dismissBtn.addEventListener('click', () => {
+        this.hideConsentBanner()
+      })
+    }
 
     this.consentBannerElement.focus()
   }
 
   init() {
-    if (this.preferencesDialogElement) {
-      this.initElements()
-      this.initAPI()
-      this.attachEventListeners()
+    // Always wire listeners so close works even if preferences dialog is not created
+    this.initElements()
+    this.attachEventListeners()
 
-      // Immediately hide the banner if user has preferences set
-      const preferences = CookieConsentAPI.getUserPreferences()
-      if (preferences && preferences.acceptedCategories.length > 0) {
-        this.consentBannerElement.setAttribute('hidden', 'true')
-      }
-    } else {
-      console.error('Banner element not created')
-    }
+    this.initAPI()
+      .then(() => {
+        // Immediately hide the banner if user has preferences set
+        const preferences = CookieConsentAPI.getUserPreferences()
+        if (preferences && preferences.acceptedCategories && preferences.acceptedCategories.length > 0) {
+          this.hideConsentBanner()
+        }
+      })
+      .catch((err) => {
+        if (logger && logger.warn) {
+          logger.warn('CookieConsent: initAPI failed', err)
+        }
+      })
   }
 
   initElements() {
@@ -300,43 +331,51 @@ class CookieConsent {
 
   initAPI() {
     if (!this.isInit) {
-      CookieConsentAPI.run(this.config).then(() => {
+      return CookieConsentAPI.run(this.config).then(() => {
         this.isInit = true
         this.loadUserPreferences()
+        return true
       })
     }
+    return Promise.resolve(true)
   }
 
   attachEventListeners() {
     // Delegate events from the document to handle all relevant elements dynamically
     document.addEventListener('click', (event) => {
       const { target } = event
+      if (!(target instanceof Element)) return
 
-      if (target.matches('[data-role="accept-all"]')) {
+      // Resolve possible clicks on child elements inside anchors/buttons
+      const acceptAllEl = target.closest('[data-role="accept-all"]')
+      const rejectAllEl = target.closest('[data-role="reject-all"]')
+      const acceptSelectionEl = target.closest('[data-role="accept-selection"]')
+      const dismissBannerEl = target.closest('.js-dismiss-cookie-banner')
+      const openBannerEl = target.closest('.js-open-banner-cookie-consent')
+      const openPrefsEl = target.closest('.js-open-dialog-cookie-consent-preferences')
+
+      if (acceptAllEl) {
         this.handleConsentAction('accept-all')
-      } else if (target.matches('[data-role="reject-all"]')) {
+      } else if (rejectAllEl) {
         this.handleConsentAction('reject-all')
-      } else if (target.matches('[data-role="accept-selection"]')) {
+      } else if (acceptSelectionEl) {
         this.handleConsentAction('accept-selection')
       }
 
-      // If target is dismissable
-      if (target.matches('.js-dismiss-cookie-banner')) {
+      if (dismissBannerEl) {
         this.hideConsentBanner()
       }
 
-      // Manual trigger of cookie consent banner
-      if (target.matches('.js-open-banner-cookie-consent')) {
+      if (openBannerEl) {
         event.preventDefault()
         this.showConsentBanner()
       }
 
-      // Manual trigger of cookie consent preferences dialog
-      if (target.matches('.js-open-dialog-cookie-consent-preferences')) {
+      if (openPrefsEl) {
         event.preventDefault()
         this.hideConsentBanner()
         if (this.dialogInstance) {
-          this.dialogInstance.open()
+          this.dialogInstance.openEvent()
         }
       }
     })
@@ -374,19 +413,19 @@ class CookieConsent {
 
     switch (action) {
       case 'accept-all': {
-        console.log('User accepted all cookies')
+        logger.log('User accepted all cookies')
         CookieConsentAPI.acceptCategory('all')
         updatePreferencesDialog()
         break
       }
       case 'reject-all': {
-        console.log('User rejected all cookies')
+        logger.log('User rejected all cookies')
         CookieConsentAPI.acceptCategory([])
         updatePreferencesDialog()
         break
       }
       case 'accept-selection': {
-        console.log('User accepted selected cookies')
+        logger.log('User accepted selected cookies')
         const checked = []
         const unchecked = []
 
@@ -409,34 +448,42 @@ class CookieConsent {
 
     this.consentSelectionMade = true
 
-    this.showConfirmationMessage()
-
-    // Hide banner if present or confirmation is present
-    if (!this.consentBannerConfirmationMessage) {
+    if (this.consentBannerConfirmationMessage) {
+      this.showConfirmationMessage()
+    } else {
       this.hideConsentBanner()
     }
   }
 
   showConfirmationMessage() {
+    this.consentBannerElement.style.display = 'block'
+    this.consentBannerElement.removeAttribute('hidden')
+
     // Select the confirmation message element
     const confirmationMessage = this.consentBannerElement.querySelector('.nsw-cookie-banner__confirmation-message')
 
     // Select the description element
     const description = this.consentBannerElement.querySelector('.nsw-cookie-banner__description')
+    let focusTarget = this.consentBannerElement
 
     if (confirmationMessage) {
       // Change the hidden attribute to false for the confirmation message
       confirmationMessage.removeAttribute('hidden')
+      focusTarget = confirmationMessage.querySelector('.js-dismiss-cookie-banner') || focusTarget
     }
 
     if (description) {
       // Change the hidden attribute to true for the description
       description.setAttribute('hidden', 'true')
     }
+
+    focusTarget.focus()
   }
 
   showConsentBanner() {
     if (this.consentBannerElement) {
+      // Ensure the banner is visually restored if previously hidden via inline style
+      this.consentBannerElement.style.display = 'block'
       const description = this.consentBannerElement.querySelector('.nsw-cookie-banner__description')
       const confirmationMessage = this.consentBannerElement.querySelector('.nsw-cookie-banner__confirmation-message')
 
@@ -459,6 +506,7 @@ class CookieConsent {
   hideConsentBanner() {
     if (this.consentBannerElement) {
       this.consentBannerElement.setAttribute('hidden', 'true')
+      this.consentBannerElement.style.display = 'none'
     }
   }
 }

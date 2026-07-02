@@ -1,6 +1,4 @@
-@use '../../global/scss/base/functions' as functions;
-@use '../../global/scss/base/mixins' as mixins;
-@use '../../global/scss/settings/settings' as settings;
+@use '../../global/scss/tools' as nsw;
 
 .nsw-utility-list {
   background-color: var(--nsw-off-white);
@@ -9,16 +7,16 @@
     background-color: transparent;
   }
 
-  @include mixins.component-spacing();
+  @include nsw.component-spacing();
 
   &__title {
     font-weight: var(--nsw-font-bold);
-    padding-bottom: functions.rem(16px);
+    padding-bottom: nsw.rem(16px);
     
-    @include mixins.font-size('lg');
+    @include nsw.font-size('lg');
     
-    @include mixins.breakpoint('md') {
-      padding-bottom: functions.rem(24px);
+    @include nsw.breakpoint('md') {
+      padding-bottom: nsw.rem(24px);
     }
   }
 
@@ -30,9 +28,9 @@
 
   &__item {
     margin: 0;
-    padding: functions.rem(16px);
+    padding: nsw.rem(16px);
     display: flex;
-    gap: settings.$grid-gutters;
+    gap: nsw.$grid-gutters;
     align-items: center;
     text-decoration: none;
     cursor: pointer;
@@ -40,15 +38,15 @@
     border-bottom: 1px solid var(--nsw-grey-04);
     color: var(--nsw-brand-dark);
 
-    @include mixins.font-size('sm');
+    @include nsw.font-size('sm');
 
     &:hover {
-      @include mixins.nsw-hover;
+      @include nsw.nsw-hover;
       outline-width: 0;
     }
 
     &:focus {
-      @include mixins.nsw-focus;
+      @include nsw.nsw-focus;
     }
 
     &:last-child {
@@ -71,11 +69,11 @@
       }
       
       &:hover {
-        @include mixins.nsw-hover-light();
+        @include nsw.nsw-hover-light();
       }
     
       &:focus { 
-        @include mixins.nsw-focus($color: var(--nsw-focus-light));
+        @include nsw.nsw-focus($color: var(--nsw-focus-light));
       }
     
       &:visited {
@@ -84,8 +82,8 @@
     }
 
     svg {
-      width: functions.rem(24px);
-      height: functions.rem(24px);
+      width: nsw.rem(24px);
+      height: nsw.rem(24px);
 
       path {
         fill: var(--nsw-brand-dark);
@@ -106,12 +104,12 @@
 
     &__content {
       display: flex;
-      gap: settings.$grid-gutters;
-      padding: functions.rem(16px);
+      gap: nsw.$grid-gutters;
+      padding: nsw.rem(16px);
 
       a {
         display: flex;
-        padding: functions.rem(8px);
+        padding: nsw.rem(8px);
         border-radius: var(--nsw-border-radius);
         text-decoration: none;
       }
@@ -123,7 +121,7 @@
   }
 
   &--horizontal {
-    @include mixins.breakpoint('md') {
+    @include nsw.breakpoint('md') {
       display: flex;
     
       ul {

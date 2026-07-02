@@ -10,13 +10,13 @@ jobs:
   build-staging:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v6
         with:
           node-version: 16
       - run: npm install
       - run: npm run starterkit:build
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: dist
           path: |
@@ -26,9 +26,9 @@ jobs:
     needs: build-staging
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-      - uses: actions/download-artifact@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v6
+      - uses: actions/download-artifact@v8
         with:
           name: dist
           path: |
@@ -36,14 +36,19 @@ jobs:
       - run: |
           # npm install -g pa11y-ci
           # pa11y-ci ./dist/{components,core,templates}/**/index.html ./dist/{components,core}/**/blank.html
+  # Only deploy on:
+  #  - push events (e.g. merges to develop)
+  #  - PRs whose HEAD branch lives in this repository (includes trusted bots like snyk/github-actions)
+  # Never deploy for forked PRs (no secrets exposure).
   deploy-staging:
+    if: ${{ github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository) }}
     needs: test-staging
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v6
       - run: npm install -g surge
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         with:
           name: dist
           path: |

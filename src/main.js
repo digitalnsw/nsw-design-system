@@ -1,5 +1,6 @@
 /* eslint-disable max-len */
 import Accordion from './components/accordion/accordion'
+import CssAccordion from './components/accordion/accordion-css'
 import BackTop from './components/back-to-top/back-to-top'
 import Carousel from './components/card-carousel/carousel'
 import CookieConsent from './components/cookie-consent/cookie-consent'
@@ -12,6 +13,7 @@ import Filters from './components/filters/filters'
 import GlobalAlert from './components/global-alert/global-alert'
 import Navigation from './components/main-nav/main-nav'
 import Popover from './components/popover/popover'
+import QuickExit from './components/quick-exit/quick-exit'
 import Select from './components/select/select'
 import SiteSearch from './components/header/header'
 import SideNav from './components/side-nav/side-nav'
@@ -19,6 +21,9 @@ import Tabs from './components/tabs/tabs'
 import Toggletip from './components/tooltip/toggletip'
 import Tooltip from './components/tooltip/tooltip'
 import UtilityList from './components/utility-list/utility-list'
+
+import headingLinks from './core/layout/heading-links'
+import stickyContainer from './global/scripts/sticky-container'
 
 if (window.NodeList && !NodeList.prototype.forEach) {
   NodeList.prototype.forEach = Array.prototype.forEach
@@ -41,7 +46,9 @@ if (!Element.prototype.closest) {
 }
 
 function initSite() {
-  const accordions = document.querySelectorAll('.js-accordion')
+  const jsAccordions = document.querySelectorAll('.js-accordion')
+  const detailsAccordions = Array.from(document.querySelectorAll('.js-accordion-details'))
+    .filter((element) => !element.parentElement || !element.parentElement.closest('.js-accordion-details'))
   const backTop = document.querySelectorAll('button.js-back-to-top')
   const breadcrumbs = document.querySelectorAll('.js-breadcrumbs')
   const carousel = document.querySelectorAll('.js-carousel')
@@ -62,9 +69,18 @@ function initSite() {
   const tooltip = document.querySelectorAll('.js-tooltip')
   const utilityList = document.querySelectorAll('.js-utility-list')
 
-  if (accordions) {
-    accordions.forEach((element) => {
+  stickyContainer()
+  headingLinks()
+
+  if (jsAccordions) {
+    jsAccordions.forEach((element) => {
       new Accordion(element).init()
+    })
+  }
+
+  if (detailsAccordions) {
+    detailsAccordions.forEach((element) => {
+      new CssAccordion(element).init()
     })
   }
 
@@ -182,5 +198,5 @@ function initSite() {
 }
 
 export {
-  initSite, Accordion, BackTop, Carousel, CookieConsent, DatePicker, Dialog, ExternalLink, FileUpload, Filters, GlobalAlert, Navigation, Popover, Select, SideNav, SiteSearch, Tabs, Toggletip, Tooltip, UtilityList,
+  initSite, Accordion, CssAccordion, BackTop, Carousel, CookieConsent, DatePicker, Dialog, ExternalLink, FileUpload, Filters, GlobalAlert, Navigation, Popover, QuickExit, Select, SideNav, SiteSearch, Tabs, Toggletip, Tooltip, UtilityList,
 }
