@@ -49,7 +49,7 @@
 
   &__content {
     display: flex;
-    gap: nsw.rem(8px);
+    gap: nsw.rem(10px);
     align-items: center;
     width: 100%;
     min-height: nsw.rem(64px);
@@ -58,40 +58,44 @@
 
     &::before {
       content: '';
-      width: nsw.rem(48px);
-      height: nsw.rem(48px);
-      margin-bottom: nsw.rem(4px);
+      width: nsw.rem(32px);
+      height: nsw.rem(32px);
+      margin-bottom: nsw.rem(2px);
       line-height: 0;
-      display: none;
+      display: inline-block;
       vertical-align: middle;
       // This is here as a temporary measure until we can update the icon set
-      background-image: nsw.svg-url(nsw.$nsw-quick-exit-shield);
+      background-image: nsw.svg-url(nsw.$nsw-quick-exit-icon);
       background-repeat: no-repeat;
       background-position: center center;
-      background-size: nsw.rem(48px) auto;
-      
-      // Ultimate solution is to replace with an appropriate SVG icon from the NSW icon set
-      // content: 'shield_with_heart';
-      // font-family: 'Material Icons Outlined';
-      // font-size: nsw.rem(48px);
-      // line-height: 1;
+      background-size: nsw.rem(32px) auto;
     }
 
     @include nsw.container;
 
     @include nsw.breakpoint('micro', max-width) {
-      gap: nsw.rem(4px);
+      gap: nsw.rem(8px);
       min-height: nsw.rem(40px);
       padding-left: nsw.rem(4px);
       padding-right: nsw.rem(4px);
+
+      &::before {
+        width: nsw.rem(28px);
+        height: nsw.rem(28px);
+        background-size: nsw.rem(28px) auto;
+      }
     }
 
     @include nsw.breakpoint('md') {
       justify-content: flex-start;
       min-height: nsw.rem(80px);
+      gap: nsw.rem(12px);
 
       &::before {
-        display: inline-block;
+        width: nsw.rem(48px);
+        height: nsw.rem(48px);
+        margin-bottom: nsw.rem(4px);
+        background-size: nsw.rem(48px) auto;
       }
     }
   }
@@ -121,16 +125,7 @@
   &__exit-text {
     display: inline;
     font-weight: 700;
-
-    &::after {
-      content: 'east';
-      font-size: inherit;
-      line-height: 1;
-      margin-left: nsw.rem(4px);
-      display: inline-block;
-      vertical-align: middle;
-
-      @include nsw.material-icons;
-    }
+    text-decoration: underline;
+    text-underline-offset: nsw.rem(4px);
   }
 }

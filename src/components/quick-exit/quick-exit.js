@@ -51,7 +51,7 @@ export default class QuickExit {
   static init(
     {
       safeUrl = 'https://www.google.com/webhp',
-      description = 'Leave quickly using this banner or press <kbd aria-label="Escape key">Esc</kbd> 2 times.',
+      description = 'or press <kbd aria-label="Escape key">Esc</kbd> 2 times.',
       enableEsc = true,
       enableCloak = true,
       pageTitle = DEFAULT_PAGE_TITLE,
@@ -146,8 +146,8 @@ export default class QuickExit {
 
     const content = document.createElement('div')
     content.className = 'nsw-quick-exit__content'
-    content.appendChild(desc)
     content.appendChild(exit)
+    content.appendChild(desc)
 
     root.appendChild(content)
     root.setAttribute('aria-describedby', desc.id)
@@ -171,35 +171,22 @@ export default class QuickExit {
     const node = root
     const cta = node
 
-    const content = node.querySelector('.nsw-quick-exit__content')
-    let desc = null
-    if (content) {
-      desc = content.querySelector('.nsw-quick-exit__description-text')
-    }
-    if (!desc) {
-      desc = document.createElement('span')
-      desc.className = 'nsw-quick-exit__description-text'
-      if (content) {
-        content.insertBefore(desc, content.firstChild)
-      } else {
-        node.insertBefore(desc, node.firstChild)
-      }
-    }
-    if (!desc.id) desc.id = 'nsw-quick-exit__desc'
-    node.setAttribute('aria-describedby', desc.id)
-
     // Ensure consistent DOM structure: always have a content div containing desc and exit
-    let contentDiv = content
+    let contentDiv = node.querySelector('.nsw-quick-exit__content')
     if (!contentDiv) {
       contentDiv = document.createElement('div')
       contentDiv.className = 'nsw-quick-exit__content'
       node.appendChild(contentDiv)
     }
 
-    // Move desc inside contentDiv if not already
-    if (desc.parentNode !== contentDiv) {
-      contentDiv.appendChild(desc)
+    let desc = contentDiv.querySelector('.nsw-quick-exit__description-text')
+      || node.querySelector('.nsw-quick-exit__description-text')
+    if (!desc) {
+      desc = document.createElement('span')
+      desc.className = 'nsw-quick-exit__description-text'
     }
+    if (!desc.id) desc.id = 'nsw-quick-exit__desc'
+    node.setAttribute('aria-describedby', desc.id)
 
     // Find or create exit element, preferring any existing one under node
     let exit = contentDiv.querySelector('.nsw-quick-exit__exit-text')
@@ -211,10 +198,9 @@ export default class QuickExit {
       exit.textContent = 'Exit now'
     }
 
-    // Ensure exit is inside contentDiv
-    if (exit.parentNode !== contentDiv) {
-      contentDiv.appendChild(exit)
-    }
+    // Ensure message order is: "Exit now or press Esc 2 times."
+    contentDiv.appendChild(exit)
+    contentDiv.appendChild(desc)
 
     // Progressive behaviour: always navigate to the safe URL in the current tab
     const safeURLValidated = validateUrl(safeUrl)
