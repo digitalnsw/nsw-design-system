@@ -14,7 +14,7 @@ import { validateUrl } from '../../global/scripts/helpers/utilities'
 
 function ignoreError() {}
 
-const DEFAULT_PAGE_TITLE = '\u200B'
+const DEFAULT_SAFE_URL = 'https://www.google.com/webhp'
 
 // Helpers shared by QuickExit keyboard behaviour
 function quickExitIsEditable(el) {
@@ -50,15 +50,14 @@ export default class QuickExit {
    */
   static init(
     {
-      safeUrl = 'https://www.google.com/webhp',
+      safeUrl = DEFAULT_SAFE_URL,
       description = 'or press <kbd aria-label="Escape key">Esc</kbd> 2 times.',
       enableEsc = true,
       enableCloak = true,
-      pageTitle = DEFAULT_PAGE_TITLE,
       focusFirst = true,
     } = {},
   ) {
-    const safeURLValidated = validateUrl(safeUrl) || 'https://www.google.com/webhp'
+    const safeURLValidated = validateUrl(safeUrl) || DEFAULT_SAFE_URL
     const container = stickyContainer()
     if (!container) return
 
@@ -107,7 +106,6 @@ export default class QuickExit {
       safeUrl: safeURLValidated,
       enableEsc,
       enableCloak,
-      pageTitle,
       focusFirst,
     })
   }
@@ -164,7 +162,6 @@ export default class QuickExit {
       safeUrl,
       enableEsc,
       enableCloak,
-      pageTitle,
       focusFirst,
     },
   ) {
@@ -213,7 +210,7 @@ export default class QuickExit {
 
       if (enableCloak) QuickExit.applyCloak()
 
-      QuickExit.updatePageTitle(pageTitle)
+      QuickExit.updatePageTitle()
 
       try {
         window.location.assign(safeURLValidated)
@@ -308,12 +305,11 @@ export default class QuickExit {
     }
   }
 
-  static updatePageTitle(pageTitle = DEFAULT_PAGE_TITLE) {
+  static updatePageTitle() {
     try {
       if (typeof document === 'undefined') return
-      if (pageTitle === null || typeof pageTitle === 'undefined') return
 
-      document.title = String(pageTitle)
+      document.title = '\u200B'
     } catch (err) {
       ignoreError(err)
     }
@@ -394,12 +390,11 @@ export default class QuickExit {
         }
       }
       // Use current content and attributes; just wire behaviour with sensible defaults
-      const href = existingRoot.getAttribute('href') || 'https://www.google.com/webhp'
+      const href = existingRoot.getAttribute('href') || DEFAULT_SAFE_URL
       QuickExit.enhance(existingRoot, {
         safeUrl: href,
         enableEsc: (typeof opts.enableEsc === 'boolean') ? opts.enableEsc : true,
         enableCloak: (typeof opts.enableCloak === 'boolean') ? opts.enableCloak : true,
-        pageTitle: (typeof opts.pageTitle === 'string') ? opts.pageTitle : DEFAULT_PAGE_TITLE,
         focusFirst: true,
       })
       // Removed per instructions
