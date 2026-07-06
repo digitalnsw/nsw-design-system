@@ -210,7 +210,7 @@ export default class QuickExit {
     }
 
     // Progressive behaviour: always navigate to the safe URL in the current tab
-    const safeURLValidated = validateUrl(safeUrl)
+    const safeURLValidated = validateUrl(safeUrl, DEFAULT_SAFE_URL)
     const previousClickHandler = quickExitClickHandlers.get(cta)
     if (previousClickHandler) cta.removeEventListener('click', previousClickHandler)
 
