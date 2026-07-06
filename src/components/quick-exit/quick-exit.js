@@ -94,6 +94,7 @@ export default class QuickExit {
     } = {},
   ) {
     const safeURLValidated = validateUrl(safeUrl) || DEFAULT_SAFE_URL
+    const safeURLValidated = validateUrl(safeUrl) || DEFAULT_SAFE_URL
     const container = stickyContainer()
     if (!container) return
 
