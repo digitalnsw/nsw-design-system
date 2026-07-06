@@ -50,7 +50,8 @@ layout: blank-layout.hbs
 <p>The label <strong>"Exit now"</strong> is fixed and must not be changed. A consistent label is recognised faster across NSW Government websites, which matters in a high-stress moment when a user has little time to read.</p>
 
 <h3>Keyboard shortcut hint</h3>
-<p>The default copy "2 times" is deliberate. Numerals are read faster than number words across reading levels. The digit also stands out as a visual anchor that is easier to remember, and it is more reliable for people reading in a second language. This is a deliberate choice.</p>
+<p>The keyboard shortcut hint is fixed and only appears when <code>enableEsc</code> is enabled. The copy "2 times" is deliberate. Numerals are read faster than number words across reading levels. The digit also stands out as a visual anchor that is easier to remember, and it is more reliable for people reading in a second language. This is a deliberate choice.</p>
+<p>Do not customise the Quick exit control with service-specific messages, phone numbers or support details. Keep that information in the page content, for example in a <a href="/components/support-list/index.html">Support list</a>, so the control stays fast to recognise and activate.</p>
 
 <h3>Tone</h3>
 <p>Keep instructional copy clear, calm and factual. Avoid urgent or alarming wording, which can raise stress at the wrong time.</p>
@@ -60,7 +61,7 @@ layout: blank-layout.hbs
 <ul>
   <li><strong>Container.</strong> Sits inside the global sticky container so it stacks predictably with other sticky elements and reserves its own space on the page.</li>
   <li><strong>Action label.</strong> The fixed "Exit now" text that triggers the exit.</li>
-  <li><strong>Keyboard hint.</strong> Short text explaining the Esc shortcut.</li>
+  <li><strong>Keyboard hint.</strong> Fixed text explaining the Esc shortcut when <code>enableEsc</code> is enabled.</li>
   <li><strong>Icon.</strong> A visual aid reinforcing that activating the control takes the user away from the page.</li>
 </ul>
 
@@ -84,7 +85,7 @@ layout: blank-layout.hbs
 <p>Tell users where Quick exit takes them on a calm help or Frequently Asked Questions (FAQ) page, not on the control itself. Putting this text on the element adds clutter and mental load at the very moment a user needs to act fast, and it can draw attention to the control. A separate FAQ entry lets users learn what to expect in advance.</p>
 
 <h3>Keyboard shortcut</h3>
-<p>Enable the double-Esc shortcut with <code>enableEsc: true</code>. It gives users a discreet way to leave without moving the pointer or locating the control, which helps keyboard users and anyone for whom reaching for the mouse might draw attention. Keep it as an addition to the visible control, never a replacement for it.</p>
+<p>Enable the double-Esc shortcut with <code>enableEsc: true</code>. It gives users a discreet way to leave without moving the pointer or locating the control, which helps keyboard users and anyone for whom reaching for the mouse might draw attention. Keep it as an addition to the visible control, never a replacement for it. When <code>enableEsc</code> is false, the keyboard hint is not shown.</p>
 
 <h2>Implementation</h2>
 
@@ -92,7 +93,7 @@ layout: blank-layout.hbs
   <div class="nsw-steps__item nsw-steps-medium">
     <div class="nsw-steps__content">
       <h3 id="quick-exit-sticky-container">Add the global sticky container</h3>
-      <p>Implement the <a href="/core/layout/index.html#sticky-container-structure"><strong>global sticky container</strong></a> described in the <a href="/core/layout/index.html#global-page-structure" aria-label="Global page structure layout guidance">Global page structure</a> guide. This container hosts all bottom-sticky elements, including <a href="/components/quick-exit/" aria-label="Quick exit component" title="Quick exit component">Quick exit</a> and <a href="/components/cookie-consent/" aria-label="Cookie consent component" title="Cookie consent component">Cookie consent</a>, ensuring consistent placement and predictable stacking.</p>
+      <p>Implement the <a href="/core/layout/index.html#sticky-container-structure">global sticky container</a> described in the <a href="/core/layout/index.html#global-page-structure" aria-label="Global page structure layout guidance">Global page structure</a> guide. This container hosts all bottom-sticky elements, including <a href="/components/quick-exit/" aria-label="Quick exit component" title="Quick exit component">Quick exit</a> and <a href="/components/cookie-consent/" aria-label="Cookie consent component" title="Cookie consent component">Cookie consent</a>, ensuring consistent placement and predictable stacking.</p>
       <p>Using the global sticky container:</p>
       <ol>
         <li>prevents conflicts with critical header content such as global alerts</li>
@@ -109,11 +110,11 @@ layout: blank-layout.hbs
       <p>This ensures:</p>
       <ul>
         <li>the control is available to users without JavaScript</li>
-        <li>screen readers can announce the control and instructions reliably</li>
+        <li>screen readers can announce the control reliably</li>
         <li>the link functions as a standard navigation even if scripts fail.</li>
       </ul>
       <p>Use CMS- or template-level logic to control when the component appears, for example only on pages where safety or privacy risk applies.</p>
-      <p>When JavaScript is available, the Quick exit script enhances the server-rendered element with cloak mode, page title update, double-Esc activation, and first-Tab focus behaviour. Without JavaScript, the link still functions as a standard navigation to the safe URL.</p>
+      <p>When JavaScript is available, the Quick exit script enhances the server-rendered element with cloak mode, page title update, the keyboard hint, double-Esc activation, and first-Tab focus behaviour. Without JavaScript, the link still functions as a standard navigation to the safe URL.</p>
 
       {{#>_docs-example hidden="true" open="true" code="html"}}
 &lt;div class="nsw-sticky-container"&gt;
@@ -126,14 +127,9 @@ layout: blank-layout.hbs
     }'
     rel="nofollow noopener"
     id="nsw-quick-exit"
-    aria-describedby="nsw-quick-exit__desc"
   &gt;
     &lt;div class="nsw-quick-exit__content"&gt;
       &lt;span class="nsw-quick-exit__exit-text"&gt;Exit now&lt;/span&gt;
-      &lt;span
-        id="nsw-quick-exit__desc"
-        class="nsw-quick-exit__description-text"
-      &gt;or press &lt;kbd aria-label="Escape key"&gt;Esc&lt;/kbd&gt; 2 times.&lt;/span&gt;
     &lt;/div&gt;
   &lt;/a&gt;
 &lt;/div&gt;
@@ -151,7 +147,7 @@ layout: blank-layout.hbs
         <li>is announced consistently and predictably</li>
         <li>does not rely on client-side injection.</li>
       </ul>
-      <p>When JavaScript is enabled, the Quick exit script will also inject the same announcement message. This should be treated strictly as progressive enhancement, not the primary mechanism.</p>
+      <p>When JavaScript is enabled, the Quick exit script will update this announcement message with the Esc shortcut detail only when <code>enableEsc</code> is enabled. This should be treated strictly as progressive enhancement, not the primary mechanism.</p>
       <p>Do not add a separate "skip to Quick exit" link.</p>
     </div>
   </div>
@@ -185,7 +181,6 @@ layout: blank-layout.hbs
       {{#>_docs-example hidden="true" open="true" code="js"}}
 window.NSW.QuickExit.init({
   safeUrl: 'https://www.google.com/webhp',
-  description: 'or press &lt;kbd aria-label="Escape key"&gt;Esc&lt;/kbd&gt; 2 times.',
   enableEsc: true,
   enableCloak: true
 });
@@ -203,13 +198,13 @@ window.NSW.QuickExit.init({
   <li>Users can reach and activate it with standard navigation keys.</li>
   <li>Focus styles are clearly visible and must not be removed or overridden.</li>
   <li>No additional skip link is required or recommended.</li>
-  <li>The optional double-Esc shortcut provides an alternative keyboard exit but must not replace the primary control.</li>
+  <li>The optional double-Esc shortcut is enabled by JavaScript and provides an alternative keyboard exit, but must not replace the primary control.</li>
 </ul>
 
 <h3>Screen reader support</h3>
 <ul>
   <li>Semantic HTML and Accessible Rich Internet Applications (ARIA) attributes ensure the control is announced with a clear purpose.</li>
-  <li>Instructional text explains both the on-screen action and the optional keyboard shortcut.</li>
+  <li>When JavaScript is enabled and <code>enableEsc</code> is true, instructional text explains both the on-screen action and the optional keyboard shortcut.</li>
   <li>A screen-reader-only announcement message gives additional context when the component is present.</li>
   <li>Render the announcement server-side where possible so it is available even without JavaScript.</li>
 </ul>
@@ -218,7 +213,7 @@ window.NSW.QuickExit.init({
 <ul>
   <li>Quick exit must remain usable without JavaScript.</li>
   <li>Without JavaScript, the control works as a standard link to the safe destination.</li>
-  <li>With JavaScript, enhancements such as cloak mode, double-Esc and focus behaviour improve usability but are not required for access.</li>
+  <li>With JavaScript, enhancements such as cloak mode, the keyboard hint, double-Esc and focus behaviour improve usability but are not required for access.</li>
   <li>Do not rely on JavaScript alone to render or activate the component.</li>
 </ul>
 

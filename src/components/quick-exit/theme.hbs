@@ -7,31 +7,41 @@ model:  json/quick-exit.json
 {{#>_theme}}
 {{#>_layout-container}}
 <h3>Quick exit feature</h3>
-<ul class="nsw-m-bottom-md">
-<li>Cloaks page immediately on activation</li>
-<li>Updates the page title to a neutral value before navigating to the Safe URL</li>
-</ul>
+<p>Featuring:</p>
+<ol class="nsw-m-bottom-md">
+<li>Cloaks page immediately on activation (optional)</li>
+<li>Navigates to a nominated Safe URL, or the default <code>www.google.com/webhp</code></li>
+<li>Updates the page title to a neutral value before navigating</li>
+<li>Supports double-Esc activation (optional)</li>
+</ol>
 
-<button class="nsw-button nsw-button--dark" data-module="quick-exit" type="button">View banner</button>
-
-<script>
-  (function () {
-    if (typeof document === 'undefined') return;
-    document.addEventListener('DOMContentLoaded', function () {
-      var btn = document.querySelector('[data-module="quick-exit"]');
-      if (!btn || !window.NSW || !window.NSW.QuickExit) return;
-
-      btn.addEventListener('click', function () {
-        window.NSW.QuickExit.init({
-          safeUrl: "{{model.safeUrl}}",
-          description: "{{{model.qe-description}}}",
-          enableEsc: true,
-          enableCloak: true
-        });
-
-      });
-    });
-  }());
-</script>
+<div class="nsw-list nsw-list--32">
+  <div>
+    <h4>Example 1</h4>
+    <ul class="nsw-m-bottom-md">
+      <li>Cloaking enabled</li>
+      <li>Double-Esc activation enabled</li>
+    </ul>
+    <button
+      class="nsw-button nsw-button--dark"
+      data-module="quick-exit"
+      data-options='{"safeUrl": "{{model.safeUrl}}", "enableEsc": true, "enableCloak": true}'
+      type="button"
+    >View banner</button>
+  </div>
+  <div>
+    <h4>Example 2</h4>
+    <ul class="nsw-m-bottom-md">
+      <li>Cloaking disabled</li>
+      <li>Double-Esc activation disabled</li>
+    </ul>
+    <button
+      class="nsw-button nsw-button--dark"
+      data-module="quick-exit"
+      data-options='{"safeUrl": "{{model.safeUrl}}", "enableEsc": false, "enableCloak": false}'
+      type="button"
+    >View banner</button>
+  </div>
+</div>
 {{/_layout-container}}
 {{/_theme}}

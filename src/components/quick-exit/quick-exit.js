@@ -15,6 +15,9 @@ import { validateUrl } from '../../global/scripts/helpers/utilities'
 function ignoreError() {}
 
 const DEFAULT_SAFE_URL = 'https://www.google.com/webhp'
+const KEYBOARD_HINT = 'or press <kbd aria-label="Escape key">Esc</kbd> 2 times.'
+const SR_MESSAGE = 'Quick exit is available on this page.'
+const SR_MESSAGE_WITH_ESC = `${SR_MESSAGE} You can leave at any time by pressing the Escape key two times.`
 
 // Helpers shared by QuickExit keyboard behaviour
 function quickExitIsEditable(el) {
@@ -44,6 +47,40 @@ let firstTabTarget = null
 let firstTabHandlerBound = false
 let firstTabHandled = false
 
+// Track double-Esc behaviour globally; Quick Exit is a singleton in the sticky container.
+let doubleEscCallback = null
+let doubleEscHandlerBound = false
+let doubleEscPressCount = 0
+let doubleEscTimerId = null
+const DOUBLE_ESC_TIME_WINDOW = 1000
+const quickExitClickHandlers = new WeakMap()
+const KEYBOARD_HINT_ID = 'nsw-quick-exit__desc'
+let keyboardHintIdCount = 0
+
+function resetDoubleEsc() {
+  doubleEscPressCount = 0
+  if (doubleEscTimerId) clearTimeout(doubleEscTimerId)
+  doubleEscTimerId = null
+}
+
+function getKeyboardHintId(node) {
+  const existingId = node.getAttribute('data-quick-exit-desc-id')
+  if (existingId) return existingId
+
+  keyboardHintIdCount += 1
+  let hintId = keyboardHintIdCount === 1
+    ? KEYBOARD_HINT_ID
+    : `${KEYBOARD_HINT_ID}-${keyboardHintIdCount}`
+
+  while (document.getElementById(hintId)) {
+    keyboardHintIdCount += 1
+    hintId = `${KEYBOARD_HINT_ID}-${keyboardHintIdCount}`
+  }
+
+  node.setAttribute('data-quick-exit-desc-id', hintId)
+  return hintId
+}
+
 export default class QuickExit {
   /**
    * Enhance or create a Quick Exit inside the sticky container
@@ -51,7 +88,6 @@ export default class QuickExit {
   static init(
     {
       safeUrl = DEFAULT_SAFE_URL,
-      description = 'or press <kbd aria-label="Escape key">Esc</kbd> 2 times.',
       enableEsc = true,
       enableCloak = true,
       focusFirst = true,
@@ -63,9 +99,8 @@ export default class QuickExit {
 
     let root = container.querySelector('.nsw-quick-exit')
     if (!root) {
-      // Create fresh markup using the simple contract: <a> + description + exit label
       root = QuickExit.buildMarkup({
-        description,
+        enableEsc,
         safeUrl: safeURLValidated,
       })
       container.appendChild(root)
@@ -74,32 +109,6 @@ export default class QuickExit {
       root.href = safeURLValidated
       root.rel = 'nofollow noopener'
       root.setAttribute('aria-label', 'Quick exit')
-
-      let descEl = root.querySelector('.nsw-quick-exit__description-text')
-      if (!descEl) {
-        descEl = document.createElement('span')
-        descEl.className = 'nsw-quick-exit__description-text'
-        root.insertBefore(descEl, root.firstChild)
-      }
-      if (!descEl.id) descEl.id = 'nsw-quick-exit__desc'
-      root.setAttribute('aria-describedby', descEl.id)
-
-      try {
-        while (descEl.firstChild) descEl.removeChild(descEl.firstChild)
-        const frag = cleanHTMLStrict(description, true, {
-          allowedTags: ['span', 'kbd', 'strong', 'em', 'br'],
-          allowedAttributes: { kbd: ['aria-label'] },
-        })
-        descEl.appendChild(frag)
-        // Ensure keyboard instructions remain accessible even if aria-label was omitted
-        descEl.querySelectorAll('kbd').forEach((k) => {
-          if (!k.hasAttribute('aria-label')) {
-            k.setAttribute('aria-label', 'Escape key')
-          }
-        })
-      } catch (err) {
-        ignoreError(err)
-      }
     }
 
     QuickExit.enhance(root, {
@@ -114,7 +123,7 @@ export default class QuickExit {
    * Build minimal, no-JS friendly markup
    */
   static buildMarkup({
-    description,
+    enableEsc,
     safeUrl,
   }) {
     const root = document.createElement('a')
@@ -123,21 +132,6 @@ export default class QuickExit {
     root.rel = 'nofollow noopener'
     root.setAttribute('aria-label', 'Quick exit')
 
-    const desc = document.createElement('span')
-    desc.className = 'nsw-quick-exit__description-text'
-    desc.id = 'nsw-quick-exit__desc'
-    const descriptionHTML = cleanHTMLStrict(description, true, {
-      allowedTags: ['span', 'kbd', 'strong', 'em', 'br'],
-      allowedAttributes: { kbd: ['aria-label'] },
-    })
-    desc.appendChild(descriptionHTML)
-    // Ensure keyboard instructions are accessible by default
-    desc.querySelectorAll('kbd').forEach((k) => {
-      if (!k.hasAttribute('aria-label')) {
-        k.setAttribute('aria-label', 'Escape key')
-      }
-    })
-
     const exit = document.createElement('span')
     exit.className = 'nsw-quick-exit__exit-text'
     exit.textContent = 'Exit now'
@@ -145,12 +139,27 @@ export default class QuickExit {
     const content = document.createElement('div')
     content.className = 'nsw-quick-exit__content'
     content.appendChild(exit)
-    content.appendChild(desc)
+    if (enableEsc) {
+      const desc = QuickExit.buildKeyboardHint(getKeyboardHintId(root))
+      content.appendChild(desc)
+      root.setAttribute('aria-describedby', desc.id)
+    }
 
     root.appendChild(content)
-    root.setAttribute('aria-describedby', desc.id)
     if (!root.id) root.id = 'nsw-quick-exit'
     return root
+  }
+
+  static buildKeyboardHint(id = KEYBOARD_HINT_ID) {
+    const desc = document.createElement('span')
+    desc.className = 'nsw-quick-exit__description-text'
+    desc.id = id
+    const hintHTML = cleanHTMLStrict(KEYBOARD_HINT, true, {
+      allowedTags: ['kbd'],
+      allowedAttributes: { kbd: ['aria-label'] },
+    })
+    desc.appendChild(hintHTML)
+    return desc
   }
 
   /**
@@ -168,22 +177,13 @@ export default class QuickExit {
     const node = root
     const cta = node
 
-    // Ensure consistent DOM structure: always have a content div containing desc and exit
+    // Ensure consistent DOM structure: always have a content div containing the exit action.
     let contentDiv = node.querySelector('.nsw-quick-exit__content')
     if (!contentDiv) {
       contentDiv = document.createElement('div')
       contentDiv.className = 'nsw-quick-exit__content'
       node.appendChild(contentDiv)
     }
-
-    let desc = contentDiv.querySelector('.nsw-quick-exit__description-text')
-      || node.querySelector('.nsw-quick-exit__description-text')
-    if (!desc) {
-      desc = document.createElement('span')
-      desc.className = 'nsw-quick-exit__description-text'
-    }
-    if (!desc.id) desc.id = 'nsw-quick-exit__desc'
-    node.setAttribute('aria-describedby', desc.id)
 
     // Find or create exit element, preferring any existing one under node
     let exit = contentDiv.querySelector('.nsw-quick-exit__exit-text')
@@ -195,13 +195,26 @@ export default class QuickExit {
       exit.textContent = 'Exit now'
     }
 
-    // Ensure message order is: "Exit now or press Esc 2 times."
     contentDiv.appendChild(exit)
-    contentDiv.appendChild(desc)
+
+    let desc = contentDiv.querySelector('.nsw-quick-exit__description-text')
+      || node.querySelector('.nsw-quick-exit__description-text')
+    if (enableEsc) {
+      if (desc) desc.remove()
+      desc = QuickExit.buildKeyboardHint(getKeyboardHintId(node))
+      contentDiv.appendChild(desc)
+      node.setAttribute('aria-describedby', desc.id)
+    } else {
+      if (desc) desc.remove()
+      node.removeAttribute('aria-describedby')
+    }
 
     // Progressive behaviour: always navigate to the safe URL in the current tab
     const safeURLValidated = validateUrl(safeUrl)
-    cta.addEventListener('click', (ev) => {
+    const previousClickHandler = quickExitClickHandlers.get(cta)
+    if (previousClickHandler) cta.removeEventListener('click', previousClickHandler)
+
+    const handleClick = (ev) => {
       try {
         ev.preventDefault()
       } catch (errA) {
@@ -217,27 +230,28 @@ export default class QuickExit {
       } catch (errC) {
         ignoreError(errC)
       }
-    })
-
-    // Optional keyboard: double ESC (bind once per component)
-    if (enableEsc && node.getAttribute('data-esc-bound') !== 'true') {
-      QuickExit.bindDoubleEsc(() => cta.click())
-      node.setAttribute('data-esc-bound', 'true')
     }
+
+    cta.addEventListener('click', handleClick)
+    quickExitClickHandlers.set(cta, handleClick)
+
+    // Optional keyboard: double ESC
+    QuickExit.bindDoubleEsc(enableEsc ? () => cta.click() : null)
 
     // Optional focus-first
     if (focusFirst) QuickExit.focusFirst(cta)
 
-    QuickExit.ensureSrOnlyMessage()
+    QuickExit.ensureSrOnlyMessage(enableEsc)
 
     // Mark ready (singleton)
     node.setAttribute('data-ready', 'true')
   }
 
   static bindDoubleEsc(callback) {
-    let pressCount = 0
-    let timerId = null
-    const TIME_WINDOW = 1000
+    doubleEscCallback = callback || null
+    resetDoubleEsc()
+
+    if (!doubleEscCallback || doubleEscHandlerBound) return
 
     const isEscapeKey = ({ key, keyCode }) => (
       key === 'Escape' || key === 'Esc' || keyCode === 27
@@ -253,11 +267,12 @@ export default class QuickExit {
       // If another component has already claimed Esc, or focus is in an editable/modal context, defer.
       if (defaultPrevented) return
       if (quickExitIsEditable(target) || quickExitModalOpen()) return
+      if (!doubleEscCallback) return
 
-      pressCount += 1
-      if (timerId) clearTimeout(timerId)
+      doubleEscPressCount += 1
+      if (doubleEscTimerId) clearTimeout(doubleEscTimerId)
 
-      if (pressCount >= 2) {
+      if (doubleEscPressCount >= 2) {
         try {
           event.preventDefault()
         } catch (err) {
@@ -265,23 +280,21 @@ export default class QuickExit {
         }
         // When Quick Exit triggers (two Esc presses), prevent the default Esc behaviour
         // but do NOT call stopImmediatePropagation; other listeners will still receive the event.
-        callback()
-        pressCount = 0
-        timerId = null
+        const runQuickExit = doubleEscCallback
+        resetDoubleEsc()
+        if (runQuickExit) runQuickExit()
       } else {
-        timerId = setTimeout(() => {
-          pressCount = 0
-          timerId = null
-        }, TIME_WINDOW)
+        doubleEscTimerId = setTimeout(resetDoubleEsc, DOUBLE_ESC_TIME_WINDOW)
       }
     }
 
     // Capture phase so we still receive ESC even if other components stop propagation,
     // but we won't suppress them unless we actually trigger QE (and even then we don't stop propagation).
     document.addEventListener('keydown', handleKeydown, true)
+    doubleEscHandlerBound = true
   }
 
-  static ensureSrOnlyMessage() {
+  static ensureSrOnlyMessage(enableEsc = true) {
     try {
       if (typeof document === 'undefined') return
       const skip = document.querySelector('.nsw-skip')
@@ -293,8 +306,8 @@ export default class QuickExit {
         sr = document.createElement('span')
         sr.id = 'quick-exit-message'
         sr.className = 'sr-only'
-        sr.textContent = 'Quick exit is available on this page. You can leave at any time by pressing the Escape key two times.'
       }
+      sr.textContent = enableEsc ? SR_MESSAGE_WITH_ESC : SR_MESSAGE
 
       // Ensure it sits immediately before the skip nav
       if (sr.parentNode !== skip.parentNode || sr.nextElementSibling !== skip) {
@@ -332,8 +345,6 @@ export default class QuickExit {
 
     if (firstTabHandlerBound) return
 
-    // Removed duplicated isEditable and modalOpen, use shared helpers instead
-
     const handleKeydown = (event) => {
       const {
         key, keyCode, defaultPrevented, target,
@@ -369,36 +380,49 @@ export default class QuickExit {
     firstTabHandlerBound = true
   }
 
+  static getOptionsFromElement(root) {
+    // Parse data-options if present
+    const optAttr = root.getAttribute('data-options')
+    let opts = {}
+    if (optAttr && optAttr.trim()) {
+      try {
+        opts = JSON.parse(optAttr)
+      } catch (parseErr) {
+        ignoreError(parseErr)
+      }
+    }
+
+    const href = root.getAttribute('href') || DEFAULT_SAFE_URL
+
+    return {
+      safeUrl: href,
+      enableEsc: (typeof opts.enableEsc === 'boolean') ? opts.enableEsc : true,
+      enableCloak: (typeof opts.enableCloak === 'boolean') ? opts.enableCloak : true,
+    }
+  }
+
   /**
-   * Enhance any existing QE in the container (no declarative parsing).
+   * Enhance any existing server-rendered Quick Exit elements.
    */
   static autoInit() {
-    const container = stickyContainer()
-    if (!container) return
-    if (container.querySelector('.nsw-quick-exit[data-ready="true"]')) return
+    if (typeof document === 'undefined') return
 
-    const existingRoot = container.querySelector('.nsw-quick-exit')
-    if (existingRoot) {
-      // Parse data-options if present
-      const optAttr = existingRoot.getAttribute('data-options')
-      let opts = {}
-      if (optAttr && optAttr.trim()) {
-        try {
-          opts = JSON.parse(optAttr)
-        } catch (parseErr) {
-          ignoreError(parseErr)
-        }
-      }
-      // Use current content and attributes; just wire behaviour with sensible defaults
-      const href = existingRoot.getAttribute('href') || DEFAULT_SAFE_URL
+    const existingRoots = document.querySelectorAll('.nsw-quick-exit:not([data-ready="true"])')
+    const hasStickyQuickExit = document.querySelector(
+      '.nsw-sticky-container .nsw-quick-exit, .js-sticky-container .nsw-quick-exit, #sticky-container .nsw-quick-exit',
+    )
+
+    if (hasStickyQuickExit) stickyContainer()
+
+    existingRoots.forEach((existingRoot) => {
+      const opts = QuickExit.getOptionsFromElement(existingRoot)
+      const isStickyQuickExit = !!existingRoot.closest('.nsw-sticky-container, .js-sticky-container, #sticky-container')
+
       QuickExit.enhance(existingRoot, {
-        safeUrl: href,
-        enableEsc: (typeof opts.enableEsc === 'boolean') ? opts.enableEsc : true,
-        enableCloak: (typeof opts.enableCloak === 'boolean') ? opts.enableCloak : true,
-        focusFirst: true,
+        ...opts,
+        focusFirst: isStickyQuickExit,
       })
-      // Removed per instructions
-    }
+    })
   }
 }
 
