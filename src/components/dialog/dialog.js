@@ -37,7 +37,7 @@ class Dialog {
   }
 
   openDialog() {
-    this.element.setAttribute('aria-expanded', 'true')
+    this.element.setAttribute('aria-hidden', 'false')
     this.element.classList.add('active')
     this.body.classList.add('dialog-active')
     if (this.focusableEls.length > 0) {
@@ -46,7 +46,7 @@ class Dialog {
   }
 
   closeDialog() {
-    this.element.setAttribute('aria-expanded', 'false')
+    this.element.setAttribute('aria-hidden', 'true')
     this.element.classList.remove('active')
     this.body.classList.remove('dialog-active')
   }

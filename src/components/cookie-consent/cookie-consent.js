@@ -111,7 +111,7 @@ class CookieConsent {
 
     // Create the dialog dynamically
     const preferencesDialogHtml = `
-      <div class="nsw-cookie-dialog nsw-dialog nsw-dialog--single-action js-dialog js-dialog-dismiss" id="cookie-consent-preferences" role="dialog" aria-labelledby="cookie-consent-dialog">
+      <div class="nsw-cookie-dialog nsw-dialog nsw-dialog--single-action js-dialog js-dialog-dismiss" id="cookie-consent-preferences" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="cookie-consent-dialog">
         <div class="nsw-dialog__wrapper">
           <div class="nsw-dialog__container">
             <div class="nsw-dialog__top">
