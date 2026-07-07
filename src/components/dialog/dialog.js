@@ -11,7 +11,7 @@ class Dialog {
     this.openEvent = this.openDialog.bind(this)
     this.closeEvent = this.closeDialog.bind(this)
     this.clickEvent = this.clickDialog.bind(this)
-    this.trapEvent = this.trapFocus.bind(this)
+    this.keydownEvent = this.keydownDialog.bind(this)
   }
 
   init() {
@@ -32,9 +32,7 @@ class Dialog {
       this.element.addEventListener('click', this.clickEvent, false)
     }
 
-    if (this.focusableEls.length > 0) {
-      this.focusableEls[this.focusableEls.length - 1].addEventListener('blur', this.trapEvent, false)
-    }
+    this.element.addEventListener('keydown', this.keydownEvent, false)
   }
 
   openDialog() {
@@ -60,6 +58,20 @@ class Dialog {
     }
   }
 
+  keydownDialog(event) {
+    if (!this.element.classList.contains('active')) return
+
+    if (event.key === 'Escape') {
+      event.preventDefault()
+      this.closeDialog()
+      return
+    }
+
+    if (event.key === 'Tab') {
+      this.trapFocus(event)
+    }
+  }
+
   saveFocus() {
     const { activeElement } = document
     if (activeElement && activeElement !== this.body && !this.element.contains(activeElement)) {
@@ -77,9 +89,25 @@ class Dialog {
   }
 
   trapFocus(event) {
-    event.preventDefault()
-    if (this.focusableEls.length > 0) {
-      this.focusableEls[0].focus()
+    if (this.focusableEls.length === 0) return
+
+    const firstFocusableElement = this.focusableEls[0]
+    const lastFocusableElement = this.focusableEls[this.focusableEls.length - 1]
+
+    if (!this.element.contains(document.activeElement)) {
+      event.preventDefault()
+      firstFocusableElement.focus()
+      return
+    }
+
+    if (document.activeElement === firstFocusableElement && event.shiftKey) {
+      event.preventDefault()
+      lastFocusableElement.focus()
+    }
+
+    if (document.activeElement === lastFocusableElement && !event.shiftKey) {
+      event.preventDefault()
+      firstFocusableElement.focus()
     }
   }
 }
