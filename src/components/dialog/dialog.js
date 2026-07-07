@@ -7,6 +7,7 @@ class Dialog {
     this.closeBtn = this.element.querySelectorAll('.js-close-dialog')
     this.focusableEls = this.element.querySelectorAll('a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])')
     this.body = document.body
+    this.previouslyFocusedElement = null
     this.openEvent = this.openDialog.bind(this)
     this.closeEvent = this.closeDialog.bind(this)
     this.clickEvent = this.clickDialog.bind(this)
@@ -37,6 +38,7 @@ class Dialog {
   }
 
   openDialog() {
+    this.saveFocus()
     this.element.setAttribute('aria-hidden', 'false')
     this.element.classList.add('active')
     this.body.classList.add('dialog-active')
@@ -46,6 +48,7 @@ class Dialog {
   }
 
   closeDialog() {
+    this.restoreFocus()
     this.element.setAttribute('aria-hidden', 'true')
     this.element.classList.remove('active')
     this.body.classList.remove('dialog-active')
@@ -55,6 +58,22 @@ class Dialog {
     if (!this.elementWrapper.contains(event.target)) {
       this.closeDialog()
     }
+  }
+
+  saveFocus() {
+    const { activeElement } = document
+    if (activeElement && activeElement !== this.body && !this.element.contains(activeElement)) {
+      this.previouslyFocusedElement = activeElement
+    }
+  }
+
+  restoreFocus() {
+    if (this.previouslyFocusedElement && document.contains(this.previouslyFocusedElement)) {
+      this.previouslyFocusedElement.focus()
+    } else if (this.element.contains(document.activeElement) && typeof document.activeElement.blur === 'function') {
+      document.activeElement.blur()
+    }
+    this.previouslyFocusedElement = null
   }
 
   trapFocus(event) {
