@@ -46,10 +46,10 @@ class Dialog {
   }
 
   closeDialog() {
-    this.restoreFocus()
-    this.element.setAttribute('aria-hidden', 'true')
     this.element.classList.remove('active')
     this.body.classList.remove('dialog-active')
+    this.restoreFocus()
+    this.element.setAttribute('aria-hidden', 'true')
   }
 
   clickDialog(event) {
