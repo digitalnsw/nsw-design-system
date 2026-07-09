@@ -1727,7 +1727,7 @@
 
         // Create the dialog dynamically
         const preferencesDialogHtml = `
-      <div class="nsw-cookie-dialog nsw-dialog nsw-dialog--single-action js-dialog js-dialog-dismiss" id="cookie-consent-preferences" role="dialog" aria-labelledby="cookie-consent-dialog">
+      <div class="nsw-cookie-dialog nsw-dialog nsw-dialog--single-action js-dialog js-dialog-dismiss" id="cookie-consent-preferences" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="cookie-dialog-title">
         <div class="nsw-dialog__wrapper">
           <div class="nsw-dialog__container">
             <div class="nsw-dialog__top">
@@ -2711,10 +2711,11 @@
         this.closeBtn = this.element.querySelectorAll('.js-close-dialog');
         this.focusableEls = this.element.querySelectorAll('a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])');
         this.body = document.body;
+        this.previouslyFocusedElement = null;
         this.openEvent = this.openDialog.bind(this);
         this.closeEvent = this.closeDialog.bind(this);
         this.clickEvent = this.clickDialog.bind(this);
-        this.trapEvent = this.trapFocus.bind(this);
+        this.keydownEvent = this.keydownDialog.bind(this);
       }
       init() {
         this.controls();
@@ -2730,12 +2731,11 @@
         if (this.element.classList.contains('js-dialog-dismiss')) {
           this.element.addEventListener('click', this.clickEvent, false);
         }
-        if (this.focusableEls.length > 0) {
-          this.focusableEls[this.focusableEls.length - 1].addEventListener('blur', this.trapEvent, false);
-        }
+        this.element.addEventListener('keydown', this.keydownEvent, false);
       }
       openDialog() {
-        this.element.setAttribute('aria-expanded', 'true');
+        this.saveFocus();
+        this.element.setAttribute('aria-hidden', 'false');
         this.element.classList.add('active');
         this.body.classList.add('dialog-active');
         if (this.focusableEls.length > 0) {
@@ -2743,19 +2743,59 @@
         }
       }
       closeDialog() {
-        this.element.setAttribute('aria-expanded', 'false');
         this.element.classList.remove('active');
         this.body.classList.remove('dialog-active');
+        this.restoreFocus();
+        this.element.setAttribute('aria-hidden', 'true');
       }
       clickDialog(event) {
         if (!this.elementWrapper.contains(event.target)) {
           this.closeDialog();
         }
       }
+      keydownDialog(event) {
+        if (!this.element.classList.contains('active')) return;
+        if (event.key === 'Escape') {
+          event.preventDefault();
+          this.closeDialog();
+          return;
+        }
+        if (event.key === 'Tab') {
+          this.trapFocus(event);
+        }
+      }
+      saveFocus() {
+        const {
+          activeElement
+        } = document;
+        if (activeElement && activeElement !== this.body && !this.element.contains(activeElement)) {
+          this.previouslyFocusedElement = activeElement;
+        }
+      }
+      restoreFocus() {
+        if (this.previouslyFocusedElement && document.contains(this.previouslyFocusedElement)) {
+          this.previouslyFocusedElement.focus();
+        } else if (this.element.contains(document.activeElement) && typeof document.activeElement.blur === 'function') {
+          document.activeElement.blur();
+        }
+        this.previouslyFocusedElement = null;
+      }
       trapFocus(event) {
-        event.preventDefault();
-        if (this.focusableEls.length > 0) {
-          this.focusableEls[0].focus();
+        if (this.focusableEls.length === 0) return;
+        const firstFocusableElement = this.focusableEls[0];
+        const lastFocusableElement = this.focusableEls[this.focusableEls.length - 1];
+        if (!this.element.contains(document.activeElement)) {
+          event.preventDefault();
+          firstFocusableElement.focus();
+          return;
+        }
+        if (document.activeElement === firstFocusableElement && event.shiftKey) {
+          event.preventDefault();
+          lastFocusableElement.focus();
+        }
+        if (document.activeElement === lastFocusableElement && !event.shiftKey) {
+          event.preventDefault();
+          firstFocusableElement.focus();
         }
       }
     }
