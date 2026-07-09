@@ -22,6 +22,12 @@
   }
 }
 
+@mixin reflow($width-type: max-width) {
+  @media ($width-type: functions.rem(settings.$nsw-reflow-width)) {
+    @content;
+  }
+}
+
 @mixin prefers-reduced-motion() {
   @media (prefers-reduced-motion: reduce) {
     @content;
