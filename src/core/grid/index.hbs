@@ -86,14 +86,14 @@ meta-index: true
 <br>
 
 <h3 id="micro-breakpoint">Micro breakpoint</h3>
-<p>The <code>micro</code> breakpoint starts at 320px and is intended for constrained viewport support. Use it for very small displays and zoomed states up to 400%, where components may need tighter spacing or simpler layouts to avoid horizontal scrolling.</p>
-<p>The <code>micro</code> breakpoint is not intended to replace the normal small-screen breakpoint or target a specific mobile device width. In Sass, it can be used with <code>max-width</code> when a component needs a compact treatment at 320px and below.</p>
+<p>The <code>micro</code> breakpoint marks the 320px WCAG Reflow threshold. It sits between <code>xs</code> and <code>sm</code> in the breakpoint sequence and supports compact component treatments for constrained viewports and 400% zoom states.</p>
+<p>The existing <code>xs</code> breakpoint remains the base breakpoint from 0px. Use <code>micro</code> only where a component needs a specific adjustment at the WCAG reflow benchmark. In Sass, it may be used with <code>max-width</code> where styles need to apply at 320px and below.</p>
 
 <h2 id="content-grids">Content grids</h2>
 <p>Grid gives you the flexibility with Flexbox to build responsive layouts across different breakpoints. For example, to increase cards from a 2 column layout on the md breakpoint to a 3 column layout on the lg breakpoint. The NSW Design System recommends the below number of columns per breakpoint to ensure the content is at an optimal layout for readability and accessibility: </p>
 <ul>
   <li>xs (Extra small) - 1 column</li>
-  <li>micro (Micro) - 1 column</li>
+  <li>micro (Micro reflow threshold) - 1 column</li>
   <li>sm (Small) - up to 2 columns</li>
   <li>md (Medium) - up to 3 columns</li>
   <li>lg (Large) - up to 4 columns</li>
