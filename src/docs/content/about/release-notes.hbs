@@ -19,6 +19,25 @@ meta-index: true
     </thead>
     <tbody>
       <tr>
+        <td>v3.24.13</td>
+        <td>07.07.26</td>
+        <td>
+          <h4>Accessibility</h4>
+          <ul>
+            <li>Dialog component: updated ARIA state handling by removing <code>aria-expanded</code> from the dialog container, adding <code>aria-modal="true"</code>, and using <code>aria-hidden</code> to reflect whether the dialog is hidden from assistive technology. The component also now traps <code>Tab</code> and <code>Shift + Tab</code> within the active dialog, closes with <code>Escape</code>, and returns focus to the invoking control when closed. This addresses <a href="https://github.com/digitalnsw/nsw-design-system/issues/727" target="_blank" rel="noopener noreferrer">#727</a></li>
+          </ul>
+          <div class="nsw-in-page-alert nsw-in-page-alert--warning nsw-m-bottom-sm">
+            <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">warning</span>
+            <div class="nsw-in-page-alert__content">
+              <p class="nsw-h5">Dialog ARIA state update</p>
+              <p>Dialog visibility continues to be controlled by the existing <code>.active</code> class. If your application has custom tests, CSS, analytics or JavaScript that checks <code>.nsw-dialog[aria-expanded="true"]</code>, update it to use <code>.nsw-dialog.active</code> for open state or <code>aria-hidden="false"</code> for accessibility state.</p>
+              <p>If you manually toggle dialogs without the NSW Design System JavaScript, keep <code>aria-hidden</code> in sync with the <code>.active</code> class.</p>
+            </div>
+          </div>
+        </td>
+        <td><a target="_blank" rel="noopener noreferrer" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.24.13">Code kit</a></td>
+      </tr>
+      <tr>
         <td>v3.24.12</td>
         <td>01.07.26</td>
         <td>
