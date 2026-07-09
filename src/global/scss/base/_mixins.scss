@@ -10,8 +10,8 @@
     @error 'NSW-DS Breakpoint mixin accepts only strings';
   }
 
-  @if $size != 'xs' and $size != 'sm' and $size != 'md' and $size != 'lg' and $size != 'xl' {
-    @error 'NSW-DS Breakpoint mixin allows the following breakpoint sizes xs, sm, md, lg';
+  @if not map.has-key(settings.$nsw-breakpoints, $size) {
+    @error 'NSW-DS Breakpoint mixin allows the following breakpoint sizes #{map.keys(settings.$nsw-breakpoints)}';
   } @else {
     $px-size: map.get(settings.$nsw-breakpoints, $size);
     $rem-size: functions.rem($px-size);
