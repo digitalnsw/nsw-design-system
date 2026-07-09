@@ -2,10 +2,6 @@
 @use '../global/scss/themes/all';
 @use '../global/scss/tools' as nsw;
 
-$content-width: 768px;
-$nav-width: 300px;
-$header-height: 151px;
-
 @media (prefers-reduced-motion: no-preference) {
   html {
     scroll-behavior: smooth;
@@ -92,22 +88,31 @@ $header-height: 151px;
   }
 }
 
+.nsw-docs-home-hero {
+  .nsw-hero-banner::after {
+    display: none;
+  }
+}
+
 .nsw-docs {
+  --nsw-docs-text-body-width: calc(var(--nsw-container-width) * 2 / 3);
+
   :not(pre) code {
     padding: nsw.rem(3px);
     background: var(--nsw-grey-04);
     border-radius: var(--nsw-border-radius);
   }
 
-  // fix to offset height of fixed nav to trick anchor links' positioning
+  @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+    &__intro .nsw-docs__container > :is(h1, h2, h3, h4, h5, h6, p, ul, ol, dl, blockquote, table, .nsw-table, pre, hr, .nsw-docs__external, .nsw-in-page-alert),
+    &__content > .nsw-docs__container > :is(h1, h2, h3, h4, h5, h6, p, ul, ol, dl, blockquote, table, .nsw-table, pre, hr, .nsw-docs__external, .nsw-in-page-alert),
+    &__content > .nsw-docs__container > .nsw-docs__body > :is(h1, h2, h3, h4, h5, h6, p, ul, ol, dl, blockquote, table, .nsw-table, pre, hr, .nsw-docs__external, .nsw-in-page-alert),
+    .nsw-docs-tabs__guidance .nsw-docs__container > :is(h1, h2, h3, h4, h5, h6, p, ul, ol, dl, blockquote, table, .nsw-table, pre, hr, .nsw-docs__external, .nsw-in-page-alert) {
+      max-width: var(--nsw-docs-text-body-width);
+    }
 
-  :target::before {
-
-    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
-      content: '';
-      display: block;
-      height: nsw.rem($header-height);
-      margin: nsw.rem(-$header-height) 0 0;
+    .nsw-layout__main > .nsw-docs__body > :is(h1, h2, h3, h4, h5, h6, p, ul, ol, dl, blockquote, table, .nsw-table, pre, hr, .nsw-docs__external, .nsw-in-page-alert) {
+      max-width: none;
     }
   }
 
@@ -118,165 +123,26 @@ $header-height: 151px;
   }
 
   &__header {
-    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
-      height: nsw.rem($header-height);
-    }
-
-    &-wrapper {
-      @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
-        @include nsw.z-index('upper');
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        background-color: var(--nsw-white);
-      }
-    }
-
-    .nsw-container,
-    .nsw-header__container {
-      margin: 0;
-    }
-
-    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
-      .nsw-container,
-      .nsw-header__container {
-        max-width: nsw.rem($content-width + $nav-width + 172px);
-      }
-
-      .nsw-header__container .nsw-header__inner {
-        justify-content: space-between;
-        align-items: center;
-      }
-    }
+    background-color: var(--nsw-white);
   }
 
-  &__wrapper {
-    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
-      display: flex;
-    }
-  }
-
-  &__nav {
-    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
-      min-width: nsw.rem($nav-width);
-      max-width: nsw.rem($nav-width);
-    }
-
-    &-wrapper {
-      @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
-        @include nsw.z-index('upper');
-        position: fixed;
-        top: nsw.rem($header-height);
-        bottom: 0;
-        left: 0;
-        width: nsw.rem($nav-width);
-        overflow-y: auto;
-        border-right: 1px solid var(--nsw-grey-04);
-        background-color: var(--nsw-white);
-        padding: nsw.rem(16px);
-      }
-    }
-
-    /* stylelint-disable max-nesting-depth */
-
+  &__primary-nav {
     .nsw-main-nav__sub-nav a {
       .nsw-brand {
         margin-right: nsw.rem(-8px);
       }
     }
 
-    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
-      .nsw-main-nav {
-        background-color: transparent;
-
-        li {
-          border-top: 1px solid var(--nsw-grey-04);
-        }
-
-        a {
-          font-weight: var(--nsw-font-normal);
-
-          &.active {
-            font-weight: var(--nsw-font-bold);
-          }
-
-          &.current-section {
-            font-weight: var(--nsw-font-bold);
-            border-left: 2px solid var(--nsw-brand-accent);
-
-            &:hover {
-              background-color: var(--nsw-hover);
-            }
-          }
-
-          &.current {
-            background-color: var(--nsw-off-white);
-          }
-        }
-
-        &__list {
-          max-width: none;
-          margin: 0;
-          flex-direction: column;
-          cursor: pointer;
-
-          > li {
-            &:first-child {
-              border-top: 0;
-            }
-          }
-
-          > li > a {      
-            @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {      
-              &.active {
-                box-shadow: none;
-              }
-            }
-          }
-        }
-
-        &__sub-nav {
-          position: relative;
-          top: auto;
-          left: auto;
-          max-width: none;
-          margin: 0;
-          padding: 0;
-          box-shadow: none;
-          display: none;
-
-          &.active {
-            display: block;
-            transform: none;
-            left: auto;
-          }
-
-          &.current-section {
-            border-left: 2px solid var(--nsw-brand-accent);
-          }
-
-          ul {
-            margin: 0;
-            flex-direction: column;
-          }
-
-          li {
-            width: auto;
-            margin: 0;
-            border-bottom: 0;
-          }
-
-          a {
-            padding-left: nsw.rem(24px);
-            color: var(--nsw-text-dark);
-          }
-        }
-      }
+    .nsw-main-nav__sub-list a.current {
+      font-weight: var(--nsw-font-bold);
+      background-color: var(--nsw-off-white);
     }
 
-    /* stylelint-enable max-nesting-depth */
-
+    .nsw-main-nav__list > li.active > a.current-section {
+      @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+        box-shadow: inset 0 -4px 0 var(--nsw-brand-dark);
+      }
+    }
   }
 
   &__main {
@@ -291,27 +157,6 @@ $header-height: 151px;
       background-color: var(--nsw-white);
     }
 
-    &--narrow,
-    &--menu {
-      .nsw-docs__demo {
-        max-width: nsw.rem($content-width + 32px);
-
-        @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
-          max-width: nsw.rem($content-width + 104px);
-        }
-      }
-    }
-
-    &--wide {
-      .nsw-docs__demo {
-        max-width: calc(var(--nsw-container-width) + #{nsw.rem(32px)});
-
-        @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
-          max-width: calc(var(--nsw-container-width) + #{nsw.rem(104px)});
-        }
-      }
-    }
-
     &--menu {
       .nsw-docs__component {
         max-width: nsw.rem(336px);
@@ -320,11 +165,9 @@ $header-height: 151px;
   }
 
   &__container {
-    max-width: nsw.rem($content-width + 32px);
-
-    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
-      max-width: nsw.rem($content-width + 104px);
-    }
+    width: 100%;
+    margin: 0 auto;
+    max-width: var(--nsw-container-width);
   }
 
   &__intro {
@@ -334,7 +177,7 @@ $header-height: 151px;
       padding: nsw.rem(24px) nsw.rem(16px);
 
       @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
-        padding: nsw.rem(48px) nsw.rem(52px);
+        padding: nsw.rem(48px) nsw.rem(16px);
       }
     }
 
@@ -353,15 +196,49 @@ $header-height: 151px;
 
   &__tabs {
     flex-grow: 1;
+    width: 100%;
+    max-width: var(--nsw-container-width);
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding: 0 nsw.rem(16px);
   }
 
   &__content {
-    padding: nsw.rem(24px) nsw.rem(16px);
     flex-grow: 1;
+    width: 100%;
+    max-width: var(--nsw-container-width);
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding: nsw.rem(24px) nsw.rem(16px);
 
     @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
-      padding: nsw.rem(48px) nsw.rem(16px) nsw.rem(48px) nsw.rem(52px);
+      padding: nsw.rem(48px) nsw.rem(16px);
     }
+  }
+
+  &__layout {
+    row-gap: nsw.rem(32px);
+  }
+
+  &__layout--tabs {
+    align-items: flex-start;
+
+    .nsw-docs__tabs {
+      max-width: none;
+      padding: 0;
+    }
+  }
+
+  &__side-nav {
+    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+      align-self: flex-start;
+      position: sticky;
+      top: nsw.rem(32px);
+    }
+  }
+
+  &__body {
+    width: 100%;
   }
 
   &__example {
@@ -393,6 +270,10 @@ $header-height: 151px;
   }
 
   &__demo {
+    width: 100%;
+    margin: 0 auto;
+    max-width: var(--nsw-container-width);
+
     > h3 {
       padding: nsw.rem(16px) 0;
 
@@ -1020,7 +901,7 @@ $header-height: 151px;
     position: relative;
     display: none;
     margin-top: nsw.rem(24px);
-    max-width: nsw.rem(872px);
+    max-width: none;
 
     &.active {
       display: block;
@@ -1055,7 +936,7 @@ $header-height: 151px;
 
   &__wrapper {
     min-height: nsw.rem(68px);
-    max-width: nsw.rem(872px);
+    max-width: none;
     max-height: nsw.rem(400px);
     overflow: auto;
     background-color: var(--nsw-white);
@@ -1065,11 +946,7 @@ $header-height: 151px;
 .nsw-docs-tabs {
   >.nsw-tabs__list-wrapper {
     background-color: transparent;
-    padding: 0 nsw.rem(16px);
-
-    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
-      padding: 0 nsw.rem(52px);
-    }
+    padding: 0;
   }
 
   >.nsw-tabs__content {
@@ -1083,10 +960,10 @@ $header-height: 151px;
 
     .nsw-docs__container,
     .nsw-docs__demo {
-      padding: nsw.rem(24px) nsw.rem(16px);
+      padding: nsw.rem(24px) 0;
 
       @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
-        padding: nsw.rem(48px) nsw.rem(52px);
+        padding: nsw.rem(48px) 0;
       }
     }
   }
@@ -1098,12 +975,7 @@ $header-height: 151px;
 
 .nsw-docs-footer {
   .nsw-container {
-    margin: 0;
     padding: 0 nsw.rem(16px);
-
-    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
-      padding: 0 nsw.rem(52px);
-    }
   }
 
   .nsw-footer__lower {
@@ -1288,10 +1160,10 @@ $header-height: 151px;
   }
 }
 
-.material-icons-loading .nsw-docs__nav .nsw-material-icons {
+.material-icons-loading .nsw-docs__primary-nav .nsw-material-icons {
   visibility: hidden;
 }
 
-.material-icons-loaded .nsw-docs__nav .nsw-material-icons {
+.material-icons-loaded .nsw-docs__primary-nav .nsw-material-icons {
   visibility: visible;
 }
