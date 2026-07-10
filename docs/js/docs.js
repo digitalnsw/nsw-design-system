@@ -340,6 +340,11 @@
     keywords: 'Position, static, relative, absolute, fixed, sticky',
     url: '/docs/content/utilities/position.html'
   }, {
+    label: 'Reflow',
+    template: 'result',
+    keywords: 'reflow, WCAG reflow, WCAG 1.4.10, Success Criterion 1.4.10, 400% zoom, 400 percent zoom, 320px, 320 CSS pixels, 1280px at 400%, responsive, accessibility, zoom, low vision, constrained viewport, horizontal scrolling, two-dimensional scrolling, max-width 20rem, nsw.reflow, $nsw-reflow-threshold, Sass helper, CSS, compiled CSS, without Sass, no Sass, media query, breakpoint, breakpoints',
+    url: '/docs/content/utilities/reflow.html'
+  }, {
     label: 'Spacing',
     template: 'result',
     keywords: 'Responsive, units, alignment, consistent, 8-pixel grid, Spacing token, Helper classes, margin, padding, banner',

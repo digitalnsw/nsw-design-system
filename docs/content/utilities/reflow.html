@@ -14,13 +14,13 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-P2NKBBJZ');</script>
   
-  <title>Quick exit | NSW Design System</title>
+  <title>Reflow | NSW Design System</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://designsystem.nsw.gov.au/nsw-og-image.jpg">
-  <meta name="description" content="A standardised quick exit button offers a discreet and accessible safety mechanism, allowing users to swiftly leave sensitive content with a single click." />
+  <meta name="description" content="Use the NSW Design System Reflow helper for component-specific layout adjustments at the WCAG Reflow benchmark of 320 CSS pixels and 400% zoom states." />
   <link rel="icon" href="https://designsystem.nsw.gov.au/favicon.ico" sizes="32x32" />
   <link rel="icon" type="image/svg+xml" href="https://designsystem.nsw.gov.au/favicon.svg" sizes="any" />
   <link rel="icon" type="image/png" href="https://designsystem.nsw.gov.au/favicon.png" sizes="96x96" />
@@ -432,117 +432,38 @@
         </nav>
       </div>
     </div>
-    <div class="nsw-docs__main">
-      <div class="nsw-docs__intro nsw-docs__intro--tabs">
+    <div class="nsw-docs__main nsw-docs__main--narrow">
+      <div class="nsw-docs__intro">
         <div class="nsw-docs__container">
-          <h1>Quick exit</h1>
+          <h1>Reflow</h1>
           
-          <p class="nsw-intro">Helps users leave a site immediately without drawing attention.</p>
+          <p class="nsw-intro">Use the Reflow Sass helper to apply component-specific layout adjustments at the WCAG Reflow benchmark.</p>
           
-          <p>
-            <a class="nsw-link nsw-link--icon" target="_blank" href="https://figma.com/design/PVrERKnckLTlJSPk12gbtS/NSW-Design-System?node-id&#x3D;145692-14383&amp;t&#x3D;pvXydUndklIUkCuU-11">
-              <svg width="20" height="20" viewBox="0 0 33 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.003 48c4.416 0 8-3.584 8-8v-8h-8c-4.416 0-8 3.584-8 8s3.584 8 8 8z" fill="#0ACF83"></path><path d="M.003 24c0-4.416 3.584-8 8-8h8v16h-8c-4.416 0-8-3.584-8-8z" fill="#A259FF"></path><path d="M.003 8c0-4.416 3.584-8 8-8h8v16h-8c-4.416 0-8-3.584-8-8z" fill="#F24E1E"></path><path d="M16.003 0h8c4.416 0 8 3.584 8 8s-3.584 8-8 8h-8V0z" fill="#FF7262"></path><path d="M32.003 24c0 4.416-3.584 8-8 8s-8-3.584-8-8 3.584-8 8-8 8 3.584 8 8z" fill="#1ABCFE"></path></svg>
-              <span>Figma</span>
-            </a>
-          </p>
         </div>
       </div>
-<div class="nsw-docs__tabs">
-  <div class="nsw-tabs js-tabs nsw-docs-tabs">
-    <ul class="nsw-tabs__list">
-      <li class="nsw-tabs__list-item">
-        <a href="#section-guidance" class="nsw-tabs__link js-tabs-fixed">Guidance</a>
-      </li>
-      <li class="nsw-tabs__list-item">
-        <a href="#section-interactive-demo" class="nsw-tabs__link js-tabs-fixed">Demo &amp; Code</a>
-      </li>
-    </ul>
-    <section id="section-guidance" class="nsw-tabs__content">
-      <div class="nsw-docs__container">
-        
-<h2>Usage</h2>
-<p>Use the Quick exit component on pages where a user could be at risk if someone else sees what they are viewing.</p>
-<p>This includes content related to:</p>
-<ul>
-  <li>Family and domestic violence</li>
-  <li>Sexual or reproductive health</li>
-  <li>Mental health support</li>
-  <li>Other sensitive or high-risk topics</li>
-</ul>
-<p>Quick exit is a <strong>safety mechanism</strong>, not a navigational tool. It should only be used when speed, discretion and predictability are essential.</p>
+      <div class="nsw-docs__content">
+        <div class="nsw-docs__container">
 
-<h3>Do</h3>
-<ul>
-  <li>Use Quick exit on pages where user safety, privacy or comfort may be compromised.</li>
-  <li>Place it inside the <a href="https://designsystem.nsw.gov.au/core/layout/index.html#sticky-container-structure">global sticky container</a> so it doesn't overlap with other components.</li>
-  <li>Ensure it redirects to a safe, neutral destination that loads quickly.</li>
-  <li>Test the component with keyboard and screen readers.</li>
-</ul>
+<nav class="nsw-in-page-nav" aria-labelledby="in-page-nav">
+  <div id="in-page-nav" class="nsw-in-page-nav__title">On this page</div>
+  <ul class="nsw-in-page-nav__list">
+    <li><a href="#how-it-relates-to-breakpoints">How it relates to breakpoints</a></li>
+    <li><a href="#using-the-helper">Using the helper</a></li>
+    <li><a href="#without-sass">Without Sass</a></li>
+    <li><a href="#when-to-use-it">When to use it</a></li>
+    <li><a href="#exceptions">Exceptions</a></li>
+  </ul>
+</nav>
 
-<h3>Don't</h3>
-<ul>
-  <li>Show it on pages with no clear safety or privacy risk.</li>
-  <li>Hide it inside menus or page content.</li>
-  <li>Redirect users to content that could be confusing or draw attention.</li>
-  <li>Rely on JavaScript alone for core functionality.</li>
-</ul>
+<p>The <code>nsw.reflow</code> mixin applies styles at the WCAG Reflow benchmark of 320 CSS pixels. This helps components remain usable when a page is viewed in constrained viewports, including common 400% zoom test states.</p>
 
-<h2>Content guidelines</h2>
+<p>WCAG 2.1 <a href="https://www.w3.org/WAI/WCAG21/Understanding/reflow.html" target="_blank" rel="noopener noreferrer">Success Criterion 1.4.10: Reflow</a> requires content to be presented without loss of information or functionality, and without two-dimensional scrolling, at a width equivalent to 320 CSS pixels. The W3C understanding document explains that 320 CSS pixels is equivalent to a 1280 CSS pixel wide viewport at 400% zoom.</p>
 
-<h3>Exit button label</h3>
-<p>The label <strong>"Exit now"</strong> is fixed and must not be changed. This consistency ensures recognisability across all NSW Government websites and improves recognition in high-stress situations.</p>
+<h2 id="how-it-relates-to-breakpoints">How it relates to breakpoints</h2>
 
-<h3>Instructional text</h3>
-<p>Briefly explain how the control works and mention the keyboard shortcut. Keep the language clear, calm and factual, and avoid wording that may increase stress.</p>
+<p>Reflow support sits on top of the standard responsive breakpoint system. It is separate from the standard <code>$nsw-breakpoints</code> scale used by grid, offset and visibility utilities.</p>
 
-<h2>Behaviour</h2>
-<p>The Quick exit control is positioned at the bottom of the viewport, and remain visible as users scroll.</p>
-<p>Activating it immediately redirects the user to the configured safe URL.</p>
-<p>When JavaScript is enabled:</p>
-<ul>
-  <li>The page is immediately concealed before navigation occurs, by applying <code>display: none</code> to the <code>&lt;html&gt;</code> element.</li>
-  <li>Users can activate the exit by pressing <kbd aria-label="Escape key">Esc</kbd> twice within a one-second window.</li>
-</ul>
-<p>Without JavaScript, the control still works as a standard link.</p>
-<p>Behaviour is intentionally simple and predictable to reduce cognitive load under stress.</p>
-
-<h2>Customisations</h2>
-
-<h3>Safe destination URL</h3>
-<p>Redirect users to a neutral, trusted page such as <a href="https://nsw.gov.au" aria-label="NSW Government home page">nsw.gov.au</a>, <a href="https://www.bom.gov.au/" aria-label="Bureau of Meteorology home page">bom.gov.au</a> or <a href="https://www.google.com/webhp" aria-label="Google home page">www.google.com/webhp</a>. Choose and customise the destination based on who your users are and how they are likely to use the service, and test it to ensure it feels safe, appropriate and low-risk in context.</p>
-
-<h3>Double Esc key support</h3>
-<p>Quick exit can optionally be triggered by pressing the <kbd aria-label="Escape key">Esc</kbd> key twice in quick succession within a one-second window.</p>
-<p>This feature is enabled via <code>enableEsc: true</code>. It provides an alternative, discreet way for users to leave the page without needing to move the pointer or locate the control visually. It can be particularly helpful for keyboard users or in situations where using the mouse may draw attention.</p>
-
-<h2>Implementation</h2>
-
-<div class="nsw-steps nsw-steps--counters nsw-steps--true nsw-steps--medium">
-  <div class="nsw-steps__item nsw-steps-medium">
-    <div class="nsw-steps__content">
-      <h3 id="quick-exit-sticky-container">Add the global sticky container</h3>
-      <p>Implement the <a href="https://designsystem.nsw.gov.au/core/layout/index.html#sticky-container-structure"><strong>global sticky container</strong></a> described in the <a href="https://designsystem.nsw.gov.au/core/layout/index.html#global-page-structure" aria-label="Global page structure layout guidance">Global page structure</a> guide. This container hosts all bottom-sticky elements, including <a href="https://designsystem.nsw.gov.au/components/quick-exit/" aria-label="Quick exit component" title="Quick exit component">Quick exit</a> and <a href="https://designsystem.nsw.gov.au/components/cookie-consent/" aria-label="Cookie consent component" title="Cookie consent component">Cookie consent</a>, ensuring consistent placement and predictable stacking.</p>
-      <p>Using the global sticky container:</p>
-      <ol>
-        <li>prevents conflicts with critical header content such as global alerts</li>
-        <li>allows multiple sticky elements to stack correctly as block elements</li>
-        <li>ensures body padding is applied so page content is not obscured.</li>
-      </ol>
-    </div>
-  </div>
-
-  <div class="nsw-steps__item">
-    <div class="nsw-steps__content">
-      <h3 id="quick-exit-html">Render the Quick exit HTML inside the sticky container</h3>
-      <p>Render the Quick exit HTML directly in your CMS or page template inside the global sticky container.</p>
-      <p>This ensures:</p>
-      <ul>
-        <li>the control is available to users without JavaScript</li>
-        <li>screen readers can announce the control and instructions reliably</li>
-        <li>the link functions as a standard navigation even if scripts fail.</li>
-      </ul>
-      <p>Use CMS- or template-level logic to control when the component appears, for example only on pages where safety or privacy risk applies.</p>
-      <p>When JavaScript is available, the Quick exit script enhances the server-rendered element with cloak mode, double-Esc activation, and first-Tab focus behaviour. Without JavaScript, the link still functions as a standard navigation to the safe URL.</p>
+<p>The standard breakpoint scale remains:</p>
 
 <div class="nsw-docs__example nsw-docs__example--hidden">
   <div class="nsw-docs__component">
@@ -554,101 +475,35 @@
       <span>Copy</span>
       <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
     </button>
-    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`&lt;div class="nsw-sticky-container"&gt;
-  &lt;a
-    class="nsw-quick-exit"
-    href="https://www.google.com/webhp"
-    data-options='{
-      "enableEsc": true,
-      "enableCloak": true
-    }'
-    rel="nofollow noopener"
-    id="nsw-quick-exit"
-    aria-describedby="nsw-quick-exit__desc"
-  &gt;
-    &lt;div class="nsw-quick-exit__content"&gt;
-      &lt;span
-        id="nsw-quick-exit__desc"
-        class="nsw-quick-exit__description-text"
-      &gt;
-        Leave quickly using this banner or press &lt;kbd aria-label="Escape key"&gt;Esc&lt;/kbd&gt; twice quickly.
-      &lt;/span&gt;
-      &lt;span class="nsw-quick-exit__exit-text"&gt;Exit now&lt;/span&gt;
-    &lt;/div&gt;
-  &lt;/a&gt;
-&lt;/div&gt;
+    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`$nsw-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+);
 `).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
     <div class="nsw-docs-code__wrapper">
-<pre><code class="html"><script>document.write((`&lt;div class="nsw-sticky-container"&gt;
-  &lt;a
-    class="nsw-quick-exit"
-    href="https://www.google.com/webhp"
-    data-options='{
-      "enableEsc": true,
-      "enableCloak": true
-    }'
-    rel="nofollow noopener"
-    id="nsw-quick-exit"
-    aria-describedby="nsw-quick-exit__desc"
-  &gt;
-    &lt;div class="nsw-quick-exit__content"&gt;
-      &lt;span
-        id="nsw-quick-exit__desc"
-        class="nsw-quick-exit__description-text"
-      &gt;
-        Leave quickly using this banner or press &lt;kbd aria-label="Escape key"&gt;Esc&lt;/kbd&gt; twice quickly.
-      &lt;/span&gt;
-      &lt;span class="nsw-quick-exit__exit-text"&gt;Exit now&lt;/span&gt;
-    &lt;/div&gt;
-  &lt;/a&gt;
-&lt;/div&gt;
+<pre><code class="scss"><script>document.write((`$nsw-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+);
 `).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
     </div>
   </div>
 </div>
 
-    </div>
-  </div>
 
-  <div class="nsw-steps__item">
-    <div class="nsw-steps__content">
-      <h3 id="quick-exit-sr-message">Include the screen-reader announcement message</h3>
-      <p>Include the screen-reader-only announcement message in your <strong>Masthead template</strong>, immediately before the Skip Link container.</p>
-      <p>This ensures the message:</p>
-      <ul>
-        <li>is available to screen-reader users (even when JavaScript is disabled)</li>
-        <li>is announced consistently and predictably</li>
-        <li>does not rely on client-side injection.</li>
-      </ul>
-      <p>When JavaScript is enabled, the Quick exit script will also inject the same announcement message. This should be treated strictly as progressive enhancement, not the primary mechanism.</p>
-      <p>Do not add a separate "skip to Quick exit" link.</p>
-    </div>
-  </div>
+<p>The <code>xs</code> breakpoint remains the base breakpoint from <code>0</code>. The Reflow helper is an additional constraint layer that can override or refine component styles at <code>320px</code> and below when the normal <code>xs</code> treatment is not enough.</p>
 
-  <div class="nsw-steps__item">
-    <div class="nsw-steps__content">
-      <h3 id="quick-exit-js">Load the NSW Design System JavaScript bundle</h3>
-      <p>Load the NSW Design System JavaScript bundle to enable progressive enhancements, including:</p>
-      <ul>
-        <li>Page cloaking on activation</li>
-        <li>Double-Esc keyboard support</li>
-        <li>First-Tab focus behaviour</li>
-      </ul>
-      <p>The server-rendered Quick exit element must exist before the JavaScript runs.</p>
-    </div>
-  </div>
+<p>Because reflow is separate from <code>$nsw-breakpoints</code>, it does not generate public grid, offset, display or visibility utilities such as <code>.nsw-col-reflow-*</code>, <code>.nsw-offset-reflow-*</code>, <code>.nsw-show-reflow</code> or <code>.nsw-hide-reflow</code>.</p>
 
-  <div class="nsw-steps__item">
-    <div class="nsw-steps__content">
-      <h3 id="quick-exit-fallback">Use programmatic initialisation only as a fallback</h3>
-      <p>Use <code>window.NSW.QuickExit.init()</code> only if your CMS cannot render the Quick exit markup server-side.</p>
-      <p>This approach:</p>
-      <ul>
-        <li>Requires JavaScript to be enabled</li>
-        <li>Makes the control unavailable to users without JavaScript</li>
-        <li>Should be treated as a last resort</li>
-      </ul>
-      <p>Server-rendered HTML remains the preferred and recommended approach for accessibility and resilience.</p>
+<h2 id="using-the-helper">Using the helper</h2>
+
+<p>Import the tools barrel and include <code>nsw.reflow</code> inside the component that needs a specific compact treatment.</p>
 
 <div class="nsw-docs__example nsw-docs__example--hidden">
   <div class="nsw-docs__component">
@@ -660,203 +515,144 @@
       <span>Copy</span>
       <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
     </button>
-    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`window.NSW.QuickExit.init({
-  safeUrl: 'https://www.google.com/webhp',
-  description: 'Leave quickly using this banner or press &lt;kbd aria-label="Escape key"&gt;Esc&lt;/kbd&gt; twice quickly.',
-  enableEsc: true,
-  enableCloak: true
-});
+    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`@use 'nsw-design-system/tools' as nsw;
+
+.example-component {
+  display: flex;
+  gap: nsw.rem(16px);
+
+  @include nsw.reflow {
+    gap: nsw.rem(8px);
+  }
+}
 `).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
     <div class="nsw-docs-code__wrapper">
-<pre><code class="js"><script>document.write((`window.NSW.QuickExit.init({
-  safeUrl: 'https://www.google.com/webhp',
-  description: 'Leave quickly using this banner or press &lt;kbd aria-label="Escape key"&gt;Esc&lt;/kbd&gt; twice quickly.',
-  enableEsc: true,
-  enableCloak: true
-});
+<pre><code class="scss"><script>document.write((`@use 'nsw-design-system/tools' as nsw;
+
+.example-component {
+  display: flex;
+  gap: nsw.rem(16px);
+
+  @include nsw.reflow {
+    gap: nsw.rem(8px);
+  }
+}
 `).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
     </div>
   </div>
 </div>
 
-    </div>
-  </div>
-</div>
 
-<h2>Accessibility</h2>
-<p>Quick exit is designed to meet <a href="https://designsystem.nsw.gov.au/docs/content/about/what-is-design-system.html#wcag-compliance">WCAG 2.2 AA</a> when implemented and configured correctly. As a safety-critical component, it must remain accessible and functional in all supported environments, including when JavaScript is unavailable.</p>
+<p>By default, this compiles to a <code>max-width</code> media query using the reflow threshold:</p>
 
-<h3>Keyboard access</h3>
-<ul>
-  <li>The Quick exit control is included in the normal tab order</li>
-  <li>Keyboard users can reach and activate it using standard navigation keys</li>
-  <li>Focus styles are clearly visible and must not be removed or overridden</li>
-  <li>No additional skip link is required or recommended</li>
-  <li>If enabled, the optional double Esc key behaviour provides an alternative keyboard-triggered exit but must not replace the primary control.</li>
-</ul>
-
-<h3>Screen reader support</h3>
-<ul>
-  <li>Semantic HTML and ARIA attributes ensure the control is announced with clear purpose</li>
-  <li>Instructional text explains both the on-screen action and the optional keyboard shortcut</li>
-  <li>A screen-reader-only announcement message provides additional context when the component is present</li>
-  <li>The announcement message should be rendered server-side where possible so it is available even when JavaScript is disabled.</li>
-</ul>
-
-<h3>JavaScript dependency</h3>
-<ul>
-  <li>Quick exit must remain usable without JavaScript</li>
-  <li>Without JavaScript, the control functions as a standard link to the safe destination</li>
-  <li>With JavaScript enabled, progressive enhancements such as cloak mode, double-Esc activation and focus behaviour improve usability but are not required for access</li>
-  <li>Do not rely on JavaScript alone to render or activate the component.</li>
-</ul>
-
-<h3>Visual accessibility</h3>
-<p>Quick exit is designed with visual accessibility built in.</p>
-<ul>
-  <li>The component meets <a href="https://designsystem.nsw.gov.au/docs/content/about/what-is-design-system.html#wcag-compliance">WCAG 2.2 AA</a> colour contrast requirements</li>
-  <li>Supports zoom up to 400% without loss of content or functionality</li>
-  <li>Adapts to smaller viewports and high zoom by allowing text to wrap</li>
-  <li>Uses the global sticky container to ensure page content is not obscured.</li>
-</ul>
-<p>Teams should avoid overriding styles or layout, as doing so may reduce visibility or make it harder to use in high-stress situations.</p>
-
-<h3>Assistive technology testing</h3>
-<p>Always test Quick exit with:</p>
-<ul>
-  <li>Keyboard-only navigation</li>
-  <li>Screen readers on supported platforms</li>
-  <li>JavaScript disabled or partially blocked.</li>
-</ul>
-<p>This helps confirm the component behaves predictably and remains accessible in high-stress or constrained environments.</p>
-
-
-      </div>
-    </section>
-    <section id="section-interactive-demo" class="nsw-tabs__content">
-      <div class="nsw-docs__demo">
-        <div class="nsw-docs__external">
-          <div class="nsw-list nsw-list--8">
-            <a class="nsw-small nsw-link nsw-link--icon" target="_blank" href="https://designsystem.nsw.gov.au/components/quick-exit/blank.html"><span>View in new window</span><i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">launch</i></a><a class="nsw-small nsw-link nsw-link--icon" target="_blank" href="https://designsystem.nsw.gov.au/components/quick-exit/theme.html"><span>View theming example</span><i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">launch</i></a>
-          </div>
-        </div>
-
-<h3>Quick exit</h3>
-<div class="nsw-docs__example">
+<div class="nsw-docs__example nsw-docs__example--hidden">
   <div class="nsw-docs__component">
-    <a
-      class="nsw-quick-exit"
-      href="https://www.google.com/webhp"
-      data-options='{
-        "enableEsc": true,
-        "enableCloak": true
-      }'
-      rel="nofollow noopener"
-      id="nsw-quick-exit"
-      aria-label="Quick exit"
-      aria-describedby="nsw-quick-exit__desc"
-    >
-      <div class="nsw-quick-exit__content">
-        <span
-          id="nsw-quick-exit__desc"
-          class="nsw-quick-exit__description-text"
-        >
-          Leave quickly using this banner or press <kbd aria-label='Escape key'>Esc</kbd> 2 times.
-        </span>
-        <span class="nsw-quick-exit__exit-text">Exit now</span>
-      </div>
-    </a>
   </div>
 </div>
 <div class="nsw-docs-code">
-  <button class="nsw-link nsw-link--button nsw-link--icon nsw-small js-code-button">
-    <span>Show code</span>
-    <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
-  </button>
-  <div class="nsw-docs-code__content">
+  <div class="nsw-docs-code__content active">
     <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
       <span>Copy</span>
       <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
     </button>
-    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`<a
-  class="nsw-quick-exit"
-  href="https://www.google.com/webhp"
-  data-options='{
-    "enableEsc": true,
-    "enableCloak": true
-  }'
-  rel="nofollow noopener"
-  id="nsw-quick-exit"
-  aria-label="Quick exit"
-  aria-describedby="nsw-quick-exit__desc"
->
-  <div class="nsw-quick-exit__content">
-    <span
-      id="nsw-quick-exit__desc"
-      class="nsw-quick-exit__description-text"
-    >
-      Leave quickly using this banner or press <kbd aria-label='Escape key'>Esc</kbd> 2 times.
-    </span>
-    <span class="nsw-quick-exit__exit-text">Exit now</span>
-  </div>
-</a>
+    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`@media (max-width: 20rem) {
+  .example-component {
+    gap: 0.5rem;
+  }
+}
 `).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
     <div class="nsw-docs-code__wrapper">
-<pre><code class="html"><script>document.write((`<a
-  class="nsw-quick-exit"
-  href="https://www.google.com/webhp"
-  data-options='{
-    "enableEsc": true,
-    "enableCloak": true
-  }'
-  rel="nofollow noopener"
-  id="nsw-quick-exit"
-  aria-label="Quick exit"
-  aria-describedby="nsw-quick-exit__desc"
->
-  <div class="nsw-quick-exit__content">
-    <span
-      id="nsw-quick-exit__desc"
-      class="nsw-quick-exit__description-text"
-    >
-      Leave quickly using this banner or press <kbd aria-label='Escape key'>Esc</kbd> 2 times.
-    </span>
-    <span class="nsw-quick-exit__exit-text">Exit now</span>
-  </div>
-</a>
+<pre><code class="css"><script>document.write((`@media (max-width: 20rem) {
+  .example-component {
+    gap: 0.5rem;
+  }
+}
 `).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
     </div>
   </div>
 </div>
 
 
+<p>The threshold is exposed as a Sass setting:</p>
 
-<h4>Implementation within the sticky container</h4>
-<button class="nsw-button nsw-button--dark" data-module="quick-exit" type="button">View banner</button>
-
-<script>
-  (function () {
-    if (typeof document === 'undefined') return;
-    document.addEventListener('DOMContentLoaded', function () {
-      var btn = document.querySelector('[data-module="quick-exit"]');
-      if (!btn || !window.NSW || !window.NSW.QuickExit) return;
-
-      btn.addEventListener('click', function () {
-        window.NSW.QuickExit.init({
-          safeUrl: "https://www.google.com/webhp",
-          description: "Leave quickly using this banner or press <kbd aria-label='Escape key'>Esc</kbd> 2 times.",
-          enableEsc: true,
-          enableCloak: true
-        });
-
-      });
-    });
-  }());
-</script>
-      </div>
-    </section>
+<div class="nsw-docs__example nsw-docs__example--hidden">
+  <div class="nsw-docs__component">
   </div>
 </div>
+<div class="nsw-docs-code">
+  <div class="nsw-docs-code__content active">
+    <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
+      <span>Copy</span>
+      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
+    </button>
+    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`$nsw-reflow-threshold: 320px !default;
+`).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
+    <div class="nsw-docs-code__wrapper">
+<pre><code class="scss"><script>document.write((`$nsw-reflow-threshold: 320px !default;
+`).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
+    </div>
+  </div>
+</div>
+
+
+<h2 id="without-sass">Without Sass</h2>
+
+<p>If you use the compiled NSW Design System CSS, any Reflow styles shipped with a NSW component are already included. You do not need Sass to receive those shipped component styles.</p>
+
+<p>Not every component will need, or currently include, a Reflow adjustment. Test the component at 400% browser zoom or an equivalent 320 CSS pixel viewport, then add targeted CSS only where the component has a real layout or usability issue.</p>
+
+<p>If you are writing custom CSS without Sass, use the compiled media query directly:</p>
+
+<div class="nsw-docs__example nsw-docs__example--hidden">
+  <div class="nsw-docs__component">
+  </div>
+</div>
+<div class="nsw-docs-code">
+  <div class="nsw-docs-code__content active">
+    <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
+      <span>Copy</span>
+      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
+    </button>
+    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`@media (max-width: 20rem) {
+  .example-component {
+    gap: 0.5rem;
+  }
+}
+`).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
+    <div class="nsw-docs-code__wrapper">
+<pre><code class="css"><script>document.write((`@media (max-width: 20rem) {
+  .example-component {
+    gap: 0.5rem;
+  }
+}
+`).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
+    </div>
+  </div>
+</div>
+
+
+<p><code>20rem</code> is the compiled equivalent of the 320 CSS pixel Reflow threshold. Use it for targeted component adjustments only, not as a replacement for the standard breakpoint scale.</p>
+
+<p>Use <code>nsw.reflow</code> for component-specific changes that make the component work at the WCAG reflow benchmark. For example, reducing dense spacing, simplifying persistent controls, resizing icons, changing wrapping behaviour, or adjusting a sticky component that takes too much space at 400% zoom.</p>
+
+<h2 id="when-to-use-it">When to use it</h2>
+
+<p>Use the Reflow helper when a component has a real layout or usability problem at the WCAG Reflow benchmark and the standard <code>xs</code> styles are too broad. Reflow styles should be targeted and minimal.</p>
+
+<ul>
+  <li>Use standard grid and breakpoint utilities for normal responsive layouts.</li>
+  <li>Use <code>nsw.reflow</code> only for the WCAG Reflow benchmark of 320 CSS pixels.</li>
+  <li>Keep reflow styles close to the component they adjust.</li>
+  <li>Check that content remains available and functional without requiring page-level horizontal scrolling.</li>
+  <li>Retest the component at 400% browser zoom or an equivalent 320 CSS pixel viewport.</li>
+</ul>
+
+<h2 id="exceptions">Exceptions</h2>
+
+<p>Some content needs two-dimensional layout for meaning or operation, such as data tables, maps, diagrams, video or interfaces where a toolbar must remain in view. These cases still need careful handling so the rest of the page can reflow and any horizontal scrolling is limited to the specific content that needs it.</p>
+
+        </div>
+      </div>
       <footer class="nsw-footer nsw-docs-footer">
         <div class="nsw-footer__lower">
           <div class="nsw-container">

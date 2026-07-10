@@ -356,6 +356,7 @@
                   <li><a href="https://designsystem.nsw.gov.au/docs/content/utilities/float.html"><span>Float</span></a></li>
                   <li><a href="https://designsystem.nsw.gov.au/docs/content/utilities/overflow.html"><span>Overflow</span></a></li>
                   <li><a href="https://designsystem.nsw.gov.au/docs/content/utilities/position.html"><span>Position</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/docs/content/utilities/reflow.html"><span>Reflow</span></a></li>
                   <li><a href="https://designsystem.nsw.gov.au/docs/content/utilities/spacing.html"><span>Spacing</span></a></li>
                   <li><a href="https://designsystem.nsw.gov.au/docs/content/utilities/svg.html"><span>SVG</span></a></li>
                   <li><a href="https://designsystem.nsw.gov.au/docs/content/utilities/text.html"><span>Text</span></a></li>
@@ -590,10 +591,14 @@
     <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`@use 'nsw-design-system/tools' as nsw;
 
 .example {
-  margin: nsw.rem(16);
+  padding: nsw.rem(16);
 
   @include nsw.breakpoint('md') {
-    margin: nsw.rem(32);
+    padding: nsw.rem(32);
+  }
+
+  @include nsw.reflow {
+    padding-inline: nsw.rem(8);
   }
 }
 `).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
@@ -601,10 +606,14 @@
 <pre><code class="scss"><script>document.write((`@use 'nsw-design-system/tools' as nsw;
 
 .example {
-  margin: nsw.rem(16);
+  padding: nsw.rem(16);
 
   @include nsw.breakpoint('md') {
-    margin: nsw.rem(32);
+    padding: nsw.rem(32);
+  }
+
+  @include nsw.reflow {
+    padding-inline: nsw.rem(8);
   }
 }
 `).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
@@ -613,6 +622,7 @@
 </div>
 
 
+<p>The <code>nsw.reflow</code> mixin targets the WCAG Reflow benchmark of 320 CSS pixels for constrained viewports and 400% zoom states. It is separate from the standard <code>$nsw-breakpoints</code> scale and does not generate grid, offset or visibility utility classes. Use it only where a component needs a specific adjustment at the WCAG Reflow benchmark. See <a href="https://designsystem.nsw.gov.au/docs/content/utilities/reflow.html">Reflow</a> for guidance.</p>
 <p><em>Performance note:</em> Importing the tools barrel does not add unused CSS. Mixins and functions only generate CSS when you call them, and the module is parsed once per build.</p>
 <p><strong>Tip:</strong> Prefer the barrel for consistency. If a file needs exactly one tool and you want explicit coupling, you can import that file directly (for example, <code>@use 'node_modules/nsw-design-system/src/global/scss/base/mixins' as mixins;</code>).</p>
 
