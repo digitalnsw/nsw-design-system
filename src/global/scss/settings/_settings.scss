@@ -6,12 +6,14 @@ $enable-important-utilities: true !default;
 // Breakpoints
 $nsw-breakpoints: (
   xs: 0,
-  micro: 320px,
   sm: 576px,
   md: 768px,
   lg: 992px,
   xl: 1200px,
 ) !default;
+
+// WCAG Reflow threshold used by the reflow mixin. Keep separate from the public breakpoint scale.
+$nsw-reflow-threshold: 320px !default;
 
 //Breakpoint to switch to desktop view (Layout and Navigation)
 $nsw-desktop-breakpoint: lg;
