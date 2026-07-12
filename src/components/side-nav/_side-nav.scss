@@ -1,3 +1,4 @@
+@use 'sass:map';
 @use '../../global/scss/tools' as nsw;
 
 .nsw-side-nav {
@@ -37,6 +38,10 @@
       > a {
         font-weight: var(--nsw-font-bold);
       }
+
+      > .nsw-side-nav__group > summary {
+        font-weight: var(--nsw-font-bold);
+      }
     }
   }
 
@@ -63,7 +68,8 @@
     }
 
     &.current {
-      background-color: var(--nsw-off-white);
+      background-color: var(--nsw-side-nav-current-bg, var(--nsw-off-white));
+      font-weight: var(--nsw-font-bold);
       
       .nsw-section--invert & {    
         @include nsw.nsw-hover-light;
@@ -72,6 +78,78 @@
 
     .nsw-section--invert & {    
       color: var(--nsw-text-light);
+    }
+  }
+
+  &__group {
+    interpolate-size: allow-keywords; /* stylelint-disable-line property-no-unknown -- experimental details animation property */
+
+    &::details-content {
+      block-size: 0;
+      overflow: hidden;
+      transition: block-size nsw.$nsw-transition-duration-smooth, content-visibility nsw.$nsw-transition-duration-smooth; /* stylelint-disable-line property-no-unknown -- experimental details animation property */
+      transition-behavior: allow-discrete; /* stylelint-disable-line property-no-unknown -- experimental details animation property */
+    }
+
+    &[open]::details-content {
+      block-size: auto;
+    }
+
+    summary {
+      position: relative;
+      font-weight: var(--nsw-font-normal);
+      display: block;
+      color: var(--nsw-text-dark);
+      padding: nsw.rem(16px) nsw.rem(48px) nsw.rem(16px) nsw.rem(16px);
+      cursor: pointer;
+      text-wrap: pretty;
+      user-select: none;
+      list-style: none;
+
+      &::-webkit-details-marker {
+        display: none;
+      }
+
+      &::after {
+        content: '\e313';
+        position: absolute;
+        transform: translateY(-50%);
+        top: 50%;
+        right: nsw.rem(8px);
+        font-size: nsw.rem(map.get(nsw.$nsw-icon-sizes, 24));
+        font-weight: var(--nsw-font-normal);
+        color: var(--nsw-brand-dark);
+        transition: transform nsw.$nsw-transition-duration-smooth, color nsw.$nsw-transition-duration-smooth;
+        pointer-events: none;
+
+        @include nsw.material-icons;
+      }
+
+      &:hover {
+        @include nsw.nsw-hover;
+        outline-width: 0;
+
+        .nsw-section--invert & {
+          @include nsw.nsw-hover-light;
+          outline-width: 0;
+        }
+      }
+
+      .nsw-section--invert &:hover::after {
+        color: var(--nsw-brand-dark);
+      }
+
+      &:focus {
+        outline-width: 3px;
+      }
+
+      .nsw-section--invert & {
+        color: var(--nsw-text-light);
+      }
+    }
+
+    &[open] summary::after {
+      transform: translateY(-50%) rotate(180deg);
     }
   }
 
@@ -126,6 +204,8 @@
     }
 
     .material-icons {
+      font-size: nsw.rem(map.get(nsw.$nsw-icon-sizes, 24));
+      line-height: 1;
       transition: transform 0.3s ease;
       transform: rotate(0deg);
     }

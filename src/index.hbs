@@ -18,6 +18,22 @@ meta-index: true
 <div class="nsw-docs-example nsw-docs-example--narrow nsw-container nsw-p-y-md">
   <div class="nsw-grid nsw-m-top-lg">
     <div class="nsw-row">
+      <div class="nsw-col nsw-col-xl-4">
+        <h2>Building blocks</h2>
+        <p>Foundations → Components → Methods → Templates</p>
+      </div>
+      <div class="nsw-col nsw-col-xl-8">
+        <ul>
+          <li>Foundations establish the visual and structural base of NSW digital products.</li>
+          <li>Components are reusable interface elements grouped by purpose.</li>
+          <li>Methods explain how to apply components to common design and service problems.</li>
+          <li>Templates provide starter page layouts and examples, available under Get started.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="nsw-grid nsw-m-top-lg">
+    <div class="nsw-row" id="get-started">
       <div class="nsw-col nsw-col-md-6 nsw-col-xl-4">
         <div class="nsw-section nsw-section--brand-light nsw-p-x-md nsw-docs__element">
           <h3>About</h3>
@@ -37,23 +53,26 @@ meta-index: true
       </div>
       <div class="nsw-col nsw-col-md-6 nsw-col-xl-4">
         <div class="nsw-section nsw-section--brand-light nsw-p-x-md nsw-docs__element">
-          <h3>Stay on brand 🔹</h3>
-          <p>You’ll need to use some features of the design system to be brand compliant. These are indicated with a 🔹 blue diamond.</p>
+          <h3>Stay on brand <span class="nsw-brand" aria-hidden="true">&#128313;</span></h3>
+          <p>Elements marked with the blue diamond are required for NSW Government Masterbrand products.</p>
         </div>
       </div>
     </div>
 
-    <div class="nsw-row nsw-m-top-md">
+    <div class="nsw-row nsw-m-top-md" id="foundations">
       <div class="nsw-col nsw-col-xl-4">
-        <h3>Core styles</h3>
-        <p>Core styles create the distinctly NSW Government look and feel.</p>
+        <h3>Foundations</h3>
+        <p>Foundations establish the visual and structural base of NSW digital products.</p>
       </div>
       <div class="nsw-col nsw-col-xl-8">
+        {{#each (docs-foundation-groups collections)}}
+        <h4>{{title}}</h4>
         <ul class="nsw-docs__list nsw-docs__list--3">
-          {{#each collections.corenav}}
-          <li><a href="{{change-extention path}}">{{title}}{{#if core}}<span class="nsw-brand">&#128313;</span>{{/if}}</a></li>
+          {{#each items}}
+          <li><a href="{{url}}">{{text}}{{#if brand}} <span class="nsw-brand" aria-hidden="true">&#128313;</span><span class="sr-only"> Required for NSW Government Masterbrand products</span>{{/if}}</a></li>
           {{/each}}
         </ul>
+        {{/each}}
       </div>
     </div>
 
@@ -61,33 +80,54 @@ meta-index: true
       <div class="nsw-col"><div class="nsw-m-y-md"><hr></div></div>
     </div>
 
-    <div class="nsw-row">
+    <div class="nsw-row" id="components">
       <div class="nsw-col nsw-col-xl-4">
         <h3>Components</h3>
-        <p>Each component contains a snippet of HTML for use in static environments.</p>
+        <p>Components are reusable interface elements grouped by purpose.</p>
       </div>
       <div class="nsw-col nsw-col-xl-8">
+        {{#each (docs-component-groups collections)}}
+        <h4>{{title}}</h4>
         <ul class="nsw-docs__list nsw-docs__list--3">
-          {{#each collections.componentsnav}}
-          <li><a href="{{change-extention path}}">{{title}}{{#if core}}<span class="nsw-brand">&#128313;</span>{{/if}}</a></li>
+          {{#each items}}
+          <li><a href="{{url}}">{{text}}{{#if brand}} <span class="nsw-brand" aria-hidden="true">&#128313;</span><span class="sr-only"> Required for NSW Government Masterbrand products</span>{{/if}}</a></li>
           {{/each}}
         </ul>
-      </div>    
+        {{/each}}
+      </div>
     </div>
 
     <div class="nsw-row">
       <div class="nsw-col"><div class="nsw-m-y-md"><hr></div></div>
     </div>
 
+    <div class="nsw-row" id="utility-classes">
+      <div class="nsw-col nsw-col-xl-4">
+        <h3>Utility classes</h3>
+        <p>Utility classes are single-purpose helpers for common spacing, layout, visibility and styling needs.</p>
+      </div>
+      <div class="nsw-col nsw-col-xl-8">
+        <ul class="nsw-docs__list nsw-docs__list--3">
+          {{#each collections.utilities}}
+          <li><a href="{{change-extention path}}">{{title}}</a></li>
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+
     <div class="nsw-row">
+      <div class="nsw-col"><div class="nsw-m-y-md"><hr></div></div>
+    </div>
+
+    <div class="nsw-row" id="methods">
       <div class="nsw-col nsw-col-xl-4">
         <h3>Methods</h3>
-        <p>Best practice design solutions for specific user-focused tasks and page types.</p>
+        <p>Methods explain how to apply components to common design and service problems.</p>
       </div>
       <div class="nsw-col nsw-col-xl-8">
         <ul class="nsw-docs__list">
           {{#each collections.methods}}
-          <li><a href="{{change-extention path}}">{{title}}{{#if core}}<span class="nsw-brand">&#128313;</span>{{/if}}</a></li>
+          <li><a href="{{change-extention path}}">{{title}}{{#if core}} <span class="nsw-brand" aria-hidden="true">&#128313;</span><span class="sr-only"> Required for NSW Government Masterbrand products</span>{{/if}}</a></li>
           {{/each}}
         </ul>
       </div>   
@@ -97,10 +137,10 @@ meta-index: true
       <div class="nsw-col"><div class="nsw-m-y-md"><hr></div></div>
     </div>
 
-    <div class="nsw-row">
+    <div class="nsw-row" id="templates">
       <div class="nsw-col nsw-col-xl-4">
         <h3>Templates</h3>
-        <p>Sample templates using the design system components and style to help you build pages.</p>
+        <p>Templates provide starter page layouts and examples, available under Get started.</p>
       </div>
       <div class="nsw-col nsw-col-xl-8">
         <ul class="nsw-docs__list">

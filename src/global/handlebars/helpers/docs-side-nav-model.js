@@ -1,4 +1,9 @@
 const changeExtention = require('./change-extention')
+const {
+  FOUNDATION_GROUPS,
+  COMPONENT_GROUPS,
+  groupCollection,
+} = require('../data/docs-ia')
 
 function slugify(value) {
   return value
@@ -28,29 +33,60 @@ function linkFromPage(page, currentUrl, options = {}) {
   return {
     text,
     url,
+    brand: page.core,
     current: url === currentUrl,
   }
 }
 
 function collectionLinks(collection, currentUrl, options = {}) {
   const pages = collection || []
+  const includeTitles = options.includeTitles || null
   const excludeTitles = options.excludeTitles || []
   const textOverrides = options.textOverrides || {}
   const transformText = options.transformText || ((text) => text)
 
   return pages
+    .filter((page) => !includeTitles || includeTitles.includes(page.title))
     .filter((page) => !excludeTitles.includes(page.title))
     .map((page) => linkFromPage(page, currentUrl, {
       text: textOverrides[page.title] || transformText(page.title),
     }))
 }
 
+function groupedCollectionLinks(collection, groups, currentUrl) {
+  return groupCollection(collection, groups, (page) => linkFromPage(page, currentUrl))
+    .map((group) => {
+      const active = group.items.some((item) => item.current)
+
+      return {
+        id: group.id,
+        text: group.title,
+        toggle: true,
+        open: active,
+        active,
+        items: group.items,
+      }
+    })
+    .filter((group) => group.items.length)
+}
+
+function hasCurrentItem(item) {
+  return item.current || (item.items || []).some(hasCurrentItem)
+}
+
 function navGroup(id, text, url, currentUrl, items) {
-  const sideNavItems = items.map((item, index) => ({
-    id: item.id || `${id}-${slugify(item.text)}-${index + 1}`,
-    ...item,
-    current: item.url === currentUrl,
-  }))
+  const sideNavItems = items.map((item, index) => {
+    const sideNavItem = {
+      id: item.id || `${id}-${slugify(item.text)}-${index + 1}`,
+      ...item,
+      current: item.current || item.url === currentUrl,
+    }
+
+    return {
+      ...sideNavItem,
+      active: sideNavItem.active || hasCurrentItem(sideNavItem),
+    }
+  })
 
   return {
     id,
@@ -72,16 +108,10 @@ module.exports = function docsSideNavModel(collections, path) {
   const develop = safeCollections.develop || []
   const contribute = safeCollections.contribute || []
   const methods = safeCollections.methods || []
-  const getStartedGuidanceLinks = [
-    ...collectionLinks(design, currentUrl, {
-      excludeTitles: ['Getting Started'],
-      textOverrides: { Theming: 'Design theming' },
-    }),
-    ...collectionLinks(develop, currentUrl, {
-      excludeTitles: ['Getting Started'],
-      textOverrides: { Theming: 'Develop theming' },
-    }),
-  ]
+  const getStartedDesignLinks = collectionLinks(design, currentUrl, {
+    includeTitles: ['Figma UI Kit', 'Extending', 'Theming', 'Guides'],
+    textOverrides: { Theming: 'Design theming' },
+  })
 
   const groups = [
     navGroup(
@@ -92,15 +122,15 @@ module.exports = function docsSideNavModel(collections, path) {
       [
         ...collectionLinks(about, currentUrl, { excludeTitles: ['Release notes'] }),
         ...collectionLinks(design, currentUrl, {
-          excludeTitles: ['Extending', 'Figma UI Kit', 'Guides', 'Theming'],
+          includeTitles: ['Getting Started'],
           textOverrides: { 'Getting Started': 'Design' },
         }),
         ...collectionLinks(develop, currentUrl, {
-          excludeTitles: ['Theming'],
+          includeTitles: ['Getting Started'],
           textOverrides: { 'Getting Started': 'Develop' },
         }),
         { text: 'Templates', url: '/templates/index.html' },
-        ...getStartedGuidanceLinks,
+        ...getStartedDesignLinks,
       ],
     ),
     navGroup(
@@ -108,26 +138,26 @@ module.exports = function docsSideNavModel(collections, path) {
       'Foundations',
       '/index.html#foundations',
       currentUrl,
-      collectionLinks(safeCollections.corenav, currentUrl),
+      groupedCollectionLinks(safeCollections.corenav, FOUNDATION_GROUPS, currentUrl),
     ),
     navGroup(
       'components',
       'Components',
       '/index.html#components',
       currentUrl,
-      collectionLinks(safeCollections.componentsnav, currentUrl),
+      groupedCollectionLinks(safeCollections.componentsnav, COMPONENT_GROUPS, currentUrl),
     ),
     navGroup(
       'utility-classes',
       'Utility classes',
-      '/index.html#foundations',
+      '/index.html#utility-classes',
       currentUrl,
       collectionLinks(safeCollections.utilities, currentUrl, { transformText: cleanUtilityText }),
     ),
     navGroup(
       'methods',
       'Methods',
-      '/index.html#guidance',
+      '/index.html#methods',
       currentUrl,
       collectionLinks(methods, currentUrl),
     ),
@@ -140,5 +170,5 @@ module.exports = function docsSideNavModel(collections, path) {
     ),
   ]
 
-  return groups.find((group) => group.items.some((item) => item.current)) || null
+  return groups.find((group) => group.items.some(hasCurrentItem)) || null
 }

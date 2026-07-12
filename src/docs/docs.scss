@@ -116,14 +116,13 @@
     }
   }
 
-  &--light {
-    .nsw-docs__main {
-      background-color: var(--nsw-white);
-    }
-  }
-
   &__header {
     background-color: var(--nsw-white);
+
+    @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
+      @include nsw.z-index('upper');
+      position: relative;
+    }
   }
 
   &__primary-nav {
@@ -150,7 +149,7 @@
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    background-color: var(--nsw-off-white);
+    background-color: var(--nsw-white);
 
     .nsw-docs__example {
       padding: nsw.rem(16px);
@@ -174,10 +173,10 @@
     background-color: var(--nsw-white);
 
     .nsw-docs__container {
-      padding: nsw.rem(24px) nsw.rem(16px);
+      padding: nsw.rem(24px) nsw.rem(16px) nsw.rem(40px);
 
       @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
-        padding: nsw.rem(48px) nsw.rem(16px);
+        padding: nsw.rem(48px) nsw.rem(16px) nsw.rem(40px);
       }
     }
 
@@ -185,10 +184,10 @@
       margin-bottom: nsw.rem(-48px);
 
       .nsw-docs__container {
-        padding-bottom: nsw.rem(78px);
+        padding-bottom: nsw.rem(40px);
 
         @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
-          padding-bottom: nsw.rem(88px);
+          padding-bottom: nsw.rem(40px);
         }
       }
     }
@@ -214,6 +213,10 @@
     @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
       padding: nsw.rem(48px) nsw.rem(16px);
     }
+  }
+
+  &__intro:not(.nsw-docs__intro--tabs) + &__content {
+    padding-top: 0;
   }
 
   &__layout {

@@ -7,23 +7,37 @@
   </div>
   <ul class="nsw-side-nav__content">
     {{#each items}}
-    <li{{#if (or current items) }} class="active"{{/if}}>
-      <a href="{{#if url}}{{url}}{{else}}#{{/if}}"{{#if current}} class="current" aria-current="page"{{/if}}>{{text}}</a>
+    <li{{#if (or current active) }} class="active"{{/if}}>
+      {{#if toggle}}
+      <details class="nsw-side-nav__group"{{#if open}} open{{/if}}>
+        <summary>{{text}}</summary>
+        {{#if items}}
+        <ul>
+          {{#each items}}
+          <li{{#if (or current active) }} class="active"{{/if}}>
+            <a href="{{url}}"{{#if current}} class="current" aria-current="page"{{/if}}>{{text}}{{#if brand}} <span class="nsw-brand" aria-hidden="true">&#128313;</span><span class="sr-only"> Required for NSW Government Masterbrand products</span>{{/if}}</a>
+          </li>
+          {{/each}}
+        </ul>
+        {{/if}}
+      </details>
+      {{else}}
+      <a href="{{#if url}}{{url}}{{else}}#{{/if}}"{{#if current}} class="current" aria-current="page"{{/if}}>{{text}}{{#if brand}} <span class="nsw-brand" aria-hidden="true">&#128313;</span><span class="sr-only"> Required for NSW Government Masterbrand products</span>{{/if}}</a>
       {{#if items}}
       <ul>
         {{#each items}}
-        <li{{#if items}} class="active"{{/if}}>
-          <a href="{{url}}"{{#if current}} class="current" aria-current="page"{{/if}}>{{text}}</a>
+        <li{{#if (or current active)}} class="active"{{/if}}>
+          <a href="{{url}}"{{#if current}} class="current" aria-current="page"{{/if}}>{{text}}{{#if brand}} <span class="nsw-brand" aria-hidden="true">&#128313;</span><span class="sr-only"> Required for NSW Government Masterbrand products</span>{{/if}}</a>
           {{#if items}}
           <ul>
             {{#each items}}
-            <li{{#if items}} class="active"{{/if}}>
-              <a href="{{url}}"{{#if current}} class="current" aria-current="page"{{/if}}>{{text}}</a>
+            <li{{#if (or current active)}} class="active"{{/if}}>
+              <a href="{{url}}"{{#if current}} class="current" aria-current="page"{{/if}}>{{text}}{{#if brand}} <span class="nsw-brand" aria-hidden="true">&#128313;</span><span class="sr-only"> Required for NSW Government Masterbrand products</span>{{/if}}</a>
               {{#if items}}
               <ul>
                 {{#each items}}
-                <li{{#if items}} class="active"{{/if}}>
-                  <a href="{{url}}"{{#if current}} class="current" aria-current="page"{{/if}}>{{text}}</a>
+                <li{{#if (or current active)}} class="active"{{/if}}>
+                  <a href="{{url}}"{{#if current}} class="current" aria-current="page"{{/if}}>{{text}}{{#if brand}} <span class="nsw-brand" aria-hidden="true">&#128313;</span><span class="sr-only"> Required for NSW Government Masterbrand products</span>{{/if}}</a>
                 </li>
                 {{/each}}
               </ul>
@@ -35,6 +49,7 @@
         </li>
         {{/each}}
       </ul>
+      {{/if}}
       {{/if}}
     </li>
     {{/each}}
