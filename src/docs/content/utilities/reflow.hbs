@@ -1,17 +1,28 @@
 ---
 title: Reflow
 width: narrow
-intro: Use the reflow Sass helper to apply component-specific layout adjustments at the WCAG Reflow threshold.
+intro: Use the Reflow Sass helper to apply component-specific layout adjustments at the WCAG Reflow benchmark.
 no-blank: true
-meta-description: Use the NSW Design System reflow Sass helper for component-specific layout adjustments at the 320px WCAG Reflow threshold and 400% zoom states.
+meta-description: Use the NSW Design System Reflow helper for component-specific layout adjustments at the WCAG Reflow benchmark of 320 CSS pixels and 400% zoom states.
 meta-index: true
 ---
 
-<p>The <code>nsw.reflow</code> mixin applies styles at the 320 CSS pixel WCAG Reflow threshold. This helps components remain usable when a page is viewed in constrained viewports, including common 400% zoom test states.</p>
+<nav class="nsw-in-page-nav" aria-labelledby="in-page-nav">
+  <div id="in-page-nav" class="nsw-in-page-nav__title">On this page</div>
+  <ul class="nsw-in-page-nav__list">
+    <li><a href="#how-it-relates-to-breakpoints">How it relates to breakpoints</a></li>
+    <li><a href="#using-the-helper">Using the helper</a></li>
+    <li><a href="#without-sass">Without Sass</a></li>
+    <li><a href="#when-to-use-it">When to use it</a></li>
+    <li><a href="#exceptions">Exceptions</a></li>
+  </ul>
+</nav>
+
+<p>The <code>nsw.reflow</code> mixin applies styles at the WCAG Reflow benchmark of 320 CSS pixels. This helps components remain usable when a page is viewed in constrained viewports, including common 400% zoom test states.</p>
 
 <p>WCAG 2.1 <a href="https://www.w3.org/WAI/WCAG21/Understanding/reflow.html" target="_blank" rel="noopener noreferrer">Success Criterion 1.4.10: Reflow</a> requires content to be presented without loss of information or functionality, and without two-dimensional scrolling, at a width equivalent to 320 CSS pixels. The W3C understanding document explains that 320 CSS pixels is equivalent to a 1280 CSS pixel wide viewport at 400% zoom.</p>
 
-<h3>How it relates to breakpoints</h3>
+<h2 id="how-it-relates-to-breakpoints">How it relates to breakpoints</h2>
 
 <p>Reflow support sits on top of the standard responsive breakpoint system. It is separate from the standard <code>$nsw-breakpoints</code> scale used by grid, offset and visibility utilities.</p>
 
@@ -27,11 +38,11 @@ $nsw-breakpoints: (
 );
 {{/_docs-example}}
 
-<p>The <code>xs</code> breakpoint remains the base breakpoint from <code>0</code>. The reflow helper is an additional constraint layer that can override or refine component styles at <code>320px</code> and below when the normal <code>xs</code> treatment is not enough.</p>
+<p>The <code>xs</code> breakpoint remains the base breakpoint from <code>0</code>. The Reflow helper is an additional constraint layer that can override or refine component styles at <code>320px</code> and below when the normal <code>xs</code> treatment is not enough.</p>
 
 <p>Because reflow is separate from <code>$nsw-breakpoints</code>, it does not generate public grid, offset, display or visibility utilities such as <code>.nsw-col-reflow-*</code>, <code>.nsw-offset-reflow-*</code>, <code>.nsw-show-reflow</code> or <code>.nsw-hide-reflow</code>.</p>
 
-<h3>Using the helper</h3>
+<h2 id="using-the-helper">Using the helper</h2>
 
 <p>Import the tools barrel and include <code>nsw.reflow</code> inside the component that needs a specific compact treatment.</p>
 
@@ -64,20 +75,38 @@ $nsw-breakpoints: (
 $nsw-reflow-threshold: 320px !default;
 {{/_docs-example}}
 
+<h2 id="without-sass">Without Sass</h2>
+
+<p>If you use the compiled NSW Design System CSS, any Reflow styles shipped with a NSW component are already included. You do not need Sass to receive those shipped component styles.</p>
+
+<p>Not every component will need, or currently include, a Reflow adjustment. Test the component at 400% browser zoom or an equivalent 320 CSS pixel viewport, then add targeted CSS only where the component has a real layout or usability issue.</p>
+
+<p>If you are writing custom CSS without Sass, use the compiled media query directly:</p>
+
+{{#>_docs-example hidden="true" open="true" code="css"}}
+@media (max-width: 20rem) {
+  .example-component {
+    gap: 0.5rem;
+  }
+}
+{{/_docs-example}}
+
+<p><code>20rem</code> is the compiled equivalent of the 320 CSS pixel Reflow threshold. Use it for targeted component adjustments only, not as a replacement for the standard breakpoint scale.</p>
+
 <p>Use <code>nsw.reflow</code> for component-specific changes that make the component work at the WCAG reflow benchmark. For example, reducing dense spacing, simplifying persistent controls, resizing icons, changing wrapping behaviour, or adjusting a sticky component that takes too much space at 400% zoom.</p>
 
-<h3>When to use it</h3>
+<h2 id="when-to-use-it">When to use it</h2>
 
-<p>Use the reflow helper when a component has a real layout or usability problem at the 320px reflow threshold and the standard <code>xs</code> styles are too broad. Reflow styles should be targeted and minimal.</p>
+<p>Use the Reflow helper when a component has a real layout or usability problem at the WCAG Reflow benchmark and the standard <code>xs</code> styles are too broad. Reflow styles should be targeted and minimal.</p>
 
 <ul>
   <li>Use standard grid and breakpoint utilities for normal responsive layouts.</li>
-  <li>Use <code>nsw.reflow</code> only for the 320px WCAG Reflow threshold.</li>
+  <li>Use <code>nsw.reflow</code> only for the WCAG Reflow benchmark of 320 CSS pixels.</li>
   <li>Keep reflow styles close to the component they adjust.</li>
   <li>Check that content remains available and functional without requiring page-level horizontal scrolling.</li>
   <li>Retest the component at 400% browser zoom or an equivalent 320 CSS pixel viewport.</li>
 </ul>
 
-<h3>Exceptions</h3>
+<h2 id="exceptions">Exceptions</h2>
 
-<p>Some content needs two-dimensional layout for meaning or operation, such as data tables, maps, diagrams, video, games or interfaces where a toolbar must remain in view. These cases still need careful handling so the rest of the page can reflow and any horizontal scrolling is limited to the specific content that needs it.</p>
+<p>Some content needs two-dimensional layout for meaning or operation, such as data tables, maps, diagrams, video or interfaces where a toolbar must remain in view. These cases still need careful handling so the rest of the page can reflow and any horizontal scrolling is limited to the specific content that needs it.</p>
