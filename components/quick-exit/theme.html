@@ -69,32 +69,42 @@
     <div class="nsw-layout">
       <main class="nsw-layout__main">
         <h3>Quick exit feature</h3>
-        <ul class="nsw-m-bottom-md">
-        <li>Cloaks page immediately on activation</li>
-        <li>Navigates the current tab to the Safe URL and places a `display: none` on the current page, also replacing the page title</li>
-        </ul>
+        <p>Featuring:</p>
+        <ol class="nsw-m-bottom-md">
+        <li>Cloaks page immediately on activation (optional)</li>
+        <li>Navigates to a nominated Safe URL, or the default <code>https://www.google.com/webhp</code></li>
+        <li>Updates the page title to a neutral value before navigating</li>
+        <li>Supports double-Esc activation (optional)</li>
+        </ol>
         
-        <button class="nsw-button nsw-button--dark" data-module="quick-exit" type="button">View banner</button>
-        
-        <script>
-          (function () {
-            if (typeof document === 'undefined') return;
-            document.addEventListener('DOMContentLoaded', function () {
-              var btn = document.querySelector('[data-module="quick-exit"]');
-              if (!btn || !window.NSW || !window.NSW.QuickExit) return;
-        
-              btn.addEventListener('click', function () {
-                window.NSW.QuickExit.init({
-                  safeUrl: "https://www.google.com/webhp",
-                  description: "Leave quickly using this banner or press <kbd aria-label='Escape key'>Esc</kbd> 2 times.",
-                  enableEsc: true,
-                  enableCloak: true
-                });
-        
-              });
-            });
-          }());
-        </script>
+        <div class="nsw-list nsw-list--32">
+          <div>
+            <h4>Example 1</h4>
+            <ul class="nsw-m-bottom-md">
+              <li>Cloaking enabled</li>
+              <li>Double-Esc activation enabled</li>
+            </ul>
+            <button
+              class="nsw-button nsw-button--dark"
+              data-module="quick-exit"
+              data-options='{"safeUrl": "https://www.google.com/webhp", "enableEsc": true, "enableCloak": true}'
+              type="button"
+            >View banner</button>
+          </div>
+          <div>
+            <h4>Example 2</h4>
+            <ul class="nsw-m-bottom-md">
+              <li>Cloaking disabled</li>
+              <li>Double-Esc activation disabled</li>
+            </ul>
+            <button
+              class="nsw-button nsw-button--dark"
+              data-module="quick-exit"
+              data-options='{"safeUrl": "https://www.google.com/webhp", "enableEsc": false, "enableCloak": false}'
+              type="button"
+            >View banner</button>
+          </div>
+        </div>
       </main>
       
     </div>

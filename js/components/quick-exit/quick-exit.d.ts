@@ -2,9 +2,8 @@ export default class QuickExit {
     /**
      * Enhance or create a Quick Exit inside the sticky container
      */
-    static init({ safeUrl, description, enableEsc, enableCloak, focusFirst, }?: {
+    static init({ safeUrl, enableEsc, enableCloak, focusFirst, }?: {
         safeUrl?: string | undefined;
-        description?: string | undefined;
         enableEsc?: boolean | undefined;
         enableCloak?: boolean | undefined;
         focusFirst?: boolean | undefined;
@@ -12,10 +11,11 @@ export default class QuickExit {
     /**
      * Build minimal, no-JS friendly markup
      */
-    static buildMarkup({ description, safeUrl, }: {
-        description: any;
+    static buildMarkup({ enableEsc, safeUrl, }: {
+        enableEsc: any;
         safeUrl: any;
     }): HTMLAnchorElement;
+    static buildKeyboardHint(id?: string): HTMLSpanElement;
     /**
      * Progressive enhancement (click logic, keyboard, cloak, focus)
      */
@@ -26,11 +26,17 @@ export default class QuickExit {
         focusFirst: any;
     }): void;
     static bindDoubleEsc(callback: any): void;
-    static ensureSrOnlyMessage(): void;
+    static ensureSrOnlyMessage(enableEsc?: boolean): void;
+    static updatePageTitle(): void;
     static applyCloak(): void;
     static focusFirst(node: any): void;
+    static getOptionsFromElement(root: any): {
+        safeUrl: any;
+        enableEsc: any;
+        enableCloak: any;
+    };
     /**
-     * Enhance any existing QE in the container (no declarative parsing).
+     * Enhance any existing server-rendered Quick Exit elements.
      */
     static autoInit(): void;
 }
