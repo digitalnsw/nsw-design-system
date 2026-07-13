@@ -94,7 +94,7 @@ export default class QuickExit {
       focusFirst = true,
     } = {},
   ) {
-    const safeUrlValidated = validateUrl(safeUrl) || defaultSafeUrl
+    const safeUrlValidated = validateUrl(safeUrl, defaultSafeUrl)
     const container = stickyContainer()
     if (!container) return
 
