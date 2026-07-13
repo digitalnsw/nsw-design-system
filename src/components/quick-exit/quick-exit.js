@@ -55,6 +55,7 @@ let doubleEscPressCount = 0
 let doubleEscTimerId = null
 const doubleEscTimeWindow = 1000
 const quickExitClickHandlers = new WeakMap()
+const quickExitIdBase = 'nsw-quick-exit'
 const keyboardHintIdBase = 'nsw-quick-exit__desc'
 let keyboardHintIdCount = 0
 
@@ -80,6 +81,18 @@ function getKeyboardHintId(node) {
 
   node.setAttribute('data-quick-exit-desc-id', hintId)
   return hintId
+}
+
+function getQuickExitId() {
+  let count = 1
+  let id = quickExitIdBase
+
+  while (document.getElementById(id)) {
+    count += 1
+    id = `${quickExitIdBase}-${count}`
+  }
+
+  return id
 }
 
 export default class QuickExit {
@@ -147,7 +160,7 @@ export default class QuickExit {
     }
 
     root.appendChild(content)
-    if (!root.id) root.id = 'nsw-quick-exit'
+    if (!root.id) root.id = getQuickExitId()
     return root
   }
 
