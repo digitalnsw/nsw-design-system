@@ -158,7 +158,7 @@ const searchValues = [
   {
     label: 'Quick exit',
     template: 'result',
-    keywords: 'safety, privacy, discreet, exit now, quick exit, safe destination, safe url, emergency exit, panic button, escape key, esc, double esc, keyboard, sticky, global sticky container',
+    keywords: 'safety, privacy, discreet, exit now, quick exit, safe destination, safe url, emergency exit, panic button, escape key, esc, double esc, keyboard, sticky, global sticky container, 400% zoom, WCAG reflow',
     url: '/components/quick-exit/index.html',
   },
   {
