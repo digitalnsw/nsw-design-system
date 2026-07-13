@@ -15,6 +15,7 @@ import { validateUrl } from '../../global/scripts/helpers/utilities'
 function ignoreError() {}
 
 const DEFAULT_SAFE_URL = 'https://www.google.com/webhp'
+const ACCESSIBLE_LABEL = 'Exit now (Quick exit)'
 const KEYBOARD_HINT = 'or press <kbd aria-label="Escape key">Esc</kbd> 2 times.'
 const SR_MESSAGE = 'Quick exit is available on this page.'
 const SR_MESSAGE_WITH_ESC = `${SR_MESSAGE} You can leave at any time by pressing the Escape key two times.`
@@ -108,7 +109,7 @@ export default class QuickExit {
       // Update existing markup so the latest init wins
       root.href = safeURLValidated
       root.rel = 'nofollow noopener'
-      root.setAttribute('aria-label', 'Quick exit')
+      root.setAttribute('aria-label', ACCESSIBLE_LABEL)
     }
 
     QuickExit.enhance(root, {
@@ -130,7 +131,7 @@ export default class QuickExit {
     root.className = 'nsw-quick-exit'
     root.href = safeUrl
     root.rel = 'nofollow noopener'
-    root.setAttribute('aria-label', 'Quick exit')
+    root.setAttribute('aria-label', ACCESSIBLE_LABEL)
 
     const exit = document.createElement('span')
     exit.className = 'nsw-quick-exit__exit-text'
@@ -211,6 +212,11 @@ export default class QuickExit {
 
     // Progressive behaviour: always navigate to the safe URL in the current tab
     const safeURLValidated = validateUrl(safeUrl, DEFAULT_SAFE_URL)
+    if (cta.tagName && cta.tagName.toLowerCase() === 'a') {
+      cta.href = safeURLValidated
+      cta.rel = 'nofollow noopener'
+    }
+    node.setAttribute('aria-label', ACCESSIBLE_LABEL)
     const previousClickHandler = quickExitClickHandlers.get(cta)
     if (previousClickHandler) cta.removeEventListener('click', previousClickHandler)
 
