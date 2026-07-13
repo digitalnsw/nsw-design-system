@@ -14,11 +14,11 @@ import { validateUrl } from '../../global/scripts/helpers/utilities'
 
 function ignoreError() {}
 
-const DEFAULT_SAFE_URL = 'https://www.google.com/webhp'
-const ACCESSIBLE_LABEL = 'Exit now (Quick exit)'
-const KEYBOARD_HINT = 'or press <kbd aria-label="Escape key">Esc</kbd> 2 times.'
-const SR_MESSAGE = 'Quick exit is available on this page.'
-const SR_MESSAGE_WITH_ESC = `${SR_MESSAGE} You can leave at any time by pressing the Escape key two times.`
+const defaultSafeUrl = 'https://www.google.com/webhp'
+const accessibleLabel = 'Exit now (Quick exit)'
+const keyboardHint = 'or press <kbd aria-label="Escape key">Esc</kbd> 2 times.'
+const srMessage = 'Quick exit is available on this page.'
+const srMessageWithEsc = `${srMessage} You can leave at any time by pressing the Escape key two times.`
 
 // Helpers shared by QuickExit keyboard behaviour
 function quickExitIsEditable(el) {
@@ -53,9 +53,9 @@ let doubleEscCallback = null
 let doubleEscHandlerBound = false
 let doubleEscPressCount = 0
 let doubleEscTimerId = null
-const DOUBLE_ESC_TIME_WINDOW = 1000
+const doubleEscTimeWindow = 1000
 const quickExitClickHandlers = new WeakMap()
-const KEYBOARD_HINT_ID = 'nsw-quick-exit__desc'
+const keyboardHintIdBase = 'nsw-quick-exit__desc'
 let keyboardHintIdCount = 0
 
 function resetDoubleEsc() {
@@ -70,12 +70,12 @@ function getKeyboardHintId(node) {
 
   keyboardHintIdCount += 1
   let hintId = keyboardHintIdCount === 1
-    ? KEYBOARD_HINT_ID
-    : `${KEYBOARD_HINT_ID}-${keyboardHintIdCount}`
+    ? keyboardHintIdBase
+    : `${keyboardHintIdBase}-${keyboardHintIdCount}`
 
   while (document.getElementById(hintId)) {
     keyboardHintIdCount += 1
-    hintId = `${KEYBOARD_HINT_ID}-${keyboardHintIdCount}`
+    hintId = `${keyboardHintIdBase}-${keyboardHintIdCount}`
   }
 
   node.setAttribute('data-quick-exit-desc-id', hintId)
@@ -88,13 +88,13 @@ export default class QuickExit {
    */
   static init(
     {
-      safeUrl = DEFAULT_SAFE_URL,
+      safeUrl = defaultSafeUrl,
       enableEsc = true,
       enableCloak = true,
       focusFirst = true,
     } = {},
   ) {
-    const safeURLValidated = validateUrl(safeUrl) || DEFAULT_SAFE_URL
+    const safeUrlValidated = validateUrl(safeUrl) || defaultSafeUrl
     const container = stickyContainer()
     if (!container) return
 
@@ -102,18 +102,18 @@ export default class QuickExit {
     if (!root) {
       root = QuickExit.buildMarkup({
         enableEsc,
-        safeUrl: safeURLValidated,
+        safeUrl: safeUrlValidated,
       })
       container.appendChild(root)
     } else {
       // Update existing markup so the latest init wins
-      root.href = safeURLValidated
+      root.href = safeUrlValidated
       root.rel = 'nofollow noopener'
-      root.setAttribute('aria-label', ACCESSIBLE_LABEL)
+      root.setAttribute('aria-label', accessibleLabel)
     }
 
     QuickExit.enhance(root, {
-      safeUrl: safeURLValidated,
+      safeUrl: safeUrlValidated,
       enableEsc,
       enableCloak,
       focusFirst,
@@ -131,7 +131,7 @@ export default class QuickExit {
     root.className = 'nsw-quick-exit'
     root.href = safeUrl
     root.rel = 'nofollow noopener'
-    root.setAttribute('aria-label', ACCESSIBLE_LABEL)
+    root.setAttribute('aria-label', accessibleLabel)
 
     const exit = document.createElement('span')
     exit.className = 'nsw-quick-exit__exit-text'
@@ -151,11 +151,11 @@ export default class QuickExit {
     return root
   }
 
-  static buildKeyboardHint(id = KEYBOARD_HINT_ID) {
+  static buildKeyboardHint(id = keyboardHintIdBase) {
     const desc = document.createElement('span')
     desc.className = 'nsw-quick-exit__description-text'
     desc.id = id
-    const hintHTML = cleanHTMLStrict(KEYBOARD_HINT, true, {
+    const hintHTML = cleanHTMLStrict(keyboardHint, true, {
       allowedTags: ['kbd'],
       allowedAttributes: { kbd: ['aria-label'] },
     })
@@ -211,12 +211,12 @@ export default class QuickExit {
     }
 
     // Progressive behaviour: always navigate to the safe URL in the current tab
-    const safeURLValidated = validateUrl(safeUrl, DEFAULT_SAFE_URL)
+    const safeUrlValidated = validateUrl(safeUrl, defaultSafeUrl)
     if (cta.tagName && cta.tagName.toLowerCase() === 'a') {
-      cta.href = safeURLValidated
+      cta.href = safeUrlValidated
       cta.rel = 'nofollow noopener'
     }
-    node.setAttribute('aria-label', ACCESSIBLE_LABEL)
+    node.setAttribute('aria-label', accessibleLabel)
     const previousClickHandler = quickExitClickHandlers.get(cta)
     if (previousClickHandler) cta.removeEventListener('click', previousClickHandler)
 
@@ -232,7 +232,7 @@ export default class QuickExit {
       QuickExit.updatePageTitle()
 
       try {
-        window.location.assign(safeURLValidated)
+        window.location.assign(safeUrlValidated)
       } catch (errC) {
         ignoreError(errC)
       }
@@ -290,7 +290,7 @@ export default class QuickExit {
         resetDoubleEsc()
         if (runQuickExit) runQuickExit()
       } else {
-        doubleEscTimerId = setTimeout(resetDoubleEsc, DOUBLE_ESC_TIME_WINDOW)
+        doubleEscTimerId = setTimeout(resetDoubleEsc, doubleEscTimeWindow)
       }
     }
 
@@ -313,7 +313,7 @@ export default class QuickExit {
         sr.id = 'quick-exit-message'
         sr.className = 'sr-only'
       }
-      sr.textContent = enableEsc ? SR_MESSAGE_WITH_ESC : SR_MESSAGE
+      sr.textContent = enableEsc ? srMessageWithEsc : srMessage
 
       // Ensure it sits immediately before the skip nav
       if (sr.parentNode !== skip.parentNode || sr.nextElementSibling !== skip) {
@@ -398,7 +398,7 @@ export default class QuickExit {
       }
     }
 
-    const href = root.getAttribute('href') || DEFAULT_SAFE_URL
+    const href = root.getAttribute('href') || defaultSafeUrl
 
     return {
       safeUrl: href,
