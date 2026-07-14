@@ -158,7 +158,7 @@ const searchValues = [
   {
     label: 'Quick exit',
     template: 'result',
-    keywords: 'safety, privacy, discreet, exit now, quick exit, safe destination, safe url, emergency exit, panic button, escape key, esc, double esc, keyboard, sticky, global sticky container',
+    keywords: 'safety, privacy, discreet, exit now, quick exit, safe destination, safe url, emergency exit, panic button, escape key, esc, double esc, keyboard, sticky, global sticky container, 400% zoom, WCAG reflow',
     url: '/components/quick-exit/index.html',
   },
   {
@@ -406,6 +406,12 @@ const searchValues = [
     template: 'result',
     keywords: 'Position, static, relative, absolute, fixed, sticky',
     url: '/docs/content/utilities/position.html',
+  },
+  {
+    label: 'Reflow',
+    template: 'result',
+    keywords: 'reflow, WCAG reflow, WCAG 1.4.10, Success Criterion 1.4.10, 400% zoom, 400 percent zoom, 320px, 320 CSS pixels, 1280px at 400%, responsive, accessibility, zoom, low vision, constrained viewport, horizontal scrolling, two-dimensional scrolling, max-width 20rem, nsw.reflow, $nsw-reflow-threshold, Sass helper, CSS, compiled CSS, without Sass, no Sass, media query, breakpoint, breakpoints',
+    url: '/docs/content/utilities/reflow.html',
   },
   {
     label: 'Spacing',
