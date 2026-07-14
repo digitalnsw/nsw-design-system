@@ -1,0 +1,57 @@
+---
+title: Show more
+layout: blank-layout.hbs
+---
+
+<h2>Usage</h2>
+<p>Use the Show more component to reveal one short block of supplementary content that supports a visible summary. The content is already present on the page and remains available without JavaScript.</p>
+
+<h3>Guidance</h3>
+<div class="nsw-grid nsw-m-top-sm">
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--do"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span><span>Do</span></div>
+    <ul class="nsw-m-top-sm">
+      <li>use when content is a single supplementary and optional detail</li>
+      <li>keep the revealed content short and specific</li>
+      <li>use clear trigger labels that describe the action and update on toggle (for example, "Show more" to "Show less")</li>
+      <li>keep the trigger location stable, directly before the revealed content</li>
+      <li>add distinguishing context when multiple Show more controls appear on the same page</li>
+      <li>ensure users can decide whether to expand from the visible summary</li>
+    </ul>
+  </div>
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--dont"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span><span>Don't</span></div>
+    <ul class="nsw-m-top-sm">
+      <li>hide critical information required for decisions, eligibility, safety, legal understanding or evidence requirements</li>
+      <li>use for inline text truncation, truncated list reveal, or content that changes the trigger position</li>
+      <li>use this pattern for loading additional data from a server (use Load more or pagination patterns instead)</li>
+      <li>hide controls or actions users need to complete a task, such as form fields, validation messages, links, or buttons</li>
+    </ul>
+  </div>
+</div>
+
+<h3>When to avoid</h3>
+<p>If most users consistently expand the same content, show it by default instead of adding an extra interaction step. Do not use Show more to shorten a page when the content still needs to be read in sequence.</p>
+
+<h3>Show more or Accordion</h3>
+<p>Choose the component based on how the content is structured, not the amount of page space you want to save.</p>
+<ul>
+  <li>Use <strong>Show more</strong> for one short, optional detail that follows a visible summary. The trigger should not act as a section heading.</li>
+  <li>Use <strong><a href="/components/accordion/index.html" aria-label="Accordion component documentation">Accordion</a></strong> when there are multiple related sections with clear headings and users benefit from scanning those headings before opening the sections they need.</li>
+  <li>Do not use either component to create navigation, replace page headings, or hide content that still needs to be read in sequence. Use headings, sections, navigation components, or a list of links for those needs.</li>
+</ul>
+
+<h2>Accessibility</h2>
+<p>All components are responsive and designed to comply with WCAG 2.2 AA accessibility standards. Full compliance depends on using and configuring the components correctly.</p>
+<p>This component uses native <code>&lt;details&gt;</code> and <code>&lt;summary&gt;</code> so it remains functional without JavaScript.</p>
+
+<h3>Disclosure behaviour</h3>
+<ul>
+  <li>Use native <code>&lt;summary&gt;</code> as the disclosure trigger.</li>
+  <li>Place revealed content immediately after the summary in the same <code>&lt;details&gt;</code> element.</li>
+  <li>Keep trigger placement predictable so keyboard and assistive technology users can re-find it after toggle.</li>
+  <li>Keep labels explicit and update visible wording between collapsed and expanded states.</li>
+  <li>To customise labels, replace the text in the show and hide label spans in the <code>&lt;summary&gt;</code>. Keep the pair clear, for example "Show eligibility details" and "Hide eligibility details".</li>
+  <li>Keep the <code>&lt;summary&gt;</code> content limited to the disclosure label, icon and optional visually hidden context.</li>
+  <li>Do not override native disclosure semantics with custom roles or conflicting ARIA.</li>
+</ul>
