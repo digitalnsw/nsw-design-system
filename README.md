@@ -131,9 +131,9 @@ For a faster setup, you can utilize the JSDelivr CDN to include the NSW Design S
 
 Please read through our [contributing guidelines](https://www.digital.nsw.gov.au/delivery/digital-service-toolkit/design-system/contributing). Included are directions for opening issues, coding standards, and notes on development.
 
-## Support
+## Community and support
 
-Get notified when there’s an update or new release, ask questions and report technical issues.
+Connect with project maintainers and community members, get notified about releases, ask questions and report technical issues.
 
 * Contact the team at [designsystem@customerservice.nsw.gov.au](mailto:designsystem@customerservice.nsw.gov.au).
 * Watch the [NSW Design System on GitHub](https://github.com/digitalnsw/nsw-design-system).
