@@ -58,9 +58,9 @@ Before new components and patterns are published into the design system, the tea
 | [Considered](#considered) | Documentation and rationale have been provided. |
 
 ### Supporting evidence
-When making a new component, we would be very grateful if you post the research, design decisions and use cases for the component. Accessibility considerations should be documented before submitting a pull request.
+When making a new component, include the research, design decisions and use cases for the component in your proposal. Accessibility considerations should be documented before submitting a pull request.
 
-This may be in the form of a code snippet, screenshots, sketch/figma files or written text on your research with references. This gives a chance for members of the community to respond and share any work they may have done in the past on a similar pattern or component.
+This may be in the form of a code snippet, screenshots, sketch/figma files or written text on your research with references. This gives the Design System team a chance to respond and connect you with community members who may have worked on a similar pattern or component.
 
 -------------------------------------------------------------------------------------------------
 
