@@ -302,8 +302,14 @@ const searchValues = [
   {
     label: 'Our ecosystem',
     template: 'result',
-    keywords: 'Digital Visual Identity, Core styles and components, NSW Design System Community, Support, Built in accessibility, UX, content guidance, UI, code starter kits',
+    keywords: 'Digital Visual Identity, Core styles and components, Community and support, Built in accessibility, UX, content guidance, UI, code starter kits',
     url: '/docs/content/about/our-ecosystem.html',
+  },
+  {
+    label: 'NSW Design System Community archive',
+    template: 'result',
+    keywords: 'NSW Design System Community, Community forum, Discourse, Community archived, Community archive, Former Community, community.designsystem.nsw.gov.au',
+    url: '/community-archived/',
   },
   {
     label: 'Release notes',
