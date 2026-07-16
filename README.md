@@ -137,7 +137,6 @@ Connect with project maintainers and community members, get notified about relea
 
 * Contact the team at [designsystem@customerservice.nsw.gov.au](mailto:designsystem@customerservice.nsw.gov.au).
 * Watch the [NSW Design System on GitHub](https://github.com/digitalnsw/nsw-design-system).
-* Ask and explore [our GitHub Discussions](https://github.com/digitalnsw/nsw-design-system/discussions).
 
 ## Report an issue
 
