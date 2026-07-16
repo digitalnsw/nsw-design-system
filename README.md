@@ -131,11 +131,12 @@ For a faster setup, you can utilize the JSDelivr CDN to include the NSW Design S
 
 Please read through our [contributing guidelines](https://www.digital.nsw.gov.au/delivery/digital-service-toolkit/design-system/contributing). Included are directions for opening issues, coding standards, and notes on development.
 
-## Community
+## Support
 
-Get notified when there’s an update or new release on the NSW Design System's and chat with the project maintainers and community members.
+Get notified when there’s an update or new release, ask questions and report technical issues.
 
-* Join our [NSW Design System Community](https://community.designsystem.nsw.gov.au/).
+* Contact the team at [designsystem@customerservice.nsw.gov.au](mailto:designsystem@customerservice.nsw.gov.au).
+* Watch the [NSW Design System on GitHub](https://github.com/digitalnsw/nsw-design-system).
 
 * Watch the [NSW Design System GitHub](https://github.com/digitalnsw/nsw-design-system).
 
@@ -143,7 +144,7 @@ Get notified when there’s an update or new release on the NSW Design System's 
 
 ## Report an issue
 
-View and raise issues and bugs through our [Issues tracker on GitHub](https://github.com/digitalnsw/nsw-design-system/issues) or [report a bug on the NSW Design System Community](https://community.designsystem.nsw.gov.au/c/components/report-a-bug/27).
+View and raise issues and bugs through our [Issues tracker on GitHub](https://github.com/digitalnsw/nsw-design-system/issues).
 
 ## Design System Figma UI Kit
 
