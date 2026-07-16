@@ -309,7 +309,7 @@ const searchValues = [
     label: 'NSW Design System Community archive',
     template: 'result',
     keywords: 'NSW Design System Community, Community forum, Discourse, Community archived, Community archive, Former Community, community.designsystem.nsw.gov.au',
-    url: '/community-archived/',
+    url: '/community-archived/index.html',
   },
   {
     label: 'Release notes',
