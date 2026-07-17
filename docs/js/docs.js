@@ -260,10 +260,10 @@
     keywords: 'Digital Visual Identity, Core styles and components, Community and support, Built in accessibility, UX, content guidance, UI, code starter kits',
     url: '/docs/content/about/our-ecosystem.html'
   }, {
-    label: 'NSW Design System Community archive',
+    label: 'NSW Design System Community closure',
     template: 'result',
     keywords: 'NSW Design System Community, Community forum, Discourse, Community archived, Community archive, Former Community, community.designsystem.nsw.gov.au',
-    url: '/community-archived/index.html'
+    url: '/community-closure/index.html'
   }, {
     label: 'Release notes',
     template: 'result',
