@@ -1,9 +1,9 @@
 ---
-title: Easy Read
+title: Easy Read content block
 width: wide
 tabs: true
 directory: easy-read
-intro: Easy Read is a user-friendly way to share information using a simple layout with text and images.
+intro: Easy Read is a content and design method. The content block pairs one primary concept or action with a supporting image.
 theme: true
 model:
   easy-read-1: ../../components/easy-read/json/easy-read-1.json
@@ -11,27 +11,42 @@ model:
   easy-read-3: ../../components/easy-read/json/easy-read-3.json
   easy-read-4: ../../components/easy-read/json/easy-read-4.json
   easy-read-5: ../../components/easy-read/json/easy-read-5.json
-meta-description: Easy Read is a user-friendly way to share information using a simple layout with text and images. Easy read can assist in providing information to people with intellectual disabilities and is also useful for people with English as a second language, older Australians, people with low literacy, and people with learning disabilities. The Easy Read writing style can make complex information easy to understand for all and lead to increased participation.
+meta-description: Use the Easy Read content block as part of an Easy Read page to pair simple words with a meaningful image.
 meta-index: true
 ---
 
-<h3>Brand light background</h3>
+<h2>Content block</h2>
+<p>The block works on its own and uses standard page typography when it is not inside an Easy Read content wrapper.</p>
+
 {{#>_docs-example}}
-{{>_easy-read model.easy-read-1}}
+{{>_easy-read-block model.easy-read-1}}
 {{/_docs-example}}
 
-<h3>Brand dark background</h3>
+<h2>Easy Read page typography</h2>
+<p>Wrap a complete Easy Read page or section in <code>nsw-easy-read-content</code>. The wrapper applies the Easy Read type scale without changing the rest of the site.</p>
+
 {{#>_docs-example}}
-{{>_easy-read model.easy-read-2}}
+<div class="nsw-easy-read-content">
+  {{>_easy-read-block model.easy-read-2}}
+  {{>_easy-read-block model.easy-read-3}}
+</div>
 {{/_docs-example}}
 
-<h3>White background</h3>
+<h2>Decorative image</h2>
+<p>Only mark an image as decorative when it adds no information. The component then renders an empty <code>alt</code> attribute.</p>
+
 {{#>_docs-example}}
-{{>_easy-read model.easy-read-3}}
+{{>_easy-read-block model.easy-read-5}}
 {{/_docs-example}}
 
-<h3>3:4 landscape image ratio</h3>
-{{#>_docs-example}}
-{{>_easy-read model.easy-read-5}}
-{{/_docs-example}}
+<h2>About Easy Read</h2>
 
+{{#>_docs-example}}
+<div class="nsw-easy-read-content">
+  {{>_easy-read-about
+    standardUrl="#"
+    downloadUrl="#"
+    downloadText="Download this page (PDF, 320 KB)"
+  }}
+</div>
+{{/_docs-example}}

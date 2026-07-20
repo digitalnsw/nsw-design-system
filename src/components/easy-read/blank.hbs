@@ -1,5 +1,5 @@
 ---
-title: Easy Read
+title: Easy Read content block
 width: narrow
 page: true
 model:
@@ -7,43 +7,20 @@ model:
   easy-read-2: ../../components/easy-read/json/easy-read-2.json
   easy-read-3: ../../components/easy-read/json/easy-read-3.json
   easy-read-4: ../../components/easy-read/json/easy-read-4.json
+  easy-read-5: ../../components/easy-read/json/easy-read-5.json
 ---
 
 {{#>_layout-container}}
-<div class="nsw-m-top-md">
-{{>_easy-read model.easy-read-1}}
-{{>_easy-read model.easy-read-2}}
-{{>_easy-read model.easy-read-3}}
-{{>_easy-read model.easy-read-4}}
-</div>
-{{/_layout-container}}
+<h1>Easy Read content blocks</h1>
+<p>This first block is embedded in a standard page section.</p>
+{{>_easy-read-block model.easy-read-1}}
 
-{{#>_layout-container brand-dark="true"}}
-<h2>Brand dark</h2>
-<div class="nsw-m-top-md">
-  {{>_easy-read model.easy-read-1}}
-  {{>_easy-read model.easy-read-2}}
-  {{>_easy-read model.easy-read-3}}
-  {{>_easy-read model.easy-read-4}}
-</div>
-{{/_layout-container}}
-
-{{#>_layout-container brand-light="true"}}
-<h2>Brand light</h2>
-<div class="nsw-m-top-md">
-{{>_easy-read model.easy-read-1}}
-{{>_easy-read model.easy-read-2}}
-{{>_easy-read model.easy-read-3}}
-{{>_easy-read model.easy-read-4}}
-</div>
-{{/_layout-container}}
-
-{{#>_layout-container brand-dark="true" invert="true"}}
-<h2>Inverted section</h2>
-<div class="nsw-m-top-md">
-  {{>_easy-read model.easy-read-1}}
-  {{>_easy-read model.easy-read-2}}
-  {{>_easy-read model.easy-read-3}}
-  {{>_easy-read model.easy-read-4}}
+<div class="nsw-easy-read-content">
+  <h2>Blocks inside an Easy Read section</h2>
+  {{>_easy-read-about}}
+  {{>_easy-read-block model.easy-read-2}}
+  {{>_easy-read-block model.easy-read-3}}
+  {{>_easy-read-block model.easy-read-4}}
+  {{>_easy-read-block model.easy-read-5}}
 </div>
 {{/_layout-container}}

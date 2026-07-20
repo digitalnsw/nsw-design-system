@@ -1,0 +1,12 @@
+<section class="nsw-easy-read-downloads nsw-section nsw-section--off-white nsw-section--box nsw-m-top-lg" aria-labelledby="{{id}}">
+  <h2 id="{{id}}">{{heading}}</h2>
+  {{#each descriptionParagraphs}}
+  <p>{{this}}</p>
+  {{/each}}
+  <div class="nsw-list nsw-list--16 nsw-m-top-md">
+    {{#each files}}
+    {{>_button-link url=url style="dark" text=text icon="download"}}
+    {{/each}}
+  </div>
+  <p>Files last updated <time datetime="{{updatedMachine}}">{{updatedDisplay}}</time>.</p>
+</section>
