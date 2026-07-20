@@ -106,14 +106,14 @@ module.exports = function docsNavModel(collections = {}) {
       navItem(
         'utility-classes',
         'Utility classes',
-        '/index.html#foundations',
+        '/index.html#utility-classes',
         'Single-purpose classes for applying spacing, layout, visibility and other common styling utilities.',
         collectionLinks(collections.utilities, { transformText: cleanUtilityText }),
       ),
       navItem(
         'methods',
         'Methods',
-        '/index.html#guidance',
+        '/index.html#methods',
         'Best practice design solutions for specific user-focused tasks and page types.',
         collectionLinks(methods),
       ),

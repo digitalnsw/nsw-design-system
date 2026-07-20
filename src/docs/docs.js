@@ -51,22 +51,18 @@ function initDocs() {
   })
 
   const navLinks = document.querySelectorAll('.nsw-docs__primary-nav a[href]')
-  let currentURL = window.location.pathname
-
-  if (currentURL === '/') currentURL = '/home/index.html'
+  const normalisePath = (pathname) => (pathname === '/' ? '/index.html' : pathname)
+  const currentURL = normalisePath(window.location.pathname) + window.location.search + window.location.hash
 
   navLinks.forEach((link) => {
     const href = link.getAttribute('href')
 
     if (!href || href === '#') return
 
-    let linkURL = link.getAttribute('href')
-    const sanitisedURL = new URL(linkURL, window.location.origin)
-    linkURL = sanitisedURL.pathname + sanitisedURL.search + sanitisedURL.hash
+    const sanitisedURL = new URL(href, window.location.origin)
+    const linkURL = normalisePath(sanitisedURL.pathname) + sanitisedURL.search + sanitisedURL.hash
 
-    if (linkURL === '/') linkURL = '/home/index.html'
-
-    if (currentURL.match(linkURL)) {
+    if (currentURL === linkURL) {
       link.classList.add('current')
 
       if (link.closest('ul').classList.contains('nsw-main-nav__sub-list')) {
