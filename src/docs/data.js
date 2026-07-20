@@ -158,7 +158,7 @@ const searchValues = [
   {
     label: 'Quick exit',
     template: 'result',
-    keywords: 'safety, privacy, discreet, exit now, quick exit, safe destination, safe url, emergency exit, panic button, escape key, esc, double esc, keyboard, sticky, global sticky container',
+    keywords: 'safety, privacy, discreet, exit now, quick exit, safe destination, safe url, emergency exit, panic button, escape key, esc, double esc, keyboard, sticky, global sticky container, 400% zoom, WCAG reflow',
     url: '/components/quick-exit/index.html',
   },
   {
@@ -302,8 +302,14 @@ const searchValues = [
   {
     label: 'Our ecosystem',
     template: 'result',
-    keywords: 'Digital Visual Identity, Core styles and components, NSW Design System Community, Built in accessibility, UX, content guidance, UI, code starter kits',
+    keywords: 'Digital Visual Identity, Core styles and components, Community and support, Built in accessibility, UX, content guidance, UI, code starter kits',
     url: '/docs/content/about/our-ecosystem.html',
+  },
+  {
+    label: 'NSW Design System Community closure',
+    template: 'result',
+    keywords: 'NSW Design System Community, Community forum, Discourse, Community archived, Community archive, Former Community, community.designsystem.nsw.gov.au',
+    url: '/community-closure/index.html',
   },
   {
     label: 'Release notes',
@@ -400,6 +406,12 @@ const searchValues = [
     template: 'result',
     keywords: 'Position, static, relative, absolute, fixed, sticky',
     url: '/docs/content/utilities/position.html',
+  },
+  {
+    label: 'Reflow',
+    template: 'result',
+    keywords: 'reflow, WCAG reflow, WCAG 1.4.10, Success Criterion 1.4.10, 400% zoom, 400 percent zoom, 320px, 320 CSS pixels, 1280px at 400%, responsive, accessibility, zoom, low vision, constrained viewport, horizontal scrolling, two-dimensional scrolling, max-width 20rem, nsw.reflow, $nsw-reflow-threshold, Sass helper, CSS, compiled CSS, without Sass, no Sass, media query, breakpoint, breakpoints',
+    url: '/docs/content/utilities/reflow.html',
   },
   {
     label: 'Spacing',

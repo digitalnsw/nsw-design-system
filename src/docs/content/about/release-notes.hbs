@@ -19,6 +19,70 @@ meta-index: true
     </thead>
     <tbody>
       <tr>
+        <td>v3.24.16</td>
+        <td>16.07.26</td>
+        <td>
+          <h4>Community platform</h4>
+          <ul>
+            <li>The NSW Design System Community forum will remain available until 29 July 2026 and will close on that date. Read the <a href="/community-closure/index.html">Community forum closure notice</a> or contact <a href="mailto:designsystem@customerservice.nsw.gov.au">designsystem@customerservice.nsw.gov.au</a> with any questions.</li>
+          </ul>
+        </td>
+        <td><a target="_blank" rel="noopener noreferrer" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.24.16">Code kit</a></td>
+      </tr>
+      <tr>
+        <td>v3.24.15</td>
+        <td>13.07.26</td>
+        <td>
+          <h4>Components</h4>
+          <ul>
+            <li>Quick Exit component: updated the visual treatment and fixed <code>Exit now</code> action copy following NSW Domestic, Family and Sexual Violence Lived Experience Advisory Group (LEAG) user testing. The control now uses a new icon, supports reflow sizing at 400% zoom, and only shows the keyboard hint when double-Esc support is enabled <a href="https://github.com/digitalnsw/nsw-design-system/pull/725" target="_blank" rel="noopener noreferrer">#725</a></li>
+          </ul>
+          <h4>Accessibility</h4>
+          <ul>
+            <li>Improved Quick Exit screen reader and keyboard behaviour with the clearer <code>Exit now (Quick exit)</code> accessible label, unique generated IDs, updated page title handling before redirect, and a screen reader announcement that reflects whether the Esc shortcut is enabled <a href="https://github.com/digitalnsw/nsw-design-system/pull/725" target="_blank" rel="noopener noreferrer">#725</a></li>
+          </ul>
+          <h4>Docs &amp; Guidance</h4>
+          <ul>
+            <li>Expanded Quick Exit guidance with LEAG consultation context, safer destination guidance, component limits, fixed content rules, and implementation details for the global sticky container and no-JavaScript baseline <a href="https://github.com/digitalnsw/nsw-design-system/pull/725" target="_blank" rel="noopener noreferrer">#725</a></li>
+          </ul>
+        </td>
+        <td><a target="_blank" rel="noopener noreferrer" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.24.15">Code kit</a></td>
+      </tr>
+      <tr>
+        <td>v3.24.14</td>
+        <td>10.07.26</td>
+        <td>
+          <h4>Accessibility</h4>
+          <ul>
+            <li>Added a Reflow Sass helper for component-specific layout adjustments at the WCAG Reflow benchmark of 320 CSS pixels. This supports constrained viewports and 400% zoom states without changing the standard breakpoint scale <a href="https://github.com/digitalnsw/nsw-design-system/pull/730" target="_blank" rel="noopener noreferrer">#730</a></li>
+          </ul>
+          <h4>Docs &amp; Guidance</h4>
+          <ul>
+            <li>Added <a href="/docs/content/utilities/reflow.html">Reflow</a> guidance and search terms for WCAG Reflow, 400% zoom and 320 CSS pixel viewport support <a href="https://github.com/digitalnsw/nsw-design-system/pull/730" target="_blank" rel="noopener noreferrer">#730</a></li>
+          </ul>
+        </td>
+        <td><a target="_blank" rel="noopener noreferrer" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.24.14">Code kit</a></td>
+      </tr>
+      <tr>
+        <td>v3.24.13</td>
+        <td>07.07.26</td>
+        <td>
+          <h4>Accessibility</h4>
+          <ul>
+            <li>Dialog component: updated ARIA state handling by removing <code>aria-expanded</code> from the dialog container, adding <code>aria-modal="true"</code>, and using <code>aria-hidden</code> to reflect whether the dialog is hidden from assistive technology. The component also now traps <code>Tab</code> and <code>Shift + Tab</code> within the active dialog, closes with <code>Escape</code>, and returns focus to the invoking control when closed. This addresses <a href="https://github.com/digitalnsw/nsw-design-system/issues/727" target="_blank" rel="noopener noreferrer">#727</a></li>
+          </ul>
+          <div class="nsw-in-page-alert nsw-in-page-alert--warning nsw-m-bottom-sm">
+            <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">warning</span>
+            <div class="nsw-in-page-alert__content">
+              <p class="nsw-h5">Dialog ARIA state update</p>
+              <p>Dialog visibility continues to be controlled by the existing <code>.active</code> class. If your application has custom tests, CSS, analytics or JavaScript that checks <code>.nsw-dialog[aria-expanded="true"]</code>, update it to use <code>.nsw-dialog.active</code> for open state or <code>aria-hidden="false"</code> for accessibility state.</p>
+              <p>If you manually toggle dialogs without the NSW Design System JavaScript, keep <code>aria-hidden</code> in sync with the <code>.active</code> class.</p>
+            </div>
+          </div>
+        </td>
+        <td><a target="_blank" rel="noopener noreferrer" href="https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.24.13">Code kit</a></td>
+      </tr>
+      <tr>
         <td>v3.24.12</td>
         <td>01.07.26</td>
         <td>
@@ -1120,7 +1184,7 @@ meta-index: true
       <tr>
         <td>Main navigation selected state</td>
         <td><span class="nsw-tag">In progress</span></td>
-        <td><a target="_blank" rel="noopener noreferrer" href="https://community.designsystem.nsw.gov.au/t/collab-space-main-navigation-selected-state/1525">Join the community thread</a></td>
+        <td><a href="mailto:designsystem@customerservice.nsw.gov.au">Email the team</a></td>
       </tr>
     </tbody>
   </table>
@@ -1143,12 +1207,12 @@ meta-index: true
       <tr>
         <td>Side navigation</td>
         <td><span class="nsw-tag">In progress</span></td>
-        <td><a target="_blank" rel="noopener noreferrer" href="https://community.designsystem.nsw.gov.au/t/collab-space-side-navigation-v2/1484">Join the community thread</a></td>
+        <td><a href="mailto:designsystem@customerservice.nsw.gov.au">Email the team</a></td>
       </tr>
       <tr>
         <td>Main navigation</td>
         <td><span class="nsw-tag">In progress</span></td>
-        <td><a target="_blank" href="#">Join the community thread</a></td>
+        <td><a href="mailto:designsystem@customerservice.nsw.gov.au">Email the team</a></td>
       </tr>
     </tbody>
   </table>
@@ -1170,7 +1234,7 @@ meta-index: true
       <tr>
         <td>Social share/utility list</td>
         <td><span class="nsw-tag">Not started</span></td>
-        <td><a target="_blank" rel="noopener noreferrer" href="https://community.designsystem.nsw.gov.au/">Start a community thread</a></td>
+        <td><a href="mailto:designsystem@customerservice.nsw.gov.au">Email the team</a></td>
       </tr>
     </tbody>
   </table>
