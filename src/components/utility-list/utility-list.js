@@ -89,7 +89,7 @@ class UtilityList extends Toggletip {
 
     params.forEach((param) => {
       let paramValue = button.getAttribute(`data-${param}`)
-      if (param === 'hashtags') paramValue = encodeURI(paramValue.replace(/#| /g, ''))
+      if (param === 'hashtags' && paramValue) paramValue = encodeURI(paramValue.replace(/#| /g, ''))
       if (paramValue) {
         if (social === 'facebook') {
           newUrl = `${newUrl}u=${encodeURIComponent(paramValue)}&`
