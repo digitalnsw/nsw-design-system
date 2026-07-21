@@ -51,16 +51,9 @@ model:
       </div>
       {{/each}}
 
-      {{>_easy-read-metadata model.page}}
-
       {{>_easy-read-downloads-utility model.page.downloads social=model.share}}
 
-      <div class="nsw-block">
-        <h2>Need more help?</h2>
-        {{#each model.page.helpParagraphs}}
-        <p>{{this}}</p>
-        {{/each}}
-      </div>
+      {{>_easy-read-metadata model.page filesUpdated=model.page.downloads}}
 
       <hr class="nsw-m-y-lg">
 

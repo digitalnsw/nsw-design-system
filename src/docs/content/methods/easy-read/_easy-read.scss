@@ -175,6 +175,10 @@
     @include nsw.breakpoint('lg') {
       margin: nsw.rem(32px) 0;
     }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 }
 
@@ -198,7 +202,8 @@
 }
 
 .nsw-easy-read-listen {
-  display: inline-flex;
+  display: flex;
+  width: fit-content;
   min-height: nsw.rem(48px);
   padding: nsw.rem(8px) nsw.rem(12px);
   border-left: nsw.rem(4px) solid var(--nsw-brand-accent);
