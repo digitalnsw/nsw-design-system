@@ -6,11 +6,12 @@ directory: Easy Read
 model:
   nav-basic: ../../components/main-nav/json/main-nav.json
   page: ../../docs/content/methods/json/easy-read-detail.json
+  share: ../../docs/content/methods/json/easy-read-share.json
   footer: ../../components/footer/json/footer.json
 ---
 
 {{>_masthead content="#content" nav="#main-nav"}}
-{{>_header header-title="Digital NSW"}}
+{{>_header header-title="NSW Department"}}
 {{>_main-nav model.nav-basic}}
 <div class="nsw-container nsw-p-bottom-xs">
   {{>_breadcrumbs model.page.breadcrumbs}}
@@ -21,11 +22,13 @@ model:
     <main id="content" class="nsw-layout__main">
       <div class="nsw-block">
         <h1>
-          <span class="nsw-tag active">Easy Read</span>
+          <span class="nsw-tag">Easy Read</span>
           <span class="nsw-easy-read-content__heading-text">{{model.page.title}}</span>
         </h1>
         <p class="nsw-intro">{{model.page.introduction}}</p>
       </div>
+
+      {{>_easy-read-readspeaker}}
 
       <nav class="nsw-in-page-nav" aria-label="On this page">
         <h2 class="nsw-in-page-nav__title">On this page</h2>
@@ -50,7 +53,7 @@ model:
 
       {{>_easy-read-metadata model.page}}
 
-      {{>_easy-read-downloads model.page.downloads}}
+      {{>_easy-read-downloads-utility model.page.downloads social=model.share}}
 
       <div class="nsw-block">
         <h2>Need more help?</h2>

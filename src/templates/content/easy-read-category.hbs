@@ -10,7 +10,7 @@ model:
 ---
 
 {{>_masthead content="#content" nav="#main-nav"}}
-{{>_header header-title="Digital NSW"}}
+{{>_header header-title="NSW Department"}}
 {{>_main-nav model.nav-basic}}
 <div class="nsw-container nsw-p-bottom-xs">
   {{>_breadcrumbs model.page.breadcrumbs}}
@@ -22,21 +22,23 @@ model:
       <h1>Health and wellbeing</h1>
       <p class="nsw-intro">Easy Read information to help you look after your health and get support.</p>
 
-      <div class="nsw-in-page-alert nsw-m-top-md" data-listen-placeholder>
-        <div class="nsw-in-page-alert__content">
-          <p><strong>Listen to this page</strong></p>
-          <p>Platform-provided Listen control goes here.</p>
-        </div>
-      </div>
+      {{>_easy-read-readspeaker}}
 
       {{#each model.page.groups}}
-      <section id="{{id}}" class="nsw-m-top-lg">
-        <h2>{{heading}}</h2>
-        {{>_link-list title=false list=links}}
+      <section id="{{id}}" class="nsw-easy-read-category-group nsw-block">
+        <div class="nsw-grid">
+          <div class="nsw-col nsw-col-md-4">
+            <img class="nsw-easy-read-category-group__image" src="{{img}}" alt="{{imgAlt}}">
+          </div>
+          <div class="nsw-col nsw-col-md-8 nsw-easy-read-category-group__content">
+            <h2>{{heading}}</h2>
+            {{>_link-list title=false list=links}}
+          </div>
+        </div>
       </section>
       {{/each}}
 
-      <p class="nsw-m-top-lg"><a href="#">Back to all Easy Read topics</a></p>
+      <p class="nsw-m-top-lg"><a href="/templates/content/easy-read-landing.html">Back to all Easy Read topics</a></p>
 
       <hr class="nsw-m-y-lg">
 

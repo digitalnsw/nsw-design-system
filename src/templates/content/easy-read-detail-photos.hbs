@@ -10,7 +10,7 @@ model:
 ---
 
 {{>_masthead content="#content" nav="#main-nav"}}
-{{>_header header-title="Digital NSW"}}
+{{>_header header-title="NSW Department"}}
 {{>_main-nav model.nav-basic}}
 <div class="nsw-container nsw-p-bottom-xs">
   {{>_breadcrumbs model.page.breadcrumbs}}
@@ -21,11 +21,13 @@ model:
     <main id="content" class="nsw-layout__main">
       <div class="nsw-block">
         <h1>
-          <span class="nsw-tag active">Easy Read</span>
+          <span class="nsw-tag">Easy Read</span>
           <span class="nsw-easy-read-content__heading-text">{{model.page.title}}</span>
         </h1>
         <p class="nsw-intro">{{model.page.introduction}}</p>
       </div>
+
+      {{>_easy-read-readspeaker}}
 
       <nav class="nsw-in-page-nav" aria-label="On this page">
         <h2 class="nsw-in-page-nav__title">On this page</h2>

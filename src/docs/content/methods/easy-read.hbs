@@ -63,7 +63,7 @@ meta-index: true
   <li><a href="/templates/content/easy-read-detail-photos.html" target="_blank" rel="noopener noreferrer">Easy Read detail article template with photographs</a></li>
 </ul>
 
-<p>The anatomies below show the current example templates from top to bottom. A Listen control depends on the publishing platform. Download formats depend on user needs and the files an agency can maintain.</p>
+<p>The anatomies below show the current example templates from top to bottom. The compact Listen control is a visual placeholder for ReadSpeaker webReader and does not function in the templates. Download formats depend on user needs and the files an agency can maintain.</p>
 
 <h3>Landing page anatomy</h3>
 <figure class="nsw-easy-read-anatomy">
@@ -73,7 +73,7 @@ meta-index: true
       <li class="nsw-easy-read-anatomy__region--shell">Site header and navigation</li>
       <li class="nsw-easy-read-anatomy__region--content nsw-easy-read-anatomy__region--breadcrumbs">Breadcrumbs</li>
       <li class="nsw-easy-read-anatomy__region--content nsw-easy-read-anatomy__region--heading">H1 and short introduction</li>
-      <li class="nsw-easy-read-anatomy__region--content">Listen control</li>
+      <li class="nsw-easy-read-anatomy__region--content">ReadSpeaker Listen placeholder</li>
       <li class="nsw-easy-read-anatomy__region--content nsw-easy-read-anatomy__region--group">
         <span class="nsw-easy-read-anatomy__label">Choose a topic (H2)</span>
         <span class="nsw-easy-read-anatomy__grid">
@@ -98,12 +98,12 @@ meta-index: true
       <li class="nsw-easy-read-anatomy__region--shell">Site header and navigation</li>
       <li class="nsw-easy-read-anatomy__region--content nsw-easy-read-anatomy__region--breadcrumbs">Breadcrumbs</li>
       <li class="nsw-easy-read-anatomy__region--content nsw-easy-read-anatomy__region--heading">H1 and short introduction</li>
-      <li class="nsw-easy-read-anatomy__region--content">Listen control</li>
+      <li class="nsw-easy-read-anatomy__region--content">ReadSpeaker Listen placeholder</li>
       <li class="nsw-easy-read-anatomy__region--content nsw-easy-read-anatomy__region--group">
         <span class="nsw-easy-read-anatomy__label">Article groups</span>
         <span class="nsw-easy-read-anatomy__stack">
-          <span>H2 and article link list</span>
-          <span>H2 and article link list</span>
+          <span class="nsw-easy-read-anatomy__split"><span>Image</span><span>H2 and article link list</span></span>
+          <span class="nsw-easy-read-anatomy__split"><span>Image</span><span>H2 and article link list</span></span>
         </span>
       </li>
       <li class="nsw-easy-read-anatomy__region--content">Back to all Easy Read topics link</li>
@@ -245,15 +245,18 @@ meta-index: true
   <li>Confirm licensing and organisational policy requirements.</li>
 </ul>
 
-<h2>Read aloud</h2>
-<p>Read Aloud is an optional platform enhancement. Do not add a vendor-specific JavaScript implementation to the design system.</p>
+<h2>ReadSpeaker webReader</h2>
+<p>The templates include a compact visual placeholder for ReadSpeaker webReader. It represents the approximate footprint of the control but is not interactive.</p>
+<p>A production implementation requires a ReadSpeaker licence, approved domains, customer configuration and the implementation code supplied by ReadSpeaker. The free public demonstration is not a free production website integration.</p>
 <ul>
-  <li>Place the Listen control near the beginning of the Easy Read content.</li>
+  <li>Complete procurement, privacy, security and technical reviews before integration.</li>
+  <li>Place the ReadSpeaker control near the beginning of the Easy Read content.</li>
+  <li>Configure the reading area so unrelated navigation and interface content are excluded.</li>
   <li>Ensure the reading order follows the DOM.</li>
   <li>Test keyboard access.</li>
   <li>Test pause, stop and speed controls where provided.</li>
   <li>Test word or sentence highlighting where provided.</li>
-  <li>Do not treat Read Aloud as a replacement for semantic HTML or screen-reader testing.</li>
+  <li>Do not treat ReadSpeaker as a replacement for semantic HTML or screen-reader testing.</li>
 </ul>
 
 <h2>Downloadable formats</h2>
@@ -269,7 +272,7 @@ meta-index: true
 
 <h2>Testing and review</h2>
 <p>Use a multi-stage review: content self-review, peer review, accessibility review and usability testing. Include people with intellectual disability and other people from the identified audience. Pay them for their expertise and allow enough time and support for meaningful participation.</p>
-<p>Test the complete experience, not isolated sentences. Check comprehension, image meaning, navigation, links, downloads and any Listen control.</p>
+<p>Test the complete experience, not isolated sentences. Check comprehension, image meaning, navigation, links, downloads and the ReadSpeaker control when it is implemented.</p>
 
 <h2>Accessibility requirements</h2>
 <ul>
@@ -280,5 +283,5 @@ meta-index: true
   <li>Support keyboard-only use, screen readers and text resizing to 200%.</li>
   <li>Verify reflow at a 320 CSS pixel viewport and at 400% browser zoom.</li>
   <li>Test light, dark and inverted themes without relying on colour alone.</li>
-  <li>Keep accessible HTML as the primary format even when documents or Read Aloud are available.</li>
+  <li>Keep accessible HTML as the primary format even when documents or ReadSpeaker are available.</li>
 </ul>
