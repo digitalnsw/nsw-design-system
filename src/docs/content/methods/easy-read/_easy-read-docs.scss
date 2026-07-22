@@ -475,6 +475,50 @@
     }
   }
 
+  &__stack > &__split--article {
+    overflow: hidden;
+    border-radius: var(--nsw-border-radius);
+    gap: 0;
+    background-color: var(--nsw-brand-light);
+
+    > .nsw-easy-read-anatomy__image {
+      min-height: nsw.rem(88px);
+      padding: 0;
+      overflow: hidden;
+      background-color: var(--nsw-brand-light);
+
+      img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    > .nsw-easy-read-anatomy__text--article {
+      min-height: nsw.rem(88px);
+      padding: nsw.rem(10px) nsw.rem(12px);
+      gap: nsw.rem(5px);
+      align-items: flex-start;
+      justify-content: center;
+      background-color: var(--nsw-brand-light);
+      font-size: nsw.rem(10px);
+      font-weight: var(--nsw-font-normal);
+      line-height: nsw.rem(14px);
+      text-align: left;
+
+      &::after {
+        display: none;
+      }
+
+      > strong {
+        font-size: nsw.rem(12px);
+        font-weight: var(--nsw-font-bold);
+        line-height: nsw.rem(16px);
+      }
+    }
+  }
+
   @include nsw.breakpoint('sm') {
     &__list > li#{&}__region--content {
       grid-column: 2 / -2;
