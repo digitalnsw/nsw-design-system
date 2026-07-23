@@ -296,7 +296,7 @@ const searchValues = [
   {
     label: 'Easy Read templates',
     template: 'result',
-    keywords: 'Easy Read page templates, Easy Read landing page, Easy Read category page, Easy Read detail article, Easy Read article template, accessible travel, public transport, TAFE, education, course application, long article, cognitive load, transparent illustrations, illustrations, photographs, example pages, content template',
+    keywords: 'Easy Read page templates, Easy Read landing page, Easy Read category page, Easy Read detail article, Easy Read article template, accessible travel, public transport, Opal card, transport card, TAFE, education, course application, long article, cognitive load, transparent illustrations, illustrations, photographs, example pages, content template',
     url: '/templates/content/easy-read/index.html',
   },
   {
