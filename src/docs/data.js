@@ -296,7 +296,7 @@ const searchValues = [
   {
     label: 'Easy Read templates',
     template: 'result',
-    keywords: 'Easy Read page templates, Easy Read landing page, Easy Read category page, Easy Read detail article, Easy Read article template, illustrations, photographs, example pages, content template',
+    keywords: 'Easy Read page templates, Easy Read landing page, Easy Read category page, Easy Read detail article, Easy Read article template, accessible travel, public transport, illustrations, photographs, example pages, content template',
     url: '/templates/content/easy-read/index.html',
   },
   {
