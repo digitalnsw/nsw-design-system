@@ -55,6 +55,11 @@ function moveImages() {
     .pipe(dest(config.images.build))
 }
 
+function moveDownloads() {
+  return src(config.downloads.src)
+    .pipe(dest(config.downloads.build))
+}
+
 function moveBrand() {
   return src(config.brand.src)
     .pipe(dest(config.brand.build))
@@ -235,7 +240,7 @@ function metalsmithBuild(callback) {
     methods: {
       pattern: config.metalSmith.collection.contentnav.methods,
       refer: false,
-      sortBy: 'order',
+      sortBy: sortByAlpha,
     },
   }))
   metalsmith.use(inplace(config.metalSmith.inplace))
@@ -423,6 +428,7 @@ function watchFiles(done) {
   watch(config.js.watch, series(javascript, reload))
   watch(config.jsDocs.watch, series(javascript, reload))
   watch(config.images.watch, series(moveImages, reload))
+  watch(config.downloads.watch, series(moveDownloads, reload))
   watch(config.brand.watch, series(moveBrand, reload))
   watch(config.metalSmith.watch, series(metalsmithBuild, reload))
   done()
@@ -437,6 +443,7 @@ const buildprod = series(
   styles,
   javascript,
   moveImages,
+  moveDownloads,
   moveBrand,
   renamePathForProd,
   addAnalytics,
@@ -453,6 +460,7 @@ const build = series(
   styles,
   javascript,
   moveImages,
+  moveDownloads,
   moveBrand,
   zipDistFolder,
 )
@@ -466,6 +474,7 @@ const dev = series(
   styles,
   javascript,
   moveImages,
+  moveDownloads,
   moveBrand,
   watchFiles,
   browserSync,
@@ -481,6 +490,7 @@ exports.scss = buildStyles // gulp sass - compiles the sass
 exports.watch = watchFiles // gulp watch - watches the files
 exports.lint = lintStyles // gulp lint - lints the sass
 exports.images = moveImages // gulp images - moves images
+exports.downloads = moveDownloads // gulp downloads - moves downloadable files
 exports.brand = moveBrand // gulp images - moves brand files
 exports.buildprod = buildprod // gulp build - builds the files
 exports.build = build // gulp build - builds the files

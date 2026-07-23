@@ -9,10 +9,14 @@
       <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">print</span>
       <span>Print this page</span>
     </li>{{/if}}{{#if download}}
-    <li class="nsw-utility-list__item js-download-page"{{#if pdf}} data-pdf-content="{{pdf}}"{{/if}}>
+    <li class="nsw-utility-list__item{{#if downloadUrl}} nsw-utility-list__item--link{{else}} js-download-page{{/if}}"{{#if pdf}} data-pdf-content="{{pdf}}"{{/if}}>{{#if downloadUrl}}
+      <a class="nsw-utility-list__link" href="{{downloadUrl}}" download>
+        <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">download</span>
+        <span>{{#if downloadText}}{{downloadText}}{{else}}Download file{{/if}}</span>
+      </a>{{else}}
       <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">download</span>
       <span>{{#if downloadText}}{{downloadText}}{{else}}Download as PDF{{/if}}</span>
-    </li>{{/if}}{{#if share}}
+    {{/if}}</li>{{/if}}{{#if share}}
     <li class="nsw-utility-list__item js-share" aria-controls="social-share-{{id}}" data-title="Social Sharing" data-sanitise="open">
       <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">share</span>
       <span data-anchor>Share this page</span>
