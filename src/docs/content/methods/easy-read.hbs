@@ -1,0 +1,423 @@
+---
+title: Easy Read
+width: wide
+no-blank: true
+order: 30
+intro: Easy Read is a content and design method for making important information easier to understand.
+model:
+  easy-read-1: json/easy-read-1.json
+meta-description: Plan, write, design, publish and test Easy Read content using NSW Design System guidance and page templates.
+meta-index: true
+---
+
+<nav class="nsw-in-page-nav" aria-labelledby="in-page-nav">
+  <div id="in-page-nav" class="nsw-in-page-nav__title">On this page</div>
+  <ul>
+    <li><a href="#what-easy-read-is">What Easy Read is</a></li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#information-architecture">Information architecture</a></li>
+    <li><a href="#page-anatomy">Page anatomy</a></li>
+    <li><a href="#typography">Typography</a></li>
+    <li><a href="#content-design">Content design</a></li>
+    <li><a href="#read-aloud-function">Read aloud function</a></li>
+    <li><a href="#downloadable-formats">Downloadable formats</a></li>
+    <li><a href="#testing-and-review">Testing and review</a></li>
+    <li><a href="#accessibility-requirements">Accessibility requirements</a></li>
+  </ul>
+</nav>
+
+<h2 id="what-easy-read-is">What Easy Read is</h2>
+<p>Easy Read is an accessible communication format designed to reduce the cognitive effort needed to find, process and act on information. It combines concise language, predictable structure and meaningful images so each idea is easier to understand and remember.</p>
+<p>It is particularly useful for people with intellectual disability, learning disability or other cognitive disability, and people with low literacy. It can also support older people and people who are learning English. Its purpose is to give people greater independence when making decisions, staying safe and accessing government services.</p>
+<p>The method brings together three connected elements:</p>
+<ul>
+  <li><strong>Information architecture:</strong> organise Easy Read information into landing, category and detail pages so people can find a topic and move to the article they need.</li>
+  <li><strong>Image-and-text content blocks:</strong> pair one concept or action with a meaningful image and supporting text. This is the commonly recognised Easy Read content format.</li>
+  <li><strong>Page content:</strong> apply <code>nsw-easy-read-content</code> to the complete Easy Read page or section. This scopes the larger typography and content spacing without changing the rest of the site.</li>
+</ul>
+<p>See the <a href="/templates/content/easy-read/detail.html" target="_blank" rel="noopener noreferrer">detail article template with illustrations</a> for a complete Easy Read page example.</p>
+
+<h2 id="usage">Usage</h2>
+
+<h3 id="when-to-use">When to use it</h3>
+<p>Use Easy Read when research shows that the audience needs or prefers it, particularly for information about:</p>
+<ul>
+  <li>rights, choices and responsibilities</li>
+  <li>health, safety and emergencies</li>
+  <li>accessing services or support</li>
+  <li>completing an important task, form or application</li>
+  <li>changes that affect a person's daily life.</li>
+</ul>
+
+<h3 id="when-not-to-use">When not to use it</h3>
+<p>Do not use Easy Read by default when audience research does not support it, or when simplifying the information would remove detail people need to make a safe or informed decision.</p>
+<p>Easy Read does not replace clear standard content, specialist translations, Auslan, audio, accessible documents or personalised support when users need those formats.</p>
+
+<h2 id="information-architecture">Information architecture</h2>
+<figure class="nsw-easy-read-ia">
+  <ol class="nsw-easy-read-ia__list">
+    <li>
+      <div class="nsw-easy-read-ia__node nsw-easy-read-ia__node--landing">
+        <strong>Landing page</strong>
+        <span>Shows all available topics.</span>
+      </div>
+      <ol>
+        <li>
+          <div class="nsw-easy-read-ia__node nsw-easy-read-ia__node--child nsw-easy-read-ia__node--category">
+            <strong>Category page</strong>
+            <span>Lists the detail articles for one topic.</span>
+          </div>
+          <ol>
+            <li>
+              <div class="nsw-easy-read-ia__node nsw-easy-read-ia__node--child nsw-easy-read-ia__node--detail">
+                <strong>Detail article</strong>
+                <span>Provides the Easy Read information.</span>
+              </div>
+            </li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+  </ol>
+  <figcaption>Easy Read uses a simple three-level content hierarchy.</figcaption>
+</figure>
+<ul>
+  <li>Do not add another category level by default.</li>
+  <li>Use breadcrumbs on category and detail pages.</li>
+  <li>Link topics directly from the landing page.</li>
+  <li>List articles directly from their category page.</li>
+  <li>Provide a “Back to all Easy Read topics” link on category pages.</li>
+  <li>Use the final About Easy Read callout to link people to more Easy Read articles.</li>
+  <li>Avoid generic Previous and Next links or any arbitrary linear sequence.</li>
+  <li>Only use sequence navigation for a genuine ordered process. Show progress and meaningful destination titles when you do.</li>
+</ul>
+
+<h3 id="page-templates">Page templates</h3>
+<p>Choose the template that matches the page's place in the information architecture:</p>
+<ul>
+  <li><a href="/templates/content/easy-read/landing.html" target="_blank" rel="noopener noreferrer">Landing page template</a></li>
+  <li><a href="/templates/content/easy-read/category.html" target="_blank" rel="noopener noreferrer">Category page template</a></li>
+  <li><a href="/templates/content/easy-read/detail.html" target="_blank" rel="noopener noreferrer">Detail article template with illustrations</a></li>
+  <li><a href="/templates/content/easy-read/detail-photos.html" target="_blank" rel="noopener noreferrer">Detail article template with photographs</a></li>
+</ul>
+
+<h2 id="page-anatomy">Page anatomy</h2>
+<p>The following page anatomies provide guidance on the key elements that make up the Easy Read format and show how they work together across landing, category and detail pages.</p>
+
+<h3>Landing page anatomy</h3>
+<figure class="nsw-easy-read-anatomy">
+  <div class="nsw-easy-read-anatomy__browser">
+    <div class="nsw-easy-read-anatomy__browser-bar" aria-hidden="true"><span></span><span></span><span></span></div>
+    <ol class="nsw-easy-read-anatomy__list">
+      <li class="nsw-easy-read-anatomy__region--shell">Site header and navigation</li>
+      <li class="nsw-easy-read-anatomy__region--content nsw-easy-read-anatomy__region--breadcrumbs nsw-easy-read-anatomy__region--breadcrumb-example">Home &gt; Landing</li>
+      <li class="nsw-easy-read-anatomy__region--content nsw-easy-read-anatomy__region--two-thirds nsw-easy-read-anatomy__region--page-example"><strong>Landing page heading</strong><span>Short landing page description.</span></li>
+      <li class="nsw-easy-read-anatomy__region--content nsw-easy-read-anatomy__region--read-aloud" aria-label="Read aloud function"><span class="material-icons nsw-material-icons nsw-easy-read-anatomy__listen-icon" focusable="false" aria-hidden="true">play_arrow</span><span>Listen</span><span class="material-icons nsw-material-icons nsw-easy-read-anatomy__listen-icon" focusable="false" aria-hidden="true">volume_up</span></li>
+      <li class="nsw-easy-read-anatomy__region--content nsw-easy-read-anatomy__region--group">
+        <span class="nsw-easy-read-anatomy__section-heading-example">Choose a topic</span>
+        <span class="nsw-easy-read-anatomy__grid">
+          <span class="nsw-easy-read-anatomy__card nsw-easy-read-anatomy__card--content"><img src="/assets/images/easy-read-topic-community-services.jpg" alt="A woman talking with two children"><span class="nsw-easy-read-anatomy__card-body"><strong>Community services</strong><span>Easy Read guides for community services.</span></span></span>
+          <span class="nsw-easy-read-anatomy__card nsw-easy-read-anatomy__card--content"><img src="/assets/images/easy-read-topic-education.jpg" alt="A teacher speaking to students in a classroom"><span class="nsw-easy-read-anatomy__card-body"><strong>Education</strong><span>How you can apply for TAFE and what support is available to you.</span></span></span>
+          <span class="nsw-easy-read-anatomy__card nsw-easy-read-anatomy__card--content"><img src="/assets/images/easy-read-topic-emergency.jpg" alt="A storm with lightning over a town"><span class="nsw-easy-read-anatomy__card-body"><strong>Emergency</strong><span>What you can do in an emergency, crisis or natural disaster and how you can prepare.</span></span></span>
+          <span class="nsw-easy-read-anatomy__card nsw-easy-read-anatomy__card--content"><img src="/assets/images/easy-read-topic-employment.png" alt="Two workers talking at work"><span class="nsw-easy-read-anatomy__card-body"><strong>Employment</strong><span>Learn about your rights at work and the rules you must follow.</span></span></span>
+          <span class="nsw-easy-read-anatomy__card nsw-easy-read-anatomy__card--content"><img src="/assets/images/easy-read-topic-fines-and-fees.jpg" alt="A hand holding Australian banknotes"><span class="nsw-easy-read-anatomy__card-body"><strong>Fines and fees</strong><span>How to pay NSW Government fines and fees or request a review.</span></span></span>
+          <span class="nsw-easy-read-anatomy__card nsw-easy-read-anatomy__card--content"><img src="/assets/images/easy-read-topic-government-services.jpg" alt="A couple talking to a customer service worker"><span class="nsw-easy-read-anatomy__card-body"><strong>Government services</strong><span>How to access government services such as applying for ID or enrolling to vote.</span></span></span>
+          <span class="nsw-easy-read-anatomy__card nsw-easy-read-anatomy__card--content"><img src="/assets/images/easy-read-topic-health-and-wellbeing.jpeg" alt="A doctor talking with a patient"><span class="nsw-easy-read-anatomy__card-body"><strong>Health and wellbeing</strong><span>How to look after your health, visit a doctor or go to hospital.</span></span></span>
+          <span class="nsw-easy-read-anatomy__card nsw-easy-read-anatomy__card--content"><img src="/assets/images/easy-read-topic-housing.jpg" alt="A house with a fenced yard"><span class="nsw-easy-read-anatomy__card-body"><strong>Housing</strong><span>How to apply for and live in social housing.</span></span></span>
+          <span class="nsw-easy-read-anatomy__card nsw-easy-read-anatomy__card--content"><img src="/assets/images/easy-read-topic-legal-and-justice.jpg" alt="A judge's gavel in front of the Australian flag"><span class="nsw-easy-read-anatomy__card-body"><strong>Legal and justice</strong><span>Guides about family law, going to court and how the law can protect you.</span></span></span>
+          <span class="nsw-easy-read-anatomy__card nsw-easy-read-anatomy__card--content"><img src="/assets/images/easy-read-topic-transport.jpg" alt="Buses at a bus stop"><span class="nsw-easy-read-anatomy__card-body"><strong>Transport</strong><span>How to travel within NSW.</span></span></span>
+        </span>
+      </li>
+      <li class="nsw-easy-read-anatomy__region--content nsw-easy-read-anatomy__region--two-thirds nsw-easy-read-anatomy__region--callout-example">
+        <strong>Get help to find information</strong>
+        <span>Call 13 77 88 or ask a support person to help you find the information you need.</span>
+      </li>
+      <li class="nsw-easy-read-anatomy__region--content nsw-easy-read-anatomy__region--about-section">
+        <hr class="nsw-easy-read-anatomy__about-divider">
+        <div class="nsw-easy-read-anatomy__about-example">
+          <span class="nsw-easy-read-anatomy__about-icon" aria-hidden="true"></span>
+          <strong>About Easy Read</strong>
+          <span>This page uses simple words and pictures to make information easier to understand.</span>
+        </div>
+      </li>
+      <li class="nsw-easy-read-anatomy__region--shell">Footer</li>
+    </ol>
+  </div>
+  <figcaption>Sequence of regions in the Easy Read landing page template.</figcaption>
+</figure>
+
+<h3>Category page anatomy</h3>
+<figure class="nsw-easy-read-anatomy">
+  <div class="nsw-easy-read-anatomy__browser">
+    <div class="nsw-easy-read-anatomy__browser-bar" aria-hidden="true"><span></span><span></span><span></span></div>
+    <ol class="nsw-easy-read-anatomy__list">
+      <li class="nsw-easy-read-anatomy__region--shell">Site header and navigation</li>
+      <li class="nsw-easy-read-anatomy__region--content nsw-easy-read-anatomy__region--breadcrumbs nsw-easy-read-anatomy__region--breadcrumb-example">Home &gt; Landing &gt; Category</li>
+      <li class="nsw-easy-read-anatomy__region--content nsw-easy-read-anatomy__region--two-thirds nsw-easy-read-anatomy__region--page-example"><strong>Category page heading</strong><span>Short category page description.</span></li>
+      <li class="nsw-easy-read-anatomy__region--content nsw-easy-read-anatomy__region--read-aloud" aria-label="Read aloud function"><span class="material-icons nsw-material-icons nsw-easy-read-anatomy__listen-icon" focusable="false" aria-hidden="true">play_arrow</span><span>Listen</span><span class="material-icons nsw-material-icons nsw-easy-read-anatomy__listen-icon" focusable="false" aria-hidden="true">volume_up</span></li>
+      <li class="nsw-easy-read-anatomy__region--content nsw-easy-read-anatomy__region--group nsw-easy-read-anatomy__region--category-group">
+        <span class="nsw-easy-read-anatomy__stack">
+          <span class="nsw-easy-read-anatomy__split nsw-easy-read-anatomy__split--link-list nsw-easy-read-anatomy__split--category-example">
+            <span class="nsw-easy-read-anatomy__image"><img src="/assets/images/easy-read-topic-health-and-wellbeing.jpeg" alt="A doctor talking with a patient"></span>
+            <span class="nsw-easy-read-anatomy__text nsw-easy-read-anatomy__text--category">
+              <strong>Staying healthy</strong>
+              <span class="nsw-easy-read-anatomy__category-links">
+                <span><span>Get ready for a health appointment</span><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span></span>
+                <span><span>Keep your vaccinations up to date</span><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span></span>
+                <span><span>Choose healthy food</span><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span></span>
+                <span><span>Look after your teeth</span><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span></span>
+                <span><span>Stay active</span><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span></span>
+              </span>
+            </span>
+          </span>
+        </span>
+      </li>
+      <li class="nsw-easy-read-anatomy__region--content nsw-easy-read-anatomy__region--group nsw-easy-read-anatomy__region--category-group">
+        <span class="nsw-easy-read-anatomy__stack">
+          <span class="nsw-easy-read-anatomy__split nsw-easy-read-anatomy__split--link-list nsw-easy-read-anatomy__split--category-example">
+            <span class="nsw-easy-read-anatomy__image"><img src="/assets/images/easy-read-topic-community-services.jpg" alt="A woman talking with two children"></span>
+            <span class="nsw-easy-read-anatomy__text nsw-easy-read-anatomy__text--category">
+              <strong>Getting health support</strong>
+              <span class="nsw-easy-read-anatomy__category-links">
+                <span><span>Ask for an interpreter</span><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span></span>
+                <span><span>Get help with medicines</span><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span></span>
+                <span><span>Make a complaint about a health service</span><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span></span>
+                <span><span>Get help with your mental health</span><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span></span>
+                <span><span>Find disability support</span><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span></span>
+              </span>
+            </span>
+          </span>
+        </span>
+      </li>
+      <li class="nsw-easy-read-anatomy__region--content nsw-easy-read-anatomy__region--group nsw-easy-read-anatomy__region--category-group">
+        <span class="nsw-easy-read-anatomy__stack">
+          <span class="nsw-easy-read-anatomy__split nsw-easy-read-anatomy__split--link-list nsw-easy-read-anatomy__split--category-example">
+            <span class="nsw-easy-read-anatomy__image"><img src="/assets/images/easy-read-topic-government-services.jpg" alt="People talking to a customer service worker"></span>
+            <span class="nsw-easy-read-anatomy__text nsw-easy-read-anatomy__text--category">
+              <strong>Using health services</strong>
+              <span class="nsw-easy-read-anatomy__category-links">
+                <span><span>Find a health service</span><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span></span>
+                <span><span>Go to hospital</span><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span></span>
+                <span><span>Use telehealth</span><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span></span>
+                <span><span>Know your rights as a patient</span><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span></span>
+                <span><span>Get help after leaving hospital</span><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span></span>
+              </span>
+            </span>
+          </span>
+        </span>
+      </li>
+      <li class="nsw-easy-read-anatomy__region--content nsw-easy-read-anatomy__region--back-link-example"><a href="/templates/content/easy-read/landing.html">Back to all Easy Read topics</a></li>
+      <li class="nsw-easy-read-anatomy__region--content nsw-easy-read-anatomy__region--about-section">
+        <hr class="nsw-easy-read-anatomy__about-divider">
+        <div class="nsw-easy-read-anatomy__about-example">
+          <span class="nsw-easy-read-anatomy__about-icon" aria-hidden="true"></span>
+          <strong>About Easy Read</strong>
+          <span>This page uses simple words and pictures to make information easier to understand.</span>
+          <a href="/templates/content/easy-read/landing.html">View more Easy Read articles</a>
+        </div>
+      </li>
+      <li class="nsw-easy-read-anatomy__region--shell">Footer</li>
+    </ol>
+  </div>
+  <figcaption>Sequence of regions in the Easy Read category page template.</figcaption>
+</figure>
+
+<h3>Detail page anatomy</h3>
+<figure class="nsw-easy-read-anatomy">
+  <div class="nsw-easy-read-anatomy__browser">
+    <div class="nsw-easy-read-anatomy__browser-bar" aria-hidden="true"><span></span><span></span><span></span></div>
+    <ol class="nsw-easy-read-anatomy__list">
+      <li class="nsw-easy-read-anatomy__region--shell">Site header and navigation</li>
+      <li class="nsw-easy-read-anatomy__region--content nsw-easy-read-anatomy__region--breadcrumbs nsw-easy-read-anatomy__region--breadcrumb-example">Home &gt; Easy Read &gt; Health and wellbeing &gt; How to cut vegetables safely</li>
+      <li class="nsw-easy-read-anatomy__region--content nsw-easy-read-anatomy__region--tag"><span class="nsw-tag">Easy Read</span></li>
+      <li class="nsw-easy-read-anatomy__region--content nsw-easy-read-anatomy__region--two-thirds nsw-easy-read-anatomy__region--page-example"><strong>How to Cut Vegetables Safely</strong><span>This page tells you how to cut vegetables safely using simple words and pictures.</span></li>
+      <li class="nsw-easy-read-anatomy__region--content nsw-easy-read-anatomy__region--read-aloud" aria-label="Read aloud function"><span class="material-icons nsw-material-icons nsw-easy-read-anatomy__listen-icon" focusable="false" aria-hidden="true">play_arrow</span><span>Listen</span><span class="material-icons nsw-material-icons nsw-easy-read-anatomy__listen-icon" focusable="false" aria-hidden="true">volume_up</span></li>
+      <li class="nsw-easy-read-anatomy__region--content nsw-easy-read-anatomy__region--read-width nsw-easy-read-anatomy__region--in-page-example">
+        <strong>On this page</strong>
+        <span class="nsw-easy-read-anatomy__in-page-links">
+          <span>Wash your vegetables first</span>
+          <span>Use a cutting board</span>
+          <span>Hold the knife safely</span>
+          <span>Try a julienne cut</span>
+        </span>
+      </li>
+      <li class="nsw-easy-read-anatomy__region--content nsw-easy-read-anatomy__region--two-thirds nsw-easy-read-anatomy__region--opening-example">
+        <span>Cutting vegetables the right way helps you cook safely and quickly.</span>
+        <span>It also makes your food look and taste better.</span>
+      </li>
+      <li class="nsw-easy-read-anatomy__region--content nsw-easy-read-anatomy__region--body-wide nsw-easy-read-anatomy__region--group">
+        <span class="nsw-easy-read-anatomy__stack">
+          <span class="nsw-easy-read-anatomy__split nsw-easy-read-anatomy__split--article">
+            <span class="nsw-easy-read-anatomy__image"><img src="/assets/images/easy-read-template-drawn-1.png" alt="A carrot being washed under running water"></span>
+            <span class="nsw-easy-read-anatomy__text nsw-easy-read-anatomy__text--article"><strong>Wash your vegetables first</strong><span>Before you cut vegetables, you need to <strong>wash</strong> them with clean water.</span></span>
+          </span>
+          <span class="nsw-easy-read-anatomy__split nsw-easy-read-anatomy__split--article">
+            <span class="nsw-easy-read-anatomy__image"><img src="/assets/images/easy-read-template-drawn-2.png" alt="Vegetables on a cutting board"></span>
+            <span class="nsw-easy-read-anatomy__text nsw-easy-read-anatomy__text--article"><strong>Use a cutting board</strong><span>Put your vegetables on a <strong>cutting board</strong>. This keeps the bench clean and safe.</span></span>
+          </span>
+          <span class="nsw-easy-read-anatomy__split nsw-easy-read-anatomy__split--article">
+            <span class="nsw-easy-read-anatomy__image"><img src="/assets/images/easy-read-template-drawn-3.png" alt="A hand holding a knife by the handle"></span>
+            <span class="nsw-easy-read-anatomy__text nsw-easy-read-anatomy__text--article"><strong>Hold the knife safely</strong><span>Hold the knife by the <strong>handle</strong> and keep your fingers away from the <strong>blade</strong>.</span></span>
+          </span>
+          <span class="nsw-easy-read-anatomy__split nsw-easy-read-anatomy__split--article">
+            <span class="nsw-easy-read-anatomy__image"><img src="/assets/images/easy-read-template-drawn-4.png" alt="A carrot being cut into thin strips"></span>
+            <span class="nsw-easy-read-anatomy__text nsw-easy-read-anatomy__text--article"><strong>Try a julienne cut</strong><span>A <strong>julienne</strong> cut makes thin long pieces. It helps food cook quickly and evenly.</span></span>
+          </span>
+        </span>
+      </li>
+      <li class="nsw-easy-read-anatomy__region--content nsw-easy-read-anatomy__region--read-width nsw-easy-read-anatomy__region--publishing-example">
+        <dl>
+          <dt>Published by</dt><dd>NSW Health</dd>
+          <dt>Published</dt><dd>15 July 2026</dd>
+          <dt>Last updated</dt><dd>20 July 2026</dd>
+          <dt>Files last updated</dt><dd>20 July 2026</dd>
+        </dl>
+      </li>
+      <li class="nsw-easy-read-anatomy__region--content nsw-easy-read-anatomy__region--download-example">
+        <strong>Print or download this page</strong>
+        <span>Use your browser's print option to print this page.</span>
+        <span>Download an EPUB to read in an ebook app or a PDF for printing.</span>
+        <span class="nsw-easy-read-anatomy__download-files">
+          <span><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">download</span>Download ebook (EPUB, 1.1 MB)</span>
+          <span><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">download</span>Download PDF (2.8 MB)</span>
+        </span>
+      </li>
+      <li class="nsw-easy-read-anatomy__region--content nsw-easy-read-anatomy__region--about-section">
+        <hr class="nsw-easy-read-anatomy__about-divider">
+        <div class="nsw-easy-read-anatomy__about-example">
+          <span class="nsw-easy-read-anatomy__about-icon" aria-hidden="true"></span>
+          <strong>About Easy Read</strong>
+          <span>This page uses Easy Read. Easy Read uses simple words, clear structure and meaningful pictures to make information easier to understand.</span>
+          <a href="/templates/content/easy-read/landing.html">View more Easy Read articles</a>
+        </div>
+      </li>
+      <li class="nsw-easy-read-anatomy__region--shell">Footer</li>
+    </ol>
+  </div>
+  <figcaption>Sequence shared by the illustration and photograph detail article templates.</figcaption>
+</figure>
+
+<h3>Easy Read content block</h3>
+<p>The content block pairs one primary concept or action with a meaningful image. It supports the method but does not make a page Easy Read by itself.</p>
+{{#>_docs-example separated=true}}
+<div class="nsw-easy-read-content">
+  {{>_easy-read-block model.easy-read-1}}
+</div>
+{{/_docs-example}}
+
+<h3>About Easy Read callout</h3>
+<p>Finish each Easy Read content page with this callout. It explains the format and provides a route to more Easy Read articles without interrupting the main content.</p>
+<p>Use the Easy Read icon in the callout to help people identify the format. The approved icon is available to <a href="https://branding.nsw.gov.au/asset-download/?id=ba697223-0548-41ea-97ad-a60e26834bb2" target="_blank" rel="noopener noreferrer">download from the NSW Government Branding Toolkit</a>.</p>
+{{#>_docs-example separated=true}}
+<div class="nsw-easy-read-content">
+  {{>_easy-read-about
+    aboutDescription="This page uses Easy Read. Easy Read uses simple words, clear structure and meaningful pictures to make information easier to understand."
+    articlesUrl="#"
+    articlesText="View more Easy Read articles"
+  }}
+</div>
+{{/_docs-example}}
+
+<h2 id="typography">Typography</h2>
+<p>The Easy Read type scale is scoped to <code>nsw-easy-read-content</code>. It does not change standard page typography. Values use <code>rem</code> so browser zoom and text resizing continue to work; the pixel values below are equivalents based on the design system's 16px reference size, not a fixed root font size.</p>
+<table aria-labelledby="typography">
+  <thead>
+    <tr>
+      <th scope="col">Text</th>
+      <th scope="col">Viewport</th>
+      <th scope="col">Font size</th>
+      <th scope="col">Line height</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><th scope="row">Body</th><td>All</td><td>1.25rem (20px)</td><td>1.875rem (30px)</td></tr>
+    <tr><th scope="row">H1</th><td>Mobile</td><td>2.25rem (36px)</td><td>2.75rem (44px)</td></tr>
+    <tr><th scope="row">H1</th><td>Desktop</td><td>2.5rem (40px)</td><td>3rem (48px)</td></tr>
+    <tr><th scope="row">H2</th><td>Mobile</td><td>1.75rem (28px)</td><td>2.25rem (36px)</td></tr>
+    <tr><th scope="row">H2</th><td>Desktop</td><td>2rem (32px)</td><td>2.5rem (40px)</td></tr>
+    <tr><th scope="row">H3</th><td>All</td><td>1.5rem (24px)</td><td>2rem (32px)</td></tr>
+    <tr><th scope="row">H4, bold</th><td>All</td><td>1.25rem (20px)</td><td>1.875rem (30px)</td></tr>
+  </tbody>
+</table>
+
+<h2 id="content-design">Content design</h2>
+<p>Plan the words and pictures together. Each content block should communicate one primary concept or action, and every part of the page should help people understand or use the information.</p>
+
+<h3>Writing content</h3>
+<ul>
+  <li>Write for the identified audience and the task they need to complete.</li>
+  <li>Use short sentences.</li>
+  <li>Communicate one idea per sentence.</li>
+  <li>Begin new ideas on a new line or in a new paragraph.</li>
+  <li>Use common words.</li>
+  <li>Explain difficult words immediately.</li>
+  <li>Use active voice.</li>
+  <li>Avoid jargon, idioms and unexplained acronyms.</li>
+  <li>Use clear, descriptive link labels that make sense out of context.</li>
+  <li>Keep the content concise.</li>
+  <li>Test the content with people who use Easy Read.</li>
+</ul>
+
+<h3>Difficult words and definitions</h3>
+<p>Use a common word when it keeps the meaning accurate. When a difficult or specialist word is necessary, make it bold the first time and explain it immediately in the next sentence. Use the same term consistently after defining it.</p>
+<p>Do not make people follow a link or open a separate glossary to understand an essential instruction.</p>
+
+<h3>Images and illustrations</h3>
+<ul>
+  <li>Choose illustrations when a simplified scene makes the concept clearer. Choose photographs when recognising a real person, place, object or action matters.</li>
+  <li>Show one concept per image and keep the visual treatment consistent across the page.</li>
+  <li>Limit unnecessary background detail and avoid text embedded in an image.</li>
+  <li>Use respectful representation and review imagery for cultural safety.</li>
+  <li>Give informative images meaningful alternative text that describes the information they add.</li>
+  <li>Only use the explicit <code>decorative</code> option when an image adds no information.</li>
+  <li>Test whether the intended audience understands each image and its relationship to the text.</li>
+</ul>
+
+<h4>Generated images</h4>
+<ul>
+  <li>Require human review before publishing.</li>
+  <li>Check for bias, stereotypes and harmful representation.</li>
+  <li>Check factual and visual accuracy, including hands, objects, labels and sequences.</li>
+  <li>Do not use generated imagery for unverified safety-critical instructions.</li>
+  <li>Confirm licensing and organisational policy requirements.</li>
+</ul>
+
+<h2 id="read-aloud-function">Read aloud function</h2>
+<p>The templates include a compact visual placeholder for a read aloud function. It represents the approximate footprint of the control but is not interactive.</p>
+<p>Choose a service that meets user needs and complete procurement, privacy, security and technical reviews before integration.</p>
+<ul>
+  <li>Place the read aloud function near the beginning of the Easy Read content.</li>
+  <li>Configure the reading area so unrelated navigation and interface content are excluded.</li>
+  <li>Ensure the reading order follows the DOM.</li>
+  <li>Test keyboard access.</li>
+  <li>Test pause, stop and speed controls where provided.</li>
+  <li>Test word or sentence highlighting where provided.</li>
+  <li>Do not treat the read aloud function as a replacement for semantic HTML or screen-reader testing.</li>
+</ul>
+
+<h2 id="downloadable-formats">Downloadable formats</h2>
+<p>Accessible HTML is the primary version. Supply an accessible PDF or Word version when user needs require it. EPUB can be useful for long-form or collected content.</p>
+<p>Accessible EPUBs should conform to EPUB Accessibility 1.1 and preferably WCAG 2.2 AA. Label every file with its format, size and updated date.</p>
+<div class="nsw-callout">
+  <div class="nsw-callout__content">
+    <p class="nsw-h4">Static download example</p>
+    <p><a href="/assets/downloads/how-to-cut-vegetables-safely.epub" download>Download How to Cut Vegetables Safely (EPUB, 367 KB, updated 20 July 2026)</a></p>
+  </div>
+</div>
+<p>This pre-generated example contains the same content and illustrations as the <a href="/templates/content/easy-read/detail.html" target="_blank" rel="noopener noreferrer">Easy Read detail article template</a>. Use it to review the package structure and reading experience. Creation, accessibility checks and versioning belong in the CMS or build system. Do not generate a “download all” bundle in the browser.</p>
+
+<h2 id="testing-and-review">Testing and review</h2>
+<p>Use a multi-stage review: content self-review, peer review, accessibility review and usability testing. Include people with intellectual disability and other people from the identified audience. Pay them for their expertise and allow enough time and support for meaningful participation.</p>
+<p>Test the complete experience, not isolated sentences. Check comprehension, image meaning, navigation, links, downloads and the read aloud function when it is implemented.</p>
+
+<h2 id="accessibility-requirements">Accessibility requirements</h2>
+<ul>
+  <li>Use semantic headings in a logical hierarchy. Content-block titles default to H2 and only allow H3 as a controlled alternative.</li>
+  <li>Provide meaningful alternative text for every informative image and explicitly mark decorative images.</li>
+  <li>Keep the reading and focus order consistent with the visual order.</li>
+  <li>Use descriptive links and visible keyboard focus.</li>
+  <li>Support keyboard-only use, screen readers and text resizing to 200%.</li>
+  <li>Verify reflow at a 320 CSS pixel viewport and at 400% browser zoom. Where testing identifies a layout or usability issue, use the <a href="/docs/content/utilities/reflow.html">Reflow Sass mixin</a> for a targeted component adjustment.</li>
+  <li>Test light, dark and inverted themes without relying on colour alone.</li>
+  <li>Keep accessible HTML as the primary format even when documents or a read aloud function are available.</li>
+</ul>

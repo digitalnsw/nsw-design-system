@@ -1,0 +1,78 @@
+---
+title: Easy Read detail article (TAFE application)
+meta-description: Long-form Easy Read example explaining how to apply for a TAFE course with transparent purpose-made illustrations.
+meta-index: true
+order: 26
+page: true
+directory: Easy Read
+model:
+  nav-basic: ../../../components/main-nav/json/main-nav.json
+  page: ../../../docs/content/methods/json/easy-read-detail-tafe.json
+  share: ../../../docs/content/methods/json/easy-read-share.json
+  footer: ../../../components/footer/json/footer.json
+---
+
+{{>_masthead content="#content" nav="#main-nav"}}
+{{>_header header-title="NSW Department"}}
+{{>_main-nav model.nav-basic}}
+<div class="nsw-container nsw-p-bottom-xs">
+  {{>_breadcrumbs model.page.breadcrumbs}}
+</div>
+
+<div class="nsw-container nsw-easy-read-content nsw-p-top-sm nsw-p-bottom-lg">
+  <div class="nsw-layout">
+    <main id="content" class="nsw-layout__main">
+      <div class="nsw-block">
+        <h1>
+          <span class="nsw-tag">Easy Read</span>
+          <span class="nsw-easy-read-content__heading-text">{{model.page.title}}</span>
+        </h1>
+        <p class="nsw-intro">{{model.page.introduction}}</p>
+      </div>
+
+      {{>_easy-read-read-aloud}}
+
+      <nav class="nsw-in-page-nav" aria-label="On this page">
+        <h2 class="nsw-in-page-nav__title">On this page</h2>
+        <ul class="nsw-in-page-nav__list">
+          {{#each model.page.sections}}
+          <li><a href="#{{id}}">{{title}}</a></li>
+          {{/each}}
+        </ul>
+      </nav>
+
+      <div class="nsw-block">
+        {{#each model.page.openingParagraphs}}
+        <p>{{this}}</p>
+        {{/each}}
+      </div>
+
+      {{#each model.page.sections}}
+      <section class="nsw-block" id="{{id}}">
+        <h2>{{title}}</h2>
+        {{#each introductionParagraphs}}
+        <p>{{this}}</p>
+        {{/each}}
+
+        {{#each blocks}}
+        <div class="nsw-block">
+          {{>_easy-read-block this}}
+        </div>
+        {{/each}}
+      </section>
+      {{/each}}
+
+      {{>_easy-read-downloads-utility model.page.downloads social=model.share}}
+
+      {{>_easy-read-metadata model.page filesUpdated=model.page.downloads}}
+
+      <hr class="nsw-m-y-lg">
+
+      <div class="nsw-block nsw-p-bottom-md">
+        {{>_easy-read-about model.page.about}}
+      </div>
+    </main>
+  </div>
+</div>
+
+{{>_footer model.footer}}

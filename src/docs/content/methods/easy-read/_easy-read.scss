@@ -1,0 +1,261 @@
+@use '../../../../global/scss/tools' as nsw;
+
+.nsw-easy-read-content {
+  font-size: nsw.rem(20px);
+  line-height: nsw.rem(30px);
+
+  p,
+  ul,
+  ol,
+  dl,
+  .nsw-intro,
+  .nsw-easy-read-block__copy {
+    font-size: nsw.rem(20px);
+    line-height: nsw.rem(30px);
+  }
+
+  h1,
+  .nsw-h1 {
+    font-size: nsw.rem(36px);
+    line-height: nsw.rem(44px);
+
+    @include nsw.breakpoint('lg') {
+      font-size: nsw.rem(40px);
+      line-height: nsw.rem(48px);
+    }
+  }
+
+  h2,
+  .nsw-h2 {
+    font-size: nsw.rem(28px);
+    line-height: nsw.rem(36px);
+
+    @include nsw.breakpoint('lg') {
+      font-size: nsw.rem(32px);
+      line-height: nsw.rem(40px);
+    }
+  }
+
+  h3,
+  .nsw-h3 {
+    font-size: nsw.rem(24px);
+    line-height: nsw.rem(32px);
+  }
+
+  h4,
+  .nsw-h4 {
+    font-size: nsw.rem(20px);
+    font-weight: var(--nsw-font-bold);
+    line-height: nsw.rem(30px);
+  }
+
+  p + p {
+    margin-top: nsw.rem(24px);
+  }
+
+  &__heading-text {
+    display: block;
+    margin-top: nsw.rem(16px);
+  }
+
+  &__heading-icon {
+    display: block;
+    width: nsw.rem(48px);
+    height: nsw.rem(48px);
+    background-image: url(#{nsw.$nsw-easy-read-icon});
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+  }
+}
+
+.nsw-easy-read-block {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: center;
+  width: 100%;
+  border-radius: var(--nsw-border-radius);
+  overflow: hidden;
+
+  @include nsw.breakpoint('md') {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  }
+
+  &__image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    &--landscape {
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+
+      img {
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+
+  &__content {
+    min-width: 0;
+    padding: nsw.rem(24px) nsw.rem(20px);
+
+    @include nsw.breakpoint('md') {
+      padding: nsw.rem(32px);
+    }
+  }
+
+  &__title {
+    margin: 0;
+    font-weight: var(--nsw-font-bold);
+    text-wrap: pretty;
+  }
+
+  &__copy {
+    text-wrap: pretty;
+  }
+
+  &.nsw-section--brand-dark,
+  &.nsw-section--invert {
+    a {
+      @include nsw.link-light;
+    }
+  }
+
+  &.nsw-section--brand-light,
+  &.nsw-section--off-white,
+  &.nsw-section--white {
+    a {
+      @include nsw.link-dark;
+    }
+  }
+}
+
+.nsw-easy-read-about {
+  display: block;
+
+  &::before {
+    content: '';
+    display: block;
+    width: nsw.rem(48px);
+    height: nsw.rem(48px);
+    margin-bottom: nsw.rem(16px);
+    background-image: url(#{nsw.$nsw-easy-read-icon});
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+  }
+
+  h2 {
+    margin-top: 0;
+  }
+}
+
+.nsw-easy-read-downloads {
+  h2 {
+    margin-top: 0;
+  }
+
+  .nsw-utility-list__link:hover {
+    outline-width: 0;
+  }
+
+  > .nsw-utility-list {
+    margin: nsw.rem(24px) 0;
+
+    @include nsw.breakpoint('lg') {
+      margin: nsw.rem(32px) 0;
+    }
+
+    + p {
+      margin-top: 0;
+    }
+  }
+
+  &__files {
+    display: flex;
+    margin: nsw.rem(24px) 0;
+    flex-wrap: wrap;
+    gap: nsw.rem(16px);
+
+    @include nsw.breakpoint('lg') {
+      margin: nsw.rem(32px) 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.nsw-easy-read-content .nsw-easy-read-metadata {
+  div + div {
+    margin-top: nsw.rem(4px);
+  }
+
+  dt,
+  dd {
+    display: inline;
+  }
+
+  dt {
+    font-weight: var(--nsw-font-bold);
+  }
+
+  dd {
+    margin-left: nsw.rem(4px);
+  }
+}
+
+.nsw-easy-read-listen {
+  display: flex;
+  width: fit-content;
+  cursor: pointer;
+  min-height: nsw.rem(48px);
+  padding: nsw.rem(8px) nsw.rem(12px);
+  border-left: nsw.rem(4px) solid var(--nsw-brand-accent);
+  gap: nsw.rem(8px);
+  align-items: center;
+  background-color: var(--nsw-grey-04);
+  color: var(--nsw-brand-dark);
+  font-size: nsw.rem(16px);
+  line-height: nsw.rem(24px);
+
+  .nsw-material-icons {
+    font-size: nsw.rem(24px);
+  }
+}
+
+.nsw-easy-read-category-group {
+  + .nsw-easy-read-category-group {
+    margin-top: nsw.rem(32px);
+
+    @include nsw.breakpoint('md') {
+      margin-top: nsw.rem(48px);
+    }
+  }
+
+  &__image {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border-radius: var(--nsw-border-radius);
+    object-fit: cover;
+  }
+
+  &__content h2 {
+    margin-top: nsw.rem(24px);
+
+    @include nsw.breakpoint('md') {
+      margin-top: 0;
+    }
+  }
+}
