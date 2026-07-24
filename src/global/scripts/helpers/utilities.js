@@ -172,15 +172,28 @@ export const validateUrl = (raw, fallback = 'https://www.google.com/webhp') => {
 }
 
 export const popupWindow = (url, width, height) => {
-  const y = window.top.outerHeight / 2 + window.top.screenY - (height / 2)
-  const x = window.top.outerWidth / 2 + window.top.screenX - (width / 2)
+  if (!hasWindow || typeof window.open !== 'function') return null
 
-  window.open(
+  const dialogWidth = Number(width) || 626
+  const dialogHeight = Number(height) || 436
+  let top = 0
+  let left = 0
+
+  try {
+    const topWindow = window.top
+    top = topWindow.outerHeight / 2 + topWindow.screenY - (dialogHeight / 2)
+    left = topWindow.outerWidth / 2 + topWindow.screenX - (dialogWidth / 2)
+  } catch {
+    top = (window.outerHeight || dialogHeight) / 2 + (window.screenY || 0) - (dialogHeight / 2)
+    left = (window.outerWidth || dialogWidth) / 2 + (window.screenX || 0) - (dialogWidth / 2)
+  }
+
+  return window.open(
     url,
-    '',
-    `toolbar=no,location=no,directories=no, status=no,
-    menubar=no, scrollbars=no, resizable=no, copyhistory=no,
-    width=${width}, height=${height}, top=${y}, left=${x}`,
+    'nsw-share-dialog',
+    `toolbar=no,location=no,directories=no,status=no,
+    menubar=no,scrollbars=no,resizable=no,copyhistory=no,
+    width=${dialogWidth},height=${dialogHeight},top=${top},left=${left},noopener,noreferrer`,
   )
 }
 

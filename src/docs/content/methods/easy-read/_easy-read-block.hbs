@@ -5,11 +5,9 @@
     <img src="{{img}}" alt="">
   </div>
     {{else}}
-      {{#if imgAlt}}
   <div class="nsw-easy-read-block__image{{#if-equals imageRatio "landscape"}} nsw-easy-read-block__image--landscape{{/if-equals}}">
-    <img src="{{img}}" alt="{{imgAlt}}">
+    <img src="{{img}}" alt="{{#if imgAlt}}{{imgAlt}}{{else}}{{/if}}">
   </div>
-      {{/if}}
     {{/if}}
   {{/if}}
   <div class="nsw-easy-read-block__content">
@@ -24,7 +22,9 @@
     <p class="nsw-easy-read-block__copy">{{{text}}}</p>
     {{/each}}
     {{#if linkUrl}}
+      {{#if linkText}}
     <p><a href="{{linkUrl}}">{{linkText}}</a></p>
+      {{/if}}
     {{/if}}
   </div>
 </section>
