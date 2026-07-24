@@ -6,7 +6,7 @@
   </div>
     {{else}}
   <div class="nsw-easy-read-block__image{{#if-equals imageRatio "landscape"}} nsw-easy-read-block__image--landscape{{/if-equals}}">
-    <img src="{{img}}" alt="{{#if imgAlt}}{{imgAlt}}{{else}}{{/if}}">
+    <img src="{{img}}" alt="{{#if imgAlt}}{{imgAlt}}{{else}}{{#if title}}{{title}}{{/if}}{{/if}}">
   </div>
     {{/if}}
   {{/if}}
