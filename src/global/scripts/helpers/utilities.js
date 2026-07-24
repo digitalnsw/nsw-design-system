@@ -183,7 +183,7 @@ export const popupWindow = (url, width, height) => {
     const topWindow = window.top
     top = topWindow.outerHeight / 2 + topWindow.screenY - (dialogHeight / 2)
     left = topWindow.outerWidth / 2 + topWindow.screenX - (dialogWidth / 2)
-  } catch {
+  } catch (e) {
     top = (window.outerHeight || dialogHeight) / 2 + (window.screenY || 0) - (dialogHeight / 2)
     left = (window.outerWidth || dialogWidth) / 2 + (window.screenX || 0) - (dialogWidth / 2)
   }
