@@ -48,6 +48,14 @@
     padding: nsw.rem(16px);
     text-wrap: pretty;
 
+    &.current {
+      background-color: var(--nsw-off-white);
+
+      .nsw-section--invert & {
+        @include nsw.nsw-hover-light;
+      }
+    }
+
     &:hover {
       @include nsw.nsw-hover;
       outline-width: 0;
@@ -60,14 +68,6 @@
 
     &:focus {
       outline-width: 3px;
-    }
-
-    &.current {
-      background-color: var(--nsw-off-white);
-      
-      .nsw-section--invert & {    
-        @include nsw.nsw-hover-light;
-      }
     }
 
     .nsw-section--invert & {    
