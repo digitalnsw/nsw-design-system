@@ -211,10 +211,18 @@ $header-height: 151px;
           }
 
           &.current {
-            background-color: var(--nsw-off-white);
+            background-color: var(--nsw-active);
 
             &:hover {
               @include nsw.nsw-hover;
+            }
+
+            .nsw-section--invert & {
+              background-color: var(--nsw-active-light);
+
+              &:hover {
+                @include nsw.nsw-hover-light;
+              }
             }
           }
         }
