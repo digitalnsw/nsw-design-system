@@ -103,6 +103,8 @@ function initDocs() {
   }
 
   const colorConfig = {
+    defaultPalette: 'default',
+    defaultColor: 'Red 01',
     variables: {
       'brand-dark': '--nsw-brand-dark',
       'brand-light': '--nsw-brand-light',

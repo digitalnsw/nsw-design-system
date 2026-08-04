@@ -4,15 +4,20 @@ class ColorSwatches {
     this.element = element
     this.variables = config.variables
     this.palettes = config.palettes
+    this.defaultPalette = config.defaultPalette
+    this.defaultColor = config.defaultColor
     this.dataTable = document.querySelector('.js-color-swatches__content')
 
     this.targetSelector = this.element.dataset.target || ':root'
     this.targetElement = document.querySelector(this.targetSelector)
 
     const [firstPalette] = Object.keys(this.palettes)
-    const [firstColor] = Object.keys(this.palettes[firstPalette]).filter((key) => key !== 'label')
-    this.currentPalette = firstPalette
-    this.currentColor = firstColor
+    const resolvedPalette = this.palettes[this.defaultPalette] ? this.defaultPalette : firstPalette
+    const availableColors = Object.keys(this.palettes[resolvedPalette]).filter((key) => key !== 'label')
+    const resolvedColor = availableColors.includes(this.defaultColor) ? this.defaultColor : availableColors[0]
+
+    this.currentPalette = resolvedPalette
+    this.currentColor = resolvedColor
 
     this.legend = this.element.querySelector('.js-color-swatches__color') // Title element
     this.legendKey = this.element.dataset.legendKey || null
