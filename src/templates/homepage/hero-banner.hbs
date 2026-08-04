@@ -9,12 +9,20 @@ model:
 ---
 
 {{>_masthead content="#content" nav="#main-nav"}}
-{{>_header header-title="Digital NSW" header-description="Department of Customer Service"}}
+{{>_header header-title="NSW Design System" header-description="Department of Customer Service"}}
 {{>_main-nav model.nav}}
+
+<style type="text/css">
+  :root {
+    --nsw-brand-supplementary: var(--nsw-palette-red-02);
+    --nsw-brand-light: var(--nsw-palette-red-04);
+  }
+</style>
 
 {{>_hero-banner
   wide=true
-  theme="dark"
+  theme="white"
+  lines=true
   heading="Helping you deliver great government services"
   copy="Find the building blocks for creating user-centred digital services, as well as policy, tools and guidance"
   cta="View Toolkit"
