@@ -30,8 +30,6 @@ model:
         <p class="nsw-intro">{{model.page.introduction}}</p>
       </div>
 
-      {{>_easy-read-read-aloud}}
-
       <nav class="nsw-in-page-nav" aria-label="On this page">
         <h2 class="nsw-in-page-nav__title">On this page</h2>
         <ul class="nsw-in-page-nav__list">
@@ -40,12 +38,6 @@ model:
           {{/each}}
         </ul>
       </nav>
-
-      <div class="nsw-block">
-        {{#each model.page.openingParagraphs}}
-        <p>{{this}}</p>
-        {{/each}}
-      </div>
 
       {{#each model.page.blocks}}
       <div class="nsw-block" id="{{id}}">
