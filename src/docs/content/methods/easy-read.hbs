@@ -6,6 +6,7 @@ order: 30
 intro: Easy Read is a content and design method for making important information easier to understand.
 model:
   easy-read-1: json/easy-read-1.json
+  easy-read-detail: json/easy-read-detail.json
 meta-description: Plan, write, design, publish and test Easy Read content using NSW Design System guidance and page templates.
 meta-index: true
 ---
@@ -145,9 +146,32 @@ meta-index: true
 
 <h3>Easy Read content block</h3>
 <p>The content block pairs one primary concept or action with a meaningful image. It supports the method but does not make a page Easy Read by itself.</p>
+<p>White content blocks can be used when you need a neutral presentation. Add a divider between blocks so each step remains visually distinct.</p>
 {{#>_docs-example separated=true}}
 <div class="nsw-easy-read-content">
-  {{>_easy-read-block model.easy-read-1}}
+  <div class="nsw-easy-read-content__block-stack">
+    {{#each model.easy-read-detail.blocks}}
+      {{#if-equals @index 0}}
+    <div class="nsw-easy-read-content__block-item">
+      {{>_easy-read-block this theme="white" headingLevel="h3"}}
+    </div>
+      {{/if-equals}}
+    {{/each}}
+    <hr class="nsw-easy-read-content__divider">
+    {{#each model.easy-read-detail.blocks}}
+      {{#if-equals @index 1}}
+    <div class="nsw-easy-read-content__block-item">
+      {{>_easy-read-block this theme="white" headingLevel="h3"}}
+    </div>
+      {{/if-equals}}
+    {{/each}}
+  </div>
+</div>
+{{/_docs-example}}
+
+{{#>_docs-example separated=true}}
+<div class="nsw-easy-read-content">
+  {{>_easy-read-block model.easy-read-1 headingLevel="h3"}}
 </div>
 {{/_docs-example}}
 
