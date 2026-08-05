@@ -1,0 +1,325 @@
+---
+title: Easy Read
+width: wide
+no-blank: true
+order: 30
+intro: Easy Read is a content and design method for making important information easier to understand.
+model:
+  coreIdeas: json/easy-read-core-ideas.json
+  easy-read-1: json/easy-read-1.json
+  easy-read-detail: json/easy-read-detail.json
+meta-description: Plan, write, design, publish and test Easy Read content using NSW Design System guidance and page templates.
+meta-index: true
+---
+
+<nav class="nsw-in-page-nav" aria-labelledby="in-page-nav">
+  <div id="in-page-nav" class="nsw-in-page-nav__title">On this page</div>
+  <ul>
+    <li><a href="#what-easy-read-is">What Easy Read is</a></li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#content-design">1. Content design</a></li>
+    <li><a href="#page-structure">2. Page structure</a></li>
+    <li><a href="#typography-and-styles">3. Typography and styles</a></li>
+    <li><a href="#accessibility-considerations">4. Accessibility considerations</a></li>
+    <li><a href="#page-templates">Page templates</a></li>
+  </ul>
+</nav>
+
+<h2 id="what-easy-read-is">What Easy Read is</h2>
+<p>Easy Read is an accessible communication format designed to reduce the cognitive effort needed to find, process and act on information. It combines concise language, predictable structure and meaningful images so each idea is easier to understand and remember.</p>
+<p>It is particularly useful for people with intellectual disability, learning disability or other cognitive disability, people with low literacy, and people learning English. Used well, it helps people make decisions, stay safe and access services with greater independence.</p>
+<div class="nsw-grid nsw-grid--spaced nsw-m-top-sm">
+  {{#each model.coreIdeas.coreIdeaBlocks}}
+  <div class="nsw-col nsw-col-md-6 nsw-col-lg-3">
+    {{>_content-block this}}
+  </div>
+  {{/each}}
+</div>
+<div class="nsw-callout nsw-m-top-md">
+  <div class="nsw-callout__content">
+    <p>View the <a href="/templates/content/easy-read/index.html" target="_blank" rel="noopener noreferrer">Easy Read templates</a> for examples and guidance on how to structure and design Easy Read content.</p>
+  </div>
+</div>
+
+<h2 id="usage">Usage</h2>
+
+<div class="nsw-grid nsw-m-top-sm">
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--do"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span><span>Use Easy Read when</span></div>
+    <ul>
+      <li>research shows the audience needs or prefers Easy Read</li>
+      <li>explaining rights, choices and responsibilities</li>
+      <li>sharing health, safety or emergency information</li>
+      <li>helping people access services or support</li>
+      <li>supporting an important task, form or application</li>
+      <li>communicating changes that affect a person's daily life</li>
+    </ul>
+  </div>
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--dont"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span><span>Don't use Easy Read when</span></div>
+    <ul>
+      <li>audience research does not support using Easy Read</li>
+      <li>simplifying would remove detail needed for a safe or informed decision</li>
+      <li>users need other formats such as specialist translations, Auslan, audio, accessible documents or personalised support</li>
+    </ul>
+  </div>
+</div>
+
+<h2 id="content-design">1. Content design</h2>
+<p>Plan the words and pictures together. Each content block should communicate one primary concept or action, and every part of the page should help people understand or use the information.</p>
+
+<h3>Writing content</h3>
+<ul>
+  <li>Write for the identified audience and the task they need to complete.</li>
+  <li>Target a reading level equivalent to school years Grade 4 to Grade 6.</li>
+  <li>Use short sentences.</li>
+  <li>Communicate one idea per sentence.</li>
+  <li>Begin new ideas on a new line or in a new paragraph.</li>
+  <li>Use common words.</li>
+  <li>Explain difficult words immediately.</li>
+  <li>Use active voice.</li>
+  <li>Avoid jargon, idioms and unexplained acronyms.</li>
+  <li>Use clear, descriptive link labels that make sense out of context.</li>
+  <li>Keep the content concise.</li>
+  <li>Test the content with people who use Easy Read.</li>
+</ul>
+<p>Keep detail pages focused. If a page becomes too long or starts covering multiple topics, split it into smaller topic or detail pages and connect them through the landing and category structure.</p>
+
+<h3>Difficult words and definitions</h3>
+<p>Use a common word when it keeps the meaning accurate. When a difficult or specialist word is necessary, make it bold the first time and explain it immediately in the next sentence. Use the same term consistently after defining it.</p>
+<p>Do not make people follow a link or open a separate glossary to understand an essential instruction.</p>
+
+<h3>Images and illustrations</h3>
+<ul>
+  <li>Choose illustrations when a simplified scene makes the concept clearer. Choose photographs when recognising a real person, place, object or action matters.</li>
+  <li>Show one concept per image and keep the visual treatment consistent across the page.</li>
+  <li>Limit unnecessary background detail and avoid text embedded in an image.</li>
+  <li>Use respectful representation and review imagery for cultural safety.</li>
+  <li>Give informative images meaningful alternative text that describes the information they add.</li>
+  <li>Only use the explicit <code>decorative</code> option when an image adds no information.</li>
+  <li>Test whether the intended audience understands each image and its relationship to the text.</li>
+</ul>
+
+<h4>Generated images</h4>
+<ul>
+  <li>Require human review before publishing.</li>
+  <li>Check for bias, stereotypes and harmful representation.</li>
+  <li>Check factual and visual accuracy, including hands, objects, labels and sequences.</li>
+  <li>Do not use generated imagery for unverified safety-critical instructions.</li>
+  <li>Confirm licensing and organisational policy requirements.</li>
+</ul>
+
+
+<h2 id="page-structure">2. Page structure</h2>
+<p>Keep Easy Read structures shallow and predictable. For small sets of content, link directly to detail pages. For larger collections, use the information architecture below.</p>
+
+<h3 id="information-architecture">Information architecture for larger collections</h3>
+<figure class="nsw-easy-read-ia">
+  <ol class="nsw-easy-read-ia__list">
+    <li>
+      <div class="nsw-easy-read-ia__node nsw-easy-read-ia__node--landing">
+        <strong>Landing page</strong>
+        <span>Shows all available topics.</span>
+      </div>
+      <ol>
+        <li>
+          <div class="nsw-easy-read-ia__node nsw-easy-read-ia__node--child nsw-easy-read-ia__node--category">
+            <strong>Category page</strong>
+            <span>Lists the detail articles for one topic.</span>
+          </div>
+          <ol>
+            <li>
+              <div class="nsw-easy-read-ia__node nsw-easy-read-ia__node--child nsw-easy-read-ia__node--detail">
+                <strong>Detail article</strong>
+                <span>Provides the Easy Read information.</span>
+              </div>
+            </li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+  </ol>
+  <figcaption>Recommended three-level information architecture for larger Easy Read collections.</figcaption>
+</figure>
+<ul>
+  <li>Do not add another category level. Keep the structure to three levels unless user evidence shows a clear need.</li>
+  <li>Use breadcrumbs on category and detail pages.</li>
+  <li>Link topics directly from the landing page.</li>
+  <li>List articles directly from their category page.</li>
+  <li>Provide a “Back to all Easy Read topics” link on category pages.</li>
+  <li>Use the final About Easy Read callout to link people to more Easy Read articles.</li>
+  <li>Avoid generic Previous and Next links or any arbitrary linear sequence.</li>
+  <li>Only use sequence navigation for a genuine ordered process. Show progress and meaningful destination titles when you do.</li>
+</ul>
+
+<h3 id="page-anatomy">Page anatomy</h3>
+<p>The following page anatomies provide guidance on the key elements that make up the Easy Read format and show how they work together across landing, category and detail pages.</p>
+
+<h4>Landing page anatomy</h4>
+<figure class="nsw-easy-read-anatomy">
+  <div class="nsw-easy-read-anatomy__browser">
+    <div class="nsw-easy-read-anatomy__browser-bar" aria-hidden="true"><span></span><span></span><span></span></div>
+    <div class="nsw-easy-read-anatomy__viewport">
+      <iframe src="/templates/content/easy-read/landing.html" title="Easy Read landing page template" loading="lazy" scrolling="no"></iframe>
+    </div>
+  </div>
+  <figcaption>The <a href="/templates/content/easy-read/landing.html" target="_blank" rel="noopener noreferrer">Easy Read landing page template</a>, shown at a reduced scale.</figcaption>
+</figure>
+
+<h4>Category page anatomy</h4>
+<figure class="nsw-easy-read-anatomy">
+  <div class="nsw-easy-read-anatomy__browser">
+    <div class="nsw-easy-read-anatomy__browser-bar" aria-hidden="true"><span></span><span></span><span></span></div>
+    <div class="nsw-easy-read-anatomy__viewport">
+      <iframe src="/templates/content/easy-read/category.html" title="Easy Read category page template" loading="lazy" scrolling="no"></iframe>
+    </div>
+  </div>
+  <figcaption>The <a href="/templates/content/easy-read/category.html" target="_blank" rel="noopener noreferrer">Easy Read category page template</a>, shown at a reduced scale.</figcaption>
+</figure>
+
+<h4>Detail page anatomy</h4>
+<figure class="nsw-easy-read-anatomy">
+  <div class="nsw-easy-read-anatomy__browser">
+    <div class="nsw-easy-read-anatomy__browser-bar" aria-hidden="true"><span></span><span></span><span></span></div>
+    <div class="nsw-easy-read-anatomy__viewport">
+      <iframe src="/templates/content/easy-read/detail.html" title="Easy Read detail page template" loading="lazy" scrolling="no"></iframe>
+    </div>
+  </div>
+  <figcaption>The <a href="/templates/content/easy-read/detail.html" target="_blank" rel="noopener noreferrer">Easy Read detail page template</a>, shown at a reduced scale.</figcaption>
+</figure>
+
+<h4>Easy Read content block</h4>
+<p>The content block pairs one primary concept or action with a meaningful image. It supports the method but does not make a page Easy Read by itself.</p>
+<p>White content blocks can be used when you need a neutral presentation. Add a divider between blocks so each step remains visually distinct.</p>
+{{#>_docs-example separated=true}}
+<div class="nsw-easy-read-content">
+  <div class="nsw-easy-read-content__block-stack">
+    {{#each model.easy-read-detail.blocks}}
+      {{#if-equals @index 0}}
+    <div class="nsw-easy-read-content__block-item">
+      {{>_easy-read-block this theme="white" headingLevel="h3"}}
+    </div>
+      {{/if-equals}}
+    {{/each}}
+    <hr class="nsw-easy-read-content__divider">
+    {{#each model.easy-read-detail.blocks}}
+      {{#if-equals @index 1}}
+    <div class="nsw-easy-read-content__block-item">
+      {{>_easy-read-block this theme="white" headingLevel="h3"}}
+    </div>
+      {{/if-equals}}
+    {{/each}}
+  </div>
+</div>
+{{/_docs-example}}
+
+{{#>_docs-example separated=true}}
+<div class="nsw-easy-read-content">
+  {{>_easy-read-block model.easy-read-1 headingLevel="h3"}}
+</div>
+{{/_docs-example}}
+
+<h4>About Easy Read callout</h4>
+<p>Finish each Easy Read content page with this callout. It explains the format and provides a route to more Easy Read articles without interrupting the main content.</p>
+<p>Use the Easy Read icon in the callout to help people identify the format. The approved icon is available to <a href="https://branding.nsw.gov.au/asset-download/?id=ba697223-0548-41ea-97ad-a60e26834bb2" target="_blank" rel="noopener noreferrer">download from the NSW Government Branding Toolkit</a>.</p>
+{{#>_docs-example separated=true}}
+<div class="nsw-easy-read-content">
+  {{>_easy-read-about
+    aboutDescription="This page uses Easy Read. Easy Read uses simple words, clear structure and meaningful pictures to make information easier to understand."
+    articlesUrl="#"
+    articlesText="View more Easy Read articles"
+  }}
+</div>
+{{/_docs-example}}
+
+<h3 id="search-results-guidance">Search results for Easy Read content</h3>
+<p>When Easy Read articles appear in search results, make the format obvious at a glance and keep category information separate.</p>
+<ul>
+  <li>Use the <strong>label</strong> to identify the format as <strong>Easy Read</strong>.</li>
+  <li>Use <strong>tags</strong> for topic categories, such as health, housing or transport.</li>
+  <li>Do not use category tags as a substitute for the Easy Read format label.</li>
+  <li>Apply this pattern consistently across search, related links and index pages that list mixed content types.</li>
+</ul>
+<p>Use the <a href="/components/list-item/index.html">list item component</a> pattern to present labels and tags consistently in result lists.</p>
+
+
+<h2 id="typography-and-styles">3. Typography and styles</h2>
+<p>The Easy Read type scale is scoped to <code>nsw-easy-read-content</code>. It increases the standard body and heading sizes by 1.25, rounded to the design system's 4px sub-grid. Landing page card titles use the H4 size so they remain distinct from body text. It does not change standard page typography. Values use <code>rem</code> so browser zoom and text resizing continue to work; the pixel values below are equivalents based on the design system's 16px reference size, not a fixed root font size.</p>
+<table aria-labelledby="typography-and-styles">
+  <thead>
+    <tr>
+      <th scope="col">Text</th>
+      <th scope="col">Viewport</th>
+      <th scope="col">Font size</th>
+      <th scope="col">Line height</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><th scope="row">Body</th><td>All</td><td>1.25rem (20px)</td><td>2rem (32px)</td></tr>
+    <tr><th scope="row">H1</th><td>Mobile</td><td>2.75rem (44px)</td><td>3.5rem (56px)</td></tr>
+    <tr><th scope="row">H1</th><td>Desktop</td><td>3.75rem (60px)</td><td>4.75rem (76px)</td></tr>
+    <tr><th scope="row">H2</th><td>Mobile</td><td>2.25rem (36px)</td><td>2.75rem (44px)</td></tr>
+    <tr><th scope="row">H2</th><td>Desktop</td><td>2.5rem (40px)</td><td>3.25rem (52px)</td></tr>
+    <tr><th scope="row">H3</th><td>Mobile</td><td>1.75rem (28px)</td><td>2.25rem (36px)</td></tr>
+    <tr><th scope="row">H3</th><td>Desktop</td><td>2rem (32px)</td><td>2.5rem (40px)</td></tr>
+    <tr><th scope="row">H4 and card title, bold</th><td>All</td><td>1.5rem (24px)</td><td>2rem (32px)</td></tr>
+  </tbody>
+</table>
+
+<h2 id="accessibility-considerations">4. Accessibility considerations</h2>
+
+<h3 id="testing-and-review">Testing and review</h3>
+<p>Use a multi-stage review: content self-review, peer review, accessibility review and usability testing. Include people with intellectual disability and other people from the identified audience. Pay them for their expertise and allow enough time and support for meaningful participation.</p>
+<p>Test the complete experience, not isolated sentences. Check comprehension, image meaning, navigation, links, downloads and the read aloud function when it is implemented.</p>
+
+<h3 id="accessibility-requirements">Accessibility requirements</h3>
+<ul>
+  <li>Use semantic headings in a logical hierarchy. Content-block titles default to H2 and only allow H3 as a controlled alternative.</li>
+  <li>Provide meaningful alternative text for every informative image and explicitly mark decorative images.</li>
+  <li>Keep the reading and focus order consistent with the visual order.</li>
+  <li>Use descriptive links and visible keyboard focus.</li>
+  <li>Support keyboard-only use, screen readers and text resizing to 200%.</li>
+  <li>Verify reflow at a 320 CSS pixel viewport and at 400% browser zoom. Where testing identifies a layout or usability issue, use the <a href="/docs/content/utilities/reflow.html">Reflow Sass mixin</a> for a targeted component adjustment.</li>
+  <li>Test light, dark and inverted themes without relying on colour alone.</li>
+  <li>Keep accessible HTML as the primary format even when documents or a read aloud function are available.</li>
+</ul>
+
+<h3 id="read-aloud-function">Read aloud function</h3>
+<p>The templates include a compact visual placeholder for a read aloud function. It represents the approximate footprint of the control but is not interactive.</p>
+<p>Choose a service that meets user needs and complete procurement, privacy, security and technical reviews before integration.</p>
+<ul>
+  <li>Place the read aloud function near the beginning of the Easy Read content.</li>
+  <li>Configure the reading area so unrelated navigation and interface content are excluded.</li>
+  <li>Ensure the reading order follows the DOM.</li>
+  <li>Test keyboard access.</li>
+  <li>Test pause, stop and speed controls where provided.</li>
+  <li>Test word or sentence highlighting where provided.</li>
+  <li>Do not treat the read aloud function as a replacement for semantic HTML or screen-reader testing.</li>
+</ul>
+
+<h3 id="downloadable-formats">Downloadable formats</h3>
+<p>Accessible HTML is the primary version. Supply an accessible PDF or Word version when user needs require it. EPUB can be useful for long-form or collected content.</p>
+<p>Accessible EPUBs should conform to EPUB Accessibility 1.1 and preferably WCAG 2.2 AA. Label every file with its format, size and updated date.</p>
+<div class="nsw-callout">
+  <div class="nsw-callout__content">
+    <p class="nsw-h4">Static download example</p>
+    <p><a href="/assets/downloads/how-to-cut-vegetables-safely.epub" download>Download How to Cut Vegetables Safely (EPUB, 367 KB, updated 20 July 2026)</a></p>
+  </div>
+</div>
+<p>This pre-generated example contains the same content and illustrations as the <a href="/templates/content/easy-read/detail.html" target="_blank" rel="noopener noreferrer">Easy Read detail article template</a>. Use it to review the package structure and reading experience. Creation, accessibility checks and versioning belong in the CMS or build system. Do not generate a “download all” bundle in the browser.</p>
+
+<h2 id="page-templates">Page templates</h2>
+<p>Start from the Easy Read templates landing page to choose the template that matches the page's place in the information architecture.</p>
+<div class="nsw-grid nsw-m-top-md">
+  <div class="nsw-col nsw-col-md-8 nsw-col-lg-4">
+    <div class="nsw-card nsw-card--headline">
+      <div class="nsw-card__content">
+        <div class="nsw-card__title">
+          <a target="_blank" rel="noopener noreferrer" href="/templates/content/easy-read/index.html">Easy Read templates</a>
+        </div>
+        <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span>
+      </div>
+    </div>
+  </div>
+</div>
+

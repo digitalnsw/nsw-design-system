@@ -1,0 +1,23 @@
+<section class="nsw-easy-read-about nsw-callout nsw-callout--light">
+  <div class="nsw-callout__content">
+    <h2 class="nsw-callout__title">{{#if aboutTitle}}{{aboutTitle}}{{else}}About Easy Read{{/if}}</h2>
+    {{#if aboutDescription}}
+    <p>{{{aboutDescription}}}</p>
+    {{else}}
+    <p>{{#if aboutIntroduction}}{{aboutIntroduction}}{{else}}This page uses Easy Read.{{/if}}</p>
+    <p>{{#if aboutExplanation}}{{aboutExplanation}}{{else}}Easy Read uses simple words and pictures to explain information.{{/if}}</p>
+    {{/if}}
+    {{#if standardUrl}}
+    <p><a href="{{standardUrl}}">{{#if standardText}}{{standardText}}{{else}}Read the standard version of this information{{/if}}</a></p>
+    {{/if}}
+    {{#if moreInfoUrl}}
+    <p><a href="{{moreInfoUrl}}">{{#if moreInfoText}}{{moreInfoText}}{{else}}Learn more about Easy Read{{/if}}</a></p>
+    {{/if}}
+    {{#if downloadUrl}}
+    <p><a href="{{downloadUrl}}">{{#if downloadText}}{{downloadText}}{{else}}Download this Easy Read information{{/if}}</a></p>
+    {{/if}}
+    {{#if articlesUrl}}
+    <p><a href="{{articlesUrl}}">{{#if articlesText}}{{articlesText}}{{else}}View more Easy Read articles{{/if}}</a></p>
+    {{/if}}
+  </div>
+</section>

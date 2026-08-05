@@ -1,0 +1,121 @@
+@use '../../../../global/scss/tools' as nsw;
+
+.nsw-easy-read-anatomy {
+  --nsw-easy-read-anatomy-scale: 0.4;
+  --nsw-easy-read-anatomy-height: #{nsw.rem(1180px)};
+
+  width: 60%;
+  margin: nsw.rem(24px) 0 0;
+
+  &__browser {
+    overflow: hidden;
+    border: 1px solid var(--nsw-grey-04);
+    border-radius: var(--nsw-border-radius);
+    background-color: var(--nsw-text-light);
+  }
+
+  &__browser-bar {
+    display: flex;
+    min-height: nsw.rem(24px);
+    padding: nsw.rem(6px) nsw.rem(10px);
+    gap: nsw.rem(5px);
+    align-items: center;
+    border-bottom: 1px solid var(--nsw-grey-04);
+    background-color: var(--nsw-grey-03);
+
+    span {
+      width: nsw.rem(5px);
+      height: nsw.rem(5px);
+      border-radius: 50%;
+      background-color: var(--nsw-grey-01);
+    }
+  }
+
+  &__viewport {
+    height: var(--nsw-easy-read-anatomy-height);
+    overflow: hidden;
+    background-color: var(--nsw-text-light);
+  }
+
+  iframe {
+    width: calc(100% / var(--nsw-easy-read-anatomy-scale));
+    height: calc(100% / var(--nsw-easy-read-anatomy-scale));
+    border: 0;
+    display: block;
+    transform: scale(var(--nsw-easy-read-anatomy-scale));
+    transform-origin: top left;
+    overscroll-behavior: none;
+  }
+
+  figcaption {
+    margin-top: nsw.rem(12px);
+  }
+}
+
+.nsw-easy-read-ia {
+  max-width: nsw.rem(720px);
+  margin: nsw.rem(24px) 0 0;
+
+  ol {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  ol ol {
+    padding-left: nsw.rem(40px);
+    margin-top: nsw.rem(12px);
+  }
+
+  &__node--child {
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: 100%;
+      width: nsw.rem(22px);
+      border-top: nsw.rem(2px) solid var(--nsw-grey-02);
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 50%;
+      left: nsw.rem(-22px);
+      height: calc(50% + #{nsw.rem(12px)});
+      border-left: nsw.rem(2px) solid var(--nsw-grey-02);
+    }
+  }
+
+  &__node {
+    width: 100%;
+    max-width: nsw.rem(360px);
+    padding: nsw.rem(16px) nsw.rem(20px);
+    background-color: var(--nsw-palette-blue-01);
+    color: var(--nsw-text-light);
+
+    strong,
+    span {
+      display: block;
+    }
+
+    span {
+      margin-top: nsw.rem(4px);
+    }
+  }
+
+  &__node--category {
+    background-color: var(--nsw-palette-blue-02);
+  }
+
+  &__node--detail {
+    background-color: var(--nsw-palette-blue-03);
+    color: var(--nsw-text-dark);
+  }
+
+  figcaption {
+    margin-top: nsw.rem(12px);
+  }
+}

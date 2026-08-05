@@ -276,6 +276,12 @@ const searchValues = [
     url: '/docs/content/methods/charts-and-graphs.html',
   },
   {
+    label: 'Easy Read',
+    template: 'result',
+    keywords: 'Easy Read method, Easy Read guidance, Easy Read format, accessible information, cognitive accessibility, intellectual disability, low literacy, simple words, plain language, meaningful pictures, image and text, content blocks, nsw-easy-read-content, information architecture, page anatomy, content design, illustrations, photographs, Easy Read icon, read aloud, EPUB, downloadable formats, accessibility, testing, co-design',
+    url: '/docs/content/methods/easy-read.html',
+  },
+  {
     label: 'You are here',
     template: 'result',
     keywords: 'Where am I, Where can I go, Who is speaking, orientate, Breadcrumbs, Hero banner, Typography, hierarchy, navigation, Main navigation, Side navigation',
@@ -286,6 +292,12 @@ const searchValues = [
     template: 'result',
     keywords: 'Homepage, Content, Search, Sample, Example, Hero banner, Featured list, Hero search, Simple, Filters, No results, Side navigation, Article, Filters, Form, Maps, Location, primary, sub filters, Equal value filters, Theming, Masterbrand,Full page, Content, Partial',
     url: '/templates/index.html',
+  },
+  {
+    label: 'Easy Read templates',
+    template: 'result',
+    keywords: 'Easy Read page templates, Easy Read landing page, Easy Read category page, Easy Read detail article, Easy Read article template, accessible travel, public transport, Opal card, transport card, TAFE, education, course application, long article, cognitive load, transparent illustrations, illustrations, photographs, example pages, content template',
+    url: '/templates/content/easy-read/index.html',
   },
   {
     label: 'What is Design System',

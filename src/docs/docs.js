@@ -7,6 +7,60 @@ import ColorSwatches from './color-swatches'
 document.documentElement.classList.add('material-icons-loading')
 
 function initDocs() {
+  function initEasyReadAnatomyHeight() {
+    const anatomyIframes = document.querySelectorAll('.nsw-easy-read-anatomy iframe')
+
+    if (!anatomyIframes.length) return
+
+    const getPageHeight = (doc) => Math.max(
+      doc.body.scrollHeight,
+      doc.body.offsetHeight,
+      doc.documentElement.clientHeight,
+      doc.documentElement.scrollHeight,
+      doc.documentElement.offsetHeight
+    )
+
+    const getIframeDocument = (iframe) => {
+      try {
+        return iframe.contentDocument || iframe.contentWindow.document
+      } catch (error) {
+        return null
+      }
+    }
+
+    const updateAnatomyHeight = (iframe) => {
+      const viewport = iframe.closest('.nsw-easy-read-anatomy__viewport')
+      const anatomy = iframe.closest('.nsw-easy-read-anatomy')
+      const doc = getIframeDocument(iframe)
+
+      if (!viewport || !anatomy || !doc) return
+
+      const scale = parseFloat(getComputedStyle(anatomy).getPropertyValue('--nsw-easy-read-anatomy-scale')) || 0.3
+
+      // Break circular sizing: shrink before measuring so vh/min-height rules do not lock to an older large height.
+      iframe.style.height = '1px'
+      const height = getPageHeight(doc)
+
+      iframe.style.height = `${height}px`
+      viewport.style.setProperty('--nsw-easy-read-anatomy-height', `${Math.ceil(height * scale)}px`)
+    }
+
+    anatomyIframes.forEach((iframe) => {
+      const resize = () => updateAnatomyHeight(iframe)
+
+      iframe.addEventListener('load', () => {
+        resize()
+        requestAnimationFrame(resize)
+        window.setTimeout(resize, 250)
+      })
+
+      const doc = getIframeDocument(iframe)
+      if (doc && doc.readyState === 'complete') resize()
+
+      window.addEventListener('resize', resize)
+    })
+  }
+
   const codeButtons = document.querySelectorAll('.js-code-button')
 
   codeButtons.forEach((button) => {
@@ -411,6 +465,8 @@ function initDocs() {
     window.NSW.QuickExit.init(opts)
   })
   // --- End Quick Exit ---
+
+  initEasyReadAnatomyHeight()
 }
 
 initDocs()
