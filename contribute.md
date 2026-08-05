@@ -29,7 +29,7 @@ Wherever you are, and whatever your discipline is, you are invited to contribute
 
 ## Contributing a new component
 
-The NSW Design System was created for you as a toolkit of style, patterns, standards and guidance for everyone creating distinctly NSW digital products and services. We are the caretakers and publishers of the design system. To help us with the upkeep we need a few things from newly proposed component contributions. One of our goals is to ensure a welcoming environment for all contributors to our projects. If you’re unsure about anything, just ask us via the NSW Design System Community where the entire team will engage with you. 
+The NSW Design System was created for you as a toolkit of style, patterns, standards and guidance for everyone creating distinctly NSW digital products and services. We are the caretakers and publishers of the design system. To help us with the upkeep we need a few things from newly proposed component contributions. One of our goals is to ensure a welcoming environment for all contributors to our projects. If you’re unsure about anything, contact us at [designsystem@customerservice.nsw.gov.au](mailto:designsystem@customerservice.nsw.gov.au).
 
 We appreciate all well intended contributions.
 
@@ -58,9 +58,9 @@ Before new components and patterns are published into the design system, the tea
 | [Considered](#considered) | Documentation and rationale have been provided. |
 
 ### Supporting evidence
-When making a new component, we would be very grateful if you post the research, design decisions and use cases for the component. Accessibility considerations should be documented before submitting a pull request.
+When making a new component, include the research, design decisions and use cases for the component in your proposal. Accessibility considerations should be documented before submitting a pull request.
 
-This may be in the form of a code snippet, screenshots, sketch/figma files or written text on your research with references. This gives a chance for members of the community to respond and share any work they may have done in the past on a similar pattern or component.
+This may be in the form of a code snippet, screenshots, sketch/figma files or written text on your research with references. This gives the Design System team a chance to respond and connect you with community members who may have worked on a similar pattern or component.
 
 -------------------------------------------------------------------------------------------------
 
@@ -176,11 +176,11 @@ Provide rationale; the more the better. We aim to explain design and code decisi
 
 ## Reporting Bugs, Asking Questions, Sending Suggestions
 
-Sign up to the [NSW Design System Community](https://community.designsystem.nsw.gov.au/) to get started.  Once signed up, you will be able to raise bugs, suggest patterns and generally contribute to the Design System as a whole. 
+To get started, contact [designsystem@customerservice.nsw.gov.au](mailto:designsystem@customerservice.nsw.gov.au) with questions or component and pattern suggestions.
 
-For issues and bugs, Search our issues tracker on GitHub to see if the same bug has already been raised.  If not, raise the bug directly in the [Report a bug](https://community.designsystem.nsw.gov.au/c/components/report-a-bug/27) section of the community platform. Please provide specific steps to reproduce the bug and what your expected behaviour is.
+For issues and bugs, search our [issues tracker on GitHub](https://github.com/digitalnsw/nsw-design-system/issues) to see if the same bug has already been raised. If not, raise a new issue. Please provide specific steps to reproduce the bug and describe your expected behaviour.
 
-You can also suggest a pattern via the NSW Design System Community platform in [Suggest a pattern](https://community.designsystem.nsw.gov.au/c/components/suggest-a-component/9). 
+You can suggest a pattern by emailing [designsystem@customerservice.nsw.gov.au](mailto:designsystem@customerservice.nsw.gov.au).
 
 
 -------------------------------------------------------------------------------------------------
