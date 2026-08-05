@@ -145,6 +145,11 @@
     keywords: 'list, sort, counter, filter',
     url: '/components/results-bar/index.html'
   }, {
+    label: 'Show more',
+    template: 'result',
+    keywords: 'disclosure, show less, expand, collapse, progressive disclosure, supplementary content, optional details',
+    url: '/components/show-more/index.html'
+  }, {
     label: 'Side navigation',
     template: 'result',
     keywords: 'hierarchy, Single, Multiple, level, nesting, nav',
@@ -1036,22 +1041,6 @@
   // Prevent icon flash: hide icons until font loads
   document.documentElement.classList.add('material-icons-loading');
   function initDocs() {
-    const codeButtons = document.querySelectorAll('.js-code-button');
-    codeButtons.forEach(button => {
-      const code = button.nextElementSibling;
-      const text = button.querySelector('span');
-      button.addEventListener('click', () => {
-        if (code.classList.contains('active')) {
-          button.classList.remove('active');
-          code.classList.remove('active');
-          text.textContent = 'Show code';
-        } else {
-          button.classList.add('active');
-          code.classList.add('active');
-          text.textContent = 'Hide code';
-        }
-      }, false);
-    });
     const copyButtons = document.querySelectorAll('.js-code-copy');
     copyButtons.forEach(button => {
       const code = button.nextElementSibling;

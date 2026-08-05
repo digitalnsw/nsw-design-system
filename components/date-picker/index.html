@@ -315,6 +315,7 @@
                   <li><a href="https://designsystem.nsw.gov.au/components/quick-exit/index.html"><span>Quick exit</span></a></li>
                   <li><a href="https://designsystem.nsw.gov.au/components/results-bar/index.html"><span>Results bar</span></a></li>
                   <li><a href="https://designsystem.nsw.gov.au/components/select/index.html"><span>Select</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/components/show-more/index.html"><span>Show more</span></a></li>
                   <li><a href="https://designsystem.nsw.gov.au/components/side-nav/index.html"><span>Side navigation</span></a></li>
                   <li><a href="https://designsystem.nsw.gov.au/components/status-labels/index.html"><span>Status labels</span></a></li>
                   <li><a href="https://designsystem.nsw.gov.au/components/steps/index.html"><span>Steps</span></a></li>
@@ -496,16 +497,16 @@
 <p>By default, the calendar widget shows the full English name of the months; if you wish to change this default (e.g., passing a short version of the label or using a different language), add a data-months attribute to the .nsw-date-input element with the comma-separated list of the labels you want to use:</p>
 
 <div class="nsw-docs-code">
-  <div class="nsw-docs-code__content active">
+  <div class="nsw-docs-code__content">
     <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
       <span>Copy</span>
       <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
     </button>
-    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`<div class="nsw-date-input js-date-input" data-months="Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec">
+    <div class="nsw-docs-code__copy" aria-hidden="true" tabindex="-1"><script>document.write((`<div class="nsw-date-input js-date-input" data-months="Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec">
   <!-- ... -->
 </div>
 `).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
-    <div class="nsw-docs-code__wrapper">
+    <div class="nsw-docs-code__wrapper" tabindex="0">
 <pre><code class="html"><script>document.write((`<div class="nsw-date-input js-date-input" data-months="Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec">
   <!-- ... -->
 </div>
@@ -519,16 +520,16 @@
 <p>By default, the date format of the text input field is 'dd/mm/yyyy'; if you want to change this order (e.g., yyyy/mm/dd), add a data-date-format attribute to the .nsw-date-input element with the new order you want to use:</p>
 
 <div class="nsw-docs-code">
-  <div class="nsw-docs-code__content active">
+  <div class="nsw-docs-code__content">
     <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
       <span>Copy</span>
       <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
     </button>
-    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`<div class="nsw-date-input js-date-input" data-date-format="y-m-d">
+    <div class="nsw-docs-code__copy" aria-hidden="true" tabindex="-1"><script>document.write((`<div class="nsw-date-input js-date-input" data-date-format="y-m-d">
   <!-- ... -->
 </div>​​
 `).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
-    <div class="nsw-docs-code__wrapper">
+    <div class="nsw-docs-code__wrapper" tabindex="0">
 <pre><code class="html"><script>document.write((`<div class="nsw-date-input js-date-input" data-date-format="y-m-d">
   <!-- ... -->
 </div>​​
@@ -542,16 +543,16 @@
 <p>By default, the slash ('/') is used as date separator; if you want to use a different character (e.g., '-'), add a data-date-separator attribute to the .nsw-date-input element:</p>
 
 <div class="nsw-docs-code">
-  <div class="nsw-docs-code__content active">
+  <div class="nsw-docs-code__content">
     <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
       <span>Copy</span>
       <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
     </button>
-    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`<div class="nsw-date-input js-date-input" data-date-separator="-">
+    <div class="nsw-docs-code__copy" aria-hidden="true" tabindex="-1"><script>document.write((`<div class="nsw-date-input js-date-input" data-date-separator="-">
   <!-- ... -->
 </div>
 `).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
-    <div class="nsw-docs-code__wrapper">
+    <div class="nsw-docs-code__wrapper" tabindex="0">
 <pre><code class="html"><script>document.write((`<div class="nsw-date-input js-date-input" data-date-separator="-">
   <!-- ... -->
 </div>
@@ -571,16 +572,16 @@
 <p>If you want to specify an earliest possible date for the calendar, add a data-min-date attribute to the .nsw-date-input element:</p>
 
 <div class="nsw-docs-code">
-  <div class="nsw-docs-code__content active">
+  <div class="nsw-docs-code__content">
     <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
       <span>Copy</span>
       <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
     </button>
-    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`<div class="nsw-date-input js-date-input" data-min-date="02/01/2024">
+    <div class="nsw-docs-code__copy" aria-hidden="true" tabindex="-1"><script>document.write((`<div class="nsw-date-input js-date-input" data-min-date="02/01/2024">
   <!-- ... -->
 </div>
 `).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
-    <div class="nsw-docs-code__wrapper">
+    <div class="nsw-docs-code__wrapper" tabindex="0">
 <pre><code class="html"><script>document.write((`<div class="nsw-date-input js-date-input" data-min-date="02/01/2024">
   <!-- ... -->
 </div>
@@ -593,16 +594,16 @@
 </p>
 
 <div class="nsw-docs-code">
-  <div class="nsw-docs-code__content active">
+  <div class="nsw-docs-code__content">
     <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
       <span>Copy</span>
       <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
     </button>
-    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`<div class="nsw-date-input js-date-input" data-max-date="30/01/2024">
+    <div class="nsw-docs-code__copy" aria-hidden="true" tabindex="-1"><script>document.write((`<div class="nsw-date-input js-date-input" data-max-date="30/01/2024">
   <!-- ... -->
 </div>
 `).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
-    <div class="nsw-docs-code__wrapper">
+    <div class="nsw-docs-code__wrapper" tabindex="0">
 <pre><code class="html"><script>document.write((`<div class="nsw-date-input js-date-input" data-max-date="30/01/2024">
   <!-- ... -->
 </div>
@@ -616,16 +617,16 @@
 <p>The value of this attribute should be a space-separated list of dates in the format you specify in data-date-format or the default, d-m-y.</p>
 
 <div class="nsw-docs-code">
-  <div class="nsw-docs-code__content active">
+  <div class="nsw-docs-code__content">
     <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
       <span>Copy</span>
       <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
     </button>
-    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`<div class="nsw-date-input js-date-input" data-dates-disabled="18/01/2024 19/01/2024 20/01/2025">
+    <div class="nsw-docs-code__copy" aria-hidden="true" tabindex="-1"><script>document.write((`<div class="nsw-date-input js-date-input" data-dates-disabled="18/01/2024 19/01/2024 20/01/2025">
   <!-- ... -->
 </div>
 `).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
-    <div class="nsw-docs-code__wrapper">
+    <div class="nsw-docs-code__wrapper" tabindex="0">
 <pre><code class="html"><script>document.write((`<div class="nsw-date-input js-date-input" data-dates-disabled="18/01/2024 19/01/2024 20/01/2025">
   <!-- ... -->
 </div>
@@ -789,16 +790,19 @@
     </div>  </div>
 </div>
 <div class="nsw-docs-code">
-  <button class="nsw-link nsw-link--button nsw-link--icon nsw-small js-code-button">
-    <span>Show code</span>
-    <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
-  </button>
-  <div class="nsw-docs-code__content">
-    <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
-      <span>Copy</span>
-      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
-    </button>
-    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`<div class="nsw-date-input js-date-input">
+  <div class="nsw-show-more">
+    <details class="nsw-show-more__details">
+      <summary class="nsw-show-more__toggle">
+        <span class="nsw-show-more__toggle-text nsw-show-more__toggle-text--show">Show code</span>
+        <span class="nsw-show-more__toggle-text nsw-show-more__toggle-text--hide">Hide code</span>
+        <span class="material-icons nsw-material-icons nsw-show-more__icon" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
+      </summary>
+      <div class="nsw-show-more__content nsw-docs-code__content">
+        <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
+          <span>Copy</span>
+          <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
+        </button>
+        <div class="nsw-docs-code__copy" aria-hidden="true" tabindex="-1"><script>document.write((`<div class="nsw-date-input js-date-input">
   <legend>
     <label for="date-input-1" class="nsw-form__label">Select date</label>
     <span id="date-input-1-helper-text" class="nsw-form__helper">Use dd/mm/yyyy format. For example 28/10/2024</span>
@@ -812,7 +816,7 @@
     </button>
   </div>
 </div>`).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
-    <div class="nsw-docs-code__wrapper">
+        <div class="nsw-docs-code__wrapper" tabindex="0">
 <pre><code class="html"><script>document.write((`<div class="nsw-date-input js-date-input">
   <legend>
     <label for="date-input-1" class="nsw-form__label">Select date</label>
@@ -827,7 +831,9 @@
     </button>
   </div>
 </div>`).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
-    </div>
+        </div>
+      </div>
+    </details>
   </div>
 </div>
 
@@ -856,16 +862,19 @@
     </div>  </div>
 </div>
 <div class="nsw-docs-code">
-  <button class="nsw-link nsw-link--button nsw-link--icon nsw-small js-code-button">
-    <span>Show code</span>
-    <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
-  </button>
-  <div class="nsw-docs-code__content">
-    <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
-      <span>Copy</span>
-      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
-    </button>
-    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`<div class="nsw-date-input js-date-input" data-min-date="02/01/2024" data-max-date="28/01/2024" data-dates-disabled="18/01/2024 19/01/2024 20/01/2024">
+  <div class="nsw-show-more">
+    <details class="nsw-show-more__details">
+      <summary class="nsw-show-more__toggle">
+        <span class="nsw-show-more__toggle-text nsw-show-more__toggle-text--show">Show code</span>
+        <span class="nsw-show-more__toggle-text nsw-show-more__toggle-text--hide">Hide code</span>
+        <span class="material-icons nsw-material-icons nsw-show-more__icon" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
+      </summary>
+      <div class="nsw-show-more__content nsw-docs-code__content">
+        <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
+          <span>Copy</span>
+          <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
+        </button>
+        <div class="nsw-docs-code__copy" aria-hidden="true" tabindex="-1"><script>document.write((`<div class="nsw-date-input js-date-input" data-min-date="02/01/2024" data-max-date="28/01/2024" data-dates-disabled="18/01/2024 19/01/2024 20/01/2024">
   <legend>
     <label for="date-input-2" class="nsw-form__label">Select date</label>
     <span id="date-input-2-helper-text" class="nsw-form__helper">Use dd/mm/yyyy format. For example 28/10/2024</span>
@@ -879,7 +888,7 @@
     </button>
   </div>
 </div>`).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
-    <div class="nsw-docs-code__wrapper">
+        <div class="nsw-docs-code__wrapper" tabindex="0">
 <pre><code class="html"><script>document.write((`<div class="nsw-date-input js-date-input" data-min-date="02/01/2024" data-max-date="28/01/2024" data-dates-disabled="18/01/2024 19/01/2024 20/01/2024">
   <legend>
     <label for="date-input-2" class="nsw-form__label">Select date</label>
@@ -894,7 +903,9 @@
     </button>
   </div>
 </div>`).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
-    </div>
+        </div>
+      </div>
+    </details>
   </div>
 </div>
 
@@ -932,16 +943,19 @@
   </div>
 </div>
 <div class="nsw-docs-code">
-  <button class="nsw-link nsw-link--button nsw-link--icon nsw-small js-code-button">
-    <span>Show code</span>
-    <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
-  </button>
-  <div class="nsw-docs-code__content">
-    <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
-      <span>Copy</span>
-      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
-    </button>
-    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`
+  <div class="nsw-show-more">
+    <details class="nsw-show-more__details">
+      <summary class="nsw-show-more__toggle">
+        <span class="nsw-show-more__toggle-text nsw-show-more__toggle-text--show">Show code</span>
+        <span class="nsw-show-more__toggle-text nsw-show-more__toggle-text--hide">Hide code</span>
+        <span class="material-icons nsw-material-icons nsw-show-more__icon" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
+      </summary>
+      <div class="nsw-show-more__content nsw-docs-code__content">
+        <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
+          <span>Copy</span>
+          <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
+        </button>
+        <div class="nsw-docs-code__copy" aria-hidden="true" tabindex="-1"><script>document.write((`
 <fieldset class="nsw-form__date nsw-date-input js-date-input">
   <legend>
     <span class="nsw-form__label">Start date</span>
@@ -968,7 +982,7 @@
   </div>
 </fieldset>
 `).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
-    <div class="nsw-docs-code__wrapper">
+        <div class="nsw-docs-code__wrapper" tabindex="0">
 <pre><code class="html"><script>document.write((`
 <fieldset class="nsw-form__date nsw-date-input js-date-input">
   <legend>
@@ -996,7 +1010,9 @@
   </div>
 </fieldset>
 `).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
-    </div>
+        </div>
+      </div>
+    </details>
   </div>
 </div>
 

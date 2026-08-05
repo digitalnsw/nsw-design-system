@@ -315,6 +315,7 @@
                   <li><a href="https://designsystem.nsw.gov.au/components/quick-exit/index.html"><span>Quick exit</span></a></li>
                   <li><a href="https://designsystem.nsw.gov.au/components/results-bar/index.html"><span>Results bar</span></a></li>
                   <li><a href="https://designsystem.nsw.gov.au/components/select/index.html"><span>Select</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/components/show-more/index.html"><span>Show more</span></a></li>
                   <li><a href="https://designsystem.nsw.gov.au/components/side-nav/index.html"><span>Side navigation</span></a></li>
                   <li><a href="https://designsystem.nsw.gov.au/components/status-labels/index.html"><span>Status labels</span></a></li>
                   <li><a href="https://designsystem.nsw.gov.au/components/steps/index.html"><span>Steps</span></a></li>
@@ -480,17 +481,17 @@
   <li class="nsw-m-bottom-sm">Add <code>js-side-nav</code> class to the parent <code>&lt;div&gt;</code> element containing the side navigation.</li>
   <li class="nsw-m-bottom-md">Insert the toggle button as the first child inside the existing <code>.nsw-side-nav</code> element. Ensure the button label reflects the page title where the side navigation appears:
 <div class="nsw-docs-code">
-  <div class="nsw-docs-code__content active">
+  <div class="nsw-docs-code__content">
     <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
       <span>Copy</span>
       <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
     </button>
-    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`&lt;button class="nsw-side-nav__toggle" aria-expanded="false"&gt;
-&lt;span&gt;[Page title]&lt;/span&gt;
+    <div class="nsw-docs-code__copy" aria-hidden="true" tabindex="-1"><script>document.write((`&lt;button class="nsw-side-nav__toggle" aria-expanded="false"&gt;
+  &lt;span&gt;[Page title]&lt;/span&gt;
 &lt;/button&gt;`).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
-    <div class="nsw-docs-code__wrapper">
-<pre><code class="true"><script>document.write((`&lt;button class="nsw-side-nav__toggle" aria-expanded="false"&gt;
-&lt;span&gt;[Page title]&lt;/span&gt;
+    <div class="nsw-docs-code__wrapper" tabindex="0">
+<pre><code class="html"><script>document.write((`&lt;button class="nsw-side-nav__toggle" aria-expanded="false"&gt;
+  &lt;span&gt;[Page title]&lt;/span&gt;
 &lt;/button&gt;`).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
     </div>
   </div>
@@ -545,16 +546,19 @@
   </div>
 </div>
 <div class="nsw-docs-code">
-  <button class="nsw-link nsw-link--button nsw-link--icon nsw-small js-code-button">
-    <span>Show code</span>
-    <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
-  </button>
-  <div class="nsw-docs-code__content">
-    <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
-      <span>Copy</span>
-      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
-    </button>
-    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`<nav class="nsw-side-nav js-side-nav" aria-labelledby="sksm726ns">
+  <div class="nsw-show-more">
+    <details class="nsw-show-more__details">
+      <summary class="nsw-show-more__toggle">
+        <span class="nsw-show-more__toggle-text nsw-show-more__toggle-text--show">Show code</span>
+        <span class="nsw-show-more__toggle-text nsw-show-more__toggle-text--hide">Hide code</span>
+        <span class="material-icons nsw-material-icons nsw-show-more__icon" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
+      </summary>
+      <div class="nsw-show-more__content nsw-docs-code__content">
+        <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
+          <span>Copy</span>
+          <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
+        </button>
+        <div class="nsw-docs-code__copy" aria-hidden="true" tabindex="-1"><script>document.write((`<nav class="nsw-side-nav js-side-nav" aria-labelledby="sksm726ns">
   <button class="nsw-side-nav__toggle" aria-expanded="false">
     <span>Agile Methodology</span>
   </button>
@@ -580,7 +584,7 @@
   </ul>
 </nav>
 `).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
-    <div class="nsw-docs-code__wrapper">
+        <div class="nsw-docs-code__wrapper" tabindex="0">
 <pre><code class="html"><script>document.write((`<nav class="nsw-side-nav js-side-nav" aria-labelledby="sksm726ns">
   <button class="nsw-side-nav__toggle" aria-expanded="false">
     <span>Agile Methodology</span>
@@ -607,7 +611,9 @@
   </ul>
 </nav>
 `).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
-    </div>
+        </div>
+      </div>
+    </details>
   </div>
 </div>
 
@@ -658,16 +664,19 @@
   </div>
 </div>
 <div class="nsw-docs-code">
-  <button class="nsw-link nsw-link--button nsw-link--icon nsw-small js-code-button">
-    <span>Show code</span>
-    <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
-  </button>
-  <div class="nsw-docs-code__content">
-    <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
-      <span>Copy</span>
-      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
-    </button>
-    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`<nav class="nsw-side-nav js-side-nav" aria-labelledby="sksm7sss26ns">
+  <div class="nsw-show-more">
+    <details class="nsw-show-more__details">
+      <summary class="nsw-show-more__toggle">
+        <span class="nsw-show-more__toggle-text nsw-show-more__toggle-text--show">Show code</span>
+        <span class="nsw-show-more__toggle-text nsw-show-more__toggle-text--hide">Hide code</span>
+        <span class="material-icons nsw-material-icons nsw-show-more__icon" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
+      </summary>
+      <div class="nsw-show-more__content nsw-docs-code__content">
+        <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
+          <span>Copy</span>
+          <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
+        </button>
+        <div class="nsw-docs-code__copy" aria-hidden="true" tabindex="-1"><script>document.write((`<nav class="nsw-side-nav js-side-nav" aria-labelledby="sksm7sss26ns">
   <button class="nsw-side-nav__toggle" aria-expanded="false">
     <span>About DPC</span>
   </button>
@@ -707,7 +716,7 @@
   </ul>
 </nav>
 `).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
-    <div class="nsw-docs-code__wrapper">
+        <div class="nsw-docs-code__wrapper" tabindex="0">
 <pre><code class="html"><script>document.write((`<nav class="nsw-side-nav js-side-nav" aria-labelledby="sksm7sss26ns">
   <button class="nsw-side-nav__toggle" aria-expanded="false">
     <span>About DPC</span>
@@ -748,7 +757,9 @@
   </ul>
 </nav>
 `).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
-    </div>
+        </div>
+      </div>
+    </details>
   </div>
 </div>
 
@@ -824,16 +835,19 @@
   </div>
 </div>
 <div class="nsw-docs-code">
-  <button class="nsw-link nsw-link--button nsw-link--icon nsw-small js-code-button">
-    <span>Show code</span>
-    <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
-  </button>
-  <div class="nsw-docs-code__content">
-    <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
-      <span>Copy</span>
-      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
-    </button>
-    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`<nav class="nsw-side-nav js-side-nav" aria-labelledby="sksm7sss27ns">
+  <div class="nsw-show-more">
+    <details class="nsw-show-more__details">
+      <summary class="nsw-show-more__toggle">
+        <span class="nsw-show-more__toggle-text nsw-show-more__toggle-text--show">Show code</span>
+        <span class="nsw-show-more__toggle-text nsw-show-more__toggle-text--hide">Hide code</span>
+        <span class="material-icons nsw-material-icons nsw-show-more__icon" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
+      </summary>
+      <div class="nsw-show-more__content nsw-docs-code__content">
+        <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
+          <span>Copy</span>
+          <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
+        </button>
+        <div class="nsw-docs-code__copy" aria-hidden="true" tabindex="-1"><script>document.write((`<nav class="nsw-side-nav js-side-nav" aria-labelledby="sksm7sss27ns">
   <button class="nsw-side-nav__toggle" aria-expanded="false">
     <span>Service Design</span>
   </button>
@@ -898,7 +912,7 @@
   </ul>
 </nav>
 `).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
-    <div class="nsw-docs-code__wrapper">
+        <div class="nsw-docs-code__wrapper" tabindex="0">
 <pre><code class="html"><script>document.write((`<nav class="nsw-side-nav js-side-nav" aria-labelledby="sksm7sss27ns">
   <button class="nsw-side-nav__toggle" aria-expanded="false">
     <span>Service Design</span>
@@ -964,7 +978,9 @@
   </ul>
 </nav>
 `).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
-    </div>
+        </div>
+      </div>
+    </details>
   </div>
 </div>
 

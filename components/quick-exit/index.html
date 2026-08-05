@@ -315,6 +315,7 @@
                   <li><a href="https://designsystem.nsw.gov.au/components/quick-exit/index.html"><span>Quick exit</span></a></li>
                   <li><a href="https://designsystem.nsw.gov.au/components/results-bar/index.html"><span>Results bar</span></a></li>
                   <li><a href="https://designsystem.nsw.gov.au/components/select/index.html"><span>Select</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/components/show-more/index.html"><span>Show more</span></a></li>
                   <li><a href="https://designsystem.nsw.gov.au/components/side-nav/index.html"><span>Side navigation</span></a></li>
                   <li><a href="https://designsystem.nsw.gov.au/components/status-labels/index.html"><span>Status labels</span></a></li>
                   <li><a href="https://designsystem.nsw.gov.au/components/steps/index.html"><span>Steps</span></a></li>
@@ -578,12 +579,12 @@
   </div>
 </div>
 <div class="nsw-docs-code">
-  <div class="nsw-docs-code__content active">
+  <div class="nsw-docs-code__content">
     <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
       <span>Copy</span>
       <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
     </button>
-    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`&lt;div class="nsw-sticky-container"&gt;
+    <div class="nsw-docs-code__copy" aria-hidden="true" tabindex="-1"><script>document.write((`&lt;div class="nsw-sticky-container"&gt;
   &lt;a
     class="nsw-quick-exit"
     href="https://www.google.com/webhp"
@@ -600,7 +601,7 @@
   &lt;/a&gt;
 &lt;/div&gt;
 `).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
-    <div class="nsw-docs-code__wrapper">
+    <div class="nsw-docs-code__wrapper" tabindex="0">
 <pre><code class="html"><script>document.write((`&lt;div class="nsw-sticky-container"&gt;
   &lt;a
     class="nsw-quick-exit"
@@ -671,18 +672,18 @@
   </div>
 </div>
 <div class="nsw-docs-code">
-  <div class="nsw-docs-code__content active">
+  <div class="nsw-docs-code__content">
     <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
       <span>Copy</span>
       <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
     </button>
-    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`window.NSW.QuickExit.init({
+    <div class="nsw-docs-code__copy" aria-hidden="true" tabindex="-1"><script>document.write((`window.NSW.QuickExit.init({
   safeUrl: 'https://www.google.com/webhp',
   enableEsc: true,
   enableCloak: true
 });
 `).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
-    <div class="nsw-docs-code__wrapper">
+    <div class="nsw-docs-code__wrapper" tabindex="0">
 <pre><code class="js"><script>document.write((`window.NSW.QuickExit.init({
   safeUrl: 'https://www.google.com/webhp',
   enableEsc: true,
@@ -787,16 +788,19 @@
   </div>
 </div>
 <div class="nsw-docs-code">
-  <button class="nsw-link nsw-link--button nsw-link--icon nsw-small js-code-button">
-    <span>Show code</span>
-    <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
-  </button>
-  <div class="nsw-docs-code__content">
-    <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
-      <span>Copy</span>
-      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
-    </button>
-    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`<a
+  <div class="nsw-show-more">
+    <details class="nsw-show-more__details">
+      <summary class="nsw-show-more__toggle">
+        <span class="nsw-show-more__toggle-text nsw-show-more__toggle-text--show">Show code</span>
+        <span class="nsw-show-more__toggle-text nsw-show-more__toggle-text--hide">Hide code</span>
+        <span class="material-icons nsw-material-icons nsw-show-more__icon" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
+      </summary>
+      <div class="nsw-show-more__content nsw-docs-code__content">
+        <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
+          <span>Copy</span>
+          <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
+        </button>
+        <div class="nsw-docs-code__copy" aria-hidden="true" tabindex="-1"><script>document.write((`<a
   class="nsw-quick-exit"
   href="https://www.google.com/webhp"
   data-options='{
@@ -812,7 +816,7 @@
   </div>
 </a>
 `).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
-    <div class="nsw-docs-code__wrapper">
+        <div class="nsw-docs-code__wrapper" tabindex="0">
 <pre><code class="html"><script>document.write((`<a
   class="nsw-quick-exit"
   href="https://www.google.com/webhp"
@@ -829,7 +833,9 @@
   </div>
 </a>
 `).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
-    </div>
+        </div>
+      </div>
+    </details>
   </div>
 </div>
 

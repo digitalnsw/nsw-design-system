@@ -315,6 +315,7 @@
                   <li><a href="https://designsystem.nsw.gov.au/components/quick-exit/index.html"><span>Quick exit</span></a></li>
                   <li><a href="https://designsystem.nsw.gov.au/components/results-bar/index.html"><span>Results bar</span></a></li>
                   <li><a href="https://designsystem.nsw.gov.au/components/select/index.html"><span>Select</span></a></li>
+                  <li><a href="https://designsystem.nsw.gov.au/components/show-more/index.html"><span>Show more</span></a></li>
                   <li><a href="https://designsystem.nsw.gov.au/components/side-nav/index.html"><span>Side navigation</span></a></li>
                   <li><a href="https://designsystem.nsw.gov.au/components/status-labels/index.html"><span>Status labels</span></a></li>
                   <li><a href="https://designsystem.nsw.gov.au/components/steps/index.html"><span>Steps</span></a></li>
@@ -587,12 +588,12 @@
       </ol>
 
 <div class="nsw-docs-code">
-  <div class="nsw-docs-code__content active">
+  <div class="nsw-docs-code__content">
     <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
       <span>Copy</span>
       <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
     </button>
-    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`document.addEventListener('DOMContentLoaded', () => {
+    <div class="nsw-docs-code__copy" aria-hidden="true" tabindex="-1"><script>document.write((`document.addEventListener('DOMContentLoaded', () => {
   const config = {
     cookie: {
       name: 'nsw-cookie-consent',
@@ -698,8 +699,8 @@
   new window.NSW.CookieConsent(config);
 });
 `).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
-    <div class="nsw-docs-code__wrapper">
-<pre><code class="true"><script>document.write((`document.addEventListener('DOMContentLoaded', () => {
+    <div class="nsw-docs-code__wrapper" tabindex="0">
+<pre><code class="js"><script>document.write((`document.addEventListener('DOMContentLoaded', () => {
   const config = {
     cookie: {
       name: 'nsw-cookie-consent',
@@ -816,15 +817,15 @@
       <h3 id="integration">Integrate the configuration file</h3>
       <p>Ensure the configuration file is included in your HTML <code>&lt;head&gt;</code> section:</p>
 <div class="nsw-docs-code">
-  <div class="nsw-docs-code__content active">
+  <div class="nsw-docs-code__content">
     <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
       <span>Copy</span>
       <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
     </button>
-    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`&lt;script src="https://designsystem.nsw.gov.au/cookie-consent-config.js"&gt;&lt;/script&gt;
+    <div class="nsw-docs-code__copy" aria-hidden="true" tabindex="-1"><script>document.write((`&lt;script src="https://designsystem.nsw.gov.au/cookie-consent-config.js"&gt;&lt;/script&gt;
 `).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
-    <div class="nsw-docs-code__wrapper">
-<pre><code class="true"><script>document.write((`&lt;script src="https://designsystem.nsw.gov.au/cookie-consent-config.js"&gt;&lt;/script&gt;
+    <div class="nsw-docs-code__wrapper" tabindex="0">
+<pre><code class="html"><script>document.write((`&lt;script src="https://designsystem.nsw.gov.au/cookie-consent-config.js"&gt;&lt;/script&gt;
 `).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
     </div>
   </div>
@@ -927,6 +928,7 @@
 <h2 id="dependencies">Dependencies</h2>
 <p>This component integrates with the <a href="https://cookieconsent.orestbida.com/">vanilla-cookie-consent</a> library for handling cookie preferences but is designed specifically for use within the NSW Design System. The component is styled and structured to meet NSW DS standards and ensures a seamless experience for users.</p>
 
+
       </div>
     </section>
     <section id="section-interactive-demo" class="nsw-tabs__content">
@@ -945,23 +947,28 @@
   </div>
 </div>
 <div class="nsw-docs-code">
-  <button class="nsw-link nsw-link--button nsw-link--icon nsw-small js-code-button">
-    <span>Show code</span>
-    <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
-  </button>
-  <div class="nsw-docs-code__content">
-    <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
-      <span>Copy</span>
-      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
-    </button>
-    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`<a href="#" class="js-open-banner-cookie-consent" aria-haspopup="dialog">Trigger consent banner</a>
+  <div class="nsw-show-more">
+    <details class="nsw-show-more__details">
+      <summary class="nsw-show-more__toggle">
+        <span class="nsw-show-more__toggle-text nsw-show-more__toggle-text--show">Show code</span>
+        <span class="nsw-show-more__toggle-text nsw-show-more__toggle-text--hide">Hide code</span>
+        <span class="material-icons nsw-material-icons nsw-show-more__icon" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
+      </summary>
+      <div class="nsw-show-more__content nsw-docs-code__content">
+        <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
+          <span>Copy</span>
+          <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
+        </button>
+        <div class="nsw-docs-code__copy" aria-hidden="true" tabindex="-1"><script>document.write((`<a href="#" class="js-open-banner-cookie-consent" aria-haspopup="dialog">Trigger consent banner</a>
 
 `).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
-    <div class="nsw-docs-code__wrapper">
+        <div class="nsw-docs-code__wrapper" tabindex="0">
 <pre><code class="html"><script>document.write((`<a href="#" class="js-open-banner-cookie-consent" aria-haspopup="dialog">Trigger consent banner</a>
 
 `).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
-    </div>
+        </div>
+      </div>
+    </details>
   </div>
 </div>
 
@@ -975,23 +982,28 @@
   </div>
 </div>
 <div class="nsw-docs-code">
-  <button class="nsw-link nsw-link--button nsw-link--icon nsw-small js-code-button">
-    <span>Show code</span>
-    <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
-  </button>
-  <div class="nsw-docs-code__content">
-    <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
-      <span>Copy</span>
-      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
-    </button>
-    <div class="nsw-docs-code__copy" focusable="false" aria-hidden="true" tabindex="-1"><script>document.write((`
+  <div class="nsw-show-more">
+    <details class="nsw-show-more__details">
+      <summary class="nsw-show-more__toggle">
+        <span class="nsw-show-more__toggle-text nsw-show-more__toggle-text--show">Show code</span>
+        <span class="nsw-show-more__toggle-text nsw-show-more__toggle-text--hide">Hide code</span>
+        <span class="material-icons nsw-material-icons nsw-show-more__icon" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
+      </summary>
+      <div class="nsw-show-more__content nsw-docs-code__content">
+        <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
+          <span>Copy</span>
+          <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
+        </button>
+        <div class="nsw-docs-code__copy" aria-hidden="true" tabindex="-1"><script>document.write((`
 <a href="#" class="js-open-dialog-cookie-consent-preferences" aria-haspopup="dialog">Trigger cookie preferences</a>
 `).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
-    <div class="nsw-docs-code__wrapper">
+        <div class="nsw-docs-code__wrapper" tabindex="0">
 <pre><code class="html"><script>document.write((`
 <a href="#" class="js-open-dialog-cookie-consent-preferences" aria-haspopup="dialog">Trigger cookie preferences</a>
 `).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
-    </div>
+        </div>
+      </div>
+    </details>
   </div>
 </div>
 
