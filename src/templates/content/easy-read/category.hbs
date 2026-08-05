@@ -32,7 +32,11 @@ model:
           </div>
           <div class="nsw-col nsw-col-md-8 nsw-easy-read-category-group__content">
             <h2>{{heading}}</h2>
-            {{>_link-list title=false list=links}}
+            <ul>
+              {{#each links}}
+              <li><a href="{{url}}">{{text}}</a></li>
+              {{/each}}
+            </ul>
           </div>
         </div>
       </section>
