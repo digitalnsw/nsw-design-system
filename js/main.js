@@ -1,4 +1,4 @@
-/*! NSW Design System v3.24.16 | MIT License */
+/*! NSW Design System v3.25.0 | MIT License */
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
     typeof define === 'function' && define.amd ? define('NSW', ['exports'], factory) :
@@ -3340,7 +3340,8 @@
         const date = new Date();
         date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
         const expires = `expires=${date.toUTCString()}`;
-        document.cookie = `${name}=${value};${expires};path=/`;
+        const secure = window.location.protocol === 'https:' ? ';Secure' : '';
+        document.cookie = `${name}=${value};${expires};path=/;SameSite=Lax${secure}`;
       }
       static getCookie(name) {
         const nameEQ = `${name}=`;
@@ -7570,4 +7571,4 @@
 
 }));
 
-;(function(g){try{g.NSW=g.NSW||{};g.NSW.VERSION="3.24.16";}catch(e){} }(typeof globalThis!=='undefined'?globalThis:(typeof window!=='undefined'?window:self)));
+;(function(g){try{g.NSW=g.NSW||{};g.NSW.VERSION="3.25.0";}catch(e){} }(typeof globalThis!=='undefined'?globalThis:(typeof window!=='undefined'?window:self)));
