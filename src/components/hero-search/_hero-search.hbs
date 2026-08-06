@@ -6,13 +6,14 @@
         <p class="nsw-intro">{{{copy}}}</p>
         <form role="search" class="hero-search__form">
           <label class="{{#unless label}}sr-only{{/unless}} nsw-form__label" for="form-input-group-{{#if id}}{{{id}}}{{/if}}">{{searchLabel}}</label>
-          <div class="nsw-form__input-group{{#if-equals button "icon"}} nsw-form__input-group--icon{{/if-equals}}">
+          <div class="nsw-form__input-group{{#if-equals button "icon"}} nsw-form__input-group--icon{{/if-equals}}{{#unless button}} nsw-form__input-group--icon{{/unless}}">
             <input class="nsw-form__input" type="text" id="form-input-group-{{#if id}}{{{id}}}{{/if}}" name="form-input-group-{{#if id}}{{{id}}}{{/if}}" value="">
             <button class="nsw-button nsw-button--dark nsw-button--flex" type="submit">
               {{#if-equals button "text"}}<span class="">Search</span>{{/if-equals}}
               {{#if-equals button "icon"}}<span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">search</span>
               <span class="sr-only">Search</span>{{/if-equals}}
-              {{#unless button}}<span class="sr-only">Search</span>{{/unless}}
+              {{#unless button}}<span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">search</span>
+              <span class="sr-only">Search</span>{{/unless}}
             </button>
           </div>
         </form>
