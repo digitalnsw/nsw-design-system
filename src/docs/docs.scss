@@ -1016,18 +1016,27 @@ $header-height: 151px;
 .nsw-docs-code {
   position: relative;
 
-  .nsw-show-more {
-    margin: 0;
-  }
+  > button {
+    margin-top: nsw.rem(24px);
+    padding: nsw.rem(2px);
+    cursor: pointer;
 
-  .nsw-show-more__toggle {
-    margin-top: nsw.rem(16px);
+    &.active {
+      .nsw-material-icons {
+        transform: rotate(180deg);
+      }
+    }
   }
 
   &__content {
     position: relative;
+    display: none;
     margin-top: nsw.rem(24px);
     max-width: nsw.rem(872px);
+
+    &.active {
+      display: block;
+    }
 
     pre {
       margin: 0;
@@ -1062,12 +1071,6 @@ $header-height: 151px;
     max-height: nsw.rem(400px);
     overflow: auto;
     background-color: var(--nsw-white);
-
-    &:focus {
-      @include nsw.nsw-focus($offset: false);
-
-      outline-offset: nsw.rem(-3px);
-    }
   }
 }
 
