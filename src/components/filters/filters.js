@@ -30,8 +30,8 @@ class Filters {
     this.wrapper = this.element.querySelector(`.${this.prefix}${this.wrapperClass}`)
     this.closeButton = this.wrapper && this.wrapper.querySelector(`.${this.prefix}${this.closeClass} button`)
     this.submitButton = this.wrapper && this.wrapper.querySelector(`.${this.prefix}${this.submitClass} button`)
-    this.resetButton = this.element.querySelector(`.js-${this.resetClass}`)
-      || (this.wrapper && this.wrapper.querySelector(`.${this.prefix}${this.resetClass} button`))
+    this.resetButton = this.wrapper
+      && this.wrapper.querySelector(`.${this.prefix}${this.resetClass} button, .${this.prefix}${this.resetClass} a`)
     this.items = this.wrapper && this.wrapper.querySelectorAll(`.${this.prefix}${this.itemClass}`)
     this.accordionButtons = this.wrapper && this.wrapper.querySelectorAll(`.${this.prefix}${this.itemClass}-button`)
     this.showMoreContent = this.element.querySelectorAll(`.${this.prefix}${this.allClass}`)
