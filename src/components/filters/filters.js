@@ -204,8 +204,7 @@ class Filters {
   clearAll(event) {
     event.preventDefault()
 
-    const simulateEvent = new MouseEvent('change', {
-      view: window,
+    const simulateEvent = new Event('change', {
       bubbles: true,
       cancelable: true,
     })
@@ -241,9 +240,9 @@ class Filters {
       multiSelectAll.classList.remove(this.showClass)
 
       multiSelectOptions.forEach((element) => {
-        element.setAttribute('aria-selected', 'true')
-        element.dispatchEvent(simulateEvent)
-        element.click()
+        const checkbox = element.querySelector('.js-multi-select__checkbox')
+        checkbox.checked = false
+        checkbox.dispatchEvent(simulateEvent)
       })
     }
 
