@@ -6,12 +6,14 @@ directory: callout
 intro: Callouts are a snippet of information that draws attention to important content.
 theme: true
 figma: https://www.figma.com/file/PVrERKnckLTlJSPk12gbtS/NSW-Digital-Design-System?node-id=21298%3A24921
-model: json/callout.json
+model:
+  callout: json/callout.json
+  callout-pictogram: json/callout-pictogram.json
 meta-description: Callouts are a snippet of information that draws attention to important content.
 meta-index: true
 ---
 
-{{#>_docs-example}}{{>_callout model}}{{/_docs-example}}
+{{#>_docs-example}}{{>_callout model.callout}}{{/_docs-example}}
 
 <h3>With pictogram</h3>
-{{#>_docs-example separated="true"}}{{>_callout model icon="<svg viewBox='0 0 64 64' fill='none' xmlns='http://www.w3.org/2000/svg'><rect x='9' y='13' width='46' height='42' rx='2' stroke='var(--nsw-icon-colour-dark)' stroke-width='2'/><path d='M9 23h46M20 9v8M44 9v8' stroke='var(--nsw-icon-colour-dark)' stroke-width='2' stroke-linecap='round'/><path d='m22 39 7 7 14-16' stroke='var(--nsw-icon-colour-accent)' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/></svg>"}}{{/_docs-example}}
+{{#>_docs-example separated="true"}}{{>_callout model.callout icon=model.callout-pictogram.icon}}{{/_docs-example}}
