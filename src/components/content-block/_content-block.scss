@@ -1,7 +1,7 @@
 @use '../../global/scss/tools' as nsw;
 
 .nsw-content-block {
-  --nsw-icon-colour-dark: var(--nsw-text-dark);
+  --nsw-icon-colour-dark: var(--nsw-brand-dark);
   --nsw-icon-colour-accent: var(--nsw-brand-supplementary);
 
   &__title {
@@ -57,16 +57,8 @@
   }
 
   &__icon {
-    max-width: nsw.rem(64px);
-    max-height: nsw.rem(64px);
-
-    svg {
-      max-width: nsw.rem(64px);
-      max-height: nsw.rem(64px);
-
-      .nsw-section--invert & {
-        --nsw-icon-colour-dark: var(--nsw-text-light);
-      }
+    .nsw-section--invert & {
+      --nsw-icon-colour-dark: var(--nsw-text-light);
     }
   }
 }
