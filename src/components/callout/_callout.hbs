@@ -1,4 +1,9 @@
-<div class="nsw-callout">
+<div class="nsw-callout{{#if icon}} nsw-callout--icon{{/if}}">
+  {{#if icon}}
+  <div class="nsw-callout__icon" aria-hidden="true">
+    {{{icon}}}
+  </div>
+  {{/if}}
   <div class="nsw-callout__content">
     <p class="nsw-h4">{{heading}}</p>
     <p>{{{copy}}}</p>
