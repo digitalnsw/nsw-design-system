@@ -164,22 +164,27 @@
 }
 
 .nsw-easy-read-about {
-  display: block;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
 
-  &::before {
-    content: '';
-    display: block;
-    width: nsw.rem(48px);
-    height: nsw.rem(48px);
-    margin-bottom: nsw.rem(16px);
+  .nsw-callout__content {
+    flex: 1 1 auto;
+  }
+
+  &__pictogram {
     background-image: url(#{nsw.$nsw-easy-read-icon});
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
   }
 
-  h2 {
-    margin-top: 0;
+  .nsw-callout__pictogram {
+    flex: 0 0 auto;
+    width: nsw.rem(48px);
+    height: nsw.rem(48px);
+    margin-right: nsw.rem(16px);
+    margin-top: nsw.rem(-2px);
   }
 }
 
