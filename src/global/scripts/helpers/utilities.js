@@ -188,13 +188,17 @@ export const popupWindow = (url, width, height) => {
     left = (window.outerWidth || dialogWidth) / 2 + (window.screenX || 0) - (dialogWidth / 2)
   }
 
-  return window.open(
+  const popup = window.open(
     url,
     'nsw-share-dialog',
     `toolbar=no,location=no,directories=no,status=no,
     menubar=no,scrollbars=no,resizable=no,copyhistory=no,
     width=${dialogWidth},height=${dialogHeight},top=${top},left=${left},noopener,noreferrer`,
   )
+
+  // Explicitly clear opener for browsers that do not fully enforce noopener from features.
+  if (popup) popup.opener = null
+  return popup
 }
 
 export const setAriaDisabled = (element, isDisabled, className = 'disabled') => {
