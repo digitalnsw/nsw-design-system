@@ -4,53 +4,53 @@ layout: blank-layout.hbs
 ---
 
 <h2>Usage</h2>
-<p>Use content blocks where a user needs to be presented with multiple pieces of information or actions to deep dive into content.</p>
-<p>Do:</p>
+<p>Use content blocks to present related information and actions in a scannable layout, so users can quickly understand options and decide where to go next.</p>
+
+<h3>Do</h3>
 <ul>
-  <li>consider and choose text and visual elements carefully. Test content blocks with the minimal content and only add additional content or graphics where they give needed context to the user</li>
-  <li>use when content requires in-line or multiple links</li>
-  <li>use headlines and links that set clear expectations about the content being linked to</li>
-  <li>outline the main idea with the minimal possible information, don't overload with information where you link the user to more detail</li>
+  <li>Use content blocks when users need to compare multiple pathways, topics or actions at the same level.</li>
+  <li>Use content blocks when content includes in-line links or multiple related links that users may need to explore.</li>
+  <li>Keep each block focused on one clear topic, with a headline and short supporting copy.</li>
+  <li>Give enough information for context, then link to deeper detail rather than trying to explain everything in the block.</li>
+  <li>Use sentence case for headlines and links, and keep language plain and specific.</li>
+  <li>Keep copy concise, usually one or two short sentences, and use parallel structure across blocks so users can compare options quickly.</li>
+  <li>Use descriptive link text so users understand what will happen before selecting a link.</li>
+  <li>Use pictograms or images only when they add meaning and help users distinguish between topics.</li>
+  <li>Test with minimal content first, then add details only when they improve comprehension.</li>
 </ul>
 
-<h3>Content block types</h3>
-<p>Content bocks are styled according to their purpose:</p>
+<h3>Don't</h3>
 <ul>
-  <li><strong>Text block</strong>: Use to present multiple pieces of information or actions to users.</li>
-  <li><strong>Pictogram block</strong>: Simple and recognisable pictograms can be added to help users scan and easily identify information quickly.</li>
-  <li><strong>Image block</strong>: Images can be added to re-enforce the content and and provide more context to the user.</li>
+  <li>Do not use content blocks for a single call to action. Use the <a href="/components/card/index.html" aria-label="Card component documentation">Card component</a> when one primary action is enough.</li>
+  <li>Do not use content blocks as a generic container to group related content. Use the <a href="/components/card/index.html" aria-label="Card component documentation">Card component</a> where grouping is the main purpose.</li>
+  <li>Do not overload blocks with long paragraphs, repeated links or decorative visuals.</li>
+  <li>Do not use visuals that are ambiguous, difficult to interpret or unrelated to the content.</li>
+  <li>Do not rely on visuals alone to communicate meaning or priority.</li>
+  <li>Do not use unexplained acronyms or internal terms that may be unclear to cross-agency teams.</li>
 </ul>
 
-<h3>When to avoid</h3>
-<p>Content blocks should only display enough information to give a user context.</p>
-<p>Do not:</p>
+<h2>Variants</h2>
+<p>Choose the content block type based on how much visual support users need:</p>
 <ul>
-  <li>use to group related content, consider cards</li>
-  <li>use when content only has one call to action, consider cards</li>
-  <li>use when a large amount of text is needed to give users context </li>
+  <li><strong>Text block</strong>: Use when text and links are enough to guide users.</li>
+  <li><strong>Pictogram block</strong>: Use when a simple pictogram helps users scan and differentiate topics quickly.</li>
+  <li><strong>Image block</strong>: Use when a contextual image adds meaningful information that supports decision-making.</li>
 </ul>
 
-<h2>How this component works</h2>
+<h2>Behaviour</h2>
 <h3>User interaction</h3>
-<p>Content blocks use the text link style to indicate clickable elements.</p>
-<h3>Keep content concise</h3>
-<p>Content blocks allow users to scan content in order to find their required information quickly, therefore it is important to make the content concise. Ensure the headlines are brief and explicit, and the link clearly indicate the content they link to.</p>
-<h3>Content elements</h3>
-<p>Test your blocks with the minimal content and only add additional content where they give needed context to the user. Content types in content blocks include:</p>
-<ul>
-  <li><strong>Headline</strong>: Provides snapshot of the content.</li>
-  <li><strong>Copy</strong>: Provides brief summary of the content.</li>
-  <li><strong>Link list</strong>: Highlights important or priority content within section for user to deep dive.</li>
-  <li><strong>Section link</strong>: Links user to view all options within section.</li>
-</ul>
-<h3>Icons and images</h3>
-<p>Using icons and images in content blocks allow for different content to stand out on a page and provide additional context. It helps users visualise different pieces of information and quickly distinguish between content to find information easily.</p>
-<p>Choose your visual components carefully:</p>
-<ul>
-  <li>only use icons or images where the graphic supports and re-enforces the content to the user</li>
-  <li>only use pictograms or images when they can clearly show the difference in topics and can be easily identified</li>
-  <li>do not use for decorative purposes only</li>
-</ul>
+<p>Content blocks are not a single clickable surface. Links within each block use standard text link styling to indicate interactive elements.</p>
+
+<h3>Content strategy</h3>
+<p>Users scan content blocks quickly, so headlines should be brief and explicit, copy should be concise, and links should be prioritised by user need.</p>
+<p>Use pictograms or images only when they clarify the topic and help users distinguish between options, not for decoration.</p>
 
 <h2>Accessibility</h2>
-<p>All components are responsive and designed to comply with WCAG 2.2 AA accessibility standards. Full compliance depends on using and configuring the components correctly.</p>
+<p>Content blocks should meet Web Content Accessibility Guidelines (WCAG) 2.2 AA requirements when implemented correctly.</p>
+<ul>
+  <li>Ensure all links are keyboard accessible and receive a visible focus indicator.</li>
+  <li>Use descriptive link text that makes sense out of context.</li>
+  <li>Provide meaningful alt text for informative images. Use empty alt text for decorative images only.</li>
+  <li>Do not rely on colour or imagery alone to communicate meaning.</li>
+  <li>Check text and icon contrast across default and inverted themes.</li>
+</ul>
