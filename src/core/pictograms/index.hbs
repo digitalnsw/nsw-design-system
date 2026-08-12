@@ -20,6 +20,9 @@ meta-index: true
       <a href="#styling">Styling</a>
     </li>
     <li>
+      <a href="#theming">Theming</a>
+    </li>
+    <li>
       <a href="#designing">Designing</a>
     </li>
   </ul>
@@ -90,9 +93,151 @@ meta-index: true
   </div>
 </div>
 
-<h3>SVG theming</h3>
+<h2 id="theming">Theming</h2>
 <p>Pictograms can be single- or two-toned. To support these colours across different section themes, use <code>--nsw-pictogram-primary</code> and <code>--nsw-pictogram-secondary</code> in your inline SVG, or use <a href="/docs/content/utilities/svg.html">utility classes</a> for static colouring.</p>
 
+<p>Use tabs to preview how both single-tone and two-tone ferry pictograms appear across common section variants.</p>
+
+<div class="nsw-tabs js-tabs">
+  <ul class="nsw-tabs__list">
+    <li><a href="#pictogram-white" class="js-tabs-fixed">White</a></li>
+    <li><a href="#pictogram-brand-light" class="js-tabs-fixed">Brand Light</a></li>
+    <li><a href="#pictogram-brand-dark" class="js-tabs-fixed">Brand Dark</a></li>
+    <li><a href="#pictogram-brand-supplementary" class="js-tabs-fixed">Brand Supplementary</a></li>
+  </ul>
+
+  <section id="pictogram-white" class="nsw-tabs__content nsw-tabs__content--side-flush">
+    <div class="nsw-section nsw-section--white nsw-section--no-padding nsw-p-y-xs">
+      <div class="nsw-grid">
+        <div class="nsw-col nsw-col-6 nsw-col-md-4 nsw-offset-md-2 nsw-text-center">
+              <h4 class="nsw-m-bottom-sm">Single-tone</h4>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" aria-hidden="true">
+            <path d="M11.67,41.72l-3.1-11.7c-0.23-0.88,0.15-1.82,0.94-2.26L24,19.5l14.49,8.25c0.79,0.45,1.18,1.38,0.94,2.26L36.26,42" fill="none" stroke="var(--nsw-pictogram-primary)" stroke-linejoin="round" stroke-miterlimit="10"/>
+            <path d="M45,44.5c-3.5,0-3.5-3-7-3c-3.5,0-3.5,3-7,3c-3.5,0-3.5-3-6.99-3c-3.5,0-3.5,3-7,3c-3.5,0-3.5-3-7.01-3 s-3.5,3-7.01,3" fill="none" stroke="var(--nsw-pictogram-primary)" stroke-miterlimit="10"/>
+            <line x1="24" y1="19.5" x2="24.01" y2="41.5" fill="none" stroke="var(--nsw-pictogram-primary)" stroke-linejoin="round" stroke-miterlimit="10"/>
+            <path d="M12.5,24v-4.5c0-1.1,0.9-2,2-2h19c1.1,0,2,0.9,2,2V24" fill="none" stroke="var(--nsw-pictogram-primary)" stroke-linejoin="round" stroke-miterlimit="10"/>
+            <path d="M15.5,16v-1.5c0-1.11,0.9-2,2-2l13,0.02c1.1,0,2,0.9,2,2V16" fill="none" stroke="var(--nsw-pictogram-primary)" stroke-linejoin="round" stroke-miterlimit="10"/>
+            <path d="M18.5,11V9.5c0-1.11,0.9-2,2.01-2l7,0.02c1.1,0,1.99,0.9,1.99,2V11" fill="none" stroke="var(--nsw-pictogram-primary)" stroke-linejoin="round" stroke-miterlimit="10"/>
+            <path d="M21.5,6V5.5c0-1.11,0.9-2,2.01-2l1,0c1.1,0,1.99,0.9,1.99,2V6" fill="none" stroke="var(--nsw-pictogram-primary)" stroke-linejoin="round" stroke-miterlimit="10"/>
+            <circle cx="32.99" cy="31" r="2.5" fill="none" stroke="var(--nsw-pictogram-primary)" stroke-miterlimit="10"/>
+              </svg>
+        </div>
+        <div class="nsw-col nsw-col-6 nsw-col-md-4 nsw-text-center">
+              <h4 class="nsw-m-bottom-sm">Two-tone</h4>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" aria-hidden="true">
+            <path d="M11.67,41.72l-3.1-11.7c-0.23-0.88,0.15-1.82,0.94-2.26L24,19.5l14.49,8.25c0.79,0.45,1.18,1.38,0.94,2.26L36.26,42" fill="none" stroke="var(--nsw-pictogram-primary)" stroke-linejoin="round" stroke-miterlimit="10"/>
+            <path d="M45,44.5c-3.5,0-3.5-3-7-3c-3.5,0-3.5,3-7,3c-3.5,0-3.5-3-6.99-3c-3.5,0-3.5,3-7,3c-3.5,0-3.5-3-7.01-3 s-3.5,3-7.01,3" fill="none" stroke="var(--nsw-pictogram-secondary)" stroke-miterlimit="10"/>
+            <line x1="24" y1="19.5" x2="24.01" y2="41.5" fill="none" stroke="var(--nsw-pictogram-primary)" stroke-linejoin="round" stroke-miterlimit="10"/>
+            <path d="M12.5,24v-4.5c0-1.1,0.9-2,2-2h19c1.1,0,2,0.9,2,2V24" fill="none" stroke="var(--nsw-pictogram-primary)" stroke-linejoin="round" stroke-miterlimit="10"/>
+            <path d="M15.5,16v-1.5c0-1.11,0.9-2,2-2l13,0.02c1.1,0,2,0.9,2,2V16" fill="none" stroke="var(--nsw-pictogram-primary)" stroke-linejoin="round" stroke-miterlimit="10"/>
+            <path d="M18.5,11V9.5c0-1.11,0.9-2,2.01-2l7,0.02c1.1,0,1.99,0.9,1.99,2V11" fill="none" stroke="var(--nsw-pictogram-primary)" stroke-linejoin="round" stroke-miterlimit="10"/>
+            <path d="M21.5,6V5.5c0-1.11,0.9-2,2.01-2l1,0c1.1,0,1.99,0.9,1.99,2V6" fill="none" stroke="var(--nsw-pictogram-primary)" stroke-linejoin="round" stroke-miterlimit="10"/>
+            <circle cx="32.99" cy="31" r="2.5" fill="none" stroke="var(--nsw-pictogram-secondary)" stroke-miterlimit="10"/>
+              </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pictogram-brand-light" class="nsw-tabs__content nsw-tabs__content--side-flush">
+    <div class="nsw-section nsw-section--brand-light nsw-section--no-padding nsw-p-y-xs">
+      <div class="nsw-grid">
+        <div class="nsw-col nsw-col-6 nsw-col-md-4 nsw-offset-md-2 nsw-text-center">
+              <h4 class="nsw-m-bottom-sm">Single-tone</h4>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" aria-hidden="true">
+            <path d="M11.67,41.72l-3.1-11.7c-0.23-0.88,0.15-1.82,0.94-2.26L24,19.5l14.49,8.25c0.79,0.45,1.18,1.38,0.94,2.26L36.26,42" fill="none" stroke="var(--nsw-pictogram-primary)" stroke-linejoin="round" stroke-miterlimit="10"/>
+            <path d="M45,44.5c-3.5,0-3.5-3-7-3c-3.5,0-3.5,3-7,3c-3.5,0-3.5-3-6.99-3c-3.5,0-3.5,3-7,3c-3.5,0-3.5-3-7.01-3 s-3.5,3-7.01,3" fill="none" stroke="var(--nsw-pictogram-primary)" stroke-miterlimit="10"/>
+            <line x1="24" y1="19.5" x2="24.01" y2="41.5" fill="none" stroke="var(--nsw-pictogram-primary)" stroke-linejoin="round" stroke-miterlimit="10"/>
+            <path d="M12.5,24v-4.5c0-1.1,0.9-2,2-2h19c1.1,0,2,0.9,2,2V24" fill="none" stroke="var(--nsw-pictogram-primary)" stroke-linejoin="round" stroke-miterlimit="10"/>
+            <path d="M15.5,16v-1.5c0-1.11,0.9-2,2-2l13,0.02c1.1,0,2,0.9,2,2V16" fill="none" stroke="var(--nsw-pictogram-primary)" stroke-linejoin="round" stroke-miterlimit="10"/>
+            <path d="M18.5,11V9.5c0-1.11,0.9-2,2.01-2l7,0.02c1.1,0,1.99,0.9,1.99,2V11" fill="none" stroke="var(--nsw-pictogram-primary)" stroke-linejoin="round" stroke-miterlimit="10"/>
+            <path d="M21.5,6V5.5c0-1.11,0.9-2,2.01-2l1,0c1.1,0,1.99,0.9,1.99,2V6" fill="none" stroke="var(--nsw-pictogram-primary)" stroke-linejoin="round" stroke-miterlimit="10"/>
+            <circle cx="32.99" cy="31" r="2.5" fill="none" stroke="var(--nsw-pictogram-primary)" stroke-miterlimit="10"/>
+              </svg>
+        </div>
+        <div class="nsw-col nsw-col-6 nsw-col-md-4 nsw-text-center">
+              <h4 class="nsw-m-bottom-sm">Two-tone</h4>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" aria-hidden="true">
+            <path d="M11.67,41.72l-3.1-11.7c-0.23-0.88,0.15-1.82,0.94-2.26L24,19.5l14.49,8.25c0.79,0.45,1.18,1.38,0.94,2.26L36.26,42" fill="none" stroke="var(--nsw-pictogram-primary)" stroke-linejoin="round" stroke-miterlimit="10"/>
+            <path d="M45,44.5c-3.5,0-3.5-3-7-3c-3.5,0-3.5,3-7,3c-3.5,0-3.5-3-6.99-3c-3.5,0-3.5,3-7,3c-3.5,0-3.5-3-7.01-3 s-3.5,3-7.01,3" fill="none" stroke="var(--nsw-pictogram-secondary)" stroke-miterlimit="10"/>
+            <line x1="24" y1="19.5" x2="24.01" y2="41.5" fill="none" stroke="var(--nsw-pictogram-primary)" stroke-linejoin="round" stroke-miterlimit="10"/>
+            <path d="M12.5,24v-4.5c0-1.1,0.9-2,2-2h19c1.1,0,2,0.9,2,2V24" fill="none" stroke="var(--nsw-pictogram-primary)" stroke-linejoin="round" stroke-miterlimit="10"/>
+            <path d="M15.5,16v-1.5c0-1.11,0.9-2,2-2l13,0.02c1.1,0,2,0.9,2,2V16" fill="none" stroke="var(--nsw-pictogram-primary)" stroke-linejoin="round" stroke-miterlimit="10"/>
+            <path d="M18.5,11V9.5c0-1.11,0.9-2,2.01-2l7,0.02c1.1,0,1.99,0.9,1.99,2V11" fill="none" stroke="var(--nsw-pictogram-primary)" stroke-linejoin="round" stroke-miterlimit="10"/>
+            <path d="M21.5,6V5.5c0-1.11,0.9-2,2.01-2l1,0c1.1,0,1.99,0.9,1.99,2V6" fill="none" stroke="var(--nsw-pictogram-primary)" stroke-linejoin="round" stroke-miterlimit="10"/>
+            <circle cx="32.99" cy="31" r="2.5" fill="none" stroke="var(--nsw-pictogram-secondary)" stroke-miterlimit="10"/>
+              </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pictogram-brand-dark" class="nsw-tabs__content nsw-tabs__content--side-flush">
+    <div class="nsw-section nsw-section--brand-dark nsw-section--invert nsw-section--no-padding nsw-p-y-xs">
+      <div class="nsw-grid">
+        <div class="nsw-col nsw-col-6 nsw-col-md-4 nsw-offset-md-2 nsw-text-center">
+              <h4 class="nsw-m-bottom-sm">Single-tone</h4>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" aria-hidden="true">
+            <path d="M11.67,41.72l-3.1-11.7c-0.23-0.88,0.15-1.82,0.94-2.26L24,19.5l14.49,8.25c0.79,0.45,1.18,1.38,0.94,2.26L36.26,42" fill="none" stroke="var(--nsw-pictogram-primary)" stroke-linejoin="round" stroke-miterlimit="10"/>
+            <path d="M45,44.5c-3.5,0-3.5-3-7-3c-3.5,0-3.5,3-7,3c-3.5,0-3.5-3-6.99-3c-3.5,0-3.5,3-7,3c-3.5,0-3.5-3-7.01-3 s-3.5,3-7.01,3" fill="none" stroke="var(--nsw-pictogram-primary)" stroke-miterlimit="10"/>
+            <line x1="24" y1="19.5" x2="24.01" y2="41.5" fill="none" stroke="var(--nsw-pictogram-primary)" stroke-linejoin="round" stroke-miterlimit="10"/>
+            <path d="M12.5,24v-4.5c0-1.1,0.9-2,2-2h19c1.1,0,2,0.9,2,2V24" fill="none" stroke="var(--nsw-pictogram-primary)" stroke-linejoin="round" stroke-miterlimit="10"/>
+            <path d="M15.5,16v-1.5c0-1.11,0.9-2,2-2l13,0.02c1.1,0,2,0.9,2,2V16" fill="none" stroke="var(--nsw-pictogram-primary)" stroke-linejoin="round" stroke-miterlimit="10"/>
+            <path d="M18.5,11V9.5c0-1.11,0.9-2,2.01-2l7,0.02c1.1,0,1.99,0.9,1.99,2V11" fill="none" stroke="var(--nsw-pictogram-primary)" stroke-linejoin="round" stroke-miterlimit="10"/>
+            <path d="M21.5,6V5.5c0-1.11,0.9-2,2.01-2l1,0c1.1,0,1.99,0.9,1.99,2V6" fill="none" stroke="var(--nsw-pictogram-primary)" stroke-linejoin="round" stroke-miterlimit="10"/>
+            <circle cx="32.99" cy="31" r="2.5" fill="none" stroke="var(--nsw-pictogram-primary)" stroke-miterlimit="10"/>
+              </svg>
+        </div>
+        <div class="nsw-col nsw-col-6 nsw-col-md-4 nsw-text-center">
+              <h4 class="nsw-m-bottom-sm">Two-tone</h4>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" aria-hidden="true">
+            <path d="M11.67,41.72l-3.1-11.7c-0.23-0.88,0.15-1.82,0.94-2.26L24,19.5l14.49,8.25c0.79,0.45,1.18,1.38,0.94,2.26L36.26,42" fill="none" stroke="var(--nsw-pictogram-primary)" stroke-linejoin="round" stroke-miterlimit="10"/>
+            <path d="M45,44.5c-3.5,0-3.5-3-7-3c-3.5,0-3.5,3-7,3c-3.5,0-3.5-3-6.99-3c-3.5,0-3.5,3-7,3c-3.5,0-3.5-3-7.01-3 s-3.5,3-7.01,3" fill="none" stroke="var(--nsw-pictogram-secondary)" stroke-miterlimit="10"/>
+            <line x1="24" y1="19.5" x2="24.01" y2="41.5" fill="none" stroke="var(--nsw-pictogram-primary)" stroke-linejoin="round" stroke-miterlimit="10"/>
+            <path d="M12.5,24v-4.5c0-1.1,0.9-2,2-2h19c1.1,0,2,0.9,2,2V24" fill="none" stroke="var(--nsw-pictogram-primary)" stroke-linejoin="round" stroke-miterlimit="10"/>
+            <path d="M15.5,16v-1.5c0-1.11,0.9-2,2-2l13,0.02c1.1,0,2,0.9,2,2V16" fill="none" stroke="var(--nsw-pictogram-primary)" stroke-linejoin="round" stroke-miterlimit="10"/>
+            <path d="M18.5,11V9.5c0-1.11,0.9-2,2.01-2l7,0.02c1.1,0,1.99,0.9,1.99,2V11" fill="none" stroke="var(--nsw-pictogram-primary)" stroke-linejoin="round" stroke-miterlimit="10"/>
+            <path d="M21.5,6V5.5c0-1.11,0.9-2,2.01-2l1,0c1.1,0,1.99,0.9,1.99,2V6" fill="none" stroke="var(--nsw-pictogram-primary)" stroke-linejoin="round" stroke-miterlimit="10"/>
+            <circle cx="32.99" cy="31" r="2.5" fill="none" stroke="var(--nsw-pictogram-secondary)" stroke-miterlimit="10"/>
+              </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pictogram-brand-supplementary" class="nsw-tabs__content nsw-tabs__content--side-flush">
+    <div class="nsw-section nsw-section--brand-supplementary nsw-section--invert nsw-section--no-padding nsw-p-y-xs">
+      <div class="nsw-grid">
+        <div class="nsw-col nsw-col-6 nsw-col-md-4 nsw-offset-md-2 nsw-text-center">
+              <h4 class="nsw-m-bottom-sm">Single-tone</h4>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" aria-hidden="true">
+            <path d="M11.67,41.72l-3.1-11.7c-0.23-0.88,0.15-1.82,0.94-2.26L24,19.5l14.49,8.25c0.79,0.45,1.18,1.38,0.94,2.26L36.26,42" fill="none" stroke="var(--nsw-pictogram-primary)" stroke-linejoin="round" stroke-miterlimit="10"/>
+            <path d="M45,44.5c-3.5,0-3.5-3-7-3c-3.5,0-3.5,3-7,3c-3.5,0-3.5-3-6.99-3c-3.5,0-3.5,3-7,3c-3.5,0-3.5-3-7.01-3 s-3.5,3-7.01,3" fill="none" stroke="var(--nsw-pictogram-primary)" stroke-miterlimit="10"/>
+            <line x1="24" y1="19.5" x2="24.01" y2="41.5" fill="none" stroke="var(--nsw-pictogram-primary)" stroke-linejoin="round" stroke-miterlimit="10"/>
+            <path d="M12.5,24v-4.5c0-1.1,0.9-2,2-2h19c1.1,0,2,0.9,2,2V24" fill="none" stroke="var(--nsw-pictogram-primary)" stroke-linejoin="round" stroke-miterlimit="10"/>
+            <path d="M15.5,16v-1.5c0-1.11,0.9-2,2-2l13,0.02c1.1,0,2,0.9,2,2V16" fill="none" stroke="var(--nsw-pictogram-primary)" stroke-linejoin="round" stroke-miterlimit="10"/>
+            <path d="M18.5,11V9.5c0-1.11,0.9-2,2.01-2l7,0.02c1.1,0,1.99,0.9,1.99,2V11" fill="none" stroke="var(--nsw-pictogram-primary)" stroke-linejoin="round" stroke-miterlimit="10"/>
+            <path d="M21.5,6V5.5c0-1.11,0.9-2,2.01-2l1,0c1.1,0,1.99,0.9,1.99,2V6" fill="none" stroke="var(--nsw-pictogram-primary)" stroke-linejoin="round" stroke-miterlimit="10"/>
+            <circle cx="32.99" cy="31" r="2.5" fill="none" stroke="var(--nsw-pictogram-primary)" stroke-miterlimit="10"/>
+              </svg>
+        </div>
+        <div class="nsw-col nsw-col-6 nsw-col-md-4 nsw-text-center">
+              <h4 class="nsw-m-bottom-sm">Two-tone</h4>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" aria-hidden="true">
+            <path d="M11.67,41.72l-3.1-11.7c-0.23-0.88,0.15-1.82,0.94-2.26L24,19.5l14.49,8.25c0.79,0.45,1.18,1.38,0.94,2.26L36.26,42" fill="none" stroke="var(--nsw-pictogram-primary)" stroke-linejoin="round" stroke-miterlimit="10"/>
+            <path d="M45,44.5c-3.5,0-3.5-3-7-3c-3.5,0-3.5,3-7,3c-3.5,0-3.5-3-6.99-3c-3.5,0-3.5,3-7,3c-3.5,0-3.5-3-7.01-3 s-3.5,3-7.01,3" fill="none" stroke="var(--nsw-pictogram-secondary)" stroke-miterlimit="10"/>
+            <line x1="24" y1="19.5" x2="24.01" y2="41.5" fill="none" stroke="var(--nsw-pictogram-primary)" stroke-linejoin="round" stroke-miterlimit="10"/>
+            <path d="M12.5,24v-4.5c0-1.1,0.9-2,2-2h19c1.1,0,2,0.9,2,2V24" fill="none" stroke="var(--nsw-pictogram-primary)" stroke-linejoin="round" stroke-miterlimit="10"/>
+            <path d="M15.5,16v-1.5c0-1.11,0.9-2,2-2l13,0.02c1.1,0,2,0.9,2,2V16" fill="none" stroke="var(--nsw-pictogram-primary)" stroke-linejoin="round" stroke-miterlimit="10"/>
+            <path d="M18.5,11V9.5c0-1.11,0.9-2,2.01-2l7,0.02c1.1,0,1.99,0.9,1.99,2V11" fill="none" stroke="var(--nsw-pictogram-primary)" stroke-linejoin="round" stroke-miterlimit="10"/>
+            <path d="M21.5,6V5.5c0-1.11,0.9-2,2.01-2l1,0c1.1,0,1.99,0.9,1.99,2V6" fill="none" stroke="var(--nsw-pictogram-primary)" stroke-linejoin="round" stroke-miterlimit="10"/>
+            <circle cx="32.99" cy="31" r="2.5" fill="none" stroke="var(--nsw-pictogram-secondary)" stroke-miterlimit="10"/>
+              </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
 
 <!--<p>Pictograms should be designed on a pixel-based grid of 64px x 64px with a live area of 60px x 60px, and can be scaled down linearly to half size if required. Pictogram content should remain inside of the live area, which is the region of an image that is unlikely to be hidden from view (such as when sidebars appear upon scrolling).</p>
 <div class="nsw-section nsw-section--white nsw-block nsw-p-sm">
