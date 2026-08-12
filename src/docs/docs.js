@@ -79,7 +79,6 @@ function initDocs() {
       }
     }, false)
   })
-
   const copyButtons = document.querySelectorAll('.js-code-copy')
 
   copyButtons.forEach((button) => {
