@@ -55,6 +55,59 @@
     line-height: nsw.rem(32px);
   }
 
+  // Keep the card API generic and apply the Easy Read proportions and type
+  // treatment only when a horizontal card is used in Easy Read content.
+
+  .nsw-card--horizontal {
+    --nsw-easy-read-card-image-width: 33.333%;
+
+    .nsw-card__copy,
+    .nsw-card__tag,
+    .nsw-card__date {
+      font-size: nsw.rem(20px);
+      line-height: nsw.rem(32px);
+    }
+
+    @include nsw.breakpoint('md') {
+      .nsw-card__image {
+        flex-basis: var(--nsw-easy-read-card-image-width);
+        min-height: nsw.rem(240px);
+        max-height: nsw.rem(420px);
+        overflow: hidden;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      .nsw-card__content {
+        flex-basis: calc(100% - var(--nsw-easy-read-card-image-width));
+        justify-content: center;
+        padding: nsw.rem(24px) nsw.rem(24px) nsw.rem(72px);
+
+        > .nsw-material-icons {
+          right: auto;
+          bottom: nsw.rem(24px);
+          left: calc(var(--nsw-easy-read-card-image-width) + #{nsw.rem(24px)});
+          transform: none;
+        }
+      }
+    }
+
+    @include nsw.breakpoint('lg') {
+      .nsw-card__content {
+        padding: nsw.rem(32px) nsw.rem(32px) nsw.rem(88px);
+
+        > .nsw-material-icons {
+          bottom: nsw.rem(32px);
+          left: calc(var(--nsw-easy-read-card-image-width) + #{nsw.rem(32px)});
+        }
+      }
+    }
+  }
+
   p + p {
     margin-top: nsw.rem(24px);
   }
