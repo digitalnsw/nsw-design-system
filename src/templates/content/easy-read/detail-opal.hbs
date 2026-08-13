@@ -47,11 +47,16 @@ model:
         <p>{{this}}</p>
         {{/each}}
 
-        {{#each blocks}}
-        <div class="nsw-block">
-          {{>_easy-read-block this}}
+        <div class="nsw-easy-read-content__block-stack">
+          {{#each blocks}}
+          <div class="nsw-easy-read-content__block-item nsw-block">
+            {{>_easy-read-block this theme="white"}}
+          </div>
+          {{#unless @last}}
+          <hr class="nsw-easy-read-content__divider">
+          {{/unless}}
+          {{/each}}
         </div>
-        {{/each}}
       </section>
       {{/each}}
 

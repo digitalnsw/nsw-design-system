@@ -39,11 +39,16 @@ model:
         </ul>
       </nav>
 
-      {{#each model.page.blocks}}
-      <div class="nsw-block" id="{{id}}">
-        {{>_easy-read-block this}}
+      <div class="nsw-easy-read-content__block-stack">
+        {{#each model.page.blocks}}
+        <div class="nsw-easy-read-content__block-item nsw-block" id="{{id}}">
+          {{>_easy-read-block this theme="white"}}
+        </div>
+        {{#unless @last}}
+        <hr class="nsw-easy-read-content__divider">
+        {{/unless}}
+        {{/each}}
       </div>
-      {{/each}}
 
       {{>_easy-read-downloads model.page.downloads}}
 

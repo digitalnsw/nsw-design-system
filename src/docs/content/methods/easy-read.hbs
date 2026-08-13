@@ -186,7 +186,7 @@ meta-index: true
   <figcaption>The <a href="/templates/content/easy-read/detail.html" target="_blank" rel="noopener noreferrer">Easy Read detail page template</a>, shown at a reduced scale.</figcaption>
 </figure>
 
-<h4>Easy Read content block</h4>
+<h4 id="easy-read-content-block">Easy Read content block</h4>
 <p>The content block pairs one primary concept or action with a meaningful image. It supports the method but does not make a page Easy Read by itself.</p>
 <p>White content blocks can be used when you need a neutral presentation. Add a divider between blocks so each step remains visually distinct.</p>
 {{#>_docs-example separated=true}}
@@ -211,13 +211,7 @@ meta-index: true
 </div>
 {{/_docs-example}}
 
-{{#>_docs-example separated=true}}
-<div class="nsw-easy-read-content">
-  {{>_easy-read-block model.easy-read-1 headingLevel="h3"}}
-</div>
-{{/_docs-example}}
-
-<h4>About Easy Read callout</h4>
+<h4 id="about-easy-read-callout">About Easy Read callout</h4>
 <p>Finish each Easy Read content page with this callout. It explains the format and provides a route to more Easy Read articles without interrupting the main content.</p>
 <p>Use the Easy Read pictogram in the callout to help people identify the format. The approved pictogram is available to <a href="https://branding.nsw.gov.au/asset-download/?id=ba697223-0548-41ea-97ad-a60e26834bb2" target="_blank" rel="noopener noreferrer">download from the NSW Government Branding Toolkit</a>.</p>
 {{#>_docs-example separated=true}}
@@ -268,7 +262,7 @@ meta-index: true
 
 <h3 id="testing-and-review">Testing and review</h3>
 <p>Use a multi-stage review: content self-review, peer review, accessibility review and usability testing. Include people with intellectual disability and other people from the identified audience. Pay them for their expertise and allow enough time and support for meaningful participation.</p>
-<p>Test the complete experience, not isolated sentences. Check comprehension, image meaning, navigation, links, downloads and the read aloud function when it is implemented.</p>
+<p>Test the complete experience, not isolated sentences. Check comprehension, image meaning, navigation, links and downloads.</p>
 
 <h3 id="accessibility-requirements">Accessibility requirements</h3>
 <ul>
@@ -279,20 +273,7 @@ meta-index: true
   <li>Support keyboard-only use, screen readers and text resizing to 200%.</li>
   <li>Verify reflow at a 320 CSS pixel viewport and at 400% browser zoom. Where testing identifies a layout or usability issue, use the <a href="/docs/content/utilities/reflow.html">Reflow Sass mixin</a> for a targeted component adjustment.</li>
   <li>Test light, dark and inverted themes without relying on colour alone.</li>
-  <li>Keep accessible HTML as the primary format even when documents or a read aloud function are available.</li>
-</ul>
-
-<h3 id="read-aloud-function">Read aloud function</h3>
-<p>The templates include a compact visual placeholder for a read aloud function. It represents the approximate footprint of the control but is not interactive.</p>
-<p>Choose a service that meets user needs and complete procurement, privacy, security and technical reviews before integration.</p>
-<ul>
-  <li>Place the read aloud function near the beginning of the Easy Read content.</li>
-  <li>Configure the reading area so unrelated navigation and interface content are excluded.</li>
-  <li>Ensure the reading order follows the DOM.</li>
-  <li>Test keyboard access.</li>
-  <li>Test pause, stop and speed controls where provided.</li>
-  <li>Test word or sentence highlighting where provided.</li>
-  <li>Do not treat the read aloud function as a replacement for semantic HTML or screen-reader testing.</li>
+  <li>Keep accessible HTML as the primary format even when documents are available.</li>
 </ul>
 
 <h3 id="downloadable-formats">Downloadable formats</h3>
