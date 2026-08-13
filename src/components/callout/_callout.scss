@@ -6,8 +6,12 @@
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  
+
   @include nsw.component-spacing();
+
+  @include nsw.breakpoint('md', max-width) {
+    flex-direction: column;
+  }
 
   &__content {
     flex: 1 1 auto;
@@ -20,6 +24,12 @@
     height: nsw.rem(48px);
     margin-right: nsw.rem(16px);
     margin-top: nsw.rem(-2px);
+
+    @include nsw.breakpoint('md', max-width) {
+      margin-right: 0;
+      margin-bottom: nsw.rem(12px);
+      margin-top: 0;
+    }
 
     img,
     svg {
