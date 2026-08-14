@@ -19,7 +19,16 @@
 
 // $nsw-icon-angles: (90, 180, 270);
 
+.nsw-material-symbols,
 .nsw-material-icons {
+  font-family: 'Material Symbols Outlined', 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  line-height: 1;
+  -webkit-font-feature-settings: 'liga'; /* stylelint-disable-line property-no-vendor-prefix */
+  font-feature-settings: 'liga';
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+
   @each $size, $variant in nsw.$nsw-icon-sizes {
     &--#{"" + $size} {
       font-size: nsw.rem(map.get(nsw.$nsw-icon-sizes, $size));
@@ -69,6 +78,7 @@
     @include nsw.nsw-focus($offset: false);
   }
 
+  .nsw-material-symbols,
   .nsw-material-icons,
   svg {
     display: block;

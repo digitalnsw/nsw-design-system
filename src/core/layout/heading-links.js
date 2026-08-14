@@ -105,7 +105,7 @@ function createTooltip(label) {
   tooltip.className = tooltipClass
   tooltip.setAttribute('aria-hidden', 'true')
 
-  tooltipIcon.className = `material-icons nsw-material-icons ${tooltipIconClass}`
+  tooltipIcon.className = `material-symbols-outlined nsw-material-symbols nsw-material-symbols ${tooltipIconClass}`
   tooltipIcon.setAttribute('focusable', 'false')
   tooltipIcon.setAttribute('aria-hidden', 'true')
   tooltipIcon.textContent = 'check'
@@ -120,7 +120,9 @@ function createTooltip(label) {
 }
 
 function ensureButtonTooltip(button, label) {
-  const existingIcon = button.querySelector(`.nsw-material-icons:not(.${tooltipIconClass})`)
+  const existingIcon = button.querySelector(
+    `.nsw-material-symbols:not(.${tooltipIconClass}), .nsw-material-symbols:not(.${tooltipIconClass})`,
+  )
   if (existingIcon) existingIcon.classList.add(buttonIconClass)
 
   if (button.querySelector(`.${tooltipClass}`)) return
@@ -144,7 +146,7 @@ function createCopyButton(headingId, headingText) {
   button.setAttribute('data-tooltip', buttonLabel)
   button.setAttribute('aria-label', contextualLabel)
 
-  icon.className = `material-icons nsw-material-icons ${buttonIconClass}`
+  icon.className = `material-symbols-outlined nsw-material-symbols nsw-material-symbols ${buttonIconClass}`
   icon.setAttribute('focusable', 'false')
   icon.setAttribute('aria-hidden', 'true')
   icon.textContent = 'link'
