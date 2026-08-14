@@ -8,6 +8,8 @@ model:
   coreIdeas: json/easy-read-core-ideas.json
   easy-read-1: json/easy-read-1.json
   easy-read-detail: json/easy-read-detail.json
+  easy-read-landing: json/easy-read-landing.json
+  easy-read-share: json/easy-read-share.json
 meta-description: Plan, write, design, publish and test Easy Read content using NSW Design System guidance and page templates.
 meta-index: true
 ---
@@ -213,22 +215,22 @@ meta-index: true
     <tr>
       <th scope="row">Horizontal cards</th>
       <td>Landing and category links to topics or detail pages.</td>
-      <td><a href="/components/card/index.html">Card component</a></td>
+      <td><a href="#easy-read-horizontal-card">Easy Read horizontal card section</a></td>
     </tr>
     <tr>
       <th scope="row">In-page navigation</th>
       <td>Quick movement between sections on longer pages.</td>
-      <td><a href="/components/in-page-nav/index.html">In-page nav component</a></td>
+      <td><a href="#easy-read-in-page-navigation">Easy Read in-page navigation section</a></td>
     </tr>
     <tr>
       <th scope="row">Utility list</th>
       <td>Downloads and supporting resources.</td>
-      <td><a href="/components/utility-list/index.html">Utility list component</a></td>
+      <td><a href="#easy-read-utility-list">Easy Read utility list section</a></td>
     </tr>
     <tr>
       <th scope="row">Callout</th>
       <td>Final About Easy Read message and essential supporting context.</td>
-      <td><a href="/components/callout/index.html">Callout component</a></td>
+      <td><a href="#easy-read-callout">Easy Read callout section</a></td>
     </tr>
   </tbody>
 </table>
@@ -274,6 +276,57 @@ meta-index: true
       {{/if-equals}}
     {{/each}}
   </div>
+</div>
+{{/_docs-example}}
+
+<h4 id="easy-read-horizontal-card">Easy Read horizontal card</h4>
+<p>Use a horizontal card with an image, short heading and concise description to link to a topic or detail page. Keep each card on its own row so its image and text remain easy to associate. See the <a href="/components/card/index.html">card component</a> for the full component guidance.</p>
+
+{{#>_docs-example separated=true}}
+<div class="nsw-easy-read-content">
+  <div class="nsw-grid nsw-grid--spaced">
+    <div class="nsw-col nsw-col-12">
+      {{#each model.easy-read-landing.categories}}
+        {{#if-equals @index 0}}
+      {{>_card this horizontal=true highlight=true}}
+        {{/if-equals}}
+      {{/each}}
+    </div>
+  </div>
+</div>
+{{/_docs-example}}
+
+<h4 id="easy-read-in-page-navigation">Easy Read in-page navigation</h4>
+<p>Use in-page navigation near the start of a longer article. Write link text that matches the section heading so people can predict where each link goes. See the <a href="/components/in-page-nav/index.html">in-page navigation component</a> for the full component guidance.</p>
+
+{{#>_docs-example separated=true}}
+<div class="nsw-easy-read-content">
+  <nav class="nsw-in-page-nav" aria-label="On this page">
+    <h2 class="nsw-in-page-nav__title">On this page</h2>
+    <ul class="nsw-in-page-nav__list">
+      {{#each model.easy-read-detail.blocks}}
+      <li><a href="#{{id}}">{{title}}</a></li>
+      {{/each}}
+    </ul>
+  </nav>
+</div>
+{{/_docs-example}}
+
+<h4 id="easy-read-utility-list">Easy Read utility list</h4>
+<p>Use the utility list after the main information for actions such as copying, printing, downloading or sharing the page. Give downloads a clear name that describes the format. See the <a href="/components/utility-list/index.html">utility list component</a> for the full component guidance.</p>
+
+{{#>_docs-example separated=true}}
+<div class="nsw-easy-read-content">
+  {{>_easy-read-downloads-utility model.easy-read-detail.downloads social=model.easy-read-share}}
+</div>
+{{/_docs-example}}
+
+<h4 id="easy-read-callout">Easy Read callout</h4>
+<p>Use the final callout to explain the format and offer useful next steps. Keep it consistent across Easy Read pages and only include links that help people continue their task. See the <a href="/components/callout/index.html">callout component</a> for the full component guidance.</p>
+
+{{#>_docs-example separated=true}}
+<div class="nsw-easy-read-content">
+  {{>_easy-read-about model.easy-read-detail.about}}
 </div>
 {{/_docs-example}}
 
