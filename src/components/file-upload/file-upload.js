@@ -45,7 +45,7 @@ class FileUpload {
       <span class="nsw-file-upload__item-filename"></span>
       <button type="button" class="nsw-icon-button">
         <span class="sr-only">Remove file</span>
-        <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span>
+        <span class="material-symbols-outlined nsw-material-symbols" focusable="false" aria-hidden="true">cancel</span>
       </button>`
 
     li.insertAdjacentHTML('afterbegin', html)

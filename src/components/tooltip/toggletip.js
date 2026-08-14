@@ -118,7 +118,7 @@ class Toggletip {
       <div class="nsw-toggletip__header">
         <button type="button" class="nsw-icon-button">
           <span class="sr-only">Close tooltip</span>
-          <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">close</span>
+          <span class="material-symbols-outlined nsw-material-symbols" focusable="false" aria-hidden="true">close</span>
         </button>
       </div>
       <div id="${toggletipContentId}" class="nsw-toggletip__content">
