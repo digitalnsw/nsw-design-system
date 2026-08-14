@@ -1,0 +1,11 @@
+<section class="nsw-easy-read-downloads nsw-section nsw-section--off-white nsw-section--box nsw-block"{{#if id}} aria-labelledby="{{id}}"{{/if}}>
+  <h2{{#if id}} id="{{id}}"{{/if}}>{{heading}}</h2>
+  {{#each descriptionParagraphs}}
+  <p>{{this}}</p>
+  {{/each}}
+  <div class="nsw-easy-read-downloads__files">
+    {{#each files}}
+    {{>_button-link url=url style="dark" text=text icon="download"}}
+    {{/each}}
+  </div>
+</section>

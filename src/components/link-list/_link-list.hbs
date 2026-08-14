@@ -5,8 +5,8 @@
   <ul>
     {{#each list}}
     <li>
-      <a href="#">
-        <span>{{this}}</span>
+      <a href="{{#if url}}{{url}}{{else}}#{{/if}}">
+        <span>{{#if text}}{{text}}{{else}}{{this}}{{/if}}</span>
         <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span>
       </a>
     </li>
