@@ -86,7 +86,7 @@
 }
 
 @function to-rgb($value) {
-  @return color.channel($value, "red", $space: rgb), color.channel($value, "green", $space: rgb), color.channel($value, "blue", $space: rgb);
+  @return math.round(color.channel($value, "red", $space: rgb)), math.round(color.channel($value, "green", $space: rgb)), math.round(color.channel($value, "blue", $space: rgb));
 }
 
 @function to-rgb-list($map) {
@@ -97,9 +97,9 @@
       $new-map,
       (
         $key: (
-          color.channel($hex, "red", $space: rgb),
-          color.channel($hex, "green", $space: rgb),
-          color.channel($hex, "blue", $space: rgb)
+          math.round(color.channel($hex, "red", $space: rgb)),
+          math.round(color.channel($hex, "green", $space: rgb)),
+          math.round(color.channel($hex, "blue", $space: rgb))
         )
       )
     );
