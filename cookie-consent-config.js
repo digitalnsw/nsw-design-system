@@ -1,4 +1,4 @@
-/*! NSW Design System v3.25.2 | MIT License */
+/*! NSW Design System v3.26.0 | MIT License */
 (function (factory) {
   typeof define === 'function' && define.amd ? define('NSW', factory) :
   factory();
