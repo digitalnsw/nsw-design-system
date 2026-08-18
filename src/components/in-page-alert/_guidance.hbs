@@ -17,28 +17,40 @@ layout: blank-layout.hbs
   <li>use for global alerts which are required on all pages.</li>
 </ul>
 
+<h3>Interaction feedback and contextual status</h3>
+<p>When communicating information related to a task, consider whether the message is about the user's interaction or the subject of the task.</p>
+<ul>
+  <li><strong>Interaction feedback</strong> communicates the outcome of a user action. Use success, warning or critical alerts as appropriate.</li>
+  <li><strong>Contextual status</strong> communicates the current state of the subject of the task. Use information or warning alerts as appropriate.</li>
+</ul>
+<p>What the message communicates matters more than whether it appears after an interaction. For example, if a user searches for a record and the result shows the record has been surrendered, the message is contextual status. It is not feedback about whether the search action succeeded.</p>
+
 <h3>In-page alert types</h3>
 
-<p>In-page alerts come in standard and compact. The standard variant can be used to deliver an alert for a section or overall context. The compact variant can be used for in-line alerts or where the alert needs to be isolated, such as in forms where it relates to just one field.</p>
+<p>In-page alerts come in standard and compact. The standard variant can be used to deliver an alert for a section or overall context. The compact variant can be used for in-line alerts or where the alert needs to be isolated from broader page messaging.</p>
 
-<p>In-page alert are styled according to their purpose:</p>
+<p>In-page alerts are styled according to their purpose:</p>
 <p><strong>Information alert</strong></p>
 <p>Designed to be less intrusive or interruptive than other levels of alert:</p>
 <ul>
   <li>use for information the user should know, but is not critical</li>
   <li>use for tips or information which the user can benefit from</li>
   <li>use for messages which don't require too much attention or action</li>
-  <li>don't use in response to a user action.</li>
+  <li>use for important contextual information or status, where the message describes the state or circumstances of the content rather than the user's action</li>
+  <li>don't use as feedback about the outcome of a user action. Use the appropriate success, warning or critical alert where interaction feedback is required.</li>
 </ul>
+<p>Where possible, communicate ordinary state using existing content and components, such as a status label with supporting text. Use an information alert only where the contextual information needs additional prominence.</p>
 <p><strong>Success alert</strong></p>
 <ul>
-  <li>use to inform the user that an action was performed successfully (e.g. submitting a form or registering an account).</li>
+  <li>use to inform the user that an action was performed successfully (e.g. submitting a form or registering an account)</li>
+  <li>don't use to communicate contextual status about the subject of a task.</li>
 </ul>
 <p><strong>Warning alert</strong></p>
 <ul>
   <li>use to warn the user of a possible negative outcome (e.g. password expiry)</li>
   <li>provide sufficient information to avoid the problem</li>
-  <li>use for an action that is out of the ordinary or might not be desired.</li>
+  <li>use for an action that is out of the ordinary or might not be desired</li>
+  <li>use for contextual status where the status requires attention or affects what the user can do next.</li>
 </ul>
 <p><strong>Critical alert</strong></p>
 <ul>
@@ -46,7 +58,7 @@ layout: blank-layout.hbs
   <li>use when the user has made an error</li>
   <li>use where the user is blocked until the issue is resolved, or the issue needs resolving immediately</li>
   <li>provide sufficient information on the issue and resolution to fix the issue</li>
-  <li>don't use for validation or validation summary.</li>
+  <li>don't use for field-level validation or validation summary. See <a href="/components/form/index.html#validation">form validation guidance</a>.</li>
 </ul>
 
 <h2>How this component works</h2>
