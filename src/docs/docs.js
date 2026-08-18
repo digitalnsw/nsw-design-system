@@ -84,6 +84,8 @@ function initDocs() {
   }
 
   const colorConfig = {
+    defaultPalette: 'default',
+    defaultColor: 'Blue 01',
     variables: {
       'brand-dark': '--nsw-brand-dark',
       'brand-light': '--nsw-brand-light',

@@ -254,5 +254,22 @@
         padding-left: calc(var(--nsw-container-width)/4 + #{nsw.rem(nsw.$grid-gutters)}*2);
       }
     }
+
+    &-accent {
+      border-bottom-color: var(--nsw-brand-accent-light);
+
+      .nsw-hero-banner__container {
+        border-bottom-color: var(--nsw-brand-accent);
+      }
+
+      .nsw-hero-banner__lines {
+        background-color: var(--nsw-brand-accent-light);
+
+        &::after {
+          background-color: var(--nsw-brand-accent);
+        }
+      }
+    }
   }
+
 }
