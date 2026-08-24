@@ -28,7 +28,8 @@
 
     &--error,
     &--valid,
-    &--warning {
+    &--warning,
+    &--info {
       margin-top: nsw.rem(8px);
       padding: nsw.rem(8px);
       font-weight: var(--nsw-font-bold);
@@ -69,6 +70,21 @@
       .nsw-material-icons {
         flex-shrink: 0;
         color: var(--nsw-status-warning);
+      }
+
+      strong {
+        font-weight: var(--nsw-font-bold);
+      }
+    }
+
+    &--info {
+      align-items: flex-start;
+      font-weight: var(--nsw-font-normal);
+      background-color: var(--nsw-status-info-bg);
+
+      .nsw-material-icons {
+        flex-shrink: 0;
+        color: var(--nsw-status-info);
       }
 
       strong {
