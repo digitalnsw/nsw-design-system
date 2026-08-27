@@ -367,6 +367,7 @@ function initDocs() {
     new ColorSwatches(element, accentConfig).init()
   })
 
+
   // Initialise Quick Exit (module-based)
   const hasQuickExitAPI = () => !!(window.NSW && window.NSW.QuickExit)
 
