@@ -29,6 +29,40 @@ meta-index: true
 </div>
 {{/_docs-example}}
 
+<h3>Functionality</h3>
+<p>A close button provides the control for dismissing an associated interface element, but does not provide dismissal functionality itself. Implementers must connect the button to the element and action it controls.</p>
+<p>Only show a close button when it can perform its intended action. If the action relies on JavaScript, conditionally show the button after the JavaScript and its event handler have successfully initialised. This avoids presenting users with a control that appears functional but cannot perform its action.</p>
+<p>Where appropriate, NSW Design System components use the <code>hidden</code> attribute to keep controls out of view until the JavaScript they rely on is ready.</p>
+
+<h4>Example</h4>
+<p>In this example, the message remains available when JavaScript is unavailable, while the close button stays hidden.</p>
+
+<h5>HTML</h5>
+{{#>_docs-example hidden="true" open="true" code="html"}}
+<div class="js-dismissible-message">
+  <p>Your changes have been saved.</p>
+  <button class="nsw-icon-button js-dismiss-message" type="button" hidden>
+    <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">close</span>
+    <span class="sr-only">Close message</span>
+  </button>
+</div>
+{{/_docs-example}}
+
+<h5>JavaScript</h5>
+{{#>_docs-code open=true code="js"}}
+document.querySelectorAll('.js-dismissible-message').forEach((message) => {
+  const closeButton = message.querySelector('.js-dismiss-message')
+
+  if (!closeButton) return
+
+  closeButton.addEventListener('click', () => {
+    message.hidden = true
+  })
+
+  closeButton.hidden = false
+})
+{{/_docs-code}}
+
 <h3>Accessibility</h3>
 <p>All components are responsive and designed to comply with WCAG 2.2 AA accessibility standards. Full compliance depends on using and configuring the components correctly.</p>
 

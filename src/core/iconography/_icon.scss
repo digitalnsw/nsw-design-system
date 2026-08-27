@@ -57,7 +57,12 @@
   color: var(--nsw-brand-dark);
   font-weight: var(--nsw-font-bold);
   border-radius: var(--nsw-border-radius);
-  
+  cursor: pointer;
+
+  &[hidden]:not([hidden='until-found']) {
+    display: none;
+  }
+
   @include nsw.font-size('sm');
 
   &:hover {
@@ -72,12 +77,6 @@
   .nsw-material-icons,
   svg {
     display: block;
-  }
-
-  @at-root {
-    a#{&} {
-      cursor: pointer;
-    }
   }
 
   &--flex {
