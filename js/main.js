@@ -3328,6 +3328,7 @@
         this.closeButton.addEventListener('click', () => {
           this.closeMessage();
         });
+        this.closeButton.hidden = false;
       }
       closeMessage() {
         this.element.hidden = true;
