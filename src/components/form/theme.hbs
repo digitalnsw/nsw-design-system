@@ -384,19 +384,74 @@ model:
 
 </div>
 
-<h2>Contextural feedback</h2>
+<h2>Contextual feedback</h2>
+<h3>When no action is required</h3>
 <div class="nsw-form">
   <div class="nsw-form__group">
-    <label class="nsw-form__label" for="form-contextural-feedback-info-theme-1">Vehicle registration</label>
-    <span class="nsw-form__helper" id="form-contextural-feedback-info-theme-1-helper-text">Enter a NSW plate number</span>
-    <input class="nsw-form__input" type="text" id="form-contextural-feedback-info-theme-1" name="form-contextural-feedback-info-theme-1" aria-describedby="form-contextural-feedback-info-theme-1-helper-text form-contextural-feedback-info-theme-1-info-text" value="ABC123">
-    <span class="nsw-form__helper nsw-form__helper--info" id="form-contextural-feedback-info-theme-1-info-text"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">info</span><span><strong>Registration status update.</strong> This vehicle has an active safety recall. You can still proceed, but inspection may be required at renewal.</span></span>
+    <label class="nsw-form__label" for="contextual-info-plate-theme-1">Registration plate number</label>
+    <span class="nsw-form__helper" id="contextual-info-plate-theme-1-helper-text">Enter a NSW plate number</span>
+    <input class="nsw-form__input" type="text" id="contextual-info-plate-theme-1" name="contextual-info-plate-theme-1" aria-describedby="contextual-info-plate-theme-1-helper-text contextual-info-plate-theme-1-status" value="ABC123">
+    <span class="nsw-form__helper nsw-form__helper--info" id="contextual-info-plate-theme-1-status"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">info</span><span><strong>CTP insurance confirmed.</strong> The insurer has sent the policy details to Transport for NSW. You can continue.</span></span>
   </div>
   <div class="nsw-form__group">
-    <label class="nsw-form__label" for="form-contextural-feedback-theme-1">Vehicle registration</label>
-    <span class="nsw-form__helper" id="form-contextural-feedback-theme-1-helper-text">Enter a NSW plate number</span>
-    <input class="nsw-form__input has-warning" type="text" id="form-contextural-feedback-theme-1" name="form-contextural-feedback-theme-1" aria-describedby="form-contextural-feedback-theme-1-helper-text form-contextural-feedback-theme-1-warning-text" value="ABC123">
-    <span class="nsw-form__helper nsw-form__helper--warning" id="form-contextural-feedback-theme-1-warning-text"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">error</span><span><strong>Payment required.</strong> This vehicle has $723 in fines due. Payment is required before the registration can be renewed.</span></span>
+    <label class="nsw-form__label" for="contextual-info-term-theme-1">Registration term</label>
+    <select class="nsw-form__select" id="contextual-info-term-theme-1" name="contextual-info-term-theme-1">
+      <option>6 months</option>
+      <option>12 months</option>
+    </select>
+  </div>
+</div>
+
+<div class="nsw-form">
+  <div class="nsw-form__group">
+    <label class="nsw-form__label" for="contextual-info-check-theme-1">Registration plate number</label>
+    <span class="nsw-form__helper" id="contextual-info-check-theme-1-helper-text">Enter a NSW plate number</span>
+    <div class="nsw-form__input-group">
+      <input class="nsw-form__input" type="text" id="contextual-info-check-theme-1" name="contextual-info-check-theme-1" aria-describedby="contextual-info-check-theme-1-helper-text contextual-info-check-theme-1-status" value="ABC123">
+      <button class="nsw-button nsw-button--dark nsw-button--flex" type="button">Check registration</button>
+    </div>
+  </div>
+  <div class="nsw-in-page-alert nsw-in-page-alert--info" id="contextual-info-check-theme-1-status">
+    <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">info</span>
+    <div class="nsw-in-page-alert__content">
+      <p class="nsw-h5">Concession recorded</p>
+      <p>This vehicle has a registration concession. Additional charges may apply if ownership is transferred. No action is needed to complete this check.</p>
+    </div>
+  </div>
+</div>
+
+<h3>When action is required</h3>
+<div class="nsw-form">
+  <div class="nsw-form__group">
+    <label class="nsw-form__label" for="contextual-warning-plate-theme-1">Registration plate number</label>
+    <span class="nsw-form__helper" id="contextual-warning-plate-theme-1-helper-text">Enter a NSW plate number</span>
+    <input class="nsw-form__input" type="text" id="contextual-warning-plate-theme-1" name="contextual-warning-plate-theme-1" aria-describedby="contextual-warning-plate-theme-1-helper-text contextual-warning-plate-theme-1-status" value="ABC123">
+    <span class="nsw-form__helper nsw-form__helper--warning" id="contextual-warning-plate-theme-1-status"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">error</span><span><strong>Safety inspection required.</strong> Arrange an inspection before renewing this registration.</span></span>
+  </div>
+  <div class="nsw-form__group">
+    <label class="nsw-form__label" for="contextual-warning-term-theme-1">Registration term</label>
+    <select class="nsw-form__select" id="contextual-warning-term-theme-1" name="contextual-warning-term-theme-1">
+      <option>6 months</option>
+      <option>12 months</option>
+    </select>
+  </div>
+</div>
+
+<div class="nsw-form">
+  <div class="nsw-form__group">
+    <label class="nsw-form__label" for="contextual-warning-check-theme-1">Registration plate number</label>
+    <span class="nsw-form__helper" id="contextual-warning-check-theme-1-helper-text">Enter a NSW plate number</span>
+    <div class="nsw-form__input-group">
+      <input class="nsw-form__input" type="text" id="contextual-warning-check-theme-1" name="contextual-warning-check-theme-1" aria-describedby="contextual-warning-check-theme-1-helper-text contextual-warning-check-theme-1-status" value="ABC123">
+      <button class="nsw-button nsw-button--dark nsw-button--flex" type="button">Check renewal</button>
+    </div>
+  </div>
+  <div class="nsw-in-page-alert nsw-in-page-alert--warning" id="contextual-warning-check-theme-1-status">
+    <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">error</span>
+    <div class="nsw-in-page-alert__content">
+      <p class="nsw-h5">Online renewal unavailable</p>
+      <p>This registration needs changes to its operating conditions. Visit a service centre to renew.</p>
+    </div>
   </div>
 </div>
 {{/_layout-container}}
@@ -778,19 +833,74 @@ model:
 
 </div>
 
-<h2>Contextural feedback</h2>
+<h2>Contextual feedback</h2>
+<h3>When no action is required</h3>
 <div class="nsw-form">
   <div class="nsw-form__group">
-    <label class="nsw-form__label" for="form-contextural-feedback-info-theme-2">Vehicle registration</label>
-    <span class="nsw-form__helper" id="form-contextural-feedback-info-theme-2-helper-text">Enter a NSW plate number</span>
-    <input class="nsw-form__input" type="text" id="form-contextural-feedback-info-theme-2" name="form-contextural-feedback-info-theme-2" aria-describedby="form-contextural-feedback-info-theme-2-helper-text form-contextural-feedback-info-theme-2-info-text" value="ABC123">
-    <span class="nsw-form__helper nsw-form__helper--info" id="form-contextural-feedback-info-theme-2-info-text"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">info</span><span><strong>Registration status update.</strong> This vehicle has an active safety recall. You can still proceed, but inspection may be required at renewal.</span></span>
+    <label class="nsw-form__label" for="contextual-info-plate-theme-2">Registration plate number</label>
+    <span class="nsw-form__helper" id="contextual-info-plate-theme-2-helper-text">Enter a NSW plate number</span>
+    <input class="nsw-form__input" type="text" id="contextual-info-plate-theme-2" name="contextual-info-plate-theme-2" aria-describedby="contextual-info-plate-theme-2-helper-text contextual-info-plate-theme-2-status" value="ABC123">
+    <span class="nsw-form__helper nsw-form__helper--info" id="contextual-info-plate-theme-2-status"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">info</span><span><strong>CTP insurance confirmed.</strong> The insurer has sent the policy details to Transport for NSW. You can continue.</span></span>
   </div>
   <div class="nsw-form__group">
-    <label class="nsw-form__label" for="form-contextural-feedback-theme-2">Vehicle registration</label>
-    <span class="nsw-form__helper" id="form-contextural-feedback-theme-2-helper-text">Enter a NSW plate number</span>
-    <input class="nsw-form__input has-warning" type="text" id="form-contextural-feedback-theme-2" name="form-contextural-feedback-theme-2" aria-describedby="form-contextural-feedback-theme-2-helper-text form-contextural-feedback-theme-2-warning-text" value="ABC123">
-    <span class="nsw-form__helper nsw-form__helper--warning" id="form-contextural-feedback-theme-2-warning-text"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">error</span><span><strong>Payment required.</strong> This vehicle has $723 in fines due. Payment is required before the registration can be renewed.</span></span>
+    <label class="nsw-form__label" for="contextual-info-term-theme-2">Registration term</label>
+    <select class="nsw-form__select" id="contextual-info-term-theme-2" name="contextual-info-term-theme-2">
+      <option>6 months</option>
+      <option>12 months</option>
+    </select>
+  </div>
+</div>
+
+<div class="nsw-form">
+  <div class="nsw-form__group">
+    <label class="nsw-form__label" for="contextual-info-check-theme-2">Registration plate number</label>
+    <span class="nsw-form__helper" id="contextual-info-check-theme-2-helper-text">Enter a NSW plate number</span>
+    <div class="nsw-form__input-group">
+      <input class="nsw-form__input" type="text" id="contextual-info-check-theme-2" name="contextual-info-check-theme-2" aria-describedby="contextual-info-check-theme-2-helper-text contextual-info-check-theme-2-status" value="ABC123">
+      <button class="nsw-button nsw-button--dark nsw-button--flex" type="button">Check registration</button>
+    </div>
+  </div>
+  <div class="nsw-in-page-alert nsw-in-page-alert--info" id="contextual-info-check-theme-2-status">
+    <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">info</span>
+    <div class="nsw-in-page-alert__content">
+      <p class="nsw-h5">Concession recorded</p>
+      <p>This vehicle has a registration concession. Additional charges may apply if ownership is transferred. No action is needed to complete this check.</p>
+    </div>
+  </div>
+</div>
+
+<h3>When action is required</h3>
+<div class="nsw-form">
+  <div class="nsw-form__group">
+    <label class="nsw-form__label" for="contextual-warning-plate-theme-2">Registration plate number</label>
+    <span class="nsw-form__helper" id="contextual-warning-plate-theme-2-helper-text">Enter a NSW plate number</span>
+    <input class="nsw-form__input" type="text" id="contextual-warning-plate-theme-2" name="contextual-warning-plate-theme-2" aria-describedby="contextual-warning-plate-theme-2-helper-text contextual-warning-plate-theme-2-status" value="ABC123">
+    <span class="nsw-form__helper nsw-form__helper--warning" id="contextual-warning-plate-theme-2-status"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">error</span><span><strong>Safety inspection required.</strong> Arrange an inspection before renewing this registration.</span></span>
+  </div>
+  <div class="nsw-form__group">
+    <label class="nsw-form__label" for="contextual-warning-term-theme-2">Registration term</label>
+    <select class="nsw-form__select" id="contextual-warning-term-theme-2" name="contextual-warning-term-theme-2">
+      <option>6 months</option>
+      <option>12 months</option>
+    </select>
+  </div>
+</div>
+
+<div class="nsw-form">
+  <div class="nsw-form__group">
+    <label class="nsw-form__label" for="contextual-warning-check-theme-2">Registration plate number</label>
+    <span class="nsw-form__helper" id="contextual-warning-check-theme-2-helper-text">Enter a NSW plate number</span>
+    <div class="nsw-form__input-group">
+      <input class="nsw-form__input" type="text" id="contextual-warning-check-theme-2" name="contextual-warning-check-theme-2" aria-describedby="contextual-warning-check-theme-2-helper-text contextual-warning-check-theme-2-status" value="ABC123">
+      <button class="nsw-button nsw-button--dark nsw-button--flex" type="button">Check renewal</button>
+    </div>
+  </div>
+  <div class="nsw-in-page-alert nsw-in-page-alert--warning" id="contextual-warning-check-theme-2-status">
+    <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">error</span>
+    <div class="nsw-in-page-alert__content">
+      <p class="nsw-h5">Online renewal unavailable</p>
+      <p>This registration needs changes to its operating conditions. Visit a service centre to renew.</p>
+    </div>
   </div>
 </div>
 {{/_layout-container}}

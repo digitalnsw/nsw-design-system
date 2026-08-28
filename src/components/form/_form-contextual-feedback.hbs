@@ -1,0 +1,96 @@
+<div class="nsw-tabs js-tabs">
+  <ul class="nsw-tabs__list">
+    <li><a href="#contextual-feedback-no-action" class="js-tabs-fixed">No action required</a></li>
+    <li><a href="#contextual-feedback-action" class="js-tabs-fixed">Action required</a></li>
+  </ul>
+
+  <section id="contextual-feedback-no-action" class="nsw-tabs__content nsw-tabs__content--side-flush">
+    <h3>When no action is required</h3>
+    <p>Use an information treatment for relevant status information that the user should know but does not need to act on.</p>
+
+    <h4>Multiple-field form: compact inline alert</h4>
+    {{#>_docs-example separated=true}}
+    <div class="nsw-form">
+      <div class="nsw-form__group">
+        <label class="nsw-form__label" for="contextual-info-plate">Registration plate number</label>
+        <span class="nsw-form__helper" id="contextual-info-plate-helper-text">Enter a NSW plate number</span>
+        <input class="nsw-form__input" type="text" id="contextual-info-plate" name="contextual-info-plate" aria-describedby="contextual-info-plate-helper-text contextual-info-plate-status" value="ABC123">
+        <span class="nsw-form__helper nsw-form__helper--info" id="contextual-info-plate-status"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">info</span><span><strong>CTP insurance confirmed.</strong> The insurer has sent the policy details to Transport for NSW. You can continue.</span></span>
+      </div>
+      <div class="nsw-form__group">
+        <label class="nsw-form__label" for="contextual-info-term">Registration term</label>
+        <select class="nsw-form__select" id="contextual-info-term" name="contextual-info-term">
+          <option>6 months</option>
+          <option>12 months</option>
+        </select>
+      </div>
+    </div>
+    {{/_docs-example}}
+
+    <h4>Single-field form: standard alert</h4>
+    {{#>_docs-example separated=true}}
+    <div class="nsw-form">
+      <div class="nsw-form__group">
+        <label class="nsw-form__label" for="contextual-info-check">Registration plate number</label>
+        <span class="nsw-form__helper" id="contextual-info-check-helper-text">Enter a NSW plate number</span>
+        <div class="nsw-form__input-group">
+          <input class="nsw-form__input" type="text" id="contextual-info-check" name="contextual-info-check" aria-describedby="contextual-info-check-helper-text contextual-info-check-status" value="ABC123">
+          <button class="nsw-button nsw-button--dark nsw-button--flex" type="button">Check registration</button>
+        </div>
+      </div>
+      <div class="nsw-in-page-alert nsw-in-page-alert--info" id="contextual-info-check-status">
+        <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">info</span>
+        <div class="nsw-in-page-alert__content">
+          <p class="nsw-h5">Concession recorded</p>
+          <p>This vehicle has a registration concession. Additional charges may apply if ownership is transferred. No action is needed to complete this check.</p>
+        </div>
+      </div>
+    </div>
+    {{/_docs-example}}
+  </section>
+
+  <section id="contextual-feedback-action" class="nsw-tabs__content nsw-tabs__content--side-flush">
+    <h3>When action is required</h3>
+    <p>Use a warning treatment when the subject's status requires the user to take action or affects what they can do next.</p>
+
+    <h4>Multiple-field form: compact inline alert</h4>
+    {{#>_docs-example separated=true}}
+    <div class="nsw-form">
+      <div class="nsw-form__group">
+        <label class="nsw-form__label" for="contextual-warning-plate">Registration plate number</label>
+        <span class="nsw-form__helper" id="contextual-warning-plate-helper-text">Enter a NSW plate number</span>
+        <input class="nsw-form__input" type="text" id="contextual-warning-plate" name="contextual-warning-plate" aria-describedby="contextual-warning-plate-helper-text contextual-warning-plate-status" value="ABC123">
+        <span class="nsw-form__helper nsw-form__helper--warning" id="contextual-warning-plate-status"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">error</span><span><strong>Safety inspection required.</strong> Arrange an inspection before renewing this registration.</span></span>
+      </div>
+      <div class="nsw-form__group">
+        <label class="nsw-form__label" for="contextual-warning-term">Registration term</label>
+        <select class="nsw-form__select" id="contextual-warning-term" name="contextual-warning-term">
+          <option>6 months</option>
+          <option>12 months</option>
+        </select>
+      </div>
+    </div>
+    {{/_docs-example}}
+
+    <h4>Single-field form: standard alert</h4>
+    {{#>_docs-example separated=true}}
+    <div class="nsw-form">
+      <div class="nsw-form__group">
+        <label class="nsw-form__label" for="contextual-warning-check">Registration plate number</label>
+        <span class="nsw-form__helper" id="contextual-warning-check-helper-text">Enter a NSW plate number</span>
+        <div class="nsw-form__input-group">
+          <input class="nsw-form__input" type="text" id="contextual-warning-check" name="contextual-warning-check" aria-describedby="contextual-warning-check-helper-text contextual-warning-check-status" value="ABC123">
+          <button class="nsw-button nsw-button--dark nsw-button--flex" type="button">Check renewal</button>
+        </div>
+      </div>
+      <div class="nsw-in-page-alert nsw-in-page-alert--warning" id="contextual-warning-check-status">
+        <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">error</span>
+        <div class="nsw-in-page-alert__content">
+          <p class="nsw-h5">Online renewal unavailable</p>
+          <p>This registration needs changes to its operating conditions. Visit a service centre to renew.</p>
+        </div>
+      </div>
+    </div>
+    {{/_docs-example}}
+  </section>
+</div>

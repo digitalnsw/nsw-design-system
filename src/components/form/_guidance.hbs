@@ -40,15 +40,23 @@ layout: blank-layout.hbs
 
 <ul>
   <li><strong>User feedback</strong> communicates the outcome of a user action. Use success or error feedback as appropriate.</li>
-  <li><strong>Contextural feedback</strong> communicates the current state of the subject of the form or task. Use information or warning feedback as appropriate.</li>
+  <li><strong>Contextual feedback</strong> communicates the current state of the subject of the form or task. Use information or warning feedback as appropriate.</li>
 </ul>
 
-<h3>User feedback and contextural feedback</h3>
-<p>Contextural feedback is based on the subject of a form or task, rather than the user's interaction with the form itself. For example, a user may enter a valid vehicle registration and the lookup returns that fines are due.</p>
+<h3>User feedback and contextual feedback</h3>
+<p>Contextual feedback is based on the subject of a form or task, rather than the user's interaction with the form itself. For example, a user may enter a valid vehicle registration and the lookup returns that an inspection is required before renewal.</p>
 
-<p>Keep the field state neutral and communicate the status separately. Use an information in-page alert for neutral contextual information, or a warning in-page alert where the status requires attention or affects what the user can do next.</p>
+<p>Keep the field state neutral and communicate the status separately. Use information feedback for status information the user should know but does not need to act on. Use warning feedback when the status requires action or affects what the user can do next.</p>
 
-<p>Do not use success or error feedback for contextural feedback. These treatments communicate the outcome of a user action rather than the state of the subject.</p>
+<h3>Choosing an inline or standard alert</h3>
+<ul>
+  <li><strong>Multiple-field forms:</strong> use the compact alert inline, immediately after the field it relates to. This keeps the message close to its context without interrupting the rest of the form.</li>
+  <li><strong>Single-field forms:</strong> use the standard, non-compact in-page alert after the field and its call to action. The alert provides feedback for the form's single task and does not need to compete with other fields.</li>
+</ul>
+
+<p>Associate the message with its field using <code>aria-describedby</code>. Do not apply an error or warning state to a valid field: the alert describes the subject's status, not whether the user's input is valid.</p>
+
+<p>Do not use success or error feedback for contextual feedback. These treatments communicate the outcome of a user action rather than the state of the subject.</p>
 
 <p>For more guidance, see <a href="/components/in-page-alert/index.html">In-page alert</a>.</p>
 

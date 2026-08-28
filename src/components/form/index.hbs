@@ -13,29 +13,29 @@ meta-description: Forms are used to capture data from users.
 meta-index: true
 ---
 
-<div class="nsw-tabs js-tabs">
+<h2>User feedback</h2>
+<p>User feedback communicates the state of a field or the outcome of a user's interaction with the form.</p>
 
+<div class="nsw-tabs js-tabs">
   <ul class="nsw-tabs__list">
     <li><a href="#default" class="js-tabs-fixed">Default</a></li>
     <li><a href="#error" class="js-tabs-fixed">Error</a></li>
     <li><a href="#success" class="js-tabs-fixed">Success</a></li>
-    <li><a href="#contextural-feedback" class="js-tabs-fixed">Contextural feedback</a></li>
   </ul>
 
   <section id="default" class="nsw-tabs__content nsw-tabs__content--side-flush">
 {{>_form-default}}
   </section>
 
-    <section id="error" class="nsw-tabs__content nsw-tabs__content--side-flush">
+  <section id="error" class="nsw-tabs__content nsw-tabs__content--side-flush">
 {{>_form-error}}
   </section>
 
   <section id="success" class="nsw-tabs__content nsw-tabs__content--side-flush">
 {{>_form-success}}
   </section>
-
-  <section id="contextural-feedback" class="nsw-tabs__content nsw-tabs__content--side-flush">
-{{>_form-contextural-feedback}}
-  </section>
-
 </div>
+
+<h2 id="contextual-feedback">Contextual feedback</h2>
+<p>Contextual feedback communicates the current state of the subject of the form, rather than the outcome of the user's interaction.</p>
+{{>_form-contextual-feedback}}
