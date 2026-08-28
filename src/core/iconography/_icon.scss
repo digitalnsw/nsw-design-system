@@ -59,8 +59,8 @@
   border-radius: var(--nsw-border-radius);
   cursor: pointer;
 
-  &[hidden]:not([hidden='until-found']) {
-    display: none;
+  &:disabled {
+    cursor: default;
   }
 
   @include nsw.font-size('sm');
@@ -78,6 +78,7 @@
   svg {
     display: block;
   }
+
 
   &--flex {
     display: flex;
