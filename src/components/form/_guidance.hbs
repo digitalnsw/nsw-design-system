@@ -8,20 +8,59 @@ layout: blank-layout.hbs
 <p>Form elements are split into two key input types:</p>
 <p><strong>Freeform inputs</strong> - Free form text inputs are the most used components in forms. Use text fields and text areas for freeform entry. Text fields are used to input a short (single line) amount of freeform text. Text areas are used to input multiple lines of text, for example, a comments field. Use text areas when you expect longer entries.</p>
 <p><strong>Selection inputs</strong> - Selection inputs are used to select an option from a predefined list of available options. Selection options may be single-select or multi-select. Use a radio button list or dropdowns for single selections and checkboxes for multi-selections.  </p>
-<p>Do:</p>
+
+<h3>Guidance</h3>
+<div class="nsw-grid nsw-m-top-sm">
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--do"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span><span>Do</span></div>
+    <ul class="nsw-m-top-sm">
+      <li>keep forms to one column as multiple columns can disrupt a user's vertical momentum</li>
+      <li>use input constraints for fields with a defined character count, such as phone numbers and postcodes</li>
+      <li>mark form fields as required or optional</li>
+      <li>use top aligned labels so forms are easier to scan and complete, including on mobile</li>
+      <li>make calls to action descriptive and state the intent of the action</li>
+      <li>specify errors inline, showing where the error occurred and what the user needs to do.</li>
+    </ul>
+  </div>
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--dont"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span><span>Don't</span></div>
+    <ul class="nsw-m-top-sm">
+      <li>use all caps</li>
+      <li>hide helper text</li>
+      <li>use an in-page alert as a substitute for field-level validation or a validation summary.</li>
+      <li>use an information alert to communicate invalid or missing form data. Use the appropriate validation treatment instead.</li>
+    </ul>
+  </div>
+</div>
+
+<h2 id="validation">Validation</h2>
+<p>Validation communicates whether a field or form meets its input requirements. When a requirement is not met, messages should explain what the issue is, where it occurred and how to fix it.</p>
+
+<p>When communicating information related to a form or task, consider whether the message is about the user's interaction or the subject of the task.</p>
+
 <ul>
-  <li>keep it one column - multiple columns easily disrupt a user’s vertical momentum</li>
-  <li>use field length input constraints - employ this for fields that have a defined character count like phone numbers and postcodes</li>
-  <li>mark required vs. optional form fields - you should always mark your form fields as “required” or “optional”. You can do this by writing “required” or “optional” in a small font next to your field, or by placing an asterisk next to your required fields</li>
-  <li>use top align labels - users complete top aligned labeled forms at a much higher rate than left-aligned labels. Top aligned labels also translate well on mobile.</li>
-  <li>make CTAs descriptive, state the intent of the action</li>
-  <li>specify errors inline, show the user where the error occurred and provide a reason.</li>
+  <li><strong>User feedback</strong> communicates the outcome of a user action. Use success or error feedback as appropriate.</li>
+  <li><strong>Contextual feedback</strong> communicates the current state of the subject of the form or task. Use information or warning feedback as appropriate.</li>
 </ul>
-<p>Do not:</p>
+
+<h3>User feedback and contextual feedback</h3>
+<p>Contextual feedback is based on the subject of a form or task, rather than the user's interaction with the form itself. For example, a user may enter a valid vehicle registration and the lookup returns that an inspection is required before renewal.</p>
+
+<p>Keep the field state neutral and communicate the status separately. Use information feedback for status information the user should know but does not need to act on. Use warning feedback when the status requires action or affects what the user can do next.</p>
+
+<h3>Choosing an inline or standard alert</h3>
 <ul>
-  <li>use all caps</li>
-  <li>hide helper text</li>
+  <li><strong>Multiple-field forms:</strong> use the compact alert inline, immediately after the field it relates to. This keeps the message close to its context without interrupting the rest of the form.</li>
+  <li><strong>Single-field forms:</strong> use the standard, non-compact in-page alert after the field and its call to action. The alert provides feedback for the form's single task and does not need to compete with other fields.</li>
 </ul>
+
+<p>Associate the message with its field using <code>aria-describedby</code>. Do not apply an error or warning state to a valid field: the alert describes the subject's status, not whether the user's input is valid.</p>
+
+<p>Do not use success or error feedback for contextual feedback. These treatments communicate the outcome of a user action rather than the state of the subject.</p>
+
+<p>For more guidance, see <a href="/components/in-page-alert/index.html">In-page alert</a>.</p>
+
+<h2>Field types</h2>
 
 <h3>Dropdown</h3>
 <p>The dropdown pattern, also referred to as a drop list or select list, allows users to select a single option from a list of available options.</p>
@@ -36,11 +75,9 @@ layout: blank-layout.hbs
 <p>Radio lists provide the user with a list of all available items from which a single selection is made. Radio lists are wrapped in a fieldset to make them one logical group.</p>
 
 <h2>How this component works</h2>
-<p><strong>Help text</strong></p>
+<h3>Help text</h3>
 <p>Help text allows form designers to provide users with help to fill in a form element. Use help text to provide additional context, information or as an example to complete a field input.</p>
-<p><strong>Validation</strong></p>
-<p>Validation is used to let the user know when there is an issue with the data they have input. The validation that you input needs to clearly explain to the user what the issue is and what they need to do to address the error.</p>
-<p><strong>Organising form elements</strong></p>
+<h3>Organising form elements</h3>
 <ul>
   <li>Differentiate primary from secondary actions</li>
   <li>Group related information to ensure the user makes sense of the form faster</li>
