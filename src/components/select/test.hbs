@@ -5,6 +5,7 @@ page: true
 model:
   region: ../../components/select/json/select-region.json
   savings-program: ../../components/select/json/select-savings-program.json
+  many-options: ../../components/select/json/select-many-options.json
 ---
 {{#>_layout-container}}
 
@@ -13,6 +14,17 @@ model:
     {{>_select model.savings-program 
     id="select-all-savings-programs-test"
     multiple="true"
+    }}
+  </div>
+
+  <div class="nsw-form__group nsw-m-bottom-sm">
+    {{>_select model.many-options
+    id="select-many-options-test"
+    multiple="true"
+    helper-text="Select all that apply"
+    select-text="Select services"
+    multi-select-text="{n} services selected"
+    multi-select-max-height="45"
     }}
   </div>
 
@@ -236,4 +248,3 @@ form.addEventListener("submit", logSubmit);
 </script>
 
 {{/_layout-container}}
-

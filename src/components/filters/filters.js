@@ -30,7 +30,8 @@ class Filters {
     this.wrapper = this.element.querySelector(`.${this.prefix}${this.wrapperClass}`)
     this.closeButton = this.wrapper && this.wrapper.querySelector(`.${this.prefix}${this.closeClass} button`)
     this.submitButton = this.wrapper && this.wrapper.querySelector(`.${this.prefix}${this.submitClass} button`)
-    this.resetButton = this.wrapper && this.wrapper.querySelector(`.${this.prefix}${this.resetClass} button`)
+    this.resetButton = this.wrapper
+      && this.wrapper.querySelector(`.${this.prefix}${this.resetClass} button, .${this.prefix}${this.resetClass} a`)
     this.items = this.wrapper && this.wrapper.querySelectorAll(`.${this.prefix}${this.itemClass}`)
     this.accordionButtons = this.wrapper && this.wrapper.querySelectorAll(`.${this.prefix}${this.itemClass}-button`)
     this.showMoreContent = this.element.querySelectorAll(`.${this.prefix}${this.allClass}`)
@@ -203,8 +204,7 @@ class Filters {
   clearAll(event) {
     event.preventDefault()
 
-    const simulateEvent = new MouseEvent('change', {
-      view: window,
+    const simulateEvent = new Event('change', {
       bubbles: true,
       cancelable: true,
     })
@@ -240,9 +240,9 @@ class Filters {
       multiSelectAll.classList.remove(this.showClass)
 
       multiSelectOptions.forEach((element) => {
-        element.setAttribute('aria-selected', 'true')
-        element.dispatchEvent(simulateEvent)
-        element.click()
+        const checkbox = element.querySelector('.js-multi-select__checkbox')
+        checkbox.checked = false
+        checkbox.dispatchEvent(simulateEvent)
       })
     }
 

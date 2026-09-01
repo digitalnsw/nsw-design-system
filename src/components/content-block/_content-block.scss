@@ -1,9 +1,6 @@
 @use '../../global/scss/tools' as nsw;
 
 .nsw-content-block {
-  --nsw-icon-colour-dark: var(--nsw-text-dark);
-  --nsw-icon-colour-accent: var(--nsw-brand-supplementary);
-
   &__title {
     font-weight: var(--nsw-font-bold);
     text-wrap: pretty;
@@ -56,17 +53,8 @@
     }
   }
 
+  &__pictogram,
   &__icon {
-    max-width: nsw.rem(64px);
-    max-height: nsw.rem(64px);
-
-    svg {
-      max-width: nsw.rem(64px);
-      max-height: nsw.rem(64px);
-
-      .nsw-section--invert & {
-        --nsw-icon-colour-dark: var(--nsw-text-light);
-      }
-    }
+    margin-bottom: nsw.rem(12px);
   }
 }

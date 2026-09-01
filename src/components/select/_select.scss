@@ -1,5 +1,7 @@
 @use '../../global/scss/tools' as nsw;
 
+$multi-select-list-gap: nsw.rem(8px);
+
 .nsw-form {
   &__select {
     padding: nsw.rem(11px) nsw.rem(16px);
@@ -119,19 +121,15 @@
   }
 
   &__clear-all-button {
-    margin-top: nsw.rem(20px);
-    text-decoration: underline;
-    cursor: pointer;
-    background: 0;
-    border: 0;
-    padding: nsw.rem(4px) nsw.rem(4px) nsw.rem(4px) 0;
+    @include nsw.link-button;
 
-    @include nsw.link;
-    @include nsw.font-size('sm');
-  
-    &:focus {
-      @include nsw.nsw-focus;
-    }
+    display: block;
+    width: 100%;
+    min-height: nsw.rem(32px);
+    margin-top: $multi-select-list-gap;
+    padding: nsw.rem(4px) 0;
+    background-color: var(--nsw-white);
+    text-align: left;
   }
 
   &__list {
@@ -158,6 +156,14 @@
     }
   }
 
+  &__scroll {
+    margin: $multi-select-list-gap nsw.rem(-8px) 0;
+    padding: $multi-select-list-gap;
+    overflow-y: auto;
+    min-height: 0;
+    flex: 1 1 auto;
+  }
+
   &__label {
     white-space: nowrap;
     overflow: hidden;
@@ -176,7 +182,9 @@
     padding: 1rem;
     border-radius: 0.25em;
     z-index: 5;
-    overflow: auto;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
     visibility: hidden;
     opacity: 0;
     transition: visibility 0s 0.2s, opacity 0.2s;
@@ -210,7 +218,7 @@
     display: block;
     position: relative;
     border: 0;
-    background: transparent;
+    background: var(--nsw-white);
     appearance: none;
     cursor: pointer;
     width: 100%;

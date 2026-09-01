@@ -1,13 +1,39 @@
 ---
 title: Callout
 width: narrow
-model: json/callout.json
+model:
+  callout: json/callout.json
+  callout-pictogram: json/callout-pictogram.json
 page: true
 ---
 {{#>_layout-container}}
-{{>_callout model}}
+{{>_callout model.callout}}
+{{/_layout-container}}
+
+{{#>_layout-container}}
+{{>_callout model.callout-pictogram}}
+{{/_layout-container}}
+
+{{#>_layout-container brand-light="true"}}
+{{>_callout model.callout}}
+{{/_layout-container}}
+
+{{#>_layout-container brand-light="true"}}
+{{>_callout model.callout-pictogram}}
 {{/_layout-container}}
 
 {{#>_layout-container brand-dark="true" invert="true"}}
-{{>_callout model}}
+{{>_callout model.callout}}
+{{/_layout-container}}
+
+{{#>_layout-container brand-dark="true" invert="true"}}
+{{>_callout model.callout-pictogram}}
+{{/_layout-container}}
+
+{{#>_layout-container brand-supplementary="true" invert="true"}}
+{{>_callout model.callout}}
+{{/_layout-container}}
+
+{{#>_layout-container brand-supplementary="true" invert="true"}}
+{{>_callout model.callout-pictogram}}
 {{/_layout-container}}

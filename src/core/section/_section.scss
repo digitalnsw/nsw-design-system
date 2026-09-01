@@ -5,43 +5,53 @@
 $nsw-sections: (
   brand-dark: (
     background: var(--nsw-brand-dark),
-    color: var(--nsw-text-light)
+    color: var(--nsw-text-light),
+    color-offset: var(--nsw-brand-supplementary)
   ),
   brand-supplementary: (
     background: var(--nsw-brand-supplementary),
-    color: var(--nsw-text-light)
+    color: var(--nsw-text-light),
+    color-offset: var(--nsw-text-light)
   ),
   black: (
     background: var(--nsw-black),
-    color: var(--nsw-text-light)
+    color: var(--nsw-text-light),
+    color-offset: var(--nsw-brand-supplementary)
   ),
   grey-01: (
     background: var(--nsw-grey-01),
-    color: var(--nsw-text-light)
+    color: var(--nsw-text-light),
+    color-offset: var(--nsw-brand-supplementary)
   ),
   grey-02: (
     background: var(--nsw-grey-02),
-    color: var(--nsw-text-light)
+    color: var(--nsw-text-light),
+    color-offset: var(--nsw-brand-supplementary)
   ),
   brand-light: (
     background: var(--nsw-brand-light),
-    color: var(--nsw-text-dark)
+    color: var(--nsw-text-dark),
+    color-offset: var(--nsw-brand-supplementary)
   ),
   white: (
     background: var(--nsw-white),
-    color: var(--nsw-text-dark)
+    color: var(--nsw-text-dark),
+    color-offset: var(--nsw-brand-supplementary)
   ),
   off-white: (
     background: var(--nsw-off-white),
-    color: var(--nsw-text-dark)
+    color: var(--nsw-text-dark),
+    color-offset: var(--nsw-brand-supplementary)
   ),
   grey-03: (
     background: var(--nsw-grey-03),
-    color: var(--nsw-text-dark)
+    color: var(--nsw-text-dark),
+    color-offset: var(--nsw-brand-supplementary)
   ),
   grey-04: (
     background: var(--nsw-grey-04),
-    color: var(--nsw-text-dark)
+    color: var(--nsw-text-dark),
+    color-offset: var(--nsw-brand-supplementary)
   )
 );
 
@@ -113,10 +123,14 @@ $nsw-sections: (
       --nsw-section-bg: #{map.get($variant, background)};
       background-color: map.get($variant, background);
       color: map.get($variant, color);
+      --nsw-pictogram-primary: #{map.get($variant, color)};
+      --nsw-pictogram-secondary: #{map.get($variant, color-offset)};
     }
   }
 
   &--invert {
     color: var(--nsw-text-light);
+    --nsw-pictogram-primary: var(--nsw-text-light);
+    --nsw-pictogram-secondary: var(--nsw-text-light);
   }
 }

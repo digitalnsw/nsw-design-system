@@ -1,5 +1,6 @@
 import Toggletip from '../tooltip/toggletip'
 import logger from '../../global/scripts/helpers/logger'
+import { copyToClipboard as writeToClipboard } from '../../global/scripts/helpers/utilities'
 
 class UtilityList extends Toggletip {
   constructor(element, toggletip = element.querySelector('.js-share')) {
@@ -135,19 +136,10 @@ class UtilityList extends Toggletip {
   }
 
   copyToClipboard(element) {
-    if (!navigator.clipboard) {
-      const input = document.createElement('input')
-      input.setAttribute('value', this.urlLocation)
-      document.body.appendChild(input)
-      input.select()
-      document.execCommand('copy')
-      document.body.removeChild(input)
+    writeToClipboard(this.urlLocation).then((copied) => {
+      if (!copied) return
       this.copiedMessage(element)
-    } else {
-      navigator.clipboard.writeText(this.urlLocation).then(() => {
-        this.copiedMessage(element)
-      })
-    }
+    })
   }
 
   copiedMessage(element) {
