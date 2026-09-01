@@ -1,13 +1,13 @@
 ---
-title: Easy Read detail article (photos)
-meta-description: Example Easy Read article showing how photographs, simple language and page structure work together.
+title: Easy Read detail article (mixed photographs and graphics)
+meta-description: Example Easy Read article showing how photographs and graphical cues can work together in the same image.
 meta-index: true
-order: 24
+order: 28
 page: true
 directory: Easy Read
 model:
   nav-basic: ../../../components/main-nav/json/main-nav.json
-  page: ../../../docs/content/methods/json/easy-read-detail-photos.json
+  page: ../../../docs/content/methods/json/easy-read-detail-mixed-media.json
   share: ../../../docs/content/methods/json/easy-read-share.json
   footer: ../../../components/footer/json/footer.json
 ---
@@ -43,7 +43,7 @@ model:
       <div class="nsw-easy-read-content__block-stack">
         {{#each model.page.blocks}}
         <div class="nsw-easy-read-content__block-item nsw-block" id="{{id}}">
-          {{>_easy-read-block this theme="white"}}
+          {{>_easy-read-block this headingLevel="h3" theme="white"}}
         </div>
         {{#unless @last}}
         <hr class="nsw-easy-read-content__divider">
@@ -54,13 +54,6 @@ model:
       {{>_easy-read-downloads-utility model.page.downloads social=model.share}}
 
       {{>_easy-read-metadata model.page filesUpdated=model.page.downloads}}
-
-      <div class="nsw-block">
-        <h2>Need more help?</h2>
-        {{#each model.page.helpParagraphs}}
-        <p>{{this}}</p>
-        {{/each}}
-      </div>
 
       <hr class="nsw-m-y-lg">
 
