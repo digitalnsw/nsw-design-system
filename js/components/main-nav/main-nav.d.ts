@@ -35,6 +35,7 @@ declare class Navigation {
     mobileToggleMainNav(e: any): void;
     buttonClickDesktop(event: any): void;
     buttonKeydownDesktop(event: any): void;
+    ensureSingleDesktopSubNav(currentTarget: any): void;
     escapeClose(e: any): void;
     saveElements(e: any): void;
     showSubNav({ propertyName }: {

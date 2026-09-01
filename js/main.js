@@ -3500,6 +3500,7 @@
       buttonClickDesktop(event) {
         const isDesktop = this.breakpoint.matches;
         if (!isDesktop || !event.target.closest('.nsw-main-nav__sub-nav')) {
+          this.ensureSingleDesktopSubNav(event.currentTarget);
           this.saveElements(event);
           this.toggleSubNavDesktop();
           event.preventDefault();
@@ -3507,9 +3508,26 @@
       }
       buttonKeydownDesktop(event) {
         if (event.key === ' ' || event.key === 'Enter' || event.key === 'Spacebar') {
+          this.ensureSingleDesktopSubNav(event.currentTarget);
           this.saveElements(event);
           this.toggleSubNavDesktop();
           event.preventDefault();
+        }
+      }
+      ensureSingleDesktopSubNav(currentTarget) {
+        if (!this.breakpoint.matches) return;
+        while (this.openSubNavElements.length > 0) {
+          const {
+            link
+          } = this.whichSubNavLatest();
+          const isExpanded = link.getAttribute('aria-expanded') === 'true';
+          if (!isExpanded) {
+            this.openSubNavElements.pop();
+          } else if (link === currentTarget) {
+            return;
+          } else {
+            this.closeSubNav();
+          }
         }
       }
       escapeClose(e) {
@@ -3536,6 +3554,11 @@
           link: currentTarget,
           linkParent: currentTarget.parentNode
         };
+        if (this.breakpoint.matches) {
+          this.openSubNavElements = this.openSubNavElements.filter(({
+            link
+          }) => link !== currentTarget);
+        }
         this.openSubNavElements.push(temp);
       }
       showSubNav({
