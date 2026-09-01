@@ -19,6 +19,7 @@ class GlobalAlert {
     this.closeButton.addEventListener('click', () => {
       this.closeMessage()
     })
+    this.closeButton.hidden = false
   }
 
   closeMessage() {
