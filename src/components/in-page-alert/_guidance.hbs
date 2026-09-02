@@ -25,6 +25,16 @@ layout: blank-layout.hbs
 </ul>
 <p>What the message communicates matters more than whether it appears after an interaction. For example, if a user searches for a record and the result shows the record has been surrendered, the message is contextual feedback. It is not feedback about whether the search action succeeded.</p>
 
+<h4>When both types of feedback apply</h4>
+<p>User feedback and contextual feedback can appear at the same time. Treat them as separate messages because they answer different questions: whether the user's action worked, and what the current state of the subject means.</p>
+<ul>
+  <li>show user feedback first when the outcome of the action needs to be confirmed, then show contextual feedback beside the content or record it describes</li>
+  <li>choose the alert type for each message independently. A successful action can return a subject that has a warning status</li>
+  <li>only show both messages when each adds useful information or a different next step</li>
+  <li>do not combine the messages if this makes the outcome or required action ambiguous, and do not repeat the same advice in multiple alerts.</li>
+</ul>
+<p>For example, after a record is updated, a success alert can confirm that the change was saved while a separate warning alert explains that the record still needs approval. If the action fails, address the critical feedback first and do not present new contextual information as though the failed action changed it.</p>
+
 <h3>In-page alert types</h3>
 
 <p>In-page alerts come in standard and compact variants. The standard variant can be used to deliver an alert for a section or overall context. The compact variant can be used for inline alerts or where the alert needs to be isolated from broader page messaging.</p>

@@ -2,6 +2,7 @@
   <ul class="nsw-tabs__list">
     <li><a href="#contextual-feedback-no-action" class="js-tabs-fixed">No action required</a></li>
     <li><a href="#contextual-feedback-action" class="js-tabs-fixed">Action required</a></li>
+    <li><a href="#contextual-feedback-combined" class="js-tabs-fixed">Both types</a></li>
   </ul>
 
   <section id="contextual-feedback-no-action" class="nsw-tabs__content nsw-tabs__content--side-flush">
@@ -86,6 +87,30 @@
         <div class="nsw-in-page-alert__content">
           <p class="nsw-h5">Online renewal unavailable</p>
           <p>This registration needs changes to its operating conditions. Visit a service centre to renew.</p>
+        </div>
+      </div>
+    </div>
+    {{/_docs-example}}
+  </section>
+
+  <section id="contextual-feedback-combined" class="nsw-tabs__content nsw-tabs__content--side-flush">
+    <p>When both types are useful, show the outcome of the user's action first and the subject's status separately.</p>
+
+    <h4>User and contextual feedback</h4>
+    {{#>_docs-example separated=true}}
+    <div class="nsw-form">
+      <div class="nsw-in-page-alert nsw-in-page-alert--success">
+        <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">check_circle</span>
+        <div class="nsw-in-page-alert__content">
+          <p class="nsw-h5">Registration details updated</p>
+          <p>Your changes have been saved.</p>
+        </div>
+      </div>
+      <div class="nsw-in-page-alert nsw-in-page-alert--warning nsw-m-top-md">
+        <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">error</span>
+        <div class="nsw-in-page-alert__content">
+          <p class="nsw-h5">Safety inspection required</p>
+          <p>This vehicle needs a safety inspection before you can renew the registration.</p>
         </div>
       </div>
     </div>

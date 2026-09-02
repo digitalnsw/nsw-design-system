@@ -48,6 +48,16 @@ layout: blank-layout.hbs
 
 <p>Keep the field state neutral and communicate the status separately. Use information feedback for status information the user should know but does not need to act on. Use warning feedback when the status requires action or affects what the user can do next.</p>
 
+<h4>When both types of feedback apply</h4>
+<p>A form can need user feedback and contextual feedback at the same time. Keep them separate so users can distinguish whether their input or action was accepted from what the returned status means.</p>
+<ul>
+  <li>show validation or other user feedback with the field or action it relates to</li>
+  <li>show contextual feedback beside the returned subject or content it describes</li>
+  <li>resolve errors that block the action before presenting new contextual feedback</li>
+  <li>only show both when each message helps the user understand the result or take a different next step.</li>
+</ul>
+<p>For example, a vehicle registration can be valid while the vehicle still requires an inspection. Keep the field neutral to show that the value was accepted, then use a separate warning alert to explain the inspection requirement. If confirmation that the lookup succeeded does not help the user, omit the success message and show only the contextual warning.</p>
+
 <h3>Choosing an inline or standard alert</h3>
 <ul>
   <li><strong>Multiple-field forms:</strong> use the compact alert inline, immediately after the field it relates to. This keeps the message close to its context without interrupting the rest of the form.</li>
