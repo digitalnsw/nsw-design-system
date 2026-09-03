@@ -36,70 +36,18 @@ layout: blank-layout.hbs
 <h2 id="validation">Validation</h2>
 <p>Validation communicates whether a field or form meets its input requirements. When a requirement is not met, messages should explain what the issue is, where it occurred and how to fix it.</p>
 
+<h3>User feedback and contextual feedback</h3>
 <p>When communicating information related to a form or task, consider whether the message is about the user's interaction or the subject of the task.</p>
 
 <ul>
   <li><strong>User feedback</strong> communicates the outcome of a user action. Use success or error feedback as appropriate.</li>
   <li><strong>Contextual feedback</strong> communicates the current state of the subject of the form or task. Use information or warning feedback as appropriate.</li>
 </ul>
-
-<h3>User feedback and contextual feedback</h3>
 <p>Contextual feedback is based on the subject of a form or task, rather than the user's interaction with the form itself. For example, a user may enter a valid vehicle registration and the lookup returns that an inspection is required before renewal.</p>
 
 <p>Use information feedback for status information the user should know but does not need to act on. Use warning feedback when the status requires action or affects what the user can do next.</p>
 
-<h4>Field state and contextual feedback</h4>
-<p>A field has one validation state at a time: default, error or valid. Information and warning are not additional field states. They describe the subject returned by a valid value or action and should not change the field's validation state.</p>
-<p>A valid value does not always need green success feedback. Use it only when confirming the value has been checked helps the user. Otherwise, leave the field neutral and show only useful contextual feedback.</p>
-
-<h4>Choose feedback in this order</h4>
-<ol>
-  <li><strong>Can the value be accepted?</strong> If not, show an error and help the user correct it. Do not show new contextual feedback that depends on a valid value.</li>
-  <li><strong>Does confirming validation help?</strong> If the value was checked or matched and that confirmation is important, show valid feedback. Otherwise, keep the field neutral.</li>
-  <li><strong>Did the valid value return a relevant status?</strong> Show separate information feedback when no action is required, or warning feedback when the status affects the next step.</li>
-</ol>
-
-<h4>Common scenarios</h4>
-<div class="nsw-table nsw-table--caption-top">
-  <table>
-    <thead>
-      <tr>
-        <th>Scenario</th>
-        <th>Field treatment</th>
-        <th>Additional feedback</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>The value has not been validated</td>
-        <td>Default</td>
-        <td>None</td>
-      </tr>
-      <tr>
-        <td>The value cannot be accepted</td>
-        <td>Error</td>
-        <td>None until the error is resolved</td>
-      </tr>
-      <tr>
-        <td>The value is accepted and no notable status is returned</td>
-        <td>Default, or valid when confirmation is useful</td>
-        <td>None</td>
-      </tr>
-      <tr>
-        <td>The value is accepted and returns a status that needs no action</td>
-        <td>Default, or valid when confirmation is useful</td>
-        <td>Information</td>
-      </tr>
-      <tr>
-        <td>The value is accepted and returns a status that affects the next step</td>
-        <td>Default, or valid when confirmation is useful</td>
-        <td>Warning</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-<p>Successful submission is an action outcome, not a field state. Confirm it at form or page level. If the successful action also returns important context, show the success and information or warning as separate messages. Only show both when each tells the user something useful.</p>
+<p>When both types appear, structure them in the order users need to interpret them: user feedback first, followed by contextual feedback. Use this sequence for all field types.</p>
 
 <h3>Choosing an inline or standard alert</h3>
 <ul>
