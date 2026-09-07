@@ -466,20 +466,60 @@
 <p>Form elements are split into two key input types:</p>
 <p><strong>Freeform inputs</strong> - Free form text inputs are the most used components in forms. Use text fields and text areas for freeform entry. Text fields are used to input a short (single line) amount of freeform text. Text areas are used to input multiple lines of text, for example, a comments field. Use text areas when you expect longer entries.</p>
 <p><strong>Selection inputs</strong> - Selection inputs are used to select an option from a predefined list of available options. Selection options may be single-select or multi-select. Use a radio button list or dropdowns for single selections and checkboxes for multi-selections.  </p>
-<p>Do:</p>
+
+<h3>Guidance</h3>
+<div class="nsw-grid nsw-m-top-sm">
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--do"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span><span>Do</span></div>
+    <ul class="nsw-m-top-sm">
+      <li>keep forms to one column as multiple columns can disrupt a user's vertical momentum</li>
+      <li>use input constraints for fields with a defined character count, such as phone numbers and postcodes</li>
+      <li>mark form fields as required or optional</li>
+      <li>use top aligned labels so forms are easier to scan and complete, including on mobile</li>
+      <li>make calls to action descriptive and state the intent of the action</li>
+      <li>specify errors inline, showing where the error occurred and what the user needs to do.</li>
+    </ul>
+  </div>
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--dont"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span><span>Don't</span></div>
+    <ul class="nsw-m-top-sm">
+      <li>use all caps</li>
+      <li>hide helper text</li>
+      <li>use an in-page alert as a substitute for field-level validation or a validation summary.</li>
+      <li>use an information alert to communicate invalid or missing form data. Use the appropriate validation treatment instead.</li>
+    </ul>
+  </div>
+</div>
+
+<h2 id="validation">Validation</h2>
+<p>Validation communicates whether a field or form meets its input requirements. When a requirement is not met, messages should explain what the issue is, where it occurred and how to fix it.</p>
+
+<h3>User feedback and contextual feedback</h3>
+<p>When communicating information related to a form or task, consider whether the message is about the user's interaction or the subject of the task.</p>
+
 <ul>
-  <li>keep it one column - multiple columns easily disrupt a user’s vertical momentum</li>
-  <li>use field length input constraints - employ this for fields that have a defined character count like phone numbers and postcodes</li>
-  <li>mark required vs. optional form fields - you should always mark your form fields as “required” or “optional”. You can do this by writing “required” or “optional” in a small font next to your field, or by placing an asterisk next to your required fields</li>
-  <li>use top align labels - users complete top aligned labeled forms at a much higher rate than left-aligned labels. Top aligned labels also translate well on mobile.</li>
-  <li>make CTAs descriptive, state the intent of the action</li>
-  <li>specify errors inline, show the user where the error occurred and provide a reason.</li>
+  <li><strong>User feedback</strong> communicates the outcome of a user action. Use success or error feedback as appropriate.</li>
+  <li><strong>Contextual feedback</strong> communicates the current state of the subject of the form or task. Use information or warning feedback as appropriate.</li>
 </ul>
-<p>Do not:</p>
+<p>Contextual feedback is based on the subject of a form or task, rather than the user's interaction with the form itself. For example, a user may enter a valid vehicle registration and the lookup returns that an inspection is required before renewal.</p>
+
+<p>Use information feedback for status information the user should know but does not need to act on. Use warning feedback when the status requires action or affects what the user can do next.</p>
+
+<p>When both types appear, structure them in the order users need to interpret them: user feedback first, followed by contextual feedback. Use this sequence for all field types.</p>
+
+<h3>Choosing an inline or standard alert</h3>
 <ul>
-  <li>use all caps</li>
-  <li>hide helper text</li>
+  <li><strong>Multiple-field forms:</strong> use the compact alert inline, immediately after the field it relates to. This keeps the message close to its context without interrupting the rest of the form.</li>
+  <li><strong>Single-field forms:</strong> use the standard, non-compact in-page alert after the field and its call to action. The alert provides feedback for the form's single task and does not need to compete with other fields.</li>
 </ul>
+
+<p>Associate the message with its field using <code>aria-describedby</code>. Do not apply an error or warning state to a valid field: the alert describes the subject's status, not whether the user's input is valid.</p>
+
+<p>Do not use success or error feedback for contextual feedback. These treatments communicate the outcome of a user action rather than the state of the subject.</p>
+
+<p>For more guidance, see <a href="https://designsystem.nsw.gov.au/components/in-page-alert/index.html">In-page alert</a>.</p>
+
+<h2>Field types</h2>
 
 <h3>Dropdown</h3>
 <p>The dropdown pattern, also referred to as a drop list or select list, allows users to select a single option from a list of available options.</p>
@@ -494,11 +534,9 @@
 <p>Radio lists provide the user with a list of all available items from which a single selection is made. Radio lists are wrapped in a fieldset to make them one logical group.</p>
 
 <h2>How this component works</h2>
-<p><strong>Help text</strong></p>
+<h3>Help text</h3>
 <p>Help text allows form designers to provide users with help to fill in a form element. Use help text to provide additional context, information or as an example to complete a field input.</p>
-<p><strong>Validation</strong></p>
-<p>Validation is used to let the user know when there is an issue with the data they have input. The validation that you input needs to clearly explain to the user what the issue is and what they need to do to address the error.</p>
-<p><strong>Organising form elements</strong></p>
+<h3>Organising form elements</h3>
 <ul>
   <li>Differentiate primary from secondary actions</li>
   <li>Group related information to ensure the user makes sense of the form faster</li>
@@ -525,6 +563,7 @@
 
 <p>Following these practices will help create accessible, user-friendly forms that offer a seamless experience across various input types.</p>
 
+
       </div>
     </section>
     <section id="section-interactive-demo" class="nsw-tabs__content">
@@ -535,8 +574,10 @@
           </div>
         </div>
 
-<div class="nsw-tabs js-tabs">
+<h2>User feedback</h2>
+<p>User feedback communicates the state of a field or the outcome of a user's interaction with the form.</p>
 
+<div class="nsw-tabs js-tabs">
   <ul class="nsw-tabs__list">
     <li><a href="#default" class="js-tabs-fixed">Default</a></li>
     <li><a href="#error" class="js-tabs-fixed">Error</a></li>
@@ -1184,7 +1225,7 @@
 
   </section>
 
-    <section id="error" class="nsw-tabs__content nsw-tabs__content--side-flush">
+  <section id="error" class="nsw-tabs__content nsw-tabs__content--side-flush">
 <h3>Error</h3>
 
 <h4>Text Fields</h4>
@@ -2020,8 +2061,416 @@
 </div>
 
   </section>
-
 </div>
+
+<h2 id="contextual-feedback">Contextual feedback</h2>
+<p>Contextual feedback communicates the current state of the subject of the form, rather than the outcome of the user's interaction.</p>
+<div class="nsw-tabs js-tabs">
+  <ul class="nsw-tabs__list">
+    <li><a href="#contextual-feedback-no-action" class="js-tabs-fixed">No action required</a></li>
+    <li><a href="#contextual-feedback-action" class="js-tabs-fixed">Action required</a></li>
+    <li><a href="#contextual-feedback-combined" class="js-tabs-fixed">Combined with user feedback</a></li>
+  </ul>
+
+  <section id="contextual-feedback-no-action" class="nsw-tabs__content nsw-tabs__content--side-flush">
+    <p>Use an information treatment for relevant status information that the user should know but does not need to act on.</p>
+
+    <h4>Compact inline alert</h4>
+<div class="nsw-docs__example nsw-m-top-sm">
+  <div class="nsw-docs__component">
+        <div class="nsw-form">
+          <div class="nsw-form__group">
+            <label class="nsw-form__label" for="contextual-info-plate">Registration plate number</label>
+            <span class="nsw-form__helper" id="contextual-info-plate-helper-text">Enter a NSW plate number</span>
+            <input class="nsw-form__input" type="text" id="contextual-info-plate" name="contextual-info-plate" aria-describedby="contextual-info-plate-helper-text contextual-info-plate-status" value="ABC123">
+            <span class="nsw-form__helper nsw-form__helper--info" id="contextual-info-plate-status"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">info</span><span><strong>CTP insurance confirmed.</strong> The insurer has sent the policy details to Transport for NSW. You can continue.</span></span>
+          </div>
+          <div class="nsw-form__group">
+            <label class="nsw-form__label" for="contextual-info-term">Registration term</label>
+            <select class="nsw-form__select" id="contextual-info-term" name="contextual-info-term">
+              <option>6 months</option>
+              <option>12 months</option>
+            </select>
+          </div>
+        </div>
+  </div>
+</div>
+<div class="nsw-docs-code">
+  <div class="nsw-show-more">
+    <details class="nsw-show-more__details">
+      <summary class="nsw-show-more__toggle">
+        <span class="nsw-show-more__toggle-text nsw-show-more__toggle-text--show">Show code</span>
+        <span class="nsw-show-more__toggle-text nsw-show-more__toggle-text--hide">Hide code</span>
+        <span class="material-icons nsw-material-icons nsw-show-more__icon" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
+      </summary>
+      <div class="nsw-show-more__content nsw-docs-code__content">
+        <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
+          <span>Copy</span>
+          <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
+        </button>
+        <div class="nsw-docs-code__copy" aria-hidden="true" tabindex="-1"><script>document.write((`    <div class="nsw-form">
+      <div class="nsw-form__group">
+        <label class="nsw-form__label" for="contextual-info-plate">Registration plate number</label>
+        <span class="nsw-form__helper" id="contextual-info-plate-helper-text">Enter a NSW plate number</span>
+        <input class="nsw-form__input" type="text" id="contextual-info-plate" name="contextual-info-plate" aria-describedby="contextual-info-plate-helper-text contextual-info-plate-status" value="ABC123">
+        <span class="nsw-form__helper nsw-form__helper--info" id="contextual-info-plate-status"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">info</span><span><strong>CTP insurance confirmed.</strong> The insurer has sent the policy details to Transport for NSW. You can continue.</span></span>
+      </div>
+      <div class="nsw-form__group">
+        <label class="nsw-form__label" for="contextual-info-term">Registration term</label>
+        <select class="nsw-form__select" id="contextual-info-term" name="contextual-info-term">
+          <option>6 months</option>
+          <option>12 months</option>
+        </select>
+      </div>
+    </div>
+`).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
+        <div class="nsw-docs-code__wrapper" tabindex="0">
+<pre><code class="html"><script>document.write((`    <div class="nsw-form">
+      <div class="nsw-form__group">
+        <label class="nsw-form__label" for="contextual-info-plate">Registration plate number</label>
+        <span class="nsw-form__helper" id="contextual-info-plate-helper-text">Enter a NSW plate number</span>
+        <input class="nsw-form__input" type="text" id="contextual-info-plate" name="contextual-info-plate" aria-describedby="contextual-info-plate-helper-text contextual-info-plate-status" value="ABC123">
+        <span class="nsw-form__helper nsw-form__helper--info" id="contextual-info-plate-status"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">info</span><span><strong>CTP insurance confirmed.</strong> The insurer has sent the policy details to Transport for NSW. You can continue.</span></span>
+      </div>
+      <div class="nsw-form__group">
+        <label class="nsw-form__label" for="contextual-info-term">Registration term</label>
+        <select class="nsw-form__select" id="contextual-info-term" name="contextual-info-term">
+          <option>6 months</option>
+          <option>12 months</option>
+        </select>
+      </div>
+    </div>
+`).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
+        </div>
+      </div>
+    </details>
+  </div>
+</div>
+
+
+    <h4>Standard alert</h4>
+<div class="nsw-docs__example nsw-m-top-sm">
+  <div class="nsw-docs__component">
+        <div class="nsw-form">
+          <div class="nsw-form__group">
+            <label class="nsw-form__label" for="contextual-info-check">Registration plate number</label>
+            <span class="nsw-form__helper" id="contextual-info-check-helper-text">Enter a NSW plate number</span>
+            <div class="nsw-form__input-group">
+              <input class="nsw-form__input" type="text" id="contextual-info-check" name="contextual-info-check" aria-describedby="contextual-info-check-helper-text contextual-info-check-status" value="ABC123">
+              <button class="nsw-button nsw-button--dark nsw-button--flex" type="button">Check registration</button>
+            </div>
+          </div>
+          <div class="nsw-in-page-alert nsw-in-page-alert--info" id="contextual-info-check-status">
+            <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">info</span>
+            <div class="nsw-in-page-alert__content">
+              <p class="nsw-h5">Concession recorded</p>
+              <p>This vehicle has a registration concession. Additional charges may apply if ownership is transferred. No action is needed to complete this check.</p>
+            </div>
+          </div>
+        </div>
+  </div>
+</div>
+<div class="nsw-docs-code">
+  <div class="nsw-show-more">
+    <details class="nsw-show-more__details">
+      <summary class="nsw-show-more__toggle">
+        <span class="nsw-show-more__toggle-text nsw-show-more__toggle-text--show">Show code</span>
+        <span class="nsw-show-more__toggle-text nsw-show-more__toggle-text--hide">Hide code</span>
+        <span class="material-icons nsw-material-icons nsw-show-more__icon" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
+      </summary>
+      <div class="nsw-show-more__content nsw-docs-code__content">
+        <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
+          <span>Copy</span>
+          <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
+        </button>
+        <div class="nsw-docs-code__copy" aria-hidden="true" tabindex="-1"><script>document.write((`    <div class="nsw-form">
+      <div class="nsw-form__group">
+        <label class="nsw-form__label" for="contextual-info-check">Registration plate number</label>
+        <span class="nsw-form__helper" id="contextual-info-check-helper-text">Enter a NSW plate number</span>
+        <div class="nsw-form__input-group">
+          <input class="nsw-form__input" type="text" id="contextual-info-check" name="contextual-info-check" aria-describedby="contextual-info-check-helper-text contextual-info-check-status" value="ABC123">
+          <button class="nsw-button nsw-button--dark nsw-button--flex" type="button">Check registration</button>
+        </div>
+      </div>
+      <div class="nsw-in-page-alert nsw-in-page-alert--info" id="contextual-info-check-status">
+        <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">info</span>
+        <div class="nsw-in-page-alert__content">
+          <p class="nsw-h5">Concession recorded</p>
+          <p>This vehicle has a registration concession. Additional charges may apply if ownership is transferred. No action is needed to complete this check.</p>
+        </div>
+      </div>
+    </div>
+`).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
+        <div class="nsw-docs-code__wrapper" tabindex="0">
+<pre><code class="html"><script>document.write((`    <div class="nsw-form">
+      <div class="nsw-form__group">
+        <label class="nsw-form__label" for="contextual-info-check">Registration plate number</label>
+        <span class="nsw-form__helper" id="contextual-info-check-helper-text">Enter a NSW plate number</span>
+        <div class="nsw-form__input-group">
+          <input class="nsw-form__input" type="text" id="contextual-info-check" name="contextual-info-check" aria-describedby="contextual-info-check-helper-text contextual-info-check-status" value="ABC123">
+          <button class="nsw-button nsw-button--dark nsw-button--flex" type="button">Check registration</button>
+        </div>
+      </div>
+      <div class="nsw-in-page-alert nsw-in-page-alert--info" id="contextual-info-check-status">
+        <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">info</span>
+        <div class="nsw-in-page-alert__content">
+          <p class="nsw-h5">Concession recorded</p>
+          <p>This vehicle has a registration concession. Additional charges may apply if ownership is transferred. No action is needed to complete this check.</p>
+        </div>
+      </div>
+    </div>
+`).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
+        </div>
+      </div>
+    </details>
+  </div>
+</div>
+
+  </section>
+
+  <section id="contextual-feedback-action" class="nsw-tabs__content nsw-tabs__content--side-flush">
+    <p>Use a warning treatment when the subject's status requires the user to take action or affects what they can do next.</p>
+
+    <h4>Compact inline alert</h4>
+<div class="nsw-docs__example nsw-m-top-sm">
+  <div class="nsw-docs__component">
+        <div class="nsw-form">
+          <div class="nsw-form__group">
+            <label class="nsw-form__label" for="contextual-warning-plate">Registration plate number</label>
+            <span class="nsw-form__helper" id="contextual-warning-plate-helper-text">Enter a NSW plate number</span>
+            <input class="nsw-form__input" type="text" id="contextual-warning-plate" name="contextual-warning-plate" aria-describedby="contextual-warning-plate-helper-text contextual-warning-plate-status" value="ABC123">
+            <span class="nsw-form__helper nsw-form__helper--warning" id="contextual-warning-plate-status"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">error</span><span><strong>Safety inspection required.</strong> Arrange an inspection before renewing this registration.</span></span>
+          </div>
+          <div class="nsw-form__group">
+            <label class="nsw-form__label" for="contextual-warning-term">Registration term</label>
+            <select class="nsw-form__select" id="contextual-warning-term" name="contextual-warning-term">
+              <option>6 months</option>
+              <option>12 months</option>
+            </select>
+          </div>
+        </div>
+  </div>
+</div>
+<div class="nsw-docs-code">
+  <div class="nsw-show-more">
+    <details class="nsw-show-more__details">
+      <summary class="nsw-show-more__toggle">
+        <span class="nsw-show-more__toggle-text nsw-show-more__toggle-text--show">Show code</span>
+        <span class="nsw-show-more__toggle-text nsw-show-more__toggle-text--hide">Hide code</span>
+        <span class="material-icons nsw-material-icons nsw-show-more__icon" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
+      </summary>
+      <div class="nsw-show-more__content nsw-docs-code__content">
+        <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
+          <span>Copy</span>
+          <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
+        </button>
+        <div class="nsw-docs-code__copy" aria-hidden="true" tabindex="-1"><script>document.write((`    <div class="nsw-form">
+      <div class="nsw-form__group">
+        <label class="nsw-form__label" for="contextual-warning-plate">Registration plate number</label>
+        <span class="nsw-form__helper" id="contextual-warning-plate-helper-text">Enter a NSW plate number</span>
+        <input class="nsw-form__input" type="text" id="contextual-warning-plate" name="contextual-warning-plate" aria-describedby="contextual-warning-plate-helper-text contextual-warning-plate-status" value="ABC123">
+        <span class="nsw-form__helper nsw-form__helper--warning" id="contextual-warning-plate-status"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">error</span><span><strong>Safety inspection required.</strong> Arrange an inspection before renewing this registration.</span></span>
+      </div>
+      <div class="nsw-form__group">
+        <label class="nsw-form__label" for="contextual-warning-term">Registration term</label>
+        <select class="nsw-form__select" id="contextual-warning-term" name="contextual-warning-term">
+          <option>6 months</option>
+          <option>12 months</option>
+        </select>
+      </div>
+    </div>
+`).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
+        <div class="nsw-docs-code__wrapper" tabindex="0">
+<pre><code class="html"><script>document.write((`    <div class="nsw-form">
+      <div class="nsw-form__group">
+        <label class="nsw-form__label" for="contextual-warning-plate">Registration plate number</label>
+        <span class="nsw-form__helper" id="contextual-warning-plate-helper-text">Enter a NSW plate number</span>
+        <input class="nsw-form__input" type="text" id="contextual-warning-plate" name="contextual-warning-plate" aria-describedby="contextual-warning-plate-helper-text contextual-warning-plate-status" value="ABC123">
+        <span class="nsw-form__helper nsw-form__helper--warning" id="contextual-warning-plate-status"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">error</span><span><strong>Safety inspection required.</strong> Arrange an inspection before renewing this registration.</span></span>
+      </div>
+      <div class="nsw-form__group">
+        <label class="nsw-form__label" for="contextual-warning-term">Registration term</label>
+        <select class="nsw-form__select" id="contextual-warning-term" name="contextual-warning-term">
+          <option>6 months</option>
+          <option>12 months</option>
+        </select>
+      </div>
+    </div>
+`).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
+        </div>
+      </div>
+    </details>
+  </div>
+</div>
+
+
+    <h4>Standard alert</h4>
+<div class="nsw-docs__example nsw-m-top-sm">
+  <div class="nsw-docs__component">
+        <div class="nsw-form">
+          <div class="nsw-form__group">
+            <label class="nsw-form__label" for="contextual-warning-check">Registration plate number</label>
+            <span class="nsw-form__helper" id="contextual-warning-check-helper-text">Enter a NSW plate number</span>
+            <div class="nsw-form__input-group">
+              <input class="nsw-form__input" type="text" id="contextual-warning-check" name="contextual-warning-check" aria-describedby="contextual-warning-check-helper-text contextual-warning-check-status" value="ABC123">
+              <button class="nsw-button nsw-button--dark nsw-button--flex" type="button">Check renewal</button>
+            </div>
+          </div>
+          <div class="nsw-in-page-alert nsw-in-page-alert--warning" id="contextual-warning-check-status">
+            <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">error</span>
+            <div class="nsw-in-page-alert__content">
+              <p class="nsw-h5">Online renewal unavailable</p>
+              <p>This registration needs changes to its operating conditions. Visit a service centre to renew.</p>
+            </div>
+          </div>
+        </div>
+  </div>
+</div>
+<div class="nsw-docs-code">
+  <div class="nsw-show-more">
+    <details class="nsw-show-more__details">
+      <summary class="nsw-show-more__toggle">
+        <span class="nsw-show-more__toggle-text nsw-show-more__toggle-text--show">Show code</span>
+        <span class="nsw-show-more__toggle-text nsw-show-more__toggle-text--hide">Hide code</span>
+        <span class="material-icons nsw-material-icons nsw-show-more__icon" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
+      </summary>
+      <div class="nsw-show-more__content nsw-docs-code__content">
+        <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
+          <span>Copy</span>
+          <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
+        </button>
+        <div class="nsw-docs-code__copy" aria-hidden="true" tabindex="-1"><script>document.write((`    <div class="nsw-form">
+      <div class="nsw-form__group">
+        <label class="nsw-form__label" for="contextual-warning-check">Registration plate number</label>
+        <span class="nsw-form__helper" id="contextual-warning-check-helper-text">Enter a NSW plate number</span>
+        <div class="nsw-form__input-group">
+          <input class="nsw-form__input" type="text" id="contextual-warning-check" name="contextual-warning-check" aria-describedby="contextual-warning-check-helper-text contextual-warning-check-status" value="ABC123">
+          <button class="nsw-button nsw-button--dark nsw-button--flex" type="button">Check renewal</button>
+        </div>
+      </div>
+      <div class="nsw-in-page-alert nsw-in-page-alert--warning" id="contextual-warning-check-status">
+        <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">error</span>
+        <div class="nsw-in-page-alert__content">
+          <p class="nsw-h5">Online renewal unavailable</p>
+          <p>This registration needs changes to its operating conditions. Visit a service centre to renew.</p>
+        </div>
+      </div>
+    </div>
+`).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
+        <div class="nsw-docs-code__wrapper" tabindex="0">
+<pre><code class="html"><script>document.write((`    <div class="nsw-form">
+      <div class="nsw-form__group">
+        <label class="nsw-form__label" for="contextual-warning-check">Registration plate number</label>
+        <span class="nsw-form__helper" id="contextual-warning-check-helper-text">Enter a NSW plate number</span>
+        <div class="nsw-form__input-group">
+          <input class="nsw-form__input" type="text" id="contextual-warning-check" name="contextual-warning-check" aria-describedby="contextual-warning-check-helper-text contextual-warning-check-status" value="ABC123">
+          <button class="nsw-button nsw-button--dark nsw-button--flex" type="button">Check renewal</button>
+        </div>
+      </div>
+      <div class="nsw-in-page-alert nsw-in-page-alert--warning" id="contextual-warning-check-status">
+        <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">error</span>
+        <div class="nsw-in-page-alert__content">
+          <p class="nsw-h5">Online renewal unavailable</p>
+          <p>This registration needs changes to its operating conditions. Visit a service centre to renew.</p>
+        </div>
+      </div>
+    </div>
+`).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
+        </div>
+      </div>
+    </details>
+  </div>
+</div>
+
+  </section>
+
+  <section id="contextual-feedback-combined" class="nsw-tabs__content nsw-tabs__content--side-flush">
+    <p>A field can show that a value was validated while a separate message explains the subject's status. Only show the valid confirmation when it helps the user.</p>
+
+    <h4>Valid field with action required</h4>
+<div class="nsw-docs__example nsw-m-top-sm">
+  <div class="nsw-docs__component">
+        <div class="nsw-form">
+          <div class="nsw-form__group">
+            <label class="nsw-form__label" for="contextual-combined-check">Registration plate number</label>
+            <span class="nsw-form__helper" id="contextual-combined-check-helper-text">Enter a NSW plate number</span>
+            <div class="nsw-form__input-group">
+              <input class="nsw-form__input" type="text" id="contextual-combined-check" name="contextual-combined-check" aria-describedby="contextual-combined-check-helper-text contextual-combined-check-valid contextual-combined-check-status" value="ABC123">
+              <button class="nsw-button nsw-button--dark nsw-button--flex" type="button">Check registration</button>
+            </div>
+            <span class="nsw-form__helper nsw-form__helper--valid" id="contextual-combined-check-valid"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span>Registration number matched</span>
+          </div>
+          <div class="nsw-in-page-alert nsw-in-page-alert--warning" id="contextual-combined-check-status">
+            <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">error</span>
+            <div class="nsw-in-page-alert__content">
+              <p class="nsw-h5">Safety inspection required</p>
+              <p>This vehicle needs a safety inspection before you can renew the registration.</p>
+            </div>
+          </div>
+        </div>
+  </div>
+</div>
+<div class="nsw-docs-code">
+  <div class="nsw-show-more">
+    <details class="nsw-show-more__details">
+      <summary class="nsw-show-more__toggle">
+        <span class="nsw-show-more__toggle-text nsw-show-more__toggle-text--show">Show code</span>
+        <span class="nsw-show-more__toggle-text nsw-show-more__toggle-text--hide">Hide code</span>
+        <span class="material-icons nsw-material-icons nsw-show-more__icon" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
+      </summary>
+      <div class="nsw-show-more__content nsw-docs-code__content">
+        <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
+          <span>Copy</span>
+          <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
+        </button>
+        <div class="nsw-docs-code__copy" aria-hidden="true" tabindex="-1"><script>document.write((`    <div class="nsw-form">
+      <div class="nsw-form__group">
+        <label class="nsw-form__label" for="contextual-combined-check">Registration plate number</label>
+        <span class="nsw-form__helper" id="contextual-combined-check-helper-text">Enter a NSW plate number</span>
+        <div class="nsw-form__input-group">
+          <input class="nsw-form__input" type="text" id="contextual-combined-check" name="contextual-combined-check" aria-describedby="contextual-combined-check-helper-text contextual-combined-check-valid contextual-combined-check-status" value="ABC123">
+          <button class="nsw-button nsw-button--dark nsw-button--flex" type="button">Check registration</button>
+        </div>
+        <span class="nsw-form__helper nsw-form__helper--valid" id="contextual-combined-check-valid"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span>Registration number matched</span>
+      </div>
+      <div class="nsw-in-page-alert nsw-in-page-alert--warning" id="contextual-combined-check-status">
+        <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">error</span>
+        <div class="nsw-in-page-alert__content">
+          <p class="nsw-h5">Safety inspection required</p>
+          <p>This vehicle needs a safety inspection before you can renew the registration.</p>
+        </div>
+      </div>
+    </div>
+`).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
+        <div class="nsw-docs-code__wrapper" tabindex="0">
+<pre><code class="html"><script>document.write((`    <div class="nsw-form">
+      <div class="nsw-form__group">
+        <label class="nsw-form__label" for="contextual-combined-check">Registration plate number</label>
+        <span class="nsw-form__helper" id="contextual-combined-check-helper-text">Enter a NSW plate number</span>
+        <div class="nsw-form__input-group">
+          <input class="nsw-form__input" type="text" id="contextual-combined-check" name="contextual-combined-check" aria-describedby="contextual-combined-check-helper-text contextual-combined-check-valid contextual-combined-check-status" value="ABC123">
+          <button class="nsw-button nsw-button--dark nsw-button--flex" type="button">Check registration</button>
+        </div>
+        <span class="nsw-form__helper nsw-form__helper--valid" id="contextual-combined-check-valid"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span>Registration number matched</span>
+      </div>
+      <div class="nsw-in-page-alert nsw-in-page-alert--warning" id="contextual-combined-check-status">
+        <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">error</span>
+        <div class="nsw-in-page-alert__content">
+          <p class="nsw-h5">Safety inspection required</p>
+          <p>This vehicle needs a safety inspection before you can renew the registration.</p>
+        </div>
+      </div>
+    </div>
+`).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
+        </div>
+      </div>
+    </details>
+  </div>
+</div>
+
+  </section>
+</div>
+
       </div>
     </section>
   </div>

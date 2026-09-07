@@ -20,7 +20,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://designsystem.nsw.gov.au/nsw-og-image.jpg">
-  <meta name="description" content="In-page alerts are used to contextually inform users of important information or status of an interaction." />
+  <meta name="description" content="In-page alerts are used to communicate important information, contextual status or interaction feedback that needs attention." />
   <link rel="icon" href="https://designsystem.nsw.gov.au/favicon.ico" sizes="32x32" />
   <link rel="icon" type="image/svg+xml" href="https://designsystem.nsw.gov.au/favicon.svg" sizes="any" />
   <link rel="icon" type="image/png" href="https://designsystem.nsw.gov.au/favicon.png" sizes="96x96" />
@@ -438,7 +438,7 @@
         <div class="nsw-docs__container">
           <h1>In-page alert</h1>
           
-          <p class="nsw-intro">In-page alerts are used to contextually inform users of important information or status of an interaction.</p>
+          <p class="nsw-intro">In-page alerts are used to communicate important information, contextual status or interaction feedback that needs attention.</p>
           
           <p>
             <a class="nsw-link nsw-link--icon" target="_blank" href="https://www.figma.com/file/PVrERKnckLTlJSPk12gbtS/NSW-Digital-Design-System?node-id&#x3D;21298%3A24935">
@@ -475,28 +475,40 @@
   <li>use for global alerts which are required on all pages.</li>
 </ul>
 
+<h3>User feedback and contextual feedback</h3>
+<p>When communicating information related to a task, consider whether the message is about the user's interaction or the subject of the task.</p>
+<ul>
+  <li><strong>User feedback</strong> communicates the outcome of a user action. Use success, warning or critical alerts as appropriate.</li>
+  <li><strong>Contextual feedback</strong> communicates the current state of the subject of the task. Use information or warning alerts as appropriate.</li>
+</ul>
+<p>What the message communicates matters more than whether it appears after an interaction. For example, if a user searches for a record and the result shows the record has been surrendered, the message is contextual feedback. It is not feedback about whether the search action succeeded.</p>
+
 <h3>In-page alert types</h3>
 
-<p>In-page alerts come in standard and compact. The standard variant can be used to deliver an alert for a section or overall context. The compact variant can be used for in-line alerts or where the alert needs to be isolated, such as in forms where it relates to just one field.</p>
+<p>In-page alerts come in standard and compact variants. The standard variant can be used to deliver an alert for a section or overall context. The compact variant can be used for inline alerts or where the alert needs to be isolated from broader page messaging.</p>
 
-<p>In-page alert are styled according to their purpose:</p>
+<p>In-page alerts are styled according to their purpose:</p>
 <p><strong>Information alert</strong></p>
 <p>Designed to be less intrusive or interruptive than other levels of alert:</p>
 <ul>
   <li>use for information the user should know, but is not critical</li>
   <li>use for tips or information which the user can benefit from</li>
   <li>use for messages which don't require too much attention or action</li>
-  <li>don't use in response to a user action.</li>
+  <li>use for important contextual information or status, where the message describes the state or circumstances of the content rather than the user's action</li>
+  <li>don't use as feedback about the outcome of a user action. Use the appropriate success, warning or critical alert where user feedback is required.</li>
 </ul>
+<p>Where possible, communicate ordinary state using existing content and components, such as a status label with supporting text. Use an information alert only where the contextual information needs additional prominence.</p>
 <p><strong>Success alert</strong></p>
 <ul>
-  <li>use to inform the user that an action was performed successfully (e.g. submitting a form or registering an account).</li>
+  <li>use to inform the user that an action was performed successfully (e.g. submitting a form or registering an account)</li>
+  <li>don't use to communicate contextual feedback about the subject of a task.</li>
 </ul>
 <p><strong>Warning alert</strong></p>
 <ul>
   <li>use to warn the user of a possible negative outcome (e.g. password expiry)</li>
   <li>provide sufficient information to avoid the problem</li>
-  <li>use for an action that is out of the ordinary or might not be desired.</li>
+  <li>use for an action that is out of the ordinary or might not be desired</li>
+  <li>use for contextual feedback where the status requires attention or affects what the user can do next.</li>
 </ul>
 <p><strong>Critical alert</strong></p>
 <ul>
@@ -504,7 +516,7 @@
   <li>use when the user has made an error</li>
   <li>use where the user is blocked until the issue is resolved, or the issue needs resolving immediately</li>
   <li>provide sufficient information on the issue and resolution to fix the issue</li>
-  <li>don't use for validation or validation summary.</li>
+  <li>don't use for field-level validation or validation summary. See <a href="https://designsystem.nsw.gov.au/components/form/index.html#validation">form validation guidance</a>.</li>
 </ul>
 
 <h2>How this component works</h2>
@@ -522,6 +534,7 @@
 <h4>Consistent help</h4>
 <p>For in-page alerts in the design system, ensuring WCAG 2.2 AA compliance requires careful attention to consistency and accessibility. Alerts should be configured to deliver clear, actionable guidance without disrupting user flow. This means applying consistent language, formatting, and placement to make alerts easily recognisable across the interface. Ensure each alert is accessible, with clear labels and instructions that screen readers can interpret effectively. Additionally, users should be able to reference alert content without needing to re-trigger it.</p>
 <p>Following these guidelines helps to create a cohesive, accessible experience, aligning with best practices for usability and accessibility in your design system.</p>
+
 
       </div>
     </section>
@@ -617,6 +630,54 @@
   <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">info</span>
   <div class="nsw-in-page-alert__content">
     <p class="nsw-small"><strong>Rockdale Agency will close on 9 March 2018 and re-open in April.</strong> Please visit <a href='#'>Kogarah Service Centre</a> during this closure.</p>
+  </div>
+</div>
+`).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
+        </div>
+      </div>
+    </details>
+  </div>
+</div>
+
+
+<div class="nsw-docs__example nsw-m-top-sm">
+  <div class="nsw-docs__component">
+    <div class="nsw-in-page-alert nsw-in-page-alert--info">
+      <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">info</span>
+      <div class="nsw-in-page-alert__content">
+        <p class="nsw-h5">Registration status update</p>
+        <p>This vehicle has an active safety recall. You can still proceed, but inspection may be required at renewal.</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="nsw-docs-code">
+  <div class="nsw-show-more">
+    <details class="nsw-show-more__details">
+      <summary class="nsw-show-more__toggle">
+        <span class="nsw-show-more__toggle-text nsw-show-more__toggle-text--show">Show code</span>
+        <span class="nsw-show-more__toggle-text nsw-show-more__toggle-text--hide">Hide code</span>
+        <span class="material-icons nsw-material-icons nsw-show-more__icon" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
+      </summary>
+      <div class="nsw-show-more__content nsw-docs-code__content">
+        <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
+          <span>Copy</span>
+          <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
+        </button>
+        <div class="nsw-docs-code__copy" aria-hidden="true" tabindex="-1"><script>document.write((`<div class="nsw-in-page-alert nsw-in-page-alert--info">
+  <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">info</span>
+  <div class="nsw-in-page-alert__content">
+    <p class="nsw-h5">Registration status update</p>
+    <p>This vehicle has an active safety recall. You can still proceed, but inspection may be required at renewal.</p>
+  </div>
+</div>
+`).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
+        <div class="nsw-docs-code__wrapper" tabindex="0">
+<pre><code class="html"><script>document.write((`<div class="nsw-in-page-alert nsw-in-page-alert--info">
+  <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">info</span>
+  <div class="nsw-in-page-alert__content">
+    <p class="nsw-h5">Registration status update</p>
+    <p>This vehicle has an active safety recall. You can still proceed, but inspection may be required at renewal.</p>
   </div>
 </div>
 `).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
@@ -807,6 +868,54 @@
   <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">error</span>
   <div class="nsw-in-page-alert__content">
     <p class="nsw-small"><strong>Password expiring soon.</strong> Your password is expiring in 4 days. Please change your password.</p>
+  </div>
+</div>
+`).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
+        </div>
+      </div>
+    </details>
+  </div>
+</div>
+
+
+<div class="nsw-docs__example nsw-m-top-sm">
+  <div class="nsw-docs__component">
+    <div class="nsw-in-page-alert nsw-in-page-alert--warning">
+      <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">error</span>
+      <div class="nsw-in-page-alert__content">
+        <p class="nsw-h5">Payment required</p>
+        <p>This vehicle has $723 in fines due. Payment is required before the registration can be renewed.</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="nsw-docs-code">
+  <div class="nsw-show-more">
+    <details class="nsw-show-more__details">
+      <summary class="nsw-show-more__toggle">
+        <span class="nsw-show-more__toggle-text nsw-show-more__toggle-text--show">Show code</span>
+        <span class="nsw-show-more__toggle-text nsw-show-more__toggle-text--hide">Hide code</span>
+        <span class="material-icons nsw-material-icons nsw-show-more__icon" focusable="false" aria-hidden="true">keyboard_arrow_down</span>
+      </summary>
+      <div class="nsw-show-more__content nsw-docs-code__content">
+        <button type="button" class="nsw-button nsw-button--dark-outline-solid nsw-button--flex nsw-button--small js-code-copy">
+          <span>Copy</span>
+          <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">content_copy</span>
+        </button>
+        <div class="nsw-docs-code__copy" aria-hidden="true" tabindex="-1"><script>document.write((`<div class="nsw-in-page-alert nsw-in-page-alert--warning">
+  <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">error</span>
+  <div class="nsw-in-page-alert__content">
+    <p class="nsw-h5">Payment required</p>
+    <p>This vehicle has $723 in fines due. Payment is required before the registration can be renewed.</p>
+  </div>
+</div>
+`).replace(/</g, "&lt;").replace(/>/g, "&gt;"));</script></div>
+        <div class="nsw-docs-code__wrapper" tabindex="0">
+<pre><code class="html"><script>document.write((`<div class="nsw-in-page-alert nsw-in-page-alert--warning">
+  <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">error</span>
+  <div class="nsw-in-page-alert__content">
+    <p class="nsw-h5">Payment required</p>
+    <p>This vehicle has $723 in fines due. Payment is required before the registration can be renewed.</p>
   </div>
 </div>
 `).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"));</script></code></pre>
