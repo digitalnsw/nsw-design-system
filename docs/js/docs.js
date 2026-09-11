@@ -240,6 +240,11 @@
     keywords: 'Comparison, data, data visualisation, trends, Display, statistics, Processes, workflows, Mapping, diagramming, Colours, theming, charts, graphs, accessibility, dashboards, NSW Brand Toolkit, Screen readers, Chart.js',
     url: '/docs/content/methods/charts-and-graphs.html'
   }, {
+    label: 'Easy Read',
+    template: 'result',
+    keywords: 'Easy Read method, Easy Read guidance, Easy Read format, accessible information, cognitive accessibility, intellectual disability, low literacy, simple words, plain language, meaningful pictures, image and text, content blocks, nsw-easy-read-content, information architecture, page anatomy, content design, illustrations, photographs, Easy Read icon, read aloud, EPUB, downloadable formats, accessibility, testing, co-design',
+    url: '/docs/content/methods/easy-read.html'
+  }, {
     label: 'You are here',
     template: 'result',
     keywords: 'Where am I, Where can I go, Who is speaking, orientate, Breadcrumbs, Hero banner, Typography, hierarchy, navigation, Main navigation, Side navigation',
@@ -249,6 +254,11 @@
     template: 'result',
     keywords: 'Homepage, Content, Search, Sample, Example, Hero banner, Featured list, Hero search, Simple, Filters, No results, Side navigation, Article, Filters, Form, Maps, Location, primary, sub filters, Equal value filters, Theming, Masterbrand,Full page, Content, Partial',
     url: '/templates/index.html'
+  }, {
+    label: 'Easy Read templates',
+    template: 'result',
+    keywords: 'Easy Read page templates, Easy Read landing page, Easy Read category page, Easy Read detail article, Easy Read article template, accessible travel, public transport, Opal card, transport card, TAFE, education, course application, long article, cognitive load, transparent illustrations, illustrations, photographs, example pages, content template',
+    url: '/templates/content/easy-read/index.html'
   }, {
     label: 'What is Design System',
     template: 'result',
@@ -1041,6 +1051,58 @@
   // Prevent icon flash: hide icons until font loads
   document.documentElement.classList.add('material-icons-loading');
   function initDocs() {
+    function initEasyReadAnatomyHeight() {
+      const anatomyIframes = document.querySelectorAll('.nsw-easy-read-anatomy iframe');
+      if (!anatomyIframes.length) return;
+      const getPageHeight = doc => Math.max(doc.body.scrollHeight, doc.body.offsetHeight, doc.documentElement.clientHeight, doc.documentElement.scrollHeight, doc.documentElement.offsetHeight);
+      const getIframeDocument = iframe => {
+        try {
+          return iframe.contentDocument || iframe.contentWindow.document;
+        } catch (error) {
+          return null;
+        }
+      };
+      const updateAnatomyHeight = iframe => {
+        const viewport = iframe.closest('.nsw-easy-read-anatomy__viewport');
+        const anatomy = iframe.closest('.nsw-easy-read-anatomy');
+        const doc = getIframeDocument(iframe);
+        if (!viewport || !anatomy || !doc) return;
+        const scale = parseFloat(getComputedStyle(anatomy).getPropertyValue('--nsw-easy-read-anatomy-scale')) || 0.3;
+
+        // Break circular sizing: shrink before measuring so vh/min-height rules do not lock to an older large height.
+        iframe.style.height = '1px';
+        const height = getPageHeight(doc);
+        iframe.style.height = `${height}px`;
+        viewport.style.setProperty('--nsw-easy-read-anatomy-height', `${Math.ceil(height * scale)}px`);
+      };
+      anatomyIframes.forEach(iframe => {
+        const resize = () => updateAnatomyHeight(iframe);
+        iframe.addEventListener('load', () => {
+          resize();
+          requestAnimationFrame(resize);
+          window.setTimeout(resize, 250);
+        });
+        const doc = getIframeDocument(iframe);
+        if (doc && doc.readyState === 'complete') resize();
+        window.addEventListener('resize', resize);
+      });
+    }
+    const codeButtons = document.querySelectorAll('.js-code-button');
+    codeButtons.forEach(button => {
+      const code = button.nextElementSibling;
+      const text = button.querySelector('span');
+      button.addEventListener('click', () => {
+        if (code.classList.contains('active')) {
+          button.classList.remove('active');
+          code.classList.remove('active');
+          text.textContent = 'Show code';
+        } else {
+          button.classList.add('active');
+          code.classList.add('active');
+          text.textContent = 'Hide code';
+        }
+      }, false);
+    });
     const copyButtons = document.querySelectorAll('.js-code-copy');
     copyButtons.forEach(button => {
       const code = button.nextElementSibling;
@@ -1967,6 +2029,8 @@
       window.NSW.QuickExit.init(opts);
     });
     // --- End Quick Exit ---
+
+    initEasyReadAnatomyHeight();
   }
   initDocs();
 

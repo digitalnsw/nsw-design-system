@@ -195,6 +195,28 @@
         return fallback;
       }
     };
+    const popupWindow = (url, width, height) => {
+      if (!hasWindow$2 || typeof window.open !== 'function') return null;
+      const dialogWidth = Number(width) || 626;
+      const dialogHeight = Number(height) || 436;
+      let top = 0;
+      let left = 0;
+      try {
+        const topWindow = window.top;
+        top = topWindow.outerHeight / 2 + topWindow.screenY - dialogHeight / 2;
+        left = topWindow.outerWidth / 2 + topWindow.screenX - dialogWidth / 2;
+      } catch (e) {
+        top = (window.outerHeight || dialogHeight) / 2 + (window.screenY || 0) - dialogHeight / 2;
+        left = (window.outerWidth || dialogWidth) / 2 + (window.screenX || 0) - dialogWidth / 2;
+      }
+      const popup = window.open(url, 'nsw-share-dialog', `toolbar=no,location=no,directories=no,status=no,
+    menubar=no,scrollbars=no,resizable=no,copyhistory=no,
+    width=${dialogWidth},height=${dialogHeight},top=${top},left=${left},noopener,noreferrer`);
+
+      // Explicitly clear opener for browsers that do not fully enforce noopener from features.
+      if (popup) popup.opener = null;
+      return popup;
+    };
     const setAriaDisabled = (element, isDisabled, className = 'disabled') => {
       if (!element) return;
       element.setAttribute('aria-disabled', isDisabled ? 'true' : 'false');
@@ -7079,7 +7101,7 @@
             if (social === 'mail') {
               window.location.href = url;
             } else {
-              window.open(url, `${social}-share-dialog`, 'width=626,height=436');
+              popupWindow(url, 626, 436);
             }
           });
         }
@@ -7123,7 +7145,7 @@
         }
         params.forEach(param => {
           let paramValue = button.getAttribute(`data-${param}`);
-          if (param === 'hashtags') paramValue = encodeURI(paramValue.replace(/#| /g, ''));
+          if (param === 'hashtags' && paramValue) paramValue = encodeURI(paramValue.replace(/#| /g, ''));
           if (paramValue) {
             if (social === 'facebook') {
               newUrl = `${newUrl}u=${encodeURIComponent(paramValue)}&`;
