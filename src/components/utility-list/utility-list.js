@@ -1,6 +1,6 @@
 import Toggletip from '../tooltip/toggletip'
 import logger from '../../global/scripts/helpers/logger'
-import { copyToClipboard as writeToClipboard } from '../../global/scripts/helpers/utilities'
+import { copyToClipboard as writeToClipboard, popupWindow } from '../../global/scripts/helpers/utilities'
 
 class UtilityList extends Toggletip {
   constructor(element, toggletip = element.querySelector('.js-share')) {
@@ -36,7 +36,7 @@ class UtilityList extends Toggletip {
         if (social === 'mail') {
           window.location.href = url
         } else {
-          window.open(url, `${social}-share-dialog`, 'width=626,height=436')
+          popupWindow(url, 626, 436)
         }
       })
     }
@@ -89,7 +89,7 @@ class UtilityList extends Toggletip {
 
     params.forEach((param) => {
       let paramValue = button.getAttribute(`data-${param}`)
-      if (param === 'hashtags') paramValue = encodeURI(paramValue.replace(/#| /g, ''))
+      if (param === 'hashtags' && paramValue) paramValue = encodeURI(paramValue.replace(/#| /g, ''))
       if (paramValue) {
         if (social === 'facebook') {
           newUrl = `${newUrl}u=${encodeURIComponent(paramValue)}&`
