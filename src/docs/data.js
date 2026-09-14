@@ -330,6 +330,15 @@ const searchValues = [
     url: '/community-closure/index.html',
   },
   {
+    label: 'Privacy Collection Notice',
+    template: 'result',
+    keywords: [
+      'privacy, pcn, personal information, data collection, DDS, subscribe, subscription, newsletter, mailing list',
+      'Figma access, unsubscribe, Government Technology Platforms, user consent',
+    ].join(', '),
+    url: '/privacy-collection-notice.html',
+  },
+  {
     label: 'Release notes',
     template: 'result',
     keywords: "Release notes, Releases, Work in progress, Consulting with community, Backlog, Roadmap, Version, Change log, Changes, What's happening, Changelog, Updates",
