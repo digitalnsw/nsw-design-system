@@ -300,6 +300,21 @@
     }
   }
 
+  &-card-variant {
+    display: flex;
+    flex-direction: column;
+
+    h4 {
+      margin: 0;
+      padding-bottom: nsw.rem(16px);
+    }
+
+    .nsw-card {
+      height: auto;
+      flex-grow: 1;
+    }
+  }
+
   &__component {
     &::after {
       content: '';
@@ -954,6 +969,7 @@
     padding: 0;
     border-bottom: 0;
     border-color: var(--nsw-white);
+    background-color: var(--nsw-off-white);
 
     &:focus {
       outline: none;
@@ -961,10 +977,10 @@
 
     .nsw-docs__container,
     .nsw-docs__demo {
-      padding: nsw.rem(24px) 0;
+      padding: nsw.rem(24px);
 
       @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
-        padding: nsw.rem(48px) 0;
+        padding: nsw.rem(48px) nsw.rem(24px);
       }
     }
   }
