@@ -67,6 +67,7 @@ assert(![...COMPONENT_GROUPS, ...FOUNDATION_GROUPS].some((group) => group.title 
 const methodFiles = [
   'src/docs/content/methods/search.hbs',
   'src/docs/content/methods/charts-and-graphs.hbs',
+  'src/docs/content/methods/easy-read.hbs',
   'src/docs/content/methods/inactive-fields.hbs',
   'src/docs/content/methods/maps.hbs',
   'src/docs/content/methods/you-are-here.hbs',
@@ -81,7 +82,7 @@ const methods = methodFiles
   .map((method) => method.title)
 
 assert(
-  methods.join('|') === 'Search and filters|Charts and graphs|Inactive fields|Maps|You are here',
+  methods.join('|') === 'Search and filters|Charts and graphs|Easy Read|Inactive fields|Maps|You are here',
   `Unexpected Methods order: ${methods.join(', ')}`,
 )
 assert(!fs.existsSync(path.join(root, 'src/docs/content/methods/index.hbs')), 'Methods overview page must not be added')

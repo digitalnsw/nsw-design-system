@@ -1,6 +1,7 @@
 @use '../main';
 @use '../global/scss/themes/all';
 @use '../global/scss/tools' as nsw;
+@use 'content/methods/easy-read/easy-read-docs';
 
 @media (prefers-reduced-motion: no-preference) {
   html {
@@ -888,27 +889,18 @@
 .nsw-docs-code {
   position: relative;
 
-  > button {
-    margin-top: nsw.rem(24px);
-    padding: nsw.rem(2px);
-    cursor: pointer;
+  .nsw-show-more {
+    margin: 0;
+  }
 
-    &.active {
-      .nsw-material-icons {
-        transform: rotate(180deg);
-      }
-    }
+  .nsw-show-more__toggle {
+    margin-top: nsw.rem(16px);
   }
 
   &__content {
     position: relative;
-    display: none;
     margin-top: nsw.rem(24px);
     max-width: none;
-
-    &.active {
-      display: block;
-    }
 
     pre {
       margin: 0;
@@ -943,6 +935,12 @@
     max-height: nsw.rem(400px);
     overflow: auto;
     background-color: var(--nsw-white);
+
+    &:focus {
+      @include nsw.nsw-focus($offset: false);
+
+      outline-offset: nsw.rem(-3px);
+    }
   }
 }
 

@@ -75,6 +75,7 @@ const COMPONENT_GROUPS = [
       'Link list',
       'List items',
       'Media',
+      'Show more',
       'Support list',
       'Tables',
       'Tags',

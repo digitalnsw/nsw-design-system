@@ -5,6 +5,7 @@ page: true
 model:
   region: ../../components/select/json/select-region.json
   savings-program: ../../components/select/json/select-savings-program.json
+  many-options: ../../components/select/json/select-many-options.json
 ---
 
 {{#>_theme}}
@@ -18,6 +19,17 @@ model:
     {{>_select model.savings-program 
     id="select-all-savings-programs-1"
     multiple="true"
+    }}
+  </div>
+
+  <div class="nsw-form__group">
+    {{>_select model.many-options
+    id="select-many-options-1"
+    multiple="true"
+    helper-text="Select all that apply"
+    select-text="Select services"
+    multi-select-text="{n} services selected"
+    multi-select-max-height="45"
     }}
   </div>
 
@@ -80,6 +92,17 @@ model:
     {{>_select model.savings-program 
     id="select-all-savings-programs-11"
     multiple="true"
+    }}
+  </div>
+
+  <div class="nsw-form__group">
+    {{>_select model.many-options
+    id="select-many-options-11"
+    multiple="true"
+    helper-text="Select all that apply"
+    select-text="Select services"
+    multi-select-text="{n} services selected"
+    multi-select-max-height="45"
     }}
   </div>
 

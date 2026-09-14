@@ -2,7 +2,7 @@
   <button class="nsw-button nsw-button--dark js-open-dialog-{{id}}" aria-haspopup="dialog">{{#if button-title}}{{button-title}}{{else}}Launch dialog{{/if}}</button>
 </div>
 
-<div class="nsw-dialog{{#unless secondary}} nsw-dialog--single-action{{/unless}} js-dialog{{#if dismiss}} js-dialog-dismiss{{/if}}{{#if active}} active{{/if}}" id="{{id}}" role="dialog" aria-labelledby="{{id}}-title">
+<div class="nsw-dialog{{#unless secondary}} nsw-dialog--single-action{{/unless}} js-dialog{{#if dismiss}} js-dialog-dismiss{{/if}}{{#if active}} active{{/if}}" id="{{id}}" role="dialog" aria-modal="true" aria-hidden="{{#if active}}false{{else}}true{{/if}}" aria-labelledby="{{id}}-title">
   <div class="nsw-dialog__wrapper">
     <div class="nsw-dialog__container">
       <div class="nsw-dialog__top">

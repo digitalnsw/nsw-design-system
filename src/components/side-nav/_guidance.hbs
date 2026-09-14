@@ -22,8 +22,8 @@ layout: blank-layout.hbs
 <ol>
   <li class="nsw-m-bottom-sm">Add <code>js-side-nav</code> class to the parent <code>&lt;div&gt;</code> element containing the side navigation.</li>
   <li class="nsw-m-bottom-md">Insert the toggle button as the first child inside the existing <code>.nsw-side-nav</code> element. Ensure the button label reflects the page title where the side navigation appears:
-{{#>_docs-code open=true code=true}}&lt;button class="nsw-side-nav__toggle" aria-expanded="false"&gt;
-&lt;span&gt;[Page title]&lt;/span&gt;
+{{#>_docs-code open=true code="html"}}&lt;button class="nsw-side-nav__toggle" aria-expanded="false"&gt;
+  &lt;span&gt;[Page title]&lt;/span&gt;
 &lt;/button&gt;{{/_docs-code}}</li>
   <li class="nsw-m-bottom-sm">Add <code>nsw-side-nav__content</code> class to the main <code>&lt;ul&gt;</code> containing the navigation items.</li>
   <li class="nsw-m-bottom-sm">Remove the <code>nsw-layout__sidebar--desktop</code> class from the parent <code>&lt;div&gt;</code> if you were previously using this method to hide the side navigation on desktop. If this class is not removed, the side nav may remain hidden at certain breakpoints, which can prevent the mobile toggle from appearing.</li>

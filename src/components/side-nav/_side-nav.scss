@@ -53,11 +53,20 @@
     padding: nsw.rem(16px);
     text-wrap: pretty;
 
+    &.current {
+      background-color: var(--nsw-side-nav-current-bg, var(--nsw-off-white));
+      font-weight: var(--nsw-font-bold);
+
+      .nsw-section--invert & {
+        background-color: var(--nsw-active-light);
+      }
+    }
+
     &:hover {
       @include nsw.nsw-hover;
       outline-width: 0;
 
-      .nsw-section--invert & {    
+      .nsw-section--invert & {
         @include nsw.nsw-hover-light;
         outline-width: 0;
       }
@@ -65,15 +74,6 @@
 
     &:focus {
       outline-width: 3px;
-    }
-
-    &.current {
-      background-color: var(--nsw-side-nav-current-bg, var(--nsw-off-white));
-      font-weight: var(--nsw-font-bold);
-      
-      .nsw-section--invert & {    
-        @include nsw.nsw-hover-light;
-      }
     }
 
     .nsw-section--invert & {    

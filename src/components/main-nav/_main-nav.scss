@@ -96,7 +96,7 @@
         .nsw-material-icons {
           transform: rotate(90deg);
           margin-left: nsw.rem(6px);
-          transition: transform nsw.$nsw-transition-duration, color nsw.$nsw-transition-duration;
+          transition: transform nsw.$nsw-transition-duration-smooth, color nsw.$nsw-transition-duration-smooth;
         }
 
         &.active {
@@ -108,6 +108,12 @@
           transform: rotate(270deg);
         }
       }
+    }
+  }
+
+  @include nsw.prefers-reduced-motion() {
+    &__list > li > a .nsw-material-icons {
+      transition: none;
     }
   }
 

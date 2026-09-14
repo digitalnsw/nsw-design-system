@@ -1,6 +1,6 @@
 <div class="nsw-card{{#if headline}} nsw-card--headline{{/if}}{{#if highlight}} nsw-card--highlight{{/if}}{{#if horizontal}} nsw-card--horizontal{{/if}}{{#if theme}} nsw-card--{{theme}}{{/if}}{{#if border}} nsw-card--border{{/if}}">{{#if img}}
   <div class="nsw-card__image">
-    <img src="{{img}}" alt="{{heading}}">
+    <img src="{{img}}" alt="{{#if imgAlt}}{{imgAlt}}{{else}}{{heading}}{{/if}}">
   </div>{{/if}}
   <div class="nsw-card__content">{{#if tag}}
     <div class="nsw-card__tag">{{tag}}</div>{{/if}}{{#if date-display}}
@@ -8,7 +8,7 @@
       <time{{#if date-machine}} datetime="{{date-machine}}"{{/if}}>{{date-display}}</time>
     </div>{{/if}}
     <div class="nsw-card__title">
-      <a href="#">{{heading}}</a>
+      <a href="{{#if url}}{{url}}{{else}}#{{/if}}">{{heading}}</a>
     </div>{{#if copy}}
     <div class="nsw-card__copy">
       <p>{{copy}}</p>

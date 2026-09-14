@@ -1,0 +1,26 @@
+---
+title: Show more
+width: narrow
+tabs: true
+directory: show-more
+intro: Show more is a disclosure pattern for progressively revealing supplementary content.
+theme: true
+figma: https://www.figma.com/design/PVrERKnckLTlJSPk12gbtS/NSW-Design-System?node-id=160813-13681&t=UZEMT8P6HNQK31GD-4
+model: json/show-more.json
+meta-description: Show more is a disclosure pattern for progressively revealing supplementary content.
+meta-index: true
+---
+
+<h3>Supplementary content disclosure</h3>
+{{#>_docs-example}}
+  {{>_show-more model.supplementary}}
+{{/_docs-example}}
+
+<h3>Multiple supplementary disclosures with distinct context</h3>
+{{#>_docs-example}}
+  {{#each model.multiple}}
+    <div{{#unless @first}} class="nsw-m-top-md"{{/unless}}>
+      {{>_show-more this}}
+    </div>
+  {{/each}}
+{{/_docs-example}}
