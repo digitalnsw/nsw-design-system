@@ -143,14 +143,14 @@ module.exports = function docsSideNavModel(collections, path) {
     navGroup(
       'components',
       'Components',
-      '/index.html#components',
+      null,
       currentUrl,
       groupedCollectionLinks(safeCollections.componentsnav, COMPONENT_GROUPS, currentUrl),
     ),
     navGroup(
       'utility-classes',
       'Utility classes',
-      '/index.html#utility-classes',
+      null,
       currentUrl,
       collectionLinks(safeCollections.utilities, currentUrl, { transformText: cleanUtilityText }),
     ),
