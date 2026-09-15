@@ -24,6 +24,12 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/atom-one-light.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/xml.min.js"></script>
+{{else}}
+{{#if code-page}}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/atom-one-light.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/xml.min.js"></script>
+{{/if}}
 {{/unless}}
   <!-- Hotjar Tracking Code for NSW Design System -->
   <script data-category="analytics">
@@ -123,6 +129,15 @@
     </footer>
   </div>
 {{/if}}
+{{#unless page}}
+{{#unless no-global-back-to-top}}
+  {{>_back-to-top}}
+{{/unless}}
+{{else}}
+{{#if code-page}}
+  {{>_back-to-top}}
+{{/if}}
+{{/unless}}
   <script src="/js/main.js"></script>
   <script>
     window.NSW.initSite()
@@ -134,6 +149,12 @@
   <script>
     hljs.initHighlightingOnLoad();
   </script>
+{{else}}
+{{#if code-page}}
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
+{{/if}}
 {{/unless}}
 </body>
 </html>

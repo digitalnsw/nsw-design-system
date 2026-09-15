@@ -3,16 +3,9 @@
     <h1>{{title}}</h1>
     {{#if-equals core true}}<p class="nsw-text--brand-supplementary"><span class="nsw-brand" aria-hidden="true">&#128313;</span>&nbsp;Required for NSW Government Masterbrand products</p>{{/if-equals}}
     {{#if intro}}<p class="nsw-intro">{{intro}}</p>{{/if}}
-    {{#unless tabs}}{{#unless no-blank}}
-    <div class="nsw-docs__external">
-      <a class="nsw-small nsw-link nsw-link--icon" target="_blank" href="{{change-extention path 'blank'}}" class="nsw-docs__external">
-        <span>View in new window</span>
-        <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">launch</i>
-      </a>
-    </div>
-    {{/unless}}{{/unless}}
-    {{#if figma}}
+    {{#if (or figma theme react demo)}}
     <p>
+      {{#if figma}}
       <a class="nsw-link nsw-link--icon" target="_blank" href="{{figma}}">
         <svg width="20" height="20" viewBox="0 0 33 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.003 48c4.416 0 8-3.584 8-8v-8h-8c-4.416 0-8 3.584-8 8s3.584 8 8 8z" fill="#0ACF83"></path><path d="M.003 24c0-4.416 3.584-8 8-8h8v16h-8c-4.416 0-8-3.584-8-8z" fill="#A259FF"></path><path d="M.003 8c0-4.416 3.584-8 8-8h8v16h-8c-4.416 0-8-3.584-8-8z" fill="#F24E1E"></path><path d="M16.003 0h8c4.416 0 8 3.584 8 8s-3.584 8-8 8h-8V0z" fill="#FF7262"></path><path d="M32.003 24c0 4.416-3.584 8-8 8s-8-3.584-8-8 3.584-8 8-8 8 3.584 8 8z" fill="#1ABCFE"></path></svg>
         <span>Figma</span>
@@ -20,13 +13,13 @@
       {{/if}}
       {{#if demo}}
       <a class="nsw-link nsw-link--icon nsw-docs__resource-link{{#if figma}} nsw-m-left-sm{{/if}}" target="_blank" href="{{change-extention path 'demo'}}">
-        <i class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">code</i>
+        <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">preview</span>
         <span>Demo &amp; Code</span>
       </a>
       {{else}}
       {{#if theme}}
       <a class="nsw-link nsw-link--icon nsw-docs__resource-link{{#if figma}} nsw-m-left-sm{{/if}}" target="_blank" href="{{change-extention path 'theme'}}">
-        <i class="material-icons-outlined nsw-material-icons" focusable="false" aria-hidden="true">palette</i>
+        <span class="material-icons-outlined nsw-material-icons" focusable="false" aria-hidden="true">palette</span>
         <span>View theming examples</span>
       </a>
       {{/if}}

@@ -1,0 +1,71 @@
+---
+title: Accordion Demo & Code
+width: narrow
+page: true
+code-page: true
+model:
+    accordion-1: json/accordion.json
+    accordion-2: json/accordion-2.json
+    accordion-4: json/accordion-4.json
+    accordion-5: json/accordion-5.json
+    accordion-6: json/accordion-6.json
+    accordion-7: json/accordion-7.json
+    accordion-8: json/accordion-8.json
+    accordion-9: json/accordion-9.json
+---
+
+{{#*inline "accordion-demo-examples"}}
+  <h2>Details variation (CSS-core)</h2>
+
+  <h3>Regular</h3>
+  {{#>_docs-example}}{{>_accordion regular type="details"}}{{/_docs-example}}
+
+  <h3>Single item (no wrapper)</h3>
+  {{#>_docs-example}}{{>_accordion standalone type="details" standalone=true}}{{/_docs-example}}
+
+  <h3>Toggle controls (progressively enhanced)</h3>
+  {{#>_docs-example}}{{>_accordion toggle type="details"}}{{/_docs-example}}
+
+  <hr class="nsw-m-top-lg"/>
+
+  <h2>Legacy variation (JS-core dependent)</h2>
+
+  <h3>Accordion with expand/collapse all</h3>
+  {{#>_docs-example}}{{>_accordion legacy-toggle type="js"}}{{/_docs-example}}
+
+  <h3>Simple accordion</h3>
+  {{#>_docs-example}}{{>_accordion legacy-regular type="js"}}{{/_docs-example}}
+{{/inline}}
+
+{{#>_theme}}
+  {{#>_layout-container}}
+    <h1>Accordion Demo &amp; Code</h1>
+    {{> accordion-demo-examples
+      regular=model.accordion-4
+      standalone=model.accordion-8
+      toggle=model.accordion-5
+      legacy-toggle=model.accordion-1
+      legacy-regular=model.accordion-2
+    }}
+  {{/_layout-container}}
+
+  {{#>_layout-container brand-light="true"}}
+    {{> accordion-demo-examples
+      regular=model.accordion-4
+      standalone=model.accordion-8
+      toggle=model.accordion-5
+      legacy-toggle=model.accordion-1
+      legacy-regular=model.accordion-2
+    }}
+  {{/_layout-container}}
+
+  {{#>_layout-container brand-dark="true" invert="true"}}
+    {{> accordion-demo-examples
+      regular=model.accordion-6
+      standalone=model.accordion-9
+      toggle=model.accordion-7
+      legacy-toggle=model.accordion-1
+      legacy-regular=model.accordion-2
+    }}
+  {{/_layout-container}}
+{{/_theme}}
