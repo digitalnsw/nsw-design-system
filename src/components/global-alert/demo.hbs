@@ -1,0 +1,35 @@
+---
+title: Global alert Demo & Code
+page: true
+code-page: true
+model: json/global-alert.json
+---
+
+{{#*inline "global-alert-demo-examples"}}
+  <h3>Information</h3>
+  {{#>_docs-example}}{{>_global-alert model}}{{/_docs-example}}
+  {{#>_docs-example separated="true"}}{{>_global-alert model link="true"}}{{/_docs-example}}
+
+  <h3>Light</h3>
+  {{#>_docs-example}}{{>_global-alert model type="light"}}{{/_docs-example}}
+  {{#>_docs-example separated="true"}}{{>_global-alert model link="true" type="light"}}{{/_docs-example}}
+
+  <h3>Critical</h3>
+  {{#>_docs-example}}{{>_global-alert model type="critical"}}{{/_docs-example}}
+  {{#>_docs-example separated="true"}}{{>_global-alert model link="true" type="critical"}}{{/_docs-example}}
+{{/inline}}
+
+{{#>_theme}}
+  {{#>_layout-container}}
+    <h1>Global alert Demo &amp; Code</h1>
+    {{> global-alert-demo-examples}}
+  {{/_layout-container}}
+
+  {{#>_layout-container brand-light="true"}}
+    {{> global-alert-demo-examples}}
+  {{/_layout-container}}
+
+  {{#>_layout-container brand-dark="true" invert="true"}}
+    {{> global-alert-demo-examples}}
+  {{/_layout-container}}
+{{/_theme}}

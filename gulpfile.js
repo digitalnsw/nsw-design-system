@@ -207,11 +207,6 @@ function metalsmithBuild(callback) {
       refer: false,
       sortBy: 'order',
     },
-    guidancetab: {
-      pattern: config.metalSmith.collection.guidancetab.pattern,
-      refer: false,
-      sortBy: sortByAlpha,
-    },
     about: {
       pattern: config.metalSmith.collection.contentnav.about,
       refer: false,

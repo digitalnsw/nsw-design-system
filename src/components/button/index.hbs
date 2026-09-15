@@ -1,7 +1,7 @@
 ---
 title: Buttons
 width: wide
-tabs: true
+demo: true
 directory: button
 core: true
 intro: Buttons provide users with the ability to submit an action.
@@ -11,116 +11,43 @@ meta-description: Buttons provide users with the ability to submit an action.
 meta-index: true
 ---
 
-<div class="nsw-tabs js-tabs">
-  <ul class="nsw-tabs__list">
-    <li><a href="#primary-brand-dark" class="js-tabs-fixed">Brand Dark</a></li>
-    <li><a href="#primary-brand-light" class="js-tabs-fixed">Brand Light</a></li>
-    <li><a href="#primary-white" class="js-tabs-fixed">White</a></li>
-    <li><a href="#primary-danger" class="js-tabs-fixed">Danger</a></li>
-  </ul>
-  <section id="primary-brand-dark" class="nsw-tabs__content nsw-tabs__content--side-flush">
-    <h4>Brand Dark</h4>
-{{#>_docs-example separated="true"}}
-<div class="nsw-list nsw-list--8">
-  {{>_button-link url="#" style="dark" text="Link"}}
-  {{>_button-link url="#" style="dark" text="Link icon" icon="upload"}}
-  {{>_button type="button" style="dark" text="Button"}}
-  {{>_button type="button" style="dark" text="Button link" icon="download" icon-after="true"}}
-  {{>_button-input type="button" style="dark" text="Input"}}
-  {{>_button-input type="button" style="dark" text="Disabled" isDisabled=true}}
-  {{>_button type="button" style="dark" text="Full Width" isFullWidth=true}}
-</div>
-{{/_docs-example}}
-    <h4>Brand Dark Outline</h4>
-{{#>_docs-example separated="true" light="true"}}
-<div class="nsw-list nsw-list--8">
-  {{>_button-link url="#" style="dark-outline" text="Link"}}
-  {{>_button-link url="#" style="dark-outline" text="Link icon" icon="upload"}}
-  {{>_button type="button" style="dark-outline" text="Button"}}
-  {{>_button type="button" style="dark-outline" text="Button link" icon="download" icon-after="true"}}
-  {{>_button-input type="button" style="dark-outline" text="Input"}}
-  {{>_button-input type="button" style="dark-outline" text="Disabled" isDisabled=true}}
-  {{>_button type="button" style="dark-outline" text="Full Width" isFullWidth=true}}
-</div>
-{{/_docs-example}}
-    <h4>Brand Dark Outline Solid</h4>
-{{#>_docs-example separated="true" light="true"}}
-<div class="nsw-list nsw-list--8">
-  {{>_button-link url="#" style="dark-outline-solid" text="Link"}}
-  {{>_button-link url="#" style="dark-outline-solid" text="Link icon" icon="upload"}}
-  {{>_button type="button" style="dark-outline-solid" text="Button"}}
-  {{>_button type="button" style="dark-outline-solid" text="Button link" icon="download" icon-after="true"}}
-  {{>_button-input type="button" style="dark-outline-solid" text="Input"}}
-  {{>_button-input type="button" style="dark-outline-solid" text="Disabled" isDisabled=true}}
-  {{>_button type="button" style="dark-outline-solid" text="Full Width" isFullWidth=true}}
-</div>
-{{/_docs-example}}
-  </section>
-  <section id="primary-brand-light" class="nsw-tabs__content nsw-tabs__content--side-flush">
-    <h4>Brand Light</h4>
-{{#> _docs-example separated="true" dark="true"}}
-<div class="nsw-list nsw-list--8">
-  {{>_button-link url="#" style="light" text="Link"}}
-  {{>_button-link url="#" style="light" text="Link icon" icon="upload"}}
-  {{>_button type="button" style="light" text="Button"}}
-  {{>_button type="button" style="light" text="Button link" icon="download" icon-after="true"}}
-  {{>_button-input type="button" style="light" text="Input"}}
-  {{>_button-input type="button" style="light" text="Disabled" isDisabled=true}}
-  {{>_button type="button" style="light" text="Full Width" isFullWidth=true}}
-</div>
-{{/_docs-example}}
-    <h4>Brand Light Outline</h4>
-{{#> _docs-example separated="true" dark="true"}}
-<div class="nsw-list nsw-list--8">
-  {{>_button-link url="#" style="light-outline" text="Link"}}
-  {{>_button-link url="#" style="light-outline" text="Link icon" icon="upload"}}
-  {{>_button type="button" style="light-outline" text="Button"}}
-  {{>_button type="button" style="light-outline" text="Button link" icon="download" icon-after="true"}}
-  {{>_button-input type="button" style="light-outline" text="Input"}}
-  {{>_button-input type="button" style="light-outline" text="Disabled" isDisabled=true}}
-  {{>_button type="button" style="light-outline" text="Full Width" isFullWidth=true}}
-</div>
-{{/_docs-example}}
-  </section>
-  <section id="primary-white" class="nsw-tabs__content nsw-tabs__content--side-flush">
-    <h4>White</h4>
-{{#> _docs-example separated="true" dark="true"}}
-<div class="nsw-list nsw-list--8">
-  {{>_button-link url="#" style="white" text="Link"}}
-  {{>_button-link url="#" style="white" text="Link icon" icon="upload"}}
-  {{>_button type="button" style="white" text="Button"}}
-  {{>_button type="button" style="white" text="Button link" icon="download" icon-after="true"}}
-  {{>_button-input type="button" style="white" text="Input"}}
-  {{>_button-input type="button" style="white" text="Disabled" isDisabled=true}}
-  {{>_button type="button" style="white" text="Full Width" isFullWidth=true}}
-</div>
+{{#>_docs-example}}
+{{>_button type="button" style="dark" text="Button"}}
 {{/_docs-example}}
 
-    <h4>White Outline</h4>
-{{#> _docs-example separated="true" dark="true"}}
-<div class="nsw-list nsw-list--8">
-  {{>_button-link url="#" style="white-outline" text="Link"}}
-  {{>_button-link url="#" style="white-outline" text="Link icon" icon="upload"}}
-  {{>_button type="button" style="white-outline" text="Button"}}
-  {{>_button type="button" style="white-outline" text="Button link" icon="download" icon-after="true"}}
-  {{>_button-input type="button" style="white-outline" text="Input"}}
-  {{>_button-input type="button" style="white-outline" text="Disabled" isDisabled=true}}
-  {{>_button type="button" style="white-outline" text="Full Width" isFullWidth=true}}
-</div>
-{{/_docs-example}}
-  </section>
-  <section id="primary-danger" class="nsw-tabs__content nsw-tabs__content--side-flush">
-    <h4>Danger</h4>
-{{#>_docs-example separated="true"}}
-<div class="nsw-list nsw-list--8">
-  {{>_button-link url="#" style="danger" text="Link"}}
-  {{>_button-link url="#" style="danger" text="Link icon" icon="upload"}}
-  {{>_button type="button" style="danger" text="Button"}}
-  {{>_button type="button" style="danger" text="Button link" icon="download" icon-after="true"}}
-  {{>_button-input type="button" style="danger" text="Input"}}
-  {{>_button-input type="button" style="danger" text="Disabled" isDisabled=true}}
-  {{>_button type="button" style="danger" text="Full Width" isFullWidth=true}}
-</div>
-{{/_docs-example}}
-  </section>
-</div>
+<hr class="nsw-m-y-lg">
+
+<h2>Usage</h2>
+<p>Buttons should be used when the user performs an action, and should describe what happens when pressed. Examples of button contexts include:
+</p>
+<ul>
+  <li>submitting a form</li>
+  <li>cancelling a transaction</li>
+  <li>saving information</li>
+  <li>making a payment</li>
+</ul>
+
+<h3>Buttons vs. links</h3>
+<p>Buttons should be used if there is an <em>action</em> performed. For navigating users to different pages or to another part within the same page, use a text link instead.</p>
+<h3>Button states</h3>
+<p>Buttons are styled according to their purpose:</p>
+<ul>
+  <li><strong>Brand</strong> buttons are for the page's primary user action (call to action). Brand dark should be used as the primary Brand button and Brand light should be used when the background requires a light variant button.</li>
+  <li><strong>Outlined</strong> buttons are used for secondary call to actions.</li>
+  <li><strong>Danger</strong> buttons are NSW Brand Highlight and used to confirm a destructive action, such as delete. </li>
+  <li><strong>Disabled</strong> buttons can be used if research shows that it helps users understand the screen. Disabled buttons can be harder to see, so avoid using them where possible.</li>
+</ul>
+
+<h3>Icons</h3>
+<p>Icons can be added to support the action. Avoid using an icon as standalone as they may be interpreted differently by different users. It is important to ensure where an icon is used it matches the intended action.</p>
+
+<h3>Tips</h3>
+<ul>
+  <li>Disabled buttons can be harder to see, so avoid using them where possible</li>
+  <li>Consider the GOV.UK guidance on how to <a target="_blank" href="https://design-system.service.gov.uk/components/button/#stop-users-from-accidentally-sending-information-more-than-once">stop users from accidentally sending information more than once</a></li>
+  <li>Overusing buttons and button-style links makes them less noticable</li>
+  <li>A comprehensive review of buttons vs. links is available from Indiana University - <a target="_blank" href="https://ux.iu.edu/writings/buttons-vs-links-basic/">Buttons &amp; Links - the Basics</a></li>
+</ul>
+
+<h2>Accessibility</h2>
+<p>All components are responsive and designed to comply with WCAG 2.2 AA accessibility standards. Full compliance depends on using and configuring the components correctly.</p>

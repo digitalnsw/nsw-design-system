@@ -1,0 +1,31 @@
+---
+title: Callout Demo & Code
+width: narrow
+page: true
+code-page: true
+model:
+  callout: json/callout.json
+  callout-pictogram: json/callout-pictogram.json
+---
+
+{{#*inline "callout-demo-examples"}}
+{{#>_docs-example}}{{>_callout model.callout}}{{/_docs-example}}
+
+<h3>With pictogram</h3>
+{{#>_docs-example separated="true"}}{{>_callout model.callout-pictogram}}{{/_docs-example}}
+{{/inline}}
+
+{{#>_theme}}
+  {{#>_layout-container}}
+    <h1>Callout Demo &amp; Code</h1>
+    {{> callout-demo-examples model=model}}
+  {{/_layout-container}}
+
+  {{#>_layout-container brand-light="true"}}
+    {{> callout-demo-examples model=model}}
+  {{/_layout-container}}
+
+  {{#>_layout-container brand-dark="true" invert="true"}}
+    {{> callout-demo-examples model=model}}
+  {{/_layout-container}}
+{{/_theme}}

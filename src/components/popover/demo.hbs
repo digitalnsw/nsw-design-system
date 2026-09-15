@@ -1,0 +1,75 @@
+---
+title: Popover Demo & Code
+width: narrow
+page: true
+code-page: true
+model: ../../components/popover/json/popover.json
+---
+
+{{#*inline "popover-demo-examples"}}
+<h2 class="nsw-p-top-0">Position</h2>
+<p>Places the Popover relative to the trigger element.</p>
+
+<h3 class="h4 nsw-p-0">Top</h3>
+{{#>_docs-example separated="true"}}
+<div class="nsw-list nsw-list--8">
+  {{#each model.top}}
+{{>_popover style="dark-outline" icon="info" text=this id=@key id-suffix=../id-suffix position=@key gap="10"}}
+  {{/each}}
+</div>
+{{/_docs-example}}
+
+<h3 class="h4 nsw-p-0">Right</h3>
+{{#>_docs-example separated="true"}}
+<div class="nsw-list nsw-list--8">
+  {{#each model.right}}
+{{>_popover style="dark-outline" icon="info" text=this id=@key id-suffix=../id-suffix position=@key gap="10"}}
+  {{/each}}
+</div>
+{{/_docs-example}}
+
+<h3 class="h4 nsw-p-0">Bottom</h3>
+{{#>_docs-example separated="true"}}
+<div class="nsw-list nsw-list--8">
+  {{#each model.bottom}}
+{{>_popover style="dark-outline" icon="info" text=this id=@key id-suffix=../id-suffix position=@key gap="10"}}
+  {{/each}}
+</div>
+{{/_docs-example}}
+
+<h3 class="h4 nsw-p-0">Left</h3>
+{{#>_docs-example separated="true"}}
+<div class="nsw-list nsw-list--8">
+  {{#each model.left}}
+{{>_popover style="dark-outline" icon="info" text=this id=@key id-suffix=../id-suffix position=@key gap="10"}}
+  {{/each}}
+</div>
+{{/_docs-example}}
+
+<h2>Offset</h2>
+
+<p>A data-attribute <code>data-popover-gap</code> argument that offsets the distance between the trigger and Popover.</p>
+
+{{#>_docs-example separated="true"}}
+<div class="nsw-list nsw-list--8">
+  {{#each model.gap}}
+{{>_popover style="dark-outline" icon="info" text="Open Top" id=this id-suffix=../id-suffix position="top" gap=this}}
+  {{/each}}
+</div>
+{{/_docs-example}}
+{{/inline}}
+
+{{#>_theme}}
+  {{#>_layout-container}}
+    <h1>Popover Demo &amp; Code</h1>
+    {{> popover-demo-examples id-suffix="-default"}}
+  {{/_layout-container}}
+
+  {{#>_layout-container brand-light="true"}}
+    {{> popover-demo-examples id-suffix="-brand-light"}}
+  {{/_layout-container}}
+
+  {{#>_layout-container brand-dark="true" invert="true"}}
+    {{> popover-demo-examples id-suffix="-inverted"}}
+  {{/_layout-container}}
+{{/_theme}}

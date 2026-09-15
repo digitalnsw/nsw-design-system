@@ -1,0 +1,38 @@
+---
+title: Tables Demo & Code
+width: narrow
+page: true
+code-page: true
+---
+
+{{#*inline "table-demo-examples"}}
+<h3>Default</h3>
+{{#>_docs-example}}{{>_table}}{{/_docs-example}}
+
+<h3>Striped</h3>
+{{#>_docs-example}}{{>_table striped="true"}}{{/_docs-example}}
+
+<h3>Caption Top</h3>
+{{#>_docs-example}}{{>_table captionTop="true"}}{{/_docs-example}}
+
+<h3>Bordered</h3>
+{{#>_docs-example}}{{>_table bordered="true"}}{{/_docs-example}}
+
+<h3>Stripe and Bordered</h3>
+{{#>_docs-example}}{{>_table striped="true" bordered="true"}}{{/_docs-example}}
+{{/inline}}
+
+{{#>_theme}}
+  {{#>_layout-container}}
+    <h1>Tables Demo &amp; Code</h1>
+    {{> table-demo-examples}}
+  {{/_layout-container}}
+
+  {{#>_layout-container brand-light="true"}}
+    {{> table-demo-examples}}
+  {{/_layout-container}}
+
+  {{#>_layout-container brand-dark="true" invert="true"}}
+    {{> table-demo-examples}}
+  {{/_layout-container}}
+{{/_theme}}

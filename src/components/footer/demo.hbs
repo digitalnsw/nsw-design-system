@@ -1,0 +1,59 @@
+---
+title: Footer Demo & Code
+page: true
+code-page: true
+model: json/footer.json
+---
+
+{{#*inline "footer-demo-examples"}}
+<h3>Default</h3>
+{{#>_docs-example}}
+{{>_footer model}}
+{{/_docs-example}}
+
+<h3>Brand palette</h3>
+{{#>_docs-example}}
+{{>_footer model theme="dark" sectionLinks=""}}
+{{/_docs-example}}
+
+{{#>_docs-example}}
+{{>_footer model theme="light" sectionLinks=""}}
+{{/_docs-example}}
+
+{{#>_docs-example}}
+<style type="text/css">
+  .nsw-footer--custom {
+    --nsw-grey-01: var(--nsw-palette-purple-01);
+  }
+</style>
+{{>_footer model theme="custom" sectionLinks=""}}
+{{/_docs-example}}
+
+<h3>Social</h3>
+{{#>_docs-example}}
+{{>_footer model social="true" sectionLinks=""}}
+{{/_docs-example}}
+
+{{#>_docs-example}}
+{{>_footer model theme="dark" social="true" sectionLinks=""}}
+{{/_docs-example}}
+
+{{#>_docs-example}}
+{{>_footer model theme="light" social="true" sectionLinks=""}}
+{{/_docs-example}}
+{{/inline}}
+
+{{#>_theme}}
+  {{#>_layout-container}}
+    <h1>Footer Demo &amp; Code</h1>
+    {{> footer-demo-examples model=model}}
+  {{/_layout-container}}
+
+  {{#>_layout-container brand-light="true"}}
+    {{> footer-demo-examples model=model}}
+  {{/_layout-container}}
+
+  {{#>_layout-container brand-dark="true" invert="true"}}
+    {{> footer-demo-examples model=model}}
+  {{/_layout-container}}
+{{/_theme}}

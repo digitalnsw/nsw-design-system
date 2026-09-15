@@ -1,0 +1,35 @@
+---
+title: Link Demo & Code
+width: narrow
+page: true
+code-page: true
+---
+
+{{#*inline "link-demo-examples"}}
+  {{#>_docs-example separated=true}}
+  {{>_link inline="true"}}
+  {{/_docs-example}}
+
+  {{#>_docs-example separated=true}}
+  {{>_link icon="true" type="external"}}
+  {{/_docs-example}}
+
+  {{#>_docs-example separated=true}}
+  {{>_link icon="true" type="download"}}
+  {{/_docs-example}}
+{{/inline}}
+
+{{#>_theme}}
+  {{#>_layout-container}}
+    <h1>Link Demo &amp; Code</h1>
+    {{> link-demo-examples}}
+  {{/_layout-container}}
+
+  {{#>_layout-container brand-light="true"}}
+    {{> link-demo-examples}}
+  {{/_layout-container}}
+
+  {{#>_layout-container brand-dark="true" invert="true"}}
+    {{> link-demo-examples}}
+  {{/_layout-container}}
+{{/_theme}}

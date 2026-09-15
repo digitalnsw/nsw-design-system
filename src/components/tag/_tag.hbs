@@ -11,8 +11,8 @@
 {{#if-equals type "checkbox"}}
   {{#each list}}
 <div class="nsw-tag nsw-tag--checkbox">
-  <input type="checkbox" id="{{id}}" name="tag-input"{{#if checked}} checked{{/if}}>
-  <label for="{{id}}">{{text}}</label>
+  <input type="checkbox" id="{{id}}{{../id-suffix}}" name="tag-input"{{#if checked}} checked{{/if}}>
+  <label for="{{id}}{{../id-suffix}}">{{text}}</label>
 </div>
   {{/each}}
 {{/if-equals}}

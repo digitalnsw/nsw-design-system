@@ -1,0 +1,40 @@
+---
+title: Dialog Demo & Code
+width: narrow
+page: true
+code-page: true
+model:
+  dialog-transactional: json/dialog-transactional.json
+  dialog-single-cta: json/dialog-single-cta.json
+  dialog-danger: json/dialog-danger.json
+  dialog-dismissible: json/dialog-dismissible.json
+---
+
+{{#*inline "dialog-demo-examples"}}
+<h3>Transactional</h3>
+{{#>_docs-example}}{{>_dialog model.dialog-transactional id=transactionalId}}{{/_docs-example}}
+
+<h3>Single call to action</h3>
+{{#>_docs-example}}{{>_dialog model.dialog-single-cta id=singleId}}{{/_docs-example}}
+
+<h3>Danger</h3>
+{{#>_docs-example}}{{>_dialog model.dialog-danger id=dangerId}}{{/_docs-example}}
+
+<h3>Dismissible</h3>
+{{#>_docs-example}}{{>_dialog model.dialog-dismissible id=dismissibleId}}{{/_docs-example}}
+{{/inline}}
+
+{{#>_theme}}
+  {{#>_layout-container}}
+    <h1>Dialog Demo &amp; Code</h1>
+    {{> dialog-demo-examples model=model transactionalId="demo-transactional" singleId="demo-single-cta" dangerId="demo-danger" dismissibleId="demo-dismissible"}}
+  {{/_layout-container}}
+
+  {{#>_layout-container brand-light="true"}}
+    {{> dialog-demo-examples model=model transactionalId="demo-light-transactional" singleId="demo-light-single-cta" dangerId="demo-light-danger" dismissibleId="demo-light-dismissible"}}
+  {{/_layout-container}}
+
+  {{#>_layout-container brand-dark="true" invert="true"}}
+    {{> dialog-demo-examples model=model transactionalId="demo-dark-transactional" singleId="demo-dark-single-cta" dangerId="demo-dark-danger" dismissibleId="demo-dark-dismissible"}}
+  {{/_layout-container}}
+{{/_theme}}

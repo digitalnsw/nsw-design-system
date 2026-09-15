@@ -1,0 +1,26 @@
+---
+title: Progress Indicator Demo & Code
+width: narrow
+page: true
+code-page: true
+model: ../../components/progress-indicator/json/progress-indicator.json
+---
+
+{{#*inline "progress-indicator-demo-examples"}}
+{{#>_docs-example}}{{>_progress-indicator model}}{{/_docs-example}}
+{{/inline}}
+
+{{#>_theme}}
+  {{#>_layout-container}}
+    <h1>Progress Indicator Demo &amp; Code</h1>
+    {{> progress-indicator-demo-examples}}
+  {{/_layout-container}}
+
+  {{#>_layout-container brand-light="true"}}
+    {{> progress-indicator-demo-examples}}
+  {{/_layout-container}}
+
+  {{#>_layout-container brand-dark="true" invert="true"}}
+    {{> progress-indicator-demo-examples}}
+  {{/_layout-container}}
+{{/_theme}}

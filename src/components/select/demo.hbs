@@ -1,0 +1,141 @@
+---
+title: Select Demo & Code
+width: narrow
+page: true
+code-page: true
+model:
+  region: ../../components/select/json/select-region.json
+  savings-program: ../../components/select/json/select-savings-program.json
+  many-options: ../../components/select/json/select-many-options.json
+---
+
+{{#*inline "select-demo-examples"}}
+<h3>Single select</h3>
+{{#>_docs-example}}
+<div class="nsw-form">
+  <div class="nsw-form__group">
+    {{>_select model.region
+    id=(append "select-all-regions-1" id-suffix)
+    }}
+  </div>
+</div>
+{{/_docs-example}}
+
+<h3>Multiple select</h3>
+{{#>_docs-example}}
+<div class="nsw-form">
+  <div class="nsw-form__group">
+    {{>_select model.savings-program 
+    id=(append "select-all-savings-programs-1" id-suffix)
+    multiple="true"
+    }}
+  </div>
+</div>
+{{/_docs-example}}
+
+<h3>Multiple select with many options</h3>
+{{#>_docs-example}}
+<div class="nsw-form">
+  <div class="nsw-form__group">
+    {{>_select model.many-options
+    id=(append "select-many-options-1" id-suffix)
+    multiple="true"
+    helper-text="Select all that apply"
+    select-text="Select services"
+    multi-select-text="{n} services selected"
+    multi-select-max-height="45"
+    }}
+  </div>
+</div>
+{{/_docs-example}}
+
+<h3>Helper text</h3>
+
+{{#>_docs-example}}
+<div class="nsw-form">
+  <div class="nsw-form__group">
+    {{>_select model.region
+    id=(append "select-all-regions-2" id-suffix)
+    helper-text="Your region of residence"
+    }}
+  </div>
+</div>
+{{/_docs-example}}
+
+{{#>_docs-example separated="true"}}
+<div class="nsw-form">
+  <div class="nsw-form__group">
+    {{>_select model.savings-program
+    id=(append "select-all-savings-programs-2" id-suffix)
+    multiple="true"
+    helper-text="Select all that apply"
+    }}
+  </div>
+</div>
+{{/_docs-example}}
+
+<h3>Error</h3>
+{{#>_docs-example}}
+<div class="nsw-form">
+  <div class="nsw-form__group">
+    {{>_select model.region
+    id=(append "select-all-regions-3" id-suffix)
+    required="true"
+    error-text="Please select a region of residence"
+    }}
+  </div>
+</div>
+{{/_docs-example}}
+
+{{#>_docs-example separated="true"}}
+<div class="nsw-form">
+  <div class="nsw-form__group">
+    {{>_select model.savings-program
+    id=(append "select-all-savings-programs-3" id-suffix)
+    multiple="true"
+    required="true"
+    error-text="Please select the savings programs you would like to claim"
+    }}
+  </div>
+</div>
+{{/_docs-example}}
+
+<h3>Validation</h3>
+{{#>_docs-example}}
+<div class="nsw-form">
+  <div class="nsw-form__group">
+    {{>_select model.region
+    id=(append "select-all-regions-4" id-suffix)
+    valid-text="Your region is eligible for savings benefits"
+    }}
+  </div>
+</div>
+{{/_docs-example}}
+
+{{#>_docs-example separated="true"}}
+<div class="nsw-form">
+  <div class="nsw-form__group">
+    {{>_select model.savings-program
+    id=(append "select-all-savings-programs-4" id-suffix)
+    multiple="true"
+    valid-text="The programs you have selected are available"
+    }}
+  </div>
+</div>
+{{/_docs-example}}
+{{/inline}}
+
+{{#>_theme}}
+  {{#>_layout-container}}
+    <h1>Select Demo &amp; Code</h1>
+    {{> select-demo-examples id-suffix="-default"}}
+  {{/_layout-container}}
+
+  {{#>_layout-container brand-light="true"}}
+    {{> select-demo-examples id-suffix="-brand-light"}}
+  {{/_layout-container}}
+
+  {{#>_layout-container brand-dark="true" invert="true"}}
+    {{> select-demo-examples id-suffix="-inverted"}}
+  {{/_layout-container}}
+{{/_theme}}

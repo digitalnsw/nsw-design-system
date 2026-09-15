@@ -1,7 +1,7 @@
 ---
 title: In-page alert
 width: narrow
-tabs: true
+demo: true
 directory: in-page-alert
 intro: In-page alerts are used to communicate important information, contextual status or interaction feedback that needs attention.
 theme: true
@@ -17,20 +17,80 @@ meta-description: In-page alerts are used to communicate important information, 
 meta-index: true
 ---
 
-<h3>Information</h3>
 {{#>_docs-example}}{{>_in-page-alert model.info}}{{/_docs-example}}
-{{#>_docs-example separated="true"}}{{>_in-page-alert compact="true" type="info" icon="info" copy="<strong>Rockdale Agency will close on 9 March 2018 and re-open in April.</strong> Please visit <a href='#'>Kogarah Service Centre</a> during this closure."}}{{/_docs-example}}
-{{#>_docs-example separated="true"}}{{>_in-page-alert model.contextualInfo}}{{/_docs-example}}
 
-<h3>Critical</h3>
-{{#>_docs-example}}{{>_in-page-alert model.error}}{{/_docs-example}}
-{{#>_docs-example separated="true"}}{{>_in-page-alert compact="true" type="error" icon="cancel" copy="<strong>It looks like there was a problem.</strong> Please contact your service desk for further assistance."}}{{/_docs-example}}
+<hr class="nsw-m-y-lg">
 
-<h3>Warning</h3>
-{{#>_docs-example}}{{>_in-page-alert model.warning}}{{/_docs-example}}
-{{#>_docs-example separated="true"}}{{>_in-page-alert compact="true" type="warning" icon="error" copy="<strong>Password expiring soon.</strong> Your password is expiring in 4 days. Please change your password."}}{{/_docs-example}}
-{{#>_docs-example separated="true"}}{{>_in-page-alert model.contextualWarning}}{{/_docs-example}}
+<h2>Usage</h2>
+<p>Use in-page alerts to attract the user's attention. Alerts are often displayed following a user interaction or system event. The level of attention is dependent on the importance of the alert. </p>
+<p>Do:</p>
+<ul>
+  <li>use clear, concise easy to understand language, to minimise cognitive load</li>
+  <li>display the alerts in context and at an appropriate time</li>
+  <li>use the appropriate alert for the task at hand.</li>
+</ul>
+<p>Do not:</p>
+<ul>
+  <li>overuse alerts as this will erode their effectiveness</li>
+  <li>use for global alerts which are required on all pages.</li>
+</ul>
 
-<h3>Success</h3>
-{{#>_docs-example}}{{>_in-page-alert model.success}}{{/_docs-example}}
-{{#>_docs-example separated="true"}}{{>_in-page-alert compact="true" type="success" icon="check_circle" copy="<strong>Your application has been received.</strong> We will be in contact within 5 business days."}}{{/_docs-example}}
+<h3>User feedback and contextual feedback</h3>
+<p>When communicating information related to a task, consider whether the message is about the user's interaction or the subject of the task.</p>
+<ul>
+  <li><strong>User feedback</strong> communicates the outcome of a user action. Use success, warning or critical alerts as appropriate.</li>
+  <li><strong>Contextual feedback</strong> communicates the current state of the subject of the task. Use information or warning alerts as appropriate.</li>
+</ul>
+<p>What the message communicates matters more than whether it appears after an interaction. For example, if a user searches for a record and the result shows the record has been surrendered, the message is contextual feedback. It is not feedback about whether the search action succeeded.</p>
+
+<h3>In-page alert types</h3>
+
+<p>In-page alerts come in standard and compact variants. The standard variant can be used to deliver an alert for a section or overall context. The compact variant can be used for inline alerts or where the alert needs to be isolated from broader page messaging.</p>
+
+<p>In-page alerts are styled according to their purpose:</p>
+<p><strong>Information alert</strong></p>
+<p>Designed to be less intrusive or interruptive than other levels of alert:</p>
+<ul>
+  <li>use for information the user should know, but is not critical</li>
+  <li>use for tips or information which the user can benefit from</li>
+  <li>use for messages which don't require too much attention or action</li>
+  <li>use for important contextual information or status, where the message describes the state or circumstances of the content rather than the user's action</li>
+  <li>don't use as feedback about the outcome of a user action. Use the appropriate success, warning or critical alert where user feedback is required.</li>
+</ul>
+<p>Where possible, communicate ordinary state using existing content and components, such as a status label with supporting text. Use an information alert only where the contextual information needs additional prominence.</p>
+<p><strong>Success alert</strong></p>
+<ul>
+  <li>use to inform the user that an action was performed successfully (e.g. submitting a form or registering an account)</li>
+  <li>don't use to communicate contextual feedback about the subject of a task.</li>
+</ul>
+<p><strong>Warning alert</strong></p>
+<ul>
+  <li>use to warn the user of a possible negative outcome (e.g. password expiry)</li>
+  <li>provide sufficient information to avoid the problem</li>
+  <li>use for an action that is out of the ordinary or might not be desired</li>
+  <li>use for contextual feedback where the status requires attention or affects what the user can do next.</li>
+</ul>
+<p><strong>Critical alert</strong></p>
+<ul>
+  <li>use where a system event has failed</li>
+  <li>use when the user has made an error</li>
+  <li>use where the user is blocked until the issue is resolved, or the issue needs resolving immediately</li>
+  <li>provide sufficient information on the issue and resolution to fix the issue</li>
+  <li>don't use for field-level validation or validation summary. See <a href="/components/form/index.html#validation">form validation guidance</a>.</li>
+</ul>
+
+<h2>How this component works</h2>
+<p>The family of alerts is designed with a consistent layout to aid comprehension of what they are and how they work.</p>
+<p>They are designed to look 'not always present', to draw the user's attention.</p>
+<p>The type and urgency of the alert is communicated through colour and the icon used.</p>
+<p>The icons used are industry standard, with the exception of the warning and critical icons which are somewhat interchangeable. Both the warning and critical icons are perceived as more important to aid the user's comprehension.</p>
+<p>The alerts are not dismissible.</p>
+
+<h2>Accessibility</h2>
+<p>All components are responsive and designed to comply with WCAG 2.2 AA accessibility standards. Full compliance depends on using and configuring the components correctly.</p>
+
+<h3>Ensuring compliance through usage</h3>
+
+<h4>Consistent help</h4>
+<p>For in-page alerts in the design system, ensuring WCAG 2.2 AA compliance requires careful attention to consistency and accessibility. Alerts should be configured to deliver clear, actionable guidance without disrupting user flow. This means applying consistent language, formatting, and placement to make alerts easily recognisable across the interface. Ensure each alert is accessible, with clear labels and instructions that screen readers can interpret effectively. Additionally, users should be able to reference alert content without needing to re-trigger it.</p>
+<p>Following these guidelines helps to create a cohesive, accessible experience, aligning with best practices for usability and accessibility in your design system.</p>

@@ -1,0 +1,43 @@
+---
+title: Date picker Demo & Code
+width: narrow
+page: true
+code-page: true
+---
+
+{{#*inline "date-picker-demo-examples"}}
+{{#>_docs-example}}
+{{>_date-picker single=true id=singleId}}
+{{/_docs-example}}
+
+<h3>Date ranges and disabled dates</h3>
+
+<p>Allowed date ranges for a date picker can be set by specifying earliest and latest allowed dates. Individual dates can also be disabled.</p>
+
+<p>In this example, a max date of 28 January 2024, a min date of 02 January 2024 has been set and three days in January 2024 have been disabled.</p>
+
+{{#>_docs-example separated=true}}
+{{>_date-picker single=true disabled=true id=disabledId}}
+{{/_docs-example}}
+
+<h3>Individual date inputs for day, month and year</h3>
+
+{{#>_docs-example}}
+{{>_date-picker multiple=true id=multipleId}}
+{{/_docs-example}}
+{{/inline}}
+
+{{#>_theme}}
+  {{#>_layout-container}}
+    <h1>Date picker Demo &amp; Code</h1>
+    {{> date-picker-demo-examples singleId="demo-date-picker-1" disabledId="demo-date-picker-2" multipleId="demo-date-picker-3"}}
+  {{/_layout-container}}
+
+  {{#>_layout-container brand-light="true"}}
+    {{> date-picker-demo-examples singleId="demo-light-date-picker-1" disabledId="demo-light-date-picker-2" multipleId="demo-light-date-picker-3"}}
+  {{/_layout-container}}
+
+  {{#>_layout-container brand-dark="true" invert="true"}}
+    {{> date-picker-demo-examples singleId="demo-dark-date-picker-1" disabledId="demo-dark-date-picker-2" multipleId="demo-dark-date-picker-3"}}
+  {{/_layout-container}}
+{{/_theme}}

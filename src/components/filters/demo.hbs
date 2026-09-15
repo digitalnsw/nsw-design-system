@@ -1,0 +1,115 @@
+---
+title: Filters Demo & Code
+width: wide
+page: true
+code-page: true
+model:
+  options-1: ../../components/filters/json/options-1.json
+  options-2: ../../components/filters/json/options-2.json
+  options-3: ../../components/filters/json/options-3.json
+---
+
+{{#*inline "filters-demo-examples"}}
+<h3>Instant filtering</h3>
+<div class="nsw-show-lg">
+  <div class="nsw-grid">
+    <div class="nsw-col nsw-col-md-6">
+      <h4>Visible Open</h4>
+    </div>
+    <div class="nsw-col nsw-col-md-6">
+      <h4>Visible Collapsed</h4>
+    </div>
+  </div>
+</div>
+
+{{#>_docs-example}}
+<div class="nsw-row">
+  <div class="nsw-col nsw-col-md-6">
+    {{>_filters model.options-1 instant='true' js='true' filters-id=id1}}
+  </div>
+  <div class="nsw-col nsw-col-md-6">
+    {{>_filters model.options-2 instant='true' collapsed='true' js='true' filters-id=id2}}
+  </div>
+</div>
+{{/_docs-example}}
+
+<div class="nsw-show-lg">
+  <div class="nsw-grid">
+    <div class="nsw-col nsw-col-md-6">
+      <h4>Down Open (no counter)</h4>
+    </div>
+    <div class="nsw-col nsw-col-md-6">
+      <h4>Down Collapsed</h4>
+    </div>
+  </div>
+</div>
+{{#>_docs-example}}
+<div class="nsw-row">
+  <div class="nsw-col nsw-col-md-6">
+    {{>_filters model.options-1 instant='true' down='true' js='true' no-count='true' filters-id=id3}}
+  </div>
+  <div class="nsw-col nsw-col-md-6">
+    {{>_filters model.options-3 instant='true' down='true' collapsed='true' js='true' filters-id=id4}}
+  </div>
+</div>
+{{/_docs-example}}
+
+<h3>Batch filtering</h3>
+<div class="nsw-show-lg">
+  <div class="nsw-grid">
+    <div class="nsw-col nsw-col-md-6">
+      <h4>Right Open</h4>
+    </div>
+    <div class="nsw-col nsw-col-md-6">
+      <h4>Right Collapsed</h4>
+    </div>
+  </div>
+</div>
+{{#>_docs-example}}
+<div class="nsw-row">
+  <div class="nsw-col nsw-col-md-6">
+    {{>_filters model.options-1 batch='true' right='true' js='true' filters-id=id5}}
+  </div>
+  <div class="nsw-col nsw-col-md-6">
+    {{>_filters model.options-1 batch='true' right='true' collapsed='true' js='true' filters-id=id6}}
+  </div>
+</div>
+{{/_docs-example}}
+
+<div class="nsw-show-lg">
+  <div class="nsw-grid">
+    <div class="nsw-col nsw-col-md-6">
+      <h4>Down Open</h4>
+    </div>
+    <div class="nsw-col nsw-col-md-6">
+      <h4>Down Collapsed (no counter)</h4>
+    </div>
+  </div>
+</div>
+
+{{#>_docs-example}}
+<div class="nsw-row">
+  <div class="nsw-col nsw-col-md-6">
+    {{>_filters model.options-1 batch='true' multiple='true' down='true' js='true' filters-id=id7}}
+  </div>
+  <div class="nsw-col nsw-col-md-6">
+    {{>_filters model.options-1 batch='true' multiple='true' down='true' collapsed='true' js='true' no-count='true' filters-id=id8}}
+  </div>
+</div>
+{{/_docs-example}}
+{{/inline}}
+
+{{#>_theme}}
+  {{#>_layout-container}}
+    <h1>Filters Demo &amp; Code</h1>
+    {{> filters-demo-examples model=model id1="demo-1" id2="demo-2" id3="demo-3" id4="demo-4" id5="demo-5" id6="demo-6" id7="demo-7" id8="demo-8"}}
+  {{/_layout-container}}
+
+  {{#>_layout-container brand-light="true"}}
+    {{> filters-demo-examples model=model id1="demo-light-1" id2="demo-light-2" id3="demo-light-3" id4="demo-light-4" id5="demo-light-5" id6="demo-light-6" id7="demo-light-7" id8="demo-light-8"}}
+  {{/_layout-container}}
+
+  {{#>_layout-container brand-dark="true" invert="true"}}
+    {{> filters-demo-examples model=model id1="demo-dark-1" id2="demo-dark-2" id3="demo-dark-3" id4="demo-dark-4" id5="demo-dark-5" id6="demo-dark-6" id7="demo-dark-7" id8="demo-dark-8"}}
+  {{/_layout-container}}
+{{/_theme}}

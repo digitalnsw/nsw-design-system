@@ -107,8 +107,7 @@
   @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
     &__intro .nsw-docs__container > :is(h1, h2, h3, h4, h5, h6, p, ul, ol, dl, blockquote, table, .nsw-table, pre, hr, .nsw-docs__external, .nsw-in-page-alert),
     &__content > .nsw-docs__container > :is(h1, h2, h3, h4, h5, h6, p, ul, ol, dl, blockquote, table, .nsw-table, pre, hr, .nsw-docs__external, .nsw-in-page-alert),
-    &__content > .nsw-docs__container > .nsw-docs__body > :is(h1, h2, h3, h4, h5, h6, p, ul, ol, dl, blockquote, table, .nsw-table, pre, hr, .nsw-docs__external, .nsw-in-page-alert),
-    .nsw-docs-tabs__guidance .nsw-docs__container > :is(h1, h2, h3, h4, h5, h6, p, ul, ol, dl, blockquote, table, .nsw-table, pre, hr, .nsw-docs__external, .nsw-in-page-alert) {
+    &__content > .nsw-docs__container > .nsw-docs__body > :is(h1, h2, h3, h4, h5, h6, p, ul, ol, dl, blockquote, table, .nsw-table, pre, hr, .nsw-docs__external, .nsw-in-page-alert) {
       max-width: var(--nsw-docs-text-body-width);
     }
 
@@ -152,10 +151,6 @@
     flex-direction: column;
     background-color: var(--nsw-white);
 
-    .nsw-docs__example {
-      padding: nsw.rem(16px);
-      background-color: var(--nsw-white);
-    }
 
     &--menu {
       .nsw-docs__component {
@@ -180,27 +175,6 @@
         padding: nsw.rem(48px) nsw.rem(16px) nsw.rem(40px);
       }
     }
-
-    &--tabs {
-      margin-bottom: nsw.rem(-48px);
-
-      .nsw-docs__container {
-        padding-bottom: nsw.rem(40px);
-
-        @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
-          padding-bottom: nsw.rem(40px);
-        }
-      }
-    }
-  }
-
-  &__tabs {
-    flex-grow: 1;
-    width: 100%;
-    max-width: var(--nsw-container-width);
-    margin: 0 auto;
-    box-sizing: border-box;
-    padding: 0 nsw.rem(16px);
   }
 
   &__content {
@@ -220,21 +194,12 @@
     color: var(--nsw-link);
   }
 
-  &__intro:not(.nsw-docs__intro--tabs) + &__content {
+  &__intro + &__content {
     padding-top: 0;
   }
 
   &__layout {
     row-gap: nsw.rem(32px);
-  }
-
-  &__layout--tabs {
-    align-items: flex-start;
-
-    .nsw-docs__tabs {
-      max-width: none;
-      padding: 0;
-    }
   }
 
   &__side-nav {
@@ -254,6 +219,13 @@
       display: none;
     }
 
+    &.nsw-docs__example--dark,
+    &.nsw-docs__example--light,
+    &.nsw-docs__example--brand-dark,
+    &.nsw-docs__example--brand-light {
+      padding: nsw.rem(16px);
+    }
+
     &.nsw-docs__example--dark {
       background-color: var(--nsw-grey-01);
     }
@@ -269,6 +241,10 @@
     &.nsw-docs__example--brand-light {
       background-color: var(--nsw-brand-light);
     }
+  }
+
+  :is(.nsw-section--brand-dark, .nsw-section--brand-light, .nsw-section--brand-supplementary, .nsw-section--black, .nsw-section--off-white, .nsw-section--grey-01, .nsw-section--grey-02, .nsw-section--grey-03, .nsw-section--grey-04) .nsw-docs__example {
+    padding: nsw.rem(16px);
   }
 
   &__iframe {
@@ -953,7 +929,7 @@
     max-width: none;
     max-height: nsw.rem(400px);
     overflow: auto;
-    background-color: var(--nsw-white);
+    background-color: var(--nsw-off-white);
 
     &:focus {
       @include nsw.nsw-focus($offset: false);
@@ -963,36 +939,6 @@
   }
 }
 
-.nsw-docs-tabs {
-  >.nsw-tabs__list-wrapper {
-    background-color: transparent;
-    padding: 0;
-  }
-
-  >.nsw-tabs__content {
-    padding: 0;
-    border-bottom: 0;
-    border-color: var(--nsw-white);
-    background-color: var(--nsw-off-white);
-
-    &:focus {
-      outline: none;
-    }
-
-    .nsw-docs__container,
-    .nsw-docs__demo {
-      padding: nsw.rem(24px);
-
-      @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
-        padding: nsw.rem(48px) nsw.rem(24px);
-      }
-    }
-  }
-
-  .nsw-docs__external {
-    padding: 0 0 nsw.rem(24px) 0;
-  }
-}
 
 .nsw-docs-footer {
   .nsw-container {

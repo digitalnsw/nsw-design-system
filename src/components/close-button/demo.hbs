@@ -1,0 +1,38 @@
+---
+title: Close button Demo & Code
+width: narrow
+page: true
+code-page: true
+---
+
+{{#*inline "close-button-demo-examples"}}
+<h3>Default</h3>
+{{#>_docs-example separated=true}}
+{{>_close-button code="close" sr="Close"}}
+{{/_docs-example}}
+
+<h3>Sizing</h3>
+{{#>_docs-example separated=true}}
+<div class="nsw-list nsw-list--8">
+  {{>_close-button code="close" sr="Close" size="20"}}
+  {{>_close-button code="close" sr="Close" size="24"}}
+  {{>_close-button code="close" sr="Close" size="30"}}
+  {{>_close-button code="close" sr="Close" size="36"}}
+</div>
+{{/_docs-example}}
+{{/inline}}
+
+{{#>_theme}}
+  {{#>_layout-container}}
+    <h1>Close button Demo &amp; Code</h1>
+    {{> close-button-demo-examples model=model}}
+  {{/_layout-container}}
+
+  {{#>_layout-container brand-light="true"}}
+    {{> close-button-demo-examples model=model}}
+  {{/_layout-container}}
+
+  {{#>_layout-container brand-dark="true" invert="true"}}
+    {{> close-button-demo-examples model=model}}
+  {{/_layout-container}}
+{{/_theme}}

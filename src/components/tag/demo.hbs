@@ -1,0 +1,49 @@
+---
+title: Tags Demo & Code
+width: narrow
+page: true
+code-page: true
+model:
+  link: json/tag-link.json
+  text: json/tag-text.json
+  checkbox: json/tag-checkbox.json
+  checkbox-dark: json/tag-checkbox-dark.json
+---
+
+{{#*inline "tag-demo-examples"}}
+<h3>Link</h3>
+{{#>_docs-example}}
+<div class="nsw-list nsw-list--8">
+  {{>_tag link}}
+</div>
+{{/_docs-example}}
+
+<h3>Text</h3>
+{{#>_docs-example}}
+<div class="nsw-list nsw-list--8">
+  {{>_tag text}}
+</div>
+{{/_docs-example}}
+
+<h3>Toggle checkbox</h3>
+{{#>_docs-example}}
+<div class="nsw-list nsw-list--8">
+  {{>_tag checkbox id-suffix=id-suffix}}
+</div>
+{{/_docs-example}}
+{{/inline}}
+
+{{#>_theme}}
+  {{#>_layout-container}}
+    <h1>Tags Demo &amp; Code</h1>
+    {{> tag-demo-examples link=model.link text=model.text checkbox=model.checkbox id-suffix="-default"}}
+  {{/_layout-container}}
+
+  {{#>_layout-container brand-light="true"}}
+    {{> tag-demo-examples link=model.link text=model.text checkbox=model.checkbox id-suffix="-brand-light"}}
+  {{/_layout-container}}
+
+  {{#>_layout-container brand-dark="true" invert="true"}}
+    {{> tag-demo-examples link=model.link text=model.text checkbox=model.checkbox-dark id-suffix="-inverted"}}
+  {{/_layout-container}}
+{{/_theme}}

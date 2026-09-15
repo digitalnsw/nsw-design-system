@@ -1,0 +1,84 @@
+---
+title: Content blocks Demo & Code
+width: wide
+page: true
+code-page: true
+model:
+  content-block-text-1: ../../components/content-block/json/content-block-text-1.json
+  content-block-text-2: ../../components/content-block/json/content-block-text-2.json
+  content-block-text-3: ../../components/content-block/json/content-block-text-3.json
+  content-block-icon-1: ../../components/content-block/json/content-block-icon-1.json
+  content-block-icon-2: ../../components/content-block/json/content-block-icon-2.json
+  content-block-icon-3: ../../components/content-block/json/content-block-icon-3.json
+  content-block-image-1: ../../components/content-block/json/content-block-image-1.json
+  content-block-image-2: ../../components/content-block/json/content-block-image-2.json
+  content-block-image-3: ../../components/content-block/json/content-block-image-3.json
+  content-block-1: ../../components/content-block/json/content-block-1.json
+  content-block-2: ../../components/content-block/json/content-block-2.json
+  content-block-3: ../../components/content-block/json/content-block-3.json
+  content-block-4: ../../components/content-block/json/content-block-4.json
+  content-block-5: ../../components/content-block/json/content-block-5.json
+  content-block-6: ../../components/content-block/json/content-block-6.json
+---
+
+{{#*inline "content-block-demo-examples"}}
+<h3>Text block</h3>
+{{#>_docs-example}}
+<div class="nsw-grid nsw-grid--spaced">
+  <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+    {{>_content-block model.content-block-text-1}}
+  </div>
+  <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+    {{>_content-block model.content-block-text-2}}
+  </div>
+  <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+    {{>_content-block model.content-block-text-3}}
+  </div>
+</div>
+{{/_docs-example}}
+
+<h3>Pictogram block</h3>
+{{#>_docs-example}}
+<div class="nsw-grid nsw-grid--spaced">
+  <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+    {{>_content-block model.content-block-icon-1}}
+  </div>
+  <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+    {{>_content-block model.content-block-icon-2}}
+  </div>
+  <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+    {{>_content-block model.content-block-icon-3}}
+  </div>
+</div>
+{{/_docs-example}}
+
+<h3>Image block</h3>
+{{#>_docs-example}}
+<div class="nsw-grid nsw-grid--spaced">
+  <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+    {{>_content-block model.content-block-image-1}}
+  </div>
+  <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+    {{>_content-block model.content-block-image-2}}
+  </div>
+  <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
+    {{>_content-block model.content-block-image-3}}
+  </div>
+</div>
+{{/_docs-example}}
+{{/inline}}
+
+{{#>_theme}}
+  {{#>_layout-container}}
+    <h1>Content blocks Demo &amp; Code</h1>
+    {{> content-block-demo-examples model=model}}
+  {{/_layout-container}}
+
+  {{#>_layout-container brand-light="true"}}
+    {{> content-block-demo-examples model=model}}
+  {{/_layout-container}}
+
+  {{#>_layout-container brand-dark="true" invert="true"}}
+    {{> content-block-demo-examples model=model}}
+  {{/_layout-container}}
+{{/_theme}}

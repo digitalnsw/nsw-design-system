@@ -1,0 +1,27 @@
+---
+title: Masthead Demo & Code
+page: true
+code-page: true
+---
+
+{{#*inline "masthead-demo-examples"}}
+  <h3>Default</h3>
+  {{#>_docs-example}}{{>_masthead content="#" nav="#"}}{{/_docs-example}}
+  <h3>Light</h3>
+  {{#>_docs-example}}{{>_masthead content="#" nav="#" masthead-theme="light"}}{{/_docs-example}}
+{{/inline}}
+
+{{#>_theme}}
+  {{#>_layout-container}}
+    <h1>Masthead Demo &amp; Code</h1>
+    {{> masthead-demo-examples}}
+  {{/_layout-container}}
+
+  {{#>_layout-container brand-light="true"}}
+    {{> masthead-demo-examples}}
+  {{/_layout-container}}
+
+  {{#>_layout-container brand-dark="true" invert="true"}}
+    {{> masthead-demo-examples}}
+  {{/_layout-container}}
+{{/_theme}}
