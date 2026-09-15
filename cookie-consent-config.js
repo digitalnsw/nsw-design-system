@@ -19,7 +19,7 @@
       },
       consentBanner: {
         title: 'Cookies on the NSW Design System website',
-        description: "We've added essential and additional cookies to ensure this service works effectively, track how it's being used, and make necessary improvements. You can <a href='#'>manage your cookie settings</a> by visiting the 'Cookies' page, found at the bottom of this page.",
+        description: ['We\'ve added essential and additional cookies to ensure this service works effectively, track how it\'s being used,', 'and make necessary improvements. You can manage your preferences or read our', '<a href="/privacy-collection-notice.html">Privacy Collection Notice</a> to learn how we handle personal', 'information you provide when subscribing to NSW Digital Design System newsletters and mailing lists.'].join(' '),
         acceptAllBtn: 'Accept all',
         acceptNecessaryBtn: 'Only necessary cookies',
         showPreferencesBtn: 'Manage your preferences',
@@ -60,7 +60,11 @@
             <li>enable sharing of content on social media platforms like LinkedIn</li>
             <li>help us make continuous improvements based on user behaviour</li>
           </ul>
-          <p>Some cookies may collect information that is classified as personal data. Please refer to our <a href="[your privacy policy URL]">Privacy Policy</a> to learn more about how we handle personal information.</p>
+          <p>Some cookies may collect information that is classified as personal data.</p>
+          <p>
+            Our <a href="/privacy-collection-notice.html">Privacy Collection Notice</a> explains how we handle personal
+            information you provide when subscribing to NSW Digital Design System newsletters and mailing lists.
+          </p>
           <p>For more details on cookies, how they work, and how to manage or delete them, visit <a href="https://www.allaboutcookies.org">www.allaboutcookies.org</a>.</p>
 
           <h2>Details about cookies on this NSW Government website</h2>
