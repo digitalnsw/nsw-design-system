@@ -1,0 +1,36 @@
+---
+title: Utility list Demo & Code
+width: narrow
+page: true
+code-page: true
+model: ../../components/utility-list/json/utility-list.json
+---
+
+{{#*inline "utility-list-demo-examples"}}
+{{#each model}}
+  <h3>{{@key}}</h3>
+  {{#each this}}
+    {{#>_docs-example separated=true}}
+{{>_utility-list pdf="nsw-docs__main" id=id id-suffix=../../../id-suffix}}
+    {{/_docs-example}}
+  {{/each}}
+{{/each}}
+{{/inline}}
+
+{{#>_theme}}
+  {{#>_layout-container}}
+    <h1>Utility list Demo &amp; Code</h1>
+    {{> utility-list-demo-examples id-suffix="-default"}}
+  {{/_layout-container}}
+
+  {{#>_layout-container brand-light="true"}}
+    {{> utility-list-demo-examples id-suffix="-brand-light"}}
+  {{/_layout-container}}
+
+  {{#>_layout-container brand-dark="true" invert="true"}}
+    {{> utility-list-demo-examples id-suffix="-inverted"}}
+  {{/_layout-container}}
+{{/_theme}}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
