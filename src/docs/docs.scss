@@ -177,6 +177,15 @@
     }
   }
 
+  &__featured-example {
+    > .nsw-docs-code {
+      width: 100%;
+      max-width: var(--nsw-container-width);
+      margin: 0 auto;
+      padding: 0 nsw.rem(16px);
+    }
+  }
+
   &__content {
     flex-grow: 1;
     width: 100%;
@@ -215,6 +224,11 @@
   }
 
   &__example {
+    &--full-bleed {
+      width: 100vw;
+      margin-left: calc(50% - 50vw);
+    }
+
     &--hidden {
       display: none;
     }
@@ -245,6 +259,10 @@
 
   :is(.nsw-section--brand-dark, .nsw-section--brand-light, .nsw-section--brand-supplementary, .nsw-section--black, .nsw-section--off-white, .nsw-section--grey-01, .nsw-section--grey-02, .nsw-section--grey-03, .nsw-section--grey-04) .nsw-docs__example {
     padding: nsw.rem(16px);
+  }
+
+  :is(.nsw-section--brand-dark, .nsw-section--brand-light, .nsw-section--brand-supplementary, .nsw-section--black, .nsw-section--off-white, .nsw-section--grey-01, .nsw-section--grey-02, .nsw-section--grey-03, .nsw-section--grey-04) .nsw-docs__example--full-bleed {
+    padding: 0;
   }
 
   &__iframe {

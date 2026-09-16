@@ -8,17 +8,12 @@ model: json/hero-search.json
 {{#*inline "hero-search-demo-examples"}}
   <h3>Using CSS for a background image</h3>
   {{#>_docs-example}}
-  <div class="nsw-section nsw-section--image" style="background-image: url(https://picsum.photos/id/199/2000/1250);">
-    {{>_hero-search model id=searchId1 button="icon"}}
-  </div>
+  {{>_hero-search model id=searchId1 button="icon"}}
   {{/_docs-example}}
 
   <h3>Using HTML for a background image</h3>
   {{#>_docs-example}}
-  <div class="nsw-section nsw-section--image-html">
-    {{>_hero-search model id=searchId2 button="text" label="true"}}
-    <img src="https://picsum.photos/id/204/2000/1250" alt="Background image"/>
-  </div>
+  {{>_hero-search model id=searchId2 button="text" label="true" image-html=true}}
   {{/_docs-example}}
 {{/inline}}
 
