@@ -4,6 +4,7 @@
   factory();
 })((function () { 'use strict';
 
+  /* eslint-disable max-len */
   document.addEventListener('DOMContentLoaded', () => {
     const config = {
       cookie: {
@@ -19,11 +20,11 @@
       },
       consentBanner: {
         title: 'Cookies on the NSW Design System website',
-        description: ['We\'ve added essential and additional cookies to ensure this service works effectively, track how it\'s being used,', 'and make necessary improvements. You can manage your preferences or read our', '<a href="/privacy-collection-notice.html">Privacy Collection Notice</a> to learn how we handle personal', 'information you provide when subscribing to NSW Digital Design System newsletters and mailing lists.'].join(' '),
+        description: ["We've added essential and additional cookies to ensure this service works effectively, track how it's being used,", 'and make necessary improvements. You can manage your preferences or read our', '<a href="/privacy-collection-notice.html">Privacy Collection Notice</a> to learn how we handle personal', 'information you provide when subscribing to NSW Digital Design System newsletters and mailing lists.'].join(' '),
         acceptAllBtn: 'Accept all',
         acceptNecessaryBtn: 'Only necessary cookies',
         showPreferencesBtn: 'Manage your preferences',
-        confirmationMessage: `Thanks for making your selection. View and update your <a href="#cookie-consent" class="js-open-dialog-cookie-consent-preferences" aria-haspopup="dialog">cookie preferences</a>.`,
+        confirmationMessage: 'Thanks for making your selection. View and update your <a href="#cookie-consent" class="js-open-dialog-cookie-consent-preferences" aria-haspopup="dialog">cookie preferences</a>.',
         bannerOffset: '0px'
       },
       preferencesDialog: {
