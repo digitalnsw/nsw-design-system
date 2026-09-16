@@ -2,6 +2,7 @@
 title: Buttons
 width: wide
 demo: true
+variants: true
 directory: button
 core: true
 intro: Buttons provide users with the ability to submit an action.
@@ -12,7 +13,12 @@ meta-index: true
 ---
 
 {{#>_docs-example}}
-{{>_button type="button" style="dark" text="Button"}}
+<div class="nsw-list nsw-list--8">
+  {{>_button-link url="#" style="dark" text="Link"}}
+  {{>_button-link url="#" style="dark" text="Link icon" icon="upload"}}
+  {{>_button type="button" style="dark" text="Button"}}
+  {{>_button type="button" style="dark" text="Button link" icon="download" icon-after="true"}}
+</div>
 {{/_docs-example}}
 
 <hr class="nsw-m-y-lg">

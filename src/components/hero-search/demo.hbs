@@ -7,12 +7,12 @@ model: json/hero-search.json
 
 {{#*inline "hero-search-demo-examples"}}
   <h3>Using CSS for a background image</h3>
-  {{#>_docs-example}}
+  {{#>_docs-example full-bleed="true"}}
   {{>_hero-search model id=searchId1 button="icon"}}
   {{/_docs-example}}
 
   <h3>Using HTML for a background image</h3>
-  {{#>_docs-example}}
+  {{#>_docs-example full-bleed="true"}}
   {{>_hero-search model id=searchId2 button="text" label="true" image-html=true}}
   {{/_docs-example}}
 {{/inline}}
@@ -21,13 +21,5 @@ model: json/hero-search.json
   {{#>_layout-container}}
     <h1>Hero search Demo &amp; Code</h1>
     {{> hero-search-demo-examples searchId1="default-1" searchId2="default-2"}}
-  {{/_layout-container}}
-
-  {{#>_layout-container brand-light="true"}}
-    {{> hero-search-demo-examples searchId1="brand-light-1" searchId2="brand-light-2"}}
-  {{/_layout-container}}
-
-  {{#>_layout-container brand-dark="true" invert="true"}}
-    {{> hero-search-demo-examples searchId1="inverted-1" searchId2="inverted-2"}}
   {{/_layout-container}}
 {{/_theme}}

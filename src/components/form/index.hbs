@@ -2,6 +2,7 @@
 title: Forms
 width: narrow
 demo: true
+variants: true
 directory: form
 core: true
 intro: Forms are used to capture data from users.
@@ -14,13 +15,20 @@ meta-index: true
 ---
 
 {{#>_docs-example separated=true}}
-<div class="nsw-form">
-  <div class="nsw-form__group">
-    {{>_text-input
-      id="form-text-example"
-      label="Name"
-      helper-text="As it appears on your identity document"
-    }}
+<div class="nsw-grid">
+  <div class="nsw-col nsw-col-md-8">
+    <form class="nsw-form" action="#" method="post">
+      <div class="nsw-form__group">
+        {{>_text-input
+          id="form-text-example"
+          label="Name"
+          helper-text="As it appears on your identity document"
+        }}
+      </div>
+      <div class="nsw-form__group">
+        <button class="nsw-button nsw-button--dark" type="submit">Submit</button>
+      </div>
+    </form>
   </div>
 </div>
 {{/_docs-example}}

@@ -45,6 +45,7 @@ code-page: true
 </div>
 {{/_docs-example}}
 
+{{#unless hideLight}}
 <h3>Brand Light</h3>
 {{#>_docs-example separated=true}}
 <div class="nsw-list nsw-list--8">
@@ -57,7 +58,9 @@ code-page: true
   {{>_button type="button" style="light" text="Full Width" isFullWidth=true}}
 </div>
 {{/_docs-example}}
+{{/unless}}
 
+{{#unless hideLightOutline}}
 <h3>Brand Light Outline</h3>
 {{#>_docs-example separated=true}}
 <div class="nsw-list nsw-list--8">
@@ -70,7 +73,9 @@ code-page: true
   {{>_button type="button" style="light-outline" text="Full Width" isFullWidth=true}}
 </div>
 {{/_docs-example}}
+{{/unless}}
 
+{{#unless hideWhite}}
 <h3>White</h3>
 {{#>_docs-example separated=true}}
 <div class="nsw-list nsw-list--8">
@@ -83,7 +88,9 @@ code-page: true
   {{>_button type="button" style="white" text="Full Width" isFullWidth=true}}
 </div>
 {{/_docs-example}}
+{{/unless}}
 
+{{#unless hideWhiteOutline}}
 <h3>White Outline</h3>
 {{#>_docs-example separated=true}}
 <div class="nsw-list nsw-list--8">
@@ -96,6 +103,7 @@ code-page: true
   {{>_button type="button" style="white-outline" text="Full Width" isFullWidth=true}}
 </div>
 {{/_docs-example}}
+{{/unless}}
 
 <h3>Danger</h3>
 {{#>_docs-example separated=true}}
@@ -114,11 +122,11 @@ code-page: true
 {{#>_theme}}
   {{#>_layout-container}}
     <h1>Buttons Demo &amp; Code</h1>
-    {{> button-demo-examples model=model}}
+    {{> button-demo-examples model=model hideWhite=true hideLightOutline=true hideWhiteOutline=true}}
   {{/_layout-container}}
 
   {{#>_layout-container brand-light="true"}}
-    {{> button-demo-examples model=model}}
+    {{> button-demo-examples model=model hideLight=true hideLightOutline=true hideWhiteOutline=true}}
   {{/_layout-container}}
 
   {{#>_layout-container brand-dark="true" invert="true"}}
