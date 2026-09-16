@@ -5,7 +5,7 @@ const hasDocument = typeof document !== 'undefined' && hasWindow
 
 export const copyHeadingsClass = 'js-copy-headings'
 
-const headingSelector = 'h2'
+const headingSelector = 'h2:not(.nsw-card__title)'
 const headingWrapperClass = 'nsw-heading-link'
 const headingClass = 'nsw-heading-link__heading'
 const headingInitAttr = 'data-heading-link-init'
