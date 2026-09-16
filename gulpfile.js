@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 const {
   src, dest, watch, series,
 } = require('gulp')
@@ -31,13 +32,12 @@ const eslint = require('gulp-eslint-new')
 const gulpStylelint = require('gulp-stylelint')
 const replace = require('gulp-replace')
 const inject = require('gulp-inject-string')
-const fs = require('fs')
 const { argv } = require('yargs')
 const bump = require('gulp-bump')
-const config = require('./config')
-const package = require('./package')
 const Handlebars = require('handlebars')
 const handlebarsHelpers = require('handlebars-helpers')
+const config = require('./config.json')
+const packageData = require('./package.json')
 
 const server = browsersync.create()
 
@@ -69,12 +69,12 @@ function buildStyles() {
   return src(config.scss.src)
     .pipe(sourcemaps.init())
     .pipe(sassGlob())
-    .pipe(sass().on('error', function (err) {
+    .pipe(sass().on('error', function handleSassError(err) {
       console.error(err.message)
       this.emit('end')
     }))
     .pipe(postcss(postcssProcessors))
-    .pipe(inject.prepend(`/*! NSW Design System v${String(package.version).replace(/\*\//g, '*\\/')} | MIT License */\n`))
+    .pipe(inject.prepend(`/*! NSW Design System v${String(packageData.version).replace(/\*\//g, '*\\/')} | MIT License */\n`))
     .pipe(sourcemaps.write('.'))
     .pipe(dest(config.scss.build))
 }
@@ -83,7 +83,7 @@ function buildCoreStyles() {
   return src(config.scssCore.src)
     .pipe(sourcemaps.init())
     .pipe(sassGlob())
-    .pipe(sass().on('error', function (err) {
+    .pipe(sass().on('error', function handleSassError(err) {
       console.error(err.message)
       this.emit('end')
     }))
@@ -96,7 +96,7 @@ function buildDocStyles() {
   return src(config.scssDocs.src)
     .pipe(sourcemaps.init())
     .pipe(sassGlob())
-    .pipe(sass().on('error', function (err) {
+    .pipe(sass().on('error', function handleSassError(err) {
       console.error(err.message)
       this.emit('end')
     }))
@@ -166,14 +166,14 @@ function sortByAlpha(a, b) {
 function metalsmithBuild(callback) {
   const metalsmith = new Metalsmith(__dirname)
   // debug.patch(metalsmith)
-  metalsmith.metadata(package)
+  metalsmith.metadata(packageData)
   metalsmith.source(config.metalSmith.src)
   metalsmith.destination(config.metalSmith.build)
   metalsmith.use(ignore(config.metalSmith.ignoreFiles))
   metalsmith.clean(false)
   metalsmith.use(discoverHelpers({
     ...config.metalSmith.helpers,
-    handlebars: Handlebars
+    handlebars: Handlebars,
   }))
   metalsmith.use(discoverPartials(config.metalSmith.partials))
   metalsmith.use(dataLoader(config.metalSmith.data))
@@ -260,7 +260,7 @@ function compileJS() {
               extensions: ['.js', '.ts'],
               exclude: 'node_modules/**',
             }),
-            nodeResolve()
+            nodeResolve(),
           ],
         },
         {
@@ -270,14 +270,14 @@ function compileJS() {
       ),
     )
     .pipe(replace(/\bprocess\.env\.NODE_ENV\b/g, JSON.stringify(process.env.NODE_ENV || 'production')))
-    .pipe(inject.prepend(`/*! NSW Design System v${String(package.version).replace(/\*\//g, '*\\/')} | MIT License */\n`))
-    .pipe(inject.append(`\n;(function(g){try{g.NSW=g.NSW||{};g.NSW.VERSION=${JSON.stringify(String(package.version))};}catch(e){} }(typeof globalThis!=='undefined'?globalThis:(typeof window!=='undefined'?window:self)));`))
+    .pipe(inject.prepend(`/*! NSW Design System v${String(packageData.version).replace(/\*\//g, '*\\/')} | MIT License */\n`))
+    .pipe(inject.append(`\n;(function(g){try{g.NSW=g.NSW||{};g.NSW.VERSION=${JSON.stringify(String(packageData.version))};}catch(e){} }(typeof globalThis!=='undefined'?globalThis:(typeof window!=='undefined'?window:self)));`))
     .pipe(dest(config.js.build))
 }
 
 function compileTypes(done) {
-  child.exec('npm run types');
-  done();
+  child.exec('npm run types')
+  done()
 }
 
 function compileDocsJS() {
@@ -297,11 +297,11 @@ function compileDocsJS() {
         {
           name: 'NSW',
           format: 'umd',
-        }
+        },
       ),
     )
     .pipe(replace(/\bprocess\.env\.NODE_ENV\b/g, JSON.stringify(process.env.NODE_ENV || 'production')))
-    .pipe(inject.prepend(`/*! NSW Design System v${String(package.version).replace(/\*\//g, '*\\/')} | MIT License */\n`))
+    .pipe(inject.prepend(`/*! NSW Design System v${String(packageData.version).replace(/\*\//g, '*\\/')} | MIT License */\n`))
     .pipe(dest(config.jsDocs.build))
 }
 
@@ -322,11 +322,11 @@ function compileCookieConsentJS() {
         {
           name: 'NSW',
           format: 'umd',
-        }
+        },
       ),
     )
     .pipe(replace(/\bprocess\.env\.NODE_ENV\b/g, JSON.stringify(process.env.NODE_ENV || 'production')))
-    .pipe(inject.prepend(`/*! NSW Design System v${String(package.version).replace(/\*\//g, '*\\/')} | MIT License */\n`))
+    .pipe(inject.prepend(`/*! NSW Design System v${String(packageData.version).replace(/\*\//g, '*\\/')} | MIT License */\n`))
     .pipe(dest(config.jsCookieConsent.build))
 }
 
@@ -358,6 +358,8 @@ function zipDistFolder() {
     .pipe(dest(config.zipfile.build))
 }
 
+// Retained as an opt-in utility for generating locally browsable archives.
+// eslint-disable-next-line no-unused-vars
 function renamePath() {
   return src(`${config.dir.build}index.html`)
     .pipe(replace('/css/main.css', './css/main.css'))
@@ -478,7 +480,6 @@ const dev = series(
 const deploy = series(
   surgeDeploy,
 )
-
 
 // Export commands.
 exports.scss = buildStyles // gulp sass - compiles the sass

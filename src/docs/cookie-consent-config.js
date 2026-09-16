@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 document.addEventListener('DOMContentLoaded', () => {
   const config = {
     cookie: {
@@ -22,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
       acceptAllBtn: 'Accept all',
       acceptNecessaryBtn: 'Only necessary cookies',
       showPreferencesBtn: 'Manage your preferences',
-      confirmationMessage: `Thanks for making your selection. View and update your <a href="#cookie-consent" class="js-open-dialog-cookie-consent-preferences" aria-haspopup="dialog">cookie preferences</a>.`,
+      confirmationMessage: 'Thanks for making your selection. View and update your <a href="#cookie-consent" class="js-open-dialog-cookie-consent-preferences" aria-haspopup="dialog">cookie preferences</a>.',
       bannerOffset: '0px',
     },
     preferencesDialog: {
@@ -104,10 +105,10 @@ document.addEventListener('DOMContentLoaded', () => {
               </tr>
             </tbody>
           </table>
-        `
+        `,
       },
     },
-  };
+  }
 
-  new window.NSW.CookieConsent(config);
-});
+  new window.NSW.CookieConsent(config)
+})

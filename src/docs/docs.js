@@ -17,7 +17,7 @@ function initDocs() {
       doc.body.offsetHeight,
       doc.documentElement.clientHeight,
       doc.documentElement.scrollHeight,
-      doc.documentElement.offsetHeight
+      doc.documentElement.offsetHeight,
     )
 
     const getIframeDocument = (iframe) => {
@@ -38,10 +38,10 @@ function initDocs() {
       const scale = parseFloat(getComputedStyle(anatomy).getPropertyValue('--nsw-easy-read-anatomy-scale')) || 0.3
 
       // Break circular sizing: shrink before measuring so vh/min-height rules do not lock to an older large height.
-      iframe.style.height = '1px'
+      iframe.style.setProperty('height', '1px')
       const height = getPageHeight(doc)
 
-      iframe.style.height = `${height}px`
+      iframe.style.setProperty('height', `${height}px`)
       viewport.style.setProperty('--nsw-easy-read-anatomy-height', `${Math.ceil(height * scale)}px`)
     }
 

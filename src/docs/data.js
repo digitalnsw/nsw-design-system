@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 const searchValues = [
   {
     label: 'Accordion',
