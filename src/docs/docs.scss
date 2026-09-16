@@ -251,6 +251,10 @@
     width: 100%;
     height: 500px;
     background-color: var(--nsw-white);
+
+    &--compact {
+      height: nsw.rem(240px);
+    }
   }
 
   &__demo {
@@ -890,6 +894,33 @@
 
   .nsw-show-more__toggle {
     margin-top: nsw.rem(16px);
+    padding: nsw.rem(8px);
+    background-color: var(--nsw-off-white);
+
+    &:hover {
+      background-color: var(--nsw-hover);
+    }
+
+    &:hover:not(:focus) {
+      outline: 0;
+    }
+
+    &:focus {
+      @include nsw.nsw-focus;
+    }
+
+    .nsw-section--invert & {
+      @include nsw.link-dark;
+
+      &:hover {
+        color: var(--nsw-link);
+        background-color: var(--nsw-off-white);
+      }
+
+      &:focus {
+        @include nsw.nsw-focus;
+      }
+    }
   }
 
   &__content {
