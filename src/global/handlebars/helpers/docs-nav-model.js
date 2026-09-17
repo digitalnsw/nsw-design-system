@@ -1,4 +1,5 @@
 const changeExtention = require('./change-extention')
+const getStartedNavModel = require('./get-started-nav-model')
 
 function slugify(value) {
   return value
@@ -51,21 +52,8 @@ function navItem(id, text, url, description, subNav = []) {
 }
 
 module.exports = function docsNavModel(collections = {}) {
-  const about = collections.about || []
-  const design = collections.design || []
-  const develop = collections.develop || []
   const contribute = collections.contribute || []
   const methods = collections.methods || []
-  const getStartedGuidanceLinks = [
-    ...collectionLinks(design, {
-      excludeTitles: ['Getting Started'],
-      textOverrides: { Theming: 'Design theming' },
-    }),
-    ...collectionLinks(develop, {
-      excludeTitles: ['Getting Started'],
-      textOverrides: { Theming: 'Develop theming' },
-    }),
-  ]
 
   return {
     'mega-menu': true,
@@ -75,19 +63,7 @@ module.exports = function docsNavModel(collections = {}) {
         'Get started',
         '/index.html#get-started',
         'Understand the NSW Design System, choose the right starting point for your role and find implementation guidance.',
-        [
-          ...collectionLinks(about, { excludeTitles: ['Release notes'] }),
-          ...collectionLinks(design, {
-            excludeTitles: ['Extending', 'Figma UI Kit', 'Guides', 'Theming'],
-            textOverrides: { 'Getting Started': 'Design' },
-          }),
-          ...collectionLinks(develop, {
-            excludeTitles: ['Theming'],
-            textOverrides: { 'Getting Started': 'Develop' },
-          }),
-          { text: 'Templates', url: '/templates/index.html' },
-          ...getStartedGuidanceLinks,
-        ],
+        getStartedNavModel(),
       ),
       navItem(
         'foundations',
@@ -120,14 +96,14 @@ module.exports = function docsNavModel(collections = {}) {
       navItem(
         'contribute',
         'Contribute',
-        changeExtention((contribute[0] || {}).path || 'docs/content/contribute/contribution-criteria.hbs'),
+        changeExtention((contribute[0] || {}).path || 'contribute/contribution-criteria.hbs'),
         'Help improve the NSW Design System by proposing, building and reviewing contributions.',
         collectionLinks(contribute),
       ),
       {
         id: 'release-notes',
         text: 'Release notes',
-        url: '/docs/content/about/release-notes.html',
+        url: '/release-notes/index.html',
       },
     ],
   }

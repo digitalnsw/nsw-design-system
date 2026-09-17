@@ -1,4 +1,5 @@
 const changeExtention = require('./change-extention')
+const getStartedNavModel = require('./get-started-nav-model')
 const {
   FOUNDATION_GROUPS,
   COMPONENT_GROUPS,
@@ -71,7 +72,7 @@ function groupedCollectionLinks(collection, groups, currentUrl) {
 }
 
 function hasCurrentItem(item) {
-  return item.current || (item.items || []).some(hasCurrentItem)
+  return item.current || item.active || (item.items || []).some(hasCurrentItem)
 }
 
 function navGroup(id, text, url, currentUrl, items) {
@@ -103,15 +104,8 @@ module.exports = function docsSideNavModel(collections, path) {
 
   if (!currentUrl) return null
 
-  const about = safeCollections.about || []
-  const design = safeCollections.design || []
-  const develop = safeCollections.develop || []
   const contribute = safeCollections.contribute || []
   const methods = safeCollections.methods || []
-  const getStartedDesignLinks = collectionLinks(design, currentUrl, {
-    includeTitles: ['Figma UI Kit', 'Extending', 'Theming', 'Guides'],
-    textOverrides: { Theming: 'Design theming' },
-  })
 
   const groups = [
     navGroup(
@@ -119,19 +113,7 @@ module.exports = function docsSideNavModel(collections, path) {
       'Get started',
       '/index.html#get-started',
       currentUrl,
-      [
-        ...collectionLinks(about, currentUrl, { excludeTitles: ['Release notes'] }),
-        ...collectionLinks(design, currentUrl, {
-          includeTitles: ['Getting Started'],
-          textOverrides: { 'Getting Started': 'Design' },
-        }),
-        ...collectionLinks(develop, currentUrl, {
-          includeTitles: ['Getting Started'],
-          textOverrides: { 'Getting Started': 'Develop' },
-        }),
-        { text: 'Templates', url: '/templates/index.html' },
-        ...getStartedDesignLinks,
-      ],
+      getStartedNavModel(currentUrl),
     ),
     navGroup(
       'foundations',
@@ -164,7 +146,7 @@ module.exports = function docsSideNavModel(collections, path) {
     navGroup(
       'contribute',
       'Contribute',
-      normaliseUrl((contribute[0] || {}).path || 'docs/content/contribute/contribution-criteria.hbs'),
+      normaliseUrl((contribute[0] || {}).path || 'contribute/contribution-criteria.hbs'),
       currentUrl,
       collectionLinks(contribute, currentUrl),
     ),

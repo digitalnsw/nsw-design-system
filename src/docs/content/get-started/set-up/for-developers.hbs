@@ -1,5 +1,5 @@
 ---
-title: Getting Started
+title: For developers
 width: narrow
 no-blank: true
 order: 1
@@ -8,8 +8,8 @@ meta-index: true
 ---
 
 <h2>Using the design system</h2>
-<p>How you use the NSW Design System depends on your team's capabilities. We recommend using npm but also provided in a CDN, and a downloadable starter kit which includes all the compiled assets.</p>
-
+<p>How you use the NSW Design System depends on your team's capabilities. We recommend using npm, but the system is also provided through a CDN and a downloadable starter kit containing the compiled assets.</p>
+<p>If your product needs a custom colour theme, see the <a href="/get-started/theming-for-developers.html">developer theming guidance</a> for Sass configuration and implementation details.</p>
 
 <nav class="nsw-in-page-nav" aria-labelledby="in-page-nav">
   <div id="in-page-nav" class="nsw-in-page-nav__title">On this page</div>
@@ -100,7 +100,7 @@ meta-index: true
 }
 {{/_docs-example}}
 
-<p>The <code>nsw.reflow</code> mixin targets the WCAG Reflow benchmark of 320 CSS pixels for constrained viewports and 400% zoom states. It is separate from the standard <code>$nsw-breakpoints</code> scale and does not generate grid, offset or visibility utility classes. Use it only where a component needs a specific adjustment at the WCAG Reflow benchmark. See <a href="/docs/content/utilities/reflow.html">Reflow</a> for guidance.</p>
+<p>The <code>nsw.reflow</code> mixin targets the WCAG Reflow benchmark of 320 CSS pixels for constrained viewports and 400% zoom states. It is separate from the standard <code>$nsw-breakpoints</code> scale and does not generate grid, offset or visibility utility classes. Use it only where a component needs a specific adjustment at the WCAG Reflow benchmark. See <a href="/utility-classes/reflow.html">Reflow</a> for guidance.</p>
 <p><em>Performance note:</em> Importing the tools barrel does not add unused CSS. Mixins and functions only generate CSS when you call them, and the module is parsed once per build.</p>
 <p><strong>Tip:</strong> Prefer the barrel for consistency. If a file needs exactly one tool and you want explicit coupling, you can import that file directly (for example, <code>@use 'node_modules/nsw-design-system/src/global/scss/base/mixins' as mixins;</code>).</p>
 

@@ -10,6 +10,14 @@ meta-index: true
 
 <p>The NSW Design System has a built-in framework for how colours are used and inherited to ensure a consistent and accessible user experience. The following guidance walks through how each branding classification can apply colour to its digital products and services using the NSW Design System.</p>
 
+<div class="nsw-in-page-alert nsw-in-page-alert--info">
+  <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">info</span>
+  <div class="nsw-in-page-alert__content">
+    <h2>Implement themes in code</h2>
+    <p>See the <a href="/get-started/theming-for-developers.html">developer theming guidance</a> for Sass configuration and implementation details.</p>
+  </div>
+</div>
+
 <nav class="nsw-in-page-nav" aria-labelledby="in-page-nav">
   <div id="in-page-nav" class="nsw-in-page-nav__title">On this page</div>
   <ul class="nsw-in-page-nav__list">
@@ -35,7 +43,7 @@ meta-index: true
 <p>The default NSW Government colour palette has been developed to accommodate the wide range of expression required by our brand. The palette contains 10 colours sets (columns), each with four different tones, plus white.</p>
 <p>Black and off-white have been added to the digital palette to allow for greater contrast to be applied.</p>
 
-<div class="nsw-theme-grid nsw-m-top-lg">
+<div class="nsw-theme-grid nsw-m-top-lg" role="region" aria-label="NSW Government colour palette" tabindex="0">
   <div class="nsw-theme-grid-container">
     {{#each model.palettes}}
       <div class="nsw-theme-grid-swatch" style="background-color: {{this}}; color: {{getTextColor this}};">
@@ -60,7 +68,7 @@ meta-index: true
 <p>Use this palette on its own to ensure authenticity and cultural respect.</p>
 <p>Visit the <a href="https://branding.nsw.gov.au/guidelines/aboriginal-branding" target="_blank" rel="noopener">Brand Toolbox – Aboriginal Branding Guidelines</a> for more information.</p>
 
-<div class="nsw-theme-grid nsw-m-top-lg">
+<div class="nsw-theme-grid nsw-m-top-lg" role="region" aria-label="NSW Government Aboriginal colour palette" tabindex="0">
   <div class="nsw-theme-grid-container">
     {{#each model.aboriginal}}
       <div class="nsw-theme-grid-swatch" style="background-color: {{this}}; color: {{getTextColor this}};">
@@ -231,7 +239,7 @@ meta-index: true
   <li><strong>Brand Supplementary</strong> must be a dark colour that is accessible with Text Light (#FFFFFF).</li>
   <li><strong>Brand Accent</strong> can be selected from any row in wider colour palette (row 02 and 03 recommended).</li>
 </ul>
-<p>Guidance on applying these in Figma can be found on the <strong>Colour</strong> page of the <a href="/docs/content/design/figma-ui-kit.html">Figma UI Kit</a>.</p>
+<p>Guidance on applying these in Figma can be found on the <strong>Colour</strong> page of the <a href="/get-started/set-up/figma-ui-kit.html">Figma UI Kit</a>.</p>
 
 <h2 id="non-corporate">Masterbrand non-corporate, co-brand and independent</h2>
 <p>Masterbrand non-corporate, co-brand and independent have access to the full colour palette for all brand colours.</p>
@@ -254,5 +262,6 @@ meta-index: true
   <li><strong> Brand Supplementary</strong> must be a dark colour that is accessible with Text Light (#FFFFFF). This is an optional additional colour that should be used sparingly.</li>
   <li><strong> Brand Accent</strong> can be selected from any row from your chosen colour sets (row 02 and 03 recommended).</li>
 </ul>
-<p>Guidance on applying your new brand colours in Figma can be found on the <strong>Colour</strong> page of the <a href="/docs/content/design/figma-ui-kit.html">Figma UI Kit</a>.</p>
+<p>Guidance on applying your new brand colours in Figma can be found on the <strong>Colour</strong> page of the <a href="/get-started/set-up/figma-ui-kit.html">Figma UI Kit</a>.</p>
 <p>As core styles and components inherit colours from the base colour theme, changing a brand colour will automatically filter down to all instances where that colour is used. Alternatively, colour instances can be updated on an individual basis within the chosen colour sets as required. Where possible, it is indicated in the guidance on the <strong>Components</strong> page.</p>
+<p><strong>Developer implementation guidance:</strong> See <a href="/get-started/theming-for-developers.html">Theming for developers</a> for Sass configuration, CSS variables and implementation examples.</p>
