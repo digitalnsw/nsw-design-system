@@ -887,6 +887,16 @@
   }
 }
 
+.nsw-docs-demo {
+  .nsw-layout__main > h1 {
+    margin-bottom: nsw.rem(32px);
+  }
+
+  .nsw-docs-code {
+    margin-bottom: nsw.rem(16px);
+  }
+}
+
 .nsw-docs-code {
   position: relative;
 
@@ -912,15 +922,18 @@
     }
 
     .nsw-section--invert & {
-      @include nsw.link-dark;
+      @include nsw.link-light;
+
+      color: var(--nsw-text-light);
+      background-color: transparent;
 
       &:hover {
-        color: var(--nsw-link);
-        background-color: var(--nsw-off-white);
+        color: var(--nsw-text-light);
+        background-color: var(--nsw-hover-light);
       }
 
       &:focus {
-        @include nsw.nsw-focus;
+        @include nsw.nsw-focus($color: var(--nsw-focus-light));
       }
     }
   }

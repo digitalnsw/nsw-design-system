@@ -46,7 +46,7 @@
   <script src="/cookie-consent-config.js"></script>
 </head>
 
-<body{{#unless page}} class="nsw-docs{{#if light}} nsw-docs--light{{/if}}"{{/unless}}>
+<body{{#if page}}{{#if code-page}} class="nsw-docs-demo"{{/if}}{{else}} class="nsw-docs{{#if light}} nsw-docs--light{{/if}}"{{/if}}>
 {{#if page}}
 {{{contents}}}
 {{else}}
