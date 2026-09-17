@@ -382,10 +382,10 @@ const searchValues = [
     url: '/templates/content/easy-read/index.html',
   },
   {
-    label: 'What is the NSW Design System?',
+    label: 'About the NSW Design System',
     template: 'result',
     keywords: 'get started, What is Design System, What is the NSW Design System, benefits, build faster and at scale, brand and accessibility compliance, consistent code and design language, quality, support, questions, report issues, issue tracker, report a bug',
-    url: '/docs/content/about/what-is-design-system.html',
+    url: '/docs/content/about/about-the-nsw-design-system.html',
   },
   {
     label: 'Supporting different roles',
