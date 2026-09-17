@@ -1,6 +1,7 @@
 ---
 title: Hero search
-tabs: true
+demo: true
+variants: true
 directory: hero-search
 intro: Hero search provides the user with easy access to targeted search.
 theme: true
@@ -8,19 +9,52 @@ figma: https://www.figma.com/file/PVrERKnckLTlJSPk12gbtS/NSW-Digital-Design-Syst
 model: json/hero-search.json
 meta-description: Hero search provides the user with easy access to targeted search.
 meta-index: true
+featured-example: _hero-search
 ---
 
-<h3>Using CSS for a background image</h3>
-{{#>_docs-example}}
-<div class="nsw-section nsw-section--image" style="background-image: url(https://picsum.photos/id/199/2000/1250);">
-  {{>_hero-search model id="1" button="icon"}}
-</div>
-{{/_docs-example}}
+<h2>Usage</h2>
+<p>Use hero search for sites with large volumes of content where the primary navigation of users is via search. It can also be used when research has shown that users prefer to search rather than browse by navigation. </p>
+<p>Use the suggested search links to provide access to popular searches. This may update dynamically based on popular search queries if the business logic is in place, or manually managed through a content management system.</p>
 
-<h3>Using HTML for a background image</h3>
-{{#>_docs-example}}
-<div class="nsw-section nsw-section--image-html">
-  {{>_hero-search model id="2" button="text" label="true"}}
-  <img src="https://picsum.photos/id/204/2000/1250" alt="Background image"/>
-</div>
-{{/_docs-example}}
+<h3>When to avoid</h3>
+<p>Do not use on very small sites or sites with minimal content, consider hero banner.</p>
+
+<h2>How this component works</h2>
+<p><strong>Placement</strong></p>
+<p>The hero search is placed in a prominent position at the top of a page, predominately on the homepage. However it can also be placed at the top of directories, libraries, or lists.</p>
+<p><strong>Background image options</strong></p>
+<p>This component supports two methods for adding a background image:</p>
+<ul>
+  <li>CSS background image: The background image can be applied via CSS using <code>background-image</code>. This method is useful for decorative images that do not need to be indexed or optimized separately.</li>
+  <li>HTML image element: The image can be added as an <code>img</code> element in the HTML. This method is beneficial for performance, as it allows the image to be processed by external compression tools, ensuring optimized page load size and improved performance.</li>
+</ul>
+<p><strong>Search form variations</strong></p>
+<p>The hero search form supports multiple configuration options to enhance usability:</p>
+<ul>
+  <li>CTA customisation: The call-to-action (CTA) button can be customised to display either an icon (e.g., a magnifying glass) or text (e.g., “Search”), depending on user needs and design preferences.</li>
+  <li>Form labels: A label can be added to the search form for increased clarity, ensuring accessibility and guiding users on what to input.</li>
+</ul>
+<p><strong>Search results</strong></p>
+<p>By default, search results should be sorted by relevance. If there is a user need, offer a sort function to allow users to order the results based on supplementary criteria.</p>
+<p>When displaying results, consider what information is important to the user and display what they require to make an informed decision.
+	<p>Do:</p>
+</p>
+<ul>
+	<li>keep the original text in the input field. This facilitates the user's action if they want to make a new search with some modifications in the input</li>
+	<li>show the number of results returned</li>
+	<li>where possible, bold the matching keyword or term in the result description</li>
+	<li>use pagination when more than 10 results are returned</li>
+	<li>categorise the search results if they come from different areas (eg. docs, services, apps, tutorials, blogs)</li>
+	<li>display a clear message when no results are found and offer other search suggestions whenever possible</li>
+	<li>have smart algorithms that can search for similar terms or can search even with misspelled words</li>
+</ul>
+
+<h2>Accessibility</h2>
+<p>All components are responsive and designed to comply with WCAG 2.2 AA accessibility standards. Full compliance depends on using and configuring the components correctly.</p>
+
+<h3>Ensuring compliance through usage</h3>
+
+<h4>Redundant entry</h4>
+
+<p>To ensure WCAG 2.2 AA compliance for a hero site search input component, proper usage and configuration are key. While the component provides an accessible structure, it's essential to retain previously entered search terms or suggestions if a user returns to the page or refines their search. Ensure the input field maintains a clear label, along with guidance on how to effectively use the search function, such as placeholder text or assistive instructions. Users should be able to modify or correct their search query without needing to start over.</p>
+<p>Adhering to these practices provides a seamless, accessible experience that aligns with WCAG standards.</p>

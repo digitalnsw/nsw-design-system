@@ -1,23 +1,18 @@
 <!doctype html>
 <html lang="en" class="no-js">
 <head>
-  <title>{{#if home}}NSW Design System{{else}}{{title}} | NSW Design System{{/if}}</title>
+  <title>{{#if home}}NSW Digital Design System{{else}}{{title}} - NSW Digital Design System{{/if}}</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://designsystem.nsw.gov.au/nsw-og-image.jpg">
-{{#if meta-index}}
+{{#if meta-index}}  
   <meta name="description" content="{{meta-description}}" />
-{{else}}
+{{else}}  
   <meta name="robots" content="noindex" />
 {{/if}}
-  <link rel="icon" href="/favicon.ico" sizes="32x32" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" sizes="any" />
-  <link rel="icon" type="image/png" href="/favicon.png" sizes="96x96" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-  <meta name="apple-mobile-web-app-title" content="NSW Design System" />
-  <link rel="manifest" href="/site.webmanifest" />
+  <link rel="icon" href="/favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
@@ -29,6 +24,12 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/atom-one-light.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/xml.min.js"></script>
+{{else}}
+{{#if code-page}}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/atom-one-light.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/xml.min.js"></script>
+{{/if}}
 {{/unless}}
   <!-- Hotjar Tracking Code for NSW Design System -->
   <script data-category="analytics">
@@ -36,7 +37,7 @@
       h.hj = h.hj || function () { (h.hj.q = h.hj.q || []).push(arguments) };
       h._hjSettings = { hjid: 5063548, hjsv: 6 };
       a = o.getElementsByTagName('head')[0];
-      r = o.createElement('script'); r.async = 1;
+      r = o.createElement('script'); r.async = 1; 
       r.setAttribute('data-category', 'analytics');
       r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
       a.appendChild(r);
@@ -45,56 +46,91 @@
   <script src="/cookie-consent-config.js"></script>
 </head>
 
-<body{{#unless page}} class="nsw-docs{{#if light}} nsw-docs--light{{/if}}"{{/unless}}>
+<body{{#if page}}{{#if code-page}} class="nsw-docs-demo"{{/if}}{{else}} class="nsw-docs{{#if light}} nsw-docs--light{{/if}}"{{/if}}>
 {{#if page}}
 {{{contents}}}
 {{else}}
   <div class="nsw-docs__header">
-    <div class="nsw-docs__header-wrapper">
-      {{>_docs-header}}
-    </div>
+    {{>_docs-header}}
   </div>
-  <div class="nsw-docs__wrapper">
-    <div class="nsw-docs__nav">
-      <div class="nsw-docs__nav-wrapper">
-        {{>_docs-nav}}
-      </div>
+  <div class="nsw-docs__primary-nav">
+    {{>_docs-nav}}
+  </div>
+  <div id="main-content" class="nsw-docs__main{{#if width}} nsw-docs__main--{{width}}{{/if}}" tabindex="-1">
+    {{#unless home}}
+    {{>_docs-intro}}
+    {{/unless}}
+    {{#if featured-example}}
+    <div class="nsw-docs__featured-example">
+      {{#>_docs-example}}
+        {{#if featured-example-data}}
+          {{> (lookup . "featured-example") featured-example-data}}
+        {{else}}
+          {{> (lookup . "featured-example") model}}
+        {{/if}}
+      {{/_docs-example}}
     </div>
-    <div class="nsw-docs__main{{#if width}} nsw-docs__main--{{width}}{{/if}}">
-      {{#unless home}}
-      {{>_docs-intro}}
-      {{/unless}}
-      {{#if tabs}}
-{{>_docs-tabs}}
-      {{else}}
-      <div class="nsw-docs__content">
-        <div class="nsw-docs__container js-copy-headings">
+    {{/if}}
+    {{#if home_full_width}}
+{{{contents}}}
+    {{else}}
+    <div class="nsw-docs__content">
+      <div class="nsw-docs__container">
+      {{#if home}}
+        <div class="nsw-docs__body js-copy-headings">
 {{{contents}}}
         </div>
-      </div>
-      {{/if}}
-      <footer class="nsw-footer nsw-docs-footer">
-        <div class="nsw-footer__lower">
-          <div class="nsw-container">
-            <p class="nsw-footer__acknowledgement">We pay respect to the Traditional Custodians and First Peoples of NSW, and acknowledge their continued connection to their country and culture.</p>
-            <hr>
-            <ul>
-              <li><a href="#cookie-consent" class="js-open-dialog-cookie-consent-preferences" aria-haspopup="dialog">Cookie preferences</a></li>
-              <li><a href="https://github.com/digitalnsw/nsw-design-system" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-              <li><a href="https://www.figma.com/design/PVrERKnckLTlJSPk12gbtS/NSW-Digital-Design-System?node-id=18830-13437&p=f&t=wz6pwwPdSDJOHzk2-0" target="_blank" rel="noopener noreferrer">Figma</a></li>
-              <li><a href="https://engagement.customerservice.nsw.gov.au/subscribe-to-dds" target="_blank" rel="noopener noreferrer">Sign up</a></li>
-              <li><a href="/privacy-collection-notice.html">Privacy Collection Notice</a></li>
-              <li><a href="mailto:designsystem@customerservice.nsw.gov.au">Contact us</a></li>
-            </ul>
-            <div class="nsw-footer__info">
-              <div class="nsw-footer__copyright">Copyright © <script>document.write(new Date().getFullYear())</script></div>
+      {{else}}
+      {{#with (docs-side-nav-model collections path)}}
+        <div class="nsw-layout nsw-docs__layout">
+          <div class="nsw-layout__sidebar nsw-layout__sidebar--desktop nsw-docs__side-nav">
+            {{>_side-nav this}}
+          </div>
+          <div class="nsw-layout__main">
+            <div class="nsw-docs__body js-copy-headings">
+{{{../contents}}}
             </div>
           </div>
         </div>
-      </footer>
+      {{else}}
+        <div class="nsw-docs__body js-copy-headings">
+{{{contents}}}
+        </div>
+      {{/with}}
+      {{/if}}
+      </div>
     </div>
+    {{/if}}
+    <footer class="nsw-footer nsw-docs-footer">
+      <div class="nsw-footer__lower">
+        <div class="nsw-container">
+          <p class="nsw-footer__acknowledgement">We pay respect to the Traditional Custodians and First Peoples of NSW, and acknowledge their continued connection to their country and culture.</p>
+          <hr>
+          <ul>
+            <li><a href="#cookie-consent" class="js-open-dialog-cookie-consent-preferences" aria-haspopup="dialog">Cookie preferences</a></li>
+            <li><a href="https://github.com/digitalnsw/nsw-design-system" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+            <li><a href="https://www.figma.com/design/PVrERKnckLTlJSPk12gbtS/NSW-Digital-Design-System?node-id=18830-13437&p=f&t=wz6pwwPdSDJOHzk2-0" target="_blank" rel="noopener noreferrer">Figma</a></li>
+            <li><a href="https://engagement.customerservice.nsw.gov.au/subscribe-to-dds" target="_blank" rel="noopener noreferrer">Sign up</a></li>
+            <li><a href="/privacy-collection-notice.html">Privacy Collection Notice</a></li>
+            <li><a href="mailto:designsystem@customerservice.nsw.gov.au">Contact us</a></li>
+          </ul>
+          <div class="nsw-footer__info">
+            <div class="nsw-footer__copyright">Copyright © <script>document.write(new Date().getFullYear())</script></div>
+          </div>
+        </div>
+      </div>
+    </footer>
   </div>
 {{/if}}
+{{#unless page}}
+{{#unless no-global-back-to-top}}
+  {{>_back-to-top}}
+{{/unless}}
+{{else}}
+{{#if code-page}}
+  {{>_back-to-top}}
+{{/if}}
+{{/unless}}
   <script src="/js/main.js"></script>
   <script>
     window.NSW.initSite()
@@ -106,6 +142,12 @@
   <script>
     hljs.initHighlightingOnLoad();
   </script>
+{{else}}
+{{#if code-page}}
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
+{{/if}}
 {{/unless}}
 </body>
 </html>

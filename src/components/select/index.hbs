@@ -1,7 +1,7 @@
 ---
 title: Select
 width: narrow
-tabs: true
+demo: true
 directory: select
 intro: Select allows users to choose an option from an available list.
 theme: true
@@ -13,116 +13,57 @@ meta-description: Select allows users to choose an option from an available list
 meta-index: true
 ---
 
-<h3>Single select</h3>
 {{#>_docs-example}}
-<div class="nsw-form">
-  <div class="nsw-form__group">
-    {{>_select model.region
-    id="select-all-regions-1"
-    }}
+<div class="nsw-grid">
+  <div class="nsw-col nsw-col-md-8">
+    <div class="nsw-form">
+      <div class="nsw-form__group">
+        {{>_select model.region id="select-all-regions-1"}}
+      </div>
+    </div>
   </div>
 </div>
 {{/_docs-example}}
 
-<h3>Multiple select</h3>
-{{#>_docs-example}}
-<div class="nsw-form">
-  <div class="nsw-form__group">
-    {{>_select model.savings-program 
-    id="select-all-savings-programs-1"
-    multiple="true"
-    }}
-  </div>
-</div>
-{{/_docs-example}}
+<hr class="nsw-m-y-lg">
 
-<h3>Multiple select with many options</h3>
-{{#>_docs-example}}
-<div class="nsw-form">
-  <div class="nsw-form__group">
-    {{>_select model.many-options
-    id="select-many-options-1"
-    multiple="true"
-    helper-text="Select all that apply"
-    select-text="Select services"
-    multi-select-text="{n} services selected"
-    multi-select-max-height="45"
-    }}
-  </div>
-</div>
-{{/_docs-example}}
+<h2>Usage</h2>
+<p>A select field, also referred to as a dropdown, allows users to select single or multiple items from a list of available options. Consider dropdowns when the options exceed 8, or where it is not feasible to list all options as checkboxes or radio buttons. When using multi-select, ensure you make it clear to the user that more than one option can be selected.</p>
+
+<p>Do:</p>
+
+<ul>
+  <li>use descriptive labels, state the intent of the action</li>
+  <li>use helper text to give further guidance to the user</li>
+  <li>specify errors inline, show the user where the error occurred and provide a reason</li>
+</ul>
+
+<h3>When to avoid</h3>
+<p>Don't use a select when there are fewer than 8 options or where there is benefit to the user seeing all available options up front. In these instances consider using checkboxes or radio buttons so all options are visible without additional clicking or scrolling. </p>
+
+<h2>How this component works</h2>
 
 <h3>Helper text</h3>
 
-{{#>_docs-example}}
-<div class="nsw-form">
-  <div class="nsw-form__group">
-    {{>_select model.region
-    id="select-all-regions-2"
-    helper-text="Your region of residence"
-    }}
-  </div>
-</div>
-{{/_docs-example}}
+<p>Helper text provides users further guidance to make a selection. Use to provide additional context, information or as an example to complete a field input.</p>
 
-{{#>_docs-example separated="true"}}
-<div class="nsw-form">
-  <div class="nsw-form__group">
-    {{>_select model.savings-program
-    id="select-all-savings-programs-2"
-    multiple="true"
-    helper-text="Select all that apply"
-    }}
-  </div>
-</div>
-{{/_docs-example}}
+<h3>Error messages</h3>
+<p>Error messages inform the user when there is an issue with the data they have input. Provide helpful error messages to clearly explain to the user what the issue is and how they can effectively address the errors.</p>
 
-<h3>Error</h3>
-{{#>_docs-example}}
-<div class="nsw-form">
-  <div class="nsw-form__group">
-    {{>_select model.region
-    id="select-all-regions-3"
-    required="true"
-    error-text="Please select a region of residence"
-    }}
-  </div>
-</div>
-{{/_docs-example}}
+<h3>Maximum dropdown height</h3>
+<p>By default, the multi-select dropdown calculates its maximum height from the available viewport space above or below the select field. For long option lists, add the <code>data-multi-select-max-height</code> attribute to the multi-select wrapper element with <code>js-multi-select</code> to set an upper limit (number from 1 to 100, applied as <code>vh</code>).</p>
 
-{{#>_docs-example separated="true"}}
-<div class="nsw-form">
-  <div class="nsw-form__group">
-    {{>_select model.savings-program
-    id="select-all-savings-programs-3"
-    multiple="true"
-    required="true"
-    error-text="Please select the savings programs you would like to claim"
-    }}
-  </div>
-</div>
-{{/_docs-example}}
+<h2>Accessibility</h2>
+<p>All components are responsive and designed to comply with WCAG 2.2 AA accessibility standards. Full compliance depends on using and configuring the components correctly.</p>
 
-<h3>Validation</h3>
-{{#>_docs-example}}
-<div class="nsw-form">
-  <div class="nsw-form__group">
-    {{>_select model.region
-    id="select-all-regions-4"
-    valid-text="Your region is eligible for savings benefits"
-    }}
-  </div>
-</div>
-{{/_docs-example}}
+<h3>Ensuring compliance through usage</h3>
 
-{{#>_docs-example separated="true"}}
-<div class="nsw-form">
-  <div class="nsw-form__group">
-    {{>_select model.savings-program
-    id="select-all-savings-programs-4"
-    multiple="true"
-    valid-text="The programs you have selected are available"
-    }}
-  </div>
-</div>
-{{/_docs-example}}
+<h4>Redundant entry</h4>
+
+<p>To ensure WCAG 2.2 AA compliance for a select component, it's essential to retain selected options if users revisit the form or make changes to other fields. This reduces redundant actions, allowing users to pick up where they left off. Ensure that users can adjust their selections without affecting other fields, supporting smooth navigation and a streamlined form experience.</p>
+
+<h4>Consistent help</h4>
+
+<p>For a seamless, accessible experience with the select component, focus on clear labelling and purpose-driven design, especially when combined with other inputs. Arrange options logically and in alignment with user needs to reduce cognitive load. If users are likely to revisit or adjust selections, aim to maintain their choices to prevent unnecessary re-selection. A consistently configured select component improves user interaction, supporting both accessibility and usability throughout the interface.</p>
+
+<p>Following these practices supports a more inclusive, accessible experience in forms and flows, meeting compliance requirements effectively.</p>

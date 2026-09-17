@@ -1,0 +1,45 @@
+---
+title: 'Main navigation: Demo & code'
+page: true
+code-page: true
+model:
+  basic: json/main-nav.json
+  mega: json/main-nav-mega.json
+---
+
+{{#*inline "main-nav-demo-examples"}}
+  <div class="nsw-in-page-alert nsw-in-page-alert--info">
+     <div class="nsw-in-page-alert__content">
+      <p>The main navigation component is best viewed in new window.</p>
+    </div>
+  </div>
+
+  <h3>Default</h3>
+  {{#> _docs-iframe }}
+  {{>_masthead content="#" nav="#main-nav"}}
+  {{>_header header-title="Premier & Cabinet"}}
+  {{>_main-nav model.basic}}
+  {{/_docs-iframe}}
+
+  <h3>Mega Nav</h3>
+  {{#> _docs-iframe }}
+  {{>_masthead content="#" nav="#main-nav"}}
+  {{>_header header-title="Premier & Cabinet"}}
+  {{>_main-nav model.mega}}
+  {{/_docs-iframe}}
+{{/inline}}
+
+{{#>_theme}}
+  {{#>_layout-container}}
+    <h1>{{title}}</h1>
+    {{> main-nav-demo-examples}}
+  {{/_layout-container}}
+
+  {{#>_layout-container brand-light="true"}}
+    {{> main-nav-demo-examples}}
+  {{/_layout-container}}
+
+  {{#>_layout-container brand-dark="true" invert="true"}}
+    {{> main-nav-demo-examples}}
+  {{/_layout-container}}
+{{/_theme}}

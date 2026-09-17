@@ -1,6 +1,7 @@
 ---
 title: Global alert
-tabs: true
+demo: true
+variants: true
 directory: global-alert
 intro: Global alerts display across the top of an entire site to show important information to users.
 figma: https://www.figma.com/file/PVrERKnckLTlJSPk12gbtS/NSW-Digital-Design-System?node-id=21298%3A24823
@@ -9,14 +10,36 @@ meta-description: Global alerts display across the top of an entire site to show
 meta-index: true
 ---
 
-<h3>Information</h3>
 {{#>_docs-example}}{{>_global-alert model}}{{/_docs-example}}
-{{#>_docs-example separated="true"}}{{>_global-alert model link="true"}}{{/_docs-example}}
 
-<h3>Light</h3>
-{{#>_docs-example}}{{>_global-alert model type="light"}}{{/_docs-example}}
-{{#>_docs-example separated="true"}}{{>_global-alert model link="true" type="light"}}{{/_docs-example}}
+<hr class="nsw-m-y-lg">
 
-<h3>Critical</h3>
-{{#>_docs-example}}{{>_global-alert model type="critical"}}{{/_docs-example}}
-{{#>_docs-example separated="true"}}{{>_global-alert model link="true" type="critical"}}{{/_docs-example}}
+<h2>Usage</h2>
+<p>Global alerts are designed to capture the attention of the user in a deliberately intrusive way. They persist over a session but are user dismissible, and are purposefully created and not initiated by a user interaction or system event.</p>
+<p>Use global alerts:</p>
+<ul>
+  <li>to attract the attention of the user for important messages, or to encourage an action</li>
+  <li>for messages or actions that are relevant to the entire product or system, not just a feature or page</li>
+</ul>
+<p>Do:</p>
+<ul>
+  <li>use clear, concise easy to understand language, to minimise cognitive load</li>
+  <li>use a button or link text in the description to provide users with more information or to complete an action</li>
+  <li>use at the upper most part of the screen, before the masthead</li>
+  <li>reserve the use of the critical alert for circumstances which warrant it</li>
+</ul>
+
+<h3>Global alert states</h3>
+<p>Global alerts are styled according to their purpose:</p>
+<ul>
+  <li><strong>Default alert</strong> - used to show non-critical important information</li>
+  <li><strong>Critical alert</strong> - used to show critical information</li>
+  <li><strong>Light alert</strong> - used as an alternative to the blue default on sites where blue features prominently.</li>
+</ul>
+
+<h3>When to avoid</h3>
+<p>Do not display in response to an action initiated by a user interaction or system event.</p>
+
+<h2>Accessibility</h2>
+<p>All components are responsive and designed to comply with WCAG 2.2 AA accessibility standards. Full compliance depends on using and configuring the components correctly.</p>
+<p>The alert content remains available without JavaScript. The close button is only shown after the Global Alert JavaScript has initialised and can dismiss the alert.</p>

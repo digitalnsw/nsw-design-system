@@ -1,0 +1,65 @@
+---
+title: 'Date input: Demo & code'
+width: narrow
+page: true
+code-page: true
+---
+
+{{#*inline "date-input-demo-examples"}}
+<h4>Default</h4>
+{{#>_docs-example separated=true}}
+<div class="nsw-form">
+  <div class="nsw-form__group">
+    {{>_date-input
+      id=defaultId
+      label="Date of birth"
+      helper-text="For example 08 12 1990"
+    }}
+  </div>
+</div>
+{{/_docs-example}}
+
+<h4>Error</h4>
+{{#>_docs-example separated=true}}
+<div class="nsw-form">
+  <div class="nsw-form__group">
+    {{>_date-input
+      id=errorId
+      label="Date of birth"
+      required=true
+      error-text="This field is required"
+      helper-text="For example 08 12 1990"
+    }}
+  </div>
+</div>
+{{/_docs-example}}
+
+<h4>Success</h4>
+{{#>_docs-example separated=true}}
+<div class="nsw-form">
+  <div class="nsw-form__group">
+    {{>_date-input
+      id=successId
+      label="Date of birth"
+      valid-text="This field has been validated"
+      helper-text="For example 08 12 1990"
+    }}
+  </div>
+</div>
+{{/_docs-example}}
+{{/inline}}
+
+{{#>_theme}}
+  {{#>_layout-container}}
+    <h1>{{title}}</h1>
+    {{> date-input-demo-examples defaultId="demo-default-date" errorId="demo-error-date" successId="demo-success-date"}}
+  {{/_layout-container}}
+
+  {{#>_layout-container brand-light="true"}}
+    {{> date-input-demo-examples defaultId="demo-light-default-date" errorId="demo-light-error-date" successId="demo-light-success-date"}}
+  {{/_layout-container}}
+
+  {{#>_layout-container brand-dark="true" invert="true"}}
+    {{> date-input-demo-examples defaultId="demo-dark-default-date" errorId="demo-dark-error-date" successId="demo-dark-success-date"}}
+  {{/_layout-container}}
+{{/_theme}}

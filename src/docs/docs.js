@@ -103,29 +103,39 @@ function initDocs() {
     }, false)
   })
 
-  const navLinks = document.querySelectorAll('.nsw-docs__nav a')
-  let currentURL = window.location.pathname
-
-  if (currentURL === '/') currentURL = '/home/index.html'
+  const navLinks = document.querySelectorAll('.nsw-docs__primary-nav a[href]')
+  const normalisePath = (pathname) => (pathname === '/' ? '/index.html' : pathname)
+  const currentURL = normalisePath(window.location.pathname) + window.location.search + window.location.hash
 
   navLinks.forEach((link) => {
-    let linkURL = link.getAttribute('href')
-    const sanitisedURL = new URL(linkURL, window.location.origin)
-    linkURL = sanitisedURL.pathname + sanitisedURL.search + sanitisedURL.hash
+    const href = link.getAttribute('href')
 
-    if (linkURL === '/') linkURL = '/home/index.html'
+    if (!href || href === '#') return
 
-    if (currentURL.match(linkURL)) {
+    const sanitisedURL = new URL(href, window.location.origin)
+    const linkURL = normalisePath(sanitisedURL.pathname) + sanitisedURL.search + sanitisedURL.hash
+
+    if (currentURL === linkURL) {
       link.classList.add('current')
 
       if (link.closest('ul').classList.contains('nsw-main-nav__sub-list')) {
-        const list = link.closest('.nsw-main-nav__sub-nav')
-        const button = list.previousElementSibling
+        const subNav = link.closest('.nsw-main-nav__sub-nav')
+        const mainNavItem = subNav ? subNav.parentElement : null
 
-        list.classList.add('current-section')
-        button.classList.add('current-section')
-        button.click()
+        if (mainNavItem) {
+          mainNavItem.classList.add('active')
+
+          if (mainNavItem.firstElementChild && mainNavItem.firstElementChild !== link) {
+            mainNavItem.firstElementChild.classList.add('current-section')
+          }
+        }
       } else {
+        const topNavItem = link.closest('li')
+
+        if (topNavItem && topNavItem.parentElement.classList.contains('nsw-main-nav__list')) {
+          topNavItem.classList.add('active')
+        }
+
         link.classList.add('current-section')
       }
     }

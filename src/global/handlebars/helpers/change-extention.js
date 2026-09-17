@@ -5,6 +5,8 @@ module.exports = function (page, option, id) {
       return '/' + page.split('index.')[0] + 'blank.html'
     case 'theme':
       return '/' + page.split('index.')[0] + 'theme.html'
+    case 'demo':
+      return '/' + page.split('index.')[0] + 'demo.html'
     case 'anchor':
       return '/' + page.split('.')[0] + '.html#' + id
     default:

@@ -1,8 +1,8 @@
 <div class="nsw-results-bar">
   <div class="nsw-results-bar__info">{{#if empty}}Sorry, no results found for your search{{else}}Showing results 1 - 10 of 5917 results{{/if}}</div>{{#if sort}}
   <div class="nsw-results-bar__sorting">
-    <label class="nsw-form__label" for="results-sort">Sort by:</label>
-    <select class="nsw-form__select" id="results-sort" name="results-sort">
+    <label class="nsw-form__label" for="{{#if id}}{{id}}{{else}}results-sort{{/if}}">Sort by:</label>
+    <select class="nsw-form__select" id="{{#if id}}{{id}}{{else}}results-sort{{/if}}" name="{{#if id}}{{id}}{{else}}results-sort{{/if}}">
       {{#each sort}}
       <option value="3">{{this}}</option>
       {{/each}}

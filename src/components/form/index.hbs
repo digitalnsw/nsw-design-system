@@ -1,7 +1,8 @@
 ---
 title: Forms
 width: narrow
-tabs: true
+demo: true
+variants: true
 directory: form
 core: true
 intro: Forms are used to capture data from users.
@@ -13,29 +14,125 @@ meta-description: Forms are used to capture data from users.
 meta-index: true
 ---
 
-<h2>User feedback</h2>
-<p>User feedback communicates the state of a field or the outcome of a user's interaction with the form.</p>
+{{#>_docs-example separated=true}}
+<div class="nsw-grid">
+  <div class="nsw-col nsw-col-md-8">
+    <form class="nsw-form" action="#" method="post">
+      <div class="nsw-form__group">
+        {{>_text-input
+          id="form-text-example"
+          label="Name"
+          helper-text="As it appears on your identity document"
+        }}
+      </div>
+      <div class="nsw-form__group">
+        <button class="nsw-button nsw-button--dark" type="submit">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
+{{/_docs-example}}
 
-<div class="nsw-tabs js-tabs">
-  <ul class="nsw-tabs__list">
-    <li><a href="#default" class="js-tabs-fixed">Default</a></li>
-    <li><a href="#error" class="js-tabs-fixed">Error</a></li>
-    <li><a href="#success" class="js-tabs-fixed">Success</a></li>
-  </ul>
+<hr class="nsw-m-y-lg">
 
-  <section id="default" class="nsw-tabs__content nsw-tabs__content--side-flush">
-{{>_form-default}}
-  </section>
+<h2>Using forms</h2>
+<p>Forms comprise of the form itself and multiple form inputs. Each form is broken down into one or more fieldsets that groups the form elements into logical chunks that make sense to the user, for example, a delivery address.  </p>
+<p>Form elements are split into two key input types:</p>
+<p><strong>Freeform inputs</strong> - Free form text inputs are the most used components in forms. Use text fields and text areas for freeform entry. Text fields are used to input a short (single line) amount of freeform text. Text areas are used to input multiple lines of text, for example, a comments field. Use text areas when you expect longer entries.</p>
+<p><strong>Selection inputs</strong> - Selection inputs are used to select an option from a predefined list of available options. Selection options may be single-select or multi-select. Use a radio button list or dropdowns for single selections and checkboxes for multi-selections.  </p>
 
-  <section id="error" class="nsw-tabs__content nsw-tabs__content--side-flush">
-{{>_form-error}}
-  </section>
-
-  <section id="success" class="nsw-tabs__content nsw-tabs__content--side-flush">
-{{>_form-success}}
-  </section>
+<h3>Guidance</h3>
+<div class="nsw-grid nsw-m-top-sm">
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--do"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span><span>Do</span></div>
+    <ul class="nsw-m-top-sm">
+      <li>keep forms to one column as multiple columns can disrupt a user's vertical momentum</li>
+      <li>use input constraints for fields with a defined character count, such as phone numbers and postcodes</li>
+      <li>mark form fields as required or optional</li>
+      <li>use top aligned labels so forms are easier to scan and complete, including on mobile</li>
+      <li>make calls to action descriptive and state the intent of the action</li>
+      <li>specify errors inline, showing where the error occurred and what the user needs to do.</li>
+    </ul>
+  </div>
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--dont"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span><span>Don't</span></div>
+    <ul class="nsw-m-top-sm">
+      <li>use all caps</li>
+      <li>hide helper text</li>
+      <li>use an in-page alert as a substitute for field-level validation or a validation summary.</li>
+      <li>use an information alert to communicate invalid or missing form data. Use the appropriate validation treatment instead.</li>
+    </ul>
+  </div>
 </div>
 
-<h2 id="contextual-feedback">Contextual feedback</h2>
-<p>Contextual feedback communicates the current state of the subject of the form, rather than the outcome of the user's interaction.</p>
-{{>_form-contextual-feedback}}
+<h2 id="validation">Validation</h2>
+<p>Validation communicates whether a field or form meets its input requirements. When a requirement is not met, messages should explain what the issue is, where it occurred and how to fix it.</p>
+
+<h3>User feedback and contextual feedback</h3>
+<p>When communicating information related to a form or task, consider whether the message is about the user's interaction or the subject of the task.</p>
+
+<ul>
+  <li><strong>User feedback</strong> communicates the outcome of a user action. Use success or error feedback as appropriate.</li>
+  <li><strong>Contextual feedback</strong> communicates the current state of the subject of the form or task. Use information or warning feedback as appropriate.</li>
+</ul>
+<p>Contextual feedback is based on the subject of a form or task, rather than the user's interaction with the form itself. For example, a user may enter a valid vehicle registration and the lookup returns that an inspection is required before renewal.</p>
+
+<p>Use information feedback for status information the user should know but does not need to act on. Use warning feedback when the status requires action or affects what the user can do next.</p>
+
+<p>When both types appear, structure them in the order users need to interpret them: user feedback first, followed by contextual feedback. Use this sequence for all field types.</p>
+
+<h3>Choosing an inline or standard alert</h3>
+<ul>
+  <li><strong>Multiple-field forms:</strong> use the compact alert inline, immediately after the field it relates to. This keeps the message close to its context without interrupting the rest of the form.</li>
+  <li><strong>Single-field forms:</strong> use the standard, non-compact in-page alert after the field and its call to action. The alert provides feedback for the form's single task and does not need to compete with other fields.</li>
+</ul>
+
+<p>Associate the message with its field using <code>aria-describedby</code>. Do not apply an error or warning state to a valid field: the alert describes the subject's status, not whether the user's input is valid.</p>
+
+<p>Do not use success or error feedback for contextual feedback. These treatments communicate the outcome of a user action rather than the state of the subject.</p>
+
+<p>For more guidance, see <a href="/components/in-page-alert/index.html">In-page alert</a>.</p>
+
+<h2>Field types</h2>
+
+<h3>Dropdown</h3>
+<p>The dropdown pattern, also referred to as a drop list or select list, allows users to select a single option from a list of available options.</p>
+
+<h3>Single checkbox</h3>
+<p>Single checkboxes are used to confirm a user's selection or preference like agreeing to terms and conditions or registering for an option.</p>
+
+<h3>Checkbox list</h3>
+<p>Checkbox lists provide the user with a list of available items to choose from. The number of items a user can select should be indicated to the user on the page. Checkbox lists are used where multiple selections are permitted. Checkbox lists are wrapped in a fieldset to make them one logical group.</p>
+
+<h3>Radio list</h3>
+<p>Radio lists provide the user with a list of all available items from which a single selection is made. Radio lists are wrapped in a fieldset to make them one logical group.</p>
+
+<h2>How this component works</h2>
+<h3>Help text</h3>
+<p>Help text allows form designers to provide users with help to fill in a form element. Use help text to provide additional context, information or as an example to complete a field input.</p>
+<h3>Organising form elements</h3>
+<ul>
+  <li>Differentiate primary from secondary actions</li>
+  <li>Group related information to ensure the user makes sense of the form faster</li>
+  <li>Enable autofill and autocorrect based on common attributes or responses, such as name and email, previously provided on the site or in the browser</li>
+  <li>Use multi-step forms in situations where there are multiple form fields, several of which could be split up into categories (such as “personal”, “shipping”, “billing”, and “payment review”).</li>
+</ul>
+
+<h2>Inactive fields and information</h2>
+<p>Do not render disabled form fields simply to display information. Avoid using <code>disabled=true</code> to present values, as this suggests interactivity when none is available. For read-only values, present the information outside of input fields, for example as plain text or within a summary list. This approach makes intent clear and avoids confusing users with inactive controls.</p>
+<p>More information: <a href="/methods/inactive-fields.html">Inactive fields method</a></p>
+
+<h2>Accessibility</h2>
+<p>All components are responsive and designed to comply with WCAG 2.2 AA accessibility standards. Full compliance depends on using and configuring the components correctly.</p>
+
+<h3>Ensuring compliance through usage</h3>
+
+<h4>Redundant entry</h4>
+
+<p>To ensure WCAG 2.2 AA compliance for a full array of filter components, correct usage and configuration are vital. While each component provides a foundation for accessibility, it's essential to minimise redundant entry by retaining previously selected or entered filter values if a user revisits the page or refines their search. Ensure all filter options are clearly labelled and provide instructions where needed, so users understand the available choices and input formats. Additionally, allow users to modify their filter selections easily without resetting other filters.</p>
+
+<h4>Consistent help</h4>
+
+<p>Ensure each input, whether it's a text field, checkbox, radio button, dropdown, or date input, is clearly labelled with descriptive text to communicate its purpose. Consistent error messaging and validation feedback are crucial; provide users with clear, actionable instructions if errors occur, without requiring them to re-enter data unnecessarily. Keyboard navigation should be maintained across all inputs, with each respective field focus indicator allowing users to move easily between fields clearly.</p>
+
+<p>Following these practices will help create accessible, user-friendly forms that offer a seamless experience across various input types.</p>

@@ -1,55 +1,92 @@
 ---
 title: NSW Digital Design System
 home: true
+home_full_width: true
 light: true
 width: narrow
 meta-description: The NSW Digital Design System is a toolkit to help digital product teams create good customer experiences quickly.
 meta-index: true
 ---
-<div class="nsw-docs-example nsw-docs-example--narrow">
+<div class="nsw-docs-home-hero">
+  {{>_hero-banner
+    theme="dark"
+    heading="NSW Design System"
+    copy="A toolkit for creating accessible, consistent digital experiences across NSW Government, aligned with the NSW Government Brand Framework and designed to work across platforms and technologies."
+    img="/assets/images/hero-banner-image.png"
+  }}
+</div>
+<div class="nsw-docs-example nsw-docs-example--narrow nsw-container nsw-p-y-md">
 
-  <h1>NSW Design System</h1>
-
-  <p class="nsw-intro nsw-p-top-md">The NSW Design System is a toolkit to help digital product teams create good customer experiences quickly.<br/><br/>Following the NSW Government Brand Framework, the NSW Design System will assist you to apply the NSW Government brand prominently and consistency across all digital government communications.</p>
-
-  <div class="nsw-grid nsw-m-top-lg">
-    <div class="nsw-row">
+  <div class="nsw-grid nsw-m-top-sm">
+    <div class="nsw-row" id="get-started">
       <div class="nsw-col nsw-col-md-6 nsw-col-xl-4">
         <div class="nsw-section nsw-section--brand-light nsw-p-x-md nsw-docs__element">
-          <h3>About</h3>
-          <p>Who, what and how of the NSW Design System. </p>
-          <p><a href="/docs/content/about/what-is-design-system.html">Discover the benefits</a></p>
-          <p><a href="/docs/content/about/supporting-different-roles.html">How it supports your role</a></p>
-          <p><a href="/docs/content/about/our-ecosystem.html">Explore the ecosystem</a></p>
+          <div class="nsw-content-block">
+            <div class="nsw-content-block__pictogram" aria-hidden="true">
+              <img src="/assets/images/pictogram-about.svg" alt="">
+            </div>
+            <div class="nsw-content-block__content">
+              <h3 class="nsw-content-block__title">About</h3>
+              <p class="nsw-content-block__copy">Who, what and how of the NSW Design System.</p>
+              <ul class="nsw-content-block__list">
+                <li><a href="/get-started/about-the-nsw-design-system.html">Discover the benefits</a></li>
+                <li><a href="/get-started/supporting-different-roles.html">How it supports your role</a></li>
+                <li><a href="/get-started/our-ecosystem.html">Explore the ecosystem</a></li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
       <div class="nsw-col nsw-col-md-6 nsw-col-xl-4">
         <div class="nsw-section nsw-section--brand-light nsw-p-x-md nsw-docs__element">
-          <h3>Getting started</h3>
-          <p>Step-by-step guides to get you up and running with the NSW Design System.</p>
-          <p><a href="/docs/content/design/getting-started.html">Design</a></p>
-          <p><a href="/docs/content/develop/getting-started.html">Develop</a></p>
+          <div class="nsw-content-block">
+            <div class="nsw-content-block__pictogram" aria-hidden="true">
+              <img src="/assets/images/pictogram-set-up.svg" alt="">
+            </div>
+            <div class="nsw-content-block__content">
+              <h3 class="nsw-content-block__title">Set up</h3>
+              <p class="nsw-content-block__copy">Practical guidance and tools to get you started with the NSW Design System.</p>
+              <ul class="nsw-content-block__list">
+                <li><a href="/get-started/set-up/for-designers.html">For designers</a></li>
+                <li><a href="/get-started/set-up/for-developers.html">For developers</a></li>
+                <li><a href="/get-started/set-up/figma-ui-kit.html">Figma UI Kit</a></li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
       <div class="nsw-col nsw-col-md-6 nsw-col-xl-4">
         <div class="nsw-section nsw-section--brand-light nsw-p-x-md nsw-docs__element">
-          <h3>Stay on brand 🔹</h3>
-          <p>You’ll need to use some features of the design system to be brand compliant. These are indicated with a 🔹 blue diamond.</p>
+          <div class="nsw-content-block">
+            <div class="nsw-content-block__pictogram" aria-hidden="true">
+              <img src="/assets/images/pictogram-stay-on-brand.svg" alt="">
+            </div>
+            <div class="nsw-content-block__content">
+              <h3 class="nsw-content-block__title">Stay on brand <span class="nsw-brand" aria-hidden="true">&#128313;</span></h3>
+              <p class="nsw-content-block__copy">You’ll need to use some Design System features to meet brand requirements. These are marked with a <span aria-hidden="true">🔹</span><span class="sr-only">blue diamond</span>.</p>
+              <div class="nsw-content-block__link">
+                <a href="/get-started/theming.html">Learn about theming</a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="nsw-row nsw-m-top-md">
+    <div class="nsw-row nsw-m-top-md" id="foundations">
       <div class="nsw-col nsw-col-xl-4">
-        <h3>Core styles</h3>
-        <p>Core styles create the distinctly NSW Government look and feel.</p>
+        <h3>Foundations</h3>
+        <p>Foundations establish the visual and structural base of NSW digital products.</p>
       </div>
       <div class="nsw-col nsw-col-xl-8">
+        {{#each (docs-foundation-groups collections)}}
+        <h4>{{title}}</h4>
         <ul class="nsw-docs__list nsw-docs__list--3">
-          {{#each collections.corenav}}
-          <li><a href="{{change-extention path}}">{{title}}{{#if core}}<span class="nsw-brand">&#128313;</span>{{/if}}</a></li>
+          {{#each items}}
+          <li><a href="{{url}}">{{text}}{{#if brand}} <span class="nsw-brand" aria-hidden="true">&#128313;</span><span class="sr-only"> Required for NSW Government Masterbrand products</span>{{/if}}</a></li>
           {{/each}}
         </ul>
+        {{/each}}
       </div>
     </div>
 
@@ -57,57 +94,78 @@ meta-index: true
       <div class="nsw-col"><div class="nsw-m-y-md"><hr></div></div>
     </div>
 
-    <div class="nsw-row">
+    <div class="nsw-row" id="components">
       <div class="nsw-col nsw-col-xl-4">
         <h3>Components</h3>
-        <p>Each component contains a snippet of HTML for use in static environments.</p>
+        <p>Components are reusable interface elements grouped by purpose.</p>
       </div>
       <div class="nsw-col nsw-col-xl-8">
+        {{#each (docs-component-groups collections)}}
+        <h4>{{title}}</h4>
         <ul class="nsw-docs__list nsw-docs__list--3">
-          {{#each collections.componentsnav}}
-          <li><a href="{{change-extention path}}">{{title}}{{#if core}}<span class="nsw-brand">&#128313;</span>{{/if}}</a></li>
+          {{#each items}}
+          <li><a href="{{url}}">{{text}}{{#if brand}} <span class="nsw-brand" aria-hidden="true">&#128313;</span><span class="sr-only"> Required for NSW Government Masterbrand products</span>{{/if}}</a></li>
           {{/each}}
         </ul>
-      </div>    
+        {{/each}}
+      </div>
     </div>
 
     <div class="nsw-row">
       <div class="nsw-col"><div class="nsw-m-y-md"><hr></div></div>
     </div>
 
+    <div class="nsw-row" id="utility-classes">
+      <div class="nsw-col nsw-col-xl-4">
+        <h3>Utility classes</h3>
+        <p>Utility classes are single-purpose helpers for common spacing, layout, visibility and styling needs.</p>
+      </div>
+      <div class="nsw-col nsw-col-xl-8">
+        <ul class="nsw-docs__list nsw-docs__list--3">
+          {{#each collections.utilities}}
+          <li><a href="{{change-extention path}}">{{title}}</a></li>
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+
     <div class="nsw-row">
+      <div class="nsw-col"><div class="nsw-m-y-md"><hr></div></div>
+    </div>
+
+    <div class="nsw-row" id="methods">
       <div class="nsw-col nsw-col-xl-4">
         <h3>Methods</h3>
-        <p>Best practice design solutions for specific user-focused tasks and page types.</p>
+        <p>Methods explain how to apply components to common design and service problems.</p>
       </div>
       <div class="nsw-col nsw-col-xl-8">
         <ul class="nsw-docs__list">
           {{#each collections.methods}}
-          <li><a href="{{change-extention path}}">{{title}}{{#if core}}<span class="nsw-brand">&#128313;</span>{{/if}}</a></li>
+          <li><a href="{{change-extention path}}">{{title}}{{#if core}} <span class="nsw-brand" aria-hidden="true">&#128313;</span><span class="sr-only"> Required for NSW Government Masterbrand products</span>{{/if}}</a></li>
           {{/each}}
         </ul>
-      </div>   
+      </div>
     </div>
 
     <div class="nsw-row">
       <div class="nsw-col"><div class="nsw-m-y-md"><hr></div></div>
     </div>
 
-    <div class="nsw-row">
+    <div class="nsw-row" id="templates">
       <div class="nsw-col nsw-col-xl-4">
         <h3>Templates</h3>
-        <p>Sample templates using the design system components and style to help you build pages.</p>
+        <p>Templates provide starter page layouts and examples, available under Get started.</p>
       </div>
       <div class="nsw-col nsw-col-xl-8">
         <ul class="nsw-docs__list">
-          <li><a href="/templates/index.html#section-homepage">Homepage</a></li>
-          <li><a href="/templates/index.html#section-content">Content</a></li>
-          <li><a href="/templates/index.html#section-search">Search</a></li>
-          <li><a href="/templates/index.html#section-map">Map</a></li>
-          <li><a href="/templates/index.html#section-theming">Theming</a></li>
-          <li><a href="/templates/index.html#section-landing">Landing pages</a></li>
+          <li><a href="/get-started/templates.html#section-homepage">Homepage</a></li>
+          <li><a href="/get-started/templates.html#section-content">Content</a></li>
+          <li><a href="/get-started/templates.html#section-search">Search</a></li>
+          <li><a href="/get-started/templates.html#section-map">Map</a></li>
+          <li><a href="/get-started/templates.html#section-theming">Theming</a></li>
+          <li><a href="/get-started/templates.html#section-landing">Landing pages</a></li>
         </ul>
-      </div>   
+      </div>
     </div>
 
     <div class="nsw-row">
@@ -118,7 +176,7 @@ meta-index: true
       <div class="nsw-col nsw-col-md-6 nsw-col-xl-4">
         <div class="nsw-card nsw-card--dark">
           <div class="nsw-card__content">
-            <div class="nsw-card__title"><a href="docs/content/about/release-notes.html">Release notes</a></div>
+            <div class="nsw-card__title"><a href="/release-notes/index.html">Release notes</a></div>
             <div class="nsw-card__copy">Track releases and the roadmap.</div>
             <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span>
           </div>
@@ -155,7 +213,7 @@ meta-index: true
       <div class="nsw-col nsw-col-md-6 nsw-col-xl-4">
         <div class="nsw-card nsw-card--dark">
           <div class="nsw-card__content">
-            <div class="nsw-card__title"><a target="_blank" href="/docs/content/contribute/contribution-criteria.html">Contribute</a></div>
+            <div class="nsw-card__title"><a target="_blank" href="/contribute/contribution-criteria.html">Contribute</a></div>
             <div class="nsw-card__copy">We welcome all contributions to the NSW design system.</div>
             <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span>
           </div>
@@ -164,7 +222,7 @@ meta-index: true
       <div class="nsw-col nsw-col-md-6 nsw-col-xl-4">
         <div class="nsw-card nsw-card--dark">
           <div class="nsw-card__content">
-            <div class="nsw-card__title"><a target="_blank" href="/docs/content/contribute/propose-a-new-component.html">Suggest a component</a></div>
+            <div class="nsw-card__title"><a target="_blank" href="/contribute/propose-a-new-component.html">Suggest a component</a></div>
             <div class="nsw-card__copy">Anyone can suggest a new component or feature.</div>
             <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span>
           </div>

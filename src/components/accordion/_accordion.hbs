@@ -1,5 +1,5 @@
 {{#if-equals type "js"}}
-  <div class="nsw-accordion js-accordion"{{#if id}} id="{{id}}"{{/if}}>
+  <div class="nsw-accordion js-accordion"{{#if id}} id="{{id}}{{id-suffix}}"{{/if}}>
     {{#if toggle}}
     <div class="nsw-accordion__toggle">
       <button type="button" aria-label="Expand all sections">Expand all</button>
@@ -16,11 +16,11 @@
 {{else}}
   {{#if standalone}}
     {{#each items}}
-    <details class="nsw-accordion__item js-accordion-details"{{#if open}} open{{/if}} id="{{#if id}}{{id}}{{else}}{{../id}}-item-{{@index}}{{/if}}">
+    <details class="nsw-accordion__item js-accordion-details"{{#if open}} open{{/if}} id="{{#if id}}{{id}}{{../id-suffix}}{{else}}{{../id}}-item-{{@index}}{{../id-suffix}}{{/if}}">
       <summary class="nsw-accordion__title">
         {{title}}
       </summary>
-      <div class="nsw-accordion__content-wrap" id="{{#if id}}{{id}}{{else}}{{../id}}-item-{{@index}}{{/if}}-panel">
+      <div class="nsw-accordion__content-wrap" id="{{#if id}}{{id}}{{../id-suffix}}{{else}}{{../id}}-item-{{@index}}{{../id-suffix}}{{/if}}-panel">
         <div class="nsw-accordion__content">
           {{{content}}}
         </div>
@@ -28,7 +28,7 @@
     </details>
     {{/each}}
   {{else}}
-    <div class="nsw-accordion--details js-accordion-details"{{#if id}} id="{{id}}"{{/if}}>
+    <div class="nsw-accordion--details js-accordion-details"{{#if id}} id="{{id}}{{id-suffix}}"{{/if}}>
       {{#if toggle}}
       <div class="nsw-accordion__toggle">
         <button type="button" aria-label="Expand all sections">Expand all</button>
@@ -36,11 +36,11 @@
       </div>
       {{/if}}
       {{#each items}}
-      <details class="nsw-accordion__item"{{#if open}} open{{/if}} id="{{#if id}}{{id}}{{else}}{{../id}}-item-{{@index}}{{/if}}">
+      <details class="nsw-accordion__item"{{#if open}} open{{/if}} id="{{#if id}}{{id}}{{../id-suffix}}{{else}}{{../id}}-item-{{@index}}{{../id-suffix}}{{/if}}">
         <summary class="nsw-accordion__title">
           {{title}}
         </summary>
-        <div class="nsw-accordion__content-wrap" id="{{#if id}}{{id}}{{else}}{{../id}}-item-{{@index}}{{/if}}-panel">
+        <div class="nsw-accordion__content-wrap" id="{{#if id}}{{id}}{{../id-suffix}}{{else}}{{../id}}-item-{{@index}}{{../id-suffix}}{{/if}}-panel">
           <div class="nsw-accordion__content">
             {{{content}}}
           </div>

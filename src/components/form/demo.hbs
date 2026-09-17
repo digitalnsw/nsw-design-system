@@ -1,0 +1,52 @@
+---
+title: 'Forms: Demo & code'
+width: narrow
+page: true
+code-page: true
+model:
+  select: ../../components/select/json/select-region.json
+---
+
+{{#*inline "form-demo-examples"}}
+  <h2>User feedback</h2>
+  <p>User feedback communicates the state of a field or the outcome of a user's interaction with the form.</p>
+
+  <div class="nsw-tabs js-tabs">
+    <ul class="nsw-tabs__list">
+      <li><a href="#default-{{id-suffix}}" class="js-tabs-fixed">Default</a></li>
+      <li><a href="#error-{{id-suffix}}" class="js-tabs-fixed">Error</a></li>
+      <li><a href="#success-{{id-suffix}}" class="js-tabs-fixed">Success</a></li>
+    </ul>
+
+    <section id="default-{{id-suffix}}" class="nsw-tabs__content nsw-tabs__content--side-flush">
+  {{>_form-default id-suffix=id-suffix}}
+    </section>
+
+    <section id="error-{{id-suffix}}" class="nsw-tabs__content nsw-tabs__content--side-flush">
+  {{>_form-error id-suffix=id-suffix}}
+    </section>
+
+    <section id="success-{{id-suffix}}" class="nsw-tabs__content nsw-tabs__content--side-flush">
+  {{>_form-success id-suffix=id-suffix}}
+    </section>
+  </div>
+
+  <h2 id="contextual-feedback-{{id-suffix}}">Contextual feedback</h2>
+  <p>Contextual feedback communicates the current state of the subject of the form, rather than the outcome of the user's interaction.</p>
+  {{>_form-contextual-feedback id-suffix=id-suffix}}
+{{/inline}}
+
+{{#>_theme}}
+  {{#>_layout-container}}
+    <h1>{{title}}</h1>
+    {{> form-demo-examples id-suffix="default"}}
+  {{/_layout-container}}
+
+  {{#>_layout-container brand-light="true"}}
+    {{> form-demo-examples id-suffix="brand-light"}}
+  {{/_layout-container}}
+
+  {{#>_layout-container brand-dark="true" invert="true"}}
+    {{> form-demo-examples id-suffix="inverted"}}
+  {{/_layout-container}}
+{{/_theme}}

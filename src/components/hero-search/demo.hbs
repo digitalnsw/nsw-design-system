@@ -1,0 +1,25 @@
+---
+title: 'Hero search: Demo & code'
+page: true
+code-page: true
+model: json/hero-search.json
+---
+
+{{#*inline "hero-search-demo-examples"}}
+  <h3>Using CSS for a background image</h3>
+  {{#>_docs-example full-bleed="true"}}
+  {{>_hero-search model id=searchId1 button="icon"}}
+  {{/_docs-example}}
+
+  <h3>Using HTML for a background image</h3>
+  {{#>_docs-example full-bleed="true"}}
+  {{>_hero-search model id=searchId2 button="text" label="true" image-html=true}}
+  {{/_docs-example}}
+{{/inline}}
+
+{{#>_theme}}
+  {{#>_layout-container}}
+    <h1>{{title}}</h1>
+    {{> hero-search-demo-examples searchId1="default-1" searchId2="default-2"}}
+  {{/_layout-container}}
+{{/_theme}}
