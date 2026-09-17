@@ -9,7 +9,6 @@ meta-index: true
 
 <h2>Using the design system</h2>
 <p>How you use the NSW Design System depends on your team's capabilities. We recommend using npm, but the system is also provided through a CDN and a downloadable starter kit containing the compiled assets.</p>
-<p>If your product needs a custom colour theme, see the <a href="/get-started/theming-for-developers.html">developer theming guidance</a> for Sass configuration and implementation details.</p>
 
 <nav class="nsw-in-page-nav" aria-labelledby="in-page-nav">
   <div id="in-page-nav" class="nsw-in-page-nav__title">On this page</div>
@@ -36,6 +35,9 @@ meta-index: true
       <a href="#starter-kit">Download starter kit</a>
     </li>
     <li>
+      <a href="#theming">Theming</a>
+    </li>
+    <li>
       <a href="#browser-support">Browser support</a>
     </li>
     <li>
@@ -44,26 +46,44 @@ meta-index: true
   </ul>
 </nav>
 
-<h3 id="npm">Installing with NPM</h3>
-<ul>
-  <li>Install Node/npm. You can find more information how to install it <a target="_blank" href="https://nodejs.org/en/download/">Nodejs</a>.</li>
-  <li>Generate a <code>package.json</code> file using the <code>npm init</code> command in the terminal. You will be prompted to enter several pieces of information, like the name of your application, version, description etc.</li>
-  <li>
-    Add <code>nsw-design-system</code> to your project’s <code>package.json</code>:
-    <br><br>
-    <code>npm install --save nsw-design-system</code>
-  </li>
-</ul>
-<p>The NSW Design System is now installed as a dependancy of your project. Next, import <a href="#style">styles</a> and <a href="#javascript">javascript</a> in to your project build.</p>
+<h2 id="npm">Installing with NPM</h2>
+<p>Follow these steps to install the NSW Design System in your project.</p>
+<div class="nsw-steps nsw-steps--fill nsw-steps--counters nsw-steps--accent">
+  <div class="nsw-steps__item">
+    <div class="nsw-steps__content">
+      <h3>Install Node.js and npm</h3>
+      <p>Install <a target="_blank" rel="noopener noreferrer" href="https://nodejs.org/en/download/">Node.js</a>, which includes npm.</p>
+    </div>
+  </div>
+  <div class="nsw-steps__item">
+    <div class="nsw-steps__content">
+      <h3>Create your package file</h3>
+      <p>In your project directory, run <code>npm init</code> and answer the prompts for details such as the project name, version and description. This creates the <code>package.json</code> file.</p>
+      {{#>_docs-example hidden="true" open="true" code="shell"}}
+      npm init
+      {{/_docs-example}}
+    </div>
+  </div>
+  <div class="nsw-steps__item">
+    <div class="nsw-steps__content">
+      <h3>Install the NSW Design System package</h3>
+      <p>Add <code>nsw-design-system</code> to your project dependencies:</p>
+      {{#>_docs-example hidden="true" open="true" code="shell"}}
+      npm install --save nsw-design-system
+      {{/_docs-example}}
+    </div>
+  </div>
+</div>
+<p>The NSW Design System is now installed as a dependency of your project. Next, import <a href="#style">styles</a> and <a href="#javascript">JavaScript</a> into your project build.</p>
 
-<h3 id="style">Importing styles</h3>
+<h2 id="style">Importing styles</h2>
 <p>The NSW Design System styles can be imported as a whole package, or you can install core styles and add components selectively.</p>
-<h4>All styles</h4>
+<h3>All styles</h3>
 <p>To import all styles as a single package you need to add following snippet at the start of your main SCSS file:</p>
 {{#>_docs-example hidden="true" open="true" code="scss"}}
 @import 'node_modules/nsw-design-system/src/main';
 {{/_docs-example}}
-<h4>Core and selected components</h4>
+<h3>Core and selected components</h3>
 <p>Our core library includes the design system's base theme, typography, mixins and helper functions. Once you imported it, you can take full advantage of our variables and helpers. To import core library you need to add following snippet at the start of your main SASS file:</p>
 {{#>_docs-example hidden="true" open="true" code="scss"}}
 // Core libraries
@@ -82,7 +102,7 @@ meta-index: true
 @import 'node_modules/nsw-design-system/src/components/in-page-alert/in-page-alert';
 {{/_docs-example}}
 
-<h4 id="tools-barrel">Using the Tools barrel</h4>
+<h2 id="tools-barrel">Using the Tools barrel</h2>
 <p>The <code>tools</code> barrel gives you access to shared <strong>mixins</strong> and <strong>functions</strong> via a single, stable import path. It does <em>not</em> output CSS and it does <em>not</em> replace importing the core styles or any components you use. Keep importing <code>settings</code>, <code>base</code>, <code>helpers</code> and your chosen components as shown above; the <code>tools</code> barrel is purely Sass utilities for use inside your component styles.</p>
 {{#>_docs-example hidden="true" open="true" code="scss"}}
 @use 'nsw-design-system/tools' as nsw;
@@ -104,7 +124,7 @@ meta-index: true
 <p><em>Performance note:</em> Importing the tools barrel does not add unused CSS. Mixins and functions only generate CSS when you call them, and the module is parsed once per build.</p>
 <p><strong>Tip:</strong> Prefer the barrel for consistency. If a file needs exactly one tool and you want explicit coupling, you can import that file directly (for example, <code>@use 'node_modules/nsw-design-system/src/global/scss/base/mixins' as mixins;</code>).</p>
 
-<h3 id="fonticon">Adding the fonts and the icons</h3>
+<h2 id="fonticon">Adding the fonts and the icons</h2>
 <p>In your main html document add this line of code inside the head tag. Make sure that it's placed before the NSW Design System styles import. Or install <a href="https://www.npmjs.com/package/material-icons" target="_blank">icon</a> and <a href="https://www.npmjs.com/package/@fontsource/public-sans" target="_blank">font</a> from npm.</p>
 {{#>_docs-example hidden="true" open="true" code="html"}}
 <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
@@ -116,7 +136,7 @@ meta-index: true
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 {{/_docs-example}}
 
-<h3 id="javascript">Importing javascript into your project</h3>
+<h2 id="javascript">Importing javascript into your project</h2>
 <p>Some NSW Design System components require javascript to provide advanced functionality. To ensure the page is ready for javascript to run, include the follow scripts tags at the end of the html document.</p>
 {{#>_docs-example hidden="true" open="true" code="html"}}
   ...
@@ -127,7 +147,7 @@ meta-index: true
 {{/_docs-example}}
 <p>Depending on your project set up, you might wish to copy the file into your project from <code>node_modules</code> or add the reference to your build workflow.</p>
 
-<h3 id="cdn">Using JSDelivr CDN</h3>
+<h2 id="cdn">Using JSDelivr CDN</h2>
 <p>You can add the files to your main html document</p>
 {{#>_docs-example hidden="true" open="true" code="html"}}
 <head>
@@ -140,10 +160,32 @@ meta-index: true
 </body>
 {{/_docs-example}}
 
-<h3 id="starter-kit">Download starter kit</h3>
-<p>You can download the compiled design system assets (HTML, CSS, JavaScript) in the <a href="https://github.com/digitalnsw/nsw-design-system/blob/master/HTMLstarterkit.zip">HTMLStarterkit zip file</a> from the latest release.</p>
+<h2 id="starter-kit">Download starter kit</h2>
+<p>Download the compiled design system assets, including HTML, CSS and JavaScript, from the latest release.</p>
+<p><a class="nsw-button nsw-button--dark" href="https://github.com/digitalnsw/nsw-design-system/blob/master/HTMLstarterkit.zip"><span>Download HTML starter kit</span><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">download</span></a></p>
 
-<h3 id="browser-support">Browser support</h3>
+<h2 id="theming">Theming</h2>
+<p>The NSW Design System uses Sass and CSS variables to propagate theme settings through core styles and components. For configuration and implementation details, visit <a href="/get-started/theming-for-developers.html">Theming for developers</a>.</p>
+<div class="nsw-grid nsw-grid--spaced">
+  <div class="nsw-col nsw-col-md-6">
+    <div class="nsw-card">
+      <div class="nsw-card__image">
+        <img src="/assets/images/card-theming-for-developers.png" alt="">
+      </div>
+      <div class="nsw-card__content">
+        <h3 class="nsw-card__title">
+          <a href="/get-started/theming-for-developers.html">Theming for developers</a>
+        </h3>
+        <div class="nsw-card__copy">
+          <p>Configure Sass and CSS variables to implement and customise your product theme.</p>
+        </div>
+        <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h2 id="browser-support">Browser support</h2>
 <p>NSW Design System is supported in the following browsers:</p>
 <ul>
   <li>Chrome (latest)</li>
@@ -153,5 +195,5 @@ meta-index: true
 </ul>
 
 
-<h3 id="updates">Getting updates</h3>
-<p>To be notified when there’s a new release, <a target="_blank" rel="noopener noreferrer" href="https://github.com/digitalnsw/nsw-design-system">watch the NSW Design System on GitHub</a>.</p>
+<h2 id="updates">Getting updates</h2>
+<p>Watch the <a target="_blank" rel="noopener noreferrer" href="https://github.com/digitalnsw/nsw-design-system">NSW Design System repository on GitHub</a> to receive release notifications, and star it to bookmark the project and show your support.</p>

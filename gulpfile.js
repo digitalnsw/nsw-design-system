@@ -222,7 +222,7 @@ function metalsmithBuild(callback) {
     utilities: {
       pattern: config.metalSmith.collection.contentnav.utilities,
       refer: false,
-      sortBy: 'order',
+      sortBy: sortByAlpha,
     },
     contribute: {
       pattern: config.metalSmith.collection.contentnav.contribute,

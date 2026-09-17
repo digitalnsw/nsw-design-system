@@ -1,5 +1,7 @@
 const changeExtention = require('./change-extention')
 const getStartedNavModel = require('./get-started-nav-model')
+
+const { GET_STARTED_RELATED_URLS } = getStartedNavModel
 const {
   FOUNDATION_GROUPS,
   COMPONENT_GROUPS,
@@ -152,5 +154,10 @@ module.exports = function docsSideNavModel(collections, path) {
     ),
   ]
 
-  return groups.find((group) => group.items.some(hasCurrentItem)) || null
+  const matchingGroup = groups.find((group) => group.items.some(hasCurrentItem))
+
+  if (matchingGroup) return matchingGroup
+  if (GET_STARTED_RELATED_URLS.includes(currentUrl)) return groups[0]
+
+  return null
 }

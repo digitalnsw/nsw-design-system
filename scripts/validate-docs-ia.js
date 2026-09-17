@@ -195,6 +195,16 @@ assert(
   frontmatterValue('src/docs/content/get-started/templates.hbs', 'home') !== 'true',
   'Templates must not use the home page template',
 )
+const guidesSideNav = docsSideNavModel({}, '/get-started/guides.html')
+const guidesSetUpItem = guidesSideNav && guidesSideNav.items.find((item) => item.text === 'Set up')
+assert(
+  guidesSideNav && guidesSideNav['parent-text'] === 'Get started',
+  'Guides must use Get started as its documentation parent',
+)
+assert(
+  guidesSetUpItem && !guidesSetUpItem.active && !guidesSetUpItem.open,
+  'Guides must not activate the Set up or For designers navigation branch',
+)
 
 const searchData = readFile('src/docs/data.js')
 const normalisedSearchData = searchData.toLowerCase()

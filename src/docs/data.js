@@ -444,7 +444,7 @@ const searchValues = [
   {
     label: 'Theming',
     template: 'result',
-    keywords: 'get started, Design Theming, colours, consistent, branding, colour palette, dark, light, brand, supplementary, accent, non corporate, cobrand, Masterbrand corporate, non-corporate, co-brand, independent',
+    keywords: 'get started, Theme, Design Theming, colours, consistent, branding, colour palette, dark, light, brand, supplementary, accent, non corporate, cobrand, Masterbrand corporate, non-corporate, co-brand, independent',
     url: '/get-started/theming.html',
   },
   {
@@ -456,13 +456,13 @@ const searchValues = [
   {
     label: 'For developers',
     template: 'result',
-    keywords: 'get started, Getting Started, Develop, developers, npm, CDN, starter kit, installing, import styles, core and selected components, Public Sans, Material Icons, Node, Sass, base theme, typography, mixins, functions, javascript, JSDelivr, browser support',
+    keywords: 'get started, Getting Started, Develop, developers, npm, CDN, starter kit, installing, import styles, core and selected components, Public Sans, Material Icons, Node, Sass, typography, mixins, functions, javascript, JSDelivr, browser support',
     url: '/get-started/set-up/for-developers.html',
   },
   {
     label: 'Theming for developers',
     template: 'result',
-    keywords: 'Develop theming, developer theming, customisation, branding, CSS variables, full page, content only, partial, brand',
+    keywords: 'Theme, Develop theming, developer theming, customisation, branding, CSS variables, full page, content only, partial, brand',
     url: '/get-started/theming-for-developers.html',
   },
 

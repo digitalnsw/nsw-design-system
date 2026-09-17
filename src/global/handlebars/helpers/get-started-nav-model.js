@@ -1,3 +1,5 @@
+const GET_STARTED_RELATED_URLS = ['/get-started/guides.html']
+
 const GET_STARTED_ITEMS = [
   {
     id: 'get-started-about',
@@ -23,7 +25,6 @@ const GET_STARTED_ITEMS = [
         id: 'get-started-for-designers',
         text: 'For designers',
         url: '/get-started/set-up/for-designers.html',
-        associatedUrls: ['/get-started/guides.html'],
       },
       {
         id: 'get-started-for-developers',
@@ -84,3 +85,4 @@ function getStartedNavModel(currentUrl = '') {
 
 module.exports = getStartedNavModel
 module.exports.GET_STARTED_ITEMS = GET_STARTED_ITEMS
+module.exports.GET_STARTED_RELATED_URLS = GET_STARTED_RELATED_URLS
