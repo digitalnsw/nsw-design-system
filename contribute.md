@@ -41,7 +41,7 @@ To be considered for inclusion in the design system, components and patterns mus
 |---|---|
 | [Useful](#useful) | It addresses a user need that’s shared by multiple services or products |
 | [Unique](#unique) | It doesn’t duplicate something which already exists in the design system, unless it’s intended to replace it. |
-| [Distinctly New South Wales](#distinctly-new-south-wales) | Suggested patterns and components must be aligned to the distinctly NSW look and feel.  Download the latest [NSW Design System Figma UI kit](https://designsystem.nsw.gov.au/docs/content/design/getting-started.html). |
+| [Distinctly New South Wales](#distinctly-new-south-wales) | Suggested patterns and components must be aligned to the distinctly NSW look and feel.  Download the latest [NSW Design System Figma UI kit](https://designsystem.nsw.gov.au/docs/content/design/figma-ui-kit.html). |
 
 
 ### Before publication
@@ -84,7 +84,7 @@ Components shouldn’t duplicate the functionality of another component.
 
 We need to keep the system slim; the more components that are in the system, the harder it is to maintain and the possibility for code-bloat and technical debt is increased.
 
-If a component is similar in function consider extending it rather than duplicating it - check the current list on [our site](https://designsystem.nsw.gov.au/docs/content/about/release-notes.html).
+If a component is similar in function consider extending it rather than duplicating it - check the current list on [our site](https://designsystem.nsw.gov.au/).
 
 **[⬆ back to top](#contents)**
 
@@ -92,7 +92,7 @@ If a component is similar in function consider extending it rather than duplicat
 
 ### Distinctly New South Wales
 
-We would like NSW Government website users to feel like they are on a NSW Government website, to ensure this is the case all suggested patterns and components must be aligned to the distinctly NSW look and feel. Download the latest [NSW Design System Figma UI kit](https://designsystem.nsw.gov.au/docs/content/design/getting-started.html).
+We would like NSW Government website users to feel like they are on a NSW Government website, to ensure this is the case all suggested patterns and components must be aligned to the distinctly NSW look and feel. Download the latest [NSW Design System Figma UI kit](https://designsystem.nsw.gov.au/docs/content/design/figma-ui-kit.html).
 
 **[⬆ back to top](#contents)**
 
