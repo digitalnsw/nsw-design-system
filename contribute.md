@@ -84,7 +84,6 @@ Components shouldn’t duplicate the functionality of another component.
 
 We need to keep the system slim; the more components that are in the system, the harder it is to maintain and the possibility for code-bloat and technical debt is increased.
 
-If a component is similar in function consider extending it rather than duplicating it - check the current list on [our site](https://designsystem.nsw.gov.au/).
 
 **[⬆ back to top](#contents)**
 
