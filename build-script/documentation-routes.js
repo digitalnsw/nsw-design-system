@@ -11,6 +11,10 @@ const DOCUMENTATION_ROUTES = [
 
 const DOCUMENTATION_ROUTE_PREFIXES = [
   {
+    source: 'docs/content/components/',
+    output: 'components/',
+  },
+  {
     source: 'docs/content/get-started/',
     output: 'get-started/',
   },

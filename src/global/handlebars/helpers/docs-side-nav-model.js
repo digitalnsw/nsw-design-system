@@ -56,15 +56,19 @@ function collectionLinks(collection, currentUrl, options = {}) {
     }))
 }
 
-function groupedCollectionLinks(collection, groups, currentUrl) {
+function groupedCollectionLinks(collection, groups, currentUrl, sectionPath) {
   return groupCollection(collection, groups, (page) => linkFromPage(page, currentUrl))
     .map((group) => {
-      const active = group.items.some((item) => item.current)
+      const url = sectionPath ? `/${sectionPath}/${group.id}/index.html` : null
+      const current = url === currentUrl
+      const active = current || group.items.some((item) => item.current)
 
       return {
         id: group.id,
         text: group.title,
+        url,
         toggle: true,
+        current,
         open: active,
         active,
         items: group.items,
@@ -127,9 +131,9 @@ module.exports = function docsSideNavModel(collections, path) {
     navGroup(
       'components',
       'Components',
-      null,
+      '/components/index.html',
       currentUrl,
-      groupedCollectionLinks(safeCollections.componentsnav, COMPONENT_GROUPS, currentUrl),
+      groupedCollectionLinks(safeCollections.componentsnav, COMPONENT_GROUPS, currentUrl, 'components'),
     ),
     navGroup(
       'utility-classes',

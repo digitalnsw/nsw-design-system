@@ -28,7 +28,7 @@ We recommend the following methods:
 
 4. **Using JSDelivr CDN:** If you prefer a quicker setup, you can use the JSDelivr content delivery network to directly include the design system's CSS and JavaScript files in your project.
 
-Read the [Getting started page](https://designsystem.nsw.gov.au/get-started/set-up/for-developers.html) for information on the framework contents, templates, examples, and more.
+Read the [Getting started page](https://designsystem.nsw.gov.au/get-started/for-developers.html) for information on the framework contents, templates, examples, and more.
 
 ## Installing with NPM
 
@@ -144,7 +144,7 @@ View and raise issues and bugs through our [Issues tracker on GitHub](https://gi
 
 ## Design System Figma UI Kit
 
-Access the complete set of design assets required for designing, sharing, and prototyping using our [Figma UI Kit](https://designsystem.nsw.gov.au/get-started/set-up/figma-ui-kit.html).
+Access the complete set of design assets required for designing, sharing, and prototyping using our [Figma UI Kit](https://designsystem.nsw.gov.au/get-started/figma-ui-kit.html).
 
 ## Versioning
 

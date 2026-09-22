@@ -28,6 +28,8 @@ const COMPONENT_GROUPS = [
   {
     id: 'actions-and-controls',
     title: 'Actions and controls',
+    description: 'Components that let users initiate actions and control an interface.',
+    image: '/assets/images/card-actions.png',
     aliases: ['Actions', 'Controls'],
     items: [
       'Buttons',
@@ -39,6 +41,8 @@ const COMPONENT_GROUPS = [
   {
     id: 'forms-and-input',
     title: 'Forms and input',
+    description: 'Components that collect, select and validate information from users.',
+    image: '/assets/images/card-forms.png',
     aliases: ['Forms', 'Input'],
     items: [
       'Forms',
@@ -51,6 +55,8 @@ const COMPONENT_GROUPS = [
   {
     id: 'navigation',
     title: 'Navigation',
+    description: 'Components that help users understand where they are and move through a service.',
+    image: '/assets/images/card-navigation.png',
     aliases: ['Menus', 'Wayfinding'],
     items: [
       'Back to top',
@@ -66,6 +72,8 @@ const COMPONENT_GROUPS = [
   {
     id: 'content',
     title: 'Content',
+    description: 'Components that organise and present information clearly.',
+    image: '/assets/images/card-content.png',
     aliases: ['Content display'],
     items: [
       'Accordion',
@@ -84,6 +92,8 @@ const COMPONENT_GROUPS = [
   {
     id: 'feedback-and-status',
     title: 'Feedback and status',
+    description: 'Components that communicate progress, status and important feedback.',
+    image: '/assets/images/card-feedback.png',
     aliases: ['Feedback', 'Status', 'Alerts'],
     items: [
       'Callout',
@@ -98,6 +108,8 @@ const COMPONENT_GROUPS = [
   {
     id: 'overlays',
     title: 'Overlays',
+    description: 'Components that display contextual information in a layer above the page.',
+    image: '/assets/images/card-overlays.png',
     aliases: ['Layered content'],
     items: [
       'Dialog',
@@ -108,6 +120,8 @@ const COMPONENT_GROUPS = [
   {
     id: 'page-structure',
     title: 'Page structure',
+    description: 'Components that provide consistent page-level regions and structure.',
+    image: '/assets/images/card-page-structure.png',
     aliases: ['Global page structure', 'Page layout'],
     items: [
       'Header',
@@ -119,6 +133,8 @@ const COMPONENT_GROUPS = [
   {
     id: 'search-and-task-flow',
     title: 'Search and task flow',
+    description: 'Components that help users find information and complete structured tasks.',
+    image: '/assets/images/card-search.png',
     aliases: ['Search', 'Task flow'],
     items: [
       'Filters',

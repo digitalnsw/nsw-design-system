@@ -370,12 +370,6 @@ const searchValues = [
   },
 
   {
-    label: 'Set up',
-    template: 'result',
-    keywords: 'get started, setup, set up, designers, developers, Figma UI Kit, install, npm, CDN, starter kit',
-    url: '/get-started/set-up/index.html',
-  },
-  {
     label: 'Templates',
     template: 'result',
     keywords: 'get started, templates, homepage, content, search, sample, example, hero banner, featured list, hero search, simple, filters, no results, side navigation, article, form, maps, location, theming, Masterbrand, full page, partial',
@@ -427,13 +421,13 @@ const searchValues = [
     label: 'For designers',
     template: 'result',
     keywords: 'get started, Getting Started, Design, designers, core styles, foundations, components, UX guidance, first steps, design',
-    url: '/get-started/set-up/for-designers.html',
+    url: '/get-started/for-designers.html',
   },
   {
     label: 'Figma UI Kit',
     template: 'result',
     keywords: 'get started, guides, video tutorials, file, UI, design, Figma',
-    url: '/get-started/set-up/figma-ui-kit.html',
+    url: '/get-started/figma-ui-kit.html',
   },
   {
     label: 'Extending',
@@ -457,7 +451,7 @@ const searchValues = [
     label: 'For developers',
     template: 'result',
     keywords: 'get started, Getting Started, Develop, developers, npm, CDN, starter kit, installing, import styles, core and selected components, Public Sans, Material Icons, Node, Sass, typography, mixins, functions, javascript, JSDelivr, browser support',
-    url: '/get-started/set-up/for-developers.html',
+    url: '/get-started/for-developers.html',
   },
   {
     label: 'Theming for developers',

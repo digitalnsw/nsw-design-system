@@ -9,13 +9,13 @@ model:
 
 {{#*inline "header-demo-examples"}}
   <h3>Masterbrand with descriptor</h3>
-  {{#>_docs-example}}{{>_header header-title="NSW Design System" header-id=headerId1}}{{/_docs-example}}
+  {{#>_docs-example full-bleed="true"}}{{>_header header-title="NSW Design System" header-id=headerId1}}{{/_docs-example}}
   <h3>Masterbrand with secondary descriptor</h3>
-  {{#>_docs-example}}{{>_header header-title="NSW Design System" header-description="Department of Customer Service" header-id=headerId2}}{{/_docs-example}}
+  {{#>_docs-example full-bleed="true"}}{{>_header header-title="NSW Design System" header-description="Department of Customer Service" header-id=headerId2}}{{/_docs-example}}
   <h3>Co-brand - mobile horizontal stacked</h3>
-  {{#>_docs-example}}{{>_header model.square header-id=headerId3 header-inline="true"}}{{/_docs-example}}
+  {{#>_docs-example full-bleed="true"}}{{>_header model.square header-id=headerId3 header-inline="true"}}{{/_docs-example}}
   <h3>Co-brand - mobile vertical stacked</h3>
-  {{#>_docs-example}}{{>_header model.rectangular header-id=headerId4}}{{/_docs-example}}
+  {{#>_docs-example full-bleed="true"}}{{>_header model.rectangular header-id=headerId4}}{{/_docs-example}}
 {{/inline}}
 
 {{#>_theme}}
@@ -24,11 +24,4 @@ model:
     {{> header-demo-examples headerId1="default-1" headerId2="default-2" headerId3="default-3" headerId4="default-4"}}
   {{/_layout-container}}
 
-  {{#>_layout-container brand-light="true"}}
-    {{> header-demo-examples headerId1="brand-light-1" headerId2="brand-light-2" headerId3="brand-light-3" headerId4="brand-light-4"}}
-  {{/_layout-container}}
-
-  {{#>_layout-container brand-dark="true" invert="true"}}
-    {{> header-demo-examples headerId1="inverted-1" headerId2="inverted-2" headerId3="inverted-3" headerId4="inverted-4"}}
-  {{/_layout-container}}
 {{/_theme}}

@@ -1,0 +1,21 @@
+{{#with group}}
+<div class="nsw-grid nsw-grid--spaced">
+  {{#each items}}
+  <div class="nsw-col nsw-col-md-6 nsw-col-xl-6">
+    <div class="nsw-card">
+      <div class="nsw-card__content">
+        <div class="nsw-card__title">
+          <a href="{{url}}">{{text}}{{#if brand}} <span class="nsw-brand" aria-hidden="true">&#128313;</span><span class="sr-only"> Required for NSW Government Masterbrand products</span>{{/if}}</a>
+        </div>
+        {{#if description}}
+        <div class="nsw-card__copy">
+          <p>{{description}}</p>
+        </div>
+        {{/if}}
+        <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span>
+      </div>
+    </div>
+  </div>
+  {{/each}}
+</div>
+{{/with}}

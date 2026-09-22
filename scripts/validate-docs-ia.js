@@ -137,11 +137,11 @@ assert(
 )
 
 assert(
-  frontmatterValue('src/docs/content/get-started/set-up/for-designers.hbs', 'title') === 'For designers',
+  frontmatterValue('src/docs/content/get-started/for-designers.hbs', 'title') === 'For designers',
   'Designer setup page title must be For designers',
 )
 assert(
-  frontmatterValue('src/docs/content/get-started/set-up/for-developers.hbs', 'title') === 'For developers',
+  frontmatterValue('src/docs/content/get-started/for-developers.hbs', 'title') === 'For developers',
   'Developer setup page title must be For developers',
 )
 
@@ -150,7 +150,9 @@ const expectedGetStartedItems = [
   'About the NSW Design System',
   'Supporting different roles',
   'Our ecosystem',
-  'Set up',
+  'For designers',
+  'For developers',
+  'Figma UI Kit',
   'Templates',
   'Theming',
   'Extending',
@@ -159,12 +161,9 @@ assert(
   getStartedItems.map((item) => item.text).join('|') === expectedGetStartedItems,
   `Unexpected Get started order: ${getStartedItems.map((item) => item.text).join(', ')}`,
 )
-const setUp = getStartedItems.find((item) => item.text === 'Set up')
-assert(setUp, 'Get started navigation must include Set up')
-assert(setUp.url === '/get-started/set-up/index.html', 'Set up must link to its landing page')
 assert(
-  setUp.items.map((item) => item.text).join('|') === 'For designers|For developers|Figma UI Kit',
-  `Unexpected Set up order: ${setUp.items.map((item) => item.text).join(', ')}`,
+  getStartedItems.every((item) => !item.items),
+  'Get started navigation must remain a flat list',
 )
 assert(!getStartedItems.some((item) => item.text === 'Guides'), 'Guides must not appear in primary navigation')
 assert(
@@ -181,10 +180,10 @@ assert(
   developerThemingSideNav && developerThemingSideNav['parent-text'] === 'Get started',
   'Developer theming must use the standard Get started documentation shell',
 )
-const setUpSideNav = docsSideNavModel({}, '/get-started/set-up/index.html')
+const designersSideNav = docsSideNavModel({}, '/get-started/for-designers.html')
 assert(
-  setUpSideNav && setUpSideNav.items.some((item) => item.text === 'Set up' && item.current && item.open),
-  'Set up landing page must be the current, expanded parent of its setup links',
+  designersSideNav && designersSideNav.items.some((item) => item.text === 'For designers' && item.current),
+  'For designers must be a direct Get started navigation item',
 )
 const templatesSideNav = docsSideNavModel({}, '/get-started/templates.html')
 assert(
@@ -196,14 +195,13 @@ assert(
   'Templates must not use the home page template',
 )
 const guidesSideNav = docsSideNavModel({}, '/get-started/guides.html')
-const guidesSetUpItem = guidesSideNav && guidesSideNav.items.find((item) => item.text === 'Set up')
 assert(
   guidesSideNav && guidesSideNav['parent-text'] === 'Get started',
   'Guides must use Get started as its documentation parent',
 )
 assert(
-  guidesSetUpItem && !guidesSetUpItem.active && !guidesSetUpItem.open,
-  'Guides must not activate the Set up or For designers navigation branch',
+  !guidesSideNav.items.some((item) => item.active || item.open),
+  'Guides must not activate another Get started navigation item',
 )
 
 const searchData = readFile('src/docs/data.js')
@@ -277,10 +275,18 @@ const legacyRedirects = [
   ['/docs/content/about/about-the-nsw-design-system.html', '/get-started/about-the-nsw-design-system.html'],
   ['/docs/content/about/supporting-different-roles.html', '/get-started/supporting-different-roles.html'],
   ['/docs/content/about/our-ecosystem.html', '/get-started/our-ecosystem.html'],
-  ['/docs/content/setup/index.html', '/get-started/set-up/index.html'],
-  ['/docs/content/design/getting-started.html', '/get-started/set-up/for-designers.html'],
-  ['/docs/content/develop/getting-started.html', '/get-started/set-up/for-developers.html'],
-  ['/docs/content/design/figma-ui-kit.html', '/get-started/set-up/figma-ui-kit.html'],
+  ['/docs/content/setup/index.html', '/index.html#get-started'],
+  ['/get-started/set-up/index.html', '/index.html#get-started'],
+  ['/docs/content/get-started/set-up/index.html', '/index.html#get-started'],
+  ['/docs/content/design/getting-started.html', '/get-started/for-designers.html'],
+  ['/get-started/set-up/for-designers.html', '/get-started/for-designers.html'],
+  ['/docs/content/get-started/set-up/for-designers.html', '/get-started/for-designers.html'],
+  ['/docs/content/develop/getting-started.html', '/get-started/for-developers.html'],
+  ['/get-started/set-up/for-developers.html', '/get-started/for-developers.html'],
+  ['/docs/content/get-started/set-up/for-developers.html', '/get-started/for-developers.html'],
+  ['/docs/content/design/figma-ui-kit.html', '/get-started/figma-ui-kit.html'],
+  ['/get-started/set-up/figma-ui-kit.html', '/get-started/figma-ui-kit.html'],
+  ['/docs/content/get-started/set-up/figma-ui-kit.html', '/get-started/figma-ui-kit.html'],
   ['/templates/index.html', '/get-started/templates.html'],
   ['/docs/content/design/theming.html', '/get-started/theming.html'],
   ['/docs/content/develop/theming.html', '/get-started/theming-for-developers.html'],

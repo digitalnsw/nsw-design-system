@@ -1,0 +1,28 @@
+---
+title: Components
+width: wide
+intro: Components are reusable interface elements grouped by purpose.
+meta-description: Browse NSW Design System components by purpose, including controls, navigation, content, feedback and page structure.
+meta-index: true
+---
+
+<div class="nsw-grid nsw-grid--spaced">
+  {{#each (docs-component-groups collections)}}
+  <div class="nsw-col nsw-col-md-6 nsw-col-xl-4">
+    <div class="nsw-card">
+      <div class="nsw-card__image">
+        <img src="{{image}}" alt="">
+      </div>
+      <div class="nsw-card__content">
+        <div class="nsw-card__title">
+          <a href="{{url}}">{{title}}</a>
+        </div>
+        <div class="nsw-card__copy">
+          <p>{{description}}</p>
+        </div>
+        <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span>
+      </div>
+    </div>
+  </div>
+  {{/each}}
+</div>

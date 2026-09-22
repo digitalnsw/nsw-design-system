@@ -17,26 +17,19 @@ const GET_STARTED_ITEMS = [
     url: '/get-started/our-ecosystem.html',
   },
   {
-    id: 'get-started-set-up',
-    text: 'Set up',
-    url: '/get-started/set-up/index.html',
-    children: [
-      {
-        id: 'get-started-for-designers',
-        text: 'For designers',
-        url: '/get-started/set-up/for-designers.html',
-      },
-      {
-        id: 'get-started-for-developers',
-        text: 'For developers',
-        url: '/get-started/set-up/for-developers.html',
-      },
-      {
-        id: 'get-started-figma',
-        text: 'Figma UI Kit',
-        url: '/get-started/set-up/figma-ui-kit.html',
-      },
-    ],
+    id: 'get-started-for-designers',
+    text: 'For designers',
+    url: '/get-started/for-designers.html',
+  },
+  {
+    id: 'get-started-for-developers',
+    text: 'For developers',
+    url: '/get-started/for-developers.html',
+  },
+  {
+    id: 'get-started-figma',
+    text: 'Figma UI Kit',
+    url: '/get-started/figma-ui-kit.html',
   },
   {
     id: 'get-started-templates',

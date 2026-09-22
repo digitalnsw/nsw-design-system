@@ -41,7 +41,7 @@ To be considered for inclusion in the design system, components and patterns mus
 |---|---|
 | [Useful](#useful) | It addresses a user need that’s shared by multiple services or products |
 | [Unique](#unique) | It doesn’t duplicate something which already exists in the design system, unless it’s intended to replace it. |
-| [Distinctly New South Wales](#distinctly-new-south-wales) | Suggested patterns and components must be aligned to the distinctly NSW look and feel. Download the latest [NSW Design System Figma UI Kit](https://designsystem.nsw.gov.au/get-started/set-up/figma-ui-kit.html). |
+| [Distinctly New South Wales](#distinctly-new-south-wales) | Suggested patterns and components must be aligned to the distinctly NSW look and feel. Download the latest [NSW Design System Figma UI Kit](https://designsystem.nsw.gov.au/get-started/figma-ui-kit.html). |
 
 
 ### Before publication
@@ -90,7 +90,7 @@ We need to keep the system slim; the more components that are in the system, the
 
 ### Distinctly New South Wales
 
-We would like NSW Government website users to feel like they are on a NSW Government website. To ensure this is the case, all suggested patterns and components must be aligned to the distinctly NSW look and feel. Download the latest [NSW Design System Figma UI Kit](https://designsystem.nsw.gov.au/get-started/set-up/figma-ui-kit.html).
+We would like NSW Government website users to feel like they are on a NSW Government website. To ensure this is the case, all suggested patterns and components must be aligned to the distinctly NSW look and feel. Download the latest [NSW Design System Figma UI Kit](https://designsystem.nsw.gov.au/get-started/figma-ui-kit.html).
 
 **[⬆ back to top](#contents)**
 

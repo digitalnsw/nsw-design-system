@@ -27,10 +27,14 @@ The historical `/docs/content/develop/helpers.html` URL was also included becaus
 | About the NSW Design System | `/docs/content/about/about-the-nsw-design-system.html` | `/get-started/about-the-nsw-design-system.html` |
 | Supporting different roles | `/docs/content/about/supporting-different-roles.html` | `/get-started/supporting-different-roles.html` |
 | Our ecosystem | `/docs/content/about/our-ecosystem.html` | `/get-started/our-ecosystem.html` |
-| Set up | `/docs/content/setup/index.html` | `/get-started/set-up/index.html` |
-| For designers | `/docs/content/design/getting-started.html` | `/get-started/set-up/for-designers.html` |
-| For developers | `/docs/content/develop/getting-started.html` | `/get-started/set-up/for-developers.html` |
-| Figma UI Kit | `/docs/content/design/figma-ui-kit.html` | `/get-started/set-up/figma-ui-kit.html` |
+| Get started | `/docs/content/setup/index.html` | `/index.html#get-started` |
+| Get started | `/get-started/set-up/index.html` | `/index.html#get-started` |
+| For designers | `/docs/content/design/getting-started.html` | `/get-started/for-designers.html` |
+| For designers | `/get-started/set-up/for-designers.html` | `/get-started/for-designers.html` |
+| For developers | `/docs/content/develop/getting-started.html` | `/get-started/for-developers.html` |
+| For developers | `/get-started/set-up/for-developers.html` | `/get-started/for-developers.html` |
+| Figma UI Kit | `/docs/content/design/figma-ui-kit.html` | `/get-started/figma-ui-kit.html` |
+| Figma UI Kit | `/get-started/set-up/figma-ui-kit.html` | `/get-started/figma-ui-kit.html` |
 | Templates | `/templates/index.html` | `/get-started/templates.html` |
 | Theming | `/docs/content/design/theming.html` | `/get-started/theming.html` |
 | Theming for developers | `/docs/content/develop/theming.html` | `/get-started/theming-for-developers.html` |
