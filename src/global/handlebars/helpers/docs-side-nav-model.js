@@ -117,7 +117,7 @@ module.exports = function docsSideNavModel(collections, path) {
     navGroup(
       'get-started',
       'Get started',
-      '/index.html#get-started',
+      null,
       currentUrl,
       getStartedNavModel(currentUrl),
     ),
