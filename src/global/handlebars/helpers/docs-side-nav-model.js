@@ -123,7 +123,7 @@ module.exports = function docsSideNavModel(collections, path) {
     ),
     navGroup(
       'foundations',
-      'Foundations',
+      'Core styles',
       '/index.html#foundations',
       currentUrl,
       groupedCollectionLinks(safeCollections.corenav, FOUNDATION_GROUPS, currentUrl),

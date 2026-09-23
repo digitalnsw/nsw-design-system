@@ -72,7 +72,7 @@ module.exports = function docsNavModel(collections = {}) {
       ),
       navItem(
         'foundations',
-        'Foundations',
+        'Core styles',
         'Core styles that create the NSW Government look and feel.',
         collectionLinks(collections.corenav),
       ),

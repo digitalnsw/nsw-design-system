@@ -890,8 +890,14 @@
 }
 
 .nsw-docs-demo {
-  .nsw-layout__main > h1 {
-    margin-bottom: nsw.rem(32px);
+  .nsw-layout__main {
+    > h1 {
+      margin-bottom: nsw.rem(32px);
+    }
+
+    > :is(h2, h3, h4) + .nsw-docs__example {
+      margin-top: nsw.rem(16px);
+    }
   }
 
   .nsw-docs-code {
