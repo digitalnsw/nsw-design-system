@@ -7,7 +7,7 @@
   </div>
   <ul class="nsw-side-nav__content">
     {{#each items}}
-    <li{{#if (or current active items) }} class="active"{{/if}}>
+    <li{{#if toggle}}{{#if (or current active)}} class="active"{{/if}}{{else}}{{#if (or current active items)}} class="active"{{/if}}{{/if}}>
       {{#if toggle}}
       <details class="nsw-side-nav__group"{{#if open}} open{{/if}}>
         <summary>{{text}}</summary>
