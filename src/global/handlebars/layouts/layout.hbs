@@ -62,20 +62,6 @@
     {{>_docs-nav}}
   </div>
   <div id="main-content" class="nsw-docs__main{{#if width}} nsw-docs__main--{{width}}{{/if}}" tabindex="-1">
-    {{#unless home}}
-    {{>_docs-intro}}
-    {{/unless}}
-    {{#if featured-example}}
-    <div class="nsw-docs__featured-example">
-      {{#>_docs-example}}
-        {{#if featured-example-data}}
-          {{> (lookup . "featured-example") featured-example-data}}
-        {{else}}
-          {{> (lookup . "featured-example") model}}
-        {{/if}}
-      {{/_docs-example}}
-    </div>
-    {{/if}}
     {{#if home_full_width}}
 {{{contents}}}
     {{else}}
@@ -87,17 +73,48 @@
         </div>
       {{else}}
       {{#with (docs-side-nav-model collections path)}}
+        <div class="nsw-docs__breadcrumbs">
+          {{>_breadcrumbs (docs-breadcrumbs-model this ../title ../path)}}
+        </div>
         <div class="nsw-layout nsw-docs__layout">
           <div class="nsw-layout__sidebar nsw-layout__sidebar--desktop nsw-docs__side-nav">
             {{>_side-nav this}}
           </div>
           <div class="nsw-layout__main">
+            {{#with ..}}
+            {{>_docs-intro}}
+            {{#if featured-example}}
+            <div class="nsw-docs__featured-example">
+              {{#>_docs-example}}
+                {{#if featured-example-data}}
+                  {{> (lookup . "featured-example") featured-example-data}}
+                {{else}}
+                  {{> (lookup . "featured-example") model}}
+                {{/if}}
+              {{/_docs-example}}
+            </div>
+            <hr class="nsw-m-y-lg">
+            {{/if}}
+            {{/with}}
             <div class="nsw-docs__body js-copy-headings">
 {{{../contents}}}
             </div>
           </div>
         </div>
       {{else}}
+        {{>_docs-intro}}
+        {{#if featured-example}}
+        <div class="nsw-docs__featured-example">
+          {{#>_docs-example}}
+            {{#if featured-example-data}}
+              {{> (lookup . "featured-example") featured-example-data}}
+            {{else}}
+              {{> (lookup . "featured-example") model}}
+            {{/if}}
+          {{/_docs-example}}
+        </div>
+        <hr class="nsw-m-y-lg">
+        {{/if}}
         <div class="nsw-docs__body js-copy-headings">
 {{{contents}}}
         </div>

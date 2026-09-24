@@ -7,6 +7,8 @@ module.exports = function (page, option, id) {
       return '/' + page.split('index.')[0] + 'theme.html'
     case 'demo':
       return '/' + page.split('index.')[0] + 'demo.html'
+    case 'index':
+      return '/' + page.split('/').slice(0, -1).join('/') + '/index.html'
     case 'anchor':
       return '/' + page.split('.')[0] + '.html#' + id
     default:
