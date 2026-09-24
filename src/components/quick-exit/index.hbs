@@ -39,21 +39,27 @@ meta-index: true
 <p>Quick exit helps a user leave the current page fast. It does not erase browsing history on the device or account level, and it cannot protect against someone determined or technical. Some things sit outside what a web page can control. These include router logs, account syncing across devices, saved passwords, saved searches in the address bar, and a phone physically handed over to be checked.</p>
 <p>For this reason, pair Quick exit with safety advice in plain language. For example, a short note linking to guidance on clearing history and using private browsing. Never write copy that implies the component keeps someone safe. It helps them leave, it does not hide where they have been.</p>
 
-<h3>Do</h3>
-<ul>
-  <li>Use Quick exit on pages where user safety, privacy or comfort may be compromised.</li>
-  <li>Place it inside the <a href="/core/layout/index.html#sticky-container-structure">global sticky container</a> so it doesn't overlap with other components.</li>
-  <li>Ensure it redirects to a safe, neutral destination that loads quickly.</li>
-  <li>Test the component with keyboard and screen readers.</li>
-</ul>
-
-<h3>Don't</h3>
-<ul>
-  <li>Show it on pages with no clear safety or privacy risk.</li>
-  <li>Hide it inside menus or page content.</li>
-  <li>Send users to content that is confusing or likely to draw attention.</li>
-  <li>Rely on JavaScript alone for core functionality.</li>
-</ul>
+<h3>Guidance</h3>
+<div class="nsw-grid nsw-m-top-sm">
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--do"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span><span>Do</span></div>
+    <ul class="nsw-m-top-sm">
+      <li>Use Quick exit on pages where user safety, privacy or comfort may be compromised.</li>
+      <li>Place it inside the <a href="/core/page-layout/index.html#sticky-container-structure">global sticky container</a> so it doesn't overlap with other components.</li>
+      <li>Ensure it redirects to a safe, neutral destination that loads quickly.</li>
+      <li>Test the component with keyboard and screen readers.</li>
+    </ul>
+  </div>
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--dont"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span><span>Don't</span></div>
+    <ul class="nsw-m-top-sm">
+      <li>Show it on pages with no clear safety or privacy risk.</li>
+      <li>Hide it inside menus or page content.</li>
+      <li>Send users to content that is confusing or likely to draw attention.</li>
+      <li>Rely on JavaScript alone for core functionality.</li>
+    </ul>
+  </div>
+</div>
 
 <h2>Content guidelines</h2>
 
@@ -84,9 +90,9 @@ meta-index: true
 <h2>Customisations</h2>
 
 <h3>Safe destination URL</h3>
-<p>Redirect users to a neutral, trusted page such as <a href="https://nsw.gov.au" aria-label="NSW Government home page">nsw.gov.au</a>, <a href="https://www.bom.gov.au/" aria-label="Bureau of Meteorology home page">bom.gov.au</a> or <a href="https://www.google.com/webhp" aria-label="Google home page">www.google.com/webhp</a>. Choose and customise the destination based on who your users are and how they are likely to use the service, and test it to ensure it feels safe, appropriate and low-risk in context.</p>
+<p>Redirect users to a neutral, trusted page such as <a class="nsw-link nsw-link--icon" href="https://nsw.gov.au" target="_blank" rel="noopener noreferrer" aria-label="NSW Government home page (opens in a new tab)"><span>nsw.gov.au</span><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">open_in_new</span></a>, <a class="nsw-link nsw-link--icon" href="https://www.bom.gov.au/" target="_blank" rel="noopener noreferrer" aria-label="Bureau of Meteorology home page (opens in a new tab)"><span>bom.gov.au</span><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">open_in_new</span></a> or <a class="nsw-link nsw-link--icon" href="https://www.google.com/webhp" target="_blank" rel="noopener noreferrer" aria-label="Google home page (opens in a new tab)"><span>www.google.com/webhp</span><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">open_in_new</span></a>. Choose and customise the destination based on who your users are and how they are likely to use the service, and test it to ensure it feels safe, appropriate and low-risk in context.</p>
 <p>Choose a redirect destination with care. People we consulted agreed that it carries significant responsibility. It is the page a user lands on at a vulnerable moment. The default is a sound starting point, but check that it suits your users. Base the choice on your users and how they use the service, and test it so it feels safe and low-risk for them.</p>
-<p>By default, the component redirects to <a href="https://www.google.com/webhp">www.google.com/webhp</a>. A search homepage works well as a default because it avoids assuming what a user wants to see and lets them type any innocuous query themselves.</p>
+<p>By default, the component redirects to <a class="nsw-link nsw-link--icon" href="https://www.google.com/webhp" target="_blank" rel="noopener noreferrer" aria-label="Google home page (opens in a new tab)"><span>www.google.com/webhp</span><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">open_in_new</span></a>. A search homepage works well as a default because it avoids assuming what a user wants to see and lets them type any innocuous query themselves.</p>
 <p>Google was the preferred default in consultation, but it needs care:</p>
 <ul>
   <li>The <code>/webhp</code> suffix keeps mobile users in the browser rather than opening the Google app, which keeps the exit predictable across devices.</li>
