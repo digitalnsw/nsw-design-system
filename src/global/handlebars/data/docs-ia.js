@@ -18,7 +18,7 @@ const FOUNDATION_GROUPS = [
     aliases: ['Structure'],
     items: [
       'Grid',
-      'Layout',
+      'Page layout',
       'Section',
     ],
   },

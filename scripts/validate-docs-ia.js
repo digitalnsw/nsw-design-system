@@ -292,6 +292,7 @@ const legacyRedirects = [
   ['/docs/content/develop/theming.html', '/get-started/theming-for-developers.html'],
   ['/docs/content/design/extending.html', '/get-started/extending.html'],
   ['/docs/content/develop/helpers.html', '/index.html#utility-classes'],
+  ['/core/layout/index.html', '/core/page-layout/index.html'],
 ]
 
 const legacyGuidanceComponents = [

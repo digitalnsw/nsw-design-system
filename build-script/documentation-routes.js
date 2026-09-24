@@ -1,5 +1,9 @@
 const DOCUMENTATION_ROUTES = [
   {
+    source: 'core/layout/index.hbs',
+    output: 'core/page-layout/index.hbs',
+  },
+  {
     source: 'docs/content/about/release-notes.hbs',
     output: 'release-notes/index.hbs',
   },

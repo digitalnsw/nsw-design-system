@@ -320,10 +320,10 @@ const searchValues = [
     url: '/core/grid/index.html',
   },
   {
-    label: 'Layout',
+    label: 'Page layout',
     template: 'result',
     keywords: 'foundation, foundations, layout, core styles, page layouts, standard, full width, two column, left, right, main content, desktop, viewport',
-    url: '/core/layout/index.html',
+    url: '/core/page-layout/index.html',
   },
   {
     label: 'Section',
