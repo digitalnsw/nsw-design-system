@@ -1,21 +1,21 @@
 # Documentation IA redirects
 
-The Cloudflare bulk redirect file contains **50 permanent redirects**. Every redirect points directly to its final public URL; there are no redirect chains and no targets containing `/docs/content/`.
+The Cloudflare bulk redirect file contains **102 permanent redirects**. Every redirect points directly to its final public URL; there are no redirect chains and no targets containing `/docs/content/`.
 
 ## Coverage
 
 | Documentation area | Redirects | Previous path | Final path |
 | --- | ---: | --- | --- |
-| Current Get started source routes | 11 | `/docs/content/get-started/...` | `/get-started/...` |
 | Utility classes | 15 | `/docs/content/utilities/...` | `/utility-classes/...` |
 | Methods | 6 | `/docs/content/methods/...` | `/methods/...` |
 | Contribute | 3 | `/docs/content/contribute/...` | `/contribute/...` |
 | Release notes | 1 | `/docs/content/about/release-notes.html` | `/release-notes/index.html` |
 | Legacy design Guides | 1 | `/docs/content/design/guides.html` | `/get-started/guides.html` |
-| Earlier Get started URLs and aliases | 12 | Various legacy paths | Final `/get-started/...` paths |
+| Get started routes and aliases | 30 | Various legacy and source-derived paths | Final `/get-started/...` paths |
 | Historical Utility Classes page | 1 | `/docs/content/develop/helpers.html` | `/index.html#utility-classes` |
+| Former component guidance pages | 45 | `/components/.../_guidance.html` | Matching component overview page |
 
-The route-derived redirects cover every publishable Handlebars page affected by `build-script/documentation-routes.js`. Partials beginning with `_` are intentionally excluded because they are not public pages.
+The route-derived redirects cover every publishable Handlebars page affected by `build-script/documentation-routes.js`. Partials beginning with `_` are excluded from route-derived redirects. However, the former component `_guidance.html` pages were emitted as directly accessible pages, so each now redirects to its matching component overview.
 
 The historical `/docs/content/develop/helpers.html` URL was also included because it appeared in the legacy sitemap and Git history. It now redirects to the Utility classes listing rather than an arbitrary individual utility page.
 
@@ -46,6 +46,7 @@ The historical `/docs/content/develop/helpers.html` URL was also included becaus
 
 - every routed documentation page has a redirect from its old source-derived URL
 - all known earlier Get started URLs and aliases have redirects
+- every former component guidance page redirects to its component overview
 - every row uses the seven-column Cloudflare bulk redirect format
 - every status is `301`
 - source URLs are unique

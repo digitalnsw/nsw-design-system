@@ -293,6 +293,61 @@ const legacyRedirects = [
   ['/docs/content/design/extending.html', '/get-started/extending.html'],
   ['/docs/content/develop/helpers.html', '/index.html#utility-classes'],
 ]
+
+const legacyGuidanceComponents = [
+  'accordion',
+  'back-to-top',
+  'breadcrumbs',
+  'button',
+  'callout',
+  'card-carousel',
+  'card',
+  'content-block',
+  'cookie-consent',
+  'date-input',
+  'date-picker',
+  'dialog',
+  'file-upload',
+  'filters',
+  'footer',
+  'form',
+  'global-alert',
+  'header',
+  'hero-banner',
+  'hero-search',
+  'in-page-alert',
+  'in-page-nav',
+  'link-list',
+  'link',
+  'list-item',
+  'loader',
+  'main-nav',
+  'masthead',
+  'media',
+  'pagination',
+  'popover',
+  'progress-indicator',
+  'quick-exit',
+  'results-bar',
+  'select',
+  'show-more',
+  'side-nav',
+  'status-labels',
+  'steps',
+  'support-list',
+  'table',
+  'tabs',
+  'tag',
+  'tooltip',
+  'utility-list',
+]
+legacyGuidanceComponents.forEach((component) => {
+  legacyRedirects.push([
+    `/components/${component}/_guidance.html`,
+    `/components/${component}/index.html`,
+  ])
+})
+
 legacyRedirects.forEach(([source, target]) => {
   requiredRedirects.set(`${productionUrl}${source}`, `${productionUrl}${target}`)
 })

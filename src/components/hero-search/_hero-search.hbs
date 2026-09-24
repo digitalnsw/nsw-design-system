@@ -1,4 +1,4 @@
-<div class="nsw-section{{#if image-html}} nsw-section--image-html{{else}} nsw-section--image{{/if}}"{{#unless image-html}} style="background-image: url({{image}});"{{/unless}}>
+{{#if image}}<div class="nsw-section{{#if image-html}} nsw-section--image-html{{else}} nsw-section--image{{/if}}"{{#unless image-html}} style="background-image: url({{image}});"{{/unless}}>{{/if}}
   {{#if image-html}}<img src="{{image}}" alt="{{imageAlt}}">{{/if}}
   <div class="hero-search">
     <div class="nsw-container">
@@ -31,4 +31,4 @@
       </div>
     </div>
   </div>
-</div>
+{{#if image}}</div>{{/if}}
