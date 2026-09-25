@@ -29,11 +29,6 @@ meta-index: true
 
 <h2 id="usage">Usage</h2>
 <p>Accordions can work well for people who use a service regularly, or who need to perform familiar tasks quickly.</p>
-<p>Only use an accordion if there’s evidence it’s helpful for users to:</p>
-<ul>
-	<li>see an overview of multiple, related sections of content</li>
-	<li>show and hide those sections as needed</li>
-</ul>
 <p>The details based accordion is the default and recommended implementation.</p>
 <h3>Accordion and Show more</h3>
 <ul>
@@ -41,26 +36,34 @@ meta-index: true
   <li><strong>Show more</strong>: reveal one block of supplementary detail tied to a summary.</li>
   <li>Use <a href="/components/show-more/index.html" aria-label="Show more component documentation">Show more</a> when the content is optional supporting detail rather than a set of navigable sections.</li>
 </ul>
-<h3>When to avoid</h3>
-<p>Test your content without an accordion first. Consider if it’s better to:</p>
-<ul>
-	<li>simplify and reduce the amount of content</li>
-	<li>split the content across multiple pages</li>
-	<li>keep the content on a single page, separated by headings</li>
-	<li>use a list of links to let users navigate quickly to specific sections of content</li>
-	<li>use the Tab component for users who need to switch quickly between 2 sections. Accordions push other sections down the page when they open, but tabs do not move which makes it easier to switch.</li>
-</ul>
-<p>Do not:</p>
-<ul>
-	<li>use the accordion if the amount of content it would need to contain will make the page slow to load</li>
-	<li>use accordions to split up a series of questions into sections. Use separate pages instead</li>
-	<li>use with very short content, use lists or paragraphs</li>
-	<li>use with very long content, use tabs or separate pages</li>
-	<li>use an accordion for a single block of supplementary detail. Use Show more instead</li>
-	<li>add any other UI elements within the header</li>
-	<li>use where important information can be hidden and missed</li>
-	<li>use an accordion to shorten a page.</li>
-</ul>
+<h3>Guidance</h3>
+<div class="nsw-grid nsw-m-top-sm">
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--do"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span><span>Do</span></div>
+    <ul class="nsw-m-top-sm">
+      <li>only use an accordion if there’s evidence it’s helpful for users to see an overview of multiple, related sections of content</li>
+      <li>only use an accordion if there’s evidence it’s helpful for users to show and hide those sections as needed</li>
+      <li>test your content without an accordion first and consider if it’s better to simplify and reduce the amount of content</li>
+      <li>consider if it’s better to split the content across multiple pages</li>
+      <li>consider if it’s better to keep the content on a single page, separated by headings</li>
+      <li>consider if it’s better to use a list of links to let users navigate quickly to specific sections of content</li>
+      <li>consider if it’s better to use the Tab component for users who need to switch quickly between 2 sections. Accordions push other sections down the page when they open, but tabs do not move which makes it easier to switch.</li>
+    </ul>
+  </div>
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--dont"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span><span>Don't</span></div>
+    <ul class="nsw-m-top-sm">
+      <li>use the accordion if the amount of content it would need to contain will make the page slow to load</li>
+      <li>use accordions to split up a series of questions into sections. Use separate pages instead</li>
+      <li>use with very short content, use lists or paragraphs</li>
+      <li>use with very long content, use tabs or separate pages</li>
+      <li>use an accordion for a single block of supplementary detail. Use Show more instead</li>
+      <li>add any other UI elements within the header</li>
+      <li>use where important information can be hidden and missed</li>
+      <li>use an accordion to shorten a page.</li>
+    </ul>
+  </div>
+</div>
 
 <h3>Collapse all/Expand all</h3>
 <p>The optional collapse all/expand all functionality allows users to perform the action to all accordions, reducing time and clicks to reach the required information. It can be removed or added as required.</p>

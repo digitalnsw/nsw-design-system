@@ -35,10 +35,10 @@ meta-index: true
 {{#>_docs-example}}
 <div class="nsw-grid">
   <div class="nsw-col nsw-col-md-6">
-    {{>_card model.card-headline-1}}
+    {{>_card model.card-media-2 highlight=true}}
   </div>
   <div class="nsw-col nsw-col-md-6">
-    {{>_card model.card-headline-2}}
+    {{>_card model.card-media-3 highlight=true}}
   </div>
 </div>
 {{/_docs-example}}
@@ -57,32 +57,36 @@ meta-index: true
 </ul>
 
 <h3>How to use</h3>
-<p>Do:</p>
-<ul>
-  <li>consider and choose text and visual elements carefully. Test your cards with minimal content and only add additional content or graphics where they give needed context to the user</li>
-  <li>use headlines that set clear expectations about the content being linked to</li>
-  <li>use one style of card per module, don't mix and match</li>
-  <li>feature one piece of information per card</li>
-  <li>outline the main idea with the minimal possible information, don't overload with information as the card links to more detail.</li>
-  <li>use short, comma-separated tags when more than one category applies. Stick to one or two words per tag to keep the layout clean and easy to scan.</li>
-</ul>
-<p>Do not:</p>
-<ul>
-  <li>mix card styles within the same module</li>
-  <li>overload with information as the card links to more detail</li>
-  <li>add inline text links, the card itself is clickable and should link to a single piece of information, consider using content blocks in this instance</li>
-  <li>use a single card component on its own.</li>
-  <li>use long phrases or full sentences as tags — they create visual clutter and make content harder to scan.</li>
-</ul>
+<p>Cards should only display enough information to give a user context.</p>
 
-<h3>When to avoid</h3>
-<p>Cards should only display enough information to give a user context. Do not use a card layout:</p>
-<ul>
-  <li>to highlight a solo piece of information, consider callout</li>
-  <li>when the content requires in-line or multiple links, consider content blocks</li>
-  <li>when a large amount of text is needed to give users context</li>
-  <li>to anchor link to content lower down on the page, consider in-page navigation.</li>
-</ul>
+<h3>Guidance</h3>
+<div class="nsw-grid nsw-m-top-sm">
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--do"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span><span>Do</span></div>
+    <ul class="nsw-m-top-sm">
+      <li>consider and choose text and visual elements carefully. Test your cards with minimal content and only add additional content or graphics where they give needed context to the user</li>
+      <li>use headlines that set clear expectations about the content being linked to</li>
+      <li>use one style of card per module</li>
+      <li>feature one piece of information per card</li>
+      <li>outline the main idea with the minimal possible information</li>
+      <li>use short, comma-separated tags when more than one category applies. Stick to one or two words per tag to keep the layout clean and easy to scan.</li>
+    </ul>
+  </div>
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--dont"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span><span>Don't</span></div>
+    <ul class="nsw-m-top-sm">
+      <li>mix card styles within the same module</li>
+      <li>overload with information as the card links to more detail</li>
+      <li>add inline text links, the card itself is clickable and should link to a single piece of information, consider using content blocks in this instance</li>
+      <li>use a single card component on its own.</li>
+      <li>use long phrases or full sentences as tags — they create visual clutter and make content harder to scan.</li>
+      <li>use a card layout to highlight a solo piece of information, consider callout</li>
+      <li>use a card layout when the content requires in-line or multiple links, consider content blocks</li>
+      <li>use a card layout when a large amount of text is needed to give users context</li>
+      <li>use a card layout to anchor link to content lower down on the page, consider in-page navigation.</li>
+    </ul>
+  </div>
+</div>
 
 <h2>Building cards</h2>
 <p>Cards are made up of foundation and content elements to show information to users. Some examples of these elements are included in our base card component.</p>
