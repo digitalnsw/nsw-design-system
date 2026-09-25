@@ -38,6 +38,7 @@ const Handlebars = require('handlebars')
 const handlebarsHelpers = require('handlebars-helpers')
 const config = require('./config.json')
 const packageData = require('./package.json')
+const { mapDocumentationRoutes } = require('./build-script/documentation-routes')
 
 const server = browsersync.create()
 
@@ -207,11 +208,6 @@ function metalsmithBuild(callback) {
       refer: false,
       sortBy: 'order',
     },
-    guidancetab: {
-      pattern: config.metalSmith.collection.guidancetab.pattern,
-      refer: false,
-      sortBy: sortByAlpha,
-    },
     about: {
       pattern: config.metalSmith.collection.contentnav.about,
       refer: false,
@@ -222,15 +218,11 @@ function metalsmithBuild(callback) {
       refer: false,
       sortBy: 'order',
     },
-    develop: {
-      pattern: config.metalSmith.collection.contentnav.develop,
-      refer: false,
-      sortBy: 'order',
-    },
+
     utilities: {
       pattern: config.metalSmith.collection.contentnav.utilities,
       refer: false,
-      sortBy: 'order',
+      sortBy: sortByAlpha,
     },
     contribute: {
       pattern: config.metalSmith.collection.contentnav.contribute,
@@ -243,6 +235,7 @@ function metalsmithBuild(callback) {
       sortBy: sortByAlpha,
     },
   }))
+  metalsmith.use(mapDocumentationRoutes)
   metalsmith.use(inplace(config.metalSmith.inplace))
   metalsmith.use(layouts(config.metalSmith.layouts))
   metalsmith.use(cleanBuild)

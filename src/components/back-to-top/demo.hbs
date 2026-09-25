@@ -1,0 +1,40 @@
+---
+title: 'Back to top: Demo & code'
+width: narrow
+page: true
+code-page: true
+no-global-back-to-top: true
+model: json/back-to-top.json
+---
+
+{{#*inline "back-to-top-demo-examples"}}
+{{#if interactive}}
+{{#>_docs-example separated=true}}
+<p>⚠️ Scroll down and then up to reveal the Back to top button.</p>
+<p class="nsw-p-bottom-xl">This live example responds to page scrolling.</p>
+{{>_back-to-top model}}
+{{/_docs-example}}
+{{else}}
+{{#>_docs-example separated=true}}
+<button type="button" class="nsw-button nsw-button--dark nsw-button--flex nsw-back-to-top active" style="position: static; opacity: 1; visibility: visible; transform: none;" tabindex="-1" aria-hidden="true">
+  <span>Back to top</span>
+  <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">north</span>
+</button>
+{{/_docs-example}}
+{{/if}}
+{{/inline}}
+
+{{#>_theme}}
+  {{#>_layout-container}}
+    <h1>{{title}}</h1>
+    {{> back-to-top-demo-examples model=model interactive=true}}
+  {{/_layout-container}}
+
+  {{#>_layout-container brand-light="true"}}
+    {{> back-to-top-demo-examples model=model}}
+  {{/_layout-container}}
+
+  {{#>_layout-container brand-dark="true" invert="true"}}
+    {{> back-to-top-demo-examples model=model}}
+  {{/_layout-container}}
+{{/_theme}}

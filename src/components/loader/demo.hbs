@@ -1,0 +1,32 @@
+---
+title: 'Loader: Demo & code'
+width: narrow
+page: true
+code-page: true
+---
+
+{{#*inline "loader-demo-examples"}}
+  {{#>_docs-example}}
+  <div class="nsw-list nsw-list--16">
+    {{>_loader}}
+    {{>_loader size="lg"}}
+    {{>_loader size="md"}}
+    {{>_loader size="sm"}}
+  </div>
+  {{/_docs-example}}
+{{/inline}}
+
+{{#>_theme}}
+  {{#>_layout-container}}
+    <h1>{{title}}</h1>
+    {{> loader-demo-examples}}
+  {{/_layout-container}}
+
+  {{#>_layout-container brand-light="true"}}
+    {{> loader-demo-examples}}
+  {{/_layout-container}}
+
+  {{#>_layout-container brand-dark="true" invert="true"}}
+    {{> loader-demo-examples}}
+  {{/_layout-container}}
+{{/_theme}}

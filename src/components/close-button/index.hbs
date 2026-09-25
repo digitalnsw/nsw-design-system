@@ -1,6 +1,7 @@
 ---
 title: Close button
 width: narrow
+demo: true
 no-blank: true
 directory: close-button
 intro: A close button is a graphical element used to dismiss or close windows, dialogs, or other UI elements.
@@ -9,36 +10,41 @@ meta-description: A close button is a graphical element used to dismiss or close
 meta-index: true
 ---
 
+{{#>_docs-example}}
+{{>_close-button code="close" sr="Close"}}
+{{/_docs-example}}
+
+<hr class="nsw-m-y-lg">
+
 <p>A close button is a <code>&lt;button&gt;</code> element with the class <code>.nsw-icon-button</code>. We use the 'close' material icon as the X icon. This icon is wrapped in a <code>&lt;span&gt;</code> with the attribute <code>aria-hidden="true"</code>, so screen readers don't read the X icon.</p>
 
 <p>The button also includes a <code>&lt;span&gt;</code> with the <code>.sr-only</code> class to tell screen readers what the button's purpose is.</p>
 
-{{#>_docs-example separated=true showcode=true}}
-{{>_close-button code="close" sr="Close"}}
-{{/_docs-example}}
-{{#>_docs-code}}
-{{>_close-button code="close" sr="Close"}}
-{{/_docs-code}}
+<h3>Guidance</h3>
+<div class="nsw-grid nsw-m-top-sm">
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--do"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span><span>Do</span></div>
+    <ul class="nsw-m-top-sm">
+      <li>wrap the close icon within a <code>&lt;button&gt;</code> element using the <code>.nsw-icon-button</code> class</li>
+      <li>mark the decorative X icon with <code>aria-hidden="true"</code></li>
+      <li>provide a descriptive accessible name using visually hidden text</li>
+      <li>connect the button to its dismissal action before showing it</li>
+    </ul>
+  </div>
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--dont"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span><span>Don't</span></div>
+    <ul class="nsw-m-top-sm">
+      <li>use the X icon alone as the button's accessible name</li>
+      <li>expose the decorative X icon to screen readers</li>
+      <li>show a close button when it cannot perform its intended action</li>
+      <li>use a close button for an action other than dismissing its associated interface element</li>
+    </ul>
+  </div>
+</div>
 
 <h3>Sizing</h3>
 <p>The NSW Design System displays icons at four sizes (20px, 24px, 30px, 36px) depending on their type, use and screen size:</p>
 
-{{#>_docs-example separated=true showcode=true}}
-<div class="nsw-list nsw-list--8">
-  {{>_close-button code="close" sr="Close" size="20"}}
-  {{>_close-button code="close" sr="Close" size="24"}}
-  {{>_close-button code="close" sr="Close" size="30"}}
-  {{>_close-button code="close" sr="Close" size="36"}}
-</div>
-{{/_docs-example}}
-{{#>_docs-code}}
-<div class="nsw-list nsw-list--8">
-  {{>_close-button code="close" sr="Close" size="20"}}
-  {{>_close-button code="close" sr="Close" size="24"}}
-  {{>_close-button code="close" sr="Close" size="30"}}
-  {{>_close-button code="close" sr="Close" size="36"}}
-</div>
-{{/_docs-code}}
 
 <h3>Functionality</h3>
 <p>A close button provides the control for dismissing an associated interface element, but does not provide dismissal functionality itself. Implementers must connect the button to the element and action it controls.</p>
@@ -47,10 +53,3 @@ meta-index: true
 
 <h3>Accessibility</h3>
 <p>All components are responsive and designed to comply with WCAG 2.2 AA accessibility standards. Full compliance depends on using and configuring the components correctly.</p>
-
-<p>Do:</p>
-<ul>
-  <li>Wrap icons within their interactive component</li>
-  <li>Specify if an icon is decorative and informative by assigning the appropriate property.</li>
-  <li>Use descriptive and meaningful titles for informative icons</li>
-</ul>

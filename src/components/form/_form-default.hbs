@@ -5,14 +5,14 @@
 <div class="nsw-form">
   <div class="nsw-form__group">
     {{>_text-input
-      id="form-text-2"
+      id=(append "form-text-2" id-suffix)
       label="Name"
       helper-text="As it appears on your identity document"
     }}
   </div>
   <div class="nsw-form__group">
     {{>_textarea
-      id="form-textarea-2"
+      id=(append "form-textarea-2" id-suffix)
       label="Comment"
       helper-text="Maximum 500 characters"
     }}
@@ -25,20 +25,20 @@
 <div class="nsw-form">
   <div class="nsw-form__group">
     {{>_input-group
-      id="form-input-group-1"
+      id=(append "form-input-group-1" id-suffix)
       label="Search"
     }}
   </div>
   <div class="nsw-form__group">
     {{>_input-group
-      id="form-input-group-icon-1"
+      id=(append "form-input-group-icon-1" id-suffix)
       label="Search"
       icon="search"
     }}
   </div>
   <div class="nsw-form__group">
     {{>_input-group
-      id="form-input-group-icon-2"
+      id=(append "form-input-group-icon-2" id-suffix)
       label="Search"
       icon="search"
       white="true"
@@ -51,9 +51,9 @@
 {{#>_docs-example separated=true}}
 <div class="nsw-form">
   <div class="nsw-form__group">
-    <label class="nsw-form__label" for="form-predictive-text-1">Suburb</label>
+    <label class="nsw-form__label" for="form-predictive-text-1{{id-suffix}}">Suburb</label>
     <div class="nsw-form__predictive">
-      <input class="nsw-form__input" type="text" id="form-predictive-text-1" name="form-predictive-text-1" value="Horn" aria-autocomplete="list" autocomplete="off">
+      <input class="nsw-form__input" type="text" id="form-predictive-text-1{{id-suffix}}" name="form-predictive-text-1{{id-suffix}}" value="Horn" aria-autocomplete="list" autocomplete="off">
       <ul class="nsw-form__predictive-list">
         <li><a href="#"><span>Horn</span>sby</a></li>
         <li><a href="#"><span>Horn</span>sby Heights</a></li>
@@ -65,7 +65,7 @@
   <div class="nsw-form__group">
     <div class="nsw-form__predictive">
       {{>_input-group
-        id="form-predictive-group-1"
+        id=(append "form-predictive-group-1" id-suffix)
         label="Search"
         value="Tran"
         predictive=true
@@ -81,7 +81,7 @@
   <div class="nsw-form__group">
     <div class="nsw-form__predictive">
       {{>_input-group
-        id="form-predictive-group-icon-1"
+        id=(append "form-predictive-group-icon-1" id-suffix)
         label="Search"
         value="Govern"
         icon="search"
@@ -104,7 +104,7 @@
 <div class="nsw-form">
   <div class="nsw-form__group">
     {{>_date
-      id="form-date-2"
+      id=(append "form-date-2" id-suffix)
       label="Date of birth"
       helper-text="For example 08 12 1990"
     }}
@@ -117,7 +117,7 @@
 <div class="nsw-form">
   <div class="nsw-form__group">
     {{>_select model.select
-      id="form-select-2"
+      id=(append "form-select-2" id-suffix)
       label="Region"
       helper-text="Your region of residence"
     }}
@@ -135,13 +135,13 @@
         <span class="nsw-form__helper">Select all that applies to you</span>
       </legend>
       {{>_checkbox
-        id="form-checkbox-multi-2-a"
-        name="form-checkbox-multi-2"
+        id=(append "form-checkbox-multi-2-a" id-suffix)
+        name=(append "form-checkbox-multi-2" id-suffix)
         label="Customer Service"
       }}
       {{>_checkbox
-        id="form-checkbox-multi-2-b"
-        name="form-checkbox-multi-2"
+        id=(append "form-checkbox-multi-2-b" id-suffix)
+        name=(append "form-checkbox-multi-2" id-suffix)
         label="Communities and Justice"
       }}
     </fieldset>
@@ -159,13 +159,13 @@
         <span class="nsw-form__helper">Select closest match</span>
       </legend>
       {{>_radio
-        id="form-radio-2-a"
-        name="form-radio-2"
+        id=(append "form-radio-2-a" id-suffix)
+        name=(append "form-radio-2" id-suffix)
         label="NSW Government"
       }}
       {{>_radio
-        id="form-radio-2-b"
-        name="form-radio-2"
+        id=(append "form-radio-2-b" id-suffix)
+        name=(append "form-radio-2" id-suffix)
         label="Business and Economy"
       }}
     </fieldset>

@@ -1,0 +1,25 @@
+---
+title: 'Main navigation: Demo & code'
+page: true
+code-page: true
+model:
+  basic: json/main-nav.json
+  mega: json/main-nav-mega.json
+---
+
+{{#*inline "main-nav-demo-examples"}}
+  <h3>Mega navigation</h3>
+  {{#> _docs-example full-bleed=true}}
+  {{>_masthead content="#" nav="#main-nav"}}
+  {{>_header header-title="Premier & Cabinet"}}
+  {{>_main-nav model.mega}}
+  {{/_docs-example}}
+{{/inline}}
+
+{{#>_theme}}
+  {{#>_layout-container}}
+    <h1>{{title}}</h1>
+    {{> main-nav-demo-examples}}
+  {{/_layout-container}}
+
+{{/_theme}}

@@ -1,7 +1,8 @@
 ---
 title: Popover
 width: narrow
-tabs: true
+demo: true
+variants: true
 directory: popover
 intro: A floating box controlled by a trigger element.
 theme: true
@@ -10,10 +11,6 @@ meta-index: true
 model: ../../components/popover/json/popover.json
 ---
 
-<h2 class="nsw-p-top-0">Position</h2>
-<p>Places the Popover relative to the trigger element.</p>
-
-<h3 class="h4 nsw-p-0">Top</h3>
 {{#>_docs-example separated="true"}}
 <div class="nsw-list nsw-list--8">
   {{#each model.top}}
@@ -22,41 +19,46 @@ model: ../../components/popover/json/popover.json
 </div>
 {{/_docs-example}}
 
-<h3 class="h4 nsw-p-0">Right</h3>
-{{#>_docs-example separated="true"}}
-<div class="nsw-list nsw-list--8">
-  {{#each model.right}}
-{{>_popover style="dark-outline" icon="info" text=this id=@key position=@key gap="10"}}
-  {{/each}}
+<hr class="nsw-m-y-lg">
+
+<p>The popover component is used to reveal additional content and functionalities.</p>
+
+<h3>Guidance</h3>
+<div class="nsw-grid nsw-m-top-sm">
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--do"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span><span>Do</span></div>
+    <ul class="nsw-m-top-sm">
+      <li>trigger a popover's visibility with a control element, for example, a button</li>
+      <li>keep popovers actively open until a user dismisses them by pressing the Esc key, clicking outside the popover or performing another action that closes the popover.</li>
+    </ul>
+  </div>
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--dont"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span><span>Don't</span></div>
+    <ul class="nsw-m-top-sm">
+      <li>hide important information inside of a popover that the user may need in order to complete a task or workflow</li>
+      <li>use on non-interactive elements (for example, div, span, p)</li>
+      <li>use if the popover needs take up a large amount of the size of the screen</li>
+      <li>have multiple popovers open at the same time</li>
+      <li>nest one popover within another popover.</li>
+    </ul>
+  </div>
 </div>
-{{/_docs-example}}
 
-<h3 class="h4 nsw-p-0">Bottom</h3>
-{{#>_docs-example separated="true"}}
-<div class="nsw-list nsw-list--8">
-  {{#each model.bottom}}
-{{>_popover style="dark-outline" icon="info" text=this id=@key position=@key gap="10"}}
-  {{/each}}
-</div>
-{{/_docs-example}}
+<h2>Accessibility</h2>
+<p>All components are responsive and designed to comply with WCAG 2.2 AA accessibility standards. Full compliance depends on using and configuring the components correctly.</p>
 
-<h3 class="h4 nsw-p-0">Left</h3>
-{{#>_docs-example separated="true"}}
-<div class="nsw-list nsw-list--8">
-  {{#each model.left}}
-{{>_popover style="dark-outline" icon="info" text=this id=@key position=@key gap="10"}}
-  {{/each}}
-</div>
-{{/_docs-example}}
+<h3>Popover keyboard interaction and focus</h3>
 
-<h2>Offset</h2>
+<ul>
+  <li>Opens via the <code>Enter</code> or <code>Space</code> keys, or by clicking the trigger element.</li>
+  <li>On open, focus moves into the Popover container to navigate elements inside with the <code>Tab</code> key.</li>
+  <li>Dismissed by tabbing out of the Popover, pressing the <code>Escape</code> key, or clicking outside.</li>
+  <li>When dismissed, focus returns to the trigger element.</li>
+</ul>
 
-<p>A data-attribute <code>data-popover-gap</code> argument that offsets the distance between the trigger and Popover.</p>
-
-{{#>_docs-example separated="true"}}
-<div class="nsw-list nsw-list--8">
-  {{#each model.gap}}
-{{>_popover style="dark-outline" icon="info" text="Open Top" id=this position="top" gap=this}}
-  {{/each}}
-</div>
-{{/_docs-example}}
+<h3>ARIA attributes</h3>
+<ul>
+  <li>The trigger element has <a class="nsw-link nsw-link--icon" href="https://www.w3.org/TR/wai-aria/#aria-expanded" target="_blank" rel="noopener noreferrer" aria-label="aria-expanded (opens in a new tab)"><span><code>aria-expanded</code></span><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">open_in_new</span></a> set to <code>true</code> or <code>false</code> based on the open state.</li>
+  <li>The trigger element has <a class="nsw-link nsw-link--icon" href="https://www.w3.org/TR/wai-aria/#aria-controls" target="_blank" rel="noopener noreferrer" aria-label="aria-controls (opens in a new tab)"><span><code>aria-controls</code></span><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">open_in_new</span></a> set to the <code>id</code> of the Popover element.</li>
+  <li>The trigger element has <a class="nsw-link nsw-link--icon" href="https://www.w3.org/TR/wai-aria/#aria-haspopup" target="_blank" rel="noopener noreferrer" aria-label="aria-haspopup (opens in a new tab)"><span><code>aria-haspopup</code></span><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">open_in_new</span></a> set to the suitable <code>role</code> attribute of the Popover, depending on the type of content.</li>
+</ul>

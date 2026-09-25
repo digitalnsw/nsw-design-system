@@ -1,0 +1,20 @@
+---
+title: 'Masthead: Demo & code'
+page: true
+code-page: true
+---
+
+{{#*inline "masthead-demo-examples"}}
+  <h3>Default</h3>
+  {{#>_docs-example full-bleed="true" separated="true"}}{{>_masthead content="#" nav="#"}}{{/_docs-example}}
+  <h3>Light</h3>
+  {{#>_docs-example full-bleed="true" separated="true"}}{{>_masthead content="#" nav="#" masthead-theme="light"}}{{/_docs-example}}
+{{/inline}}
+
+{{#>_theme}}
+  {{#>_layout-container}}
+    <h1>{{title}}</h1>
+    {{> masthead-demo-examples}}
+  {{/_layout-container}}
+
+{{/_theme}}

@@ -1,0 +1,55 @@
+---
+title: 'Quick exit: Demo & code'
+page: true
+code-page: true
+model: json/quick-exit.json
+---
+
+{{#*inline "quick-exit-demo-examples"}}
+{{#>_docs-example}}{{>_quick-exit component id=component-id enableEsc=enable-esc}}{{/_docs-example}}
+
+<h2>Implementation examples</h2>
+
+<h3>Example 1</h3>
+<ul class="nsw-m-bottom-md">
+  <li>Cloaking enabled</li>
+  <li>Double-Esc activation enabled</li>
+</ul>
+{{#>_docs-example}}
+<button
+  class="nsw-button nsw-button--{{button-style}}"
+  data-module="quick-exit"
+  data-options='{"safeUrl": "{{model.safeUrl}}", "enableEsc": true, "enableCloak": true}'
+  type="button"
+>View banner</button>
+{{/_docs-example}}
+
+<h3>Example 2</h3>
+<ul class="nsw-m-bottom-md">
+  <li>Cloaking disabled</li>
+  <li>Double-Esc activation disabled</li>
+</ul>
+{{#>_docs-example}}
+<button
+  class="nsw-button nsw-button--{{button-style}}"
+  data-module="quick-exit"
+  data-options='{"safeUrl": "{{model.safeUrl}}", "enableEsc": false, "enableCloak": false}'
+  type="button"
+>View banner</button>
+{{/_docs-example}}
+{{/inline}}
+
+{{#>_theme}}
+  {{#>_layout-container}}
+    <h1>{{title}}</h1>
+    {{> quick-exit-demo-examples component=model component-id="nsw-quick-exit-default" enable-esc=true button-style="dark"}}
+  {{/_layout-container}}
+
+  {{#>_layout-container brand-light="true"}}
+    {{> quick-exit-demo-examples component=model component-id="nsw-quick-exit-brand-light" enable-esc=false button-style="dark"}}
+  {{/_layout-container}}
+
+  {{#>_layout-container brand-dark="true" invert="true"}}
+    {{> quick-exit-demo-examples component=model component-id="nsw-quick-exit-inverted" enable-esc=false button-style="light"}}
+  {{/_layout-container}}
+{{/_theme}}

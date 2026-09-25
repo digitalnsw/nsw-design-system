@@ -1,7 +1,8 @@
 ---
 title: Callout
 width: narrow
-tabs: true
+demo: true
+variants: true
 directory: callout
 intro: Callouts are a snippet of information that draws attention to important content.
 theme: true
@@ -13,7 +14,42 @@ meta-description: Callouts are a snippet of information that draws attention to 
 meta-index: true
 ---
 
-{{#>_docs-example}}{{>_callout model.callout}}{{/_docs-example}}
+{{#>_docs-example}}
+{{>_callout model.callout}}
+{{/_docs-example}}
 
-<h3>With pictogram</h3>
-{{#>_docs-example separated="true"}}{{>_callout model.callout-pictogram}}{{/_docs-example}}
+<hr class="nsw-m-y-lg">
+
+<h2>Usage</h2>
+<p>Callouts are text excerpts, used as a visual cue to draw attention to content. </p>
+<p>Callouts should be used sparingly to maintain effectiveness, consider weaving the information into the introduction or as part of the instructions you're creating.</p>
+
+<h3>Guidance</h3>
+<div class="nsw-grid nsw-m-top-sm">
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--do"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span><span>Do</span></div>
+    <ul class="nsw-m-top-sm">
+      <li>use callouts to call attention to important pieces of information</li>
+      <li>use callouts to supplement a point in the main text</li>
+      <li>use callouts to supply information that applies in special cases</li>
+      <li>use callouts to link to a relevant resource</li>
+    </ul>
+  </div>
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--dont"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span><span>Don't</span></div>
+    <ul class="nsw-m-top-sm">
+      <li>add multiple callout boxes to a topic. This dilutes the importance of the callout and distracts the user.</li>
+      <li>create a callout with content that is not relevant to the user as your reader might then ignore future callouts.</li>
+    </ul>
+  </div>
+</div>
+
+<h2>How this component works</h2>
+<p>Callouts can contain an icon, a title and a message. Callouts should be short, easy to scan, informative and clear.</p>
+
+<h3>Callouts with pictograms</h3>
+<p>Place an SVG or image inside <code>nsw-callout__pictogram</code>. The pictogram container provides consistent sizing and spacing, so the pictogram can be changed without adding page- or template-specific styles.</p>
+<p>Pictograms in callouts visually reinforce the message and are hidden from assistive technologies to avoid repeating the text. Do not rely on the pictogram alone to communicate meaning. When using an inline SVG, use the <code>--nsw-pictogram-primary</code> and <code>--nsw-pictogram-secondary</code> custom properties so it responds to themes and inverted sections. See the <a href="/core/pictograms/index.html">Pictograms style page</a> for more information.</p>
+
+<h2>Accessibility</h2>
+<p>All components are responsive and designed to comply with WCAG 2.2 AA accessibility standards. Full compliance depends on using and configuring the components correctly.</p>

@@ -1,0 +1,26 @@
+---
+title: 'Link list: Demo & code'
+width: narrow
+page: true
+code-page: true
+model: json/link-list.json
+---
+
+{{#*inline "link-list-demo-examples"}}
+  {{#>_docs-example}}{{>_link-list model ext=true}}{{/_docs-example}}
+{{/inline}}
+
+{{#>_theme}}
+  {{#>_layout-container}}
+    <h1>{{title}}</h1>
+    {{> link-list-demo-examples}}
+  {{/_layout-container}}
+
+  {{#>_layout-container brand-light="true"}}
+    {{> link-list-demo-examples}}
+  {{/_layout-container}}
+
+  {{#>_layout-container brand-dark="true" invert="true"}}
+    {{> link-list-demo-examples}}
+  {{/_layout-container}}
+{{/_theme}}

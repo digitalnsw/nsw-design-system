@@ -1,6 +1,7 @@
 ---
 title: Masthead
-tabs: true
+demo: true
+variants: true
 directory: masthead
 core: true
 intro: The NSW Government network masthead displays across the top of all NSW Government sites. It helps users see which service they are using.
@@ -9,7 +10,48 @@ meta-description: The NSW Government network masthead displays across the top of
 meta-index: true
 ---
 
-<h3>Default</h3>
 {{#>_docs-example}}{{>_masthead content="#" nav="#"}}{{/_docs-example}}
-<h3>Light</h3>
-{{#>_docs-example}}{{>_masthead content="#" nav="#" masthead-theme="light"}}{{/_docs-example}}
+
+<hr class="nsw-m-y-lg">
+
+<h2>Usage</h2>
+<p>The Masthead clearly identifies your site as part of the NSW Government. The Masthead component includes a Skip Link accessibility feature that allows users to jump to the main content of the page.</p>
+
+<p>Depending on your Brand classification there are rules for which Masthead should be used:</p>
+
+<h3>Guidance</h3>
+<div class="nsw-grid nsw-m-top-sm">
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--do"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span><span>Do</span></div>
+    <ul class="nsw-m-top-sm">
+      <li>display the Masthead across the top of all NSW Government sites</li>
+      <li>prefer the Default Masthead for Masterbrand non-corporate and co-brand sites, or use the Light Masthead if Blue 01 is not suitable with the brand colours</li>
+      <li>conditionally render the screen-reader-only Quick Exit announcement message directly in the Masthead template, immediately before the Skip Link container. This ensures the message is available without JavaScript</li>
+      <li>ensure the Masthead template includes the standard Skip Link navigation in the correct position so the Quick Exit script can prepend its announcement message reliably.</li>
+    </ul>
+  </div>
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--dont"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span><span>Don't</span></div>
+    <ul class="nsw-m-top-sm">
+      <li>use a Masthead other than the Default Masthead for Masterbrand corporate sites; the Default maintains a strong and consistent connection to NSW Government</li>
+      <li>place another interactive child before the Skip Link</li>
+      <li>remove existing skip links when integrating the Quick Exit component</li>
+      <li>rely on the Quick Exit script's automatic announcement as the primary method; treat it as progressive enhancement</li>
+      <li>add a separate "skip to Quick Exit" link when using the Quick Exit component on a page.</li>
+    </ul>
+  </div>
+</div>
+
+
+<h3>Skip Link</h3>
+
+<p>The Skip Link component helps keyboard-only and screen-reader users skip to the main content on a page, this includes skipping over the header and navigation. The Skip Link is visually hidden until a keyboard press focuses and activates it.</p>
+
+<p><strong>Important:</strong> In a standard setup there is no special logic to make the skip link the first focussable element &mdash; this comes from its position in the DOM.</p>
+
+<h4>Quick Exit integration</h4>
+
+<p>For full details on how the Quick Exit banner behaves, including placement and keyboard shortcuts, see the <a href="/components/quick-exit/" aria-label="Quick Exit component documentation">Quick Exit component</a>. Use that documentation alongside this Masthead guidance when implementing safety controls on your site.</p>
+
+<h2>Accessibility</h2>
+<p>All components are responsive and designed to comply with WCAG 2.2 AA accessibility standards. Full compliance depends on using and configuring the components correctly.</p>

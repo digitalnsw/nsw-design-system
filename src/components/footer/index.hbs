@@ -1,6 +1,7 @@
 ---
 title: Footer
-tabs: true
+demo: true
+variants: true
 directory: footer
 core: true
 intro: The footer displays across the bottom of all NSW Government websites.
@@ -11,61 +12,59 @@ meta-description: The footer displays across the bottom of all NSW Government we
 meta-index: true
 ---
 
-<h3>Default</h3>
 {{#>_docs-example}}
 {{>_footer model}}
 {{/_docs-example}}
 
-<h3>Brand palette</h3>
-<div class="nsw-tabs js-tabs">
-  <ul class="nsw-tabs__list">
-    <li><a href="#footer-brand-dark" class="js-tabs-fixed">Brand Dark</a></li>
-    <li><a href="#footer-brand-light" class="js-tabs-fixed">Brand Light</a></li>
-    <li><a href="#footer-custom" class="js-tabs-fixed">Custom</a></li>
-  </ul>
-  <section id="footer-brand-dark" class="nsw-tabs__content nsw-tabs__content--side-flush">
-{{#>_docs-example}}
-{{>_footer model theme="dark" sectionLinks=""}}
-{{/_docs-example}}
-  </section>
-  <section id="footer-brand-light" class="nsw-tabs__content nsw-tabs__content--side-flush">
-{{#>_docs-example}}
-{{>_footer model theme="light" sectionLinks=""}}
-{{/_docs-example}}
-  </section>
-  <section id="footer-custom" class="nsw-tabs__content nsw-tabs__content--side-flush">
-{{#>_docs-example}}
-<style type="text/css">
-  .nsw-footer--custom {
-    --nsw-grey-01: var(--nsw-palette-purple-01);
-  }
-</style>
-{{>_footer model theme="custom" sectionLinks=""}}
-{{/_docs-example}}
-  </section>
-</div>
+<hr class="nsw-m-y-lg">
 
-<h3>Social</h3>
-<div class="nsw-tabs js-tabs">
-  <ul class="nsw-tabs__list">
-    <li><a href="#footer-social-default" class="js-tabs-fixed">Default</a></li>
-    <li><a href="#footer-social-dark" class="js-tabs-fixed">Brand Dark</a></li>
-    <li><a href="#footer-social-light" class="js-tabs-fixed">Brand Light</a></li>
-  </ul>
-  <section id="footer-social-default" class="nsw-tabs__content nsw-tabs__content--side-flush">
-{{#>_docs-example}}
-{{>_footer model social="true" sectionLinks=""}}
-{{/_docs-example}}
-  </section>
-  <section id="footer-social-dark" class="nsw-tabs__content nsw-tabs__content--side-flush">
-{{#>_docs-example}}
-{{>_footer model theme="dark" social="true" sectionLinks=""}}
-{{/_docs-example}}
-  </section>
-  <section id="footer-social-light" class="nsw-tabs__content nsw-tabs__content--side-flush">
-{{#>_docs-example}}
-{{>_footer model theme="light" social="true" sectionLinks=""}}
-{{/_docs-example}}
-  </section>
+<h2>Usage</h2>
+<p>To be used across the bottom of all NSW Government websites.</p>
+<p>Use the footer to provide links to content that are separate from the main navigation but that are relevant to the entire site and platform. For example: About us, Privacy statement, Terms of use, Accessibility, Legal content and contact information and links to social media.</p>
+<h3>Guidance</h3>
+<div class="nsw-grid nsw-m-top-sm">
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--do"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span><span>Do</span></div>
+    <ul class="nsw-m-top-sm">
+      <li>only use optional section links where they assist the user</li>
+      <li>use a copyright statement that is specific to your agency.</li>
+    </ul>
+  </div>
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--dont"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span><span>Don't</span></div>
+    <ul class="nsw-m-top-sm">
+      <li>show optional section links where they do not assist the user.</li>
+    </ul>
+  </div>
 </div>
+<h3>Masterbrand corporate</h3>
+<p>Masterbrand corporate use the Default Footer (Grey 01) to maintain a strong and consistent connection to NSW Government.</p>
 
+<h3>Masterbrand non-corporate, co-brand and independent</h3>
+<p>Masterbrand non-corporate, co-brand and independent is preferred to use the Default, however can also use the Brand palette variant to utilise a different brand colour.</p>
+
+<h3>Endorsed and stand-alone</h3>
+<p>Endorsed and stand-alone can utilise the Brand palette variant to apply a custom colour as desired. </p>
+
+<h2>Component anatomy</h2>
+
+<p><strong>Mega footer (optional)</strong><br />
+A section for additional internal and external links to help users continue their journey.</p>
+
+<p><strong>Acknowledgement of Country</strong><br />
+The Acknowledgement of Country pays respect to the First Peoples of NSW.</p>
+
+<p><strong>Footer links (optional)</strong><br />
+Content that sits outside the main navigation but that is relevant to the entire site and platform.</p>
+
+<p><strong>Copyright</strong><br />
+A required statement that applies to all pages of the site.</p>
+
+<p><strong>Social icons (optional)</strong><br />
+Links to the organisation's official social media accounts.</p>
+
+<p><strong>Attribution text (optional)</strong><br />
+A short note to acknowledge the team, organisation or system behind the product.</p>
+
+<h2>Accessibility</h2>
+<p>All components are responsive and designed to comply with WCAG 2.2 AA accessibility standards. Full compliance depends on using and configuring the components correctly.</p>

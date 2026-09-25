@@ -1,7 +1,7 @@
 ---
 title: Pagination
 width: narrow
-tabs: true
+demo: true
 directory: pagination
 intro: Pagination breaks down large amounts of content across a series of pages.
 theme: true
@@ -13,10 +13,37 @@ model:
 ---
 
 {{#>_docs-example}}
-{{>_pagination model.pagination}}
+{{>_pagination model.pagination active="1"}}
 {{/_docs-example}}
 
-<h3>Disabled and active states</h3>
-{{#>_docs-example}}
-{{>_pagination model.pagination disabled="true" active="1"}}
-{{/_docs-example}}
+<hr class="nsw-m-y-lg">
+
+<h2>Usage</h2>
+<p>Pagination allows users to see total number of pages, which page they are viewing, and how to navigate to other pages.</p>
+<h3>Guidance</h3>
+<div class="nsw-grid nsw-m-top-sm">
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--do"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span><span>Do</span></div>
+    <ul class="nsw-m-top-sm">
+      <li>use pagination to separate large lists of content, such as search results, into smaller lists that are easier to interact with. Showing content on several pages prevents your content from becoming too long and overwhelming</li>
+      <li>consider using pagination when a listing exceeds 10 results. Letting the user know on which page a particular piece of information is available makes it easier for them to find it again</li>
+      <li>place pagination at the bottom of the content list to give users visibility and flexibility to move throughout the pages</li>
+      <li>allow users to select a page number to go to that page.</li>
+    </ul>
+  </div>
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--dont"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span><span>Don't</span></div>
+    <ul class="nsw-m-top-sm">
+      <li>hide the first or last page number</li>
+      <li>omit next and back controls that allow users to move forward and backward through the pages</li>
+      <li>leave the user's current page unhighlighted.</li>
+    </ul>
+  </div>
+</div>
+
+<h2>How this component works</h2>
+<p><strong>Disabled and active states</strong></p>
+<p>Pagination links are customizable for different circumstances. Use <code>.disabled</code> for links that appear un-clickable and <code>.active</code> to indicate the current page.</p>
+
+<h2>Accessibility</h2>
+<p>All components are responsive and designed to comply with WCAG 2.2 AA accessibility standards. Full compliance depends on using and configuring the components correctly.</p>

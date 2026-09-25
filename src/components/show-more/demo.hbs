@@ -1,0 +1,38 @@
+---
+title: 'Show more: Demo & code'
+width: narrow
+page: true
+code-page: true
+model: json/show-more.json
+---
+
+{{#*inline "show-more-demo-examples"}}
+<h3>Supplementary content disclosure</h3>
+{{#>_docs-example}}
+  {{>_show-more supplementary id=false}}
+{{/_docs-example}}
+
+<h3>Multiple supplementary disclosures with distinct context</h3>
+{{#>_docs-example}}
+  {{#each model.multiple}}
+    <div{{#unless @first}} class="nsw-m-top-md"{{/unless}}>
+      {{>_show-more this id=false}}
+    </div>
+  {{/each}}
+{{/_docs-example}}
+{{/inline}}
+
+{{#>_theme}}
+  {{#>_layout-container}}
+    <h1>{{title}}</h1>
+    {{> show-more-demo-examples supplementary=model.supplementary}}
+  {{/_layout-container}}
+
+  {{#>_layout-container brand-light="true"}}
+    {{> show-more-demo-examples supplementary=model.supplementary}}
+  {{/_layout-container}}
+
+  {{#>_layout-container brand-dark="true" invert="true"}}
+    {{> show-more-demo-examples supplementary=model.supplementary}}
+  {{/_layout-container}}
+{{/_theme}}

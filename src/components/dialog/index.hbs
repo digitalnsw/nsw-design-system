@@ -1,7 +1,8 @@
 ---
 title: Dialog
 width: narrow
-tabs: true
+demo: true
+variants: true
 directory: dialog
 intro: Dialogs make a user stop and think by presenting them with a critical action or piece of information required to continue.
 theme: true
@@ -12,14 +13,58 @@ model:
     dialog-dismissible: json/dialog-dismissible.json
 ---
 
-<h3>Transactional</h3>
-{{#>_docs-example}}{{>_dialog model.dialog-transactional}}{{/_docs-example}}
+{{#>_docs-example}}
+{{>_dialog model.dialog-transactional id="index-transactional"}}
+{{/_docs-example}}
 
-<h3>Single call to action</h3>
-{{#>_docs-example}}{{>_dialog model.dialog-single-cta}}{{/_docs-example}}
+<hr class="nsw-m-y-lg">
 
-<h3>Danger</h3>
-{{#>_docs-example}}{{>_dialog model.dialog-danger}}{{/_docs-example}}
+<h2>Usage</h2>
+<p>Dialogs make a user stop and think by presenting them with a critical action or piece of information required to continue.</p>
+<h3>Guidance</h3>
+<div class="nsw-grid nsw-m-top-sm">
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--do"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span><span>Do</span></div>
+    <ul class="nsw-m-top-sm">
+      <li>use dialogs to notify a user of an immediate response required to continue</li>
+      <li>use dialogs to confirm a user's action when it cannot be undone</li>
+      <li>use dialogs to notify a user of urgent information that affects their current process</li>
+      <li>ensure the headline and call to actions are clear and reflect the action or task</li>
+      <li>clearly explain the potential consequences of the action</li>
+      <li>use danger dialogs for destructive or irreversible actions</li>
+      <li>when required, give the user an option to close the dialog with no change</li>
+      <li>use sparingly and only when necessary. Overuse can cause disruption to the user</li>
+    </ul>
+  </div>
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--dont"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span><span>Don't</span></div>
+    <ul class="nsw-m-top-sm">
+      <li>use dialogs to display simple alerts, consider in-page alerts</li>
+      <li>use dialogs to capture user details, consider simple forms</li>
+      <li>use dialogs to display large amounts of information</li>
+    </ul>
+  </div>
+</div>
 
-<h3>Dismissible</h3>
-{{#>_docs-example}}{{>_dialog model.dialog-dismissible}}{{/_docs-example}}
+<h3>Types of dialogs</h3>
+<ul>
+	<li><strong>Transactional</strong> - alert a user to urgent information they must acknowledge before continuing</li>
+	<li><strong>Single call to action</strong> - when a single acknowledgement is required from the user</li>
+	<li><strong>Danger</strong> - alert a user to a destructive or irreversible action they must confirm before continuing</li>
+	<li><strong>Dismissible</strong> - when an action does not need to be selected and the user can return to the previous state with no change</li>
+</ul>
+
+<h3>Dismissible vs non-dismissible</h3>
+
+<p>Dismissible dialogs allow a user to close the dialog with no action taken via a close button in the top right corner or clicking outside the dialog container. Non-dismissible dialogs do not have a close button and a user must select a call to action button in order to proceed.</p>
+
+
+<h2>Accessibility</h2>
+<p>All components are responsive and designed to comply with WCAG 2.2 AA accessibility standards. Full compliance depends on using and configuring the components correctly.</p>
+
+<h3>Ensuring compliance through usage</h3>
+
+<h4>Consistent help</h4>
+<p>When using the Dialog component in your project, focus on creating a smooth, accessible experience by implementing it thoughtfully within your design flow. As the Dialog will automatically handle focus management, ensure any actions leading to the Dialog's opening are intuitive and necessary for your users. Use clear and concise text for any buttons or links within the Dialog to guide users seamlessly through the interaction.</p>
+<p>If the Dialog contains forms or complex choices, provide logical steps that align with the user journey, making it easy to understand and complete actions. Ensure the Dialog's purpose and content are directly relevant to the task at hand, allowing users to engage with the Dialog naturally and exit smoothly.</p>
+<p>This approach will create a cohesive, accessible experience that feels effortless to navigate.</p>

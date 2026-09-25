@@ -1,6 +1,6 @@
 ---
 title: Main navigation
-tabs: true
+demo: true
 directory: main-nav
 intro: Orientates a user and helps them move through the site.
 theme: true
@@ -12,22 +12,40 @@ meta-description: Orientates a user and helps them move through the site.
 meta-index: true
 ---
 
-<div class="nsw-in-page-alert nsw-in-page-alert--info">
-   <div class="nsw-in-page-alert__content">
-    <p>The main navigation component is best viewed in new window.</p>
-  </div>
-</div>
-
-<h3>Default</h3>
-{{#> _docs-iframe }}
+{{#> _docs-iframe compact=true }}
 {{>_masthead content="#" nav="#main-nav"}}
 {{>_header header-title="Premier & Cabinet"}}
 {{>_main-nav model.basic}}
 {{/_docs-iframe}}
 
-<h3>Mega Nav</h3>
-{{#> _docs-iframe }}
-{{>_masthead content="#" nav="#main-nav"}}
-{{>_header header-title="Premier & Cabinet"}}
-{{>_main-nav model.mega}}
-{{/_docs-iframe}}
+<hr class="nsw-m-y-lg">
+
+<h2>Usage</h2>
+<p>The main navigation works closely with your Header to orientate users with your product or service.</p>
+
+<h3>Guidance</h3>
+<div class="nsw-grid nsw-m-top-sm">
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--do"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span><span>Do</span></div>
+    <ul class="nsw-m-top-sm">
+      <li>use the main navigation to show the top level of your information architecture (IA)</li>
+      <li>keep the main navigation consistent across all pages</li>
+      <li>consider using a mega menu to give users access to deeper levels of content when the site has more than 1 level of navigation</li>
+      <li>use side navigation to display additional levels of content when the main navigation does not use a mega menu.</li>
+    </ul>
+  </div>
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--dont"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span><span>Don't</span></div>
+    <ul class="nsw-m-top-sm">
+      <li>include a large number of items in the horizontal main navigation.</li>
+    </ul>
+  </div>
+</div>
+
+<p><strong>Mega menu</strong></p>
+<p>The mega menu allows you to expand a selected navigation item (indicated by a chevron) to show the children.</p>
+<p><strong>Smaller devices</strong></p>
+<p>On smaller devices, the main navigation displays as a hamburger menu, where all levels are available.</p>
+
+<h2>Accessibility</h2>
+<p>All components are responsive and designed to comply with WCAG 2.2 AA accessibility standards. Full compliance depends on using and configuring the components correctly.</p>

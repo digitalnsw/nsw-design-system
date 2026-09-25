@@ -1,7 +1,8 @@
 ---
 title: Cards
 width: wide
-tabs: true
+demo: true
+variants: true
 directory: card
 intro: Cards group related content or tasks to make it easier for users to scan, read, and find information.
 theme: true
@@ -31,211 +32,87 @@ meta-description: Cards group related content or tasks to make it easier for use
 meta-index: true
 ---
 
-
-<h3>Headline only</h3>
-<div class="nsw-show-lg">
-  <div class="nsw-grid">
-    <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
-      <h4>White</h4>
-    </div>
-    <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
-      <h4>Brand Light</h4>
-    </div>
-    <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
-      <h4>Brand Dark</h4>
-    </div>
-  </div>
-</div>
-
 {{#>_docs-example}}
 <div class="nsw-grid">
-  <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
-    {{>_card model.card-headline-1}}
+  <div class="nsw-col nsw-col-md-6">
+    {{>_card model.card-media-2 highlight=true}}
   </div>
-  <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
-    {{>_card model.card-headline-2 theme="light"}}
-  </div>
-  <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
-    {{>_card model.card-headline-3 theme="dark"}}
-  </div>
-</div>
-<div class="nsw-grid">
-  <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
-    {{>_card model.card-headline-4 highlight=true}}
+  <div class="nsw-col nsw-col-md-6">
+    {{>_card model.card-media-3 highlight=true}}
   </div>
 </div>
 {{/_docs-example}}
 
-<h3>Headline and copy</h3>
-<div class="nsw-show-lg">
-  <div class="nsw-grid">
-    <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
-      <h4>White</h4>
-    </div>
-    <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
-      <h4>Brand Light</h4>
-    </div>
-    <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
-      <h4>Brand Dark</h4>
-    </div>
+<hr class="nsw-m-y-lg">
+
+<h2>Usage</h2>
+<p>Use card layouts to present a high-level summary of content related to a single topic for users to navigate to.</p>
+<p>Cards group information into meaningful sections, providing concise information in a condensed space to allow users to distinguish between content and find information easily. The information in a card outlines the main idea of a product, service, or piece of information, allowing a user to click through for further information.</p>
+
+<h3>Card types</h3>
+<p>Cards are styled according to their purpose:</p>
+<ul>
+  <li><strong>Highlight cards</strong> - Use to highlight important content of a related topic or area. For example, to draw attention to priority or key content on a Homepage.</li>
+  <li><strong>Content cards</strong> - Use to display all or larger groups of content options to your user. For example, on landing pages where it is used to show all content areas within that section of the site.</li>
+</ul>
+
+<h3>How to use</h3>
+<p>Cards should only display enough information to give a user context.</p>
+
+<h3>Guidance</h3>
+<div class="nsw-grid nsw-m-top-sm">
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--do"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span><span>Do</span></div>
+    <ul class="nsw-m-top-sm">
+      <li>consider and choose text and visual elements carefully. Test your cards with minimal content and only add additional content or graphics where they give needed context to the user</li>
+      <li>use headlines that set clear expectations about the content being linked to</li>
+      <li>use one style of card per module</li>
+      <li>feature one piece of information per card</li>
+      <li>outline the main idea with the minimal possible information</li>
+      <li>use short, comma-separated tags when more than one category applies. Stick to one or two words per tag to keep the layout clean and easy to scan.</li>
+    </ul>
+  </div>
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--dont"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span><span>Don't</span></div>
+    <ul class="nsw-m-top-sm">
+      <li>mix card styles within the same module</li>
+      <li>overload with information as the card links to more detail</li>
+      <li>add inline text links, the card itself is clickable and should link to a single piece of information, consider using content blocks in this instance</li>
+      <li>use a single card component on its own.</li>
+      <li>use long phrases or full sentences as tags — they create visual clutter and make content harder to scan.</li>
+      <li>use a card layout to highlight a solo piece of information, consider callout</li>
+      <li>use a card layout when the content requires in-line or multiple links, consider content blocks</li>
+      <li>use a card layout when a large amount of text is needed to give users context</li>
+      <li>use a card layout to anchor link to content lower down on the page, consider in-page navigation.</li>
+    </ul>
   </div>
 </div>
 
-{{#>_docs-example}}
-<div class="nsw-grid">
-  <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
-    {{>_card model.card-simple-1}}
-  </div>
-  <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
-    {{>_card model.card-simple-2 theme="light"}}
-  </div>
-  <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
-    {{>_card model.card-simple-3 theme="dark"}}
-  </div>
-</div>
-<div class="nsw-grid">
-  <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
-    {{>_card model.card-simple-4 highlight=true}}
-  </div>
-</div>
-{{/_docs-example}}
+<h2>Building cards</h2>
+<p>Cards are made up of foundation and content elements to show information to users. Some examples of these elements are included in our base card component.</p>
+<p>The only mandatary foundations of a card are the container, headline and icon. All others shown are optional and can be adapted to meet user needs.</p>
+<p><strong>Note:</strong> Do not place single clickable elements (ie. buttons) inside a card, as whole component is clickable.</p>
+<p><strong>Container</strong>: Contains the content and identifies clickable area.</p>
+<p><strong>Tag</strong>: Helps users quickly scan and group related content by showing what category or theme it belongs to, for example, a topic, department, or service. Keep tags short and clear. Use single words where possible, like "Transport" or "Seniors." Avoid full sentences or long phrases, as they can clutter the layout. When showing multiple tags, separate each one with a comma.</p>
+<p><strong>Date</strong>: Indicates how old the content is when this information is important to the user.</p>
+<p><strong>Headline</strong>: Provides a snapshot of the content.</p>
+<p><strong>Description</strong>: Provides further details where the headline alone may not be sufficient.</p>
+<p><strong>Icon</strong>: Arrow used to indicate a clickable component.</p>
+<p><strong>Visual elements</strong></p>
+<p>Using visual elements (such as images or icons) in cards allows for different content to stand out and provide additional context. It helps users visualise different pieces of information and quickly distinguish between content to find information easily.</p>
+<p>Test your visual elements carefully:</p>
+<ul>
+  <li>only use where it supports and re-enforces the content to the user</li>
+  <li>only use when they can clearly show the difference between content and can be easily identified</li>
+  <li>do not use for decorative purposes only.</li>
+</ul>
 
-<h3>Label and date</h3>
-<div class="nsw-show-lg">
-  <div class="nsw-grid">
-    <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
-      <h4>White</h4>
-    </div>
-    <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
-      <h4>Brand Light</h4>
-    </div>
-    <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
-      <h4>Brand Dark</h4>
-    </div>
-  </div>
-</div>
+<h2>Principles</h2>
+<p><strong>Keep content concise</strong></p>
+<p>Cards allow users to scan content in order to find their required information quickly, therefore it is important to make the content concise. Ensure the headlines are brief and explicit about the content the cards link to. Intuitive headlines and copy help the user build a clear mental model of the content.</p>
 
-{{#>_docs-example}}
-<div class="nsw-grid">
-  <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
-    {{>_card model.card-content-1}}
-  </div>
-  <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
-    {{>_card model.card-content-2 theme="light"}}
-  </div>
-  <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
-    {{>_card model.card-content-3 theme="dark"}}
-  </div>
-</div>
-<div class="nsw-grid">
-  <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
-    {{>_card model.card-content-4 highlight=true}}
-  </div>
-</div>
-{{/_docs-example}}
+<h2>Behaviour</h2>
+<p>When a user interacts with a card it inverts colour to indicate to the user which card they are currently focused on and reinforces the clickable area.</p>
 
-<h3>Image</h3>
-<div class="nsw-show-lg">
-  <div class="nsw-grid">
-    <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
-      <h4>White</h4>
-    </div>
-    <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
-      <h4>Brand Light</h4>
-    </div>
-    <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
-      <h4>Brand Dark</h4>
-    </div>
-  </div>
-</div>
-
-{{#>_docs-example}}
-<div class="nsw-grid">
-  <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
-    {{>_card model.card-news-1}}
-  </div>
-  <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
-    {{>_card model.card-news-2 theme="light"}}
-  </div>
-  <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
-    {{>_card model.card-news-3 theme="dark"}}
-  </div>
-</div>
-<div class="nsw-grid">
-  <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
-    {{>_card model.card-news-4 highlight=true}}
-  </div>
-</div>
-{{/_docs-example}}
-
-{{#>_docs-example separated="true"}}
-<div class="nsw-grid">
-  <div class="nsw-col nsw-col-lg-6">
-    {{>_card model.card-media-1 horizontal=true}}
-  </div>
-  <div class="nsw-col nsw-col-lg-6">
-    {{>_card model.card-media-2 horizontal=true theme="light"}}
-  </div>
-</div>
-<div class="nsw-grid">
-  <div class="nsw-col nsw-col-lg-6">
-    {{>_card model.card-media-3 horizontal=true theme="dark"}}
-  </div>
-  <div class="nsw-col nsw-col-lg-6">
-    {{>_card model.card-media-4 horizontal=true highlight=true}}
-  </div>
-</div>
-{{/_docs-example}}
-
-<h3>Image with border</h3>
-<div class="nsw-show-lg">
-  <div class="nsw-grid">
-    <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
-      <h4>White</h4>
-    </div>
-    <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
-      <h4>Brand Light</h4>
-    </div>
-    <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
-      <h4>Brand Dark</h4>
-    </div>
-  </div>
-</div>
-
-{{#>_docs-example}}
-<div class="nsw-grid">
-  <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
-    {{>_card model.card-news-1 border=true}}
-  </div>
-  <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
-    {{>_card model.card-news-2 theme="light" border=true}}
-  </div>
-  <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
-    {{>_card model.card-news-3 theme="dark" border=true}}
-  </div>
-</div>
-<div class="nsw-grid">
-  <div class="nsw-col nsw-col-md-6 nsw-col-lg-4">
-    {{>_card model.card-news-4 highlight=true border=true}}
-  </div>
-</div>
-{{/_docs-example}}
-
-{{#>_docs-example separated="true"}}
-<div class="nsw-grid">
-  <div class="nsw-col nsw-col-lg-6">
-    {{>_card model.card-media-1 horizontal=true border=true}}
-  </div>
-  <div class="nsw-col nsw-col-lg-6">
-    {{>_card model.card-media-2 horizontal=true theme="light" border=true}}
-  </div>
-</div>
-<div class="nsw-grid">
-  <div class="nsw-col nsw-col-lg-6">
-    {{>_card model.card-media-3 horizontal=true theme="dark" border=true}}
-  </div>
-  <div class="nsw-col nsw-col-lg-6">
-    {{>_card model.card-media-4 horizontal=true highlight=true border=true}}
-  </div>
-</div>
-{{/_docs-example}}
+<h2>Accessibility</h2>
+<p>All components are responsive and designed to comply with WCAG 2.2 AA accessibility standards. Full compliance depends on using and configuring the components correctly.</p>

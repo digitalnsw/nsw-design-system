@@ -1,0 +1,27 @@
+---
+title: 'Header: Demo & code'
+page: true
+code-page: true
+model:
+  square: json/header-square.json
+  rectangular: json/header-rectangular.json
+---
+
+{{#*inline "header-demo-examples"}}
+  <h3>Masterbrand with descriptor</h3>
+  {{#>_docs-example full-bleed="true"}}{{>_header header-title="NSW Design System" header-id=headerId1}}{{/_docs-example}}
+  <h3>Masterbrand with secondary descriptor</h3>
+  {{#>_docs-example full-bleed="true"}}{{>_header header-title="NSW Design System" header-description="Department of Customer Service" header-id=headerId2}}{{/_docs-example}}
+  <h3>Co-brand - mobile horizontal stacked</h3>
+  {{#>_docs-example full-bleed="true"}}{{>_header model.square header-id=headerId3 header-inline="true"}}{{/_docs-example}}
+  <h3>Co-brand - mobile vertical stacked</h3>
+  {{#>_docs-example full-bleed="true"}}{{>_header model.rectangular header-id=headerId4}}{{/_docs-example}}
+{{/inline}}
+
+{{#>_theme}}
+  {{#>_layout-container}}
+    <h1>{{title}}</h1>
+    {{> header-demo-examples headerId1="default-1" headerId2="default-2" headerId3="default-3" headerId4="default-4"}}
+  {{/_layout-container}}
+
+{{/_theme}}

@@ -1,7 +1,8 @@
 ---
 title: Tags
 width: narrow
-tabs: true
+demo: true
+variants: true
 directory: tag
 intro: Tags visually label or categorise content.
 theme: true
@@ -14,23 +15,40 @@ meta-description: Tags visually label or categorise content.
 meta-index: true
 ---
 
-<h3>Link</h3>
 {{#>_docs-example}}
 <div class="nsw-list nsw-list--8">
   {{>_tag model.link}}
 </div>
 {{/_docs-example}}
 
-<h3>Text</h3>
-{{#>_docs-example}}
-<div class="nsw-list nsw-list--8">
-  {{>_tag model.text}}
-</div>
-{{/_docs-example}}
+<hr class="nsw-m-y-lg">
 
-<h3>Toggle checkbox</h3>
-{{#>_docs-example}}
-<div class="nsw-list nsw-list--8">
-  {{>_tag model.checkbox}}
+<h2>Usage</h2>
+<h3>Tag types</h3>
+<ul>
+  <li><strong>Links</strong> - Link to category content </li>
+  <li><strong>Text</strong> - Non interactive content category</li>
+  <li><strong>Checkboxes</strong> - Make selections or filter results</li>
+</ul>
+
+<h3>Guidance</h3>
+<div class="nsw-grid nsw-m-top-sm">
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--do"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span><span>Do</span></div>
+    <ul class="nsw-m-top-sm">
+      <li>use tags to help label or categorise content for users using keywords or phrases</li>
+      <li>use interactive tags to help users search for and navigate to content quickly and easily.</li>
+    </ul>
+  </div>
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--dont"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span><span>Don't</span></div>
+    <ul class="nsw-m-top-sm">
+      <li>use tags to initiate an action, consider buttons</li>
+      <li>use tags to link to page content, consider text links</li>
+      <li>over use tags as this can cause confuse or create visual noise</li>
+    </ul>
+  </div>
 </div>
-{{/_docs-example}}
+
+<h2>Accessibility</h2>
+<p>All components are responsive and designed to comply with WCAG 2.2 AA accessibility standards. Full compliance depends on using and configuring the components correctly.</p>

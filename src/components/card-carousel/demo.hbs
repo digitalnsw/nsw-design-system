@@ -1,0 +1,43 @@
+---
+title: 'Card carousel: Demo & code'
+width: wide
+page: true
+code-page: true
+model:
+  carousel-five: ../../components/card-carousel/json/carousel-five.json
+  carousel-nine: ../../components/card-carousel/json/carousel-nine.json
+---
+
+{{#*inline "card-carousel-demo-examples"}}
+
+{{#>_docs-example separated=true}}
+{{>_carousel model.carousel-five default=true drag=true title="Latest news"}}
+{{/_docs-example}}
+
+<h3>Pagination</h3>
+
+{{#>_docs-example separated=true}}
+{{>_carousel model.carousel-nine default=true pagination=true title="Latest news"}}
+{{/_docs-example}}
+
+<h3>View more </h3>
+
+{{#>_docs-example separated=true}}
+{{>_carousel model.carousel-nine default=true pagination=true view-more="https://github.com/digitalnsw/nsw-design-system" title="Latest news"}}
+{{/_docs-example}}
+{{/inline}}
+
+{{#>_theme}}
+  {{#>_layout-container}}
+    <h1>{{title}}</h1>
+    {{> card-carousel-demo-examples model=model}}
+  {{/_layout-container}}
+
+  {{#>_layout-container brand-light="true"}}
+    {{> card-carousel-demo-examples model=model}}
+  {{/_layout-container}}
+
+  {{#>_layout-container brand-dark="true" invert="true"}}
+    {{> card-carousel-demo-examples model=model}}
+  {{/_layout-container}}
+{{/_theme}}

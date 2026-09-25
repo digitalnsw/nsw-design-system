@@ -1,6 +1,7 @@
 ---
 title: Header
-tabs: true
+demo: true
+variants: true
 directory: header
 core: true
 intro: The NSW Government header displays across the top of all NSW Government sites. It helps users see which service they are using.
@@ -13,12 +14,68 @@ meta-description: The NSW Government header displays across the top of all NSW G
 meta-index: true
 ---
 
-<h3>Masterbrand with descriptor</h3>
-{{#>_docs-example}}{{>_header header-title="Digital NSW"}}{{/_docs-example}}
-<h3>Masterbrand with secondary descriptor</h3>
-{{#>_docs-example}}{{>_header header-title="Digital NSW" header-description="Department of Customer Service" header-id="0"}}{{/_docs-example}}
-<h3>Co-brand - mobile horizontal stacked</h3>
-{{#>_docs-example}}{{>_header model.square header-id="2" header-inline="true"}}{{/_docs-example}}
-<h3>Co-brand - mobile vertical stacked</h3>
-{{#>_docs-example}}{{>_header model.rectangular header-id="1"}}{{/_docs-example}}
+{{#>_docs-example}}{{>_header header-title="NSW Design System" header-id="example"}}{{/_docs-example}}
 
+<hr class="nsw-m-y-lg">
+
+<div class="nsw-in-page-alert nsw-in-page-alert--info">
+  <span class="material-icons nsw-material-icons nsw-in-page-alert__icon"
+     focusable="false" aria-hidden="true">info</span>
+  <div class="nsw-in-page-alert__content">
+    <h4>Brand requirements</h4>
+    <p>Elements required for NSW branding include the use and implementation of logos and site descriptors. View the <a class="nsw-link nsw-link--icon" href="https://branding.nsw.gov.au" target="_blank" rel="noopener noreferrer" aria-label="NSW Government Visual identity system (opens in a new tab)"><span>NSW Government Visual identity system</span><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">open_in_new</span></a> for full logo requirements specific to your brand classification.</p>
+  </div>
+</div>
+
+<h2>Usage</h2>
+<p>There are two versions of the header:</p>
+
+<h4>Masterbrand</h4>
+<p>The masterbrand header contains the NSW Government logo and site descriptor (site name), with optional secondary descriptor and search.</p>
+
+<h4>Co-brand</h4>
+<p>The co-brand header contains the NSW Government logo and co-brand logo, with optional search.</p>
+
+<h3>Guidance</h3>
+<div class="nsw-grid nsw-m-top-sm">
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--do"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span><span>Do</span></div>
+    <ul class="nsw-m-top-sm">
+
+      <li>use the default header for square logos and add the rectangular logo class where needed to ensure logos are visually equal in size</li>
+      <li>consider the horizontal stacked mobile option, where the NSW Government and co-brand logo appear side by side, when the co-branded logo does not exceed 130px in width at 48px high, and test that it does not overlap search and menu functions on smaller devices</li>
+      <li>consider the vertical stacked mobile option, where the NSW Government logo appears on top of the co-brand logo, when the co-branded logo exceeds 130px in width at 48px high</li>
+      <li>use a descriptor where customers need to identify a department or agency within NSW Government.</li>
+    </ul>
+  </div>
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--dont"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span><span>Don't</span></div>
+    <ul class="nsw-m-top-sm">
+      <li>place the header anywhere other than under the masthead on NSW Government websites, products and services</li>
+      <li>place the NSW Government logo anywhere other than the top left</li>
+      <li>display the NSW Government logo smaller than the co-branded logo</li>
+      <li>use a secondary descriptor without approval from the <a class="nsw-link nsw-link--icon" href="https://www.nsw.gov.au/branding" target="_blank" rel="noopener noreferrer" aria-label="NSW Government Brand Team (opens in a new tab)"><span>NSW Government Brand Team</span><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">open_in_new</span></a></li>
+      <li>display search anywhere other than the right hand side, or when it is not required.</li>
+    </ul>
+  </div>
+</div>
+
+<h3>NSW Government Logo</h3>
+<p>The NSW Government logo reinforces the connection to NSW Government.</p>
+
+<h3 id="descriptors">Descriptors</h3>
+<p><strong>Descriptor:</strong> The text descriptor is treated, not as a competing logo (or coupled), but as a navigational device to help customers where they need to identify an entity.</p>
+<p><strong>Secondary Descriptor:</strong> In the rare case where there is a customer need to relay back to the overarching department, two descriptors can be coupled together. The secondary descriptor is located directly under the primary descriptor in smaller font.</p>
+
+<h3>Search</h3>
+<p>The search can be omitted if not required.</p>
+
+<h2>Accessibility</h2>
+<p>All components are responsive and designed to comply with WCAG 2.2 AA accessibility standards. Full compliance depends on using and configuring the components correctly.</p>
+
+<h3>Ensuring compliance through usage</h3>
+
+<h4>Redundant entry</h4>
+
+<p>To ensure WCAG 2.2 AA compliance for a header search component that opens upon clicking an always-visible icon, correct usage and configuration are essential. While the component is designed for accessibility, retaining any previous search entries can help reduce redundant input if a user revisits the search. The search input should have a clear, accessible label (often provided as aria-labels for screen readers) and guidance on how to use the search, such as placeholder text. Ensure the input maintains its easy-to-locate position to navigate back to, allowing users to correct or modify their query without losing previous entries.</p>
+<p>Following these practices ensures a smooth, accessible experience that meets compliance standards.</p>

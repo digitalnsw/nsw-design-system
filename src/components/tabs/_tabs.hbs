@@ -1,11 +1,11 @@
 <div class="nsw-tabs js-tabs{{#if fixed}} js-tabs-fixed{{/if}}">
   <ul class="nsw-tabs__list">
     {{#each tabitems}}
-    <li><a href="#{{urlHash}}">{{title}}</a></li>
+    <li><a href="#{{urlHash}}{{../id-suffix}}">{{title}}</a></li>
     {{/each}}
   </ul>
   {{#each tabitems}}
-  <section id="{{urlHash}}" class="nsw-tabs__content">
+  <section id="{{urlHash}}{{../id-suffix}}" class="nsw-tabs__content">
     {{{content}}}
   </section>
   {{/each}}

@@ -91,6 +91,10 @@
       }
     }
 
+    > li > a:not([href]) {
+      cursor: pointer;
+    }
+
     > li > a {      
       @include nsw.breakpoint(nsw.$nsw-desktop-breakpoint) {
         .nsw-material-icons {
@@ -192,6 +196,14 @@
 
     a {
       font-weight: var(--nsw-font-bold);
+
+      &:not([href]) {
+        cursor: default;
+
+        &:hover {
+          background-color: transparent;
+        }
+      }
 
       .nsw-material-icons {
         display: none;

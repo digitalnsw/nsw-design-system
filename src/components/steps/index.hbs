@@ -1,166 +1,43 @@
 ---
 title: Steps
 width: narrow
-tabs: true
+demo: true
+variants: true
 directory: steps
 intro: Create a visual journey or link between sections of content.
 theme: true
+figma: https://www.figma.com/design/PVrERKnckLTlJSPk12gbtS/NSW-Design-System?node-id=25823-64467&t=97I1tyUV5BedfGn5-4
 meta-description: Create a visual journey or link between sections of content.
 meta-index: true
 ---
 
-<h3>Outline</h3>
-<div class="nsw-tabs js-tabs">
-  <ul class="nsw-tabs__list">
-    <li><a href="#outline-brand-accent" class="js-tabs-fixed">Brand Accent</a></li>
-    <li><a href="#outline-brand-dark" class="js-tabs-fixed">Brand Dark</a></li>
-    <li><a href="#outline-brand-light" class="js-tabs-fixed">Brand Light</a></li>
-    <li><a href="#outline-brand-supplementary" class="js-tabs-fixed">Brand Supplementary</a></li>
-    <li><a href="#outline-progress" class="js-tabs-fixed">Progress</a></li>
-  </ul>
-  <section id="outline-brand-accent" class="nsw-tabs__content nsw-tabs__content--side-flush">
-{{#>_docs-example}}
-{{>_steps}}
-{{/_docs-example}}
-  </section>
-  <section id="outline-brand-dark"  class="nsw-tabs__content nsw-tabs__content--side-flush">
-{{#>_docs-example light="true"}}
-{{>_steps theme="dark"}}
-{{/_docs-example}}
-  </section>
-  <section id="outline-brand-light"  class="nsw-tabs__content nsw-tabs__content--side-flush">
-{{#>_docs-example dark="true" invert="true"}}
-{{>_steps theme="light"}}
-{{/_docs-example}}
-  </section>
-  <section id="outline-brand-supplementary"  class="nsw-tabs__content nsw-tabs__content--side-flush">
-{{#>_docs-example}}
-{{>_steps theme="supplementary"}}
-{{/_docs-example}}
-  </section>
-  <section id="outline-progress" class="nsw-tabs__content nsw-tabs__content--side-flush">
-{{#>_docs-example}}
-{{>_steps progress="true"}}
-{{/_docs-example}}
-  </section>
+{{#>_docs-example}}{{>_steps counters="true" fill="true"}}{{/_docs-example}}
+
+<hr class="nsw-m-y-lg">
+
+<h2>Usage</h2>
+<h3>Guidance</h3>
+<div class="nsw-grid nsw-m-top-sm">
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--do"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span><span>Do</span></div>
+    <ul class="nsw-m-top-sm">
+      <li>use steps to draw a connection for the user between linear pieces of information</li>
+      <li>use steps for steps or stages of a process</li>
+      <li>use steps for sequential dates or outcomes.</li>
+    </ul>
+  </div>
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--dont"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span><span>Don't</span></div>
+    <ul class="nsw-m-top-sm">
+      <li>use steps when content doesn't come together in sequential or linear order; consider bullet points instead.</li>
+    </ul>
+  </div>
 </div>
 
-<h3>Fill</h3>
-<div class="nsw-tabs js-tabs">
-  <ul class="nsw-tabs__list">
-    <li><a href="#fill-brand-accent" class="js-tabs-fixed">Brand Accent</a></li>
-    <li><a href="#fill-brand-dark" class="js-tabs-fixed">Brand Dark</a></li>
-    <li><a href="#fill-brand-light" class="js-tabs-fixed">Brand Light</a></li>
-    <li><a href="#fill-brand-supplementary" class="js-tabs-fixed">Brand Supplementary</a></li>
-  </ul>
-  <section id="fill-brand-accent" class="nsw-tabs__content nsw-tabs__content--side-flush">
-{{#>_docs-example}}
-{{>_steps fill="true"}}
-{{/_docs-example}}
-  </section>
-  <section id="fill-brand-dark"  class="nsw-tabs__content nsw-tabs__content--side-flush">
-{{#>_docs-example light="true"}}
-{{>_steps fill="true" theme="dark"}}
-{{/_docs-example}}
-  </section>
-  <section id="fill-brand-light"  class="nsw-tabs__content nsw-tabs__content--side-flush">
-{{#>_docs-example dark="true" invert="true"}}
-{{>_steps fill="true" theme="light"}}
-{{/_docs-example}}
-  </section>
-  <section id="fill-brand-supplementary"  class="nsw-tabs__content nsw-tabs__content--side-flush">
-{{#>_docs-example}}
-{{>_steps fill="true" theme="supplementary"}}
-{{/_docs-example}}
-  </section>
-</div>
+<h2>Step types</h2>
+<p>Steps use colours from your brand palette, displayed as outlined or filled. Counters can also be added where they correspond to the content. Colour selection should take into considertation the contrast with the content background.</p>
+<p>Based on your heading class, small and medium sized steps are available to ensure the component remains visually balance. </p>
 
-<h3>Outline with counters</h3>
-<div class="nsw-tabs js-tabs">
-  <ul class="nsw-tabs__list">
-    <li><a href="#counters-brand-accent" class="js-tabs-fixed">Brand Accent</a></li>
-    <li><a href="#counters-brand-dark" class="js-tabs-fixed">Brand Dark</a></li>
-    <li><a href="#counters-brand-light" class="js-tabs-fixed">Brand Light</a></li>
-    <li><a href="#counters-brand-supplementary" class="js-tabs-fixed">Brand Supplementary</a></li>
-    <li><a href="#counters-progress" class="js-tabs-fixed">Progress</a></li>
-  </ul>
-  <section id="counters-brand-accent" class="nsw-tabs__content nsw-tabs__content--side-flush">
-{{#>_docs-example}}
-{{>_steps counters="true"}}
-{{/_docs-example}}
-  </section>
-  <section id="counters-brand-dark"  class="nsw-tabs__content nsw-tabs__content--side-flush">
-{{#>_docs-example light="true"}}
-{{>_steps counters="true" theme="dark"}}
-{{/_docs-example}}
-  </section>
-  <section id="counters-brand-light"  class="nsw-tabs__content nsw-tabs__content--side-flush">
-{{#>_docs-example dark="true" invert="true"}}
-{{>_steps counters="true" theme="light"}}
-{{/_docs-example}}
-  </section>
-  <section id="counters-brand-supplementary"  class="nsw-tabs__content nsw-tabs__content--side-flush">
-{{#>_docs-example}}
-{{>_steps counters="true" theme="supplementary"}}
-{{/_docs-example}}
-  </section>
-  <section id="counters-progress" class="nsw-tabs__content nsw-tabs__content--side-flush">
-{{#>_docs-example}}
-{{>_steps counters="true" progress="true"}}
-{{/_docs-example}}
-  </section>
-</div>
 
-<h3>Fill with counters</h3>
-<div class="nsw-tabs js-tabs">
-  <ul class="nsw-tabs__list">
-    <li><a href="#fill-counters-brand-accent" class="js-tabs-fixed">Brand Accent</a></li>
-    <li><a href="#fill-counters-brand-dark" class="js-tabs-fixed">Brand Dark</a></li>
-    <li><a href="#fill-counters-brand-light" class="js-tabs-fixed">Brand Light</a></li>
-    <li><a href="#fill-counters-brand-supplementary" class="js-tabs-fixed">Brand Supplementary</a></li>
-  </ul>
-  <section id="fill-counters-brand-accent" class="nsw-tabs__content nsw-tabs__content--side-flush">
-{{#>_docs-example}}
-{{>_steps fill="true" counters="true"}}
-{{/_docs-example}}
-  </section>
-  <section id="fill-counters-brand-dark"  class="nsw-tabs__content nsw-tabs__content--side-flush">
-{{#>_docs-example light="true"}}
-{{>_steps fill="true" counters="true" theme="dark"}}
-{{/_docs-example}}
-  </section>
-  <section id="fill-counters-brand-light"  class="nsw-tabs__content nsw-tabs__content--side-flush">
-{{#>_docs-example dark="true" invert="true"}}
-{{>_steps fill="true" counters="true" theme="light"}}
-{{/_docs-example}}
-  </section>
-  <section id="fill-counters-brand-supplementary"  class="nsw-tabs__content nsw-tabs__content--side-flush">
-{{#>_docs-example}}
-{{>_steps fill="true" counters="true" theme="supplementary"}}
-{{/_docs-example}}
-  </section>
-</div>
-
-<h3>Heading size</h3>
-<div class="nsw-tabs js-tabs">
-  <ul class="nsw-tabs__list">
-    <li><a href="#size-h2" class="js-tabs-fixed">Heading 2</a></li>
-    <li><a href="#size-h3" class="js-tabs-fixed">Heading 3</a></li>
-    <li><a href="#size-h4" class="js-tabs-fixed">Heading 4</a></li>
-  </ul>
-  <section id="size-h2" class="nsw-tabs__content nsw-tabs__content--side-flush">
-{{#>_docs-example}}
-{{>_steps}}
-{{/_docs-example}}
-  </section>
-  <section id="size-h3" class="nsw-tabs__content nsw-tabs__content--side-flush">
-{{#>_docs-example}}
-{{>_steps medium="true"}}
-{{/_docs-example}}
-  </section>
-  <section id="size-h4" class="nsw-tabs__content nsw-tabs__content--side-flush">
-{{#>_docs-example}}
-{{>_steps small="true"}}
-{{/_docs-example}}
-  </section>
-</div>
+<h2>Accessibility</h2>
+<p>All components are responsive and designed to comply with WCAG 2.2 AA accessibility standards. Full compliance depends on using and configuring the components correctly.</p>

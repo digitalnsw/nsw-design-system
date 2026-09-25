@@ -1,0 +1,31 @@
+---
+title: 'Cookie consent: Demo & code'
+page: true
+code-page: true
+model:
+  cookie-consent-1: json/cookie-consent-1.json
+  cookie-consent-4: json/cookie-consent-4.json
+---
+
+{{#*inline "cookie-consent-demo-examples"}}
+<h3>Consent banner</h3>
+{{#>_docs-example separated="true"}}{{>_cookie-consent model.cookie-consent-1 type="banner"}}{{/_docs-example}}
+
+<h3>Preferences dialog</h3>
+{{#>_docs-example separated="true"}}{{>_cookie-consent model.cookie-consent-4 type="dialog"}}{{/_docs-example}}
+{{/inline}}
+
+{{#>_theme}}
+  {{#>_layout-container}}
+    <h1>{{title}}</h1>
+    {{> cookie-consent-demo-examples model=model}}
+  {{/_layout-container}}
+
+  {{#>_layout-container brand-light="true"}}
+    {{> cookie-consent-demo-examples model=model}}
+  {{/_layout-container}}
+
+  {{#>_layout-container brand-dark="true" invert="true"}}
+    {{> cookie-consent-demo-examples model=model}}
+  {{/_layout-container}}
+{{/_theme}}

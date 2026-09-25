@@ -1,0 +1,36 @@
+---
+title: 'Side navigation: Demo & code'
+width: menu
+page: true
+code-page: true
+model:
+  single-level: json/side-nav.json
+  two-level: json/side-nav-level-2.json
+  four-level: json/side-nav-level-4.json
+---
+
+{{#*inline "side-nav-demo-examples"}}
+<h3>Single level</h3>
+{{#>_docs-example}}{{>_side-nav single-level parent-id=single-id}}{{/_docs-example}}
+
+<h3>Two levels</h3>
+{{#>_docs-example}}{{>_side-nav two-level parent-id=two-id}}{{/_docs-example}}
+
+<h3>Four levels</h3>
+{{#>_docs-example}}{{>_side-nav four-level parent-id=four-id}}{{/_docs-example}}
+{{/inline}}
+
+{{#>_theme}}
+  {{#>_layout-container}}
+    <h1>{{title}}</h1>
+    {{> side-nav-demo-examples single-level=model.single-level two-level=model.two-level four-level=model.four-level single-id="side-nav-single-default" two-id="side-nav-two-default" four-id="side-nav-four-default"}}
+  {{/_layout-container}}
+
+  {{#>_layout-container brand-light="true"}}
+    {{> side-nav-demo-examples single-level=model.single-level two-level=model.two-level four-level=model.four-level single-id="side-nav-single-brand-light" two-id="side-nav-two-brand-light" four-id="side-nav-four-brand-light"}}
+  {{/_layout-container}}
+
+  {{#>_layout-container brand-dark="true" invert="true"}}
+    {{> side-nav-demo-examples single-level=model.single-level two-level=model.two-level four-level=model.four-level single-id="side-nav-single-inverted" two-id="side-nav-two-inverted" four-id="side-nav-four-inverted"}}
+  {{/_layout-container}}
+{{/_theme}}

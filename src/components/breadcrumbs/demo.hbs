@@ -1,0 +1,29 @@
+---
+title: 'Breadcrumbs: Demo & code'
+width: narrow
+page: true
+code-page: true
+model:
+  breadcrumbs-2: json/breadcrumbs-2.json
+---
+
+{{#*inline "breadcrumbs-demo-examples"}}
+{{#>_docs-example}}
+{{>_breadcrumbs model.breadcrumbs-2}}
+{{/_docs-example}}
+{{/inline}}
+
+{{#>_theme}}
+  {{#>_layout-container}}
+    <h1>{{title}}</h1>
+    {{> breadcrumbs-demo-examples model=model}}
+  {{/_layout-container}}
+
+  {{#>_layout-container brand-light="true"}}
+    {{> breadcrumbs-demo-examples model=model}}
+  {{/_layout-container}}
+
+  {{#>_layout-container brand-dark="true" invert="true"}}
+    {{> breadcrumbs-demo-examples model=model}}
+  {{/_layout-container}}
+{{/_theme}}

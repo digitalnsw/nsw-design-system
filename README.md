@@ -28,7 +28,7 @@ We recommend the following methods:
 
 4. **Using JSDelivr CDN:** If you prefer a quicker setup, you can use the JSDelivr content delivery network to directly include the design system's CSS and JavaScript files in your project.
 
-Read the [Getting started page](https://designsystem.nsw.gov.au/docs/content/develop/getting-started.html) for information on the framework contents, templates, examples, and more.
+Read the [Getting started page](https://designsystem.nsw.gov.au/get-started/for-developers.html) for information on the framework contents, templates, examples, and more.
 
 ## Installing with NPM
 
@@ -144,7 +144,7 @@ View and raise issues and bugs through our [Issues tracker on GitHub](https://gi
 
 ## Design System Figma UI Kit
 
-Access the complete set of design assets required for designing, sharing, and prototyping using our [Figma UI Kit](https://designsystem.nsw.gov.au/docs/content/design/figma-ui-kit.html).
+Access the complete set of design assets required for designing, sharing, and prototyping using our [Figma UI Kit](https://designsystem.nsw.gov.au/get-started/figma-ui-kit.html).
 
 ## Versioning
 
@@ -158,6 +158,6 @@ Our version numbers consist of MAJOR.MINOR.PATCH, where:
 
 * **PATCH** version is used for minor backward-compatible updates, new component variations, and bug fixes.
 
-See [the Releases section of our GitHub project](https://github.com/digitalnsw/nsw-design-system/releases) for release notes for each release version. Release posts on our [release notes page](https://designsystem.nsw.gov.au/docs/content/about/release-notes.html) contain summaries of the most noteworthy changes made in each release.
+See [the Releases section of our GitHub project](https://github.com/digitalnsw/nsw-design-system/releases) for release notes for each release version. Release posts on our [release notes page](https://designsystem.nsw.gov.au/release-notes/index.html) contain summaries of the most noteworthy changes made in each release.
 
 Feel free to reach out if you have any questions or need more help with integrating the NSW Design System into your projects!

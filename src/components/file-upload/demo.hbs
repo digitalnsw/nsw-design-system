@@ -1,0 +1,58 @@
+---
+title: 'File upload: Demo & code'
+width: narrow
+page: true
+code-page: true
+---
+
+{{#*inline "file-upload-demo-examples"}}
+<h3>Single file</h3>
+<p>Includes ability to accept only a single file.</p>
+{{#>_docs-example}}
+<div class="nsw-form">
+  <div class="nsw-form__group">
+    {{>_file-upload
+    js=true
+    id=singleId
+    label="Upload drivers license"
+    helper-text="Formats accepted: JPG, PNG or PDF <br /> File size must not exceed 350MB"
+    accept=true
+    replace=true
+    }}
+  </div>
+</div>
+{{/_docs-example}}
+
+<h3>Error messages</h3>
+<p>Includes ability to accept multiple files.</p>
+{{#>_docs-example}}
+<div class="nsw-form">
+  <div class="nsw-form__group">
+    {{>_file-upload
+    js=true
+    id=multipleId
+    label="Upload drivers license"
+    helper-text="Formats accepted: JPG, PNG or PDF <br /> File size must not exceed 350MB"
+    error-text="The selected file must be smaller than 350MB"
+    accept=true
+    multiple=true
+    }}
+  </div>
+</div>
+{{/_docs-example}}
+{{/inline}}
+
+{{#>_theme}}
+  {{#>_layout-container}}
+    <h1>{{title}}</h1>
+    {{> file-upload-demo-examples singleId="demo-file-upload" multipleId="demo-file-upload-error"}}
+  {{/_layout-container}}
+
+  {{#>_layout-container brand-light="true"}}
+    {{> file-upload-demo-examples singleId="demo-light-file-upload" multipleId="demo-light-file-upload-error"}}
+  {{/_layout-container}}
+
+  {{#>_layout-container brand-dark="true" invert="true"}}
+    {{> file-upload-demo-examples singleId="demo-dark-file-upload" multipleId="demo-dark-file-upload-error"}}
+  {{/_layout-container}}
+{{/_theme}}

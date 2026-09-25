@@ -1,7 +1,7 @@
 ---
 title: Side navigation
 width: menu
-tabs: true
+demo: true
 directory: side-nav
 intro: Enables users to move through levels of site hierarchy.
 theme: true
@@ -14,11 +14,49 @@ meta-description: Enables users to move through levels of site hierarchy.
 meta-index: true
 ---
 
-<h3>Single level</h3>
 {{#>_docs-example}}{{>_side-nav model.single-level}}{{/_docs-example}}
 
-<h3>Two levels</h3>
-{{#>_docs-example}}{{>_side-nav model.two-level}}{{/_docs-example}}
+<hr class="nsw-m-y-lg">
 
-<h3>Four levels</h3>
-{{#>_docs-example}}{{>_side-nav model.four-level}}{{/_docs-example}}
+<h2>Usage</h2>
+<p>Side navigation displays a user's current position in the content hierarchy past the main navigation and enables them to move between sections and related content.</p>
+
+<h3>Guidance</h3>
+<div class="nsw-grid nsw-m-top-sm">
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--do"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span><span>Do</span></div>
+    <ul class="nsw-m-top-sm">
+      <li>use single level navigation to show pages at the same level of the content hierarchy and allow users to navigate horizontally, such as for a stepped process or journey along a path</li>
+      <li>use multiple level navigation so users can navigate vertically through the content hierarchy</li>
+      <li>label the mobile navigation toggle with the current page title or section name to help users understand what content they're expanding.</li>
+    </ul>
+  </div>
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--dont"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span><span>Don't</span></div>
+    <ul class="nsw-m-top-sm">
+      <li>manually integrate side navigation into the main navigation structure (e.g. hamburger menu) on mobile and smaller viewports.</li>
+    </ul>
+  </div>
+</div>
+
+<h2>How this component works</h2>
+<p>Side navigation supports four levels of nesting along with an accompanying heading. For visual hierarchy, each level of nesting is indented.</p>
+<p>When a parent section is selected, it expands to display the children. Parent sections remain bolded while the current selection is indicated by the active background colour.</p>
+
+<h3>Mobile behaviour and implementation</h3>
+<p>On mobile and smaller viewports, the side navigation component now includes an in-built mobile solution that allows the navigation to remain in its contextual location.</p>
+
+<h3 id="mobile-implementation">Enabling mobile functionality in existing side nav setups</h3>
+<p>To enable mobile toggle functionality on existing side navs:</p>
+<ol>
+  <li class="nsw-m-bottom-sm">Add <code>js-side-nav</code> class to the parent <code>&lt;div&gt;</code> element containing the side navigation.</li>
+  <li class="nsw-m-bottom-md">Insert the toggle button as the first child inside the existing <code>.nsw-side-nav</code> element. Ensure the button label reflects the page title where the side navigation appears:
+{{#>_docs-code open=true code="html"}}&lt;button class="nsw-side-nav__toggle" aria-expanded="false"&gt;
+  &lt;span&gt;[Page title]&lt;/span&gt;
+&lt;/button&gt;{{/_docs-code}}</li>
+  <li class="nsw-m-bottom-sm">Add <code>nsw-side-nav__content</code> class to the main <code>&lt;ul&gt;</code> containing the navigation items.</li>
+  <li class="nsw-m-bottom-sm">Remove the <code>nsw-layout__sidebar--desktop</code> class from the parent <code>&lt;div&gt;</code> if you were previously using this method to hide the side navigation on desktop. If this class is not removed, the side nav may remain hidden at certain breakpoints, which can prevent the mobile toggle from appearing.</li>
+</ol>
+
+<h2>Accessibility</h2>
+<p>All components are responsive and designed to comply with WCAG 2.2 AA accessibility standards. Full compliance depends on using and configuring the components correctly.</p>
