@@ -73,6 +73,28 @@ const foundationTitles = listIndexFiles('src/core').map((filePath) => frontmatte
 assertExactCoverage('Component', componentTitles, groupedTitles(COMPONENT_GROUPS))
 assertExactCoverage('Foundation', foundationTitles, groupedTitles(FOUNDATION_GROUPS))
 
+const expectedComponentGroupOrder = [
+  'Actions and controls',
+  'Content',
+  'Feedback and status',
+  'Forms and inputs',
+  'Navigation',
+  'Overlays',
+  'Page structure',
+  'Search and task flow',
+]
+assert(
+  COMPONENT_GROUPS.map((group) => group.title).join('|') === expectedComponentGroupOrder.join('|'),
+  `Unexpected component group order: ${COMPONENT_GROUPS.map((group) => group.title).join(', ')}`,
+)
+COMPONENT_GROUPS.forEach((group) => {
+  const sortedItems = [...group.items].sort((a, b) => a.localeCompare(b, 'en', { sensitivity: 'base' }))
+  assert(
+    group.items.join('|') === sortedItems.join('|'),
+    `${group.title} components must be alphabetised: ${group.items.join(', ')}`,
+  )
+})
+
 assert(groupedTitles(COMPONENT_GROUPS).includes('Quick exit'), 'Quick exit must remain a component')
 assert(groupedTitles(COMPONENT_GROUPS).includes('Cookie consent'), 'Cookie consent must remain a component')
 assert(
@@ -206,6 +228,16 @@ assert(
 
 const searchData = readFile('src/docs/data.js')
 const normalisedSearchData = searchData.toLowerCase()
+COMPONENT_GROUPS.forEach((group) => {
+  assert(
+    searchData.includes(`label: '${group.title}'`),
+    `Search data missing component group label: ${group.title}`,
+  )
+  assert(
+    searchData.includes(`url: '/components/${group.id}/index.html'`),
+    `Search data missing component group URL: /components/${group.id}/index.html`,
+  )
+})
 const requiredSearchTerms = [
   'What is Design System',
   'Search & Filters',
@@ -213,7 +245,7 @@ const requiredSearchTerms = [
   'Vertical align',
   'Core styles',
   'actions and controls',
-  'forms and input',
+  'forms and inputs',
   'feedback and status',
   'page structure',
   'search and task flow',
@@ -293,6 +325,7 @@ const legacyRedirects = [
   ['/docs/content/design/extending.html', '/get-started/extending.html'],
   ['/docs/content/develop/helpers.html', '/index.html#utility-classes'],
   ['/core/layout/index.html', '/core/page-layout/index.html'],
+  ['/components/forms-and-input/index.html', '/components/forms-and-inputs/index.html'],
 ]
 
 const legacyGuidanceComponents = [

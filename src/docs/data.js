@@ -1,6 +1,54 @@
 /* eslint-disable max-len */
 const searchValues = [
   {
+    label: 'Actions and controls',
+    template: 'result',
+    keywords: 'component group, component groups, component category, actions, controls',
+    url: '/components/actions-and-controls/index.html',
+  },
+  {
+    label: 'Content',
+    template: 'result',
+    keywords: 'component group, component groups, component category, content, content display',
+    url: '/components/content/index.html',
+  },
+  {
+    label: 'Feedback and status',
+    template: 'result',
+    keywords: 'component group, component groups, component category, feedback, status, alerts',
+    url: '/components/feedback-and-status/index.html',
+  },
+  {
+    label: 'Forms and inputs',
+    template: 'result',
+    keywords: 'component group, component groups, component category, forms, form, inputs, input, data entry',
+    url: '/components/forms-and-inputs/index.html',
+  },
+  {
+    label: 'Navigation',
+    template: 'result',
+    keywords: 'component group, component groups, component category, navigation, menus, wayfinding',
+    url: '/components/navigation/index.html',
+  },
+  {
+    label: 'Overlays',
+    template: 'result',
+    keywords: 'component group, component groups, component category, overlays, layered content',
+    url: '/components/overlays/index.html',
+  },
+  {
+    label: 'Page structure',
+    template: 'result',
+    keywords: 'component group, component groups, component category, page structure, global page structure, page layout',
+    url: '/components/page-structure/index.html',
+  },
+  {
+    label: 'Search and task flow',
+    template: 'result',
+    keywords: 'component group, component groups, component category, search, task flow',
+    url: '/components/search-and-task-flow/index.html',
+  },
+  {
     label: 'Accordion',
     template: 'result',
     keywords: 'component, components, content, show, hide, collapse, expand, expandable, vertical, panels, details, summary',
@@ -63,13 +111,13 @@ const searchValues = [
   {
     label: 'Date input',
     template: 'result',
-    keywords: 'component, components, forms and input, date, day, month, year, calendar, input field, manual entry, form field, accessibility, validation, required, date format, date field',
+    keywords: 'component, components, forms and inputs, date, day, month, year, calendar, input field, manual entry, form field, accessibility, validation, required, date format, date field',
     url: '/components/date-input/index.html',
   },
   {
     label: 'Date picker',
     template: 'result',
-    keywords: 'component, components, forms and input, date, calendar, UI picker, dropdown calendar, select date, form, input field, visual selector, accessibility, date selection, date input, date field',
+    keywords: 'component, components, forms and inputs, date, calendar, UI picker, dropdown calendar, select date, form, input field, visual selector, accessibility, date selection, date input, date field',
     url: '/components/date-picker/index.html',
   },
   {
@@ -81,7 +129,7 @@ const searchValues = [
   {
     label: 'File upload',
     template: 'result',
-    keywords: 'component, components, forms and input, upload, file, attachment, browse, choose file, validation',
+    keywords: 'component, components, forms and inputs, upload, file, attachment, browse, choose file, validation',
     url: '/components/file-upload/index.html',
   },
   {
@@ -99,7 +147,7 @@ const searchValues = [
   {
     label: 'Forms',
     template: 'result',
-    keywords: 'component, components, forms and input, form, data, input, field, freeform, selection, label, checkbox, dropdown, radio, validation, help text, placeholder, autofill, autocorrect, blue diamond',
+    keywords: 'component, components, forms and inputs, form, data, input, field, freeform, selection, label, checkbox, dropdown, radio, validation, help text, placeholder, autofill, autocorrect, blue diamond',
     url: '/components/form/index.html',
   },
   {
@@ -213,7 +261,7 @@ const searchValues = [
   {
     label: 'Select',
     template: 'result',
-    keywords: 'component, components, forms and input, select, dropdown, option, form field, single select',
+    keywords: 'component, components, forms and inputs, select, dropdown, option, form field, single select',
     url: '/components/select/index.html',
   },
   {

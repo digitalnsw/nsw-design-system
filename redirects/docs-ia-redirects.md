@@ -1,6 +1,6 @@
 # Documentation IA redirects
 
-The Cloudflare bulk redirect file contains **103 permanent redirects**. Every redirect points directly to its final public URL; there are no redirect chains and no targets containing `/docs/content/`.
+The Cloudflare bulk redirect file contains **104 permanent redirects**. Every redirect points directly to its final public URL; there are no redirect chains and no targets containing `/docs/content/`.
 
 ## Coverage
 
@@ -14,11 +14,14 @@ The Cloudflare bulk redirect file contains **103 permanent redirects**. Every re
 | Get started routes and aliases | 30 | Various legacy and source-derived paths | Final `/get-started/...` paths |
 | Historical Utility Classes page | 1 | `/docs/content/develop/helpers.html` | `/index.html#utility-classes` |
 | Renamed Core page | 1 | `/core/layout/index.html` | `/core/page-layout/index.html` |
+| Renamed component group page | 1 | `/components/forms-and-input/index.html` | `/components/forms-and-inputs/index.html` |
 | Former component guidance pages | 45 | `/components/.../_guidance.html` | Matching component overview page |
 
 The route-derived redirects cover every publishable Handlebars page affected by `build-script/documentation-routes.js`. Partials beginning with `_` are excluded from route-derived redirects. However, the former component `_guidance.html` pages were emitted as directly accessible pages, so each now redirects to its matching component overview.
 
 The historical `/docs/content/develop/helpers.html` URL was also included because it appeared in the legacy sitemap and Git history. It now redirects to the Utility classes listing rather than an arbitrary individual utility page.
+
+The former `/components/forms-and-input/index.html` group page redirects to `/components/forms-and-inputs/index.html` following the group label change from "Forms and input" to "Forms and inputs".
 
 ## Earlier Get started URLs and aliases
 
@@ -48,6 +51,7 @@ The historical `/docs/content/develop/helpers.html` URL was also included becaus
 - every routed documentation page has a redirect from its old source-derived URL
 - all known earlier Get started URLs and aliases have redirects
 - the previous Core layout URL redirects to Page layout
+- the previous Forms and input group URL redirects to Forms and inputs
 - every former component guidance page redirects to its component overview
 - every row uses the seven-column Cloudflare bulk redirect format
 - every status is `301`
