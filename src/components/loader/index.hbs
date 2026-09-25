@@ -20,14 +20,23 @@ meta-index: true
 <h2>Usage</h2>
 <p>Loaders should be shown when content is loading or an action is being processed. They reassure the user that their request is being fulfilled. Once the process is complete the loader should fade and be replaced by the loaded content.</p>
 <p>Use loaders when the the wait time is unknown or anticipated to be longer than one seconds. When showing the loader as part of a state (writing or validating data), no delay should be used.</p>
-<p>Do</p>
-<ul>
-  <li>place the loader centered in the area the data is loading</li>
-  <li>only show a spinner if the expected wait time is more than one second</li>
-  <li>only show one loader on a page at a time. If mulitple sections are loading, consider using a large loader for the entire section instead of individual ones</li>
-</ul>
-<h2>When to avoid</h2>
-<p>Do not use loaders if the loading process is less than one second.</p>
+<h3>Guidance</h3>
+<div class="nsw-grid nsw-m-top-sm">
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--do"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">check_circle</span><span>Do</span></div>
+    <ul class="nsw-m-top-sm">
+      <li>place the loader centered in the area the data is loading</li>
+      <li>only show a spinner if the expected wait time is more than one second</li>
+      <li>only show one loader on a page at a time. If mulitple sections are loading, consider using a large loader for the entire section instead of individual ones</li>
+    </ul>
+  </div>
+  <div class="nsw-col nsw-col-sm-6 nsw-docs__guideline">
+    <div class="nsw-docs__guideline--dont"><span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">cancel</span><span>Don't</span></div>
+    <ul class="nsw-m-top-sm">
+      <li>use loaders if the loading process is less than one second.</li>
+    </ul>
+  </div>
+</div>
 
 <h2>How this component works</h2>
 <h3>Explain why the user is waiting</h3>
